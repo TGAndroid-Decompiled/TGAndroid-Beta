@@ -44,7 +44,7 @@ public final class tu extends org.telegram.ui.Components.im0 {
             org.telegram.ui.Cells.d9 d9Var = new org.telegram.ui.Cells.d9(viewGroup.getContext());
             d9Var.setFixedSize(12);
             org.telegram.ui.Components.zq zqVar = new org.telegram.ui.Components.zq(new ColorDrawable(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20932a7, false)), org.telegram.ui.ActionBar.h6.W0(viewGroup.getContext(), R.drawable.greydivider_bottom, org.telegram.ui.ActionBar.h6.f20952b7));
-            zqVar.f33023w = true;
+            zqVar.f33024w = true;
             d9Var.setBackgroundDrawable(zqVar);
             view = d9Var;
         }

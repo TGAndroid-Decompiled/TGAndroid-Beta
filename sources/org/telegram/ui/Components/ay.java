@@ -54,7 +54,7 @@ public final class ay extends im0 {
         Integer num;
         float f7;
         tz tzVar = this.F;
-        ArrayList arrayList = tzVar.f30764q1;
+        ArrayList arrayList = tzVar.f30765q1;
         int i11 = this.f24742w.get(i10);
         if (i11 >= 0 && i11 < arrayList.size()) {
             fy fyVar = (fy) arrayList.get(i11);
@@ -65,8 +65,8 @@ public final class ay extends im0 {
                     z10 = false;
                 }
                 int intValue = ((Integer) this.f24743x.get(i11)).intValue();
-                tzVar.f30758o1.add(Long.valueOf(fyVar.f26435b.f20303id));
-                if (!UserConfig.getInstance(tzVar.f30722c1).isPremium() && !tzVar.U0) {
+                tzVar.f30759o1.add(Long.valueOf(fyVar.f26435b.f20303id));
+                if (!UserConfig.getInstance(tzVar.f30723c1).isPremium() && !tzVar.U0) {
                     z11 = false;
                 } else {
                     z11 = true;
@@ -92,10 +92,10 @@ public final class ay extends im0 {
                 G(false);
                 H();
                 if (num != null && num2 != null) {
-                    tzVar.f30769r2 = view;
-                    tzVar.f30773s2 = num.intValue();
-                    tzVar.f30776t2 = num2.intValue() + num.intValue();
-                    tzVar.f30779u2 = SystemClock.elapsedRealtime();
+                    tzVar.f30770r2 = view;
+                    tzVar.f30774s2 = num.intValue();
+                    tzVar.f30777t2 = num2.intValue() + num.intValue();
+                    tzVar.f30780u2 = SystemClock.elapsedRealtime();
                     s(num.intValue(), num2.intValue());
                     m(num.intValue());
                     if (z10) {
@@ -114,18 +114,18 @@ public final class ay extends im0 {
 
     public final void F(boolean z10) {
         tz tzVar = this.F;
-        ArrayList arrayList = tzVar.f30755n1;
+        ArrayList arrayList = tzVar.f30756n1;
         if (tzVar.N2) {
             return;
         }
         ArrayList arrayList2 = new ArrayList(this.f24739n);
-        MediaDataController mediaDataController = MediaDataController.getInstance(tzVar.f30722c1);
+        MediaDataController mediaDataController = MediaDataController.getInstance(tzVar.f30723c1);
         ArrayList<TLRPC.StickerSetCovered> featuredEmojiSets = mediaDataController.getFeaturedEmojiSets();
         arrayList.clear();
         int size = featuredEmojiSets.size();
         for (int i10 = 0; i10 < size; i10++) {
             TLRPC.StickerSetCovered stickerSetCovered = featuredEmojiSets.get(i10);
-            if (!mediaDataController.isStickerPackInstalled(stickerSetCovered.set.f20303id) || tzVar.f30761p1.contains(Long.valueOf(stickerSetCovered.set.f20303id))) {
+            if (!mediaDataController.isStickerPackInstalled(stickerSetCovered.set.f20303id) || tzVar.f30762p1.contains(Long.valueOf(stickerSetCovered.set.f20303id))) {
                 arrayList.add(stickerSetCovered);
             }
         }
@@ -145,12 +145,12 @@ public final class ay extends im0 {
         TLRPC.StickerSet stickerSet;
         TLRPC.TL_messages_stickerSet groupStickerSetById;
         tz tzVar = this.F;
-        ArrayList arrayList = tzVar.f30755n1;
-        ArrayList arrayList2 = tzVar.f30758o1;
-        int i11 = tzVar.f30722c1;
-        ArrayList arrayList3 = tzVar.f30764q1;
+        ArrayList arrayList = tzVar.f30756n1;
+        ArrayList arrayList2 = tzVar.f30759o1;
+        int i11 = tzVar.f30723c1;
+        ArrayList arrayList3 = tzVar.f30765q1;
         arrayList3.clear();
-        if (tzVar.f30723c2) {
+        if (tzVar.f30724c2) {
             MediaDataController mediaDataController = MediaDataController.getInstance(i11);
             if (z10 || this.h == null) {
                 this.h = new ArrayList(mediaDataController.getStickerSets(5));
@@ -333,7 +333,7 @@ public final class ay extends im0 {
                 return 1;
             }
             return 5;
-        } else if (this.F.f30724d0 && i10 == 0) {
+        } else if (this.F.f30725d0 && i10 == 0) {
             return 2;
         } else {
             if (this.v.indexOfKey(i10) >= 0) {
@@ -364,10 +364,10 @@ public final class ay extends im0 {
         int i12;
         int i13 = i10;
         tz tzVar = this.F;
-        String[] strArr = tzVar.f30715a1;
+        String[] strArr = tzVar.f30716a1;
         rx rxVar = tzVar.Q;
-        int i14 = tzVar.f30722c1;
-        ArrayList arrayList = tzVar.f30764q1;
+        int i14 = tzVar.f30723c1;
+        ArrayList arrayList = tzVar.f30765q1;
         int i15 = b1Var.f45920f;
         View view = b1Var.f45917a;
         boolean z10 = true;
@@ -454,7 +454,7 @@ public final class ay extends im0 {
         cz czVar = (cz) view;
         czVar.f25282a = i13;
         czVar.e = null;
-        if (tzVar.f30724d0) {
+        if (tzVar.f30725d0) {
             i13--;
         }
         if (this.f24738f >= 0) {
@@ -577,7 +577,7 @@ public final class ay extends im0 {
                         if (i10 != 5) {
                             if (i10 != 6) {
                                 View view = new View(tzVar.getContext());
-                                view.setLayoutParams(new s4.o0(-1, tzVar.f30718b1));
+                                view.setLayoutParams(new s4.o0(-1, tzVar.f30719b1));
                                 u1Var = view;
                             } else {
                                 Context context = tzVar.getContext();
@@ -624,7 +624,7 @@ public final class ay extends im0 {
                     u1Var = frameLayout2;
                 }
             } else {
-                org.telegram.ui.Cells.n8 n8Var = new org.telegram.ui.Cells.n8(tzVar.getContext(), true, false, tzVar.Z1, tzVar.f30742i2);
+                org.telegram.ui.Cells.n8 n8Var = new org.telegram.ui.Cells.n8(tzVar.getContext(), true, false, tzVar.Z1, tzVar.f30743i2);
                 n8Var.setOnIconClickListener(new f0(this, 13));
                 u1Var = n8Var;
             }

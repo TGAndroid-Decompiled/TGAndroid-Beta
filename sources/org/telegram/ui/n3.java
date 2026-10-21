@@ -39,7 +39,7 @@ public final class n3 implements org.telegram.ui.web.g0 {
                 x3Var.release();
                 x3Var.K.s();
             }
-        } else if (l4Var.f38778u0[0] == o3Var) {
+        } else if (l4Var.f38779u0[0] == o3Var) {
             l4Var.G();
         }
     }
@@ -53,7 +53,7 @@ public final class n3 implements org.telegram.ui.web.g0 {
     public final void y() {
         o3 o3Var = this.f39401a;
         l4 l4Var = o3Var.K;
-        if (l4Var.f38778u0[0] == o3Var) {
+        if (l4Var.f38779u0[0] == o3Var) {
             l4Var.G();
         }
     }

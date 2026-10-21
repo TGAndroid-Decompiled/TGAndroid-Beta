@@ -68,7 +68,7 @@ public final class pr implements TextWatcher {
                 return;
             case 1:
                 cg0 cg0Var = (cg0) this.d;
-                zf0 zf0Var = cg0Var.f35963b;
+                zf0 zf0Var = cg0Var.f35964b;
                 if (!cg0Var.J) {
                     int selectionStart = zf0Var.getSelectionStart();
                     String obj2 = zf0Var.getText().toString();
@@ -229,8 +229,8 @@ public final class pr implements TextWatcher {
                 return;
             default:
                 eo0 eo0Var = (eo0) this.d;
-                if (!eo0Var.f36721n0) {
-                    org.telegram.ui.Components.o40 o40Var2 = (org.telegram.ui.Components.o40) eo0Var.f36711f[9];
+                if (!eo0Var.f36722n0) {
+                    org.telegram.ui.Components.o40 o40Var2 = (org.telegram.ui.Components.o40) eo0Var.f36712f[9];
                     int selectionStart4 = o40Var2.getSelectionStart();
                     String obj5 = o40Var2.getText().toString();
                     if (this.f40285b == 3) {
@@ -247,7 +247,7 @@ public final class pr implements TextWatcher {
                         }
                         i33 = i34;
                     }
-                    eo0Var.f36721n0 = true;
+                    eo0Var.f36722n0 = true;
                     String hintText4 = o40Var2.getHintText();
                     if (hintText4 != null) {
                         int i35 = 0;
@@ -276,7 +276,7 @@ public final class pr implements TextWatcher {
                         o40Var2.setSelection(Math.min(selectionStart4, o40Var2.length()));
                     }
                     o40Var2.invalidate();
-                    eo0Var.f36721n0 = false;
+                    eo0Var.f36722n0 = false;
                     return;
                 }
                 return;

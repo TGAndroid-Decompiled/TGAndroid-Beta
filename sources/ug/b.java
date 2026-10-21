@@ -31,7 +31,7 @@ public final class b extends View {
         p6Var.x(AndroidUtilities.bold());
         p6Var.u(-1);
         p6Var.t("", true, true);
-        p6Var.f29225b = 17;
+        p6Var.f29226b = 17;
         Paint paint = new Paint(1);
         this.e = paint;
         paint.setColor(-6915073);
@@ -64,9 +64,9 @@ public final class b extends View {
             this.f47652c.start();
         }
         this.d = i10;
-        int length = p6Var.f29230i.length();
+        int length = p6Var.f29231i.length();
         p6Var.t("x" + i10, z10, true);
-        int length2 = p6Var.f29230i.length();
+        int length2 = p6Var.f29231i.length();
         invalidate();
         if (length != length2) {
             requestLayout();

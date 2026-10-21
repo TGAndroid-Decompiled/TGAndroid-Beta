@@ -17,21 +17,21 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 public final class pf extends ng {
     public boolean e;
-    public float f29305f;
+    public float f29306f;
     public float h;
-    public boolean f29306n;
-    public final ChatActivityEnterView f29307r;
+    public boolean f29307n;
+    public final ChatActivityEnterView f29308r;
 
     public pf(ChatActivityEnterView chatActivityEnterView, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(chatActivityEnterView, context, d6Var);
-        this.f29307r = chatActivityEnterView;
+        this.f29308r = chatActivityEnterView;
         this.e = true;
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        ChatActivityEnterView chatActivityEnterView = this.f29307r;
+        ChatActivityEnterView chatActivityEnterView = this.f29308r;
         View view = chatActivityEnterView.J4;
         if (view != null) {
             setWindowView(view);
@@ -50,7 +50,7 @@ public final class pf extends ng {
         super.onDraw(canvas);
         if (getLayout() != null && this.e) {
             this.e = false;
-            this.f29307r.I(true);
+            this.f29308r.I(true);
         }
     }
 
@@ -58,7 +58,7 @@ public final class pf extends ng {
     public final void onMeasure(int i10, int i11) {
         boolean z10;
         super.onMeasure(i10, i11);
-        ChatActivityEnterView chatActivityEnterView = this.f29307r;
+        ChatActivityEnterView chatActivityEnterView = this.f29308r;
         if (chatActivityEnterView.T != chatActivityEnterView.E0.getLineCount()) {
             boolean z11 = false;
             if (chatActivityEnterView.E0.getLineCount() > 2 && chatActivityEnterView.E0.getText() != null && !TextUtils.isEmpty(chatActivityEnterView.E0.getText().toString().trim())) {
@@ -78,7 +78,7 @@ public final class pf extends ng {
     public final boolean onTextContextMenuItem(int i10) {
         ClipData primaryClip;
         if (i10 == 16908322) {
-            ChatActivityEnterView chatActivityEnterView = this.f29307r;
+            ChatActivityEnterView chatActivityEnterView = this.f29308r;
             if (chatActivityEnterView.E0 != null) {
                 try {
                     ClipboardManager clipboardManager = (ClipboardManager) chatActivityEnterView.getContext().getSystemService("clipboard");
@@ -116,7 +116,7 @@ public final class pf extends ng {
                                         pj0[] pj0VarArr2 = (pj0[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), pj0.class);
                                         for (int i11 = 0; i11 < pj0VarArr2.length; i11++) {
                                             spannableStringBuilder.removeSpan(pj0VarArr2[i11]);
-                                            spannableStringBuilder.removeSpan(pj0VarArr2[i11].f29322a);
+                                            spannableStringBuilder.removeSpan(pj0VarArr2[i11].f29323a);
                                         }
                                     } else {
                                         qj0.a(spannableStringBuilder);
@@ -139,17 +139,17 @@ public final class pf extends ng {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        ChatActivityEnterView chatActivityEnterView = this.f29307r;
+        ChatActivityEnterView chatActivityEnterView = this.f29308r;
         if (chatActivityEnterView.u()) {
             if (motionEvent.getAction() == 0) {
-                this.f29305f = motionEvent.getX();
+                this.f29306f = motionEvent.getX();
                 this.h = motionEvent.getY();
-                this.f29306n = true;
-            } else if (this.f29306n && motionEvent.getAction() == 2) {
-                if (Math.abs(motionEvent.getX() - this.f29305f) > AndroidUtilities.touchSlop || Math.abs(motionEvent.getY() - this.h) > AndroidUtilities.touchSlop) {
-                    this.f29306n = false;
+                this.f29307n = true;
+            } else if (this.f29307n && motionEvent.getAction() == 2) {
+                if (Math.abs(motionEvent.getX() - this.f29306f) > AndroidUtilities.touchSlop || Math.abs(motionEvent.getY() - this.h) > AndroidUtilities.touchSlop) {
+                    this.f29307n = false;
                 }
-            } else if (this.f29306n) {
+            } else if (this.f29307n) {
                 if (chatActivityEnterView.Z2 != null) {
                     int i10 = org.telegram.ui.ActionBar.h6.f21332vf;
                     int i11 = ChatActivityEnterView.f23908n5;
@@ -162,7 +162,7 @@ public final class pf extends ng {
                     chatActivityEnterView.E0.requestFocus();
                 }
             }
-            return this.f29306n;
+            return this.f29307n;
         }
         if (motionEvent.getAction() == 0 && chatActivityEnterView.Z2 != null) {
             int i12 = org.telegram.ui.ActionBar.h6.f21332vf;
@@ -176,6 +176,6 @@ public final class pf extends ng {
     @Override
     public final void setOffsetY(float f7) {
         super.setOffsetY(f7);
-        this.f29307r.f24049y1.invalidate();
+        this.f29308r.f24049y1.invalidate();
     }
 }

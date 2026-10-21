@@ -10,16 +10,16 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
 public class p51 extends org.telegram.ui.ActionBar.f3 {
-    public final int f29219b;
-    public final GradientDrawable f29220c;
+    public final int f29220b;
+    public final GradientDrawable f29221c;
     public final o51 d;
     public final d61 e;
-    public int f29221f;
+    public int f29222f;
 
     public p51(Context context, org.telegram.ui.ActionBar.n2 n2Var, d61 d61Var, org.telegram.ui.ActionBar.d6 d6Var) {
         super(1, context, d6Var, true);
-        this.f29219b = AndroidUtilities.dp(12.0f);
-        this.f29220c = new GradientDrawable();
+        this.f29220b = AndroidUtilities.dp(12.0f);
+        this.f29221c = new GradientDrawable();
         o51 o51Var = new o51(this, context);
         this.d = o51Var;
         o51Var.addView(d61Var, w7.z5.c(-1.0f, -1));
@@ -32,7 +32,7 @@ public class p51 extends org.telegram.ui.ActionBar.f3 {
     public static void n(p51 p51Var) {
         d61 d61Var = p51Var.e;
         if (d61Var.c()) {
-            p51Var.f29221f = d61Var.getContentTopOffset();
+            p51Var.f29222f = d61Var.getContentTopOffset();
             p51Var.containerView.invalidate();
         }
     }
@@ -59,11 +59,11 @@ public class p51 extends org.telegram.ui.ActionBar.f3 {
         Objects.requireNonNull(d61Var);
         z6 z6Var = new z6(d61Var, 10);
         s51 s51Var = d61Var.h;
-        arrayList.add(new org.telegram.ui.ActionBar.j6(s51Var.f31315a, 32, null, null, null, null, org.telegram.ui.ActionBar.h6.O5));
-        ImageView imageView = s51Var.f31316b;
+        arrayList.add(new org.telegram.ui.ActionBar.j6(s51Var.f31316a, 32, null, null, null, null, org.telegram.ui.ActionBar.h6.O5));
+        ImageView imageView = s51Var.f31317b;
         int i10 = org.telegram.ui.ActionBar.h6.Q5;
         arrayList.add(new org.telegram.ui.ActionBar.j6(imageView, 8, null, null, null, null, i10));
-        arrayList.add(new org.telegram.ui.ActionBar.j6(s51Var.f31317c, 8, null, null, null, null, i10));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(s51Var.f31318c, 8, null, null, null, null, i10));
         ei.e2 e2Var = s51Var.e;
         arrayList.add(new org.telegram.ui.ActionBar.j6(e2Var, 4, null, null, null, null, org.telegram.ui.ActionBar.h6.R5));
         arrayList.add(new org.telegram.ui.ActionBar.j6(e2Var, 8388608, null, null, null, null, org.telegram.ui.ActionBar.h6.P5));

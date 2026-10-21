@@ -155,12 +155,12 @@ public final class jy extends FrameLayout implements NotificationCenter.Notifica
         }
         boolean z17 = fyVar.f26437f;
         tz tzVar = this.E;
-        if (!z17 && !tzVar.f30761p1.contains(Long.valueOf(fyVar.f26435b.f20303id))) {
+        if (!z17 && !tzVar.f30762p1.contains(Long.valueOf(fyVar.f26435b.f20303id))) {
             z11 = false;
         } else {
             z11 = true;
         }
-        if (!this.f27674s.e && !UserConfig.getInstance(tzVar.f30722c1).isPremium() && !tzVar.U0) {
+        if (!this.f27674s.e && !UserConfig.getInstance(tzVar.f30723c1).isPremium() && !tzVar.U0) {
             i10 = 1;
         } else if (this.f27674s.f26438g) {
             if (z11) {
@@ -435,7 +435,7 @@ public final class jy extends FrameLayout implements NotificationCenter.Notifica
         TLRPC.TL_messages_stickerSet stickerSetById;
         TLRPC.TL_messages_stickerSet stickerSetById2;
         tz tzVar = this.E;
-        int i12 = tzVar.f30722c1;
+        int i12 = tzVar.f30723c1;
         if (i10 == NotificationCenter.groupStickersDidLoad) {
             if (this.f27672n != null && (stickerSetById2 = MediaDataController.getInstance(i12).getStickerSetById(this.f27672n.f20296id)) != null && stickerSetById2.set != null) {
                 org.telegram.ui.ActionBar.n2 n2Var = tzVar.Y1;
@@ -464,7 +464,7 @@ public final class jy extends FrameLayout implements NotificationCenter.Notifica
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        NotificationCenter.getInstance(this.E.f30722c1).removeObserver(this, NotificationCenter.groupStickersDidLoad);
+        NotificationCenter.getInstance(this.E.f30723c1).removeObserver(this, NotificationCenter.groupStickersDidLoad);
     }
 
     @Override

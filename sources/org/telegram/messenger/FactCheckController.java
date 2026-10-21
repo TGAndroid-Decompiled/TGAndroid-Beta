@@ -501,7 +501,7 @@ public class FactCheckController {
                 p6Var.n(0.2f, 160L, bs.h);
                 this.limit.w(AndroidUtilities.dp(15.33f));
                 this.limit.setCallback(this);
-                this.limit.f29225b = 5;
+                this.limit.f29226b = 5;
             }
 
             @Override

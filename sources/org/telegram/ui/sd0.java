@@ -341,7 +341,7 @@ public final class sd0 extends org.telegram.ui.Components.qw0 {
 
     @Override
     public final void j() {
-        AndroidUtilities.runOnUIThread(new dz(this, 19), dg0.f36365t0);
+        AndroidUtilities.runOnUIThread(new dz(this, 19), dg0.f36366t0);
     }
 
     @Override

@@ -7,11 +7,11 @@ import java.util.ArrayList;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class cc1 extends org.telegram.ui.Components.im0 {
-    public final Context f35937c;
+    public final Context f35938c;
     public final ArrayList d;
 
     public cc1(Context context) {
-        this.f35937c = context;
+        this.f35938c = context;
         ArrayList arrayList = new ArrayList();
         this.d = arrayList;
         int currentTimeMillis = (int) (System.currentTimeMillis() / 1000);
@@ -159,7 +159,7 @@ public final class cc1 extends org.telegram.ui.Components.im0 {
     @Override
     public final s4.b1 x(ViewGroup viewGroup, int i10) {
         View r4Var;
-        Context context = this.f35937c;
+        Context context = this.f35938c;
         if (i10 == 0) {
             r4Var = new org.telegram.ui.Cells.r2(context, false);
         } else {

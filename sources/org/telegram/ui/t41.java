@@ -87,7 +87,7 @@ public final class t41 extends org.telegram.ui.Components.kw {
         x51Var.f43061h0.J1 = true;
         x51Var.v(null, true, true);
         o41 o41Var = x51Var.f43057f0;
-        if (o41Var != null && (l51Var = o41Var.f39117n) != null) {
+        if (o41Var != null && (l51Var = o41Var.f39118n) != null) {
             l51Var.G1(null);
         }
         return true;

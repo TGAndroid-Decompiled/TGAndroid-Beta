@@ -207,8 +207,8 @@ public final class h1 extends e91 {
             default:
                 org.telegram.ui.Wallet.o5 o5Var = (org.telegram.ui.Wallet.o5) this.U;
                 o5Var.T0();
-                org.telegram.ui.Wallet.t7 t7Var = o5Var.f34650i0;
-                if (t7Var != null && t7Var.f34930h1) {
+                org.telegram.ui.Wallet.t7 t7Var = o5Var.f34651i0;
+                if (t7Var != null && t7Var.f34931h1) {
                     t7Var.f0();
                     return;
                 }
@@ -222,12 +222,12 @@ public final class h1 extends e91 {
         switch (this.T) {
             case 10:
                 org.telegram.ui.Wallet.o5 o5Var = (org.telegram.ui.Wallet.o5) this.U;
-                o5Var.f34644d0 = i10;
-                if (i10 != 1 && (n8Var = o5Var.f34649h0) != null) {
+                o5Var.f34645d0 = i10;
+                if (i10 != 1 && (n8Var = o5Var.f34650h0) != null) {
                     n8Var.b(false);
                 }
                 if (i10 == 1) {
-                    o5Var.f34656o0.post(new org.telegram.ui.Wallet.p3(o5Var, 13));
+                    o5Var.f34657o0.post(new org.telegram.ui.Wallet.p3(o5Var, 13));
                     return;
                 }
                 return;

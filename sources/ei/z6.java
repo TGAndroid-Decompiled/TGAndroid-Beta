@@ -216,11 +216,11 @@ public final class z6 extends View implements r2 {
         mutate.setColorFilter(new PorterDuffColorFilter(1308622847, mode));
         zq zqVar = new zq(org.telegram.ui.ActionBar.h6.c0(AndroidUtilities.dp(6.0f), -13750737), mutate);
         this.f10209c = zqVar;
-        zqVar.f33023w = false;
+        zqVar.f33024w = false;
         int dp = AndroidUtilities.dp(24.0f);
         int dp2 = AndroidUtilities.dp(24.0f);
         zqVar.e = dp;
-        zqVar.f33019f = dp2;
+        zqVar.f33020f = dp2;
         Drawable mutate2 = activity.getResources().getDrawable(R.drawable.msg_photo_switch2).mutate();
         this.d = mutate2;
         mutate2.setColorFilter(new PorterDuffColorFilter(-1, mode));
@@ -442,7 +442,7 @@ public final class z6 extends View implements r2 {
         w6 w6Var2 = this.L0;
         if (action == 0) {
             this.f10234w0 = true;
-            if (ycVar2.f32631i || ycVar3.f32631i) {
+            if (ycVar2.f32632i || ycVar3.f32632i) {
                 z14 = true;
             }
             this.f10236x0 = z14;
@@ -451,7 +451,7 @@ public final class z6 extends View implements r2 {
             if (Math.abs(clamp - this.f10217i0) < AndroidUtilities.dp(50.0f)) {
                 AndroidUtilities.runOnUIThread(w6Var2, ViewConfiguration.getLongPressTimeout());
             }
-            if (ycVar3.f32631i) {
+            if (ycVar3.f32632i) {
                 AndroidUtilities.runOnUIThread(w6Var, ViewConfiguration.getLongPressTimeout());
             }
         } else if (action == 2) {
@@ -479,10 +479,10 @@ public final class z6 extends View implements r2 {
                 AndroidUtilities.cancelRunOnUIThread(w6Var2);
                 AndroidUtilities.cancelRunOnUIThread(w6Var);
                 boolean z15 = this.f10227r0;
-                if (!z15 && ycVar.f32631i) {
+                if (!z15 && ycVar.f32632i) {
                     ((qa) this.f10205a).c();
                 } else if (z15 && this.f10239z0) {
-                    if (ycVar.f32631i) {
+                    if (ycVar.f32632i) {
                         this.f10239z0 = false;
                         this.G0.d(1.0f, true);
                         v3 v3Var = ((qa) this.f10205a).f9662a.T0;
@@ -494,7 +494,7 @@ public final class z6 extends View implements r2 {
                         this.f10231u0 = true;
                         ((qa) this.f10205a).e(false);
                     }
-                } else if (ycVar2.f32631i) {
+                } else if (ycVar2.f32632i) {
                     if (b()) {
                         ((qa) this.f10205a).a();
                     } else if (!this.f10223o0 && !this.f10227r0 && !this.f10239z0) {
@@ -514,7 +514,7 @@ public final class z6 extends View implements r2 {
                     }
                 }
                 this.f10239z0 = false;
-                if (ycVar3.f32631i) {
+                if (ycVar3.f32632i) {
                     d(180.0f);
                     ((qa) this.f10205a).b();
                 }

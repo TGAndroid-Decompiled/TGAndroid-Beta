@@ -170,7 +170,7 @@ public abstract class ku extends EditText {
                 i10++;
                 mj0 mj0Var2 = mj0Var;
                 hj0 hj0Var = mj0Var2.e.J;
-                if (mj0Var2.b() && mj0Var2.f28536g.contains(motionEvent.getX(), motionEvent.getY() - paddingTop)) {
+                if (mj0Var2.b() && mj0Var2.f28537g.contains(motionEvent.getX(), motionEvent.getY() - paddingTop)) {
                     z11 = true;
                 } else {
                     z11 = false;
@@ -248,11 +248,11 @@ public abstract class ku extends EditText {
             for (o11 o11Var : (o11[]) text.getSpans(0, text.length(), o11.class)) {
                 if (o11Var.c()) {
                     boolean z10 = this.isSpoilersRevealed;
-                    n11 n11Var = o11Var.f28919b;
+                    n11 n11Var = o11Var.f28920b;
                     if (z10) {
-                        n11Var.f28649a |= 512;
+                        n11Var.f28650a |= 512;
                     } else {
-                        n11Var.f28649a &= -513;
+                        n11Var.f28650a &= -513;
                     }
                 }
             }
@@ -316,7 +316,7 @@ public abstract class ku extends EditText {
         Layout layout = getLayout();
         if (layout != null && (layout.getText() instanceof Spannable)) {
             if (this.drawAnimatedEmojiDrawables && (w5Var2 = this.animatedEmojiDrawables) != null) {
-                ArrayList arrayList = w5Var2.f31968a;
+                ArrayList arrayList = w5Var2.f31969a;
                 for (int i10 = 0; i10 < arrayList.size(); i10++) {
                     ((v5) arrayList.get(i10)).d.recordPositions = false;
                 }
@@ -332,7 +332,7 @@ public abstract class ku extends EditText {
             }
             wh.g.a(this, layout2, 0, measuredWidth, (Spanned) getText(), stack, list2, arrayList2);
             if (this.drawAnimatedEmojiDrawables && (w5Var = this.animatedEmojiDrawables) != null) {
-                ArrayList arrayList3 = w5Var.f31968a;
+                ArrayList arrayList3 = w5Var.f31969a;
                 for (int i12 = 0; i12 < arrayList3.size(); i12++) {
                     ((v5) arrayList3.get(i12)).d.recordPositions = true;
                 }
@@ -514,11 +514,11 @@ public abstract class ku extends EditText {
         if (text != null) {
             for (o11 o11Var : (o11[]) text.getSpans(0, text.length(), o11.class)) {
                 if (o11Var.c()) {
-                    n11 n11Var = o11Var.f28919b;
+                    n11 n11Var = o11Var.f28920b;
                     if (z10) {
-                        n11Var.f28649a |= 512;
+                        n11Var.f28650a |= 512;
                     } else {
-                        n11Var.f28649a &= -513;
+                        n11Var.f28650a &= -513;
                     }
                 }
             }

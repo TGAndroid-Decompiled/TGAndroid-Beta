@@ -149,14 +149,14 @@ public abstract class b8 extends FrameLayout {
         int intrinsicWidth = mutate2.getIntrinsicWidth();
         int intrinsicHeight = mutate2.getIntrinsicHeight();
         zqVar.h = intrinsicWidth;
-        zqVar.f33020n = intrinsicHeight;
+        zqVar.f33021n = intrinsicHeight;
         textView4.setCompoundDrawablesWithIntrinsicBounds(zqVar, (Drawable) null, (Drawable) null, (Drawable) null);
         textView4.setCompoundDrawablePadding(AndroidUtilities.dp(2.0f));
         zq zqVar2 = new zq(null, mutate2, 0, AndroidUtilities.dp(1.0f));
         int intrinsicWidth2 = mutate2.getIntrinsicWidth();
         int intrinsicHeight2 = mutate2.getIntrinsicHeight();
         zqVar2.h = intrinsicWidth2;
-        zqVar2.f33020n = intrinsicHeight2;
+        zqVar2.f33021n = intrinsicHeight2;
         textView3.setCompoundDrawablesWithIntrinsicBounds(zqVar2, (Drawable) null, (Drawable) null, (Drawable) null);
         textView3.setCompoundDrawablePadding(AndroidUtilities.dp(2.0f));
         setWillNotDraw(false);
@@ -196,15 +196,15 @@ public abstract class b8 extends FrameLayout {
     }
 
     public void setData(i91 i91Var) {
-        TLRPC.User user = i91Var.f37900a;
+        TLRPC.User user = i91Var.f37901a;
         org.telegram.ui.Components.h9 h9Var = this.f22054n;
         h9Var.r(user);
-        TLRPC.User user2 = i91Var.f37900a;
+        TLRPC.User user2 = i91Var.f37901a;
         z7 z7Var = this.f22050a;
         z7Var.e(user2, h9Var);
         z7Var.setRoundRadius(AndroidUtilities.dp(46.0f) >> 1);
-        this.f22051b.k(i91Var.f37900a.first_name);
-        this.e.setText(i91Var.f37901b);
+        this.f22051b.k(i91Var.f37901a.first_name);
+        this.e.setText(i91Var.f37902b);
         this.f22052c.setVisibility(8);
         this.d.setVisibility(8);
         this.f22053f.setVisibility(8);

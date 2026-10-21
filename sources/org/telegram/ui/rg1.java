@@ -18,25 +18,25 @@ public final class rg1 implements Runnable {
         boolean z10;
         switch (this.f41218a) {
             case 0:
-                this.f41219b.f37668u0.b();
+                this.f41219b.f37669u0.b();
                 return;
             case 1:
-                this.f41219b.f37668u0.b();
+                this.f41219b.f37669u0.b();
                 return;
             case 2:
-                this.f41219b.f37668u0.b();
+                this.f41219b.f37669u0.b();
                 return;
             case 3:
-                this.f41219b.f37668u0.b();
+                this.f41219b.f37669u0.b();
                 return;
             case 4:
                 org.telegram.ui.Components.voip.s1 s1Var = this.f41219b.Z;
-                s1Var.f31690c0 = false;
+                s1Var.f31691c0 = false;
                 s1Var.invalidate();
                 return;
             case 5:
                 hh1 hh1Var = this.f41219b;
-                hh1Var.f37662q0 = hh1Var.f37661p0;
+                hh1Var.f37663q0 = hh1Var.f37662p0;
                 hh1Var.G();
                 return;
             case 6:
@@ -45,7 +45,7 @@ public final class rg1 implements Runnable {
             case 7:
                 int[] iArr = new int[2];
                 hh1 hh1Var2 = this.f41219b;
-                hh1Var2.f37641e0.getLocationOnScreen(iArr);
+                hh1Var2.f37642e0.getLocationOnScreen(iArr);
                 int i10 = iArr[0];
                 int i11 = iArr[1];
                 hh1Var2.e.getLocationOnScreen(iArr);
@@ -54,24 +54,24 @@ public final class rg1 implements Runnable {
                 hh1Var2.h.getLocationOnScreen(iArr);
                 hh1Var2.h.setTranslationX(AndroidUtilities.dp(42.0f) + (i10 - iArr[0]));
                 hh1Var2.h.setTranslationY(AndroidUtilities.dp(44.0f) + (i11 - iArr[1]));
-                hh1Var2.f37643f.getLocationOnScreen(iArr);
-                hh1Var2.f37643f.setTranslationX(AndroidUtilities.dp(42.0f) + (i10 - iArr[0]));
-                hh1Var2.f37643f.setTranslationY(AndroidUtilities.dp(44.0f) + (i11 - iArr[1]));
-                hh1Var2.f37658n.getLocationOnScreen(iArr);
-                hh1Var2.f37658n.setTranslationX((((hh1Var2.f37641e0.getWidth() + i10) - iArr[0]) - AndroidUtilities.dp(49.0f)) - AndroidUtilities.dp(60.0f));
-                hh1Var2.f37658n.setTranslationY(AndroidUtilities.dp(44.0f) + (i11 - iArr[1]));
-                hh1Var2.f37658n.setAlpha(1.0f);
+                hh1Var2.f37644f.getLocationOnScreen(iArr);
+                hh1Var2.f37644f.setTranslationX(AndroidUtilities.dp(42.0f) + (i10 - iArr[0]));
+                hh1Var2.f37644f.setTranslationY(AndroidUtilities.dp(44.0f) + (i11 - iArr[1]));
+                hh1Var2.f37659n.getLocationOnScreen(iArr);
+                hh1Var2.f37659n.setTranslationX((((hh1Var2.f37642e0.getWidth() + i10) - iArr[0]) - AndroidUtilities.dp(49.0f)) - AndroidUtilities.dp(60.0f));
+                hh1Var2.f37659n.setTranslationY(AndroidUtilities.dp(44.0f) + (i11 - iArr[1]));
+                hh1Var2.f37659n.setAlpha(1.0f);
                 hh1Var2.e.setAlpha(1.0f);
                 hh1Var2.h.setAlpha(1.0f);
-                hh1Var2.f37643f.setAlpha(1.0f);
+                hh1Var2.f37644f.setAlpha(1.0f);
                 long j10 = 200;
-                hh1Var2.f37658n.animate().setStartDelay(0L).translationY(0.0f).setInterpolator(new LinearInterpolator()).translationX(0.0f).setDuration(j10).start();
+                hh1Var2.f37659n.animate().setStartDelay(0L).translationY(0.0f).setInterpolator(new LinearInterpolator()).translationX(0.0f).setDuration(j10).start();
                 hh1Var2.e.animate().setStartDelay(0L).translationY(0.0f).setInterpolator(new LinearInterpolator()).translationX(0.0f).setDuration(j10).start();
                 hh1Var2.h.animate().setStartDelay(0L).translationY(0.0f).setInterpolator(new LinearInterpolator()).translationX(0.0f).setDuration(j10).start();
-                hh1Var2.f37643f.animate().setStartDelay(0L).translationY(0.0f).setInterpolator(new LinearInterpolator()).translationX(0.0f).setDuration(j10).start();
+                hh1Var2.f37644f.animate().setStartDelay(0L).translationY(0.0f).setInterpolator(new LinearInterpolator()).translationX(0.0f).setDuration(j10).start();
                 return;
             case 8:
-                this.f41219b.f37668u0.b();
+                this.f41219b.f37669u0.b();
                 return;
             case 9:
                 if (SharedConfig.callEncryptionHintDisplayedCount < 2) {
@@ -83,23 +83,23 @@ public final class rg1 implements Runnable {
                 }
                 return;
             case 10:
-                this.f41219b.f37668u0.b();
+                this.f41219b.f37669u0.b();
                 return;
             case 11:
                 hh1 hh1Var4 = this.f41219b;
-                hh1Var4.f37668u0.setAlpha(1.0f);
-                hh1Var4.f37668u0.invalidate();
+                hh1Var4.f37669u0.setAlpha(1.0f);
+                hh1Var4.f37669u0.invalidate();
                 ValueAnimator j11 = hh1Var4.j(true);
                 hh1Var4.H.setAlpha(0.0f);
                 hh1Var4.I.setAlpha(0.0f);
                 hh1Var4.N.setAlpha(0.0f);
                 hh1Var4.X.setAlpha(0.0f);
-                hh1Var4.f37652j0.setAlpha(0.0f);
-                hh1Var4.f37648h0.setAlpha(0.0f);
-                hh1Var4.f37650i0.setAlpha(0.0f);
+                hh1Var4.f37653j0.setAlpha(0.0f);
+                hh1Var4.f37649h0.setAlpha(0.0f);
+                hh1Var4.f37651i0.setAlpha(0.0f);
                 hh1Var4.K.setAlpha(0.0f);
                 hh1Var4.M0.setAlpha(0.0f);
-                hh1Var4.Y.f31688b0 = true;
+                hh1Var4.Y.f31689b0 = true;
                 AndroidUtilities.runOnUIThread(new k71(22, hh1Var4, j11), 32L);
                 return;
             case 12:
@@ -111,18 +111,18 @@ public final class rg1 implements Runnable {
                 } else {
                     z10 = false;
                 }
-                if (hh1Var5.f37676z0 && hh1Var5.f37673x0 && !hh1Var5.C0 && !z10) {
+                if (hh1Var5.f37677z0 && hh1Var5.f37674x0 && !hh1Var5.C0 && !z10) {
                     hh1Var5.K0 = System.currentTimeMillis();
                     hh1Var5.z(false);
-                    hh1Var5.f37662q0 = hh1Var5.f37661p0;
+                    hh1Var5.f37663q0 = hh1Var5.f37662p0;
                     hh1Var5.G();
                     return;
                 }
                 return;
             default:
                 hh1 hh1Var6 = this.f41219b;
-                if (hh1Var6.f37661p0 == 3) {
-                    hh1Var6.f37674y.b(true, false);
+                if (hh1Var6.f37662p0 == 3) {
+                    hh1Var6.f37675y.b(true, false);
                     org.telegram.ui.Components.voip.a3 a3Var = hh1Var6.v;
                     if (!a3Var.R) {
                         a3Var.R = true;

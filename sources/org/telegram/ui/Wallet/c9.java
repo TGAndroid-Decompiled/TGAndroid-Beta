@@ -9,37 +9,37 @@ import android.widget.TextView;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
 import org.telegram.ui.Components.bs;
 public final class c9 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f34081a;
-    public final float f34082b;
-    public final float f34083c;
+    public final int f34082a;
+    public final float f34083b;
+    public final float f34084c;
     public final float d;
     public final float e;
-    public final int f34084f;
-    public final KeyEvent.Callback f34085g;
+    public final int f34085f;
+    public final KeyEvent.Callback f34086g;
 
     public c9(KeyEvent.Callback callback, float f7, float f10, float f11, float f12, int i10, int i11) {
-        this.f34081a = i11;
-        this.f34085g = callback;
-        this.f34082b = f7;
-        this.f34083c = f10;
+        this.f34082a = i11;
+        this.f34086g = callback;
+        this.f34083b = f7;
+        this.f34084c = f10;
         this.d = f11;
         this.e = f12;
-        this.f34084f = i10;
+        this.f34085f = i10;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f34081a) {
+        switch (this.f34082a) {
             case 0:
-                h9 h9Var = (h9) this.f34085g;
+                h9 h9Var = (h9) this.f34086g;
                 h9Var.getClass();
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 bs bsVar = bs.h;
                 float interpolation = bsVar.getInterpolation(floatValue);
                 float interpolation2 = bsVar.getInterpolation(Math.min(1.0f, (floatValue * 320.0f) / 120.0f));
-                m6 m6Var = h9Var.f34294c;
-                float f7 = this.f34083c;
-                float f10 = this.f34082b;
+                m6 m6Var = h9Var.f34295c;
+                float f7 = this.f34084c;
+                float f10 = this.f34083b;
                 m6Var.setAlpha(((f7 - f10) * interpolation2) + f10);
                 TextView textView = h9Var.e;
                 float f11 = this.e;
@@ -47,20 +47,20 @@ public final class c9 implements ValueAnimator.AnimatorUpdateListener {
                 textView.setAlpha(((f11 - f12) * interpolation2) + f12);
                 FrameLayout frameLayout = h9Var.d;
                 ViewGroup.LayoutParams layoutParams = frameLayout.getLayoutParams();
-                int i10 = this.f34084f;
-                layoutParams.width = Math.round(((h9Var.f34300x - i10) * interpolation) + i10);
+                int i10 = this.f34085f;
+                layoutParams.width = Math.round(((h9Var.f34301x - i10) * interpolation) + i10);
                 frameLayout.requestLayout();
                 return;
             default:
-                xh.j jVar = (xh.j) this.f34085g;
+                xh.j jVar = (xh.j) this.f34086g;
                 float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 jVar.f49861x = floatValue2;
-                float f13 = this.f34082b;
+                float f13 = this.f34083b;
                 float y3 = com.google.android.gms.internal.play_billing.k3.y(1.0f, f13, floatValue2, f13);
                 xh.i iVar = jVar.f49862y;
                 iVar.setScaleX(y3);
                 iVar.setScaleY(y3);
-                iVar.setTranslationX((1.0f - jVar.f49861x) * this.f34083c);
+                iVar.setTranslationX((1.0f - jVar.f49861x) * this.f34084c);
                 iVar.setTranslationY((1.0f - jVar.f49861x) * this.d);
                 int i11 = (int) ((1.0f - jVar.f49861x) * this.e);
                 jVar.h.N(i11, i11);
@@ -69,7 +69,7 @@ public final class c9 implements ValueAnimator.AnimatorUpdateListener {
                 jVar.d.setAlpha(a2);
                 jVar.e.setAlpha(a2);
                 ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = jVar.f49856f;
-                actionBarPopupWindow$ActionBarPopupWindowLayout.setTranslationY((1.0f - jVar.f49861x) * this.f34084f);
+                actionBarPopupWindow$ActionBarPopupWindowLayout.setTranslationY((1.0f - jVar.f49861x) * this.f34085f);
                 actionBarPopupWindow$ActionBarPopupWindowLayout.setAlpha(a2);
                 BitmapDrawable bitmapDrawable = jVar.f49860w;
                 if (bitmapDrawable != null) {

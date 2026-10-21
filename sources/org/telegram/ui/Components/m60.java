@@ -1319,7 +1319,7 @@ public final class m60 extends r60 implements NotificationCenter.NotificationCen
         float f17;
         float f18;
         float measuredHeight;
-        n60 n60Var = this.f29849a;
+        n60 n60Var = this.f29850a;
         if (n60Var != null) {
             ((org.telegram.ui.pe) n60Var).f40199b.f40899wc.a(z10, true);
         }
@@ -1379,7 +1379,7 @@ public final class m60 extends r60 implements NotificationCenter.NotificationCen
         Property property = View.ALPHA;
         ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(linearLayout, property, fArr);
         ObjectAnimator ofFloat3 = ObjectAnimator.ofFloat(this.G, property, 0.0f);
-        r6 r6Var = t6.f30444b;
+        r6 r6Var = t6.f30445b;
         if (z10) {
             i10 = 255;
         } else {

@@ -43,9 +43,9 @@ public final class r31 extends FrameLayout {
         float f7;
         super.onLayout(z10, i10, i11, i12, i13);
         SecretMediaViewer secretMediaViewer = this.f41054r;
-        p31 p31Var = secretMediaViewer.f33837y;
+        p31 p31Var = secretMediaViewer.f33838y;
         if (p31Var != null) {
-            f7 = ((float) p31Var.n()) / ((float) secretMediaViewer.f33837y.p());
+            f7 = ((float) p31Var.n()) / ((float) secretMediaViewer.f33838y.p());
         } else {
             f7 = 0.0f;
         }

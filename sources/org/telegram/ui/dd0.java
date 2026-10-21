@@ -11,15 +11,15 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class dd0 implements Runnable {
-    public final int f36332a = 0;
-    public final md0 f36333b;
-    public final TLRPC.TL_error f36334c;
+    public final int f36333a = 0;
+    public final md0 f36334b;
+    public final TLRPC.TL_error f36335c;
     public final TLObject d;
     public final String e;
 
     public dd0(md0 md0Var, TLRPC.TL_error tL_error, String str, TLObject tLObject) {
-        this.f36333b = md0Var;
-        this.f36334c = tL_error;
+        this.f36334b = md0Var;
+        this.f36335c = tL_error;
         this.e = str;
         this.d = tLObject;
     }
@@ -27,13 +27,13 @@ public final class dd0 implements Runnable {
     @Override
     public final void run() {
         int i10;
-        switch (this.f36332a) {
+        switch (this.f36333a) {
             case 0:
-                final md0 md0Var = this.f36333b;
-                id0 id0Var = md0Var.f39209a;
+                final md0 md0Var = this.f36334b;
+                id0 id0Var = md0Var.f39210a;
                 dg0 dg0Var = md0Var.W;
                 dg0Var.k1(false, true);
-                TLRPC.TL_error tL_error = this.f36334c;
+                TLRPC.TL_error tL_error = this.f36335c;
                 String str = this.e;
                 if (tL_error == null) {
                     md0Var.E = false;
@@ -48,7 +48,7 @@ public final class dd0 implements Runnable {
                     if (tLObject instanceof TLRPC.TL_auth_authorizationSignUpRequired) {
                         TLRPC.TL_help_termsOfService tL_help_termsOfService = ((TLRPC.TL_auth_authorizationSignUpRequired) tLObject).terms_of_service;
                         if (tL_help_termsOfService != null) {
-                            dg0Var.f36385p0 = tL_help_termsOfService;
+                            dg0Var.f36386p0 = tL_help_termsOfService;
                         }
                         md0Var.o(new Runnable() {
                             @Override
@@ -134,11 +134,11 @@ public final class dd0 implements Runnable {
                 md0Var.F = null;
                 return;
             default:
-                final md0 md0Var2 = this.f36333b;
+                final md0 md0Var2 = this.f36334b;
                 md0Var2.E = false;
                 dg0 dg0Var2 = md0Var2.W;
                 dg0Var2.v1(false, true);
-                TLRPC.TL_error tL_error2 = this.f36334c;
+                TLRPC.TL_error tL_error2 = this.f36335c;
                 if (tL_error2 == null) {
                     TL_account.Password password = (TL_account.Password) this.d;
                     if (!TwoStepVerificationActivity.i0(password, true)) {
@@ -173,8 +173,8 @@ public final class dd0 implements Runnable {
     }
 
     public dd0(md0 md0Var, TLRPC.TL_error tL_error, TLObject tLObject, String str) {
-        this.f36333b = md0Var;
-        this.f36334c = tL_error;
+        this.f36334b = md0Var;
+        this.f36335c = tL_error;
         this.d = tLObject;
         this.e = str;
     }

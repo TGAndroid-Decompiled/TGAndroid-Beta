@@ -26,7 +26,7 @@ public final class m70 extends j71 {
         int i11 = v70Var.f28096y;
         i10 = ((org.telegram.ui.ActionBar.f3) v70Var).backgroundPaddingTop;
         v70Var.V.setTranslationY(AndroidUtilities.dp(64.0f) + AndroidUtilities.dp(6.0f) + (i11 - i10));
-        float f7 = v70Var.f31180o0 + v70Var.f31186u0;
+        float f7 = v70Var.f31181o0 + v70Var.f31187u0;
         tx0 tx0Var = v70Var.f28093s;
         if (tx0Var.getVisibility() != 0) {
             this.f28442f = f7;
@@ -58,12 +58,12 @@ public final class m70 extends j71 {
         v70 v70Var = this.v;
         if (view == v70Var.V) {
             canvas.save();
-            canvas.clipRect(0.0f, view.getY() - AndroidUtilities.dp(4.0f), getMeasuredWidth(), view.getY() + v70Var.f31177k0 + 1.0f);
-            canvas.drawColor(i0.a.o(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20990d6, false), (int) (v70Var.f31174h0 * 255.0f)));
-            int o10 = i0.a.o(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20991d7, false), (int) (v70Var.f31174h0 * 255.0f));
+            canvas.clipRect(0.0f, view.getY() - AndroidUtilities.dp(4.0f), getMeasuredWidth(), view.getY() + v70Var.f31178k0 + 1.0f);
+            canvas.drawColor(i0.a.o(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20990d6, false), (int) (v70Var.f31175h0 * 255.0f)));
+            int o10 = i0.a.o(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20991d7, false), (int) (v70Var.f31175h0 * 255.0f));
             Paint paint = this.f28443n;
             paint.setColor(o10);
-            canvas.drawRect(0.0f, view.getY() + v70Var.f31177k0, getMeasuredWidth(), view.getY() + v70Var.f31177k0 + 1.0f, paint);
+            canvas.drawRect(0.0f, view.getY() + v70Var.f31178k0, getMeasuredWidth(), view.getY() + v70Var.f31178k0 + 1.0f, paint);
             boolean drawChild = super.drawChild(canvas, view, j10);
             canvas.restore();
             return drawChild;
@@ -76,13 +76,13 @@ public final class m70 extends j71 {
         super.onAttachedToWindow();
         m.g3 g3Var = this.f28445s;
         if (g3Var != null) {
-            ((o71) g3Var.f16202b).f28959b = true;
+            ((o71) g3Var.f16202b).f28960b = true;
         }
     }
 
     @Override
     public final void onViewAdded(View view) {
-        if (view == this.v.f31185t0 && this.f28445s == null) {
+        if (view == this.v.f31186t0 && this.f28445s == null) {
             this.f28445s = new m.g3(view);
         }
     }

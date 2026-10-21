@@ -115,7 +115,7 @@ public class lw0 extends FrameLayout implements org.telegram.ui.ActionBar.y5 {
             if (lw0Var.K == null) {
                 ww0 ww0Var = new ww0(1);
                 lw0Var.K = ww0Var;
-                ww0Var.f32259g = -1;
+                ww0Var.f32260g = -1;
                 ww0Var.c();
             }
             lw0Var.K.b(canvas, lw0Var.L);

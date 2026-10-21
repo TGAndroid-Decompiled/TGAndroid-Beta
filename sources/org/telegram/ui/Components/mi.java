@@ -5,8 +5,8 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLRPC;
 public final class mi extends oi {
-    public TLRPC.User f28523b;
-    public TLRPC.TL_attachMenuBot f28524c;
+    public TLRPC.User f28524b;
+    public TLRPC.TL_attachMenuBot f28525c;
     public final ti d;
 
     public mi(ti tiVar, Context context) {
@@ -32,20 +32,20 @@ public final class mi extends oi {
         bVar.f44315s = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.al, d6Var);
         bVar.v = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.bl, d6Var);
         bVar.f();
-        this.f29050a = bVar;
-        bVar.getBackupImageView().f31992a.setDelegate(new k2(12));
-        addView(this.f29050a, w7.z5.c(-1.0f, -1));
+        this.f29051a = bVar;
+        bVar.getBackupImageView().f31993a.setDelegate(new k2(12));
+        addView(this.f29051a, w7.z5.c(-1.0f, -1));
     }
 
     public final void a(boolean z10) {
         boolean z11;
-        if (this.f28524c != null && (-this.f28523b.f20423id) == this.d.Z0) {
+        if (this.f28525c != null && (-this.f28524b.f20423id) == this.d.Z0) {
             z11 = true;
         } else {
             z11 = false;
         }
-        this.f29050a.e(z11, z10);
-        vj0 lottieAnimation = this.f29050a.getBackupImageView().getImageReceiver().getLottieAnimation();
+        this.f29051a.e(z11, z10);
+        vj0 lottieAnimation = this.f29051a.getBackupImageView().getImageReceiver().getLottieAnimation();
         if (z10) {
             if (z11 && lottieAnimation != null) {
                 lottieAnimation.K(0);

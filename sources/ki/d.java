@@ -19,7 +19,7 @@ public final class d implements Runnable {
                 qVar.K(2147483646, true, 0, false, 0L);
                 mi0 mi0Var = qVar.O;
                 if (mi0Var != null) {
-                    mi0Var.h(false);
+                    mi0Var.g(false);
                     qVar.O = null;
                     return;
                 }
@@ -29,7 +29,7 @@ public final class d implements Runnable {
                 qVar2.K(0, false, 0, false, 0L);
                 mi0 mi0Var2 = qVar2.O;
                 if (mi0Var2 != null) {
-                    mi0Var2.h(true);
+                    mi0Var2.g(true);
                     qVar2.O = null;
                     return;
                 }
@@ -37,7 +37,7 @@ public final class d implements Runnable {
             case 2:
                 q qVar3 = this.f15190b;
                 if (!UserConfig.getInstance(qVar3.f15447n).isPremium()) {
-                    new sg.y0(qVar3.f28173b.f30545f0, qVar3.getContext(), qVar3.f15447n, 43, true).show();
+                    new sg.y0(qVar3.f28173b.f30546f0, qVar3.getContext(), qVar3.f15447n, 43, true).show();
                     return;
                 }
                 return;

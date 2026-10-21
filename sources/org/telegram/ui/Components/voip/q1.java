@@ -5,31 +5,31 @@ import android.view.ViewTreeObserver;
 import org.telegram.ui.Components.bs;
 import org.telegram.ui.Components.p31;
 public final class q1 implements ViewTreeObserver.OnPreDrawListener {
-    public final float f31640a;
-    public final float f31641b;
-    public final s1 f31642c;
+    public final float f31641a;
+    public final float f31642b;
+    public final s1 f31643c;
 
     public q1(s1 s1Var, float f7, float f10) {
-        this.f31642c = s1Var;
-        this.f31640a = f7;
-        this.f31641b = f10;
+        this.f31643c = s1Var;
+        this.f31641a = f7;
+        this.f31642b = f10;
     }
 
     @Override
     public final boolean onPreDraw() {
-        s1 s1Var = this.f31642c;
+        s1 s1Var = this.f31643c;
         if (!s1Var.P) {
-            ValueAnimator valueAnimator = s1Var.f31691d0;
+            ValueAnimator valueAnimator = s1Var.f31692d0;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
             }
             ValueAnimator ofFloat = ValueAnimator.ofFloat(s1Var.J, 0.0f);
-            s1Var.f31691d0 = ofFloat;
-            ofFloat.addUpdateListener(s1Var.f31692e0);
-            s1Var.f31691d0.setDuration(300L);
-            s1Var.f31691d0.start();
-            float measuredWidth = this.f31640a - ((s1Var.getMeasuredWidth() - (s1Var.getMeasuredWidth() * 0.23f)) / 2.0f);
-            float measuredHeight = this.f31641b - ((s1Var.getMeasuredHeight() - (s1Var.getMeasuredHeight() * 0.23f)) / 2.0f);
+            s1Var.f31692d0 = ofFloat;
+            ofFloat.addUpdateListener(s1Var.f31693e0);
+            s1Var.f31692d0.setDuration(300L);
+            s1Var.f31692d0.start();
+            float measuredWidth = this.f31641a - ((s1Var.getMeasuredWidth() - (s1Var.getMeasuredWidth() * 0.23f)) / 2.0f);
+            float measuredHeight = this.f31642b - ((s1Var.getMeasuredHeight() - (s1Var.getMeasuredHeight() * 0.23f)) / 2.0f);
             s1Var.getViewTreeObserver().removeOnPreDrawListener(this);
             s1Var.setTranslationX(measuredWidth);
             s1Var.setTranslationY(measuredHeight);

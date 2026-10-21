@@ -21,24 +21,24 @@ import org.telegram.ui.UsersSelectActivity;
 import org.telegram.ui.hh1;
 import org.telegram.ui.lg1;
 public final class nl0 extends AnimatorListenerAdapter {
-    public final int f28840a;
-    public final Object f28841b;
-    public final Object f28842c;
+    public final int f28841a;
+    public final Object f28842b;
+    public final Object f28843c;
 
     public nl0(int i10, Object obj, Object obj2) {
-        this.f28840a = i10;
-        this.f28842c = obj;
-        this.f28841b = obj2;
+        this.f28841a = i10;
+        this.f28843c = obj;
+        this.f28842b = obj2;
     }
 
     @Override
     public void onAnimationCancel(Animator animator) {
-        switch (this.f28840a) {
+        switch (this.f28841a) {
             case 12:
-                ((ProfileActivity) this.f28842c).E5 = null;
+                ((ProfileActivity) this.f28843c).E5 = null;
                 return;
             case 18:
-                ((r0.m0) this.f28841b).a();
+                ((r0.m0) this.f28842b).a();
                 return;
             default:
                 super.onAnimationCancel(animator);
@@ -49,27 +49,27 @@ public final class nl0 extends AnimatorListenerAdapter {
     @Override
     public final void onAnimationEnd(Animator animator) {
         boolean z10;
-        int i10 = this.f28840a;
-        Object obj = this.f28841b;
-        Object obj2 = this.f28842c;
+        int i10 = this.f28841a;
+        Object obj = this.f28842b;
+        Object obj2 = this.f28843c;
         switch (i10) {
             case 0:
                 b10 b10Var = (b10) obj;
                 b10Var.setAlpha(1.0f);
                 s4.n0.x0(b10Var);
                 ol0 ol0Var = (ol0) obj2;
-                ol0Var.f29066c.remove(b10Var);
-                ol0Var.f29064a.removeView(b10Var);
+                ol0Var.f29067c.remove(b10Var);
+                ol0Var.f29065a.removeView(b10Var);
                 return;
             case 1:
                 super.onAnimationEnd(animator);
                 org.telegram.ui.oq oqVar = (org.telegram.ui.oq) obj2;
-                ((ol0) oqVar.d).f29068g.remove((AnimatorSet) obj);
-                if (((ol0) oqVar.d).f29068g.isEmpty()) {
-                    ((ol0) oqVar.d).f29065b.clear();
+                ((ol0) oqVar.d).f29069g.remove((AnimatorSet) obj);
+                if (((ol0) oqVar.d).f29069g.isEmpty()) {
+                    ((ol0) oqVar.d).f29066b.clear();
                     ol0 ol0Var2 = (ol0) oqVar.d;
                     ol0Var2.d = true;
-                    ol0Var2.f29064a.invalidate();
+                    ol0Var2.f29065a.invalidate();
                     return;
                 }
                 return;
@@ -97,7 +97,7 @@ public final class nl0 extends AnimatorListenerAdapter {
                 return;
             case 4:
                 yx0 yx0Var = (yx0) obj2;
-                yx0Var.f32749b = 0.0f;
+                yx0Var.f32750b = 0.0f;
                 yx0Var.invalidate();
                 ((hn0) obj).invalidate();
                 return;
@@ -139,10 +139,10 @@ public final class nl0 extends AnimatorListenerAdapter {
                 } else {
                     z10 = false;
                 }
-                of0Var.f29038f = z10;
+                of0Var.f29039f = z10;
                 imageReceiver.setImageBitmap(bitmap);
                 imageReceiver.setOrientation(0, false);
-                AnimatorSet animatorSet = of0Var.f29041s;
+                AnimatorSet animatorSet = of0Var.f29042s;
                 if (animatorSet != null) {
                     animatorSet.cancel();
                 }
@@ -151,17 +151,17 @@ public final class nl0 extends AnimatorListenerAdapter {
                     animatorSet2.cancel();
                 }
                 of0Var.h = true;
-                of0Var.f29039n = 1.0f;
+                of0Var.f29040n = 1.0f;
                 AnimatorSet animatorSet3 = new AnimatorSet();
-                of0Var.f29041s = animatorSet3;
+                of0Var.f29042s = animatorSet3;
                 animatorSet3.playTogether(ObjectAnimator.ofFloat(of0Var, of0Var.E, 0.0f, 1.0f));
-                of0Var.f29041s.setDuration(250L);
-                of0Var.f29041s.setInterpolator(new OvershootInterpolator(1.01f));
-                of0Var.f29041s.addListener(new mf0(of0Var, 0));
-                of0Var.f29041s.start();
+                of0Var.f29042s.setDuration(250L);
+                of0Var.f29042s.setInterpolator(new OvershootInterpolator(1.01f));
+                of0Var.f29042s.addListener(new mf0(of0Var, 0));
+                of0Var.f29042s.start();
                 AnimatorSet animatorSet4 = new AnimatorSet();
                 photoViewer.A2 = animatorSet4;
-                animatorSet4.playTogether(ObjectAnimator.ofFloat(photoViewer.f33468z2, photoViewer.f33273d4, 0.0f));
+                animatorSet4.playTogether(ObjectAnimator.ofFloat(photoViewer.f33469z2, photoViewer.f33274d4, 0.0f));
                 photoViewer.A2.setDuration(85L);
                 photoViewer.A2.setInterpolator(bs.f25022g);
                 photoViewer.A2.addListener(new org.telegram.ui.zb0(this, 7));
@@ -194,13 +194,13 @@ public final class nl0 extends AnimatorListenerAdapter {
                         profileActivity.U0.setVisibility(8);
                     } else {
                         org.telegram.ui.nz0 nz0Var = profileActivity.O;
-                        if (nz0Var.u0(nz0Var.f31046k0[0].F)) {
+                        if (nz0Var.u0(nz0Var.f31047k0[0].F)) {
                             ((org.telegram.ui.ActionBar.u0) obj).setVisibility(0);
                         }
-                        profileActivity.O.f31060r0.setVisibility(4);
+                        profileActivity.O.f31061r0.setVisibility(4);
                         AnimatorSet animatorSet5 = new AnimatorSet();
                         profileActivity.F5 = animatorSet5;
-                        animatorSet5.playTogether(ObjectAnimator.ofFloat(profileActivity, profileActivity.f33663l5, 1.0f));
+                        animatorSet5.playTogether(ObjectAnimator.ofFloat(profileActivity, profileActivity.f33664l5, 1.0f));
                         profileActivity.F5.setDuration(100L);
                         profileActivity.F5.addListener(new org.telegram.ui.zb0(this, 19));
                         profileActivity.F5.start();
@@ -224,9 +224,9 @@ public final class nl0 extends AnimatorListenerAdapter {
             case 14:
                 org.telegram.ui.ju0 ju0Var = (org.telegram.ui.ju0) obj;
                 if (ju0Var != null) {
-                    ju0Var.f38350a.setVisible(true, true);
+                    ju0Var.f38351a.setVisible(true, true);
                 }
-                ((SecretMediaViewer) obj2).f33823s = false;
+                ((SecretMediaViewer) obj2).f33824s = false;
                 AndroidUtilities.runOnUIThread(new org.telegram.ui.qy0(this, 12));
                 return;
             case 15:
@@ -243,24 +243,24 @@ public final class nl0 extends AnimatorListenerAdapter {
                 lg1 lg1Var = (lg1) obj2;
                 lg1Var.removeView((v30) obj);
                 lg1Var.e = null;
-                lg1Var.f38920a = null;
-                lg1Var.f38921b = false;
-                UsersSelectActivity usersSelectActivity = lg1Var.f38923f;
-                usersSelectActivity.f33957c.setAllowDrawCursor(true);
+                lg1Var.f38921a = null;
+                lg1Var.f38922b = false;
+                UsersSelectActivity usersSelectActivity = lg1Var.f38924f;
+                usersSelectActivity.f33958c.setAllowDrawCursor(true);
                 if (usersSelectActivity.O.isEmpty()) {
-                    usersSelectActivity.f33957c.setHintVisible(true, true);
+                    usersSelectActivity.f33958c.setHintVisible(true, true);
                     return;
                 }
                 return;
             case 17:
                 ((Runnable) obj).run();
                 hh1 hh1Var = (hh1) obj2;
-                hh1Var.f37641e0.setScaleX(1.15f);
-                hh1Var.f37641e0.setScaleY(1.15f);
-                ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) hh1Var.f37641e0.getLayoutParams();
+                hh1Var.f37642e0.setScaleX(1.15f);
+                hh1Var.f37642e0.setScaleY(1.15f);
+                ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) hh1Var.f37642e0.getLayoutParams();
                 marginLayoutParams.leftMargin = AndroidUtilities.dp(10.0f);
                 marginLayoutParams.rightMargin = AndroidUtilities.dp(10.0f);
-                hh1Var.f37641e0.setVisibility(8);
+                hh1Var.f37642e0.setVisibility(8);
                 return;
             case 18:
                 ((r0.m0) obj).c();
@@ -311,12 +311,12 @@ public final class nl0 extends AnimatorListenerAdapter {
 
     @Override
     public void onAnimationStart(Animator animator) {
-        switch (this.f28840a) {
+        switch (this.f28841a) {
             case 9:
-                ((qw0) this.f28841b).setVisibility(0);
+                ((qw0) this.f28842b).setVisibility(0);
                 return;
             case 18:
-                ((r0.m0) this.f28841b).b();
+                ((r0.m0) this.f28842b).b();
                 return;
             default:
                 super.onAnimationStart(animator);
@@ -325,14 +325,14 @@ public final class nl0 extends AnimatorListenerAdapter {
     }
 
     public nl0(Object obj, View view, int i10) {
-        this.f28840a = i10;
-        this.f28841b = obj;
-        this.f28842c = view;
+        this.f28841a = i10;
+        this.f28842b = obj;
+        this.f28843c = view;
     }
 
     public nl0(ol0 ol0Var, b10 b10Var, s4.n0 n0Var) {
-        this.f28840a = 0;
-        this.f28842c = ol0Var;
-        this.f28841b = b10Var;
+        this.f28841a = 0;
+        this.f28843c = ol0Var;
+        this.f28842b = b10Var;
     }
 }

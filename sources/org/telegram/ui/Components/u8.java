@@ -4,16 +4,16 @@ import android.content.Context;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class u8 extends wq {
-    public final int f30872f0;
+    public final int f30873f0;
 
     public u8(Context context, boolean z10, vq vqVar, int i10) {
         super(context, z10, vqVar);
-        this.f30872f0 = i10;
+        this.f30873f0 = i10;
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        switch (this.f30872f0) {
+        switch (this.f30873f0) {
             case 0:
                 super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(300.0f), 1073741824));
                 return;

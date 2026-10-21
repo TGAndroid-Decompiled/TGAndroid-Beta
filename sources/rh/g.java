@@ -225,7 +225,7 @@ public final class g extends Drawable implements DownloadController.FileDownload
                     }
                     if (f7 > 0.0f) {
                         zo0 zo0Var = this.K;
-                        zo0Var.f33006t = f7;
+                        zo0Var.f33007t = f7;
                         zo0Var.j(mk.y(56.0f, i14, bounds.right), AndroidUtilities.dp(30.0f));
                         canvas.save();
                         float dp3 = AndroidUtilities.dp(45.0f) + i14;
@@ -471,7 +471,7 @@ public final class g extends Drawable implements DownloadController.FileDownload
                 zo0 zo0Var = this.K;
                 if (!zo0Var.e) {
                     zo0Var.i(playingMessageObject.audioProgress);
-                    zo0Var.f33003q = playingMessageObject.bufferedProgress;
+                    zo0Var.f33004q = playingMessageObject.bufferedProgress;
                 }
                 zo0Var.k(playingMessageObject);
             } else {

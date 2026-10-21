@@ -3,15 +3,15 @@ package org.telegram.ui.Components;
 import android.util.SparseArray;
 import org.telegram.tgnet.TLRPC;
 public final class v51 extends g.o {
-    public final d61 f31159c;
+    public final d61 f31160c;
 
     public v51(d61 d61Var) {
-        this.f31159c = d61Var;
+        this.f31160c = d61Var;
     }
 
     @Override
     public final int i(int i10) {
-        d61 d61Var = this.f31159c;
+        d61 d61Var = this.f31160c;
         s4.g0 adapter = d61Var.f25351n.getAdapter();
         c61 c61Var = d61Var.f25353s;
         if (adapter == c61Var) {

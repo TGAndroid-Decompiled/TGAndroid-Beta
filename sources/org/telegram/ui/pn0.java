@@ -16,10 +16,10 @@ public final class pn0 extends org.telegram.ui.ActionBar.j {
                 eo0Var.finishFragment();
             }
         } else if (i10 == 1 && !eo0Var.P0) {
-            if (eo0Var.f36730u0 != 3) {
+            if (eo0Var.f36731u0 != 3) {
                 AndroidUtilities.hideKeyboard(eo0Var.getParentActivity().getCurrentFocus());
             }
-            int i11 = eo0Var.f36730u0;
+            int i11 = eo0Var.f36731u0;
             if (i11 != 0) {
                 int i12 = 0;
                 if (i11 != 1) {

@@ -653,7 +653,7 @@ public class TranslateController extends BaseController {
                 arrayList2.add(null);
             }
         }
-        AndroidUtilities.runOnUIThread(new l8(this, arrayList2, arrayList, 28));
+        AndroidUtilities.runOnUIThread(new l8(this, arrayList2, arrayList, 29));
     }
 
     public void lambda$checkDialogTranslatable$17(long j10) {
@@ -1074,7 +1074,7 @@ public class TranslateController extends BaseController {
         } else if (tL_error != null) {
             if ("SUMMARY_FLOOD_PREMIUM".equalsIgnoreCase(tL_error.text) && (U = LaunchActivity.U()) != null) {
                 org.telegram.ui.Components.qc J = org.telegram.ui.Components.xc.a0(U).J(R.raw.star_premium_2, LocaleController.getString(R.string.SummaryLimit), LocaleController.getString(R.string.SummaryLimitUpgrade), new ob(3, U));
-                J.f29530j = 5000;
+                J.f29531j = 5000;
                 J.k(true);
             }
             this.loadingSummarizations.remove(Integer.valueOf(i10));
@@ -1268,20 +1268,20 @@ public class TranslateController extends BaseController {
             ArrayList<TLRPC.TL_textWithEntities> arrayList = ((TLRPC.TL_messages_translateResult) tLObject).result;
             if (arrayList.size() <= 0) {
                 AndroidUtilities.runOnUIThread(new Runnable(this) {
-                    public final TranslateController f18494b;
+                    public final TranslateController f18487b;
 
                     {
-                        this.f18494b = this;
+                        this.f18487b = this;
                     }
 
                     @Override
                     public final void run() {
                         switch (r6) {
                             case 0:
-                                this.f18494b.lambda$translateStory$35(storyItem, str, storyKey, runnable);
+                                this.f18487b.lambda$translateStory$35(storyItem, str, storyKey, runnable);
                                 return;
                             default:
-                                this.f18494b.lambda$translateStory$37(storyItem, str, storyKey, runnable);
+                                this.f18487b.lambda$translateStory$37(storyItem, str, storyKey, runnable);
                                 return;
                         }
                     }
@@ -1293,20 +1293,20 @@ public class TranslateController extends BaseController {
             }
         }
         AndroidUtilities.runOnUIThread(new Runnable(this) {
-            public final TranslateController f18494b;
+            public final TranslateController f18487b;
 
             {
-                this.f18494b = this;
+                this.f18487b = this;
             }
 
             @Override
             public final void run() {
                 switch (r6) {
                     case 0:
-                        this.f18494b.lambda$translateStory$35(storyItem, str, storyKey, runnable);
+                        this.f18487b.lambda$translateStory$35(storyItem, str, storyKey, runnable);
                         return;
                     default:
-                        this.f18494b.lambda$translateStory$37(storyItem, str, storyKey, runnable);
+                        this.f18487b.lambda$translateStory$37(storyItem, str, storyKey, runnable);
                         return;
                 }
             }

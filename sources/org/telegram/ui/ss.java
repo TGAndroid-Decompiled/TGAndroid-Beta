@@ -13,7 +13,7 @@ public final class ss implements r0.n, org.telegram.ui.Components.cl0 {
 
     @Override
     public r0.k1 B0(View view, r0.k1 k1Var) {
-        this.f41525a.f36791q = AndroidUtilities.getDefaultWindowInsets(k1Var, false);
+        this.f41525a.f36792q = AndroidUtilities.getDefaultWindowInsets(k1Var, false);
         return k1Var;
     }
 
@@ -32,24 +32,24 @@ public final class ss implements r0.n, org.telegram.ui.Components.cl0 {
         if (i1Var != null) {
             et etVar = this.f41525a;
             ah.t0 reactionsWindow = etVar.P.getReactionsWindow();
-            if (etVar.f36789o.contains(i1Var.f783f)) {
-                if (etVar.f36789o.size() > 1) {
-                    etVar.f36789o.remove(i1Var.f783f);
+            if (etVar.f36790o.contains(i1Var.f783f)) {
+                if (etVar.f36790o.size() > 1) {
+                    etVar.f36790o.remove(i1Var.f783f);
                 } else {
                     return;
                 }
             } else {
-                etVar.f36789o.add(i1Var.f783f);
-                if (etVar.f36789o.size() > 7) {
-                    etVar.f36789o.remove(0);
+                etVar.f36790o.add(i1Var.f783f);
+                if (etVar.f36790o.size() > 7) {
+                    etVar.f36790o.remove(0);
                 }
             }
-            etVar.P.setSelectedEmojis(etVar.f36789o);
+            etVar.P.setSelectedEmojis(etVar.f36790o);
             if (reactionsWindow != null) {
                 ah.n0 n0Var = reactionsWindow.f877m;
                 etVar.P.p(null, null, false);
                 if (n0Var != null) {
-                    n0Var.setSelectedReactions(etVar.f36789o);
+                    n0Var.setSelectedReactions(etVar.f36790o);
                     n0Var.setRecentReactions(etVar.P.V);
                 }
                 reactionsWindow.d();

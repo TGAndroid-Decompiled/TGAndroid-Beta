@@ -72,13 +72,13 @@ public final class g4 implements Utilities.Callback {
                 if (c10 != null) {
                     if (arrayList.size() > 1) {
                         qc R = xc.a0(n2Var2).R(((TL_stars.SavedStarGift) arrayList.get(0)).gift.getDocument(), AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("Gift2AddedToCollectionMany", arrayList.size(), c10.title)));
-                        R.f29538r = false;
+                        R.f29539r = false;
                         R.j();
                         return;
                     } else if (arrayList.size() == 1) {
                         TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) arrayList.get(0);
                         qc R2 = xc.a0(n2Var2).R(savedStarGift.gift.getDocument(), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2AddedToCollection, l7.Y1(savedStarGift.gift), c10.title)));
-                        R2.f29538r = false;
+                        R2.f29539r = false;
                         R2.j();
                         return;
                     } else {

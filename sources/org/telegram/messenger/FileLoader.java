@@ -69,6 +69,7 @@ public class FileLoader extends BaseController {
     private static volatile DispatchQueue fileLoaderQueue = new DispatchQueue("fileUploadQueue");
     private static SparseArray<File> mediaDirs = null;
     private static final FileLoader[] Instance = new FileLoader[4];
+    private static final FileLoadOperationStream pendingPlayerStream = new Object();
 
     public class AnonymousClass1 implements FileUploadOperation.FileUploadOperationDelegate {
         final boolean val$encrypted;
@@ -144,12 +145,12 @@ public class FileLoader extends BaseController {
 
         @Override
         public void didFailedUploadingFile(FileUploadOperation fileUploadOperation) {
-            FileLoader.fileLoaderQueue.postRunnable(new f3(this, this.val$encrypted, this.val$location, this.val$small));
+            FileLoader.fileLoaderQueue.postRunnable(new g3(this, this.val$encrypted, this.val$location, this.val$small));
         }
 
         @Override
         public void didFinishUploadingFile(FileUploadOperation fileUploadOperation, TLRPC.InputFile inputFile, TLRPC.InputEncryptedFile inputEncryptedFile, byte[] bArr, byte[] bArr2) {
-            FileLoader.fileLoaderQueue.postRunnable(new g3(this, this.val$encrypted, this.val$location, this.val$small, inputFile, inputEncryptedFile, bArr, bArr2, fileUploadOperation));
+            FileLoader.fileLoaderQueue.postRunnable(new h3(this, this.val$encrypted, this.val$location, this.val$small, inputFile, inputEncryptedFile, bArr, bArr2, fileUploadOperation));
         }
     }
 
@@ -221,7 +222,7 @@ public class FileLoader extends BaseController {
 
         @Override
         public void didPreFinishLoading(FileLoadOperation fileLoadOperation, File file) {
-            FileLoader.fileLoaderQueue.postRunnable(new h3(0, fileLoadOperation, fileLoadOperation.getQueue()));
+            FileLoader.fileLoaderQueue.postRunnable(new i3(0, fileLoadOperation, fileLoadOperation.getQueue()));
         }
 
         @Override
@@ -849,12 +850,12 @@ public class FileLoader extends BaseController {
         }
     }
 
-    public void lambda$checkCurrentDownloadsFiles$17(ArrayList arrayList) {
+    public void lambda$checkCurrentDownloadsFiles$19(ArrayList arrayList) {
         getDownloadController().recentDownloadingFiles.removeAll(arrayList);
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.onDownloadingFilesChanged, new Object[0]);
     }
 
-    public void lambda$checkDownloadQueue$15(FileLoaderPriorityQueue fileLoaderPriorityQueue, FileLoadOperation fileLoadOperation) {
+    public void lambda$checkDownloadQueue$17(FileLoaderPriorityQueue fileLoaderPriorityQueue, FileLoadOperation fileLoadOperation) {
         if (fileLoaderPriorityQueue.remove(fileLoadOperation)) {
             this.loadOperationPaths.remove(fileLoadOperation.getFileName());
             fileLoaderPriorityQueue.checkLoadingOperations(fileLoadOperation.isStory);
@@ -876,7 +877,7 @@ public class FileLoader extends BaseController {
         }
     }
 
-    public static void lambda$deleteFiles$16(ArrayList arrayList, int i10) {
+    public static void lambda$deleteFiles$18(ArrayList arrayList, int i10) {
         for (int i11 = 0; i11 < arrayList.size(); i11++) {
             File file = (File) arrayList.get(i11);
             File file2 = new File(file.getAbsolutePath() + ".enc");
@@ -925,7 +926,7 @@ public class FileLoader extends BaseController {
         loadFileInternal(document, secureDocument, webFile, tL_fileLocationToBeDeprecated, imageLocation, obj, str, j10, i10, null, 0L, false, i11);
     }
 
-    public void lambda$loadStreamFile$14(FileLoadOperation[] fileLoadOperationArr, TLRPC.Document document, ImageLocation imageLocation, Object obj, int i10, FileLoadOperationStream fileLoadOperationStream, long j10, boolean z10, int i11, CountDownLatch countDownLatch) {
+    public void lambda$loadStreamFile$16(FileLoadOperation[] fileLoadOperationArr, TLRPC.Document document, ImageLocation imageLocation, Object obj, int i10, FileLoadOperationStream fileLoadOperationStream, long j10, boolean z10, int i11, CountDownLatch countDownLatch) {
         TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated;
         long j11;
         String str = null;
@@ -947,7 +948,7 @@ public class FileLoader extends BaseController {
         countDownLatch.countDown();
     }
 
-    public void lambda$new$18() {
+    public void lambda$new$20() {
         int i10 = 0;
         while (true) {
             FileLoaderPriorityQueue[] fileLoaderPriorityQueueArr = this.smallFilesQueue;
@@ -988,12 +989,16 @@ public class FileLoader extends BaseController {
         }
     }
 
-    public void lambda$uploadFile$19(NotificationCenter.NotificationCenterDelegate[] notificationCenterDelegateArr) {
+    public void lambda$startVideoStream$15(TLRPC.Document document, Object obj) {
+        loadFileInternal(document, null, null, null, null, obj, null, 0L, FileStreamLoadOperation.getStreamPrioriy(document), pendingPlayerStream, 0L, false, 0);
+    }
+
+    public void lambda$uploadFile$21(NotificationCenter.NotificationCenterDelegate[] notificationCenterDelegateArr) {
         getNotificationCenter().removeObserver(notificationCenterDelegateArr[0], NotificationCenter.fileUploaded);
         getNotificationCenter().removeObserver(notificationCenterDelegateArr[0], NotificationCenter.fileUploadFailed);
     }
 
-    public static void lambda$uploadFile$20(String str, Utilities.Callback callback, Runnable runnable, int i10, int i11, Object[] objArr) {
+    public static void lambda$uploadFile$22(String str, Utilities.Callback callback, Runnable runnable, int i10, int i11, Object[] objArr) {
         if (i10 == NotificationCenter.fileUploaded) {
             if (objArr[0] == str) {
                 callback.run((TLRPC.InputFile) objArr[1]);
@@ -1485,12 +1490,16 @@ public class FileLoader extends BaseController {
         }
     }
 
+    public void startVideoStream(TLRPC.Document document, Object obj) {
+        fileLoaderQueue.postRunnable(new h0(this, document, obj, 23));
+    }
+
     public void uploadFile(String str, boolean z10, boolean z11, int i10) {
         uploadFile(str, z10, z11, 0L, i10, false);
     }
 
     public void checkDownloadQueue(FileLoadOperation fileLoadOperation, FileLoaderPriorityQueue fileLoaderPriorityQueue, long j10) {
-        fileLoaderQueue.postRunnable(new h0(this, fileLoaderPriorityQueue, fileLoadOperation, 23), j10);
+        fileLoaderQueue.postRunnable(new h0(this, fileLoaderPriorityQueue, fileLoadOperation, 24), j10);
     }
 
     public static boolean copyFile(InputStream inputStream, File file, int i10) {
@@ -1548,7 +1557,7 @@ public class FileLoader extends BaseController {
         fileLoaderQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                FileLoader.this.lambda$loadStreamFile$14(fileLoadOperationArr, document, imageLocation, obj, i10, fileLoadOperationStream, j10, z10, i11, countDownLatch);
+                FileLoader.this.lambda$loadStreamFile$16(fileLoadOperationArr, document, imageLocation, obj, i10, fileLoadOperationStream, j10, z10, i11, countDownLatch);
             }
         });
         awaitFileLoadOperation(countDownLatch, true);
@@ -1765,7 +1774,7 @@ public class FileLoader extends BaseController {
         NotificationCenter.NotificationCenterDelegate[] notificationCenterDelegateArr = {new NotificationCenter.NotificationCenterDelegate() {
             @Override
             public final void didReceivedNotification(int i10, int i11, Object[] objArr) {
-                FileLoader.lambda$uploadFile$20(str, callback, j2Var, i10, i11, objArr);
+                FileLoader.lambda$uploadFile$22(str, callback, j2Var, i10, i11, objArr);
             }
         }};
         getNotificationCenter().addObserver(notificationCenterDelegateArr[0], NotificationCenter.fileUploaded);
@@ -1891,5 +1900,8 @@ public class FileLoader extends BaseController {
             }
         }
         return false;
+    }
+
+    public static void lambda$static$14() {
     }
 }

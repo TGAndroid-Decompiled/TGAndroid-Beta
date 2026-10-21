@@ -35,7 +35,7 @@ public final class tb0 implements org.telegram.ui.ActionBar.q0, org.telegram.ui.
                 if (arrayList != null) {
                     int size = arrayList2.size();
                     for (int i10 = 0; i10 < size; i10++) {
-                        ((mc0) arrayList2.get(i10)).f39175b.remove();
+                        ((mc0) arrayList2.get(i10)).f39176b.remove();
                     }
                     arrayList2.clear();
                     int size2 = arrayList.size();
@@ -50,10 +50,10 @@ public final class tb0 implements org.telegram.ui.ActionBar.q0, org.telegram.ui.
                             position.title(tL_messageMediaVenue.title);
                             position.snippet(tL_messageMediaVenue.address);
                             ?? obj = new Object();
-                            obj.f39174a = i11;
+                            obj.f39175a = i11;
                             IMapsProvider.IMarker addMarker = nc0Var.I.addMarker(position);
-                            obj.f39175b = addMarker;
-                            obj.f39176c = tL_messageMediaVenue;
+                            obj.f39176b = addMarker;
+                            obj.f39177c = tL_messageMediaVenue;
                             addMarker.setTag(obj);
                             arrayList2.add(obj);
                         } catch (Exception e) {
@@ -128,7 +128,7 @@ public final class tb0 implements org.telegram.ui.ActionBar.q0, org.telegram.ui.
                 nc0Var.X.setVisibility(0);
                 kc0 kc0Var = nc0Var.f39528x;
                 IMapsProvider.IMarker iMarker = nc0Var.m0;
-                HashMap hashMap = kc0Var.f38514a;
+                HashMap hashMap = kc0Var.f38515a;
                 View view = (View) hashMap.get(iMarker);
                 if (view != null) {
                     kc0Var.removeView(view);

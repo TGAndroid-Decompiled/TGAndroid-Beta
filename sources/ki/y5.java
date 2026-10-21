@@ -34,10 +34,10 @@ public final class y5 extends CharacterStyle {
                 textPaint.setColor(h6.v(h6.m1(0.55f, textPaint.getColor()), h6.m1(0.4f, ((qj0) this.f15667b).I)));
                 return;
             case 3:
-                textPaint.setColor(((org.telegram.ui.Wallet.n3) this.f15667b).f34589t0);
+                textPaint.setColor(((org.telegram.ui.Wallet.n3) this.f15667b).f34590t0);
                 return;
             default:
-                float[] fArr = ((org.telegram.ui.Wallet.x5) this.f15667b).f35097a0;
+                float[] fArr = ((org.telegram.ui.Wallet.x5) this.f15667b).f35098a0;
                 int i11 = -9577217;
                 if (fArr != null) {
                     i11 = i0.a.f(fArr[8], h7.p(fArr, -9577217, 0), h7.p(fArr, -9577217, 3));

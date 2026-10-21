@@ -30,7 +30,7 @@ public final class f81 implements Runnable {
                 if (j81Var2.f27433b != null) {
                     j81Var2.f27444s = true;
                     PhotoViewer photoViewer = j81Var2.M.f43539a;
-                    if (photoViewer.f33422u3) {
+                    if (photoViewer.f33423u3) {
                         photoViewer.d3(true);
                         return;
                     }
@@ -44,7 +44,7 @@ public final class f81 implements Runnable {
                 if (j81Var3.f27433b != null) {
                     j81Var3.f27444s = true;
                     PhotoViewer photoViewer2 = j81Var3.M.f43539a;
-                    if (photoViewer2.f33422u3) {
+                    if (photoViewer2.f33423u3) {
                         photoViewer2.d3(true);
                         return;
                     }

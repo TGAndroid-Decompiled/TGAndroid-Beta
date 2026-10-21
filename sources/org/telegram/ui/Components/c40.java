@@ -38,7 +38,7 @@ public final class c40 extends AnimatorListenerAdapter {
             case 1:
                 d40 d40Var = this.f25098b.W;
                 if (d40Var != null) {
-                    ((org.telegram.ui.bs0) d40Var).f35739a.f33278e0.requestLayout();
+                    ((org.telegram.ui.bs0) d40Var).f35740a.f33279e0.requestLayout();
                     return;
                 }
                 return;

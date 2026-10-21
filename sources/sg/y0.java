@@ -416,8 +416,8 @@ public final class y0 extends f3 implements NotificationCenter.NotificationCente
         linearLayout.setOrientation(1);
         int i13 = h6.V8;
         int i14 = h6.P9;
-        saVar.f30236n = i13;
-        saVar.f30237r = i14;
+        saVar.f30237n = i13;
+        saVar.f30238r = i14;
         if (!z11) {
             linearLayout.addView(saVar, z5.t(this.d.size() * 11, 5, 1, 0, 0, 0, 10));
         }

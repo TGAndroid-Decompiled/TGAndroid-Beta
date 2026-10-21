@@ -6,12 +6,12 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class pn implements uy {
-    public final Utilities.Callback f29339a;
-    public final mn f29340b;
+    public final Utilities.Callback f29340a;
+    public final mn f29341b;
 
     public pn(Utilities.Callback callback, mn mnVar) {
-        this.f29339a = callback;
-        this.f29340b = mnVar;
+        this.f29340a = callback;
+        this.f29341b = mnVar;
     }
 
     @Override
@@ -56,8 +56,8 @@ public final class pn implements uy {
 
     @Override
     public final void m(View view, TLRPC.Document document, String str, Object obj, MessageObject.SendAnimationData sendAnimationData, boolean z10, int i10) {
-        this.f29339a.run(new sh.h(document, obj));
-        this.f29340b.dismiss(true);
+        this.f29340a.run(new sh.h(document, obj));
+        this.f29341b.dismiss(true);
     }
 
     @Override
@@ -67,8 +67,8 @@ public final class pn implements uy {
 
     @Override
     public final void x(long j10, TLRPC.Document document, String str, boolean z10) {
-        this.f29339a.run(new sh.h(document, null));
-        this.f29340b.dismiss(true);
+        this.f29340a.run(new sh.h(document, null));
+        this.f29341b.dismiss(true);
     }
 
     @Override

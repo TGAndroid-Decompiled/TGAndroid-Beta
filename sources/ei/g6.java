@@ -133,7 +133,7 @@ public final class g6 extends View implements ne.d {
                 md mdVar = (md) this.f9070c;
                 ci.k4 k4Var = mdVar.e;
                 if (k4Var != null && k4Var.getImageReceiver().hasNotThumb()) {
-                    paint3.setAlpha((int) (mdVar.f39198r.getAlpha() * mdVar.e.getImageReceiver().getCurrentAlpha() * 85.0f));
+                    paint3.setAlpha((int) (mdVar.f39199r.getAlpha() * mdVar.e.getImageReceiver().getCurrentAlpha() * 85.0f));
                     canvas.drawCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, getMeasuredWidth() / 2.0f, paint3);
                     return;
                 }
@@ -349,7 +349,7 @@ public final class g6 extends View implements ne.d {
             case 7:
                 canvas.drawColor(855638016);
                 q90 q90Var = (q90) this.f9070c;
-                FrameLayout frameLayout = q90Var.f29499n;
+                FrameLayout frameLayout = q90Var.f29500n;
                 float[] fArr = q90Var.I;
                 q90.a(frameLayout, (FrameLayout) this.f9069b, fArr);
                 canvas.save();
@@ -374,8 +374,8 @@ public final class g6 extends View implements ne.d {
             case 9:
                 canvas.drawColor(855638016);
                 jz jzVar = (jz) this.f9070c;
-                FrameLayout frameLayout2 = jzVar.f36830a;
-                float[] fArr2 = jzVar.f36839y;
+                FrameLayout frameLayout2 = jzVar.f36831a;
+                float[] fArr2 = jzVar.f36840y;
                 ez.a(frameLayout2, (FrameLayout) this.f9069b, fArr2);
                 canvas.save();
                 float y10 = frameLayout2.getY() + ((View) frameLayout2.getParent()).getY();
@@ -429,7 +429,7 @@ public final class g6 extends View implements ne.d {
                 return;
             case 15:
                 kc1 kc1Var = (kc1) this.f9070c;
-                int currentItem = kc1Var.f38546j0.getCurrentItem();
+                int currentItem = kc1Var.f38547j0.getCurrentItem();
                 Paint paint12 = (Paint) this.f9069b;
                 int i13 = org.telegram.ui.ActionBar.h6.Ae;
                 if (kc1Var.d) {
@@ -459,7 +459,7 @@ public final class g6 extends View implements ne.d {
                 super.onDraw(canvas);
                 int save = canvas.save();
                 canvas.scale(getWidth() / 336.0f, getHeight() / 205.0f);
-                org.telegram.ui.Wallet.p5 p5Var = ((org.telegram.ui.Wallet.s5) this.f9070c).f34842b;
+                org.telegram.ui.Wallet.p5 p5Var = ((org.telegram.ui.Wallet.s5) this.f9070c).f34843b;
                 if (p5Var != null) {
                     p5Var.e(canvas, (float[]) this.f9069b);
                 } else {

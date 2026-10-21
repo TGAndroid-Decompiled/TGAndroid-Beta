@@ -123,11 +123,11 @@ public final class r extends FrameLayout {
         addView(tx0Var, z5.c(-1.0f, -1));
         tx0Var.setOnTouchListener(new d(0));
         tx0Var.e(true, false);
-        tx0Var.f30696b.setVisibility(8);
+        tx0Var.f30697b.setVisibility(8);
         tx0Var.d.setText(LocaleController.getString(R.string.ProfileBotPreviewEmptyTitle));
         tx0Var.e.setText(LocaleController.formatPluralString("ProfileBotPreviewEmptyText", MessagesController.getInstance(js0Var.f8069b).botPreviewMediasMax, new Object[0]));
         String string = LocaleController.getString(R.string.ProfileBotPreviewEmptyButton);
-        ei.d dVar = tx0Var.f30698f;
+        ei.d dVar = tx0Var.f30699f;
         dVar.g(string, false, true);
         dVar.setVisibility(0);
         dVar.setOnClickListener(new e(this, 0));
@@ -141,11 +141,11 @@ public final class r extends FrameLayout {
         nVar.setTextAlignment(4);
         nVar.setGravity(17);
         nVar.setTypeface(AndroidUtilities.bold());
-        tx0Var.f30695a.addView(nVar, z5.t(165, -2, 17, 0, 17, 0, 12));
+        tx0Var.f30696a.addView(nVar, z5.t(165, -2, 17, 0, 17, 0, 12));
         ei.d dVar2 = new ei.d(context, d6Var, false);
         this.F = dVar2;
         dVar2.setMinWidth(AndroidUtilities.dp(200.0f));
-        tx0Var.f30695a.addView(dVar2, z5.q(-2, 44, 17));
+        tx0Var.f30696a.addView(dVar2, z5.q(-2, 44, 17));
         tx0Var.addView(mVar, 0, z5.c(-1.0f, -1));
         iVar.setEmptyView(tx0Var);
         iVar.W1 = true;
@@ -336,19 +336,19 @@ public final class r extends FrameLayout {
             tx0Var.d.setVisibility(0);
             tx0Var.d.setText(LocaleController.getString(R.string.ProfileBotPreviewEmptyTitle));
             tx0Var.e.setText(LocaleController.formatPluralString("ProfileBotPreviewEmptyText", MessagesController.getInstance(i12).botPreviewMediasMax, new Object[0]));
-            tx0Var.f30698f.g(LocaleController.getString(R.string.ProfileBotPreviewEmptyButton), false, true);
+            tx0Var.f30699f.g(LocaleController.getString(R.string.ProfileBotPreviewEmptyButton), false, true);
             nVar2.setVisibility(8);
             dVar2.setVisibility(8);
         } else {
             tx0Var.d.setVisibility(8);
             tx0Var.e.setText(LocaleController.formatString(R.string.ProfileBotPreviewFooterLanguage, t41.E(this.f8054a.E, null, null)));
-            tx0Var.f30698f.g(LocaleController.getString(R.string.ProfileBotPreviewEmptyButton), false, true);
+            tx0Var.f30699f.g(LocaleController.getString(R.string.ProfileBotPreviewEmptyButton), false, true);
             nVar2.setVisibility(0);
             dVar2.setVisibility(0);
             dVar2.g(LocaleController.getString(R.string.ProfileBotPreviewFooterDeleteTranslation), false, true);
             dVar2.setOnClickListener(new e(this, 1));
         }
-        ei.d dVar3 = tx0Var.f30698f;
+        ei.d dVar3 = tx0Var.f30699f;
         if (this.v.h() >= MessagesController.getInstance(i12).botPreviewMediasMax) {
             i13 = 8;
         }

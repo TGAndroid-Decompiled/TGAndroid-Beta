@@ -32,7 +32,7 @@ public final class fi0 extends org.telegram.ui.Components.jm0 {
     public final boolean drawChild(Canvas canvas, View view, long j10) {
         org.telegram.ui.Cells.u1 u1Var;
         mi0 mi0Var = this.Z2;
-        if (mi0Var.f39282w && ((view == (u1Var = mi0Var.Q) && u1Var != null && u1Var.getCurrentPosition() == null) || view == mi0Var.X)) {
+        if (mi0Var.v && ((view == (u1Var = mi0Var.P) && u1Var != null && u1Var.getCurrentPosition() == null) || view == mi0Var.W)) {
             return false;
         }
         if (!(view instanceof org.telegram.ui.Cells.u1)) {
@@ -96,28 +96,28 @@ public final class fi0 extends org.telegram.ui.Components.jm0 {
         int l4;
         int i12;
         mi0 mi0Var = this.Z2;
-        if (mi0Var.N.isEmpty()) {
+        if (mi0Var.M.isEmpty()) {
             f7 = -6.0f;
         } else {
             f7 = 48.0f;
         }
         int dp = AndroidUtilities.dp(f7);
-        ViewGroup viewGroup = mi0Var.Z;
+        ViewGroup viewGroup = mi0Var.Y;
         if (viewGroup == null) {
             measuredHeight = 0;
         } else {
             measuredHeight = viewGroup.getMeasuredHeight();
         }
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(Math.max(0, ((AndroidUtilities.displaySize.y - (dp + measuredHeight)) - AndroidUtilities.dp(8.0f)) - mi0Var.e.f12284b), Integer.MIN_VALUE));
-        if (mi0Var.m0) {
-            l4 = mi0Var.Y;
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(Math.max(0, ((AndroidUtilities.displaySize.y - (dp + measuredHeight)) - AndroidUtilities.dp(8.0f)) - mi0Var.d.f12284b), Integer.MIN_VALUE));
+        if (mi0Var.f39270l0) {
+            l4 = mi0Var.X;
         } else {
-            l4 = mi0Var.W.l();
+            l4 = mi0Var.V.l();
         }
-        int max = Math.max(AndroidUtilities.dp(12.0f) + l4, -((AndroidUtilities.dp(7.0f) + mi0Var.f39272o0[0]) - getMeasuredWidth()));
-        int i13 = mi0Var.O;
+        int max = Math.max(AndroidUtilities.dp(12.0f) + l4, -((AndroidUtilities.dp(7.0f) + mi0Var.f39272n0[0]) - getMeasuredWidth()));
+        int i13 = mi0Var.N;
         int measuredWidth = getMeasuredWidth() - max;
-        if (mi0Var.P.i()) {
+        if (mi0Var.O.i()) {
             i12 = 0;
         } else {
             i12 = 40;

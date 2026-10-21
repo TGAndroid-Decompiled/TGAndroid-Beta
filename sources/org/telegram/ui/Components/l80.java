@@ -20,7 +20,7 @@ public final class l80 extends LinearLayout {
         int size;
         r80 r80Var = this.f28113b;
         ArrayList arrayList = r80Var.h;
-        if (r80Var.f29873s == 0) {
+        if (r80Var.f29874s == 0) {
             int size2 = View.MeasureSpec.getSize(i10);
             int dp = AndroidUtilities.dp(95.0f) * arrayList.size();
             LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) r80Var.d.getLayoutParams();

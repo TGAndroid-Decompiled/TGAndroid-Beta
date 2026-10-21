@@ -37,10 +37,10 @@ public final class xb1 extends zt0 {
             File file2 = new File(photoEntry.imagePath);
             kc1Var.B1 = new th1(file2, file2, "");
             kc1Var.C1 = loadBitmap;
-            kc1Var.f38522b2 = 0;
-            kc1Var.f38578x0.requestLayout();
+            kc1Var.f38523b2 = 0;
+            kc1Var.f38579x0.requestLayout();
             kc1Var.b1(false);
-            kc1Var.f38576w1 = null;
+            kc1Var.f38577w1 = null;
             kc1Var.i1();
         }
     }

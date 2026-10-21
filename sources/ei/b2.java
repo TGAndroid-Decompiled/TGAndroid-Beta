@@ -94,7 +94,7 @@ public final class b2 extends w1 {
                 g2Var.F1(n2Var.f9500c);
                 h2Var.f9147f.D1();
                 if (h2Var.f9147f.getSelectedCategory() != null) {
-                    a2Var.H = h2Var.f9147f.getSelectedCategory().f28892a;
+                    a2Var.H = h2Var.f9147f.getSelectedCategory().f28893a;
                     com.google.firebase.messaging.s sVar = a2Var.M;
                     AndroidUtilities.cancelRunOnUIThread(sVar);
                     AndroidUtilities.runOnUIThread(sVar);

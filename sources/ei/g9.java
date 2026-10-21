@@ -151,7 +151,7 @@ public final class g9 extends pg.b {
                     w8Var2.f10047b.setText((CharSequence) null);
                 } else if (i15 == 5) {
                     try {
-                        ((tx0) view).f30696b.getImageReceiver().startAnimation();
+                        ((tx0) view).f30697b.getImageReceiver().startAnimation();
                     } catch (Exception unused) {
                     }
                 } else if (i15 == 6) {
@@ -227,7 +227,7 @@ public final class g9 extends pg.b {
                     tx0 tx0Var = new tx0(context, null, 1, d6Var);
                     tx0Var.d.setText(LocaleController.getString(R.string.NoResult));
                     tx0Var.e.setText(LocaleController.getString(R.string.SearchEmptyViewFilteredSubtitle2));
-                    tx0Var.f30695a.setTranslationY(AndroidUtilities.dp(24.0f));
+                    tx0Var.f30696a.setTranslationY(AndroidUtilities.dp(24.0f));
                     view = tx0Var;
                 } else if (i10 == 6) {
                     unVar = new org.telegram.ui.Cells.d9(context, d6Var);

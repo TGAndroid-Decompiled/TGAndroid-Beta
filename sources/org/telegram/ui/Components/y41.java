@@ -46,13 +46,13 @@ public final class y41 extends g61 {
         } else {
             onClickListener = null;
         }
-        LinearLayout linearLayout = z41Var.f32837r;
+        LinearLayout linearLayout = z41Var.f32838r;
         LinearLayout linearLayout2 = z41Var.h;
-        LinearLayout linearLayout3 = z41Var.f32833b;
-        z41Var.f32834c.setText(charSequence);
+        LinearLayout linearLayout3 = z41Var.f32834b;
+        z41Var.f32835c.setText(charSequence);
         z41Var.d.setText(charSequence2);
         z41Var.e.setText(charSequence3);
-        ImageView imageView = z41Var.f32835f;
+        ImageView imageView = z41Var.f32836f;
         int i12 = 8;
         if (onClickListener2 != null) {
             i10 = 0;
@@ -67,7 +67,7 @@ public final class y41 extends g61 {
             z11 = false;
         }
         linearLayout3.setClickable(z11);
-        z41Var.f32836n.a(z12, false);
+        z41Var.f32837n.a(z12, false);
         if (onClickListener3 != null) {
             i11 = 0;
         } else {

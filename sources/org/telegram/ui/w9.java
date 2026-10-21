@@ -345,7 +345,7 @@ public class w9 extends org.telegram.ui.ActionBar.n2 {
         }
         Activity parentActivity = getParentActivity();
         if (parentActivity instanceof LaunchActivity) {
-            vk0Var = ((LaunchActivity) parentActivity).f33192t1;
+            vk0Var = ((LaunchActivity) parentActivity).f33193t1;
         } else {
             vk0Var = null;
         }
@@ -682,7 +682,7 @@ public class w9 extends org.telegram.ui.ActionBar.n2 {
         this.e.quitSafely();
         g gVar = this.f42501a;
         if (gVar != null) {
-            vk0 vk0Var = (vk0) gVar.f37149b;
+            vk0 vk0Var = (vk0) gVar.f37150b;
             if (vk0Var.f42277b.remove(gVar)) {
                 vk0Var.a();
             }

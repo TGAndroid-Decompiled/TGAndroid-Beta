@@ -43,7 +43,7 @@ public final class wp0 implements org.telegram.ui.Components.e5, org.telegram.ui
     @Override
     public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
         jq0 jq0Var = this.f42940b;
-        nq0 nq0Var = jq0Var.f38325t0;
+        nq0 nq0Var = jq0Var.f38326t0;
         if (nq0Var != null) {
             switch (nq0Var.f39674a) {
                 case 0:

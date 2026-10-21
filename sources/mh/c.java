@@ -95,7 +95,7 @@ public final class c extends ViewGroup implements oe.a, NotificationCenter.Notif
         ImageReceiver imageReceiver = new ImageReceiver(this);
         this.d = imageReceiver;
         imageReceiver.setRoundRadius(AndroidUtilities.dp(11.0f));
-        hVar.f31426c.setStrokeWidth(AndroidUtilities.dp(1.0f));
+        hVar.f31427c.setStrokeWidth(AndroidUtilities.dp(1.0f));
         this.f16931n = new ImageReceiver(this);
         setWillNotDraw(false);
     }
@@ -356,7 +356,7 @@ public final class c extends ViewGroup implements oe.a, NotificationCenter.Notif
             }
         }
         setMeasuredDimension(size, this.f16934w.f3830b);
-        this.h.f31427f = Math.round(((RectF) this.f16934w.f3831c).width() + AndroidUtilities.dp(48.0f));
+        this.h.f31428f = Math.round(((RectF) this.f16934w.f3831c).width() + AndroidUtilities.dp(48.0f));
     }
 
     @Override
@@ -369,8 +369,8 @@ public final class c extends ViewGroup implements oe.a, NotificationCenter.Notif
         this.f16930f.setAlpha(Math.round(this.f16928b.e * 100.0f));
         int round = Math.round(this.f16927a.e * 220.0f);
         org.telegram.ui.Components.voip.h hVar = this.h;
-        hVar.f31424a.setAlpha(round);
-        hVar.f31426c.setAlpha(round);
+        hVar.f31425a.setAlpha(round);
+        hVar.f31427c.setAlpha(round);
         invalidate();
     }
 

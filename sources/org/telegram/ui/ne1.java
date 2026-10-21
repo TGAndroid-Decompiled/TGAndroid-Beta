@@ -128,9 +128,9 @@ public final class ne1 extends org.telegram.ui.Components.e91 implements d10 {
                 while (true) {
                     ArrayList arrayList2 = re1Var.f41151b;
                     if (i11 < arrayList2.size()) {
-                        if (((ie1) arrayList2.get(i11)).f37958c != null) {
-                            arrayList.add(((ie1) arrayList2.get(i11)).f37958c);
-                            ((ie1) arrayList2.get(i11)).f37958c.searchQuery = null;
+                        if (((ie1) arrayList2.get(i11)).f37959c != null) {
+                            arrayList.add(((ie1) arrayList2.get(i11)).f37959c);
+                            ((ie1) arrayList2.get(i11)).f37959c.searchQuery = null;
                         }
                         i11++;
                     } else {
@@ -148,11 +148,11 @@ public final class ne1 extends org.telegram.ui.Components.e91 implements d10 {
             }
         } else if (view instanceof e10) {
             e10 e10Var = (e10) view;
-            e10Var.f36495c.b(0, false);
-            e10Var.h(-re1Var.f41148a, 0L, 0L, 0L, hg.q0.f12015a3[((je1) this.f39578q0.f39226a.get(i10)).f38242b], false, str, z10);
+            e10Var.f36496c.b(0, false);
+            e10Var.h(-re1Var.f41148a, 0L, 0L, 0L, hg.q0.f12015a3[((je1) this.f39578q0.f39227a.get(i10)).f38243b], false, str, z10);
         } else if (view instanceof org.telegram.ui.Components.un0) {
             org.telegram.ui.Components.un0 un0Var = (org.telegram.ui.Components.un0) view;
-            un0Var.f30975a.b(0, false);
+            un0Var.f30976a.b(0, false);
             un0Var.K = str;
             un0Var.d(false);
         }

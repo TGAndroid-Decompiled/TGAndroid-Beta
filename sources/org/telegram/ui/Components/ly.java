@@ -37,7 +37,7 @@ public final class ly extends z4.a implements vd0 {
 
     @Override
     public final Object e(z4.g gVar, int i10) {
-        FrameLayout frameLayout = ((pz) this.f28320c.e.get(i10)).f29414b;
+        FrameLayout frameLayout = ((pz) this.f28320c.e.get(i10)).f29415b;
         gVar.addView(frameLayout);
         return frameLayout;
     }

@@ -58,7 +58,7 @@ public class VoIPPreNotificationService {
         public void destroy() {
             if (!this.destroyed) {
                 this.destroyed = true;
-                hh1 hh1Var = hh1.f37629n1;
+                hh1 hh1Var = hh1.f37630n1;
                 if (hh1Var != null) {
                     hh1Var.onStateChanged(getCallState());
                 }
@@ -296,9 +296,9 @@ public class VoIPPreNotificationService {
 
     public static void lambda$dismiss$5() {
         LaunchActivity launchActivity = LaunchActivity.H1;
-        if (launchActivity != null && launchActivity.f33170h1 && VoIPService.getSharedInstance() == null) {
-            launchActivity.f33170h1 = false;
-            hh1 hh1Var = hh1.f37629n1;
+        if (launchActivity != null && launchActivity.f33171h1 && VoIPService.getSharedInstance() == null) {
+            launchActivity.f33171h1 = false;
+            hh1 hh1Var = hh1.f37630n1;
             if (hh1Var != null) {
                 hh1Var.m();
             }

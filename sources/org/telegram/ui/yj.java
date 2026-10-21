@@ -56,7 +56,7 @@ public final class yj implements ct {
                 tL_inputStickerSetID.f20296id = inputStickerSet.f20296id;
                 org.telegram.ui.Components.qy0 qy0Var = new org.telegram.ui.Components.qy0(qnVar.getParentActivity(), qnVar, tL_inputStickerSetID, null, qnVar.Y, qnVar.f40673ea);
                 qy0Var.setCalcMandatoryInsets(qnVar.C9());
-                qy0Var.f29754i0 = z10;
+                qy0Var.f29755i0 = z10;
                 qnVar.showDialog(qy0Var);
             }
         }

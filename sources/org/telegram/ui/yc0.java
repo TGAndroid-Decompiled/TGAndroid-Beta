@@ -21,7 +21,7 @@ public final class yc0 implements o1.g {
         Object obj = this.f43447b;
         switch (i10) {
             case 0:
-                rf0 rf0Var = ((dg0) obj).f36369b0;
+                rf0 rf0Var = ((dg0) obj).f36370b0;
                 if (rf0Var != null) {
                     int i12 = rf0.E;
                     View view = rf0Var.f41203c;
@@ -38,7 +38,7 @@ public final class yc0 implements o1.g {
             case 1:
                 ao0 ao0Var = (ao0) obj;
                 float f11 = f7 / 100.0f;
-                ao0Var.f35398b = f11;
+                ao0Var.f35399b = f11;
                 TextView textView = ao0Var.d.U;
                 if (textView != null) {
                     textView.setAlpha((f11 * 0.2f) + 0.8f);
@@ -56,7 +56,7 @@ public final class yc0 implements o1.g {
                 if (qu0Var.e > qu0Var.f40973f) {
                     i11 = AndroidUtilities.dp(48.0f);
                 }
-                org.telegram.ui.Components.e81 e81Var = qu0Var.f40976s.f33385q3;
+                org.telegram.ui.Components.e81 e81Var = qu0Var.f40976s.f33386q3;
                 int measuredWidth = (int) (((qu0Var.getMeasuredWidth() - AndroidUtilities.dp(16.0f)) - f7) - i11);
                 int measuredHeight = qu0Var.getMeasuredHeight();
                 e81Var.h = measuredWidth;

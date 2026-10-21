@@ -122,7 +122,7 @@ public class a2 {
                         obj = ((g0) obj).f11866a;
                     }
                     if (obj instanceof tq0) {
-                        obj = ((tq0) obj).f30652b;
+                        obj = ((tq0) obj).f30653b;
                     }
                     boolean z10 = obj instanceof TLRPC.User;
                     ArrayList arrayList3 = this.d;

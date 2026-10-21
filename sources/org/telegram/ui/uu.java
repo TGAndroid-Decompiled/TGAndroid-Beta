@@ -16,15 +16,15 @@ public final class uu extends org.telegram.ui.Components.xy0 {
     public uu(Context context, long j10, n2.e eVar) {
         super(context);
         this.I = eVar;
-        this.f32499a = new RectF();
-        this.f32502f = 0.0f;
+        this.f32500a = new RectF();
+        this.f32503f = 0.0f;
         org.telegram.ui.Components.p6 p6Var = new org.telegram.ui.Components.p6(false, true, true);
-        this.f32504r = p6Var;
+        this.f32505r = p6Var;
         org.telegram.ui.Components.p6 p6Var2 = new org.telegram.ui.Components.p6(false, true, false);
-        this.f32505s = p6Var2;
+        this.f32506s = p6Var2;
         p6Var.setCallback(this);
         p6Var2.setCallback(this);
-        this.f32503n = Long.valueOf(j10);
+        this.f32504n = Long.valueOf(j10);
         org.telegram.ui.Components.h9 h9Var = new org.telegram.ui.Components.h9((org.telegram.ui.ActionBar.d6) null);
         h9Var.f26822p = 1.5f;
         ImageReceiver imageReceiver = new ImageReceiver();

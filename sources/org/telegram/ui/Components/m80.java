@@ -20,8 +20,8 @@ public final class m80 extends FrameLayout {
     public final void onDraw(Canvas canvas) {
         int i10;
         r80 r80Var = this.f28449a;
-        Drawable drawable = r80Var.f29868b;
-        int i11 = r80Var.f29872r;
+        Drawable drawable = r80Var.f29869b;
+        int i11 = r80Var.f29873r;
         i10 = ((org.telegram.ui.ActionBar.f3) r80Var).backgroundPaddingTop;
         drawable.setBounds(0, i11 - i10, getMeasuredWidth(), getMeasuredHeight());
         drawable.draw(canvas);
@@ -31,7 +31,7 @@ public final class m80 extends FrameLayout {
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         if (motionEvent.getAction() == 0) {
             r80 r80Var = this.f28449a;
-            if (r80Var.f29872r != 0 && motionEvent.getY() < r80Var.f29872r) {
+            if (r80Var.f29873r != 0 && motionEvent.getY() < r80Var.f29873r) {
                 r80Var.dismiss();
                 return true;
             }
@@ -51,7 +51,7 @@ public final class m80 extends FrameLayout {
         int i13;
         int size = View.MeasureSpec.getSize(i11) - AndroidUtilities.statusBarHeight;
         r80 r80Var = this.f28449a;
-        TextView textView = r80Var.f29870f;
+        TextView textView = r80Var.f29871f;
         measureChildWithMargins(textView, i10, 0, i11, 0);
         int measuredHeight = textView.getMeasuredHeight();
         n80 n80Var = r80Var.d;
@@ -67,9 +67,9 @@ public final class m80 extends FrameLayout {
             i13 = i14 * 2;
         }
         if (n80Var.getPaddingTop() != i13) {
-            r80Var.f29871n = true;
+            r80Var.f29872n = true;
             n80Var.setPadding(0, i13, 0, 0);
-            r80Var.f29871n = false;
+            r80Var.f29872n = false;
         }
         super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(size, 1073741824));
     }
@@ -84,7 +84,7 @@ public final class m80 extends FrameLayout {
 
     @Override
     public final void requestLayout() {
-        if (this.f28449a.f29871n) {
+        if (this.f28449a.f29872n) {
             return;
         }
         super.requestLayout();

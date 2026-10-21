@@ -4,7 +4,7 @@ import android.content.Context;
 import android.view.View;
 import org.telegram.tgnet.TLRPC;
 public final class q31 extends g61 {
-    public static final int f29470a = 0;
+    public static final int f29471a = 0;
 
     static {
         g61.setup(new g61());
@@ -38,7 +38,7 @@ public final class q31 extends g61 {
                 }
             }
         }
-        if (c71Var != null && c71Var.f25118a3 && r31Var.f29808y) {
+        if (c71Var != null && c71Var.f25118a3 && r31Var.f29809y) {
             z12 = true;
         }
         r31Var.setReorder(z12);

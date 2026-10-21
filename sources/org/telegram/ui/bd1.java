@@ -3,20 +3,20 @@ package org.telegram.ui;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
 public final class bd1 extends s4.r0 {
-    public final int f35609a;
-    public final Object f35610b;
+    public final int f35610a;
+    public final Object f35611b;
 
     public bd1(Object obj, int i10) {
-        this.f35609a = i10;
-        this.f35610b = obj;
+        this.f35610a = i10;
+        this.f35611b = obj;
     }
 
     @Override
     public void a(RecyclerView recyclerView, int i10) {
-        switch (this.f35609a) {
+        switch (this.f35610a) {
             case 0:
                 if (i10 == 1) {
-                    AndroidUtilities.hideKeyboard(((gd1) this.f35610b).getParentActivity().getCurrentFocus());
+                    AndroidUtilities.hideKeyboard(((gd1) this.f35611b).getParentActivity().getCurrentFocus());
                     return;
                 }
                 return;
@@ -25,12 +25,12 @@ public final class bd1 extends s4.r0 {
                 return;
             case 2:
                 if (i10 == 1) {
-                    AndroidUtilities.hideKeyboard(((UsersSelectActivity) this.f35610b).f33957c);
+                    AndroidUtilities.hideKeyboard(((UsersSelectActivity) this.f35611b).f33958c);
                     return;
                 }
                 return;
             case 3:
-                WallpapersListActivity wallpapersListActivity = (WallpapersListActivity) this.f35610b;
+                WallpapersListActivity wallpapersListActivity = (WallpapersListActivity) this.f35611b;
                 boolean z10 = true;
                 if (i10 == 1) {
                     AndroidUtilities.hideKeyboard(wallpapersListActivity.getParentActivity().getCurrentFocus());
@@ -38,7 +38,7 @@ public final class bd1 extends s4.r0 {
                 if (i10 == 0) {
                     z10 = false;
                 }
-                wallpapersListActivity.f35223j0 = z10;
+                wallpapersListActivity.f35224j0 = z10;
                 return;
         }
     }
@@ -46,9 +46,9 @@ public final class bd1 extends s4.r0 {
     @Override
     public void b(RecyclerView recyclerView, int i10, int i11) {
         int abs;
-        switch (this.f35609a) {
+        switch (this.f35610a) {
             case 1:
-                ne1 ne1Var = (ne1) this.f35610b;
+                ne1 ne1Var = (ne1) this.f35611b;
                 if (ne1Var.m0 && ne1Var.V.N0() + 5 >= ne1Var.f39573k0) {
                     ne1Var.J(ne1Var.f39564b0);
                 }
@@ -65,7 +65,7 @@ public final class bd1 extends s4.r0 {
             default:
                 return;
             case 3:
-                WallpapersListActivity wallpapersListActivity = (WallpapersListActivity) this.f35610b;
+                WallpapersListActivity wallpapersListActivity = (WallpapersListActivity) this.f35611b;
                 if (wallpapersListActivity.H.getAdapter() == wallpapersListActivity.J) {
                     int L0 = wallpapersListActivity.K.L0();
                     if (L0 == -1) {

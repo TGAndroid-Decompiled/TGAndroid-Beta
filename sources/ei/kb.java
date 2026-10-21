@@ -50,7 +50,7 @@ public final class kb extends ClickableSpan {
                 ((org.telegram.ui.t1) this.f9339b).run();
                 return;
             case 5:
-                ((xc) this.f9339b).f32387a.presentFragment(new PremiumPreviewFragment(0, "settings"));
+                ((xc) this.f9339b).f32388a.presentFragment(new PremiumPreviewFragment(0, "settings"));
                 return;
             case 6:
                 al alVar = (al) this.f9339b;

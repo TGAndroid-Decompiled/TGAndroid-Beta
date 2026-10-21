@@ -12,15 +12,15 @@ import java.util.ArrayList;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class r70 extends im0 {
-    public ArrayList f29856c = new ArrayList();
+    public ArrayList f29857c = new ArrayList();
     public ArrayList d = new ArrayList();
     public final hg.a2 e;
-    public int f29857f;
+    public int f29858f;
     public Runnable h;
-    public final v70 f29858n;
+    public final v70 f29859n;
 
     public r70(v70 v70Var) {
-        this.f29858n = v70Var;
+        this.f29859n = v70Var;
         hg.a2 a2Var = new hg.a2(false);
         this.e = a2Var;
         a2Var.f11792a = new tv(this, 8);
@@ -36,7 +36,7 @@ public final class r70 extends im0 {
 
     @Override
     public final int h() {
-        int size = this.f29856c.size();
+        int size = this.f29857c.size();
         hg.a2 a2Var = this.e;
         int size2 = a2Var.d.size();
         int size3 = a2Var.e.size();
@@ -45,7 +45,7 @@ public final class r70 extends im0 {
             i10 += size3 + 1;
         }
         int i11 = i10 + 2;
-        this.f29857f = i11;
+        this.f29858f = i11;
         return i11;
     }
 
@@ -54,10 +54,10 @@ public final class r70 extends im0 {
         if (i10 == 0) {
             return 2;
         }
-        if (i10 == this.f29857f - 1) {
+        if (i10 == this.f29858f - 1) {
             return 4;
         }
-        if (i10 - 1 != this.e.d.size() + this.f29856c.size()) {
+        if (i10 - 1 != this.e.d.size() + this.f29857c.size()) {
             return 1;
         }
         return 0;

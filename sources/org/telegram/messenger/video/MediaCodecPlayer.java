@@ -11,9 +11,9 @@ public class MediaCodecPlayer {
     private boolean done;
     private final MediaExtractor extractor;
     private final int h;
-    private final int f19764o;
+    private final int f19761o;
     private final Surface outputSurface;
-    private final int f19765w;
+    private final int f19762w;
     private boolean first = true;
     private long lastPositionUs = 0;
 
@@ -39,12 +39,12 @@ public class MediaCodecPlayer {
         }
         if (i10 != -1 && mediaFormat != null) {
             this.extractor.selectTrack(i10);
-            this.f19765w = mediaFormat.getInteger("width");
+            this.f19762w = mediaFormat.getInteger("width");
             this.h = mediaFormat.getInteger("height");
             if (mediaFormat.containsKey("rotation-degrees")) {
-                this.f19764o = mediaFormat.getInteger("rotation-degrees");
+                this.f19761o = mediaFormat.getInteger("rotation-degrees");
             } else {
-                this.f19764o = 0;
+                this.f19761o = 0;
             }
             MediaCodec createDecoderByType = MediaCodec.createDecoderByType(mediaFormat.getString("mime"));
             this.codec = createDecoderByType;
@@ -101,25 +101,25 @@ public class MediaCodecPlayer {
     }
 
     public int getOrientation() {
-        return this.f19764o;
+        return this.f19761o;
     }
 
     public int getOrientedHeight() {
-        if ((this.f19764o / 90) % 2 == 1) {
-            return this.f19765w;
+        if ((this.f19761o / 90) % 2 == 1) {
+            return this.f19762w;
         }
         return this.h;
     }
 
     public int getOrientedWidth() {
-        if ((this.f19764o / 90) % 2 == 1) {
+        if ((this.f19761o / 90) % 2 == 1) {
             return this.h;
         }
-        return this.f19765w;
+        return this.f19762w;
     }
 
     public int getWidth() {
-        return this.f19765w;
+        return this.f19762w;
     }
 
     public void release() {

@@ -21,7 +21,7 @@ public final class x implements ri {
     public final void b0(int i10, boolean z10, boolean z11, int i11, int i12, long j10, boolean z12, boolean z13, long j11) {
         ti tiVar = this.f45704a;
         try {
-            HashMap<Object, Object> selectedPhotos = tiVar.f30557j0.getSelectedPhotos();
+            HashMap<Object, Object> selectedPhotos = tiVar.f30558j0.getSelectedPhotos();
             if (!selectedPhotos.isEmpty()) {
                 MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) selectedPhotos.values().iterator().next();
                 String str = photoEntry.imagePath;

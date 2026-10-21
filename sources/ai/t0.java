@@ -60,7 +60,7 @@ public final class t0 implements Runnable {
                 mdVar.U.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.F6, false));
             } else if (tL_error != null && "CHANNELS_ADMIN_PUBLIC_TOO_MUCH".equals(tL_error.text)) {
                 mdVar.U.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21211p7, false));
-                mdVar.f39190j0 = false;
+                mdVar.f39191j0 = false;
                 mdVar.f0();
             } else {
                 mdVar.U.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21211p7, false));
@@ -96,7 +96,7 @@ public final class t0 implements Runnable {
         org.telegram.ui.ActionBar.b2[] b2VarArr = (org.telegram.ui.ActionBar.b2[]) this.e;
         MessageObject messageObject = (MessageObject) this.f2181f;
         org.telegram.ui.w5 w5Var = (org.telegram.ui.w5) this.f2179b;
-        qn qnVar = cnVar.f36010a;
+        qn qnVar = cnVar.f36011a;
         if (((TLRPC.Message) this.d).suggested_post.schedule_date == 0) {
             b2VarArr[0].setOnDismissListener(null);
             org.telegram.ui.ActionBar.f3 f3Var = org.telegram.ui.Components.f5.S(qnVar.getParentActivity(), 0L, new m4.w0(17, cnVar, messageObject), qnVar.getResourceProvider(), 1).f20613a;

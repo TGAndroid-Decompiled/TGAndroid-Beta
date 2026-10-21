@@ -9,56 +9,56 @@ import java.util.HashSet;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.tl.TL_iv;
 public final class h2 extends View {
-    public final b70 f37465a;
-    public final j4 f37466b;
-    public final i2 f37467c;
+    public final b70 f37466a;
+    public final j4 f37467b;
+    public final i2 f37468c;
 
     public h2(i2 i2Var, Context context, b70 b70Var, j4 j4Var) {
         super(context);
-        this.f37467c = i2Var;
-        this.f37465a = b70Var;
-        this.f37466b = j4Var;
+        this.f37468c = i2Var;
+        this.f37466a = b70Var;
+        this.f37467b = j4Var;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        i2 i2Var = this.f37467c;
-        if (i2Var.f37836c != null) {
+        i2 i2Var = this.f37468c;
+        if (i2Var.f37837c != null) {
             canvas.save();
-            l4.v(this.f37465a, canvas, i2Var, 0);
-            i2Var.f37836c.draw(canvas, this);
+            l4.v(this.f37466a, canvas, i2Var, 0);
+            i2Var.f37837c.draw(canvas, this);
             canvas.restore();
-            i2Var.f37836c.f36241s = (int) getX();
-            i2Var.f37836c.v = (int) getY();
+            i2Var.f37837c.f36242s = (int) getX();
+            i2Var.f37837c.v = (int) getY();
         }
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
         int i12;
-        i2 i2Var = this.f37467c;
-        TL_iv.pageBlockPreformatted pageblockpreformatted = i2Var.f37837f;
+        i2 i2Var = this.f37468c;
+        TL_iv.pageBlockPreformatted pageblockpreformatted = i2Var.f37838f;
         int i13 = 1;
         if (pageblockpreformatted != null) {
             CharSequence charSequence = i2Var.h;
-            j4 j4Var = this.f37466b;
-            b70 b70Var = this.f37465a;
+            j4 j4Var = this.f37467b;
+            b70 b70Var = this.f37466a;
             if (charSequence == null) {
                 TL_iv.RichText richText = pageblockpreformatted.text;
                 int dp = AndroidUtilities.dp(5000.0f);
-                HashSet hashSet = l4.f38734b1;
+                HashSet hashSet = l4.f38735b1;
                 i2Var.h = l4.C(b70Var, j4Var.E, this, richText, richText, pageblockpreformatted, dp);
-                if (!TextUtils.isEmpty(i2Var.f37837f.language)) {
-                    i2Var.h = mi.k.b(i2Var.h, i2Var.f37837f.language);
+                if (!TextUtils.isEmpty(i2Var.f37838f.language)) {
+                    i2Var.h = mi.k.b(i2Var.h, i2Var.f37838f.language);
                 }
             }
-            d3 q6 = l4.q(b70Var, this, i2Var.h, null, AndroidUtilities.dp(5000.0f), 0, i2Var.f37837f, j4Var);
-            i2Var.f37836c = q6;
+            d3 q6 = l4.q(b70Var, this, i2Var.h, null, AndroidUtilities.dp(5000.0f), 0, i2Var.f37838f, j4Var);
+            i2Var.f37837c = q6;
             if (q6 != null) {
                 i12 = q6.d.getHeight();
-                int lineCount = i2Var.f37836c.d.getLineCount();
+                int lineCount = i2Var.f37837c.d.getLineCount();
                 for (int i14 = 0; i14 < lineCount; i14++) {
-                    i13 = Math.max((int) Math.ceil(i2Var.f37836c.d.getLineWidth(i14)), i13);
+                    i13 = Math.max((int) Math.ceil(i2Var.f37837c.d.getLineWidth(i14)), i13);
                 }
             } else {
                 i12 = 0;
@@ -71,8 +71,8 @@ public final class h2 extends View {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        i2 i2Var = this.f37467c;
-        if (!l4.l(this.f37465a, this.f37466b, motionEvent, i2Var, i2Var.f37836c, 0, 0) && !super.onTouchEvent(motionEvent)) {
+        i2 i2Var = this.f37468c;
+        if (!l4.l(this.f37466a, this.f37467b, motionEvent, i2Var, i2Var.f37837c, 0, 0) && !super.onTouchEvent(motionEvent)) {
             return false;
         }
         return true;

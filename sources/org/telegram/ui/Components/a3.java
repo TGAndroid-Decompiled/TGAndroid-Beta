@@ -95,7 +95,7 @@ public final class a3 implements Utilities.Callback2 {
                     if (optBoolean) {
                         TL_wallet.tonConnectCloseSession tonconnectclosesession = new TL_wallet.tonConnectCloseSession();
                         tonconnectclosesession.session_id = j11;
-                        f2Var.f34197f.sendRequestTyped(tonconnectclosesession, new Object(), new org.telegram.ui.Wallet.t1(f2Var, callback, j11, i17, 1));
+                        f2Var.f34198f.sendRequestTyped(tonconnectclosesession, new Object(), new org.telegram.ui.Wallet.t1(f2Var, callback, j11, i17, 1));
                         return;
                     }
                     f2Var.d(j11, i17, callback);

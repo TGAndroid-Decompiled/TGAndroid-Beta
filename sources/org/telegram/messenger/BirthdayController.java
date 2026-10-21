@@ -282,7 +282,7 @@ public class BirthdayController {
     }
 
     public void lambda$check$3(TLObject tLObject, TLRPC.TL_error tL_error) {
-        AndroidUtilities.runOnUIThread(new h3(12, this, tLObject));
+        AndroidUtilities.runOnUIThread(new i3(12, this, tLObject));
     }
 
     public void lambda$new$0(TL_birthdays tL_birthdays, ArrayList arrayList) {

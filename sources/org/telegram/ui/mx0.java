@@ -28,22 +28,22 @@ public final class mx0 implements org.telegram.ui.Components.dx0, org.telegram.u
     public r0.k1 B0(View view, r0.k1 k1Var) {
         int i10 = k1Var.f44835a.f(519).d;
         ProfileActivity profileActivity = this.f39364b;
-        profileActivity.f33691p6 = i10;
-        FrameLayout frameLayout = profileActivity.f33726u5;
+        profileActivity.f33692p6 = i10;
+        FrameLayout frameLayout = profileActivity.f33727u5;
         if (frameLayout != null) {
             ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) frameLayout.getLayoutParams();
-            int i11 = profileActivity.f33691p6 + profileActivity.f33685o6;
+            int i11 = profileActivity.f33692p6 + profileActivity.f33686o6;
             if (marginLayoutParams != null && marginLayoutParams.bottomMargin != i11) {
                 marginLayoutParams.bottomMargin = i11;
-                profileActivity.f33726u5.setLayoutParams(marginLayoutParams);
+                profileActivity.f33727u5.setLayoutParams(marginLayoutParams);
             }
         }
         nz0 nz0Var = profileActivity.O;
         if (nz0Var != null) {
-            nz0Var.setPagesPaddingBottom(profileActivity.f33691p6 + profileActivity.f33678n6);
+            nz0Var.setPagesPaddingBottom(profileActivity.f33692p6 + profileActivity.f33679n6);
             org.telegram.ui.Components.ks0 ks0Var = profileActivity.O.V;
             if (ks0Var != null) {
-                ks0Var.setButtonOffset(profileActivity.f33691p6 + profileActivity.f33685o6);
+                ks0Var.setButtonOffset(profileActivity.f33692p6 + profileActivity.f33686o6);
             }
         }
         return r0.k1.f44834b;
@@ -53,7 +53,7 @@ public final class mx0 implements org.telegram.ui.Components.dx0, org.telegram.u
     public boolean a(int i10, View view) {
         ProfileActivity profileActivity = this.f39364b;
         m01 m01Var = profileActivity.e;
-        if (m01Var.f39080w || m01Var.v.isEmpty()) {
+        if (m01Var.f39081w || m01Var.v.isEmpty()) {
             return false;
         }
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(profileActivity.getParentActivity(), 0, profileActivity.A0);
@@ -76,7 +76,7 @@ public final class mx0 implements org.telegram.ui.Components.dx0, org.telegram.u
         switch (this.f39363a) {
             case 1:
                 ProfileActivity profileActivity = this.f39364b;
-                profileActivity.getMessagesController().blockPeer(profileActivity.f33619f1);
+                profileActivity.getMessagesController().blockPeer(profileActivity.f33620f1);
                 if (org.telegram.ui.Components.xc.a(profileActivity)) {
                     org.telegram.ui.Components.xc.d(profileActivity, true).j();
                     return;
@@ -105,10 +105,10 @@ public final class mx0 implements org.telegram.ui.Components.dx0, org.telegram.u
         HashSet hashSet = new HashSet();
         ArrayList arrayList2 = new ArrayList();
         ProfileActivity profileActivity = this.f39364b;
-        TLRPC.ChatFull chatFull = profileActivity.f33730v2;
+        TLRPC.ChatFull chatFull = profileActivity.f33731v2;
         if (chatFull != null && (chatParticipants = chatFull.participants) != null && chatParticipants.participants != null) {
-            for (int i11 = 0; i11 < profileActivity.f33730v2.participants.participants.size(); i11++) {
-                hashSet.add(Long.valueOf(profileActivity.f33730v2.participants.participants.get(i11).user_id));
+            for (int i11 = 0; i11 < profileActivity.f33731v2.participants.participants.size(); i11++) {
+                hashSet.add(Long.valueOf(profileActivity.f33731v2.participants.participants.get(i11).user_id));
             }
         }
         profileActivity.getMessagesController().addUsersToChat(profileActivity.F2, profileActivity, arrayList, i10, new j3(arrayList2, 5), new j3(profileActivity, 6), new ve0(profileActivity, arrayList2, hashSet, 24));

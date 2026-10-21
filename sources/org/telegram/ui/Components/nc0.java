@@ -11,31 +11,31 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 public final class nc0 extends View {
-    public final p6 f28776a;
-    public final jc0 f28777b;
-    public boolean f28778c;
+    public final p6 f28777a;
+    public final jc0 f28778b;
+    public boolean f28779c;
     public boolean d;
     public final String e;
-    public final String f28779f;
+    public final String f28780f;
     public final int h;
 
     public nc0(Context context, int i10, String str, int i11, String str2, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
-        this.f28778c = true;
+        this.f28779c = true;
         this.e = str;
-        this.f28779f = str2;
+        this.f28780f = str2;
         setBackground(org.telegram.ui.ActionBar.h6.g0(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21079i6, d6Var), 2, -1));
         p6 p6Var = new p6(true, true, true);
-        this.f28776a = p6Var;
+        this.f28777a = p6Var;
         p6Var.n(0.35f, 300L, bs.h);
         p6Var.w(AndroidUtilities.dp(16.0f));
         p6Var.u(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.E8, d6Var));
         p6Var.setCallback(this);
         p6Var.q(!LocaleController.isRTL);
         if (LocaleController.isRTL) {
-            p6Var.f29225b = 5;
+            p6Var.f29226b = 5;
         }
-        TextPaint textPaint = p6Var.f29223a;
+        TextPaint textPaint = p6Var.f29224a;
         int max = (int) (Math.max(textPaint.measureText(str), textPaint.measureText(str2)) + AndroidUtilities.dp(77.0f));
         this.h = max;
         p6Var.M = max;
@@ -53,7 +53,7 @@ public final class nc0 extends View {
         vj0Var2.h = true;
         vj0Var2.K(0);
         jc0Var.e = vj0Var;
-        this.f28777b = jc0Var;
+        this.f28778b = jc0Var;
         jc0Var.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.F8, d6Var), PorterDuff.Mode.SRC_IN));
     }
 
@@ -61,23 +61,23 @@ public final class nc0 extends View {
         String str;
         boolean z12;
         vj0 vj0Var;
-        if (!this.f28778c && z10 == this.d) {
+        if (!this.f28779c && z10 == this.d) {
             return;
         }
         this.d = z10;
         if (z10) {
             str = this.e;
         } else {
-            str = this.f28779f;
+            str = this.f28780f;
         }
         if (z11 && !LocaleController.isRTL) {
             z12 = true;
         } else {
             z12 = false;
         }
-        p6 p6Var = this.f28776a;
+        p6 p6Var = this.f28777a;
         p6Var.t(str, z12, true);
-        jc0 jc0Var = this.f28777b;
+        jc0 jc0Var = this.f28778b;
         vj0 vj0Var2 = (vj0) jc0Var.d;
         vj0 vj0Var3 = (vj0) jc0Var.f27501c;
         jc0Var.f27500b = z10;
@@ -98,15 +98,15 @@ public final class nc0 extends View {
             jc0Var.e = vj0Var2;
             vj0Var2.M(vj0Var2.e[0] - 1);
         }
-        this.f28778c = false;
-        setContentDescription(p6Var.f29230i);
+        this.f28779c = false;
+        setContentDescription(p6Var.f29231i);
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         boolean z10 = LocaleController.isRTL;
-        p6 p6Var = this.f28776a;
-        jc0 jc0Var = this.f28777b;
+        p6 p6Var = this.f28777a;
+        jc0 jc0Var = this.f28778b;
         if (z10) {
             jc0Var.setBounds(getMeasuredWidth() - AndroidUtilities.dp(41.0f), org.telegram.messenger.mk.A(24.0f, getMeasuredHeight(), 2), getMeasuredWidth() - AndroidUtilities.dp(17.0f), (AndroidUtilities.dp(24.0f) + getMeasuredHeight()) / 2);
             p6Var.setBounds(0, 0, getMeasuredWidth() - AndroidUtilities.dp(59.0f), getMeasuredHeight());
@@ -145,7 +145,7 @@ public final class nc0 extends View {
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f28776a && !super.verifyDrawable(drawable)) {
+        if (drawable != this.f28777a && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

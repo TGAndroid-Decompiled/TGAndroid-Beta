@@ -324,7 +324,7 @@ public final class c0 extends bb implements GiftAuctionController.OnAuctionUpdat
     public final im0 x(jm0 jm0Var) {
         u61 u61Var = new u61(this.d, getContext(), this.currentAccount, 0, true, new hg.o(this, 26), this.resourcesProvider);
         this.f50187e0 = u61Var;
-        u61Var.f30860r = false;
+        u61Var.f30861r = false;
         return u61Var;
     }
 }

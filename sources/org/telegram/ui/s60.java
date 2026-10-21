@@ -389,7 +389,7 @@ public final class s60 extends org.telegram.ui.ActionBar.n2 implements Notificat
     @Override
     public final void onTransitionAnimationEnd(boolean z10, boolean z11) {
         if (z10) {
-            org.telegram.ui.Components.lu luVar = this.f41376c.f29709a;
+            org.telegram.ui.Components.lu luVar = this.f41376c.f29710a;
             luVar.requestFocus();
             AndroidUtilities.showKeyboard(luVar);
         }

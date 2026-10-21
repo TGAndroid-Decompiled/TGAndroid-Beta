@@ -8,20 +8,20 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MessageObject;
 public final class cm implements ViewTreeObserver.OnPreDrawListener {
-    public final org.telegram.ui.Cells.u1 f36007a;
-    public final dm f36008b;
+    public final org.telegram.ui.Cells.u1 f36008a;
+    public final dm f36009b;
 
     public cm(dm dmVar, org.telegram.ui.Cells.u1 u1Var) {
-        this.f36008b = dmVar;
-        this.f36007a = u1Var;
+        this.f36009b = dmVar;
+        this.f36008a = u1Var;
     }
 
     @Override
     public final boolean onPreDraw() {
         float f7;
         float centerX;
-        qn qnVar = this.f36008b.Q;
-        org.telegram.ui.Cells.u1 u1Var = this.f36007a;
+        qn qnVar = this.f36009b.Q;
+        org.telegram.ui.Cells.u1 u1Var = this.f36008a;
         u1Var.getViewTreeObserver().removeOnPreDrawListener(this);
         MessageObject.SendAnimationData sendAnimationData = u1Var.getMessageObject().sendAnimationData;
         if (sendAnimationData == null) {

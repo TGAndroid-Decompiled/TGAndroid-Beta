@@ -35,25 +35,25 @@ public final class y0 extends org.telegram.ui.Cells.w0 {
                 r5Var.f45338v0 = true;
                 boolean z10 = r5Var.B0;
                 na naVar = this.f45710t2;
-                if (naVar.f28746r != z10) {
-                    naVar.f28746r = z10;
-                    if (naVar.f28737i == 10) {
+                if (naVar.f28747r != z10) {
+                    naVar.f28747r = z10;
+                    if (naVar.f28738i == 10) {
                         ColorMatrix colorMatrix = new ColorMatrix();
                         colorMatrix.setSaturation(1.6f);
-                        if (naVar.f28746r) {
+                        if (naVar.f28747r) {
                             f7 = 0.97f;
                         } else {
                             f7 = 0.92f;
                         }
                         AndroidUtilities.multiplyBrightnessColorMatrix(colorMatrix, f7);
-                        if (naVar.f28746r) {
+                        if (naVar.f28747r) {
                             f10 = 0.12f;
                         } else {
                             f10 = -0.06f;
                         }
                         AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix, f10);
                         naVar.h.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
-                        naVar.f28736g.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
+                        naVar.f28737g.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
                     }
                 }
                 Paint c10 = naVar.c(1.0f);

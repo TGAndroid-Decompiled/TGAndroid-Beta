@@ -55,8 +55,8 @@ public final class o0 implements Runnable {
                 org.telegram.ui.Wallet.m0 m0Var = (org.telegram.ui.Wallet.m0) this.d;
                 Utilities.Callback callback = (Utilities.Callback) this.e;
                 TL_wallet.TL_walletState tL_walletState = (TL_wallet.TL_walletState) m0Var.e;
-                q0 q0Var = m0Var.f34478c;
-                if (q0Var != null && TextUtils.equals(q0Var.f34757c, tL_walletState.address) && m0Var.f34478c.f(tL_walletState.public_key)) {
+                q0 q0Var = m0Var.f34479c;
+                if (q0Var != null && TextUtils.equals(q0Var.f34758c, tL_walletState.address) && m0Var.f34479c.f(tL_walletState.public_key)) {
                     callback.run(null);
                     return;
                 } else {
@@ -68,9 +68,9 @@ public final class o0 implements Runnable {
                 Utilities.Callback2 callback2 = (Utilities.Callback2) this.e;
                 org.telegram.ui.Wallet.m0.F("getSecretPhrase: ready!");
                 TL_wallet.TL_walletState tL_walletState2 = (TL_wallet.TL_walletState) m0Var2.e;
-                if (m0Var2.f34478c.f(tL_walletState2.public_key)) {
+                if (m0Var2.f34479c.f(tL_walletState2.public_key)) {
                     org.telegram.ui.Wallet.m0.F("getSecretPhrase: device has secured phrase, requesting");
-                    q0 q0Var2 = m0Var2.f34478c;
+                    q0 q0Var2 = m0Var2.f34479c;
                     byte[] bArr = tL_walletState2.public_key;
                     org.telegram.ui.Wallet.l lVar = new org.telegram.ui.Wallet.l(callback2, 1);
                     if (bArr == null) {
@@ -88,7 +88,7 @@ public final class o0 implements Runnable {
                     return;
                 } else {
                     org.telegram.ui.Wallet.m0.F("getSecretPhrase: exportSecretPhrase through password request");
-                    s2.a(m0Var2.f34476a, new gi.c(8), null, null, null, new ci.c0(4, m0Var2, callback2), this.f8267b, this.f8268c, new na0((Object) null, 1));
+                    s2.a(m0Var2.f34477a, new gi.c(8), null, null, null, new ci.c0(4, m0Var2, callback2), this.f8267b, this.f8268c, new na0((Object) null, 1));
                     return;
                 }
         }

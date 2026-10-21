@@ -31,7 +31,7 @@ public final class j0 extends h0 {
         this.d = c71Var;
         c71Var.p1();
         c71 c71Var2 = this.d;
-        c71Var2.W2.f30860r = false;
+        c71Var2.W2.f30861r = false;
         c71Var2.setClipToPadding(false);
         this.d.setPadding(0, 0, 0, AndroidUtilities.dp(60.0f) + AndroidUtilities.navigationBarHeight);
         this.d.j(new ah.d0(this, 12));

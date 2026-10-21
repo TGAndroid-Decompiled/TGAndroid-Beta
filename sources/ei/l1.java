@@ -22,7 +22,7 @@ public final class l1 extends li.n {
                 ((o1) this.f9359r).Z2 = true;
                 return;
             case 1:
-                ((tz) this.f9359r).f30731f0 = true;
+                ((tz) this.f9359r).f30732f0 = true;
                 return;
             case 2:
             case 3:
@@ -41,10 +41,10 @@ public final class l1 extends li.n {
                 ((o1) this.f9359r).Z2 = false;
                 return;
             case 1:
-                ((tz) this.f9359r).f30731f0 = false;
+                ((tz) this.f9359r).f30732f0 = false;
                 return;
             case 2:
-                ((rx) this.f9359r).Q.f30731f0 = false;
+                ((rx) this.f9359r).Q.f30732f0 = false;
                 return;
             case 3:
                 ((l41) this.f9359r).R.f43094w1 = false;

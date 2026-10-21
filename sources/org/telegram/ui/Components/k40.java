@@ -228,7 +228,7 @@ public final class k40 extends org.telegram.ui.ActionBar.n2 implements Notificat
             this.f27742n.getSearchOptionsItem().setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(i11, this.resourceProvider), PorterDuff.Mode.SRC_IN));
         }
         this.f27742n.setPinnedToTop(true);
-        this.f27742n.f31060r0.setTranslationY(0.0f);
+        this.f27742n.f31061r0.setTranslationY(0.0f);
         if (this.f27742n.getSearchOptionsItem() != null) {
             this.f27742n.getSearchOptionsItem().setTranslationY(0.0f);
         }
@@ -236,11 +236,11 @@ public final class k40 extends org.telegram.ui.ActionBar.n2 implements Notificat
         h40 h40Var2 = this.f27742n;
         ci.u6 u6Var = this.d;
         h40Var2.T1 = u6Var;
-        cu0 cu0Var = h40Var2.f31028c0;
-        cu0Var.f30025s = u6Var;
+        cu0 cu0Var = h40Var2.f31029c0;
+        cu0Var.f30026s = u6Var;
         cu0Var.l();
-        rv0 rv0Var = h40Var2.f31031d0;
-        rv0Var.f30025s = u6Var;
+        rv0 rv0Var = h40Var2.f31032d0;
+        rv0Var.f30026s = u6Var;
         rv0Var.l();
         FrameLayout frameLayout2 = new FrameLayout(context);
         this.h = frameLayout2;

@@ -30,7 +30,7 @@ public final class l10 extends pg.b {
 
     @Override
     public final int h() {
-        return this.e.f33144n.size();
+        return this.e.f33145n.size();
     }
 
     @Override
@@ -38,7 +38,7 @@ public final class l10 extends pg.b {
         j10 j10Var;
         if (i10 >= 0) {
             FiltersSetupActivity filtersSetupActivity = this.e;
-            if (i10 >= filtersSetupActivity.f33144n.size() || (j10Var = (j10) filtersSetupActivity.f33144n.get(i10)) == null) {
+            if (i10 >= filtersSetupActivity.f33145n.size() || (j10Var = (j10) filtersSetupActivity.f33145n.get(i10)) == null) {
                 return 3;
             }
             return j10Var.f44296a;
@@ -68,7 +68,7 @@ public final class l10 extends pg.b {
                             if (i10 != 6) {
                                 ?? frameLayout = new FrameLayout(context);
                                 TextView textView = new TextView(context);
-                                frameLayout.f39092a = textView;
+                                frameLayout.f39093a = textView;
                                 org.telegram.messenger.mk.u(textView, org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.G6, false), 1, 16.0f, 1);
                                 textView.setMaxLines(1);
                                 textView.setSingleLine(true);
@@ -87,7 +87,7 @@ public final class l10 extends pg.b {
                                 }
                                 frameLayout.addView(textView, w7.z5.d(-2, -2.0f, i12, 22.0f, 10.0f, 22.0f, 0.0f));
                                 TextView textView2 = new TextView(context);
-                                frameLayout.f39093b = textView2;
+                                frameLayout.f39094b = textView2;
                                 org.telegram.messenger.mk.u(textView2, org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21395z6, false), 1, 13.0f, 1);
                                 textView2.setMaxLines(1);
                                 textView2.setSingleLine(true);
@@ -105,7 +105,7 @@ public final class l10 extends pg.b {
                                 }
                                 frameLayout.addView(textView2, w7.z5.d(-2, -2.0f, i14, 22.0f, 35.0f, 22.0f, 0.0f));
                                 org.telegram.ui.Components.ui0 ui0Var = new org.telegram.ui.Components.ui0(context);
-                                frameLayout.f39094c = ui0Var;
+                                frameLayout.f39095c = ui0Var;
                                 ui0Var.setText(LocaleController.getString(R.string.Add));
                                 ui0Var.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.Sh, false));
                                 ui0Var.setProgressColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.Nh, false));
@@ -152,7 +152,7 @@ public final class l10 extends pg.b {
                 SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(LocaleController.formatString(R.string.CreateNewFilterInfo, new Object[0]));
                 ?? frameLayout3 = new FrameLayout(context);
                 ?? imageView2 = new ImageView(context);
-                frameLayout3.f37831a = imageView2;
+                frameLayout3.f37832a = imageView2;
                 imageView2.f(i17, 90, 90, null);
                 imageView2.setScaleType(ImageView.ScaleType.CENTER);
                 imageView2.d();

@@ -60,9 +60,9 @@ public final class z70 implements Runnable {
                         arrayList.add(localeInfo);
                     }
                 }
-                int size2 = languageSelectActivity.f33152f.size();
+                int size2 = languageSelectActivity.f33153f.size();
                 for (int i13 = 0; i13 < size2; i13++) {
-                    LocaleController.LocaleInfo localeInfo2 = (LocaleController.LocaleInfo) languageSelectActivity.f33152f.get(i13);
+                    LocaleController.LocaleInfo localeInfo2 = (LocaleController.LocaleInfo) languageSelectActivity.f33153f.get(i13);
                     if (localeInfo2.name.toLowerCase().startsWith(str) || localeInfo2.nameEnglish.toLowerCase().startsWith(str)) {
                         arrayList.add(localeInfo2);
                     }
@@ -112,8 +112,8 @@ public final class z70 implements Runnable {
             case 4:
                 LaunchActivity launchActivity3 = (LaunchActivity) this.f43655b;
                 String str2 = (String) this.f43656c;
-                if (!launchActivity3.f33185q0.getFragmentStack().isEmpty()) {
-                    launchActivity3.f33185q0.getFragmentStack().get(0).presentFragment(new PremiumPreviewFragment(0, Uri.parse(str2).getQueryParameter("ref")));
+                if (!launchActivity3.f33186q0.getFragmentStack().isEmpty()) {
+                    launchActivity3.f33186q0.getFragmentStack().get(0).presentFragment(new PremiumPreviewFragment(0, Uri.parse(str2).getQueryParameter("ref")));
                     return;
                 }
                 return;
@@ -124,15 +124,15 @@ public final class z70 implements Runnable {
             case 6:
                 LaunchActivity launchActivity4 = (LaunchActivity) this.f43655b;
                 Runnable runnable = (Runnable) this.f43656c;
-                launchActivity4.f33185q0.getView().setVisibility(4);
+                launchActivity4.f33186q0.getView().setVisibility(4);
                 if (AndroidUtilities.isTablet()) {
-                    ActionBarLayout actionBarLayout = launchActivity4.f33187r0;
-                    if (actionBarLayout != null && actionBarLayout.getView() != null && launchActivity4.f33187r0.getView().getVisibility() == 0) {
-                        launchActivity4.f33187r0.getView().setVisibility(4);
+                    ActionBarLayout actionBarLayout = launchActivity4.f33188r0;
+                    if (actionBarLayout != null && actionBarLayout.getView() != null && launchActivity4.f33188r0.getView().getVisibility() == 0) {
+                        launchActivity4.f33188r0.getView().setVisibility(4);
                     }
-                    ActionBarLayout actionBarLayout2 = launchActivity4.f33189s0;
+                    ActionBarLayout actionBarLayout2 = launchActivity4.f33190s0;
                     if (actionBarLayout2 != null && actionBarLayout2.getView() != null) {
-                        launchActivity4.f33189s0.getView().setVisibility(4);
+                        launchActivity4.f33190s0.getView().setVisibility(4);
                     }
                 }
                 if (runnable != null) {
@@ -182,12 +182,12 @@ public final class z70 implements Runnable {
                 TLObject tLObject2 = (TLObject) this.f43656c;
                 ib0Var.c();
                 if (tLObject2 != null) {
-                    ib0Var.f37911a.k0((TL_account.Password) tLObject2);
+                    ib0Var.f37912a.k0((TL_account.Password) tLObject2);
                     return;
                 }
                 return;
             case 12:
-                ((FiltersSetupActivity) this.f43656c).X(((ib0) this.f43655b).f37911a.O());
+                ((FiltersSetupActivity) this.f43656c).X(((ib0) this.f43655b).f37912a.O());
                 return;
             case 13:
                 nc0 nc0Var = (nc0) this.f43655b;
@@ -216,7 +216,7 @@ public final class z70 implements Runnable {
                 return;
             case 16:
                 Runnable runnable2 = (Runnable) this.f43656c;
-                id0 id0Var = ((md0) this.f43655b).f39209a;
+                id0 id0Var = ((md0) this.f43655b).f39210a;
                 int i14 = 0;
                 while (true) {
                     tr[] trVarArr = id0Var.f40959f;
@@ -305,7 +305,7 @@ public final class z70 implements Runnable {
                 hf0 hf0Var = (hf0) this.f43655b;
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder((Activity) this.f43656c);
                 alertDialog$Builder.f20605a.R = LocaleController.getString(R.string.CancelLinkSuccessTitle);
-                alertDialog$Builder.f20605a.T = LocaleController.formatString("CancelLinkSuccess", R.string.CancelLinkSuccess, org.telegram.messenger.mk.g(new StringBuilder("+"), hf0Var.f37594b, jf.b.c()));
+                alertDialog$Builder.f20605a.T = LocaleController.formatString("CancelLinkSuccess", R.string.CancelLinkSuccess, org.telegram.messenger.mk.g(new StringBuilder("+"), hf0Var.f37595b, jf.b.c()));
                 alertDialog$Builder.k(LocaleController.getString(R.string.Close), null);
                 alertDialog$Builder.f20605a.setOnDismissListener(new bf0(hf0Var, 0));
                 alertDialog$Builder.o();
@@ -313,14 +313,14 @@ public final class z70 implements Runnable {
             case 23:
                 hf0 hf0Var2 = (hf0) this.f43655b;
                 hf0Var2.getClass();
-                hf0Var2.f37599e0 = ((TLRPC.TL_error) this.f43656c).text;
+                hf0Var2.f37600e0 = ((TLRPC.TL_error) this.f43656c).text;
                 return;
             case 24:
-                ((hf0) this.f43655b).f37616s0.o1((TLRPC.TL_auth_authorization) ((TLObject) this.f43656c), false);
+                ((hf0) this.f43655b).f37617s0.o1((TLRPC.TL_auth_authorization) ((TLObject) this.f43656c), false);
                 return;
             case 25:
                 Runnable runnable3 = (Runnable) this.f43656c;
-                qr qrVar = ((hf0) this.f43655b).f37600f;
+                qr qrVar = ((hf0) this.f43655b).f37601f;
                 int i15 = 0;
                 while (true) {
                     tr[] trVarArr2 = qrVar.f40959f;
@@ -351,8 +351,8 @@ public final class z70 implements Runnable {
                 String string2 = LocaleController.getString("AllowFillNumber", R.string.AllowFillNumber);
                 org.telegram.ui.ActionBar.b2 b2Var2 = alertDialog$Builder2.f20605a;
                 b2Var2.T = string2;
-                dg0Var3.f36382n = dg0Var3.showDialog(b2Var2, true, null);
-                dg0Var3.f36371c0 = true;
+                dg0Var3.f36383n = dg0Var3.showDialog(b2Var2, true, null);
+                dg0Var3.f36372c0 = true;
                 return;
             case 28:
                 gg0.V((gg0) this.f43655b, (org.telegram.ui.ActionBar.b2) this.f43656c);
@@ -360,10 +360,10 @@ public final class z70 implements Runnable {
             default:
                 ih0 ih0Var = (ih0) this.f43655b;
                 TLRPC.TL_error tL_error3 = (TLRPC.TL_error) this.f43656c;
-                ih0Var.f37981c0 = false;
+                ih0Var.f37982c0 = false;
                 if (tL_error3 == null) {
                     zg0 f02 = ih0Var.f0();
-                    ih0Var.f37989j0.clear();
+                    ih0Var.f37990j0.clear();
                     ih0Var.h0(f02);
                     return;
                 }

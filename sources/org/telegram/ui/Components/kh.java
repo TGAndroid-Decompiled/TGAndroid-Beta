@@ -62,15 +62,15 @@ public final class kh implements ch.a {
                 tz tzVar = (tz) this.f27876b;
                 ey eyVar = tzVar.P;
                 hh.d.a(eyVar, canvas, rectF, eyVar, tzVar);
-                uw uwVar = tzVar.f30737h0;
+                uw uwVar = tzVar.f30738h0;
                 hh.d.a(uwVar, canvas, rectF, uwVar, tzVar);
                 ax axVar = tzVar.D0;
                 hh.d.a(axVar, canvas, rectF, axVar, tzVar);
                 return;
             default:
                 uv0 uv0Var = (uv0) this.f27876b;
-                for (nu0 nu0Var : uv0Var.f31046k0) {
-                    bh.l lVar = nu0Var.f28879n;
+                for (nu0 nu0Var : uv0Var.f31047k0) {
+                    bh.l lVar = nu0Var.f28880n;
                     if (lVar != null) {
                         lVar.f(canvas, rectF);
                     }

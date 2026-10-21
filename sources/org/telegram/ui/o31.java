@@ -17,10 +17,10 @@ public final class o31 extends AnimatorListenerAdapter {
         switch (this.f39763a) {
             case 0:
                 SecretMediaViewer secretMediaViewer = this.f39764b;
-                Runnable runnable = secretMediaViewer.f33814o0;
+                Runnable runnable = secretMediaViewer.f33815o0;
                 if (runnable != null) {
                     runnable.run();
-                    secretMediaViewer.f33814o0 = null;
+                    secretMediaViewer.f33815o0 = null;
                     return;
                 }
                 return;
@@ -30,16 +30,16 @@ public final class o31 extends AnimatorListenerAdapter {
                 if (animatorSet != null && animatorSet.equals(animator)) {
                     secretMediaViewer2.F.setVisibility(8);
                     secretMediaViewer2.G = null;
-                    secretMediaViewer2.f33784a0.scrollTo(0, 0);
+                    secretMediaViewer2.f33785a0.scrollTo(0, 0);
                     return;
                 }
                 return;
             case 2:
                 SecretMediaViewer secretMediaViewer3 = this.f39764b;
-                Runnable runnable2 = secretMediaViewer3.f33814o0;
+                Runnable runnable2 = secretMediaViewer3.f33815o0;
                 if (runnable2 != null) {
                     runnable2.run();
-                    secretMediaViewer3.f33814o0 = null;
+                    secretMediaViewer3.f33815o0 = null;
                     return;
                 }
                 return;

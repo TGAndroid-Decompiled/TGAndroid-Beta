@@ -238,7 +238,7 @@ public final class h extends pg.b {
                 ((yg.d) view).setLetter(gVar.f48370g);
             } else if (i14 == 5) {
                 try {
-                    ((tx0) view).f30696b.getImageReceiver().startAnimation();
+                    ((tx0) view).f30697b.getImageReceiver().startAnimation();
                 } catch (Exception unused) {
                 }
             } else if (i14 == 8) {
@@ -291,7 +291,7 @@ public final class h extends pg.b {
                 tx0 tx0Var = new tx0(context, null, 1, d6Var);
                 tx0Var.d.setText(LocaleController.getString(R.string.NoResult));
                 tx0Var.e.setText(LocaleController.getString(R.string.SearchEmptyViewFilteredSubtitle2));
-                tx0Var.f30695a.setTranslationY(AndroidUtilities.dp(24.0f));
+                tx0Var.f30696a.setTranslationY(AndroidUtilities.dp(24.0f));
                 kVar = tx0Var;
             } else {
                 boolean z10 = this.h;

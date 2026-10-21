@@ -26,7 +26,7 @@ public final class n01 extends Drawable implements org.telegram.ui.ActionBar.i5 
         p6Var.setCallback(new kr(1, this));
         p6Var.t(str, true, true);
         p6Var.w(AndroidUtilities.dp(11.0f));
-        p6Var.f29225b = 17;
+        p6Var.f29226b = 17;
         paint.setColor(520093696);
     }
 

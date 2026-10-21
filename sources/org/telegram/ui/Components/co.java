@@ -105,18 +105,18 @@ public final class co extends im0 {
                                 org.telegram.ui.Cells.z5 z5Var = (org.telegram.ui.Cells.z5) view;
                                 z5Var.setDivider(false);
                                 if (i10 == foVar.B0) {
-                                    z5Var.a(LocaleController.getString(R.string.PollV2ShowWhoVoted), LocaleController.getString(R.string.PollV2ShowWhoVotedInfo), v40.f31139c, R.drawable.filled_poll_view_24, !foVar.f26283a0);
+                                    z5Var.a(LocaleController.getString(R.string.PollV2ShowWhoVoted), LocaleController.getString(R.string.PollV2ShowWhoVotedInfo), v40.f31140c, R.drawable.filled_poll_view_24, !foVar.f26283a0);
                                 } else {
                                     if (i10 == foVar.F0) {
-                                        z5Var.a(LocaleController.getString(R.string.PollV2AllowMultipleAnswers), LocaleController.getString(R.string.PollV2AllowMultipleAnswersInfo), v40.f31140f, R.drawable.filled_poll_multiple_24, foVar.f26285b0);
+                                        z5Var.a(LocaleController.getString(R.string.PollV2AllowMultipleAnswers), LocaleController.getString(R.string.PollV2AllowMultipleAnswersInfo), v40.f31141f, R.drawable.filled_poll_multiple_24, foVar.f26285b0);
                                     } else if (i10 == foVar.D0) {
                                         z5Var.a(LocaleController.getString(R.string.PollV2AllowRevoting), LocaleController.getString(R.string.PollV2AllowRevotingInfo), v40.v, R.drawable.filled_poll_revote_24, foVar.R);
                                     } else if (i10 == foVar.C0) {
-                                        z5Var.a(LocaleController.getString(R.string.PollV2AllowAddingOptions), LocaleController.getString(R.string.PollV2AllowAddingOptionsInfo), v40.f31143s, R.drawable.filled_poll_add_24, foVar.T);
+                                        z5Var.a(LocaleController.getString(R.string.PollV2AllowAddingOptions), LocaleController.getString(R.string.PollV2AllowAddingOptionsInfo), v40.f31144s, R.drawable.filled_poll_add_24, foVar.T);
                                     } else if (i10 == foVar.E0) {
                                         z5Var.a(LocaleController.getString(R.string.PollV2ShuffleOptions), LocaleController.getString(R.string.PollV2ShuffleOptionsInfo), v40.h, R.drawable.filled_poll_shuffle_24, foVar.S);
                                     } else if (i10 == foVar.G0) {
-                                        z5Var.a(LocaleController.getString(R.string.PollV2SetCorrectAnswer), LocaleController.getString(R.string.PollV2SetCorrectAnswerInfo), v40.f31141n, R.drawable.filled_poll_correct_24, foVar.f26287c0);
+                                        z5Var.a(LocaleController.getString(R.string.PollV2SetCorrectAnswer), LocaleController.getString(R.string.PollV2SetCorrectAnswerInfo), v40.f31142n, R.drawable.filled_poll_correct_24, foVar.f26287c0);
                                     } else if (i10 == fVar2.f4728a) {
                                         z5Var.a(LocaleController.getString(R.string.PollV2LimitByCountry), LocaleController.getString(R.string.PollV2LimitByCountryInfo), v40.e, R.drawable.filled_location, fVar2.f4729b);
                                     } else if (i10 == fVar.f4728a) {
@@ -130,7 +130,7 @@ public final class co extends im0 {
                                         } else {
                                             z10 = true;
                                         }
-                                        z5Var.a(string, string2, v40.f31142r, i17, z10);
+                                        z5Var.a(string, string2, v40.f31143r, i17, z10);
                                         z5Var = z5Var;
                                         if (foVar.U == 0 && foVar.V == 0) {
                                             z11 = false;
@@ -199,7 +199,7 @@ public final class co extends im0 {
                 }
                 org.telegram.ui.Cells.d9 d9Var = (org.telegram.ui.Cells.d9) view;
                 d9Var.setFixedSize(0);
-                new zq(new ColorDrawable(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20932a7, d6Var)), org.telegram.ui.ActionBar.h6.W0(context, R.drawable.greydivider_bottom, org.telegram.ui.ActionBar.h6.f20952b7)).f33023w = true;
+                new zq(new ColorDrawable(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20932a7, d6Var)), org.telegram.ui.ActionBar.h6.W0(context, R.drawable.greydivider_bottom, org.telegram.ui.ActionBar.h6.f20952b7)).f33024w = true;
                 if (i10 == foVar.f26310q0) {
                     d9Var.setText(LocaleController.getString(R.string.AddAnExplanationInfo));
                     return;
@@ -300,7 +300,7 @@ public final class co extends im0 {
                 break;
             case 1:
                 View z6Var = new org.telegram.ui.Cells.z6(context, (org.telegram.ui.Cells.c1) null);
-                new zq(new ColorDrawable(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20932a7, d6Var)), org.telegram.ui.ActionBar.h6.W0(context, R.drawable.greydivider, org.telegram.ui.ActionBar.h6.f20952b7)).f33023w = true;
+                new zq(new ColorDrawable(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20932a7, d6Var)), org.telegram.ui.ActionBar.h6.W0(context, R.drawable.greydivider, org.telegram.ui.ActionBar.h6.f20952b7)).f33024w = true;
                 l4Var = z6Var;
                 break;
             case 2:
@@ -316,23 +316,23 @@ public final class co extends im0 {
                 if (i10 == 11 && !z10) {
                     xnVar.setTextRight(98);
                     xnVar.b().setOnClickListener(new View.OnClickListener(this) {
-                        public final co f31314b;
+                        public final co f31315b;
 
                         {
-                            this.f31314b = this;
+                            this.f31315b = this;
                         }
 
                         @Override
                         public final void onClick(View view2) {
                             switch (r2) {
                                 case 0:
-                                    fo.R(this.f31314b.d, -2);
+                                    fo.R(this.f31315b.d, -2);
                                     return;
                                 case 1:
-                                    fo.R(this.f31314b.d, -3);
+                                    fo.R(this.f31315b.d, -3);
                                     return;
                                 default:
-                                    this.f31314b.d.a0(view2, (org.telegram.ui.Cells.c6) view2.getParent(), true);
+                                    this.f31315b.d.a0(view2, (org.telegram.ui.Cells.c6) view2.getParent(), true);
                                     return;
                             }
                         }
@@ -347,23 +347,23 @@ public final class co extends im0 {
             default:
                 boolean z12 = foVar.I;
                 bo boVar = new bo(this, this.f25227c, z12 ? 1 : 0, new View.OnClickListener(this) {
-                    public final co f31314b;
+                    public final co f31315b;
 
                     {
-                        this.f31314b = this;
+                        this.f31315b = this;
                     }
 
                     @Override
                     public final void onClick(View view2) {
                         switch (r2) {
                             case 0:
-                                fo.R(this.f31314b.d, -2);
+                                fo.R(this.f31315b.d, -2);
                                 return;
                             case 1:
-                                fo.R(this.f31314b.d, -3);
+                                fo.R(this.f31315b.d, -3);
                                 return;
                             default:
-                                this.f31314b.d.a0(view2, (org.telegram.ui.Cells.c6) view2.getParent(), true);
+                                this.f31315b.d.a0(view2, (org.telegram.ui.Cells.c6) view2.getParent(), true);
                                 return;
                         }
                     }
@@ -402,23 +402,23 @@ public final class co extends im0 {
                 if (!z10) {
                     znVar.setTextRight(98);
                     znVar.b().setOnClickListener(new View.OnClickListener(this) {
-                        public final co f31314b;
+                        public final co f31315b;
 
                         {
-                            this.f31314b = this;
+                            this.f31315b = this;
                         }
 
                         @Override
                         public final void onClick(View view2) {
                             switch (r2) {
                                 case 0:
-                                    fo.R(this.f31314b.d, -2);
+                                    fo.R(this.f31315b.d, -2);
                                     return;
                                 case 1:
-                                    fo.R(this.f31314b.d, -3);
+                                    fo.R(this.f31315b.d, -3);
                                     return;
                                 default:
-                                    this.f31314b.d.a0(view2, (org.telegram.ui.Cells.c6) view2.getParent(), true);
+                                    this.f31315b.d.a0(view2, (org.telegram.ui.Cells.c6) view2.getParent(), true);
                                     return;
                             }
                         }

@@ -16,27 +16,27 @@ public final class qs0 extends VideoPlayerRewinder {
         MotionEvent obtain = MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0);
         PhotoViewer photoViewer = this.f40962a;
         PhotoViewer.k(photoViewer, obtain);
-        photoViewer.f33467z1.f(false);
+        photoViewer.f33468z1.f(false);
         org.telegram.ui.Components.ah0.f24598p0.Q.f(false);
     }
 
     @Override
     public final void onRewindStart(boolean z10) {
         PhotoViewer photoViewer = this.f40962a;
-        photoViewer.f33467z1.e(false);
-        photoViewer.f33467z1.d(!z10);
-        photoViewer.f33467z1.f(true);
-        photoViewer.f33278e0.invalidate();
+        photoViewer.f33468z1.e(false);
+        photoViewer.f33468z1.d(!z10);
+        photoViewer.f33468z1.f(true);
+        photoViewer.f33279e0.invalidate();
         org.telegram.ui.Components.ah0.v(z10);
     }
 
     @Override
     public final void updateRewindProgressUi(long j10, float f7, boolean z10) {
         PhotoViewer photoViewer = this.f40962a;
-        photoViewer.f33467z1.g(Math.abs(j10));
+        photoViewer.f33468z1.g(Math.abs(j10));
         if (z10) {
-            photoViewer.f33385q3.h(f7, false);
-            photoViewer.f33394r3.invalidate();
+            photoViewer.f33386q3.h(f7, false);
+            photoViewer.f33395r3.invalidate();
         }
         org.telegram.ui.Components.ah0 ah0Var = org.telegram.ui.Components.ah0.f24598p0;
         ah0Var.Q.g(0L);

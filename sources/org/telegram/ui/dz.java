@@ -14,12 +14,12 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public final class dz implements Runnable {
-    public final int f36465a;
-    public final Object f36466b;
+    public final int f36466a;
+    public final Object f36467b;
 
     public dz(Object obj, int i10) {
-        this.f36465a = i10;
-        this.f36466b = obj;
+        this.f36466a = i10;
+        this.f36467b = obj;
     }
 
     @Override
@@ -28,28 +28,28 @@ public final class dz implements Runnable {
         h70 h70Var;
         EGLDisplay eGLDisplay;
         EGLSurface eGLSurface;
-        int i11 = this.f36465a;
-        Object obj = this.f36466b;
+        int i11 = this.f36466a;
+        Object obj = this.f36467b;
         switch (i11) {
             case 0:
-                ((jz) obj).f36830a.getBackground().setState(new int[0]);
+                ((jz) obj).f36831a.getBackground().setState(new int[0]);
                 return;
             case 1:
                 e10 e10Var = (e10) obj;
-                AndroidUtilities.cancelRunOnUIThread(e10Var.f36508n0);
-                e10Var.f36491a.a(false, true);
+                AndroidUtilities.cancelRunOnUIThread(e10Var.f36509n0);
+                e10Var.f36492a.a(false, true);
                 return;
             case 2:
                 e10 e10Var2 = ((t00) obj).f41566a;
-                e10Var2.h(e10Var2.E, e10Var2.F, e10Var2.H, e10Var2.G, e10Var2.f36517y, e10Var2.J, e10Var2.f36515w, false);
+                e10Var2.h(e10Var2.E, e10Var2.F, e10Var2.H, e10Var2.G, e10Var2.f36518y, e10Var2.J, e10Var2.f36516w, false);
                 return;
             case 3:
                 ((FiltersSetupActivity) ((g10) obj).W2).getMessagesController().lockFiltersInternal();
                 return;
             case 4:
                 h10 h10Var = (h10) obj;
-                h10Var.f37460s.a();
-                h10Var.f37458n.invalidate();
+                h10Var.f37461s.a();
+                h10Var.f37459n.invalidate();
                 h10Var.E.Z(true);
                 return;
             case 5:
@@ -58,7 +58,7 @@ public final class dz implements Runnable {
                     ArrayList<MessagesController.DialogFilter> dialogFilters = filtersSetupActivity.getMessagesController().getDialogFilters();
                     for (int i12 = 0; i12 < dialogFilters.size(); i12++) {
                         if (dialogFilters.get(i12).isDefault() && i12 != 0) {
-                            FiltersSetupActivity filtersSetupActivity2 = filtersSetupActivity.f33141b.e;
+                            FiltersSetupActivity filtersSetupActivity2 = filtersSetupActivity.f33142b.e;
                             ArrayList<MessagesController.DialogFilter> arrayList = filtersSetupActivity2.getMessagesController().dialogFilters;
                             if (i12 < 0 || i12 >= arrayList.size()) {
                                 i10 = 1;
@@ -71,7 +71,7 @@ public final class dz implements Runnable {
                                 filtersSetupActivity2.e = true;
                                 filtersSetupActivity2.Z(true);
                             }
-                            filtersSetupActivity.f33140a.u0(0);
+                            filtersSetupActivity.f33141a.u0(0);
                             try {
                                 filtersSetupActivity.fragmentView.performHapticFeedback(3, i10);
                             } catch (Exception unused) {
@@ -118,7 +118,7 @@ public final class dz implements Runnable {
                 y40Var.a(1.0f);
                 return;
             case 8:
-                v10 v10Var = ((b50) obj).f35504g;
+                v10 v10Var = ((b50) obj).f35505g;
                 if (v10Var != null) {
                     v10Var.invalidate();
                     return;
@@ -147,13 +147,13 @@ public final class dz implements Runnable {
                 int i16 = R.drawable.intro_powerful_mask;
                 int i17 = org.telegram.ui.ActionBar.h6.f20990d6;
                 int x02 = org.telegram.ui.ActionBar.h6.x0(null, i17, false);
-                int i18 = h70.f37518y;
+                int i18 = h70.f37519y;
                 h70Var2.b(i16, 17, x02, true);
-                int[] iArr = j70Var.I.f37523n;
+                int[] iArr = j70Var.I.f37524n;
                 Intro.setPowerfulTextures(iArr[17], iArr[18], iArr[16], iArr[15]);
                 h70 h70Var3 = j70Var.I;
                 h70Var3.c(h70Var3.v, 23, true);
-                int[] iArr2 = j70Var.I.f37523n;
+                int[] iArr2 = j70Var.I.f37524n;
                 Intro.setTelegramTextures(iArr2[22], iArr2[21], iArr2[23]);
                 Intro.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, i17, false));
                 return;
@@ -161,14 +161,14 @@ public final class dz implements Runnable {
                 f70 f70Var = (f70) obj;
                 f70Var.getClass();
                 long currentTimeMillis = System.currentTimeMillis();
-                j70 j70Var2 = (j70) f70Var.f36907b;
+                j70 j70Var2 = (j70) f70Var.f36908b;
                 Intro.setPage(j70Var2.H);
                 Intro.setDate(((float) (currentTimeMillis - j70Var2.J)) / 1000.0f);
                 Intro.onDrawFrame(0);
                 h70 h70Var4 = j70Var2.I;
-                if (h70Var4 != null && h70Var4.isAlive() && (eGLDisplay = (h70Var = j70Var2.I).f37521c) != null && (eGLSurface = h70Var.f37522f) != null) {
+                if (h70Var4 != null && h70Var4.isAlive() && (eGLDisplay = (h70Var = j70Var2.I).f37522c) != null && (eGLSurface = h70Var.f37523f) != null) {
                     try {
-                        h70Var.f37520b.eglSwapBuffers(eGLDisplay, eGLSurface);
+                        h70Var.f37521b.eglSwapBuffers(eGLDisplay, eGLSurface);
                         return;
                     } catch (Exception unused2) {
                         return;
@@ -176,7 +176,7 @@ public final class dz implements Runnable {
                 }
                 return;
             case 13:
-                j70 j70Var3 = ((g70) obj).f37210b;
+                j70 j70Var3 = ((g70) obj).f37211b;
                 j70Var3.presentFragment(new dg0(), true);
                 j70Var3.M = true;
                 return;
@@ -192,7 +192,7 @@ public final class dz implements Runnable {
                 ((pf.c) obj).b();
                 return;
             case 16:
-                ((aa0) obj).f35322a.C0.setVisibility(8);
+                ((aa0) obj).f35323a.C0.setVisibility(8);
                 return;
             case 17:
                 gb0 gb0Var = (gb0) obj;
@@ -204,7 +204,7 @@ public final class dz implements Runnable {
                 return;
             case 18:
                 try {
-                    org.telegram.ui.Components.jm0 currentListView = ((nc0) ((lc0) obj).f38893z0).K0.getCurrentListView();
+                    org.telegram.ui.Components.jm0 currentListView = ((nc0) ((lc0) obj).f38894z0).K0.getCurrentListView();
                     if (currentListView != null && currentListView.getAdapter() != null) {
                         currentListView.getAdapter().l();
                         return;
@@ -244,7 +244,7 @@ public final class dz implements Runnable {
                 return;
             case 23:
                 double currentTimeMillis2 = System.currentTimeMillis();
-                de0 de0Var = ((ce0) obj).f35949a;
+                de0 de0Var = ((ce0) obj).f35950a;
                 double d = de0Var.Q;
                 ff0 ff0Var = de0Var.v;
                 de0Var.Q = currentTimeMillis2;
@@ -289,14 +289,14 @@ public final class dz implements Runnable {
             case 24:
                 double currentTimeMillis3 = System.currentTimeMillis();
                 hf0 hf0Var = (hf0) ((e6.r) obj).f8393b;
-                double d10 = currentTimeMillis3 - hf0Var.f37595b0;
-                hf0Var.f37595b0 = currentTimeMillis3;
+                double d10 = currentTimeMillis3 - hf0Var.f37596b0;
+                hf0Var.f37596b0 = currentTimeMillis3;
                 int i27 = (int) (hf0Var.W - d10);
                 hf0Var.W = i27;
                 if (i27 <= 1000) {
                     hf0.p(hf0Var);
                     hf0Var.v.setVisibility(8);
-                    ff0 ff0Var2 = hf0Var.f37618x;
+                    ff0 ff0Var2 = hf0Var.f37619x;
                     if (ff0Var2 != null) {
                         ff0Var2.setVisibility(0);
                     }
@@ -306,19 +306,19 @@ public final class dz implements Runnable {
                 return;
             case 25:
                 double currentTimeMillis4 = System.currentTimeMillis();
-                hf0 hf0Var2 = ((gf0) obj).f37310a;
-                double d11 = hf0Var2.f37593a0;
+                hf0 hf0Var2 = ((gf0) obj).f37311a;
+                double d11 = hf0Var2.f37594a0;
                 ff0 ff0Var3 = hf0Var2.v;
-                hf0Var2.f37593a0 = currentTimeMillis4;
+                hf0Var2.f37594a0 = currentTimeMillis4;
                 int i28 = (int) (hf0Var2.V - (currentTimeMillis4 - d11));
                 hf0Var2.V = i28;
                 if (i28 >= 1000) {
                     int i29 = i28 / 1000;
                     int i30 = i29 / 60;
                     int i31 = i29 - (i30 * 60);
-                    int i32 = hf0Var2.f37602g0;
+                    int i32 = hf0Var2.f37603g0;
                     if (i32 != 4 && i32 != 3 && i32 != 11) {
-                        if (hf0Var2.f37601f0 == 2 && (i32 == 2 || i32 == 17 || i32 == 16)) {
+                        if (hf0Var2.f37602f0 == 2 && (i32 == 2 || i32 == 17 || i32 == 16)) {
                             ff0Var3.setText(LocaleController.formatString("ResendSmsAvailableIn", R.string.ResendSmsAvailableIn, Integer.valueOf(i30), Integer.valueOf(i31)));
                             return;
                         } else if (i32 == 2 || i32 == 17 || i32 == 16) {
@@ -332,7 +332,7 @@ public final class dz implements Runnable {
                     return;
                 }
                 hf0Var2.w();
-                int i33 = hf0Var2.f37602g0;
+                int i33 = hf0Var2.f37603g0;
                 if (i33 == 3 || i33 == 4 || i33 == 2 || i33 == 17 || i33 == 16 || i33 == 11) {
                     if (i33 == 4) {
                         ff0Var3.setText(LocaleController.getString("RequestCallButton", R.string.RequestCallButton));
@@ -357,7 +357,7 @@ public final class dz implements Runnable {
                 ((org.telegram.ui.Components.si) obj).setVisibility(8);
                 return;
             default:
-                AndroidUtilities.showKeyboard(((mj0) ((g) obj).f37149b).Q);
+                AndroidUtilities.showKeyboard(((mj0) ((g) obj).f37150b).Q);
                 return;
         }
     }

@@ -260,7 +260,7 @@ public final class p6 implements Runnable {
             case 17:
                 gi.d3 d3Var3 = (gi.d3) this.f9593b;
                 org.telegram.ui.Components.qc Q = new xc(d3Var3.f11153p0, d3Var3.E).Q(R.raw.contact_check, 36, AndroidUtilities.replaceTags((String) this.f9594c));
-                Q.f29530j = 5000;
+                Q.f29531j = 5000;
                 Q.k(true);
                 return;
             case 18:
@@ -288,7 +288,7 @@ public final class p6 implements Runnable {
             case 21:
                 gi.f4 f4Var2 = (gi.f4) this.f9593b;
                 org.telegram.ui.Components.qc Q2 = new xc(f4Var2.f28173b.getContainer(), f4Var2.f28172a).Q(R.raw.contact_check, 36, AndroidUtilities.replaceTags((String) this.f9594c));
-                Q2.f29530j = 5000;
+                Q2.f29531j = 5000;
                 Q2.k(true);
                 return;
             case 22:

@@ -43,7 +43,7 @@ public final class q extends FrameLayout {
         AndroidUtilities.runOnUIThread(new z1(pVar, 19), 1000L);
         k kVar2 = new k(n2Var, new j(pVar, 0), i11);
         this.f45795c = kVar2;
-        kVar2.W2.f30860r = false;
+        kVar2.W2.f30861r = false;
         kVar2.j(new l(this, pVar));
         return this.f45795c;
     }

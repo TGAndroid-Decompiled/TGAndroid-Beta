@@ -48,7 +48,7 @@ public final class a extends AsyncTask {
             if (eo0Var.Q0) {
                 return;
             }
-            eo0Var.f36733w0 = String.format(Locale.US, "{\"type\":\"%1$s\", \"id\":\"%2$s\"}", (String) cVar.f47270c, (String) cVar.f47269b);
+            eo0Var.f36734w0 = String.format(Locale.US, "{\"type\":\"%1$s\", \"id\":\"%2$s\"}", (String) cVar.f47270c, (String) cVar.f47269b);
             AndroidUtilities.runOnUIThread(new ck0(tn0Var, 9));
             return;
         }

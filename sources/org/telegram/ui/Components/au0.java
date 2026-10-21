@@ -12,7 +12,7 @@ public final class au0 extends org.telegram.ui.sn {
 
     @Override
     public final void b(boolean z10) {
-        org.telegram.ui.ActionBar.u0 u0Var = this.f24723f.f31051n0;
+        org.telegram.ui.ActionBar.u0 u0Var = this.f24723f.f31052n0;
         if (u0Var != null) {
             u0Var.setShowSearchProgress(z10);
         }

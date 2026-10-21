@@ -384,13 +384,13 @@ public final class sa extends org.telegram.ui.ActionBar.n2 {
     public final void e0(boolean z10) {
         ma maVar = this.f41420y;
         if (maVar != null) {
-            if (!maVar.f39163a.isFocused()) {
-                EditTextBoldCursor editTextBoldCursor = this.f41420y.f39163a;
+            if (!maVar.f39164a.isFocused()) {
+                EditTextBoldCursor editTextBoldCursor = this.f41420y.f39164a;
                 editTextBoldCursor.setSelection(editTextBoldCursor.length());
             }
-            this.f41420y.f39163a.requestFocus();
+            this.f41420y.f39164a.requestFocus();
             if (z10) {
-                AndroidUtilities.showKeyboard(this.f41420y.f39163a);
+                AndroidUtilities.showKeyboard(this.f41420y.f39164a);
             }
         }
     }
@@ -433,8 +433,8 @@ public final class sa extends org.telegram.ui.ActionBar.n2 {
                 AndroidUtilities.shakeViewSpring(childAt);
             } else if (childAt instanceof ma) {
                 ma maVar = (ma) childAt;
-                AndroidUtilities.shakeViewSpring(maVar.f39163a);
-                AndroidUtilities.shakeViewSpring(maVar.f39164b);
+                AndroidUtilities.shakeViewSpring(maVar.f39164a);
+                AndroidUtilities.shakeViewSpring(maVar.f39165b);
             }
         }
         BotWebViewVibrationEffect.APP_ERROR.vibrate();

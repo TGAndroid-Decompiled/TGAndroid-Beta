@@ -41,12 +41,12 @@ public final class o10 extends s4.v {
         if (b1Var.f45920f != b1Var2.f45920f) {
             return false;
         }
-        l10 l10Var = this.d.f33141b;
+        l10 l10Var = this.d.f33142b;
         int b10 = b1Var.b();
         int b11 = b1Var2.b();
         FiltersSetupActivity filtersSetupActivity = l10Var.e;
-        int i10 = filtersSetupActivity.f33145r;
-        ArrayList arrayList = filtersSetupActivity.f33144n;
+        int i10 = filtersSetupActivity.f33146r;
+        ArrayList arrayList = filtersSetupActivity.f33145n;
         if (b10 >= i10 && b11 >= i10) {
             j10 j10Var = (j10) arrayList.get(b10);
             j10 j10Var2 = (j10) arrayList.get(b11);
@@ -56,8 +56,8 @@ public final class o10 extends s4.v {
                 dialogFilter2.order = i11;
                 ArrayList<MessagesController.DialogFilter> arrayList2 = filtersSetupActivity.getMessagesController().dialogFilters;
                 try {
-                    arrayList2.set(b10 - filtersSetupActivity.f33145r, j10Var2.d);
-                    arrayList2.set(b11 - filtersSetupActivity.f33145r, j10Var.d);
+                    arrayList2.set(b10 - filtersSetupActivity.f33146r, j10Var2.d);
+                    arrayList2.set(b11 - filtersSetupActivity.f33146r, j10Var.d);
                 } catch (Exception unused) {
                 }
                 filtersSetupActivity.e = true;
@@ -71,7 +71,7 @@ public final class o10 extends s4.v {
     public final void p(s4.b1 b1Var, int i10) {
         Boolean bool;
         if (i10 != 0) {
-            this.d.f33140a.I0(false);
+            this.d.f33141a.I0(false);
             b1Var.f45917a.setPressed(true);
         } else {
             AndroidUtilities.cancelRunOnUIThread(new dz(this, 5));

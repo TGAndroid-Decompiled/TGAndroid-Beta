@@ -86,7 +86,7 @@ public final class vu extends org.telegram.ui.Components.bb {
                 ?? obj = new Object();
                 Paint paint = new Paint(1);
                 obj.e = paint;
-                obj.f32280c = true;
+                obj.f32281c = true;
                 obj.d = false;
                 paint.setStyle(Paint.Style.STROKE);
                 paint.setStrokeWidth(AndroidUtilities.dp(5.0f));
@@ -94,8 +94,8 @@ public final class vu extends org.telegram.ui.Components.bb {
                 paint.setStrokeJoin(Paint.Join.ROUND);
                 wy0VarArr[i11] = obj;
                 org.telegram.ui.Components.wy0 wy0Var = this.f42372b0[i11];
-                wy0Var.f32278a = j11;
-                wy0Var.f32279b = i13;
+                wy0Var.f32279a = j11;
+                wy0Var.f32280b = i13;
                 org.telegram.ui.Cells.a2 a2Var2 = new org.telegram.ui.Cells.a2(4, 21, parentActivity, null, false);
                 a2Var2.setTag(Integer.valueOf(i11));
                 a2Var2.setBackgroundDrawable(org.telegram.ui.ActionBar.h6.L0(false));
@@ -121,17 +121,17 @@ public final class vu extends org.telegram.ui.Components.bb {
         }
         uu uuVar2 = this.X;
         org.telegram.ui.Components.wy0[] wy0VarArr2 = this.f42372b0;
-        uuVar2.f32500b = wy0VarArr2;
+        uuVar2.f32501b = wy0VarArr2;
         uuVar2.F = cVar;
         uuVar2.invalidate();
-        uuVar2.f32501c = new float[wy0VarArr2.length];
+        uuVar2.f32502c = new float[wy0VarArr2.length];
         uuVar2.d = new float[wy0VarArr2.length];
         uuVar2.e = new float[wy0VarArr2.length];
         uuVar2.c(false);
-        if (uuVar2.f32508y > 1) {
-            uuVar2.f32502f = 0.0f;
+        if (uuVar2.f32509y > 1) {
+            uuVar2.f32503f = 0.0f;
         } else {
-            uuVar2.f32502f = 1.0f;
+            uuVar2.f32503f = 1.0f;
         }
         z6 z6Var = new z6(this, getContext(), c7Var, 1);
         this.f42375e0 = z6Var;

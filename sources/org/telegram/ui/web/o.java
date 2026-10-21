@@ -24,10 +24,10 @@ public final class o extends g5 {
             iVar.c();
             pVar.e = null;
         }
-        w61 w61Var = pVar.f32355a;
+        w61 w61Var = pVar.f32356a;
         if (w61Var != null) {
             w61Var.W2.N(true);
-            pVar.f32355a.V2.h1(0, 0);
+            pVar.f32356a.V2.h1(0, 0);
         }
     }
 
@@ -51,11 +51,11 @@ public final class o extends g5 {
             AndroidUtilities.cancelRunOnUIThread(uVar);
             AndroidUtilities.runOnUIThread(uVar, 500L);
         }
-        w61 w61Var = pVar.f32355a;
+        w61 w61Var = pVar.f32356a;
         if (w61Var != null) {
             w61Var.W2.N(true);
             if (z10 != (!TextUtils.isEmpty(obj))) {
-                pVar.f32355a.V2.h1(0, 0);
+                pVar.f32356a.V2.h1(0, 0);
             }
         }
     }

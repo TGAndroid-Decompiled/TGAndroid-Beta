@@ -4,32 +4,32 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationsController;
 import org.telegram.messenger.Utilities;
 public final class uo implements Utilities.Callback {
-    public final i80 f30985a;
-    public final int f30986b;
-    public final long f30987c;
+    public final i80 f30986a;
+    public final int f30987b;
+    public final long f30988c;
     public final long d;
     public final org.telegram.ui.ActionBar.n2 e;
-    public final org.telegram.ui.ActionBar.d6 f30988f;
+    public final org.telegram.ui.ActionBar.d6 f30989f;
 
     public uo(i80 i80Var, int i10, long j10, long j11, org.telegram.ui.qn qnVar, org.telegram.ui.ActionBar.d6 d6Var) {
-        this.f30985a = i80Var;
-        this.f30986b = i10;
-        this.f30987c = j10;
+        this.f30986a = i80Var;
+        this.f30987b = i10;
+        this.f30988c = j10;
         this.d = j11;
         this.e = qnVar;
-        this.f30988f = d6Var;
+        this.f30989f = d6Var;
     }
 
     @Override
     public final void run(Object obj) {
         Integer num = (Integer) obj;
-        this.f30985a.u();
+        this.f30986a.u();
         int intValue = num.intValue();
-        int i10 = this.f30986b;
-        long j10 = this.f30987c;
+        int i10 = this.f30987b;
+        long j10 = this.f30988c;
         long j11 = this.d;
         org.telegram.ui.ActionBar.n2 n2Var = this.e;
-        org.telegram.ui.ActionBar.d6 d6Var = this.f30988f;
+        org.telegram.ui.ActionBar.d6 d6Var = this.f30989f;
         if (intValue == 0) {
             if (MessagesController.getInstance(i10).isDialogMuted(j10, j11)) {
                 NotificationsController.getInstance(i10).muteDialog(j10, j11, false);

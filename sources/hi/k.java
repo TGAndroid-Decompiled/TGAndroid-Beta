@@ -77,30 +77,30 @@ public final class k implements Runnable {
                 TLRPC.InputFile inputFile4 = this.f12164c;
                 if (inputFile3 == null && inputFile4 == null) {
                     TLRPC.FileLocation fileLocation2 = this.h.location;
-                    mdVar.f39207x = fileLocation2;
-                    mdVar.f39208y = this.f12166n.location;
-                    mdVar.e.h(ImageLocation.getForLocal(fileLocation2), "50_50", mdVar.f39200s, null);
+                    mdVar.f39208x = fileLocation2;
+                    mdVar.f39209y = this.f12166n.location;
+                    mdVar.e.h(ImageLocation.getForLocal(fileLocation2), "50_50", mdVar.f39201s, null);
                     mdVar.e0(true, false);
                     return;
                 }
-                mdVar.f39192l0 = inputFile3;
+                mdVar.f39193l0 = inputFile3;
                 mdVar.m0 = inputFile4;
-                mdVar.f39194n0 = this.d;
-                mdVar.f39195o0 = this.e;
-                mdVar.f39196p0 = this.f12165f;
-                if (mdVar.f39197q0) {
-                    b2 b2Var = mdVar.f39203u0;
+                mdVar.f39195n0 = this.d;
+                mdVar.f39196o0 = this.e;
+                mdVar.f39197p0 = this.f12165f;
+                if (mdVar.f39198q0) {
+                    b2 b2Var = mdVar.f39204u0;
                     if (b2Var != null) {
                         try {
                             b2Var.dismiss();
-                            mdVar.f39203u0 = null;
+                            mdVar.f39204u0 = null;
                         } catch (Exception e) {
                             FileLog.e(e);
                         }
                     }
                     mdVar.g0(false);
-                    mdVar.f39199r0 = false;
-                    mdVar.f39177a.performClick();
+                    mdVar.f39200r0 = false;
+                    mdVar.f39178a.performClick();
                 }
                 mdVar.e0(false, true);
                 mdVar.h.setImageDrawable(null);
@@ -109,25 +109,25 @@ public final class k implements Runnable {
                 io ioVar = (io) this.f12167r;
                 TLRPC.PhotoSize photoSize2 = this.h;
                 TLRPC.FileLocation fileLocation3 = photoSize2.location;
-                ioVar.f38059v0 = fileLocation3;
+                ioVar.f38060v0 = fileLocation3;
                 TLRPC.InputFile inputFile5 = this.f12163b;
                 TLRPC.InputFile inputFile6 = this.f12164c;
                 TLRPC.VideoSize videoSize2 = this.d;
                 if (inputFile5 == null && inputFile6 == null && videoSize2 == null) {
                     k4 k4Var = ioVar.e;
                     ImageLocation forLocal = ImageLocation.getForLocal(fileLocation3);
-                    h9 h9Var = ioVar.f38053r;
+                    h9 h9Var = ioVar.f38054r;
                     Object obj = ioVar.D0;
                     if (obj == null) {
-                        obj = ioVar.f38063x0;
+                        obj = ioVar.f38064x0;
                     }
                     k4Var.h(forLocal, "50_50", h9Var, obj);
-                    ioVar.f38035b0.m(R.drawable.msg_addphoto, LocaleController.getString("ChatSetNewPhoto", R.string.ChatSetNewPhoto), true);
+                    ioVar.f38036b0.m(R.drawable.msg_addphoto, LocaleController.getString("ChatSetNewPhoto", R.string.ChatSetNewPhoto), true);
                     if (ioVar.R0 == null) {
                         ioVar.R0 = new vj0(R.raw.camera_outline, AndroidUtilities.dp(50.0f), AndroidUtilities.dp(50.0f), false, null);
                     }
-                    ioVar.f38035b0.e.setTranslationX(-AndroidUtilities.dp(8.0f));
-                    ioVar.f38035b0.e.setAnimation(ioVar.R0);
+                    ioVar.f38036b0.e.setTranslationX(-AndroidUtilities.dp(8.0f));
+                    ioVar.f38036b0.e.setAnimation(ioVar.R0);
                     ioVar.n0(true, false);
                     return;
                 }
@@ -171,20 +171,20 @@ public final class k implements Runnable {
                     z11 = false;
                 } else {
                     z11 = false;
-                    ioVar.getMessagesController().changeChatAvatar(ioVar.f38061w0, null, inputFile5, inputFile6, videoSize2, d, this.e, photoSize2.location, photoSize3.location, null);
+                    ioVar.getMessagesController().changeChatAvatar(ioVar.f38062w0, null, inputFile5, inputFile6, videoSize2, d, this.e, photoSize2.location, photoSize3.location, null);
                 }
                 if (ioVar.M0) {
                     try {
-                        b2 b2Var2 = ioVar.f38034b;
+                        b2 b2Var2 = ioVar.f38035b;
                         if (b2Var2 != null && b2Var2.isShowing()) {
-                            ioVar.f38034b.dismiss();
-                            ioVar.f38034b = null;
+                            ioVar.f38035b.dismiss();
+                            ioVar.f38035b = null;
                         }
                     } catch (Exception e7) {
                         FileLog.e(e7);
                     }
                     ioVar.N0 = z11;
-                    ioVar.f38032a.performClick();
+                    ioVar.f38033a.performClick();
                 }
                 ioVar.n0(z11, true);
                 return;

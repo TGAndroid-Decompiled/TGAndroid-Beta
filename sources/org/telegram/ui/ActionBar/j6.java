@@ -174,9 +174,9 @@ public final class j6 {
                 Drawable drawable6 = imageView.getDrawable();
                 if (drawable6 instanceof zq) {
                     if ((i11 & 32) != 0) {
-                        drawable3 = ((zq) drawable6).f33016a;
+                        drawable3 = ((zq) drawable6).f33017a;
                     } else {
-                        drawable3 = ((zq) drawable6).f33017b;
+                        drawable3 = ((zq) drawable6).f33018b;
                     }
                     if (drawable3 != null) {
                         drawable3.setColorFilter(new PorterDuffColorFilter(i10, PorterDuff.Mode.MULTIPLY));
@@ -192,9 +192,9 @@ public final class j6 {
                 }
                 if (drawable4 instanceof zq) {
                     if ((i11 & 32) != 0) {
-                        drawable2 = ((zq) drawable4).f33016a;
+                        drawable2 = ((zq) drawable4).f33017a;
                     } else {
-                        drawable2 = ((zq) drawable4).f33017b;
+                        drawable2 = ((zq) drawable4).f33018b;
                     }
                     if (drawable2 != null) {
                         drawable2.setColorFilter(new PorterDuffColorFilter(i10, PorterDuff.Mode.MULTIPLY));
@@ -211,9 +211,9 @@ public final class j6 {
                     }
                 } else if (obj instanceof zq) {
                     if ((i11 & 32) != 0) {
-                        drawable = ((zq) obj).f33016a;
+                        drawable = ((zq) obj).f33017a;
                     } else {
-                        drawable = ((zq) obj).f33017b;
+                        drawable = ((zq) obj).f33018b;
                     }
                     if (drawable != null) {
                         drawable.setColorFilter(new PorterDuffColorFilter(i10, PorterDuff.Mode.MULTIPLY));
@@ -368,14 +368,14 @@ public final class j6 {
                             if (background != null) {
                                 if ((i12 & 16) != 0) {
                                     if (background instanceof zq) {
-                                        Drawable drawable = ((zq) background).f33016a;
+                                        Drawable drawable = ((zq) background).f33017a;
                                         if (drawable instanceof ColorDrawable) {
                                             ((ColorDrawable) drawable).setColor(i10);
                                         }
                                     }
                                 } else {
                                     if (background instanceof zq) {
-                                        background = ((zq) background).f33017b;
+                                        background = ((zq) background).f33018b;
                                     } else if ((background instanceof StateListDrawable) || (background instanceof RippleDrawable)) {
                                         if ((i12 & 65536) != 0) {
                                             z11 = true;
@@ -499,9 +499,9 @@ public final class j6 {
                         }
                     } else if (drawable instanceof zq) {
                         if ((i13 & 32) != 0) {
-                            ((zq) drawable).f33016a.setColorFilter(new PorterDuffColorFilter(i10, PorterDuff.Mode.MULTIPLY));
+                            ((zq) drawable).f33017a.setColorFilter(new PorterDuffColorFilter(i10, PorterDuff.Mode.MULTIPLY));
                         } else {
-                            ((zq) drawable).f33017b.setColorFilter(new PorterDuffColorFilter(i10, PorterDuff.Mode.MULTIPLY));
+                            ((zq) drawable).f33018b.setColorFilter(new PorterDuffColorFilter(i10, PorterDuff.Mode.MULTIPLY));
                         }
                     } else if (drawable instanceof h9) {
                         ((h9) drawable).h(i10);
@@ -537,9 +537,9 @@ public final class j6 {
                     Drawable background2 = view.getBackground();
                     if (background2 instanceof zq) {
                         if ((i13 & 65536) != 0) {
-                            background2 = ((zq) background2).f33016a;
+                            background2 = ((zq) background2).f33017a;
                         } else {
-                            background2 = ((zq) background2).f33017b;
+                            background2 = ((zq) background2).f33018b;
                         }
                     }
                     if (background2 != null) {

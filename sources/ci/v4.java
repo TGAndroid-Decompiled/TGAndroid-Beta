@@ -119,9 +119,9 @@ public final class v4 implements ValueAnimator.AnimatorUpdateListener {
                 org.telegram.ui.Components.voip.s1 s1Var = (org.telegram.ui.Components.voip.s1) this.f6079b;
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 s1Var.J = floatValue;
-                org.telegram.ui.Components.voip.r1 r1Var = s1Var.f31697i0;
+                org.telegram.ui.Components.voip.r1 r1Var = s1Var.f31698i0;
                 if (r1Var != null) {
-                    ((pg1) r1Var).f40228b.f37639d0.d(floatValue, s1Var.P);
+                    ((pg1) r1Var).f40228b.f37640d0.d(floatValue, s1Var.P);
                 }
                 s1Var.invalidate();
                 return;

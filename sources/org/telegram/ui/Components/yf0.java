@@ -4,24 +4,24 @@ import android.graphics.Matrix;
 import android.graphics.SurfaceTexture;
 import android.view.TextureView;
 public final class yf0 implements TextureView.SurfaceTextureListener {
-    public final boolean f32642a;
-    public final ja f32643b;
-    public final dg0 f32644c;
+    public final boolean f32643a;
+    public final ja f32644b;
+    public final dg0 f32645c;
 
     public yf0(dg0 dg0Var, boolean z10, ja jaVar) {
-        this.f32644c = dg0Var;
-        this.f32642a = z10;
-        this.f32643b = jaVar;
+        this.f32645c = dg0Var;
+        this.f32643a = z10;
+        this.f32644b = jaVar;
     }
 
     @Override
     public final void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i10, int i11) {
-        dg0 dg0Var = this.f32644c;
+        dg0 dg0Var = this.f32645c;
         TextureView textureView = dg0Var.f25476i0;
         if (dg0Var.f25479l0 == null && surfaceTexture != null) {
-            e00 e00Var = new e00(surfaceTexture, dg0Var.C0, dg0Var.H0, dg0Var.f25493w0, this.f32642a, this.f32643b, i10, i11);
+            e00 e00Var = new e00(surfaceTexture, dg0Var.C0, dg0Var.H0, dg0Var.f25493w0, this.f32643a, this.f32644b, i10, i11);
             dg0Var.f25479l0 = e00Var;
-            if (!this.f32642a) {
+            if (!this.f32643a) {
                 e00Var.i(dg0Var.J0, dg0Var.K0);
                 e00 e00Var2 = dg0Var.f25479l0;
                 Matrix transform = textureView.getTransform(null);
@@ -49,7 +49,7 @@ public final class yf0 implements TextureView.SurfaceTextureListener {
 
     @Override
     public final boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
-        dg0 dg0Var = this.f32644c;
+        dg0 dg0Var = this.f32645c;
         e00 e00Var = dg0Var.f25479l0;
         if (e00Var != null) {
             e00Var.postRunnable(new b00(e00Var, 0));
@@ -61,7 +61,7 @@ public final class yf0 implements TextureView.SurfaceTextureListener {
 
     @Override
     public final void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i10, int i11) {
-        dg0 dg0Var = this.f32644c;
+        dg0 dg0Var = this.f32645c;
         e00 e00Var = dg0Var.f25479l0;
         if (e00Var != null) {
             e00Var.postRunnable(new a00(e00Var, i10, i11, 1));

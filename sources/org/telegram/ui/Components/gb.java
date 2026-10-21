@@ -14,7 +14,7 @@ public final class gb implements q0.a {
             case 0:
                 qc qcVar = (qc) this.f26560b;
                 Float f7 = (Float) obj;
-                ob obVar = qcVar.f29536p;
+                ob obVar = qcVar.f29537p;
                 if (obVar != null) {
                     ub ubVar = qcVar.e;
                     if (!ubVar.top) {
@@ -25,7 +25,7 @@ public final class gb implements q0.a {
                 }
                 return;
             default:
-                ri riVar = ((ti) this.f26560b).f30537c2;
+                ri riVar = ((ti) this.f26560b).f30538c2;
                 if (riVar != null) {
                     riVar.O(obj);
                     return;

@@ -96,15 +96,15 @@ public final class ao implements TextWatcher {
                 return;
             case 3:
                 PasscodeActivity passcodeActivity = (PasscodeActivity) obj;
-                if (passcodeActivity.f33233x == 1 && passcodeActivity.E == 0) {
-                    if (TextUtils.isEmpty(editable) && passcodeActivity.f33231s.getVisibility() != 8) {
+                if (passcodeActivity.f33234x == 1 && passcodeActivity.E == 0) {
+                    if (TextUtils.isEmpty(editable) && passcodeActivity.f33232s.getVisibility() != 8) {
                         if (((AtomicBoolean) this.f24684c).get()) {
-                            passcodeActivity.f33231s.callOnClick();
+                            passcodeActivity.f33232s.callOnClick();
                         }
-                        AndroidUtilities.updateViewVisibilityAnimated(passcodeActivity.f33231s, false, 0.1f, true);
+                        AndroidUtilities.updateViewVisibilityAnimated(passcodeActivity.f33232s, false, 0.1f, true);
                         return;
-                    } else if (!TextUtils.isEmpty(editable) && passcodeActivity.f33231s.getVisibility() != 0) {
-                        AndroidUtilities.updateViewVisibilityAnimated(passcodeActivity.f33231s, true, 0.1f, true);
+                    } else if (!TextUtils.isEmpty(editable) && passcodeActivity.f33232s.getVisibility() != 0) {
+                        AndroidUtilities.updateViewVisibilityAnimated(passcodeActivity.f33232s, true, 0.1f, true);
                         return;
                     } else {
                         return;
@@ -115,7 +115,7 @@ public final class ao implements TextWatcher {
                 org.telegram.ui.fv0 fv0Var = ((org.telegram.ui.dv0) obj).d;
                 org.telegram.ui.av0 av0Var = (org.telegram.ui.av0) this.f24684c;
                 if (av0Var.getTag() == null) {
-                    s4.b1 K2 = fv0Var.f37101c.K(fv0Var.f37109i0);
+                    s4.b1 K2 = fv0Var.f37102c.K(fv0Var.f37110i0);
                     if (K2 != null && fv0Var.Q != null) {
                         for (ImageSpan imageSpan3 : (ImageSpan[]) editable.getSpans(0, editable.length(), ImageSpan.class)) {
                             editable.removeSpan(imageSpan3);
@@ -128,7 +128,7 @@ public final class ao implements TextWatcher {
                     }
                     fv0Var.E = editable;
                     if (K2 != null) {
-                        org.telegram.ui.fv0.c0(fv0Var, K2.f45917a, fv0Var.f37109i0);
+                        org.telegram.ui.fv0.c0(fv0Var, K2.f45917a, fv0Var.f37110i0);
                     }
                     fv0Var.i0();
                     return;
@@ -138,7 +138,7 @@ public final class ao implements TextWatcher {
                 org.telegram.ui.fv0 fv0Var2 = ((org.telegram.ui.dv0) obj).d;
                 org.telegram.ui.bv0 bv0Var = (org.telegram.ui.bv0) this.f24684c;
                 if (bv0Var.getTag() == null) {
-                    s4.b1 K3 = fv0Var2.f37101c.K(fv0Var2.f37109i0);
+                    s4.b1 K3 = fv0Var2.f37102c.K(fv0Var2.f37110i0);
                     if (K3 != null && fv0Var2.Q != null) {
                         for (ImageSpan imageSpan4 : (ImageSpan[]) editable.getSpans(0, editable.length(), ImageSpan.class)) {
                             editable.removeSpan(imageSpan4);
@@ -151,7 +151,7 @@ public final class ao implements TextWatcher {
                     }
                     fv0Var2.F = editable;
                     if (K3 != null) {
-                        org.telegram.ui.fv0.c0(fv0Var2, K3.f45917a, fv0Var2.f37110j0);
+                        org.telegram.ui.fv0.c0(fv0Var2, K3.f45917a, fv0Var2.f37111j0);
                     }
                     fv0Var2.i0();
                     return;
@@ -159,7 +159,7 @@ public final class ao implements TextWatcher {
                 return;
             case 6:
                 org.telegram.ui.fv0 fv0Var3 = ((org.telegram.ui.dv0) obj).d;
-                sa1 sa1Var2 = fv0Var3.f37101c;
+                sa1 sa1Var2 = fv0Var3.f37102c;
                 org.telegram.ui.cv0 cv0Var = (org.telegram.ui.cv0) this.f24684c;
                 View F2 = sa1Var2.F(cv0Var);
                 if (F2 != null) {
@@ -167,7 +167,7 @@ public final class ao implements TextWatcher {
                 }
                 if (b1Var != null) {
                     View view2 = b1Var.f45917a;
-                    int b11 = b1Var.b() - fv0Var3.f37114n0;
+                    int b11 = b1Var.b() - fv0Var3.f37115n0;
                     if (b11 >= 0 && b11 < fv0Var3.v.length) {
                         if (fv0Var3.Q != null) {
                             for (ImageSpan imageSpan5 : (ImageSpan[]) editable.getSpans(0, editable.length(), ImageSpan.class)) {

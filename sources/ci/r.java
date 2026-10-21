@@ -204,7 +204,7 @@ public abstract class r extends FrameLayout implements NotificationCenter.Notifi
         addView(imageView, w7.z5.c(22.0f, 90));
         org.telegram.ui.Components.p5 p5Var = new org.telegram.ui.Components.p5(AndroidUtilities.dp(26.0f), null);
         this.f5867a0 = p5Var;
-        p5Var.f29207a = true;
+        p5Var.f29208a = true;
         p5Var.setCallback(this);
         ImageView imageView2 = new ImageView(context);
         this.W = imageView2;

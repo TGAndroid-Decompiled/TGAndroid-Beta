@@ -199,7 +199,7 @@ public class c6 extends FrameLayout implements gz0, ne.d {
                             c6 c6Var = this.f21980b;
                             xp xpVar2 = c6Var.f22096r;
                             if (xpVar2.getTag() != null) {
-                                c6Var.h(c6Var, !xpVar2.f32458a.f24151q);
+                                c6Var.h(c6Var, !xpVar2.f32459a.f24151q);
                                 return;
                             }
                             return;
@@ -270,7 +270,7 @@ public class c6 extends FrameLayout implements gz0, ne.d {
                             c6 c6Var = this.f21980b;
                             xp xpVar2 = c6Var.f22096r;
                             if (xpVar2.getTag() != null) {
-                                c6Var.h(c6Var, !xpVar2.f32458a.f24151q);
+                                c6Var.h(c6Var, !xpVar2.f32459a.f24151q);
                                 return;
                             }
                             return;

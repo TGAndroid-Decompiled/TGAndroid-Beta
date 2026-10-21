@@ -83,8 +83,8 @@ public final class a implements View.OnClickListener {
                     q7 q7Var = t7Var.d;
                     int i11 = t7Var.f23202c[intValue];
                     MessageObject messageObject = t7Var.f23201b[intValue];
-                    e10 e10Var = ((c10) ((org.telegram.ui.g) q7Var).f37149b).d;
-                    SpannableStringBuilder[] spannableStringBuilderArr = e10.f36490s0;
+                    e10 e10Var = ((c10) ((org.telegram.ui.g) q7Var).f37150b).d;
+                    SpannableStringBuilder[] spannableStringBuilderArr = e10.f36491s0;
                     e10Var.f(i11, t7Var, messageObject, intValue);
                     return;
                 }

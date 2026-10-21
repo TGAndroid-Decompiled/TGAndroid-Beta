@@ -16,7 +16,7 @@ public final class qe implements Runnable {
                 if (!zm0Var.M) {
                     zm0Var.M = true;
                     zm0Var.c(new org.telegram.ui.Components.xm0(zm0Var, 0), false);
-                    zm0Var.f32974s.invalidate();
+                    zm0Var.f32975s.invalidate();
                     return;
                 }
                 return;

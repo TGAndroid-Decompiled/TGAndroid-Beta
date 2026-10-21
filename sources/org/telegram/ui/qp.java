@@ -24,11 +24,11 @@ public final class qp implements org.telegram.ui.ActionBar.a2, MessagesControlle
                 bqVar.t0(true);
                 tp tpVar = new tp(bqVar, 0);
                 if (!bqVar.K && !bqVar.L) {
-                    bqVar.getMessagesController().addUserToChat(bqVar.f35714w.f20276id, bqVar.v, 0, bqVar.Y0, bqVar, true, tpVar, new qp(bqVar, 3));
+                    bqVar.getMessagesController().addUserToChat(bqVar.f35715w.f20276id, bqVar.v, 0, bqVar.Y0, bqVar, true, tpVar, new qp(bqVar, 3));
                     return;
                 }
                 MessagesController messagesController = bqVar.getMessagesController();
-                long j10 = bqVar.f35714w.f20276id;
+                long j10 = bqVar.f35715w.f20276id;
                 TLRPC.User user = bqVar.v;
                 if (bqVar.K) {
                     o02 = bqVar.M;
@@ -52,7 +52,7 @@ public final class qp implements org.telegram.ui.ActionBar.a2, MessagesControlle
                 bq bqVar3 = this.f40948b;
                 m4.w0 w0Var = new m4.w0(23, bqVar3, twoStepVerificationActivity);
                 twoStepVerificationActivity.Z = 0;
-                twoStepVerificationActivity.f33938b0 = w0Var;
+                twoStepVerificationActivity.f33939b0 = w0Var;
                 bqVar3.presentFragment(twoStepVerificationActivity);
                 return;
         }

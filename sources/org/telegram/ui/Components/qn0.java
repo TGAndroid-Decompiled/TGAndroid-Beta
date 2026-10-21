@@ -3,11 +3,11 @@ package org.telegram.ui.Components;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.FrameLayout;
 public final class qn0 extends FrameLayout {
-    public org.telegram.ui.Cells.i7 f29681a;
+    public org.telegram.ui.Cells.i7 f29682a;
 
     @Override
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        this.f29681a.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        this.f29682a.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
     }
 }

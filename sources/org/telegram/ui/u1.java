@@ -22,7 +22,7 @@ public final class u1 extends WebView {
             if (pageblockembed.allow_scrolling) {
                 requestDisallowInterceptTouchEvent(true);
             } else {
-                v1Var.f42093x.f38764f0.requestDisallowInterceptTouchEvent(true);
+                v1Var.f42093x.f38765f0.requestDisallowInterceptTouchEvent(true);
             }
         }
         return super.onTouchEvent(motionEvent);

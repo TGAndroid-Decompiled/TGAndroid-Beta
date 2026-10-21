@@ -4,16 +4,16 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import org.telegram.messenger.AndroidUtilities;
 public final class h40 implements ViewTreeObserver.OnPreDrawListener {
-    public final q50 f37477a;
+    public final q50 f37478a;
 
     public h40(q50 q50Var) {
-        this.f37477a = q50Var;
+        this.f37478a = q50Var;
     }
 
     @Override
     public final boolean onPreDraw() {
         ViewGroup viewGroup;
-        q50 q50Var = this.f37477a;
+        q50 q50Var = this.f37478a;
         q50Var.Q.getViewTreeObserver().removeOnPreDrawListener(this);
         q50Var.a2.j(null);
         AndroidUtilities.updateVisibleRows(q50Var.f40425m2);

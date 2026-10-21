@@ -32,7 +32,7 @@ public final class os extends s4.r0 {
         bh.f fVar;
         boolean z10;
         ContactsActivity contactsActivity = this.f39971c;
-        int L0 = contactsActivity.f33091n.L0();
+        int L0 = contactsActivity.f33092n.L0();
         boolean z11 = false;
         View childAt = recyclerView.getChildAt(0);
         if (childAt != null) {
@@ -40,23 +40,23 @@ public final class os extends s4.r0 {
         } else {
             i12 = 0;
         }
-        if (contactsActivity.f33103w != null && !contactsActivity.F) {
+        if (contactsActivity.f33104w != null && !contactsActivity.F) {
             if (i11 > 0) {
                 z10 = true;
             } else {
                 z10 = false;
             }
             if (i11 != 0 && this.f39969a && (z10 || this.f39970b)) {
-                contactsActivity.f33105x = !z10;
+                contactsActivity.f33106x = !z10;
                 ContactsActivity.e0(contactsActivity);
             }
             this.f39969a = true;
         }
-        if (L0 != 0 || i12 < contactsActivity.f33083f.getPaddingTop()) {
+        if (L0 != 0 || i12 < contactsActivity.f33084f.getPaddingTop()) {
             z11 = true;
         }
         contactsActivity.Y.b(z11, true);
-        if (Build.VERSION.SDK_INT >= 31 && (fVar = contactsActivity.f33100t0) != null) {
+        if (Build.VERSION.SDK_INT >= 31 && (fVar = contactsActivity.f33101t0) != null) {
             fVar.f(i10, i11);
             contactsActivity.g0();
         }

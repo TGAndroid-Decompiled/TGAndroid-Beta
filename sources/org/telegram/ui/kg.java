@@ -9,12 +9,12 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 import org.telegram.messenger.TranslateController;
 public final class kg implements Runnable {
-    public final int f38599a;
-    public final qn f38600b;
+    public final int f38600a;
+    public final qn f38601b;
 
     public kg(qn qnVar, int i10) {
-        this.f38599a = i10;
-        this.f38600b = qnVar;
+        this.f38600a = i10;
+        this.f38601b = qnVar;
     }
 
     @Override
@@ -22,9 +22,9 @@ public final class kg implements Runnable {
         boolean z10;
         boolean z11;
         ei.x3 x3Var;
-        int i10 = this.f38599a;
+        int i10 = this.f38600a;
         boolean z12 = true;
-        qn qnVar = this.f38600b;
+        qn qnVar = this.f38601b;
         switch (i10) {
             case 0:
                 fk fkVar = qnVar.Y;

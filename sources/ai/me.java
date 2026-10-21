@@ -131,7 +131,7 @@ public final class me extends AnimatorListenerAdapter {
                 boolean[] zArr2 = (boolean[]) obj;
                 if (!zArr2[0]) {
                     zArr2[0] = true;
-                    int i12 = ProfileStoriesView.f33865s0;
+                    int i12 = ProfileStoriesView.f33866s0;
                     if (SharedConfig.getDevicePerformanceClass() > 0) {
                         AndroidUtilities.vibrateCursor(profileStoriesView);
                         AndroidUtilities.runOnUIThread(new androidx.fragment.app.d(profileStoriesView, 13), 180L);
@@ -353,16 +353,16 @@ public final class me extends AnimatorListenerAdapter {
                 return;
             case 23:
                 ti tiVar2 = (ti) obj2;
-                if (ti.V(tiVar2) != null && ti.W(tiVar2).equals(animator) && (kVar = tiVar2.f30587s2) != null && !kVar.f17552f) {
+                if (ti.V(tiVar2) != null && ti.W(tiVar2).equals(animator) && (kVar = tiVar2.f30588s2) != null && !kVar.f17552f) {
                     ((lg) obj).run();
                     return;
                 }
                 return;
             case 24:
                 yu yuVar = (yu) obj2;
-                if (yuVar.f32732a.e.getVisibility() == 0) {
-                    yuVar.f32732a.e.setAlpha(1.0f);
-                    yuVar.f32732a.e.setVisibility(4);
+                if (yuVar.f32733a.e.getVisibility() == 0) {
+                    yuVar.f32733a.e.setAlpha(1.0f);
+                    yuVar.f32733a.e.setVisibility(4);
                 }
                 ((Runnable) obj).run();
                 return;
@@ -372,11 +372,11 @@ public final class me extends AnimatorListenerAdapter {
                 if (animator.equals(tzVar.M0)) {
                     jm0Var.setTranslationY(0.0f);
                     if (jm0Var == tzVar.D0) {
-                        jm0Var.setPadding(0, 0, 0, tzVar.f30762p2);
+                        jm0Var.setPadding(0, 0, 0, tzVar.f30763p2);
                     } else if (jm0Var == tzVar.P) {
-                        jm0Var.setPadding(AndroidUtilities.dp(5.0f), 0, AndroidUtilities.dp(5.0f), tzVar.f30762p2);
-                    } else if (jm0Var == tzVar.f30737h0) {
-                        jm0Var.setPadding(0, tzVar.f30718b1, 0, tzVar.f30762p2);
+                        jm0Var.setPadding(AndroidUtilities.dp(5.0f), 0, AndroidUtilities.dp(5.0f), tzVar.f30763p2);
+                    } else if (jm0Var == tzVar.f30738h0) {
+                        jm0Var.setPadding(0, tzVar.f30719b1, 0, tzVar.f30763p2);
                     }
                     tzVar.M0 = null;
                     return;
@@ -386,8 +386,8 @@ public final class me extends AnimatorListenerAdapter {
                 n20 n20Var = (n20) obj2;
                 n20Var.removeView((v30) obj);
                 n20Var.e.clear();
-                n20Var.f28659a = null;
-                n20Var.f28660b = false;
+                n20Var.f28660a = null;
+                n20Var.f28661b = false;
                 return;
             case 27:
                 ArrayList arrayList = (ArrayList) obj;
@@ -396,20 +396,20 @@ public final class me extends AnimatorListenerAdapter {
                     n20Var2.removeView((View) arrayList.get(i13));
                 }
                 n20Var2.e.clear();
-                n20Var2.f28659a = null;
-                n20Var2.f28660b = false;
+                n20Var2.f28660a = null;
+                n20Var2.f28661b = false;
                 return;
             case 28:
                 u70 u70Var = (u70) obj2;
                 u70Var.removeView((v30) obj);
-                u70Var.f30869c = null;
-                u70Var.e.f31170d0 = null;
-                u70Var.f30867a = false;
+                u70Var.f30870c = null;
+                u70Var.e.f31171d0 = null;
+                u70Var.f30868a = false;
                 return;
             default:
                 jl0 jl0Var = (jl0) obj2;
                 ml0 ml0Var = jl0Var.e;
-                if (((ValueAnimator) ml0Var.f28546g) != null) {
+                if (((ValueAnimator) ml0Var.f28547g) != null) {
                     ((jm0) ml0Var.e).V1 = false;
                     ArrayList arrayList2 = jl0Var.f27550b;
                     int size = arrayList2.size();
@@ -422,10 +422,10 @@ public final class me extends AnimatorListenerAdapter {
                             ((org.telegram.ui.Cells.n4) view4).e(false, true);
                         }
                         view4.setTranslationY(0.0f);
-                        ((s4.b0) ml0Var.f28545f).getClass();
+                        ((s4.b0) ml0Var.f28546f).getClass();
                         s4.n0.x0(view4);
                         ((jm0) ml0Var.e).removeView(view4);
-                        w7.a6 a6Var = (w7.a6) ml0Var.f28547i;
+                        w7.a6 a6Var = (w7.a6) ml0Var.f28548i;
                         if (a6Var != null) {
                             a6Var.d(view4);
                         }
@@ -465,12 +465,12 @@ public final class me extends AnimatorListenerAdapter {
                     if (kl0Var != null) {
                         kl0Var.E();
                     }
-                    w7.a6 a6Var2 = (w7.a6) ml0Var.f28547i;
+                    w7.a6 a6Var2 = (w7.a6) ml0Var.f28548i;
                     if (a6Var2 != null) {
                         a6Var2.a();
                     }
-                    ((SparseArray) ml0Var.f28548j).clear();
-                    ml0Var.f28546g = null;
+                    ((SparseArray) ml0Var.f28549j).clear();
+                    ml0Var.f28547g = null;
                     return;
                 }
                 return;

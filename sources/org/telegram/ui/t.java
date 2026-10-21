@@ -14,8 +14,8 @@ public final class t implements su0, org.telegram.ui.Components.zl0, org.telegra
         l4 l4Var = this.f41563a;
         l4Var.getClass();
         if (view instanceof k2) {
-            e4 e4Var = ((k2) view).f38398n;
-            l4Var.Z(e4Var.f36539a.articles.get(e4Var.f36540b).url);
+            e4 e4Var = ((k2) view).f38399n;
+            l4Var.Z(e4Var.f36540a.articles.get(e4Var.f36541b).url);
             return true;
         }
         return false;
@@ -25,7 +25,7 @@ public final class t implements su0, org.telegram.ui.Components.zl0, org.telegra
     public void b(float[] fArr) {
         l4 l4Var = this.f41563a;
         fArr[0] = l4Var.I0;
-        fArr[1] = l4Var.f38778u0[0].f39753b.getMeasuredHeight();
+        fArr[1] = l4Var.f38779u0[0].f39753b.getMeasuredHeight();
     }
 
     @Override

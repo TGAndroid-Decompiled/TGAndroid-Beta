@@ -20,27 +20,27 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class v00 extends org.telegram.ui.ActionBar.f3 implements NotificationCenter.NotificationCenterDelegate {
-    public static final int f31098w = 0;
-    public final ai.u1 f31099b;
-    public final u00 f31100c;
+    public static final int f31099w = 0;
+    public final ai.u1 f31100b;
+    public final u00 f31101c;
     public final TextView d;
     public AnimatorSet e;
-    public final View f31101f;
+    public final View f31102f;
     public int h;
-    public boolean f31102n;
-    public org.telegram.ui.ut f31103r;
-    public final ArrayList f31104s;
+    public boolean f31103n;
+    public org.telegram.ui.ut f31104r;
+    public final ArrayList f31105s;
     public final ArrayList v;
 
     public v00(org.telegram.ui.cy cyVar, ArrayList arrayList) {
         super(cyVar.getParentActivity(), false);
         fixNavigationBar();
         this.v = arrayList;
-        this.f31104s = new ArrayList(cyVar.getMessagesController().dialogFilters);
+        this.f31105s = new ArrayList(cyVar.getMessagesController().dialogFilters);
         int i10 = 0;
-        while (i10 < this.f31104s.size()) {
-            if (((MessagesController.DialogFilter) this.f31104s.get(i10)).isDefault()) {
-                this.f31104s.remove(i10);
+        while (i10 < this.f31105s.size()) {
+            if (((MessagesController.DialogFilter) this.f31105s.get(i10)).isDefault()) {
+                this.f31105s.remove(i10);
                 i10--;
             }
             i10++;
@@ -55,19 +55,19 @@ public final class v00 extends org.telegram.ui.ActionBar.f3 implements Notificat
         FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(-1, AndroidUtilities.getShadowHeight(), 51);
         layoutParams.topMargin = AndroidUtilities.dp(48.0f);
         View view = new View(parentActivity);
-        this.f31101f = view;
+        this.f31102f = view;
         view.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.V5, false));
         view.setAlpha(0.0f);
         view.setVisibility(4);
         view.setTag(1);
         this.containerView.addView(view, layoutParams);
         ai.u1 u1Var = new ai.u1(this, parentActivity, 18);
-        this.f31099b = u1Var;
+        this.f31100b = u1Var;
         u1Var.setTag(14);
         getContext();
         u1Var.setLayoutManager(new s4.b0(1, false));
         u00 u00Var = new u00(this, parentActivity);
-        this.f31100c = u00Var;
+        this.f31101c = u00Var;
         u1Var.setAdapter(u00Var);
         u1Var.setVerticalScrollBarEnabled(false);
         u1Var.setPadding(AndroidUtilities.dp(10.0f), 0, AndroidUtilities.dp(10.0f), 0);
@@ -102,9 +102,9 @@ public final class v00 extends org.telegram.ui.ActionBar.f3 implements Notificat
     }
 
     public static void G(v00 v00Var) {
-        View view = v00Var.f31101f;
+        View view = v00Var.f31102f;
         TextView textView = v00Var.d;
-        ai.u1 u1Var = v00Var.f31099b;
+        ai.u1 u1Var = v00Var.f31100b;
         if (u1Var.getChildCount() <= 0) {
             int paddingTop = u1Var.getPaddingTop();
             v00Var.h = paddingTop;
@@ -162,7 +162,7 @@ public final class v00 extends org.telegram.ui.ActionBar.f3 implements Notificat
     public final void K(boolean z10) {
         Integer num;
         float f7;
-        View view = this.f31101f;
+        View view = this.f31102f;
         if ((z10 && view.getTag() != null) || (!z10 && view.getTag() == null)) {
             if (z10) {
                 num = null;
@@ -200,7 +200,7 @@ public final class v00 extends org.telegram.ui.ActionBar.f3 implements Notificat
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         if (i10 == NotificationCenter.emojiLoaded) {
-            AndroidUtilities.forEachViews((RecyclerView) this.f31099b, (Utilities.Callback<View>) new ci.e(12));
+            AndroidUtilities.forEachViews((RecyclerView) this.f31100b, (Utilities.Callback<View>) new ci.e(12));
         }
     }
 

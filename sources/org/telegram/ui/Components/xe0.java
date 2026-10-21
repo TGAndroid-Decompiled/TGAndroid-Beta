@@ -14,7 +14,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.LaunchActivity;
 public abstract class xe0 {
-    public static int f32404a = 1500;
+    public static int f32405a = 1500;
 
     public static boolean a() {
         Activity activity = LaunchActivity.H1;
@@ -104,8 +104,8 @@ public abstract class xe0 {
         if (activity == null) {
             return;
         }
-        int i10 = f32404a;
-        f32404a = i10 + 1;
+        int i10 = f32405a;
+        f32405a = i10 + 1;
         NotificationCenter.NotificationCenterDelegate[] notificationCenterDelegateArr = {new we0(i10, callback, notificationCenterDelegateArr)};
         NotificationCenter.getGlobalInstance().addObserver(notificationCenterDelegateArr[0], NotificationCenter.activityPermissionsGranted);
         activity.requestPermissions(strArr, i10);

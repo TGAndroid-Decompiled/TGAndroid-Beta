@@ -223,26 +223,26 @@ public final class x extends org.telegram.ui.ActionBar.n2 implements Notificatio
             arrayList.add(h61.b(LocaleController.getString(R.string.BotStarsOverview)));
             TLRPC.TL_payments_starsRevenueStats h = g10.h(j11, false);
             if (h != null && (tL_starsRevenueStatus2 = h.status) != null) {
-                feVar5.f36976a = false;
-                feVar5.f36980g = true;
+                feVar5.f36977a = false;
+                feVar5.f36981g = true;
                 TL_stars.StarsAmount starsAmount3 = tL_starsRevenueStatus2.available_balance;
-                feVar5.f36981i = starsAmount3;
+                feVar5.f36982i = starsAmount3;
                 feVar5.h = "XTR";
-                feVar5.f36979f = "USD";
+                feVar5.f36980f = "USD";
                 double d10 = xVar.Z;
-                feVar5.f36982j = (long) (starsAmount3.amount * d10 * 100.0d);
-                feVar4.f36976a = false;
-                feVar4.f36980g = true;
-                feVar4.f36981i = tL_starsRevenueStatus2.current_balance;
+                feVar5.f36983j = (long) (starsAmount3.amount * d10 * 100.0d);
+                feVar4.f36977a = false;
+                feVar4.f36981g = true;
+                feVar4.f36982i = tL_starsRevenueStatus2.current_balance;
                 feVar4.h = "XTR";
-                feVar4.f36982j = (long) (starsAmount.amount * d10 * 100.0d);
-                feVar4.f36979f = "USD";
-                feVar3.f36976a = false;
-                feVar3.f36980g = true;
-                feVar3.f36981i = tL_starsRevenueStatus2.overall_revenue;
+                feVar4.f36983j = (long) (starsAmount.amount * d10 * 100.0d);
+                feVar4.f36980f = "USD";
+                feVar3.f36977a = false;
+                feVar3.f36981g = true;
+                feVar3.f36982i = tL_starsRevenueStatus2.overall_revenue;
                 feVar3.h = "XTR";
-                feVar3.f36982j = (long) (starsAmount2.amount * d10 * 100.0d);
-                feVar3.f36979f = "USD";
+                feVar3.f36983j = (long) (starsAmount2.amount * d10 * 100.0d);
+                feVar3.f36980f = "USD";
                 xVar.i0(starsAmount3, tL_starsRevenueStatus2.next_withdrawal_at);
                 LinearLayout linearLayout = xVar.I;
                 if (h.status.withdrawal_enabled) {
@@ -283,11 +283,11 @@ public final class x extends org.telegram.ui.ActionBar.n2 implements Notificatio
                 b91 f02 = p91.f0(j12.top_hours_graph, LocaleController.getString(R.string.BotMonetizationGraphImpressions), 0, false);
                 xVar.f2406f0 = f02;
                 if (f02 != null) {
-                    f02.f35551n = true;
+                    f02.f35552n = true;
                 }
             }
             b91 b91Var = xVar.f2406f0;
-            if (b91Var != null && !b91Var.f35549l) {
+            if (b91Var != null && !b91Var.f35550l) {
                 arrayList.add(h61.h(5, i16, b91Var));
                 arrayList.add(h61.A(-1, null));
             }
@@ -302,7 +302,7 @@ public final class x extends org.telegram.ui.ActionBar.n2 implements Notificatio
                 i10 = 2;
             }
             b91 b91Var2 = xVar.f2407g0;
-            if (b91Var2 != null && !b91Var2.f35549l) {
+            if (b91Var2 != null && !b91Var2.f35550l) {
                 arrayList.add(h61.h(i10, i16, b91Var2));
                 arrayList.add(h61.A(-2, null));
             }
@@ -338,17 +338,17 @@ public final class x extends org.telegram.ui.ActionBar.n2 implements Notificatio
                 }
                 xVar.W.setText(spannableStringBuilder);
                 xVar.X.setText("≈" + BillingController.getInstance().formatCurrency(j10, "USD"));
-                feVar6.f36979f = "USD";
+                feVar6.f36980f = "USD";
                 TLRPC.TL_starsRevenueStatus tL_starsRevenueStatus3 = j12.status;
                 long j14 = tL_starsRevenueStatus3.current_balance.amount;
                 feVar.d = j14;
                 feVar.e = (long) ((j14 / 1.0E9d) * d * 100.0d);
-                feVar.f36979f = "USD";
-                feVar2.f36976a = true;
+                feVar.f36980f = "USD";
+                feVar2.f36977a = true;
                 long j15 = tL_starsRevenueStatus3.overall_revenue.amount;
                 feVar2.d = j15;
                 feVar2.e = (long) ((j15 / 1.0E9d) * d * 100.0d);
-                feVar2.f36979f = "USD";
+                feVar2.f36980f = "USD";
                 xVar.f2404e0 = true;
                 ei.d dVar = xVar.Y;
                 if (tL_starsRevenueStatus3.available_balance.amount > 0 && tL_starsRevenueStatus3.withdrawal_enabled) {
@@ -734,7 +734,7 @@ public final class x extends org.telegram.ui.ActionBar.n2 implements Notificatio
                                 TwoStepVerificationActivity twoStepVerificationActivity = new TwoStepVerificationActivity();
                                 ah.h0 h0Var = new ah.h0(1, xVar, twoStepVerificationActivity);
                                 twoStepVerificationActivity.Z = 1;
-                                twoStepVerificationActivity.f33938b0 = h0Var;
+                                twoStepVerificationActivity.f33939b0 = h0Var;
                                 xVar.Y.setLoading(true);
                                 twoStepVerificationActivity.s0(new e(xVar, twoStepVerificationActivity, 0));
                                 return;
@@ -809,7 +809,7 @@ public final class x extends org.telegram.ui.ActionBar.n2 implements Notificatio
                                 TwoStepVerificationActivity twoStepVerificationActivity = new TwoStepVerificationActivity();
                                 ah.h0 h0Var = new ah.h0(1, xVar, twoStepVerificationActivity);
                                 twoStepVerificationActivity.Z = 1;
-                                twoStepVerificationActivity.f33938b0 = h0Var;
+                                twoStepVerificationActivity.f33939b0 = h0Var;
                                 xVar.Y.setLoading(true);
                                 twoStepVerificationActivity.s0(new e(xVar, twoStepVerificationActivity, 0));
                                 return;
@@ -970,7 +970,7 @@ public final class x extends org.telegram.ui.ActionBar.n2 implements Notificatio
                 TwoStepVerificationActivity twoStepVerificationActivity = new TwoStepVerificationActivity();
                 f fVar = new f(this, j10, twoStepVerificationActivity, 0);
                 twoStepVerificationActivity.Z = 1;
-                twoStepVerificationActivity.f33938b0 = fVar;
+                twoStepVerificationActivity.f33939b0 = fVar;
                 this.R.setLoading(true);
                 twoStepVerificationActivity.s0(new e(this, twoStepVerificationActivity, 1));
             }

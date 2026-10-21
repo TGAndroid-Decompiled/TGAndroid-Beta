@@ -36,6 +36,6 @@ public final class nx0 implements MessagesStorage.BooleanCallback, es {
         }
         profileActivity.O1 = true;
         profileActivity.finishFragment();
-        profileActivity.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needDeleteDialog, Long.valueOf(profileActivity.f33647j1), this.f39703b, profileActivity.F2, Boolean.valueOf(z10));
+        profileActivity.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needDeleteDialog, Long.valueOf(profileActivity.f33648j1), this.f39703b, profileActivity.F2, Boolean.valueOf(z10));
     }
 }

@@ -4,23 +4,23 @@ import android.view.View;
 import java.util.ArrayList;
 import org.telegram.messenger.MediaController;
 public final class xl implements q0.a {
-    public final int f32445a;
-    public final Object f32446b;
-    public final boolean f32447c;
+    public final int f32446a;
+    public final Object f32447b;
+    public final boolean f32448c;
 
     public xl(int i10, Object obj, boolean z10) {
-        this.f32445a = i10;
-        this.f32446b = obj;
-        this.f32447c = z10;
+        this.f32446a = i10;
+        this.f32447b = obj;
+        this.f32448c = z10;
     }
 
     @Override
     public final void accept(Object obj) {
         qc qcVar;
-        int i10 = this.f32445a;
+        int i10 = this.f32446a;
         boolean z10 = false;
-        boolean z11 = this.f32447c;
-        Object obj2 = this.f32446b;
+        boolean z11 = this.f32448c;
+        Object obj2 = this.f32447b;
         switch (i10) {
             case 0:
                 ArrayList arrayList = (ArrayList) obj2;
@@ -52,7 +52,7 @@ public final class xl implements q0.a {
                 return;
             default:
                 Float f7 = (Float) obj;
-                ob obVar = ((jb) obj2).f27487b.f29536p;
+                ob obVar = ((jb) obj2).f27487b.f29537p;
                 if (obVar != null && !z11) {
                     obVar.c(qcVar.e.getHeight() - f7.floatValue());
                     return;

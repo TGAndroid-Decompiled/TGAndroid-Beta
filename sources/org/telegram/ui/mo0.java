@@ -33,11 +33,11 @@ public final class mo0 extends org.telegram.ui.Components.w81 {
                     return ip0Var.h;
                 }
                 if (i10 == 0) {
-                    return ip0Var.f38094n;
+                    return ip0Var.f38095n;
                 }
                 return null;
             default:
-                return (View) ((org.telegram.ui.Wallet.j2) this.f39323b).f34377c.get(i10);
+                return (View) ((org.telegram.ui.Wallet.j2) this.f39323b).f34378c.get(i10);
         }
     }
 
@@ -47,7 +47,7 @@ public final class mo0 extends org.telegram.ui.Components.w81 {
             case 0:
                 return 2;
             default:
-                return ((org.telegram.ui.Wallet.j2) this.f39323b).f34377c.size();
+                return ((org.telegram.ui.Wallet.j2) this.f39323b).f34378c.size();
         }
     }
 

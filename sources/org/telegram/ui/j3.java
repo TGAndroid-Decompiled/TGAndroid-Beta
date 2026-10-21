@@ -10,12 +10,12 @@ import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.tgnet.TLRPC;
 public final class j3 implements q0.a {
-    public final int f38155a;
-    public final Object f38156b;
+    public final int f38156a;
+    public final Object f38157b;
 
     public j3(Object obj, int i10) {
-        this.f38155a = i10;
-        this.f38156b = obj;
+        this.f38156a = i10;
+        this.f38157b = obj;
     }
 
     @Override
@@ -23,25 +23,25 @@ public final class j3 implements q0.a {
         ArrayList arrayList;
         String responseCodeString;
         boolean z10;
-        switch (this.f38155a) {
+        switch (this.f38156a) {
             case 0:
-                o3 o3Var = (o3) this.f38156b;
+                o3 o3Var = (o3) this.f38157b;
                 Float f7 = (Float) obj;
                 l4 l4Var = o3Var.K;
-                if (o3Var == l4Var.f38778u0[0]) {
-                    if (l4Var.f38766h0.f42791d0.getCurrentProgress() > f7.floatValue()) {
-                        l4Var.f38766h0.f42791d0.a(0.0f, false);
+                if (o3Var == l4Var.f38779u0[0]) {
+                    if (l4Var.f38767h0.f42791d0.getCurrentProgress() > f7.floatValue()) {
+                        l4Var.f38767h0.f42791d0.a(0.0f, false);
                     }
-                    l4Var.f38766h0.f42791d0.a(f7.floatValue(), true);
+                    l4Var.f38767h0.f42791d0.a(f7.floatValue(), true);
                     return;
                 }
                 return;
             case 1:
-                ((org.telegram.ui.Components.nk0) this.f38156b).h((List) obj);
+                ((org.telegram.ui.Components.nk0) this.f38157b).h((List) obj);
                 return;
             case 2:
                 TLRPC.User user = (TLRPC.User) obj;
-                hr hrVar = ((yq) this.f38156b).f43538b;
+                hr hrVar = ((yq) this.f38157b).f43538b;
                 br w02 = hrVar.w0();
                 ArrayList arrayList2 = hrVar.F;
                 a0.h hVar = hrVar.M;
@@ -54,7 +54,7 @@ public final class j3 implements q0.a {
                     hVar = hrVar.K;
                 }
                 if (hVar.f(user.f20423id) == null) {
-                    if (ChatObject.isChannel(hrVar.f37752r)) {
+                    if (ChatObject.isChannel(hrVar.f37753r)) {
                         TLRPC.TL_channelParticipant tL_channelParticipant = new TLRPC.TL_channelParticipant();
                         tL_channelParticipant.inviter_id = hrVar.getUserConfig().getClientUserId();
                         TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
@@ -77,7 +77,7 @@ public final class j3 implements q0.a {
                 hrVar.A0(w02);
                 return;
             case 3:
-                v3 v3Var = (v3) this.f38156b;
+                v3 v3Var = (v3) this.f38157b;
                 int i10 = ((c5.i) obj).f4752a;
                 if (i10 == 0) {
                     responseCodeString = null;
@@ -87,28 +87,28 @@ public final class j3 implements q0.a {
                 AndroidUtilities.runOnUIThread(new z70(26, v3Var, responseCodeString));
                 return;
             case 4:
-                bi0 bi0Var = (bi0) this.f38156b;
+                bi0 bi0Var = (bi0) this.f38157b;
                 if (((c5.i) obj).f4752a == 0) {
                     AndroidUtilities.runOnUIThread(bi0Var);
                     return;
                 }
                 return;
             case 5:
-                ((ArrayList) this.f38156b).add((TLRPC.User) obj);
+                ((ArrayList) this.f38157b).add((TLRPC.User) obj);
                 return;
             case 6:
-                ProfileActivity profileActivity = (ProfileActivity) this.f38156b;
+                ProfileActivity profileActivity = (ProfileActivity) this.f38157b;
                 TLRPC.User user2 = (TLRPC.User) obj;
-                for (int i11 = 0; i11 < profileActivity.f33730v2.participants.participants.size(); i11++) {
-                    if (profileActivity.f33730v2.participants.participants.get(i11).user_id == user2.f20423id) {
-                        profileActivity.f33730v2.participants.participants.remove(i11);
+                for (int i11 = 0; i11 < profileActivity.f33731v2.participants.participants.size(); i11++) {
+                    if (profileActivity.f33731v2.participants.participants.get(i11).user_id == user2.f20423id) {
+                        profileActivity.f33731v2.participants.participants.remove(i11);
                         profileActivity.e5(true, false);
                         return;
                     }
                 }
                 return;
             default:
-                View view = ((ProxyListActivity) this.f38156b).f33766b.T((View) obj).f45917a;
+                View view = ((ProxyListActivity) this.f38157b).f33767b.T((View) obj).f45917a;
                 if (view instanceof k11) {
                     k11 k11Var = (k11) view;
                     if (k11Var.d == SharedConfig.currentProxy) {

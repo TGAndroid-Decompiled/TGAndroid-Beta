@@ -4,15 +4,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 public final class w51 extends s4.r0 {
-    public final d61 f31973a;
+    public final d61 f31974a;
 
     public w51(d61 d61Var) {
-        this.f31973a = d61Var;
+        this.f31974a = d61Var;
     }
 
     @Override
     public final void a(RecyclerView recyclerView, int i10) {
-        s4.r0 r0Var = this.f31973a.f25356y;
+        s4.r0 r0Var = this.f31974a.f25356y;
         if (r0Var != null) {
             r0Var.a(recyclerView, i10);
         }
@@ -20,7 +20,7 @@ public final class w51 extends s4.r0 {
 
     @Override
     public final void b(RecyclerView recyclerView, int i10, int i11) {
-        d61 d61Var = this.f31973a;
+        d61 d61Var = this.f31974a;
         c61 c61Var = d61Var.f25353s;
         t51 t51Var = d61Var.f25351n;
         s4.r0 r0Var = d61Var.f25356y;

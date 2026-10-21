@@ -6,26 +6,26 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AnimationNotificationsLocker;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 public final class la0 implements OnBackAnimationCallback {
-    public boolean f38874b;
+    public boolean f38875b;
     public boolean e;
-    public final LaunchActivity f38876f;
-    public final AnimationNotificationsLocker f38873a = new AnimationNotificationsLocker();
-    public boolean f38875c = false;
+    public final LaunchActivity f38877f;
+    public final AnimationNotificationsLocker f38874a = new AnimationNotificationsLocker();
+    public boolean f38876c = false;
     public boolean d = false;
 
     public la0(LaunchActivity launchActivity) {
-        this.f38876f = launchActivity;
+        this.f38877f = launchActivity;
     }
 
     public final void onBackCancelled() {
         ActionBarLayout actionBarLayout;
-        this.f38875c = false;
+        this.f38876c = false;
         this.d = false;
-        if (this.f38874b) {
-            this.f38873a.unlock();
-            this.f38874b = false;
+        if (this.f38875b) {
+            this.f38874a.unlock();
+            this.f38875b = false;
         }
-        if (!AndroidUtilities.isTablet() && (actionBarLayout = this.f38876f.f33185q0) != null && actionBarLayout.f20554c1) {
+        if (!AndroidUtilities.isTablet() && (actionBarLayout = this.f38877f.f33186q0) != null && actionBarLayout.f20554c1) {
             actionBarLayout.f20554c1 = false;
             actionBarLayout.e(true);
         }
@@ -33,16 +33,16 @@ public final class la0 implements OnBackAnimationCallback {
 
     public final void onBackInvoked() {
         this.d = true;
-        if (this.f38874b) {
-            this.f38873a.unlock();
-            this.f38874b = false;
+        if (this.f38875b) {
+            this.f38874a.unlock();
+            this.f38875b = false;
         }
         if (AndroidUtilities.isTablet()) {
-            this.f38876f.onBackPressed();
-        } else if (!this.f38876f.d0(true)) {
+            this.f38877f.onBackPressed();
+        } else if (!this.f38877f.d0(true)) {
         } else {
-            LaunchActivity launchActivity = this.f38876f;
-            ActionBarLayout actionBarLayout = launchActivity.f33185q0;
+            LaunchActivity launchActivity = this.f38877f;
+            ActionBarLayout actionBarLayout = launchActivity.f33186q0;
             if (actionBarLayout != null) {
                 if (!actionBarLayout.f20554c1) {
                     actionBarLayout.G();
@@ -61,7 +61,7 @@ public final class la0 implements OnBackAnimationCallback {
     }
 
     public final void onBackStarted(BackEvent backEvent) {
-        this.f38875c = true;
+        this.f38876c = true;
         this.d = false;
         this.e = false;
     }

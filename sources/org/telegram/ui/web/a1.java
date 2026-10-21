@@ -192,7 +192,7 @@ public abstract class a1 extends FrameLayout implements NotificationCenter.Notif
         if (context instanceof Activity) {
             this.W = (Activity) context;
         }
-        hVar.f31431k = false;
+        hVar.f31432k = false;
         hVar.b(i10, 153);
         k4 k4Var = new k4(this, context);
         this.f42584s = k4Var;
@@ -1315,7 +1315,7 @@ public abstract class a1 extends FrameLayout implements NotificationCenter.Notif
             i11 = View.MeasureSpec.makeMeasureSpec(i12, 1073741824);
         }
         super.onMeasure(i10, i11);
-        this.f42577n.f31427f = getMeasuredWidth();
+        this.f42577n.f31428f = getMeasuredWidth();
     }
 
     @Override

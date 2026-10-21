@@ -29,8 +29,8 @@ public final class du0 extends im0 {
 
     public final void E(boolean z10) {
         uv0 uv0Var = this.f25631f;
-        long j10 = uv0Var.f31045j1;
-        org.telegram.ui.ActionBar.n2 n2Var = uv0Var.f31070v1;
+        long j10 = uv0Var.f31046j1;
+        org.telegram.ui.ActionBar.n2 n2Var = uv0Var.f31071v1;
         if (n2Var != null) {
             if (DialogObject.isChatDialog(j10)) {
                 TLRPC.Chat chat = MessagesController.getInstance(n2Var.getCurrentAccount()).getChat(Long.valueOf(-j10));
@@ -90,7 +90,7 @@ public final class du0 extends im0 {
             }
         } else if (i11 == 18) {
             if (view instanceof ru0) {
-                h6Var = ((ru0) view).f30018a;
+                h6Var = ((ru0) view).f30019a;
             } else {
                 return;
             }
@@ -116,14 +116,14 @@ public final class du0 extends im0 {
         boolean z10;
         uv0 uv0Var = this.f25631f;
         if (i10 == 18) {
-            org.telegram.ui.ActionBar.n2 n2Var = uv0Var.f31070v1;
+            org.telegram.ui.ActionBar.n2 n2Var = uv0Var.f31071v1;
             if (n2Var == null) {
                 currentAccount = UserConfig.selectedAccount;
             } else {
                 currentAccount = n2Var.getCurrentAccount();
             }
             int i11 = currentAccount;
-            if (uv0Var.f31045j1 > 0) {
+            if (uv0Var.f31046j1 > 0) {
                 z10 = true;
             } else {
                 z10 = false;

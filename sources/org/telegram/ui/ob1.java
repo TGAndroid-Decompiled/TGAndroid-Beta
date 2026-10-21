@@ -18,9 +18,9 @@ public final class ob1 extends AnimatorListenerAdapter {
             case 0:
                 super.onAnimationEnd(animator);
                 kc1 kc1Var = this.f39828b;
-                kc1Var.f38578x0.invalidate();
-                kc1Var.f38575w0[1].setVisibility(8);
-                kc1Var.f38526c2 = null;
+                kc1Var.f38579x0.invalidate();
+                kc1Var.f38576w0[1].setVisibility(8);
+                kc1Var.f38527c2 = null;
                 return;
             case 1:
                 this.f39828b.B0 = null;
@@ -41,19 +41,19 @@ public final class ob1 extends AnimatorListenerAdapter {
                 return;
             case 4:
                 kc1 kc1Var4 = this.f39828b;
-                lc lcVar = kc1Var4.f38542h2;
+                lc lcVar = kc1Var4.f38543h2;
                 if (lcVar != null) {
                     if (lcVar.getParent() != null) {
-                        ((ViewGroup) kc1Var4.f38542h2.getParent()).removeView(kc1Var4.f38542h2);
+                        ((ViewGroup) kc1Var4.f38543h2.getParent()).removeView(kc1Var4.f38543h2);
                     }
-                    kc1Var4.f38542h2 = null;
+                    kc1Var4.f38543h2 = null;
                 }
-                kc1Var4.f38548j2 = null;
+                kc1Var4.f38549j2 = null;
                 super.onAnimationEnd(animator);
                 return;
             default:
                 kc1 kc1Var5 = this.f39828b;
-                if (!kc1Var5.f38559p1.a()) {
+                if (!kc1Var5.f38560p1.a()) {
                     kc1Var5.R1.setVisibility(8);
                     return;
                 }

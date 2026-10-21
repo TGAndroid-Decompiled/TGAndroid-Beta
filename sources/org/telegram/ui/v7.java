@@ -76,20 +76,20 @@ public abstract class v7 extends FrameLayout implements org.telegram.ui.Componen
                 linearLayout.addView(imageView, new LinearLayout.LayoutParams(AndroidUtilities.dp(54.0f), -1));
                 this.f42123a.add(imageView);
                 imageView.setOnClickListener(new View.OnClickListener(this) {
-                    public final v7 f36278b;
+                    public final v7 f36279b;
 
                     {
-                        this.f36278b = this;
+                        this.f36279b = this;
                     }
 
                     @Override
                     public final void onClick(View view2) {
                         switch (r2) {
                             case 0:
-                                this.f36278b.v.W0();
+                                this.f36279b.v.W0();
                                 return;
                             default:
-                                this.f36278b.v.clear();
+                                this.f36279b.v.clear();
                                 return;
                         }
                     }
@@ -107,20 +107,20 @@ public abstract class v7 extends FrameLayout implements org.telegram.ui.Componen
                 linearLayout.addView(u0Var, new LinearLayout.LayoutParams(AndroidUtilities.dp(54.0f), -1));
                 this.f42123a.add(u0Var);
                 u0Var.setOnClickListener(new View.OnClickListener(this) {
-                    public final v7 f36278b;
+                    public final v7 f36279b;
 
                     {
-                        this.f36278b = this;
+                        this.f36279b = this;
                     }
 
                     @Override
                     public final void onClick(View view2) {
                         switch (r2) {
                             case 0:
-                                this.f36278b.v.W0();
+                                this.f36279b.v.W0();
                                 return;
                             default:
-                                this.f36278b.v.clear();
+                                this.f36279b.v.clear();
                                 return;
                         }
                     }
@@ -136,7 +136,7 @@ public abstract class v7 extends FrameLayout implements org.telegram.ui.Componen
         if (v7Var.f42128r == null) {
             v7Var.f42128r = new k7(v7Var);
         }
-        v7Var.f42128r.f38432a = jm0Var;
+        v7Var.f42128r.f38433a = jm0Var;
         if (arrayList.indexOf(p7Var) >= 0) {
             PhotoViewer.u1().i2(r7Var.f41072r, arrayList.indexOf(p7Var), -1, false, v7Var.f42128r, null);
         }
@@ -152,7 +152,7 @@ public abstract class v7 extends FrameLayout implements org.telegram.ui.Componen
                 if (v7Var.f42128r == null) {
                     v7Var.f42128r = new k7(v7Var);
                 }
-                v7Var.f42128r.f38432a = jm0Var;
+                v7Var.f42128r.f38433a = jm0Var;
                 File file = bVar.f4424a;
                 String lowerCase = file.getName().toLowerCase();
                 if (!file.getName().endsWith("mp4") && !file.getName().endsWith(".jpg") && !lowerCase.endsWith(".jpeg") && !lowerCase.endsWith(".png") && !lowerCase.endsWith(".gif")) {

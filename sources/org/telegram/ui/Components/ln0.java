@@ -79,7 +79,7 @@ public abstract class ln0 extends HorizontalScrollView {
                 } else {
                     z11 = false;
                 }
-                if (!gwVar.f26682y && z10 && (vj0Var = gwVar.e) != null && !vj0Var.f31277k0 && !z11) {
+                if (!gwVar.f26682y && z10 && (vj0Var = gwVar.e) != null && !vj0Var.f31278k0 && !z11) {
                     gwVar.e.T(0.0f, true);
                     gwVar.e.start();
                 }
@@ -92,7 +92,7 @@ public abstract class ln0 extends HorizontalScrollView {
                             c1Var.invalidate();
                         }
                         sg.c1 c1Var2 = gwVar.f26676f;
-                        if (c1Var2 != null && (r5Var = gwVar.f26680w) != null && (g3Var = r5Var.f29837k) != null) {
+                        if (c1Var2 != null && (r5Var = gwVar.f26680w) != null && (g3Var = r5Var.f29838k) != null) {
                             c1Var2.setImageReceiver(g3Var);
                         }
                         w9 w9Var = gwVar.d;

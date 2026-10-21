@@ -67,7 +67,7 @@ public final class mw extends ChatActivityEnterView {
     @Override
     public final void y0(float f7) {
         cy cyVar = this.f39359o5;
-        cyVar.f36195y1.setInputBubbleHeight(f7);
+        cyVar.f36196y1.setInputBubbleHeight(f7);
         cyVar.q3();
         cyVar.j3();
         cyVar.r3();

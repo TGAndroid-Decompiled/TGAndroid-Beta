@@ -651,7 +651,7 @@ public class n0 extends n2 {
         g0();
         org.telegram.ui.g gVar = this.f52041c;
         if (gVar != null) {
-            vk0 vk0Var = (vk0) gVar.f37149b;
+            vk0 vk0Var = (vk0) gVar.f37150b;
             if (vk0Var.f42277b.remove(gVar)) {
                 vk0Var.a();
             }

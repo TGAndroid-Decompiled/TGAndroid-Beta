@@ -112,7 +112,7 @@ public final class v31 extends org.telegram.ui.Cells.u1 {
         if (this.Pe == null) {
             org.telegram.ui.Components.u21 u21Var = new org.telegram.ui.Components.u21(120);
             this.Pe = u21Var;
-            u21Var.f30823b = true;
+            u21Var.f30824b = true;
         }
         paint3.setStrokeWidth(AndroidUtilities.dp(2.8f));
         this.Pe.a((1.0f - x31Var.f43021a0) * (-360.0f), 1.0f, canvas, paint3, rectF2);

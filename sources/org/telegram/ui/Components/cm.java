@@ -33,7 +33,7 @@ public final class cm implements zv0 {
             } else if (!chatAttachAlertPhotoLayout.f24124x0) {
                 org.telegram.messenger.mk.q(R.string.GlobalAttachPhotoRestricted, new xc(chatAttachAlertPhotoLayout.P, this.f25218c), null);
             } else {
-                org.telegram.ui.ActionBar.n2 n2Var = tiVar.f30545f0;
+                org.telegram.ui.ActionBar.n2 n2Var = tiVar.f30546f0;
                 if ((n2Var instanceof org.telegram.ui.qn) && ((org.telegram.ui.qn) n2Var).x()) {
                     z10 = true;
                 } else {
@@ -42,7 +42,7 @@ public final class cm implements zv0 {
                 File generatePicturePath = AndroidUtilities.generatePicturePath(z10, null);
                 boolean isSameTakePictureOrientation = chatAttachAlertPhotoLayout.P.getCameraSession().isSameTakePictureOrientation();
                 CameraSessionWrapper cameraSession = chatAttachAlertPhotoLayout.P.getCameraSession();
-                if (!(tiVar.f30545f0 instanceof org.telegram.ui.qn) && tiVar.T0 != 2) {
+                if (!(tiVar.f30546f0 instanceof org.telegram.ui.qn) && tiVar.T0 != 2) {
                     z11 = false;
                 } else {
                     z11 = true;

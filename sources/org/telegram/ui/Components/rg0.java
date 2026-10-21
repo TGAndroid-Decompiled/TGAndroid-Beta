@@ -6,9 +6,9 @@ import android.view.MotionEvent;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class rg0 extends FrameLayout {
-    public float f29928a;
-    public float f29929b;
-    public boolean f29930c;
+    public float f29929a;
+    public float f29930b;
+    public boolean f29931c;
     public boolean d;
     public final PipRoundVideoView e;
 
@@ -33,8 +33,8 @@ public final class rg0 extends FrameLayout {
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         if (motionEvent.getAction() == 0) {
-            this.f29928a = motionEvent.getRawX();
-            this.f29929b = motionEvent.getRawY();
+            this.f29929a = motionEvent.getRawX();
+            this.f29930b = motionEvent.getRawY();
             this.d = true;
         }
         return true;

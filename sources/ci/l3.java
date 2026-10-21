@@ -95,7 +95,7 @@ public final class l3 implements Utilities.Callback {
                 }
                 if (l4.longValue() <= 0) {
                     qc r10 = new xc(q4Var.f5769c1, q4Var.B0).r(f7, LocaleController.getString(R.string.ReactionSent), LocaleController.getString(R.string.ViewInChat), new androidx.fragment.app.d(m3Var, 10));
-                    r10.f29530j = 5000;
+                    r10.f29531j = 5000;
                     r10.j();
                 }
                 if (q4Var.f5781f2.getReactionsWindow() != null) {

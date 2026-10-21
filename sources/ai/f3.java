@@ -222,25 +222,25 @@ public final class f3 implements Utilities.Callback {
                 ArrayList arrayList2 = (ArrayList) this.e;
                 ArrayList arrayList3 = (ArrayList) this.f1254f;
                 Runnable runnable = (Runnable) obj;
-                ty tyVar = ((sy) this.f1252b).f30372a;
+                ty tyVar = ((sy) this.f1252b).f30373a;
                 String str3 = tyVar.v;
-                ArrayList arrayList4 = tyVar.f30708r;
+                ArrayList arrayList4 = tyVar.f30709r;
                 ArrayList arrayList5 = tyVar.h;
-                ArrayList arrayList6 = tyVar.f30709s;
+                ArrayList arrayList6 = tyVar.f30710s;
                 tz tzVar = tyVar.F;
                 if (((String) this.f1253c).equals(str3)) {
                     rw rwVar = tzVar.V;
                     ey eyVar = tzVar.P;
                     int i11 = 0;
                     rwVar.e(false);
-                    tyVar.f30712y = true;
+                    tyVar.f30713y = true;
                     s4.g0 adapter = eyVar.getAdapter();
                     ty tyVar2 = tzVar.S;
                     if (adapter != tyVar2) {
                         eyVar.setAdapter(tyVar2);
                     }
                     arrayList5.clear();
-                    arrayList5.addAll(tyVar.f30707n);
+                    arrayList5.addAll(tyVar.f30708n);
                     arrayList4.clear();
                     arrayList4.addAll(arrayList);
                     arrayList6.clear();

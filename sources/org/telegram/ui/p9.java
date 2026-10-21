@@ -22,8 +22,8 @@ public final class p9 implements o1.f {
                 return;
             case 1:
                 ao0 ao0Var = (ao0) this.f40123b;
-                if (hVar == ao0Var.f35399c) {
-                    ao0Var.f35399c = null;
+                if (hVar == ao0Var.f35400c) {
+                    ao0Var.f35400c = null;
                     return;
                 }
                 return;

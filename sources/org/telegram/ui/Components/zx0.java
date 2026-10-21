@@ -12,21 +12,21 @@ import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PremiumPreviewFragment;
 public final class zx0 implements View.OnClickListener {
-    public final int f33054a;
-    public final qy0 f33055b;
+    public final int f33055a;
+    public final qy0 f33056b;
 
     public zx0(qy0 qy0Var, int i10) {
-        this.f33054a = i10;
-        this.f33055b = qy0Var;
+        this.f33055a = i10;
+        this.f33056b = qy0Var;
     }
 
     @Override
     public final void onClick(View view) {
         int i10;
         org.telegram.ui.ActionBar.k kVar;
-        switch (this.f33054a) {
+        switch (this.f33055a) {
             case 0:
-                qy0 qy0Var = this.f33055b;
+                qy0 qy0Var = this.f33056b;
                 org.telegram.ui.ActionBar.n2 n2Var = qy0Var.L;
                 if (n2Var != null) {
                     new sg.y0(n2Var, 11, false).show();
@@ -38,28 +38,28 @@ public final class zx0 implements View.OnClickListener {
                     return;
                 }
             case 1:
-                qy0.I(this.f33055b);
+                qy0.I(this.f33056b);
                 return;
             case 2:
-                this.f33055b.r0();
+                this.f33056b.r0();
                 return;
             case 3:
-                qy0 qy0Var2 = this.f33055b;
+                qy0 qy0Var2 = this.f33056b;
                 if (qy0Var2.Y != null) {
                     qy0Var2.v0(qy0Var2.U);
                     qy0Var2.r0();
                     qy0Var2.U = null;
                     return;
                 }
-                qy0Var2.f29745b0.e(qy0Var2.T, null, qy0Var2.S, null, qy0Var2.f29754i0, true, 0, 0);
+                qy0Var2.f29746b0.e(qy0Var2.T, null, qy0Var2.S, null, qy0Var2.f29755i0, true, 0, 0);
                 qy0Var2.dismiss();
                 return;
             case 4:
-                this.f33055b.f29758n.getPopupLayout().getSwipeBack().b(true);
+                this.f33056b.f29759n.getPopupLayout().getSwipeBack().b(true);
                 return;
             case 5:
-                qy0 qy0Var3 = this.f33055b;
-                org.telegram.ui.v60 v60Var = qy0Var3.f29748d0;
+                qy0 qy0Var3 = this.f33056b;
+                org.telegram.ui.v60 v60Var = qy0Var3.f29749d0;
                 org.telegram.ui.a70 a70Var = v60Var.f42119c;
                 s4.b0 b0Var = a70Var.h;
                 boolean z10 = a70Var.N;
@@ -70,19 +70,19 @@ public final class zx0 implements View.OnClickListener {
                 } else {
                     i10 = Integer.MAX_VALUE;
                 }
-                int i11 = a70Var.f35294n;
+                int i11 = a70Var.f35295n;
                 if (v60Var.f42117a) {
-                    a70Var.f35295r = null;
-                    a70Var.f35296s = true;
+                    a70Var.f35296r = null;
+                    a70Var.f35297s = true;
                 } else {
-                    a70Var.f35295r = v60Var.f42118b;
-                    a70Var.f35296s = false;
+                    a70Var.f35296r = v60Var.f42118b;
+                    a70Var.f35297s = false;
                 }
                 if (z10) {
                     AndroidUtilities.runOnUIThread(new org.telegram.ui.dz(v60Var, 10), 350L);
                 }
                 a70Var.h0();
-                a70Var.f0(a70Var.f35295r, true);
+                a70Var.f0(a70Var.f35296r, true);
                 if (i11 != -1) {
                     if (!a70Var.M) {
                         for (int i12 = 0; i12 < a70Var.d.getChildCount(); i12++) {
@@ -94,16 +94,16 @@ public final class zx0 implements View.OnClickListener {
                     }
                     a70Var.e.m(i11);
                 }
-                if (a70Var.f35294n != -1) {
+                if (a70Var.f35295n != -1) {
                     if (!a70Var.M) {
                         for (int i13 = 0; i13 < a70Var.d.getChildCount(); i13++) {
                             View childAt2 = a70Var.d.getChildAt(i13);
-                            if (a70Var.d.T(childAt2).b() == a70Var.E + a70Var.f35294n) {
+                            if (a70Var.d.T(childAt2).b() == a70Var.E + a70Var.f35295n) {
                                 ((org.telegram.ui.Cells.l8) childAt2).b(true, true);
                             }
                         }
                     }
-                    a70Var.e.m(a70Var.f35294n);
+                    a70Var.e.m(a70Var.f35295n);
                 }
                 if (i10 != Integer.MAX_VALUE && !z10) {
                     a70Var.h.h1(L0 + 1, i10);
@@ -116,22 +116,22 @@ public final class zx0 implements View.OnClickListener {
                 qy0Var3.dismiss();
                 return;
             case 6:
-                qy0.t(this.f33055b);
+                qy0.t(this.f33056b);
                 return;
             case 7:
-                qy0.o(this.f33055b);
+                qy0.o(this.f33056b);
                 return;
             case 8:
-                qy0 qy0Var4 = this.f33055b;
-                qy0Var4.f29758n.n();
+                qy0 qy0Var4 = this.f33056b;
+                qy0Var4.f29759n.n();
                 qy0Var4.dismiss();
                 AndroidUtilities.runOnUIThread(new by0(qy0Var4, 3), 200L);
                 return;
             case 9:
-                qy0.C(this.f33055b);
+                qy0.C(this.f33056b);
                 return;
             case 10:
-                qy0 qy0Var5 = this.f33055b;
+                qy0 qy0Var5 = this.f33056b;
                 if (qy0Var5.R) {
                     qy0Var5.o0();
                     return;
@@ -140,13 +140,13 @@ public final class zx0 implements View.OnClickListener {
                     return;
                 }
             case 11:
-                qy0.B(this.f33055b);
+                qy0.B(this.f33056b);
                 return;
             case 12:
-                qy0.s(this.f33055b);
+                qy0.s(this.f33056b);
                 return;
             case 13:
-                qy0 qy0Var6 = this.f33055b;
+                qy0 qy0Var6 = this.f33056b;
                 Context context = qy0Var6.getContext();
                 int[] iArr = {0};
                 FrameLayout frameLayout = new FrameLayout(context);
@@ -203,7 +203,7 @@ public final class zx0 implements View.OnClickListener {
                 b2Var.d(-1).setOnClickListener(new m0(qy0Var6, iArr, editTextBoldCursor, textView, f7, alertDialog$Builder, 3));
                 return;
             default:
-                this.f33055b.dismiss();
+                this.f33056b.dismiss();
                 return;
         }
     }

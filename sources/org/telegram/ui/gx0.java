@@ -14,12 +14,12 @@ import org.telegram.messenger.SharedConfig;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.Components.Switch;
 public final class gx0 extends org.telegram.ui.Components.im0 {
-    public final Context f37430c;
+    public final Context f37431c;
     public final PrivacySettingsActivity d;
 
     public gx0(PrivacySettingsActivity privacySettingsActivity, Context context) {
         this.d = privacySettingsActivity;
-        this.f37430c = context;
+        this.f37431c = context;
     }
 
     @Override
@@ -59,11 +59,11 @@ public final class gx0 extends org.telegram.ui.Components.im0 {
                 i12 = privacySettingsActivity.passkeysRow;
                 if (b10 != i12) {
                     i13 = privacySettingsActivity.blockedRow;
-                    if (b10 != i13 && b10 != privacySettingsActivity.f33576s) {
+                    if (b10 != i13 && b10 != privacySettingsActivity.f33577s) {
                         i14 = privacySettingsActivity.secretWebpageRow;
                         if (b10 != i14) {
                             i15 = privacySettingsActivity.webSessionsRow;
-                            if (b10 != i15 && (b10 != privacySettingsActivity.f33574n || privacySettingsActivity.getContactsController().getLoadingPrivacyInfo(1))) {
+                            if (b10 != i15 && (b10 != privacySettingsActivity.f33575n || privacySettingsActivity.getContactsController().getLoadingPrivacyInfo(1))) {
                                 i16 = privacySettingsActivity.lastSeenRow;
                                 if (b10 != i16 || privacySettingsActivity.getContactsController().getLoadingPrivacyInfo(0)) {
                                     i17 = privacySettingsActivity.callsRow;
@@ -167,15 +167,15 @@ public final class gx0 extends org.telegram.ui.Components.im0 {
                     i13 = privacySettingsActivity.deleteAccountRow;
                     if (i10 != i13) {
                         i14 = privacySettingsActivity.webSessionsRow;
-                        if (i10 != i14 && i10 != privacySettingsActivity.f33574n) {
+                        if (i10 != i14 && i10 != privacySettingsActivity.f33575n) {
                             i15 = privacySettingsActivity.paymentsClearRow;
                             if (i10 != i15) {
                                 i16 = privacySettingsActivity.secretMapRow;
                                 if (i10 != i16) {
                                     i17 = privacySettingsActivity.contactsDeleteRow;
                                     if (i10 != i17 && i10 != privacySettingsActivity.H) {
-                                        if (i10 != privacySettingsActivity.h && i10 != privacySettingsActivity.E && i10 != privacySettingsActivity.f33575r && i10 != privacySettingsActivity.v && i10 != privacySettingsActivity.N && i10 != privacySettingsActivity.I && i10 != privacySettingsActivity.L && i10 != privacySettingsActivity.f33578x) {
-                                            if (i10 != 0 && i10 != privacySettingsActivity.f33579y && i10 != privacySettingsActivity.f33573f && i10 != privacySettingsActivity.M && i10 != privacySettingsActivity.F && i10 != privacySettingsActivity.K && i10 != privacySettingsActivity.f33577w) {
+                                        if (i10 != privacySettingsActivity.h && i10 != privacySettingsActivity.E && i10 != privacySettingsActivity.f33576r && i10 != privacySettingsActivity.v && i10 != privacySettingsActivity.N && i10 != privacySettingsActivity.I && i10 != privacySettingsActivity.L && i10 != privacySettingsActivity.f33579x) {
+                                            if (i10 != 0 && i10 != privacySettingsActivity.f33580y && i10 != privacySettingsActivity.f33574f && i10 != privacySettingsActivity.M && i10 != privacySettingsActivity.F && i10 != privacySettingsActivity.K && i10 != privacySettingsActivity.f33578w) {
                                                 i18 = privacySettingsActivity.secretWebpageRow;
                                                 if (i10 != i18) {
                                                     i19 = privacySettingsActivity.contactsSyncRow;
@@ -186,7 +186,7 @@ public final class gx0 extends org.telegram.ui.Components.im0 {
                                                             if (i10 != i21) {
                                                                 if (i10 != privacySettingsActivity.J) {
                                                                     i22 = privacySettingsActivity.autoDeleteMesages;
-                                                                    if (i10 != i22 && i10 != privacySettingsActivity.f33576s) {
+                                                                    if (i10 != i22 && i10 != privacySettingsActivity.f33577s) {
                                                                         i23 = privacySettingsActivity.emailLoginRow;
                                                                         if (i10 != i23) {
                                                                             i24 = privacySettingsActivity.passwordRow;
@@ -333,7 +333,7 @@ public final class gx0 extends org.telegram.ui.Components.im0 {
                                 q8Var.s(LocaleController.getString("AutoDeleteMessages", R.string.AutoDeleteMessages), str7, true, R.drawable.msg2_autodelete, true);
                             } else {
                                 String str9 = "";
-                                if (i10 != privacySettingsActivity.f33576s) {
+                                if (i10 != privacySettingsActivity.f33577s) {
                                     i35 = privacySettingsActivity.emailLoginRow;
                                     if (i10 != i35) {
                                         i36 = privacySettingsActivity.passwordRow;
@@ -409,10 +409,10 @@ public final class gx0 extends org.telegram.ui.Components.im0 {
                                             int lastIndexOf = privacySettingsActivity.d.login_email_pattern.lastIndexOf(42);
                                             if (indexOf != lastIndexOf && indexOf != -1 && lastIndexOf != -1) {
                                                 ?? obj = new Object();
-                                                obj.f28649a |= 256;
-                                                obj.f28650b = indexOf;
+                                                obj.f28650a |= 256;
+                                                obj.f28651b = indexOf;
                                                 int i46 = lastIndexOf + 1;
-                                                obj.f28651c = i46;
+                                                obj.f28652c = i46;
                                                 valueOf.setSpan(new org.telegram.ui.Components.o11(obj, 0), indexOf, i46, 0);
                                             }
                                             z16 = false;
@@ -450,7 +450,7 @@ public final class gx0 extends org.telegram.ui.Components.im0 {
                                         z17 = z16;
                                     }
                                 } else {
-                                    if (privacySettingsActivity.f33568a0.j0() == 0) {
+                                    if (privacySettingsActivity.f33569a0.j0() == 0) {
                                         if (privacySettingsActivity.getMessagesController().lastKnownSessionsCount == 0) {
                                             z17 = true;
                                             str6 = str9;
@@ -458,10 +458,10 @@ public final class gx0 extends org.telegram.ui.Components.im0 {
                                             str6 = String.format(LocaleController.getInstance().getCurrentLocale(), "%d", Integer.valueOf(privacySettingsActivity.getMessagesController().lastKnownSessionsCount));
                                         }
                                     } else {
-                                        str6 = String.format(LocaleController.getInstance().getCurrentLocale(), "%d", Integer.valueOf(privacySettingsActivity.f33568a0.j0()));
+                                        str6 = String.format(LocaleController.getInstance().getCurrentLocale(), "%d", Integer.valueOf(privacySettingsActivity.f33569a0.j0()));
                                     }
                                     String str10 = str6;
-                                    privacySettingsActivity.getMessagesController().lastKnownSessionsCount = privacySettingsActivity.f33568a0.j0();
+                                    privacySettingsActivity.getMessagesController().lastKnownSessionsCount = privacySettingsActivity.f33569a0.j0();
                                     q8Var.s(LocaleController.getString(R.string.SessionsTitle), str10, true, R.drawable.msg2_devices, false);
                                 }
                             }
@@ -498,13 +498,13 @@ public final class gx0 extends org.telegram.ui.Components.im0 {
                     return;
                 }
                 org.telegram.ui.Cells.l4 l4Var = (org.telegram.ui.Cells.l4) view;
-                if (i10 == privacySettingsActivity.f33573f) {
+                if (i10 == privacySettingsActivity.f33574f) {
                     l4Var.setText(LocaleController.getString("PrivacyTitle", R.string.PrivacyTitle));
                     return;
                 } else if (i10 == 0) {
                     l4Var.setText(LocaleController.getString("SecurityTitle", R.string.SecurityTitle));
                     return;
-                } else if (i10 == privacySettingsActivity.f33579y) {
+                } else if (i10 == privacySettingsActivity.f33580y) {
                     l4Var.setText(LocaleController.getString("DeleteMyAccount", R.string.DeleteMyAccount));
                     return;
                 } else if (i10 == privacySettingsActivity.M) {
@@ -516,7 +516,7 @@ public final class gx0 extends org.telegram.ui.Components.im0 {
                 } else if (i10 == privacySettingsActivity.K) {
                     l4Var.setText(LocaleController.getString("Contacts", R.string.Contacts));
                     return;
-                } else if (i10 == privacySettingsActivity.f33577w) {
+                } else if (i10 == privacySettingsActivity.f33578w) {
                     l4Var.setText(LocaleController.getString("NewChatsFromNonContacts", R.string.NewChatsFromNonContacts));
                     return;
                 } else {
@@ -527,7 +527,7 @@ public final class gx0 extends org.telegram.ui.Components.im0 {
             if (i10 == privacySettingsActivity.E) {
                 d9Var.setText(LocaleController.getString("DeleteAccountHelp", R.string.DeleteAccountHelp));
                 return;
-            } else if (i10 == privacySettingsActivity.f33575r) {
+            } else if (i10 == privacySettingsActivity.f33576r) {
                 d9Var.setText(LocaleController.getString("GroupsAndChannelsHelp", R.string.GroupsAndChannelsHelp));
                 return;
             } else if (i10 == privacySettingsActivity.v) {
@@ -545,7 +545,7 @@ public final class gx0 extends org.telegram.ui.Components.im0 {
             } else if (i10 == privacySettingsActivity.L) {
                 d9Var.setText(LocaleController.getString("SuggestContactsInfo", R.string.SuggestContactsInfo));
                 return;
-            } else if (i10 == privacySettingsActivity.f33578x) {
+            } else if (i10 == privacySettingsActivity.f33579x) {
                 d9Var.setText(LocaleController.getString("ArchiveAndMuteInfo", R.string.ArchiveAndMuteInfo));
                 return;
             } else {
@@ -574,7 +574,7 @@ public final class gx0 extends org.telegram.ui.Components.im0 {
                         z11 = false;
                     }
                     baVar.c(LocaleController.getString("PrivacyLastSeen", R.string.PrivacyLastSeen), str8, false, true);
-                } else if (i10 != privacySettingsActivity.f33574n) {
+                } else if (i10 != privacySettingsActivity.f33575n) {
                     i14 = privacySettingsActivity.callsRow;
                     if (i10 != i14) {
                         i15 = privacySettingsActivity.profilePhotoRow;
@@ -809,7 +809,7 @@ public final class gx0 extends org.telegram.ui.Components.im0 {
     @Override
     public final s4.b1 x(ViewGroup viewGroup, int i10) {
         View baVar;
-        Context context = this.f37430c;
+        Context context = this.f37431c;
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 != 2) {

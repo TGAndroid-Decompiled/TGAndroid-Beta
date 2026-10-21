@@ -5,14 +5,14 @@ import android.graphics.PointF;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public class uw0 extends s4.c0 {
-    public final bs f31082r;
-    public int f31083s;
-    public float f31084t;
+    public final bs f31083r;
+    public int f31084s;
+    public float f31085t;
 
     public uw0(Context context) {
         super(context);
-        this.f31082r = bs.f25021f;
-        this.f31084t = 1.0f;
+        this.f31083r = bs.f25021f;
+        this.f31085t = 1.0f;
     }
 
     @Override
@@ -21,24 +21,24 @@ public class uw0 extends s4.c0 {
         int k10 = k(p(), view);
         int m10 = m((int) Math.sqrt((k10 * k10) + (j10 * j10)));
         if (m10 > 0) {
-            w0Var.b(-j10, -k10, m10, this.f31082r);
+            w0Var.b(-j10, -k10, m10, this.f31083r);
         }
         AndroidUtilities.runOnUIThread(new hr0(this, 8), Math.max(0, m10));
     }
 
     @Override
     public final int k(int i10, View view) {
-        return super.k(i10, view) - this.f31083s;
+        return super.k(i10, view) - this.f31084s;
     }
 
     @Override
     public final int m(int i10) {
-        return Math.round(Math.min(super.m(i10), 500) * this.f31084t);
+        return Math.round(Math.min(super.m(i10), 500) * this.f31085t);
     }
 
     @Override
     public final int n(int i10) {
-        return Math.round(Math.min(super.n(i10), 150) * this.f31084t);
+        return Math.round(Math.min(super.n(i10), 150) * this.f31085t);
     }
 
     @Override
@@ -49,7 +49,7 @@ public class uw0 extends s4.c0 {
             this.f45940k = a2;
             this.f45944o = (int) (a2.x * 10000.0f);
             this.f45945p = (int) (a2.y * 10000.0f);
-            w0Var.b((int) (this.f45944o * 1.2f), (int) (this.f45945p * 1.2f), (int) (n(10000) * 1.2f), this.f31082r);
+            w0Var.b((int) (this.f45944o * 1.2f), (int) (this.f45945p * 1.2f), (int) (n(10000) * 1.2f), this.f31083r);
             return;
         }
         w0Var.d = this.f46058a;

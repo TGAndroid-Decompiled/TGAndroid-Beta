@@ -477,10 +477,10 @@ public class Utilities {
     private static native int pbkdf2(byte[] bArr, byte[] bArr2, byte[] bArr3, int i10);
 
     public static void raceCallbacks(Runnable runnable, Callback<Runnable>... callbackArr) {
-        if (callbackArr != null && callbackArr.length != 0) {
-            l8 l8Var = new l8(new int[]{0}, callbackArr, runnable, 29);
-            for (Callback<Runnable> callback : callbackArr) {
-                callback.run(l8Var);
+        if (callbackArr != 0 && callbackArr.length != 0) {
+            sl slVar = new sl(new int[]{0}, callbackArr, runnable, 0);
+            for (ai.h3 h3Var : callbackArr) {
+                h3Var.run(slVar);
             }
         } else if (runnable != null) {
             runnable.run();

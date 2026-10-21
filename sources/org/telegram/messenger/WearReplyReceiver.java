@@ -83,20 +83,20 @@ public class WearReplyReceiver extends BroadcastReceiver {
                     if (DialogObject.isUserDialog(longExtra)) {
                         if (accountInstance.getMessagesController().getUser(Long.valueOf(longExtra)) == null) {
                             Utilities.globalQueue.postRunnable(new Runnable(this) {
-                                public final WearReplyReceiver f19697b;
+                                public final WearReplyReceiver f19694b;
 
                                 {
-                                    this.f19697b = this;
+                                    this.f19694b = this;
                                 }
 
                                 @Override
                                 public final void run() {
                                     switch (r10) {
                                         case 0:
-                                            this.f19697b.lambda$onReceive$1(accountInstance, longExtra, charSequence, longExtra2, intExtra, intArrayExtra);
+                                            this.f19694b.lambda$onReceive$1(accountInstance, longExtra, charSequence, longExtra2, intExtra, intArrayExtra);
                                             return;
                                         default:
-                                            this.f19697b.lambda$onReceive$3(accountInstance, longExtra, charSequence, longExtra2, intExtra, intArrayExtra);
+                                            this.f19694b.lambda$onReceive$3(accountInstance, longExtra, charSequence, longExtra2, intExtra, intArrayExtra);
                                             return;
                                     }
                                 }
@@ -105,20 +105,20 @@ public class WearReplyReceiver extends BroadcastReceiver {
                         }
                     } else if (DialogObject.isChatDialog(longExtra) && accountInstance.getMessagesController().getChat(Long.valueOf(-longExtra)) == null) {
                         Utilities.globalQueue.postRunnable(new Runnable(this) {
-                            public final WearReplyReceiver f19697b;
+                            public final WearReplyReceiver f19694b;
 
                             {
-                                this.f19697b = this;
+                                this.f19694b = this;
                             }
 
                             @Override
                             public final void run() {
                                 switch (r10) {
                                     case 0:
-                                        this.f19697b.lambda$onReceive$1(accountInstance, longExtra, charSequence, longExtra2, intExtra, intArrayExtra);
+                                        this.f19694b.lambda$onReceive$1(accountInstance, longExtra, charSequence, longExtra2, intExtra, intArrayExtra);
                                         return;
                                     default:
-                                        this.f19697b.lambda$onReceive$3(accountInstance, longExtra, charSequence, longExtra2, intExtra, intArrayExtra);
+                                        this.f19694b.lambda$onReceive$3(accountInstance, longExtra, charSequence, longExtra2, intExtra, intArrayExtra);
                                         return;
                                 }
                             }

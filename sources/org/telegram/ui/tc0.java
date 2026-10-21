@@ -31,7 +31,7 @@ public final class tc0 implements RequestDelegate {
                 final Bundle bundle = this.d;
                 if (z10) {
                     dg0Var.k1(false, true);
-                    dg0Var.f36384o0 = false;
+                    dg0Var.f36385o0 = false;
                     auth_sentcode.type.verifiedFirebase = true;
                     final boolean z11 = this.e;
                     AndroidUtilities.runOnUIThread(new Runnable() {
@@ -59,7 +59,7 @@ public final class tc0 implements RequestDelegate {
                 final Bundle bundle2 = this.d;
                 if (z12) {
                     dg0Var2.k1(false, true);
-                    dg0Var2.f36384o0 = false;
+                    dg0Var2.f36385o0 = false;
                     auth_sentcode2.type.verifiedFirebase = true;
                     final boolean z13 = this.e;
                     AndroidUtilities.runOnUIThread(new Runnable() {

@@ -20,8 +20,8 @@ public final class bj extends c71 {
     public final boolean E0(float f7) {
         int i10;
         ti tiVar = this.f24952d3.f28173b;
-        int dp = AndroidUtilities.dp(30.0f) + tiVar.f30543e2[0];
-        if (!tiVar.f30548g0) {
+        int dp = AndroidUtilities.dp(30.0f) + tiVar.f30544e2[0];
+        if (!tiVar.f30549g0) {
             i10 = AndroidUtilities.statusBarHeight;
         } else {
             i10 = 0;

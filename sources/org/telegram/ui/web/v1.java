@@ -67,7 +67,7 @@ public final class v1 extends g61 {
             int dp = AndroidUtilities.dp(28.0f);
             int dp2 = AndroidUtilities.dp(28.0f);
             zqVar.h = dp;
-            zqVar.f33020n = dp2;
+            zqVar.f33021n = dp2;
             imageView.setImageDrawable(zqVar);
         }
         w1Var.f42841f = z10;

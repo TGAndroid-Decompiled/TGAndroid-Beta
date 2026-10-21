@@ -148,7 +148,7 @@ public class t0 extends FrameLayout implements ne.d {
                     int dp = AndroidUtilities.dp(16.0f);
                     int dp2 = AndroidUtilities.dp(16.0f);
                     M2.e = dp;
-                    M2.f33019f = dp2;
+                    M2.f33020f = dp2;
                     h6.w1(M2, h6.w0(i10, d6Var), false);
                     h6.w1(M2, h6.w0(i11, d6Var), true);
                     w9Var.setImageDrawable(M2);
@@ -173,7 +173,7 @@ public class t0 extends FrameLayout implements ne.d {
             int dp4 = AndroidUtilities.dp(16.0f);
             int dp5 = AndroidUtilities.dp(16.0f);
             M3.e = dp4;
-            M3.f33019f = dp5;
+            M3.f33020f = dp5;
             h6.w1(M3, h6.w0(i10, d6Var), false);
             h6.w1(M3, h6.w0(i11, d6Var), true);
             w9Var.setImageDrawable(M3);

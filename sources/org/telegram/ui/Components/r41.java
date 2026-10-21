@@ -18,28 +18,28 @@ import org.telegram.messenger.TranslateController;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
 import org.telegram.ui.qa1;
 public final class r41 extends FrameLayout {
-    public final ImageView f29819a;
-    public final org.telegram.ui.kk f29820b;
-    public final qa1 f29821c;
+    public final ImageView f29820a;
+    public final org.telegram.ui.kk f29821b;
+    public final qa1 f29822c;
     public final TextView d;
     public final p41 e;
-    public final View f29822f;
+    public final View f29823f;
     public final View h;
-    public final t41 f29823n;
+    public final t41 f29824n;
 
     public r41(t41 t41Var, Context context) {
         super(context);
         int i10;
         int i11;
-        this.f29823n = t41Var;
+        this.f29824n = t41Var;
         View view = new View(context);
-        this.f29822f = view;
+        this.f29823f = view;
         int themedColor = t41Var.getThemedColor(org.telegram.ui.ActionBar.h6.f21061h5);
-        String str = t41Var.f30433s;
+        String str = t41Var.f30434s;
         view.setBackgroundColor(themedColor);
         addView(view, w7.z5.d(-1, 44.0f, 55, 0.0f, 12.0f, 0.0f, 0.0f));
         ImageView imageView = new ImageView(context);
-        this.f29819a = imageView;
+        this.f29820a = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         imageView.setImageResource(R.drawable.ic_ab_back);
         int i12 = org.telegram.ui.ActionBar.h6.f21096j5;
@@ -49,10 +49,10 @@ public final class r41 extends FrameLayout {
         imageView.setBackground(org.telegram.ui.ActionBar.h6.g0(t41Var.getThemedColor(org.telegram.ui.ActionBar.h6.f21079i6), 1, -1));
         imageView.setAlpha(0.0f);
         imageView.setOnClickListener(new View.OnClickListener(this) {
-            public final r41 f28685b;
+            public final r41 f28686b;
 
             {
-                this.f28685b = this;
+                this.f28686b = this;
             }
 
             @Override
@@ -63,14 +63,14 @@ public final class r41 extends FrameLayout {
                 org.telegram.ui.ActionBar.d6 d6Var;
                 switch (r2) {
                     case 0:
-                        this.f28685b.f29823n.dismiss();
+                        this.f28686b.f29824n.dismiss();
                         return;
                     default:
-                        r41 r41Var = this.f28685b;
+                        r41 r41Var = this.f28686b;
                         p41 p41Var = r41Var.e;
                         ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = new ActionBarPopupWindow$ActionBarPopupWindowLayout(r41Var.getContext(), null);
                         Drawable mutate = r41Var.getContext().getDrawable(R.drawable.popup_fixed_alert).mutate();
-                        t41 t41Var2 = r41Var.f29823n;
+                        t41 t41Var2 = r41Var.f29824n;
                         mutate.setColorFilter(new PorterDuffColorFilter(t41Var2.getThemedColor(org.telegram.ui.ActionBar.h6.G8), PorterDuff.Mode.MULTIPLY));
                         actionBarPopupWindow$ActionBarPopupWindowLayout.setBackground(mutate);
                         Runnable[] runnableArr = new Runnable[1];
@@ -78,7 +78,7 @@ public final class r41 extends FrameLayout {
                         boolean z11 = true;
                         for (int i13 = 0; i13 < locales.size(); i13++) {
                             LocaleController.LocaleInfo localeInfo = locales.get(i13);
-                            if (!localeInfo.pluralLangCode.equals(t41Var2.f30433s) && "remote".equals(localeInfo.pathToFile)) {
+                            if (!localeInfo.pluralLangCode.equals(t41Var2.f30434s) && "remote".equals(localeInfo.pathToFile)) {
                                 TextUtils.equals(t41Var2.v, localeInfo.pluralLangCode);
                                 Context context2 = r41Var.getContext();
                                 if (i13 == locales.size() - 1) {
@@ -121,7 +121,7 @@ public final class r41 extends FrameLayout {
         });
         addView(imageView, w7.z5.d(54, 54.0f, 48, 1.0f, 1.0f, 1.0f, 1.0f));
         org.telegram.ui.kk kkVar = new org.telegram.ui.kk(this, context, 2);
-        this.f29820b = kkVar;
+        this.f29821b = kkVar;
         kkVar.setTextColor(t41Var.getThemedColor(i12));
         kkVar.setTextSize(1, 20.0f);
         kkVar.setTypeface(AndroidUtilities.bold());
@@ -130,7 +130,7 @@ public final class r41 extends FrameLayout {
         kkVar.setPivotY(0.0f);
         addView(kkVar, w7.z5.d(-1, -2.0f, 55, 22.0f, 20.0f, 22.0f, 0.0f));
         qa1 qa1Var = new qa1(this, context, 13);
-        this.f29821c = qa1Var;
+        this.f29822c = qa1Var;
         if (LocaleController.isRTL) {
             qa1Var.setGravity(5);
         }
@@ -163,10 +163,10 @@ public final class r41 extends FrameLayout {
         p41Var.setText(t41.A(t41.E(t41Var.v, null, null)));
         p41Var.setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(2.0f));
         p41Var.setOnClickListener(new View.OnClickListener(this) {
-            public final r41 f28685b;
+            public final r41 f28686b;
 
             {
-                this.f28685b = this;
+                this.f28686b = this;
             }
 
             @Override
@@ -177,14 +177,14 @@ public final class r41 extends FrameLayout {
                 org.telegram.ui.ActionBar.d6 d6Var;
                 switch (r2) {
                     case 0:
-                        this.f28685b.f29823n.dismiss();
+                        this.f28686b.f29824n.dismiss();
                         return;
                     default:
-                        r41 r41Var = this.f28685b;
+                        r41 r41Var = this.f28686b;
                         p41 p41Var2 = r41Var.e;
                         ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = new ActionBarPopupWindow$ActionBarPopupWindowLayout(r41Var.getContext(), null);
                         Drawable mutate = r41Var.getContext().getDrawable(R.drawable.popup_fixed_alert).mutate();
-                        t41 t41Var2 = r41Var.f29823n;
+                        t41 t41Var2 = r41Var.f29824n;
                         mutate.setColorFilter(new PorterDuffColorFilter(t41Var2.getThemedColor(org.telegram.ui.ActionBar.h6.G8), PorterDuff.Mode.MULTIPLY));
                         actionBarPopupWindow$ActionBarPopupWindowLayout.setBackground(mutate);
                         Runnable[] runnableArr = new Runnable[1];
@@ -192,7 +192,7 @@ public final class r41 extends FrameLayout {
                         boolean z11 = true;
                         for (int i132 = 0; i132 < locales.size(); i132++) {
                             LocaleController.LocaleInfo localeInfo = locales.get(i132);
-                            if (!localeInfo.pluralLangCode.equals(t41Var2.f30433s) && "remote".equals(localeInfo.pathToFile)) {
+                            if (!localeInfo.pluralLangCode.equals(t41Var2.f30434s) && "remote".equals(localeInfo.pathToFile)) {
                                 TextUtils.equals(t41Var2.v, localeInfo.pluralLangCode);
                                 Context context2 = r41Var.getContext();
                                 if (i132 == locales.size() - 1) {
@@ -274,24 +274,24 @@ public final class r41 extends FrameLayout {
     public final void setTranslationY(float f7) {
         super.setTranslationY(f7);
         float a2 = w7.r.a((f7 - AndroidUtilities.statusBarHeight) / AndroidUtilities.dp(64.0f), 0.0f, 1.0f);
-        if (!t41.w(this.f29823n)) {
+        if (!t41.w(this.f29824n)) {
             a2 = 1.0f;
         }
         float interpolation = bs.f25022g.getInterpolation(a2);
         float lerp = AndroidUtilities.lerp(0.85f, 1.0f, interpolation);
-        org.telegram.ui.kk kkVar = this.f29820b;
+        org.telegram.ui.kk kkVar = this.f29821b;
         kkVar.setScaleX(lerp);
         kkVar.setScaleY(AndroidUtilities.lerp(0.85f, 1.0f, interpolation));
         kkVar.setTranslationY(AndroidUtilities.lerp(AndroidUtilities.dpf2(-12.0f), 0.0f, interpolation));
         boolean z10 = LocaleController.isRTL;
-        qa1 qa1Var = this.f29821c;
+        qa1 qa1Var = this.f29822c;
         if (!z10) {
             kkVar.setTranslationX(AndroidUtilities.lerp(AndroidUtilities.dpf2(50.0f), 0.0f, interpolation));
             qa1Var.setTranslationX(AndroidUtilities.lerp(AndroidUtilities.dpf2(50.0f), 0.0f, interpolation));
         }
         qa1Var.setTranslationY(AndroidUtilities.lerp(AndroidUtilities.dpf2(-22.0f), 0.0f, interpolation));
         float lerp2 = AndroidUtilities.lerp(0.0f, AndroidUtilities.dpf2(-25.0f), interpolation);
-        ImageView imageView = this.f29819a;
+        ImageView imageView = this.f29820a;
         imageView.setTranslationX(lerp2);
         float f10 = 1.0f - interpolation;
         imageView.setAlpha(f10);

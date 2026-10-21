@@ -11,22 +11,22 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
 public final class wx0 extends Drawable {
-    public final int f32268a;
-    public final int f32269b;
-    public final r5[] f32270c;
+    public final int f32269a;
+    public final int f32270b;
+    public final r5[] f32271c;
     public final boolean e;
     public int d = 255;
-    public final RectF f32271f = new RectF();
-    public boolean f32272g = false;
+    public final RectF f32272f = new RectF();
+    public boolean f32273g = false;
 
     public wx0(int i10, ArrayList arrayList, boolean z10) {
         int i11;
         this.e = z10;
         int max = (int) Math.max(1.0d, Math.sqrt(arrayList.size()));
-        this.f32268a = max;
+        this.f32269a = max;
         int min = Math.min(max * max, arrayList.size());
-        this.f32269b = min;
-        this.f32270c = new r5[min];
+        this.f32270b = min;
+        this.f32271c = new r5[min];
         if (!arrayList.isEmpty()) {
             MessageObject.isAnimatedEmoji((TLRPC.Document) arrayList.get(0));
         }
@@ -35,24 +35,24 @@ public final class wx0 extends Drawable {
         } else {
             i11 = 0;
         }
-        for (int i12 = 0; i12 < this.f32269b; i12++) {
-            this.f32270c[i12] = r5.m(i10, i11, (TLRPC.Document) arrayList.get(i12));
+        for (int i12 = 0; i12 < this.f32270b; i12++) {
+            this.f32271c[i12] = r5.m(i10, i11, (TLRPC.Document) arrayList.get(i12));
         }
     }
 
     public final void a(org.telegram.ui.Cells.u1 u1Var) {
-        for (int i10 = 0; i10 < this.f32269b; i10++) {
-            this.f32270c[i10].o(u1Var);
+        for (int i10 = 0; i10 < this.f32270b; i10++) {
+            this.f32271c[i10].o(u1Var);
         }
     }
 
     public final boolean b() {
-        return this.f32272g;
+        return this.f32273g;
     }
 
     public final boolean c(ArrayList arrayList) {
         long j10;
-        r5[] r5VarArr = this.f32270c;
+        r5[] r5VarArr = this.f32271c;
         if (r5VarArr.length == arrayList.size()) {
             for (int i10 = 0; i10 < r5VarArr.length; i10++) {
                 TLRPC.Document document = r5VarArr[i10].e;
@@ -70,7 +70,7 @@ public final class wx0 extends Drawable {
     }
 
     public final void d() {
-        this.f32272g = false;
+        this.f32273g = false;
     }
 
     @Override
@@ -81,12 +81,12 @@ public final class wx0 extends Drawable {
             return;
         }
         Rect bounds = getBounds();
-        RectF rectF = this.f32271f;
+        RectF rectF = this.f32272f;
         rectF.set(bounds);
         float centerX = rectF.centerX() - (AndroidUtilities.dp(48.0f) / 2.0f);
         float centerY = rectF.centerY() - (AndroidUtilities.dp(48.0f) / 2.0f);
         int dp = AndroidUtilities.dp(48.0f);
-        int i10 = this.f32268a;
+        int i10 = this.f32269a;
         float f7 = dp / i10;
         float dp2 = AndroidUtilities.dp(48.0f) / i10;
         canvas.save();
@@ -95,7 +95,7 @@ public final class wx0 extends Drawable {
             for (int i12 = 0; i12 < i10; i12++) {
                 int i13 = (i11 * i10) + i12;
                 if (i13 >= 0) {
-                    r5[] r5VarArr = this.f32270c;
+                    r5[] r5VarArr = this.f32271c;
                     if (i13 < r5VarArr.length && (r5Var = r5VarArr[i13]) != null) {
                         r5Var.setBounds((int) ((i12 * f7) + centerX), (int) ((i11 * dp2) + centerY), (int) (((i12 + 1) * f7) + centerX), (int) (((i11 + 1) * dp2) + centerY));
                         r5VarArr[i13].setAlpha(this.d);
@@ -115,7 +115,7 @@ public final class wx0 extends Drawable {
     }
 
     public final void e() {
-        this.f32272g = true;
+        this.f32273g = true;
     }
 
     @Override

@@ -38,8 +38,8 @@ public final class lp implements ri {
     public final void O(Object obj) {
         kp kpVar = new kp(obj, null, true, 1);
         kpVar.V1 = this.f28240b;
-        kpVar.f38516a.f38505a = this.f28241c;
-        kpVar.f38559p1 = this.d;
+        kpVar.f38517a.f38506a = this.f28241c;
+        kpVar.f38560p1 = this.d;
         kpVar.c1(this.e);
         kpVar.I1 = new jp(this.f28239a, this.f28242f, 1);
         ?? obj2 = new Object();
@@ -52,7 +52,7 @@ public final class lp implements ri {
     public final void b0(int i10, boolean z10, boolean z11, int i11, int i12, long j10, boolean z12, boolean z13, long j11) {
         ti tiVar = this.f28239a;
         try {
-            HashMap<Object, Object> selectedPhotos = tiVar.f30557j0.getSelectedPhotos();
+            HashMap<Object, Object> selectedPhotos = tiVar.f30558j0.getSelectedPhotos();
             if (!selectedPhotos.isEmpty()) {
                 MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) selectedPhotos.values().iterator().next();
                 String str = photoEntry.imagePath;
@@ -67,11 +67,11 @@ public final class lp implements ri {
                     loadBitmap.compress(Bitmap.CompressFormat.JPEG, 87, new FileOutputStream(file));
                     kp kpVar = new kp(new th1(file, file, ""), loadBitmap, false, 0);
                     kpVar.V1 = this.f28240b;
-                    kpVar.f38516a.f38505a = this.f28241c;
-                    kpVar.f38559p1 = this.d;
+                    kpVar.f38517a.f38506a = this.f28241c;
+                    kpVar.f38560p1 = this.d;
                     kpVar.F1 = false;
                     kpVar.E1 = false;
-                    kpVar.f38555n1 = 0.2f;
+                    kpVar.f38556n1 = 0.2f;
                     kpVar.c1(this.e);
                     kpVar.I1 = new jp(tiVar, this.f28242f, 0);
                     ?? obj = new Object();

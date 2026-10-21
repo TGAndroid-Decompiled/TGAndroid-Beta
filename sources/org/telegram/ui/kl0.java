@@ -7,29 +7,29 @@ import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public final class kl0 implements org.telegram.ui.ActionBar.a2, nt, km0 {
-    public final int f38636a;
-    public final vm0 f38637b;
+    public final int f38637a;
+    public final vm0 f38638b;
 
     public kl0(vm0 vm0Var, int i10) {
-        this.f38636a = i10;
-        this.f38637b = vm0Var;
+        this.f38637a = i10;
+        this.f38638b = vm0Var;
     }
 
     @Override
     public void L0(ht htVar) {
         String str;
-        switch (this.f38636a) {
+        switch (this.f38637a) {
             case 2:
-                vm0 vm0Var = this.f38637b;
-                vm0Var.Y[5].setText(htVar.f37783a);
+                vm0 vm0Var = this.f38638b;
+                vm0Var.Y[5].setText(htVar.f37784a);
                 vm0Var.f42321s = htVar.d;
                 return;
             default:
-                vm0 vm0Var2 = this.f38637b;
-                vm0Var2.Y[0].setText(htVar.f37783a);
-                if (vm0Var2.U0.indexOf(htVar.f37783a) != -1) {
+                vm0 vm0Var2 = this.f38638b;
+                vm0Var2.Y[0].setText(htVar.f37784a);
+                if (vm0Var2.U0.indexOf(htVar.f37784a) != -1) {
                     vm0Var2.Z0 = true;
-                    String str2 = (String) vm0Var2.V0.get(htVar.f37783a);
+                    String str2 = (String) vm0Var2.V0.get(htVar.f37784a);
                     vm0Var2.Y[1].setText(str2);
                     String str3 = (String) vm0Var2.X0.get(str2);
                     EditTextBoldCursor editTextBoldCursor = vm0Var2.Y[2];
@@ -51,9 +51,9 @@ public final class kl0 implements org.telegram.ui.ActionBar.a2, nt, km0 {
 
     @Override
     public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f38636a) {
+        switch (this.f38637a) {
             case 0:
-                vm0 vm0Var = this.f38637b;
+                vm0 vm0Var = this.f38638b;
                 vm0Var.getClass();
                 try {
                     Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
@@ -65,21 +65,21 @@ public final class kl0 implements org.telegram.ui.ActionBar.a2, nt, km0 {
                     return;
                 }
             case 1:
-                this.f38637b.finishFragment();
+                this.f38638b.finishFragment();
                 return;
             case 2:
             case 3:
             default:
-                vm0.a0(this.f38637b);
+                vm0.a0(this.f38638b);
                 return;
             case 4:
-                vm0.d0(this.f38637b);
+                vm0.d0(this.f38638b);
                 return;
         }
     }
 
     @Override
     public void p(String str, String str2) {
-        this.f38637b.w1();
+        this.f38638b.w1();
     }
 }

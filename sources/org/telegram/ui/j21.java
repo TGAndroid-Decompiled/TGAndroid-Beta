@@ -10,17 +10,17 @@ import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 public final class j21 extends FrameLayout {
-    public final org.telegram.ui.Components.f6 f38152a;
-    public float f38153b;
-    public final Path f38154c;
+    public final org.telegram.ui.Components.f6 f38153a;
+    public float f38154b;
+    public final Path f38155c;
     public Boolean d;
     public final o21 e;
 
     public j21(o21 o21Var, Context context) {
         super(context);
         this.e = o21Var;
-        this.f38152a = new org.telegram.ui.Components.f6(this, 250L, org.telegram.ui.Components.bs.h);
-        this.f38154c = new Path();
+        this.f38153a = new org.telegram.ui.Components.f6(this, 250L, org.telegram.ui.Components.bs.h);
+        this.f38155c = new Path();
     }
 
     @Override
@@ -37,7 +37,7 @@ public final class j21 extends FrameLayout {
         o21 o21Var = this.e;
         View[] viewPages = o21Var.f39746b.getViewPages();
         float f10 = 0.0f;
-        this.f38153b = 0.0f;
+        this.f38154b = 0.0f;
         int length = viewPages.length;
         int i12 = 0;
         while (i12 < length) {
@@ -49,7 +49,7 @@ public final class j21 extends FrameLayout {
                 FrameLayout frameLayout = n21Var.e;
                 org.telegram.ui.Components.c71 c71Var = n21Var.f39397f;
                 float clamp = Utilities.clamp(1.0f - Math.abs(n21Var.getTranslationX() / n21Var.getMeasuredWidth()), 1.0f, f10);
-                float f11 = this.f38153b;
+                float f11 = this.f38154b;
                 float paddingTop = frameLayout.getPaddingTop();
                 int i13 = 0;
                 while (true) {
@@ -62,14 +62,14 @@ public final class j21 extends FrameLayout {
                     c71Var.V2.getClass();
                     int H = s4.n0.H(childAt);
                     View[] viewArr2 = viewPages;
-                    if (H >= 0 && H < u61Var.f30863x.size() && (G = u61Var.G(H)) != null && G.f44296a == 28) {
+                    if (H >= 0 && H < u61Var.f30864x.size() && (G = u61Var.G(H)) != null && G.f44296a == 28) {
                         paddingTop = childAt.getY() + frameLayout.getPaddingTop();
                     }
                     i13++;
                     viewPages = viewArr2;
                 }
                 viewArr = viewPages;
-                this.f38153b = (paddingTop * clamp) + f11;
+                this.f38154b = (paddingTop * clamp) + f11;
                 if (n21Var.getVisibility() == 0) {
                     ai.o5 o5Var = n21Var.h;
                     float f12 = -o5Var.getHeight();
@@ -93,25 +93,25 @@ public final class j21 extends FrameLayout {
             viewPages = viewArr;
             f10 = 0.0f;
         }
-        if (this.f38153b <= AndroidUtilities.statusBarHeight) {
+        if (this.f38154b <= AndroidUtilities.statusBarHeight) {
             f7 = 1.0f;
         } else {
             f7 = 0.0f;
         }
-        float d = this.f38152a.d(f7, false);
+        float d = this.f38153a.d(f7, false);
         float f13 = AndroidUtilities.statusBarHeight;
         float f14 = f13 * d;
-        this.f38153b = Math.max(f13, this.f38153b) - (AndroidUtilities.statusBarHeight * d);
+        this.f38154b = Math.max(f13, this.f38154b) - (AndroidUtilities.statusBarHeight * d);
         RectF rectF = AndroidUtilities.rectTmp;
         i10 = ((org.telegram.ui.ActionBar.f3) o21Var).backgroundPaddingLeft;
-        float f15 = this.f38153b;
+        float f15 = this.f38154b;
         int width = getWidth();
         i11 = ((org.telegram.ui.ActionBar.f3) o21Var).backgroundPaddingLeft;
         rectF.set(i10, f15, width - i11, AndroidUtilities.dp(8.0f) + getHeight());
         float lerp = AndroidUtilities.lerp(AndroidUtilities.dp(14.0f), 0, d);
         canvas.drawRoundRect(rectF, lerp, lerp, o21Var.f39747c);
         canvas.save();
-        Path path = this.f38154c;
+        Path path = this.f38155c;
         path.rewind();
         path.addRoundRect(rectF, lerp, lerp, Path.Direction.CW);
         canvas.clipPath(path);
@@ -145,7 +145,7 @@ public final class j21 extends FrameLayout {
 
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (motionEvent.getAction() == 0 && motionEvent.getY() < this.f38153b) {
+        if (motionEvent.getAction() == 0 && motionEvent.getY() < this.f38154b) {
             this.e.dismiss();
             return true;
         }

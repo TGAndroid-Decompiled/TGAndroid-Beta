@@ -11,33 +11,33 @@ import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MessageObject;
 public final class rc0 implements Runnable {
-    public final int f29916a;
-    public final Object f29917b;
+    public final int f29917a;
+    public final Object f29918b;
 
     public rc0(Object obj, int i10) {
-        this.f29916a = i10;
-        this.f29917b = obj;
+        this.f29917a = i10;
+        this.f29918b = obj;
     }
 
     @Override
     public final void run() {
         float f7;
         c81 c81Var;
-        switch (this.f29916a) {
+        switch (this.f29917a) {
             case 0:
-                ((tc0) this.f29917b).a();
+                ((tc0) this.f29918b).a();
                 return;
             case 1:
-                ((ei.u) this.f29917b).invalidateSelf();
+                ((ei.u) this.f29918b).invalidateSelf();
                 return;
             case 2:
-                ((ed0) this.f29917b).invalidateSelf();
+                ((ed0) this.f29918b).invalidateSelf();
                 return;
             case 3:
-                ((xd0) this.f29917b).d();
+                ((xd0) this.f29918b).d();
                 return;
             case 4:
-                ge0 ge0Var = (ge0) this.f29917b;
+                ge0 ge0Var = (ge0) this.f29918b;
                 ge0Var.getClass();
                 try {
                     ge0Var.d.M.performHapticFeedback(3, 2);
@@ -46,29 +46,29 @@ public final class rc0 implements Runnable {
                     return;
                 }
             case 5:
-                ((ue0) this.f29917b).f30908f.start();
+                ((ue0) this.f29918b).f30909f.start();
                 return;
             case 6:
-                e00 e00Var = ((yf0) this.f29917b).f32644c.f25479l0;
+                e00 e00Var = ((yf0) this.f29918b).f32645c.f25479l0;
                 if (e00Var != null) {
                     e00Var.d(false, true, false);
                     return;
                 }
                 return;
             case 7:
-                bg0 bg0Var = (bg0) this.f29917b;
+                bg0 bg0Var = (bg0) this.f29918b;
                 bg0Var.f24937r = false;
                 bg0Var.invalidate();
                 return;
             case 8:
-                ((eg0) this.f29917b).h = null;
+                ((eg0) this.f29918b).h = null;
                 return;
             case 9:
-                eg0 eg0Var = (eg0) ((mi.q) this.f29917b).f16974c;
+                eg0 eg0Var = (eg0) ((mi.q) this.f29918b).f16974c;
                 eg0Var.d.L(eg0Var.e, false);
                 return;
             case 10:
-                org.telegram.ui.ot0 ot0Var = (org.telegram.ui.ot0) this.f29917b;
+                org.telegram.ui.ot0 ot0Var = (org.telegram.ui.ot0) this.f29918b;
                 if (ot0Var.f28159x) {
                     ot0Var.h("pollPosition();");
                 }
@@ -78,19 +78,19 @@ public final class rc0 implements Runnable {
                 }
                 return;
             case 11:
-                ((FrameLayout) this.f29917b).invalidate();
+                ((FrameLayout) this.f29918b).invalidate();
                 return;
             case 12:
-                ah0 ah0Var = (ah0) ((mg.b) this.f29917b).f16858b;
+                ah0 ah0Var = (ah0) ((mg.b) this.f29918b).f16858b;
                 ah0Var.d.invalidate();
                 ah0Var.e.requestLayout();
                 return;
             case 13:
-                ((ch0) this.f29917b).f();
+                ((ch0) this.f29918b).f();
                 return;
             case 14:
                 try {
-                    bj0 bj0Var = ((aj0) this.f29917b).f24629b;
+                    bj0 bj0Var = ((aj0) this.f29918b).f24629b;
                     if (bj0Var.getParent() instanceof ViewGroup) {
                         ((ViewGroup) bj0Var.getParent()).removeView(bj0Var);
                     }
@@ -101,10 +101,10 @@ public final class rc0 implements Runnable {
                     return;
                 }
             case 15:
-                ((RLottieNative) this.f29917b).d();
+                ((RLottieNative) this.f29918b).d();
                 return;
             case 16:
-                dl0 dl0Var = (dl0) this.f29917b;
+                dl0 dl0Var = (dl0) this.f29918b;
                 dl0Var.f25563x0 = null;
                 dl0Var.j();
                 cl0 cl0Var = dl0Var.f25538g0;
@@ -114,10 +114,10 @@ public final class rc0 implements Runnable {
                 }
                 return;
             case 17:
-                ((al0) this.f29917b).H.f24975a.setVisibility(4);
+                ((al0) this.f29918b).H.f24975a.setVisibility(4);
                 return;
             case 18:
-                el0 el0Var = (el0) this.f29917b;
+                el0 el0Var = (el0) this.f29918b;
                 c81 c81Var2 = el0Var.f25924n;
                 if (c81Var2 != null) {
                     boolean y3 = c81Var2.y();
@@ -135,7 +135,7 @@ public final class rc0 implements Runnable {
                 el0Var.invalidate();
                 return;
             case 19:
-                jm0 jm0Var = (jm0) this.f29917b;
+                jm0 jm0Var = (jm0) this.f29918b;
                 jm0Var.T1 = null;
                 jm0Var.S1 = null;
                 org.telegram.ui.Cells.z zVar = jm0Var.B1;
@@ -152,7 +152,7 @@ public final class rc0 implements Runnable {
                 }
                 return;
             case 20:
-                un0 un0Var = (un0) this.f29917b;
+                un0 un0Var = (un0) this.f29918b;
                 ArrayList<MessageObject> arrayList = new ArrayList<>();
                 ArrayList<MessageObject> arrayList2 = new ArrayList<>();
                 ArrayList arrayList3 = new ArrayList();
@@ -173,37 +173,37 @@ public final class rc0 implements Runnable {
                 AndroidUtilities.runOnUIThread(new lg((Object) un0Var, (Object) arrayList3, (Object) arrayList4, 18));
                 return;
             case 21:
-                ((wn0) this.f29917b).invalidateSelf();
+                ((wn0) this.f29918b).invalidateSelf();
                 return;
             case 22:
-                ((go0) this.f29917b).f26617f.setVisibility(8);
+                ((go0) this.f29918b).f26617f.setVisibility(8);
                 return;
             case 23:
-                ((org.telegram.ui.lx) this.f29917b).s();
+                ((org.telegram.ui.lx) this.f29918b).s();
                 return;
             case 24:
-                ((i80) this.f29917b).s();
+                ((i80) this.f29918b).s();
                 return;
             case 25:
-                ((dp0) this.f29917b).getClass();
+                ((dp0) this.f29918b).getClass();
                 return;
             case 26:
-                org.telegram.ui.Cells.u1 u1Var = ((gp0) this.f29917b).f26636n;
+                org.telegram.ui.Cells.u1 u1Var = ((gp0) this.f29918b).f26636n;
                 if (u1Var != null) {
                     u1Var.invalidate();
                     return;
                 }
                 return;
             case 27:
-                hp0 hp0Var = (hp0) this.f29917b;
+                hp0 hp0Var = (hp0) this.f29918b;
                 hp0Var.f26971q = false;
                 hp0Var.f26959b.run();
                 return;
             case 28:
-                ((fr0) ((ai.u) this.f29917b).f2236b).c1(1);
+                ((fr0) ((ai.u) this.f29918b).f2236b).c1(1);
                 return;
             default:
-                kr0 kr0Var = (kr0) this.f29917b;
+                kr0 kr0Var = (kr0) this.f29918b;
                 ir0[] ir0VarArr = kr0Var.f27925a;
                 if (kr0Var.f27926b != 1) {
                     for (ir0 ir0Var : ir0VarArr) {

@@ -25,7 +25,7 @@ import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.PhotoViewer;
 public abstract class ng extends iu {
-    public fd f28789c;
+    public fd f28790c;
     public final ChatActivityEnterView d;
 
     public ng(ChatActivityEnterView chatActivityEnterView, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
@@ -89,11 +89,11 @@ public abstract class ng extends iu {
         mf mfVar = chatActivityEnterView.L0;
         SendMessageChatArguments sendMessageChatArguments = null;
         if (mfVar != null) {
-            mfVar.h(true);
+            mfVar.g(true);
             chatActivityEnterView.L0 = null;
         }
         org.telegram.ui.gn gnVar = chatActivityEnterView.V2;
-        if (gnVar != null && qnVar != null && gnVar.f37360f) {
+        if (gnVar != null && qnVar != null && gnVar.f37361f) {
             qnVar.Wb();
             return;
         }
@@ -242,9 +242,9 @@ public abstract class ng extends iu {
         ChatActivityEnterView chatActivityEnterView = this.d;
         if (!chatActivityEnterView.E3 && chatActivityEnterView.B3 == null) {
             if (!chatActivityEnterView.f24052z0 && !chatActivityEnterView.p0()) {
-                if (this.f28789c == null) {
+                if (this.f28790c == null) {
                     fd fdVar = new fd(this);
-                    this.f28789c = fdVar;
+                    this.f28790c = fdVar;
                     fdVar.h = new Runnable(this) {
                         public final ng f27873b;
 
@@ -271,7 +271,7 @@ public abstract class ng extends iu {
                         }
                     };
                 }
-                fd fdVar2 = this.f28789c;
+                fd fdVar2 = this.f28790c;
                 int measuredWidth = getMeasuredWidth();
                 int measuredHeight = getMeasuredHeight();
                 fdVar2.getClass();
@@ -281,7 +281,7 @@ public abstract class ng extends iu {
                 fdVar2.f26198i = false;
                 fdVar2.f26195c = 0;
                 fdVar2.a(rectF);
-                return this.f28789c.b(motionEvent);
+                return this.f28790c.b(motionEvent);
             } else if (chatActivityEnterView.r0() && motionEvent.getAction() == 0) {
                 if (chatActivityEnterView.R1 != 0) {
                     chatActivityEnterView.j1(0, false);

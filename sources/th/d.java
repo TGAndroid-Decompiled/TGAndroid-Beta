@@ -23,13 +23,13 @@ public final class d extends c {
         zj0Var.d(null, true, false);
         zj0Var.v = 650.0f;
         zj0Var.e(0.69f, false);
-        zj0Var.f32931p.setStrokeWidth(AndroidUtilities.dp(1.5f));
+        zj0Var.f32932p.setStrokeWidth(AndroidUtilities.dp(1.5f));
         this.f47209f = new ne.b(u1Var, bs.h, 260L);
         p6 p6Var = new p6(true, false, false);
         this.d = p6Var;
         p6Var.x(AndroidUtilities.bold());
         p6Var.w(AndroidUtilities.dp(13.0f));
-        p6Var.f29225b = 17;
+        p6Var.f29226b = 17;
         int w02 = h6.w0(h6.f21079i6, d6Var);
         if (this.f47207b != w02) {
             h6.C1(this.f47206a, w02, false);
@@ -49,7 +49,7 @@ public final class d extends c {
 
     public final void c(int i10) {
         this.d.u(i10);
-        this.e.f32930o = i10;
+        this.e.f32931o = i10;
     }
 
     public final void d(float f7) {

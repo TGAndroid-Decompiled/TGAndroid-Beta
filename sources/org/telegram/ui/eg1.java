@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 public final class eg1 extends org.telegram.ui.Components.g61 {
-    public static final int f36655a = 0;
+    public static final int f36656a = 0;
 
     static {
         org.telegram.ui.Components.g61.setup(new org.telegram.ui.Components.g61());
@@ -31,10 +31,10 @@ public final class eg1 extends org.telegram.ui.Components.g61 {
         int i15 = h61Var.f26795z;
         TextView textView = fg1Var.d;
         TextView textView2 = fg1Var.e;
-        ImageView imageView = fg1Var.f37001f;
+        ImageView imageView = fg1Var.f37002f;
         fg1Var.h = z11;
-        fg1Var.f37002n = z12;
-        ImageView imageView2 = fg1Var.f36999b;
+        fg1Var.f37003n = z12;
+        ImageView imageView2 = fg1Var.f37000b;
         imageView2.setImageResource(i14);
         int i16 = 8;
         if (i15 != 0) {
@@ -55,9 +55,9 @@ public final class eg1 extends org.telegram.ui.Components.g61 {
             f7 = 10.0f;
         }
         int dp = AndroidUtilities.dp(f7);
-        fg1Var.f37000c.setPadding(0, dp, 0, dp);
-        org.telegram.ui.ActionBar.d6 d6Var = fg1Var.f36998a;
-        if (fg1Var.f37002n) {
+        fg1Var.f37001c.setPadding(0, dp, 0, dp);
+        org.telegram.ui.ActionBar.d6 d6Var = fg1Var.f36999a;
+        if (fg1Var.f37003n) {
             i10 = org.telegram.ui.ActionBar.h6.f21228q7;
         } else if (fg1Var.h) {
             i10 = org.telegram.ui.ActionBar.h6.f21173n6;
@@ -67,7 +67,7 @@ public final class eg1 extends org.telegram.ui.Components.g61 {
         int w02 = org.telegram.ui.ActionBar.h6.w0(i10, d6Var);
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
         imageView2.setColorFilter(new PorterDuffColorFilter(w02, mode));
-        if (fg1Var.f37002n) {
+        if (fg1Var.f37003n) {
             i11 = org.telegram.ui.ActionBar.h6.f21228q7;
         } else if (fg1Var.h) {
             i11 = org.telegram.ui.ActionBar.h6.f21173n6;
@@ -75,7 +75,7 @@ public final class eg1 extends org.telegram.ui.Components.g61 {
             i11 = org.telegram.ui.ActionBar.h6.G6;
         }
         imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(i11, d6Var), mode));
-        if (fg1Var.f37002n) {
+        if (fg1Var.f37003n) {
             i12 = org.telegram.ui.ActionBar.h6.f21211p7;
         } else if (fg1Var.h) {
             i12 = org.telegram.ui.ActionBar.h6.f21173n6;
@@ -83,7 +83,7 @@ public final class eg1 extends org.telegram.ui.Components.g61 {
             i12 = org.telegram.ui.ActionBar.h6.G6;
         }
         textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(i12, d6Var));
-        if (fg1Var.f37002n) {
+        if (fg1Var.f37003n) {
             i13 = org.telegram.ui.ActionBar.h6.f21211p7;
         } else if (fg1Var.h) {
             i13 = org.telegram.ui.ActionBar.h6.f21173n6;

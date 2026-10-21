@@ -79,7 +79,7 @@ public final class w1 extends FrameLayout {
                 return;
             case 9:
                 r31 r31Var = (r31) this.d;
-                float i13 = r31Var.f29802f.i();
+                float i13 = r31Var.f29803f.i();
                 int i14 = (i13 > 0.0f ? 1 : (i13 == 0.0f ? 0 : -1));
                 if (i14 > 0) {
                     z10 = true;
@@ -91,7 +91,7 @@ public final class w1 extends FrameLayout {
                 float dp2 = AndroidUtilities.dp(8.33f);
                 float width2 = (getWidth() / 2.0f) + AndroidUtilities.dp(12.0f);
                 float dp3 = AndroidUtilities.dp(12.0f);
-                float max = Math.max(dp2 + dp2, r31Var.f29802f.c() + AndroidUtilities.dp(10.0f));
+                float max = Math.max(dp2 + dp2, r31Var.f29803f.c() + AndroidUtilities.dp(10.0f));
                 if (z10) {
                     i11 = i14;
                     f10 = dp3;
@@ -121,8 +121,8 @@ public final class w1 extends FrameLayout {
                     org.telegram.ui.Components.j6 j6Var = (org.telegram.ui.Components.j6) this.f2342c;
                     j6Var.setColor(org.telegram.ui.ActionBar.h6.m1(i13, j6Var.f27409b.a(org.telegram.ui.ActionBar.h6.w0(r31Var.E, j6Var.f27408a), false)));
                     canvas.drawRoundRect(rectF4, dp2, dp2, j6Var);
-                    r31Var.f29802f.p(rectF4);
-                    org.telegram.ui.Components.p6 p6Var = r31Var.f29802f;
+                    r31Var.f29803f.p(rectF4);
+                    org.telegram.ui.Components.p6 p6Var = r31Var.f29803f;
                     p6Var.B = (int) (i13 * 255.0f);
                     p6Var.draw(canvas);
                     canvas.restore();
@@ -260,7 +260,7 @@ public final class w1 extends FrameLayout {
     public boolean verifyDrawable(Drawable drawable) {
         switch (this.f2340a) {
             case 9:
-                if (((r31) this.d).f29802f != drawable && !super.verifyDrawable(drawable)) {
+                if (((r31) this.d).f29803f != drawable && !super.verifyDrawable(drawable)) {
                     return false;
                 }
                 return true;
@@ -407,7 +407,7 @@ public final class w1 extends FrameLayout {
         this.f2341b = paint;
         this.f2342c = new org.telegram.ui.Components.j6(this, d6Var);
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-        r31Var.f29802f.setCallback(this);
+        r31Var.f29803f.setCallback(this);
     }
 
     public w1(hd hdVar, Context context, org.telegram.ui.ActionBar.d6 d6Var) {

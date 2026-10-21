@@ -200,40 +200,40 @@ public final class n6 extends FrameLayout {
                 textView.setTranslationY(AndroidUtilities.dp(8.0f));
             }
             textView.animate().alpha(1.0f).translationY(0.0f).setInterpolator(org.telegram.ui.Components.bs.h).setDuration(340L).setUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                public final n6 f39124b;
+                public final n6 f39125b;
 
                 {
-                    this.f39124b = this;
+                    this.f39125b = this;
                 }
 
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
                     switch (r2) {
                         case 0:
-                            this.f39124b.invalidate();
+                            this.f39125b.invalidate();
                             return;
                         default:
-                            this.f39124b.invalidate();
+                            this.f39125b.invalidate();
                             return;
                     }
                 }
             }).start();
         } else {
             textView.animate().alpha(0.0f).translationY(AndroidUtilities.dp(8.0f)).setListener(new fo(textView)).setInterpolator(org.telegram.ui.Components.bs.h).setDuration(340L).setUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                public final n6 f39124b;
+                public final n6 f39125b;
 
                 {
-                    this.f39124b = this;
+                    this.f39125b = this;
                 }
 
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
                     switch (r2) {
                         case 0:
-                            this.f39124b.invalidate();
+                            this.f39125b.invalidate();
                             return;
                         default:
-                            this.f39124b.invalidate();
+                            this.f39125b.invalidate();
                             return;
                     }
                 }

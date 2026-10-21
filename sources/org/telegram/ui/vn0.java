@@ -44,10 +44,10 @@ public final class vn0 extends AnimatorListenerAdapter {
                 AnimatorSet animatorSet = eo0Var.v;
                 if (animatorSet != null && animatorSet.equals(animator)) {
                     if (!this.f42345b) {
-                        eo0Var.f36725r.setVisibility(4);
+                        eo0Var.f36726r.setVisibility(4);
                         return;
                     } else {
-                        eo0Var.f36720n.getContentView().setVisibility(4);
+                        eo0Var.f36721n.getContentView().setVisibility(4);
                         return;
                     }
                 }
@@ -57,7 +57,7 @@ public final class vn0 extends AnimatorListenerAdapter {
                 AnimatorSet animatorSet2 = eo0Var2.v;
                 if (animatorSet2 != null && animatorSet2.equals(animator)) {
                     if (!this.f42345b) {
-                        eo0Var2.f36727s.setVisibility(4);
+                        eo0Var2.f36728s.setVisibility(4);
                         return;
                     } else {
                         eo0Var2.U.setVisibility(4);

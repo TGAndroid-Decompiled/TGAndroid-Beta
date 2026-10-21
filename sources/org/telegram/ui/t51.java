@@ -192,7 +192,7 @@ public abstract class t51 extends Dialog {
             z10 = true;
         }
         if (g51Var != null) {
-            g51Var.f37189b = z10;
+            g51Var.f37190b = z10;
         }
         f();
         ImageReceiver imageReceiver = new ImageReceiver();
@@ -227,7 +227,7 @@ public abstract class t51 extends Dialog {
             if ((g51Var.E instanceof org.telegram.ui.Components.r5) && (MessageObject.isTextColorEmoji(document2) || ((org.telegram.ui.Components.r5) g51Var.E).c())) {
                 if (!MessageObject.isTextColorEmoji(document2)) {
                     org.telegram.ui.Components.r5 r5Var = (org.telegram.ui.Components.r5) g51Var.E;
-                    SparseArray sparseArray = org.telegram.ui.Components.r5.f29824q;
+                    SparseArray sparseArray = org.telegram.ui.Components.r5.f29825q;
                     if (r5Var == null || !r5Var.l()) {
                         colorFilter = org.telegram.ui.ActionBar.h6.o0(d6Var);
                         imageReceiver.setColorFilter(colorFilter);
@@ -319,7 +319,7 @@ public abstract class t51 extends Dialog {
         }
         this.J = z10;
         if (z10) {
-            g51Var.f37189b = true;
+            g51Var.f37190b = true;
         }
         final boolean[] zArr = new boolean[1];
         float f10 = this.I;
@@ -345,7 +345,7 @@ public abstract class t51 extends Dialog {
                 }
                 if (t51Var.I < 0.025f && !z12) {
                     if (z11) {
-                        t51Var.f41595a.f37189b = false;
+                        t51Var.f41595a.f37190b = false;
                         t51Var.P.f43061h0.invalidate();
                     }
                     NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 4);

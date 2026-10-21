@@ -25,9 +25,9 @@ public final class t00 extends s4.r0 {
         MessageObject messageObject;
         e10 e10Var = this.f41566a;
         ci.i3 i3Var = e10Var.m0;
-        s4.b0 b0Var = e10Var.f36504j0;
-        ne.b bVar = e10Var.f36491a;
-        dz dzVar = e10Var.f36508n0;
+        s4.b0 b0Var = e10Var.f36505j0;
+        ne.b bVar = e10Var.f36492a;
+        dz dzVar = e10Var.f36509n0;
         if (recyclerView.getAdapter() != null && e10Var.d != null) {
             int L0 = b0Var.L0();
             int N0 = b0Var.N0();
@@ -37,7 +37,7 @@ public final class t00 extends s4.r0 {
                 AndroidUtilities.runOnUIThread(new dz(this, 2));
             }
             if (e10Var.d == e10Var.U) {
-                if (i11 != 0 && !e10Var.f36499f.isEmpty() && TextUtils.isEmpty(e10Var.Q)) {
+                if (i11 != 0 && !e10Var.f36500f.isEmpty() && TextUtils.isEmpty(e10Var.Q)) {
                     AndroidUtilities.cancelRunOnUIThread(dzVar);
                     AndroidUtilities.runOnUIThread(dzVar, 1650L);
                     bVar.a(true, true);
@@ -69,7 +69,7 @@ public final class t00 extends s4.r0 {
                 }
                 return;
             }
-            View pinnedHeader = e10Var.f36493b.getPinnedHeader();
+            View pinnedHeader = e10Var.f36494b.getPinnedHeader();
             if (pinnedHeader instanceof org.telegram.ui.Cells.u3) {
                 org.telegram.ui.Cells.u3 u3Var = (org.telegram.ui.Cells.u3) pinnedHeader;
                 CharSequence text = u3Var.getText();

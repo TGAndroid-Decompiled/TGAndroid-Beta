@@ -28,7 +28,7 @@ public final class q40 extends org.telegram.ui.ActionBar.m1 {
         q50Var.Y.X = true;
         q50Var.f40395e3 = new AnimatorSet();
         ArrayList arrayList = new ArrayList();
-        arrayList.add(ObjectAnimator.ofInt(q50Var.W2, org.telegram.ui.Components.t6.f30444b, 0));
+        arrayList.add(ObjectAnimator.ofInt(q50Var.W2, org.telegram.ui.Components.t6.f30445b, 0));
         q50Var.f40395e3.playTogether(arrayList);
         q50Var.f40395e3.setDuration(220L);
         q50Var.f40395e3.addListener(new org.telegram.ui.Components.p31(this, 27));

@@ -39,16 +39,16 @@ public final class el implements Runnable {
             case 5:
                 rl rlVar2 = this.f25919b;
                 hg.s0 s0Var = rlVar2.O;
-                if (rlVar2.f29967t0) {
-                    rlVar2.f29967t0 = false;
+                if (rlVar2.f29968t0) {
+                    rlVar2.f29968t0 = false;
                     return;
                 }
                 IMapsProvider.IMap iMap = rlVar2.H;
-                if (iMap != null && (location = rlVar2.f29964r0) != null) {
+                if (iMap != null && (location = rlVar2.f29965r0) != null) {
                     location.setLatitude(iMap.getCameraPosition().target.latitude);
-                    rlVar2.f29964r0.setLongitude(rlVar2.H.getCameraPosition().target.longitude);
+                    rlVar2.f29965r0.setLongitude(rlVar2.H.getCameraPosition().target.longitude);
                 }
-                s0Var.L(rlVar2.f29964r0);
+                s0Var.L(rlVar2.f29965r0);
                 s0Var.I();
                 return;
             case 6:

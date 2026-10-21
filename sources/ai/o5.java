@@ -185,7 +185,7 @@ public final class o5 extends FrameLayout {
                 boolean z11 = true;
                 float B = t41Var.B(true);
                 float lerp = AndroidUtilities.lerp(0, AndroidUtilities.dp(12.0f), w7.r.a(B / AndroidUtilities.dpf2(24.0f), 0.0f, 1.0f));
-                t41Var.f30435x.setTranslationY(Math.max(AndroidUtilities.statusBarHeight, B));
+                t41Var.f30436x.setTranslationY(Math.max(AndroidUtilities.statusBarHeight, B));
                 if (B <= AndroidUtilities.statusBarHeight / 2.0f) {
                     z10 = true;
                 } else {
@@ -219,12 +219,12 @@ public final class o5 extends FrameLayout {
                 Paint paint2 = (Paint) this.f1935c;
                 PhotoViewer photoViewer = (PhotoViewer) this.e;
                 if (!photoViewer.S4) {
-                    if (photoViewer.f33356n0.getVisibility() == 0) {
+                    if (photoViewer.f33357n0.getVisibility() == 0) {
                         i10 = getMeasuredHeight() - AndroidUtilities.dp(48.0f);
                     } else {
                         i10 = 0;
                     }
-                    int i12 = photoViewer.f33262c2;
+                    int i12 = photoViewer.f33263c2;
                     if (i12 != 0 && i12 != 2 && i12 != -1) {
                         paint2.setShader(null);
                         paint2.setColor(2130706432);
@@ -252,8 +252,8 @@ public final class o5 extends FrameLayout {
                 kc1 kc1Var = (kc1) this.e;
                 paint5.setShadowLayer(dpf2, 0.0f, dpf22, i0.a.o(-16777216, (int) (kc1Var.R1.getAlpha() * 27.0f)));
                 canvas.drawRoundRect(rectF3, dp2, dp2, paint5);
-                zb1 zb1Var = kc1Var.f38578x0;
-                kb1 kb1Var = kc1Var.f38516a;
+                zb1 zb1Var = kc1Var.f38579x0;
+                kb1 kb1Var = kc1Var.f38517a;
                 org.telegram.ui.ActionBar.h6.s(this, zb1Var, kb1Var);
                 Paint n10 = kb1Var.n("paintChatActionBackground");
                 int alpha = n10.getAlpha();
@@ -261,9 +261,9 @@ public final class o5 extends FrameLayout {
                 canvas.drawRoundRect(rectF3, dp2, dp2, n10);
                 n10.setAlpha(alpha);
                 if (kc1Var.M1) {
-                    float f7 = kc1Var.f38555n1;
+                    float f7 = kc1Var.f38556n1;
                     if (f7 > 0.0f) {
-                        paint3.setColor(i0.a.o(-16777216, (int) (f7 * 255.0f * kc1Var.f38557o1)));
+                        paint3.setColor(i0.a.o(-16777216, (int) (f7 * 255.0f * kc1Var.f38558o1)));
                         canvas.drawRoundRect(rectF3, dp2, dp2, paint3);
                     }
                 }
@@ -289,7 +289,7 @@ public final class o5 extends FrameLayout {
                 rectF4.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
                 sg.t tVar = limitPreviewView.f24287e0;
                 if (tVar != null) {
-                    canvas.drawRoundRect(rectF4, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), ((org.telegram.ui.z5) ((org.telegram.ui.b1) tVar).f35470b).u0(getX() + ((ViewGroup) getParent()).getX(), getY() + ((ViewGroup) getParent()).getY()));
+                    canvas.drawRoundRect(rectF4, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), ((org.telegram.ui.z5) ((org.telegram.ui.b1) tVar).f35471b).u0(getX() + ((ViewGroup) getParent()).getX(), getY() + ((ViewGroup) getParent()).getY()));
                 } else {
                     canvas.drawRoundRect(rectF4, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), paint6);
                 }
@@ -924,11 +924,11 @@ public final class o5 extends FrameLayout {
                 }
                 hs0 hs0Var = photoViewer.U1;
                 if (hs0Var != null && hs0Var.getVisibility() != 8) {
-                    photoViewer.U1.setAlpha(photoViewer.f33464y7[0] * f7);
+                    photoViewer.U1.setAlpha(photoViewer.f33465y7[0] * f7);
                 }
                 is0 is0Var = photoViewer.V1;
                 if (is0Var != null && is0Var.getVisibility() != 8) {
-                    photoViewer.V1.setAlpha(f7 * photoViewer.f33473z7[0]);
+                    photoViewer.V1.setAlpha(f7 * photoViewer.f33474z7[0]);
                     return;
                 }
                 return;

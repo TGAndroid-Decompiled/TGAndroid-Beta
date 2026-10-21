@@ -21,20 +21,20 @@ public class z00 extends View {
     public static final int[] E;
     public static final int[] F;
     public static final int[] G;
-    public static final Paint[] f32786s;
+    public static final Paint[] f32787s;
     public static Drawable[] v;
-    public static Drawable[] f32787w;
-    public static final int f32788x;
-    public static final int f32789y;
-    public final RectF f32790a;
-    public long f32791b;
-    public boolean f32792c;
+    public static Drawable[] f32788w;
+    public static final int f32789x;
+    public static final int f32790y;
+    public final RectF f32791a;
+    public long f32792b;
+    public boolean f32793c;
     public boolean d;
     public float e;
-    public int f32793f;
+    public int f32794f;
     public boolean h;
-    public boolean f32794n;
-    public final ArrayList f32795r;
+    public boolean f32795n;
+    public final ArrayList f32796r;
 
     static {
         int i10;
@@ -44,21 +44,21 @@ public class z00 extends View {
         } else {
             i10 = 60;
         }
-        f32788x = i10;
+        f32789x = i10;
         if (SharedConfig.getDevicePerformanceClass() == 0) {
             i11 = 20;
         } else {
             i11 = 30;
         }
-        f32789y = i11;
+        f32790y = i11;
         int[] iArr = {-13845272, -6421296, -79102, -187561, -14185218, -10897300};
         E = iArr;
         F = new int[]{-1944197, -10498574, -9623, -2399389, -1870160};
         G = new int[]{-14778113, -15677815, -42601, -26844, -13639175};
-        f32786s = new Paint[iArr.length];
+        f32787s = new Paint[iArr.length];
         int i12 = 0;
         while (true) {
-            Paint[] paintArr = f32786s;
+            Paint[] paintArr = f32787s;
             if (i12 < paintArr.length) {
                 Paint paint = new Paint(1);
                 paintArr[i12] = paint;
@@ -72,9 +72,9 @@ public class z00 extends View {
 
     public z00(Context context) {
         super(context);
-        this.f32790a = new RectF();
+        this.f32791a = new RectF();
         this.e = 1.0f;
-        this.f32795r = new ArrayList(f32788x + f32789y);
+        this.f32796r = new ArrayList(f32789x + f32790y);
     }
 
     private int getHeightForAnimation() {
@@ -96,12 +96,12 @@ public class z00 extends View {
     }
 
     public void c(boolean z10) {
-        this.f32794n = z10;
+        this.f32795n = z10;
         setLayerType(2, null);
         boolean z11 = true;
-        this.f32792c = true;
+        this.f32793c = true;
         this.d = false;
-        this.f32793f = 0;
+        this.f32794f = 0;
         this.e = 1.0f;
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(System.currentTimeMillis());
@@ -124,23 +124,23 @@ public class z00 extends View {
                     i11++;
                 }
             }
-        } else if (z10 && f32787w == null) {
-            f32787w = new Drawable[G.length];
+        } else if (z10 && f32788w == null) {
+            f32788w = new Drawable[G.length];
             int i12 = 0;
             while (true) {
-                Drawable[] drawableArr2 = f32787w;
+                Drawable[] drawableArr2 = f32788w;
                 if (i12 >= drawableArr2.length) {
                     break;
                 }
                 drawableArr2[i12] = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.msg_settings_premium).mutate();
-                f32787w[i12].setColorFilter(new PorterDuffColorFilter(G[i12], PorterDuff.Mode.MULTIPLY));
+                f32788w[i12].setColorFilter(new PorterDuffColorFilter(G[i12], PorterDuff.Mode.MULTIPLY));
                 i12++;
             }
         }
-        int i13 = f32788x;
-        int clamp = Utilities.clamp(i13 - this.f32795r.size(), i13, i13 / 3);
+        int i13 = f32789x;
+        int clamp = Utilities.clamp(i13 - this.f32796r.size(), i13, i13 / 3);
         for (int i14 = 0; i14 < clamp; i14++) {
-            this.f32795r.add(a(false));
+            this.f32796r.add(a(false));
         }
         invalidate();
     }
@@ -152,121 +152,121 @@ public class z00 extends View {
         Drawable drawable;
         boolean z10;
         long elapsedRealtime = SystemClock.elapsedRealtime();
-        int i10 = (int) (elapsedRealtime - this.f32791b);
-        this.f32791b = elapsedRealtime;
+        int i10 = (int) (elapsedRealtime - this.f32792b);
+        this.f32792b = elapsedRealtime;
         if (i10 > 18) {
             i10 = 16;
         }
-        ArrayList arrayList = this.f32795r;
+        ArrayList arrayList = this.f32796r;
         int size = arrayList.size();
         int i11 = 0;
         while (i11 < size) {
             y00 y00Var = (y00) arrayList.get(i11);
-            z00 z00Var = y00Var.f32530l;
-            byte b10 = y00Var.f32522a;
-            Paint[] paintArr = f32786s;
+            z00 z00Var = y00Var.f32531l;
+            byte b10 = y00Var.f32523a;
+            Paint[] paintArr = f32787s;
             if (b10 == 0) {
                 f7 = 2.0f;
-                canvas.drawCircle(y00Var.f32526g, y00Var.h, AndroidUtilities.dp(y00Var.d), paintArr[y00Var.f32523b]);
+                canvas.drawCircle(y00Var.f32527g, y00Var.h, AndroidUtilities.dp(y00Var.d), paintArr[y00Var.f32524b]);
                 f10 = 16.0f;
             } else {
                 f7 = 2.0f;
                 if (b10 == 1) {
-                    RectF rectF = z00Var.f32790a;
+                    RectF rectF = z00Var.f32791a;
                     f10 = 16.0f;
-                    rectF.set(y00Var.f32526g - AndroidUtilities.dp(y00Var.d), y00Var.h - AndroidUtilities.dp(2.0f), y00Var.f32526g + AndroidUtilities.dp(y00Var.d), y00Var.h + AndroidUtilities.dp(2.0f));
+                    rectF.set(y00Var.f32527g - AndroidUtilities.dp(y00Var.d), y00Var.h - AndroidUtilities.dp(2.0f), y00Var.f32527g + AndroidUtilities.dp(y00Var.d), y00Var.h + AndroidUtilities.dp(2.0f));
                     canvas.save();
-                    canvas.rotate(y00Var.f32527i, rectF.centerX(), rectF.centerY());
-                    canvas.drawRoundRect(rectF, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), paintArr[y00Var.f32523b]);
+                    canvas.rotate(y00Var.f32528i, rectF.centerX(), rectF.centerY());
+                    canvas.drawRoundRect(rectF, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), paintArr[y00Var.f32524b]);
                     canvas.restore();
                 } else {
                     f10 = 16.0f;
                     if (b10 == 2) {
-                        Drawable[] drawableArr = f32787w;
+                        Drawable[] drawableArr = f32788w;
                         if (drawableArr != null) {
-                            drawable = drawableArr[y00Var.f32523b];
+                            drawable = drawableArr[y00Var.f32524b];
                         } else {
                             drawable = null;
                         }
                         Drawable[] drawableArr2 = v;
                         if (drawableArr2 != null) {
-                            drawable = drawableArr2[y00Var.f32523b];
+                            drawable = drawableArr2[y00Var.f32524b];
                         }
                         if (drawable != null) {
                             int intrinsicWidth = drawable.getIntrinsicWidth() / 2;
                             int intrinsicHeight = drawable.getIntrinsicHeight() / 2;
-                            int i12 = (int) y00Var.f32526g;
+                            int i12 = (int) y00Var.f32527g;
                             int i13 = (int) y00Var.h;
                             drawable.setBounds(i12 - intrinsicWidth, i13 - intrinsicHeight, i12 + intrinsicWidth, i13 + intrinsicHeight);
                             canvas.save();
-                            canvas.rotate(y00Var.f32527i, y00Var.f32526g, y00Var.h);
+                            canvas.rotate(y00Var.f32528i, y00Var.f32527g, y00Var.h);
                             float f11 = y00Var.d / 6.0f;
-                            canvas.scale(f11, f11, y00Var.f32526g, y00Var.h);
+                            canvas.scale(f11, f11, y00Var.f32527g, y00Var.h);
                             drawable.draw(canvas);
                             canvas.restore();
                         }
                     }
                 }
             }
-            z00 z00Var2 = y00Var.f32530l;
+            z00 z00Var2 = y00Var.f32531l;
             float f12 = i10 / f10;
-            float f13 = y00Var.f32526g;
-            float f14 = y00Var.f32528j;
-            y00Var.f32526g = (f14 * f12) + f13;
-            y00Var.h = (y00Var.f32529k * f12) + y00Var.h;
+            float f13 = y00Var.f32527g;
+            float f14 = y00Var.f32529j;
+            y00Var.f32527g = (f14 * f12) + f13;
+            y00Var.h = (y00Var.f32530k * f12) + y00Var.h;
             if (y00Var.e != 0) {
                 float dp = AndroidUtilities.dp(1.0f) * 0.5f;
                 if (y00Var.e == 1) {
-                    float t10 = com.google.android.gms.internal.play_billing.k3.t(dp, f12, 0.05f, y00Var.f32528j);
-                    y00Var.f32528j = t10;
+                    float t10 = com.google.android.gms.internal.play_billing.k3.t(dp, f12, 0.05f, y00Var.f32529j);
+                    y00Var.f32529j = t10;
                     if (t10 >= dp) {
                         y00Var.e = (byte) 2;
                     }
                 } else {
-                    float z11 = org.telegram.ui.Cells.c1.z(dp, f12, 0.05f, y00Var.f32528j);
-                    y00Var.f32528j = z11;
+                    float z11 = org.telegram.ui.Cells.c1.z(dp, f12, 0.05f, y00Var.f32529j);
+                    y00Var.f32529j = z11;
                     if (z11 <= (-dp)) {
                         y00Var.e = (byte) 1;
                     }
                 }
-            } else if (y00Var.f32524c == 0) {
+            } else if (y00Var.f32525c == 0) {
                 if (f14 > 0.0f) {
                     float f15 = f14 - (0.05f * f12);
-                    y00Var.f32528j = f15;
+                    y00Var.f32529j = f15;
                     if (f15 <= 0.0f) {
-                        y00Var.f32528j = 0.0f;
-                        y00Var.e = y00Var.f32525f;
+                        y00Var.f32529j = 0.0f;
+                        y00Var.e = y00Var.f32526f;
                     }
                 }
             } else if (f14 < 0.0f) {
                 float f16 = (0.05f * f12) + f14;
-                y00Var.f32528j = f16;
+                y00Var.f32529j = f16;
                 if (f16 >= 0.0f) {
-                    y00Var.f32528j = 0.0f;
-                    y00Var.e = y00Var.f32525f;
+                    y00Var.f32529j = 0.0f;
+                    y00Var.e = y00Var.f32526f;
                 }
             }
             float f17 = (-AndroidUtilities.dp(1.0f)) / f7;
-            float f18 = y00Var.f32529k;
+            float f18 = y00Var.f32530k;
             if (f18 < f17) {
                 z10 = true;
             } else {
                 z10 = false;
             }
             if (f18 > f17) {
-                y00Var.f32529k = ((AndroidUtilities.dp(1.0f) / 3.0f) * f12 * z00Var2.e) + f18;
+                y00Var.f32530k = ((AndroidUtilities.dp(1.0f) / 3.0f) * f12 * z00Var2.e) + f18;
             } else {
-                y00Var.f32529k = a1.g.d(AndroidUtilities.dp(1.0f), 3.0f, f12, f18);
+                y00Var.f32530k = a1.g.d(AndroidUtilities.dp(1.0f), 3.0f, f12, f18);
             }
-            if (z10 && y00Var.f32529k > f17) {
-                z00Var2.f32793f++;
+            if (z10 && y00Var.f32530k > f17) {
+                z00Var2.f32794f++;
             }
-            byte b11 = y00Var.f32522a;
+            byte b11 = y00Var.f32523a;
             if (b11 == 1 || b11 == 2) {
-                short s10 = (short) ((f12 * 10.0f) + y00Var.f32527i);
-                y00Var.f32527i = s10;
+                short s10 = (short) ((f12 * 10.0f) + y00Var.f32528i);
+                y00Var.f32528i = s10;
                 if (s10 > 360) {
-                    y00Var.f32527i = (short) (s10 - 360);
+                    y00Var.f32528i = (short) (s10 - 360);
                 }
             }
             if (y00Var.h >= z00Var2.getHeightForAnimation()) {
@@ -276,10 +276,10 @@ public class z00 extends View {
             }
             i11++;
         }
-        if (this.f32793f >= f32788x / 2 && this.e > 0.2f) {
+        if (this.f32794f >= f32789x / 2 && this.e > 0.2f) {
             if (!this.d) {
                 this.d = true;
-                for (int i14 = 0; i14 < f32789y; i14++) {
+                for (int i14 = 0; i14 < f32790y; i14++) {
                     arrayList.add(a(true));
                 }
             }
@@ -293,7 +293,7 @@ public class z00 extends View {
             invalidate();
             return;
         }
-        this.f32792c = false;
+        this.f32793c = false;
         AndroidUtilities.runOnUIThread(new hq(this, 18));
         b();
     }

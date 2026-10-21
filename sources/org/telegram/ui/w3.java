@@ -118,16 +118,16 @@ public final class w3 extends org.telegram.ui.Components.lw0 implements org.tele
             path.addRoundRect(rectF, dp, dp, Path.Direction.CW);
             canvas.clipPath(path);
         }
-        int backgroundColor = l4Var.f38778u0[1].getBackgroundColor();
+        int backgroundColor = l4Var.f38779u0[1].getBackgroundColor();
         Paint paint3 = this.f42455y0;
         paint3.setColor(backgroundColor);
         canvas.drawRect(rectF, paint3);
-        paint3.setColor(l4Var.f38778u0[i10].getBackgroundColor());
+        paint3.setColor(l4Var.f38779u0[i10].getBackgroundColor());
         RectF rectF2 = AndroidUtilities.rectTmp;
         rectF2.set(rectF);
-        rectF2.left = l4Var.f38778u0[i10].getX();
+        rectF2.left = l4Var.f38779u0[i10].getX();
         canvas.drawRect(rectF2, paint3);
-        n0 n0Var = l4Var.f38766h0;
+        n0 n0Var = l4Var.f38767h0;
         if (z12 && AndroidUtilities.dp(20.0f) + l4 <= AndroidUtilities.statusBarHeight + l4Var.I0) {
             z13 = true;
         } else {
@@ -138,11 +138,11 @@ public final class w3 extends org.telegram.ui.Components.lw0 implements org.tele
             canvas.save();
             float lerp2 = AndroidUtilities.lerp(AndroidUtilities.dp(20.0f) + l4 + 1, i10, e);
             canvas.translate(0.0f, lerp2);
-            l4Var.f38766h0.a(canvas, org.telegram.messenger.g0.C(20.0f, l4, 1) - lerp2, e, true);
+            l4Var.f38767h0.a(canvas, org.telegram.messenger.g0.C(20.0f, l4, 1) - lerp2, e, true);
             canvas.restore();
         }
         canvas.translate(0.0f, -max);
-        if (!AndroidUtilities.makingGlobalBlurBitmap && (!l4Var.f38778u0[0].f() || canvas.isHardwareAccelerated())) {
+        if (!AndroidUtilities.makingGlobalBlurBitmap && (!l4Var.f38779u0[0].f() || canvas.isHardwareAccelerated())) {
             super.dispatchDraw(canvas);
         }
         canvas.translate(0.0f, max);
@@ -217,7 +217,7 @@ public final class w3 extends org.telegram.ui.Components.lw0 implements org.tele
         x3 x3Var = this.H0;
         l4 l4Var = x3Var.K;
         if (!l4Var.O0.x()) {
-            o3 o3Var = l4Var.f38778u0[0];
+            o3 o3Var = l4Var.f38779u0[0];
             if (o3Var.c()) {
                 z10 = !o3Var.f39753b.canScrollVertically(-1);
             } else {
@@ -252,7 +252,7 @@ public final class w3 extends org.telegram.ui.Components.lw0 implements org.tele
             }
             x3Var.H = z11;
         }
-        o3 o3Var = l4Var.f38778u0[0];
+        o3 o3Var = l4Var.f38779u0[0];
         if (o3Var.c()) {
             z10 = !o3Var.f39753b.canScrollVertically(-1);
         } else {
@@ -329,7 +329,7 @@ public final class w3 extends org.telegram.ui.Components.lw0 implements org.tele
                 canvas.save();
                 canvas.clipPath(path);
                 canvas.translate(0.0f, rectF2.top);
-                l4Var.f38766h0.draw(canvas);
+                l4Var.f38767h0.draw(canvas);
                 canvas.restore();
             }
             View childAt = getChildAt(0);
@@ -346,7 +346,7 @@ public final class w3 extends org.telegram.ui.Components.lw0 implements org.tele
             }
             float f14 = (-x3Var.l()) + rectF2.top;
             if (x3Var.F) {
-                i10 = l4Var.f38766h0.getMeasuredHeight();
+                i10 = l4Var.f38767h0.getMeasuredHeight();
             } else {
                 i10 = 0;
             }

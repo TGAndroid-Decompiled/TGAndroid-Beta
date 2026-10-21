@@ -189,8 +189,8 @@ public final class x71 extends org.telegram.ui.ActionBar.n2 implements Notificat
             p71 p71Var = x71Var.h;
             ArrayList arrayList2 = p71Var.d;
             ArrayList arrayList3 = p71Var.v;
-            if (p71Var.f39080w) {
-                ArrayList arrayList4 = p71Var.f39078r;
+            if (p71Var.f39081w) {
+                ArrayList arrayList4 = p71Var.f39079r;
                 int size = arrayList4.size();
                 int i13 = 0;
                 int i14 = 0;
@@ -199,21 +199,21 @@ public final class x71 extends org.telegram.ui.ActionBar.n2 implements Notificat
                     i14++;
                     int i15 = org.telegram.ui.Cells.u6.f23598a;
                     org.telegram.ui.Components.h61 J = org.telegram.ui.Components.h61.J(org.telegram.ui.Cells.u6.class);
-                    J.f26782l = (CharSequence) p71Var.f39077n.get(i13);
+                    J.f26782l = (CharSequence) p71Var.f39078n.get(i13);
                     J.G = (l01) obj;
                     arrayList.add(J);
                     i13++;
                 }
-                if (!p71Var.f39079s.isEmpty()) {
+                if (!p71Var.f39080s.isEmpty()) {
                     arrayList.add(org.telegram.ui.Components.h61.q(LocaleController.getString(R.string.SettingsFaqSearchTitle)));
-                    ArrayList arrayList5 = p71Var.f39079s;
+                    ArrayList arrayList5 = p71Var.f39080s;
                     int size2 = arrayList5.size();
                     while (i12 < size2) {
                         Object obj2 = arrayList5.get(i12);
                         i12++;
                         int i16 = org.telegram.ui.Cells.u6.f23598a;
                         org.telegram.ui.Components.h61 J2 = org.telegram.ui.Components.h61.J(org.telegram.ui.Cells.u6.class);
-                        J2.f26782l = (CharSequence) p71Var.f39077n.get(i13);
+                        J2.f26782l = (CharSequence) p71Var.f39078n.get(i13);
                         J2.G = (MessagesController.FaqSearchResult) obj2;
                         arrayList.add(J2);
                         i13++;
@@ -231,7 +231,7 @@ public final class x71 extends org.telegram.ui.ActionBar.n2 implements Notificat
                     i17++;
                     if (obj3 instanceof l01) {
                         l01 l01Var = (l01) obj3;
-                        String str3 = l01Var.f38712a;
+                        String str3 = l01Var.f38713a;
                         int i18 = org.telegram.ui.Cells.u6.f23598a;
                         org.telegram.ui.Components.h61 J3 = org.telegram.ui.Components.h61.J(org.telegram.ui.Cells.u6.class);
                         J3.f26782l = str3;
@@ -947,8 +947,8 @@ public final class x71 extends org.telegram.ui.ActionBar.n2 implements Notificat
             if (obj2 instanceof l01) {
                 l01 l01Var = (l01) obj2;
                 org.telegram.ui.ActionBar.d5 parentLayout = x71Var.getParentLayout();
-                l01Var.f38713b.run();
-                AndroidUtilities.scrollToFragmentRow(parentLayout, l01Var.f38714c);
+                l01Var.f38714b.run();
+                AndroidUtilities.scrollToFragmentRow(parentLayout, l01Var.f38715c);
             } else if (obj2 instanceof MessagesController.FaqSearchResult) {
                 NotificationCenter.getInstance(x71Var.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.openArticle, x71Var.h.E, ((MessagesController.FaqSearchResult) obj2).url);
             }
@@ -1184,7 +1184,7 @@ public final class x71 extends org.telegram.ui.ActionBar.n2 implements Notificat
         p71Var.G();
         org.telegram.ui.Components.c71 c71Var = new org.telegram.ui.Components.c71(this, new g5(this, 26), new o71(this), new o71(this));
         this.f43124c = c71Var;
-        c71Var.W2.f30860r = false;
+        c71Var.W2.f30861r = false;
         c71Var.p1();
         this.f43124c.setPadding(0, AndroidUtilities.dp(12.0f) + AndroidUtilities.statusBarHeight, 0, AndroidUtilities.navigationBarHeight + this.T);
         this.f43124c.setClipToPadding(false);
@@ -1391,7 +1391,7 @@ public final class x71 extends org.telegram.ui.ActionBar.n2 implements Notificat
     public final void l0(org.telegram.ui.ActionBar.n2 n2Var) {
         LaunchActivity launchActivity;
         ActionBarLayout actionBarLayout;
-        if (AndroidUtilities.isTablet() && (launchActivity = LaunchActivity.H1) != null && (actionBarLayout = launchActivity.f33189s0) != null) {
+        if (AndroidUtilities.isTablet() && (launchActivity = LaunchActivity.H1) != null && (actionBarLayout = launchActivity.f33190s0) != null) {
             if (!actionBarLayout.getFragmentStack().isEmpty()) {
                 while (actionBarLayout.getFragmentStack().size() - 1 > 0) {
                     actionBarLayout.a0((org.telegram.ui.ActionBar.n2) actionBarLayout.getFragmentStack().get(0), false);

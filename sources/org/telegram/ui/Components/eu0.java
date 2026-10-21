@@ -61,7 +61,7 @@ public final class eu0 extends im0 {
         boolean z16;
         boolean z17;
         uv0 uv0Var = this.f25970f;
-        org.telegram.ui.ActionBar.n2 n2Var = uv0Var.f31070v1;
+        org.telegram.ui.ActionBar.n2 n2Var = uv0Var.f31071v1;
         View view = b1Var.f45917a;
         if (view instanceof org.telegram.ui.Cells.va) {
             org.telegram.ui.Cells.va vaVar = (org.telegram.ui.Cells.va) view;
@@ -134,7 +134,7 @@ public final class eu0 extends im0 {
                     }
                 }
                 TLRPC.User user = n2Var.getMessagesController().getUser(Long.valueOf(chatParticipant.user_id));
-                if (UserObject.isUserSelf(user) && ChatObject.canManageMyTag(n2Var.getMessagesController().getChat(Long.valueOf(-uv0Var.f31045j1)))) {
+                if (UserObject.isUserSelf(user) && ChatObject.canManageMyTag(n2Var.getMessagesController().getChat(Long.valueOf(-uv0Var.f31046j1)))) {
                     z14 = true;
                 } else {
                     z14 = false;
@@ -152,7 +152,7 @@ public final class eu0 extends im0 {
     public final s4.b1 x(ViewGroup viewGroup, int i10) {
         uv0 uv0Var = this.f25970f;
         if (i10 == 20) {
-            hu0 M = uv0.M(7, uv0Var.f31045j1, this.f25969c, uv0Var.F1);
+            hu0 M = uv0.M(7, uv0Var.f31046j1, this.f25969c, uv0Var.F1);
             M.setLayoutParams(new s4.o0(-1, -1));
             return new s4.b1(M);
         }

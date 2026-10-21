@@ -11,12 +11,12 @@ public final class sn0 implements co0 {
 
     @Override
     public final void a(TL_account.Password password) {
-        this.f41499a.f36699a0 = password;
+        this.f41499a.f36700a0 = password;
     }
 
     @Override
     public final void b() {
-        this.f41499a.f36712f0 = null;
+        this.f41499a.f36713f0 = null;
     }
 
     @Override

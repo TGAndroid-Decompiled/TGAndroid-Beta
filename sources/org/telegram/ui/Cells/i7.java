@@ -1043,9 +1043,9 @@ public final class i7 extends FrameLayout implements DownloadController.FileDown
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         xp xpVar = this.f22433n;
-        if (xpVar.f32458a.f24151q) {
+        if (xpVar.f32459a.f24151q) {
             accessibilityNodeInfo.setCheckable(true);
-            accessibilityNodeInfo.setChecked(xpVar.f32458a.f24151q);
+            accessibilityNodeInfo.setChecked(xpVar.f32459a.f24151q);
         }
     }
 

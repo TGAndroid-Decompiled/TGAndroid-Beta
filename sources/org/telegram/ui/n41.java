@@ -37,7 +37,7 @@ public final class n41 implements org.telegram.ui.Components.am0 {
                 } catch (Exception unused) {
                 }
                 g51 g51Var = (g51) view;
-                if (!g51Var.f37194s && !UserConfig.getInstance(i11).isPremium()) {
+                if (!g51Var.f37195s && !UserConfig.getInstance(i11).isPremium()) {
                     org.telegram.ui.Components.a6 a6Var = g51Var.e;
                     TLRPC.Document document = a6Var.document;
                     if (document == null) {
@@ -49,11 +49,11 @@ public final class n41 implements org.telegram.ui.Components.am0 {
                 x51Var.S0 = g51Var;
                 x51Var.U0 = 0.0f;
                 x51Var.T0 = false;
-                if (g51Var.f37194s) {
+                if (g51Var.f37195s) {
                     x51Var.setBigReactionAnimatedEmoji(null);
-                    TLRPC.TL_availableReaction tL_availableReaction = MediaDataController.getInstance(i11).getReactionsMap().get(x51Var.S0.f37196x.f783f);
+                    TLRPC.TL_availableReaction tL_availableReaction = MediaDataController.getInstance(i11).getReactionsMap().get(x51Var.S0.f37197x.f783f);
                     if (tL_availableReaction != null) {
-                        x51Var.V0.setImage(ImageLocation.getForDocument(tL_availableReaction.select_animation), "60_60_pcache", null, null, null, 0L, "tgs", x51Var.S0.f37196x, 0);
+                        x51Var.V0.setImage(ImageLocation.getForDocument(tL_availableReaction.select_animation), "60_60_pcache", null, null, null, 0L, "tgs", x51Var.S0.f37197x, 0);
                     }
                 } else {
                     x51Var.setBigReactionAnimatedEmoji(new org.telegram.ui.Components.r5(4, i11, x51Var.S0.e.documentId));

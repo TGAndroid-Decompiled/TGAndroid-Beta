@@ -1,33 +1,22 @@
 package org.telegram.messenger;
-
-import org.telegram.tgnet.TLRPC;
 public final class tl implements Runnable {
-    public final int f19620a = 0;
-    public final String f19621b;
-    public final Object f19622c;
-    public final Object d;
+    public final int f19619a;
+    public final VideoEncodingService f19620b;
 
-    public tl(String str, String str2, byte[] bArr) {
-        this.f19621b = str;
-        this.f19622c = str2;
-        this.d = bArr;
+    public tl(VideoEncodingService videoEncodingService, int i10) {
+        this.f19619a = i10;
+        this.f19620b = videoEncodingService;
     }
 
     @Override
     public final void run() {
-        switch (this.f19620a) {
+        switch (this.f19619a) {
             case 0:
-                WearAuthListenerService.a(this.f19621b, (String) this.f19622c, (byte[]) this.d);
+                VideoEncodingService.a(this.f19620b);
                 return;
             default:
-                ((MediaDataController) this.f19622c).lambda$putEmojiKeywords$216((TLRPC.TL_emojiKeywordsDifference) this.d, this.f19621b);
+                VideoEncodingService.b(this.f19620b);
                 return;
         }
-    }
-
-    public tl(MediaDataController mediaDataController, TLRPC.TL_emojiKeywordsDifference tL_emojiKeywordsDifference, String str) {
-        this.f19622c = mediaDataController;
-        this.d = tL_emojiKeywordsDifference;
-        this.f19621b = str;
     }
 }

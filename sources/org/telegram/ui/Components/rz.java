@@ -14,12 +14,12 @@ import org.telegram.messenger.SvgHelper;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class rz extends im0 {
-    public final boolean f30058c;
+    public final boolean f30059c;
     public final tz d;
 
     public rz(tz tzVar, boolean z10) {
         this.d = tzVar;
-        this.f30058c = z10;
+        this.f30059c = z10;
     }
 
     @Override
@@ -30,12 +30,12 @@ public final class rz extends im0 {
     @Override
     public final int h() {
         ArrayList arrayList;
-        boolean z10 = this.f30058c;
+        boolean z10 = this.f30059c;
         tz tzVar = this.d;
         if (z10) {
-            arrayList = tzVar.f30755n1;
+            arrayList = tzVar.f30756n1;
         } else {
-            arrayList = tzVar.f30751m1;
+            arrayList = tzVar.f30752m1;
         }
         return arrayList.size();
     }
@@ -54,11 +54,11 @@ public final class rz extends im0 {
         String str;
         w9 w9Var = (w9) b1Var.f45917a;
         tz tzVar = this.d;
-        boolean z10 = this.f30058c;
+        boolean z10 = this.f30059c;
         if (z10) {
-            arrayList = tzVar.f30755n1;
+            arrayList = tzVar.f30756n1;
         } else {
-            arrayList = tzVar.f30751m1;
+            arrayList = tzVar.f30752m1;
         }
         TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) arrayList.get(i10);
         w9Var.setTag(stickerSetCovered);
@@ -66,7 +66,7 @@ public final class rz extends im0 {
         if (stickerSetCovered instanceof TLRPC.TL_stickerSetFullCovered) {
             arrayList2 = ((TLRPC.TL_stickerSetFullCovered) stickerSetCovered).documents;
         } else if (stickerSetCovered instanceof TLRPC.TL_stickerSetNoCovered) {
-            TLRPC.TL_messages_stickerSet stickerSet = MediaDataController.getInstance(tzVar.f30722c1).getStickerSet(MediaDataController.getInputStickerSet(stickerSetCovered.set), false);
+            TLRPC.TL_messages_stickerSet stickerSet = MediaDataController.getInstance(tzVar.f30723c1).getStickerSet(MediaDataController.getInputStickerSet(stickerSetCovered.set), false);
             if (stickerSet == null) {
                 arrayList2 = null;
             } else {

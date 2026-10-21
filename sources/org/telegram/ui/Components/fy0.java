@@ -96,7 +96,7 @@ public final class fy0 implements org.telegram.ui.ct {
 
     @Override
     public final boolean b() {
-        ny0 ny0Var = this.f26441a.f29745b0;
+        ny0 ny0Var = this.f26441a.f29746b0;
         if (ny0Var != null && ny0Var.b()) {
             return true;
         }
@@ -105,7 +105,7 @@ public final class fy0 implements org.telegram.ui.ct {
 
     @Override
     public final boolean c() {
-        ny0 ny0Var = this.f26441a.f29745b0;
+        ny0 ny0Var = this.f26441a.f29746b0;
         if (ny0Var != null && ny0Var.c()) {
             return true;
         }
@@ -157,7 +157,7 @@ public final class fy0 implements org.telegram.ui.ct {
 
     @Override
     public final boolean k(int i10) {
-        if (this.f26441a.f29745b0 != null) {
+        if (this.f26441a.f29746b0 != null) {
             return true;
         }
         return false;
@@ -166,11 +166,11 @@ public final class fy0 implements org.telegram.ui.ct {
     @Override
     public final void l(TLRPC.Document document, String str, Object obj, boolean z10, int i10, int i11) {
         qy0 qy0Var = this.f26441a;
-        ny0 ny0Var = qy0Var.f29745b0;
+        ny0 ny0Var = qy0Var.f29746b0;
         if (ny0Var == null) {
             return;
         }
-        ny0Var.e(document, str, obj, null, qy0Var.f29754i0, z10, i10, 0);
+        ny0Var.e(document, str, obj, null, qy0Var.f29755i0, z10, i10, 0);
         qy0Var.dismiss();
     }
 

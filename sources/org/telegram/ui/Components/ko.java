@@ -27,13 +27,13 @@ public final class ko extends w9 {
     public final void onDraw(Canvas canvas) {
         long j10;
         oo ooVar = this.K;
-        if (ooVar.f29086b && this.e == null) {
+        if (ooVar.f29087b && this.e == null) {
             org.telegram.ui.Cells.l6 l6Var = this.G;
             l6Var.F.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
             l6Var.f6209a = true;
             l6Var.v = true;
             l6Var.J = this.J;
-            Integer num = ooVar.f29088c;
+            Integer num = ooVar.f29089c;
             if (num != null) {
                 l6Var.f6230z = num.intValue();
             }
@@ -48,7 +48,7 @@ public final class ko extends w9 {
                     j10 = 0;
                 }
             }
-            ci.d8.h(j10, canvas, this.f31992a, l6Var);
+            ci.d8.h(j10, canvas, this.f31993a, l6Var);
             return;
         }
         super.onDraw(canvas);
@@ -67,7 +67,7 @@ public final class ko extends w9 {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (this.K.f29086b && this.G.a(motionEvent, this)) {
+        if (this.K.f29087b && this.G.a(motionEvent, this)) {
             return true;
         }
         return super.onTouchEvent(motionEvent);

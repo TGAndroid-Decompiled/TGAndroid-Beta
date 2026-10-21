@@ -256,7 +256,7 @@ public final class p implements View.OnClickListener {
                     return;
                 }
                 org.telegram.ui.Components.qc Q = new org.telegram.ui.Components.xc(q4Var.f5769c1, q4Var.B0).Q(R.raw.error, 36, LocaleController.getString(R.string.StoryHidAccount));
-                Q.f29524a = 3;
+                Q.f29525a = 3;
                 Q.k(true);
                 return;
             case 12:

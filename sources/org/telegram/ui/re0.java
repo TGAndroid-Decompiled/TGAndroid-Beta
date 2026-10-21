@@ -35,7 +35,7 @@ public final class re0 extends org.telegram.ui.Components.qw0 {
 
     @Override
     public final boolean b() {
-        return !this.E.f36377h0;
+        return !this.E.f36378h0;
     }
 
     @Override
@@ -104,7 +104,7 @@ public final class re0 extends org.telegram.ui.Components.qw0 {
 
     @Override
     public final void j() {
-        AndroidUtilities.runOnUIThread(new pe0(this, 0), dg0.f36365t0);
+        AndroidUtilities.runOnUIThread(new pe0(this, 0), dg0.f36366t0);
     }
 
     @Override

@@ -68,7 +68,7 @@ public final class j5 extends FrameLayout {
         linearLayout2.setOrientation(0);
         om0 om0Var = new om0(getContext());
         this.v = om0Var;
-        om0Var.f29077r = true;
+        om0Var.f29078r = true;
         om0Var.a(R.drawable.menu_views_reactions3, false);
         ImageView imageView = new ImageView(getContext());
         imageView.setScaleType(ImageView.ScaleType.FIT_XY);

@@ -26,7 +26,7 @@ public final class h1 extends OldVideoPlayerRewinder {
             default:
                 PhotoViewer photoViewer = (PhotoViewer) this.f22324b;
                 PhotoViewer.k(photoViewer, MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0));
-                photoViewer.f33467z1.f(false);
+                photoViewer.f33468z1.f(false);
                 ah0.f24598p0.Q.f(false);
                 return;
         }
@@ -38,7 +38,7 @@ public final class h1 extends OldVideoPlayerRewinder {
             case 0:
                 u1 u1Var = (u1) this.f22324b;
                 t71 t71Var = u1Var.Gd;
-                t71Var.f30469n = new ki.t1(this, 11);
+                t71Var.f30470n = new ki.t1(this, 11);
                 t71Var.e(false);
                 u1Var.Gd.d(!z10);
                 u1Var.Gd.f(true);
@@ -46,10 +46,10 @@ public final class h1 extends OldVideoPlayerRewinder {
                 return;
             default:
                 PhotoViewer photoViewer = (PhotoViewer) this.f22324b;
-                photoViewer.f33467z1.e(false);
-                photoViewer.f33467z1.d(!z10);
-                photoViewer.f33467z1.f(true);
-                photoViewer.f33278e0.invalidate();
+                photoViewer.f33468z1.e(false);
+                photoViewer.f33468z1.d(!z10);
+                photoViewer.f33468z1.f(true);
+                photoViewer.f33279e0.invalidate();
                 ah0.v(z10);
                 return;
         }
@@ -69,10 +69,10 @@ public final class h1 extends OldVideoPlayerRewinder {
                 return;
             default:
                 PhotoViewer photoViewer = (PhotoViewer) this.f22324b;
-                photoViewer.f33467z1.g(Math.abs(j10));
+                photoViewer.f33468z1.g(Math.abs(j10));
                 if (z10) {
-                    photoViewer.f33385q3.h(f7, false);
-                    photoViewer.f33394r3.invalidate();
+                    photoViewer.f33386q3.h(f7, false);
+                    photoViewer.f33395r3.invalidate();
                 }
                 ah0 ah0Var = ah0.f24598p0;
                 ah0Var.Q.g(0L);

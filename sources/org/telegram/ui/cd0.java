@@ -9,24 +9,24 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class cd0 implements RequestDelegate {
-    public final int f35940a;
-    public final md0 f35941b;
-    public final Bundle f35942c;
+    public final int f35941a;
+    public final md0 f35942b;
+    public final Bundle f35943c;
     public final TLRPC.TL_auth_resetLoginEmail d;
 
     public cd0(md0 md0Var, Bundle bundle, TLRPC.TL_auth_resetLoginEmail tL_auth_resetLoginEmail, int i10) {
-        this.f35940a = i10;
-        this.f35941b = md0Var;
-        this.f35942c = bundle;
+        this.f35941a = i10;
+        this.f35942b = md0Var;
+        this.f35943c = bundle;
         this.d = tL_auth_resetLoginEmail;
     }
 
     @Override
     public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f35940a) {
+        switch (this.f35941a) {
             case 0:
-                final md0 md0Var = this.f35941b;
-                final Bundle bundle = this.f35942c;
+                final md0 md0Var = this.f35942b;
+                final Bundle bundle = this.f35943c;
                 final TLRPC.TL_auth_resetLoginEmail tL_auth_resetLoginEmail = this.d;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
@@ -80,8 +80,8 @@ public final class cd0 implements RequestDelegate {
                                     TLRPC.TL_auth_sentCode tL_auth_sentCode = (TLRPC.TL_auth_sentCode) tLObject2;
                                     TLRPC.auth_SentCodeType auth_sentcodetype = tL_auth_sentCode.type;
                                     if (auth_sentcodetype instanceof TLRPC.TL_auth_sentCodeTypeEmailCode) {
-                                        auth_sentcodetype.email_pattern = md0Var2.f39218y.getString("emailPattern");
-                                        md0Var2.f39217x = true;
+                                        auth_sentcodetype.email_pattern = md0Var2.f39219y.getString("emailPattern");
+                                        md0Var2.f39218x = true;
                                     }
                                     dg0Var2.g1(bundle2, tL_auth_sentCode, true);
                                     return;
@@ -102,8 +102,8 @@ public final class cd0 implements RequestDelegate {
                 });
                 return;
             default:
-                final md0 md0Var2 = this.f35941b;
-                final Bundle bundle2 = this.f35942c;
+                final md0 md0Var2 = this.f35942b;
+                final Bundle bundle2 = this.f35943c;
                 final TLRPC.TL_auth_resetLoginEmail tL_auth_resetLoginEmail2 = this.d;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
@@ -157,8 +157,8 @@ public final class cd0 implements RequestDelegate {
                                     TLRPC.TL_auth_sentCode tL_auth_sentCode = (TLRPC.TL_auth_sentCode) tLObject2;
                                     TLRPC.auth_SentCodeType auth_sentcodetype = tL_auth_sentCode.type;
                                     if (auth_sentcodetype instanceof TLRPC.TL_auth_sentCodeTypeEmailCode) {
-                                        auth_sentcodetype.email_pattern = md0Var22.f39218y.getString("emailPattern");
-                                        md0Var22.f39217x = true;
+                                        auth_sentcodetype.email_pattern = md0Var22.f39219y.getString("emailPattern");
+                                        md0Var22.f39218x = true;
                                     }
                                     dg0Var2.g1(bundle22, tL_auth_sentCode, true);
                                     return;

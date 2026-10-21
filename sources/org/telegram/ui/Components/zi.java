@@ -6,16 +6,16 @@ import android.text.TextWatcher;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesController;
 public final class zi implements TextWatcher {
-    public final fj f32915a;
+    public final fj f32916a;
 
     public zi(fj fjVar) {
-        this.f32915a = fjVar;
+        this.f32916a = fjVar;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
         boolean z10;
-        fj fjVar = this.f32915a;
+        fj fjVar = this.f32916a;
         ui uiVar = fjVar.f26229f0;
         TextUtils.isEmpty(fjVar.f26241y);
         fjVar.f26241y = editable.toString().trim();

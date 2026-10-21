@@ -9,20 +9,20 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 public final class ge0 extends org.telegram.ui.Components.qw0 {
-    public final id0 f37298a;
-    public final TextView f37299b;
-    public final TextView f37300c;
+    public final id0 f37299a;
+    public final TextView f37300b;
+    public final TextView f37301c;
     public final wh.n d;
     public final org.telegram.ui.Components.yj0 e;
-    public Bundle f37301f;
+    public Bundle f37302f;
     public String h;
-    public boolean f37302n;
-    public String f37303r;
-    public String f37304s;
+    public boolean f37303n;
+    public String f37304r;
+    public String f37305s;
     public String v;
-    public boolean f37305w;
-    public final ee0 f37306x;
-    public final dg0 f37307y;
+    public boolean f37306w;
+    public final ee0 f37307x;
+    public final dg0 f37308y;
 
     public ge0(org.telegram.ui.dg0 r20, android.content.Context r21) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ge0.<init>(org.telegram.ui.dg0, android.content.Context):void");
@@ -40,15 +40,15 @@ public final class ge0 extends org.telegram.ui.Components.qw0 {
 
     @Override
     public final boolean c(boolean z10) {
-        this.f37307y.k1(true, true);
-        this.f37301f = null;
-        this.f37302n = false;
+        this.f37308y.k1(true, true);
+        this.f37302f = null;
+        this.f37303n = false;
         return true;
     }
 
     @Override
     public final void d() {
-        this.f37302n = false;
+        this.f37303n = false;
     }
 
     @Override
@@ -59,10 +59,10 @@ public final class ge0 extends org.telegram.ui.Components.qw0 {
     @Override
     public final void h(String str) {
         int i10;
-        if (this.f37302n) {
+        if (this.f37303n) {
             return;
         }
-        id0 id0Var = this.f37298a;
+        id0 id0Var = this.f37299a;
         id0Var.e = true;
         for (tr trVar : id0Var.f40959f) {
             trVar.j(0.0f);
@@ -72,8 +72,8 @@ public final class ge0 extends org.telegram.ui.Components.qw0 {
             o(false);
             return;
         }
-        this.f37302n = true;
-        dg0 dg0Var = this.f37307y;
+        this.f37303n = true;
+        dg0 dg0Var = this.f37308y;
         dg0Var.n1(0, true);
         TLRPC.TL_auth_checkRecoveryPassword tL_auth_checkRecoveryPassword = new TLRPC.TL_auth_checkRecoveryPassword();
         tL_auth_checkRecoveryPassword.code = code;
@@ -83,29 +83,29 @@ public final class ge0 extends org.telegram.ui.Components.qw0 {
 
     @Override
     public final void j() {
-        AndroidUtilities.runOnUIThread(new ee0(this, 0), dg0.f36365t0);
+        AndroidUtilities.runOnUIThread(new ee0(this, 0), dg0.f36366t0);
     }
 
     @Override
     public final void k(Bundle bundle) {
         Bundle bundle2 = bundle.getBundle("recoveryview_params");
-        this.f37301f = bundle2;
+        this.f37302f = bundle2;
         if (bundle2 != null) {
             m(bundle2, true);
         }
         String string = bundle.getString("recoveryview_code");
         if (string != null) {
-            this.f37298a.setText(string);
+            this.f37299a.setText(string);
         }
     }
 
     @Override
     public final void l(Bundle bundle) {
-        String code = this.f37298a.getCode();
+        String code = this.f37299a.getCode();
         if (code != null && code.length() != 0) {
             bundle.putString("recoveryview_code", code);
         }
-        Bundle bundle2 = this.f37301f;
+        Bundle bundle2 = this.f37302f;
         if (bundle2 != null) {
             bundle.putBundle("recoveryview_params", bundle2);
         }
@@ -116,41 +116,41 @@ public final class ge0 extends org.telegram.ui.Components.qw0 {
         if (bundle == null) {
             return;
         }
-        id0 id0Var = this.f37298a;
+        id0 id0Var = this.f37299a;
         id0Var.setText("");
-        this.f37301f = bundle;
+        this.f37302f = bundle;
         this.h = bundle.getString("password");
-        this.f37303r = this.f37301f.getString("requestPhone");
-        this.f37304s = this.f37301f.getString("phoneHash");
-        this.v = this.f37301f.getString("phoneCode");
-        String string = this.f37301f.getString("email_unconfirmed_pattern");
+        this.f37304r = this.f37302f.getString("requestPhone");
+        this.f37305s = this.f37302f.getString("phoneHash");
+        this.v = this.f37302f.getString("phoneCode");
+        String string = this.f37302f.getString("email_unconfirmed_pattern");
         SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(string);
         int indexOf = string.indexOf(42);
         int lastIndexOf = string.lastIndexOf(42);
         if (indexOf != lastIndexOf && indexOf != -1 && lastIndexOf != -1) {
             ?? obj = new Object();
-            obj.f28649a |= 256;
-            obj.f28650b = indexOf;
+            obj.f28650a |= 256;
+            obj.f28651b = indexOf;
             int i10 = lastIndexOf + 1;
-            obj.f28651c = i10;
+            obj.f28652c = i10;
             valueOf.setSpan(new org.telegram.ui.Components.o11(obj, 0), indexOf, i10, 0);
         }
         this.d.setText(AndroidUtilities.formatSpannable(LocaleController.getString(R.string.RestoreEmailNoAccess), valueOf));
-        dg0.T0(this.f37307y, id0Var);
+        dg0.T0(this.f37308y, id0Var);
         id0Var.requestFocus();
     }
 
     @Override
     public final void n() {
-        this.f37299b.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.G6, false));
-        this.f37300c.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.D6, false));
+        this.f37300b.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.G6, false));
+        this.f37301c.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.D6, false));
         this.d.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.q6, false));
-        this.f37298a.invalidate();
+        this.f37299a.invalidate();
     }
 
     public final void o(boolean z10) {
-        id0 id0Var = this.f37298a;
-        if (this.f37307y.getParentActivity() == null) {
+        id0 id0Var = this.f37299a;
+        if (this.f37308y.getParentActivity() == null) {
             return;
         }
         try {
@@ -172,6 +172,6 @@ public final class ge0 extends org.telegram.ui.Components.qw0 {
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        removeCallbacks(this.f37306x);
+        removeCallbacks(this.f37307x);
     }
 }

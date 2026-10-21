@@ -253,7 +253,7 @@ public class s0 extends c implements LocationController.LocationFetchCallback {
         this.Y = new ArrayList(arrayList);
         long clientUserId = UserConfig.getInstance(this.K).getClientUserId();
         for (int i10 = 0; i10 < this.Y.size(); i10++) {
-            if (((hc0) this.Y.get(i10)).f37569a == clientUserId || ((hc0) this.Y.get(i10)).f37570b.out) {
+            if (((hc0) this.Y.get(i10)).f37570a == clientUserId || ((hc0) this.Y.get(i10)).f37571b.out) {
                 this.Y.remove(i10);
                 break;
             }
@@ -625,15 +625,15 @@ public class s0 extends c implements LocationController.LocationFetchCallback {
                     j5 j5Var = v7Var.f23643b;
                     Location location3 = v7Var.v;
                     v7Var.f23648s = hc0Var;
-                    if (DialogObject.isUserDialog(hc0Var.f37569a)) {
-                        TLRPC.User user2 = MessagesController.getInstance(v7Var.f23650x).getUser(Long.valueOf(hc0Var.f37569a));
+                    if (DialogObject.isUserDialog(hc0Var.f37570a)) {
+                        TLRPC.User user2 = MessagesController.getInstance(v7Var.f23650x).getUser(Long.valueOf(hc0Var.f37570a));
                         if (user2 != null) {
                             v7Var.f23645f.m(v7Var.f23650x, user2);
                             j5Var.l(ContactsController.formatName(user2.first_name, user2.last_name), false);
                             w9Var2.e(user2, v7Var.f23645f);
                         }
                     } else {
-                        TLRPC.Chat chat2 = MessagesController.getInstance(v7Var.f23650x).getChat(Long.valueOf(-hc0Var.f37569a));
+                        TLRPC.Chat chat2 = MessagesController.getInstance(v7Var.f23650x).getChat(Long.valueOf(-hc0Var.f37570a));
                         if (chat2 != null) {
                             v7Var.f23645f.k(v7Var.f23650x, chat2);
                             j5Var.l(chat2.title, false);
@@ -643,7 +643,7 @@ public class s0 extends c implements LocationController.LocationFetchCallback {
                     IMapsProvider.LatLng position = hc0Var.e.getPosition();
                     location3.setLatitude(position.latitude);
                     location3.setLongitude(position.longitude);
-                    TLRPC.Message message = hc0Var.f37570b;
+                    TLRPC.Message message = hc0Var.f37571b;
                     int i19 = message.edit_date;
                     if (i19 != 0) {
                         j10 = i19;
@@ -800,7 +800,7 @@ public class s0 extends c implements LocationController.LocationFetchCallback {
                 break;
             case 10:
                 View z6Var = new z6(context, (org.telegram.ui.Cells.c1) null);
-                new zq(new ColorDrawable(h6.w0(h6.f20932a7, d6Var)), h6.W0(context, R.drawable.greydivider_bottom, h6.f20952b7)).f33023w = true;
+                new zq(new ColorDrawable(h6.w0(h6.f20932a7, d6Var)), h6.W0(context, R.drawable.greydivider_bottom, h6.f20952b7)).f33024w = true;
                 view2 = z6Var;
                 break;
             case 11:

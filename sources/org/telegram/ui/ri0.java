@@ -19,7 +19,7 @@ public final class ri0 extends z81 {
         int i11;
         int i12;
         ui0 ui0Var = this.v.d;
-        if (this.f43675r.f35543c <= 0) {
+        if (this.f43675r.f35544c <= 0) {
             performClick();
             jg.g gVar = this.f43671b;
             if (gVar.f14480t0.G) {
@@ -28,10 +28,10 @@ public final class ri0 extends z81 {
                     b91 b91Var = this.f43675r;
                     b91Var.e = new kg.e(b91Var.d, selectedDate);
                     g(false);
-                } else if (this.f43675r.f35545g == null) {
+                } else if (this.f43675r.f35546g == null) {
                 } else {
                     f();
-                    String str = this.f43675r.f35545g + "_" + selectedDate;
+                    String str = this.f43675r.f35546g + "_" + selectedDate;
                     kg.b bVar = (kg.b) ui0Var.v.get(str);
                     if (bVar != null) {
                         this.f43675r.e = bVar;
@@ -39,7 +39,7 @@ public final class ri0 extends z81 {
                         return;
                     }
                     TL_stats.TL_loadAsyncGraph tL_loadAsyncGraph = new TL_stats.TL_loadAsyncGraph();
-                    tL_loadAsyncGraph.token = this.f43675r.f35545g;
+                    tL_loadAsyncGraph.token = this.f43675r.f35546g;
                     if (selectedDate != 0) {
                         tL_loadAsyncGraph.f20504x = selectedDate;
                         tL_loadAsyncGraph.flags |= 1;

@@ -118,7 +118,7 @@ public final class ha implements View.OnClickListener {
                         TwoStepVerificationActivity twoStepVerificationActivity = new TwoStepVerificationActivity();
                         org.telegram.ui.sd sdVar = new org.telegram.ui.sd(ieVar, twoStepVerificationActivity, 2);
                         twoStepVerificationActivity.Z = 1;
-                        twoStepVerificationActivity.f33938b0 = sdVar;
+                        twoStepVerificationActivity.f33939b0 = sdVar;
                         zdVar.setLoading(true);
                         twoStepVerificationActivity.s0(new org.telegram.ui.td(ieVar, p91Var, twoStepVerificationActivity, 2));
                         return;
@@ -172,7 +172,7 @@ public final class ha implements View.OnClickListener {
                 if (i15 <= 0) {
                     z13 = true;
                 }
-                TLRPC.TL_chatBannedRights tL_chatBannedRights = psVar.f29385w0;
+                TLRPC.TL_chatBannedRights tL_chatBannedRights = psVar.f29386w0;
                 boolean z15 = !z13;
                 tL_chatBannedRights.send_media = z15;
                 tL_chatBannedRights.send_photos = z15;
@@ -193,9 +193,9 @@ public final class ha implements View.OnClickListener {
                 return;
             case 9:
                 u40 u40Var = (u40) obj2;
-                u40Var.f30841n = i15;
-                u40Var.f30838b.d(view.getLeft(), false);
-                u40Var.f30839c.d(view.getRight(), false);
+                u40Var.f30842n = i15;
+                u40Var.f30839b.d(view.getLeft(), false);
+                u40Var.f30840c.d(view.getRight(), false);
                 ((MessagesStorage.IntCallback) obj).run(i15);
                 u40Var.invalidate();
                 return;
@@ -271,7 +271,7 @@ public final class ha implements View.OnClickListener {
                 du0 du0Var = (du0) obj2;
                 TLRPC.Chat chat = (TLRPC.Chat) obj;
                 uv0 uv0Var = du0Var.f25631f;
-                org.telegram.ui.ActionBar.n2 n2Var2 = uv0Var.f31070v1;
+                org.telegram.ui.ActionBar.n2 n2Var2 = uv0Var.f31071v1;
                 n2Var2.finishPreviewFragment();
                 chat.left = false;
                 du0Var.E(false);
@@ -280,7 +280,7 @@ public final class ha implements View.OnClickListener {
                     uv0Var.y1(true);
                     uv0Var.F();
                 }
-                n2Var2.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.channelRecommendationsLoaded, Long.valueOf(-uv0Var.f31045j1));
+                n2Var2.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.channelRecommendationsLoaded, Long.valueOf(-uv0Var.f31046j1));
                 n2Var2.getMessagesController().addUserToChat(chat.f20276id, n2Var2.getUserConfig().getCurrentUser(), 0, null, n2Var2, new ho0(8, du0Var, chat));
                 return;
             case 12:
@@ -323,8 +323,8 @@ public final class ha implements View.OnClickListener {
                 saveToGallerySettingsActivity.getClass();
                 ((org.telegram.ui.ActionBar.m1) obj).dismiss();
                 Bundle bundle = new Bundle();
-                bundle.putLong("dialog_id", ((f31) saveToGallerySettingsActivity.f33781s.get(i15)).f36887c.dialogId);
-                bundle.putInt("type", saveToGallerySettingsActivity.f33775a);
+                bundle.putLong("dialog_id", ((f31) saveToGallerySettingsActivity.f33782s.get(i15)).f36888c.dialogId);
+                bundle.putInt("type", saveToGallerySettingsActivity.f33776a);
                 saveToGallerySettingsActivity.presentFragment(new SaveToGallerySettingsActivity(bundle));
                 return;
             case 17:
@@ -396,8 +396,8 @@ public final class ha implements View.OnClickListener {
                 ks0 ks0Var = (ks0) obj2;
                 org.telegram.ui.ActionBar.n2 n2Var3 = (org.telegram.ui.ActionBar.n2) obj;
                 xp xpVar = ks0Var.F;
-                xpVar.a(!xpVar.f32458a.f24151q, true);
-                boolean z17 = xpVar.f32458a.f24151q;
+                xpVar.a(!xpVar.f32459a.f24151q, true);
+                boolean z17 = xpVar.f32459a.f24151q;
                 org.telegram.ui.Components.xc a02 = org.telegram.ui.Components.xc.a0(n2Var3);
                 if (z17) {
                     i10 = R.raw.silent_unmute;

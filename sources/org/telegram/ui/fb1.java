@@ -19,7 +19,7 @@ public final class fb1 extends org.telegram.ui.Components.jm0 {
     @Override
     public final boolean F0(View view) {
         s4.b1 T;
-        fb1 fb1Var = this.X2.f38570u0;
+        fb1 fb1Var = this.X2.f38571u0;
         View F = fb1Var.F(view);
         if (F == null) {
             T = null;
@@ -44,8 +44,8 @@ public final class fb1 extends org.telegram.ui.Components.jm0 {
                 int top = view.getTop();
                 boolean m32 = u1Var.m3();
                 kc1 kc1Var = this.X2;
-                if (m32 && (T = kc1Var.f38570u0.T(view)) != null) {
-                    if (kc1Var.f38570u0.K(T.b() - 1) != null) {
+                if (m32 && (T = kc1Var.f38571u0.T(view)) != null) {
+                    if (kc1Var.f38571u0.K(T.b() - 1) != null) {
                         avatarImage.setImageY(-AndroidUtilities.dp(1000.0f));
                         avatarImage.draw(canvas);
                         return drawChild;
@@ -53,15 +53,15 @@ public final class fb1 extends org.telegram.ui.Components.jm0 {
                 }
                 float translationX = u1Var.getTranslationX();
                 int layoutHeight = u1Var.getLayoutHeight() + view.getTop();
-                int measuredHeight = kc1Var.f38570u0.getMeasuredHeight() - kc1Var.f38570u0.getPaddingBottom();
+                int measuredHeight = kc1Var.f38571u0.getMeasuredHeight() - kc1Var.f38571u0.getPaddingBottom();
                 if (layoutHeight > measuredHeight) {
                     layoutHeight = measuredHeight;
                 }
-                if (u1Var.n3() && (r11 = kc1Var.f38570u0.T(view)) != null) {
+                if (u1Var.n3() && (r11 = kc1Var.f38571u0.T(view)) != null) {
                     int i10 = 0;
                     while (i10 < 20) {
                         i10++;
-                        s4.b1 T2 = kc1Var.f38570u0.K(T2.b() + 1);
+                        s4.b1 T2 = kc1Var.f38571u0.K(T2.b() + 1);
                         if (T2 == null) {
                             break;
                         }
@@ -115,10 +115,10 @@ public final class fb1 extends org.telegram.ui.Components.jm0 {
         int action = motionEvent.getAction();
         kc1 kc1Var = this.X2;
         if (action == 1) {
-            if (!kc1Var.f38563r0 && (kc1Var.B1 instanceof sh1) && kc1Var.L0[0].getVisibility() == 0) {
+            if (!kc1Var.f38564r0 && (kc1Var.B1 instanceof sh1) && kc1Var.L0[0].getVisibility() == 0) {
                 kc1Var.f1(0, false, true);
             }
-            kc1Var.f38563r0 = false;
+            kc1Var.f38564r0 = false;
         }
         if (kc1Var.a2) {
             if (motionEvent.getAction() == 0) {

@@ -60,12 +60,12 @@ public final class u4 implements ValueAnimator.AnimatorUpdateListener {
             case 4:
                 float animatedFraction = valueAnimator.getAnimatedFraction();
                 qy0 qy0Var = (qy0) ((dn0) obj).f25574b;
-                qy0Var.f29746c.setAlpha(animatedFraction);
+                qy0Var.f29747c.setAlpha(animatedFraction);
                 qy0Var.h.setAlpha(animatedFraction);
                 if (i12 != 0) {
                     int i14 = (int) ((1.0f - animatedFraction) * i12);
                     qy0Var.z0(i11 + i14);
-                    qy0Var.f29746c.setTranslationY(i14);
+                    qy0Var.f29747c.setTranslationY(i14);
                     return;
                 }
                 return;

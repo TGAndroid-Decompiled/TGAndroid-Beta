@@ -56,13 +56,13 @@ public final class m5 extends LinearLayout {
             case 5:
                 canvas.save();
                 r31 r31Var = (r31) this.f9467c;
-                float e = ((org.telegram.ui.Components.f6) this.f9466b).e(r31Var.f29806w);
+                float e = ((org.telegram.ui.Components.f6) this.f9466b).e(r31Var.f29807w);
                 if (e > 0.0f) {
-                    if (r31Var.f29801c == null) {
-                        r31Var.f29801c = new vp0(this);
+                    if (r31Var.f29802c == null) {
+                        r31Var.f29802c = new vp0(this);
                     }
                     canvas.translate(getWidth() / 2.0f, getHeight() / 2.0f);
-                    r31Var.f29801c.a(canvas, e);
+                    r31Var.f29802c.a(canvas, e);
                     canvas.translate((-getWidth()) / 2.0f, (-getHeight()) / 2.0f);
                 }
                 super.dispatchDraw(canvas);

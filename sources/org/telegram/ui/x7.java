@@ -35,7 +35,7 @@ public final class x7 extends FrameLayout {
                 int i15 = this.f43115b;
                 if (i15 != -1 && Math.abs(i15 - i14) > AndroidUtilities.dp(20.0f)) {
                     bq bqVar = (bq) this.f43116c;
-                    bqVar.f35686b.x0(bqVar.V - 1);
+                    bqVar.f35687b.x0(bqVar.V - 1);
                 }
                 this.f43115b = i14;
                 return;

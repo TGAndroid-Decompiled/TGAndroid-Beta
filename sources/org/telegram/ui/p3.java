@@ -22,9 +22,9 @@ public final class p3 extends URLSpan {
             case 0:
                 l4 l4Var = q3Var.f40357c;
                 String url = getURL();
-                org.telegram.ui.Components.y90 y90Var = l4Var.f35522b;
+                org.telegram.ui.Components.y90 y90Var = l4Var.f35523b;
                 d3 d3Var = l4Var.d;
-                HashSet hashSet = l4.f38734b1;
+                HashSet hashSet = l4.f38735b1;
                 if (y90Var == null) {
                     l0Var = null;
                 } else {

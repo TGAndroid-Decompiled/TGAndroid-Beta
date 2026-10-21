@@ -205,7 +205,7 @@ public final class d implements OnFailureListener, BillingController.ProductDeta
                 edit.putBoolean((String) obj2, ((boolean[]) obj)[0]);
                 edit.apply();
                 notificationsCustomSettingsActivity.l0(true);
-                notificationsCustomSettingsActivity.getNotificationsController().updateServerNotificationsSettings(notificationsCustomSettingsActivity.f33211s);
+                notificationsCustomSettingsActivity.getNotificationsController().updateServerNotificationsSettings(notificationsCustomSettingsActivity.f33212s);
                 return;
             default:
                 re1 re1Var = (re1) obj4;
@@ -325,7 +325,7 @@ public final class d implements OnFailureListener, BillingController.ProductDeta
                     h10.putLong("chat_id", -j11);
                 }
                 h10.putString("start_text", "@" + UserObject.getPublicUsername(user2) + " " + str2);
-                n2 n2Var = tiVar.f30545f0;
+                n2 n2Var = tiVar.f30546f0;
                 if (MessagesController.getInstance(tiVar.M1).checkCanOpenChat(h10, n2Var)) {
                     td0Var2.dismiss();
                     tiVar.dismiss(true);

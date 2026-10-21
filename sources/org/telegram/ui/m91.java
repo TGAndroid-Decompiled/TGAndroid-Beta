@@ -3,11 +3,11 @@ package org.telegram.ui;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.tl.TL_stats;
 public final class m91 {
-    public TL_stats.PostInteractionCounters f39161a;
-    public MessageObject f39162b;
+    public TL_stats.PostInteractionCounters f39162a;
+    public MessageObject f39163b;
 
     public final int a() {
-        TL_stats.PostInteractionCounters postInteractionCounters = this.f39161a;
+        TL_stats.PostInteractionCounters postInteractionCounters = this.f39162a;
         if (postInteractionCounters instanceof TL_stats.TL_postInteractionCountersMessage) {
             return ((TL_stats.TL_postInteractionCountersMessage) postInteractionCounters).forwards;
         }
@@ -18,7 +18,7 @@ public final class m91 {
     }
 
     public final int b() {
-        TL_stats.PostInteractionCounters postInteractionCounters = this.f39161a;
+        TL_stats.PostInteractionCounters postInteractionCounters = this.f39162a;
         if (postInteractionCounters instanceof TL_stats.TL_postInteractionCountersMessage) {
             return ((TL_stats.TL_postInteractionCountersMessage) postInteractionCounters).msg_id;
         }
@@ -29,7 +29,7 @@ public final class m91 {
     }
 
     public final int c() {
-        TL_stats.PostInteractionCounters postInteractionCounters = this.f39161a;
+        TL_stats.PostInteractionCounters postInteractionCounters = this.f39162a;
         if (postInteractionCounters instanceof TL_stats.TL_postInteractionCountersMessage) {
             return ((TL_stats.TL_postInteractionCountersMessage) postInteractionCounters).reactions;
         }
@@ -40,7 +40,7 @@ public final class m91 {
     }
 
     public final int d() {
-        TL_stats.PostInteractionCounters postInteractionCounters = this.f39161a;
+        TL_stats.PostInteractionCounters postInteractionCounters = this.f39162a;
         if (postInteractionCounters instanceof TL_stats.TL_postInteractionCountersMessage) {
             return ((TL_stats.TL_postInteractionCountersMessage) postInteractionCounters).views;
         }

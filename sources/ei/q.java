@@ -27,7 +27,7 @@ public final class q extends Drawable {
         this.f9614i = lbVar2;
         vj0 vj0Var = new vj0(R.raw.chat_audio_record_delete_3, AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), false, null);
         this.h = vj0Var;
-        vj0Var.f31281o0 = true;
+        vj0Var.f31282o0 = true;
         paint.setColor(-2406842);
         vj0Var.Z = true;
         vj0Var.Q(-2406842, "Cup Red");

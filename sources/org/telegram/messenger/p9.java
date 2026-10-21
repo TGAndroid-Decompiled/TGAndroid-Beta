@@ -4,45 +4,45 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLMethod;
 import org.telegram.tgnet.TLRPC;
 public final class p9 implements Runnable {
-    public final int f19222a;
-    public final long f19223b;
-    public final int f19224c;
+    public final int f19219a;
+    public final long f19220b;
+    public final int f19221c;
     public final long d;
     public final Object e;
-    public final Object f19225f;
+    public final Object f19222f;
 
     public p9(int i10, long j10, long j11, org.telegram.ui.ActionBar.e1 e1Var, org.telegram.ui.ActionBar.e1 e1Var2) {
-        this.f19222a = 3;
-        this.f19224c = i10;
-        this.f19223b = j10;
+        this.f19219a = 3;
+        this.f19221c = i10;
+        this.f19220b = j10;
         this.d = j11;
         this.e = e1Var;
-        this.f19225f = e1Var2;
+        this.f19222f = e1Var2;
     }
 
     @Override
     public final void run() {
         int i10;
-        switch (this.f19222a) {
+        switch (this.f19219a) {
             case 0:
-                int i11 = this.f19224c;
-                ((MediaDataController) this.e).lambda$loadBotInfo$200(this.f19223b, this.d, (Utilities.Callback) this.f19225f, i11);
+                int i11 = this.f19221c;
+                ((MediaDataController) this.e).lambda$loadBotInfo$200(this.f19220b, this.d, (Utilities.Callback) this.f19222f, i11);
                 return;
             case 1:
-                int i12 = this.f19224c;
+                int i12 = this.f19221c;
                 long j10 = this.d;
-                ((MessagesController) this.e).lambda$loadFullChat$66(this.f19223b, (TLRPC.TL_messages_chatFull) this.f19225f, i12, j10);
+                ((MessagesController) this.e).lambda$loadFullChat$66(this.f19220b, (TLRPC.TL_messages_chatFull) this.f19222f, i12, j10);
                 return;
             case 2:
-                int i13 = this.f19224c;
-                ((MessagesStorage) this.e).lambda$loadPendingTasks$20(this.f19223b, this.d, (TLMethod) this.f19225f, i13);
+                int i13 = this.f19221c;
+                ((MessagesStorage) this.e).lambda$loadPendingTasks$20(this.f19220b, this.d, (TLMethod) this.f19222f, i13);
                 return;
             default:
                 org.telegram.ui.ActionBar.e1 e1Var = (org.telegram.ui.ActionBar.e1) this.e;
-                org.telegram.ui.ActionBar.e1 e1Var2 = (org.telegram.ui.ActionBar.e1) this.f19225f;
-                int i14 = this.f19224c;
+                org.telegram.ui.ActionBar.e1 e1Var2 = (org.telegram.ui.ActionBar.e1) this.f19222f;
+                int i14 = this.f19221c;
                 MessagesController messagesController = MessagesController.getInstance(i14);
-                long j11 = this.f19223b;
+                long j11 = this.f19220b;
                 long j12 = this.d;
                 if (messagesController.isDialogMuted(j11, j12)) {
                     e1Var.g(LocaleController.getString(R.string.UnmuteNotifications), R.drawable.msg_unmute, null);
@@ -66,20 +66,20 @@ public final class p9 implements Runnable {
     }
 
     public p9(BaseController baseController, long j10, long j11, Object obj, int i10, int i11) {
-        this.f19222a = i11;
+        this.f19219a = i11;
         this.e = baseController;
-        this.f19223b = j10;
+        this.f19220b = j10;
         this.d = j11;
-        this.f19225f = obj;
-        this.f19224c = i10;
+        this.f19222f = obj;
+        this.f19221c = i10;
     }
 
     public p9(MessagesController messagesController, long j10, TLRPC.TL_messages_chatFull tL_messages_chatFull, int i10, long j11) {
-        this.f19222a = 1;
+        this.f19219a = 1;
         this.e = messagesController;
-        this.f19223b = j10;
-        this.f19225f = tL_messages_chatFull;
-        this.f19224c = i10;
+        this.f19220b = j10;
+        this.f19222f = tL_messages_chatFull;
+        this.f19221c = i10;
         this.d = j11;
     }
 }

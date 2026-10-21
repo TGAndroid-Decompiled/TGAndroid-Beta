@@ -14,7 +14,7 @@ public final class gx extends z4.g {
 
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (this.f26685w0.f30730f) {
+        if (this.f26685w0.f30731f) {
             return false;
         }
         if (getParent() != null) {
@@ -52,7 +52,7 @@ public final class gx extends z4.g {
                 }
                 return;
             } else if (i10 == 1) {
-                tzVar.f30737h0.x0(0);
+                tzVar.f30738h0.x0(0);
                 return;
             } else {
                 tzVar.D0.x0(1);

@@ -44,13 +44,13 @@ public final class za1 implements ImageReceiver.ImageReceiverDelegate, org.teleg
         if (!(kc1Var.B1 instanceof sh1)) {
             Drawable drawable = imageReceiver.getDrawable();
             if (z10 && drawable != null) {
-                kb1 kb1Var = kc1Var.f38516a;
+                kb1 kb1Var = kc1Var.f38517a;
                 AndroidUtilities.calcDrawableColor(drawable);
                 kb1Var.b(kc1Var.P0(drawable), drawable, Float.valueOf(kc1Var.l1));
-                if (!z11 && kc1Var.F1 && kc1Var.f38576w1 == null) {
-                    kc1Var.f38578x0.getImageReceiver().setCrossfadeWithOldImage(false);
+                if (!z11 && kc1Var.F1 && kc1Var.f38577w1 == null) {
+                    kc1Var.f38579x0.getImageReceiver().setCrossfadeWithOldImage(false);
                     kc1Var.i1();
-                    kc1Var.f38578x0.getImageReceiver().setCrossfadeWithOldImage(true);
+                    kc1Var.f38579x0.getImageReceiver().setCrossfadeWithOldImage(true);
                 }
                 kc1Var.V0();
             }
@@ -68,13 +68,13 @@ public final class za1 implements ImageReceiver.ImageReceiverDelegate, org.teleg
         if (!kc1Var.E1) {
             return;
         }
-        kc1Var.f38578x0.getBackground();
+        kc1Var.f38579x0.getBackground();
         float f7 = 1.0f;
         if (kc1Var.B0 != null) {
-            f7 = (kc1Var.f38578x0.getScaleX() - 1.0f) / (kc1Var.f38582y1 - 1.0f);
+            f7 = (kc1Var.f38579x0.getScaleX() - 1.0f) / (kc1Var.f38583y1 - 1.0f);
         }
-        kc1Var.f38578x0.setTranslationX(i10 * f7);
-        kc1Var.f38578x0.setTranslationY(i11 * f7);
+        kc1Var.f38579x0.setTranslationX(i10 * f7);
+        kc1Var.f38579x0.setTranslationY(i11 * f7);
     }
 
     @Override
@@ -82,14 +82,14 @@ public final class za1 implements ImageReceiver.ImageReceiverDelegate, org.teleg
         boolean z10;
         switch (this.f43705a) {
             case 3:
-                this.f43706b.f38566s0.getActionBarMenuOnItemClick().b(4);
+                this.f43706b.f38567s0.getActionBarMenuOnItemClick().b(4);
                 return;
             case 4:
                 this.f43706b.O0(false);
                 return;
             case 5:
                 kc1 kc1Var = this.f43706b;
-                org.telegram.ui.ActionBar.f6 f6Var = kc1Var.f38565s;
+                org.telegram.ui.ActionBar.f6 f6Var = kc1Var.f38566s;
                 if (f6Var.f20838j == 4294967296L) {
                     f6Var.f20838j = 0L;
                     f6Var.f20839k = 0L;
@@ -104,7 +104,7 @@ public final class za1 implements ImageReceiver.ImageReceiverDelegate, org.teleg
                 return;
             case 6:
                 kc1 kc1Var2 = this.f43706b;
-                org.telegram.ui.ActionBar.f6 f6Var2 = kc1Var2.f38565s;
+                org.telegram.ui.ActionBar.f6 f6Var2 = kc1Var2.f38566s;
                 if (org.telegram.ui.ActionBar.h6.a1() && org.telegram.ui.ActionBar.h6.I.f20893i0.d != 0) {
                     org.telegram.ui.ActionBar.a6 a6Var = f6Var2.f20852y;
                     f6Var2.f20838j = a6Var.d;
@@ -144,13 +144,13 @@ public final class za1 implements ImageReceiver.ImageReceiverDelegate, org.teleg
                     kc1Var2.m1(false);
                     org.telegram.ui.ActionBar.h6.o1(false, false);
                 }
-                Drawable background = kc1Var2.f38578x0.getBackground();
+                Drawable background = kc1Var2.f38579x0.getBackground();
                 if (background instanceof org.telegram.ui.Components.wc0) {
                     org.telegram.ui.Components.wc0 wc0Var = (org.telegram.ui.Components.wc0) background;
                     wc0Var.s(null, 100);
                     if (org.telegram.ui.ActionBar.h6.I.q()) {
                         if (kc1Var2.l1 < 0.0f) {
-                            kc1Var2.f38578x0.getImageReceiver().setGradientBitmap(wc0Var.f32075k);
+                            kc1Var2.f38579x0.getImageReceiver().setGradientBitmap(wc0Var.f32076k);
                         }
                         org.telegram.ui.Cells.j0 j0Var = kc1Var2.T0;
                         if (j0Var != null) {
@@ -172,7 +172,7 @@ public final class za1 implements ImageReceiver.ImageReceiverDelegate, org.teleg
                 return;
             default:
                 kc1 kc1Var3 = this.f43706b;
-                org.telegram.ui.ActionBar.f6 f6Var3 = kc1Var3.f38565s;
+                org.telegram.ui.ActionBar.f6 f6Var3 = kc1Var3.f38566s;
                 if (f6Var3.f20838j == 4294967296L) {
                     f6Var3.f20838j = 0L;
                     f6Var3.f20839k = 0L;

@@ -5,16 +5,16 @@ import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class x10 implements Runnable {
-    public final FragmentContextView f32305a;
+    public final FragmentContextView f32306a;
 
     public x10(FragmentContextView fragmentContextView) {
-        this.f32305a = fragmentContextView;
+        this.f32306a = fragmentContextView;
     }
 
     @Override
     public final void run() {
         String formatFullDuration;
-        FragmentContextView fragmentContextView = this.f32305a;
+        FragmentContextView fragmentContextView = this.f32306a;
         org.telegram.ui.ActionBar.n2 n2Var = fragmentContextView.h;
         if (fragmentContextView.f24222g0 != null && (n2Var instanceof org.telegram.ui.qn)) {
             ChatObject.Call groupCall = fragmentContextView.f24228n.getGroupCall();

@@ -21,16 +21,16 @@ public final class yg0 implements za0 {
             TLRPC.TL_chatInviteExported tL_chatInviteExported2 = (TLRPC.TL_chatInviteExported) ((TLRPC.TL_messages_exportedChatInvite) tLObject).invite;
             ih0 ih0Var = this.f43488a;
             ih0Var.c0(tL_chatInviteExported2);
-            for (int i10 = 0; i10 < ih0Var.f37988i0.size(); i10++) {
-                if (((TLRPC.TL_chatInviteExported) ih0Var.f37988i0.get(i10)).link.equals(tL_chatInviteExported.link)) {
+            for (int i10 = 0; i10 < ih0Var.f37989i0.size(); i10++) {
+                if (((TLRPC.TL_chatInviteExported) ih0Var.f37989i0.get(i10)).link.equals(tL_chatInviteExported.link)) {
                     if (tL_chatInviteExported2.revoked) {
                         zg0 f02 = ih0Var.f0();
-                        ih0Var.f37988i0.remove(i10);
-                        ih0Var.f37989j0.add(0, tL_chatInviteExported2);
+                        ih0Var.f37989i0.remove(i10);
+                        ih0Var.f37990j0.add(0, tL_chatInviteExported2);
                         ih0Var.h0(f02);
                         return;
                     }
-                    ih0Var.f37988i0.set(i10, tL_chatInviteExported2);
+                    ih0Var.f37989i0.set(i10, tL_chatInviteExported2);
                     ih0Var.i0(true);
                     return;
                 }

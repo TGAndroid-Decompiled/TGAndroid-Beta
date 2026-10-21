@@ -24,7 +24,7 @@ public final class f implements Runnable {
         j jVar = this.f22209a;
         y90 y90Var = jVar.f22454w;
         if (y90Var != null) {
-            CharacterStyle characterStyle = y90Var.f32601i;
+            CharacterStyle characterStyle = y90Var.f32602i;
             if (characterStyle instanceof l61) {
                 obj = ((l61) characterStyle).getURL();
             } else if (characterStyle instanceof URLSpan) {
@@ -40,7 +40,7 @@ public final class f implements Runnable {
             final StaticLayout staticLayout = jVar.f22456y;
             final float f7 = jVar.f22455x;
             if (jVar.getContext() != null) {
-                final ClickableSpan clickableSpan = (ClickableSpan) jVar.f22454w.f32601i;
+                final ClickableSpan clickableSpan = (ClickableSpan) jVar.f22454w.f32602i;
                 org.telegram.ui.ActionBar.f3 f3Var = new org.telegram.ui.ActionBar.f3(1, jVar.getContext(), (org.telegram.ui.ActionBar.d6) null, false);
                 f3Var.fixNavigationBar();
                 f3Var.title = str;

@@ -8,10 +8,10 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class ja extends org.telegram.ui.Components.im0 {
-    public final sa f38219c;
+    public final sa f38220c;
 
     public ja(sa saVar) {
-        this.f38219c = saVar;
+        this.f38220c = saVar;
     }
 
     @Override
@@ -25,7 +25,7 @@ public final class ja extends org.telegram.ui.Components.im0 {
     @Override
     public final int h() {
         int i10;
-        sa saVar = this.f38219c;
+        sa saVar = this.f38220c;
         org.telegram.ui.Components.jm0 jm0Var = saVar.f41412b;
         ArrayList arrayList = saVar.v;
         if (jm0Var != null) {
@@ -72,7 +72,7 @@ public final class ja extends org.telegram.ui.Components.im0 {
         int i11;
         int i12;
         boolean z10;
-        sa saVar = this.f38219c;
+        sa saVar = this.f38220c;
         long j10 = saVar.f41419x;
         int i13 = b1Var.f45920f;
         View view = b1Var.f45917a;
@@ -100,7 +100,7 @@ public final class ja extends org.telegram.ui.Components.im0 {
                 saVar.f41415n = true;
                 ma maVar = (ma) view;
                 saVar.f41420y = maVar;
-                maVar.f39163a.setText(saVar.f41416r);
+                maVar.f39164a.setText(saVar.f41416r);
                 saVar.f41415n = false;
                 return;
             }
@@ -128,7 +128,7 @@ public final class ja extends org.telegram.ui.Components.im0 {
 
     @Override
     public final s4.b1 x(ViewGroup viewGroup, int i10) {
-        sa saVar = this.f38219c;
+        sa saVar = this.f38220c;
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 != 2) {

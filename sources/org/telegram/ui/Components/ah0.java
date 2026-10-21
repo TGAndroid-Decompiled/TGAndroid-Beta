@@ -160,8 +160,8 @@ public final class ah0 implements tf.a {
             dVar.c();
             ah0Var.W = null;
         }
-        if (c81Var != null && uf.b.a(photoViewer.f33457y) == 1) {
-            rf.c cVar = new rf.c(photoViewer.f33457y, ah0Var);
+        if (c81Var != null && uf.b.a(photoViewer.f33458y) == 1) {
+            rf.c cVar = new rf.c(photoViewer.f33458y, ah0Var);
             cVar.f45263c = "photo-viewer-pip-" + c81Var.f25127a;
             cVar.e = 1;
             cVar.d = AndroidUtilities.dp(10.0f);
@@ -235,8 +235,8 @@ public final class ah0 implements tf.a {
     public final Bitmap e() {
         TextureView textureView;
         PhotoViewer photoViewer = this.V;
-        if (photoViewer != null && (textureView = photoViewer.f33441w3) != null && textureView.isAvailable()) {
-            return this.V.f33441w3.getBitmap();
+        if (photoViewer != null && (textureView = photoViewer.f33442w3) != null && textureView.isAvailable()) {
+            return this.V.f33442w3.getBitmap();
         }
         return null;
     }
@@ -263,7 +263,7 @@ public final class ah0 implements tf.a {
     public final void i() {
         org.telegram.ui.qs0 qs0Var;
         PhotoViewer photoViewer = this.V;
-        if (photoViewer == null || (qs0Var = photoViewer.f33264c4) == null) {
+        if (photoViewer == null || (qs0Var = photoViewer.f33265c4) == null) {
             return;
         }
         qs0Var.cancelRewind();
@@ -345,7 +345,7 @@ public final class ah0 implements tf.a {
                 f7 = 0.45f;
             }
             t71 t71Var = this.Q;
-            t71Var.f30472q = f7;
+            t71Var.f30473q = f7;
             t71Var.a();
         }
         return this.O.floatValue();

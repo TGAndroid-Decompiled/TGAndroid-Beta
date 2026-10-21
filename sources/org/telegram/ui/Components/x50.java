@@ -30,27 +30,27 @@ public final class x50 extends DispatchQueue {
     public int F;
     public int G;
     public final m60 H;
-    public final SurfaceTexture f32338a;
-    public EGL10 f32339b;
-    public EGLDisplay f32340c;
+    public final SurfaceTexture f32339a;
+    public EGL10 f32340b;
+    public EGLDisplay f32341c;
     public EGLContext d;
     public EGLSurface e;
-    public boolean f32341f;
+    public boolean f32342f;
     public Object h;
-    public final SurfaceTexture[] f32342n;
-    public int f32343r;
-    public int f32344s;
+    public final SurfaceTexture[] f32343n;
+    public int f32344r;
+    public int f32345s;
     public int v;
-    public int f32345w;
-    public int f32346x;
-    public boolean f32347y;
+    public int f32346w;
+    public int f32347x;
+    public boolean f32348y;
 
     public x50(m60 m60Var, SurfaceTexture surfaceTexture, int i10, int i11) {
         super("CameraGLThread");
         this.H = m60Var;
-        this.f32342n = new SurfaceTexture[2];
+        this.f32343n = new SurfaceTexture[2];
         this.E = 0;
-        this.f32338a = surfaceTexture;
+        this.f32339a = surfaceTexture;
         this.F = i10;
         this.G = i11;
     }
@@ -91,20 +91,20 @@ public final class x50 extends DispatchQueue {
 
     public final void finish() {
         EGLContext eGLContext;
-        if (this.f32342n != null) {
+        if (this.f32343n != null) {
             for (int i10 = 0; i10 < 2; i10++) {
-                SurfaceTexture surfaceTexture = this.f32342n[i10];
+                SurfaceTexture surfaceTexture = this.f32343n[i10];
                 if (surfaceTexture != null) {
                     surfaceTexture.release();
-                    this.f32342n[i10] = null;
+                    this.f32343n[i10] = null;
                 }
             }
         }
         this.H.W = false;
         if (this.e != null && (eGLContext = this.d) != null) {
-            if (!eGLContext.equals(this.f32339b.eglGetCurrentContext()) || !this.e.equals(this.f32339b.eglGetCurrentSurface(12377))) {
-                EGL10 egl10 = this.f32339b;
-                EGLDisplay eGLDisplay = this.f32340c;
+            if (!eGLContext.equals(this.f32340b.eglGetCurrentContext()) || !this.e.equals(this.f32340b.eglGetCurrentSurface(12377))) {
+                EGL10 egl10 = this.f32340b;
+                EGLDisplay eGLDisplay = this.f32341c;
                 EGLSurface eGLSurface = this.e;
                 egl10.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, this.d);
             }
@@ -120,22 +120,22 @@ public final class x50 extends DispatchQueue {
             }
         }
         if (this.e != null) {
-            EGL10 egl102 = this.f32339b;
-            EGLDisplay eGLDisplay2 = this.f32340c;
+            EGL10 egl102 = this.f32340b;
+            EGLDisplay eGLDisplay2 = this.f32341c;
             EGLSurface eGLSurface2 = EGL10.EGL_NO_SURFACE;
             egl102.eglMakeCurrent(eGLDisplay2, eGLSurface2, eGLSurface2, EGL10.EGL_NO_CONTEXT);
-            this.f32339b.eglDestroySurface(this.f32340c, this.e);
+            this.f32340b.eglDestroySurface(this.f32341c, this.e);
             this.e = null;
         }
         EGLContext eGLContext2 = this.d;
         if (eGLContext2 != null) {
-            this.f32339b.eglDestroyContext(this.f32340c, eGLContext2);
+            this.f32340b.eglDestroyContext(this.f32341c, eGLContext2);
             this.d = null;
         }
-        EGLDisplay eGLDisplay3 = this.f32340c;
+        EGLDisplay eGLDisplay3 = this.f32341c;
         if (eGLDisplay3 != null) {
-            this.f32339b.eglTerminate(eGLDisplay3);
-            this.f32340c = null;
+            this.f32340b.eglTerminate(eGLDisplay3);
+            this.f32341c = null;
         }
     }
 
@@ -199,21 +199,21 @@ public final class x50 extends DispatchQueue {
                     this.h = obj2;
                     return;
                 }
-                EGL10 egl10 = this.f32339b;
-                EGLDisplay eGLDisplay = this.f32340c;
+                EGL10 egl10 = this.f32340b;
+                EGLDisplay eGLDisplay = this.f32341c;
                 EGLSurface eGLSurface = this.e;
                 if (!egl10.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, this.d)) {
                     if (BuildVars.LOGS_ENABLED) {
-                        FileLog.d("InstantCamera eglMakeCurrent failed " + GLUtils.getEGLErrorString(this.f32339b.eglGetError()));
+                        FileLog.d("InstantCamera eglMakeCurrent failed " + GLUtils.getEGLErrorString(this.f32340b.eglGetError()));
                         return;
                     }
                     return;
                 }
-                SurfaceTexture surfaceTexture = this.f32342n[0];
+                SurfaceTexture surfaceTexture = this.f32343n[0];
                 if (surfaceTexture != null) {
                     surfaceTexture.getTransformMatrix(this.H.H0);
-                    this.f32342n[0].setOnFrameAvailableListener(null);
-                    this.f32342n[0].release();
+                    this.f32343n[0].setOnFrameAvailableListener(null);
+                    this.f32343n[0].release();
                     m60 m60Var3 = this.H;
                     int[] iArr = m60Var3.f28401c0;
                     int[] iArr2 = m60Var3.f28399b0;
@@ -232,12 +232,12 @@ public final class x50 extends DispatchQueue {
                 GLES20.glTexParameteri(36197, 10240, 9729);
                 GLES20.glTexParameteri(36197, 10242, 33071);
                 GLES20.glTexParameteri(36197, 10243, 33071);
-                this.f32342n[0] = new SurfaceTexture(this.H.f28399b0[0]);
-                this.f32342n[0].setOnFrameAvailableListener(new d00(this, 1));
+                this.f32343n[0] = new SurfaceTexture(this.H.f28399b0[0]);
+                this.f32343n[0].setOnFrameAvailableListener(new d00(this, 1));
                 if (this.H.B0) {
                     this.H.p("GL input recreated: surface=0");
                 }
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.i4(this.H, 0, this.f32342n[0], 12));
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.i4(this.H, 0, this.f32343n[0], 12));
                 c();
                 m60 m60Var5 = this.H;
                 float f15 = (1.0f / m60Var5.L0) / 2.0f;
@@ -251,7 +251,7 @@ public final class x50 extends DispatchQueue {
                 return;
             }
             finish();
-            if (this.f32347y && ((!((z14 = (obj = message.obj) instanceof a60)) || ((a60) obj).f24526c != -2) && (f60Var = this.H.f28415i1) != null)) {
+            if (this.f32348y && ((!((z14 = (obj = message.obj) instanceof a60)) || ((a60) obj).f24526c != -2) && (f60Var = this.H.f28415i1) != null)) {
                 int i13 = message.arg1;
                 if (z14) {
                     a60Var = (a60) obj;
@@ -277,31 +277,31 @@ public final class x50 extends DispatchQueue {
         } else {
             z11 = false;
         }
-        if (this.f32341f) {
-            if (!this.d.equals(this.f32339b.eglGetCurrentContext()) || !this.e.equals(this.f32339b.eglGetCurrentSurface(12377))) {
-                EGL10 egl102 = this.f32339b;
-                EGLDisplay eGLDisplay2 = this.f32340c;
+        if (this.f32342f) {
+            if (!this.d.equals(this.f32340b.eglGetCurrentContext()) || !this.e.equals(this.f32340b.eglGetCurrentSurface(12377))) {
+                EGL10 egl102 = this.f32340b;
+                EGLDisplay eGLDisplay2 = this.f32341c;
                 EGLSurface eGLSurface2 = this.e;
                 if (!egl102.eglMakeCurrent(eGLDisplay2, eGLSurface2, eGLSurface2, this.d)) {
                     if (BuildVars.LOGS_ENABLED) {
-                        org.telegram.messenger.mk.v(this.f32339b, new StringBuilder("eglMakeCurrent failed "));
+                        org.telegram.messenger.mk.v(this.f32340b, new StringBuilder("eglMakeCurrent failed "));
                         return;
                     }
                     return;
                 }
             }
             if (z10) {
-                this.f32342n[0].updateTexImage();
+                this.f32343n[0].updateTexImage();
             }
             if (z11) {
-                this.f32342n[1].updateTexImage();
+                this.f32343n[1].updateTexImage();
             }
             if (this.H.B0 && this.H.f28419k1 == this.H.A0 && ((this.H.f28419k1 == 0 && z10) || (this.H.f28419k1 == 1 && z11))) {
                 z12 = true;
             } else {
                 z12 = false;
             }
-            if (!this.f32347y) {
+            if (!this.f32348y) {
                 m60 m60Var6 = this.H;
                 if (m60Var6.f28415i1 == null) {
                     m60Var6.f28415i1 = new f60(m60Var6);
@@ -311,20 +311,20 @@ public final class x50 extends DispatchQueue {
                     if (!m60Var7.K) {
                         this.H.K = true;
                         AndroidUtilities.runOnUIThread(new Runnable(this) {
-                            public final x50 f31972b;
+                            public final x50 f31973b;
 
                             {
-                                this.f31972b = this;
+                                this.f31973b = this;
                             }
 
                             @Override
                             public final void run() {
                                 switch (r2) {
                                     case 0:
-                                        this.f31972b.H.f28427r0.animate().setDuration(120L).alpha(0.0f).setInterpolator(new DecelerateInterpolator()).start();
+                                        this.f31973b.H.f28427r0.animate().setDuration(120L).alpha(0.0f).setInterpolator(new DecelerateInterpolator()).start();
                                         return;
                                     default:
-                                        m60 m60Var8 = this.f31972b.H;
+                                        m60 m60Var8 = this.f31973b.H;
                                         if (m60Var8.f28425q0 != null) {
                                             Bitmap bitmap = m60Var8.f28417j1;
                                             if (bitmap != null) {
@@ -399,7 +399,7 @@ public final class x50 extends DispatchQueue {
                     m60Var9.L0 = m60Var9.M0;
                     m60Var9.M0 = f21;
                 }
-                this.f32347y = true;
+                this.f32348y = true;
                 this.H.v();
             } else {
                 z13 = false;
@@ -408,50 +408,50 @@ public final class x50 extends DispatchQueue {
             if (m60Var10.f28415i1 != null && ((m60Var10.f28419k1 == 0 && z10) || (this.H.f28419k1 == 1 && z11))) {
                 m60 m60Var11 = this.H;
                 f60 f60Var3 = m60Var11.f28415i1;
-                SurfaceTexture surfaceTexture2 = this.f32342n[m60Var11.f28419k1];
+                SurfaceTexture surfaceTexture2 = this.f32343n[m60Var11.f28419k1];
                 m60 m60Var12 = this.H;
                 if (m60Var12.f28431u0) {
                     i14 = m60Var12.f28419k1;
                 }
                 f60Var3.f(surfaceTexture2, Integer.valueOf(i14), System.nanoTime());
             }
-            this.f32342n[this.H.f28419k1].getTransformMatrix(this.H.G0);
-            GLES20.glUseProgram(this.f32343r);
+            this.f32343n[this.H.f28419k1].getTransformMatrix(this.H.G0);
+            GLES20.glUseProgram(this.f32344r);
             GLES20.glActiveTexture(33984);
             m60 m60Var13 = this.H;
             GLES20.glBindTexture(36197, m60Var13.f28399b0[m60Var13.f28419k1]);
-            GLES20.glVertexAttribPointer(this.f32345w, 3, 5126, false, 12, (Buffer) this.H.I0);
-            GLES20.glEnableVertexAttribArray(this.f32345w);
-            GLES20.glVertexAttribPointer(this.f32346x, 2, 5126, false, 8, (Buffer) this.H.J0);
-            GLES20.glEnableVertexAttribArray(this.f32346x);
+            GLES20.glVertexAttribPointer(this.f32346w, 3, 5126, false, 12, (Buffer) this.H.I0);
+            GLES20.glEnableVertexAttribArray(this.f32346w);
+            GLES20.glVertexAttribPointer(this.f32347x, 2, 5126, false, 8, (Buffer) this.H.J0);
+            GLES20.glEnableVertexAttribArray(this.f32347x);
             GLES20.glUniformMatrix4fv(this.v, 1, false, this.H.G0, 0);
-            GLES20.glUniformMatrix4fv(this.f32344s, 1, false, this.H.F0, 0);
+            GLES20.glUniformMatrix4fv(this.f32345s, 1, false, this.H.F0, 0);
             GLES20.glDrawArrays(5, 0, 4);
-            GLES20.glDisableVertexAttribArray(this.f32345w);
-            GLES20.glDisableVertexAttribArray(this.f32346x);
+            GLES20.glDisableVertexAttribArray(this.f32346w);
+            GLES20.glDisableVertexAttribArray(this.f32347x);
             GLES20.glBindTexture(36197, 0);
             GLES20.glUseProgram(0);
-            this.f32339b.eglSwapBuffers(this.f32340c, this.e);
+            this.f32340b.eglSwapBuffers(this.f32341c, this.e);
             if (z12 && this.H.B0) {
                 this.H.B0 = false;
                 this.H.p("first target frame presented: surface=" + this.H.f28419k1);
             }
             if (z13) {
                 AndroidUtilities.runOnUIThread(new Runnable(this) {
-                    public final x50 f31972b;
+                    public final x50 f31973b;
 
                     {
-                        this.f31972b = this;
+                        this.f31973b = this;
                     }
 
                     @Override
                     public final void run() {
                         switch (r2) {
                             case 0:
-                                this.f31972b.H.f28427r0.animate().setDuration(120L).alpha(0.0f).setInterpolator(new DecelerateInterpolator()).start();
+                                this.f31973b.H.f28427r0.animate().setDuration(120L).alpha(0.0f).setInterpolator(new DecelerateInterpolator()).start();
                                 return;
                             default:
-                                m60 m60Var82 = this.f31972b.H;
+                                m60 m60Var82 = this.f31973b.H;
                                 if (m60Var82.f28425q0 != null) {
                                     Bitmap bitmap = m60Var82.f28417j1;
                                     if (bitmap != null) {
@@ -489,9 +489,9 @@ public final class x50 extends DispatchQueue {
             FileLog.d("InstantCamera start init gl");
         }
         EGL10 egl10 = (EGL10) EGLContext.getEGL();
-        this.f32339b = egl10;
+        this.f32340b = egl10;
         EGLDisplay eglGetDisplay = egl10.eglGetDisplay(EGL10.EGL_DEFAULT_DISPLAY);
-        this.f32340c = eglGetDisplay;
+        this.f32341c = eglGetDisplay;
         boolean z10 = false;
         z10 = false;
         z10 = false;
@@ -503,40 +503,40 @@ public final class x50 extends DispatchQueue {
         z10 = false;
         if (eglGetDisplay == EGL10.EGL_NO_DISPLAY) {
             if (BuildVars.LOGS_ENABLED) {
-                org.telegram.messenger.mk.v(this.f32339b, new StringBuilder("InstantCamera eglGetDisplay failed "));
+                org.telegram.messenger.mk.v(this.f32340b, new StringBuilder("InstantCamera eglGetDisplay failed "));
             }
             finish();
-        } else if (!this.f32339b.eglInitialize(eglGetDisplay, new int[2])) {
+        } else if (!this.f32340b.eglInitialize(eglGetDisplay, new int[2])) {
             if (BuildVars.LOGS_ENABLED) {
-                org.telegram.messenger.mk.v(this.f32339b, new StringBuilder("InstantCamera eglInitialize failed "));
+                org.telegram.messenger.mk.v(this.f32340b, new StringBuilder("InstantCamera eglInitialize failed "));
             }
             finish();
         } else {
             int[] iArr = new int[1];
             EGLConfig[] eGLConfigArr = new EGLConfig[1];
-            if (!this.f32339b.eglChooseConfig(this.f32340c, new int[]{12352, 4, 12324, 8, 12323, 8, 12322, 8, 12321, 0, 12325, 0, 12326, 0, 12344}, eGLConfigArr, 1, iArr)) {
+            if (!this.f32340b.eglChooseConfig(this.f32341c, new int[]{12352, 4, 12324, 8, 12323, 8, 12322, 8, 12321, 0, 12325, 0, 12326, 0, 12344}, eGLConfigArr, 1, iArr)) {
                 if (BuildVars.LOGS_ENABLED) {
-                    org.telegram.messenger.mk.v(this.f32339b, new StringBuilder("InstantCamera eglChooseConfig failed "));
+                    org.telegram.messenger.mk.v(this.f32340b, new StringBuilder("InstantCamera eglChooseConfig failed "));
                 }
                 finish();
             } else if (iArr[0] > 0) {
                 EGLConfig eGLConfig = eGLConfigArr[0];
-                EGLContext eglCreateContext = this.f32339b.eglCreateContext(this.f32340c, eGLConfig, EGL10.EGL_NO_CONTEXT, new int[]{12440, 2, 12344});
+                EGLContext eglCreateContext = this.f32340b.eglCreateContext(this.f32341c, eGLConfig, EGL10.EGL_NO_CONTEXT, new int[]{12440, 2, 12344});
                 this.d = eglCreateContext;
                 if (eglCreateContext == null) {
                     if (BuildVars.LOGS_ENABLED) {
-                        org.telegram.messenger.mk.v(this.f32339b, new StringBuilder("InstantCamera eglCreateContext failed "));
+                        org.telegram.messenger.mk.v(this.f32340b, new StringBuilder("InstantCamera eglCreateContext failed "));
                     }
                     finish();
                 } else {
-                    SurfaceTexture surfaceTexture = this.f32338a;
+                    SurfaceTexture surfaceTexture = this.f32339a;
                     if (surfaceTexture != null) {
-                        EGLSurface eglCreateWindowSurface = this.f32339b.eglCreateWindowSurface(this.f32340c, eGLConfig, surfaceTexture, null);
+                        EGLSurface eglCreateWindowSurface = this.f32340b.eglCreateWindowSurface(this.f32341c, eGLConfig, surfaceTexture, null);
                         this.e = eglCreateWindowSurface;
                         if (eglCreateWindowSurface != null && eglCreateWindowSurface != EGL10.EGL_NO_SURFACE) {
-                            if (!this.f32339b.eglMakeCurrent(this.f32340c, eglCreateWindowSurface, eglCreateWindowSurface, this.d)) {
+                            if (!this.f32340b.eglMakeCurrent(this.f32341c, eglCreateWindowSurface, eglCreateWindowSurface, this.d)) {
                                 if (BuildVars.LOGS_ENABLED) {
-                                    org.telegram.messenger.mk.v(this.f32339b, new StringBuilder("InstantCamera eglMakeCurrent failed "));
+                                    org.telegram.messenger.mk.v(this.f32340b, new StringBuilder("InstantCamera eglMakeCurrent failed "));
                                 }
                                 finish();
                             } else {
@@ -566,23 +566,23 @@ public final class x50 extends DispatchQueue {
                                 int j11 = m60.j(m60Var, 35632, "#extension GL_OES_EGL_image_external : require\nprecision lowp float;\nvarying vec2 vTextureCoord;\nuniform samplerExternalOES sTexture;\nvoid main() {\n   gl_FragColor = texture2D(sTexture, vTextureCoord);\n}\n");
                                 if (j10 != 0 && j11 != 0) {
                                     int glCreateProgram = GLES20.glCreateProgram();
-                                    this.f32343r = glCreateProgram;
+                                    this.f32344r = glCreateProgram;
                                     GLES20.glAttachShader(glCreateProgram, j10);
-                                    GLES20.glAttachShader(this.f32343r, j11);
-                                    GLES20.glLinkProgram(this.f32343r);
+                                    GLES20.glAttachShader(this.f32344r, j11);
+                                    GLES20.glLinkProgram(this.f32344r);
                                     int[] iArr3 = new int[1];
-                                    GLES20.glGetProgramiv(this.f32343r, 35714, iArr3, 0);
+                                    GLES20.glGetProgramiv(this.f32344r, 35714, iArr3, 0);
                                     if (iArr3[0] == 0) {
                                         if (BuildVars.LOGS_ENABLED) {
                                             FileLog.e("InstantCamera failed link shader");
                                         }
-                                        GLES20.glDeleteProgram(this.f32343r);
-                                        this.f32343r = 0;
+                                        GLES20.glDeleteProgram(this.f32344r);
+                                        this.f32344r = 0;
                                     } else {
-                                        this.f32345w = GLES20.glGetAttribLocation(this.f32343r, "aPosition");
-                                        this.f32346x = GLES20.glGetAttribLocation(this.f32343r, "aTextureCoord");
-                                        this.f32344s = GLES20.glGetUniformLocation(this.f32343r, "uMVPMatrix");
-                                        this.v = GLES20.glGetUniformLocation(this.f32343r, "uSTMatrix");
+                                        this.f32346w = GLES20.glGetAttribLocation(this.f32344r, "aPosition");
+                                        this.f32347x = GLES20.glGetAttribLocation(this.f32344r, "aTextureCoord");
+                                        this.f32345s = GLES20.glGetUniformLocation(this.f32344r, "uMVPMatrix");
+                                        this.v = GLES20.glGetUniformLocation(this.f32344r, "uSTMatrix");
                                     }
                                     Matrix.setIdentityM(m60Var.F0, 0);
                                     GLES20.glGenTextures(2, iArr2, 0);
@@ -593,7 +593,7 @@ public final class x50 extends DispatchQueue {
                                         GLES20.glTexParameteri(36197, 10242, 33071);
                                         GLES20.glTexParameteri(36197, 10243, 33071);
                                         SurfaceTexture surfaceTexture2 = new SurfaceTexture(iArr2[i10]);
-                                        SurfaceTexture[] surfaceTextureArr = this.f32342n;
+                                        SurfaceTexture[] surfaceTextureArr = this.f32343n;
                                         surfaceTextureArr[i10] = surfaceTexture2;
                                         surfaceTexture2.setOnFrameAvailableListener(new SurfaceTexture.OnFrameAvailableListener() {
                                             @Override
@@ -629,7 +629,7 @@ public final class x50 extends DispatchQueue {
                             }
                         } else {
                             if (BuildVars.LOGS_ENABLED) {
-                                org.telegram.messenger.mk.v(this.f32339b, new StringBuilder("InstantCamera createWindowSurface failed "));
+                                org.telegram.messenger.mk.v(this.f32340b, new StringBuilder("InstantCamera createWindowSurface failed "));
                             }
                             finish();
                         }
@@ -644,7 +644,7 @@ public final class x50 extends DispatchQueue {
                 finish();
             }
         }
-        this.f32341f = z10;
+        this.f32342f = z10;
         super.run();
     }
 }

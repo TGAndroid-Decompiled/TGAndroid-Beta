@@ -10,22 +10,22 @@ import org.telegram.messenger.SendMessageChatArguments;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.VideoEditedInfo;
 public final class mg extends org.telegram.ui.zt0 {
-    public boolean f28511a;
-    public final MediaController.PhotoEntry f28512b;
-    public final File f28513c;
+    public boolean f28512a;
+    public final MediaController.PhotoEntry f28513b;
+    public final File f28514c;
     public final ng d;
 
     public mg(ng ngVar, MediaController.PhotoEntry photoEntry, File file) {
         this.d = ngVar;
-        this.f28512b = photoEntry;
-        this.f28513c = file;
+        this.f28513b = photoEntry;
+        this.f28514c = file;
     }
 
     @Override
     public final void G() {
-        if (!this.f28511a) {
+        if (!this.f28512a) {
             try {
-                this.f28513c.delete();
+                this.f28514c.delete();
             } catch (Throwable unused) {
             }
         }
@@ -46,13 +46,13 @@ public final class mg extends org.telegram.ui.zt0 {
         org.telegram.ui.qn qnVar;
         ChatActivityEnterView chatActivityEnterView = this.d.d;
         org.telegram.ui.gn gnVar = chatActivityEnterView.V2;
-        if (gnVar != null && (qnVar = chatActivityEnterView.P2) != null && gnVar.f37360f) {
+        if (gnVar != null && (qnVar = chatActivityEnterView.P2) != null && gnVar.f37361f) {
             qnVar.Wb();
             return;
         }
         ArrayList arrayList = new ArrayList();
         SendMessagesHelper.SendingMediaInfo sendingMediaInfo = new SendMessagesHelper.SendingMediaInfo();
-        MediaController.PhotoEntry photoEntry = this.f28512b;
+        MediaController.PhotoEntry photoEntry = this.f28513b;
         if (!photoEntry.isVideo && (str2 = photoEntry.imagePath) != null) {
             sendingMediaInfo.path = str2;
         } else {
@@ -81,7 +81,7 @@ public final class mg extends org.telegram.ui.zt0 {
         sendingMediaInfo.canDeleteAfter = true;
         arrayList.add(sendingMediaInfo);
         photoEntry.reset();
-        this.f28511a = true;
+        this.f28512a = true;
         boolean checkUpdateStickersOrder = SendMessagesHelper.checkUpdateStickersOrder(sendingMediaInfo.caption);
         AccountInstance accountInstance = chatActivityEnterView.R;
         MessageSuggestionParams messageSuggestionParams = null;

@@ -69,18 +69,18 @@ public final class f4 extends li implements NotificationCenter.NotificationCente
         } catch (Exception unused) {
         }
         ti tiVar = this.f28173b;
-        tiVar.f30529a1.setTitle(userName);
+        tiVar.f30530a1.setTitle(userName);
         this.J.setSwipeOffsetY(0.0f);
         if (v2Var.getWebView() != null) {
             v2Var.getWebView().scrollTo(0, 0);
         }
-        org.telegram.ui.ActionBar.n2 n2Var = tiVar.f30545f0;
+        org.telegram.ui.ActionBar.n2 n2Var = tiVar.f30546f0;
         if (n2Var != null) {
             v2Var.setParentActivity(n2Var.getParentActivity());
         }
         this.K.setVisibility(0);
         if (!v2Var.R) {
-            AndroidUtilities.updateImageViewImageAnimated(tiVar.f30529a1.getBackButton(), R.drawable.ic_close_white);
+            AndroidUtilities.updateImageViewImageAnimated(tiVar.f30530a1.getBackButton(), R.drawable.ic_close_white);
         }
     }
 
@@ -124,9 +124,9 @@ public final class f4 extends li implements NotificationCenter.NotificationCente
 
     public final void O() {
         ti tiVar = this.f28173b;
-        org.telegram.ui.ActionBar.n2 n2Var = tiVar.f30545f0;
+        org.telegram.ui.ActionBar.n2 n2Var = tiVar.f30546f0;
         if ((n2Var instanceof qn) && ((qn) n2Var).X0.R() > AndroidUtilities.dp(20.0f)) {
-            AndroidUtilities.hideKeyboard(tiVar.f30545f0.getFragmentView());
+            AndroidUtilities.hideKeyboard(tiVar.f30546f0.getFragmentView());
             AndroidUtilities.runOnUIThread(new w3(this, 1), 250L);
             return;
         }
@@ -216,7 +216,7 @@ public final class f4 extends li implements NotificationCenter.NotificationCente
     public final void o() {
         NotificationCenter.getInstance(this.F).removeObserver(this, NotificationCenter.webViewResultSent);
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.didSetNewTheme);
-        org.telegram.ui.ActionBar.y n10 = this.f28173b.f30529a1.n();
+        org.telegram.ui.ActionBar.y n10 = this.f28173b.f30530a1.n();
         org.telegram.ui.ActionBar.u0 u0Var = this.K;
         ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = u0Var.f21732b;
         if (actionBarPopupWindow$ActionBarPopupWindowLayout != null) {
@@ -299,9 +299,9 @@ public final class f4 extends li implements NotificationCenter.NotificationCente
         boolean z10 = v2Var.R;
         ti tiVar = this.f28173b;
         if (!z10) {
-            AndroidUtilities.updateImageViewImageAnimated(tiVar.f30529a1.getBackButton(), R.drawable.ic_ab_back);
+            AndroidUtilities.updateImageViewImageAnimated(tiVar.f30530a1.getBackButton(), R.drawable.ic_ab_back);
         }
-        tiVar.f30529a1.setBackground(null);
+        tiVar.f30530a1.setBackground(null);
         if (v2Var.T) {
             v2Var.h();
             this.H = true;
@@ -324,7 +324,7 @@ public final class f4 extends li implements NotificationCenter.NotificationCente
         if (i10 == i11) {
             Bundle bundle = new Bundle();
             bundle.putLong("user_id", this.v);
-            tiVar.f30545f0.presentFragment(new qn(bundle));
+            tiVar.f30546f0.presentFragment(new qn(bundle));
             tiVar.dismiss();
             return;
         }
@@ -392,7 +392,7 @@ public final class f4 extends li implements NotificationCenter.NotificationCente
             } else {
                 z11 = false;
             }
-            int R = this.f28173b.f30592u1.R() + i10;
+            int R = this.f28173b.f30593u1.R() + i10;
             setMeasuredDimension(getMeasuredWidth(), i10);
             this.O = true;
             u2Var.setSwipeOffsetAnimationDisallowed(true);

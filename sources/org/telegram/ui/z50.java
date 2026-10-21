@@ -30,8 +30,8 @@ public final class z50 extends bd {
         if (canApplyBoost != null && z50Var.getParentActivity() != null) {
             y50 y50Var = new y50(z50Var, z50Var, z50Var.getParentActivity(), i10, z50Var.currentAccount, z50Var.resourceProvider);
             y50Var.H1(canApplyBoost);
-            y50Var.G1(z50Var.f35576c, true);
-            y50Var.I1(z50Var.f35572a);
+            y50Var.G1(z50Var.f35577c, true);
+            y50Var.I1(z50Var.f35573a);
             y50Var.show();
             return;
         }
@@ -110,14 +110,14 @@ public final class z50 extends bd {
 
     @Override
     public final boolean R0() {
-        return ChatObject.isForum(getMessagesController().getChat(Long.valueOf(-this.f35572a)));
+        return ChatObject.isForum(getMessagesController().getChat(Long.valueOf(-this.f35573a)));
     }
 
     @Override
     public final void T0(int i10) {
-        if (this.f35576c != null && !this.B0) {
+        if (this.f35577c != null && !this.B0) {
             this.B0 = true;
-            MessagesController.getInstance(this.currentAccount).getBoostsController().userCanBoostChannel(this.f35572a, this.f35576c, new ei.e4(this, i10, 5));
+            MessagesController.getInstance(this.currentAccount).getBoostsController().userCanBoostChannel(this.f35573a, this.f35577c, new ei.e4(this, i10, 5));
         }
     }
 
@@ -128,7 +128,7 @@ public final class z50 extends bd {
         tc tcVar = this.f43643z0;
         if (tcVar != null) {
             TextView textView = tcVar.d;
-            TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = this.f35576c;
+            TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = this.f35577c;
             if (tL_premium_boostsStatus != null) {
                 i10 = tL_premium_boostsStatus.boosts;
             } else {
@@ -143,12 +143,12 @@ public final class z50 extends bd {
         super.Z0(z10);
         this.actionBar.setBackgroundColor(0);
         org.telegram.ui.Components.zq zqVar = new org.telegram.ui.Components.zq(new ColorDrawable(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20990d6, this.resourceProvider)), org.telegram.ui.ActionBar.h6.W0(getParentActivity(), R.drawable.greydivider_bottom, org.telegram.ui.ActionBar.h6.f20952b7), 0, 0);
-        zqVar.f33023w = true;
+        zqVar.f33024w = true;
         this.O.setBackground(zqVar);
         tc tcVar = this.f43643z0;
         if (tcVar != null && !z10) {
-            tcVar.f41636a.b(this.currentAccount, this.f35595s, false);
-            this.f43643z0.f41637b.b(this.f35595s, false);
+            tcVar.f41636a.b(this.currentAccount, this.f35596s, false);
+            this.f43643z0.f41637b.b(this.f35596s, false);
             this.f43643z0.d();
         }
     }
@@ -160,46 +160,46 @@ public final class z50 extends bd {
         this.Z = 0;
         boolean z10 = true;
         int i10 = 1 + 1;
-        this.f35573a0 = 1;
-        this.f35575b0 = i10;
+        this.f35574a0 = 1;
+        this.f35576b0 = i10;
         int i11 = i10 + 2;
         this.R = i11;
-        this.f35577c0 = i10 + 1;
-        if (this.f35600w == 0 && this.f35595s < 0) {
-            int i12 = this.f35579e0;
-            this.f35579e0 = -1;
+        this.f35578c0 = i10 + 1;
+        if (this.f35601w == 0 && this.f35596s < 0) {
+            int i12 = this.f35580e0;
+            this.f35580e0 = -1;
             if (i12 >= 0 && (ncVar2 = this.N) != null) {
                 ncVar2.u(i12);
-                this.N.m(this.f35577c0);
+                this.N.m(this.f35578c0);
             }
         } else {
-            if (this.f35579e0 < 0) {
+            if (this.f35580e0 < 0) {
                 z10 = false;
             }
             this.R = i10 + 3;
-            this.f35579e0 = i11;
+            this.f35580e0 = i11;
             if (!z10 && (ncVar = this.N) != null) {
                 ncVar.o(i11);
-                this.N.m(this.f35577c0);
+                this.N.m(this.f35578c0);
                 this.M.u0(0);
             }
         }
         int i13 = this.R;
-        this.f35578d0 = i13;
-        this.f35583h0 = i13 + 1;
-        this.f35584i0 = i13 + 2;
-        this.f35581f0 = i13 + 3;
+        this.f35579d0 = i13;
+        this.f35584h0 = i13 + 1;
+        this.f35585i0 = i13 + 2;
+        this.f35582f0 = i13 + 3;
         this.R = i13 + 5;
-        this.f35582g0 = i13 + 4;
-        TLRPC.ChatFull chatFull = getMessagesController().getChatFull(-this.f35572a);
+        this.f35583g0 = i13 + 4;
+        TLRPC.ChatFull chatFull = getMessagesController().getChatFull(-this.f35573a);
         if (chatFull != null && chatFull.can_set_stickers) {
             int i14 = this.R;
-            this.f35585j0 = i14;
+            this.f35586j0 = i14;
             this.R = i14 + 2;
-            this.f35586k0 = i14 + 1;
+            this.f35587k0 = i14 + 1;
         } else {
-            this.f35585j0 = -1;
-            this.f35586k0 = -1;
+            this.f35586j0 = -1;
+            this.f35587k0 = -1;
         }
         int i15 = this.R;
         this.S = i15;
@@ -223,7 +223,7 @@ public final class z50 extends bd {
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         super.didReceivedNotification(i10, i11, objArr);
-        if (i10 == NotificationCenter.chatInfoDidLoad && ((TLRPC.ChatFull) objArr[0]).f20277id == (-this.f35572a)) {
+        if (i10 == NotificationCenter.chatInfoDidLoad && ((TLRPC.ChatFull) objArr[0]).f20277id == (-this.f35573a)) {
             b1();
         }
     }

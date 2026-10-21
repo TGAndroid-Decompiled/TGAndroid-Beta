@@ -40,11 +40,11 @@ public final class zg0 extends s4.o {
         TLRPC.TL_chatInviteExported tL_chatInviteExported2;
         int i14 = this.f43745c;
         ih0 ih0Var = this.f43752m;
-        if (((i10 >= i14 && i10 < this.d) || (i10 >= this.e && i10 < this.f43746f)) && ((i11 >= (i13 = ih0Var.f38004y) && i11 < ih0Var.E) || (i11 >= ih0Var.H && i11 < ih0Var.I))) {
+        if (((i10 >= i14 && i10 < this.d) || (i10 >= this.e && i10 < this.f43746f)) && ((i11 >= (i13 = ih0Var.f38005y) && i11 < ih0Var.E) || (i11 >= ih0Var.H && i11 < ih0Var.I))) {
             if (i11 >= i13 && i11 < ih0Var.E) {
-                tL_chatInviteExported = (TLRPC.TL_chatInviteExported) ih0Var.f37988i0.get(i11 - i13);
+                tL_chatInviteExported = (TLRPC.TL_chatInviteExported) ih0Var.f37989i0.get(i11 - i13);
             } else {
-                tL_chatInviteExported = (TLRPC.TL_chatInviteExported) ih0Var.f37989j0.get(i11 - ih0Var.H);
+                tL_chatInviteExported = (TLRPC.TL_chatInviteExported) ih0Var.f37990j0.get(i11 - ih0Var.H);
             }
             int i15 = this.f43745c;
             if (i10 >= i15 && i10 < this.d) {
@@ -82,11 +82,11 @@ public final class zg0 extends s4.o {
     public final void f(SparseIntArray sparseIntArray) {
         sparseIntArray.clear();
         ih0 ih0Var = this.f43752m;
-        g(1, ih0Var.f37997r, sparseIntArray);
-        g(2, ih0Var.f37999s, sparseIntArray);
+        g(1, ih0Var.f37998r, sparseIntArray);
+        g(2, ih0Var.f38000s, sparseIntArray);
         g(3, ih0Var.v, sparseIntArray);
-        g(4, ih0Var.f38002w, sparseIntArray);
-        g(5, ih0Var.f38003x, sparseIntArray);
+        g(4, ih0Var.f38003w, sparseIntArray);
+        g(5, ih0Var.f38004x, sparseIntArray);
         g(6, ih0Var.L, sparseIntArray);
         g(7, ih0Var.N, sparseIntArray);
         g(8, ih0Var.O, sparseIntArray);

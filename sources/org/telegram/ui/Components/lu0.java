@@ -74,12 +74,12 @@ public final class lu0 extends im0 {
         l();
         int i10 = 0;
         while (true) {
-            nu0[] nu0VarArr = this.f28281s.f31046k0;
+            nu0[] nu0VarArr = this.f28281s.f31047k0;
             if (i10 >= nu0VarArr.length) {
                 break;
             }
             if (nu0VarArr[i10].F == 7 && !TextUtils.isEmpty(str)) {
-                this.f28281s.f31046k0[i10].f28882w.e(true, z10);
+                this.f28281s.f31047k0[i10].f28883w.e(true, z10);
             }
             i10++;
         }
@@ -108,7 +108,7 @@ public final class lu0 extends im0 {
         if (size > 0) {
             uv0 uv0Var = this.f28281s;
             if (uv0Var.V0) {
-                nu0 nu0Var = uv0Var.f31046k0[0];
+                nu0 nu0Var = uv0Var.f31047k0[0];
                 if (nu0Var.F == 7 && nu0Var.h.getAdapter() != this) {
                     uv0Var.o1(false);
                 }
@@ -122,7 +122,7 @@ public final class lu0 extends im0 {
         TLRPC.User user;
         SpannableStringBuilder spannableStringBuilder;
         uv0 uv0Var = this.f28281s;
-        org.telegram.ui.ActionBar.n2 n2Var = uv0Var.f31070v1;
+        org.telegram.ui.ActionBar.n2 n2Var = uv0Var.f31071v1;
         TLObject E = E(i10);
         if (E instanceof TLRPC.ChannelParticipant) {
             user = n2Var.getMessagesController().getUser(Long.valueOf(MessageObject.getPeerId(((TLRPC.ChannelParticipant) E).peer)));

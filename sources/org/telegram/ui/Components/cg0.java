@@ -118,13 +118,13 @@ public final class cg0 extends im0 {
             frameLayout.addView(textView2, w7.z5.d(80, -2.0f, 19, 0.0f, 0.0f, 0.0f, 0.0f));
             ?? view = new View(context);
             Paint paint = new Paint();
-            view.f29567a = paint;
+            view.f29568a = paint;
             Paint paint2 = new Paint(1);
-            view.f29568b = paint2;
-            view.f29569c = AndroidUtilities.dp(16.0f);
+            view.f29569b = paint2;
+            view.f29570c = AndroidUtilities.dp(16.0f);
             view.d = 0;
             view.e = 0.0f;
-            view.f29570f = false;
+            view.f29571f = false;
             paint.setColor(-11711155);
             paint2.setColor(-1);
             frameLayout.f23597c = view;

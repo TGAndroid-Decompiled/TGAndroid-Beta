@@ -392,7 +392,7 @@ public final class u implements Runnable {
                 ((c5.a0) this.f14359b).accept(this.f14360c);
                 return;
             case 22:
-                qn qnVar = ((hm) this.f14360c).f37687c;
+                qn qnVar = ((hm) this.f14360c).f37688c;
                 if (this == qnVar.J5) {
                     qnVar.cb((CharSequence) this.f14359b, false);
                     qnVar.J5 = null;
@@ -419,7 +419,7 @@ public final class u implements Runnable {
                 tL_chatBannedRights.embed_links = z22;
                 tL_chatBannedRights.send_polls = z22;
                 tL_chatBannedRights.send_reactions = z22;
-                AndroidUtilities.updateVisibleRows(hrVar.f37721c);
+                AndroidUtilities.updateVisibleRows(hrVar.f37722c);
                 br w02 = hrVar.w0();
                 hrVar.B0();
                 hrVar.A0(w02);

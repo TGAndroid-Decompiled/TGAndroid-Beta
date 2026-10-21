@@ -713,7 +713,7 @@ public final class k0 extends f3 implements NotificationCenter.NotificationCente
         c71Var.setClipToPadding(false);
         c71Var.setVisibility(8);
         c71Var.p1();
-        c71Var.W2.f30860r = false;
+        c71Var.W2.f30861r = false;
         c71Var.setPadding(0, AndroidUtilities.dp(52.0f) + AndroidUtilities.statusBarHeight, 0, AndroidUtilities.navigationBarHeight);
         e10 e10Var = new e10(n2Var);
         this.F = e10Var;
@@ -721,7 +721,7 @@ public final class k0 extends f3 implements NotificationCenter.NotificationCente
         e10Var.setBackground(null);
         e10Var.setChatPreviewDelegate(new Object());
         e10Var.setUiCallback(new a0(this));
-        e10Var.f36493b.setClipToPadding(false);
+        e10Var.f36494b.setClipToPadding(false);
         this.L = new View(getContext());
         Context context2 = getContext();
         d6 d6Var = this.resourcesProvider;

@@ -174,7 +174,7 @@ public final class w8 extends FrameLayout {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         accessibilityNodeInfo.setClassName("android.widget.checkbox");
         accessibilityNodeInfo.setCheckable(true);
-        accessibilityNodeInfo.setChecked(this.f23772c.f32458a.f24151q);
+        accessibilityNodeInfo.setChecked(this.f23772c.f32459a.f24151q);
         StringBuilder sb2 = new StringBuilder();
         sb2.append(this.f23770a.getText());
         TextView textView = this.f23771b;

@@ -388,7 +388,7 @@ public final class k0 extends bb {
     public final im0 x(jm0 jm0Var) {
         u61 u61Var = new u61(jm0Var, getContext(), this.currentAccount, 0, true, new hg.o(this, 4), this.resourcesProvider);
         this.f12946d0 = u61Var;
-        u61Var.f30860r = false;
+        u61Var.f30861r = false;
         return u61Var;
     }
 }

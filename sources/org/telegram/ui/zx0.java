@@ -105,32 +105,32 @@ public final class zx0 implements org.telegram.ui.ActionBar.i6 {
                 return;
             case 5:
                 ThemeActivity themeActivity = (ThemeActivity) n2Var;
-                for (int i17 = 0; i17 < themeActivity.f33898b.getChildCount(); i17++) {
-                    View childAt2 = themeActivity.f33898b.getChildAt(i17);
+                for (int i17 = 0; i17 < themeActivity.f33899b.getChildCount(); i17++) {
+                    View childAt2 = themeActivity.f33899b.getChildAt(i17);
                     if (childAt2 instanceof org.telegram.ui.Cells.t) {
                         ((org.telegram.ui.Cells.t) childAt2).getAdapter().l();
                     } else if (childAt2 instanceof no0) {
                         ((no0) childAt2).a();
                     }
                 }
-                for (int i18 = 0; i18 < themeActivity.f33898b.getCachedChildCount(); i18++) {
-                    View P = themeActivity.f33898b.P(i18);
+                for (int i18 = 0; i18 < themeActivity.f33899b.getCachedChildCount(); i18++) {
+                    View P = themeActivity.f33899b.P(i18);
                     if (P instanceof org.telegram.ui.Cells.t) {
                         ((org.telegram.ui.Cells.t) P).getAdapter().l();
                     } else if (P instanceof no0) {
                         ((no0) P).a();
                     }
                 }
-                for (int i19 = 0; i19 < themeActivity.f33898b.getHiddenChildCount(); i19++) {
-                    View V = themeActivity.f33898b.V(i19);
+                for (int i19 = 0; i19 < themeActivity.f33899b.getHiddenChildCount(); i19++) {
+                    View V = themeActivity.f33899b.V(i19);
                     if (V instanceof org.telegram.ui.Cells.t) {
                         ((org.telegram.ui.Cells.t) V).getAdapter().l();
                     } else if (V instanceof no0) {
                         ((no0) V).a();
                     }
                 }
-                while (i12 < themeActivity.f33898b.getAttachedScrapChildCount()) {
-                    View O = themeActivity.f33898b.O(i12);
+                while (i12 < themeActivity.f33899b.getAttachedScrapChildCount()) {
+                    View O = themeActivity.f33899b.O(i12);
                     if (O instanceof org.telegram.ui.Cells.t) {
                         ((org.telegram.ui.Cells.t) O).getAdapter().l();
                     } else if (O instanceof no0) {
@@ -144,27 +144,27 @@ public final class zx0 implements org.telegram.ui.ActionBar.i6 {
                 return;
             case 7:
                 gd1 gd1Var = (gd1) n2Var;
-                org.telegram.ui.Components.jm0 jm0Var2 = gd1Var.f37284a;
+                org.telegram.ui.Components.jm0 jm0Var2 = gd1Var.f37285a;
                 if (jm0Var2 != null) {
                     int childCount3 = jm0Var2.getChildCount();
                     for (int i20 = 0; i20 < childCount3; i20++) {
-                        View childAt3 = gd1Var.f37284a.getChildAt(i20);
+                        View childAt3 = gd1Var.f37285a.getChildAt(i20);
                         if (childAt3 instanceof org.telegram.ui.Cells.f4) {
                             ((org.telegram.ui.Cells.f4) childAt3).f(0);
                         }
                     }
                 }
-                org.telegram.ui.Components.jm0 jm0Var3 = gd1Var.f37285b;
+                org.telegram.ui.Components.jm0 jm0Var3 = gd1Var.f37286b;
                 if (jm0Var3 != null) {
                     int childCount4 = jm0Var3.getChildCount();
                     for (int i21 = 0; i21 < childCount4; i21++) {
-                        View childAt4 = gd1Var.f37285b.getChildAt(i21);
+                        View childAt4 = gd1Var.f37286b.getChildAt(i21);
                         if (childAt4 instanceof org.telegram.ui.Cells.f4) {
                             ((org.telegram.ui.Cells.f4) childAt4).f(0);
                         }
                     }
                 }
-                gd1Var.f37286c.setBackground(org.telegram.ui.ActionBar.x5.f(new float[]{4.0f}, org.telegram.ui.ActionBar.h6.Oh));
+                gd1Var.f37287c.setBackground(org.telegram.ui.ActionBar.x5.f(new float[]{4.0f}, org.telegram.ui.ActionBar.h6.Oh));
                 gd1Var.F.setProgressColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21062h6, false));
                 return;
             case 8:

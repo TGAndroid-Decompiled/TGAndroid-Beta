@@ -89,7 +89,7 @@ public final class h2 extends FrameLayout {
                         return;
                     default:
                         h2 h2Var = this.f8818b;
-                        int i12 = h2Var.f9146c.f32165k;
+                        int i12 = h2Var.f9146c.f32166k;
                         if (i12 == 1) {
                             h2Var.b();
                             g2 g2Var = h2Var.f9147f;
@@ -123,7 +123,7 @@ public final class h2 extends FrameLayout {
                         return;
                     default:
                         h2 h2Var = this.f8818b;
-                        int i12 = h2Var.f9146c.f32165k;
+                        int i12 = h2Var.f9146c.f32166k;
                         if (i12 == 1) {
                             h2Var.b();
                             g2 g2Var = h2Var.f9147f;
@@ -195,7 +195,7 @@ public final class h2 extends FrameLayout {
                                 return;
                             }
                             h2Var2.f9147f.G1(nx0Var);
-                            String str = nx0Var.f28892a;
+                            String str = nx0Var.f28893a;
                             int categoryIndex = h2Var2.f9147f.getCategoryIndex();
                             Utilities.Callback2 callback22 = h2Var2.v;
                             if (callback22 != null) {
@@ -240,7 +240,7 @@ public final class h2 extends FrameLayout {
                                 return;
                             }
                             h2Var2.f9147f.G1(nx0Var);
-                            String str = nx0Var.f28892a;
+                            String str = nx0Var.f28893a;
                             int categoryIndex = h2Var2.f9147f.getCategoryIndex();
                             Utilities.Callback2 callback22 = h2Var2.v;
                             if (callback22 != null) {
@@ -286,7 +286,7 @@ public final class h2 extends FrameLayout {
         if (z11 && ((e2Var.length() != 0 || ((g2Var2 = this.f9147f) != null && g2Var2.getSelectedCategory() != null)) && !z10)) {
             return;
         }
-        if (e2Var.length() <= 0 && ((g2Var = this.f9147f) == null || g2Var.f30045m3 <= 0.5f || ((g2Var == null || !g2Var.f30040h3) && g2Var.getSelectedCategory() == null))) {
+        if (e2Var.length() <= 0 && ((g2Var = this.f9147f) == null || g2Var.f30046m3 <= 0.5f || ((g2Var == null || !g2Var.f30041h3) && g2Var.getSelectedCategory() == null))) {
             i10 = 0;
         } else {
             i10 = 1;

@@ -3,30 +3,30 @@ package org.telegram.ui.Components;
 import android.animation.ValueAnimator;
 import org.telegram.messenger.AndroidUtilities;
 public final class t5 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f30437a;
-    public final float f30438b;
-    public final float f30439c;
+    public final int f30438a;
+    public final float f30439b;
+    public final float f30440c;
     public final float d;
     public final float e;
-    public final Object f30440f;
+    public final Object f30441f;
 
     public t5(Object obj, float f7, float f10, float f11, float f12, int i10) {
-        this.f30437a = i10;
-        this.f30440f = obj;
-        this.f30438b = f7;
-        this.f30439c = f10;
+        this.f30438a = i10;
+        this.f30441f = obj;
+        this.f30439b = f7;
+        this.f30440c = f10;
         this.d = f11;
         this.e = f12;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        int i10 = this.f30437a;
+        int i10 = this.f30438a;
         float f7 = this.e;
         float f10 = this.d;
-        float f11 = this.f30439c;
-        float f12 = this.f30438b;
-        Object obj = this.f30440f;
+        float f11 = this.f30440c;
+        float f12 = this.f30439b;
+        Object obj = this.f30441f;
         switch (i10) {
             case 0:
                 a6 a6Var = (a6) obj;

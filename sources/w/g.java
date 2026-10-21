@@ -161,7 +161,7 @@ public abstract class g {
                     String str = field.getDeclaringClass().getName() + field.getName();
                     Object obj2 = bundle.get(str);
                     if (obj2 == null) {
-                        obj2 = bundle.get(str.replaceAll("androidx.core.graphics.drawable.IconCompat", "androidx.core.graphics.drawable.IconCompat"));
+                        obj2 = bundle.get(str.replaceAll("androidx.core.graphics.drawable.IconCompat", "android.support.v4.graphics.drawable.IconCompat"));
                     }
                     if (obj2 instanceof Bundle) {
                         field.set(newInstance, f((Bundle) obj2, eVar));

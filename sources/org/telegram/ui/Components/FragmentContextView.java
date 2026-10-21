@@ -202,10 +202,10 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
         this.f24214b.setBackground(org.telegram.ui.ActionBar.h6.g0(org.telegram.ui.ActionBar.h6.w0(i11, d6Var) & 436207615, 1, AndroidUtilities.dp(14.0f)));
         addView(this.f24214b, w7.z5.e(36, 36, 51));
         this.f24214b.setOnClickListener(new View.OnClickListener(this) {
-            public final FragmentContextView f30113b;
+            public final FragmentContextView f30114b;
 
             {
-                this.f30113b = this;
+                this.f30114b = this;
             }
 
             @Override
@@ -217,7 +217,7 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                 int i13;
                 int i14 = r2;
                 boolean z10 = true;
-                FragmentContextView fragmentContextView = this.f30113b;
+                FragmentContextView fragmentContextView = this.f30114b;
                 switch (i14) {
                     case 0:
                         bh bhVar = fragmentContextView.f24228n;
@@ -447,8 +447,8 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
         addView(z10Var2, w7.z5.d(-1, 36.0f, 51, 35.0f, 10.0f, 36, 0.0f));
         org.telegram.ui.Components.voip.h hVar = new org.telegram.ui.Components.voip.h();
         this.O = hVar;
-        hVar.f31428g = 1.0f;
-        hVar.f31430j = false;
+        hVar.f31429g = 1.0f;
+        hVar.f31431j = false;
         org.telegram.ui.kk kkVar = new org.telegram.ui.kk(this, context, 1);
         this.M = kkVar;
         kkVar.setText(LocaleController.getString(R.string.VoipChatJoin));
@@ -464,10 +464,10 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
         this.M.setPadding(AndroidUtilities.dp(14.0f), 0, AndroidUtilities.dp(14.0f), 0);
         addView(this.M, w7.z5.d(-2, 28.0f, 53, 0.0f, 10.0f, 14.0f, 0.0f));
         this.M.setOnClickListener(new View.OnClickListener(this) {
-            public final FragmentContextView f30113b;
+            public final FragmentContextView f30114b;
 
             {
-                this.f30113b = this;
+                this.f30114b = this;
             }
 
             @Override
@@ -479,7 +479,7 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                 int i13;
                 int i14 = r2;
                 boolean z10 = true;
-                FragmentContextView fragmentContextView = this.f30113b;
+                FragmentContextView fragmentContextView = this.f30114b;
                 switch (i14) {
                     case 0:
                         bh bhVar = fragmentContextView.f24228n;
@@ -729,10 +729,10 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
         this.f24244y.setVisibility(8);
         addView(this.f24244y, w7.z5.d(36, 36.0f, 53, 0.0f, 0.0f, 2.0f, 0.0f));
         this.f24244y.setOnClickListener(new View.OnClickListener(this) {
-            public final FragmentContextView f30113b;
+            public final FragmentContextView f30114b;
 
             {
-                this.f30113b = this;
+                this.f30114b = this;
             }
 
             @Override
@@ -744,7 +744,7 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                 int i13;
                 int i14 = r2;
                 boolean z10 = true;
-                FragmentContextView fragmentContextView = this.f30113b;
+                FragmentContextView fragmentContextView = this.f30114b;
                 switch (i14) {
                     case 0:
                         bh bhVar = fragmentContextView.f24228n;
@@ -967,10 +967,10 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
         this.F.setScaleType(scaleType);
         addView(this.F, w7.z5.d(36, 36.0f, 53, 0.0f, 0.0f, 4.0f, 0.0f));
         this.F.setOnClickListener(new View.OnClickListener(this) {
-            public final FragmentContextView f30113b;
+            public final FragmentContextView f30114b;
 
             {
-                this.f30113b = this;
+                this.f30114b = this;
             }
 
             @Override
@@ -982,7 +982,7 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                 int i13;
                 int i14 = r2;
                 boolean z10 = true;
-                FragmentContextView fragmentContextView = this.f30113b;
+                FragmentContextView fragmentContextView = this.f30114b;
                 switch (i14) {
                     case 0:
                         bh bhVar = fragmentContextView.f24228n;
@@ -1201,10 +1201,10 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
         this.v = i4Var;
         addView(i4Var, w7.z5.d(-1, -2.0f, 48, 96.0f, 3.0f, 96.0f, 0.0f));
         setOnClickListener(new View.OnClickListener(this) {
-            public final FragmentContextView f30113b;
+            public final FragmentContextView f30114b;
 
             {
-                this.f30113b = this;
+                this.f30114b = this;
             }
 
             @Override
@@ -1216,7 +1216,7 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                 int i13;
                 int i14 = r2;
                 boolean z10 = true;
-                FragmentContextView fragmentContextView = this.f30113b;
+                FragmentContextView fragmentContextView = this.f30114b;
                 switch (i14) {
                     case 0:
                         bh bhVar = fragmentContextView.f24228n;
@@ -2260,7 +2260,7 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
 
     public final void n() {
         org.telegram.ui.Components.voip.h hVar = this.O;
-        if (hVar != null && hVar.f31428g >= 1.0f) {
+        if (hVar != null && hVar.f31429g >= 1.0f) {
             this.I0 = false;
             AndroidUtilities.runOnUIThread(new v10(this, 0), 150L);
             return;
@@ -2442,7 +2442,7 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                 }
                 vj0Var.P(i10);
                 vj0 vj0Var2 = this.E;
-                vj0Var2.N(vj0Var2.f31271f - 1, false, true);
+                vj0Var2.N(vj0Var2.f31272f - 1, false, true);
                 this.f24244y.invalidate();
             }
         }
@@ -2474,7 +2474,7 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
             }
             vj0Var.P(i10);
             vj0 vj0Var2 = this.E;
-            vj0Var2.N(vj0Var2.f31271f - 1, false, true);
+            vj0Var2.N(vj0Var2.f31272f - 1, false, true);
             this.f24244y.invalidate();
             org.telegram.ui.ActionBar.h6.E0().c(this.T);
             idVar.f(this.T);
@@ -2964,7 +2964,7 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                     }
                     vj0Var.P(i13);
                     vj0 vj0Var2 = this.E;
-                    vj0Var2.N(vj0Var2.f31271f - 1, false, true);
+                    vj0Var2.N(vj0Var2.f31272f - 1, false, true);
                     this.f24244y.invalidate();
                     this.f24235s.setBackground(null);
                     this.f24235s.setBackgroundColor(0);

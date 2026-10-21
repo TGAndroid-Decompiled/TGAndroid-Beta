@@ -16,9 +16,9 @@ public final class c0 extends ei.d {
         this.f47660h0 = new RectF();
         org.telegram.ui.Components.voip.h hVar = new org.telegram.ui.Components.voip.h();
         this.f47663k0 = hVar;
-        hVar.f31434n = 1.2f;
-        hVar.f31431k = false;
-        hVar.f31433m = 4.0f;
+        hVar.f31435n = 1.2f;
+        hVar.f31432k = false;
+        hVar.f31434m = 4.0f;
     }
 
     @Override
@@ -42,7 +42,7 @@ public final class c0 extends ei.d {
         canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), sg.b1.d().e());
         int measuredWidth = getMeasuredWidth();
         org.telegram.ui.Components.voip.h hVar = this.f47663k0;
-        hVar.f31427f = measuredWidth;
+        hVar.f31428f = measuredWidth;
         hVar.a(AndroidUtilities.dp(8.0f), canvas, rectF, null);
         super.onDraw(canvas);
         invalidate();

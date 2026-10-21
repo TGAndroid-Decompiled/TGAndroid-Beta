@@ -687,7 +687,7 @@ public class x3 extends View {
             return charSequence;
         }
         if (!this.I) {
-            return this.H.f29230i;
+            return this.H.f29231i;
         }
         StaticLayout staticLayout = this.L;
         if (staticLayout != null) {
@@ -700,7 +700,7 @@ public class x3 extends View {
         if (this.I) {
             return this.J;
         }
-        return this.H.f29223a;
+        return this.H.f29224a;
     }
 
     public final void h(int i10) {
@@ -736,8 +736,8 @@ public class x3 extends View {
             this.d = Math.max(this.d, vj0Var3.r());
         }
         vj0 vj0Var4 = this.f10070c0;
-        this.f10074f0 = vj0Var4.f31265b;
-        this.f10075g0 = vj0Var4.f31267c;
+        this.f10074f0 = vj0Var4.f31266b;
+        this.f10075g0 = vj0Var4.f31268c;
         this.f10076h0 = true;
     }
 

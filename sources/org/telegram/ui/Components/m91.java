@@ -32,10 +32,10 @@ public final class m91 extends FrameLayout {
         int w02 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.il, d6Var);
         qm0Var.B = w02;
         qm0Var.A = w02;
-        qm0Var.f29677z = w02;
-        qm0Var.f29675x = org.telegram.ui.ActionBar.h6.m1(0.1f, w02);
-        qm0Var.f29662j = false;
-        qm0Var.f29661i = false;
+        qm0Var.f29678z = w02;
+        qm0Var.f29676x = org.telegram.ui.ActionBar.h6.m1(0.1f, w02);
+        qm0Var.f29663j = false;
+        qm0Var.f29662i = false;
         qm0Var.k();
     }
 

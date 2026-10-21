@@ -7,18 +7,18 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class hy implements org.telegram.ui.Components.am0 {
-    public final Rect f37815a = new Rect();
-    public final ly f37816b;
+    public final Rect f37816a = new Rect();
+    public final ly f37817b;
 
     public hy(ly lyVar) {
-        this.f37816b = lyVar;
+        this.f37817b = lyVar;
     }
 
     @Override
     public final boolean mo17d(float f7, float f10, int i10, View view) {
-        ly lyVar = this.f37816b;
+        ly lyVar = this.f37817b;
         if (lyVar.getParentActivity() != null && (view instanceof org.telegram.ui.Cells.f4)) {
-            Rect rect = this.f37815a;
+            Rect rect = this.f37816a;
             ((ImageView) view.getTag(R.id.object_tag)).getHitRect(rect);
             if (!rect.contains((int) f7, (int) f10)) {
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(lyVar.getParentActivity());

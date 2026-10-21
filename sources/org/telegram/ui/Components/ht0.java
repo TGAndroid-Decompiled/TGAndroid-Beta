@@ -29,7 +29,7 @@ public final class ht0 extends go0 {
         au0 au0Var;
         boolean z11;
         uv0 uv0Var = this.I;
-        org.telegram.ui.ActionBar.u0 u0Var = uv0Var.f31051n0;
+        org.telegram.ui.ActionBar.u0 u0Var = uv0Var.f31052n0;
         if (u0Var == null) {
             return false;
         }
@@ -42,7 +42,7 @@ public final class ht0 extends go0 {
         }
         uv0Var.U0 = z10;
         uv0Var.o1(false);
-        int i10 = uv0Var.f31046k0[0].F;
+        int i10 = uv0Var.f31047k0[0].F;
         if (i10 == 11) {
             fv0 fv0Var = uv0Var.S;
             if (fv0Var != null) {
@@ -86,7 +86,7 @@ public final class ht0 extends go0 {
         g(z11);
         org.telegram.ui.ActionBar.u0 u0Var = uv0Var.m0;
         if (u0Var != null) {
-            if (a() && uv0Var.f31070v1.getUserConfig().isPremium()) {
+            if (a() && uv0Var.f31071v1.getUserConfig().isPremium()) {
                 i11 = R.drawable.navbar_search_tag;
             } else {
                 i11 = R.drawable.outline_header_search;
@@ -102,7 +102,7 @@ public final class ht0 extends go0 {
                 }
             }
         }
-        org.telegram.ui.ActionBar.u0 u0Var2 = uv0Var.f31051n0;
+        org.telegram.ui.ActionBar.u0 u0Var2 = uv0Var.f31052n0;
         if (u0Var2 != null) {
             if (ht0Var != null && ht0Var.a() && uv0Var.getSelectedTab() == 11) {
                 i10 = R.string.SavedTagSearchHint;

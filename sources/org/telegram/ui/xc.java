@@ -46,7 +46,7 @@ public final class xc extends org.telegram.ui.Components.im0 {
             org.telegram.ui.Components.vp vpVar = (org.telegram.ui.Components.vp) arrayList.get(b10);
             org.telegram.ui.Components.r21 r21Var = (org.telegram.ui.Components.r21) view;
             r21Var.g(vpVar.d, false);
-            if (vpVar.f31849a.f20724b) {
+            if (vpVar.f31850a.f20724b) {
                 wallPaper = null;
             } else {
                 wallPaper = zcVar.v;

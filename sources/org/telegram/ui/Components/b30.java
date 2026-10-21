@@ -47,7 +47,7 @@ public final class b30 extends AnimatorListenerAdapter {
                 z91 z91Var = (z91) this.f24792f;
                 z91Var.D.unlock();
                 si siVar = (si) this.f24790b;
-                ((ArrayList) siVar.f30291c).remove(z91Var);
+                ((ArrayList) siVar.f30292c).remove(z91Var);
                 siVar.a();
                 ((ViewGroup) siVar.d).invalidate();
                 org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) this.f24791c;

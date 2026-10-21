@@ -5,20 +5,20 @@ import java.util.Comparator;
 import org.telegram.messenger.MediaController;
 import org.telegram.tgnet.TLRPC;
 public final class zl implements Comparator {
-    public final int f32944a;
-    public final Object f32945b;
+    public final int f32945a;
+    public final Object f32946b;
 
     public zl(Object obj, int i10) {
-        this.f32944a = i10;
-        this.f32945b = obj;
+        this.f32945a = i10;
+        this.f32946b = obj;
     }
 
     @Override
     public final int compare(Object obj, Object obj2) {
         int indexOf;
         int indexOf2;
-        int i10 = this.f32944a;
-        Object obj3 = this.f32945b;
+        int i10 = this.f32945a;
+        Object obj3 = this.f32946b;
         switch (i10) {
             case 0:
                 ArrayList arrayList = (ArrayList) obj3;
@@ -37,8 +37,8 @@ public final class zl implements Comparator {
                 return -1;
             default:
                 tz tzVar = ((ex) obj3).G0;
-                int indexOf3 = tzVar.f30725d1.indexOf((TLRPC.TL_messages_stickerSet) obj);
-                int indexOf4 = tzVar.f30725d1.indexOf((TLRPC.TL_messages_stickerSet) obj2);
+                int indexOf3 = tzVar.f30726d1.indexOf((TLRPC.TL_messages_stickerSet) obj);
+                int indexOf4 = tzVar.f30726d1.indexOf((TLRPC.TL_messages_stickerSet) obj2);
                 if (indexOf3 < 0 || indexOf4 < 0) {
                     return 0;
                 }

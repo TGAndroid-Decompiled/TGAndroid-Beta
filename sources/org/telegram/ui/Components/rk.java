@@ -10,12 +10,12 @@ import java.lang.ref.WeakReference;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.VideoEditedInfo;
 public final class rk implements View.OnTouchListener {
-    public final int f29942a;
-    public final Object f29943b;
+    public final int f29943a;
+    public final Object f29944b;
 
     public rk(Object obj, int i10) {
-        this.f29942a = i10;
-        this.f29943b = obj;
+        this.f29943a = i10;
+        this.f29944b = obj;
     }
 
     @Override
@@ -24,9 +24,9 @@ public final class rk implements View.OnTouchListener {
         i2.i0 i0Var;
         float f10;
         d80 d80Var;
-        switch (this.f29942a) {
+        switch (this.f29943a) {
             case 0:
-                al alVar = (al) this.f29943b;
+                al alVar = (al) this.f29944b;
                 alVar.getClass();
                 if (motionEvent.getActionMasked() == 1 && !view.hasFocus()) {
                     alVar.c0();
@@ -34,7 +34,7 @@ public final class rk implements View.OnTouchListener {
                 }
                 return false;
             case 1:
-                org.telegram.ui.ActionBar.m1 m1Var = ((hs) this.f29943b).f26992a;
+                org.telegram.ui.ActionBar.m1 m1Var = ((hs) this.f29944b).f26992a;
                 if (motionEvent.getActionMasked() == 1 && m1Var != null && m1Var.isShowing()) {
                     Rect rect = AndroidUtilities.rectTmp2;
                     view.getHitRect(rect);
@@ -46,7 +46,7 @@ public final class rk implements View.OnTouchListener {
                 }
                 return false;
             case 2:
-                l60 l60Var = (l60) this.f29943b;
+                l60 l60Var = (l60) this.f29944b;
                 boolean z10 = false;
                 if (l60Var.P == null || l60Var.R == null) {
                     return false;
@@ -134,7 +134,7 @@ public final class rk implements View.OnTouchListener {
                 }
                 return true;
             case 3:
-                i80 i80Var = (i80) ((WeakReference) this.f29943b).get();
+                i80 i80Var = (i80) ((WeakReference) this.f29944b).get();
                 if (i80Var != null && (d80Var = i80Var.f27175m) != null && d80Var.isShowing()) {
                     if (view.getParent() != null) {
                         view.getParent().requestDisallowInterceptTouchEvent(true);
@@ -166,18 +166,18 @@ public final class rk implements View.OnTouchListener {
                 view.setOnTouchListener(null);
                 return false;
             case 4:
-                ib0 ib0Var = (ib0) this.f29943b;
+                ib0 ib0Var = (ib0) this.f29944b;
                 ib0Var.getClass();
                 return org.telegram.ui.et.q().s(motionEvent, ib0Var.getListView(), ib0Var.f27227w, null, ib0Var.f27220a);
             case 5:
-                ic0 ic0Var = (ic0) this.f29943b;
+                ic0 ic0Var = (ic0) this.f29944b;
                 ic0Var.getClass();
                 if (motionEvent.getAction() == 1) {
                     ic0Var.f27237c0.a(true);
                 }
                 return true;
             default:
-                return qy0.x((qy0) this.f29943b, motionEvent);
+                return qy0.x((qy0) this.f29944b, motionEvent);
         }
     }
 }

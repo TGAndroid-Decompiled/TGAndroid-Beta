@@ -188,19 +188,19 @@ public final class ng0 extends og1 implements NotificationCenter.NotificationCen
         bVar.f();
         bVarArr2[4] = bVar;
         this.K[0].setOnLongClickListener(new View.OnLongClickListener(this) {
-            public final ng0 f37623b;
+            public final ng0 f37624b;
 
             {
-                this.f37623b = this;
+                this.f37624b = this;
             }
 
             @Override
             public final boolean onLongClick(View view) {
                 switch (r2) {
                     case 0:
-                        return ng0.Z(this.f37623b, view);
+                        return ng0.Z(this.f37624b, view);
                     case 1:
-                        ng0 ng0Var = this.f37623b;
+                        ng0 ng0Var = this.f37624b;
                         if (ng0Var.getParentActivity() == null || ng0Var.getParentActivity() == null) {
                             return false;
                         }
@@ -217,7 +217,7 @@ public final class ng0 extends og1 implements NotificationCenter.NotificationCen
                         H.Z();
                         return true;
                     case 2:
-                        ng0 ng0Var2 = this.f37623b;
+                        ng0 ng0Var2 = this.f37624b;
                         if (ng0Var2.getParentActivity() == null || ng0Var2.getParentActivity() == null) {
                             return false;
                         }
@@ -237,25 +237,25 @@ public final class ng0 extends og1 implements NotificationCenter.NotificationCen
                         H2.Z();
                         return true;
                     default:
-                        this.f37623b.k0(view);
+                        this.f37624b.k0(view);
                         return true;
                 }
             }
         });
         this.K[1].setOnLongClickListener(new View.OnLongClickListener(this) {
-            public final ng0 f37623b;
+            public final ng0 f37624b;
 
             {
-                this.f37623b = this;
+                this.f37624b = this;
             }
 
             @Override
             public final boolean onLongClick(View view) {
                 switch (r2) {
                     case 0:
-                        return ng0.Z(this.f37623b, view);
+                        return ng0.Z(this.f37624b, view);
                     case 1:
-                        ng0 ng0Var = this.f37623b;
+                        ng0 ng0Var = this.f37624b;
                         if (ng0Var.getParentActivity() == null || ng0Var.getParentActivity() == null) {
                             return false;
                         }
@@ -272,7 +272,7 @@ public final class ng0 extends og1 implements NotificationCenter.NotificationCen
                         H.Z();
                         return true;
                     case 2:
-                        ng0 ng0Var2 = this.f37623b;
+                        ng0 ng0Var2 = this.f37624b;
                         if (ng0Var2.getParentActivity() == null || ng0Var2.getParentActivity() == null) {
                             return false;
                         }
@@ -292,25 +292,25 @@ public final class ng0 extends og1 implements NotificationCenter.NotificationCen
                         H2.Z();
                         return true;
                     default:
-                        this.f37623b.k0(view);
+                        this.f37624b.k0(view);
                         return true;
                 }
             }
         });
         this.K[3].setOnLongClickListener(new View.OnLongClickListener(this) {
-            public final ng0 f37623b;
+            public final ng0 f37624b;
 
             {
-                this.f37623b = this;
+                this.f37624b = this;
             }
 
             @Override
             public final boolean onLongClick(View view) {
                 switch (r2) {
                     case 0:
-                        return ng0.Z(this.f37623b, view);
+                        return ng0.Z(this.f37624b, view);
                     case 1:
-                        ng0 ng0Var = this.f37623b;
+                        ng0 ng0Var = this.f37624b;
                         if (ng0Var.getParentActivity() == null || ng0Var.getParentActivity() == null) {
                             return false;
                         }
@@ -327,7 +327,7 @@ public final class ng0 extends og1 implements NotificationCenter.NotificationCen
                         H.Z();
                         return true;
                     case 2:
-                        ng0 ng0Var2 = this.f37623b;
+                        ng0 ng0Var2 = this.f37624b;
                         if (ng0Var2.getParentActivity() == null || ng0Var2.getParentActivity() == null) {
                             return false;
                         }
@@ -347,25 +347,25 @@ public final class ng0 extends og1 implements NotificationCenter.NotificationCen
                         H2.Z();
                         return true;
                     default:
-                        this.f37623b.k0(view);
+                        this.f37624b.k0(view);
                         return true;
                 }
             }
         });
         this.K[4].setOnLongClickListener(new View.OnLongClickListener(this) {
-            public final ng0 f37623b;
+            public final ng0 f37624b;
 
             {
-                this.f37623b = this;
+                this.f37624b = this;
             }
 
             @Override
             public final boolean onLongClick(View view) {
                 switch (r2) {
                     case 0:
-                        return ng0.Z(this.f37623b, view);
+                        return ng0.Z(this.f37624b, view);
                     case 1:
-                        ng0 ng0Var = this.f37623b;
+                        ng0 ng0Var = this.f37624b;
                         if (ng0Var.getParentActivity() == null || ng0Var.getParentActivity() == null) {
                             return false;
                         }
@@ -382,7 +382,7 @@ public final class ng0 extends og1 implements NotificationCenter.NotificationCen
                         H.Z();
                         return true;
                     case 2:
-                        ng0 ng0Var2 = this.f37623b;
+                        ng0 ng0Var2 = this.f37624b;
                         if (ng0Var2.getParentActivity() == null || ng0Var2.getParentActivity() == null) {
                             return false;
                         }
@@ -402,7 +402,7 @@ public final class ng0 extends og1 implements NotificationCenter.NotificationCen
                         H2.Z();
                         return true;
                     default:
-                        this.f37623b.k0(view);
+                        this.f37624b.k0(view);
                         return true;
                 }
             }
@@ -527,7 +527,7 @@ public final class ng0 extends og1 implements NotificationCenter.NotificationCen
                 IUpdateLayout iUpdateLayout5 = this.f39590w;
                 if (iUpdateLayout5 != null && (launchActivity = LaunchActivity.H1) != null) {
                     int i12 = this.currentAccount;
-                    if (launchActivity.f33161d0.size() == 1) {
+                    if (launchActivity.f33162d0.size() == 1) {
                         z11 = true;
                     }
                     iUpdateLayout5.updateAppUpdateViews(i12, z11);
@@ -541,7 +541,7 @@ public final class ng0 extends og1 implements NotificationCenter.NotificationCen
                 for (int i13 = 0; i13 < size; i13++) {
                     mg1 mg1Var = (mg1) sparseArray.valueAt(i13);
                     if (sparseArray.keyAt(i13) != currentPosition && mg1Var != null) {
-                        mg1Var.f39242a.clearViews();
+                        mg1Var.f39243a.clearViews();
                     }
                 }
                 return;
@@ -795,7 +795,7 @@ public final class ng0 extends og1 implements NotificationCenter.NotificationCen
         c02.getPaint().setShadowLayer(AndroidUtilities.dp(6.0f), 0.0f, AndroidUtilities.dp(1.0f), org.telegram.ui.ActionBar.h6.m1(0.15f, -16777216));
         H.W(c02);
         H.Z();
-        org.telegram.ui.Components.s40.f30194r.a();
+        org.telegram.ui.Components.s40.f30195r.a();
     }
 
     public final cy l0(Bundle bundle) {
@@ -904,7 +904,7 @@ public final class ng0 extends og1 implements NotificationCenter.NotificationCen
         if (this.Q) {
             return;
         }
-        if (this.P == null && org.telegram.ui.Components.s40.f30194r.c()) {
+        if (this.P == null && org.telegram.ui.Components.s40.f30195r.c()) {
             AndroidUtilities.runOnUIThread(new ig0(this, 7), 1500L);
         }
         this.Q = true;

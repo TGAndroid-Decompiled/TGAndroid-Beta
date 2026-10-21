@@ -460,7 +460,7 @@ public abstract class p2 extends FrameLayout implements NotificationCenter.Notif
                 spannableStringBuilder = this.f50469s;
             }
             this.f50470w.g(spannableStringBuilder, true, true);
-            qc qcVar = qc.f29523w;
+            qc qcVar = qc.f29524w;
             if (qcVar != null && (ubVar = qcVar.e) != null) {
                 ubVar.updatePosition();
             }

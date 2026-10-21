@@ -121,7 +121,7 @@ public final class d implements r, v51, a0, androidx.activity.result.b, ru0, j0,
                 q qVar = (q) this.f50121b;
                 mi0 mi0Var = qVar.O;
                 if (mi0Var != null) {
-                    mi0Var.i();
+                    mi0Var.h();
                     qVar.O = null;
                     return;
                 }

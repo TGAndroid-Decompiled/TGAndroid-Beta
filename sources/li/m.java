@@ -162,7 +162,7 @@ public abstract class m extends s4.k {
             }
         }
         if (!this.K.isEmpty() && (v11Var = (v11) this.U.run()) != null) {
-            ArrayList arrayList2 = v11Var.f31116c;
+            ArrayList arrayList2 = v11Var.f31117c;
             if (!v11Var.e) {
                 v11Var.e = true;
                 int size2 = arrayList2.size();
@@ -177,7 +177,7 @@ public abstract class m extends s4.k {
                     }
                 }
                 arrayList2.clear();
-                t11 t11Var = v11Var.f31114a;
+                t11 t11Var = v11Var.f31115a;
                 if (t11Var != null) {
                     t11Var.i();
                 }

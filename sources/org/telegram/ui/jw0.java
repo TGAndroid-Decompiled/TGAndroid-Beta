@@ -9,13 +9,13 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.LocaleController;
 public final class jw0 extends tg.n {
-    public final Context f38374i0;
-    public final nw0 f38375j0;
+    public final Context f38375i0;
+    public final nw0 f38376j0;
 
     public jw0(nw0 nw0Var, Context context, int i10, int i11, Context context2) {
         super(context, i10, i11);
-        this.f38375j0 = nw0Var;
-        this.f38374i0 = context2;
+        this.f38376j0 = nw0Var;
+        this.f38375i0 = context2;
     }
 
     @Override
@@ -32,11 +32,11 @@ public final class jw0 extends tg.n {
         int i16;
         int i17;
         int i18;
-        nw0 nw0Var = this.f38375j0;
+        nw0 nw0Var = this.f38376j0;
         PremiumPreviewFragment premiumPreviewFragment = nw0Var.f39700n;
-        if (premiumPreviewFragment.f33519r0 == null && BuildVars.DEBUG_PRIVATE_VERSION) {
-            Context context = this.f38374i0;
-            premiumPreviewFragment.f33519r0 = new FrameLayout(context);
+        if (premiumPreviewFragment.f33520r0 == null && BuildVars.DEBUG_PRIVATE_VERSION) {
+            Context context = this.f38375i0;
+            premiumPreviewFragment.f33520r0 = new FrameLayout(context);
             ScrollView scrollView = new ScrollView(context);
             tg.g gVar = nw0Var.d.f47108b;
             ai.r rVar = new ai.r(context, 7);
@@ -199,12 +199,12 @@ public final class jw0 extends tg.n {
             dp0Var5.setReportChanges(true);
             rVar.addView(dp0Var5, w7.z5.d(-1, 38.0f, 0, 5.0f, 4.0f, 5.0f, 0.0f));
             scrollView.addView(rVar);
-            premiumPreviewFragment.f33519r0.addView(scrollView);
-            premiumPreviewFragment.f33519r0.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21061h5, false));
-            premiumPreviewFragment.f33503d0.addView(premiumPreviewFragment.f33519r0, w7.z5.e(-1, -1, 80));
-            ((ViewGroup.MarginLayoutParams) premiumPreviewFragment.f33519r0.getLayoutParams()).topMargin = premiumPreviewFragment.f33502c0;
-            premiumPreviewFragment.f33519r0.setTranslationY(AndroidUtilities.dp(1000.0f));
-            premiumPreviewFragment.f33519r0.animate().translationY(1.0f).setDuration(300L);
+            premiumPreviewFragment.f33520r0.addView(scrollView);
+            premiumPreviewFragment.f33520r0.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21061h5, false));
+            premiumPreviewFragment.f33504d0.addView(premiumPreviewFragment.f33520r0, w7.z5.e(-1, -1, 80));
+            ((ViewGroup.MarginLayoutParams) premiumPreviewFragment.f33520r0.getLayoutParams()).topMargin = premiumPreviewFragment.f33503c0;
+            premiumPreviewFragment.f33520r0.setTranslationY(AndroidUtilities.dp(1000.0f));
+            premiumPreviewFragment.f33520r0.animate().translationY(1.0f).setDuration(300L);
         }
     }
 }

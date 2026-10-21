@@ -48,8 +48,8 @@ public final class jq0 extends qu {
         tz emojiView = getEmojiView();
         fr0 fr0Var = this.f27618c0;
         if (emojiView != null) {
-            emojiView.f30784w0 = false;
-            emojiView.f30786w2 = false;
+            emojiView.f30785w0 = false;
+            emojiView.f30787w2 = false;
             emojiView.setShouldDrawBackground(false);
             emojiView.setBottomInset(fr0Var.H0.d);
         }

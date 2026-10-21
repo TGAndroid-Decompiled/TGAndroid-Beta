@@ -39,7 +39,7 @@ public final class fv0 extends im0 {
     public fv0(uv0 uv0Var, Context context) {
         this.G = uv0Var;
         this.f26420c = context;
-        this.d = uv0Var.f31070v1.getCurrentAccount();
+        this.d = uv0Var.f31071v1.getCurrentAccount();
         C(true);
     }
 
@@ -81,13 +81,13 @@ public final class fv0 extends im0 {
             arrayList.addAll(MessagesController.getInstance(i11).getSavedMessagesController().searchDialogs(str));
         }
         while (true) {
-            nu0[] nu0VarArr = this.G.f31046k0;
+            nu0[] nu0VarArr = this.G.f31047k0;
             if (i12 >= nu0VarArr.length) {
                 break;
             }
             nu0 nu0Var = nu0VarArr[i12];
             if (nu0Var.F == 11) {
-                nu0Var.f28882w.e(true, true);
+                nu0Var.f28883w.e(true, true);
             }
             i12++;
         }
@@ -139,7 +139,7 @@ public final class fv0 extends im0 {
         ArrayList arrayList;
         CharSequence formatString;
         CharSequence charSequence;
-        nu0[] nu0VarArr = this.G.f31046k0;
+        nu0[] nu0VarArr = this.G.f31047k0;
         ArrayList arrayList2 = this.f26421f;
         arrayList2.clear();
         HashSet hashSet = new HashSet();
@@ -172,11 +172,11 @@ public final class fv0 extends im0 {
         if (!z10 || !arrayList.isEmpty()) {
             for (int i12 = 0; i12 < nu0VarArr.length; i12++) {
                 if (nu0VarArr[i12].F == 11 && arrayList2.isEmpty() && this.e.isEmpty()) {
-                    wh.n nVar = nu0VarArr[i12].f28882w.d;
+                    wh.n nVar = nu0VarArr[i12].f28883w.d;
                     if (this.f26426x != null && TextUtils.isEmpty(this.f26425w)) {
                         String string = LocaleController.getString(R.string.NoResultFoundForTag);
                         ah.i1 i1Var = this.f26426x;
-                        Paint.FontMetricsInt fontMetricsInt = nu0VarArr[i12].f28882w.d.getPaint().getFontMetricsInt();
+                        Paint.FontMetricsInt fontMetricsInt = nu0VarArr[i12].f28883w.d.getPaint().getFontMetricsInt();
                         if (!TextUtils.isEmpty(i1Var.f783f)) {
                             charSequence = i1Var.f783f;
                         } else {
@@ -189,8 +189,8 @@ public final class fv0 extends im0 {
                         formatString = LocaleController.formatString(R.string.NoResultFoundFor, this.f26425w);
                     }
                     nVar.setText(formatString);
-                    nu0VarArr[i12].f28882w.f30698f.setVisibility(8);
-                    nu0VarArr[i12].f28882w.e(false, true);
+                    nu0VarArr[i12].f28883w.f30699f.setVisibility(8);
+                    nu0VarArr[i12].f28883w.e(false, true);
                 }
             }
         }

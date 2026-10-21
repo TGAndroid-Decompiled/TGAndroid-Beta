@@ -5,26 +5,26 @@ import android.graphics.PorterDuffColorFilter;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 public final class tp implements org.telegram.ui.ActionBar.i6 {
-    public boolean f30639a = false;
-    public final wp f30640b;
+    public boolean f30640a = false;
+    public final wp f30641b;
 
     public tp(wp wpVar) {
-        this.f30640b = wpVar;
+        this.f30641b = wpVar;
     }
 
     @Override
     public final void a(float f7) {
         ArrayList arrayList;
-        wp wpVar = this.f30640b;
+        wp wpVar = this.f30641b;
         up upVar = wpVar.h;
-        if (f7 == 0.0f && !this.f30639a) {
+        if (f7 == 0.0f && !this.f30640a) {
             if (upVar != null && (arrayList = upVar.d) != null) {
                 int size = arrayList.size();
                 int i10 = 0;
                 while (i10 < size) {
                     Object obj = arrayList.get(i10);
                     i10++;
-                    ((vp) obj).f31851c = wpVar.N ? 1 : 0;
+                    ((vp) obj).f31852c = wpVar.N ? 1 : 0;
                 }
             }
             if (!wpVar.P) {
@@ -32,7 +32,7 @@ public final class tp implements org.telegram.ui.ActionBar.i6 {
                     ((vp) upVar.d.get(i11)).getClass();
                 }
             }
-            this.f30639a = true;
+            this.f30640a = true;
         }
         vj0 vj0Var = wpVar.F;
         int i12 = org.telegram.ui.ActionBar.h6.Oh;
@@ -43,9 +43,9 @@ public final class tp implements org.telegram.ui.ActionBar.i6 {
                 ((vp) upVar.d.get(i13)).getClass();
             }
         }
-        if (f7 == 1.0f && this.f30639a) {
+        if (f7 == 1.0f && this.f30640a) {
             wpVar.P = false;
-            this.f30639a = false;
+            this.f30640a = false;
         }
         wpVar.E();
         ah.v vVar = wpVar.Z;
@@ -55,7 +55,7 @@ public final class tp implements org.telegram.ui.ActionBar.i6 {
             int o10 = i0.a.o(wpVar.getThemedColor(i12), 76);
             vVar.setBackground(org.telegram.ui.ActionBar.h6.j0(dp, dp, dp, dp, themedColor, o10, o10));
         }
-        q6 q6Var = wpVar.f32203a0;
+        q6 q6Var = wpVar.f32204a0;
         if (q6Var != null) {
             q6Var.setTextColor(wpVar.getThemedColor(i12));
         }

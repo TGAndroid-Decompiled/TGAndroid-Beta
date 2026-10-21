@@ -1954,7 +1954,7 @@ public class MessagesController extends BaseController implements NotificationCe
                     arrayList.add(toMessageObject(document));
                 }
             }
-            AndroidUtilities.runOnUIThread(new l8(this, tLObject, arrayList, 17));
+            AndroidUtilities.runOnUIThread(new l8(this, tLObject, arrayList, 18));
         }
 
         public void add(TLRPC.Document document) {
@@ -12094,7 +12094,7 @@ public class MessagesController extends BaseController implements NotificationCe
         iArr[0] = i11;
         if (i11 >= i10) {
             if (!tL_messages_invitedUsers.missing_invitees.isEmpty()) {
-                AndroidUtilities.runOnUIThread(new l8(this, chat, tL_messages_invitedUsers, 6));
+                AndroidUtilities.runOnUIThread(new l8(this, chat, tL_messages_invitedUsers, 7));
             }
             if (runnable != null) {
                 runnable.run();
@@ -12380,13 +12380,13 @@ public class MessagesController extends BaseController implements NotificationCe
         }
         MessagesController messagesController = this;
         if (hVar2 != null) {
-            if (SecretMediaViewer.g() && SecretMediaViewer.f().f33823s) {
+            if (SecretMediaViewer.g() && SecretMediaViewer.f().f33824s) {
                 z10 = true;
             } else {
                 z10 = false;
             }
             if (z10) {
-                messageObject = SecretMediaViewer.f().f33801h0;
+                messageObject = SecretMediaViewer.f().f33802h0;
             } else {
                 messageObject = null;
             }
@@ -12403,7 +12403,7 @@ public class MessagesController extends BaseController implements NotificationCe
                     long createDeleteShowOnceTask = messagesController.createDeleteShowOnceTask(j11, id2);
                     c10 = c11;
                     messagesController = this;
-                    SecretMediaViewer.f().f33817p1 = new z9(id2, createDeleteShowOnceTask, j11, this);
+                    SecretMediaViewer.f().f33818p1 = new z9(id2, createDeleteShowOnceTask, j11, this);
                     NotificationCenter notificationCenter = messagesController.getNotificationCenter();
                     int i12 = NotificationCenter.updateMessageMedia;
                     Object[] objArr = new Object[1];
@@ -13570,7 +13570,7 @@ public class MessagesController extends BaseController implements NotificationCe
             getMessagesStorage().getStorageQueue().postRunnable(new de(this, j10, i10, i11, j11, tL_messages_affectedHistory, z10, runnable));
             return;
         }
-        AndroidUtilities.runOnUIThread(new i3(2, runnable));
+        AndroidUtilities.runOnUIThread(new j3(2, runnable));
     }
 
     public void lambda$deleteParticipantFromChat$311(long j10) {
@@ -13884,20 +13884,20 @@ public class MessagesController extends BaseController implements NotificationCe
                 }
                 updatetheme.format = "android";
                 getConnectionsManager().sendRequest(updatetheme, new RequestDelegate(this) {
-                    public final MessagesController f20084b;
+                    public final MessagesController f20081b;
 
                     {
-                        this.f20084b = this;
+                        this.f20081b = this;
                     }
 
                     @Override
                     public final void run(TLObject tLObject2, TLRPC.TL_error tL_error2) {
                         switch (r4) {
                             case 0:
-                                this.f20084b.lambda$didReceivedNotification$46(g6Var, f6Var, tLObject2, tL_error2);
+                                this.f20081b.lambda$didReceivedNotification$46(g6Var, f6Var, tLObject2, tL_error2);
                                 return;
                             default:
-                                this.f20084b.lambda$didReceivedNotification$48(g6Var, f6Var, tLObject2, tL_error2);
+                                this.f20081b.lambda$didReceivedNotification$48(g6Var, f6Var, tLObject2, tL_error2);
                                 return;
                         }
                     }
@@ -13919,27 +13919,27 @@ public class MessagesController extends BaseController implements NotificationCe
                 createtheme.flags |= 8;
             }
             getConnectionsManager().sendRequest(createtheme, new RequestDelegate(this) {
-                public final MessagesController f20084b;
+                public final MessagesController f20081b;
 
                 {
-                    this.f20084b = this;
+                    this.f20081b = this;
                 }
 
                 @Override
                 public final void run(TLObject tLObject2, TLRPC.TL_error tL_error2) {
                     switch (r4) {
                         case 0:
-                            this.f20084b.lambda$didReceivedNotification$46(g6Var, f6Var, tLObject2, tL_error2);
+                            this.f20081b.lambda$didReceivedNotification$46(g6Var, f6Var, tLObject2, tL_error2);
                             return;
                         default:
-                            this.f20084b.lambda$didReceivedNotification$48(g6Var, f6Var, tLObject2, tL_error2);
+                            this.f20081b.lambda$didReceivedNotification$48(g6Var, f6Var, tLObject2, tL_error2);
                             return;
                     }
                 }
             });
             return;
         }
-        AndroidUtilities.runOnUIThread(new l8(this, g6Var, f6Var, 14));
+        AndroidUtilities.runOnUIThread(new l8(this, g6Var, f6Var, 15));
     }
 
     public void lambda$ensureMessagesLoaded$462(boolean[] zArr, TLRPC.Chat chat, Runnable[] runnableArr, long j10, int i10, MessagesLoadedCallback messagesLoadedCallback) {
@@ -14425,7 +14425,7 @@ public class MessagesController extends BaseController implements NotificationCe
 
     public void lambda$getDifference$355(ArrayList arrayList, TLRPC.updates_Difference updates_difference, a0.h hVar) {
         if (!arrayList.isEmpty()) {
-            AndroidUtilities.runOnUIThread(new l8(this, arrayList, updates_difference, 13));
+            AndroidUtilities.runOnUIThread(new l8(this, arrayList, updates_difference, 14));
         }
         getMessagesStorage().putMessages(updates_difference.new_messages, true, false, false, getDownloadController().getAutodownloadMask(), 0, 0L);
         for (int i10 = 0; i10 < hVar.m(); i10++) {
@@ -17168,7 +17168,7 @@ public class MessagesController extends BaseController implements NotificationCe
         if (updateMessageStateAndId == null) {
             return;
         }
-        AndroidUtilities.runOnUIThread(new l8(this, updateMessageStateAndId, tL_updateMessageID, 11));
+        AndroidUtilities.runOnUIThread(new l8(this, updateMessageStateAndId, tL_updateMessageID, 12));
     }
 
     public void lambda$processUpdateArray$384(ArrayList arrayList, ArrayList arrayList2) {
@@ -17237,7 +17237,7 @@ public class MessagesController extends BaseController implements NotificationCe
             if (messageAction instanceof TLRPC.TL_messageActionWalletTonConnectRequest) {
                 TLRPC.TL_messageActionWalletTonConnectRequest tL_messageActionWalletTonConnectRequest = (TLRPC.TL_messageActionWalletTonConnectRequest) messageAction;
                 if (tL_messageActionWalletTonConnectRequest.accepted || tL_messageActionWalletTonConnectRequest.declined) {
-                    org.telegram.ui.Wallet.m0.w(this.currentAccount).f34480g.m(message.f20297id, tL_messageActionWalletTonConnectRequest.session_id);
+                    org.telegram.ui.Wallet.m0.w(this.currentAccount).f34481g.m(message.f20297id, tL_messageActionWalletTonConnectRequest.session_id);
                 }
             }
         }
@@ -17801,7 +17801,7 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public void lambda$requestIsUserContactBlocked$498(ArrayList arrayList, TLObject tLObject, TLRPC.TL_error tL_error) {
-        AndroidUtilities.runOnUIThread(new l8(this, tLObject, arrayList, 16));
+        AndroidUtilities.runOnUIThread(new l8(this, tLObject, arrayList, 17));
     }
 
     public void lambda$resetDialogs$208(int i10, int i11, int i12, int i13, TLObject tLObject, TLRPC.TL_error tL_error) {
@@ -18421,7 +18421,7 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public static void lambda$unblockPeer$110(Runnable runnable, TLObject tLObject, TLRPC.TL_error tL_error) {
-        AndroidUtilities.runOnUIThread(new i3(1, runnable));
+        AndroidUtilities.runOnUIThread(new j3(1, runnable));
     }
 
     public void lambda$unpinAllMessages$128(TLRPC.Chat chat, TLRPC.User user, TLObject tLObject, TLRPC.TL_error tL_error) {
@@ -18500,7 +18500,7 @@ public class MessagesController extends BaseController implements NotificationCe
 
     public void lambda$updateChatAbout$289(TLRPC.ChatFull chatFull, String str, TLObject tLObject, TLRPC.TL_error tL_error) {
         if ((tLObject instanceof TLRPC.TL_boolTrue) && chatFull != null) {
-            AndroidUtilities.runOnUIThread(new l8(this, chatFull, str, 10));
+            AndroidUtilities.runOnUIThread(new l8(this, chatFull, str, 11));
         }
     }
 
@@ -21047,17 +21047,17 @@ public class MessagesController extends BaseController implements NotificationCe
             org.telegram.ui.Wallet.q0.z(m0Var.J);
             m0Var.G.clear();
             m0Var.N.clear();
-            WalletEngine2 walletEngine2 = m0Var.f34477b;
+            WalletEngine2 walletEngine2 = m0Var.f34478b;
             if (walletEngine2 != null) {
                 walletEngine2.close();
-                m0Var.f34477b = null;
+                m0Var.f34478b = null;
                 m0Var.d = null;
             }
-            org.telegram.ui.Wallet.e0 e0Var = m0Var.f34487o;
+            org.telegram.ui.Wallet.e0 e0Var = m0Var.f34488o;
             if (e0Var != null) {
                 e0Var.c();
             }
-            int i10 = m0Var.f34476a;
+            int i10 = m0Var.f34477a;
             if (m0Var.A >= 0) {
                 ConnectionsManager.getInstance(i10).cancelRequest(m0Var.A, true);
                 m0Var.A = -1;
@@ -21072,16 +21072,16 @@ public class MessagesController extends BaseController implements NotificationCe
             }
             m0Var.d0();
             m0Var.E.clear();
-            org.telegram.ui.Wallet.a1 a1Var = m0Var.f34491s;
+            org.telegram.ui.Wallet.a1 a1Var = m0Var.f34492s;
             if (a1Var != null) {
                 a1Var.h();
-                m0Var.f34491s = null;
+                m0Var.f34492s = null;
             }
             AndroidUtilities.cancelRunOnUIThread(m0Var.F);
             synchronized (org.telegram.ui.Wallet.m0.class) {
                 try {
-                    if (org.telegram.ui.Wallet.m0.O[m0Var.f34476a] == m0Var) {
-                        org.telegram.ui.Wallet.m0.O[m0Var.f34476a] = null;
+                    if (org.telegram.ui.Wallet.m0.O[m0Var.f34477a] == m0Var) {
+                        org.telegram.ui.Wallet.m0.O[m0Var.f34477a] = null;
                     }
                 } finally {
                 }
@@ -21096,7 +21096,7 @@ public class MessagesController extends BaseController implements NotificationCe
             unconfirmedAuthController.cleanup();
         }
         this.showFiltersTooltip = false;
-        cy.f36067y4[this.currentAccount] = false;
+        cy.f36068y4[this.currentAccount] = false;
         this.notificationsPreferences.edit().clear().commit();
         this.emojiPreferences.edit().putLong("lastGifLoadTime", 0L).putLong("lastStickersLoadTime", 0L).putLong("lastStickersLoadTimeMask", 0L).putLong("lastStickersLoadTimeFavs", 0L).commit();
         g0.d(this.mainPreferences.edit().remove("archivehint").remove("proximityhint").remove("archivehint_l").remove("gifhint"), "reminderhint", "soundHint", "dcDomainName2", "webFileDatacenterId").remove("themehint").remove("showFiltersTooltip").remove("transcribeButtonPressed").commit();
@@ -24150,9 +24150,9 @@ public class MessagesController extends BaseController implements NotificationCe
             int i11 = this.currentAccount;
             long clientUserId = getUserConfig().getClientUserId();
             if (clientUserId == 0) {
-                Object obj = org.telegram.ui.Wallet.q0.f34752f;
+                Object obj = org.telegram.ui.Wallet.q0.f34753f;
             } else {
-                synchronized (org.telegram.ui.Wallet.q0.f34752f) {
+                synchronized (org.telegram.ui.Wallet.q0.f34753f) {
                     try {
                         ArrayList n10 = org.telegram.ui.Wallet.q0.n(context, clientUserId);
                         int size = n10.size();
@@ -24366,7 +24366,7 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public void processDialogsUpdateRead(LongSparseIntArray longSparseIntArray, LongSparseIntArray longSparseIntArray2) {
-        AndroidUtilities.runOnUIThread(new l8(this, longSparseIntArray, longSparseIntArray2, 12));
+        AndroidUtilities.runOnUIThread(new l8(this, longSparseIntArray, longSparseIntArray2, 13));
     }
 
     public void processLoadedAdminsResponse(long j10, TLRPC.TL_channels_channelParticipants tL_channels_channelParticipants) {
@@ -27627,7 +27627,7 @@ public class MessagesController extends BaseController implements NotificationCe
                 }
             };
             if (!user.bot && z11) {
-                addUserToChat(j10, user, 0, str2, n2Var, true, new l8(this, tL_channels_editAdmin, requestDelegate, 7), errorDelegate);
+                addUserToChat(j10, user, 0, str2, n2Var, true, new l8(this, tL_channels_editAdmin, requestDelegate, 8), errorDelegate);
                 return;
             } else {
                 getConnectionsManager().sendRequest(tL_channels_editAdmin, requestDelegate);
@@ -27651,7 +27651,7 @@ public class MessagesController extends BaseController implements NotificationCe
         if (!z14 && !z11 && TextUtils.isEmpty(str2)) {
             getConnectionsManager().sendRequest(tL_messages_editChatAdmin, requestDelegate2);
         } else {
-            addUserToChat(j10, user, 0, str2, n2Var, true, new l8(this, tL_messages_editChatAdmin, requestDelegate2, 8), errorDelegate);
+            addUserToChat(j10, user, 0, str2, n2Var, true, new l8(this, tL_messages_editChatAdmin, requestDelegate2, 9), errorDelegate);
         }
     }
 
@@ -28048,19 +28048,19 @@ public class MessagesController extends BaseController implements NotificationCe
             cVar.f44290b = new tc(1, zArr);
             cVar.d();
         }
-        g3 g3Var = new g3(this, n2Var, cVar, zArr, user, str, z10, z11, r9);
+        h3 h3Var = new h3(this, n2Var, cVar, zArr, user, str, z10, z11, r9);
         MediaDataController mediaDataController = getMediaDataController();
         long j10 = user.f20423id;
         TL_bots.BotInfo botInfoCached = mediaDataController.getBotInfoCached(j10, j10);
         TL_bots.BotInfo[] botInfoArr = {botInfoCached};
         if (user.bot_has_main_app) {
-            g3Var.run();
+            h3Var.run();
         } else if (botInfoCached == null) {
             MediaDataController mediaDataController2 = getMediaDataController();
             long j11 = user.f20423id;
-            mediaDataController2.loadBotInfo(j11, j11, false, i10, new sc(this, zArr, botInfoArr, user, i10, g3Var));
+            mediaDataController2.loadBotInfo(j11, j11, false, i10, new sc(this, zArr, botInfoArr, user, i10, h3Var));
         } else {
-            g3Var.run();
+            h3Var.run();
         }
     }
 
@@ -28984,20 +28984,20 @@ public class MessagesController extends BaseController implements NotificationCe
                         tL_photos_getUserPhotos.max_id = 0L;
                         tL_photos_getUserPhotos.user_id = MessagesController.this.getInputUser(user);
                         MessagesController.this.getConnectionsManager().sendRequest(tL_photos_getUserPhotos, new RequestDelegate(this) {
-                            public final MessagesController.DialogPhotos f19060b;
+                            public final MessagesController.DialogPhotos f19056b;
 
                             {
-                                this.f19060b = this;
+                                this.f19056b = this;
                             }
 
                             @Override
                             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                                 switch (r4) {
                                     case 0:
-                                        this.f19060b.lambda$load$1(i10, i11, tLObject, tL_error);
+                                        this.f19056b.lambda$load$1(i10, i11, tLObject, tL_error);
                                         return;
                                     default:
-                                        this.f19060b.lambda$load$3(i10, i11, tLObject, tL_error);
+                                        this.f19056b.lambda$load$3(i10, i11, tLObject, tL_error);
                                         return;
                                 }
                             }
@@ -29012,20 +29012,20 @@ public class MessagesController extends BaseController implements NotificationCe
                     tL_messages_search.f20385q = "";
                     tL_messages_search.peer = MessagesController.this.getInputPeer(this.dialogId);
                     MessagesController.this.getConnectionsManager().sendRequest(tL_messages_search, new RequestDelegate(this) {
-                        public final MessagesController.DialogPhotos f19060b;
+                        public final MessagesController.DialogPhotos f19056b;
 
                         {
-                            this.f19060b = this;
+                            this.f19056b = this;
                         }
 
                         @Override
                         public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                             switch (r4) {
                                 case 0:
-                                    this.f19060b.lambda$load$1(i10, i11, tLObject, tL_error);
+                                    this.f19056b.lambda$load$1(i10, i11, tLObject, tL_error);
                                     return;
                                 default:
-                                    this.f19060b.lambda$load$3(i10, i11, tLObject, tL_error);
+                                    this.f19056b.lambda$load$3(i10, i11, tLObject, tL_error);
                                     return;
                             }
                         }

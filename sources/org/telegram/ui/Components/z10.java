@@ -8,18 +8,18 @@ import org.telegram.messenger.AndroidUtilities;
 public final class z10 extends e8 {
     public final Context E;
     public final FragmentContextView F;
-    public final int f32802y;
+    public final int f32803y;
 
     public z10(FragmentContextView fragmentContextView, Context context, Context context2, int i10) {
         super(context);
-        this.f32802y = i10;
+        this.f32803y = i10;
         this.F = fragmentContextView;
         this.E = context2;
     }
 
     @Override
     public final TextView a() {
-        switch (this.f32802y) {
+        switch (this.f32803y) {
             case 0:
                 TextView textView = new TextView(this.E);
                 textView.setMaxLines(1);

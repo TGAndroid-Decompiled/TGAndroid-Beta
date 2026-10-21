@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.StatsController;
 public final class du implements org.telegram.ui.Components.ul0, org.telegram.ui.ActionBar.a2 {
-    public final hu f36449a;
+    public final hu f36450a;
 
     public du(hu huVar) {
-        this.f36449a = huVar;
+        this.f36450a = huVar;
     }
 
     @Override
@@ -15,13 +15,13 @@ public final class du implements org.telegram.ui.Components.ul0, org.telegram.ui
         int i11;
         int i12;
         int i13;
-        hu huVar = this.f36449a;
-        lu luVar = huVar.f37801m3;
-        ArrayList arrayList = huVar.f37792d3;
+        hu huVar = this.f36450a;
+        lu luVar = huVar.f37802m3;
+        ArrayList arrayList = huVar.f37793d3;
         arrayList.clear();
         int i14 = 0;
         while (true) {
-            gu[] guVarArr = huVar.f37793e3;
+            gu[] guVarArr = huVar.f37794e3;
             if (i14 >= guVarArr.length) {
                 i11 = ((org.telegram.ui.ActionBar.n2) luVar).currentAccount;
                 StatsController.getInstance(i11).resetStats(0);
@@ -44,8 +44,8 @@ public final class du implements org.telegram.ui.Components.ul0, org.telegram.ui
 
     @Override
     public int run() {
-        hu huVar = this.f36449a;
-        ArrayList arrayList = huVar.f37789a3;
+        hu huVar = this.f36450a;
+        ArrayList arrayList = huVar.f37790a3;
         int i10 = 0;
         while (true) {
             if (i10 < arrayList.size()) {

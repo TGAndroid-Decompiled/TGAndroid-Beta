@@ -126,7 +126,7 @@ public abstract class l4 extends FrameLayout {
             }
         }, new e1.c(maVar, 5), bVar);
         this.f9365b = g4Var;
-        g4Var.W2.f30860r = false;
+        g4Var.W2.f30861r = false;
         g4Var.setClipToPadding(false);
         g4Var.setClipChildren(false);
         g4Var.setPadding(AndroidUtilities.dp(2.0f), 0, AndroidUtilities.dp(2.0f), 0);
@@ -439,14 +439,14 @@ public abstract class l4 extends FrameLayout {
                 ycVar.c(false);
             }
         } else if (motionEvent.getAction() == 1) {
-            if (ycVar.f32631i) {
+            if (ycVar.f32632i) {
                 c(!this.M, true);
             }
             ycVar.c(false);
         } else if (motionEvent.getAction() == 3) {
             ycVar.c(false);
         }
-        if (!ycVar.f32631i && !super.onTouchEvent(motionEvent)) {
+        if (!ycVar.f32632i && !super.onTouchEvent(motionEvent)) {
             return false;
         }
         return true;

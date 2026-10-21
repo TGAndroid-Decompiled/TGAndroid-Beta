@@ -885,13 +885,13 @@ public abstract class f5 {
                 zArr5[0] = !z11;
                 vj0 vj0Var4 = vj0Var3;
                 if (!z11) {
-                    if (vj0Var4.f31264a0 >= 40) {
+                    if (vj0Var4.f31265a0 >= 40) {
                         vj0Var4.M(0);
                     }
                     vj0Var4.P(40);
                     vj0Var4.start();
                 } else {
-                    if (vj0Var4.f31264a0 < 40) {
+                    if (vj0Var4.f31265a0 < 40) {
                         vj0Var4.M(40);
                     }
                     vj0Var4.P(80);

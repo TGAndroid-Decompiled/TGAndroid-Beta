@@ -140,11 +140,11 @@ public final class p3 extends AnimatorListenerAdapter {
                     int L0 = sVar.L0();
                     jm0Var.setTranslationY(0.0f);
                     if (jm0Var == tzVar.D0) {
-                        jm0Var.setPadding(0, AndroidUtilities.dp(36.0f), 0, AndroidUtilities.dp(44.0f) + tzVar.f30762p2);
-                    } else if (jm0Var == tzVar.f30737h0) {
-                        jm0Var.setPadding(0, tzVar.f30718b1, 0, AndroidUtilities.dp(44.0f) + tzVar.f30762p2);
+                        jm0Var.setPadding(0, AndroidUtilities.dp(36.0f), 0, AndroidUtilities.dp(44.0f) + tzVar.f30763p2);
+                    } else if (jm0Var == tzVar.f30738h0) {
+                        jm0Var.setPadding(0, tzVar.f30719b1, 0, AndroidUtilities.dp(44.0f) + tzVar.f30763p2);
                     } else if (jm0Var == tzVar.P) {
-                        jm0Var.setPadding(AndroidUtilities.dp(5.0f), AndroidUtilities.dp(36.0f), AndroidUtilities.dp(5.0f), AndroidUtilities.dp(44.0f) + tzVar.f30762p2);
+                        jm0Var.setPadding(AndroidUtilities.dp(5.0f), AndroidUtilities.dp(36.0f), AndroidUtilities.dp(5.0f), AndroidUtilities.dp(44.0f) + tzVar.f30763p2);
                     }
                     if (L0 != -1) {
                         sVar.h1(L0, 0);

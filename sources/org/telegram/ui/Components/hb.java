@@ -33,18 +33,18 @@ public final class hb implements o1.f {
                 return;
             case 3:
                 sp0 sp0Var = (sp0) this.f26848b;
-                sp0Var.f30330q = false;
+                sp0Var.f30331q = false;
                 sp0Var.dismiss();
                 return;
             case 4:
                 tp0 tp0Var = (tp0) this.f26848b;
-                tp0Var.f30647s = false;
-                tp0Var.f30646r = false;
+                tp0Var.f30648s = false;
+                tp0Var.f30647r = false;
                 if (!z10) {
                     hVar.c();
                 }
-                if (hVar == tp0Var.f30644f) {
-                    tp0Var.f30644f = null;
+                if (hVar == tp0Var.f30645f) {
+                    tp0Var.f30645f = null;
                     return;
                 }
                 return;

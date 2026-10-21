@@ -21,13 +21,13 @@ public final class sh0 implements Runnable {
         switch (this.f41469a) {
             case 0:
                 mi0 mi0Var = this.f41470b;
-                if (!mi0Var.f39273p0) {
+                if (!mi0Var.f39273o0) {
                     try {
                         Window window = mi0Var.getWindow();
                         WindowManager.LayoutParams attributes = window.getAttributes();
                         attributes.flags &= -131073;
                         window.setAttributes(attributes);
-                        mi0Var.f39273p0 = true;
+                        mi0Var.f39273o0 = true;
                     } catch (Exception e) {
                         FileLog.e(e);
                     }
@@ -36,18 +36,18 @@ public final class sh0 implements Runnable {
                 return;
             default:
                 mi0 mi0Var2 = this.f41470b;
-                int[] iArr = mi0Var2.f39272o0;
+                int[] iArr = mi0Var2.f39272n0;
                 AndroidUtilities.showKeyboard(this.f41471c);
-                org.telegram.ui.Components.vg vgVar = mi0Var2.W;
+                org.telegram.ui.Components.vg vgVar = mi0Var2.V;
                 if (vgVar != null) {
                     vgVar.getLocationOnScreen(iArr);
                     int i10 = iArr[0];
-                    int width = mi0Var2.W.getWidth();
-                    org.telegram.ui.Components.vg vgVar2 = mi0Var2.W;
+                    int width = mi0Var2.V.getWidth();
+                    org.telegram.ui.Components.vg vgVar2 = mi0Var2.V;
                     vgVar2.getHeight();
                     iArr[0] = org.telegram.messenger.mk.D(6.0f, width - vgVar2.m(), i10);
-                    mi0Var2.X.setScaleX(mi0Var2.W.getScaleX());
-                    mi0Var2.X.setScaleY(mi0Var2.W.getScaleY());
+                    mi0Var2.W.setScaleX(mi0Var2.V.getScaleX());
+                    mi0Var2.W.setScaleY(mi0Var2.V.getScaleY());
                     return;
                 }
                 return;

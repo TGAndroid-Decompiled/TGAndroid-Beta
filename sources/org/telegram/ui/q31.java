@@ -62,14 +62,14 @@ public final class q31 extends FrameLayout {
     public final void onDraw(Canvas canvas) {
         SecretMediaViewer secretMediaViewer;
         float max;
-        MessageObject messageObject = this.f40367x.f33801h0;
+        MessageObject messageObject = this.f40367x.f33802h0;
         if (messageObject != null) {
             TLRPC.Message message = messageObject.messageOwner;
             if (message.destroyTime != 0 || message.ttl == Integer.MAX_VALUE) {
                 if (this.f40362f == 0) {
                     max = 1.0f;
                 } else {
-                    max = ((float) Math.max(0L, this.f40362f - (System.currentTimeMillis() + (ConnectionsManager.getInstance(secretMediaViewer.f33783a).getTimeDifference() * 1000)))) / (((float) this.h) * 1000.0f);
+                    max = ((float) Math.max(0L, this.f40362f - (System.currentTimeMillis() + (ConnectionsManager.getInstance(secretMediaViewer.f33784a).getTimeDifference() * 1000)))) / (((float) this.h) * 1000.0f);
                 }
                 boolean z10 = this.e;
                 Paint paint = this.f40360b;

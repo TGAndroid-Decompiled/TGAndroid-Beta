@@ -68,7 +68,7 @@ public final class hf implements Runnable {
             case 1:
                 int i12 = this.f26881b;
                 wp wpVar = (wp) callback;
-                s4.n0 layoutManager = wpVar.f32217w.getLayoutManager();
+                s4.n0 layoutManager = wpVar.f32218w.getLayoutManager();
                 if (layoutManager != null) {
                     if (i12 > wpVar.Q) {
                         max = Math.min(i12 + 1, wpVar.h.d.size() - 1);

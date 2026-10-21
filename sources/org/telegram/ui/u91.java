@@ -27,7 +27,7 @@ public final class u91 implements Utilities.Callback5, Utilities.Callback5Return
         ((Float) obj4).floatValue();
         ((Float) obj5).floatValue();
         StickersActivity stickersActivity = this.f41911a;
-        if (stickersActivity.f33863x.isEmpty() && (h61Var.G instanceof TLRPC.TL_messages_stickerSet)) {
+        if (stickersActivity.f33864x.isEmpty() && (h61Var.G instanceof TLRPC.TL_messages_stickerSet)) {
             stickersActivity.n0((org.telegram.ui.Cells.l8) view);
             z10 = true;
         } else {

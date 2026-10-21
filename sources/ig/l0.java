@@ -284,7 +284,7 @@ public final class l0 implements Utilities.Callback {
             case 10:
                 org.telegram.ui.web.f1 f1Var = (org.telegram.ui.web.f1) this.f12954b;
                 f1Var.e = (ArrayList) obj;
-                w61 w61Var = f1Var.f32355a;
+                w61 w61Var = f1Var.f32356a;
                 if (w61Var.G) {
                     w61Var.W2.N(true);
                     return;
@@ -293,7 +293,7 @@ public final class l0 implements Utilities.Callback {
             case 11:
                 org.telegram.ui.web.x1 x1Var2 = (org.telegram.ui.web.x1) this.f12954b;
                 x1Var2.f42856n = ((ArrayList) obj).size();
-                w61 w61Var2 = x1Var2.f32355a;
+                w61 w61Var2 = x1Var2.f32356a;
                 if (w61Var2 != null && (u61Var2 = w61Var2.W2) != null && w61Var2.G) {
                     u61Var2.N(true);
                     return;
@@ -415,21 +415,21 @@ public final class l0 implements Utilities.Callback {
                     yb ybVar = new yb(R.getParentActivity(), R.getResourceProvider());
                     if (payments_giveawayinfo instanceof TLRPC.TL_payments_giveawayInfoResults) {
                         ybVar.c(R.raw.chats_infotip, 30, 30, new String[0]);
-                        ybVar.f32624b.setText(LocaleController.getString(R.string.BoostingGiveawayShortStatusEnded));
+                        ybVar.f32625b.setText(LocaleController.getString(R.string.BoostingGiveawayShortStatusEnded));
                     } else if (payments_giveawayinfo instanceof TLRPC.TL_payments_giveawayInfo) {
                         if (((TLRPC.TL_payments_giveawayInfo) payments_giveawayinfo).participating) {
                             ybVar.c(R.raw.forward, 30, 30, new String[0]);
-                            ybVar.f32624b.setText(LocaleController.getString(R.string.BoostingGiveawayShortStatusParticipating));
+                            ybVar.f32625b.setText(LocaleController.getString(R.string.BoostingGiveawayShortStatusParticipating));
                         } else {
                             ybVar.c(R.raw.chats_infotip, 30, 30, new String[0]);
-                            ybVar.f32624b.setText(LocaleController.getString(R.string.BoostingGiveawayShortStatusNotParticipating));
+                            ybVar.f32625b.setText(LocaleController.getString(R.string.BoostingGiveawayShortStatusNotParticipating));
                         }
                     }
-                    ybVar.f32624b.setSingleLine(false);
-                    ybVar.f32624b.setMaxLines(2);
+                    ybVar.f32625b.setSingleLine(false);
+                    ybVar.f32625b.setMaxLines(2);
                     oc ocVar = new oc(R.getParentActivity(), R.getResourceProvider(), true);
                     ocVar.e(LocaleController.getString(R.string.LearnMore));
-                    ocVar.f28982a = new ei.s1(payments_giveawayinfo, z11, b10, j10, tL_messageMediaGiveaway2, R);
+                    ocVar.f28983a = new ei.s1(payments_giveawayinfo, z11, b10, j10, tL_messageMediaGiveaway2, R);
                     ybVar.setButton(ocVar);
                     qc.g(R, ybVar, 2750).j();
                     return;

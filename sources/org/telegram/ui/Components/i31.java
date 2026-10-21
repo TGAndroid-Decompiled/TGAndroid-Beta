@@ -20,7 +20,7 @@ public final class i31 extends AnimatorListenerAdapter {
         float f7;
         int i10;
         s31 s31Var = this.f27115b;
-        long j10 = s31Var.f30181c;
+        long j10 = s31Var.f30182c;
         if (s31Var.U == animator) {
             boolean z10 = this.f27114a;
             if (z10) {
@@ -39,7 +39,7 @@ public final class i31 extends AnimatorListenerAdapter {
             }
             imageView.setImageResource(i10);
             s31Var.U = null;
-            MessagesController.getInstance(s31Var.f30179b).getMainSettings().edit().putBoolean(a1.g.o(j10, "topicssidetabs"), s31Var.Q).putBoolean(a1.g.o(j10, "topicssidetabsb"), s31Var.P).apply();
+            MessagesController.getInstance(s31Var.f30180b).getMainSettings().edit().putBoolean(a1.g.o(j10, "topicssidetabs"), s31Var.Q).putBoolean(a1.g.o(j10, "topicssidetabsb"), s31Var.P).apply();
             Boolean bool = s31Var.T;
             if (bool != null && z10 != bool.booleanValue()) {
                 boolean booleanValue = s31Var.T.booleanValue();

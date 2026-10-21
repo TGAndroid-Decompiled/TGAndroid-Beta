@@ -15,12 +15,12 @@ public final class xm implements MessagesController.MessagesLoadedCallback {
     @Override
     public final void onError() {
         this.f43244a.c(false);
-        this.f43246c.f36010a.presentFragment(this.f43245b);
+        this.f43246c.f36011a.presentFragment(this.f43245b);
     }
 
     @Override
     public final void onMessagesLoaded(boolean z10) {
         this.f43244a.c(false);
-        this.f43246c.f36010a.presentFragment(this.f43245b);
+        this.f43246c.f36011a.presentFragment(this.f43245b);
     }
 }

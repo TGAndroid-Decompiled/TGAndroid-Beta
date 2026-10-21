@@ -400,8 +400,8 @@ public final class l60 extends r60 {
             }
             if (this.d != z10) {
                 this.d = z10;
-                p60 p60Var = this.f29851c;
-                if (p60Var != null && (fkVar = ((org.telegram.ui.jj) p60Var).f38270a.Y) != null) {
+                p60 p60Var = this.f29852c;
+                if (p60Var != null && (fkVar = ((org.telegram.ui.jj) p60Var).f38271a.Y) != null) {
                     fkVar.setRoundVideoUiFrameClockActive(z10);
                 }
             }
@@ -441,18 +441,18 @@ public final class l60 extends r60 {
                 long min = Math.min(j10, (SystemClock.elapsedRealtime() + r0Var.f46759b) - r0Var.f46760c);
                 this.f28053u0 = min;
                 this.f28055w.setProgress(((float) min) / ((float) j10));
-                p60 p60Var = this.f29851c;
-                if (p60Var != null && (fkVar = ((org.telegram.ui.jj) p60Var).f38270a.Y) != null && fkVar.f23967j1) {
+                p60 p60Var = this.f29852c;
+                if (p60Var != null && (fkVar = ((org.telegram.ui.jj) p60Var).f38271a.Y) != null && fkVar.f23967j1) {
                     fkVar.f23961i1 = min;
                     xg xgVar = fkVar.Y0;
-                    if (xgVar != null && xgVar.f32413r) {
+                    if (xgVar != null && xgVar.f32414r) {
                         xgVar.h = min;
                         xgVar.invalidate();
                     }
                     ug ugVar = fkVar.l1;
-                    if (ugVar != null && ugVar.f30926n) {
+                    if (ugVar != null && ugVar.f30927n) {
                         if (!ugVar.h) {
-                            long j11 = ugVar.f30927r;
+                            long j11 = ugVar.f30928r;
                             if (j11 >= 0) {
                                 if (!ugVar.e) {
                                     long max = Math.max(0L, min - j11) % 1200;
@@ -461,13 +461,13 @@ public final class l60 extends r60 {
                                     } else {
                                         f7 = ((float) (max - 600)) / 600.0f;
                                     }
-                                    ugVar.f30922a = f7;
+                                    ugVar.f30923a = f7;
                                 }
                                 ugVar.invalidate();
                             }
                         }
-                        ugVar.f30927r = min;
-                        ugVar.f30922a = 1.0f;
+                        ugVar.f30928r = min;
+                        ugVar.f30923a = 1.0f;
                         ugVar.invalidate();
                     }
                     ChatActivityEnterView.SlideTextView slideTextView = fkVar.f23973k1;
@@ -951,7 +951,7 @@ public final class l60 extends r60 {
         if (z01Var == null) {
             j11 = file.length();
         } else {
-            j11 = z01Var.f32796a;
+            j11 = z01Var.f32797a;
         }
         videoEditedInfo.estimatedSize = Math.max(1L, j11);
         videoEditedInfo.roundVideo = true;
@@ -974,8 +974,8 @@ public final class l60 extends r60 {
         videoEditedInfo.resultHeight = i11;
         videoEditedInfo.originalPath = file.getAbsolutePath();
         if (z01Var != null) {
-            videoEditedInfo.file = z01Var.f32797b;
-            videoEditedInfo.encryptedFile = z01Var.f32798c;
+            videoEditedInfo.file = z01Var.f32798b;
+            videoEditedInfo.encryptedFile = z01Var.f32799c;
             videoEditedInfo.key = z01Var.d;
             videoEditedInfo.iv = z01Var.e;
         }
@@ -1103,7 +1103,7 @@ public final class l60 extends r60 {
         float f13;
         float f14;
         float f15;
-        n60 n60Var = this.f29849a;
+        n60 n60Var = this.f29850a;
         if (n60Var != null) {
             ((org.telegram.ui.pe) n60Var).f40199b.f40899wc.a(z10, true);
         }

@@ -36,14 +36,14 @@ public final class oj0 extends View {
         p6Var.setCallback(this);
         p6Var.n(0.35f, 200L, bsVar);
         Paint.Style style = Paint.Style.FILL_AND_STROKE;
-        TextPaint textPaint = p6Var.f29223a;
+        TextPaint textPaint = p6Var.f29224a;
         textPaint.setStyle(style);
         textPaint.setStrokeWidth(AndroidUtilities.dp(0.24f));
         textPaint.setStrokeJoin(Paint.Join.ROUND);
         p6Var.w(AndroidUtilities.dp(13.3f));
         p6Var.u(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.Sh, false));
         p6Var.M = AndroidUtilities.dp(64.0f);
-        p6Var.f29225b = 1;
+        p6Var.f29226b = 1;
     }
 
     public final boolean a(int i10) {

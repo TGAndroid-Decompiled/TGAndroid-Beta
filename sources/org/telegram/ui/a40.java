@@ -5,10 +5,10 @@ import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessageObject;
 public final class a40 implements ru0 {
-    public final q50 f35271a;
+    public final q50 f35272a;
 
     public a40(q50 q50Var) {
-        this.f35271a = q50Var;
+        this.f35272a = q50Var;
     }
 
     @Override
@@ -19,7 +19,7 @@ public final class a40 implements ru0 {
     @Override
     public final void m0(MessageObject messageObject) {
         ViewGroup viewGroup;
-        q50 q50Var = this.f35271a;
+        q50 q50Var = this.f35272a;
         q50Var.Q.I0(true);
         q50Var.f40386c2.f42381f.setRoundRadius(AndroidUtilities.dp(13.0f), AndroidUtilities.dp(13.0f), 0, 0);
         viewGroup = ((org.telegram.ui.ActionBar.f3) q50Var).containerView;
@@ -29,7 +29,7 @@ public final class a40 implements ru0 {
     @Override
     public final void z(MessageObject messageObject) {
         ViewGroup viewGroup;
-        viewGroup = ((org.telegram.ui.ActionBar.f3) this.f35271a).containerView;
+        viewGroup = ((org.telegram.ui.ActionBar.f3) this.f35272a).containerView;
         viewGroup.invalidate();
     }
 }

@@ -75,7 +75,7 @@ public abstract class r extends FrameLayout implements NotificationCenter.Notifi
         jm0Var.setLayoutManager(sVar);
         ml0 ml0Var = new ml0(jm0Var, sVar);
         this.f52086f = ml0Var;
-        ml0Var.f28547i = new k1(k0Var, 2);
+        ml0Var.f28548i = new k1(k0Var, 2);
         jm0Var.setAdapter(kVar);
         jm0Var.setSelectorDrawableColor(0);
         jm0Var.setOnItemClickListener(new wa(j0Var, 25));

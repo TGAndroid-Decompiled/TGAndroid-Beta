@@ -17,13 +17,13 @@ public final class pa0 implements Runnable {
         switch (this.f40172a) {
             case 0:
                 ab0 ab0Var = this.f40173b;
-                ab0Var.f35332r.f22402b.requestFocus();
-                AndroidUtilities.showKeyboard(ab0Var.f35332r.f22402b);
+                ab0Var.f35333r.f22402b.requestFocus();
+                AndroidUtilities.showKeyboard(ab0Var.f35333r.f22402b);
                 return;
             case 1:
                 ab0 ab0Var2 = this.f40173b;
-                ab0Var2.f35332r.f22402b.clearFocus();
-                AndroidUtilities.hideKeyboard(ab0Var2.f35332r.f22402b);
+                ab0Var2.f35333r.f22402b.clearFocus();
+                AndroidUtilities.hideKeyboard(ab0Var2.f35333r.f22402b);
                 return;
             default:
                 pf.d.r(this.f40173b.getParentActivity(), LocaleController.getString(R.string.RequireMonthlyFeeInfoLink));

@@ -18,17 +18,17 @@ import org.telegram.messenger.camera.CameraController;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.ChatActivityEnterView;
 public final class ue extends FrameLayout {
-    public final Paint f30903a;
-    public final RectF f30904b;
-    public final org.telegram.ui.ActionBar.d6 f30905c;
+    public final Paint f30904a;
+    public final RectF f30905b;
+    public final org.telegram.ui.ActionBar.d6 f30906c;
     public final ChatActivityEnterView d;
 
     public ue(ChatActivityEnterView chatActivityEnterView, Activity activity, org.telegram.ui.ActionBar.d6 d6Var) {
         super(activity);
         this.d = chatActivityEnterView;
-        this.f30905c = d6Var;
-        this.f30903a = new Paint(1);
-        this.f30904b = new RectF();
+        this.f30906c = d6Var;
+        this.f30904a = new Paint(1);
+        this.f30905b = new RectF();
     }
 
     @Override
@@ -42,7 +42,7 @@ public final class ue extends FrameLayout {
             }
             float dpf2 = AndroidUtilities.dpf2(19.0f);
             int g02 = chatActivityEnterView.g0(org.telegram.ui.ActionBar.h6.Yd);
-            Paint paint = this.f30903a;
+            Paint paint = this.f30904a;
             paint.setColor(g02);
             float dpf22 = AndroidUtilities.dpf2(3.0f);
             float dpf23 = AndroidUtilities.dpf2(38.0f);
@@ -50,7 +50,7 @@ public final class ue extends FrameLayout {
             float measuredHeight = (getMeasuredHeight() - dpf23) - dpf22;
             float measuredWidth2 = getMeasuredWidth() - dpf22;
             float measuredHeight2 = getMeasuredHeight() - dpf22;
-            RectF rectF = this.f30904b;
+            RectF rectF = this.f30905b;
             rectF.set(measuredWidth, measuredHeight, measuredWidth2, measuredHeight2);
             canvas.save();
             canvas.scale(f7, f7, rectF.centerX(), rectF.centerY());
@@ -107,10 +107,10 @@ public final class ue extends FrameLayout {
                                 }
                                 chatActivityEnterView.Z2.i1();
                                 f5.Z(chatActivityEnterView.Q, 1, chatActivityEnterView.Q2, new Utilities.Callback(this) {
-                                    public final ue f30259b;
+                                    public final ue f30260b;
 
                                     {
-                                        this.f30259b = this;
+                                        this.f30260b = this;
                                     }
 
                                     @Override
@@ -118,16 +118,16 @@ public final class ue extends FrameLayout {
                                         Long l4 = (Long) obj;
                                         switch (r2) {
                                             case 0:
-                                                this.f30259b.d.R0(0, true, 0, false, l4.longValue());
+                                                this.f30260b.d.R0(0, true, 0, false, l4.longValue());
                                                 return;
                                             case 1:
-                                                this.f30259b.d.R0(0, true, 0, false, l4.longValue());
+                                                this.f30260b.d.R0(0, true, 0, false, l4.longValue());
                                                 return;
                                             case 2:
-                                                this.f30259b.d.R0(0, true, 0, false, l4.longValue());
+                                                this.f30260b.d.R0(0, true, 0, false, l4.longValue());
                                                 return;
                                             default:
-                                                this.f30259b.d.R0(0, true, 0, false, l4.longValue());
+                                                this.f30260b.d.R0(0, true, 0, false, l4.longValue());
                                                 return;
                                         }
                                     }
@@ -150,7 +150,7 @@ public final class ue extends FrameLayout {
                                 k2 k2Var = new k2(10);
                                 rc rcVar = new rc(3);
                                 Pattern pattern = f5.f26077a;
-                                org.telegram.ui.ActionBar.d6 d6Var = this.f30905c;
+                                org.telegram.ui.ActionBar.d6 d6Var = this.f30906c;
                                 f5.J(activity, a2, -1L, 0, false, k2Var, rcVar, new d5(d6Var), d6Var);
                             }
                             if (f5.c0(chatActivityEnterView.Q, chatActivityEnterView.Q2)) {
@@ -172,10 +172,10 @@ public final class ue extends FrameLayout {
                                     }
                                 }
                                 f5.Z(chatActivityEnterView.Q, 1, chatActivityEnterView.Q2, new Utilities.Callback(this) {
-                                    public final ue f30259b;
+                                    public final ue f30260b;
 
                                     {
-                                        this.f30259b = this;
+                                        this.f30260b = this;
                                     }
 
                                     @Override
@@ -183,16 +183,16 @@ public final class ue extends FrameLayout {
                                         Long l4 = (Long) obj;
                                         switch (r2) {
                                             case 0:
-                                                this.f30259b.d.R0(0, true, 0, false, l4.longValue());
+                                                this.f30260b.d.R0(0, true, 0, false, l4.longValue());
                                                 return;
                                             case 1:
-                                                this.f30259b.d.R0(0, true, 0, false, l4.longValue());
+                                                this.f30260b.d.R0(0, true, 0, false, l4.longValue());
                                                 return;
                                             case 2:
-                                                this.f30259b.d.R0(0, true, 0, false, l4.longValue());
+                                                this.f30260b.d.R0(0, true, 0, false, l4.longValue());
                                                 return;
                                             default:
-                                                this.f30259b.d.R0(0, true, 0, false, l4.longValue());
+                                                this.f30260b.d.R0(0, true, 0, false, l4.longValue());
                                                 return;
                                         }
                                     }
@@ -211,22 +211,22 @@ public final class ue extends FrameLayout {
                         chatActivityEnterView.F2 = false;
                         chatActivityEnterView.f23948g0 = false;
                         Runnable runnable = new Runnable(this) {
-                            public final ue f30509b;
+                            public final ue f30510b;
 
                             {
-                                this.f30509b = this;
+                                this.f30510b = this;
                             }
 
                             @Override
                             public final void run() {
                                 switch (r2) {
                                     case 0:
-                                        ChatActivityEnterView chatActivityEnterView2 = this.f30509b.d;
+                                        ChatActivityEnterView chatActivityEnterView2 = this.f30510b.d;
                                         chatActivityEnterView2.f23942f0 = null;
                                         chatActivityEnterView2.I1(1, true);
                                         return;
                                     default:
-                                        ChatActivityEnterView chatActivityEnterView3 = this.f30509b.d;
+                                        ChatActivityEnterView chatActivityEnterView3 = this.f30510b.d;
                                         chatActivityEnterView3.f23942f0 = null;
                                         chatActivityEnterView3.I1(1, true);
                                         return;
@@ -281,13 +281,13 @@ public final class ue extends FrameLayout {
                                 if (sgVar != null && MessagesController.getGlobalMainSettings().getInt("voicepausehint", 0) <= 3) {
                                     sgVar.a();
                                     ei.x3 x3Var = new ei.x3(sgVar.getContext(), 2);
-                                    sgVar.f30273a = x3Var;
+                                    sgVar.f30274a = x3Var;
                                     x3Var.l(1.0f, 0.0f);
-                                    sgVar.f30273a.p(true);
-                                    sgVar.f30273a.s(LocaleController.getString(R.string.VoicePauseHint));
+                                    sgVar.f30274a.p(true);
+                                    sgVar.f30274a.s(LocaleController.getString(R.string.VoicePauseHint));
                                     MessagesController.getGlobalMainSettings().edit().putInt("voicepausehint", MessagesController.getGlobalMainSettings().getInt("voicepausehint", 0) + 1).apply();
-                                    sgVar.addView(sgVar.f30273a, w7.z5.d(-1, -1.0f, 119, 0.0f, 0.0f, 54.0f, 58.0f));
-                                    ei.x3 x3Var2 = sgVar.f30273a;
+                                    sgVar.addView(sgVar.f30274a, w7.z5.d(-1, -1.0f, 119, 0.0f, 0.0f, 54.0f, 58.0f));
+                                    ei.x3 x3Var2 = sgVar.f30274a;
                                     x3Var2.f10080l0 = new qg(sgVar, x3Var2, 3);
                                     x3Var2.u();
                                 }
@@ -436,10 +436,10 @@ public final class ue extends FrameLayout {
                                 }
                                 chatActivityEnterView.Z2.i1();
                                 f5.Z(chatActivityEnterView.Q, 1, chatActivityEnterView.Q2, new Utilities.Callback(this) {
-                                    public final ue f30259b;
+                                    public final ue f30260b;
 
                                     {
-                                        this.f30259b = this;
+                                        this.f30260b = this;
                                     }
 
                                     @Override
@@ -447,16 +447,16 @@ public final class ue extends FrameLayout {
                                         Long l4 = (Long) obj;
                                         switch (r2) {
                                             case 0:
-                                                this.f30259b.d.R0(0, true, 0, false, l4.longValue());
+                                                this.f30260b.d.R0(0, true, 0, false, l4.longValue());
                                                 return;
                                             case 1:
-                                                this.f30259b.d.R0(0, true, 0, false, l4.longValue());
+                                                this.f30260b.d.R0(0, true, 0, false, l4.longValue());
                                                 return;
                                             case 2:
-                                                this.f30259b.d.R0(0, true, 0, false, l4.longValue());
+                                                this.f30260b.d.R0(0, true, 0, false, l4.longValue());
                                                 return;
                                             default:
-                                                this.f30259b.d.R0(0, true, 0, false, l4.longValue());
+                                                this.f30260b.d.R0(0, true, 0, false, l4.longValue());
                                                 return;
                                         }
                                     }
@@ -489,10 +489,10 @@ public final class ue extends FrameLayout {
                                     slideTextView6.setEnabled(false);
                                 }
                                 f5.Z(chatActivityEnterView.Q, 1, chatActivityEnterView.Q2, new Utilities.Callback(this) {
-                                    public final ue f30259b;
+                                    public final ue f30260b;
 
                                     {
-                                        this.f30259b = this;
+                                        this.f30260b = this;
                                     }
 
                                     @Override
@@ -500,16 +500,16 @@ public final class ue extends FrameLayout {
                                         Long l4 = (Long) obj;
                                         switch (r2) {
                                             case 0:
-                                                this.f30259b.d.R0(0, true, 0, false, l4.longValue());
+                                                this.f30260b.d.R0(0, true, 0, false, l4.longValue());
                                                 return;
                                             case 1:
-                                                this.f30259b.d.R0(0, true, 0, false, l4.longValue());
+                                                this.f30260b.d.R0(0, true, 0, false, l4.longValue());
                                                 return;
                                             case 2:
-                                                this.f30259b.d.R0(0, true, 0, false, l4.longValue());
+                                                this.f30260b.d.R0(0, true, 0, false, l4.longValue());
                                                 return;
                                             default:
-                                                this.f30259b.d.R0(0, true, 0, false, l4.longValue());
+                                                this.f30260b.d.R0(0, true, 0, false, l4.longValue());
                                                 return;
                                         }
                                     }
@@ -521,7 +521,7 @@ public final class ue extends FrameLayout {
                                     long a10 = qnVar.a();
                                     k2 k2Var2 = new k2(11);
                                     rc rcVar2 = new rc(4);
-                                    org.telegram.ui.ActionBar.d6 d6Var2 = this.f30905c;
+                                    org.telegram.ui.ActionBar.d6 d6Var2 = this.f30906c;
                                     f5.J(activity2, a10, -1L, 0, false, k2Var2, rcVar2, new d5(d6Var2), d6Var2);
                                 }
                                 chatActivityEnterView.Z2.X0(0);
@@ -537,22 +537,22 @@ public final class ue extends FrameLayout {
                         chatActivityEnterView.F2 = false;
                         chatActivityEnterView.f23948g0 = false;
                         Runnable runnable2 = new Runnable(this) {
-                            public final ue f30509b;
+                            public final ue f30510b;
 
                             {
-                                this.f30509b = this;
+                                this.f30510b = this;
                             }
 
                             @Override
                             public final void run() {
                                 switch (r2) {
                                     case 0:
-                                        ChatActivityEnterView chatActivityEnterView22 = this.f30509b.d;
+                                        ChatActivityEnterView chatActivityEnterView22 = this.f30510b.d;
                                         chatActivityEnterView22.f23942f0 = null;
                                         chatActivityEnterView22.I1(1, true);
                                         return;
                                     default:
-                                        ChatActivityEnterView chatActivityEnterView32 = this.f30509b.d;
+                                        ChatActivityEnterView chatActivityEnterView32 = this.f30510b.d;
                                         chatActivityEnterView32.f23942f0 = null;
                                         chatActivityEnterView32.I1(1, true);
                                         return;

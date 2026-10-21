@@ -225,14 +225,14 @@ public final class x31 extends Dialog {
                 org.telegram.ui.Components.v11 v11Var2 = this.d;
                 v31 v31Var2 = this.N;
                 s31 s31Var = new s31(this, 1);
-                org.telegram.ui.Components.t11 t11Var = v11Var2.f31114a;
+                org.telegram.ui.Components.t11 t11Var = v11Var2.f31115a;
                 if (t11Var != null) {
                     t11Var.d(v31Var2, 1.5f, s31Var);
-                    Choreographer.getInstance().postFrameCallback(v11Var2.f31115b);
+                    Choreographer.getInstance().postFrameCallback(v11Var2.f31116b);
                 } else {
                     org.telegram.ui.Components.u11 u11Var = new org.telegram.ui.Components.u11(v31Var2, s31Var);
-                    u11Var.f30817g = 1.5f;
-                    v11Var2.f31116c.add(u11Var);
+                    u11Var.f30818g = 1.5f;
+                    v11Var2.f31117c.add(u11Var);
                 }
                 WindowManager.LayoutParams attributes = getWindow().getAttributes();
                 attributes.flags |= 16;
@@ -241,9 +241,9 @@ public final class x31 extends Dialog {
             org.telegram.ui.Components.rt rtVar = this.E;
             if (rtVar != null) {
                 PowerManager.WakeLock wakeLock = rtVar.h;
-                SensorManager sensorManager = rtVar.f30005a;
-                if (rtVar.f30009n) {
-                    Sensor sensor = rtVar.f30008f;
+                SensorManager sensorManager = rtVar.f30006a;
+                if (rtVar.f30010n) {
+                    Sensor sensor = rtVar.f30009f;
                     if (sensor != null) {
                         sensorManager.unregisterListener(rtVar, sensor);
                     }
@@ -255,11 +255,11 @@ public final class x31 extends Dialog {
                     if (sensor3 != null) {
                         sensorManager.unregisterListener(rtVar, sensor3);
                     }
-                    sensorManager.unregisterListener(rtVar, rtVar.f30007c);
+                    sensorManager.unregisterListener(rtVar, rtVar.f30008c);
                     if (wakeLock != null && wakeLock.isHeld()) {
                         wakeLock.release();
                     }
-                    rtVar.f30009n = false;
+                    rtVar.f30010n = false;
                 }
             }
         }
@@ -359,9 +359,9 @@ public final class x31 extends Dialog {
             org.telegram.ui.Components.rt rtVar = this.E;
             if (rtVar != null) {
                 PowerManager.WakeLock wakeLock = rtVar.h;
-                SensorManager sensorManager = rtVar.f30005a;
-                if (!rtVar.f30009n) {
-                    Sensor sensor = rtVar.f30008f;
+                SensorManager sensorManager = rtVar.f30006a;
+                if (!rtVar.f30010n) {
+                    Sensor sensor = rtVar.f30009f;
                     if (sensor != null) {
                         sensorManager.registerListener(rtVar, sensor, 30000);
                     }
@@ -373,11 +373,11 @@ public final class x31 extends Dialog {
                     if (sensor3 != null) {
                         sensorManager.registerListener(rtVar, sensor3, 30000);
                     }
-                    sensorManager.registerListener(rtVar, rtVar.f30007c, 3);
+                    sensorManager.registerListener(rtVar, rtVar.f30008c, 3);
                     if (wakeLock != null && Build.MANUFACTURER.equalsIgnoreCase("samsung")) {
                         wakeLock.acquire();
                     }
-                    rtVar.f30009n = true;
+                    rtVar.f30010n = true;
                 }
             }
         }

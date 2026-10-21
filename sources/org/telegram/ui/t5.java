@@ -182,7 +182,7 @@ public final class t5 extends pg.b {
             case 3:
                 org.telegram.ui.Components.q90 q90Var = new org.telegram.ui.Components.q90(z5Var.getParentActivity(), z5Var, null, false, false);
                 q90Var.d.setVisibility(8);
-                q90Var.f29495a.setGravity(17);
+                q90Var.f29496a.setGravity(17);
                 q90Var.h.setVisibility(8);
                 q90Var.v.setVisibility(8);
                 q90Var.setPadding(AndroidUtilities.dp(11.0f), 0, AndroidUtilities.dp(11.0f), AndroidUtilities.dp(24.0f));

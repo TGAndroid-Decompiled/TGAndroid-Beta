@@ -647,7 +647,7 @@ public final class h extends Drawable implements Animator.AnimatorListener {
             invalidateSelf();
             yb ybVar = this.W;
             if (ybVar != null) {
-                ybVar.f32623a.setVisibility(0);
+                ybVar.f32624a.setVisibility(0);
             }
             if (this.M) {
                 j0Var.run();

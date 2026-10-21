@@ -32,7 +32,7 @@ public final class na0 implements zf.k0 {
                         }
                         int i13 = i12 + i10;
                         launchActivity.B1 = i13;
-                        m0 m0Var = launchActivity.f33197w0;
+                        m0 m0Var = launchActivity.f33198w0;
                         if (m0Var != null) {
                             if (i13 > 0) {
                                 i11 = 8;

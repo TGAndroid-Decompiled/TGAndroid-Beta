@@ -671,7 +671,7 @@ public class g1 extends FrameLayout {
             int dp = AndroidUtilities.dp(16.0f);
             int dp2 = AndroidUtilities.dp(16.0f);
             a2.e = dp;
-            a2.f33019f = dp2;
+            a2.f33020f = dp2;
             w9Var2.setImageDrawable(a2);
         } else {
             j10 = 0;

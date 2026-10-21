@@ -7,16 +7,16 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 public final class la implements TextWatcher {
-    public final ma f38872a;
+    public final ma f38873a;
 
     public la(ma maVar) {
-        this.f38872a = maVar;
+        this.f38873a = maVar;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
         int i10;
-        sa saVar = this.f38872a.f39165c;
+        sa saVar = this.f38873a.f39166c;
         if (saVar.f41416r.startsWith("@")) {
             saVar.f41416r = saVar.f41416r.substring(1);
         }
@@ -39,8 +39,8 @@ public final class la implements TextWatcher {
     @Override
     public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
         String charSequence2;
-        ma maVar = this.f38872a;
-        sa saVar = maVar.f39165c;
+        ma maVar = this.f38873a;
+        sa saVar = maVar.f39166c;
         String str = saVar.f41416r;
         if (charSequence == null) {
             charSequence2 = "";
@@ -48,7 +48,7 @@ public final class la implements TextWatcher {
             charSequence2 = charSequence.toString();
         }
         saVar.f41416r = charSequence2;
-        sa saVar2 = maVar.f39165c;
+        sa saVar2 = maVar.f39166c;
         pa paVar = saVar2.E;
         if (paVar != null && str != null) {
             paVar.b(saVar2.f41416r);
@@ -58,8 +58,8 @@ public final class la implements TextWatcher {
     @Override
     public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
         String charSequence2;
-        ma maVar = this.f38872a;
-        sa saVar = maVar.f39165c;
+        ma maVar = this.f38873a;
+        sa saVar = maVar.f39166c;
         String str = saVar.f41416r;
         if (charSequence == null) {
             charSequence2 = "";
@@ -67,7 +67,7 @@ public final class la implements TextWatcher {
             charSequence2 = charSequence.toString();
         }
         saVar.f41416r = charSequence2;
-        sa saVar2 = maVar.f39165c;
+        sa saVar2 = maVar.f39166c;
         pa paVar = saVar2.E;
         if (paVar != null && str != null) {
             paVar.b(saVar2.f41416r);

@@ -441,7 +441,7 @@ public final class j4 {
             this.f22473o = d;
             if (d != null) {
                 RadialProgress2 radialProgress2 = d.G;
-                if (radialProgress2.f24309i.f28763q != 4 && radialProgress2.f24304a.contains(x10, y3)) {
+                if (radialProgress2.f24309i.f28764q != 4 && radialProgress2.f24304a.contains(x10, y3)) {
                     z12 = true;
                     this.f22474p = z12;
                 }
@@ -452,14 +452,14 @@ public final class j4 {
             i4 d10 = d(x10, y3);
             if (d10 != null) {
                 RadialProgress2 radialProgress22 = d10.G;
-                if (radialProgress22.f24309i.f28763q != 4 && radialProgress22.f24304a.contains(x10, y3)) {
+                if (radialProgress22.f24309i.f28764q != 4 && radialProgress22.f24304a.contains(x10, y3)) {
                     z10 = true;
                     i4Var = this.f22473o;
                     if (i4Var != null && i4Var == d10) {
                         u1Var = this.f22462a;
                         if (u1Var.getDelegate() != null && motionEvent.getAction() == 1) {
                             MessageObject messageObject = u1Var.getMessageObject();
-                            if (!this.f22474p && z10 && d10.G.f24309i.f28763q == 3 && messageObject != null) {
+                            if (!this.f22474p && z10 && d10.G.f24309i.f28764q == 3 && messageObject != null) {
                                 if (messageObject.isSending()) {
                                     SendMessagesHelper.getInstance(messageObject.currentAccount).cancelSendingMessage(messageObject);
                                 }

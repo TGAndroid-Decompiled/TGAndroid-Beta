@@ -58,11 +58,11 @@ public final class xb0 implements q0.a {
                         IMapsProvider.LatLng latLng = new IMapsProvider.LatLng(geoPoint.lat, geoPoint._long);
                         ?? obj2 = new Object();
                         if (DialogObject.isUserDialog(nc0Var.f39505e0)) {
-                            obj2.f37571c = nc0Var.getMessagesController().getUser(Long.valueOf(nc0Var.f39505e0));
+                            obj2.f37572c = nc0Var.getMessagesController().getUser(Long.valueOf(nc0Var.f39505e0));
                         } else {
                             obj2.d = nc0Var.getMessagesController().getChat(Long.valueOf(-nc0Var.f39505e0));
                         }
-                        obj2.f37569a = nc0Var.f39505e0;
+                        obj2.f37570a = nc0Var.f39505e0;
                         nc0Var.u0(obj2);
                         try {
                             IMapsProvider.IMarkerOptions position = ApplicationLoader.getMapsProvider().onCreateMarkerOptions().position(latLng);
@@ -71,14 +71,14 @@ public final class xb0 implements q0.a {
                                 position.icon(f02);
                                 position.anchor(0.5f, 0.907f);
                                 obj2.e = nc0Var.I.addMarker(position);
-                                if (!UserObject.isUserSelf(obj2.f37571c)) {
+                                if (!UserObject.isUserSelf(obj2.f37572c)) {
                                     IMapsProvider.IMarkerOptions flat = ApplicationLoader.getMapsProvider().onCreateMarkerOptions().position(latLng).flat(true);
                                     flat.icon(R.drawable.map_pin_circle);
                                     flat.anchor(0.5f, 0.5f);
-                                    obj2.f37572f = nc0Var.I.addMarker(flat);
+                                    obj2.f37573f = nc0Var.I.addMarker(flat);
                                 }
                                 nc0Var.f39508g0.add(obj2);
-                                nc0Var.f39509h0.k(obj2, obj2.f37569a);
+                                nc0Var.f39509h0.k(obj2, obj2.f37570a);
                             }
                         } catch (Exception e) {
                             FileLog.e(e);

@@ -9,39 +9,39 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.SaveToGallerySettingsHelper;
 import org.telegram.tgnet.TLRPC;
 public final class c31 implements View.OnClickListener {
-    public final int f35799a;
-    public final Object f35800b;
+    public final int f35800a;
+    public final Object f35801b;
 
     public c31(Object obj, int i10) {
-        this.f35799a = i10;
-        this.f35800b = obj;
+        this.f35800a = i10;
+        this.f35801b = obj;
     }
 
     @Override
     public final void onClick(View view) {
         org.telegram.ui.Cells.a2 a2Var;
         float f7;
-        switch (this.f35799a) {
+        switch (this.f35800a) {
             case 0:
-                SaveToGallerySettingsActivity saveToGallerySettingsActivity = (SaveToGallerySettingsActivity) this.f35800b;
+                SaveToGallerySettingsActivity saveToGallerySettingsActivity = (SaveToGallerySettingsActivity) this.f35801b;
                 if (saveToGallerySettingsActivity.d) {
-                    LongSparseArray<SaveToGallerySettingsHelper.DialogException> saveGalleryExceptions = saveToGallerySettingsActivity.getUserConfig().getSaveGalleryExceptions(saveToGallerySettingsActivity.f33775a);
-                    SaveToGallerySettingsHelper.DialogException dialogException = saveToGallerySettingsActivity.f33777c;
+                    LongSparseArray<SaveToGallerySettingsHelper.DialogException> saveGalleryExceptions = saveToGallerySettingsActivity.getUserConfig().getSaveGalleryExceptions(saveToGallerySettingsActivity.f33776a);
+                    SaveToGallerySettingsHelper.DialogException dialogException = saveToGallerySettingsActivity.f33778c;
                     saveGalleryExceptions.put(dialogException.dialogId, dialogException);
-                    saveToGallerySettingsActivity.getUserConfig().updateSaveGalleryExceptions(saveToGallerySettingsActivity.f33775a, saveGalleryExceptions);
+                    saveToGallerySettingsActivity.getUserConfig().updateSaveGalleryExceptions(saveToGallerySettingsActivity.f33776a, saveGalleryExceptions);
                 }
                 saveToGallerySettingsActivity.finishFragment();
                 return;
             case 1:
-                ((h31) this.f35800b).dismiss();
+                ((h31) this.f35801b).dismiss();
                 return;
             case 2:
-                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f35800b;
-                MessageObject messageObject = secretMediaViewer.f33801h0;
+                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f35801b;
+                MessageObject messageObject = secretMediaViewer.f33802h0;
                 if (messageObject != null) {
                     TLRPC.Message message = messageObject.messageOwner;
                     if (message.destroyTime != 0 || message.ttl == Integer.MAX_VALUE) {
-                        ei.x3 x3Var = secretMediaViewer.f33820r;
+                        ei.x3 x3Var = secretMediaViewer.f33821r;
                         if (x3Var.V) {
                             x3Var.e(true);
                             return;
@@ -54,19 +54,19 @@ public final class c31 implements View.OnClickListener {
                 }
                 return;
             case 3:
-                h61 h61Var = (h61) this.f35800b;
-                if (h61Var.f37505a0 instanceof TLRPC.User) {
-                    ei.d dVar = h61Var.f37512h0;
+                h61 h61Var = (h61) this.f35801b;
+                if (h61Var.f37506a0 instanceof TLRPC.User) {
+                    ei.d dVar = h61Var.f37513h0;
                     if (!dVar.N) {
                         dVar.setLoading(true);
-                        h61Var.U((TLRPC.User) h61Var.f37505a0, null, null);
+                        h61Var.U((TLRPC.User) h61Var.f37506a0, null, null);
                         return;
                     }
                     return;
                 }
                 return;
             case 4:
-                SessionsActivity sessionsActivity = ((i71) this.f35800b).d;
+                SessionsActivity sessionsActivity = ((i71) this.f35801b).d;
                 if (sessionsActivity.getParentActivity() != null) {
                     if (sessionsActivity.getParentActivity().checkSelfPermission("android.permission.CAMERA") != 0) {
                         sessionsActivity.getParentActivity().requestPermissions(new String[]{"android.permission.CAMERA"}, 34);
@@ -77,15 +77,15 @@ public final class c31 implements View.OnClickListener {
                 }
                 return;
             case 5:
-                ((yc1) this.f35800b).c(true);
+                ((yc1) this.f35801b).c(true);
                 return;
             case 6:
-                ((yc1) ((ai.j5) this.f35800b).f1567c).c(true);
+                ((yc1) ((ai.j5) this.f35801b).f1567c).c(true);
                 return;
             case 7:
-                gd1 gd1Var = (gd1) this.f35800b;
-                ArrayList arrayList = gd1Var.f37287f;
-                HashSet hashSet = gd1Var.f37291w;
+                gd1 gd1Var = (gd1) this.f35801b;
+                ArrayList arrayList = gd1Var.f37288f;
+                HashSet hashSet = gd1Var.f37292w;
                 if (!hashSet.isEmpty()) {
                     TLRPC.User user = gd1Var.getMessagesController().getUser(Long.valueOf(gd1Var.getUserConfig().getClientUserId()));
                     ArrayList arrayList2 = new ArrayList();
@@ -104,7 +104,7 @@ public final class c31 implements View.OnClickListener {
                 }
                 return;
             default:
-                zh1 zh1Var = (zh1) this.f35800b;
+                zh1 zh1Var = (zh1) this.f35801b;
                 zh1Var.f43762a.c(!a2Var.b(), true);
                 zh1Var.f43764c.setEnabled(zh1Var.f43762a.b());
                 ViewPropertyAnimator animate = zh1Var.f43764c.animate();

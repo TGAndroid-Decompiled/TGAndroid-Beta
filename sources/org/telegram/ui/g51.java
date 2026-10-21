@@ -40,29 +40,29 @@ public final class g51 extends View {
     public float T;
     public final c50 U;
     public final x51 V;
-    public boolean f37188a;
-    public boolean f37189b;
-    public int f37190c;
+    public boolean f37189a;
+    public boolean f37190b;
+    public int f37191c;
     public TLRPC.Document d;
     public org.telegram.ui.Components.a6 e;
-    public final ImageReceiver.BackgroundThreadDrawHolder[] f37191f;
+    public final ImageReceiver.BackgroundThreadDrawHolder[] f37192f;
     public ImageReceiver h;
-    public final ImageReceiver f37192n;
-    public ImageReceiver f37193r;
-    public boolean f37194s;
+    public final ImageReceiver f37193n;
+    public ImageReceiver f37194r;
+    public boolean f37195s;
     public TL_stars.TL_starGiftUnique v;
-    public Integer f37195w;
-    public ah.i1 f37196x;
-    public boolean f37197y;
+    public Integer f37196w;
+    public ah.i1 f37197x;
+    public boolean f37198y;
 
     public g51(x51 x51Var, Context context) {
         super(context);
         this.V = x51Var;
-        this.f37188a = false;
-        this.f37189b = false;
-        this.f37191f = new ImageReceiver.BackgroundThreadDrawHolder[2];
+        this.f37189a = false;
+        this.f37190b = false;
+        this.f37192f = new ImageReceiver.BackgroundThreadDrawHolder[2];
         ImageReceiver imageReceiver = new ImageReceiver();
-        this.f37192n = imageReceiver;
+        this.f37193n = imageReceiver;
         this.T = 1.0f;
         this.U = new c50(this, 1);
         imageReceiver.ignoreNotifications = true;
@@ -212,7 +212,7 @@ public final class g51 extends View {
             imageReceiver.setParentView((View) getParent());
             this.h.onAttachedToWindow();
         }
-        this.f37192n.onAttachedToWindow();
+        this.f37193n.onAttachedToWindow();
     }
 
     @Override
@@ -225,7 +225,7 @@ public final class g51 extends View {
         Drawable drawable = this.E;
         if (drawable instanceof org.telegram.ui.Components.r5) {
             ((org.telegram.ui.Components.r5) drawable).p(this.U);
-            ci.g3 g3Var = ((org.telegram.ui.Components.r5) this.E).f29837k;
+            ci.g3 g3Var = ((org.telegram.ui.Components.r5) this.E).f29838k;
             if (g3Var != null) {
                 g3Var.setEmojiPaused(false);
             }
@@ -235,7 +235,7 @@ public final class g51 extends View {
             imageReceiver.onDetachedFromWindow();
             this.h.setEmojiPaused(false);
         }
-        this.f37192n.onDetachedFromWindow();
+        this.f37193n.onDetachedFromWindow();
     }
 
     @Override
@@ -243,10 +243,10 @@ public final class g51 extends View {
         String str;
         org.telegram.ui.Components.a6 a6Var;
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        if (this.f37188a) {
+        if (this.f37189a) {
             str = LocaleController.getString(R.string.RemoveStatus);
         } else {
-            ah.i1 i1Var = this.f37196x;
+            ah.i1 i1Var = this.f37197x;
             if (i1Var == null || (str = i1Var.f783f) == null) {
                 TLRPC.Document document = this.d;
                 if (document == null && (a6Var = this.e) != null && (document = a6Var.document) == null) {

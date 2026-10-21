@@ -61,7 +61,7 @@ public final class m0 extends Visibility {
                     view.setTranslationY(AndroidUtilities.dp(100.0f));
                     view.setScaleX(0.0f);
                     view.setScaleY(0.0f);
-                    ofPropertyValuesHolder.setStartDelay(((org.telegram.ui.Components.voip.i3) view).f31474f);
+                    ofPropertyValuesHolder.setStartDelay(((org.telegram.ui.Components.voip.i3) view).f31475f);
                 }
                 return ofPropertyValuesHolder;
             default:

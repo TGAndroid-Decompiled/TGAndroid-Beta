@@ -6,17 +6,17 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 public final class y71 {
-    public final boolean f32581a;
-    public final int f32582b;
-    public final int f32583c;
+    public final boolean f32582a;
+    public final int f32583b;
+    public final int f32584c;
     public final ArrayList d;
 
     public y71(a81 a81Var) {
         ArrayList arrayList = new ArrayList();
         this.d = arrayList;
-        this.f32581a = a81Var.f24537b;
-        this.f32582b = a81Var.f24541i;
-        this.f32583c = a81Var.f24542j;
+        this.f32582a = a81Var.f24537b;
+        this.f32583b = a81Var.f24541i;
+        this.f32584c = a81Var.f24542j;
         arrayList.add(a81Var);
     }
 
@@ -51,7 +51,7 @@ public final class y71 {
     }
 
     public final int b() {
-        int min = Math.min(this.f32582b, this.f32583c);
+        int min = Math.min(this.f32583b, this.f32584c);
         if (Math.abs(min - 2160) < 55) {
             return 2160;
         }
@@ -82,13 +82,13 @@ public final class y71 {
     public final String toString() {
         String str;
         boolean z10 = SharedConfig.debugVideoQualities;
-        boolean z11 = this.f32581a;
+        boolean z11 = this.f32582a;
         String str2 = "";
         if (z10) {
             StringBuilder sb2 = new StringBuilder();
-            sb2.append(this.f32582b);
+            sb2.append(this.f32583b);
             sb2.append("x");
-            sb2.append(this.f32583c);
+            sb2.append(this.f32584c);
             if (!z11) {
                 str = "";
             } else {

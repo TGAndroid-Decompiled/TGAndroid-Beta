@@ -10,15 +10,15 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class j9 extends FrameLayout {
     public static final int e = 0;
-    public final TextView f38206a;
-    public final TextView f38207b;
-    public final View f38208c;
+    public final TextView f38207a;
+    public final TextView f38208b;
+    public final View f38209c;
     public final org.telegram.ui.Components.yj0 d;
 
     public j9(m9 m9Var, Context context, org.telegram.ui.Components.b10 b10Var) {
         super(context);
         addView(b10Var, w7.z5.c(-1.0f, -1));
-        this.f38208c = b10Var;
+        this.f38209c = b10Var;
         ?? imageView = new ImageView(context);
         this.d = imageView;
         imageView.f(R.raw.utyan_call, 110, 110, null);
@@ -26,7 +26,7 @@ public final class j9 extends FrameLayout {
         addView((View) imageView, w7.z5.d(110, 110.0f, 17, 52.0f, 17.0f, 52.0f, 60.0f));
         imageView.setOnClickListener(new a(this, 10));
         TextView textView = new TextView(context);
-        this.f38206a = textView;
+        this.f38207a = textView;
         textView.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.G6, false));
         textView.setText(LocaleController.getString(R.string.MakeYourFirstCall));
         textView.setTextSize(1, 20.0f);
@@ -34,7 +34,7 @@ public final class j9 extends FrameLayout {
         textView.setGravity(17);
         addView(textView, w7.z5.d(-1, -2.0f, 17, 17.0f, 40.0f, 17.0f, 0.0f));
         TextView textView2 = new TextView(context);
-        this.f38207b = textView2;
+        this.f38208b = textView2;
         String formatString = LocaleController.formatString(R.string.MakeYourFirstCallHint, Integer.valueOf(m9Var.getMessagesController().conferenceCallSizeLimit));
         if (AndroidUtilities.isTablet() && !AndroidUtilities.isSmallTablet()) {
             formatString = formatString.replace('\n', ' ');
@@ -54,17 +54,17 @@ public final class j9 extends FrameLayout {
 
     public final void a() {
         this.d.animate().alpha(0.0f).setDuration(150L).start();
-        this.f38206a.animate().alpha(0.0f).setDuration(150L).start();
-        this.f38207b.animate().alpha(0.0f).setDuration(150L).start();
-        this.f38208c.animate().alpha(1.0f).setDuration(150L).start();
+        this.f38207a.animate().alpha(0.0f).setDuration(150L).start();
+        this.f38208b.animate().alpha(0.0f).setDuration(150L).start();
+        this.f38209c.animate().alpha(1.0f).setDuration(150L).start();
     }
 
     public final void b() {
         org.telegram.ui.Components.yj0 yj0Var = this.d;
         yj0Var.animate().alpha(1.0f).setDuration(150L).start();
-        this.f38206a.animate().alpha(1.0f).setDuration(150L).start();
-        this.f38207b.animate().alpha(1.0f).setDuration(150L).start();
-        this.f38208c.animate().alpha(0.0f).setDuration(150L).start();
+        this.f38207a.animate().alpha(1.0f).setDuration(150L).start();
+        this.f38208b.animate().alpha(1.0f).setDuration(150L).start();
+        this.f38209c.animate().alpha(0.0f).setDuration(150L).start();
         yj0Var.d();
     }
 

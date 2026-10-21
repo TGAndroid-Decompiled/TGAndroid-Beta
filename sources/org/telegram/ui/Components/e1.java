@@ -61,7 +61,7 @@ public final class e1 implements TextView.OnEditorActionListener {
             case 5:
                 r4 r4Var = (r4) this.f25692b;
                 if (i10 == 6) {
-                    r4Var.f30322b.f29977a.callOnClick();
+                    r4Var.f30323b.f29978a.callOnClick();
                     return true;
                 }
                 return false;
@@ -104,7 +104,7 @@ public final class e1 implements TextView.OnEditorActionListener {
                 n21 n21Var = (n21) this.f25692b;
                 if (keyEvent != null) {
                     if ((keyEvent.getAction() == 1 && keyEvent.getKeyCode() == 84) || (keyEvent.getAction() == 0 && keyEvent.getKeyCode() == 66)) {
-                        AndroidUtilities.hideKeyboard(n21Var.f28666b);
+                        AndroidUtilities.hideKeyboard(n21Var.f28667b);
                         return false;
                     }
                     return false;

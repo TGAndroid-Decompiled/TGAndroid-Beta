@@ -120,7 +120,7 @@ public final class d0 extends FrameLayout {
             if (childAt instanceof c0) {
                 w9 w9Var = ((c0) childAt).h;
                 if (w9Var.getAnimatedEmojiDrawable() != null) {
-                    ci.g3 g3Var = w9Var.getAnimatedEmojiDrawable().f29837k;
+                    ci.g3 g3Var = w9Var.getAnimatedEmojiDrawable().f29838k;
                     if (g3Var != null) {
                         g3Var.startAnimation();
                     }

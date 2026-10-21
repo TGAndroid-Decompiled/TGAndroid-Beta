@@ -20,10 +20,10 @@ public final class fp implements View.OnClickListener {
             case 0:
                 wp wpVar = this.f26333b;
                 ti tiVar = wpVar.Y;
-                if (tiVar.B0 == tiVar.f30557j0) {
-                    wpVar.f32203a0.setText(LocaleController.getString(R.string.ChooseBackgroundFromGallery));
+                if (tiVar.B0 == tiVar.f30558j0) {
+                    wpVar.f32204a0.setText(LocaleController.getString(R.string.ChooseBackgroundFromGallery));
                     wpVar.Y.F1();
-                    ij ijVar = wpVar.Y.f30581r0;
+                    ij ijVar = wpVar.Y.f30582r0;
                     boolean z10 = wpVar.N;
                     za zaVar = ijVar.v;
                     ((ArrayList) zaVar.e).clear();
@@ -31,9 +31,9 @@ public final class fp implements View.OnClickListener {
                     zaVar.l();
                     return;
                 }
-                wpVar.f32203a0.setText(LocaleController.getString(R.string.SetColorAsBackground));
+                wpVar.f32204a0.setText(LocaleController.getString(R.string.SetColorAsBackground));
                 ti tiVar2 = wpVar.Y;
-                tiVar2.U1(tiVar2.f30557j0);
+                tiVar2.U1(tiVar2.f30558j0);
                 return;
             case 1:
                 wp wpVar2 = this.f26333b;

@@ -55,9 +55,9 @@ public final class q1 implements org.telegram.ui.Components.t91 {
         if (z10) {
             org.telegram.ui.Components.w91 w91Var2 = l4Var.D0;
             if (w91Var2 != null && w91Var2 != w91Var) {
-                w91Var2.f32016a.B();
+                w91Var2.f32017a.B();
                 w91Var2.n();
-                w91Var2.f32025f0.d(true, true);
+                w91Var2.f32026f0.d(true, true);
             }
             l4Var.D0 = w91Var;
             try {

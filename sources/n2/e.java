@@ -195,7 +195,7 @@ public final class e implements cp0, l1, am0, gh.a, p2.u, ne.d, com.google.andro
 
     @Override
     public boolean Q1(long j10) {
-        return ((x01) this.f17040c).f32294s;
+        return ((x01) this.f17040c).f32295s;
     }
 
     @Override
@@ -333,8 +333,8 @@ public final class e implements cp0, l1, am0, gh.a, p2.u, ne.d, com.google.andro
                 return true;
             }
         }
-        aw awVar = cyVar.f36197z0;
-        if (awVar != null && awVar.getVisibility() == 0 && cyVar.f36197z0.f30080n) {
+        aw awVar = cyVar.f36198z0;
+        if (awVar != null && awVar.getVisibility() == 0 && cyVar.f36198z0.f30081n) {
             return false;
         }
         return cyVar.m4(view, i10, f7, ((ay) this.f17039b).d);
@@ -705,7 +705,7 @@ public final class e implements cp0, l1, am0, gh.a, p2.u, ne.d, com.google.andro
         if (trim.length() > 16) {
             trim = trim.substring(0, 16);
         }
-        if (!((x01) this.f17040c).f32294s && TextUtils.isEmpty(trim)) {
+        if (!((x01) this.f17040c).f32295s && TextUtils.isEmpty(trim)) {
             return null;
         }
         return trim;
@@ -740,12 +740,12 @@ public final class e implements cp0, l1, am0, gh.a, p2.u, ne.d, com.google.andro
         Paint paint = (Paint) this.f17039b;
         PremiumPreviewFragment premiumPreviewFragment = (PremiumPreviewFragment) this.f17040c;
         a1 a1Var = premiumPreviewFragment.m0;
-        if (premiumPreviewFragment.f33508h0) {
+        if (premiumPreviewFragment.f33509h0) {
             paint.setColor(premiumPreviewFragment.getThemedColor(h6.f20932a7));
             canvas.drawRect(f7, f10, f11, f12, paint);
             return;
         }
-        a1Var.d(0, (-premiumPreviewFragment.f33503d0.getMeasuredWidth()) * 0.1f * premiumPreviewFragment.f33500b0, 0, premiumPreviewFragment.f33503d0.getMeasuredWidth(), 0.0f, premiumPreviewFragment.f33503d0.getMeasuredHeight());
+        a1Var.d(0, (-premiumPreviewFragment.f33504d0.getMeasuredWidth()) * 0.1f * premiumPreviewFragment.f33501b0, 0, premiumPreviewFragment.f33504d0.getMeasuredWidth(), 0.0f, premiumPreviewFragment.f33504d0.getMeasuredHeight());
         canvas.drawRect(f7, f10, f11, f12, a1Var.f46191f);
     }
 

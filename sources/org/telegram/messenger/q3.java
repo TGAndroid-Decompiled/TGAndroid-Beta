@@ -1,27 +1,27 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.tl.TL_ephemeral;
+import org.telegram.tgnet.TLRPC;
 public final class q3 implements Runnable {
-    public final int f19312a;
-    public final FileRefController f19313b;
-    public final TL_ephemeral.TL_sendMessage f19314c;
+    public final int f19309a;
+    public final FileRefController f19310b;
+    public final TLRPC.TL_messages_sendMedia f19311c;
     public final Object[] d;
 
-    public q3(FileRefController fileRefController, TL_ephemeral.TL_sendMessage tL_sendMessage, Object[] objArr, int i10) {
-        this.f19312a = i10;
-        this.f19313b = fileRefController;
-        this.f19314c = tL_sendMessage;
+    public q3(FileRefController fileRefController, TLRPC.TL_messages_sendMedia tL_messages_sendMedia, Object[] objArr, int i10) {
+        this.f19309a = i10;
+        this.f19310b = fileRefController;
+        this.f19311c = tL_messages_sendMedia;
         this.d = objArr;
     }
 
     @Override
     public final void run() {
-        switch (this.f19312a) {
+        switch (this.f19309a) {
             case 0:
-                FileRefController.n(this.f19313b, this.f19314c, this.d);
+                this.f19310b.lambda$onUpdateObjectReference$31(this.f19311c, this.d);
                 return;
             default:
-                FileRefController.t(this.f19313b, this.f19314c, this.d);
+                this.f19310b.lambda$sendErrorToObject$42(this.f19311c, this.d);
                 return;
         }
     }

@@ -50,9 +50,9 @@ public final class bn extends li {
     public final void D(int i10) {
         ti tiVar = this.f28173b;
         if (i10 > 1) {
-            tiVar.f30539d1.K(0);
+            tiVar.f30540d1.K(0);
         } else {
-            tiVar.f30539d1.r(0);
+            tiVar.f30540d1.r(0);
         }
     }
 
@@ -115,8 +115,8 @@ public final class bn extends li {
                     ymVar.v.recycle();
                 }
                 ymVar.v = createBitmap;
-                ymVar.f32692w = 0.0f;
-                ymVar.O.f32967z.invalidate();
+                ymVar.f32693w = 0.0f;
+                ymVar.O.f32968z.invalidate();
             }
         }
     }
@@ -133,7 +133,7 @@ public final class bn extends li {
     public final void dispatchDraw(Canvas canvas) {
         Drawable e;
         int i10;
-        org.telegram.ui.on onVar = this.f28173b.f30580r;
+        org.telegram.ui.on onVar = this.f28173b.f30581r;
         boolean z10 = false;
         if (onVar != null && (e = onVar.e()) != null) {
             int currentItemTop = getCurrentItemTop();
@@ -208,7 +208,7 @@ public final class bn extends li {
         int i10 = 0;
         for (int i11 = 0; i11 < size; i11++) {
             zm zmVar = (zm) arrayList2.get(i11);
-            if (zmVar != null && (umVar = zmVar.f32953k) != null && (arrayList = umVar.f30962g) != null) {
+            if (zmVar != null && (umVar = zmVar.f32954k) != null && (arrayList = umVar.f30963g) != null) {
                 i10 = arrayList.size() + i10;
             }
         }
@@ -242,8 +242,8 @@ public final class bn extends li {
             int size = anVar.f24671b.size();
             for (int i14 = 0; i14 < size; i14++) {
                 zm zmVar = (zm) anVar.f24671b.get(i14);
-                if (zmVar.f32953k.f30962g.size() == 1) {
-                    zm.a(zmVar, zmVar.f32953k, true);
+                if (zmVar.f32954k.f30963g.size() == 1) {
+                    zm.a(zmVar, zmVar.f32954k, true);
                 }
             }
         }
@@ -278,7 +278,7 @@ public final class bn extends li {
                 Object obj2 = arrayList2.get(i11);
                 i11++;
                 ym ymVar = (ym) obj2;
-                if (ymVar.e && (photoEntry = ymVar.f32675b) != null) {
+                if (ymVar.e && (photoEntry = ymVar.f32676b) != null) {
                     photoEntry.isChatPreviewSpoilerRevealed = false;
                 }
             }
@@ -297,10 +297,10 @@ public final class bn extends li {
         ViewPropertyAnimator interpolator = this.f24994x.animate().alpha(0.0f).setDuration(150L).setInterpolator(bs.f25024j);
         this.O = interpolator;
         interpolator.start();
-        if (getSelectedItemsCount() > 1 && (chatAttachAlertPhotoLayout = (tiVar = this.f28173b).f30557j0) != null) {
+        if (getSelectedItemsCount() > 1 && (chatAttachAlertPhotoLayout = (tiVar = this.f28173b).f30558j0) != null) {
             chatAttachAlertPhotoLayout.f24087c1.setIcon(R.drawable.msg_view_file);
-            tiVar.f30557j0.f24087c1.setText(LocaleController.getString(R.string.AttachMediaPreviewButton));
-            tiVar.f30557j0.f24087c1.setRightIcon(R.drawable.msg_arrowright);
+            tiVar.f30558j0.f24087c1.setText(LocaleController.getString(R.string.AttachMediaPreviewButton));
+            tiVar.f30558j0.f24087c1.setRightIcon(R.drawable.msg_arrowright);
         }
         this.v.i(this.P, true);
     }
@@ -308,7 +308,7 @@ public final class bn extends li {
     @Override
     public final void w(int i10) {
         try {
-            this.f28173b.f30557j0.w(i10);
+            this.f28173b.f30558j0.w(i10);
         } catch (Exception unused) {
         }
     }

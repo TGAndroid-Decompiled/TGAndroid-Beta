@@ -88,7 +88,7 @@ public final class i90 implements Runnable {
                 TLRPC.TL_chatInviteExported tL_chatInviteExported = (TLRPC.TL_chatInviteExported) obj3;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
                 TLObject tLObject = (TLObject) obj;
-                q90Var.f29504y = false;
+                q90Var.f29505y = false;
                 q90Var.K = tL_chatInviteExported.link;
                 if (tL_error == null) {
                     TLRPC.TL_messages_chatInviteImporters tL_messages_chatInviteImporters = (TLRPC.TL_messages_chatInviteImporters) tLObject;
@@ -192,7 +192,7 @@ public final class i90 implements Runnable {
             case 9:
                 s31 s31Var = (s31) obj4;
                 ((i80) obj3).u();
-                ((MessagesController) obj2).getTopicsController().pinTopic(-s31Var.f30181c, ((TLRPC.TL_forumTopic) obj).f20328id, !tL_forumTopic.pinned, s31Var.h);
+                ((MessagesController) obj2).getTopicsController().pinTopic(-s31Var.f30182c, ((TLRPC.TL_forumTopic) obj).f20328id, !tL_forumTopic.pinned, s31Var.h);
                 return;
             case 10:
                 t41.o((t41) obj4, (TLRPC.TL_error) obj2, (TLObject) obj, (TLRPC.TL_textWithEntities) obj3);
@@ -361,9 +361,9 @@ public final class i90 implements Runnable {
                 z60Var.e = (ArrayList) obj2;
                 z60Var.l();
                 org.telegram.ui.a70 a70Var = z60Var.f43649r;
-                a70Var.f35291b.d.setVisibility(8);
-                a70Var.f35291b.e.setText(LocaleController.formatString(R.string.ChooseStickerNoResultsFound, (String) obj));
-                a70Var.f35291b.e(false, true);
+                a70Var.f35292b.d.setVisibility(8);
+                a70Var.f35292b.e.setText(LocaleController.formatString(R.string.ChooseStickerNoResultsFound, (String) obj));
+                a70Var.f35292b.e(false, true);
                 return;
             case 17:
                 LaunchActivity launchActivity = (LaunchActivity) obj4;
@@ -465,7 +465,7 @@ public final class i90 implements Runnable {
                 org.telegram.ui.ib0 ib0Var = (org.telegram.ui.ib0) obj4;
                 org.telegram.ui.ActionBar.n2 n2Var = (org.telegram.ui.ActionBar.n2) obj3;
                 TLRPC.User[] userArr = (TLRPC.User[]) obj2;
-                nr.e(n2Var.getContext(), ib0Var.f37912b, userArr[0], (TLRPC.TL_requestPeerTypeCreateBot) obj, true, new qy(11, ib0Var, userArr), n2Var.getResourceProvider(), org.telegram.ui.ib0.d());
+                nr.e(n2Var.getContext(), ib0Var.f37913b, userArr[0], (TLRPC.TL_requestPeerTypeCreateBot) obj, true, new qy(11, ib0Var, userArr), n2Var.getResourceProvider(), org.telegram.ui.ib0.d());
                 return;
             case 20:
                 org.telegram.ui.fb0.t0((org.telegram.ui.fb0) obj4, (TLObject) obj, (HashSet) obj3, (TLRPC.TL_error) obj2);
@@ -513,9 +513,9 @@ public final class i90 implements Runnable {
                 org.telegram.ui.ge0 ge0Var = (org.telegram.ui.ge0) obj4;
                 String str5 = (String) obj3;
                 TLRPC.TL_error tL_error9 = (TLRPC.TL_error) obj2;
-                org.telegram.ui.dg0 dg0Var = ge0Var.f37307y;
+                org.telegram.ui.dg0 dg0Var = ge0Var.f37308y;
                 dg0Var.k1(false, true);
-                ge0Var.f37302n = false;
+                ge0Var.f37303n = false;
                 if (((TLObject) obj) instanceof TLRPC.TL_boolTrue) {
                     Bundle bundle = new Bundle();
                     bundle.putString("emailCode", str5);
@@ -544,18 +544,18 @@ public final class i90 implements Runnable {
                 TLRPC.TL_error tL_error10 = (TLRPC.TL_error) obj2;
                 Bundle bundle2 = (Bundle) obj3;
                 TLObject tLObject7 = (TLObject) obj;
-                org.telegram.ui.dg0 dg0Var2 = hf0Var.f37616s0;
-                hf0Var.f37598d0 = false;
+                org.telegram.ui.dg0 dg0Var2 = hf0Var.f37617s0;
+                hf0Var.f37599d0 = false;
                 if (tL_error10 == null) {
-                    hf0Var.f37610o0 = bundle2;
+                    hf0Var.f37611o0 = bundle2;
                     if (tLObject7 instanceof TLRPC.TL_auth_sentCode) {
                         TLRPC.TL_auth_sentCode tL_auth_sentCode = (TLRPC.TL_auth_sentCode) tLObject7;
-                        hf0Var.f37611p0 = tL_auth_sentCode;
+                        hf0Var.f37612p0 = tL_auth_sentCode;
                         TLRPC.auth_SentCodeType auth_sentcodetype = tL_auth_sentCode.type;
                         if (auth_sentcodetype instanceof TLRPC.TL_auth_sentCodeTypeSmsPhrase) {
-                            hf0Var.f37602g0 = 17;
+                            hf0Var.f37603g0 = 17;
                         } else if (auth_sentcodetype instanceof TLRPC.TL_auth_sentCodeTypeSmsWord) {
-                            hf0Var.f37602g0 = 16;
+                            hf0Var.f37603g0 = 16;
                         }
                         dg0Var2.g1(bundle2, tL_auth_sentCode, true);
                     } else if (tLObject7 instanceof TLRPC.TL_auth_sentCodePaymentRequired) {
@@ -663,14 +663,14 @@ public final class i90 implements Runnable {
                 ArrayList arrayList7 = (ArrayList) obj2;
                 ArrayList arrayList8 = (ArrayList) obj;
                 hg.a2 a2Var = ak0Var.h;
-                NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = ak0Var.f35383n;
-                if (notificationsCustomSettingsActivity.f33208f) {
-                    ak0Var.f35382f = null;
+                NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = ak0Var.f35384n;
+                if (notificationsCustomSettingsActivity.f33209f) {
+                    ak0Var.f35383f = null;
                     ak0Var.d = arrayList6;
                     ak0Var.e = arrayList7;
                     a2Var.f(arrayList8, null);
-                    if (notificationsCustomSettingsActivity.f33208f && !a2Var.e()) {
-                        notificationsCustomSettingsActivity.f33207c.c();
+                    if (notificationsCustomSettingsActivity.f33209f && !a2Var.e()) {
+                        notificationsCustomSettingsActivity.f33208c.c();
                     }
                     ak0Var.l();
                     return;

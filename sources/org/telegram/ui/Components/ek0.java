@@ -18,7 +18,7 @@ public final class ek0 implements Runnable {
         switch (this.f25915a) {
             case 0:
                 nk0 nk0Var = this.f25916b;
-                NotificationCenter.getInstance(nk0Var.f28828b).doOnIdle(new ek0(nk0Var, this.f25917c, 1));
+                NotificationCenter.getInstance(nk0Var.f28829b).doOnIdle(new ek0(nk0Var, this.f25917c, 1));
                 return;
             default:
                 nk0.a(this.f25916b, this.f25917c);

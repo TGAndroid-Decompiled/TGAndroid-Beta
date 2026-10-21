@@ -9,15 +9,15 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class wi implements Utilities.Callback2 {
-    public final int f32126a;
-    public final fj f32127b;
-    public final MessagesController f32128c;
+    public final int f32127a;
+    public final fj f32128b;
+    public final MessagesController f32129c;
     public final int d;
 
     public wi(fj fjVar, MessagesController messagesController, int i10, int i11) {
-        this.f32126a = i11;
-        this.f32127b = fjVar;
-        this.f32128c = messagesController;
+        this.f32127a = i11;
+        this.f32128b = fjVar;
+        this.f32129c = messagesController;
         this.d = i10;
     }
 
@@ -26,15 +26,15 @@ public final class wi implements Utilities.Callback2 {
         String str;
         TLRPC.TL_documentAttributeAudio tL_documentAttributeAudio;
         TLRPC.TL_documentAttributeAudio tL_documentAttributeAudio2;
-        switch (this.f32126a) {
+        switch (this.f32127a) {
             case 0:
                 TLRPC.messages_BotResults messages_botresults = (TLRPC.messages_BotResults) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                fj fjVar = this.f32127b;
+                fj fjVar = this.f32128b;
                 fjVar.f26227d0 = -1;
                 fjVar.m0 = false;
                 if (messages_botresults != null) {
-                    this.f32128c.putUsers(messages_botresults.users, false);
+                    this.f32129c.putUsers(messages_botresults.users, false);
                     ArrayList<TLRPC.BotInlineResult> arrayList = messages_botresults.results;
                     int size = arrayList.size();
                     int i10 = 0;
@@ -101,14 +101,14 @@ public final class wi implements Utilities.Callback2 {
             default:
                 TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) obj;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
-                fj fjVar2 = this.f32127b;
+                fj fjVar2 = this.f32128b;
                 ArrayList arrayList2 = fjVar2.L;
                 fjVar2.U = -1;
                 boolean z10 = false;
                 fjVar2.W = false;
                 if (messages_messages != null) {
                     ArrayList<TLRPC.User> arrayList3 = messages_messages.users;
-                    MessagesController messagesController = this.f32128c;
+                    MessagesController messagesController = this.f32129c;
                     messagesController.putUsers(arrayList3, false);
                     messagesController.putChats(messages_messages.chats, false);
                     ArrayList<TLRPC.Message> arrayList4 = messages_messages.messages;

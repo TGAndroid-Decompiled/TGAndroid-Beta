@@ -102,7 +102,7 @@ public final class j0 extends AnimatorListenerAdapter {
                 return;
             case 4:
                 n2 n2Var = (n2) this.e;
-                TextView[] textViewArr = n2Var.f31583a;
+                TextView[] textViewArr = n2Var.f31584a;
                 View view4 = (View) this.f11918c;
                 view4.setVisibility(8);
                 view4.setAlpha(1.0f);
@@ -119,7 +119,7 @@ public final class j0 extends AnimatorListenerAdapter {
                 if (runnable != null) {
                     runnable.run();
                 }
-                n2Var.f31586f = false;
+                n2Var.f31587f = false;
                 CharSequence charSequence = n2Var.e;
                 if (charSequence != null) {
                     if (charSequence.equals("timer")) {
@@ -147,8 +147,8 @@ public final class j0 extends AnimatorListenerAdapter {
                     runnable2.run();
                     return;
                 }
-                profileActivity.f33618f0.setProgressToExpand(0.0f);
-                profileActivity.f33580a.setLayerType(0, null);
+                profileActivity.f33619f0.setProgressToExpand(0.0f);
+                profileActivity.f33581a.setLayerType(0, null);
                 if (profileActivity.Q0 != null) {
                     kVar = ((org.telegram.ui.ActionBar.n2) profileActivity).actionBar;
                     org.telegram.ui.ActionBar.y n10 = kVar.n();
@@ -162,15 +162,15 @@ public final class j0 extends AnimatorListenerAdapter {
                 runnable2.run();
                 if (profileActivity.K1 == 2) {
                     profileActivity.K1 = 1;
-                    profileActivity.f33618f0.setForegroundAlpha(1.0f);
+                    profileActivity.f33619f0.setForegroundAlpha(1.0f);
                     profileActivity.Y.setVisibility(8);
-                    profileActivity.f33679o0.setAlpha(1.0f);
-                    profileActivity.f33679o0.L();
-                    profileActivity.f33679o0.setVisibility(0);
+                    profileActivity.f33680o0.setAlpha(1.0f);
+                    profileActivity.f33680o0.L();
+                    profileActivity.f33680o0.setVisibility(0);
                 }
                 profileActivity.Y4 = null;
                 profileActivity.Z.invalidate();
-                profileActivity.f33644i5 = null;
+                profileActivity.f33645i5 = null;
                 profileActivity.fragmentView.invalidate();
                 return;
         }

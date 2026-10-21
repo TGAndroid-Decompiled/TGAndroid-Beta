@@ -2,15 +2,15 @@ package org.telegram.ui.Components;
 
 import android.view.View;
 public final class n7 implements xl0 {
-    public final int f28696a;
+    public final int f28697a;
 
     public n7(int i10) {
-        this.f28696a = i10;
+        this.f28697a = i10;
     }
 
     @Override
     public final void a(int i10, View view) {
-        switch (this.f28696a) {
+        switch (this.f28697a) {
             case 0:
                 if (view instanceof org.telegram.ui.Cells.x) {
                     ((org.telegram.ui.Cells.x) view).a();

@@ -33,14 +33,14 @@ public final class n5 extends FrameLayout {
                 if (photoEntry == null || !photoEntry.isAttachSpoilerRevealed) {
                     s5Var.M.c(canvas, s5Var.f23004b, o5Var.getMeasuredWidth(), o5Var.getMeasuredHeight(), 1.0f, false);
                     MediaController.PhotoEntry photoEntry2 = s5Var.G;
-                    if (photoEntry2 != null && photoEntry2.starsAmount > 0 && o5Var.f32001y != null) {
+                    if (photoEntry2 != null && photoEntry2.starsAmount > 0 && o5Var.f32002y != null) {
                         Path path = o5Var.E;
                         if (path == null) {
                             o5Var.E = new Path();
                         } else {
                             path.rewind();
                         }
-                        int i11 = o5Var.f31994c;
+                        int i11 = o5Var.f31995c;
                         if (i11 != -1 && (i10 = o5Var.d) != -1) {
                             measuredWidth = i11;
                             measuredHeight = i10;
@@ -48,7 +48,7 @@ public final class n5 extends FrameLayout {
                             measuredWidth = o5Var.getMeasuredWidth();
                             measuredHeight = o5Var.getMeasuredHeight();
                         }
-                        float dp = o5Var.f32001y.f26021c + AndroidUtilities.dp(18.0f);
+                        float dp = o5Var.f32002y.f26021c + AndroidUtilities.dp(18.0f);
                         float f7 = (measuredWidth - dp) / 2.0f;
                         float f10 = measuredHeight / 2.0f;
                         RectF rectF = AndroidUtilities.rectTmp;
@@ -57,16 +57,16 @@ public final class n5 extends FrameLayout {
                         o5Var.E.addRoundRect(rectF, dp2, dp2, Path.Direction.CW);
                         canvas.save();
                         canvas.clipPath(o5Var.E);
-                        ImageReceiver imageReceiver = o5Var.f31993b;
-                        if (imageReceiver != null && o5Var.f31998s) {
+                        ImageReceiver imageReceiver = o5Var.f31994b;
+                        if (imageReceiver != null && o5Var.f31999s) {
                             imageReceiver.setColorFilter(o5Var.F);
-                            float alpha = o5Var.f31993b.getAlpha();
-                            o5Var.f31993b.setAlpha(1.0f);
-                            o5Var.f31993b.draw(canvas);
-                            o5Var.f31993b.setAlpha(alpha);
-                            o5Var.f31993b.setColorFilter(null);
+                            float alpha = o5Var.f31994b.getAlpha();
+                            o5Var.f31994b.setAlpha(1.0f);
+                            o5Var.f31994b.draw(canvas);
+                            o5Var.f31994b.setAlpha(alpha);
+                            o5Var.f31994b.setColorFilter(null);
                         }
-                        o5Var.f32001y.c(f7 + AndroidUtilities.dp(9.0f), f10, 1.0f, -1, canvas);
+                        o5Var.f32002y.c(f7 + AndroidUtilities.dp(9.0f), f10, 1.0f, -1, canvas);
                         canvas.restore();
                     }
                 }

@@ -438,7 +438,7 @@ public final class d3 extends Dialog implements NotificationCenter.NotificationC
                 this.f11151n0 = null;
             }
             qc qcVar3 = this.f11151n0;
-            if (qcVar3 == null || !qcVar3.f29532l) {
+            if (qcVar3 == null || !qcVar3.f29533l) {
                 this.L0 = i0Var;
                 h0 h0Var = new h0(getContext(), this.E);
                 this.f11152o0 = h0Var;
@@ -927,7 +927,7 @@ public final class d3 extends Dialog implements NotificationCenter.NotificationC
         NotificationCenter.getInstance(this.G).removeObserver(this, NotificationCenter.webViewResultSent);
         NotificationCenter.getInstance(this.G).removeObserver(this, NotificationCenter.botDownloadsUpdate);
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.didSetNewTheme);
-        if (z10 && ((launchActivity = LaunchActivity.H1) == null || launchActivity.f33201y0 == null)) {
+        if (z10 && ((launchActivity = LaunchActivity.H1) == null || launchActivity.f33202y0 == null)) {
             z10 = false;
         }
         if (z10) {
@@ -936,7 +936,7 @@ public final class d3 extends Dialog implements NotificationCenter.NotificationC
                 kVar.f17559u.f17565i = 0.0f;
                 kVar.h();
             }
-            LaunchActivity.H1.f33201y0.b(this);
+            LaunchActivity.H1.f33202y0.b(this);
         } else {
             z2 z2Var = this.f11149l0;
             if (z2Var != null) {

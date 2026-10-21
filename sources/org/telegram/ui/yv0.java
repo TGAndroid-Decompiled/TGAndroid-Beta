@@ -109,7 +109,7 @@ public class yv0 extends FrameLayout {
     }
 
     public final void c() {
-        this.h.setBounds((getWidth() - this.h.f29213s) - AndroidUtilities.dp(21.0f), (getHeight() - this.h.f29213s) / 2, getWidth() - AndroidUtilities.dp(21.0f), (getHeight() + this.h.f29213s) / 2);
+        this.h.setBounds((getWidth() - this.h.f29214s) - AndroidUtilities.dp(21.0f), (getHeight() - this.h.f29214s) / 2, getWidth() - AndroidUtilities.dp(21.0f), (getHeight() + this.h.f29214s) / 2);
     }
 
     @Override

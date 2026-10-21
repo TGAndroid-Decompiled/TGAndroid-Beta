@@ -237,8 +237,8 @@ public final class t0 {
                 for (int i11 = 0; i11 < arrayList.size(); i11++) {
                     y41 y41Var = (y41) arrayList.get(i11);
                     for (int i12 = 0; i12 < y41Var.O.size(); i12++) {
-                        if (((g51) y41Var.O.get(i12)).f37189b) {
-                            ((g51) y41Var.O.get(i12)).f37189b = false;
+                        if (((g51) y41Var.O.get(i12)).f37190b) {
+                            ((g51) y41Var.O.get(i12)).f37190b = false;
                             ((g51) y41Var.O.get(i12)).invalidate();
                             y41Var.k();
                         }
@@ -248,8 +248,8 @@ public final class t0 {
                 for (int i13 = 0; i13 < k41Var.Y2.size(); i13++) {
                     y41 y41Var2 = (y41) k41Var.Y2.get(i13);
                     for (int i14 = 0; i14 < y41Var2.O.size(); i14++) {
-                        if (((g51) y41Var2.O.get(i14)).f37189b) {
-                            ((g51) y41Var2.O.get(i14)).f37189b = false;
+                        if (((g51) y41Var2.O.get(i14)).f37190b) {
+                            ((g51) y41Var2.O.get(i14)).f37190b = false;
                             ((g51) y41Var2.O.get(i14)).invalidate();
                             y41Var2.k();
                         }
@@ -403,8 +403,8 @@ public final class t0 {
                 f7 = 1.0f;
             }
             ?? timeAnimator = new TimeAnimator();
-            timeAnimator.f33048a = 0;
-            timeAnimator.f33049b = 0;
+            timeAnimator.f33049a = 0;
+            timeAnimator.f33050b = 0;
             timeAnimator.setFloatValues(new float[]{f10, f7});
             valueAnimator = timeAnimator;
         }
@@ -537,8 +537,8 @@ public final class t0 {
             if (i10 < u41Var.getChildCount()) {
                 if (u41Var2.getChildAt(i10) instanceof g51) {
                     g51 g51Var = (g51) u41Var2.getChildAt(i10);
-                    if (g51Var.f37196x != null) {
-                        g51Var.f37189b = false;
+                    if (g51Var.f37197x != null) {
+                        g51Var.f37190b = false;
                         g51Var.invalidate();
                     }
                 }

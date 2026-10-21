@@ -16,7 +16,7 @@ public final class q91 implements Runnable {
                 return;
             default:
                 StickersActivity stickersActivity = this.f40512b;
-                stickersActivity.f33860r--;
+                stickersActivity.f33861r--;
                 return;
         }
     }

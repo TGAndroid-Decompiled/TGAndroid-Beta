@@ -46,7 +46,7 @@ public final class ad extends LinearLayout implements NotificationCenter.Notific
         addView(textView, w7.z5.q(-2, -2, 5));
         zc zcVar = new zc(this, context, context.getResources().getDrawable(R.drawable.star_small_inner).mutate());
         this.f988c = zcVar;
-        zcVar.f29481n = true;
+        zcVar.f29482n = true;
         zcVar.getDrawable().r(false, true);
         zcVar.setTypeface(AndroidUtilities.bold());
         zcVar.setTextColor(org.telegram.ui.ActionBar.h6.w0(i11, d6Var));

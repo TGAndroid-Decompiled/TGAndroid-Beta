@@ -5,12 +5,12 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public final class ka implements TextView.OnEditorActionListener {
-    public final int f38497a;
-    public final Object f38498b;
+    public final int f38498a;
+    public final Object f38499b;
 
     public ka(Object obj, int i10) {
-        this.f38497a = i10;
-        this.f38498b = obj;
+        this.f38498a = i10;
+        this.f38499b = obj;
     }
 
     @Override
@@ -18,16 +18,16 @@ public final class ka implements TextView.OnEditorActionListener {
         org.telegram.ui.ActionBar.u0 u0Var;
         org.telegram.ui.Cells.u1 u1Var;
         org.telegram.ui.ActionBar.u0 u0Var2;
-        switch (this.f38497a) {
+        switch (this.f38498a) {
             case 0:
-                ma maVar = (ma) this.f38498b;
-                if (i10 == 6 && (u0Var = maVar.f39165c.f41411a) != null) {
+                ma maVar = (ma) this.f38499b;
+                if (i10 == 6 && (u0Var = maVar.f39166c.f41411a) != null) {
                     u0Var.performClick();
                     return true;
                 }
                 return false;
             case 1:
-                qn qnVar = (qn) this.f38498b;
+                qn qnVar = (qn) this.f38499b;
                 if (i10 == 6) {
                     rh.c cVar = qnVar.Dc;
                     if (cVar != null && (u1Var = cVar.f45746n) != null) {
@@ -39,14 +39,14 @@ public final class ka implements TextView.OnEditorActionListener {
                 }
                 return false;
             case 2:
-                io ioVar = (io) this.f38498b;
-                if (i10 == 6 && (u0Var2 = ioVar.f38032a) != null) {
+                io ioVar = (io) this.f38499b;
+                if (i10 == 6 && (u0Var2 = ioVar.f38033a) != null) {
                     u0Var2.performClick();
                     return true;
                 }
                 return false;
             case 3:
-                qr qrVar = (qr) this.f38498b;
+                qr qrVar = (qr) this.f38499b;
                 if (i10 == 5) {
                     qrVar.a();
                     return true;
@@ -54,13 +54,13 @@ public final class ka implements TextView.OnEditorActionListener {
                 qrVar.getClass();
                 return false;
             case 4:
-                l60 l60Var = (l60) this.f38498b;
+                l60 l60Var = (l60) this.f38499b;
                 if (i10 == 6 && l60Var.o0()) {
                     return true;
                 }
                 return false;
             case 5:
-                vd0 vd0Var = (vd0) this.f38498b;
+                vd0 vd0Var = (vd0) this.f38499b;
                 if (i10 == 5) {
                     vd0Var.h(null);
                     return true;
@@ -68,7 +68,7 @@ public final class ka implements TextView.OnEditorActionListener {
                 vd0Var.getClass();
                 return false;
             case 6:
-                de0 de0Var = (de0) this.f38498b;
+                de0 de0Var = (de0) this.f38499b;
                 if (i10 == 5) {
                     de0Var.h(null);
                     return true;
@@ -76,7 +76,7 @@ public final class ka implements TextView.OnEditorActionListener {
                 de0Var.getClass();
                 return false;
             case 7:
-                re0 re0Var = (re0) this.f38498b;
+                re0 re0Var = (re0) this.f38499b;
                 if (i10 == 5) {
                     re0Var.h(null);
                     return true;
@@ -84,7 +84,7 @@ public final class ka implements TextView.OnEditorActionListener {
                 re0Var.getClass();
                 return false;
             case 8:
-                PasscodeActivity passcodeActivity = (PasscodeActivity) this.f38498b;
+                PasscodeActivity passcodeActivity = (PasscodeActivity) this.f38499b;
                 int i11 = passcodeActivity.E;
                 if (i11 == 0) {
                     passcodeActivity.k0();
@@ -96,7 +96,7 @@ public final class ka implements TextView.OnEditorActionListener {
                     return false;
                 }
             case 9:
-                rm0 rm0Var = (rm0) this.f38498b;
+                rm0 rm0Var = (rm0) this.f38499b;
                 if (i10 == 5) {
                     rm0Var.h(null);
                     return true;
@@ -104,7 +104,7 @@ public final class ka implements TextView.OnEditorActionListener {
                 rm0Var.getClass();
                 return false;
             case 10:
-                s11 s11Var = (s11) this.f38498b;
+                s11 s11Var = (s11) this.f38499b;
                 s11Var.getClass();
                 if (i10 == 5) {
                     int intValue = ((Integer) textView.getTag()).intValue() + 1;
@@ -121,17 +121,17 @@ public final class ka implements TextView.OnEditorActionListener {
                     return false;
                 }
             case 11:
-                h61 h61Var = (h61) this.f38498b;
+                h61 h61Var = (h61) this.f38499b;
                 if (keyEvent != null) {
                     if ((keyEvent.getAction() == 1 && keyEvent.getKeyCode() == 84) || (keyEvent.getAction() == 0 && keyEvent.getKeyCode() == 66)) {
-                        AndroidUtilities.hideKeyboard(h61Var.f37507c0);
+                        AndroidUtilities.hideKeyboard(h61Var.f37508c0);
                         return false;
                     }
                     return false;
                 }
                 return false;
             default:
-                TwoStepVerificationActivity twoStepVerificationActivity = (TwoStepVerificationActivity) this.f38498b;
+                TwoStepVerificationActivity twoStepVerificationActivity = (TwoStepVerificationActivity) this.f38499b;
                 twoStepVerificationActivity.getClass();
                 if (i10 != 5 && i10 != 6) {
                     return false;

@@ -4,7 +4,7 @@ import android.text.TextUtils;
 import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.TLRPC;
 public final class j10 extends pg.a {
-    public CharSequence f38142c;
+    public CharSequence f38143c;
     public MessagesController.DialogFilter d;
     public TLRPC.TL_dialogFilterSuggested e;
 
@@ -25,7 +25,7 @@ public final class j10 extends pg.a {
         if (i10 != i11) {
             return false;
         }
-        if ((i11 == 0 || i11 == 4 || i11 == 3 || i11 == 6) && !TextUtils.equals(this.f38142c, j10Var.f38142c)) {
+        if ((i11 == 0 || i11 == 4 || i11 == 3 || i11 == 6) && !TextUtils.equals(this.f38143c, j10Var.f38143c)) {
             return false;
         }
         int i12 = this.f44296a;

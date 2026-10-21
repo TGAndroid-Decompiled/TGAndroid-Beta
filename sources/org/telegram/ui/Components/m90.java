@@ -24,13 +24,13 @@ public final class m90 implements PopupWindow.OnDismissListener {
     public final void onDismiss() {
         switch (this.f28456a) {
             case 0:
-                ((q90) this.e).f29501s = null;
+                ((q90) this.e).f29502s = null;
                 ei.g6 g6Var = (ei.g6) this.f28458c;
                 g6Var.animate().cancel();
                 g6Var.animate().alpha(0.0f).setDuration(150L).setListener(new c80(this, 3));
                 return;
             default:
-                ((org.telegram.ui.jz) this.e).f36838x = null;
+                ((org.telegram.ui.jz) this.e).f36839x = null;
                 ei.g6 g6Var2 = (ei.g6) this.f28458c;
                 g6Var2.animate().cancel();
                 g6Var2.animate().alpha(0.0f).setDuration(150L).setListener(new p31(this, 26));

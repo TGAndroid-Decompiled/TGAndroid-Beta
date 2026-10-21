@@ -8,19 +8,19 @@ import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class cl extends FrameLayout {
-    public float f36003a;
-    public float f36004b;
-    public final qn f36005c;
+    public float f36004a;
+    public float f36005b;
+    public final qn f36006c;
 
     public cl(qn qnVar, Activity activity) {
         super(activity);
-        this.f36005c = qnVar;
+        this.f36006c = qnVar;
         setOnLongClickListener(new u(this, 2));
     }
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j10) {
-        qn qnVar = this.f36005c;
+        qn qnVar = this.f36006c;
         if (view == qnVar.f40928z2) {
             canvas.save();
             canvas.clipRect(0, 0, getMeasuredWidth(), AndroidUtilities.dp(48.0f));
@@ -43,7 +43,7 @@ public final class cl extends FrameLayout {
     @Override
     public final void onMeasure(int i10, int i11) {
         super.onMeasure(i10, i11);
-        qn qnVar = this.f36005c;
+        qn qnVar = this.f36006c;
         if (qnVar.A2) {
             int i12 = 0;
             while (true) {
@@ -64,16 +64,16 @@ public final class cl extends FrameLayout {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        this.f36003a = motionEvent.getY();
+        this.f36004a = motionEvent.getY();
         int action = motionEvent.getAction();
-        qn qnVar = this.f36005c;
+        qn qnVar = this.f36006c;
         if (action == 1) {
             qnVar.finishPreviewFragment();
         } else if (motionEvent.getAction() == 2) {
-            float f7 = this.f36004b - this.f36003a;
+            float f7 = this.f36005b - this.f36004a;
             qnVar.movePreviewFragment(f7);
             if (f7 < 0.0f) {
-                this.f36004b = this.f36003a;
+                this.f36005b = this.f36004a;
             }
         }
         return super.onTouchEvent(motionEvent);

@@ -39,7 +39,7 @@ public final class y0 {
         r5 r5Var = this.f908b;
         Rect rect = this.f909c;
         if (r5Var != null) {
-            g3 g3Var = r5Var.f29837k;
+            g3 g3Var = r5Var.f29838k;
             if (g3Var != null) {
                 g3Var.setRoundRadius((int) (rect.width() * 0.1f));
             }

@@ -24,17 +24,17 @@ import org.telegram.messenger.voip.VoIPService;
 import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLObject;
 public final class df0 implements Runnable {
-    public final int f36359a;
+    public final int f36360a;
 
     public df0(int i10) {
-        this.f36359a = i10;
+        this.f36360a = i10;
     }
 
     @Override
     public final void run() {
         org.telegram.ui.Components.xc a02;
         int i10 = 0;
-        switch (this.f36359a) {
+        switch (this.f36360a) {
             case 0:
                 CallReceiver.checkLastReceivedCall();
                 return;
@@ -51,13 +51,13 @@ public final class df0 implements Runnable {
                 org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
                 if (U != null && (a02 = org.telegram.ui.Components.xc.a0(U)) != null) {
                     org.telegram.ui.Components.qc M = a02.M(LocaleController.getString(R.string.ReportChatSent), LocaleController.getString(R.string.Reported2), R.raw.msg_antispam);
-                    M.f29530j = 5000;
+                    M.f29531j = 5000;
                     M.j();
                     return;
                 }
                 return;
             case 5:
-                int i11 = h81.f37542d0;
+                int i11 = h81.f37543d0;
                 return;
             case 6:
                 org.telegram.ui.ActionBar.h6.N = false;
@@ -73,13 +73,13 @@ public final class df0 implements Runnable {
                 org.telegram.ui.ActionBar.n2 U2 = LaunchActivity.U();
                 if (U2 != null) {
                     org.telegram.ui.Components.qc M2 = org.telegram.ui.Components.xc.a0(U2).M(LocaleController.getString(R.string.WalletBackupDisabled), LocaleController.getString(R.string.WalletBackupDisabledInfo), R.raw.contact_check);
-                    M2.f29530j = 5000;
+                    M2.f29531j = 5000;
                     M2.j();
                     return;
                 }
                 return;
             case 9:
-                CopyOnWriteArrayList copyOnWriteArrayList = org.telegram.ui.Wallet.q0.f34754i;
+                CopyOnWriteArrayList copyOnWriteArrayList = org.telegram.ui.Wallet.q0.f34755i;
                 Iterator it = copyOnWriteArrayList.iterator();
                 while (it.hasNext()) {
                     WeakReference weakReference = (WeakReference) it.next();
@@ -92,10 +92,10 @@ public final class df0 implements Runnable {
                 }
                 return;
             case 10:
-                boolean z10 = org.telegram.ui.Wallet.p5.f34698j0;
+                boolean z10 = org.telegram.ui.Wallet.p5.f34699j0;
                 return;
             case 11:
-                int[][] iArr = WallpapersListActivity.f35206k0;
+                int[][] iArr = WallpapersListActivity.f35207k0;
                 PhotoViewer.u1().H0(false, false);
                 return;
             case 12:
@@ -229,7 +229,7 @@ public final class df0 implements Runnable {
     }
 
     public df0(n0 n0Var) {
-        this.f36359a = 15;
+        this.f36360a = 15;
     }
 
     private final void a() {

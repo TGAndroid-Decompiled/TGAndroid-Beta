@@ -57,7 +57,7 @@ public final class xu implements org.telegram.ui.ActionBar.a2, org.telegram.ui.C
         } else {
             vm0Var.v = htVar.d;
         }
-        editTextBoldCursor.setText(htVar.f37783a);
+        editTextBoldCursor.setText(htVar.f37784a);
     }
 
     @Override
@@ -188,7 +188,7 @@ public final class xu implements org.telegram.ui.ActionBar.a2, org.telegram.ui.C
                 bwVar.getClass();
                 TLRPC.TL_messages_updateDialogFilter tL_messages_updateDialogFilter = new TLRPC.TL_messages_updateDialogFilter();
                 tL_messages_updateDialogFilter.f20399id = dialogFilter.f17799id;
-                cy cyVar = bwVar.f35747b;
+                cy cyVar = bwVar.f35748b;
                 cyVar.getConnectionsManager().sendRequest(tL_messages_updateDialogFilter, null);
                 cyVar.getMessagesController().removeFilter(dialogFilter);
                 cyVar.getMessagesStorage().deleteDialogFilter(dialogFilter);
@@ -234,9 +234,9 @@ public final class xu implements org.telegram.ui.ActionBar.a2, org.telegram.ui.C
                 }
             case 8:
                 l60 l60Var = (l60) obj2;
-                l60Var.f38828x.h((TLRPC.User) obj);
-                if (l60Var.f38808f.f27726r.length() > 0) {
-                    l60Var.f38808f.f27726r.setText((CharSequence) null);
+                l60Var.f38829x.h((TLRPC.User) obj);
+                if (l60Var.f38809f.f27726r.length() > 0) {
+                    l60Var.f38809f.f27726r.setText((CharSequence) null);
                     return;
                 }
                 return;

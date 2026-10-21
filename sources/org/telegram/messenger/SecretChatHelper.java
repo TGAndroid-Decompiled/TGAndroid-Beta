@@ -1078,7 +1078,7 @@ public class SecretChatHelper extends BaseController {
                 encryptedChat.admin_id = encryptedChatDB.admin_id;
                 encryptedChat.mtproto_seq = encryptedChatDB.mtproto_seq;
             }
-            AndroidUtilities.runOnUIThread(new l8(this, encryptedChatDB, encryptedChat, 23));
+            AndroidUtilities.runOnUIThread(new l8(this, encryptedChatDB, encryptedChat, 24));
         }
         if ((encryptedChat instanceof TLRPC.TL_encryptedChatDiscarded) && encryptedChat.history_deleted) {
             AndroidUtilities.runOnUIThread(new zh(this, makeEncryptedDialogId, 3));

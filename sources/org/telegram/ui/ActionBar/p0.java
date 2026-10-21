@@ -31,10 +31,10 @@ public final class p0 extends FrameLayout {
             case 2:
                 boolean drawChild = super.drawChild(canvas, view, j10);
                 kc1 kc1Var = (kc1) this.f21662c;
-                if (view == kc1Var.f38566s0 && kc1.r0(kc1Var) != null) {
+                if (view == kc1Var.f38567s0 && kc1.r0(kc1Var) != null) {
                     d5 s02 = kc1.s0(kc1Var);
-                    if (kc1Var.f38566s0.getVisibility() == 0) {
-                        i10 = (int) (kc1Var.f38566s0.getTranslationY() + kc1Var.f38566s0.getMeasuredHeight());
+                    if (kc1Var.f38567s0.getVisibility() == 0) {
+                        i10 = (int) (kc1Var.f38567s0.getTranslationY() + kc1Var.f38567s0.getMeasuredHeight());
                     } else {
                         i10 = 0;
                     }
@@ -200,17 +200,17 @@ public final class p0 extends FrameLayout {
                     }
                     this.f21661b = false;
                 }
-                measureChildWithMargins(((kc1) this.f21662c).f38566s0, i10, 0, i11, 0);
-                int measuredHeight = ((kc1) this.f21662c).f38566s0.getMeasuredHeight();
-                if (((kc1) this.f21662c).f38566s0.getVisibility() == 0) {
+                measureChildWithMargins(((kc1) this.f21662c).f38567s0, i10, 0, i11, 0);
+                int measuredHeight = ((kc1) this.f21662c).f38567s0.getMeasuredHeight();
+                if (((kc1) this.f21662c).f38567s0.getVisibility() == 0) {
                     size5 -= measuredHeight;
                 }
-                FrameLayout.LayoutParams layoutParams4 = (FrameLayout.LayoutParams) ((kc1) this.f21662c).f38570u0.getLayoutParams();
+                FrameLayout.LayoutParams layoutParams4 = (FrameLayout.LayoutParams) ((kc1) this.f21662c).f38571u0.getLayoutParams();
                 layoutParams4.topMargin = measuredHeight;
                 kc1 kc1Var = (kc1) this.f21662c;
                 int i26 = 58;
-                if (kc1Var.f38519b == 2) {
-                    fb1 fb1Var = kc1Var.f38570u0;
+                if (kc1Var.f38520b == 2) {
+                    fb1 fb1Var = kc1Var.f38571u0;
                     int dp = AndroidUtilities.dp(4.0f);
                     kc1 kc1Var2 = (kc1) this.f21662c;
                     if (!kc1Var2.K1 && kc1Var2.J1 > 0) {
@@ -226,9 +226,9 @@ public final class p0 extends FrameLayout {
                     }
                     fb1Var.setPadding(0, dp, 0, dp2 + i24);
                 }
-                ((kc1) this.f21662c).f38570u0.measure(View.MeasureSpec.makeMeasureSpec(size4, 1073741824), View.MeasureSpec.makeMeasureSpec(size5 - layoutParams4.bottomMargin, 1073741824));
-                ((FrameLayout.LayoutParams) ((kc1) this.f21662c).f38578x0.getLayoutParams()).topMargin = measuredHeight;
-                ((kc1) this.f21662c).f38578x0.measure(View.MeasureSpec.makeMeasureSpec(size4, 1073741824), View.MeasureSpec.makeMeasureSpec(size5, 1073741824));
+                ((kc1) this.f21662c).f38571u0.measure(View.MeasureSpec.makeMeasureSpec(size4, 1073741824), View.MeasureSpec.makeMeasureSpec(size5 - layoutParams4.bottomMargin, 1073741824));
+                ((FrameLayout.LayoutParams) ((kc1) this.f21662c).f38579x0.getLayoutParams()).topMargin = measuredHeight;
+                ((kc1) this.f21662c).f38579x0.measure(View.MeasureSpec.makeMeasureSpec(size4, 1073741824), View.MeasureSpec.makeMeasureSpec(size5, 1073741824));
                 ai.o5 o5Var = ((kc1) this.f21662c).Q1;
                 if (o5Var != null) {
                     ((FrameLayout.LayoutParams) o5Var.getLayoutParams()).topMargin = measuredHeight;
@@ -260,7 +260,7 @@ public final class p0 extends FrameLayout {
                     layoutParams5.height = dp7 + i22;
                     measureChildWithMargins(((kc1) this.f21662c).C0, i10, 0, i11, 0);
                 }
-                Drawable drawable = ((kc1) this.f21662c).f38562r;
+                Drawable drawable = ((kc1) this.f21662c).f38563r;
                 if (drawable != null) {
                     drawable.getPadding(AndroidUtilities.rectTmp2);
                 }
@@ -272,7 +272,7 @@ public final class p0 extends FrameLayout {
                         if (frameLayout != null) {
                             FrameLayout.LayoutParams layoutParams6 = (FrameLayout.LayoutParams) frameLayout.getLayoutParams();
                             if (i27 == 0) {
-                                if (((kc1) this.f21662c).f38519b == 2) {
+                                if (((kc1) this.f21662c).f38520b == 2) {
                                     i20 = 321;
                                 } else {
                                     i20 = 273;

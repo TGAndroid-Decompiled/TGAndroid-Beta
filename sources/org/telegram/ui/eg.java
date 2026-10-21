@@ -1,19 +1,19 @@
 package org.telegram.ui;
 public final class eg implements q0.a {
-    public final int f36652a;
-    public final qn f36653b;
+    public final int f36653a;
+    public final qn f36654b;
 
     public eg(qn qnVar, int i10) {
-        this.f36652a = i10;
-        this.f36653b = qnVar;
+        this.f36653a = i10;
+        this.f36654b = qnVar;
     }
 
     @Override
     public final void accept(Object obj) {
-        switch (this.f36652a) {
+        switch (this.f36653a) {
             case 0:
                 Integer num = (Integer) obj;
-                qn qnVar = this.f36653b;
+                qn qnVar = this.f36654b;
                 qnVar.getClass();
                 if (num.intValue() == 0) {
                     qnVar.l1 = 0;
@@ -26,7 +26,7 @@ public final class eg implements q0.a {
                 return;
             case 1:
                 Integer num2 = (Integer) obj;
-                qn qnVar2 = this.f36653b;
+                qn qnVar2 = this.f36654b;
                 qnVar2.getClass();
                 if (num2.intValue() == 0) {
                     qnVar2.f40761m1 = 0;
@@ -43,7 +43,7 @@ public final class eg implements q0.a {
                 qnVar2.j(num2.intValue(), 0, false, 0, true, 0);
                 return;
             default:
-                qn qnVar3 = this.f36653b;
+                qn qnVar3 = this.f36654b;
                 qnVar3.getClass();
                 boolean booleanValue = ((Boolean) obj).booleanValue();
                 qnVar3.f7 = booleanValue;

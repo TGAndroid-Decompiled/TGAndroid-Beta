@@ -31,14 +31,14 @@ public final class lw implements Runnable {
                 return;
             case 2:
                 tz tzVar2 = this.f28285b;
-                uy uyVar = tzVar2.f30775t1;
+                uy uyVar = tzVar2.f30776t1;
                 if (uyVar != null) {
                     uyVar.t(tzVar2.R.h);
                     return;
                 }
                 return;
             case 3:
-                uy uyVar2 = this.f28285b.f30775t1;
+                uy uyVar2 = this.f28285b.f30776t1;
                 if (uyVar2 != null) {
                     uyVar2.q();
                     return;
@@ -48,7 +48,7 @@ public final class lw implements Runnable {
                 tz tzVar3 = this.f28285b;
                 tzVar3.getClass();
                 Bundle bundle = new Bundle();
-                bundle.putLong("user_id", UserConfig.getInstance(tzVar3.f30722c1).getClientUserId());
+                bundle.putLong("user_id", UserConfig.getInstance(tzVar3.f30723c1).getClientUserId());
                 tzVar3.Y1.presentFragment(new org.telegram.ui.qn(bundle));
                 return;
             default:

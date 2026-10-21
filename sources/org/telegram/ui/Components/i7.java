@@ -55,8 +55,8 @@ public final class i7 implements RequestDelegate {
                         boolean z13;
                         boolean z14;
                         uh0 uh0Var2 = uh0.this;
-                        int i10 = uh0Var2.f30934b;
-                        c71 c71Var = uh0Var2.f30935c;
+                        int i10 = uh0Var2.f30935b;
+                        c71 c71Var = uh0Var2.f30936c;
                         uh0Var2.K = -1;
                         uh0Var2.v = false;
                         uh0Var2.H.setLoading(false);
@@ -77,7 +77,7 @@ public final class i7 implements RequestDelegate {
                             if (z16) {
                                 arrayList = uh0Var2.e;
                             } else {
-                                arrayList = uh0Var2.f30937n;
+                                arrayList = uh0Var2.f30938n;
                             }
                             boolean isEmpty = arrayList.isEmpty();
                             ArrayList<TLRPC.Message> arrayList3 = messages_messages.messages;
@@ -94,29 +94,29 @@ public final class i7 implements RequestDelegate {
                             }
                             if (!z16) {
                                 if (messages_messages instanceof TLRPC.TL_messages_messagesSlice) {
-                                    uh0Var2.f30938r = messages_messages.next_rate;
+                                    uh0Var2.f30939r = messages_messages.next_rate;
                                     if ((messages_messages.flags & 1) == 0) {
                                         z14 = true;
                                     } else {
                                         z14 = false;
                                     }
-                                    uh0Var2.f30939s = z14;
+                                    uh0Var2.f30940s = z14;
                                     z12 = true;
                                 } else if (messages_messages instanceof TLRPC.TL_messages_messages) {
-                                    uh0Var2.f30938r = 0;
+                                    uh0Var2.f30939r = 0;
                                     z12 = true;
-                                    uh0Var2.f30939s = true;
+                                    uh0Var2.f30940s = true;
                                 } else {
                                     z12 = true;
                                     if (messages_messages instanceof TLRPC.TL_messages_channelMessages) {
-                                        uh0Var2.f30938r = 0;
-                                        uh0Var2.f30939s = true;
+                                        uh0Var2.f30939r = 0;
+                                        uh0Var2.f30940s = true;
                                     }
                                 }
                             } else {
                                 z12 = true;
                                 if (messages_messages instanceof TLRPC.TL_messages_messagesSlice) {
-                                    uh0Var2.f30936f = messages_messages.next_rate;
+                                    uh0Var2.f30937f = messages_messages.next_rate;
                                     if ((messages_messages.flags & 1) == 0) {
                                         z13 = true;
                                     } else {
@@ -124,10 +124,10 @@ public final class i7 implements RequestDelegate {
                                     }
                                     uh0Var2.h = z13;
                                 } else if (messages_messages instanceof TLRPC.TL_messages_messages) {
-                                    uh0Var2.f30936f = 0;
+                                    uh0Var2.f30937f = 0;
                                     uh0Var2.h = true;
                                 } else if (messages_messages instanceof TLRPC.TL_messages_channelMessages) {
-                                    uh0Var2.f30936f = 0;
+                                    uh0Var2.f30937f = 0;
                                     uh0Var2.h = true;
                                 }
                             }
@@ -136,11 +136,11 @@ public final class i7 implements RequestDelegate {
                                 c71Var.u0(0);
                             }
                             c71Var.W2.N(z12);
-                            if (!arrayList.isEmpty() && (!z16 ? !uh0Var2.f30939s : !uh0Var2.h)) {
+                            if (!arrayList.isEmpty() && (!z16 ? !uh0Var2.f30940s : !uh0Var2.h)) {
                                 AndroidUtilities.runOnUIThread(new ai.y7(uh0Var2, z16, arrayList, 25));
                             }
                             if (z11 && j11 > 0 && !z16) {
-                                xc.a0(uh0Var2.f30933a).Q(R.raw.stars_topup, 36, AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("SearchPaidStars", (int) j11))).j();
+                                xc.a0(uh0Var2.f30934a).Q(R.raw.stars_topup, 36, AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("SearchPaidStars", (int) j11))).j();
                                 return;
                             }
                             return;

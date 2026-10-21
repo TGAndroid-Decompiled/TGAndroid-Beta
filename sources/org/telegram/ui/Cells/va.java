@@ -275,8 +275,8 @@ public class va extends FrameLayout implements NotificationCenter.NotificationCe
         boolean z11 = ek0Var.e;
         int i11 = this.P;
         if (z11) {
-            int i12 = ek0Var.f36683c;
-            if (i12 <= 0 && ek0Var.f36684f) {
+            int i12 = ek0Var.f36684c;
+            if (i12 <= 0 && ek0Var.f36685f) {
                 string = LocaleController.getString(R.string.NotificationEnabledAutomatically);
             } else if (i12 <= 0) {
                 string = LocaleController.getString(R.string.NotificationEnabled);
@@ -284,9 +284,9 @@ public class va extends FrameLayout implements NotificationCenter.NotificationCe
                 string = LocaleController.getString(R.string.NotificationDisabled);
             }
         } else {
-            boolean z12 = ek0Var.f36682b;
-            int i13 = ek0Var.f36683c;
-            int i14 = ek0Var.f36681a;
+            boolean z12 = ek0Var.f36683b;
+            int i13 = ek0Var.f36684c;
+            int i14 = ek0Var.f36682a;
             boolean z13 = true;
             if (i13 == 3 && i14 != Integer.MAX_VALUE) {
                 int currentTime = i14 - ConnectionsManager.getInstance(i11).getCurrentTime();
@@ -323,7 +323,7 @@ public class va extends FrameLayout implements NotificationCenter.NotificationCe
             if (string == null) {
                 string = LocaleController.getString(R.string.NotificationsOff);
             }
-            if (ek0Var.f36684f) {
+            if (ek0Var.f36685f) {
                 string = r4.c.u(string, ", Auto");
             }
         }
@@ -508,7 +508,7 @@ public class va extends FrameLayout implements NotificationCenter.NotificationCe
             xp xpVar = this.e;
             if (xpVar != null && xpVar.getVisibility() == 0) {
                 accessibilityNodeInfo.setCheckable(true);
-                accessibilityNodeInfo.setChecked(xpVar.f32458a.f24151q);
+                accessibilityNodeInfo.setChecked(xpVar.f32459a.f24151q);
                 accessibilityNodeInfo.setClassName("android.widget.CheckBox");
             }
         }

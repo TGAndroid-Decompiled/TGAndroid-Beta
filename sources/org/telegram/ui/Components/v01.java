@@ -6,15 +6,15 @@ import android.graphics.RectF;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class v01 extends lw0 {
-    public final org.telegram.ui.s10 f31105w0;
-    public final org.telegram.ui.ActionBar.d6 f31106x0;
-    public final t01 f31107y0;
+    public final org.telegram.ui.s10 f31106w0;
+    public final org.telegram.ui.ActionBar.d6 f31107x0;
+    public final t01 f31108y0;
 
     public v01(Context context, org.telegram.ui.ActionBar.d6 d6Var, t01 t01Var) {
         super(context, null);
-        this.f31106x0 = d6Var;
-        this.f31107y0 = t01Var;
-        this.f31105w0 = new org.telegram.ui.s10();
+        this.f31107x0 = d6Var;
+        this.f31108y0 = t01Var;
+        this.f31106w0 = new org.telegram.ui.s10();
     }
 
     @Override
@@ -29,13 +29,13 @@ public final class v01 extends lw0 {
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j10) {
-        if (view == this.f31107y0) {
+        if (view == this.f31108y0) {
             canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
             boolean drawChild = super.drawChild(canvas, view, j10);
             canvas.save();
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(0.0f, 0.0f, AndroidUtilities.dp(45.0f), getHeight());
-            this.f31105w0.b(canvas, rectF, 0, 1.0f);
+            this.f31106w0.b(canvas, rectF, 0, 1.0f);
             canvas.restore();
             canvas.restore();
             return drawChild;
@@ -45,14 +45,14 @@ public final class v01 extends lw0 {
 
     @Override
     public final org.telegram.ui.ActionBar.d6 getResourceProvider() {
-        return this.f31106x0;
+        return this.f31107x0;
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
         super.onMeasure(i10, i11);
         int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(AndroidUtilities.displaySize.x, 1073741824);
-        t01 t01Var = this.f31107y0;
+        t01 t01Var = this.f31108y0;
         t01Var.measure(makeMeasureSpec, i11);
         setMeasuredDimension(View.MeasureSpec.getSize(i10), t01Var.getMeasuredHeight() + AndroidUtilities.dp(24.0f));
     }

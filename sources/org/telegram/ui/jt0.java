@@ -6,19 +6,19 @@ import android.view.ViewGroup;
 import java.lang.reflect.Method;
 import org.telegram.messenger.FileLog;
 public final class jt0 extends AnimatorListenerAdapter {
-    public final int f38345a;
-    public final org.telegram.ui.Components.dn0 f38346b;
+    public final int f38346a;
+    public final org.telegram.ui.Components.dn0 f38347b;
 
     public jt0(org.telegram.ui.Components.dn0 dn0Var, int i10) {
-        this.f38345a = i10;
-        this.f38346b = dn0Var;
+        this.f38346a = i10;
+        this.f38347b = dn0Var;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f38345a) {
+        switch (this.f38346a) {
             case 0:
-                PhotoViewer photoViewer = (PhotoViewer) this.f38346b.f25574b;
+                PhotoViewer photoViewer = (PhotoViewer) this.f38347b.f25574b;
                 photoViewer.Q1.getNextView().setText((CharSequence) null);
                 ht0 ht0Var = photoViewer.T1;
                 ht0Var.f42051l0 = false;
@@ -30,16 +30,16 @@ public final class jt0 extends AnimatorListenerAdapter {
                 }
                 return;
             default:
-                ((PhotoViewer) this.f38346b.f25574b).Q1.setTranslationY(0.0f);
+                ((PhotoViewer) this.f38347b.f25574b).Q1.setTranslationY(0.0f);
                 return;
         }
     }
 
     @Override
     public void onAnimationStart(Animator animator) {
-        switch (this.f38345a) {
+        switch (this.f38346a) {
             case 0:
-                ht0 ht0Var = ((PhotoViewer) this.f38346b.f25574b).T1;
+                ht0 ht0Var = ((PhotoViewer) this.f38347b.f25574b).T1;
                 Method method = ht0Var.f42045f0;
                 if (method != null) {
                     try {

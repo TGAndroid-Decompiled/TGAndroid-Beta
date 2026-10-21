@@ -15,6 +15,6 @@ public final class mk extends org.telegram.ui.Components.ml0 {
                 i10 = 0;
             }
         }
-        this.f28543b = i10;
+        this.f28544b = i10;
     }
 }

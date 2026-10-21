@@ -213,11 +213,11 @@ public final class t4 extends FrameLayout {
                 int dp = AndroidUtilities.dp(42.0f);
                 int dp2 = AndroidUtilities.dp(42.0f);
                 zqVar.h = dp;
-                zqVar.f33020n = dp2;
+                zqVar.f33021n = dp2;
                 int dp3 = AndroidUtilities.dp(24.0f);
                 int dp4 = AndroidUtilities.dp(24.0f);
                 zqVar.e = dp3;
-                zqVar.f33019f = dp4;
+                zqVar.f33020f = dp4;
                 w9Var.setImageDrawable(zqVar);
             }
         }

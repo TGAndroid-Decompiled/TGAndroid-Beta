@@ -111,35 +111,35 @@ public final class ho0 implements Runnable {
                 ps0 ps0Var = ((uv0) this.f26954b).W;
                 if (ps0Var != null) {
                     int i13 = b7Var.f5251a;
-                    ps0Var.f36518n.d(i13, ps0Var.f36520s.i(i13));
+                    ps0Var.f36519n.d(i13, ps0Var.f36521s.i(i13));
                     return;
                 }
                 return;
             case 8:
-                xc.a0(((du0) this.f26954b).f25631f.f31070v1).Q(R.raw.contact_check, 36, LocaleController.formatString(R.string.YouJoinedChannel, ((TLRPC.Chat) this.f26955c).title)).k(true);
+                xc.a0(((du0) this.f26954b).f25631f.f31071v1).Q(R.raw.contact_check, 36, LocaleController.formatString(R.string.YouJoinedChannel, ((TLRPC.Chat) this.f26955c).title)).k(true);
                 return;
             case 9:
                 qu0 qu0Var = (qu0) this.f26954b;
                 String str2 = (String) this.f26955c;
-                if (!qu0Var.v.f31066t1[qu0Var.f29722r].f27641a.isEmpty() && ((i10 = qu0Var.f29722r) == 1 || i10 == 4)) {
-                    MessageObject messageObject = (MessageObject) i2.e.h(1, qu0Var.v.f31066t1[i10].f27641a);
+                if (!qu0Var.v.f31067t1[qu0Var.f29723r].f27641a.isEmpty() && ((i10 = qu0Var.f29723r) == 1 || i10 == 4)) {
+                    MessageObject messageObject = (MessageObject) i2.e.h(1, qu0Var.v.f31067t1[i10].f27641a);
                     int id2 = messageObject.getId();
                     long dialogId = messageObject.getDialogId();
                     uv0 uv0Var = qu0Var.v;
-                    if (uv0Var.f31045j1 == uv0Var.f31070v1.getUserConfig().getClientUserId()) {
+                    if (uv0Var.f31046j1 == uv0Var.f31071v1.getUserConfig().getClientUserId()) {
                         j10 = messageObject.getSavedDialogId();
                     } else {
                         j10 = 0;
                     }
                     qu0Var.F(id2, str2, dialogId, j10);
-                } else if (qu0Var.f29722r == 3) {
+                } else if (qu0Var.f29723r == 3) {
                     uv0 uv0Var2 = qu0Var.v;
-                    qu0Var.F(0, str2, uv0Var2.f31045j1, uv0Var2.F);
+                    qu0Var.F(0, str2, uv0Var2.f31046j1, uv0Var2.F);
                 }
-                int i14 = qu0Var.f29722r;
+                int i14 = qu0Var.f29723r;
                 if (i14 == 1 || i14 == 4) {
-                    ArrayList arrayList4 = new ArrayList(qu0Var.v.f31066t1[qu0Var.f29722r].f27641a);
-                    qu0Var.f29723s++;
+                    ArrayList arrayList4 = new ArrayList(qu0Var.v.f31067t1[qu0Var.f29723r].f27641a);
+                    qu0Var.f29724s++;
                     Utilities.searchQueue.postRunnable(new lg((Object) qu0Var, (Object) str2, arrayList4, 26));
                     return;
                 }
@@ -149,22 +149,22 @@ public final class ho0 implements Runnable {
                 ArrayList arrayList5 = (ArrayList) this.f26955c;
                 uv0 uv0Var3 = qu0Var2.v;
                 boolean z10 = uv0Var3.V0;
-                nu0[] nu0VarArr = uv0Var3.f31046k0;
+                nu0[] nu0VarArr = uv0Var3.f31047k0;
                 if (z10) {
-                    qu0Var2.f29723s--;
+                    qu0Var2.f29724s--;
                     int h = qu0Var2.h();
                     qu0Var2.d = arrayList5;
                     int h10 = qu0Var2.h();
-                    if (qu0Var2.f29723s == 0 || h10 != 0) {
+                    if (qu0Var2.f29724s == 0 || h10 != 0) {
                         uv0Var3.o1(false);
                     }
                     for (int i15 = 0; i15 < nu0VarArr.length; i15++) {
                         nu0 nu0Var2 = nu0VarArr[i15];
-                        if (nu0Var2.F == qu0Var2.f29722r) {
-                            if (qu0Var2.f29723s == 0 && h10 == 0) {
-                                nu0Var2.f28882w.d.setText(LocaleController.getString("NoResult", R.string.NoResult));
-                                nu0VarArr[i15].f28882w.f30698f.setVisibility(8);
-                                nu0VarArr[i15].f28882w.e(false, true);
+                        if (nu0Var2.F == qu0Var2.f29723r) {
+                            if (qu0Var2.f29724s == 0 && h10 == 0) {
+                                nu0Var2.f28883w.d.setText(LocaleController.getString("NoResult", R.string.NoResult));
+                                nu0VarArr[i15].f28883w.f30699f.setVisibility(8);
+                                nu0VarArr[i15].f28883w.e(false, true);
                             } else if (h == 0) {
                                 uv0Var3.z(nu0Var2.h, 0, null);
                             }
@@ -185,13 +185,13 @@ public final class ho0 implements Runnable {
                 return;
             case 13:
                 s31 s31Var = (s31) this.f26954b;
-                MessagesController.getInstance(s31Var.f30179b).getTopicsController().deleteTopics(-s31Var.f30181c, (ArrayList) this.f26955c);
-                int i17 = s31.f30176f0;
+                MessagesController.getInstance(s31Var.f30180b).getTopicsController().deleteTopics(-s31Var.f30182c, (ArrayList) this.f26955c);
+                int i17 = s31.f30177f0;
                 return;
             case 14:
                 s31 s31Var2 = (s31) this.f26954b;
                 s31Var2.getClass();
-                MessagesController.getInstance(s31Var2.f30179b).loadFullChat(((TLRPC.Updates) this.f26955c).chats.get(0).f20276id, 0, true);
+                MessagesController.getInstance(s31Var2.f30180b).loadFullChat(((TLRPC.Updates) this.f26955c).chats.get(0).f20276id, 0, true);
                 return;
             case 15:
                 org.telegram.ui.Cells.l1 l1Var = (org.telegram.ui.Cells.l1) this.f26954b;
@@ -355,27 +355,27 @@ public final class ho0 implements Runnable {
                 return;
             case 24:
                 final v91 v91Var = (v91) this.f26954b;
-                v91Var.e.f32018b.evaluateJavascript((String) this.f26955c, new ValueCallback() {
+                v91Var.e.f32019b.evaluateJavascript((String) this.f26955c, new ValueCallback() {
                     @Override
                     public final void onReceiveValue(Object obj) {
                         String str3 = (String) obj;
                         v91 v91Var2 = v91.this;
-                        String[] strArr = v91Var2.f31207c;
+                        String[] strArr = v91Var2.f31208c;
                         String str4 = strArr[0];
                         String str5 = v91Var2.d;
                         strArr[0] = str4.replace(str5, "/signature/" + str3.substring(1, str3.length() - 1));
-                        v91Var2.f31206b.countDown();
+                        v91Var2.f31207b.countDown();
                     }
                 });
                 return;
             case 25:
-                ((org.telegram.ui.Components.voip.k) this.f26954b).f31491a.setOnClickListener((View.OnClickListener) this.f26955c);
+                ((org.telegram.ui.Components.voip.k) this.f26954b).f31492a.setOnClickListener((View.OnClickListener) this.f26955c);
                 return;
             case 26:
                 org.telegram.ui.Components.voip.t tVar = (org.telegram.ui.Components.voip.t) this.f26954b;
                 Bitmap bitmap4 = (Bitmap) this.f26955c;
                 HashMap<String, Bitmap> hashMap2 = tVar.F.thumbs;
-                ChatObject.VideoParticipant videoParticipant = tVar.f31735w;
+                ChatObject.VideoParticipant videoParticipant = tVar.f31736w;
                 boolean z11 = videoParticipant.presentation;
                 TLRPC.GroupCallParticipant groupCallParticipant = videoParticipant.participant;
                 if (z11) {
@@ -414,20 +414,20 @@ public final class ho0 implements Runnable {
                     Object obj2 = arrayList10.get(i21);
                     i21++;
                     org.telegram.ui.ht htVar = (org.telegram.ui.ht) obj2;
-                    String str3 = htVar.f37783a;
+                    String str3 = htVar.f37784a;
                     String str4 = "";
                     if (str3 == null) {
                         str3 = "";
                     }
                     String lowerCase2 = str3.toLowerCase();
-                    String lowerCase3 = AndroidUtilities.translitSafe(htVar.f37783a).toLowerCase();
-                    String str5 = htVar.f37784b;
+                    String lowerCase3 = AndroidUtilities.translitSafe(htVar.f37784a).toLowerCase();
+                    String str5 = htVar.f37785b;
                     if (str5 == null) {
                         str5 = "";
                     }
                     String lowerCase4 = str5.toLowerCase();
-                    String lowerCase5 = AndroidUtilities.translitSafe(htVar.f37784b).toLowerCase();
-                    String str6 = htVar.f37785c;
+                    String lowerCase5 = AndroidUtilities.translitSafe(htVar.f37785b).toLowerCase();
+                    String str6 = htVar.f37786c;
                     if (str6 == null) {
                         str6 = "";
                     }

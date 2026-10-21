@@ -1243,7 +1243,7 @@ public class me0 extends FrameLayout implements NotificationCenter.NotificationC
                 LaunchActivity launchActivity = (LaunchActivity) findActivity;
                 ArrayList arrayList = launchActivity.B0;
                 if (arrayList.isEmpty() && (oe0Var = launchActivity.A0) != null) {
-                    if (this != oe0Var.f29033b) {
+                    if (this != oe0Var.f29034b) {
                         return;
                     }
                 } else if (i2.e.h(1, arrayList) != this) {
@@ -1468,7 +1468,7 @@ public class me0 extends FrameLayout implements NotificationCenter.NotificationC
         Drawable drawable = this.f28491a;
         if (drawable instanceof wc0) {
             wc0 wc0Var = (wc0) drawable;
-            int[] iArr = wc0Var.f32064a;
+            int[] iArr = wc0Var.f32065a;
             if (z11) {
                 int[] iArr2 = new int[iArr.length];
                 for (int i15 = 0; i15 < iArr.length; i15++) {
@@ -1477,7 +1477,7 @@ public class me0 extends FrameLayout implements NotificationCenter.NotificationC
                 iArr = iArr2;
             }
             this.f28491a = new wc0(false, iArr[0], iArr[1], iArr[2], iArr[3]);
-            if (wc0Var.f32085u != null && wc0Var.f32081q < 0) {
+            if (wc0Var.f32086u != null && wc0Var.f32082q < 0) {
                 vVar.setBackgroundColor(2130706432);
             } else {
                 vVar.setBackgroundColor(570425344);

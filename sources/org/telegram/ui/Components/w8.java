@@ -17,16 +17,16 @@ public final class w8 extends lw0 {
     public float A0;
     public float B0;
     public final e9 C0;
-    public final b2.u0 f31985w0;
-    public final e9 f31986x0;
-    public boolean f31987y0;
-    public boolean f31988z0;
+    public final b2.u0 f31986w0;
+    public final e9 f31987x0;
+    public boolean f31988y0;
+    public boolean f31989z0;
 
     public w8(e9 e9Var, Context context) {
         super(context, null);
         this.C0 = e9Var;
-        this.f31986x0 = e9Var;
-        this.f31985w0 = new Object();
+        this.f31987x0 = e9Var;
+        this.f31986w0 = new Object();
     }
 
     @Override
@@ -113,7 +113,7 @@ public final class w8 extends lw0 {
 
     @Override
     public final int getNestedScrollAxes() {
-        return this.f31985w0.b();
+        return this.f31986w0.b();
     }
 
     @Override
@@ -231,7 +231,7 @@ public final class w8 extends lw0 {
 
     @Override
     public final void onNestedPreScroll(View view, int i10, int i11, int[] iArr) {
-        e9 e9Var = this.f31986x0;
+        e9 e9Var = this.f31987x0;
         if (e9Var.N <= 0.0f && !e9Var.U && i11 > 0 && e9Var.E > 0.0f) {
             e9Var.d0();
             e9Var.i0(Utilities.clamp(e9Var.E - (i11 / e9Var.d), 1.0f, 0.0f), true);
@@ -241,7 +241,7 @@ public final class w8 extends lw0 {
 
     @Override
     public final void onNestedScroll(View view, int i10, int i11, int i12, int i13) {
-        e9 e9Var = this.f31986x0;
+        e9 e9Var = this.f31987x0;
         if (e9Var.N <= 0.0f && !e9Var.U && i13 != 0) {
             e9Var.d0();
             e9Var.i0(Utilities.clamp(e9Var.E - (i13 / e9Var.d), 1.0f, 0.0f), true);
@@ -250,13 +250,13 @@ public final class w8 extends lw0 {
 
     @Override
     public final void onNestedScrollAccepted(View view, View view2, int i10) {
-        this.f31985w0.f4053a = i10;
-        this.f31986x0.d0();
+        this.f31986w0.f4053a = i10;
+        this.f31987x0.d0();
     }
 
     @Override
     public final boolean onStartNestedScroll(View view, View view2, int i10) {
-        e9 e9Var = this.f31986x0;
+        e9 e9Var = this.f31987x0;
         if (e9Var.N <= 0.0f && !e9Var.U) {
             return true;
         }
@@ -266,8 +266,8 @@ public final class w8 extends lw0 {
     @Override
     public final void onStopNestedScroll(View view) {
         boolean z10;
-        this.f31985w0.f4053a = 0;
-        e9 e9Var = this.f31986x0;
+        this.f31986w0.f4053a = 0;
+        e9 e9Var = this.f31987x0;
         if (e9Var.E > 0.5f) {
             z10 = true;
         } else {
@@ -289,15 +289,15 @@ public final class w8 extends lw0 {
                     y8Var.getHitRect(rect);
                     rect.offset(0, (int) e9Var.f25849r.getY());
                     if (e9Var.N == 0.0f && !rect.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
-                        this.f31987y0 = true;
+                        this.f31988y0 = true;
                         motionEvent.getX();
                         this.B0 = motionEvent.getY();
                     }
-                } else if (motionEvent.getAction() == 2 && ((z11 = this.f31987y0) || this.f31988z0)) {
+                } else if (motionEvent.getAction() == 2 && ((z11 = this.f31988y0) || this.f31989z0)) {
                     if (z11) {
                         if (Math.abs(this.B0 - motionEvent.getY()) > AndroidUtilities.touchSlop) {
-                            this.f31987y0 = false;
-                            this.f31988z0 = true;
+                            this.f31988y0 = false;
+                            this.f31989z0 = true;
                             this.A0 = e9Var.E;
                             motionEvent.getX();
                             this.B0 = motionEvent.getY();
@@ -306,7 +306,7 @@ public final class w8 extends lw0 {
                         e9Var.i0(Utilities.clamp(((-(this.B0 - motionEvent.getY())) / e9Var.d) + this.A0, 1.0f, 0.0f), true);
                     }
                 } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-                    if (this.f31988z0) {
+                    if (this.f31989z0) {
                         if (e9Var.E > 0.5f) {
                             z10 = true;
                         } else {
@@ -314,11 +314,11 @@ public final class w8 extends lw0 {
                         }
                         e9Var.g0(z10, false, false);
                     }
-                    this.f31987y0 = false;
-                    this.f31988z0 = false;
+                    this.f31988y0 = false;
+                    this.f31989z0 = false;
                 }
             }
-            if (!this.f31988z0 && !super.onTouchEvent(motionEvent) && !this.f31987y0) {
+            if (!this.f31989z0 && !super.onTouchEvent(motionEvent) && !this.f31988y0) {
                 return false;
             }
         }

@@ -3,17 +3,17 @@ package org.telegram.ui;
 import android.content.Context;
 import org.telegram.tgnet.TLRPC;
 public final class hj extends org.telegram.ui.Components.oo {
-    public final qn f37677v0;
+    public final qn f37678v0;
 
     public hj(qn qnVar, Context context, qn qnVar2, boolean z10, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context, qnVar2, z10, d6Var);
-        this.f37677v0 = qnVar;
+        this.f37678v0 = qnVar;
     }
 
     @Override
     public final boolean a() {
         boolean z10;
-        qn qnVar = this.f37677v0;
+        qn qnVar = this.f37678v0;
         if (!qnVar.Pa && !qnVar.isInPreviewMode()) {
             z10 = ((org.telegram.ui.ActionBar.n2) qnVar).inBubbleMode;
             if (!z10 && qnVar.f40724j0 != null && !qnVar.f40839s3) {
@@ -29,7 +29,7 @@ public final class hj extends org.telegram.ui.Components.oo {
 
     @Override
     public final boolean d() {
-        qn qnVar = this.f37677v0;
+        qn qnVar = this.f37678v0;
         TLRPC.User user = qnVar.f40676f;
         if (user != null && user.linked_community_id != 0) {
             qnVar.showDialog(new hi.k0(qnVar, qnVar.f40676f.linked_community_id, null, null));
@@ -46,7 +46,7 @@ public final class hj extends org.telegram.ui.Components.oo {
     @Override
     public final void f() {
         String str;
-        qn qnVar = this.f37677v0;
+        qn qnVar = this.f37678v0;
         if (qnVar.J9()) {
             str = "";
         } else {
@@ -57,7 +57,7 @@ public final class hj extends org.telegram.ui.Components.oo {
 
     @Override
     public final boolean o() {
-        if (this.f37677v0.R3 == 3) {
+        if (this.f37678v0.R3 == 3) {
             return true;
         }
         return false;

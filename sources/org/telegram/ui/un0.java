@@ -27,7 +27,7 @@ public final class un0 extends AsyncTask {
         if (str == null) {
             org.telegram.ui.Components.f5.v0(eo0Var, LocaleController.getString(R.string.PaymentConnectionFailed));
         } else {
-            eo0Var.f36733w0 = str;
+            eo0Var.f36734w0 = str;
             eo0Var.t0();
         }
         eo0Var.H0(true, false);

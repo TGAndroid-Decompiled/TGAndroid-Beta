@@ -10,6 +10,6 @@ public final class ew0 extends o51 {
     @Override
     public final void dismiss() {
         super.dismiss();
-        this.e.f33521s0 = null;
+        this.e.f33522s0 = null;
     }
 }

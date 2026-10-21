@@ -105,10 +105,10 @@ public final class m2 implements View.OnLongClickListener {
             case 5:
                 ProfileActivity profileActivity = (ProfileActivity) this.f5605b;
                 ImageView imageView = (ImageView) this.f5606c;
-                org.telegram.ui.ActionBar.m1 b10 = org.telegram.ui.Components.o9.b(profileActivity, imageView, profileActivity.a(), profileActivity.f33633h1, profileActivity.A0);
+                org.telegram.ui.ActionBar.m1 b10 = org.telegram.ui.Components.o9.b(profileActivity, imageView, profileActivity.a(), profileActivity.f33634h1, profileActivity.A0);
                 if (b10 != null) {
                     b10.setOnDismissListener(new org.telegram.ui.f0(profileActivity, 3));
-                    profileActivity.f33744x0 = imageView;
+                    profileActivity.f33745x0 = imageView;
                     profileActivity.H3(0.3f);
                     UndoView undoView = profileActivity.M;
                     if (undoView == null) {
@@ -132,7 +132,7 @@ public final class m2 implements View.OnLongClickListener {
                     for (int i10 = 0; i10 < size; i10++) {
                         ((y81) arrayList.get(i10)).f43395a.setChecked(false);
                         ((y81) arrayList.get(i10)).f43396b.f16063n = false;
-                        if (z81Var.f43675r.f35543c > 0 && i10 < gVar.d.size()) {
+                        if (z81Var.f43675r.f35544c > 0 && i10 < gVar.d.size()) {
                             ((lg.f) gVar.d.get(i10)).f16063n = false;
                         }
                     }
@@ -140,7 +140,7 @@ public final class m2 implements View.OnLongClickListener {
                     a10Var.setChecked(true);
                     fVar.f16063n = true;
                     z81Var.f43671b.z();
-                    if (z81Var.f43675r.f35543c > 0) {
+                    if (z81Var.f43675r.f35544c > 0) {
                         ((lg.f) gVar.d.get(y81Var.f43397c)).f16063n = true;
                         gVar.z();
                     }

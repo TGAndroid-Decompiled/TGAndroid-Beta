@@ -3,12 +3,12 @@ package org.telegram.ui.Components;
 import android.text.TextPaint;
 public final class o61 extends l61 {
     public final int e;
-    public final n11 f28954f;
+    public final n11 f28955f;
 
     public o61(String str, int i10, n11 n11Var) {
         super(str, (n11) null);
         this.e = i10;
-        this.f28954f = n11Var;
+        this.f28955f = n11Var;
     }
 
     @Override
@@ -24,7 +24,7 @@ public final class o61 extends l61 {
         } else {
             textPaint.setColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21049gc, false));
         }
-        n11 n11Var = this.f28954f;
+        n11 n11Var = this.f28955f;
         if (n11Var != null) {
             n11Var.a(textPaint);
         } else {

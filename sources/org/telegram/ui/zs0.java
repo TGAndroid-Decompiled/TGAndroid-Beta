@@ -23,8 +23,8 @@ public final class zs0 extends AnimatorListenerAdapter {
         switch (this.f43800a) {
             case 1:
                 PhotoViewer photoViewer = this.f43802c;
-                if (animator.equals(photoViewer.f33437w)) {
-                    photoViewer.f33437w = null;
+                if (animator.equals(photoViewer.f33438w)) {
+                    photoViewer.f33438w = null;
                     return;
                 }
                 return;
@@ -53,16 +53,16 @@ public final class zs0 extends AnimatorListenerAdapter {
         switch (i11) {
             case 0:
                 if (!z10) {
-                    photoViewer.f33316i3.setVisibility(8);
+                    photoViewer.f33317i3.setVisibility(8);
                     return;
                 }
                 return;
             case 1:
-                if (animator.equals(photoViewer.f33437w)) {
+                if (animator.equals(photoViewer.f33438w)) {
                     if (!z10) {
                         photoViewer.X0.setVisibility(4);
                     }
-                    photoViewer.f33437w = null;
+                    photoViewer.f33438w = null;
                     return;
                 }
                 return;
@@ -70,8 +70,8 @@ public final class zs0 extends AnimatorListenerAdapter {
                 if (animator.equals(photoViewer.L)) {
                     if (!z10) {
                         photoViewer.F.setVisibility(4);
-                        if (photoViewer.f33313i0.getTag() != null) {
-                            photoViewer.f33313i0.setVisibility(4);
+                        if (photoViewer.f33314i0.getTag() != null) {
+                            photoViewer.f33314i0.setVisibility(4);
                         }
                         if (photoViewer.Q1.getTag() != null) {
                             photoViewer.Q1.setVisibility(4);
@@ -93,10 +93,10 @@ public final class zs0 extends AnimatorListenerAdapter {
                         animatorSet.playTogether(ObjectAnimator.ofFloat(lu0Var, property, 0.0f), ObjectAnimator.ofFloat(photoViewer.P7, property, 0.0f));
                     } else {
                         if (photoViewer.S4) {
-                            photoViewer.f33322j0.setVisibility(8);
-                            photoViewer.f33322j0.setAlpha(0.0f);
-                            View view = photoViewer.f33322j0;
-                            if (photoViewer.f33262c2 == 11) {
+                            photoViewer.f33323j0.setVisibility(8);
+                            photoViewer.f33323j0.setAlpha(0.0f);
+                            View view = photoViewer.f33323j0;
+                            if (photoViewer.f33263c2 == 11) {
                                 i10 = -16777216;
                             } else {
                                 i10 = 2130706432;

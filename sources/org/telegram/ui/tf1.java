@@ -36,9 +36,9 @@ public final class tf1 extends AnimatorListenerAdapter {
             case 1:
                 lg1 lg1Var = (lg1) obj;
                 lg1Var.d = null;
-                lg1Var.f38920a = null;
-                lg1Var.f38921b = false;
-                lg1Var.f38923f.f33957c.setAllowDrawCursor(true);
+                lg1Var.f38921a = null;
+                lg1Var.f38922b = false;
+                lg1Var.f38924f.f33958c.setAllowDrawCursor(true);
                 return;
             case 2:
                 ((org.telegram.ui.Wallet.g3) obj).K = null;
@@ -56,40 +56,40 @@ public final class tf1 extends AnimatorListenerAdapter {
             case 5:
                 org.telegram.ui.Wallet.m5 m5Var = (org.telegram.ui.Wallet.m5) obj;
                 m5Var.h = false;
-                m5Var.f34514n = null;
-                m5Var.f34511b.setLayerType(0, null);
+                m5Var.f34515n = null;
+                m5Var.f34512b.setLayerType(0, null);
                 return;
             case 6:
                 org.telegram.ui.Wallet.s5 s5Var = (org.telegram.ui.Wallet.s5) obj;
                 s5Var.N = 0.0f;
                 s5Var.O = 0.0f;
-                s5Var.f34843b0 = null;
+                s5Var.f34844b0 = null;
                 return;
             case 7:
                 org.telegram.ui.Wallet.m6 m6Var = (org.telegram.ui.Wallet.m6) obj;
                 m6Var.I = null;
-                m6Var.f34527i0 = 1.0f;
-                m6Var.f34526h0 = 0.0f;
-                m6Var.f34525g0 = 0.0f;
+                m6Var.f34528i0 = 1.0f;
+                m6Var.f34527h0 = 0.0f;
+                m6Var.f34526g0 = 0.0f;
                 m6Var.e();
                 return;
             case 8:
                 org.telegram.ui.Wallet.n8 n8Var = (org.telegram.ui.Wallet.n8) obj;
-                EditTextBoldCursor editTextBoldCursor = n8Var.f34610b;
-                if (n8Var.f34615s == animator) {
-                    n8Var.f34615s = null;
-                    View view = n8Var.f34609a;
-                    if (n8Var.f34617x) {
+                EditTextBoldCursor editTextBoldCursor = n8Var.f34611b;
+                if (n8Var.f34616s == animator) {
+                    n8Var.f34616s = null;
+                    View view = n8Var.f34610a;
+                    if (n8Var.f34618x) {
                         i10 = 4;
                     } else {
                         i10 = 0;
                     }
                     view.setVisibility(i10);
-                    if (n8Var.f34617x) {
+                    if (n8Var.f34618x) {
                         i13 = 0;
                     }
                     editTextBoldCursor.setVisibility(i13);
-                    if (n8Var.f34617x && !n8Var.f34618y) {
+                    if (n8Var.f34618x && !n8Var.f34619y) {
                         editTextBoldCursor.requestFocus();
                         AndroidUtilities.showKeyboard(editTextBoldCursor);
                         return;
@@ -100,7 +100,7 @@ public final class tf1 extends AnimatorListenerAdapter {
             case 9:
                 org.telegram.ui.Wallet.h9 h9Var = (org.telegram.ui.Wallet.h9) obj;
                 h9Var.h = null;
-                org.telegram.ui.Wallet.m6 m6Var2 = h9Var.f34294c;
+                org.telegram.ui.Wallet.m6 m6Var2 = h9Var.f34295c;
                 if (h9Var.v) {
                     i11 = 4;
                 } else {
@@ -108,7 +108,7 @@ public final class tf1 extends AnimatorListenerAdapter {
                 }
                 m6Var2.setVisibility(i11);
                 TextView textView = h9Var.e;
-                if (h9Var.f34299w) {
+                if (h9Var.f34300w) {
                     i13 = 0;
                 }
                 textView.setVisibility(i13);
@@ -116,7 +116,7 @@ public final class tf1 extends AnimatorListenerAdapter {
             case 10:
                 org.telegram.ui.Components.hg0 hg0Var = (org.telegram.ui.Components.hg0) obj;
                 ((ci1) hg0Var.f26890b).getClass();
-                ((ci1) hg0Var.f26890b).f35993c.setVisibility(4);
+                ((ci1) hg0Var.f26890b).f35994c.setVisibility(4);
                 return;
             case 11:
                 ((org.telegram.ui.web.a1) obj).f42584s.setVisibility(8);

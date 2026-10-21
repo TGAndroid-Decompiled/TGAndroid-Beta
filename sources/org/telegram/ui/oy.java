@@ -211,8 +211,8 @@ public class oy implements NotificationCenter.NotificationCenterDelegate {
                         }
                         i13++;
                     } else if (z10 && z13 && i14 > 0) {
-                        org.telegram.ui.Components.qc qcVar = org.telegram.ui.Components.qc.f29523w;
-                        if (qcVar != null && qcVar.f29525b == messageObject.getId()) {
+                        org.telegram.ui.Components.qc qcVar = org.telegram.ui.Components.qc.f29524w;
+                        if (qcVar != null && qcVar.f29526b == messageObject.getId()) {
                             return false;
                         }
                         TLRPC.InputStickerSet inputStickerSet = messageObject.getInputStickerSet();
@@ -655,15 +655,15 @@ public class oy implements NotificationCenter.NotificationCenterDelegate {
                 ah.e eVar2 = nyVar.f39710j;
                 if (eVar2 != null) {
                     z11 = eVar2.c();
-                } else if (nyVar.f39712l && nyVar.f39718r.getLottieAnimation() != null && nyVar.f39718r.getLottieAnimation().f31264a0 >= nyVar.f39718r.getLottieAnimation().e[0] - 2) {
+                } else if (nyVar.f39712l && nyVar.f39718r.getLottieAnimation() != null && nyVar.f39718r.getLottieAnimation().f31265a0 >= nyVar.f39718r.getLottieAnimation().e[0] - 2) {
                     z11 = true;
                 } else {
                     z11 = false;
                 }
                 if (nyVar.f39715o != 1.0f && !z11 && !z10) {
-                    if (nyVar.f39718r.getLottieAnimation() != null && nyVar.f39718r.getLottieAnimation().f31277k0) {
+                    if (nyVar.f39718r.getLottieAnimation() != null && nyVar.f39718r.getLottieAnimation().f31278k0) {
                         nyVar.f39712l = true;
-                    } else if (nyVar.f39718r.getLottieAnimation() != null && !nyVar.f39718r.getLottieAnimation().f31277k0) {
+                    } else if (nyVar.f39718r.getLottieAnimation() != null && !nyVar.f39718r.getLottieAnimation().f31278k0) {
                         nyVar.f39718r.getLottieAnimation().N(0, true, false);
                         nyVar.f39718r.getLottieAnimation().start();
                     }
@@ -746,8 +746,8 @@ public class oy implements NotificationCenter.NotificationCenterDelegate {
                 if (!isPremiumSticker && u1Var.getEffect() == null && (z10 || !u1Var.getMessageObject().isAnimatedEmojiStickerSingle())) {
                     Integer printingStringType = MessagesController.getInstance(this.f40001b).getPrintingStringType(j10, this.J);
                     if ((printingStringType == null || printingStringType.intValue() != 5) && this.E == null && n10) {
-                        org.telegram.ui.Components.qc qcVar = org.telegram.ui.Components.qc.f29523w;
-                        if ((qcVar == null || !qcVar.f29532l) && SharedConfig.emojiInteractionsHintCount > 0 && UserConfig.getInstance(this.f40001b).getClientUserId() != qnVar.f40676f.f20423id) {
+                        org.telegram.ui.Components.qc qcVar = org.telegram.ui.Components.qc.f29524w;
+                        if ((qcVar == null || !qcVar.f29533l) && SharedConfig.emojiInteractionsHintCount > 0 && UserConfig.getInstance(this.f40001b).getClientUserId() != qnVar.f40676f.f20423id) {
                             SharedConfig.updateEmojiInteractionsHintCount(SharedConfig.emojiInteractionsHintCount - 1);
                             if (u1Var.getMessageObject().isAnimatedAnimatedEmoji()) {
                                 emojiAnimatedSticker = u1Var.getMessageObject().getDocument();
@@ -841,10 +841,10 @@ public class oy implements NotificationCenter.NotificationCenterDelegate {
             vx0Var.f28480c.setText(LocaleController.getString(R.string.PremiumStickerTooltip));
             org.telegram.ui.Components.oc ocVar = new org.telegram.ui.Components.oc(qnVar.getParentActivity(), qnVar.getResourceProvider(), true);
             vx0Var.setButton(ocVar);
-            ocVar.f28982a = new lt(11, this, messageObject);
+            ocVar.f28983a = new lt(11, this, messageObject);
             ocVar.e(LocaleController.getString(R.string.ViewAction));
             org.telegram.ui.Components.qc g10 = org.telegram.ui.Components.qc.g(qnVar, vx0Var, 2750);
-            g10.f29525b = messageObject.getId();
+            g10.f29526b = messageObject.getId();
             g10.j();
         }
     }

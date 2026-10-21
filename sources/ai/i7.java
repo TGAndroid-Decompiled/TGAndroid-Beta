@@ -128,13 +128,13 @@ public final class i7 extends View {
                 int themedColor = p4Var.getThemedColor(org.telegram.ui.ActionBar.h6.f20990d6);
                 Paint paint2 = this.f1493b;
                 paint2.setColor(themedColor);
-                ViewGroup viewGroup = p4Var.f34695b0;
+                ViewGroup viewGroup = p4Var.f34696b0;
                 int[] iArr = (int[]) this.f1494c;
                 viewGroup.getLocationInWindow(iArr);
                 int[] iArr2 = (int[]) this.d;
                 getLocationInWindow(iArr2);
                 float f12 = iArr[0] - iArr2[0];
-                View view = ((e91) p4Var.f34695b0).getViewPages()[0];
+                View view = ((e91) p4Var.f34696b0).getViewPages()[0];
                 if (view != null) {
                     i10 = view.getPaddingLeft();
                 } else {
@@ -146,8 +146,8 @@ public final class i7 extends View {
                     i11 = 0;
                 }
                 canvas.save();
-                canvas.clipRect(i10 + f12, 0.0f, (f12 + p4Var.f34695b0.getWidth()) - i11, getHeight());
-                for (View view2 : ((e91) p4Var.f34695b0).getViewPages()) {
+                canvas.clipRect(i10 + f12, 0.0f, (f12 + p4Var.f34696b0.getWidth()) - i11, getHeight());
+                for (View view2 : ((e91) p4Var.f34696b0).getViewPages()) {
                     if (view2 != null && view2.getVisibility() == 0) {
                         canvas.save();
                         canvas.translate(view2.getLeft() + (iArr[0] - iArr2[0]), view2.getTop() + (iArr[1] - iArr2[1]));

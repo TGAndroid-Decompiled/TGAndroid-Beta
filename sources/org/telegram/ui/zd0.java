@@ -25,7 +25,7 @@ public final class zd0 implements Runnable {
         switch (this.f43725a) {
             case 0:
                 de0 de0Var = this.f43726b;
-                dg0 dg0Var = de0Var.f36344a0;
+                dg0 dg0Var = de0Var.f36345a0;
                 de0Var.M = false;
                 de0Var.v.invalidate();
                 TLObject tLObject = this.e;
@@ -69,7 +69,7 @@ public final class zd0 implements Runnable {
                 return;
             default:
                 de0 de0Var2 = this.f43726b;
-                dg0 dg0Var2 = de0Var2.f36344a0;
+                dg0 dg0Var2 = de0Var2.f36345a0;
                 de0Var2.R = false;
                 TLRPC.TL_error tL_error2 = this.f43727c;
                 if (tL_error2 == null) {

@@ -75,9 +75,9 @@ public final class qq implements yp {
                     tL_chatParticipant.user_id = chatParticipant.user_id;
                     tL_chatParticipant.date = chatParticipant.date;
                     tL_chatParticipant.inviter_id = chatParticipant.inviter_id;
-                    int indexOf = hrVar.f37755s.participants.participants.indexOf(chatParticipant);
+                    int indexOf = hrVar.f37756s.participants.participants.indexOf(chatParticipant);
                     if (indexOf >= 0) {
-                        hrVar.f37755s.participants.participants.set(indexOf, tL_chatParticipant);
+                        hrVar.f37756s.participants.participants.set(indexOf, tL_chatParticipant);
                     }
                     hrVar.r0();
                 }

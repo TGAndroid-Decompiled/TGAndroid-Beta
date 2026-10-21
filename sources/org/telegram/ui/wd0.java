@@ -35,9 +35,9 @@ public final class wd0 implements RequestDelegate {
                         switch (r5) {
                             case 0:
                                 de0 de0Var2 = de0Var;
-                                int i11 = de0Var2.f36343a;
-                                ei.e2 e2Var = de0Var2.f36346c;
-                                dg0 dg0Var = de0Var2.f36344a0;
+                                int i11 = de0Var2.f36344a;
+                                ei.e2 e2Var = de0Var2.f36347c;
+                                dg0 dg0Var = de0Var2.f36345a0;
                                 dg0Var.k1(false, true);
                                 TLRPC.TL_error tL_error2 = tL_error;
                                 TLRPC.TL_auth_signIn tL_auth_signIn2 = tL_auth_signIn;
@@ -49,7 +49,7 @@ public final class wd0 implements RequestDelegate {
                                     if (tLObject2 instanceof TLRPC.TL_auth_authorizationSignUpRequired) {
                                         TLRPC.TL_help_termsOfService tL_help_termsOfService = ((TLRPC.TL_auth_authorizationSignUpRequired) tLObject2).terms_of_service;
                                         if (tL_help_termsOfService != null) {
-                                            dg0Var.f36385p0 = tL_help_termsOfService;
+                                            dg0Var.f36386p0 = tL_help_termsOfService;
                                         }
                                         Bundle bundle = new Bundle();
                                         bundle.putString("phoneFormated", de0Var2.G);
@@ -100,7 +100,7 @@ public final class wd0 implements RequestDelegate {
                             default:
                                 de0 de0Var3 = de0Var;
                                 de0Var3.R = false;
-                                dg0 dg0Var2 = de0Var3.f36344a0;
+                                dg0 dg0Var2 = de0Var3.f36345a0;
                                 dg0Var2.v1(false, true);
                                 TLRPC.TL_error tL_error3 = tL_error;
                                 if (tL_error3 == null) {
@@ -135,9 +135,9 @@ public final class wd0 implements RequestDelegate {
                         switch (r5) {
                             case 0:
                                 de0 de0Var22 = de0Var2;
-                                int i11 = de0Var22.f36343a;
-                                ei.e2 e2Var = de0Var22.f36346c;
-                                dg0 dg0Var = de0Var22.f36344a0;
+                                int i11 = de0Var22.f36344a;
+                                ei.e2 e2Var = de0Var22.f36347c;
+                                dg0 dg0Var = de0Var22.f36345a0;
                                 dg0Var.k1(false, true);
                                 TLRPC.TL_error tL_error2 = tL_error;
                                 TLRPC.TL_auth_signIn tL_auth_signIn22 = tL_auth_signIn2;
@@ -149,7 +149,7 @@ public final class wd0 implements RequestDelegate {
                                     if (tLObject2 instanceof TLRPC.TL_auth_authorizationSignUpRequired) {
                                         TLRPC.TL_help_termsOfService tL_help_termsOfService = ((TLRPC.TL_auth_authorizationSignUpRequired) tLObject2).terms_of_service;
                                         if (tL_help_termsOfService != null) {
-                                            dg0Var.f36385p0 = tL_help_termsOfService;
+                                            dg0Var.f36386p0 = tL_help_termsOfService;
                                         }
                                         Bundle bundle = new Bundle();
                                         bundle.putString("phoneFormated", de0Var22.G);
@@ -200,7 +200,7 @@ public final class wd0 implements RequestDelegate {
                             default:
                                 de0 de0Var3 = de0Var2;
                                 de0Var3.R = false;
-                                dg0 dg0Var2 = de0Var3.f36344a0;
+                                dg0 dg0Var2 = de0Var3.f36345a0;
                                 dg0Var2.v1(false, true);
                                 TLRPC.TL_error tL_error3 = tL_error;
                                 if (tL_error3 == null) {

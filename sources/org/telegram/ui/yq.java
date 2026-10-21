@@ -22,6 +22,6 @@ public final class yq implements g60 {
             return;
         }
         hr hrVar = this.f43538b;
-        hrVar.getMessagesController().addUsersToChat(hrVar.f37752r, hrVar, arrayList, i10, new j3(this, 2), new xq(0), null);
+        hrVar.getMessagesController().addUsersToChat(hrVar.f37753r, hrVar, arrayList, i10, new j3(this, 2), new xq(0), null);
     }
 }

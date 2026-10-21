@@ -100,7 +100,7 @@ public class f5 extends Drawable {
                 }
                 c11 = c10;
             }
-            Bitmap bitmap2 = wc0VarArr[c11].f32075k;
+            Bitmap bitmap2 = wc0VarArr[c11].f32076k;
             float min2 = 1.0f / Math.min(bitmap2.getWidth() / wc0VarArr[c11].getBounds().width(), bitmap2.getHeight() / wc0VarArr[c11].getBounds().height());
             matrix.postScale(min2, min2);
         }

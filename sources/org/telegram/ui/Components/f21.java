@@ -15,7 +15,7 @@ public final class f21 extends AnimatorListenerAdapter {
     public final void onAnimationEnd(Animator animator) {
         ThemeEditorView.EditorAlert editorAlert = this.f26058a;
         if (editorAlert.f24398c.getAdapter() == editorAlert.f24401r) {
-            l21 l21Var = editorAlert.f24399f.f28666b;
+            l21 l21Var = editorAlert.f24399f.f28667b;
             l21Var.requestFocus();
             AndroidUtilities.showKeyboard(l21Var);
         }

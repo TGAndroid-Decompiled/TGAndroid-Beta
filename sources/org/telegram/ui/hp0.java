@@ -20,34 +20,34 @@ public final class hp0 extends FrameLayout {
     public final Path J;
     public int K;
     public final ip0 L;
-    public final g10 f37700a;
-    public final s4.b0 f37701b;
-    public final z7 f37702c;
+    public final g10 f37701a;
+    public final s4.b0 f37702b;
+    public final z7 f37703c;
     public int d;
     public final org.telegram.ui.Components.f6 e;
-    public final ArrayList f37703f;
+    public final ArrayList f37704f;
     public uo0 h;
-    public final RectF f37704n;
-    public final RectF f37705r;
-    public final RectF f37706s;
+    public final RectF f37705n;
+    public final RectF f37706r;
+    public final RectF f37707s;
     public final Paint v;
-    public final Paint f37707w;
-    public int f37708x;
-    public int f37709y;
+    public final Paint f37708w;
+    public int f37709x;
+    public int f37710y;
 
     public hp0(ip0 ip0Var, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
         this.L = ip0Var;
-        this.f37703f = new ArrayList();
-        this.f37704n = new RectF();
-        this.f37705r = new RectF();
-        this.f37706s = new RectF();
+        this.f37704f = new ArrayList();
+        this.f37705n = new RectF();
+        this.f37706r = new RectF();
+        this.f37707s = new RectF();
         this.v = new Paint(1);
-        this.f37707w = new Paint(1);
+        this.f37708w = new Paint(1);
         this.J = new Path();
         this.K = Integer.MIN_VALUE;
         g10 g10Var = new g10(this, context, d6Var, 2);
-        this.f37700a = g10Var;
+        this.f37701a = g10Var;
         g10Var.setClipToPadding(false);
         g10Var.setClipChildren(false);
         g10Var.setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f));
@@ -55,10 +55,10 @@ public final class hp0 extends FrameLayout {
         g10Var.setHorizontalScrollBarEnabled(false);
         g10Var.setItemAnimator(null);
         s4.b0 b0Var = new s4.b0(0, false);
-        this.f37701b = b0Var;
+        this.f37702b = b0Var;
         g10Var.setLayoutManager(b0Var);
         z7 z7Var = new z7(this, 5);
-        this.f37702c = z7Var;
+        this.f37703c = z7Var;
         g10Var.setAdapter(z7Var);
         g10Var.setOnItemClickListener(new i(this, 21));
         addView(g10Var, w7.z5.e(-1, -1, 119));
@@ -78,9 +78,9 @@ public final class hp0 extends FrameLayout {
         if (i10 != i11) {
             b(i10);
         }
-        ArrayList arrayList = this.f37703f;
+        ArrayList arrayList = this.f37704f;
         boolean isEmpty = arrayList.isEmpty();
-        g10 g10Var = this.f37700a;
+        g10 g10Var = this.f37701a;
         if (!isEmpty) {
             int clamp = Utilities.clamp(i10, arrayList.size() - 1, 0);
             if (z10) {
@@ -94,13 +94,13 @@ public final class hp0 extends FrameLayout {
 
     public final void b(int i10) {
         int i11;
-        View m10 = this.f37701b.m(i10);
+        View m10 = this.f37702b.m(i10);
         if (m10 instanceof TextView) {
             TextView textView = (TextView) m10;
             if (i10 == this.d) {
                 i11 = this.E;
             } else {
-                i11 = this.f37709y;
+                i11 = this.f37710y;
             }
             textView.setTextColor(i11);
             m10.invalidate();

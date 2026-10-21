@@ -6,10 +6,10 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
 public final class yu0 extends org.telegram.ui.zt0 {
-    public final zu0 f32733a;
+    public final zu0 f32734a;
 
     public yu0(zu0 zu0Var) {
-        this.f32733a = zu0Var;
+        this.f32734a = zu0Var;
     }
 
     @Override
@@ -17,7 +17,7 @@ public final class yu0 extends org.telegram.ui.zt0 {
         ImageReceiver imageReceiver;
         org.telegram.ui.Cells.u1 u1Var;
         MessageObject messageObject2;
-        bv0 bv0Var = this.f32733a.f33045c;
+        bv0 bv0Var = this.f32734a.f33046c;
         mu0 mu0Var = bv0Var.f25044r;
         if (mu0Var != null) {
             int childCount = mu0Var.getChildCount();
@@ -37,17 +37,17 @@ public final class yu0 extends org.telegram.ui.zt0 {
                     int[] iArr = new int[2];
                     childAt.getLocationInWindow(iArr);
                     org.telegram.ui.ju0 ju0Var = new org.telegram.ui.ju0();
-                    ju0Var.f38351b = iArr[0];
-                    ju0Var.f38352c = childAt.getPaddingTop() + iArr[1];
+                    ju0Var.f38352b = iArr[0];
+                    ju0Var.f38353c = childAt.getPaddingTop() + iArr[1];
                     ju0Var.d = bv0Var.f25044r;
-                    ju0Var.f38359m = null;
-                    ju0Var.f38350a = imageReceiver;
+                    ju0Var.f38360m = null;
+                    ju0Var.f38351a = imageReceiver;
                     if (z10) {
                         ju0Var.e = imageReceiver.getBitmapSafe();
                     }
                     ju0Var.h = imageReceiver.getRoundRadius(true);
-                    ju0Var.f38356j = 0;
-                    ju0Var.f38355i = 0;
+                    ju0Var.f38357j = 0;
+                    ju0Var.f38356i = 0;
                     return ju0Var;
                 }
             }

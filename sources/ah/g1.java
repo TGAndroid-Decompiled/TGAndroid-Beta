@@ -201,7 +201,7 @@ public abstract class g1 {
         }
         if (this.f764u) {
             p6 p6Var3 = this.G;
-            p6Var3.t(Emoji.replaceEmoji(this.v, p6Var3.f29223a.getFontMetricsInt(), false), !LocaleController.isRTL, true);
+            p6Var3.t(Emoji.replaceEmoji(this.v, p6Var3.f29224a.getFontMetricsInt(), false), !LocaleController.isRTL, true);
             if (this instanceof eo0) {
                 Integer.toString(reactionCount.count);
                 this.F.c(this.f765w, false);
@@ -286,7 +286,7 @@ public abstract class g1 {
     public final void f(Canvas canvas, Rect rect, float f7) {
         ImageReceiver imageReceiver;
         r5 r5Var = this.D;
-        if (r5Var == null || (imageReceiver = r5Var.f29837k) == null) {
+        if (r5Var == null || (imageReceiver = r5Var.f29838k) == null) {
             imageReceiver = this.C;
         }
         if (imageReceiver != null && rect != null) {
@@ -311,7 +311,7 @@ public abstract class g1 {
                         l4.onDetachedFromWindow();
                         o();
                     }
-                } else if (l4.getLottieAnimation() != null && !l4.getLottieAnimation().f31277k0) {
+                } else if (l4.getLottieAnimation() != null && !l4.getLottieAnimation().f31278k0) {
                     float alpha = l4.getAlpha() - 0.08f;
                     if (alpha <= 0.0f) {
                         l4.onDetachedFromWindow();
@@ -437,7 +437,7 @@ public abstract class g1 {
     public final void q() {
         ImageReceiver imageReceiver;
         r5 r5Var = this.D;
-        if (r5Var == null || (imageReceiver = r5Var.f29837k) == null) {
+        if (r5Var == null || (imageReceiver = r5Var.f29838k) == null) {
             imageReceiver = this.C;
         }
         if (imageReceiver != null) {
@@ -456,7 +456,7 @@ public abstract class g1 {
     public final void r() {
         ImageReceiver imageReceiver;
         r5 r5Var = this.D;
-        if (r5Var == null || (imageReceiver = r5Var.f29837k) == null) {
+        if (r5Var == null || (imageReceiver = r5Var.f29838k) == null) {
             imageReceiver = this.C;
         }
         if (imageReceiver != null) {

@@ -8,18 +8,18 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class y1 implements RequestDelegate {
-    public final int f32537a;
-    public final Object f32538b;
+    public final int f32538a;
+    public final Object f32539b;
 
     public y1(Object obj, int i10) {
-        this.f32537a = i10;
-        this.f32538b = obj;
+        this.f32538a = i10;
+        this.f32539b = obj;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        int i10 = this.f32537a;
-        Object obj = this.f32538b;
+        int i10 = this.f32538a;
+        Object obj = this.f32539b;
         switch (i10) {
             case 0:
                 AccountInstance accountInstance = (AccountInstance) obj;
@@ -89,7 +89,7 @@ public final class y1 implements RequestDelegate {
                 s31 s31Var = (s31) obj;
                 if (tLObject != null) {
                     TLRPC.Updates updates = (TLRPC.Updates) tLObject;
-                    MessagesController.getInstance(s31Var.f30179b).lambda$processUpdates$377(updates, false);
+                    MessagesController.getInstance(s31Var.f30180b).lambda$processUpdates$377(updates, false);
                     if (!updates.chats.isEmpty()) {
                         AndroidUtilities.runOnUIThread(new ho0(14, s31Var, updates), 1000L);
                         return;

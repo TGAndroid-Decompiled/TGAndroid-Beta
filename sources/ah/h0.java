@@ -388,7 +388,7 @@ public final class h0 implements x41, hf1, a2, ih.h, OnFailureListener, v8, OnCo
                                 i16 = R.string.StoryEnabledScreenshots;
                             }
                             qc G = xcVar.G(i25, 4, LocaleController.getString(i16));
-                            G.f29530j = 5000;
+                            G.f29531j = 5000;
                             G.k(true);
                             return;
                         }
@@ -402,7 +402,7 @@ public final class h0 implements x41, hf1, a2, ih.h, OnFailureListener, v8, OnCo
                             i15 = R.string.StoryDisabledScreenshots;
                         }
                         qc G2 = xcVar2.G(i26, 4, LocaleController.getString(i15));
-                        G2.f29530j = 5000;
+                        G2.f29531j = 5000;
                         G2.k(true);
                     } else if (i24 == 1) {
                         boolean b11 = q8Var.b();
@@ -419,7 +419,7 @@ public final class h0 implements x41, hf1, a2, ih.h, OnFailureListener, v8, OnCo
                                 i14 = R.string.StoryEnableKeep;
                             }
                             qc G3 = xcVar3.G(i27, 4, LocaleController.getString(i14));
-                            G3.f29530j = 5000;
+                            G3.f29531j = 5000;
                             G3.k(true);
                         } else {
                             d3 d3Var4 = r9Var.container;
@@ -432,7 +432,7 @@ public final class h0 implements x41, hf1, a2, ih.h, OnFailureListener, v8, OnCo
                                 i13 = R.string.StoryDisableKeep;
                             }
                             qc G4 = xcVar4.G(i28, 4, LocaleController.getString(i13));
-                            G4.f29530j = 5000;
+                            G4.f29531j = 5000;
                             G4.k(true);
                         }
                         k9Var.g(true);

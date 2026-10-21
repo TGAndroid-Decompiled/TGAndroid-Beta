@@ -8,12 +8,12 @@ import android.widget.TextView;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class hh0 extends org.telegram.ui.Components.im0 {
-    public final Context f37628c;
+    public final Context f37629c;
     public final ih0 d;
 
     public hh0(ih0 ih0Var, Context context) {
         this.d = ih0Var;
-        this.f37628c = context;
+        this.f37629c = context;
     }
 
     @Override
@@ -28,8 +28,8 @@ public final class hh0 extends org.telegram.ui.Components.im0 {
     public final boolean D(s4.b1 b1Var) {
         int b10 = b1Var.b();
         ih0 ih0Var = this.d;
-        if (ih0Var.Q != b10 && ih0Var.f38003x != b10) {
-            if (b10 < ih0Var.f38004y || b10 >= ih0Var.E) {
+        if (ih0Var.Q != b10 && ih0Var.f38004x != b10) {
+            if (b10 < ih0Var.f38005y || b10 >= ih0Var.E) {
                 if ((b10 < ih0Var.H || b10 >= ih0Var.I) && b10 != ih0Var.N) {
                     if (b10 >= ih0Var.U && b10 < ih0Var.V) {
                         return true;
@@ -51,20 +51,20 @@ public final class hh0 extends org.telegram.ui.Components.im0 {
     @Override
     public final int j(int i10) {
         ih0 ih0Var = this.d;
-        if (i10 == ih0Var.f37997r) {
+        if (i10 == ih0Var.f37998r) {
             return 0;
         }
-        if (i10 == ih0Var.f37999s || i10 == ih0Var.L || i10 == ih0Var.S || i10 == ih0Var.P) {
+        if (i10 == ih0Var.f38000s || i10 == ih0Var.L || i10 == ih0Var.S || i10 == ih0Var.P) {
             return 1;
         }
         if (i10 == ih0Var.v) {
             return 2;
         }
-        if (i10 == ih0Var.f38003x) {
+        if (i10 == ih0Var.f38004x) {
             return 3;
         }
-        if (i10 != ih0Var.f38002w && i10 != ih0Var.J && i10 != ih0Var.M && i10 != ih0Var.R && i10 != ih0Var.T) {
-            if (i10 < ih0Var.f38004y || i10 >= ih0Var.E) {
+        if (i10 != ih0Var.f38003w && i10 != ih0Var.J && i10 != ih0Var.M && i10 != ih0Var.R && i10 != ih0Var.T) {
+            if (i10 < ih0Var.f38005y || i10 >= ih0Var.E) {
                 if (i10 >= ih0Var.H && i10 < ih0Var.I) {
                     return 5;
                 }
@@ -108,13 +108,13 @@ public final class hh0 extends org.telegram.ui.Components.im0 {
         org.telegram.ui.ActionBar.d6 d6Var2;
         int i11;
         ih0 ih0Var = this.d;
-        Context context = this.f37628c;
+        Context context = this.f37629c;
         switch (i10) {
             case 1:
                 q90Var = new org.telegram.ui.Cells.l4(context, 23);
                 break;
             case 2:
-                org.telegram.ui.Components.q90 q90Var2 = new org.telegram.ui.Components.q90(this.f37628c, ih0Var, null, true, ih0Var.h);
+                org.telegram.ui.Components.q90 q90Var2 = new org.telegram.ui.Components.q90(this.f37629c, ih0Var, null, true, ih0Var.h);
                 q90Var2.setPermanent(true);
                 q90Var2.setDelegate(new gh0(this, q90Var2));
                 q90Var = q90Var2;
@@ -149,7 +149,7 @@ public final class hh0 extends org.telegram.ui.Components.im0 {
                 q90Var = new org.telegram.ui.Cells.d9(context);
                 break;
             case 10:
-                q90Var = new org.telegram.ui.Cells.a5(8, 6, this.f37628c, null, false);
+                q90Var = new org.telegram.ui.Cells.a5(8, 6, this.f37629c, null, false);
                 break;
             case 11:
                 d6Var2 = ((org.telegram.ui.ActionBar.n2) ih0Var).resourceProvider;

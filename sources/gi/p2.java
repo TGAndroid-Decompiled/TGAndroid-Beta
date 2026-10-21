@@ -126,21 +126,21 @@ public final class p2 extends AnimatorListenerAdapter {
                 return;
             case 10:
                 oq oqVar = (oq) this.f11383c;
-                ((ol0) oqVar.d).f29065b.remove(this.f11382b);
+                ((ol0) oqVar.d).f29066b.remove(this.f11382b);
                 ol0 ol0Var = (ol0) oqVar.d;
                 ol0Var.d = true;
-                ol0Var.f29064a.invalidate();
+                ol0Var.f29065a.invalidate();
                 return;
             case 11:
                 pt0 pt0Var = (pt0) this.f11383c;
                 pt0Var.e.O1.remove(this.f11382b);
-                pt0Var.f29391a.invalidate();
+                pt0Var.f29392a.invalidate();
                 return;
             default:
                 org.telegram.ui.Components.voip.b1 b1Var = (org.telegram.ui.Components.voip.b1) this.f11383c;
-                b1Var.f31354x = -1;
+                b1Var.f31355x = -1;
                 b1Var.v = this.f11382b;
-                b1Var.f31352s = 0.0f;
+                b1Var.f31353s = 0.0f;
                 b1Var.U = null;
                 b1Var.e();
                 return;

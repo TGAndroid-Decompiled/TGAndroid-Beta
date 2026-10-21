@@ -42,7 +42,7 @@ public final class h31 extends c71 {
             View childAt = getChildAt(i11);
             if (childAt instanceof r31) {
                 r31 r31Var = (r31) childAt;
-                if (r31Var.f29808y) {
+                if (r31Var.f29809y) {
                     if (height > r31Var.getY()) {
                         height = r31Var.getY();
                         RecyclerView.R(r31Var);

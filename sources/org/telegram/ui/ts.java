@@ -17,12 +17,12 @@ public final class ts implements View.OnClickListener {
             case 0:
                 et etVar = this.f41743b;
                 etVar.K = false;
-                etVar.f36799z.invalidate();
+                etVar.f36800z.invalidate();
                 etVar.n();
                 return;
             case 1:
                 et etVar2 = this.f41743b;
-                Activity activity = etVar2.f36796w;
+                Activity activity = etVar2.f36797w;
                 if (activity instanceof LaunchActivity) {
                     LaunchActivity launchActivity = (LaunchActivity) activity;
                     if (launchActivity.O() != null && launchActivity.O().getLastFragment() != null) {
@@ -31,12 +31,12 @@ public final class ts implements View.OnClickListener {
                     launchActivity.t0(new PremiumPreviewFragment(0, PremiumPreviewFragment.l0(5)));
                 }
                 etVar2.K = false;
-                etVar2.f36799z.invalidate();
+                etVar2.f36800z.invalidate();
                 etVar2.n();
                 return;
             case 2:
                 et etVar3 = this.f41743b;
-                ct ctVar = etVar3.f36786l;
+                ct ctVar = etVar3.f36787l;
                 if (ctVar != null) {
                     ctVar.K();
                 }
@@ -44,7 +44,7 @@ public final class ts implements View.OnClickListener {
                 return;
             default:
                 et etVar4 = this.f41743b;
-                ct ctVar2 = etVar4.f36786l;
+                ct ctVar2 = etVar4.f36787l;
                 if (ctVar2 != null) {
                     ctVar2.q();
                 }

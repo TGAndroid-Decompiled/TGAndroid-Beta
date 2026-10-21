@@ -88,12 +88,12 @@ public final class hg0 extends WebViewClient {
             case 1:
                 super.onPageFinished(webView, str);
                 ci1 ci1Var = (ci1) obj;
-                dr drVar = ci1Var.f35993c;
+                dr drVar = ci1Var.f35994c;
                 if (drVar != null && drVar.getVisibility() == 0) {
                     AnimatorSet animatorSet = new AnimatorSet();
-                    ci1Var.f35992b.getContentView().setVisibility(0);
-                    ci1Var.f35992b.setEnabled(true);
-                    animatorSet.playTogether(ObjectAnimator.ofFloat(ci1Var.f35993c, "scaleX", 1.0f, 0.1f), ObjectAnimator.ofFloat(ci1Var.f35993c, "scaleY", 1.0f, 0.1f), ObjectAnimator.ofFloat(ci1Var.f35993c, "alpha", 1.0f, 0.0f), ObjectAnimator.ofFloat(ci1Var.f35992b.getContentView(), "scaleX", 0.0f, 1.0f), ObjectAnimator.ofFloat(ci1Var.f35992b.getContentView(), "scaleY", 0.0f, 1.0f), ObjectAnimator.ofFloat(ci1Var.f35992b.getContentView(), "alpha", 0.0f, 1.0f));
+                    ci1Var.f35993b.getContentView().setVisibility(0);
+                    ci1Var.f35993b.setEnabled(true);
+                    animatorSet.playTogether(ObjectAnimator.ofFloat(ci1Var.f35994c, "scaleX", 1.0f, 0.1f), ObjectAnimator.ofFloat(ci1Var.f35994c, "scaleY", 1.0f, 0.1f), ObjectAnimator.ofFloat(ci1Var.f35994c, "alpha", 1.0f, 0.0f), ObjectAnimator.ofFloat(ci1Var.f35993b.getContentView(), "scaleX", 0.0f, 1.0f), ObjectAnimator.ofFloat(ci1Var.f35993b.getContentView(), "scaleY", 0.0f, 1.0f), ObjectAnimator.ofFloat(ci1Var.f35993b.getContentView(), "alpha", 0.0f, 1.0f));
                     animatorSet.addListener(new tf1(this, 10));
                     animatorSet.setDuration(150L);
                     animatorSet.start();

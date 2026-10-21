@@ -41,7 +41,7 @@ public final class g3 extends ImageReceiver {
                 return;
             case 6:
                 super.invalidate();
-                org.telegram.ui.Wallet.t7 t7Var = ((org.telegram.ui.Wallet.s7) obj).f34870d0;
+                org.telegram.ui.Wallet.t7 t7Var = ((org.telegram.ui.Wallet.s7) obj).f34871d0;
                 int i11 = org.telegram.ui.Wallet.t7.G1;
                 t7Var.f0();
                 return;
@@ -76,8 +76,8 @@ public final class g3 extends ImageReceiver {
                 org.telegram.ui.Components.r5 r5Var = (org.telegram.ui.Components.r5) obj;
                 r5Var.k();
                 boolean imageBitmapByKey2 = super.setImageBitmapByKey(drawable, str, i10, z10, i11);
-                if (r5Var.f29839m && hasImageLoaded()) {
-                    r5Var.f29839m = false;
+                if (r5Var.f29840m && hasImageLoaded()) {
+                    r5Var.f29840m = false;
                     AndroidUtilities.runOnUIThread(new pg(r5Var, 4));
                 }
                 return imageBitmapByKey2;

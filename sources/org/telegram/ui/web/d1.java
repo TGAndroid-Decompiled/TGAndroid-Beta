@@ -23,7 +23,7 @@ public final class d1 extends org.telegram.ui.ActionBar.j {
                 kVar2 = ((n2) f1Var).actionBar;
                 kVar2.s();
                 f1Var.f42636s.clear();
-                AndroidUtilities.forEachViews((RecyclerView) f1Var.f32355a, (Utilities.Callback<View>) new ci.e(23));
+                AndroidUtilities.forEachViews((RecyclerView) f1Var.f32356a, (Utilities.Callback<View>) new ci.e(23));
                 return;
             }
             f1Var.finishFragment();

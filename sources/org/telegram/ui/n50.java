@@ -91,7 +91,7 @@ public final class n50 extends FrameLayout {
             i11 = 34;
         }
         vj0Var.P(i11);
-        vj0Var.N(vj0Var.f31271f - 1, false, true);
+        vj0Var.N(vj0Var.f31272f - 1, false, true);
         TextView textView = new TextView(context);
         this.f39415b = textView;
         textView.setLines(1);

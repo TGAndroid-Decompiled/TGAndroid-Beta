@@ -101,10 +101,10 @@ public final class a extends AnimatorListenerAdapter {
                 return;
             case 2:
                 l4 l4Var = (l4) this.f16146b;
-                Runnable runnable = l4Var.f38758a0;
+                Runnable runnable = l4Var.f38759a0;
                 if (runnable != null) {
                     runnable.run();
-                    l4Var.f38758a0 = null;
+                    l4Var.f38759a0 = null;
                     return;
                 }
                 return;
@@ -138,7 +138,7 @@ public final class a extends AnimatorListenerAdapter {
                 return;
             case 9:
                 org.telegram.ui.Cells.j jVar = (org.telegram.ui.Cells.j) this.f16146b;
-                ((wz0) jVar).f42980c0.e.f33595c.f45908r = false;
+                ((wz0) jVar).f42980c0.e.f33596c.f45908r = false;
                 FrameLayout frameLayout = jVar.J;
                 if (frameLayout.getBackground() == null) {
                     frameLayout.setBackground(jVar.K);
@@ -202,8 +202,8 @@ public final class a extends AnimatorListenerAdapter {
                 return;
             case 19:
                 org.telegram.ui.k3 k3Var = (org.telegram.ui.k3) this.f16146b;
-                if (animator.equals(((vb) k3Var.f38405b).R)) {
-                    ((vb) k3Var.f38405b).R = null;
+                if (animator.equals(((vb) k3Var.f38406b).R)) {
+                    ((vb) k3Var.f38406b).R = null;
                     return;
                 }
                 return;
@@ -226,7 +226,7 @@ public final class a extends AnimatorListenerAdapter {
                     }
                     bdVar.m0 = null;
                 }
-                bdVar.f35590o0 = null;
+                bdVar.f35591o0 = null;
                 super.onAnimationEnd(animator);
                 return;
             case 23:
@@ -253,7 +253,7 @@ public final class a extends AnimatorListenerAdapter {
                 if (view != null && view.getVisibility() == 0) {
                     fkVar.G1.setTranslationY(((1.0f - fkVar.getTopViewEnterProgress()) * fkVar.G1.getLayoutParams().height) + fkVar.T1);
                 }
-                fkVar.f37024r5.p9 = null;
+                fkVar.f37025r5.p9 = null;
                 return;
             case 25:
                 r40 r40Var = ((oi) this.f16146b).f39902b.f40666e2;
@@ -274,9 +274,9 @@ public final class a extends AnimatorListenerAdapter {
                 return;
             case 27:
                 cm cmVar = (cm) this.f16146b;
-                dm dmVar = cmVar.f36008b;
+                dm dmVar = cmVar.f36009b;
                 ArrayList arrayList = dmVar.Q.f40780n6;
-                org.telegram.ui.Cells.u1 u1Var = cmVar.f36007a;
+                org.telegram.ui.Cells.u1 u1Var = cmVar.f36008a;
                 arrayList.remove(u1Var);
                 View view2 = dmVar.Q.fragmentView;
                 if (view2 != null) {
@@ -290,7 +290,7 @@ public final class a extends AnimatorListenerAdapter {
                 lp lpVar = (lp) this.f16146b;
                 lpVar.L = 0.0f;
                 lpVar.K = 1.0f;
-                View view3 = lpVar.f38960a0;
+                View view3 = lpVar.f38961a0;
                 if (view3 != null) {
                     view3.invalidate();
                 }
@@ -313,12 +313,12 @@ public final class a extends AnimatorListenerAdapter {
                 return;
             case 7:
                 k8 k8Var = (k8) this.f16146b;
-                for (int i10 = 0; i10 < k8Var.f38441b.getChildCount(); i10++) {
-                    h8.a((h8) k8Var.f38441b.getChildAt(i10), k8Var.P, k8Var.Q);
+                for (int i10 = 0; i10 < k8Var.f38442b.getChildCount(); i10++) {
+                    h8.a((h8) k8Var.f38442b.getChildAt(i10), k8Var.P, k8Var.Q);
                 }
                 return;
             case 9:
-                ((wz0) ((org.telegram.ui.Cells.j) this.f16146b)).f42980c0.e.f33595c.f45908r = true;
+                ((wz0) ((org.telegram.ui.Cells.j) this.f16146b)).f42980c0.e.f33596c.f45908r = true;
                 return;
             default:
                 super.onAnimationStart(animator);

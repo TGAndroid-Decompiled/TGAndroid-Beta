@@ -15,9 +15,9 @@ public final class n2 extends z4.g {
         int actionMasked = motionEvent.getActionMasked();
         s2 s2Var = this.f39392w0;
         if (actionMasked == 0) {
-            s2Var.f41333x.f38764f0.requestDisallowInterceptTouchEvent(true);
+            s2Var.f41333x.f38765f0.requestDisallowInterceptTouchEvent(true);
         } else if (motionEvent.getActionMasked() == 1 || motionEvent.getActionMasked() == 3) {
-            s2Var.f41333x.f38764f0.requestDisallowInterceptTouchEvent(false);
+            s2Var.f41333x.f38765f0.requestDisallowInterceptTouchEvent(false);
         }
         s2Var.f41333x.k();
         return super.onInterceptTouchEvent(motionEvent);
@@ -28,13 +28,13 @@ public final class n2 extends z4.g {
         int actionMasked = motionEvent.getActionMasked();
         s2 s2Var = this.f39392w0;
         if (actionMasked == 0) {
-            s2Var.f41333x.f38764f0.requestDisallowInterceptTouchEvent(true);
+            s2Var.f41333x.f38765f0.requestDisallowInterceptTouchEvent(true);
         }
         boolean onTouchEvent = super.onTouchEvent(motionEvent);
         if (motionEvent.getActionMasked() != 1 && motionEvent.getActionMasked() != 3) {
             return onTouchEvent;
         }
-        s2Var.f41333x.f38764f0.requestDisallowInterceptTouchEvent(false);
+        s2Var.f41333x.f38765f0.requestDisallowInterceptTouchEvent(false);
         return onTouchEvent;
     }
 }

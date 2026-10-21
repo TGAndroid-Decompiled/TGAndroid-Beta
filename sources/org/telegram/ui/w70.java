@@ -18,7 +18,7 @@ public final class w70 implements Runnable {
                 LanguageSelectActivity.W(this.f42486b);
                 return;
             default:
-                this.f42486b.f33149a.l();
+                this.f42486b.f33150a.l();
                 return;
         }
     }

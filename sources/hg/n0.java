@@ -69,7 +69,7 @@ public final class n0 extends FrameLayout {
             int dp = AndroidUtilities.dp(16.0f);
             int dp2 = AndroidUtilities.dp(16.0f);
             M.e = dp;
-            M.f33019f = dp2;
+            M.f33020f = dp2;
             h6.w1(this.d, h6.w0(h6.Oh, d6Var), false);
             h6.w1(this.d, h6.w0(h6.Sh, d6Var), true);
             w9Var.setImageDrawable(this.d);
@@ -92,7 +92,7 @@ public final class n0 extends FrameLayout {
                     int dp3 = AndroidUtilities.dp(16.0f);
                     int dp4 = AndroidUtilities.dp(16.0f);
                     M3.e = dp3;
-                    M3.f33019f = dp4;
+                    M3.f33020f = dp4;
                     h6.w1(M3, h6.w0(i11, d6Var), false);
                     h6.w1(M3, h6.w0(i12, d6Var), true);
                     w9Var.setImageDrawable(M3);

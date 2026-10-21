@@ -219,12 +219,12 @@ public final class h8 extends x61 implements NotificationCenter.NotificationCent
         w21 w21Var = new w21(activity, d6Var);
         w21Var.setPadding(AndroidUtilities.dp(0.0f), AndroidUtilities.dp(24.0f), AndroidUtilities.dp(0.0f), AndroidUtilities.dp(4.0f));
         w21Var.setEmojiSize(100);
-        org.telegram.ui.Components.w9 w9Var = w21Var.f31955b;
+        org.telegram.ui.Components.w9 w9Var = w21Var.f31956b;
         w9Var.getImageReceiver().setCurrentAccount(AndroidUtilities.getAccountInProduction());
         MediaDataController.getInstance(AndroidUtilities.getAccountInProduction()).setPlaceholderImage(w9Var, "RestrictedEmoji", "📝", "100_100");
         e7.addView(w21Var, w7.z5.q(-1, -2, 7));
         String string = LocaleController.getString(R.string.WalletRecoveryPhraseLearnTitle);
-        x90 x90Var = w21Var.f31956c;
+        x90 x90Var = w21Var.f31957c;
         CharSequence replaceEmoji = Emoji.replaceEmoji(string, x90Var.getPaint().getFontMetricsInt(), false);
         String string2 = LocaleController.getString(R.string.WalletRecoveryPhraseLearnInfo);
         x90 x90Var2 = w21Var.d;
@@ -264,7 +264,7 @@ public final class h8 extends x61 implements NotificationCenter.NotificationCent
             m0 w9 = m0.w(this.currentAccount);
             if (w9.e()) {
                 w7 w7Var = new w7();
-                w7Var.f35075s = w9.x();
+                w7Var.f35076s = w9.x();
                 presentFragment(w7Var);
                 return;
             }
@@ -279,10 +279,10 @@ public final class h8 extends x61 implements NotificationCenter.NotificationCent
             k kVar = new k(this, b2Var, w10);
             m0.F("emulate disable backup: when ready");
             k71 k71Var = new k71(26, w10, kVar);
-            if (w10.E() && w10.f34479f != null) {
+            if (w10.E() && w10.f34480f != null) {
                 k71Var.run();
             } else {
-                w10.f34494w.add(new WeakReference(k71Var));
+                w10.f34495w.add(new WeakReference(k71Var));
             }
         } else if (i10 == 2) {
             m0 w11 = m0.w(this.currentAccount);
@@ -315,16 +315,16 @@ public final class h8 extends x61 implements NotificationCenter.NotificationCent
     @Override
     public final View createView(Context context) {
         this.fragmentView = super.createView(context);
-        this.actionBar.setAdaptiveBackground(this.f32355a);
-        this.f32355a.p1();
-        this.f32355a.setClipToPadding(false);
+        this.actionBar.setAdaptiveBackground(this.f32356a);
+        this.f32356a.p1();
+        this.f32356a.setClipToPadding(false);
         return this.fragmentView;
     }
 
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         w61 w61Var;
-        if (i10 == NotificationCenter.walletUpdate && (w61Var = this.f32355a) != null) {
+        if (i10 == NotificationCenter.walletUpdate && (w61Var = this.f32356a) != null) {
             w61Var.W2.N(true);
         }
     }
@@ -358,7 +358,7 @@ public final class h8 extends x61 implements NotificationCenter.NotificationCent
 
     @Override
     public final void onInsets(int i10, int i11, int i12, int i13) {
-        this.f32355a.setPadding(0, 0, 0, i13);
-        this.f32355a.setClipToPadding(false);
+        this.f32356a.setPadding(0, 0, 0, i13);
+        this.f32356a.setClipToPadding(false);
     }
 }

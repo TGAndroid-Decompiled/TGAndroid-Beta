@@ -51,7 +51,7 @@ public final class r4 extends sm0 {
         j10.setText(LocaleController.getString(R.string.ReportInfo));
         frameLayout.addView(j10, w7.z5.d(-2, -2.0f, 49, 30.0f, 235.0f, 30.0f, 44.0f));
         EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context);
-        this.f30323c = editTextBoldCursor;
+        this.f30324c = editTextBoldCursor;
         editTextBoldCursor.setTextSize(1, 18.0f);
         editTextBoldCursor.setHintTextColor(getThemedColor(org.telegram.ui.ActionBar.h6.H6));
         int i12 = org.telegram.ui.ActionBar.h6.G6;
@@ -78,11 +78,11 @@ public final class r4 extends sm0 {
         frameLayout.addView(editTextBoldCursor, w7.z5.d(-1, 36.0f, 51, 17.0f, 305.0f, 17.0f, 0.0f));
         ?? frameLayout2 = new FrameLayout(context);
         View view = new View(context);
-        frameLayout2.f29977a = view;
+        frameLayout2.f29978a = view;
         view.setBackground(org.telegram.ui.ActionBar.x5.f(new float[]{8.0f}, org.telegram.ui.ActionBar.h6.Oh));
         frameLayout2.addView(view, w7.z5.d(-1, -1.0f, 0, 16.0f, 16.0f, 16.0f, 16.0f));
         TextView textView2 = new TextView(context);
-        frameLayout2.f29978b = textView2;
+        frameLayout2.f29979b = textView2;
         textView2.setLines(1);
         textView2.setSingleLine(true);
         textView2.setGravity(1);
@@ -92,7 +92,7 @@ public final class r4 extends sm0 {
         textView2.setTextSize(1, 14.0f);
         textView2.setTypeface(AndroidUtilities.bold());
         frameLayout2.addView(textView2, w7.z5.e(-2, -2, 17));
-        this.f30322b = frameLayout2;
+        this.f30323b = frameLayout2;
         frameLayout2.setBackground(null);
         frameLayout2.setText(LocaleController.getString(R.string.ReportSend));
         w7.b6.a(frameLayout2);

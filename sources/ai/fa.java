@@ -50,7 +50,7 @@ public final class fa {
         kcVar.f27844b.setText(d());
         org.telegram.ui.Components.oc ocVar = new org.telegram.ui.Components.oc(t10, qnVar.f40673ea, true, false);
         ocVar.e(LocaleController.getString(R.string.StarsSentUndo));
-        ocVar.f28982a = new da(this, 1);
+        ocVar.f28983a = new da(this, 1);
         org.telegram.ui.Components.jc jcVar = new org.telegram.ui.Components.jc(t10, qnVar.f40673ea);
         this.f1308f = jcVar;
         jcVar.f27492b = 5000L;
@@ -60,7 +60,7 @@ public final class fa {
         kcVar.setButton(ocVar);
         org.telegram.ui.Components.qc b10 = org.telegram.ui.Components.xc.a0(qnVar).b(kcVar, -1);
         this.d = b10;
-        b10.f29538r = false;
+        b10.f29539r = false;
         if (z10) {
             b10.k(true);
             this.f1314m = true;

@@ -38,7 +38,7 @@ public final class x20 implements View.OnClickListener {
             int i12 = 0;
             if (q50Var.s1() && !q50Var.f40376a1.isScheduled()) {
                 h30 h30Var = q50Var.a2;
-                if (h30Var != null && h30Var.f31514b && (AndroidUtilities.isTablet() || q50.F3 == q50Var.r1())) {
+                if (h30Var != null && h30Var.f31515b && (AndroidUtilities.isTablet() || q50.F3 == q50Var.r1())) {
                     q50Var.f1(null);
                     if (q50.F3) {
                         AndroidUtilities.runOnUIThread(new dz(this, 6), 200L);

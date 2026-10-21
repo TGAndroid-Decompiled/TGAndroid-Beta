@@ -8,9 +8,9 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class a31 extends org.telegram.ui.ActionBar.n2 {
-    public static final int[] f35262c = {750000, 1000000, 1200000, 2000000};
-    public org.telegram.ui.Components.jm0 f35263a;
-    public z21 f35264b;
+    public static final int[] f35263c = {750000, 1000000, 1200000, 2000000};
+    public org.telegram.ui.Components.jm0 f35264a;
+    public z21 f35265b;
 
     public static String U(int i10) {
         if (i10 % 1000000 == 0) {
@@ -39,17 +39,17 @@ public final class a31 extends org.telegram.ui.ActionBar.n2 {
         frameLayout.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20932a7, false));
         this.fragmentView = frameLayout;
         org.telegram.ui.Components.jm0 jm0Var = new org.telegram.ui.Components.jm0(context, null);
-        this.f35263a = jm0Var;
+        this.f35264a = jm0Var;
         jm0Var.p1();
-        this.actionBar.setAdaptiveBackground(this.f35263a);
-        this.f35263a.setLayoutManager(new s4.b0());
-        this.f35263a.setVerticalScrollBarEnabled(false);
-        org.telegram.ui.Components.jm0 jm0Var2 = this.f35263a;
+        this.actionBar.setAdaptiveBackground(this.f35264a);
+        this.f35264a.setLayoutManager(new s4.b0());
+        this.f35264a.setVerticalScrollBarEnabled(false);
+        org.telegram.ui.Components.jm0 jm0Var2 = this.f35264a;
         z21 z21Var = new z21(context);
-        this.f35264b = z21Var;
+        this.f35265b = z21Var;
         jm0Var2.setAdapter(z21Var);
-        this.f35263a.setOnItemClickListener(new f11(this, 3));
-        frameLayout.addView(this.f35263a, w7.z5.c(-1.0f, -1));
+        this.f35264a.setOnItemClickListener(new f11(this, 3));
+        frameLayout.addView(this.f35264a, w7.z5.c(-1.0f, -1));
         return this.fragmentView;
     }
 }

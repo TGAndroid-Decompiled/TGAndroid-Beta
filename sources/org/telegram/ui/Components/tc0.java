@@ -26,20 +26,20 @@ import org.telegram.tgnet.tl.TL_account;
 public final class tc0 extends FrameLayout {
     public boolean E;
     public float F;
-    public final int f30493a;
-    public final int f30494b;
-    public final org.telegram.ui.ActionBar.d6 f30495c;
+    public final int f30494a;
+    public final int f30495b;
+    public final org.telegram.ui.ActionBar.d6 f30496c;
     public final LinearLayout d;
     public final TextView e;
-    public final TextView f30496f;
+    public final TextView f30497f;
     public final TextView h;
-    public final long f30497n;
-    public final int f30498r;
-    public final int f30499s;
+    public final long f30498n;
+    public final int f30499r;
+    public final int f30500s;
     public final int v;
-    public final int f30500w;
-    public final Runnable f30501x;
-    public final int f30502y;
+    public final int f30501w;
+    public final Runnable f30502x;
+    public final int f30503y;
 
     public tc0(Context context, int i10, MessageObject messageObject, Runnable runnable, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
@@ -50,21 +50,21 @@ public final class tc0 extends FrameLayout {
         TLRPC.MessageFwdHeader messageFwdHeader;
         this.E = false;
         this.F = -1.0f;
-        this.f30494b = i10;
+        this.f30495b = i10;
         int i15 = messageObject.currentAccount;
-        this.f30493a = i15;
-        this.f30495c = d6Var;
-        this.f30501x = runnable;
-        this.f30502y = ConnectionsManager.getInstance(i15).getCurrentTime() - messageObject.messageOwner.date;
-        this.f30497n = messageObject.getDialogId();
-        this.f30498r = messageObject.getId();
+        this.f30494a = i15;
+        this.f30496c = d6Var;
+        this.f30502x = runnable;
+        this.f30503y = ConnectionsManager.getInstance(i15).getCurrentTime() - messageObject.messageOwner.date;
+        this.f30498n = messageObject.getDialogId();
+        this.f30499r = messageObject.getId();
         TLRPC.Message message = messageObject.messageOwner;
         if (message == null) {
             i11 = 0;
         } else {
             i11 = message.date;
         }
-        this.f30499s = i11;
+        this.f30500s = i11;
         if (message == null) {
             i12 = 0;
         } else {
@@ -76,7 +76,7 @@ public final class tc0 extends FrameLayout {
         } else {
             i13 = 0;
         }
-        this.f30500w = i13;
+        this.f30501w = i13;
         ImageView imageView = new ImageView(context);
         addView(imageView, w7.z5.d(24, 24.0f, 19, 11.0f, 0.0f, 0.0f, 0.0f));
         if (i10 == 1) {
@@ -113,7 +113,7 @@ public final class tc0 extends FrameLayout {
         this.e = textView2;
         org.telegram.messenger.mk.o(i16, d6Var, textView2, 1, 14.0f);
         TextView i17 = com.google.android.gms.internal.play_billing.k3.i(linearLayout, textView2, w7.z5.t(-2, -2, 19, 0, -1, 0, 0), context);
-        this.f30496f = i17;
+        this.f30497f = i17;
         i17.setBackground(org.telegram.ui.ActionBar.h6.c0(AndroidUtilities.dp(20.0f), org.telegram.ui.ActionBar.h6.m1(0.75f, org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20991d7, d6Var))));
         org.telegram.messenger.mk.o(i16, d6Var, i17, 1, 11.0f);
         i17.setPadding(AndroidUtilities.dp(5.33f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(5.33f), AndroidUtilities.dp(2.33f));
@@ -262,17 +262,17 @@ public final class tc0 extends FrameLayout {
     public final void a() {
         String formatPmEditedDate;
         TextView textView = this.e;
-        int i10 = this.f30493a;
-        TextView textView2 = this.f30496f;
+        int i10 = this.f30494a;
+        TextView textView2 = this.f30497f;
         TextView textView3 = this.h;
         LinearLayout linearLayout = this.d;
-        int i11 = this.f30494b;
+        int i11 = this.f30495b;
         if (i11 == 1) {
             linearLayout.setAlpha(1.0f);
             textView3.setAlpha(0.0f);
             textView2.setVisibility(8);
             if (AppGlobalConfig.getInstance(i10).messagePrimaryEditedDate.get()) {
-                formatPmEditedDate = LocaleController.formatPmSentDate(this.f30499s);
+                formatPmEditedDate = LocaleController.formatPmSentDate(this.f30500s);
             } else {
                 formatPmEditedDate = LocaleController.formatPmEditedDate(this.v);
             }
@@ -281,15 +281,15 @@ public final class tc0 extends FrameLayout {
             linearLayout.setAlpha(1.0f);
             textView3.setAlpha(0.0f);
             textView2.setVisibility(8);
-            textView.setText(LocaleController.formatPmFwdDate(this.f30500w));
+            textView.setText(LocaleController.formatPmFwdDate(this.f30501w));
         } else {
             setOnClickListener(null);
             linearLayout.setAlpha(0.0f);
             textView3.setAlpha(1.0f);
             textView2.setVisibility(0);
             TLRPC.TL_messages_getOutboxReadDate tL_messages_getOutboxReadDate = new TLRPC.TL_messages_getOutboxReadDate();
-            tL_messages_getOutboxReadDate.peer = MessagesController.getInstance(i10).getInputPeer(this.f30497n);
-            tL_messages_getOutboxReadDate.msg_id = this.f30498r;
+            tL_messages_getOutboxReadDate.peer = MessagesController.getInstance(i10).getInputPeer(this.f30498n);
+            tL_messages_getOutboxReadDate.msg_id = this.f30499r;
             ConnectionsManager.getInstance(i10).sendRequest(tL_messages_getOutboxReadDate, new y1(this, 8));
         }
     }
@@ -298,7 +298,7 @@ public final class tc0 extends FrameLayout {
     public final void onDetachedFromWindow() {
         ub ubVar;
         super.onDetachedFromWindow();
-        qc qcVar = qc.f29523w;
+        qc qcVar = qc.f29524w;
         if (qcVar != null && (ubVar = qcVar.e) != null && ubVar.getParent() != null && (qcVar.e.getParent().getParent() instanceof kb)) {
             qcVar.b();
         }
@@ -312,7 +312,7 @@ public final class tc0 extends FrameLayout {
         int mode = View.MeasureSpec.getMode(i10);
         if (this.F < 0.0f) {
             this.F = 0.0f;
-            int i12 = this.f30494b;
+            int i12 = this.f30495b;
             TextView textView = this.e;
             if (i12 == 0) {
                 long currentTimeMillis = System.currentTimeMillis();
@@ -320,11 +320,11 @@ public final class tc0 extends FrameLayout {
                 this.F = max;
                 float max2 = Math.max(max, textView.getPaint().measureText(LocaleController.getString(R.string.PmReadUnknown)) + AndroidUtilities.dp(48.0f));
                 this.F = max2;
-                float max3 = Math.max(max2, textView.getPaint().measureText(LocaleController.getString(R.string.PmRead) + this.f30496f.getPaint().measureText(LocaleController.getString(R.string.PmReadShowWhen))) + AndroidUtilities.dp(64.0f));
+                float max3 = Math.max(max2, textView.getPaint().measureText(LocaleController.getString(R.string.PmRead) + this.f30497f.getPaint().measureText(LocaleController.getString(R.string.PmReadShowWhen))) + AndroidUtilities.dp(64.0f));
                 this.F = max3;
                 float max4 = Math.max(max3, textView.getPaint().measureText(LocaleController.formatString(R.string.PmReadTodayAt, LocaleController.getInstance().getFormatterDay().format(new Date(currentTimeMillis)))) + ((float) AndroidUtilities.dp(48.0f)));
                 this.F = max4;
-                int i13 = this.f30502y;
+                int i13 = this.f30503y;
                 if (i13 > 86400) {
                     f7 = 48.0f;
                     this.F = Math.max(max4, textView.getPaint().measureText(LocaleController.formatString(R.string.PmReadYesterdayAt, LocaleController.getInstance().getFormatterDay().format(new Date(currentTimeMillis)))) + AndroidUtilities.dp(48.0f));

@@ -49,9 +49,9 @@ public final class k2 implements kd0, org.telegram.ui.ActionBar.a2, e5, ImageRec
         switch (this.f27720a) {
             case 20:
                 sd0 sd0Var = (sd0) obj;
-                sd0Var.f30251f = f7;
-                if (!sd0Var.f30257y || sd0Var.F) {
-                    sd0Var.f30250c.setStrokeWidth(AndroidUtilities.lerp(sd0Var.v, sd0Var.f30255w, f7));
+                sd0Var.f30252f = f7;
+                if (!sd0Var.f30258y || sd0Var.F) {
+                    sd0Var.f30251c.setStrokeWidth(AndroidUtilities.lerp(sd0Var.v, sd0Var.f30256w, f7));
                     sd0Var.f();
                 }
                 sd0Var.invalidate();
@@ -72,15 +72,15 @@ public final class k2 implements kd0, org.telegram.ui.ActionBar.a2, e5, ImageRec
                 }
             case 22:
                 sd0 sd0Var2 = (sd0) obj;
-                sd0Var2.f30252n = f7;
-                if (!sd0Var2.f30257y || sd0Var2.F) {
+                sd0Var2.f30253n = f7;
+                if (!sd0Var2.f30258y || sd0Var2.F) {
                     sd0Var2.f();
                 }
                 sd0Var2.invalidate();
                 return;
             case 24:
                 sd0 sd0Var3 = (sd0) obj;
-                sd0Var3.f30254s = f7;
+                sd0Var3.f30255s = f7;
                 sd0Var3.f();
                 return;
         }
@@ -226,15 +226,15 @@ public final class k2 implements kd0, org.telegram.ui.ActionBar.a2, e5, ImageRec
     public float get(Object obj) {
         switch (this.f27720a) {
             case 19:
-                return ((sd0) obj).f30251f;
+                return ((sd0) obj).f30252f;
             case 20:
             case 22:
             default:
                 return ((ah0) obj).K;
             case 21:
-                return ((sd0) obj).f30252n;
+                return ((sd0) obj).f30253n;
             case 23:
-                return ((sd0) obj).f30254s;
+                return ((sd0) obj).f30255s;
         }
     }
 

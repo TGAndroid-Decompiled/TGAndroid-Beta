@@ -16,7 +16,7 @@ public final class l extends r0 {
         p pVar = this.f45781a;
         if (!pVar.h && !pVar.f45791i) {
             q qVar = this.f45782b;
-            if ((qVar.f45795c.W2.f30863x.size() - 1) - qVar.f45795c.V2.M0() < 5) {
+            if ((qVar.f45795c.W2.f30864x.size() - 1) - qVar.f45795c.V2.M0() < 5) {
                 pVar.a();
             }
         }

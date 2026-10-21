@@ -105,11 +105,11 @@ public class g4 extends org.telegram.ui.ActionBar.n2 implements ne.d {
                 sb2.append(tL_starGiftUnique.title);
                 sb2.append(" #");
                 qc O = a02.O(document, string, LocaleController.formatString(i10, org.telegram.messenger.g0.h(tL_starGiftUnique.num, ',', sb2)));
-                O.f29538r = false;
+                O.f29539r = false;
                 O.j();
             } else {
                 qc O2 = xc.a0(g4Var).O(tL_starGiftUnique.getDocument(), LocaleController.getString(R.string.BoughtResoldGiftToTitle), LocaleController.formatString(R.string.BoughtResoldGiftToText, DialogObject.getShortName(g4Var.currentAccount, j10)));
-                O2.f29538r = false;
+                O2.f29539r = false;
                 O2.j();
             }
             g4Var.J.c(true);
@@ -157,7 +157,7 @@ public class g4 extends org.telegram.ui.ActionBar.n2 implements ne.d {
         ArrayList arrayList = new ArrayList(s3Var.h);
         Collections.sort(arrayList, new r2(g4Var, 0));
         c71 c71Var = new c71(g4Var, new s2(g4Var, strArr, arrayList, 0), new t2(g4Var, i80Var, 0), null);
-        c71Var.W2.f30860r = false;
+        c71Var.W2.f30861r = false;
         FrameLayout frameLayout = new FrameLayout(context);
         ImageView imageView = new ImageView(context);
         imageView.setScaleType(ImageView.ScaleType.CENTER);
@@ -203,7 +203,7 @@ public class g4 extends org.telegram.ui.ActionBar.n2 implements ne.d {
         ArrayList arrayList = new ArrayList(s3Var.f50507f);
         Collections.sort(arrayList, new r2(g4Var, 2));
         c71 c71Var = new c71(g4Var, new s2(g4Var, strArr, arrayList, 2), new t2(g4Var, i80Var, 2), null);
-        c71Var.W2.f30860r = false;
+        c71Var.W2.f30861r = false;
         FrameLayout frameLayout = new FrameLayout(context);
         ImageView imageView = new ImageView(context);
         imageView.setScaleType(ImageView.ScaleType.CENTER);
@@ -249,7 +249,7 @@ public class g4 extends org.telegram.ui.ActionBar.n2 implements ne.d {
         ArrayList arrayList = new ArrayList(s3Var.f50508g);
         Collections.sort(arrayList, new r2(g4Var, 1));
         c71 c71Var = new c71(g4Var, new s2(g4Var, strArr, arrayList, 1), new t2(g4Var, i80Var, 1), null);
-        c71Var.W2.f30860r = false;
+        c71Var.W2.f30861r = false;
         FrameLayout frameLayout = new FrameLayout(context);
         ImageView imageView = new ImageView(context);
         imageView.setScaleType(ImageView.ScaleType.CENTER);
@@ -342,7 +342,7 @@ public class g4 extends org.telegram.ui.ActionBar.n2 implements ne.d {
         this.actionBar.addView(adVar, z5.d(-2, -2.0f, 85, 0.0f, 0.0f, 4.0f, 0.0f));
         ?? c71Var = new c71(this, new hg.o(this, 29), new w2(this), new w2(this));
         this.f50282n = c71Var;
-        c71Var.W2.f30860r = false;
+        c71Var.W2.f30861r = false;
         c71Var.setSpanCount(3);
         this.f50282n.j(new kv(this, 23));
         this.f50282n.setPadding(0, AndroidUtilities.dp(45.0f), 0, AndroidUtilities.dp(101.0f));

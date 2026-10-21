@@ -10,30 +10,30 @@ import org.telegram.messenger.MessagePreviewParams;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.tl.TL_stars;
 public final class vb0 implements View.OnClickListener {
-    public final int f31208a;
-    public final boolean f31209b;
-    public final FrameLayout f31210c;
+    public final int f31209a;
+    public final boolean f31210b;
+    public final FrameLayout f31211c;
     public final Object d;
     public final Object e;
-    public final Object f31211f;
+    public final Object f31212f;
 
     public vb0(FrameLayout frameLayout, boolean z10, Object obj, Object obj2, Object obj3, int i10) {
-        this.f31208a = i10;
-        this.f31210c = frameLayout;
-        this.f31209b = z10;
+        this.f31209a = i10;
+        this.f31211c = frameLayout;
+        this.f31210b = z10;
         this.d = obj;
         this.e = obj2;
-        this.f31211f = obj3;
+        this.f31212f = obj3;
     }
 
     @Override
     public final void onClick(View view) {
-        int i10 = this.f31208a;
-        Object obj = this.f31211f;
+        int i10 = this.f31209a;
+        Object obj = this.f31212f;
         Object obj2 = this.e;
         Object obj3 = this.d;
-        boolean z10 = this.f31209b;
-        FrameLayout frameLayout = this.f31210c;
+        boolean z10 = this.f31210b;
+        FrameLayout frameLayout = this.f31211c;
         switch (i10) {
             case 0:
                 ic0 ic0Var = (ic0) frameLayout;
@@ -48,7 +48,7 @@ public final class vb0 implements View.OnClickListener {
                 }
                 boolean z11 = messagePreviewParams.hideForwardSendersName;
                 messagePreviewParams.hideForwardSendersName = !z11;
-                oc0Var.f28993x = false;
+                oc0Var.f28994x = false;
                 if (z11) {
                     messagePreviewParams.hideCaption = false;
                     if (nc0Var != null) {

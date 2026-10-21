@@ -7,25 +7,25 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class jo implements RequestDelegate {
-    public final int f38286a;
-    public final wo f38287b;
+    public final int f38287a;
+    public final wo f38288b;
 
     public jo(wo woVar, int i10) {
-        this.f38286a = i10;
-        this.f38287b = woVar;
+        this.f38287a = i10;
+        this.f38288b = woVar;
     }
 
     @Override
     public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f38286a) {
+        switch (this.f38287a) {
             case 0:
                 if (tLObject instanceof TLRPC.TL_boolTrue) {
-                    AndroidUtilities.runOnUIThread(new lo(this.f38287b, 3));
+                    AndroidUtilities.runOnUIThread(new lo(this.f38288b, 3));
                     return;
                 }
                 return;
             case 1:
-                final wo woVar = this.f38287b;
+                final wo woVar = this.f38288b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -75,7 +75,7 @@ public final class jo implements RequestDelegate {
                 });
                 return;
             case 2:
-                final wo woVar2 = this.f38287b;
+                final wo woVar2 = this.f38288b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -125,7 +125,7 @@ public final class jo implements RequestDelegate {
                 });
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new eh(13, this.f38287b, tL_error));
+                AndroidUtilities.runOnUIThread(new eh(13, this.f38288b, tL_error));
                 return;
         }
     }

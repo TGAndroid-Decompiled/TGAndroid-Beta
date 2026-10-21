@@ -106,16 +106,16 @@ public final class m implements org.telegram.ui.ActionBar.a2, r2.v, t5.b, qa.a, 
             sb2.append(tL_starGiftUnique.title);
             sb2.append(" #");
             qc O = a02.O(document, string, LocaleController.formatString(i11, org.telegram.messenger.g0.h(tL_starGiftUnique.num, ',', sb2)));
-            O.f29538r = false;
+            O.f29539r = false;
             O.j();
         } else {
             qc O2 = xc.a0(ks0Var.f50463a).O(tL_starGiftUnique.getDocument(), LocaleController.getString(R.string.BoughtResoldGiftToTitle), LocaleController.formatString(R.string.BoughtResoldGiftToText, DialogObject.getShortName(i10, j10)));
-            O2.f29538r = false;
+            O2.f29539r = false;
             O2.j();
         }
         LaunchActivity launchActivity = LaunchActivity.H1;
         if (launchActivity != null) {
-            launchActivity.f33199x0.c(true);
+            launchActivity.f33200x0.c(true);
         }
     }
 

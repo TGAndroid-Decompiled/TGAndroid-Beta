@@ -39,8 +39,8 @@ public final class y60 extends org.telegram.ui.Components.im0 {
         if ((i10 >= a70Var.E && i10 < a70Var.F) || i10 == a70Var.J) {
             return 0;
         }
-        if (i10 != a70Var.f35299y && i10 != a70Var.H) {
-            if (i10 != a70Var.f35298x && i10 != a70Var.K) {
+        if (i10 != a70Var.f35300y && i10 != a70Var.H) {
+            if (i10 != a70Var.f35299x && i10 != a70Var.K) {
                 if (i10 != a70Var.I) {
                     return 0;
                 }
@@ -71,7 +71,7 @@ public final class y60 extends org.telegram.ui.Components.im0 {
                         if (a70Var.J <= 0) {
                             z12 = false;
                         }
-                        TLRPC.TL_messages_stickerSet tL_messages_stickerSet = a70Var.f35295r;
+                        TLRPC.TL_messages_stickerSet tL_messages_stickerSet = a70Var.f35296r;
                         x60Var.f43109b = z12;
                         org.telegram.ui.Components.iu iuVar = x60Var.f43108a;
                         w60 w60Var = x60Var.f43111f;
@@ -100,7 +100,7 @@ public final class y60 extends org.telegram.ui.Components.im0 {
                     l4Var.setText(LocaleController.getString(i13));
                     return;
                 }
-            } else if (i10 == a70Var.f35298x) {
+            } else if (i10 == a70Var.f35299x) {
                 if (z11) {
                     i12 = R.string.ChooseEmojiPackMy;
                 } else {
@@ -143,7 +143,7 @@ public final class y60 extends org.telegram.ui.Components.im0 {
             }
             l8Var.d(tL_messages_stickerSet3, z10, false);
             l8Var.setDeleteAction(null);
-            TLRPC.TL_messages_stickerSet tL_messages_stickerSet4 = a70Var.f35295r;
+            TLRPC.TL_messages_stickerSet tL_messages_stickerSet4 = a70Var.f35296r;
             if (tL_messages_stickerSet4 != null) {
                 j10 = tL_messages_stickerSet4.set.f20303id;
             } else if (a70Var.b0(a70Var.v) != null) {
@@ -158,7 +158,7 @@ public final class y60 extends org.telegram.ui.Components.im0 {
             return;
         }
         l8Var.b(false, false);
-        l8Var.d(a70Var.f35295r, false, false);
+        l8Var.d(a70Var.f35296r, false, false);
         l8Var.setDeleteAction(new s50(this, 3));
     }
 

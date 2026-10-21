@@ -23,7 +23,7 @@ public final class q implements ValueAnimator.AnimatorUpdateListener {
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 l4 l4Var2 = this.f40327b;
                 l4Var2.Y0 = floatValue;
-                l4Var2.f38774q0.setTranslationY(((1.0f - floatValue) * AndroidUtilities.dp(51.0f)) + l4Var2.f38773p0);
+                l4Var2.f38775q0.setTranslationY(((1.0f - floatValue) * AndroidUtilities.dp(51.0f)) + l4Var2.f38774p0);
                 return;
         }
     }

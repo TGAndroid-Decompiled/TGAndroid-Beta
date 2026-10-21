@@ -6,27 +6,27 @@ import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.Utilities;
 public final class l70 implements Runnable {
-    public final int f38831a;
-    public final m70 f38832b;
-    public final String f38833c;
+    public final int f38832a;
+    public final m70 f38833b;
+    public final String f38834c;
 
     public l70(m70 m70Var, String str, int i10) {
-        this.f38831a = i10;
-        this.f38832b = m70Var;
-        this.f38833c = str;
+        this.f38832a = i10;
+        this.f38833b = m70Var;
+        this.f38834c = str;
     }
 
     @Override
     public final void run() {
         int i10;
-        switch (this.f38831a) {
+        switch (this.f38832a) {
             case 0:
-                Utilities.searchQueue.postRunnable(new l70(this.f38832b, this.f38833c, 1));
+                Utilities.searchQueue.postRunnable(new l70(this.f38833b, this.f38834c, 1));
                 return;
             default:
-                m70 m70Var = this.f38832b;
-                String str = this.f38833c;
-                n70 n70Var = m70Var.f39131b;
+                m70 m70Var = this.f38833b;
+                String str = this.f38834c;
+                n70 n70Var = m70Var.f39132b;
                 String lowerCase = str.trim().toLowerCase();
                 if (lowerCase.isEmpty()) {
                     ArrayList arrayList = new ArrayList();

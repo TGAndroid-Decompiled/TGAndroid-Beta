@@ -1342,7 +1342,7 @@ public abstract class q4 extends lw0 implements NotificationCenter.NotificationC
             return;
         }
         t0();
-        this.I2.f30557j0.f0();
+        this.I2.f30558j0.f0();
         this.I2.N1(-1, true);
         b3 b3Var = this.I2;
         b3Var.Z = this.B1;
@@ -1488,11 +1488,11 @@ public abstract class q4 extends lw0 implements NotificationCenter.NotificationC
                 Drawable mutate = getContext().getDrawable(R.drawable.verified_profile).mutate();
                 mutate.setAlpha(255);
                 zq zqVar = new zq(mutate, null);
-                zqVar.f33023w = true;
+                zqVar.f33024w = true;
                 int dp = AndroidUtilities.dp(16.0f);
                 int dp2 = AndroidUtilities.dp(16.0f);
                 zqVar.h = dp;
-                zqVar.f33020n = dp2;
+                zqVar.f33021n = dp2;
                 m4Var.f5609b.i(zqVar);
             } else {
                 m4Var.f5609b.i(null);
@@ -1517,11 +1517,11 @@ public abstract class q4 extends lw0 implements NotificationCenter.NotificationC
             Drawable mutate2 = getContext().getDrawable(R.drawable.verified_profile).mutate();
             mutate2.setAlpha(255);
             zq zqVar2 = new zq(mutate2, null);
-            zqVar2.f33023w = true;
+            zqVar2.f33024w = true;
             int dp3 = AndroidUtilities.dp(16.0f);
             int dp4 = AndroidUtilities.dp(16.0f);
             zqVar2.h = dp3;
-            zqVar2.f33020n = dp4;
+            zqVar2.f33021n = dp4;
             l4Var2.i(zqVar2);
             return;
         }
@@ -2253,7 +2253,7 @@ public abstract class q4 extends lw0 implements NotificationCenter.NotificationC
         }
         if (z10) {
             qc I = new xc(this.f5769c1, this.B0).I(R.raw.forward, LocaleController.getString(R.string.MessageSent), LocaleController.getString(R.string.ViewInChat), 5000, false, new d2(this, 2));
-            I.f29538r = false;
+            I.f29539r = false;
             I.k(false);
         }
         MessagesController.getInstance(this.C2).ensureMessagesLoaded(this.B1, 0, null);
@@ -3579,8 +3579,8 @@ public abstract class q4 extends lw0 implements NotificationCenter.NotificationC
         if (this.I2 == null) {
             b3 b3Var = new b3(this, getContext(), this.B0);
             this.I2 = b3Var;
-            b3Var.f30537c2 = new c3(this);
-            b3Var.f30557j0.f0();
+            b3Var.f30538c2 = new c3(this);
+            b3Var.f30558j0.f0();
             b3 b3Var2 = this.I2;
             b3Var2.W = true;
             b3Var2.t1();

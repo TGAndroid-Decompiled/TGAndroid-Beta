@@ -25,7 +25,7 @@ public final class zh0 extends org.telegram.ui.Components.vg {
 
     @Override
     public final boolean f() {
-        if (this.m0 && this.f43761n0.f39274q0 && this.f31246r <= 0) {
+        if (this.m0 && this.f43761n0.f39274p0 && this.f31247r <= 0) {
             return false;
         }
         return true;

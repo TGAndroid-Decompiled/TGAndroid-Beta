@@ -22,8 +22,8 @@ public final class e11 extends FrameLayout {
         aa0Var.getClass();
         UserConfig.getInstance(i10).unacceptedTermsOfService = null;
         UserConfig.getInstance(i10).saveConfig(false);
-        LaunchActivity launchActivity = aa0Var.f35322a;
-        ArrayList arrayList = launchActivity.f33161d0;
+        LaunchActivity launchActivity = aa0Var.f35323a;
+        ArrayList arrayList = launchActivity.f33162d0;
         if (!arrayList.isEmpty()) {
             ((org.telegram.ui.ActionBar.n2) i2.e.h(1, arrayList)).onResume();
         }

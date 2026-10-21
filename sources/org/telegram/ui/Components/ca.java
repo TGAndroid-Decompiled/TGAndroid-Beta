@@ -121,9 +121,9 @@ public final class ca implements View.OnClickListener {
             case 2:
                 ol olVar = (ol) obj2;
                 ql qlVar = (ql) obj;
-                rl rlVar = olVar.f29063b;
+                rl rlVar = olVar.f29064b;
                 ti tiVar = rlVar.f28173b;
-                org.telegram.ui.qn qnVar = (org.telegram.ui.qn) tiVar.f30545f0;
+                org.telegram.ui.qn qnVar = (org.telegram.ui.qn) tiVar.f30546f0;
                 if (qnVar.c()) {
                     parentActivity = rlVar.getParentActivity();
                     f5.L(parentActivity, qnVar.a(), new q2(8, olVar, qlVar), rlVar.f28172a);
@@ -155,7 +155,7 @@ public final class ca implements View.OnClickListener {
                 if (qnVar2.getParentActivity() != null) {
                     TLRPC.Chat chat = qnVar2.e;
                     if (chat != null && !ChatObject.canUserDoAdminAction(chat, 13)) {
-                        if (ooVar.f29084a.f17384f && qnVar2.getParentActivity() != null && qnVar2.fragmentView != null && qnVar2.Z7 != null) {
+                        if (ooVar.f29085a.f17384f && qnVar2.getParentActivity() != null && qnVar2.fragmentView != null && qnVar2.Z7 != null) {
                             if (qnVar2.f40789o2 == null) {
                                 r40 r40Var = new r40(7, qnVar2.getParentActivity(), qnVar2.f40673ea, true);
                                 qnVar2.f40789o2 = r40Var;
@@ -189,9 +189,9 @@ public final class ca implements View.OnClickListener {
                     } else {
                         i10 = 0;
                     }
-                    p8 p8Var = new p8(ooVar.getContext(), null, new lo(ooVar, r5), true, 0, ooVar.f29090d0);
+                    p8 p8Var = new p8(ooVar.getContext(), null, new lo(ooVar, r5), true, 0, ooVar.f29091d0);
                     p8Var.b(i10);
-                    ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = p8Var.f29256a;
+                    ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = p8Var.f29257a;
                     mo moVar = new mo(ooVar, actionBarPopupWindow$ActionBarPopupWindowLayout);
                     org.telegram.ui.ActionBar.m1[] m1VarArr = {moVar};
                     moVar.e = true;
@@ -263,8 +263,8 @@ public final class ca implements View.OnClickListener {
                 ps psVar2 = (ps) obj2;
                 os osVar = (os) obj;
                 psVar2.K();
-                osVar.f29130f = !osVar.f29130f;
-                osVar.f29133j.X.N(true);
+                osVar.f29131f = !osVar.f29131f;
+                osVar.f29134j.X.N(true);
                 psVar2.u();
                 return;
             case 9:
@@ -284,16 +284,16 @@ public final class ca implements View.OnClickListener {
                 tz tzVar = kzVar.v;
                 ax axVar = tzVar.D0;
                 if (axVar.indexOfChild(n8Var) != -1 && (T = axVar.T(n8Var)) != null) {
-                    if (T.b() == tzVar.f30732f1) {
-                        if (tzVar.f30738h1 != null) {
-                            uy uyVar = tzVar.f30775t1;
+                    if (T.b() == tzVar.f30733f1) {
+                        if (tzVar.f30739h1 != null) {
+                            uy uyVar = tzVar.f30776t1;
                             if (uyVar != null) {
                                 uyVar.y(tzVar.J1.f20277id);
                                 return;
                             }
                             return;
                         }
-                        SharedPreferences.Editor edit = MessagesController.getEmojiSettings(tzVar.f30722c1).edit();
+                        SharedPreferences.Editor edit = MessagesController.getEmojiSettings(tzVar.f30723c1).edit();
                         String str2 = "group_hide_stickers_" + tzVar.J1.f20277id;
                         TLRPC.StickerSet stickerSet = tzVar.J1.stickerset;
                         if (stickerSet != null) {
@@ -303,13 +303,13 @@ public final class ca implements View.OnClickListener {
                         }
                         edit.putLong(str2, j10).apply();
                         tzVar.X(false);
-                        kz kzVar2 = tzVar.f30792y0;
+                        kz kzVar2 = tzVar.f30793y0;
                         if (kzVar2 != null) {
                             kzVar2.l();
                             return;
                         }
                         return;
-                    } else if (kzVar.h.get(T.b()) == tzVar.f30744j1) {
+                    } else if (kzVar.h.get(T.b()) == tzVar.f30745j1) {
                         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(kzVar.f27982c);
                         String string = LocaleController.getString(R.string.ClearRecentStickersAlertTitle);
                         org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20605a;
@@ -481,7 +481,7 @@ public final class ca implements View.OnClickListener {
                 y9Var.j(true);
                 return;
             case 25:
-                org.telegram.ui.et.q().v(((my0) obj2).f28627r.m0);
+                org.telegram.ui.et.q().v(((my0) obj2).f28628r.m0);
                 org.telegram.ui.et.q().y((org.telegram.ui.Cells.e8) obj);
                 return;
             case 26:
@@ -506,7 +506,7 @@ public final class ca implements View.OnClickListener {
                 return;
             default:
                 View.OnClickListener onClickListener = (View.OnClickListener) obj;
-                ImageView imageView = ((z41) obj2).f32838s;
+                ImageView imageView = ((z41) obj2).f32839s;
                 imageView.animate().rotation(imageView.getRotation() + 180.0f).setDuration(380L).setInterpolator(bs.h).start();
                 if (onClickListener != null) {
                     onClickListener.onClick(view);

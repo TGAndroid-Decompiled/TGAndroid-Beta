@@ -6,47 +6,47 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.i80;
 import org.telegram.ui.qn;
 public final class fc implements Runnable {
-    public final int f18355a = 0;
-    public final long f18356b;
-    public final long f18357c;
+    public final int f18352a = 0;
+    public final long f18353b;
+    public final long f18354c;
     public final int d;
     public final Object e;
-    public final Object f18358f;
+    public final Object f18355f;
     public final Object h;
-    public final Object f18359n;
+    public final Object f18356n;
 
     public fc(MessagesController messagesController, TLRPC.updates_ChannelDifference updates_channeldifference, long j10, TLRPC.Chat chat, a0.h hVar, int i10, long j11) {
         this.e = messagesController;
-        this.f18358f = updates_channeldifference;
-        this.f18356b = j10;
+        this.f18355f = updates_channeldifference;
+        this.f18353b = j10;
         this.h = chat;
-        this.f18359n = hVar;
+        this.f18356n = hVar;
         this.d = i10;
-        this.f18357c = j11;
+        this.f18354c = j11;
     }
 
     @Override
     public final void run() {
-        switch (this.f18355a) {
+        switch (this.f18352a) {
             case 0:
                 int i10 = this.d;
-                long j10 = this.f18357c;
-                ((MessagesController) this.e).lambda$getChannelDifference$345((TLRPC.updates_ChannelDifference) this.f18358f, this.f18356b, (TLRPC.Chat) this.h, (a0.h) this.f18359n, i10, j10);
+                long j10 = this.f18354c;
+                ((MessagesController) this.e).lambda$getChannelDifference$345((TLRPC.updates_ChannelDifference) this.f18355f, this.f18353b, (TLRPC.Chat) this.h, (a0.h) this.f18356n, i10, j10);
                 return;
             case 1:
-                ((SendMessagesHelper) this.e).lambda$completeSendingGramTransfer$7(this.f18356b, this.f18357c, this.d, (TLRPC.Message) this.f18358f, (ArrayList) this.h, (MessageObject) this.f18359n);
+                ((SendMessagesHelper) this.e).lambda$completeSendingGramTransfer$7(this.f18353b, this.f18354c, this.d, (TLRPC.Message) this.f18355f, (ArrayList) this.h, (MessageObject) this.f18356n);
                 return;
             default:
                 org.telegram.ui.ActionBar.n2 n2Var = (org.telegram.ui.ActionBar.n2) this.h;
-                org.telegram.ui.ActionBar.d6 d6Var = (org.telegram.ui.ActionBar.d6) this.f18359n;
+                org.telegram.ui.ActionBar.d6 d6Var = (org.telegram.ui.ActionBar.d6) this.f18356n;
                 ((i80) this.e).u();
                 SharedPreferences notificationsSettings = MessagesController.getNotificationsSettings(this.d);
                 StringBuilder sb2 = new StringBuilder("sound_enabled_");
-                long j11 = this.f18356b;
-                long j12 = this.f18357c;
+                long j11 = this.f18353b;
+                long j12 = this.f18354c;
                 boolean z10 = notificationsSettings.getBoolean(g0.i(j11, j12, sb2), true);
                 notificationsSettings.edit().putBoolean(g0.i(j11, j12, new StringBuilder("sound_enabled_")), !z10 ? 1 : 0).apply();
-                ((i80) this.f18358f).u();
+                ((i80) this.f18355f).u();
                 if (org.telegram.ui.Components.xc.a(n2Var)) {
                     org.telegram.ui.Components.xc.S(z10 ? 1 : 0, n2Var, d6Var).j();
                     return;
@@ -57,21 +57,21 @@ public final class fc implements Runnable {
 
     public fc(SendMessagesHelper sendMessagesHelper, long j10, long j11, int i10, TLRPC.Message message, ArrayList arrayList, MessageObject messageObject) {
         this.e = sendMessagesHelper;
-        this.f18356b = j10;
-        this.f18357c = j11;
+        this.f18353b = j10;
+        this.f18354c = j11;
         this.d = i10;
-        this.f18358f = message;
+        this.f18355f = message;
         this.h = arrayList;
-        this.f18359n = messageObject;
+        this.f18356n = messageObject;
     }
 
     public fc(i80 i80Var, int i10, long j10, long j11, i80 i80Var2, qn qnVar, org.telegram.ui.ActionBar.d6 d6Var) {
         this.e = i80Var;
         this.d = i10;
-        this.f18356b = j10;
-        this.f18357c = j11;
-        this.f18358f = i80Var2;
+        this.f18353b = j10;
+        this.f18354c = j11;
+        this.f18355f = i80Var2;
         this.h = qnVar;
-        this.f18359n = d6Var;
+        this.f18356n = d6Var;
     }
 }

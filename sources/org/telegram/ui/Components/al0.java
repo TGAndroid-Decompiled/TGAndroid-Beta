@@ -34,12 +34,12 @@ public final class al0 extends w9 {
                 bl0 bl0Var = this.H;
                 al0 al0Var = bl0Var.f24976b;
                 super.dispatchDraw(canvas);
-                if (this.f31992a.getLottieAnimation() != null && !bl0Var.E) {
-                    this.f31992a.getLottieAnimation().start();
+                if (this.f31993a.getLottieAnimation() != null && !bl0Var.E) {
+                    this.f31993a.getLottieAnimation().start();
                 }
-                if (bl0Var.f24981s && !bl0Var.v && this.f31992a.getLottieAnimation() != null && this.f31992a.getLottieAnimation().A() && al0Var.f31992a.getLottieAnimation() != null && al0Var.f31992a.getLottieAnimation().u()) {
+                if (bl0Var.f24981s && !bl0Var.v && this.f31993a.getLottieAnimation() != null && this.f31993a.getLottieAnimation().A() && al0Var.f31993a.getLottieAnimation() != null && al0Var.f31993a.getLottieAnimation().u()) {
                     bl0Var.v = true;
-                    al0Var.f31992a.getLottieAnimation().N(0, false, true);
+                    al0Var.f31993a.getLottieAnimation().N(0, false, true);
                     al0Var.setVisibility(0);
                     Runnable runnable = bl0Var.P.P0;
                     if (runnable != null) {
@@ -83,9 +83,9 @@ public final class al0 extends w9 {
             case 2:
                 r5 r5Var = this.e;
                 if (r5Var != null) {
-                    imageReceiver = r5Var.f29837k;
+                    imageReceiver = r5Var.f29838k;
                 } else {
-                    imageReceiver = this.f31992a;
+                    imageReceiver = this.f31993a;
                 }
                 if (imageReceiver != null && imageReceiver.getLottieAnimation() != null) {
                     imageReceiver.getLottieAnimation().start();

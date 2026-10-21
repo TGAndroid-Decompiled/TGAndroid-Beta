@@ -261,12 +261,12 @@ public final class k0 {
     public final void q(TL_update.TL_updateStarsRevenueStatus tL_updateStarsRevenueStatus) {
         long peerDialogId = DialogObject.getPeerDialogId(tL_updateStarsRevenueStatus.peer);
         if (peerDialogId < 0) {
-            org.telegram.ui.ie ieVar = org.telegram.ui.ie.f37928x1;
-            if (ieVar != null && ieVar.f37955z0 == DialogObject.getPeerDialogId(tL_updateStarsRevenueStatus.peer)) {
-                org.telegram.ui.ie ieVar2 = org.telegram.ui.ie.f37928x1;
+            org.telegram.ui.ie ieVar = org.telegram.ui.ie.f37929x1;
+            if (ieVar != null && ieVar.f37956z0 == DialogObject.getPeerDialogId(tL_updateStarsRevenueStatus.peer)) {
+                org.telegram.ui.ie ieVar2 = org.telegram.ui.ie.f37929x1;
                 TLRPC.TL_starsRevenueStatus tL_starsRevenueStatus = tL_updateStarsRevenueStatus.status;
                 ieVar2.g0(tL_starsRevenueStatus.current_balance instanceof TL_stars.TL_starsTonAmount, tL_starsRevenueStatus);
-                org.telegram.ui.ie.f37928x1.e0();
+                org.telegram.ui.ie.f37929x1.e0();
                 return;
             }
             return;

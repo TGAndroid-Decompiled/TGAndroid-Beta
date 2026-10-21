@@ -24,7 +24,7 @@ public final class nr0 extends AnimatorListenerAdapter {
                 PhotoViewer photoViewer = this.f39681c;
                 photoViewer.B3 = false;
                 this.f39680b.setOutlineProvider(null);
-                ImageView imageView = photoViewer.f33451x3;
+                ImageView imageView = photoViewer.f33452x3;
                 if (imageView != null) {
                     imageView.setOutlineProvider(null);
                 }
@@ -41,7 +41,7 @@ public final class nr0 extends AnimatorListenerAdapter {
             default:
                 PhotoViewer photoViewer2 = this.f39681c;
                 photoViewer2.B3 = false;
-                photoViewer2.f33317i4.run();
+                photoViewer2.f33318i4.run();
                 AndroidUtilities.runOnUIThread(new xg0(23, this, this.f39680b), 100L);
                 return;
         }

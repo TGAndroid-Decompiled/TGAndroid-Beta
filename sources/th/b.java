@@ -63,7 +63,7 @@ public final class b extends Drawable implements DownloadController.FileDownload
         this.f47205y = new ne.b(u1Var, bs.h, 380L);
         p6 p6Var = new p6(false, false, false);
         this.f47196a = p6Var;
-        p6Var.f29225b = 21;
+        p6Var.f29226b = 21;
         p6Var.w(AndroidUtilities.dp(11.0f));
         p6Var.setCallback(u1Var);
         this.f47197b = new m9(i10, u1Var, AndroidUtilities.dp(18.0f), AndroidUtilities.dp(8.33f), AndroidUtilities.dpf2(1.0f));

@@ -336,7 +336,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                     byteBuffer.limit(i10);
                 }
             }
-            MediaController.this.recordQueue.postRunnable(new h3(5, this, byteBuffer));
+            MediaController.this.recordQueue.postRunnable(new i3(5, this, byteBuffer));
         }
 
         public void lambda$run$2(double d) {
@@ -436,20 +436,20 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                     MediaController.this.stopRecording(2, false, 0, false, 0L);
                 }
                 cv cvVar = cv.S;
-                if (cvVar != null && (w91Var2 = cvVar.f25261c) != null && w91Var2.f32034w) {
-                    w91Var2.f32016a.B();
+                if (cvVar != null && (w91Var2 = cvVar.f25261c) != null && w91Var2.f32035w) {
+                    w91Var2.f32017a.B();
                     w91Var2.n();
-                    w91Var2.f32025f0.d(true, true);
+                    w91Var2.f32026f0.d(true, true);
                 }
                 MediaController.this.callInProgress = true;
             } else if (i10 == 0) {
                 MediaController.this.callInProgress = false;
             } else if (i10 == 2) {
                 cv cvVar2 = cv.S;
-                if (cvVar2 != null && (w91Var = cvVar2.f25261c) != null && w91Var.f32034w) {
-                    w91Var.f32016a.B();
+                if (cvVar2 != null && (w91Var = cvVar2.f25261c) != null && w91Var.f32035w) {
+                    w91Var.f32017a.B();
                     w91Var.n();
-                    w91Var.f32025f0.d(true, true);
+                    w91Var.f32026f0.d(true, true);
                 }
                 MediaController.this.callInProgress = true;
             }
@@ -532,7 +532,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         @Override
         public void run() {
             synchronized (MediaController.this.sync) {
-                AndroidUtilities.runOnUIThread(new h3(6, this, this.val$currentPlayingMessageObject));
+                AndroidUtilities.runOnUIThread(new i3(6, this, this.val$currentPlayingMessageObject));
             }
         }
     }
@@ -1252,7 +1252,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         }
 
         private void addMessageToLoad(MessageObject messageObject) {
-            AndroidUtilities.runOnUIThread(new h3(7, this, messageObject));
+            AndroidUtilities.runOnUIThread(new i3(7, this, messageObject));
         }
 
         private void checkIfFinished() {
@@ -2252,9 +2252,9 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             this.blurType = inputSerializedData.readInt32(z10);
             this.sharpenValue = inputSerializedData.readFloat(z10);
             zf0 zf0Var = this.curvesToolValue;
-            zf0Var.f32888a.c(inputSerializedData, z10);
-            zf0Var.f32889b.c(inputSerializedData, z10);
-            zf0Var.f32890c.c(inputSerializedData, z10);
+            zf0Var.f32889a.c(inputSerializedData, z10);
+            zf0Var.f32890b.c(inputSerializedData, z10);
+            zf0Var.f32891c.c(inputSerializedData, z10);
             zf0Var.d.c(inputSerializedData, z10);
             this.blurExcludeSize = inputSerializedData.readFloat(z10);
             if (inputSerializedData.readInt32(z10) == 1450380236) {
@@ -2287,9 +2287,9 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             outputSerializedData.writeInt32(this.blurType);
             outputSerializedData.writeFloat(this.sharpenValue);
             zf0 zf0Var = this.curvesToolValue;
-            zf0Var.f32888a.d(outputSerializedData);
-            zf0Var.f32889b.d(outputSerializedData);
-            zf0Var.f32890c.d(outputSerializedData);
+            zf0Var.f32889a.d(outputSerializedData);
+            zf0Var.f32890b.d(outputSerializedData);
+            zf0Var.f32891c.d(outputSerializedData);
             zf0Var.d.d(outputSerializedData);
             outputSerializedData.writeFloat(this.blurExcludeSize);
             if (this.blurExcludePoint == null) {
@@ -3931,26 +3931,26 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
     public void lambda$startRecording$38(final int i10, final int i11, long j10, long j11, MessageSuggestionParams messageSuggestionParams, MessageObject messageObject, MessageObject messageObject2, TL_stories.StoryItem storyItem, SendMessageChatArguments sendMessageChatArguments) {
         if (this.audioRecorder != null) {
             AndroidUtilities.runOnUIThread(new Runnable(this) {
-                public final MediaController f19205b;
+                public final MediaController f19202b;
 
                 {
-                    this.f19205b = this;
+                    this.f19202b = this;
                 }
 
                 @Override
                 public final void run() {
                     switch (r4) {
                         case 0:
-                            this.f19205b.lambda$startRecording$34(i10, i11);
+                            this.f19202b.lambda$startRecording$34(i10, i11);
                             return;
                         case 1:
-                            this.f19205b.lambda$startRecording$35(i10, i11);
+                            this.f19202b.lambda$startRecording$35(i10, i11);
                             return;
                         case 2:
-                            this.f19205b.lambda$startRecording$36(i10, i11);
+                            this.f19202b.lambda$startRecording$36(i10, i11);
                             return;
                         default:
-                            this.f19205b.lambda$startRecording$37(i10, i11);
+                            this.f19202b.lambda$startRecording$37(i10, i11);
                             return;
                     }
                 }
@@ -3992,26 +3992,26 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         try {
             if (startRecord(this.recordingAudioFile.getPath(), this.sampleRate) == 0) {
                 AndroidUtilities.runOnUIThread(new Runnable(this) {
-                    public final MediaController f19205b;
+                    public final MediaController f19202b;
 
                     {
-                        this.f19205b = this;
+                        this.f19202b = this;
                     }
 
                     @Override
                     public final void run() {
                         switch (r4) {
                             case 0:
-                                this.f19205b.lambda$startRecording$34(i10, i11);
+                                this.f19202b.lambda$startRecording$34(i10, i11);
                                 return;
                             case 1:
-                                this.f19205b.lambda$startRecording$35(i10, i11);
+                                this.f19202b.lambda$startRecording$35(i10, i11);
                                 return;
                             case 2:
-                                this.f19205b.lambda$startRecording$36(i10, i11);
+                                this.f19202b.lambda$startRecording$36(i10, i11);
                                 return;
                             default:
-                                this.f19205b.lambda$startRecording$37(i10, i11);
+                                this.f19202b.lambda$startRecording$37(i10, i11);
                                 return;
                         }
                     }
@@ -4045,26 +4045,26 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             this.audioRecorder.startRecording();
             this.recordQueue.postRunnable(this.recordRunnable);
             AndroidUtilities.runOnUIThread(new Runnable(this) {
-                public final MediaController f19205b;
+                public final MediaController f19202b;
 
                 {
-                    this.f19205b = this;
+                    this.f19202b = this;
                 }
 
                 @Override
                 public final void run() {
                     switch (r4) {
                         case 0:
-                            this.f19205b.lambda$startRecording$34(i10, i11);
+                            this.f19202b.lambda$startRecording$34(i10, i11);
                             return;
                         case 1:
-                            this.f19205b.lambda$startRecording$35(i10, i11);
+                            this.f19202b.lambda$startRecording$35(i10, i11);
                             return;
                         case 2:
-                            this.f19205b.lambda$startRecording$36(i10, i11);
+                            this.f19202b.lambda$startRecording$36(i10, i11);
                             return;
                         default:
-                            this.f19205b.lambda$startRecording$37(i10, i11);
+                            this.f19202b.lambda$startRecording$37(i10, i11);
                             return;
                     }
                 }
@@ -4089,26 +4089,26 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             }
             setBluetoothScoOn(false);
             AndroidUtilities.runOnUIThread(new Runnable(this) {
-                public final MediaController f19205b;
+                public final MediaController f19202b;
 
                 {
-                    this.f19205b = this;
+                    this.f19202b = this;
                 }
 
                 @Override
                 public final void run() {
                     switch (r4) {
                         case 0:
-                            this.f19205b.lambda$startRecording$34(i10, i11);
+                            this.f19202b.lambda$startRecording$34(i10, i11);
                             return;
                         case 1:
-                            this.f19205b.lambda$startRecording$35(i10, i11);
+                            this.f19202b.lambda$startRecording$35(i10, i11);
                             return;
                         case 2:
-                            this.f19205b.lambda$startRecording$36(i10, i11);
+                            this.f19202b.lambda$startRecording$36(i10, i11);
                             return;
                         default:
-                            this.f19205b.lambda$startRecording$37(i10, i11);
+                            this.f19202b.lambda$startRecording$37(i10, i11);
                             return;
                     }
                 }

@@ -510,7 +510,7 @@ public class dp0 extends FrameLayout {
         }
         float f23 = this.H;
         if (f23 < 1.0f) {
-            float interpolation = 1.0f - st.f30355c.getInterpolation(Math.min(1.0f, f23 * 3.0f));
+            float interpolation = 1.0f - st.f30356c.getInterpolation(Math.min(1.0f, f23 * 3.0f));
             float interpolation2 = st.d.getInterpolation(this.H);
             if (interpolation > f7) {
                 canvas2.drawCircle(i18 + this.I, (i15 / 2) + i16, this.F * interpolation, paint2);

@@ -39,7 +39,7 @@ public final class g4 implements Runnable {
             case 7:
                 AndroidUtilities.addToClipboard(this.f1350c);
                 org.telegram.ui.Components.qc k10 = this.f1349b.getBulletinFactory().k(false);
-                k10.f29540t = true;
+                k10.f29541t = true;
                 k10.j();
                 return;
             default:

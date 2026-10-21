@@ -303,7 +303,7 @@ public class MessagePreviewParams {
             MessagePreviewParams messagePreviewParams = oc0Var.d;
             int i10 = 0;
             while (true) {
-                View[] viewArr = oc0Var.f28988f.e;
+                View[] viewArr = oc0Var.f28989f.e;
                 if (i10 < viewArr.length) {
                     View view = viewArr[i10];
                     if (view instanceof ic0) {
@@ -320,7 +320,7 @@ public class MessagePreviewParams {
                         ic0Var.i();
                         if (i11 == 0) {
                             MessageObject messageObject = null;
-                            if (oc0Var.f28986b && !messagePreviewParams.isSecret) {
+                            if (oc0Var.f28987b && !messagePreviewParams.isSecret) {
                                 org.telegram.ui.Cells.v9 v9Var = ac0Var.W;
                                 if (v9Var != null) {
                                     messageObject = ((org.telegram.ui.Cells.u1) v9Var).getMessageObject();
@@ -328,7 +328,7 @@ public class MessagePreviewParams {
                                 MessageObject c10 = ic0Var.c(messageObject);
                                 if (c10 != null) {
                                     messagePreviewParams.quoteStart = 0;
-                                    int min = Math.min(MessagesController.getInstance(oc0Var.f28992w).quoteLengthMax, gn.d(c10));
+                                    int min = Math.min(MessagesController.getInstance(oc0Var.f28993w).quoteLengthMax, gn.d(c10));
                                     messagePreviewParams.quoteEnd = min;
                                     messagePreviewParams.quote = gn.c(c10, messagePreviewParams.quoteStart, min);
                                     View d = ic0Var.d();
@@ -547,10 +547,10 @@ public class MessagePreviewParams {
                 TLRPC.TL_messageReplyHeader tL_messageReplyHeader = new TLRPC.TL_messageReplyHeader();
                 tL_message.reply_to = tL_messageReplyHeader;
                 if (gnVar != null) {
-                    tL_messageReplyHeader.quote_text = gnVar.f37362i;
+                    tL_messageReplyHeader.quote_text = gnVar.f37363i;
                     int i13 = tL_messageReplyHeader.flags;
                     tL_messageReplyHeader.flags = i13 | 64;
-                    ArrayList<TLRPC.MessageEntity> arrayList = gnVar.f37363j;
+                    ArrayList<TLRPC.MessageEntity> arrayList = gnVar.f37364j;
                     tL_messageReplyHeader.quote_entities = arrayList;
                     if (arrayList != null) {
                         tL_messageReplyHeader.flags = i13 | 192;
@@ -609,7 +609,7 @@ public class MessagePreviewParams {
             MessagePreviewParams messagePreviewParams = oc0Var.d;
             int i14 = 0;
             while (true) {
-                View[] viewArr = oc0Var.f28988f.e;
+                View[] viewArr = oc0Var.f28989f.e;
                 if (i14 < viewArr.length) {
                     View view = viewArr[i14];
                     if (view != null) {
@@ -688,15 +688,15 @@ public class MessagePreviewParams {
         } else {
             MessageObject messageObject3 = messageObject2;
             if (messageObject3 == null) {
-                messageObject3 = gnVar2.f37357a;
+                messageObject3 = gnVar2.f37358a;
             }
             this.replyMessage = new Messages(this, null, 1, messageObject3, j10);
         }
         if (!this.replyMessage.messages.isEmpty()) {
             this.quote = gnVar2;
             if (gnVar2 != null) {
-                this.quoteStart = gnVar2.f37358b;
-                this.quoteEnd = gnVar2.f37359c;
+                this.quoteStart = gnVar2.f37359b;
+                this.quoteEnd = gnVar2.f37360c;
                 return;
             }
             return;

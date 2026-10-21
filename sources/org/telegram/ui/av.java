@@ -20,19 +20,19 @@ import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.Components.ScrollSlidingTextTabStrip;
 public final class av extends org.telegram.ui.ActionBar.n2 {
-    public static final org.telegram.ui.Components.gs0 f35426x = new org.telegram.ui.Components.gs0(2);
-    public cy f35427a;
-    public ContactsActivity f35428b;
-    public org.telegram.ui.ActionBar.u0 f35429c;
+    public static final org.telegram.ui.Components.gs0 f35427x = new org.telegram.ui.Components.gs0(2);
+    public cy f35428a;
+    public ContactsActivity f35429b;
+    public org.telegram.ui.ActionBar.u0 f35430c;
     public Paint d;
     public ScrollSlidingTextTabStrip e;
-    public zu[] f35430f;
+    public zu[] f35431f;
     public AnimatorSet h;
-    public boolean f35431n;
-    public boolean f35432r;
-    public boolean f35433s;
+    public boolean f35432n;
+    public boolean f35433r;
+    public boolean f35434s;
     public int v;
-    public boolean f35434w;
+    public boolean f35435w;
 
     public static void U(av avVar, TLRPC.User user) {
         if (MessagesController.isSupportUser(user)) {
@@ -53,7 +53,7 @@ public final class av extends org.telegram.ui.ActionBar.n2 {
     }
 
     public static void j0(av avVar, float f7) {
-        zu[] zuVarArr = avVar.f35430f;
+        zu[] zuVarArr = avVar.f35431f;
         avVar.actionBar.setTranslationY(f7);
         for (int i10 = 0; i10 < zuVarArr.length; i10++) {
             int i11 = (int) f7;
@@ -71,9 +71,9 @@ public final class av extends org.telegram.ui.ActionBar.n2 {
         float f7;
         org.telegram.ui.Components.jm0 jm0Var;
         ai.u1 u1Var;
-        ContactsActivity contactsActivity = this.f35428b;
-        cy cyVar = this.f35427a;
-        zu[] zuVarArr = this.f35430f;
+        ContactsActivity contactsActivity = this.f35429b;
+        cy cyVar = this.f35428a;
+        zu[] zuVarArr = this.f35431f;
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
         this.actionBar.setTitle(LocaleController.getString(R.string.BlockUserMultiTitle));
         org.telegram.ui.ActionBar.d5 d5Var = this.parentLayout;
@@ -91,7 +91,7 @@ public final class av extends org.telegram.ui.ActionBar.n2 {
         org.telegram.ui.ActionBar.u0 a2 = this.actionBar.n().a(0, R.drawable.outline_header_search);
         a2.F();
         a2.H = new ig.c2(this, 9);
-        this.f35429c = a2;
+        this.f35430c = a2;
         a2.setSearchFieldHint(LocaleController.getString(R.string.Search));
         ScrollSlidingTextTabStrip scrollSlidingTextTabStrip = new ScrollSlidingTextTabStrip(context, null);
         this.e = scrollSlidingTextTabStrip;
@@ -113,7 +113,7 @@ public final class av extends org.telegram.ui.ActionBar.n2 {
                 zu zuVar2 = zuVarArr[i10];
                 zuVar2.f43804a = cyVar;
                 f7 = f10;
-                zuVar2.d = cyVar.f36091e0[0].f35442a;
+                zuVar2.d = cyVar.f36092e0[0].f35443a;
                 cyVar.K3();
                 lx lxVar = cyVar.C0;
                 if (lxVar != null) {
@@ -127,7 +127,7 @@ public final class av extends org.telegram.ui.ActionBar.n2 {
                 if (i10 == 1) {
                     zu zuVar3 = zuVarArr[i10];
                     zuVar3.f43804a = contactsActivity;
-                    zuVar3.d = contactsActivity.f33083f;
+                    zuVar3.d = contactsActivity.f33084f;
                     zuVar3.setVisibility(8);
                 }
             }
@@ -174,7 +174,7 @@ public final class av extends org.telegram.ui.ActionBar.n2 {
         if (this.e.getCurrentTabId() == this.e.getFirstTabId()) {
             z10 = true;
         }
-        this.f35434w = z10;
+        this.f35435w = z10;
         return this.fragmentView;
     }
 
@@ -190,14 +190,14 @@ public final class av extends org.telegram.ui.ActionBar.n2 {
         arrayList.add(new org.telegram.ui.ActionBar.j6(this.e.getTabsContainer(), 262148, new Class[]{TextView.class}, null, null, null, org.telegram.ui.ActionBar.h6.J8));
         arrayList.add(new org.telegram.ui.ActionBar.j6(this.e.getTabsContainer(), 65568, new Class[]{TextView.class}, null, null, null, org.telegram.ui.ActionBar.h6.K8));
         arrayList.add(new org.telegram.ui.ActionBar.j6(null, 0, null, null, new Drawable[]{this.e.getSelectorDrawable()}, null, org.telegram.ui.ActionBar.h6.L8));
-        arrayList.addAll(this.f35427a.getThemeDescriptions());
-        arrayList.addAll(this.f35428b.getThemeDescriptions());
+        arrayList.addAll(this.f35428a.getThemeDescriptions());
+        arrayList.addAll(this.f35429b.getThemeDescriptions());
         return arrayList;
     }
 
     @Override
     public final boolean isSwipeBackEnabled(MotionEvent motionEvent) {
-        return this.f35434w;
+        return this.f35435w;
     }
 
     public final void l0(TLRPC.User user) {
@@ -219,7 +219,7 @@ public final class av extends org.telegram.ui.ActionBar.n2 {
 
     public final void m0(boolean z10) {
         org.telegram.ui.Components.jm0 jm0Var;
-        zu[] zuVarArr = this.f35430f;
+        zu[] zuVarArr = this.f35431f;
         for (int i10 = 0; i10 < zuVarArr.length; i10++) {
             zuVarArr[i10].d.B0();
             ai.u1 u1Var = zuVarArr[i10].e;
@@ -245,11 +245,11 @@ public final class av extends org.telegram.ui.ActionBar.n2 {
 
     @Override
     public final void onFragmentDestroy() {
-        cy cyVar = this.f35427a;
+        cy cyVar = this.f35428a;
         if (cyVar != null) {
             cyVar.onFragmentDestroy();
         }
-        ContactsActivity contactsActivity = this.f35428b;
+        ContactsActivity contactsActivity = this.f35429b;
         if (contactsActivity != null) {
             contactsActivity.onFragmentDestroy();
         }
@@ -259,11 +259,11 @@ public final class av extends org.telegram.ui.ActionBar.n2 {
     @Override
     public final void onPause() {
         super.onPause();
-        cy cyVar = this.f35427a;
+        cy cyVar = this.f35428a;
         if (cyVar != null) {
             cyVar.onPause();
         }
-        ContactsActivity contactsActivity = this.f35428b;
+        ContactsActivity contactsActivity = this.f35429b;
         if (contactsActivity != null) {
             contactsActivity.onPause();
         }
@@ -272,11 +272,11 @@ public final class av extends org.telegram.ui.ActionBar.n2 {
     @Override
     public final void onResume() {
         super.onResume();
-        cy cyVar = this.f35427a;
+        cy cyVar = this.f35428a;
         if (cyVar != null) {
             cyVar.onResume();
         }
-        ContactsActivity contactsActivity = this.f35428b;
+        ContactsActivity contactsActivity = this.f35429b;
         if (contactsActivity != null) {
             contactsActivity.onResume();
         }

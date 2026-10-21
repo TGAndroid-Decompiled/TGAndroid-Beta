@@ -359,8 +359,8 @@ public final class o implements Runnable {
                 l4 l4Var = (l4) this.f838c;
                 String str4 = (String) this.d;
                 int i30 = this.f837b;
-                HashMap hashMap = new HashMap(l4Var.f38778u0[0].f39754c.f38165w);
-                ArrayList arrayList2 = new ArrayList(l4Var.f38778u0[0].f39754c.f38166x);
+                HashMap hashMap = new HashMap(l4Var.f38779u0[0].f39754c.f38166w);
+                ArrayList arrayList2 = new ArrayList(l4Var.f38779u0[0].f39754c.f38167x);
                 l4Var.V0 = null;
                 Utilities.searchQueue.postRunnable(new ub(l4Var, arrayList2, hashMap, str4, i30, 15));
                 return;

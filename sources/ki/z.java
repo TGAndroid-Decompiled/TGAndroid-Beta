@@ -455,7 +455,7 @@ public final class z extends a0 implements org.telegram.ui.ActionBar.y5, m9, l0,
         super.onAttachedToWindow();
         this.T = true;
         this.f15671w.m(this);
-        this.f15672x.f33005s = this;
+        this.f15672x.f33006s = this;
         m(false);
         int i10 = this.f15668n;
         NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.messagePlayingDidStart);

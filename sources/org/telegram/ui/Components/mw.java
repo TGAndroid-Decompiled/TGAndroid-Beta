@@ -13,12 +13,12 @@ import org.telegram.messenger.EmojiData;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.MessagesController;
 public final class mw implements ni.c, zl0, fn0, ne.d {
-    public final int f28612a;
-    public final tz f28613b;
+    public final int f28613a;
+    public final tz f28614b;
 
     public mw(tz tzVar, int i10) {
-        this.f28612a = i10;
-        this.f28613b = tzVar;
+        this.f28613a = i10;
+        this.f28614b = tzVar;
     }
 
     @Override
@@ -34,7 +34,7 @@ public final class mw implements ni.c, zl0, fn0, ne.d {
         int i15;
         float f10;
         boolean z11;
-        tz tzVar = this.f28613b;
+        tz tzVar = this.f28614b;
         int i16 = tzVar.C1;
         ey eyVar = tzVar.P;
         int[] iArr = tzVar.D1;
@@ -49,7 +49,7 @@ public final class mw implements ni.c, zl0, fn0, ne.d {
                     b1Var = eyVar.T(F);
                 }
                 if (b1Var != null && b1Var.b() <= tzVar.getRecentEmoji().size()) {
-                    tzVar.f30775t1.n();
+                    tzVar.f30776t1.n();
                 }
                 eyVar.y1(view);
                 return true;
@@ -216,32 +216,32 @@ public final class mw implements ni.c, zl0, fn0, ne.d {
         int i14;
         int i15;
         fz fzVar;
-        switch (this.f28612a) {
+        switch (this.f28613a) {
             case 2:
-                tz tzVar = this.f28613b;
-                zy zyVar = tzVar.f30740i0;
-                int i16 = tzVar.f30722c1;
-                yy yyVar = tzVar.f30754n0;
-                bz bzVar = tzVar.f30746k0;
-                if (i10 != tzVar.f30771s0 || !yyVar.f32764x.isEmpty()) {
-                    tzVar.f30737h0.B0();
-                    tzVar.f30760p0.k(i10, 0);
-                    if (i10 != tzVar.f30767r0 && i10 != tzVar.f30771s0) {
+                tz tzVar = this.f28614b;
+                zy zyVar = tzVar.f30741i0;
+                int i16 = tzVar.f30723c1;
+                yy yyVar = tzVar.f30755n0;
+                bz bzVar = tzVar.f30747k0;
+                if (i10 != tzVar.f30772s0 || !yyVar.f32765x.isEmpty()) {
+                    tzVar.f30738h0.B0();
+                    tzVar.f30761p0.k(i10, 0);
+                    if (i10 != tzVar.f30768r0 && i10 != tzVar.f30772s0) {
                         ArrayList<String> arrayList = MessagesController.getInstance(i16).gifSearchEmojies;
-                        tzVar.f30743j0.H(arrayList.get(i10 - tzVar.f30774t0));
-                        int i17 = i10 - tzVar.f30774t0;
+                        tzVar.f30744j0.H(arrayList.get(i10 - tzVar.f30775t0));
+                        int i17 = i10 - tzVar.f30775t0;
                         if (i17 > 0) {
                             bzVar.a(arrayList.get(i17 - 1), true);
                         }
-                        if (i10 - tzVar.f30774t0 < arrayList.size() - 1) {
-                            bzVar.a(arrayList.get((i10 - tzVar.f30774t0) + 1), true);
+                        if (i10 - tzVar.f30775t0 < arrayList.size() - 1) {
+                            bzVar.a(arrayList.get((i10 - tzVar.f30775t0) + 1), true);
                         }
                     } else {
-                        tzVar.f30757o0.d.setText("");
-                        if (i10 == tzVar.f30771s0 && (i12 = yyVar.I) >= 1) {
+                        tzVar.f30758o0.d.setText("");
+                        if (i10 == tzVar.f30772s0 && (i12 = yyVar.I) >= 1) {
                             zyVar.h1(i12, -AndroidUtilities.dp(4.0f));
                         } else {
-                            uy uyVar = tzVar.f30775t1;
+                            uy uyVar = tzVar.f30776t1;
                             if (uyVar != null && uyVar.A()) {
                                 i11 = 0;
                             } else {
@@ -249,7 +249,7 @@ public final class mw implements ni.c, zl0, fn0, ne.d {
                             }
                             zyVar.h1(i11, 0);
                         }
-                        if (i10 == tzVar.f30771s0) {
+                        if (i10 == tzVar.f30772s0) {
                             ArrayList<String> arrayList2 = MessagesController.getInstance(i16).gifSearchEmojies;
                             if (!arrayList2.isEmpty()) {
                                 bzVar.a(arrayList2.get(0), true);
@@ -261,15 +261,15 @@ public final class mw implements ni.c, zl0, fn0, ne.d {
                 }
                 return;
             default:
-                tz tzVar2 = this.f28613b;
+                tz tzVar2 = this.f28614b;
                 dx dxVar = tzVar2.G0;
-                ArrayList arrayList3 = tzVar2.f30725d1;
+                ArrayList arrayList3 = tzVar2.f30726d1;
                 ex exVar = tzVar2.B0;
-                kz kzVar = tzVar2.f30792y0;
+                kz kzVar = tzVar2.f30793y0;
                 ax axVar = tzVar2.D0;
                 if (!tzVar2.S0) {
                     if (i10 == tzVar2.H1) {
-                        tzVar2.f30775t1.o(new d61(tzVar2.getContext(), new mx(tzVar2), tzVar2.f30789x1, tzVar2.f30793y1, tzVar2.f30796z1, null, tzVar2.Z1));
+                        tzVar2.f30776t1.o(new d61(tzVar2.getContext(), new mx(tzVar2), tzVar2.f30790x1, tzVar2.f30794y1, tzVar2.f30797z1, null, tzVar2.Z1));
                         return;
                     }
                     if (dxVar != null && (fzVar = dxVar.f26693r) != null && fzVar.getSelectedCategory() != null) {
@@ -342,11 +342,11 @@ public final class mw implements ni.c, zl0, fn0, ne.d {
     @Override
     public void c(int i10) {
         float f7;
-        tz tzVar = this.f28613b;
-        bh.f fVar = tzVar.f30745j2;
-        RectF rectF = tzVar.f30794y2;
+        tz tzVar = this.f28614b;
+        bh.f fVar = tzVar.f30746j2;
+        RectF rectF = tzVar.f30795y2;
         if (Build.VERSION.SDK_INT >= 31 && fVar != null) {
-            ih.j.c(tzVar.f30783w, tzVar, rectF);
+            ih.j.c(tzVar.f30784w, tzVar, rectF);
             float f10 = 0.0f;
             if (LiteMode.isEnabled(262144)) {
                 f7 = 0.0f;
@@ -359,14 +359,14 @@ public final class mw implements ni.c, zl0, fn0, ne.d {
             rectF.inset(f7, f10);
             rectF.right = tzVar.getMeasuredWidth();
             rectF.bottom = Math.min(rectF.bottom, tzVar.getMeasuredHeight());
-            fVar.g(!rectF.isEmpty(), tzVar.f30797z2);
-            fVar.e(tzVar.f30748k2, tzVar.getWidth(), tzVar.getHeight());
+            fVar.g(!rectF.isEmpty(), tzVar.f30798z2);
+            fVar.e(tzVar.f30749k2, tzVar.getWidth(), tzVar.getHeight());
         }
     }
 
     @Override
     public void r(int i10, float f7, float f10, ne.e eVar) {
-        this.f28613b.R();
+        this.f28614b.R();
     }
 
     @Override

@@ -45,7 +45,7 @@ public final class q2 extends z4.a {
         } else {
             z2 z2Var2 = new z2(s2Var.getContext(), l4Var, j4Var, 1);
             TL_iv.pageBlockVideo pageblockvideo = (TL_iv.pageBlockVideo) pageBlock;
-            z2Var2.b(pageblockvideo, (a3) l4Var.f35530y.f(pageblockvideo.video_id), false, true);
+            z2Var2.b(pageblockvideo, (a3) l4Var.f35531y.f(pageblockvideo.video_id), false, true);
             z2Var = z2Var2;
         }
         gVar.addView(z2Var);

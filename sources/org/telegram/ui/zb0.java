@@ -24,7 +24,7 @@ public final class zb0 extends AnimatorListenerAdapter {
                 ((ne0) this.f43711b).f39559s = null;
                 return;
             case 7:
-                ((PhotoViewer) ((org.telegram.ui.Components.nl0) this.f43711b).f28842c).A2 = null;
+                ((PhotoViewer) ((org.telegram.ui.Components.nl0) this.f43711b).f28843c).A2 = null;
                 return;
             default:
                 super.onAnimationCancel(animator);
@@ -104,14 +104,14 @@ public final class zb0 extends AnimatorListenerAdapter {
                     oq0Var.h.j(1.0f, oq0Var.f39964n[0].e);
                 }
                 oq0Var.f39966s = false;
-                lq0Var.f38988y0 = false;
-                lq0Var.f38987x0 = false;
+                lq0Var.f38989y0 = false;
+                lq0Var.f38988x0 = false;
                 kVar = ((org.telegram.ui.ActionBar.n2) oq0Var).actionBar;
                 kVar.setEnabled(true);
                 oq0Var.h.setEnabled(true);
                 return;
             case 7:
-                PhotoViewer photoViewer = (PhotoViewer) ((org.telegram.ui.Components.nl0) obj).f28842c;
+                PhotoViewer photoViewer = (PhotoViewer) ((org.telegram.ui.Components.nl0) obj).f28843c;
                 if (photoViewer.A2 != null) {
                     ck0 ck0Var = new ck0(this, 18);
                     photoViewer.I2 = ck0Var;
@@ -121,18 +121,18 @@ public final class zb0 extends AnimatorListenerAdapter {
                 return;
             case 8:
                 ct0 ct0Var = (ct0) obj;
-                PhotoViewer photoViewer2 = ct0Var.f36051b;
-                mg.p pVar = photoViewer2.C1.f29036b;
+                PhotoViewer photoViewer2 = ct0Var.f36052b;
+                mg.p pVar = photoViewer2.C1.f29037b;
                 pVar.q();
                 CropAreaView cropAreaView = pVar.f16917a;
                 cropAreaView.setDimVisibility(true);
                 cropAreaView.f(true, true);
                 cropAreaView.invalidate();
-                photoViewer2.C1.f29036b.J = true;
-                photoViewer2.f33379p6 = null;
-                photoViewer2.f33423u4 = ct0Var.f36050a;
+                photoViewer2.C1.f29037b.J = true;
+                photoViewer2.f33380p6 = null;
+                photoViewer2.f33424u4 = ct0Var.f36051a;
                 ei.b4 b4Var = photoViewer2.g1().L;
-                if (photoViewer2.f33423u4 != 0) {
+                if (photoViewer2.f33424u4 != 0) {
                     z11 = true;
                 } else {
                     z11 = false;
@@ -140,31 +140,31 @@ public final class zb0 extends AnimatorListenerAdapter {
                 b4Var.b(z11);
                 ei.b4 b4Var2 = photoViewer2.K1;
                 if (b4Var2 != null) {
-                    if (photoViewer2.f33423u4 != 3) {
+                    if (photoViewer2.f33424u4 != 3) {
                         z13 = true;
                     }
                     b4Var2.b(z13);
                 }
-                if (photoViewer2.f33423u4 != 3) {
+                if (photoViewer2.f33424u4 != 3) {
                     photoViewer2.Z5 = 0.0f;
                 }
-                photoViewer2.f33371o6 = -1;
-                photoViewer2.f33284e6 = 1.0f;
-                photoViewer2.f33246a6 = 1.0f;
-                photoViewer2.f33266c6 = 0.0f;
-                photoViewer2.f33275d6 = 0.0f;
+                photoViewer2.f33372o6 = -1;
+                photoViewer2.f33285e6 = 1.0f;
+                photoViewer2.f33247a6 = 1.0f;
+                photoViewer2.f33267c6 = 0.0f;
+                photoViewer2.f33276d6 = 0.0f;
                 photoViewer2.y3(1.0f);
-                photoViewer2.f33412t2 = true;
-                photoViewer2.f33278e0.invalidate();
+                photoViewer2.f33413t2 = true;
+                photoViewer2.f33279e0.invalidate();
                 return;
             case 9:
                 dt0 dt0Var = (dt0) obj;
-                PhotoViewer photoViewer3 = dt0Var.f36448b;
+                PhotoViewer photoViewer3 = dt0Var.f36449b;
                 photoViewer3.I1.f25476i0.setVisibility(0);
-                photoViewer3.f33379p6 = null;
-                photoViewer3.f33423u4 = dt0Var.f36447a;
+                photoViewer3.f33380p6 = null;
+                photoViewer3.f33424u4 = dt0Var.f36448a;
                 ei.b4 b4Var3 = photoViewer3.g1().L;
-                if (photoViewer3.f33423u4 != 0) {
+                if (photoViewer3.f33424u4 != 0) {
                     z12 = true;
                 } else {
                     z12 = false;
@@ -172,25 +172,25 @@ public final class zb0 extends AnimatorListenerAdapter {
                 b4Var3.b(z12);
                 ei.b4 b4Var4 = photoViewer3.K1;
                 if (b4Var4 != null) {
-                    if (photoViewer3.f33423u4 != 3) {
+                    if (photoViewer3.f33424u4 != 3) {
                         z14 = true;
                     }
                     b4Var4.b(z14);
                 }
-                if (photoViewer3.f33423u4 != 3) {
+                if (photoViewer3.f33424u4 != 3) {
                     photoViewer3.Z5 = 0.0f;
                 }
-                photoViewer3.f33371o6 = -1;
-                photoViewer3.f33284e6 = 1.0f;
-                photoViewer3.f33246a6 = 1.0f;
-                photoViewer3.f33266c6 = 0.0f;
-                photoViewer3.f33275d6 = 0.0f;
+                photoViewer3.f33372o6 = -1;
+                photoViewer3.f33285e6 = 1.0f;
+                photoViewer3.f33247a6 = 1.0f;
+                photoViewer3.f33267c6 = 0.0f;
+                photoViewer3.f33276d6 = 0.0f;
                 photoViewer3.y3(1.0f);
-                photoViewer3.f33412t2 = true;
-                photoViewer3.f33278e0.invalidate();
+                photoViewer3.f33413t2 = true;
+                photoViewer3.f33279e0.invalidate();
                 return;
             case 10:
-                ((PhotoViewer) ((ht0) obj).f37787q0).y3[0].setTag(null);
+                ((PhotoViewer) ((ht0) obj).f37788q0).y3[0].setTag(null);
                 return;
             case 11:
                 ((it0) obj).d.T1.f42050k0 = 1.0f;
@@ -213,7 +213,7 @@ public final class zb0 extends AnimatorListenerAdapter {
             case 15:
                 gu0 gu0Var = (gu0) obj;
                 if (gu0Var.e == animator) {
-                    gu0Var.f37418c[1].setVisibility(8);
+                    gu0Var.f37419c[1].setVisibility(8);
                     gu0Var.e = null;
                     return;
                 }
@@ -237,12 +237,12 @@ public final class zb0 extends AnimatorListenerAdapter {
                 return;
             case 18:
                 PremiumPreviewFragment premiumPreviewFragment = (PremiumPreviewFragment) obj;
-                premiumPreviewFragment.f33503d0.removeView(premiumPreviewFragment.f33519r0);
-                premiumPreviewFragment.f33519r0 = null;
+                premiumPreviewFragment.f33504d0.removeView(premiumPreviewFragment.f33520r0);
+                premiumPreviewFragment.f33520r0 = null;
                 super.onAnimationEnd(animator);
                 return;
             case 19:
-                ((ProfileActivity) ((org.telegram.ui.Components.nl0) obj).f28842c).F5 = null;
+                ((ProfileActivity) ((org.telegram.ui.Components.nl0) obj).f28843c).F5 = null;
                 return;
             case 20:
                 c01 c01Var = (c01) obj;
@@ -259,12 +259,12 @@ public final class zb0 extends AnimatorListenerAdapter {
                 }
                 return;
             case 22:
-                ((m31) obj).d.f33784a0.f42050k0 = 1.0f;
+                ((m31) obj).d.f33785a0.f42050k0 = 1.0f;
                 return;
             case 23:
                 SecretMediaViewer secretMediaViewer = ((m31) obj).d;
-                secretMediaViewer.f33784a0.setVisibility(4);
-                secretMediaViewer.f33784a0.f42050k0 = 1.0f;
+                secretMediaViewer.f33785a0.setVisibility(4);
+                secretMediaViewer.f33785a0.f42050k0 = 1.0f;
                 return;
             case 24:
                 x51 x51Var = ((n41) obj).e;
@@ -318,14 +318,14 @@ public final class zb0 extends AnimatorListenerAdapter {
                 return;
             case 27:
                 kc1 kc1Var = ((yb1) obj).f43443a;
-                if (!kc1Var.f38559p1.a()) {
+                if (!kc1Var.f38560p1.a()) {
                     kc1Var.R1.setVisibility(8);
                     return;
                 }
                 return;
             case 28:
                 super.onAnimationEnd(animator);
-                ((ld1) obj).f38898a = null;
+                ((ld1) obj).f38899a = null;
                 return;
             default:
                 super.onAnimationEnd(animator);
@@ -339,8 +339,8 @@ public final class zb0 extends AnimatorListenerAdapter {
         switch (this.f43710a) {
             case 8:
                 ct0 ct0Var = (ct0) this.f43711b;
-                ct0Var.f36051b.U0.setVisibility(0);
-                ct0Var.f36051b.C1.setVisibility(0);
+                ct0Var.f36052b.U0.setVisibility(0);
+                ct0Var.f36052b.C1.setVisibility(0);
                 return;
             case 9:
                 return;

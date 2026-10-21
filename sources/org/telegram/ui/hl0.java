@@ -5,20 +5,20 @@ import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public final class hl0 implements Runnable {
-    public final int f37683a;
-    public final vm0 f37684b;
+    public final int f37684a;
+    public final vm0 f37685b;
 
     public hl0(vm0 vm0Var, int i10) {
-        this.f37683a = i10;
-        this.f37684b = vm0Var;
+        this.f37684a = i10;
+        this.f37685b = vm0Var;
     }
 
     @Override
     public final void run() {
         ViewGroup viewGroup;
-        switch (this.f37683a) {
+        switch (this.f37684a) {
             case 0:
-                vm0 vm0Var = this.f37684b;
+                vm0 vm0Var = this.f37685b;
                 ViewGroup[] viewGroupArr = vm0Var.Z;
                 if (viewGroupArr != null && (viewGroup = viewGroupArr[0]) != null && viewGroup.getVisibility() == 0) {
                     vm0Var.Y[0].requestFocus();
@@ -27,12 +27,12 @@ public final class hl0 implements Runnable {
                 }
                 return;
             case 1:
-                vm0 vm0Var2 = this.f37684b;
+                vm0 vm0Var2 = this.f37685b;
                 vm0Var2.presentFragment(vm0Var2.f42300h1, true);
                 vm0Var2.f42300h1 = null;
                 return;
             case 2:
-                vm0 vm0Var3 = this.f37684b;
+                vm0 vm0Var3 = this.f37685b;
                 EditTextBoldCursor[] editTextBoldCursorArr = vm0Var3.f42282a0;
                 if (editTextBoldCursorArr != null) {
                     vm0Var3.H1(editTextBoldCursorArr[0]);
@@ -40,15 +40,15 @@ public final class hl0 implements Runnable {
                 }
                 return;
             case 3:
-                AndroidUtilities.showKeyboard(this.f37684b.Y[2]);
+                AndroidUtilities.showKeyboard(this.f37685b.Y[2]);
                 return;
             case 4:
-                this.f37684b.w1();
+                this.f37685b.w1();
                 return;
             case 5:
                 int i10 = 0;
                 while (true) {
-                    vm0 vm0Var4 = this.f37684b;
+                    vm0 vm0Var4 = this.f37685b;
                     if (i10 < vm0Var4.f42288c0.getChildCount()) {
                         View childAt = vm0Var4.f42288c0.getChildAt(i10);
                         if (childAt instanceof um0) {
@@ -66,7 +66,7 @@ public final class hl0 implements Runnable {
                     }
                 }
             default:
-                this.f37684b.finishFragment();
+                this.f37685b.finishFragment();
                 return;
         }
     }

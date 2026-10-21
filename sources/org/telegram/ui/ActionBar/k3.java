@@ -81,7 +81,7 @@ public final class k3 {
         this.f21536p = AndroidUtilities.computePerceivedBrightness(i10) < 0.721f;
         org.telegram.ui.l4 l4Var = m3Var.J;
         if (l4Var != null) {
-            ArrayList arrayList = l4Var.f38762d0;
+            ArrayList arrayList = l4Var.f38763d0;
             if (!arrayList.isEmpty()) {
                 Object h = i2.e.h(1, arrayList);
                 if ((h instanceof TLRPC.WebPage) && ((page = ((TLRPC.WebPage) h).cached_page) == null || page.local == null)) {

@@ -16,8 +16,8 @@ public final class rp implements Runnable {
             case 0:
                 long j10 = this.f41266c;
                 bq bqVar = this.f41265b;
-                bqVar.f35702n = j10;
-                bqVar.f35707r = true;
+                bqVar.f35703n = j10;
+                bqVar.f35708r = true;
                 bqVar.n0();
                 return;
             default:

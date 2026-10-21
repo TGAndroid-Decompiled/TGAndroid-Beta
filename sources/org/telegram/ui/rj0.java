@@ -28,10 +28,10 @@ public final class rj0 implements vx, org.telegram.ui.ActionBar.a2, y01 {
     public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
         NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = this.f41229a;
         SharedPreferences.Editor edit = notificationsCustomSettingsActivity.getNotificationsSettings().edit();
-        int size = notificationsCustomSettingsActivity.f33212w.size();
+        int size = notificationsCustomSettingsActivity.f33213w.size();
         for (int i11 = 0; i11 < size; i11++) {
-            ek0 ek0Var = (ek0) notificationsCustomSettingsActivity.f33212w.get(i11);
-            if (notificationsCustomSettingsActivity.f33211s == 3) {
+            ek0 ek0Var = (ek0) notificationsCustomSettingsActivity.f33213w.get(i11);
+            if (notificationsCustomSettingsActivity.f33212s == 3) {
                 edit.remove("stories_" + ek0Var.d);
             } else {
                 edit.remove("notify2_" + ek0Var.d).remove("custom_" + ek0Var.d);
@@ -43,12 +43,12 @@ public final class rj0 implements vx, org.telegram.ui.ActionBar.a2, y01 {
             }
         }
         edit.commit();
-        int size2 = notificationsCustomSettingsActivity.f33212w.size();
+        int size2 = notificationsCustomSettingsActivity.f33213w.size();
         for (int i12 = 0; i12 < size2; i12++) {
-            notificationsCustomSettingsActivity.getNotificationsController().updateServerNotificationsSettings(((ek0) notificationsCustomSettingsActivity.f33212w.get(i12)).d, 0, false);
+            notificationsCustomSettingsActivity.getNotificationsController().updateServerNotificationsSettings(((ek0) notificationsCustomSettingsActivity.f33213w.get(i12)).d, 0, false);
         }
-        notificationsCustomSettingsActivity.f33212w.clear();
-        notificationsCustomSettingsActivity.f33213x.clear();
+        notificationsCustomSettingsActivity.f33213w.clear();
+        notificationsCustomSettingsActivity.f33214x.clear();
         notificationsCustomSettingsActivity.l0(true);
         notificationsCustomSettingsActivity.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.notificationsSettingsUpdated, new Object[0]);
     }
@@ -56,7 +56,7 @@ public final class rj0 implements vx, org.telegram.ui.ActionBar.a2, y01 {
     @Override
     public void r(ek0 ek0Var) {
         NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = this.f41229a;
-        notificationsCustomSettingsActivity.f33212w.add(0, ek0Var);
+        notificationsCustomSettingsActivity.f33213w.add(0, ek0Var);
         notificationsCustomSettingsActivity.l0(true);
     }
 
@@ -65,7 +65,7 @@ public final class rj0 implements vx, org.telegram.ui.ActionBar.a2, y01 {
         int i12 = 0;
         long j10 = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
         NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = this.f41229a;
-        if (notificationsCustomSettingsActivity.f33211s == 3) {
+        if (notificationsCustomSettingsActivity.f33212s == 3) {
             ArrayList arrayList2 = notificationsCustomSettingsActivity.v;
             if (arrayList2 != null) {
                 Iterator it = arrayList2.iterator();
@@ -75,7 +75,7 @@ public final class rj0 implements vx, org.telegram.ui.ActionBar.a2, y01 {
                     }
                 }
             }
-            ArrayList arrayList3 = notificationsCustomSettingsActivity.f33212w;
+            ArrayList arrayList3 = notificationsCustomSettingsActivity.f33213w;
             if (arrayList3 != null) {
                 Iterator it2 = arrayList3.iterator();
                 while (it2.hasNext()) {
@@ -87,15 +87,15 @@ public final class rj0 implements vx, org.telegram.ui.ActionBar.a2, y01 {
             ?? obj = new Object();
             obj.d = j10;
             obj.e = true;
-            Boolean bool = notificationsCustomSettingsActivity.f33209n;
+            Boolean bool = notificationsCustomSettingsActivity.f33210n;
             if (bool != null && bool.booleanValue()) {
                 i12 = Integer.MAX_VALUE;
             }
-            obj.f36683c = i12;
-            if (notificationsCustomSettingsActivity.f33212w == null) {
-                notificationsCustomSettingsActivity.f33212w = new ArrayList();
+            obj.f36684c = i12;
+            if (notificationsCustomSettingsActivity.f33213w == null) {
+                notificationsCustomSettingsActivity.f33213w = new ArrayList();
             }
-            notificationsCustomSettingsActivity.f33212w.add(obj);
+            notificationsCustomSettingsActivity.f33213w.add(obj);
             notificationsCustomSettingsActivity.l0(true);
             return true;
         }

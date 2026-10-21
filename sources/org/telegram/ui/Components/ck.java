@@ -29,7 +29,7 @@ public final class ck extends jm0 {
     public final void dispatchDraw(Canvas canvas) {
         switch (this.V2) {
             case 0:
-                if (this.X2.f28821n == 2 && getChildCount() > 0) {
+                if (this.X2.f28822n == 2 && getChildCount() > 0) {
                     float f7 = 2.1474836E9f;
                     for (int i10 = 0; i10 < getChildCount(); i10++) {
                         if (getChildAt(i10).getY() < f7) {
@@ -41,7 +41,7 @@ public final class ck extends jm0 {
                 super.dispatchDraw(canvas);
                 return;
             default:
-                if (this.X2.f28821n == 1 && getChildCount() > 0) {
+                if (this.X2.f28822n == 1 && getChildCount() > 0) {
                     float f10 = 2.1474836E9f;
                     for (int i11 = 0; i11 < getChildCount(); i11++) {
                         if (getChildAt(i11).getY() < f10) {
@@ -59,7 +59,7 @@ public final class ck extends jm0 {
     public boolean onTouchEvent(MotionEvent motionEvent) {
         switch (this.V2) {
             case 0:
-                if (this.X2.f28821n != 0) {
+                if (this.X2.f28822n != 0) {
                     return false;
                 }
                 return super.onTouchEvent(motionEvent);

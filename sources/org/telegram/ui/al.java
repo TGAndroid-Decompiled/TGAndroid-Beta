@@ -20,7 +20,7 @@ public final class al extends org.telegram.ui.Components.oc0 {
         gn gnVar;
         qn qnVar = this.H;
         gn gnVar2 = qnVar.f40753l5;
-        if (gnVar2 != null && (messageObject = gnVar2.f37357a) != null && ((gnVar = qnVar.f40682f5.quote) == null || gnVar.f37357a == null || messageObject.getId() == qnVar.f40682f5.quote.f37357a.getId())) {
+        if (gnVar2 != null && (messageObject = gnVar2.f37358a) != null && ((gnVar = qnVar.f40682f5.quote) == null || gnVar.f37358a == null || messageObject.getId() == qnVar.f40682f5.quote.f37358a.getId())) {
             return;
         }
         qnVar.f40753l5 = qnVar.f40682f5.quote;

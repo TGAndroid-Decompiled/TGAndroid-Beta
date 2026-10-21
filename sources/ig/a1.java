@@ -30,7 +30,7 @@ public final class a1 extends EditTextBoldCursor {
         p6Var.n(0.2f, 160L, bs.h);
         p6Var.w(AndroidUtilities.dp(15.33f));
         p6Var.setCallback(this);
-        p6Var.f29225b = 5;
+        p6Var.f29226b = 5;
     }
 
     @Override
@@ -173,7 +173,7 @@ public final class a1 extends EditTextBoldCursor {
         this.e = p6Var;
         p6Var.n(0.2f, 160L, bs.h);
         p6Var.w(AndroidUtilities.dp(15.33f));
-        p6Var.f29225b = 5;
+        p6Var.f29226b = 5;
         p6Var.setCallback(this);
     }
 
@@ -186,7 +186,7 @@ public final class a1 extends EditTextBoldCursor {
         this.e = p6Var;
         p6Var.n(0.2f, 160L, bs.h);
         p6Var.w(AndroidUtilities.dp(15.33f));
-        p6Var.f29225b = 5;
+        p6Var.f29226b = 5;
         p6Var.setCallback(this);
     }
 }

@@ -39,7 +39,7 @@ public final class sb1 extends w7.w5 {
                     z11 = true;
                 }
                 if (z10 == z11) {
-                    ((kc1) this.f41428b).f38578x0.invalidate();
+                    ((kc1) this.f41428b).f38579x0.invalidate();
                     return;
                 }
                 return;

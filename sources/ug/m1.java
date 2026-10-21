@@ -209,7 +209,7 @@ public class m1 extends bb implements NotificationCenter.NotificationCenterDeleg
                     switch (r2) {
                         case 0:
                             xp xpVar2 = this.f47672b.f47712c0;
-                            xpVar2.a(!xpVar2.f32458a.f24151q, true);
+                            xpVar2.a(!xpVar2.f32459a.f24151q, true);
                             return;
                         default:
                             this.f47672b.e0();
@@ -237,7 +237,7 @@ public class m1 extends bb implements NotificationCenter.NotificationCenterDeleg
                 switch (r2) {
                     case 0:
                         xp xpVar2 = this.f47672b.f47712c0;
-                        xpVar2.a(!xpVar2.f32458a.f24151q, true);
+                        xpVar2.a(!xpVar2.f32459a.f24151q, true);
                         return;
                     default:
                         this.f47672b.e0();
@@ -410,7 +410,7 @@ public class m1 extends bb implements NotificationCenter.NotificationCenterDeleg
                         Utilities.Callback2 callback22 = m1Var.D0;
                         if (callback22 != null) {
                             xp xpVar = m1Var.f47712c0;
-                            if (xpVar == null || !xpVar.f32458a.f24151q) {
+                            if (xpVar == null || !xpVar.f32459a.f24151q) {
                                 z12 = false;
                             }
                             callback22.run(Boolean.valueOf(z12), hashSet);
@@ -491,7 +491,7 @@ public class m1 extends bb implements NotificationCenter.NotificationCenterDeleg
         FrameLayout frameLayout = m1Var.f47714e0;
         if (tLObject instanceof TLRPC.TL_boolTrue) {
             qc Q = new xc(frameLayout, m1Var.resourcesProvider).Q(R.raw.contact_check, 36, LocaleController.getString(R.string.PrivacyBirthdaySetDone));
-            Q.f29530j = 5000;
+            Q.f29531j = 5000;
             Q.j();
             return;
         }
@@ -971,7 +971,7 @@ public class m1 extends bb implements NotificationCenter.NotificationCenterDeleg
                         Utilities.Callback2 callback2 = this.D0;
                         if (callback2 != null) {
                             xp xpVar = this.f47712c0;
-                            callback2.run(Boolean.valueOf((xpVar == null || !xpVar.f32458a.f24151q) ? false : false), hashSet);
+                            callback2.run(Boolean.valueOf((xpVar == null || !xpVar.f32459a.f24151q) ? false : false), hashSet);
                             this.D0 = null;
                         }
                         dismiss();

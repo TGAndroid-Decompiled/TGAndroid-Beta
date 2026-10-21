@@ -148,7 +148,7 @@ public class e extends FrameLayout implements ne.d {
                                                     ei.x3 x3Var6 = qnVar3.L0;
                                                     x3Var6.f10080l0 = new kg(qnVar3, 12);
                                                     x3Var6.u();
-                                                    org.telegram.ui.Components.s40.f30192f.b();
+                                                    org.telegram.ui.Components.s40.f30193f.b();
                                                     return;
                                                 }
                                                 return;
@@ -159,7 +159,7 @@ public class e extends FrameLayout implements ne.d {
                             }
                             break;
                         default:
-                            if (qnVar.L0 == null && !z10 && s40.f30192f.c()) {
+                            if (qnVar.L0 == null && !z10 && s40.f30193f.c()) {
                                 AndroidUtilities.runOnUIThread(new Runnable() {
                                     @Override
                                     public final void run() {
@@ -206,7 +206,7 @@ public class e extends FrameLayout implements ne.d {
                                                     ei.x3 x3Var6 = qnVar3.L0;
                                                     x3Var6.f10080l0 = new kg(qnVar3, 12);
                                                     x3Var6.u();
-                                                    org.telegram.ui.Components.s40.f30192f.b();
+                                                    org.telegram.ui.Components.s40.f30193f.b();
                                                     return;
                                                 }
                                                 return;

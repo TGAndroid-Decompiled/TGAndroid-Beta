@@ -34,8 +34,8 @@ public final class b extends z {
                         try {
                             try {
                                 u uVar2 = (u) bVar.f4490b;
-                                a1 a1Var = z0Var.f35164c;
-                                int i11 = z0Var.f35162a;
+                                a1 a1Var = z0Var.f35165c;
+                                int i11 = z0Var.f35163a;
                                 AndroidUtilities.runOnUIThread(new cz0(a1Var, uVar2, i11, "connect error: " + a1.a(e), 15, false));
                             } catch (Throwable unused) {
                             }

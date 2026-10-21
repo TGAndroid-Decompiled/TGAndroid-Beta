@@ -37,7 +37,7 @@ public final class ca extends ba {
         ah.y0 y0Var = this.f5304c;
         org.telegram.ui.Components.r5 r5Var = y0Var.f908b;
         if (r5Var != null) {
-            imageReceiver = r5Var.f29837k;
+            imageReceiver = r5Var.f29838k;
         } else {
             imageReceiver = y0Var.f907a;
         }

@@ -16,7 +16,7 @@ public final class vy0 extends AnimatorListenerAdapter {
         int w02;
         ProfileActivity profileActivity = this.f42414a;
         kVar = ((org.telegram.ui.ActionBar.n2) profileActivity).actionBar;
-        if (profileActivity.f33694q2) {
+        if (profileActivity.f33695q2) {
             w02 = 1090519039;
         } else if (profileActivity.S5 != null) {
             w02 = 553648127;
@@ -24,7 +24,7 @@ public final class vy0 extends AnimatorListenerAdapter {
             w02 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21027f8, profileActivity.A0);
         }
         kVar.B(w02, false);
-        ry0 ry0Var = profileActivity.f33618f0;
+        ry0 ry0Var = profileActivity.f33619f0;
         ImageReceiver imageReceiver = ry0Var.U;
         org.telegram.ui.Components.e6 animation = imageReceiver.getAnimation();
         if (animation != null) {

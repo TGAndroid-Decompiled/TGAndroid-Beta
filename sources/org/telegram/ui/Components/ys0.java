@@ -26,7 +26,7 @@ public final class ys0 extends org.telegram.ui.qn {
             if (qkVar != null) {
                 qkVar.e(fv0Var.f26426x, false);
             }
-            uv0Var.f31070v1.getMediaDataController().portSavedSearchResults(getClassGuid(), fv0Var.f26426x, fv0Var.f26425w, fv0Var.f26422n, fv0Var.h, this.Sc, fv0Var.v, fv0Var.f26424s);
+            uv0Var.f31071v1.getMediaDataController().portSavedSearchResults(getClassGuid(), fv0Var.f26426x, fv0Var.f26425w, fv0Var.f26422n, fv0Var.h, this.Sc, fv0Var.v, fv0Var.f26424s);
             this.Rc = false;
         }
         super.onTransitionAnimationStart(z10, z11);

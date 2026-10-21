@@ -70,7 +70,7 @@ public final class j5 extends w81 {
                 SparseArray sparseArray = og1Var.f39886a;
                 mg1 mg1Var = (mg1) sparseArray.get(i10);
                 if (mg1Var != null) {
-                    n2Var = mg1Var.f39242a;
+                    n2Var = mg1Var.f39243a;
                 } else {
                     org.telegram.ui.ActionBar.n2 V = og1Var.V(i10);
                     mg1 mg1Var2 = new mg1(V);
@@ -78,9 +78,9 @@ public final class j5 extends w81 {
                     n2Var = V;
                     mg1Var = mg1Var2;
                 }
-                if (!mg1Var.f39243b) {
+                if (!mg1Var.f39244b) {
                     n2Var.onFragmentCreate();
-                    mg1Var.f39243b = true;
+                    mg1Var.f39244b = true;
                 }
                 n2Var.setParentLayout(og1Var.getParentLayout());
                 if (n2Var.getFragmentView() == null) {

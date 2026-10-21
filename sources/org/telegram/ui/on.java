@@ -397,7 +397,7 @@ public final class on implements org.telegram.ui.ActionBar.d6, org.telegram.ui.C
                 if (this.R) {
                     Drawable drawable = this.f39933n;
                     if (drawable instanceof org.telegram.ui.Components.wc0) {
-                        Bitmap bitmap = ((org.telegram.ui.Components.wc0) drawable).f32075k;
+                        Bitmap bitmap = ((org.telegram.ui.Components.wc0) drawable).f32076k;
                         this.P = bitmap;
                         if (c4Var3 != null) {
                             TLRPC.ChatTheme chatTheme = c4Var3.d;
@@ -511,7 +511,7 @@ public final class on implements org.telegram.ui.ActionBar.d6, org.telegram.ui.C
             wc0Var = null;
         }
         if (wc0Var != null) {
-            i10 = wc0Var.f32073i;
+            i10 = wc0Var.f32074i;
         } else {
             i10 = 0;
         }
@@ -643,23 +643,23 @@ public final class on implements org.telegram.ui.ActionBar.d6, org.telegram.ui.C
                 int w11 = w(org.telegram.ui.ActionBar.h6.Pd);
                 int w12 = w(org.telegram.ui.ActionBar.h6.Qd);
                 org.telegram.ui.Components.wc0 wc0Var2 = new org.telegram.ui.Components.wc0();
-                wc0Var2.s(wc0Var2.f32085u, c4Var2.j(this.G ? 1 : 0).settings.intensity);
+                wc0Var2.s(wc0Var2.f32086u, c4Var2.j(this.G ? 1 : 0).settings.intensity);
                 TLRPC.Document e = c4Var2.e();
-                if (wc0Var2.f32088y == null) {
+                if (wc0Var2.f32089y == null) {
                     ImageReceiver imageReceiver = new ImageReceiver();
-                    wc0Var2.f32088y = imageReceiver;
+                    wc0Var2.f32089y = imageReceiver;
                     imageReceiver.setAlpha(0.5f);
-                    WeakReference weakReference = wc0Var2.f32068c;
+                    WeakReference weakReference = wc0Var2.f32069c;
                     if (weakReference != null) {
-                        wc0Var2.f32088y.setParentView((View) weakReference.get());
+                        wc0Var2.f32089y.setParentView((View) weakReference.get());
                     }
                     if (wc0Var2.T) {
-                        wc0Var2.f32088y.onAttachedToWindow();
+                        wc0Var2.f32089y.onAttachedToWindow();
                     }
                 }
-                wc0Var2.f32088y.setImage(ImageLocation.getForDocument(e), "80_80", null, null, null, 0);
-                wc0Var2.f32088y.setAutoRepeatCount(1);
-                wc0Var2.f32088y.setAutoRepeat(1);
+                wc0Var2.f32089y.setImage(ImageLocation.getForDocument(e), "80_80", null, null, null, 0);
+                wc0Var2.f32089y.setAutoRepeatCount(1);
+                wc0Var2.f32089y.setAutoRepeat(1);
                 wc0Var2.o(w9, w10, w11, w12, 0, true);
                 wc0Var2.u(i10);
                 int f7 = wc0Var2.f();

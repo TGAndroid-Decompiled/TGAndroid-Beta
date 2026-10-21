@@ -3,13 +3,13 @@ package org.telegram.ui;
 import android.graphics.Canvas;
 import android.graphics.RectF;
 public final class m81 implements ch.a {
-    public final RectF f39140a = new RectF();
-    public final y8 f39141b;
-    public final p91 f39142c;
+    public final RectF f39141a = new RectF();
+    public final y8 f39142b;
+    public final p91 f39143c;
 
     public m81(p91 p91Var, y8 y8Var) {
-        this.f39142c = p91Var;
-        this.f39141b = y8Var;
+        this.f39143c = p91Var;
+        this.f39142b = y8Var;
     }
 
     @Override
@@ -22,7 +22,7 @@ public final class m81 implements ch.a {
         bh.l lVar;
         cc ccVar;
         cc ccVar2;
-        p91 p91Var = this.f39142c;
+        p91 p91Var = this.f39143c;
         p91Var.fragmentView.getMeasuredWidth();
         p91Var.fragmentView.getMeasuredHeight();
         canvas.drawColor(p91Var.getThemedColor(org.telegram.ui.ActionBar.h6.f20990d6));
@@ -36,7 +36,7 @@ public final class m81 implements ch.a {
             } else {
                 ie ieVar = p91Var.f40141k0;
                 if (ieVar != null) {
-                    lVar = ieVar.f37931b1;
+                    lVar = ieVar.f37932b1;
                     ccVar = ieVar;
                 } else {
                     lVar = null;
@@ -44,8 +44,8 @@ public final class m81 implements ch.a {
                 }
             }
             if (lVar != null && ccVar != null) {
-                y8 y8Var = this.f39141b;
-                RectF rectF2 = this.f39140a;
+                y8 y8Var = this.f39142b;
+                RectF rectF2 = this.f39141a;
                 ih.j.c(ccVar, y8Var, rectF2);
                 if (rectF2.right > 0.0f) {
                     p91Var.fragmentView.getMeasuredWidth();

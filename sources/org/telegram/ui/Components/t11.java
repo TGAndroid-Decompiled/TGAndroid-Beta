@@ -43,32 +43,32 @@ public final class t11 extends DispatchQueue {
     public final ArrayList U;
     public boolean V;
     public final ArrayList W;
-    public boolean f30390a;
-    public final AtomicBoolean f30391b;
-    public final SurfaceTexture f30392c;
+    public boolean f30391a;
+    public final AtomicBoolean f30392b;
+    public final SurfaceTexture f30393c;
     public q11 d;
     public int e;
-    public int f30393f;
+    public int f30394f;
     public EGL10 h;
-    public EGLDisplay f30394n;
-    public EGLConfig f30395r;
-    public EGLSurface f30396s;
+    public EGLDisplay f30395n;
+    public EGLConfig f30396r;
+    public EGLSurface f30397s;
     public EGLContext v;
-    public int f30397w;
-    public int f30398x;
-    public int f30399y;
+    public int f30398w;
+    public int f30399x;
+    public int f30400y;
 
     public t11(SurfaceTexture surfaceTexture, q11 q11Var, q11 q11Var2, int i10, int i11) {
         super("ThanosEffect.DrawingThread", false);
-        this.f30391b = new AtomicBoolean(true);
+        this.f30392b = new AtomicBoolean(true);
         this.T = new ArrayList();
         this.U = new ArrayList();
         this.V = false;
         this.W = new ArrayList();
-        this.f30392c = surfaceTexture;
+        this.f30393c = surfaceTexture;
         this.d = q11Var2;
         this.e = i10;
-        this.f30393f = i11;
+        this.f30394f = i11;
         start();
     }
 
@@ -99,7 +99,7 @@ public final class t11 extends DispatchQueue {
     }
 
     public final void c(Matrix matrix, Bitmap bitmap, Runnable runnable, Runnable runnable2) {
-        if (!this.f30391b.get()) {
+        if (!this.f30392b.get()) {
             AndroidUtilities.runOnUIThread(new ai.fb(runnable, runnable2, 1));
             v11.b(this.d);
             this.d = null;
@@ -112,7 +112,7 @@ public final class t11 extends DispatchQueue {
     }
 
     public final void d(View view, float f7, Runnable runnable) {
-        if (!this.f30391b.get()) {
+        if (!this.f30392b.get()) {
             if (view != null) {
                 view.setVisibility(8);
             }
@@ -134,7 +134,7 @@ public final class t11 extends DispatchQueue {
     }
 
     public final void f(ArrayList arrayList, Runnable runnable) {
-        if (!this.f30391b.get()) {
+        if (!this.f30392b.get()) {
             for (int i10 = 0; i10 < arrayList.size(); i10++) {
                 ((View) arrayList.get(i10)).setVisibility(8);
             }
@@ -167,7 +167,7 @@ public final class t11 extends DispatchQueue {
         int i12;
         int i13;
         int i14;
-        if (this.f30391b.get()) {
+        if (this.f30392b.get()) {
             GLES20.glClear(16384);
             int i15 = 0;
             int i16 = 0;
@@ -178,13 +178,13 @@ public final class t11 extends DispatchQueue {
                     int i17 = i15;
                     int i18 = i17;
                     while (i17 < arrayList.size()) {
-                        i18 += ((s11) arrayList.get(i17)).f30131u;
+                        i18 += ((s11) arrayList.get(i17)).f30132u;
                         i17++;
                     }
-                    float f13 = s11Var.f30131u;
+                    float f13 = s11Var.f30132u;
                     float f14 = f13 / i18;
                     int[] iArr = s11Var.B;
-                    int i19 = s11Var.f30130t;
+                    int i19 = s11Var.f30131t;
                     int devicePerformanceClass = SharedConfig.getDevicePerformanceClass();
                     int i20 = 120000;
                     if (devicePerformanceClass != 1) {
@@ -196,37 +196,37 @@ public final class t11 extends DispatchQueue {
                     } else {
                         i11 = 60000;
                     }
-                    if (!s11Var.E.f30390a) {
+                    if (!s11Var.E.f30391a) {
                         i20 = i11;
                     }
                     if (s11Var.D) {
                         i20 /= 2;
                     }
                     float max = Math.max(AndroidUtilities.dpf2(0.4f), 1.0f);
-                    s11Var.f30129s = Utilities.clamp((int) ((i10 * i19) / (max * max)), (int) (i20 * f14), 10);
+                    s11Var.f30130s = Utilities.clamp((int) ((i10 * i19) / (max * max)), (int) (i20 * f14), 10);
                     float f15 = i19;
                     float f16 = f15 / f13;
                     int round = (int) Math.round(Math.sqrt(clamp / f16));
-                    s11Var.f30132w = round;
-                    s11Var.v = Math.round(s11Var.f30129s / round);
+                    s11Var.f30133w = round;
+                    s11Var.v = Math.round(s11Var.f30130s / round);
                     while (true) {
                         i12 = s11Var.v;
-                        i13 = s11Var.f30132w;
+                        i13 = s11Var.f30133w;
                         i14 = i12 * i13;
-                        if (i14 >= s11Var.f30129s) {
+                        if (i14 >= s11Var.f30130s) {
                             break;
                         } else if (i12 / i13 < f16) {
                             s11Var.v = i12 + 1;
                         } else {
-                            s11Var.f30132w = i13 + 1;
+                            s11Var.f30133w = i13 + 1;
                         }
                     }
-                    s11Var.f30129s = i14;
-                    s11Var.f30133x = Math.max(f15 / i12, f13 / i13);
+                    s11Var.f30130s = i14;
+                    s11Var.f30134x = Math.max(f15 / i12, f13 / i13);
                     GLES20.glGenBuffers(2, iArr, i15);
                     for (int i21 = i15; i21 < 2; i21++) {
                         GLES20.glBindBuffer(34962, iArr[i21]);
-                        GLES20.glBufferData(34962, s11Var.f30129s * 28, null, 35048);
+                        GLES20.glBufferData(34962, s11Var.f30130s * 28, null, 35048);
                     }
                     if (s11Var.e != null) {
                         this.U.add(s11Var);
@@ -235,38 +235,38 @@ public final class t11 extends DispatchQueue {
                 this.V = true;
                 int[] iArr2 = s11Var.B;
                 boolean z10 = s11Var.D;
-                float f17 = s11Var.f30123m;
-                int i22 = s11Var.f30131u;
-                int i23 = s11Var.f30130t;
-                Matrix matrix = s11Var.f30128r;
+                float f17 = s11Var.f30124m;
+                int i22 = s11Var.f30132u;
+                int i23 = s11Var.f30131t;
+                Matrix matrix = s11Var.f30129r;
                 t11 t11Var = s11Var.E;
                 long nanoTime = System.nanoTime();
-                if (s11Var.f30115b < 0) {
+                if (s11Var.f30116b < 0) {
                     d = 0.0d;
                 } else {
                     d = (nanoTime - j10) / 1.0E9d;
                 }
-                s11Var.f30115b = nanoTime;
-                if (s11Var.f30124n && !s11Var.f30125o) {
+                s11Var.f30116b = nanoTime;
+                if (s11Var.f30125n && !s11Var.f30126o) {
                     matrix.reset();
                     matrix.postScale(i23, i22);
-                    matrix.postTranslate(s11Var.f30119i, s11Var.f30120j);
+                    matrix.postTranslate(s11Var.f30120i, s11Var.f30121j);
                     s11Var.c();
                 }
-                s11Var.f30116c = (float) ((f17 * d) + s11Var.f30116c);
-                GLES20.glUniformMatrix3fv(t11Var.f30398x, 1, false, s11Var.f30126p, 0);
-                int i24 = t11Var.f30399y;
+                s11Var.f30117c = (float) ((f17 * d) + s11Var.f30117c);
+                GLES20.glUniformMatrix3fv(t11Var.f30399x, 1, false, s11Var.f30127p, 0);
+                int i24 = t11Var.f30400y;
                 if (s11Var.d) {
                     f7 = 1.0f;
                 } else {
                     f7 = 0.0f;
                 }
                 GLES20.glUniform1f(i24, f7);
-                GLES20.glUniform1f(t11Var.E, s11Var.f30116c);
+                GLES20.glUniform1f(t11Var.E, s11Var.f30117c);
                 GLES20.glUniform1f(t11Var.F, ((float) d) * f17);
-                GLES20.glUniform1f(t11Var.G, s11Var.f30129s);
-                GLES20.glUniform3f(t11Var.I, s11Var.v, s11Var.f30132w, s11Var.f30133x);
-                GLES20.glUniform2f(t11Var.P, s11Var.f30118g, s11Var.h);
+                GLES20.glUniform1f(t11Var.G, s11Var.f30130s);
+                GLES20.glUniform3f(t11Var.I, s11Var.v, s11Var.f30133w, s11Var.f30134x);
+                GLES20.glUniform2f(t11Var.P, s11Var.f30119g, s11Var.h);
                 int i25 = t11Var.Q;
                 if (z10) {
                     f10 = 0.8f;
@@ -282,14 +282,14 @@ public final class t11 extends DispatchQueue {
                 }
                 GLES20.glUniform1f(i26, f11);
                 GLES20.glUniform2f(t11Var.J, i23, i22);
-                GLES20.glUniform1f(t11Var.K, s11Var.f30134y);
+                GLES20.glUniform1f(t11Var.K, s11Var.f30135y);
                 GLES20.glUniform2f(t11Var.L, 0.0f, 0.0f);
-                GLES20.glUniform1f(t11Var.N, s11Var.f30121k);
-                GLES20.glUniform1f(t11Var.O, s11Var.f30122l);
+                GLES20.glUniform1f(t11Var.N, s11Var.f30122k);
+                GLES20.glUniform1f(t11Var.O, s11Var.f30123l);
                 GLES20.glActiveTexture(33984);
                 GLES20.glBindTexture(3553, s11Var.A[0]);
                 GLES20.glUniform1i(t11Var.M, 0);
-                GLES20.glBindBuffer(34962, iArr2[s11Var.f30135z]);
+                GLES20.glBindBuffer(34962, iArr2[s11Var.f30136z]);
                 GLES20.glVertexAttribPointer(0, 2, 5126, false, 28, 0);
                 GLES20.glEnableVertexAttribArray(0);
                 GLES20.glVertexAttribPointer(1, 2, 5126, false, 28, 8);
@@ -298,7 +298,7 @@ public final class t11 extends DispatchQueue {
                 GLES20.glEnableVertexAttribArray(2);
                 GLES20.glVertexAttribPointer(3, 1, 5126, false, 28, 24);
                 GLES20.glEnableVertexAttribArray(3);
-                GLES30.glBindBufferBase(35982, 0, iArr2[1 - s11Var.f30135z]);
+                GLES30.glBindBufferBase(35982, 0, iArr2[1 - s11Var.f30136z]);
                 GLES20.glVertexAttribPointer(0, 2, 5126, false, 28, 0);
                 GLES20.glEnableVertexAttribArray(0);
                 GLES20.glVertexAttribPointer(1, 2, 5126, false, 28, 8);
@@ -308,14 +308,14 @@ public final class t11 extends DispatchQueue {
                 GLES20.glVertexAttribPointer(3, 1, 5126, false, 28, 24);
                 GLES20.glEnableVertexAttribArray(3);
                 GLES30.glBeginTransformFeedback(0);
-                GLES20.glDrawArrays(0, 0, s11Var.f30129s);
+                GLES20.glDrawArrays(0, 0, s11Var.f30130s);
                 GLES30.glEndTransformFeedback();
                 GLES20.glBindBuffer(34962, 0);
                 GLES20.glBindBuffer(35982, 0);
                 s11Var.d = false;
-                s11Var.f30135z = 1 - s11Var.f30135z;
-                float f18 = s11Var.f30116c;
-                float f19 = s11Var.f30122l;
+                s11Var.f30136z = 1 - s11Var.f30136z;
+                float f18 = s11Var.f30117c;
+                float f19 = s11Var.f30123l;
                 if (s11Var.D) {
                     f12 = 2.0f;
                 } else {
@@ -354,7 +354,7 @@ public final class t11 extends DispatchQueue {
                     }
                 }
             }
-            this.h.eglSwapBuffers(this.f30394n, this.f30396s);
+            this.h.eglSwapBuffers(this.f30395n, this.f30397s);
             for (int i30 = i27; i30 < this.U.size(); i30++) {
                 AndroidUtilities.runOnUIThread(((s11) this.U.get(i30)).e);
             }
@@ -369,7 +369,7 @@ public final class t11 extends DispatchQueue {
         EGL10 egl10 = (EGL10) EGLContext.getEGL();
         this.h = egl10;
         EGLDisplay eglGetDisplay = egl10.eglGetDisplay(0);
-        this.f30394n = eglGetDisplay;
+        this.f30395n = eglGetDisplay;
         EGL10 egl102 = this.h;
         if (eglGetDisplay == EGL10.EGL_NO_DISPLAY) {
             FileLog.e("ThanosEffect: eglDisplay == egl.EGL_NO_DISPLAY");
@@ -379,26 +379,26 @@ public final class t11 extends DispatchQueue {
             j();
         } else {
             EGLConfig[] eGLConfigArr = new EGLConfig[1];
-            if (!this.h.eglChooseConfig(this.f30394n, new int[]{12324, 8, 12323, 8, 12322, 8, 12321, 8, 12352, 64, 12344}, eGLConfigArr, 1, new int[1])) {
+            if (!this.h.eglChooseConfig(this.f30395n, new int[]{12324, 8, 12323, 8, 12322, 8, 12321, 8, 12352, 64, 12344}, eGLConfigArr, 1, new int[1])) {
                 FileLog.e("ThanosEffect: failed eglChooseConfig");
                 i();
                 return;
             }
             EGLConfig eGLConfig = eGLConfigArr[0];
-            this.f30395r = eGLConfig;
-            EGLContext eglCreateContext = this.h.eglCreateContext(this.f30394n, eGLConfig, EGL10.EGL_NO_CONTEXT, new int[]{12440, 3, 12344});
+            this.f30396r = eGLConfig;
+            EGLContext eglCreateContext = this.h.eglCreateContext(this.f30395n, eGLConfig, EGL10.EGL_NO_CONTEXT, new int[]{12440, 3, 12344});
             this.v = eglCreateContext;
             if (eglCreateContext == null) {
                 FileLog.e("ThanosEffect: eglContext == null");
                 j();
                 return;
             }
-            EGLSurface eglCreateWindowSurface = this.h.eglCreateWindowSurface(this.f30394n, this.f30395r, this.f30392c, null);
-            this.f30396s = eglCreateWindowSurface;
+            EGLSurface eglCreateWindowSurface = this.h.eglCreateWindowSurface(this.f30395n, this.f30396r, this.f30393c, null);
+            this.f30397s = eglCreateWindowSurface;
             if (eglCreateWindowSurface == null) {
                 FileLog.e("ThanosEffect: eglSurface == null");
                 j();
-            } else if (!this.h.eglMakeCurrent(this.f30394n, eglCreateWindowSurface, eglCreateWindowSurface, this.v)) {
+            } else if (!this.h.eglMakeCurrent(this.f30395n, eglCreateWindowSurface, eglCreateWindowSurface, this.v)) {
                 FileLog.e("ThanosEffect: failed eglMakeCurrent");
                 j();
             } else {
@@ -425,43 +425,43 @@ public final class t11 extends DispatchQueue {
                         return;
                     }
                     int glCreateProgram = GLES20.glCreateProgram();
-                    this.f30397w = glCreateProgram;
+                    this.f30398w = glCreateProgram;
                     if (glCreateProgram == 0) {
                         FileLog.e("ThanosEffect: drawProgram == 0");
                         j();
                         return;
                     }
                     GLES20.glAttachShader(glCreateProgram, glCreateShader);
-                    GLES20.glAttachShader(this.f30397w, glCreateShader2);
-                    GLES30.glTransformFeedbackVaryings(this.f30397w, new String[]{"outUV", "outPosition", "outVelocity", "outTime"}, 35980);
-                    GLES20.glLinkProgram(this.f30397w);
-                    GLES20.glGetProgramiv(this.f30397w, 35714, iArr, 0);
+                    GLES20.glAttachShader(this.f30398w, glCreateShader2);
+                    GLES30.glTransformFeedbackVaryings(this.f30398w, new String[]{"outUV", "outPosition", "outVelocity", "outTime"}, 35980);
+                    GLES20.glLinkProgram(this.f30398w);
+                    GLES20.glGetProgramiv(this.f30398w, 35714, iArr, 0);
                     if (iArr[0] != 1) {
-                        FileLog.e("ThanosEffect, link program error: " + GLES20.glGetProgramInfoLog(this.f30397w));
+                        FileLog.e("ThanosEffect, link program error: " + GLES20.glGetProgramInfoLog(this.f30398w));
                         j();
                         return;
                     }
-                    this.f30398x = GLES20.glGetUniformLocation(this.f30397w, "matrix");
-                    this.J = GLES20.glGetUniformLocation(this.f30397w, "rectSize");
-                    this.L = GLES20.glGetUniformLocation(this.f30397w, "rectPos");
-                    this.f30399y = GLES20.glGetUniformLocation(this.f30397w, "reset");
-                    this.E = GLES20.glGetUniformLocation(this.f30397w, "time");
-                    this.F = GLES20.glGetUniformLocation(this.f30397w, "deltaTime");
-                    this.G = GLES20.glGetUniformLocation(this.f30397w, "particlesCount");
-                    this.H = GLES20.glGetUniformLocation(this.f30397w, "size");
-                    this.I = GLES20.glGetUniformLocation(this.f30397w, "gridSize");
-                    this.M = GLES20.glGetUniformLocation(this.f30397w, "tex");
-                    this.K = GLES20.glGetUniformLocation(this.f30397w, "seed");
-                    this.N = GLES20.glGetUniformLocation(this.f30397w, "dp");
-                    this.O = GLES20.glGetUniformLocation(this.f30397w, "longevity");
-                    this.P = GLES20.glGetUniformLocation(this.f30397w, "offset");
-                    this.Q = GLES20.glGetUniformLocation(this.f30397w, "scale");
-                    this.R = GLES20.glGetUniformLocation(this.f30397w, "uvOffset");
-                    GLES20.glViewport(0, 0, this.e, this.f30393f);
+                    this.f30399x = GLES20.glGetUniformLocation(this.f30398w, "matrix");
+                    this.J = GLES20.glGetUniformLocation(this.f30398w, "rectSize");
+                    this.L = GLES20.glGetUniformLocation(this.f30398w, "rectPos");
+                    this.f30400y = GLES20.glGetUniformLocation(this.f30398w, "reset");
+                    this.E = GLES20.glGetUniformLocation(this.f30398w, "time");
+                    this.F = GLES20.glGetUniformLocation(this.f30398w, "deltaTime");
+                    this.G = GLES20.glGetUniformLocation(this.f30398w, "particlesCount");
+                    this.H = GLES20.glGetUniformLocation(this.f30398w, "size");
+                    this.I = GLES20.glGetUniformLocation(this.f30398w, "gridSize");
+                    this.M = GLES20.glGetUniformLocation(this.f30398w, "tex");
+                    this.K = GLES20.glGetUniformLocation(this.f30398w, "seed");
+                    this.N = GLES20.glGetUniformLocation(this.f30398w, "dp");
+                    this.O = GLES20.glGetUniformLocation(this.f30398w, "longevity");
+                    this.P = GLES20.glGetUniformLocation(this.f30398w, "offset");
+                    this.Q = GLES20.glGetUniformLocation(this.f30398w, "scale");
+                    this.R = GLES20.glGetUniformLocation(this.f30398w, "uvOffset");
+                    GLES20.glViewport(0, 0, this.e, this.f30394f);
                     GLES20.glDisable(3042);
                     GLES20.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-                    GLES20.glUseProgram(this.f30397w);
-                    GLES20.glUniform2f(this.H, this.e, this.f30393f);
+                    GLES20.glUseProgram(this.f30398w);
+                    GLES20.glUniform2f(this.H, this.e, this.f30394f);
                     return;
                 }
                 FileLog.e("ThanosEffect: vertexShader == 0 || fragmentShader == 0");
@@ -484,7 +484,7 @@ public final class t11 extends DispatchQueue {
                                 View view = (View) message.obj;
                                 while (i11 < arrayList.size()) {
                                     s11 s11Var = (s11) arrayList.get(i11);
-                                    if (s11Var.f30114a.contains(view)) {
+                                    if (s11Var.f30115a.contains(view)) {
                                         s11Var.a();
                                         arrayList.remove(i11);
                                         i11--;
@@ -497,7 +497,7 @@ public final class t11 extends DispatchQueue {
                         }
                         while (i11 < arrayList.size()) {
                             s11 s11Var2 = (s11) arrayList.get(i11);
-                            s11Var2.f30118g += message.arg1;
+                            s11Var2.f30119g += message.arg1;
                             s11Var2.h += message.arg2;
                             i11++;
                         }
@@ -511,9 +511,9 @@ public final class t11 extends DispatchQueue {
             }
             int i12 = message.arg1;
             int i13 = message.arg2;
-            if (this.f30391b.get()) {
+            if (this.f30392b.get()) {
                 this.e = i12;
-                this.f30393f = i13;
+                this.f30394f = i13;
                 GLES20.glViewport(0, 0, i12, i13);
                 GLES20.glUniform2f(this.H, i12, i13);
             }
@@ -524,7 +524,7 @@ public final class t11 extends DispatchQueue {
     }
 
     public final void i() {
-        if (!this.f30391b.get()) {
+        if (!this.f30392b.get()) {
             FileLog.d("ThanosEffect: kill failed, already dead");
             return;
         }
@@ -540,7 +540,7 @@ public final class t11 extends DispatchQueue {
 
     public final void j() {
         ArrayList arrayList;
-        AtomicBoolean atomicBoolean = this.f30391b;
+        AtomicBoolean atomicBoolean = this.f30392b;
         if (!atomicBoolean.get()) {
             FileLog.d("ThanosEffect: killInternal failed, already dead");
             return;
@@ -557,7 +557,7 @@ public final class t11 extends DispatchQueue {
             i10++;
         }
         arrayList.clear();
-        SurfaceTexture surfaceTexture = this.f30392c;
+        SurfaceTexture surfaceTexture = this.f30393c;
         if (surfaceTexture != null) {
             surfaceTexture.release();
         }

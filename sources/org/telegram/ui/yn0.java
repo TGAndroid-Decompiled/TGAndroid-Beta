@@ -25,11 +25,11 @@ public final class yn0 implements TextWatcher {
         int i13;
         String str;
         eo0 eo0Var = this.f43529f;
-        if (eo0Var.f36722o0) {
+        if (eo0Var.f36723o0) {
             return;
         }
         int i14 = 0;
-        EditTextBoldCursor editTextBoldCursor = eo0Var.f36711f[0];
+        EditTextBoldCursor editTextBoldCursor = eo0Var.f36712f[0];
         int selectionStart = editTextBoldCursor.getSelectionStart();
         String obj = editTextBoldCursor.getText().toString();
         int i15 = 3;
@@ -48,7 +48,7 @@ public final class yn0 implements TextWatcher {
             }
             i17 = i18;
         }
-        eo0Var.f36722o0 = true;
+        eo0Var.f36723o0 = true;
         String str2 = null;
         int i19 = 100;
         if (sb2.length() > 0) {
@@ -106,7 +106,7 @@ public final class yn0 implements TextWatcher {
         }
         if (str2 != null) {
             if (sb2.length() == i19) {
-                eo0Var.f36711f[i10].requestFocus();
+                eo0Var.f36712f[i10].requestFocus();
             }
             editTextBoldCursor.setTextColor(eo0Var.getThemedColor(org.telegram.ui.ActionBar.h6.G6));
             int i22 = 0;
@@ -139,7 +139,7 @@ public final class yn0 implements TextWatcher {
         if (selectionStart >= 0) {
             editTextBoldCursor.setSelection(Math.min(selectionStart, editTextBoldCursor.length()));
         }
-        eo0Var.f36722o0 = z10;
+        eo0Var.f36723o0 = z10;
     }
 
     @Override

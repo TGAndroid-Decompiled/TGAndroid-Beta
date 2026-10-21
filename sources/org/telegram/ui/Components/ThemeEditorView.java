@@ -164,16 +164,16 @@ public class ThemeEditorView {
             textView.setTypeface(AndroidUtilities.bold());
             frameLayout2.addView(textView, w7.z5.e(-2, -1, 51));
             textView.setOnClickListener(new View.OnClickListener(this) {
-                public final ThemeEditorView.EditorAlert f32804b;
+                public final ThemeEditorView.EditorAlert f32805b;
 
                 {
-                    this.f32804b = this;
+                    this.f32805b = this;
                 }
 
                 @Override
                 public final void onClick(View view) {
                     int i14 = r2;
-                    ThemeEditorView.EditorAlert editorAlert = this.f32804b;
+                    ThemeEditorView.EditorAlert editorAlert = this.f32805b;
                     switch (i14) {
                         case 0:
                             int i15 = ThemeEditorView.EditorAlert.M;
@@ -223,16 +223,16 @@ public class ThemeEditorView {
             textView2.setTypeface(AndroidUtilities.bold());
             frameLayout2.addView(textView2, w7.z5.e(-2, -1, 53));
             textView2.setOnClickListener(new View.OnClickListener(this) {
-                public final ThemeEditorView.EditorAlert f32804b;
+                public final ThemeEditorView.EditorAlert f32805b;
 
                 {
-                    this.f32804b = this;
+                    this.f32805b = this;
                 }
 
                 @Override
                 public final void onClick(View view) {
                     int i14 = r2;
-                    ThemeEditorView.EditorAlert editorAlert = this.f32804b;
+                    ThemeEditorView.EditorAlert editorAlert = this.f32805b;
                     switch (i14) {
                         case 0:
                             int i15 = ThemeEditorView.EditorAlert.M;
@@ -287,16 +287,16 @@ public class ThemeEditorView {
             textView3.setTypeface(AndroidUtilities.bold());
             frameLayout3.addView(textView3, w7.z5.e(-2, -1, 51));
             textView3.setOnClickListener(new View.OnClickListener(this) {
-                public final ThemeEditorView.EditorAlert f32804b;
+                public final ThemeEditorView.EditorAlert f32805b;
 
                 {
-                    this.f32804b = this;
+                    this.f32805b = this;
                 }
 
                 @Override
                 public final void onClick(View view) {
                     int i14 = r2;
-                    ThemeEditorView.EditorAlert editorAlert = this.f32804b;
+                    ThemeEditorView.EditorAlert editorAlert = this.f32805b;
                     switch (i14) {
                         case 0:
                             int i15 = ThemeEditorView.EditorAlert.M;
@@ -349,16 +349,16 @@ public class ThemeEditorView {
             textView4.setTypeface(AndroidUtilities.bold());
             linearLayout.addView(textView4, w7.z5.e(-2, -1, 51));
             textView4.setOnClickListener(new View.OnClickListener(this) {
-                public final ThemeEditorView.EditorAlert f32804b;
+                public final ThemeEditorView.EditorAlert f32805b;
 
                 {
-                    this.f32804b = this;
+                    this.f32805b = this;
                 }
 
                 @Override
                 public final void onClick(View view) {
                     int i14 = r2;
-                    ThemeEditorView.EditorAlert editorAlert = this.f32804b;
+                    ThemeEditorView.EditorAlert editorAlert = this.f32805b;
                     switch (i14) {
                         case 0:
                             int i15 = ThemeEditorView.EditorAlert.M;
@@ -408,16 +408,16 @@ public class ThemeEditorView {
             textView5.setTypeface(AndroidUtilities.bold());
             linearLayout.addView(textView5, w7.z5.e(-2, -1, 51));
             textView5.setOnClickListener(new View.OnClickListener(this) {
-                public final ThemeEditorView.EditorAlert f32804b;
+                public final ThemeEditorView.EditorAlert f32805b;
 
                 {
-                    this.f32804b = this;
+                    this.f32805b = this;
                 }
 
                 @Override
                 public final void onClick(View view) {
                     int i14 = r2;
-                    ThemeEditorView.EditorAlert editorAlert = this.f32804b;
+                    ThemeEditorView.EditorAlert editorAlert = this.f32805b;
                     switch (i14) {
                         case 0:
                             int i15 = ThemeEditorView.EditorAlert.M;
@@ -635,8 +635,8 @@ public class ThemeEditorView {
         public final void dismissInternal() {
             super.dismissInternal();
             n21 n21Var = this.f24399f;
-            if (n21Var.f28666b.isFocused()) {
-                AndroidUtilities.hideKeyboard(n21Var.f28666b);
+            if (n21Var.f28667b.isFocused()) {
+                AndroidUtilities.hideKeyboard(n21Var.f28667b);
             }
         }
 

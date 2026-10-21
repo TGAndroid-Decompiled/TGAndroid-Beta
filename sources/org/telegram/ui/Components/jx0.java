@@ -27,7 +27,7 @@ public final class jx0 implements ValueAnimator.AnimatorUpdateListener {
             default:
                 mx0 mx0Var3 = this.f27667b;
                 mx0Var3.getClass();
-                mx0Var3.f28623y = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                mx0Var3.f28624y = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 mx0Var3.invalidate();
                 return;
         }

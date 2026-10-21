@@ -296,7 +296,7 @@ public abstract class x51 extends FrameLayout implements NotificationCenter.Noti
             } else {
                 i12 = 1;
             }
-            ml0Var.f28543b = i12;
+            ml0Var.f28544b = i12;
             ml0Var.c(i10, i11, false, false);
             return;
         }
@@ -418,7 +418,7 @@ public abstract class x51 extends FrameLayout implements NotificationCenter.Noti
             MediaDataController.getInstance(i10).getStickerSet((TLRPC.InputStickerSet) new TLRPC.TL_inputStickerSetEmojiDefaultStatuses(), false);
             MediaDataController.getInstance(i10).getDefaultEmojiStatuses();
             MediaDataController.getInstance(i10).checkDefaultTopicIcons();
-            org.telegram.ui.Components.rx0.f30031v3.fetch(i10, 1, new ci.g(i10, 1));
+            org.telegram.ui.Components.rx0.f30032v3.fetch(i10, 1, new ci.g(i10, 1));
         }
     }
 
@@ -807,7 +807,7 @@ public abstract class x51 extends FrameLayout implements NotificationCenter.Noti
         }
         org.telegram.ui.Components.p5 p5Var = this.f43073n1;
         if (p5Var != null) {
-            p5Var.f29211n = this;
+            p5Var.f29212n = this;
         }
     }
 
@@ -828,7 +828,7 @@ public abstract class x51 extends FrameLayout implements NotificationCenter.Noti
         }
         org.telegram.ui.Components.p5 p5Var = this.f43073n1;
         if (p5Var != null) {
-            p5Var.f29211n = null;
+            p5Var.f29212n = null;
         }
     }
 
@@ -1021,7 +1021,7 @@ public abstract class x51 extends FrameLayout implements NotificationCenter.Noti
             for (int i10 = 0; i10 < u41Var.getChildCount(); i10++) {
                 if (u41Var.getChildAt(i10) instanceof g51) {
                     g51 g51Var = (g51) u41Var.getChildAt(i10);
-                    g51Var.d(this.J.contains(g51Var.f37196x), true);
+                    g51Var.d(this.J.contains(g51Var.f37197x), true);
                 }
             }
             u41Var.invalidate();
@@ -1031,7 +1031,7 @@ public abstract class x51 extends FrameLayout implements NotificationCenter.Noti
             for (int i11 = 0; i11 < k41Var.getChildCount(); i11++) {
                 if (k41Var.getChildAt(i11) instanceof g51) {
                     g51 g51Var2 = (g51) k41Var.getChildAt(i11);
-                    g51Var2.d(this.J.contains(g51Var2.f37196x), true);
+                    g51Var2.d(this.J.contains(g51Var2.f37197x), true);
                 }
             }
             k41Var.invalidate();
@@ -1085,7 +1085,7 @@ public abstract class x51 extends FrameLayout implements NotificationCenter.Noti
             this.f43097x1 = true;
             this.f43100y1 = false;
             if (o41Var != null) {
-                o41Var.f39116f.b(2);
+                o41Var.f39117f.b(2);
             }
             if (!z12) {
                 ArrayList arrayList = this.A1;
@@ -1121,7 +1121,7 @@ public abstract class x51 extends FrameLayout implements NotificationCenter.Noti
             }
             AndroidUtilities.runOnUIThread(j6Var2, j10);
             if (o41Var != null) {
-                o41Var.f39116f.b(2);
+                o41Var.f39117f.b(2);
                 m51.a(o41Var, z10);
             }
         }
@@ -1184,7 +1184,7 @@ public abstract class x51 extends FrameLayout implements NotificationCenter.Noti
         this.f43073n1 = p5Var;
         this.f43077p1 = view;
         if (this.I && p5Var != null) {
-            p5Var.f29211n = this;
+            p5Var.f29212n = this;
         }
         invalidate();
     }
@@ -1252,7 +1252,7 @@ public abstract class x51 extends FrameLayout implements NotificationCenter.Noti
             for (int i11 = 0; i11 < u41Var.getChildCount(); i11++) {
                 if (u41Var.getChildAt(i11) instanceof g51) {
                     g51 g51Var = (g51) u41Var.getChildAt(i11);
-                    g51Var.d(this.J.contains(g51Var.f37196x), true);
+                    g51Var.d(this.J.contains(g51Var.f37197x), true);
                 }
             }
             u41Var.invalidate();

@@ -73,9 +73,9 @@ public final class r4 implements org.telegram.ui.ActionBar.a2, yl0 {
         org.telegram.ui.ActionBar.d6 d6Var = (org.telegram.ui.ActionBar.d6) this.f2109f;
         du0 du0Var = uv0Var.Q;
         ev0 ev0Var = uv0Var.R;
-        eu0 eu0Var = uv0Var.f31021a0;
+        eu0 eu0Var = uv0Var.f31022a0;
         fv0 fv0Var = uv0Var.S;
-        org.telegram.ui.ActionBar.n2 n2Var = uv0Var.f31070v1;
+        org.telegram.ui.ActionBar.n2 n2Var = uv0Var.f31071v1;
         int i13 = qs0Var.F;
         if (i13 == 7) {
             if (view instanceof org.telegram.ui.Cells.va) {
@@ -90,7 +90,7 @@ public final class r4 implements org.telegram.ui.ActionBar.a2, yl0 {
                 return;
             }
             s4.g0 adapter = qs0Var.h.getAdapter();
-            lu0 lu0Var = uv0Var.f31044j0;
+            lu0 lu0Var = uv0Var.f31045j0;
             if (adapter == lu0Var) {
                 TLObject E = lu0Var.E(i12);
                 if (E instanceof TLRPC.ChannelParticipant) {
@@ -147,7 +147,7 @@ public final class r4 implements org.telegram.ui.ActionBar.a2, yl0 {
                                 int i15;
                                 int i16;
                                 final TL_account.contentSettings contentsettings = (TL_account.contentSettings) obj;
-                                org.telegram.ui.ActionBar.n2 n2Var2 = uv0.this.f31070v1;
+                                org.telegram.ui.ActionBar.n2 n2Var2 = uv0.this.f31071v1;
                                 b2Var.c(200L);
                                 final MessagesController messagesController2 = messagesController;
                                 if (messagesController2.config.needAgeVideoVerification.get() && !TextUtils.isEmpty(messagesController2.verifyAgeBotUsername)) {
@@ -373,7 +373,7 @@ public final class r4 implements org.telegram.ui.ActionBar.a2, yl0 {
                             s31Var.m(0L, false);
                         }
                     } else {
-                        s31Var.f30184e0.addAll(hashSet);
+                        s31Var.f30185e0.addAll(hashSet);
                         s31Var.o();
                         org.telegram.ui.Components.xc.a0(s31Var.h).U(LocaleController.getPluralString("TopicsDeleted", hashSet.size()), false, new c3(s31Var, hashSet, arrayList, j10, 18), new ho0(s31Var, arrayList, rcVar, 13)).j();
                         b2Var.dismiss();

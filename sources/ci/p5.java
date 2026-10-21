@@ -378,7 +378,7 @@ public final class p5 extends im0 {
                         TextView textView = new TextView(o5Var.getContext());
                         textView.setText(string);
                         int i13 = org.telegram.ui.ActionBar.h6.Sh;
-                        org.telegram.ui.ActionBar.d6 d6Var = o5Var.f30699n;
+                        org.telegram.ui.ActionBar.d6 d6Var = o5Var.f30700n;
                         textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(i13, d6Var));
                         textView.setPadding(AndroidUtilities.dp(45.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(45.0f), AndroidUtilities.dp(12.0f));
                         textView.setGravity(17);
@@ -392,7 +392,7 @@ public final class p5 extends im0 {
                         i4Var.setBackground(org.telegram.ui.ActionBar.h6.j0(dp, dp, dp, dp, w02, o10, o10));
                         w7.b6.b(i4Var, 0.05f, 1.5f);
                         i4Var.addView(textView);
-                        qa1 qa1Var = o5Var.f30695a;
+                        qa1 qa1Var = o5Var.f30696a;
                         qa1Var.setClipChildren(false);
                         qa1Var.addView(i4Var, w7.z5.t(-2, -2, 1, 0, 28, 0, 4));
                     }

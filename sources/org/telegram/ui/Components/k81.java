@@ -24,7 +24,7 @@ public final class k81 extends AsyncTask {
         Bitmap bitmap = null;
         if (!isCancelled()) {
             try {
-                frameAtTime = n81Var.f28723y.getFrameAtTime(n81Var.H * this.f27812a * 1000, 2);
+                frameAtTime = n81Var.f28724y.getFrameAtTime(n81Var.H * this.f27812a * 1000, 2);
             } catch (Exception e) {
                 e = e;
             }

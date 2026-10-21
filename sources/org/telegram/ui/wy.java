@@ -22,7 +22,7 @@ public final class wy implements DialogInterface.OnCancelListener {
         int i11 = this.f42976b;
         switch (i10) {
             case 0:
-                ArrayList arrayList = ExternalActionActivity.f33130x;
+                ArrayList arrayList = ExternalActionActivity.f33131x;
                 ConnectionsManager.getInstance(i11).cancelRequest(iArr[0], true);
                 return;
             default:

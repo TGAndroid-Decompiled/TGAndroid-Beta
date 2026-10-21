@@ -52,7 +52,7 @@ public final class v extends jm0 {
                 canvas.restore();
                 return;
             case 1:
-                HashSet hashSet = org.telegram.ui.l4.f38734b1;
+                HashSet hashSet = org.telegram.ui.l4.f38735b1;
                 ((org.telegram.ui.l4) obj).n();
                 super.dispatchDraw(canvas);
                 return;
@@ -156,13 +156,13 @@ public final class v extends jm0 {
                 return false;
             case 1:
                 org.telegram.ui.l4 l4Var = (org.telegram.ui.l4) this.W2;
-                if (l4Var.d != null && l4Var.f35522b == null && (((m1Var = l4Var.H) == null || !m1Var.isShowing()) && (motionEvent.getAction() == 1 || motionEvent.getAction() == 3))) {
-                    l4Var.f35522b = null;
+                if (l4Var.d != null && l4Var.f35523b == null && (((m1Var = l4Var.H) == null || !m1Var.isShowing()) && (motionEvent.getAction() == 1 || motionEvent.getAction() == 3))) {
+                    l4Var.f35523b = null;
                     l4Var.d = null;
-                    l4Var.f35524f = null;
-                } else if (l4Var.d != null && l4Var.f35522b != null && motionEvent.getAction() == 1 && (getAdapter() instanceof org.telegram.ui.j4)) {
+                    l4Var.f35525f = null;
+                } else if (l4Var.d != null && l4Var.f35523b != null && motionEvent.getAction() == 1 && (getAdapter() instanceof org.telegram.ui.j4)) {
                     motionEvent2 = motionEvent;
-                    org.telegram.ui.l4.l(l4Var, (org.telegram.ui.j4) getAdapter(), motionEvent2, l4Var.f35524f, l4Var.d, 0, 0);
+                    org.telegram.ui.l4.l(l4Var, (org.telegram.ui.j4) getAdapter(), motionEvent2, l4Var.f35525f, l4Var.d, 0, 0);
                     return super.onInterceptTouchEvent(motionEvent2);
                 }
                 motionEvent2 = motionEvent;
@@ -215,10 +215,10 @@ public final class v extends jm0 {
         switch (this.V2) {
             case 1:
                 org.telegram.ui.l4 l4Var = (org.telegram.ui.l4) this.W2;
-                if (l4Var.d != null && l4Var.f35522b == null && (((m1Var = l4Var.H) == null || !m1Var.isShowing()) && (motionEvent.getAction() == 1 || motionEvent.getAction() == 3))) {
-                    l4Var.f35522b = null;
+                if (l4Var.d != null && l4Var.f35523b == null && (((m1Var = l4Var.H) == null || !m1Var.isShowing()) && (motionEvent.getAction() == 1 || motionEvent.getAction() == 3))) {
+                    l4Var.f35523b = null;
                     l4Var.d = null;
-                    l4Var.f35524f = null;
+                    l4Var.f35525f = null;
                 }
                 return super.onTouchEvent(motionEvent);
             default:

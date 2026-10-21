@@ -7,23 +7,23 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class w41 implements Utilities.Callback2 {
-    public final int f31966a;
-    public final e51 f31967b;
+    public final int f31967a;
+    public final e51 f31968b;
 
     public w41(e51 e51Var, int i10) {
-        this.f31966a = i10;
-        this.f31967b = e51Var;
+        this.f31967a = i10;
+        this.f31968b = e51Var;
     }
 
     @Override
     public final void run(Object obj, Object obj2) {
         String string;
         String str;
-        switch (this.f31966a) {
+        switch (this.f31967a) {
             case 0:
                 ArrayList arrayList = (ArrayList) obj;
                 u61 u61Var = (u61) obj2;
-                final e51 e51Var = this.f31967b;
+                final e51 e51Var = this.f31968b;
                 String[] strArr = e51Var.f25738i0;
                 arrayList.add(h61.B(null));
                 u61Var.E = 1;
@@ -63,7 +63,7 @@ public final class w41 implements Utilities.Callback2 {
                 u61Var.T();
                 return;
             default:
-                e51.S(this.f31967b, (TLRPC.TL_messages_translateResult) obj, (TLRPC.TL_error) obj2);
+                e51.S(this.f31968b, (TLRPC.TL_messages_translateResult) obj, (TLRPC.TL_error) obj2);
                 return;
         }
     }

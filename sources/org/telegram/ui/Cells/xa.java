@@ -451,12 +451,12 @@ public final class xa extends View implements NotificationCenter.NotificationCen
             ycVar.c(z10);
             zVar.setState(z10 ? new int[]{16842919, 16842910} : new int[0]);
         } else if (motionEvent.getAction() == 1) {
-            if (ycVar2.f32631i) {
+            if (ycVar2.f32632i) {
                 org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
                 if ((U instanceof qn) && (hjVar = ((qn) U).f40613a1) != null) {
                     hjVar.e(true, false);
                 }
-            } else if (ycVar.f32631i) {
+            } else if (ycVar.f32632i) {
                 org.telegram.ui.ActionBar.n2 U2 = LaunchActivity.U();
                 if (U2 != null) {
                     Bundle bundle = new Bundle();
@@ -479,7 +479,7 @@ public final class xa extends View implements NotificationCenter.NotificationCen
             ycVar2.c(false);
             zVar.setState(new int[0]);
         }
-        if (ycVar.f32631i || ycVar2.f32631i) {
+        if (ycVar.f32632i || ycVar2.f32632i) {
             return true;
         }
         return false;

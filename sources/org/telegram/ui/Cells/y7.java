@@ -170,7 +170,7 @@ public final class y7 extends FrameLayout {
             } else {
                 i11 = org.telegram.ui.ActionBar.h6.f21378y6;
             }
-            q6Var2.f29479c.v(org.telegram.ui.ActionBar.h6.w0(i11, this.f23845a), z10);
+            q6Var2.f29480c.v(org.telegram.ui.ActionBar.h6.w0(i11, this.f23845a), z10);
             q6Var2.invalidate();
             if (i10 >= this.f23850r.a()) {
                 f7 = 1.0f;

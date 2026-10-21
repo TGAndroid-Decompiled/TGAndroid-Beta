@@ -63,7 +63,7 @@ public final class c3 implements Runnable {
 
     private final void b() {
         da0 da0Var = (da0) this.f1071b;
-        LaunchActivity launchActivity = da0Var.f36318g;
+        LaunchActivity launchActivity = da0Var.f36319g;
         String str = (String) this.d;
         org.telegram.ui.ActionBar.n2 n2Var = (org.telegram.ui.ActionBar.n2) this.e;
         if (str != null) {

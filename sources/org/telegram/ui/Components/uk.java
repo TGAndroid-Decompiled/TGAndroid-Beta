@@ -2,22 +2,22 @@ package org.telegram.ui.Components;
 
 import org.telegram.messenger.AndroidUtilities;
 public final class uk implements Runnable {
-    public final int f30953a;
-    public final al f30954b;
+    public final int f30954a;
+    public final al f30955b;
 
     public uk(al alVar, int i10) {
-        this.f30953a = i10;
-        this.f30954b = alVar;
+        this.f30954a = i10;
+        this.f30955b = alVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f30953a) {
+        switch (this.f30954a) {
             case 0:
-                this.f30954b.Z();
+                this.f30955b.Z();
                 return;
             case 1:
-                al alVar = this.f30954b;
+                al alVar = this.f30955b;
                 EditTextBoldCursor editTextBoldCursor = alVar.P;
                 if (!alVar.H && !alVar.K0 && !alVar.f28173b.isDismissed() && alVar.I0 && alVar.Q0 == null && editTextBoldCursor.hasFocus() && alVar.isShown()) {
                     AndroidUtilities.showKeyboard(editTextBoldCursor);
@@ -25,14 +25,14 @@ public final class uk implements Runnable {
                 }
                 return;
             case 2:
-                al alVar2 = this.f30954b;
+                al alVar2 = this.f30955b;
                 if (!alVar2.H && alVar2.I0 && alVar2.isShown()) {
                     alVar2.c0();
                     return;
                 }
                 return;
             case 3:
-                al alVar3 = this.f30954b;
+                al alVar3 = this.f30955b;
                 if (!alVar3.H) {
                     float f7 = alVar3.f24645j0;
                     if (f7 < 1.0f && alVar3.f24644i0 == null) {
@@ -52,7 +52,7 @@ public final class uk implements Runnable {
                 }
                 return;
             case 4:
-                al alVar4 = this.f30954b;
+                al alVar4 = this.f30955b;
                 if (alVar4.I0 && !alVar4.H) {
                     alVar4.b0();
                     if (alVar4.J0) {
@@ -63,7 +63,7 @@ public final class uk implements Runnable {
                 }
                 return;
             default:
-                al alVar5 = this.f30954b;
+                al alVar5 = this.f30955b;
                 if (!alVar5.m0) {
                     alVar5.f24647l0.setVisibility(4);
                     return;

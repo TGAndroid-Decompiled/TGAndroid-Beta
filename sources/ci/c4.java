@@ -172,9 +172,9 @@ public final class c4 implements View.OnClickListener {
                 }
                 nc0Var.a(!chatActivityEnterView.R4, true);
                 if (!arrayList2.isEmpty()) {
-                    mi0Var.f((MessageObject) arrayList2.get(0));
+                    mi0Var.e((MessageObject) arrayList2.get(0));
                 }
-                mi0Var.n(!chatActivityEnterView.R4);
+                mi0Var.m(!chatActivityEnterView.R4);
                 return;
             case 11:
                 ChatActivityEnterView chatActivityEnterView2 = (ChatActivityEnterView) obj4;
@@ -197,7 +197,7 @@ public final class c4 implements View.OnClickListener {
                     messageObject3.messageOwner.invert_media = chatActivityEnterView2.R4;
                 }
                 chatActivityEnterView2.b0();
-                mi0Var2.h(true);
+                mi0Var2.g(true);
                 chatActivityEnterView2.R4 = false;
                 return;
             case 12:
@@ -205,7 +205,7 @@ public final class c4 implements View.OnClickListener {
                 Context context = (Context) obj3;
                 org.telegram.ui.ActionBar.e1 e1Var = (org.telegram.ui.ActionBar.e1) obj2;
                 org.telegram.ui.ActionBar.d6 d6Var = (org.telegram.ui.ActionBar.d6) obj;
-                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = tiVar.f30557j0;
+                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = tiVar.f30558j0;
                 if (chatAttachAlertPhotoLayout != null) {
                     md.h1(context, chatAttachAlertPhotoLayout.getStarsPrice(), true, new ai.r5(13, tiVar, e1Var), d6Var);
                     return;
@@ -217,10 +217,10 @@ public final class c4 implements View.OnClickListener {
                 org.telegram.ui.ActionBar.f3 f3Var2 = (org.telegram.ui.ActionBar.f3) obj2;
                 org.telegram.ui.ActionBar.n2 n2Var = (org.telegram.ui.ActionBar.n2) obj;
                 float[] fArr = q90Var.I;
-                FrameLayout frameLayout = q90Var.f29499n;
-                if (q90Var.f29501s == null) {
+                FrameLayout frameLayout = q90Var.f29500n;
+                if (q90Var.f29502s == null) {
                     ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = new ActionBarPopupWindow$ActionBarPopupWindowLayout(context2, null);
-                    if (!q90Var.f29503x && q90Var.G) {
+                    if (!q90Var.f29504x && q90Var.G) {
                         org.telegram.ui.ActionBar.e1 e1Var2 = new org.telegram.ui.ActionBar.e1(context2, true, false);
                         e1Var2.g(LocaleController.getString(R.string.Edit), R.drawable.msg_edit, null);
                         actionBarPopupWindow$ActionBarPopupWindowLayout.a(e1Var2, w7.z5.n(-1, 48));
@@ -257,15 +257,15 @@ public final class c4 implements View.OnClickListener {
                         g6Var.animate().alpha(1.0f).setDuration(150L);
                         actionBarPopupWindow$ActionBarPopupWindowLayout.measure(View.MeasureSpec.makeMeasureSpec(container.getMeasuredWidth(), 0), View.MeasureSpec.makeMeasureSpec(container.getMeasuredHeight(), 0));
                         org.telegram.ui.ActionBar.m1 m1Var = new org.telegram.ui.ActionBar.m1(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
-                        q90Var.f29501s = m1Var;
+                        q90Var.f29502s = m1Var;
                         m1Var.setOnDismissListener(new m90(q90Var, g6Var, container, caVar, 0));
                         boolean z11 = r22;
-                        q90Var.f29501s.setOutsideTouchable(z11);
-                        q90Var.f29501s.setFocusable(z11);
-                        q90Var.f29501s.setBackgroundDrawable(new ColorDrawable(0));
-                        q90Var.f29501s.setAnimationStyle(R.style.PopupContextAnimation);
-                        q90Var.f29501s.setInputMethodMode(2);
-                        q90Var.f29501s.setSoftInputMode(0);
+                        q90Var.f29502s.setOutsideTouchable(z11);
+                        q90Var.f29502s.setFocusable(z11);
+                        q90Var.f29502s.setBackgroundDrawable(new ColorDrawable(0));
+                        q90Var.f29502s.setAnimationStyle(R.style.PopupContextAnimation);
+                        q90Var.f29502s.setInputMethodMode(2);
+                        q90Var.f29502s.setSoftInputMode(0);
                         actionBarPopupWindow$ActionBarPopupWindowLayout.setDispatchKeyEventListener(new h90(q90Var, 2));
                         if (AndroidUtilities.isTablet()) {
                             f10 += container.getPaddingTop();
@@ -273,7 +273,7 @@ public final class c4 implements View.OnClickListener {
                         } else {
                             f7 = 0.0f;
                         }
-                        q90Var.f29501s.showAtLocation(container, 0, (int) (container.getX() + ((container.getMeasuredWidth() - actionBarPopupWindow$ActionBarPopupWindowLayout.getMeasuredWidth()) - AndroidUtilities.dp(16.0f)) + f7), (int) (container.getY() + f10 + frameLayout.getMeasuredHeight()));
+                        q90Var.f29502s.showAtLocation(container, 0, (int) (container.getX() + ((container.getMeasuredWidth() - actionBarPopupWindow$ActionBarPopupWindowLayout.getMeasuredWidth()) - AndroidUtilities.dp(16.0f)) + f7), (int) (container.getY() + f10 + frameLayout.getMeasuredHeight()));
                         return;
                     }
                     return;
@@ -281,7 +281,7 @@ public final class c4 implements View.OnClickListener {
                 return;
             case 14:
                 mf0 mf0Var = (mf0) obj4;
-                i80 H = i80.H(mf0Var.v, mf0Var.f39230a);
+                i80 H = i80.H(mf0Var.v, mf0Var.f39231a);
                 H.c(R.drawable.msg_help, LocaleController.getString(R.string.SettingsHelp), new i90(mf0Var, (String) obj3, (String) obj2, (String) obj, 25), false);
                 H.V(5);
                 H.Z();

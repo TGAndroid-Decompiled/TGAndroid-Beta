@@ -118,7 +118,7 @@ public final class t01 extends View {
             this.h = Utilities.clamp(this.h + (((float) Utilities.clamp(currentTimeMillis - this.f41572n, 20L, 0L)) / 4200.0f), 1.0f, 0.0f);
             this.f41572n = currentTimeMillis;
             ProfileActivity profileActivity = this.f41568a;
-            hy0 hy0Var = profileActivity.f33580a;
+            hy0 hy0Var = profileActivity.f33581a;
             int i11 = profileActivity.V2;
             PointF pointF = this.d;
             float f7 = 2.0f;

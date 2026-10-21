@@ -8,14 +8,14 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationsController;
 import org.telegram.messenger.R;
 public final class oe implements View.OnClickListener {
-    public final org.telegram.ui.qn f29029a;
-    public final Activity f29030b;
-    public final ChatActivityEnterView f29031c;
+    public final org.telegram.ui.qn f29030a;
+    public final Activity f29031b;
+    public final ChatActivityEnterView f29032c;
 
     public oe(ChatActivityEnterView chatActivityEnterView, org.telegram.ui.qn qnVar, Activity activity) {
-        this.f29031c = chatActivityEnterView;
-        this.f29029a = qnVar;
-        this.f29030b = activity;
+        this.f29032c = chatActivityEnterView;
+        this.f29030a = qnVar;
+        this.f29031b = activity;
     }
 
     @Override
@@ -24,14 +24,14 @@ public final class oe implements View.OnClickListener {
         String str;
         int i10;
         int i11;
-        org.telegram.ui.qn qnVar = this.f29029a;
+        org.telegram.ui.qn qnVar = this.f29030a;
         if (qnVar == null) {
             return;
         }
-        ChatActivityEnterView chatActivityEnterView = this.f29031c;
+        ChatActivityEnterView chatActivityEnterView = this.f29032c;
         chatActivityEnterView.f23950g2 = !chatActivityEnterView.f23950g2;
         if (chatActivityEnterView.f23935e0 == null) {
-            chatActivityEnterView.f23935e0 = new yr(this.f29030b, R.drawable.input_notify_on, org.telegram.ui.ActionBar.h6.Wk);
+            chatActivityEnterView.f23935e0 = new yr(this.f29031b, R.drawable.input_notify_on, org.telegram.ui.ActionBar.h6.Wk);
         }
         chatActivityEnterView.f23935e0.a(chatActivityEnterView.f23950g2, true);
         chatActivityEnterView.I1.setImageDrawable(chatActivityEnterView.f23935e0);

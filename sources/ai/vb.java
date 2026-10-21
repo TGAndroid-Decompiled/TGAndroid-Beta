@@ -169,7 +169,7 @@ public final class vb implements Runnable {
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f2331f;
                 TLObject tLObject2 = (TLObject) this.f2329b;
                 org.telegram.ui.f1 f1Var = (org.telegram.ui.f1) this.h;
-                b70Var.f35526r = false;
+                b70Var.f35527r = false;
                 if (!((org.telegram.ui.j4) this.e).e.isEmpty()) {
                     if (tL_error == null) {
                         TLRPC.TL_contacts_resolvedPeer tL_contacts_resolvedPeer = (TLRPC.TL_contacts_resolvedPeer) tLObject2;
@@ -179,7 +179,7 @@ public final class vb implements Runnable {
                             MessagesController.getInstance(i13).putChats(tL_contacts_resolvedPeer.chats, false);
                             MessagesStorage.getInstance(i13).putUsersAndChats(tL_contacts_resolvedPeer.users, tL_contacts_resolvedPeer.chats, false, true);
                             TLRPC.Chat chat = tL_contacts_resolvedPeer.chats.get(0);
-                            b70Var.f35525n = chat;
+                            b70Var.f35526n = chat;
                             if (chat.left && !chat.kicked) {
                                 f1Var.a(0, false);
                                 return;

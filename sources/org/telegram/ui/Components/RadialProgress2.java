@@ -79,8 +79,8 @@ public class RadialProgress2 {
         this.f24309i = na0Var;
         na0 na0Var2 = new na0();
         this.f24310j = na0Var2;
-        na0Var2.f28756j = true;
-        na0Var2.f28751b.setStrokeWidth(AndroidUtilities.dp(2.0f));
+        na0Var2.f28757j = true;
+        na0Var2.f28752b.setStrokeWidth(AndroidUtilities.dp(2.0f));
         na0Var2.d(4, false);
         int dp = AndroidUtilities.dp(22.0f);
         this.f24323x = dp;
@@ -93,13 +93,13 @@ public class RadialProgress2 {
     }
 
     public final int a() {
-        return this.f24309i.f28763q;
+        return this.f24309i.f28764q;
     }
 
     public final float b() {
         na0 na0Var = this.f24309i;
-        int i10 = na0Var.f28763q;
-        int i11 = na0Var.f28762p;
+        int i10 = na0Var.f28764q;
+        int i11 = na0Var.f28763p;
         if ((i10 == 3 || i10 == 6 || i10 == 10 || i10 == 8 || i10 == 0) && i11 == 4) {
             return na0Var.b();
         }
@@ -150,12 +150,12 @@ public class RadialProgress2 {
         int argb;
         int i14;
         na0 na0Var = this.f24309i;
-        int i15 = na0Var.f28763q;
-        Paint paint2 = na0Var.f28752c;
+        int i15 = na0Var.f28764q;
+        Paint paint2 = na0Var.f28753c;
         if (i15 != 4 || na0Var.b() < 1.0f) {
             RectF rectF = this.f24304a;
             if (!rectF.isEmpty()) {
-                int i16 = na0Var.f28763q;
+                int i16 = na0Var.f28764q;
                 float b11 = b();
                 boolean z10 = this.f24325z;
                 na0 na0Var2 = this.f24310j;
@@ -310,7 +310,7 @@ public class RadialProgress2 {
                 na0Var.setBounds(ceil - i26, ceil2 - i26, ceil + i26, ceil2 + i26);
                 na0Var.E = imageReceiver.hasBitmapImage();
                 if (!this.f24306c && this.f24317q < 0) {
-                    na0Var.f28761o = this.E;
+                    na0Var.f28762o = this.E;
                     na0Var.draw(canvas);
                 } else {
                     Canvas canvas6 = this.D;
@@ -337,7 +337,7 @@ public class RadialProgress2 {
                     }
                     int i28 = i12 / 2;
                     if (this.f24306c) {
-                        if (na0Var2.f28763q != 4) {
+                        if (na0Var2.f28764q != 4) {
                             b10 = 1.0f;
                         } else {
                             b10 = 1.0f - na0Var2.b();
@@ -439,7 +439,7 @@ public class RadialProgress2 {
         boolean z12;
         if (i10 == 2 || i10 == 3 || i10 == 4) {
             na0 na0Var = this.f24310j;
-            if (z10 && i10 == na0Var.f28763q) {
+            if (z10 && i10 == na0Var.f28764q) {
                 return;
             }
             na0Var.d(i10, z11);
@@ -499,8 +499,8 @@ public class RadialProgress2 {
 
     public void setAsMini() {
         na0 na0Var = this.f24309i;
-        na0Var.f28756j = true;
-        na0Var.f28751b.setStrokeWidth(AndroidUtilities.dp(2.0f));
+        na0Var.f28757j = true;
+        na0Var.f28752b.setStrokeWidth(AndroidUtilities.dp(2.0f));
     }
 
     public void setBackgroundGradientDrawable(LinearGradient linearGradient) {
@@ -530,7 +530,7 @@ public class RadialProgress2 {
 
     public void setIcon(int i10, boolean z10, boolean z11) {
         na0 na0Var = this.f24309i;
-        if (!z10 || i10 != na0Var.f28763q) {
+        if (!z10 || i10 != na0Var.f28764q) {
             na0Var.d(i10, z11);
             View view = this.f24305b;
             if (view != null) {

@@ -148,7 +148,7 @@ public final class g6 extends org.telegram.ui.ActionBar.f3 {
             int i10 = R.drawable.msg_stories_stealth2;
             String string = LocaleController.getString(R.string.StealthModeOn);
             String string2 = LocaleController.getString(R.string.StealthModeOnHint);
-            mc mcVar = new mc(X.W(), X.f32389c);
+            mc mcVar = new mc(X.W(), X.f32390c);
             mcVar.f28478a.setImageResource(i10);
             mcVar.f28479b.setText(string);
             TextView textView = mcVar.f28480c;

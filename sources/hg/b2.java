@@ -251,7 +251,7 @@ public final class b2 implements MediaDataController.KeywordResultCallback, e2.o
             case 12:
                 LaunchActivity launchActivity = (LaunchActivity) this.f11814c;
                 HashMap hashMap = (HashMap) this.d;
-                ArrayList arrayList = launchActivity.f33161d0;
+                ArrayList arrayList = launchActivity.f33162d0;
                 if (!arrayList.isEmpty() && AndroidUtilities.isMapsInstalled((n2) i2.e.h(1, arrayList))) {
                     nc0 nc0Var = new nc0(0);
                     nc0Var.F0 = new i2.s(hashMap, this.f11813b, 12);

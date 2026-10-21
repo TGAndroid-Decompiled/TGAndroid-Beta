@@ -16,7 +16,7 @@ public final class sg implements MessagesStorage.IntCallback {
             case 0:
                 qn qnVar = this.f41460b;
                 if (qnVar.getParentActivity() != null && qnVar.fragmentView != null && i10 > 0) {
-                    org.telegram.ui.Components.xc.a0(qnVar).m(org.telegram.ui.Components.wc.f32054r, i10, 0, 0, qnVar.f40673ea).j();
+                    org.telegram.ui.Components.xc.a0(qnVar).m(org.telegram.ui.Components.wc.f32055r, i10, 0, 0, qnVar.f40673ea).j();
                     return;
                 }
                 return;

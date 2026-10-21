@@ -45,7 +45,7 @@ public final class i1 implements Runnable {
                 d2Var4.s0(2147483646, 0, true);
                 mi0 mi0Var = d2Var4.O0;
                 if (mi0Var != null) {
-                    mi0Var.h(false);
+                    mi0Var.g(false);
                     d2Var4.O0 = null;
                     return;
                 }
@@ -55,7 +55,7 @@ public final class i1 implements Runnable {
                 d2Var5.s0(0, 0, false);
                 mi0 mi0Var2 = d2Var5.O0;
                 if (mi0Var2 != null) {
-                    mi0Var2.h(true);
+                    mi0Var2.g(true);
                     d2Var5.O0 = null;
                     return;
                 }

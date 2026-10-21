@@ -23,7 +23,7 @@ public final class qy0 implements Runnable {
             case 0:
                 ProfileActivity profileActivity = (ProfileActivity) ((ah.v) obj).f895c;
                 if (profileActivity.p5 != 1.0f) {
-                    sy0 sy0Var = profileActivity.f33679o0;
+                    sy0 sy0Var = profileActivity.f33680o0;
                     while (sy0Var.D0.k(i11) != sy0Var.getRealCount() - 1) {
                         i11++;
                     }
@@ -32,8 +32,8 @@ public final class qy0 implements Runnable {
                 }
                 return;
             case 1:
-                ProfileActivity profileActivity2 = ((jz0) obj).f38379b;
-                profileActivity2.getMessagesController().toggleChatNoForwards(profileActivity2.f33619f1, 0, true, new ei.ka(2, profileActivity2, true));
+                ProfileActivity profileActivity2 = ((jz0) obj).f38380b;
+                profileActivity2.getMessagesController().toggleChatNoForwards(profileActivity2.f33620f1, 0, true, new ei.ka(2, profileActivity2, true));
                 return;
             case 2:
                 nz0 nz0Var = (nz0) obj;
@@ -66,7 +66,7 @@ public final class qy0 implements Runnable {
                     }
                     if (xcVar != null) {
                         org.telegram.ui.Components.qc M = xcVar.M(LocaleController.getString(R.string.ReportChatSent), LocaleController.getString(R.string.Reported2), R.raw.msg_antispam);
-                        M.f29530j = 5000;
+                        M.f29531j = 5000;
                         M.j();
                         return;
                     }
@@ -79,7 +79,7 @@ public final class qy0 implements Runnable {
             case 10:
                 SaveToGallerySettingsActivity saveToGallerySettingsActivity = (SaveToGallerySettingsActivity) obj;
                 saveToGallerySettingsActivity.v.clear();
-                saveToGallerySettingsActivity.getUserConfig().updateSaveGalleryExceptions(saveToGallerySettingsActivity.f33775a, saveToGallerySettingsActivity.v);
+                saveToGallerySettingsActivity.getUserConfig().updateSaveGalleryExceptions(saveToGallerySettingsActivity.f33776a, saveToGallerySettingsActivity.v);
                 saveToGallerySettingsActivity.Z();
                 return;
             case 11:
@@ -88,11 +88,11 @@ public final class qy0 implements Runnable {
                 pf.d.r(h31Var.getContext(), LocaleController.getString(R.string.PromoteUrl));
                 return;
             case 12:
-                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) ((org.telegram.ui.Components.nl0) obj).f28842c;
-                Runnable runnable = secretMediaViewer.f33814o0;
+                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) ((org.telegram.ui.Components.nl0) obj).f28843c;
+                Runnable runnable = secretMediaViewer.f33815o0;
                 if (runnable != null) {
                     runnable.run();
-                    secretMediaViewer.f33814o0 = null;
+                    secretMediaViewer.f33815o0 = null;
                     return;
                 }
                 return;
@@ -105,10 +105,10 @@ public final class qy0 implements Runnable {
                 ((NotificationCenter) obj).runDelayedNotifications();
                 return;
             case 15:
-                AndroidUtilities.updateViewShow(((m51) obj).f39115c, true);
+                AndroidUtilities.updateViewShow(((m51) obj).f39116c, true);
                 return;
             case 16:
-                org.telegram.ui.Components.u61 u61Var = ((h61) obj).f37513i0;
+                org.telegram.ui.Components.u61 u61Var = ((h61) obj).f37514i0;
                 if (u61Var != null) {
                     u61Var.N(true);
                     return;
@@ -124,7 +124,7 @@ public final class qy0 implements Runnable {
                 ((td1) obj).J.f41181r.l();
                 return;
             case 20:
-                ((be1) obj).f35618b.C0();
+                ((be1) obj).f35619b.C0();
                 return;
             case 21:
                 ((VoIPFeedbackActivity) obj).finish();
@@ -143,21 +143,21 @@ public final class qy0 implements Runnable {
                     VoIPService.getSharedInstance().swapSinks();
                 }
                 hh1Var.Y.setCornerRadius(-1.0f);
-                hh1Var.f37637c0.d.release();
-                hh1Var.f37639d0.d.release();
-                hh1Var.f37634b0.release();
+                hh1Var.f37638c0.d.release();
+                hh1Var.f37640d0.d.release();
+                hh1Var.f37635b0.release();
                 hh1Var.k();
-                hh1Var.f37668u0.d();
+                hh1Var.f37669u0.d();
                 org.telegram.ui.Components.voip.k2.U = false;
                 hh1Var.E0 = false;
-                hh1.f37629n1 = null;
+                hh1.f37630n1 = null;
                 return;
             case 25:
                 fh1 fh1Var = (fh1) obj;
                 fh1Var.getClass();
                 if (VoIPService.getSharedState() != null) {
                     VoIPService.getSharedState().acceptIncomingCall();
-                    if (fh1Var.f37015a.f37659n0 && VoIPService.getSharedInstance() != null) {
+                    if (fh1Var.f37016a.f37660n0 && VoIPService.getSharedInstance() != null) {
                         VoIPService.getSharedInstance().requestVideoCall(false);
                         return;
                     }
@@ -168,7 +168,7 @@ public final class qy0 implements Runnable {
                 ((VoIPPermissionActivity) obj).finish();
                 return;
             default:
-                int[][] iArr = WallpapersListActivity.f35206k0;
+                int[][] iArr = WallpapersListActivity.f35207k0;
                 ((WallpapersListActivity) obj).B0(false);
                 return;
         }

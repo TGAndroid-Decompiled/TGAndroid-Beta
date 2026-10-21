@@ -19,10 +19,10 @@ public final class jz extends ez {
     public jz(kz kzVar, Activity activity, org.telegram.ui.ActionBar.n2 n2Var) {
         super(activity);
         this.E = kzVar;
-        this.f36839y = new float[2];
-        this.f36835r = n2Var;
+        this.f36840y = new float[2];
+        this.f36836r = n2Var;
         FrameLayout frameLayout = new FrameLayout(activity);
-        this.f36830a = frameLayout;
+        this.f36831a = frameLayout;
         int dp = AndroidUtilities.dp(8.0f);
         int i10 = org.telegram.ui.ActionBar.h6.e7;
         int x02 = org.telegram.ui.ActionBar.h6.x0(null, i10, false);
@@ -31,19 +31,19 @@ public final class jz extends ez {
         frameLayout.setOnClickListener(new cz(this, 0));
         addView(frameLayout, w7.z5.d(-1, 48.0f, 55, 22.0f, 9.0f, 22.0f, 0.0f));
         org.telegram.ui.ActionBar.j5 j5Var = new org.telegram.ui.ActionBar.j5(activity);
-        this.f36831b = j5Var;
+        this.f36832b = j5Var;
         j5Var.setTextSize(16);
         int i11 = org.telegram.ui.ActionBar.h6.G6;
         j5Var.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, i11, false));
         SpannableString spannableString = new SpannableString("t.me/folder/N3k/dImA/bIo");
         ?? obj = new Object();
-        obj.f28649a |= 256;
+        obj.f28650a |= 256;
         spannableString.setSpan(new org.telegram.ui.Components.o11(obj, 0), 0, spannableString.length(), 33);
         j5Var.l(spannableString, false);
         j5Var.setAlpha(1.0f);
         frameLayout.addView(j5Var, w7.z5.d(-1, -2.0f, 23, 20.0f, 0.0f, 40.0f, 0.0f));
         org.telegram.ui.ActionBar.j5 j5Var2 = new org.telegram.ui.ActionBar.j5(activity);
-        this.f36832c = j5Var2;
+        this.f36833c = j5Var2;
         j5Var2.setTextSize(16);
         j5Var2.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, i11, false));
         j5Var2.l(spannableString, false);
@@ -69,7 +69,7 @@ public final class jz extends ez {
         this.e = u8Var;
         addView(u8Var, w7.z5.d(-1, 42.0f, 55, 22.0f, 69.0f, 22.0f, 0.0f));
         ai.vd vdVar = new ai.vd(activity, 26);
-        this.f36833f = vdVar;
+        this.f36834f = vdVar;
         vdVar.setGravity(17);
         int i12 = org.telegram.ui.ActionBar.h6.Sh;
         vdVar.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, i12, false));
@@ -104,7 +104,7 @@ public final class jz extends ez {
         vdVar2.setVisibility(8);
         u8Var.addView(vdVar2, w7.z5.e(-1, -1, 5));
         TextView textView = new TextView(activity);
-        this.f36834n = textView;
+        this.f36835n = textView;
         textView.setGravity(17);
         textView.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, i12, false));
         textView.setBackground(org.telegram.ui.ActionBar.h6.Z(822083583, 8, 8));

@@ -458,7 +458,7 @@ public final class g extends y10 implements NotificationCenter.NotificationCente
     public final g0 n0() {
         d dVar = new d(this, this.f43325c, getParentActivity(), this.currentAccount, this.classGuid, new q(this, 21), getResourceProvider());
         this.f10614f0 = dVar;
-        dVar.f30860r = false;
+        dVar.f30861r = false;
         return dVar;
     }
 

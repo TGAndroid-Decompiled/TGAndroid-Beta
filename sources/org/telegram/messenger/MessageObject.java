@@ -1378,7 +1378,7 @@ public class MessageObject {
                     break;
                 }
                 pj0 pj0Var = pj0VarArr[i15];
-                pj0Var.f29322a.f29615b = false;
+                pj0Var.f29323a.f29616b = false;
                 int spanStart = spanned.getSpanStart(pj0Var);
                 int spanEnd = spanned.getSpanEnd(pj0VarArr[i15]);
                 treeSet.add(Integer.valueOf(spanStart));
@@ -1388,7 +1388,7 @@ public class MessageObject {
                 } else {
                     i13 = 0;
                 }
-                if (pj0VarArr[i15].f29322a.e) {
+                if (pj0VarArr[i15].f29323a.e) {
                     i16 = 16;
                 }
                 hashMap.put(valueOf, Integer.valueOf(i13 | i16));

@@ -12,22 +12,22 @@ import org.telegram.messenger.SvgHelper;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.WebFile;
 public final class vi implements Utilities.CallbackReturn {
-    public final int f31257a;
-    public final Object f31258b;
+    public final int f31258a;
+    public final Object f31259b;
 
     public vi(Object obj, int i10) {
-        this.f31257a = i10;
-        this.f31258b = obj;
+        this.f31258a = i10;
+        this.f31259b = obj;
     }
 
     @Override
     public final Object run(Object obj) {
         int i10;
-        switch (this.f31257a) {
+        switch (this.f31258a) {
             case 0:
-                return Boolean.valueOf(fj.N((fj) this.f31258b, (MessageObject) obj));
+                return Boolean.valueOf(fj.N((fj) this.f31259b, (MessageObject) obj));
             case 1:
-                sh.f fVar = (sh.f) this.f31258b;
+                sh.f fVar = (sh.f) this.f31259b;
                 View view = (View) obj;
                 ImageReceiver imageReceiver = new ImageReceiver(view);
                 int i11 = R.raw.map_placeholder;
@@ -45,7 +45,7 @@ public final class vi implements Utilities.CallbackReturn {
                 imageReceiver.setRoundRadius(AndroidUtilities.dp(14.0f));
                 return new ed(imageReceiver, view.getContext().getResources().getDrawable(R.drawable.map_pin).mutate());
             case 2:
-                int i13 = ((SparseIntArray) this.f31258b).get(((Integer) obj).intValue(), -1);
+                int i13 = ((SparseIntArray) this.f31259b).get(((Integer) obj).intValue(), -1);
                 if (i13 == -1) {
                     return Boolean.TRUE;
                 }
@@ -55,7 +55,7 @@ public final class vi implements Utilities.CallbackReturn {
                 }
                 return Boolean.valueOf(z10);
             default:
-                c71 c71Var = (c71) this.f31258b;
+                c71 c71Var = (c71) this.f31259b;
                 View view2 = (View) obj;
                 c71Var.getClass();
                 if (view2.getParent() != c71Var) {

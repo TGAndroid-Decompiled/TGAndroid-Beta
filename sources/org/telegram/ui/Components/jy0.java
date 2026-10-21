@@ -34,14 +34,14 @@ public final class jy0 extends s4.x {
     @Override
     public final void p(s4.b1 b1Var, int i10) {
         qy0 qy0Var = this.f27678f;
-        if (i10 == 0 && qy0Var.f29750f != null && this.e > 0) {
+        if (i10 == 0 && qy0Var.f29751f != null && this.e > 0) {
             TLRPC.TL_stickers_changeStickerPosition tL_stickers_changeStickerPosition = new TLRPC.TL_stickers_changeStickerPosition();
             tL_stickers_changeStickerPosition.position = this.e;
-            tL_stickers_changeStickerPosition.sticker = MediaDataController.getInputStickerSetItem(qy0Var.f29750f, "").document;
+            tL_stickers_changeStickerPosition.sticker = MediaDataController.getInputStickerSetItem(qy0Var.f29751f, "").document;
             this.e = -1;
-            qy0Var.f29750f = null;
+            qy0Var.f29751f = null;
         } else if (i10 == 2) {
-            qy0Var.f29750f = ((org.telegram.ui.Cells.e8) b1Var.f45917a).getSticker();
+            qy0Var.f29751f = ((org.telegram.ui.Cells.e8) b1Var.f45917a).getSticker();
         }
     }
 

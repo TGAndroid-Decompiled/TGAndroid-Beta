@@ -70,19 +70,19 @@ public final class q2 implements ValueAnimator.AnimatorUpdateListener {
                 float floatValue4 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 int i12 = this.f21676b;
                 fArr[i12] = floatValue4;
-                j5[] j5VarArr = wa0Var.f32049w;
+                j5[] j5VarArr = wa0Var.f32050w;
                 j5VarArr[i12].setScaleX(AndroidUtilities.lerp(1.111f, 1.0f, floatValue4));
                 j5VarArr[i12].setScaleY(AndroidUtilities.lerp(1.111f, 1.0f, fArr[i12]));
                 j5VarArr[i12].setTranslationY(AndroidUtilities.lerp(AndroidUtilities.dp(8.0f), 0, fArr[i12]));
-                wa0Var.f32050x[i12].setAlpha(fArr[i12]);
+                wa0Var.f32051x[i12].setAlpha(fArr[i12]);
                 return;
             case 6:
                 oq oqVar = (oq) this.f21677c;
                 oqVar.getClass();
                 ol0 ol0Var = (ol0) oqVar.d;
-                ol0Var.f29065b.put(this.f21676b, (Float) valueAnimator.getAnimatedValue());
+                ol0Var.f29066b.put(this.f21676b, (Float) valueAnimator.getAnimatedValue());
                 ol0Var.d = true;
-                ol0Var.f29064a.invalidate();
+                ol0Var.f29065a.invalidate();
                 return;
             default:
                 wh.g gVar = (wh.g) this.f21677c;

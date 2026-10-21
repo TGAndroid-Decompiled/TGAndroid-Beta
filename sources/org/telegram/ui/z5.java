@@ -82,9 +82,9 @@ public final class z5 extends y10 implements NotificationCenter.NotificationCent
                     if (z11 && boost.user_id == -1) {
                         org.telegram.ui.Components.yb ybVar = new org.telegram.ui.Components.yb(z5Var.getParentActivity(), z5Var.getResourceProvider());
                         ybVar.c(R.raw.chats_infotip, 36, 36, new String[0]);
-                        ybVar.f32624b.setText(LocaleController.getString(R.string.BoostingRecipientWillBeSelected));
-                        ybVar.f32624b.setSingleLine(false);
-                        ybVar.f32624b.setMaxLines(2);
+                        ybVar.f32625b.setText(LocaleController.getString(R.string.BoostingRecipientWillBeSelected));
+                        ybVar.f32625b.setSingleLine(false);
+                        ybVar.f32625b.setMaxLines(2);
                         org.telegram.ui.Components.qc.g(z5Var, ybVar, 2750).j();
                     } else if (!z12 && !z11) {
                         z5Var.presentFragment(ProfileActivity.m4(bVar.getDialogId()));

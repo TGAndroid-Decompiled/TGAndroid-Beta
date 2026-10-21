@@ -71,7 +71,7 @@ public final class j10 extends FrameLayout {
         p6Var.w(AndroidUtilities.dp(11.66f));
         p6Var.u(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20990d6, false));
         p6Var.x(AndroidUtilities.bold());
-        p6Var.f29225b = 1;
+        p6Var.f29226b = 1;
         int m12 = org.telegram.ui.ActionBar.h6.m1(0.8f, org.telegram.ui.ActionBar.h6.x0(null, i11, false));
         int x02 = org.telegram.ui.ActionBar.h6.x0(null, i12, false);
         if (string != null) {

@@ -6,46 +6,46 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class vi implements Runnable {
-    public final int f19758a = 0;
-    public final int f19759b;
-    public final boolean f19760c;
+    public final int f19755a = 0;
+    public final int f19756b;
+    public final boolean f19757c;
     public final boolean d;
     public final Object e;
-    public final Serializable f19761f;
+    public final Serializable f19758f;
     public final Object h;
-    public final Object f19762n;
-    public final TLObject f19763r;
+    public final Object f19759n;
+    public final TLObject f19760r;
 
     public vi(SendMessagesHelper sendMessagesHelper, ArrayList arrayList, boolean z10, boolean z11, TLRPC.Message message, ArrayList arrayList2, ArrayList arrayList3, int i10) {
         this.e = sendMessagesHelper;
-        this.f19761f = arrayList;
-        this.f19760c = z10;
+        this.f19758f = arrayList;
+        this.f19757c = z10;
         this.d = z11;
-        this.f19763r = message;
+        this.f19760r = message;
         this.h = arrayList2;
-        this.f19762n = arrayList3;
-        this.f19759b = i10;
+        this.f19759n = arrayList3;
+        this.f19756b = i10;
     }
 
     @Override
     public final void run() {
         int i10;
         TLRPC.TL_username tL_username;
-        switch (this.f19758a) {
+        switch (this.f19755a) {
             case 0:
-                ((SendMessagesHelper) this.e).lambda$performSendMessageRequest$99((ArrayList) this.f19761f, this.f19760c, this.d, (TLRPC.Message) this.f19763r, (ArrayList) this.h, (ArrayList) this.f19762n, this.f19759b);
+                ((SendMessagesHelper) this.e).lambda$performSendMessageRequest$99((ArrayList) this.f19758f, this.f19757c, this.d, (TLRPC.Message) this.f19760r, (ArrayList) this.h, (ArrayList) this.f19759n, this.f19756b);
                 return;
             default:
                 org.telegram.ui.ha haVar = (org.telegram.ui.ha) this.e;
-                TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f19762n;
-                TLRPC.TL_username tL_username2 = (TLRPC.TL_username) this.f19763r;
-                org.telegram.ui.sa saVar = haVar.f37561a;
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f19759n;
+                TLRPC.TL_username tL_username2 = (TLRPC.TL_username) this.f19760r;
+                org.telegram.ui.sa saVar = haVar.f37562a;
                 ArrayList arrayList = saVar.f41418w;
                 ArrayList arrayList2 = saVar.v;
-                arrayList.remove((String) this.f19761f);
+                arrayList.remove((String) this.f19758f);
                 boolean z10 = ((TLObject) this.h) instanceof TLRPC.TL_boolTrue;
-                int i11 = this.f19759b;
-                boolean z11 = this.f19760c;
+                int i11 = this.f19756b;
+                boolean z11 = this.f19757c;
                 if (z10) {
                     saVar.i0(i11, z11, false);
                 } else {
@@ -101,12 +101,12 @@ public final class vi implements Runnable {
 
     public vi(org.telegram.ui.ha haVar, String str, TLObject tLObject, int i10, boolean z10, TLRPC.TL_error tL_error, TLRPC.TL_username tL_username, boolean z11) {
         this.e = haVar;
-        this.f19761f = str;
+        this.f19758f = str;
         this.h = tLObject;
-        this.f19759b = i10;
-        this.f19760c = z10;
-        this.f19762n = tL_error;
-        this.f19763r = tL_username;
+        this.f19756b = i10;
+        this.f19757c = z10;
+        this.f19759n = tL_error;
+        this.f19760r = tL_username;
         this.d = z11;
     }
 }

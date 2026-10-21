@@ -38,13 +38,13 @@ public final class oy0 extends s4.r0 {
                         z10 = false;
                     }
                     profileActivity.A1 = z10;
-                    if (z10 || profileActivity.f33694q2) {
+                    if (z10 || profileActivity.f33695q2) {
                         z11 = false;
                     }
                     u0Var.setEnabled(z11);
                 }
                 nz0 nz0Var = profileActivity.O;
-                boolean z12 = profileActivity.f33580a.I1;
+                boolean z12 = profileActivity.f33581a.I1;
                 nz0Var.getClass();
                 return;
         }
@@ -61,7 +61,7 @@ public final class oy0 extends s4.r0 {
                     r40Var.b(true);
                 }
                 profileActivity.A3();
-                if (profileActivity.D1 != null && !profileActivity.E1 && profileActivity.f33595c.N0() > profileActivity.f33740w4 - 8) {
+                if (profileActivity.D1 != null && !profileActivity.E1 && profileActivity.f33596c.N0() > profileActivity.f33741w4 - 8) {
                     profileActivity.R3(false);
                 }
                 nz0 nz0Var = profileActivity.O;

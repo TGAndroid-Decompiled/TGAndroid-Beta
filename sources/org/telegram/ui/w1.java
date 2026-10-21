@@ -160,7 +160,7 @@ public final class w1 extends View implements org.telegram.ui.Cells.m9 {
                     i12 = AndroidUtilities.dp(6.0f);
                 }
                 canvas2 = canvas;
-                canvas2.drawRect(dp2, dp3, dp4, i14 - i12, l4.f38748q1);
+                canvas2.drawRect(dp2, dp3, dp4, i14 - i12, l4.f38749q1);
                 i12 = i10;
             } else {
                 canvas2 = canvas;
@@ -284,7 +284,7 @@ public final class w1 extends View implements org.telegram.ui.Cells.m9 {
                     } else {
                         i14 = 0;
                     }
-                    p9.f36241s = AndroidUtilities.dp(i14 + 32);
+                    p9.f36242s = AndroidUtilities.dp(i14 + 32);
                     d3 d3Var = this.f42432f;
                     if (this.e != null) {
                         f7 = 10.0f;
@@ -341,17 +341,17 @@ public final class w1 extends View implements org.telegram.ui.Cells.m9 {
                     if (this.f42434r) {
                         i16 = 54;
                     }
-                    d3Var2.f36241s = AndroidUtilities.dp(i16 + 32);
+                    d3Var2.f36242s = AndroidUtilities.dp(i16 + 32);
                     this.e.v = AndroidUtilities.dp(29.0f);
                 }
                 d3 d3Var3 = this.h;
                 if (d3Var3 != null) {
-                    d3Var3.f36241s = this.f42435s;
+                    d3Var3.f36242s = this.f42435s;
                     d3Var3.v = this.v;
                 }
                 d3 d3Var4 = this.f42433n;
                 if (d3Var4 != null) {
-                    d3Var4.f36241s = this.f42435s;
+                    d3Var4.f36242s = this.f42435s;
                     d3Var4.v = this.v;
                 }
                 i15 = dp3;

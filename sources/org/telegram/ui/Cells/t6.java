@@ -166,7 +166,7 @@ public final class t6 extends FrameLayout {
         zq zqVar = new zq(m0Var, mutate);
         if (lowerCase != null && lowerCase.contains("fragment")) {
             zqVar.e = (int) ((mutate.getIntrinsicWidth() / 44.0f) * f7);
-            zqVar.f33019f = (int) ((mutate.getIntrinsicHeight() / 44.0f) * f7);
+            zqVar.f33020f = (int) ((mutate.getIntrinsicHeight() / 44.0f) * f7);
         }
         return zqVar;
     }

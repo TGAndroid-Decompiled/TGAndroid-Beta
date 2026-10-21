@@ -8,10 +8,10 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class oy implements View.OnClickListener {
-    public final ty f29153a;
+    public final ty f29154a;
 
     public oy(ty tyVar) {
-        this.f29153a = tyVar;
+        this.f29154a = tyVar;
     }
 
     @Override
@@ -19,7 +19,7 @@ public final class oy implements View.OnClickListener {
         int i10;
         int i11;
         boolean[] zArr = new boolean[1];
-        ty tyVar = this.f29153a;
+        ty tyVar = this.f29154a;
         tz tzVar = tyVar.F;
         org.telegram.ui.ActionBar.a3 a3Var = new org.telegram.ui.ActionBar.a3(tzVar.getContext(), null);
         LinearLayout linearLayout = new LinearLayout(tzVar.getContext());
@@ -55,7 +55,7 @@ public final class oy implements View.OnClickListener {
         linearLayout.addView(textView2, w7.z5.t(-2, -2, 51, 0, 11, 0, 0));
         TextView textView3 = new TextView(tzVar.getContext());
         int i15 = R.string.EmojiSuggestionsUrl;
-        Object obj = tyVar.f30710w;
+        Object obj = tyVar.f30711w;
         if (obj == null) {
             obj = tzVar.W0;
         }

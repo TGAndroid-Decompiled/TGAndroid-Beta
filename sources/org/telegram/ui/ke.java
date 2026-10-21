@@ -17,12 +17,12 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class ke implements Runnable {
-    public final int f38587a;
-    public final qn f38588b;
+    public final int f38588a;
+    public final qn f38589b;
 
     public ke(qn qnVar, int i10) {
-        this.f38587a = i10;
-        this.f38588b = qnVar;
+        this.f38588a = i10;
+        this.f38589b = qnVar;
     }
 
     @Override
@@ -32,10 +32,10 @@ public final class ke implements Runnable {
         org.telegram.ui.Cells.u1 u1Var;
         MessageObject messageObject;
         int i11;
-        int i12 = this.f38587a;
+        int i12 = this.f38588a;
         TLRPC.ChatTheme chatTheme = null;
         int i13 = 0;
-        qn qnVar = this.f38588b;
+        qn qnVar = this.f38589b;
         switch (i12) {
             case 0:
                 qnVar.L5 = null;
@@ -180,7 +180,7 @@ public final class ke implements Runnable {
                 }
                 return;
             case 22:
-                qn qnVar2 = this.f38588b;
+                qn qnVar2 = this.f38589b;
                 int i14 = qnVar2.f40819qb;
                 if (i14 != 0) {
                     qnVar2.j(i14, qnVar2.f40833rb, qnVar2.f40847sb, qnVar2.f40860tb, qnVar2.f40872ub, qnVar2.f40885vb);

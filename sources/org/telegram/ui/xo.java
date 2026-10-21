@@ -13,10 +13,10 @@ public final class xo implements Runnable {
         switch (this.f43254a) {
             case 0:
                 ip ipVar = this.f43255b;
-                org.telegram.ui.ActionBar.b2 b2Var = ipVar.f38074r;
+                org.telegram.ui.ActionBar.b2 b2Var = ipVar.f38075r;
                 if (b2Var != null) {
                     b2Var.setOnCancelListener(new hg(ipVar, 2));
-                    ipVar.showDialog(ipVar.f38074r);
+                    ipVar.showDialog(ipVar.f38075r);
                     return;
                 }
                 return;

@@ -17,8 +17,8 @@ public final class f70 implements p90 {
         if (n2Var instanceof org.telegram.ui.ih0) {
             org.telegram.ui.ih0 ih0Var = (org.telegram.ui.ih0) n2Var;
             TLRPC.TL_chatInviteExported tL_chatInviteExported = l70Var.f28068b;
-            org.telegram.ui.ab0 ab0Var = new org.telegram.ui.ab0(1, ih0Var.f37992n);
-            ab0Var.T = ih0Var.f38000s0;
+            org.telegram.ui.ab0 ab0Var = new org.telegram.ui.ab0(1, ih0Var.f37993n);
+            ab0Var.T = ih0Var.f38001s0;
             ab0Var.Y(tL_chatInviteExported);
             ih0Var.presentFragment(ab0Var);
         } else {

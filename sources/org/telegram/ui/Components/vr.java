@@ -9,7 +9,7 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 public final class vr extends g61 {
-    public static final int f31855a = 0;
+    public static final int f31856a = 0;
 
     static {
         g61.setup(new g61());

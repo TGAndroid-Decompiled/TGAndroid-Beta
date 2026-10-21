@@ -1452,11 +1452,11 @@ public final class vb extends org.telegram.ui.ActionBar.n2 implements Notificati
         if (dlVar != null) {
             dlVar.setTextSizePx(AndroidUtilities.dp(17.5f));
         }
-        dl dlVar2 = ooVar.f29105r;
+        dl dlVar2 = ooVar.f29106r;
         if (dlVar2 != null) {
             dlVar2.setTextSizePx(AndroidUtilities.dp(13.5f));
         }
-        ooVar.f29098k0 = true;
+        ooVar.f29099k0 = true;
         this.I.setOccupyStatusBar(!AndroidUtilities.isTablet());
         this.actionBar.addView(this.I, 0, w7.z5.d(-2, -1.0f, 51, 54.0f, 0.0f, 52.0f, 0.0f));
         org.telegram.ui.ActionBar.u0 a2 = this.actionBar.n().a(0, R.drawable.outline_header_search);
@@ -1535,7 +1535,7 @@ public final class vb extends org.telegram.ui.ActionBar.n2 implements Notificati
         org.telegram.ui.Components.ml0 ml0Var = new org.telegram.ui.Components.ml0(this.v, this.f42190x);
         this.f42192y = ml0Var;
         ml0Var.h = new za(this);
-        ml0Var.f28547i = this.L0;
+        ml0Var.f28548i = this.L0;
         this.X.addView(this.v, w7.z5.c(-1.0f, -1));
         this.v.setOnScrollListener(new k3(this));
         this.glassEngine.a(this.v);
@@ -1587,17 +1587,17 @@ public final class vb extends org.telegram.ui.ActionBar.n2 implements Notificati
         TextView textView = new TextView(context);
         this.F = textView;
         textView.setOnClickListener(new View.OnClickListener(this) {
-            public final vb f35920b;
+            public final vb f35921b;
 
             {
-                this.f35920b = this;
+                this.f35921b = this;
             }
 
             @Override
             public final void onClick(View view3) {
                 switch (r2) {
                     case 0:
-                        vb vbVar = this.f35920b;
+                        vb vbVar = this.f35921b;
                         if (vbVar.getParentActivity() != null) {
                             org.telegram.ui.Components.g0 g0Var = new org.telegram.ui.Components.g0(vbVar, vbVar.f42186u0, vbVar.f42189w0, vbVar.f42168f.megagroup);
                             g0Var.T(vbVar.f42185t0);
@@ -1607,7 +1607,7 @@ public final class vb extends org.telegram.ui.ActionBar.n2 implements Notificati
                         }
                         return;
                     case 1:
-                        vb vbVar2 = this.f35920b;
+                        vb vbVar2 = this.f35921b;
                         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(vbVar2.getParentActivity());
                         if (vbVar2.f42168f.megagroup) {
                             alertDialog$Builder.f20605a.T = AndroidUtilities.replaceTags(LocaleController.getString(R.string.EventLogInfoDetail));
@@ -1621,7 +1621,7 @@ public final class vb extends org.telegram.ui.ActionBar.n2 implements Notificati
                         vbVar2.showDialog(b2Var);
                         return;
                     default:
-                        vb vbVar3 = this.f35920b;
+                        vb vbVar3 = this.f35921b;
                         if (vbVar3.getParentActivity() != null) {
                             AndroidUtilities.hideKeyboard(vbVar3.N.getSearchField());
                             vbVar3.showDialog(org.telegram.ui.Components.f5.o(vbVar3.getParentActivity(), new va(vbVar3, 0), null).f20613a);
@@ -1640,17 +1640,17 @@ public final class vb extends org.telegram.ui.ActionBar.n2 implements Notificati
         this.G.f15072f.add(this.F);
         this.G.d(false);
         this.G.f15070b[4] = new View.OnClickListener(this) {
-            public final vb f35920b;
+            public final vb f35921b;
 
             {
-                this.f35920b = this;
+                this.f35921b = this;
             }
 
             @Override
             public final void onClick(View view3) {
                 switch (r2) {
                     case 0:
-                        vb vbVar = this.f35920b;
+                        vb vbVar = this.f35921b;
                         if (vbVar.getParentActivity() != null) {
                             org.telegram.ui.Components.g0 g0Var = new org.telegram.ui.Components.g0(vbVar, vbVar.f42186u0, vbVar.f42189w0, vbVar.f42168f.megagroup);
                             g0Var.T(vbVar.f42185t0);
@@ -1660,7 +1660,7 @@ public final class vb extends org.telegram.ui.ActionBar.n2 implements Notificati
                         }
                         return;
                     case 1:
-                        vb vbVar2 = this.f35920b;
+                        vb vbVar2 = this.f35921b;
                         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(vbVar2.getParentActivity());
                         if (vbVar2.f42168f.megagroup) {
                             alertDialog$Builder.f20605a.T = AndroidUtilities.replaceTags(LocaleController.getString(R.string.EventLogInfoDetail));
@@ -1674,7 +1674,7 @@ public final class vb extends org.telegram.ui.ActionBar.n2 implements Notificati
                         vbVar2.showDialog(b2Var);
                         return;
                     default:
-                        vb vbVar3 = this.f35920b;
+                        vb vbVar3 = this.f35921b;
                         if (vbVar3.getParentActivity() != null) {
                             AndroidUtilities.hideKeyboard(vbVar3.N.getSearchField());
                             vbVar3.showDialog(org.telegram.ui.Components.f5.o(vbVar3.getParentActivity(), new va(vbVar3, 0), null).f20613a);
@@ -1700,17 +1700,17 @@ public final class vb extends org.telegram.ui.ActionBar.n2 implements Notificati
         this.f42163b0.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21368xe, false), PorterDuff.Mode.MULTIPLY));
         this.f42161a0.addView(this.f42163b0, w7.z5.e(48, 48, 53));
         this.f42163b0.setOnClickListener(new View.OnClickListener(this) {
-            public final vb f35920b;
+            public final vb f35921b;
 
             {
-                this.f35920b = this;
+                this.f35921b = this;
             }
 
             @Override
             public final void onClick(View view3) {
                 switch (r2) {
                     case 0:
-                        vb vbVar = this.f35920b;
+                        vb vbVar = this.f35921b;
                         if (vbVar.getParentActivity() != null) {
                             org.telegram.ui.Components.g0 g0Var = new org.telegram.ui.Components.g0(vbVar, vbVar.f42186u0, vbVar.f42189w0, vbVar.f42168f.megagroup);
                             g0Var.T(vbVar.f42185t0);
@@ -1720,7 +1720,7 @@ public final class vb extends org.telegram.ui.ActionBar.n2 implements Notificati
                         }
                         return;
                     case 1:
-                        vb vbVar2 = this.f35920b;
+                        vb vbVar2 = this.f35921b;
                         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(vbVar2.getParentActivity());
                         if (vbVar2.f42168f.megagroup) {
                             alertDialog$Builder.f20605a.T = AndroidUtilities.replaceTags(LocaleController.getString(R.string.EventLogInfoDetail));
@@ -1734,7 +1734,7 @@ public final class vb extends org.telegram.ui.ActionBar.n2 implements Notificati
                         vbVar2.showDialog(b2Var);
                         return;
                     default:
-                        vb vbVar3 = this.f35920b;
+                        vb vbVar3 = this.f35921b;
                         if (vbVar3.getParentActivity() != null) {
                             AndroidUtilities.hideKeyboard(vbVar3.N.getSearchField());
                             vbVar3.showDialog(org.telegram.ui.Components.f5.o(vbVar3.getParentActivity(), new va(vbVar3, 0), null).f20613a);

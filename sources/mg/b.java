@@ -42,15 +42,15 @@ public final class b implements ScaleGestureDetector.OnScaleGestureListener {
                 }
             default:
                 h1 h1Var = (h1) this.f16858b;
-                WindowManager.LayoutParams layoutParams3 = h1Var.f31444c;
+                WindowManager.LayoutParams layoutParams3 = h1Var.f31445c;
                 int m10 = (int) (h1Var.m() * h1Var.P);
                 layoutParams3.width = m10;
                 h1Var.M = m10;
-                WindowManager.LayoutParams layoutParams4 = h1Var.f31444c;
+                WindowManager.LayoutParams layoutParams4 = h1Var.f31445c;
                 int l4 = (int) (h1Var.l() * h1Var.P);
                 layoutParams4.height = l4;
                 h1Var.N = l4;
-                AndroidUtilities.updateViewLayout(h1Var.f31443b, h1Var.d, h1Var.f31444c);
+                AndroidUtilities.updateViewLayout(h1Var.f31444b, h1Var.d, h1Var.f31445c);
                 return;
         }
     }
@@ -120,7 +120,7 @@ public final class b implements ScaleGestureDetector.OnScaleGestureListener {
                 return true;
             default:
                 h1 h1Var = (h1) this.f16858b;
-                h1Var.P = r.a(scaleGestureDetector.getScaleFactor() * h1Var.P, 0.6f, h1Var.f31441a);
+                h1Var.P = r.a(scaleGestureDetector.getScaleFactor() * h1Var.P, 0.6f, h1Var.f31442a);
                 h1Var.M = (int) (h1Var.m() * h1Var.P);
                 h1Var.N = (int) (h1Var.l() * h1Var.P);
                 AndroidUtilities.runOnUIThread(new u(this, 15));
@@ -176,9 +176,9 @@ public final class b implements ScaleGestureDetector.OnScaleGestureListener {
                     h1Var.H = false;
                 }
                 h1Var.I = true;
-                h1Var.f31444c.width = (int) (h1Var.m() * h1Var.f31441a);
-                h1Var.f31444c.height = (int) (h1Var.l() * h1Var.f31441a);
-                AndroidUtilities.updateViewLayout(h1Var.f31443b, h1Var.d, h1Var.f31444c);
+                h1Var.f31445c.width = (int) (h1Var.m() * h1Var.f31442a);
+                h1Var.f31445c.height = (int) (h1Var.l() * h1Var.f31442a);
+                AndroidUtilities.updateViewLayout(h1Var.f31444b, h1Var.d, h1Var.f31445c);
                 return true;
         }
     }

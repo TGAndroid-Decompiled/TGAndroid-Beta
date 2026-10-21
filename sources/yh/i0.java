@@ -158,7 +158,7 @@ public final class i0 extends org.telegram.ui.ActionBar.f3 {
         vgVar.J = dp2;
         vgVar.M = AndroidUtilities.dp(6.0f);
         vgVar.N = AndroidUtilities.dp(8.0f);
-        vgVar.f31241h0 = true;
+        vgVar.f31242h0 = true;
         this.containerView.addView((View) vgVar, z5.e(110, 50, 85));
         vgVar.setScrimViewBackgroundColor(getThemedColor(h6.f20990d6));
         vgVar.setOnClickListener(new View.OnClickListener(this) {
@@ -363,7 +363,7 @@ public final class i0 extends org.telegram.ui.ActionBar.f3 {
         super.onOpenAnimationEnd();
         setAllowNestedScroll(false);
         qc.a(this.container, new ah.m0(this, 11));
-        s40 s40Var = s40.f30195s;
+        s40 s40Var = s40.f30196s;
         if (s40Var.c()) {
             s40Var.b();
             TLObject userOrChat = MessagesController.getInstance(this.currentAccount).getUserOrChat(this.J);

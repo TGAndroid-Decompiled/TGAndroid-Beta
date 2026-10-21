@@ -30,7 +30,7 @@ public final class hi extends s6 {
             case 0:
                 li liVar = (li) obj;
                 ti tiVar = this.f26896c;
-                tiVar.f30538d0 = f7;
+                tiVar.f30539d0 = f7;
                 li liVar2 = tiVar.C0;
                 if (liVar2 != null) {
                     if (!(liVar2 instanceof bn) && !(tiVar.B0 instanceof bn)) {
@@ -48,7 +48,7 @@ public final class hi extends s6 {
                             tiVar.e2(i10);
                         }
                         li liVar4 = tiVar.C0;
-                        fo foVar2 = tiVar.f30568n0;
+                        fo foVar2 = tiVar.f30569n0;
                         if (liVar4 == foVar2 || tiVar.B0 == foVar2) {
                             if (liVar4 == foVar2) {
                                 i11 = 1;
@@ -57,7 +57,7 @@ public final class hi extends s6 {
                         }
                         tiVar.C0.setTranslationY(AndroidUtilities.dp(78.0f) * f7);
                         tiVar.B0.v(1.0f - Math.min(1.0f, f7 / 0.7f));
-                        tiVar.B0.l(tiVar.f30573o2);
+                        tiVar.B0.l(tiVar.f30574o2);
                     } else {
                         int max = Math.max(liVar2.getWidth(), tiVar.B0.getWidth());
                         if (tiVar.C0 instanceof bn) {
@@ -68,7 +68,7 @@ public final class hi extends s6 {
                             tiVar.C0.setTranslationX((1.0f - f7) * (-max));
                         }
                     }
-                    if (tiVar.f30599w1 != null) {
+                    if (tiVar.f30600w1 != null) {
                         tiVar.e2(1);
                     }
                     tiVar.b1();
@@ -103,7 +103,7 @@ public final class hi extends s6 {
                         f10 = 0.0f;
                     }
                     if (childAt instanceof oi) {
-                        ((oi) childAt).f29050a.setAttachScale(f10);
+                        ((oi) childAt).f29051a.setAttachScale(f10);
                     }
                 }
                 return;
@@ -115,7 +115,7 @@ public final class hi extends s6 {
         switch (this.f26895b) {
             case 0:
                 li liVar = (li) obj;
-                return Float.valueOf(this.f26896c.f30538d0);
+                return Float.valueOf(this.f26896c.f30539d0);
             default:
                 ti tiVar = (ti) obj;
                 return Float.valueOf(0.0f);

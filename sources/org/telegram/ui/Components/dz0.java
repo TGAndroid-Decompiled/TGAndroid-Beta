@@ -225,7 +225,7 @@ public final class dz0 implements org.telegram.ui.ct {
                 icVar.f27231b.setText(LocaleController.getString(R.string.RemoveStatusInfo));
                 icVar.f27230a.setImageResource(R.drawable.msg_settings_premium);
                 oc ocVar = new oc(iz0Var.getContext(), d6Var, true);
-                ocVar.f28982a = ho0Var;
+                ocVar.f28983a = ho0Var;
                 icVar.setButton(ocVar);
                 qc.g(parentFragment, icVar, 1500).j();
                 return;

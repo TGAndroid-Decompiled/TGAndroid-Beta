@@ -26,10 +26,10 @@ public final class ra1 extends org.telegram.ui.Cells.ma {
         int[] iArr;
         switch (this.f41107h3) {
             case 0:
-                ua1 ua1Var = ((ua1) this.f41108i3).e.f33896a;
+                ua1 ua1Var = ((ua1) this.f41108i3).e.f33897a;
                 ThemeActivity themeActivity = ua1Var.e;
                 if (themeActivity.getParentActivity() != null) {
-                    if ((g6Var.F == null || g6Var.U) && themeActivity.f33904f != 1) {
+                    if ((g6Var.F == null || g6Var.U) && themeActivity.f33905f != 1) {
                         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(themeActivity.getParentActivity());
                         if (g6Var.f20883b == null) {
                             charSequenceArr = new CharSequence[]{null, LocaleController.getString("ExportTheme", R.string.ExportTheme)};

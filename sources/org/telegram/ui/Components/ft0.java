@@ -21,12 +21,12 @@ public final class ft0 extends org.telegram.ui.Cells.h7 {
             if (!messageObject.isMusic()) {
                 return false;
             }
-            return MediaController.getInstance().setPlaylist(uv0Var.f31066t1[4].f27641a, messageObject, uv0Var.f31029c1);
+            return MediaController.getInstance().setPlaylist(uv0Var.f31067t1[4].f27641a, messageObject, uv0Var.f31030c1);
         }
         boolean playMessage = MediaController.getInstance().playMessage(messageObject);
         MediaController mediaController = MediaController.getInstance();
         if (playMessage) {
-            arrayList = uv0Var.f31066t1[4].f27641a;
+            arrayList = uv0Var.f31067t1[4].f27641a;
         } else {
             arrayList = null;
         }

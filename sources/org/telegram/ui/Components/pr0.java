@@ -12,7 +12,7 @@ import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.re1;
 public final class pr0 implements e20, org.telegram.ui.vx {
-    public final uv0 f29363a;
+    public final uv0 f29364a;
 
     @Override
     public boolean D() {
@@ -25,7 +25,7 @@ public final class pr0 implements e20, org.telegram.ui.vx {
     }
 
     public void a(boolean z10) {
-        uv0 uv0Var = this.f29363a;
+        uv0 uv0Var = this.f29364a;
         if (!z10) {
             uv0Var.requestLayout();
         }
@@ -36,9 +36,9 @@ public final class pr0 implements e20, org.telegram.ui.vx {
     public boolean w(org.telegram.ui.cy cyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, re1 re1Var) {
         int i12;
         UndoView undoView;
-        uv0 uv0Var = this.f29363a;
+        uv0 uv0Var = this.f29364a;
         SparseArray[] sparseArrayArr = uv0Var.Z0;
-        org.telegram.ui.ActionBar.n2 n2Var = uv0Var.f31070v1;
+        org.telegram.ui.ActionBar.n2 n2Var = uv0Var.f31071v1;
         ArrayList<MessageObject> arrayList2 = new ArrayList<>();
         boolean z12 = true;
         int i13 = 1;
@@ -64,7 +64,7 @@ public final class pr0 implements e20, org.telegram.ui.vx {
             sparseArrayArr[i13].clear();
             i13--;
         }
-        uv0Var.f31022a1 = 0;
+        uv0Var.f31023a1 = 0;
         uv0Var.d1(false);
         ev0 ev0Var = uv0Var.R;
         if (ev0Var != null) {

@@ -35,30 +35,30 @@ public final class xm0 implements View.OnClickListener {
                 }
                 return;
             case 1:
-                eo0 eo0Var2 = new eo0(eo0Var.f36703b1, eo0Var.C0, eo0Var.N0, eo0Var.O0, 0, eo0Var.E0, eo0Var.G0, eo0Var.H0, null, eo0Var.f36735x0, eo0Var.I0, eo0Var.U0, null, eo0Var.f36726r0, eo0Var.W0);
-                eo0Var2.f36706c1 = eo0Var.f36706c1;
-                eo0Var2.f36708d1 = eo0Var.f36708d1;
+                eo0 eo0Var2 = new eo0(eo0Var.f36704b1, eo0Var.C0, eo0Var.N0, eo0Var.O0, 0, eo0Var.E0, eo0Var.G0, eo0Var.H0, null, eo0Var.f36736x0, eo0Var.I0, eo0Var.U0, null, eo0Var.f36727r0, eo0Var.W0);
+                eo0Var2.f36707c1 = eo0Var.f36707c1;
+                eo0Var2.f36709d1 = eo0Var.f36709d1;
                 eo0Var2.T = new jn0(eo0Var);
                 eo0Var.presentFragment(eo0Var2);
                 return;
             case 2:
-                eo0 eo0Var3 = new eo0(eo0Var.f36703b1, eo0Var.C0, eo0Var.N0, eo0Var.O0, 0, eo0Var.E0, eo0Var.G0, eo0Var.H0, null, eo0Var.f36735x0, eo0Var.I0, eo0Var.U0, null, eo0Var.f36726r0, eo0Var.W0);
-                eo0Var3.f36706c1 = eo0Var.f36706c1;
-                eo0Var3.f36708d1 = eo0Var.f36708d1;
+                eo0 eo0Var3 = new eo0(eo0Var.f36704b1, eo0Var.C0, eo0Var.N0, eo0Var.O0, 0, eo0Var.E0, eo0Var.G0, eo0Var.H0, null, eo0Var.f36736x0, eo0Var.I0, eo0Var.U0, null, eo0Var.f36727r0, eo0Var.W0);
+                eo0Var3.f36707c1 = eo0Var.f36707c1;
+                eo0Var3.f36709d1 = eo0Var.f36709d1;
                 eo0Var3.T = new kn0(eo0Var);
                 eo0Var.presentFragment(eo0Var3);
                 return;
             case 3:
-                eo0 eo0Var4 = new eo0(eo0Var.f36703b1, eo0Var.C0, eo0Var.N0, eo0Var.O0, 0, eo0Var.E0, eo0Var.G0, eo0Var.H0, null, eo0Var.f36735x0, eo0Var.I0, eo0Var.U0, null, eo0Var.f36726r0, eo0Var.W0);
-                eo0Var4.f36706c1 = eo0Var.f36706c1;
-                eo0Var4.f36708d1 = eo0Var.f36708d1;
+                eo0 eo0Var4 = new eo0(eo0Var.f36704b1, eo0Var.C0, eo0Var.N0, eo0Var.O0, 0, eo0Var.E0, eo0Var.G0, eo0Var.H0, null, eo0Var.f36736x0, eo0Var.I0, eo0Var.U0, null, eo0Var.f36727r0, eo0Var.W0);
+                eo0Var4.f36707c1 = eo0Var.f36707c1;
+                eo0Var4.f36709d1 = eo0Var.f36709d1;
                 eo0Var4.T = new ln0(eo0Var);
                 eo0Var.presentFragment(eo0Var4);
                 return;
             case 4:
-                eo0 eo0Var5 = new eo0(eo0Var.f36703b1, eo0Var.C0, eo0Var.N0, eo0Var.O0, 0, eo0Var.E0, eo0Var.G0, eo0Var.H0, null, eo0Var.f36735x0, eo0Var.I0, eo0Var.U0, null, eo0Var.f36726r0, eo0Var.W0);
-                eo0Var5.f36706c1 = eo0Var.f36706c1;
-                eo0Var5.f36708d1 = eo0Var.f36708d1;
+                eo0 eo0Var5 = new eo0(eo0Var.f36704b1, eo0Var.C0, eo0Var.N0, eo0Var.O0, 0, eo0Var.E0, eo0Var.G0, eo0Var.H0, null, eo0Var.f36736x0, eo0Var.I0, eo0Var.U0, null, eo0Var.f36727r0, eo0Var.W0);
+                eo0Var5.f36707c1 = eo0Var.f36707c1;
+                eo0Var5.f36709d1 = eo0Var.f36709d1;
                 eo0Var5.T = new mn0(eo0Var);
                 eo0Var.presentFragment(eo0Var5);
                 return;
@@ -77,7 +77,7 @@ public final class xm0 implements View.OnClickListener {
             case 7:
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(eo0Var.getParentActivity());
                 String string = LocaleController.getString(R.string.TurnPasswordOffQuestion);
-                if (eo0Var.f36699a0.has_secure_values) {
+                if (eo0Var.f36700a0.has_secure_values) {
                     string = org.telegram.messenger.g0.g(R.string.TurnPasswordOffPassport, r4.c.i(string, "\n\n"));
                 }
                 org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20605a;
@@ -155,7 +155,7 @@ public final class xm0 implements View.OnClickListener {
                     jSONObject.put("currencyCode", eo0Var.C0.invoice.currency);
                     jSONObject.put("checkoutOption", "COMPLETE_IMMEDIATE_PURCHASE");
                     put.put("transactionInfo", jSONObject);
-                    put.put("merchantInfo", new JSONObject().put("merchantName", eo0Var.f36723p0));
+                    put.put("merchantInfo", new JSONObject().put("merchantName", eo0Var.f36724p0));
                     String jSONObject2 = put.toString();
                     ?? obj = new Object();
                     obj.f48292r = true;
@@ -175,12 +175,12 @@ public final class xm0 implements View.OnClickListener {
                     return;
                 }
             case 13:
-                eo0Var.f36731v0 = false;
+                eo0Var.f36732v0 = false;
                 eo0Var.t0();
                 return;
             default:
-                eo0Var.f36711f[0].requestFocus();
-                AndroidUtilities.showKeyboard(eo0Var.f36711f[0]);
+                eo0Var.f36712f[0].requestFocus();
+                AndroidUtilities.showKeyboard(eo0Var.f36712f[0]);
                 return;
         }
     }

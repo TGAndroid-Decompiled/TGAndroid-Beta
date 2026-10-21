@@ -529,7 +529,7 @@ public final class m7 extends FrameLayout {
             sb2.append(this.U.getText());
         }
         accessibilityNodeInfo.setText(sb2.toString());
-        if (this.f22606w.f32458a.f24151q) {
+        if (this.f22606w.f32459a.f24151q) {
             accessibilityNodeInfo.setChecked(true);
             accessibilityNodeInfo.setCheckable(true);
         }

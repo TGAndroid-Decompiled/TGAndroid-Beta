@@ -95,7 +95,7 @@ public final class gc0 implements org.telegram.ui.Cells.l1 {
             MessagePreviewParams messagePreviewParams = oc0Var.d;
             messagePreviewParams.currentLink = characterStyle;
             messagePreviewParams.webpage = null;
-            org.telegram.ui.qn qnVar = oc0Var.f28987c;
+            org.telegram.ui.qn qnVar = oc0Var.f28988c;
             if (qnVar != null && url != null) {
                 qnVar.cb(url, true);
             }

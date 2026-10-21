@@ -61,7 +61,7 @@ public final class c6 implements Runnable {
                 TL_account.getAuthorizationForm getauthorizationform = (TL_account.getAuthorizationForm) obj;
                 String str = (String) obj6;
                 String str2 = (String) obj5;
-                ArrayList arrayList = ExternalActionActivity.f33130x;
+                ArrayList arrayList = ExternalActionActivity.f33131x;
                 try {
                     b2Var.dismiss();
                 } catch (Exception e) {
@@ -74,12 +74,12 @@ public final class c6 implements Runnable {
                     if (AndroidUtilities.isTablet()) {
                         externalActionActivity.d.c(-1, vm0Var);
                     } else {
-                        externalActionActivity.f33134c.c(-1, vm0Var);
+                        externalActionActivity.f33135c.c(-1, vm0Var);
                     }
                     if (!AndroidUtilities.isTablet()) {
                         externalActionActivity.e.setVisibility(8);
                     }
-                    externalActionActivity.f33134c.c0();
+                    externalActionActivity.f33135c.c0();
                     if (AndroidUtilities.isTablet()) {
                         externalActionActivity.d.c0();
                         return;

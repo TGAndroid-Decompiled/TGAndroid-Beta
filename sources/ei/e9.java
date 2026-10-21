@@ -60,7 +60,7 @@ public final class e9 extends s4.r0 {
                 ti tiVar = chatAttachAlertPhotoLayout.f28173b;
                 if (i10 == 0) {
                     int dp = AndroidUtilities.dp(13.0f);
-                    org.telegram.ui.ActionBar.u0 u0Var = tiVar.f30539d1;
+                    org.telegram.ui.ActionBar.u0 u0Var = tiVar.f30540d1;
                     if (u0Var != null) {
                         i11 = AndroidUtilities.dp(u0Var.getAlpha() * 26.0f);
                     } else {
@@ -68,7 +68,7 @@ public final class e9 extends s4.r0 {
                     }
                     int i12 = dp + i11;
                     int backgroundPaddingTop = tiVar.getBackgroundPaddingTop();
-                    if (((tiVar.f30543e2[0] - backgroundPaddingTop) - i12) + backgroundPaddingTop < (tiVar.R0.getAlpha() * tiVar.R0.getMeasuredHeight()) + org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && (tl0Var = (tl0) emVar.K(0)) != null) {
+                    if (((tiVar.f30544e2[0] - backgroundPaddingTop) - i12) + backgroundPaddingTop < (tiVar.R0.getAlpha() * tiVar.R0.getMeasuredHeight()) + org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && (tl0Var = (tl0) emVar.K(0)) != null) {
                         View view = tl0Var.f45917a;
                         int top = view.getTop();
                         topScrollOffset = chatAttachAlertPhotoLayout.getTopScrollOffset();
@@ -125,7 +125,7 @@ public final class e9 extends s4.r0 {
                 return;
             case 1:
                 org.telegram.ui.c7 c7Var = (org.telegram.ui.c7) this.f8973c;
-                if (c7Var.f35835c.L0() <= 0 && !org.telegram.ui.c7.a0(c7Var).t()) {
+                if (c7Var.f35836c.L0() <= 0 && !org.telegram.ui.c7.a0(c7Var).t()) {
                     z10 = false;
                 } else {
                     z10 = true;

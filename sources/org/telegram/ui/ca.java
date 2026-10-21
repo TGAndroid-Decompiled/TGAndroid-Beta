@@ -21,26 +21,26 @@ import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.tgnet.tl.TL_stats;
 import org.telegram.tgnet.tl.TL_update;
 public final class ca implements RequestDelegate {
-    public final int f35910a;
-    public final Object f35911b;
-    public final Object f35912c;
+    public final int f35911a;
+    public final Object f35912b;
+    public final Object f35913c;
     public final Object d;
 
     public ca(Object obj, Object obj2, Object obj3, int i10) {
-        this.f35910a = i10;
-        this.f35911b = obj;
-        this.f35912c = obj2;
+        this.f35911a = i10;
+        this.f35912b = obj;
+        this.f35913c = obj2;
         this.d = obj3;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        int i10 = this.f35910a;
+        int i10 = this.f35911a;
         kg.b bVar = null;
         int i11 = 0;
         Object obj = this.d;
-        Object obj2 = this.f35912c;
-        Object obj3 = this.f35911b;
+        Object obj2 = this.f35913c;
+        Object obj3 = this.f35912b;
         switch (i10) {
             case 0:
                 AndroidUtilities.runOnUIThread(new ai.t0((Object) ((sa) obj3), (Object) ((String) obj2), tL_error, tLObject, (Object) ((TL_account.checkUsername) obj), 21));
@@ -281,7 +281,7 @@ public final class ca implements RequestDelegate {
                 o91 o91Var = (o91) obj;
                 if (tLObject instanceof TL_stats.TL_statsGraph) {
                     try {
-                        bVar = p91.e0(new JSONObject(((TL_stats.TL_statsGraph) tLObject).json.data), ri0Var.f43675r.f35546i, false);
+                        bVar = p91.e0(new JSONObject(((TL_stats.TL_statsGraph) tLObject).json.data), ri0Var.f43675r.f35547i, false);
                     } catch (JSONException e7) {
                         e7.printStackTrace();
                     }
@@ -314,9 +314,9 @@ public final class ca implements RequestDelegate {
     }
 
     public ca(Object obj, TLObject tLObject, String str, int i10) {
-        this.f35910a = i10;
-        this.f35911b = obj;
+        this.f35911a = i10;
+        this.f35912b = obj;
         this.d = tLObject;
-        this.f35912c = str;
+        this.f35913c = str;
     }
 }

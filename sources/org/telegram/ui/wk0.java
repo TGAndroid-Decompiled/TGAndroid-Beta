@@ -16,7 +16,7 @@ public final class wk0 implements Runnable {
         switch (this.f42891a) {
             case 0:
                 PasscodeActivity passcodeActivity = this.f42892b;
-                passcodeActivity.f33229n.postDelayed(passcodeActivity.S, 3000L);
+                passcodeActivity.f33230n.postDelayed(passcodeActivity.S, 3000L);
                 passcodeActivity.R = true;
                 return;
             case 1:
@@ -52,17 +52,17 @@ public final class wk0 implements Runnable {
             case 4:
                 PasscodeActivity passcodeActivity6 = this.f42892b;
                 if (passcodeActivity6.h0()) {
-                    for (tr trVar : passcodeActivity6.f33229n.f40959f) {
+                    for (tr trVar : passcodeActivity6.f33230n.f40959f) {
                         trVar.i(0.0f);
                     }
                     return;
                 }
-                passcodeActivity6.f33228f.a(0.0f);
+                passcodeActivity6.f33229f.a(0.0f);
                 return;
             case 5:
                 PasscodeActivity passcodeActivity7 = this.f42892b;
                 passcodeActivity7.R = false;
-                AndroidUtilities.updateViewVisibilityAnimated(passcodeActivity7.f33230r, false);
+                AndroidUtilities.updateViewVisibilityAnimated(passcodeActivity7.f33231r, false);
                 return;
             default:
                 this.f42892b.n0();

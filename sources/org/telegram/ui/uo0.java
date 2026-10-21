@@ -29,7 +29,7 @@ public final class uo0 implements Utilities.Callback {
                     starGift = (TL_stars.StarGift) cp0Var3.M.get(num);
                 }
                 cp0Var3.K = starGift;
-                ip0 ip0Var = cp0Var3.f36037p0;
+                ip0 ip0Var = cp0Var3.f36038p0;
                 if (starGift == null) {
                     yh.s3 s3Var = cp0Var3.J;
                     if (s3Var != null) {
@@ -47,7 +47,7 @@ public final class uo0 implements Utilities.Callback {
                 }
                 cp0.a(cp0Var3);
                 if (ip0Var.I.getCurrentPosition() == 1) {
-                    cp0Var = ip0Var.f38094n;
+                    cp0Var = ip0Var.f38095n;
                 } else {
                     cp0Var = ip0Var.h;
                 }
@@ -56,19 +56,19 @@ public final class uo0 implements Utilities.Callback {
             case 1:
                 cp0 cp0Var4 = this.f42024b.e;
                 cp0Var4.h = ((Integer) obj).intValue();
-                cp0Var4.f36038r = null;
-                cp0Var4.f36039s = null;
+                cp0Var4.f36039r = null;
+                cp0Var4.f36040s = null;
                 cp0Var4.I = null;
                 cp0Var4.j(true);
                 cp0Var4.i();
                 cp0Var4.f(true);
-                bp0 bp0Var = cp0Var4.f36042y;
+                bp0 bp0Var = cp0Var4.f36043y;
                 if (bp0Var != null) {
                     bp0Var.invalidate();
                 }
-                ip0 ip0Var2 = cp0Var4.f36037p0;
-                cp0 cp0Var5 = ip0Var2.f38094n;
-                if (cp0Var5 != null && (gp0Var = cp0Var5.f36018a) != null && (cp0Var2 = ip0Var2.h) != null) {
+                ip0 ip0Var2 = cp0Var4.f36038p0;
+                cp0 cp0Var5 = ip0Var2.f38095n;
+                if (cp0Var5 != null && (gp0Var = cp0Var5.f36019a) != null && (cp0Var2 = ip0Var2.h) != null) {
                     gp0Var.a(cp0Var2.h);
                     return;
                 }

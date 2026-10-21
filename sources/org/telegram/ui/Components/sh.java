@@ -4,24 +4,24 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import org.telegram.messenger.AndroidUtilities;
 public final class sh extends AnimatorListenerAdapter {
-    public final int f30284a;
-    public final boolean f30285b;
-    public final ai f30286c;
+    public final int f30285a;
+    public final boolean f30286b;
+    public final ai f30287c;
 
     public sh(ai aiVar, boolean z10, int i10) {
-        this.f30284a = i10;
-        this.f30286c = aiVar;
-        this.f30285b = z10;
+        this.f30285a = i10;
+        this.f30287c = aiVar;
+        this.f30286b = z10;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
         int i10;
-        switch (this.f30284a) {
+        switch (this.f30285a) {
             case 0:
-                ai aiVar = this.f30286c;
+                ai aiVar = this.f30287c;
                 ti tiVar = aiVar.e;
-                boolean z10 = this.f30285b;
+                boolean z10 = this.f30286b;
                 if (!z10) {
                     tiVar.H1.setVisibility(8);
                 } else {
@@ -41,8 +41,8 @@ public final class sh extends AnimatorListenerAdapter {
                 }
                 return;
             default:
-                ti tiVar2 = this.f30286c.e;
-                boolean z11 = this.f30285b;
+                ti tiVar2 = this.f30287c.e;
+                boolean z11 = this.f30286b;
                 tiVar2.E1 = z11;
                 if (!z11) {
                     tiVar2.F1.setVisibility(8);
@@ -54,10 +54,10 @@ public final class sh extends AnimatorListenerAdapter {
 
     @Override
     public void onAnimationStart(Animator animator) {
-        switch (this.f30284a) {
+        switch (this.f30285a) {
             case 0:
-                ti tiVar = this.f30286c.e;
-                if (this.f30285b) {
+                ti tiVar = this.f30287c.e;
+                if (this.f30286b) {
                     tiVar.H1.setAlpha(0.0f);
                     tiVar.H1.setVisibility(0);
                     int dp = AndroidUtilities.dp(36.0f);

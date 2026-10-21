@@ -52,15 +52,15 @@ public abstract class gz extends FrameLayout implements ne.d {
         this.e = view;
         view.setVisibility(4);
         int A5 = tzVar.A(org.telegram.ui.ActionBar.h6.Ke);
-        boolean z10 = tzVar.f30742i2;
+        boolean z10 = tzVar.f30743i2;
         view.setBackgroundColor(A5);
         addView(view, new FrameLayout.LayoutParams(-1, AndroidUtilities.getShadowHeight(), 83));
         View view2 = new View(context);
         this.f26691f = view2;
-        if (tzVar.f30777u0) {
+        if (tzVar.f30778u0) {
             view2.setBackgroundColor(tzVar.A(org.telegram.ui.ActionBar.h6.He));
         }
-        addView(view2, new FrameLayout.LayoutParams(-1, tzVar.f30718b1));
+        addView(view2, new FrameLayout.LayoutParams(-1, tzVar.f30719b1));
         FrameLayout frameLayout = new FrameLayout(context);
         this.f26692n = frameLayout;
         int dp = AndroidUtilities.dp(18.0f);
@@ -108,7 +108,7 @@ public abstract class gz extends FrameLayout implements ne.d {
                         gz gzVar = this.f25648b;
                         fz fzVar = gzVar.f26693r;
                         sq sqVar = gzVar.d;
-                        if (gzVar.f26690c.f32165k == 1) {
+                        if (gzVar.f26690c.f32166k == 1) {
                             sqVar.setText("");
                             gzVar.c(null, false);
                             if (fzVar != null) {
@@ -171,7 +171,7 @@ public abstract class gz extends FrameLayout implements ne.d {
         sqVar.setTranslationY(AndroidUtilities.dp(-2.0f));
         vVar.addView(sqVar, w7.z5.d(-1, 40.0f, 51, 0.0f, 0.0f, 28.0f, 0.0f));
         sqVar.addTextChangedListener(new ai.u(this, 9));
-        if (tzVar.f30777u0) {
+        if (tzVar.f30778u0) {
             View view3 = new View(context);
             this.v = view3;
             Drawable mutate = context.getResources().getDrawable(R.drawable.gradient_right).mutate();
@@ -203,7 +203,7 @@ public abstract class gz extends FrameLayout implements ne.d {
                         gz gzVar = this.f25648b;
                         fz fzVar = gzVar.f26693r;
                         sq sqVar2 = gzVar.d;
-                        if (gzVar.f26690c.f32165k == 1) {
+                        if (gzVar.f26690c.f32166k == 1) {
                             sqVar2.setText("");
                             gzVar.c(null, false);
                             if (fzVar != null) {
@@ -238,7 +238,7 @@ public abstract class gz extends FrameLayout implements ne.d {
             }
         });
         frameLayout.addView(imageView2, w7.z5.e(36, 36, 53));
-        if (i10 == 1 && (!tzVar.f30723c2 || !UserConfig.getInstance(UserConfig.selectedAccount).isPremium())) {
+        if (i10 == 1 && (!tzVar.f30724c2 || !UserConfig.getInstance(UserConfig.selectedAccount).isPremium())) {
             return;
         }
         if (i10 == 0) {
@@ -248,10 +248,10 @@ public abstract class gz extends FrameLayout implements ne.d {
         }
         fz fzVar = new fz(this, context, i12, tzVar.Z1, i10);
         this.f26693r = fzVar;
-        fzVar.f30053u3 = z10;
+        fzVar.f30054u3 = z10;
         TextPaint paint = sqVar.getPaint();
         fzVar.setDontOccupyWidth(AndroidUtilities.dp(16.0f) + ((int) paint.measureText(((Object) sqVar.getHint()) + "")));
-        if (tzVar.f30777u0) {
+        if (tzVar.f30778u0) {
             fzVar.setBackgroundColor(org.telegram.ui.ActionBar.h6.v(tzVar.A(org.telegram.ui.ActionBar.h6.He), tzVar.A(org.telegram.ui.ActionBar.h6.Ie)));
         }
         fzVar.setOnScrollIntoOccupiedWidth(new Utilities.Callback(this) {
@@ -285,15 +285,15 @@ public abstract class gz extends FrameLayout implements ne.d {
                         if (nx0Var == null) {
                             gzVar2.d(false);
                             fzVar2.G1(null);
-                            tzVar2.f30757o0.d.setText("");
-                            tzVar2.f30740i0.h1(0, 0);
+                            tzVar2.f30758o0.d.setText("");
+                            tzVar2.f30741i0.h1(0, 0);
                             return;
                         } else if (fzVar2.getSelectedCategory() == nx0Var) {
                             gzVar2.c(null, false);
                             fzVar2.G1(null);
                             return;
                         } else {
-                            gzVar2.c(nx0Var.f28892a, false);
+                            gzVar2.c(nx0Var.f28893a, false);
                             fzVar2.G1(nx0Var);
                             return;
                         }
@@ -332,15 +332,15 @@ public abstract class gz extends FrameLayout implements ne.d {
                         if (nx0Var == null) {
                             gzVar2.d(false);
                             fzVar2.G1(null);
-                            tzVar2.f30757o0.d.setText("");
-                            tzVar2.f30740i0.h1(0, 0);
+                            tzVar2.f30758o0.d.setText("");
+                            tzVar2.f30741i0.h1(0, 0);
                             return;
                         } else if (fzVar2.getSelectedCategory() == nx0Var) {
                             gzVar2.c(null, false);
                             fzVar2.G1(null);
                             return;
                         } else {
-                            gzVar2.c(nx0Var.f28892a, false);
+                            gzVar2.c(nx0Var.f28893a, false);
                             fzVar2.G1(nx0Var);
                             return;
                         }
@@ -362,13 +362,13 @@ public abstract class gz extends FrameLayout implements ne.d {
         tz tzVar = this.G;
         int i10 = this.f26689b;
         if (i10 == 0) {
-            oz ozVar = tzVar.f30795z0;
+            oz ozVar = tzVar.f30796z0;
             mz mzVar = ozVar.O;
             tz tzVar2 = ozVar.Q;
             dx dxVar = tzVar2.G0;
             ax axVar = tzVar2.D0;
             if (ozVar.L != 0) {
-                ConnectionsManager.getInstance(tzVar2.f30722c1).cancelRequest(ozVar.L, true);
+                ConnectionsManager.getInstance(tzVar2.f30723c1).cancelRequest(ozVar.L, true);
                 ozVar.L = 0;
             }
             if (TextUtils.isEmpty(str)) {
@@ -377,12 +377,12 @@ public abstract class gz extends FrameLayout implements ne.d {
                 ozVar.H.clear();
                 ozVar.K = new ArrayList();
                 s4.g0 adapter = axVar.getAdapter();
-                kz kzVar = tzVar2.f30792y0;
+                kz kzVar = tzVar2.f30793y0;
                 if (adapter != kzVar) {
                     axVar.setAdapter(kzVar);
                 }
                 ozVar.d = 0L;
-                tzVar2.f30713a.a(false, true);
+                tzVar2.f30714a.a(false, true);
                 ozVar.l();
                 dxVar.e(false);
             } else {
@@ -394,7 +394,7 @@ public abstract class gz extends FrameLayout implements ne.d {
         } else if (i10 == 1) {
             tzVar.S.F(str, z10);
         } else if (i10 == 2) {
-            tzVar.f30743j0.G(str, z10);
+            tzVar.f30744j0.G(str, z10);
         }
     }
 
@@ -457,7 +457,7 @@ public abstract class gz extends FrameLayout implements ne.d {
         if (z11 && ((sqVar.length() != 0 || (fzVar != null && fzVar.getSelectedCategory() != null)) && !z10)) {
             return;
         }
-        if (sqVar.length() <= 0 && (fzVar == null || fzVar.f30045m3 <= 0.5f || (!fzVar.f30040h3 && fzVar.getSelectedCategory() == null))) {
+        if (sqVar.length() <= 0 && (fzVar == null || fzVar.f30046m3 <= 0.5f || (!fzVar.f30041h3 && fzVar.getSelectedCategory() == null))) {
             i10 = 0;
         } else {
             i10 = 1;

@@ -16,13 +16,13 @@ public class rv0 extends ov0 {
     public boolean E;
     public final uv0 F;
     public final boolean h;
-    public final int f30023n;
-    public final ArrayList f30024r;
-    public ci.a7 f30025s;
+    public final int f30024n;
+    public final ArrayList f30025r;
+    public ci.a7 f30026s;
     public final int v;
-    public final pv0 f30026w;
-    public boolean f30027x;
-    public final ArrayList f30028y;
+    public final pv0 f30027w;
+    public boolean f30028x;
+    public final ArrayList f30029y;
 
     public rv0(uv0 uv0Var, Context context, boolean z10) {
         this(uv0Var, context, 0, z10);
@@ -37,8 +37,8 @@ public class rv0 extends ov0 {
     public final String F(int i10) {
         MessageObject messageObject;
         TL_stories.StoryItem storyItem;
-        ci.a7 a7Var = this.f30025s;
-        if (a7Var == null || i10 < 0 || i10 >= a7Var.f5149i.size() || (messageObject = (MessageObject) this.f30025s.f5149i.get(i10)) == null || (storyItem = messageObject.storyItem) == null) {
+        ci.a7 a7Var = this.f30026s;
+        if (a7Var == null || i10 < 0 || i10 >= a7Var.f5149i.size() || (messageObject = (MessageObject) this.f30026s.f5149i.get(i10)) == null || (storyItem = messageObject.storyItem) == null) {
             return null;
         }
         return LocaleController.formatYearMont(storyItem.date, true);
@@ -57,17 +57,17 @@ public class rv0 extends ov0 {
 
     public final boolean M(int i10) {
         ci.a7 a7Var;
-        if (!this.h && (a7Var = this.f30025s) != null) {
+        if (!this.h && (a7Var = this.f30026s) != null) {
             if (a7Var instanceof ci.t6) {
                 uv0 uv0Var = this.F;
-                TLRPC.User user = MessagesController.getInstance(uv0Var.f31070v1.getCurrentAccount()).getUser(Long.valueOf(uv0Var.f31045j1));
+                TLRPC.User user = MessagesController.getInstance(uv0Var.f31071v1.getCurrentAccount()).getUser(Long.valueOf(uv0Var.f31046j1));
                 if (user != null && user.bot && user.bot_has_main_app && user.bot_can_edit) {
                     return true;
                 }
                 return false;
             } else if (i10 >= 0 && i10 < a7Var.f5149i.size()) {
-                MessageObject messageObject = (MessageObject) this.f30025s.f5149i.get(i10);
-                ci.a7 a7Var2 = this.f30025s;
+                MessageObject messageObject = (MessageObject) this.f30026s.f5149i.get(i10);
+                ci.a7 a7Var2 = this.f30026s;
                 if (a7Var2.f5147f > 0) {
                     return true;
                 }
@@ -84,25 +84,25 @@ public class rv0 extends ov0 {
         nu0 nu0Var2;
         nu0 nu0Var3;
         nu0 nu0Var4;
-        ci.a7 a7Var = this.f30025s;
+        ci.a7 a7Var = this.f30026s;
         if (a7Var != null && !this.h) {
             uv0 uv0Var = this.F;
             boolean z10 = uv0Var.l1;
-            nu0[] nu0VarArr = uv0Var.f31046k0;
-            int[] iArr = uv0Var.f31049m1;
-            if ((!z10 || (uv0Var.f31047k1 && a7Var.g() > 1)) && this.f30025s.g() > 0 && !uv0Var.x0()) {
+            nu0[] nu0VarArr = uv0Var.f31047k0;
+            int[] iArr = uv0Var.f31050m1;
+            if ((!z10 || (uv0Var.f31048k1 && a7Var.g() > 1)) && this.f30026s.g() > 0 && !uv0Var.x0()) {
                 boolean z11 = false;
-                if (this.f30025s.g() < 5) {
-                    iArr[1] = this.f30025s.g();
+                if (this.f30026s.g() < 5) {
+                    iArr[1] = this.f30026s.g();
                     if (nu0VarArr != null && (nu0Var3 = nu0VarArr[0]) != null && (nu0Var4 = nu0VarArr[1]) != null && nu0Var3.h != null && nu0Var4.h != null) {
                         uv0Var.o1(false);
                     }
                     if (iArr[1] == 1) {
                         z11 = true;
                     }
-                    uv0Var.f31047k1 = z11;
-                } else if (uv0Var.f31047k1) {
-                    uv0Var.f31047k1 = false;
+                    uv0Var.f31048k1 = z11;
+                } else if (uv0Var.f31048k1) {
+                    uv0Var.f31048k1 = false;
                     iArr[1] = Math.max(2, SharedConfig.storiesColumnsCount);
                     if (nu0VarArr != null && (nu0Var = nu0VarArr[0]) != null && (nu0Var2 = nu0VarArr[1]) != null && nu0Var.h != null && nu0Var2.h != null) {
                         uv0Var.o1(false);
@@ -116,33 +116,33 @@ public class rv0 extends ov0 {
     public final int O() {
         uv0 uv0Var = this.F;
         zt0 zt0Var = uv0Var.H;
-        int[] iArr = uv0Var.f31049m1;
+        int[] iArr = uv0Var.f31050m1;
         if (this == zt0Var) {
             return iArr[0];
         }
         if (uv0.v(uv0Var, this) != -1) {
             return iArr[1];
         }
-        return uv0Var.f31058q1;
+        return uv0Var.f31059q1;
     }
 
     public final void P() {
-        if (this.f30025s == null) {
+        if (this.f30026s == null) {
             return;
         }
         int O = O();
-        this.f30025s.p(Math.min(100, Math.max(1, O / 2) * O * O), false);
+        this.f30026s.p(Math.min(100, Math.max(1, O / 2) * O * O), false);
     }
 
     @Override
     public final int h() {
         int i10 = 0;
-        if (this.f30025s == null) {
+        if (this.f30026s == null) {
             return 0;
         }
-        int size = this.f30024r.size();
-        if (!this.f30025s.l() || !this.F.j0()) {
-            i10 = this.f30025s.g();
+        int size = this.f30025r.size();
+        if (!this.f30026s.l() || !this.F.j0()) {
+            i10 = this.f30026s.g();
         }
         return size + i10;
     }
@@ -159,12 +159,12 @@ public class rv0 extends ov0 {
 
     @Override
     public void l() {
-        if (this.f30025s != null) {
+        if (this.f30026s != null) {
             uv0 uv0Var = this.F;
             if (uv0Var.s0()) {
-                ArrayList arrayList = this.f30024r;
+                ArrayList arrayList = this.f30025r;
                 arrayList.clear();
-                ArrayList E = MessagesController.getInstance(this.f30025s.f5146c).getStoriesController().E(uv0Var.f31045j1);
+                ArrayList E = MessagesController.getInstance(this.f30026s.f5146c).getStoriesController().E(uv0Var.f31046j1);
                 if (E != null) {
                     arrayList.addAll(E);
                 }
@@ -180,12 +180,12 @@ public class rv0 extends ov0 {
         boolean z11;
         char c10;
         boolean z12;
-        if (this.f30025s != null && b1Var.f45920f == 19) {
+        if (this.f30026s != null && b1Var.f45920f == 19) {
             View view = b1Var.f45917a;
             if (view instanceof org.telegram.ui.Cells.s7) {
                 org.telegram.ui.Cells.s7 s7Var = (org.telegram.ui.Cells.s7) view;
                 s7Var.f23029d0 = true;
-                ArrayList arrayList = this.f30024r;
+                ArrayList arrayList = this.f30025r;
                 if (i10 >= 0 && i10 < arrayList.size()) {
                     ci.h7 h7Var = (ci.h7) arrayList.get(i10);
                     s7Var.f23032f0 = false;
@@ -196,7 +196,7 @@ public class rv0 extends ov0 {
                         tL_storyItem.messageId = i11;
                         tL_storyItem.f20510id = i11;
                         tL_storyItem.attachPath = h7Var.f5469f;
-                        MessageObject messageObject = new MessageObject(this.f30025s.f5146c, tL_storyItem);
+                        MessageObject messageObject = new MessageObject(this.f30026s.f5146c, tL_storyItem);
                         h7Var.K = messageObject;
                         messageObject.uploadingStory = h7Var;
                     }
@@ -207,9 +207,9 @@ public class rv0 extends ov0 {
                     return;
                 }
                 int size = i10 - arrayList.size();
-                if (size >= 0 && size < this.f30025s.f5149i.size()) {
-                    MessageObject messageObject2 = (MessageObject) this.f30025s.f5149i.get(size);
-                    if (messageObject2 != null && this.f30025s.m(messageObject2.getId())) {
+                if (size >= 0 && size < this.f30026s.f5149i.size()) {
+                    MessageObject messageObject2 = (MessageObject) this.f30026s.f5149i.get(size);
+                    if (messageObject2 != null && this.f30026s.m(messageObject2.getId())) {
                         z10 = true;
                     } else {
                         z10 = false;
@@ -226,7 +226,7 @@ public class rv0 extends ov0 {
                     s7Var.k(messageObject2, O(), false);
                     if (uv0Var.C1 && messageObject2 != null) {
                         SparseArray[] sparseArrayArr = uv0Var.Z0;
-                        if (messageObject2.getDialogId() == uv0Var.f31045j1) {
+                        if (messageObject2.getDialogId() == uv0Var.f31046j1) {
                             c10 = 0;
                         } else {
                             c10 = 1;
@@ -240,7 +240,7 @@ public class rv0 extends ov0 {
                     } else {
                         s7Var.i(false, false);
                     }
-                    s7Var.l(this.f30027x, false);
+                    s7Var.l(this.f30028x, false);
                     return;
                 }
                 s7Var.f23032f0 = false;
@@ -265,47 +265,47 @@ public class rv0 extends ov0 {
         int i11;
         TLRPC.User user;
         this.F = uv0Var;
-        this.f30024r = new ArrayList();
-        this.f30028y = new ArrayList();
+        this.f30025r = new ArrayList();
+        this.f30029y = new ArrayList();
         this.h = z10;
-        this.f30023n = i10;
-        org.telegram.ui.ActionBar.n2 n2Var = uv0Var.f31070v1;
-        long j10 = uv0Var.f31045j1;
+        this.f30024n = i10;
+        org.telegram.ui.ActionBar.n2 n2Var = uv0Var.f31071v1;
+        long j10 = uv0Var.f31046j1;
         int currentAccount = n2Var.getCurrentAccount();
         if (!TextUtils.isEmpty(uv0Var.getStoriesHashtag())) {
             if (uv0Var.T1 == null) {
                 uv0Var.T1 = new ci.u6(currentAccount, TextUtils.isEmpty(uv0Var.getStoriesHashtagUsername()) ? null : uv0Var.getStoriesHashtagUsername(), uv0Var.getStoriesHashtag());
             }
-            this.f30025s = uv0Var.T1;
+            this.f30026s = uv0Var.T1;
         } else if (uv0Var.getStoriesArea() != null) {
             if (uv0Var.T1 == null) {
                 uv0Var.T1 = new ci.u6(currentAccount, uv0Var.getStoriesArea());
             }
-            this.f30025s = uv0Var.T1;
+            this.f30026s = uv0Var.T1;
         } else if ((z10 && !uv0Var.x0()) || (!z10 && uv0Var.r0())) {
-            this.f30025s = null;
+            this.f30026s = null;
         } else {
             int i12 = 1;
             boolean z11 = j10 > 0 && (user = MessagesController.getInstance(currentAccount).getUser(Long.valueOf(j10))) != null && user.bot;
             if (i10 > 0) {
-                this.f30025s = n2Var.getMessagesController().getStoriesController().A(uv0Var.f31045j1, 0, i10, true);
+                this.f30026s = n2Var.getMessagesController().getStoriesController().A(uv0Var.f31046j1, 0, i10, true);
             } else {
                 ci.i7 storiesController = n2Var.getMessagesController().getStoriesController();
-                long j11 = uv0Var.f31045j1;
+                long j11 = uv0Var.f31046j1;
                 if (z11) {
                     i12 = 4;
                 } else if (!z10) {
                     i11 = 0;
-                    this.f30025s = storiesController.A(j11, i11, -1, true);
+                    this.f30026s = storiesController.A(j11, i11, -1, true);
                 }
                 i11 = i12;
-                this.f30025s = storiesController.A(j11, i11, -1, true);
+                this.f30026s = storiesController.A(j11, i11, -1, true);
             }
         }
-        ci.a7 a7Var = this.f30025s;
+        ci.a7 a7Var = this.f30026s;
         if (a7Var != null) {
             this.v = a7Var.o();
-            this.f30026w = new pv0(this, n2Var.getMessagesController().getStoriesController(), uv0Var.f31045j1, this.f30025s.f5146c);
+            this.f30027w = new pv0(this, n2Var.getMessagesController().getStoriesController(), uv0Var.f31046j1, this.f30026s.f5146c);
         }
         N();
     }

@@ -55,7 +55,7 @@ public final class e extends FrameLayout {
         linearLayout.setOrientation(1);
         q6 q6Var = new q6(activity, false, false, false);
         this.e = q6Var;
-        q6Var.f29481n = false;
+        q6Var.f29482n = false;
         q6Var.getDrawable().r(true, false);
         q6Var.setTypeface(AndroidUtilities.bold());
         q6Var.setTextSize(AndroidUtilities.dp(14.0f));
@@ -65,7 +65,7 @@ public final class e extends FrameLayout {
         linearLayout.addView(q6Var, z5.k(0.0f, 0.0f, 0.0f, 1.0f, -1, 17));
         q6 q6Var2 = new q6(activity, false, false, false);
         this.f12870f = q6Var2;
-        q6Var2.f29481n = false;
+        q6Var2.f29482n = false;
         q6Var2.getDrawable().r(true, false);
         q6Var2.setTextSize(AndroidUtilities.dp(13.0f));
         q6Var2.setText(LocaleController.getString(R.string.BizBotStatusManages));

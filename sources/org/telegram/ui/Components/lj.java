@@ -23,14 +23,14 @@ public final class lj implements TextWatcher {
                 vzVar.setText(LocaleController.getString(R.string.NoResult));
             }
         } else {
-            s4.g0 adapter = this.f28196a.f32435s.getAdapter();
+            s4.g0 adapter = this.f28196a.f32436s.getAdapter();
             xj xjVar = this.f28196a;
             if (adapter != xjVar.E) {
                 currentTop = xjVar.getCurrentTop();
                 this.f28196a.G.setText(LocaleController.getString(R.string.NoContacts));
                 this.f28196a.G.c();
                 xj xjVar2 = this.f28196a;
-                xjVar2.f32435s.setAdapter(xjVar2.E);
+                xjVar2.f32436s.setAdapter(xjVar2.E);
                 this.f28196a.E.l();
                 if (currentTop > 0) {
                     this.f28196a.v.h1(0, -currentTop);
@@ -39,15 +39,15 @@ public final class lj implements TextWatcher {
         }
         tj tjVar = this.f28196a.F;
         if (tjVar != null) {
-            if (tjVar.f30613f != null) {
-                Utilities.searchQueue.cancelRunnable(tjVar.f30613f);
-                tjVar.f30613f = null;
+            if (tjVar.f30614f != null) {
+                Utilities.searchQueue.cancelRunnable(tjVar.f30614f);
+                tjVar.f30614f = null;
             }
             int i10 = tjVar.h + 1;
             tjVar.h = i10;
             DispatchQueue dispatchQueue = Utilities.searchQueue;
             sj sjVar = new sj(tjVar, obj, i10, 0);
-            tjVar.f30613f = sjVar;
+            tjVar.f30614f = sjVar;
             dispatchQueue.postRunnable(sjVar, 300L);
         }
     }

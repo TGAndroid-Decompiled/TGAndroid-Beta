@@ -16,12 +16,12 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.tgnet.TLRPC;
 public final class iy extends org.telegram.ui.Components.im0 {
-    public final Context f38130c;
+    public final Context f38131c;
     public final ly d;
 
     public iy(ly lyVar, Context context) {
         this.d = lyVar;
-        this.f38130c = context;
+        this.f38131c = context;
     }
 
     @Override
@@ -47,7 +47,7 @@ public final class iy extends org.telegram.ui.Components.im0 {
         if (i10 == lyVar.h) {
             return 1;
         }
-        if (i10 == lyVar.f39048s) {
+        if (i10 == lyVar.f39049s) {
             return 0;
         }
         return 3;
@@ -63,18 +63,18 @@ public final class iy extends org.telegram.ui.Components.im0 {
             if (i11 != 1) {
                 if (i11 == 3) {
                     org.telegram.ui.Cells.f4 f4Var = (org.telegram.ui.Cells.f4) view;
-                    Long l4 = (Long) lyVar.e.get(i10 - lyVar.f39046n);
+                    Long l4 = (Long) lyVar.e.get(i10 - lyVar.f39047n);
                     long longValue = l4.longValue();
                     if (DialogObject.isUserDialog(longValue)) {
                         TLRPC.User user = lyVar.getMessagesController().getUser(l4);
-                        if (i10 == lyVar.f39047r - 1) {
+                        if (i10 == lyVar.f39048r - 1) {
                             z10 = false;
                         }
                         f4Var.e(user, null, null, z10);
                         return;
                     }
                     TLRPC.Chat chat = lyVar.getMessagesController().getChat(Long.valueOf(-longValue));
-                    if (i10 == lyVar.f39047r - 1) {
+                    if (i10 == lyVar.f39048r - 1) {
                         z10 = false;
                     }
                     f4Var.e(chat, null, null, z10);
@@ -84,7 +84,7 @@ public final class iy extends org.telegram.ui.Components.im0 {
             }
             org.telegram.ui.Cells.q8 q8Var = (org.telegram.ui.Cells.q8) view;
             q8Var.e(-1, org.telegram.ui.ActionBar.h6.q6);
-            Context context = this.f38130c;
+            Context context = this.f38131c;
             Drawable drawable = context.getResources().getDrawable(R.drawable.poll_add_circle);
             Drawable drawable2 = context.getResources().getDrawable(R.drawable.poll_add_plus);
             int x02 = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.N6, false);
@@ -93,7 +93,7 @@ public final class iy extends org.telegram.ui.Components.im0 {
             drawable2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21118k7, false), mode));
             org.telegram.ui.Components.zq zqVar = new org.telegram.ui.Components.zq(drawable, drawable2);
             String string = LocaleController.getString(R.string.SelectChats);
-            if (lyVar.f39046n == -1) {
+            if (lyVar.f39047n == -1) {
                 z10 = false;
             }
             q8Var.n(string, zqVar, z10);
@@ -101,9 +101,9 @@ public final class iy extends org.telegram.ui.Components.im0 {
             return;
         }
         org.telegram.ui.Cells.d9 d9Var = (org.telegram.ui.Cells.d9) view;
-        if (i10 == lyVar.f39048s) {
+        if (i10 == lyVar.f39049s) {
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-            int i12 = lyVar.f39049w;
+            int i12 = lyVar.f39050w;
             if (i12 == 0) {
                 spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.EditWidgetChatsInfo));
             } else if (i12 == 1) {
@@ -120,7 +120,7 @@ public final class iy extends org.telegram.ui.Components.im0 {
     public final s4.b1 x(ViewGroup viewGroup, int i10) {
         ky kyVar;
         int i11;
-        Context context = this.f38130c;
+        Context context = this.f38131c;
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 != 2) {
@@ -141,7 +141,7 @@ public final class iy extends org.telegram.ui.Components.im0 {
                 } else {
                     ly lyVar = this.d;
                     ky kyVar2 = new ky(lyVar, context);
-                    lyVar.f39045f = kyVar2;
+                    lyVar.f39046f = kyVar2;
                     kyVar = kyVar2;
                 }
             } else {

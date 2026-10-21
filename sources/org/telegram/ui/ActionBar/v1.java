@@ -67,11 +67,11 @@ public final class v1 extends ScrollView {
                 int size = View.MeasureSpec.getSize(i10);
                 int size2 = View.MeasureSpec.getSize(i11);
                 if (!AndroidUtilities.isTablet() && size2 <= size) {
-                    v70Var.f31184s0 = AndroidUtilities.dp(56.0f);
+                    v70Var.f31185s0 = AndroidUtilities.dp(56.0f);
                 } else {
-                    v70Var.f31184s0 = AndroidUtilities.dp(144.0f);
+                    v70Var.f31185s0 = AndroidUtilities.dp(144.0f);
                 }
-                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(v70Var.f31184s0, Integer.MIN_VALUE));
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(v70Var.f31185s0, Integer.MIN_VALUE));
                 return;
             case 2:
                 super.onMeasure(i10, i11);
@@ -113,7 +113,7 @@ public final class v1 extends ScrollView {
                 rect.bottom = org.telegram.messenger.g0.C(50.0f, r70Var.I, rect.bottom);
                 return super.requestChildRectangleOnScreen(view, rect, z10);
             case 4:
-                int i10 = ((dg0) this.f21783b).f36366a;
+                int i10 = ((dg0) this.f21783b).f36367a;
                 if (i10 == 1 || i10 == 2 || i10 == 4) {
                     rect.bottom = AndroidUtilities.dp(40.0f) + rect.bottom;
                 }

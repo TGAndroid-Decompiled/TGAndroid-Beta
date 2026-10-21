@@ -24,7 +24,7 @@ public final class gi implements ek {
             ekVar.l(arrayList, str, arrayList2, arrayList3, z10, i10, j10, z11, j11);
             return;
         }
-        org.telegram.ui.ActionBar.n2 n2Var = tiVar.f30545f0;
+        org.telegram.ui.ActionBar.n2 n2Var = tiVar.f30546f0;
         if (n2Var instanceof ek) {
             ((ek) n2Var).l(arrayList, str, arrayList2, arrayList3, z10, i10, j10, z11, j11);
         } else if (n2Var instanceof org.telegram.ui.vm0) {
@@ -48,7 +48,7 @@ public final class gi implements ek {
             ekVar.m(j10, arrayList, z10, i10);
             return;
         }
-        org.telegram.ui.ActionBar.n2 n2Var = tiVar.f30545f0;
+        org.telegram.ui.ActionBar.n2 n2Var = tiVar.f30546f0;
         if (n2Var instanceof org.telegram.ui.qn) {
             ((org.telegram.ui.qn) n2Var).m(j10, arrayList, z10, i10);
         } else if (n2Var instanceof org.telegram.ui.vm0) {
@@ -64,7 +64,7 @@ public final class gi implements ek {
             ekVar.y();
             return;
         }
-        org.telegram.ui.ActionBar.n2 n2Var = tiVar.f30545f0;
+        org.telegram.ui.ActionBar.n2 n2Var = tiVar.f30546f0;
         if (n2Var instanceof ek) {
             ((ek) n2Var).y();
         } else if (n2Var instanceof org.telegram.ui.vm0) {

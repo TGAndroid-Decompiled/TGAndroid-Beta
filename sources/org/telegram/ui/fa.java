@@ -27,26 +27,26 @@ import org.telegram.tgnet.tl.TL_bots;
 import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.ui.Components.UndoView;
 public final class fa implements org.telegram.ui.ActionBar.a2, org.telegram.ui.Components.n6, org.telegram.ui.Components.zl0, MessagesStorage.BooleanCallback, c5.q, org.telegram.ui.Components.voip.g3, e2.j, BillingController.ProductDetailsResponseListenerLegacy, org.telegram.ui.Components.d50 {
-    public final int f36953a;
-    public final int f36954b;
-    public final Object f36955c;
+    public final int f36954a;
+    public final int f36955b;
+    public final Object f36956c;
     public final Object d;
     public final Object e;
 
     public fa(int i10, ti tiVar, org.telegram.ui.ActionBar.d5 d5Var, org.telegram.ui.Components.e50 e50Var) {
-        this.f36953a = 11;
-        this.f36954b = i10;
-        this.f36955c = tiVar;
+        this.f36954a = 11;
+        this.f36955b = i10;
+        this.f36956c = tiVar;
         this.d = d5Var;
         this.e = e50Var;
     }
 
     @Override
     public void Q(final TLRPC.InputFile inputFile, final TLRPC.InputFile inputFile2, final double d, String str, final TLRPC.PhotoSize photoSize, final TLRPC.PhotoSize photoSize2, boolean z10, final TLRPC.VideoSize videoSize) {
-        final ti tiVar = (ti) this.f36955c;
+        final ti tiVar = (ti) this.f36956c;
         final org.telegram.ui.ActionBar.d5 d5Var = (org.telegram.ui.ActionBar.d5) this.d;
         final org.telegram.ui.Components.e50 e50Var = (org.telegram.ui.Components.e50) this.e;
-        final int i10 = this.f36954b;
+        final int i10 = this.f36955b;
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
@@ -78,12 +78,12 @@ public final class fa implements org.telegram.ui.ActionBar.a2, org.telegram.ui.C
     @Override
     public boolean a(int i10, View view) {
         int i11;
-        org.telegram.ui.Components.go0 go0Var = (org.telegram.ui.Components.go0) this.f36955c;
+        org.telegram.ui.Components.go0 go0Var = (org.telegram.ui.Components.go0) this.f36956c;
         org.telegram.ui.ActionBar.n2 n2Var = (org.telegram.ui.ActionBar.n2) this.d;
         org.telegram.ui.ActionBar.d6 d6Var = (org.telegram.ui.ActionBar.d6) this.e;
         ArrayList arrayList = go0Var.f26619r;
         if (i10 >= 0 && i10 < arrayList.size()) {
-            int i12 = this.f36954b;
+            int i12 = this.f36955b;
             if (UserConfig.getInstance(i12).isPremium()) {
                 if (!UserConfig.getInstance(i12).isPremium()) {
                     new sg.y0(n2Var, 24, true).show();
@@ -112,42 +112,42 @@ public final class fa implements org.telegram.ui.ActionBar.a2, org.telegram.ui.C
 
     @Override
     public void accept(Object obj) {
-        a5.a aVar = (a5.a) this.f36955c;
-        ((u2.l0) obj).i(aVar.f281b, (u2.g0) aVar.f282c, (u2.u) this.d, (u2.c0) this.e, this.f36954b);
+        a5.a aVar = (a5.a) this.f36956c;
+        ((u2.l0) obj).i(aVar.f281b, (u2.g0) aVar.f282c, (u2.u) this.d, (u2.c0) this.e, this.f36955b);
     }
 
     @Override
     public void b(c5.i iVar, List list) {
-        AndroidUtilities.runOnUIThread(new ai.vb(iVar, (org.telegram.ui.ActionBar.n2) this.f36955c, list, this.f36954b, (c5.g) this.d, (pw0) this.e, 13));
+        AndroidUtilities.runOnUIThread(new ai.vb(iVar, (org.telegram.ui.ActionBar.n2) this.f36956c, list, this.f36955b, (c5.g) this.d, (pw0) this.e, 13));
     }
 
     @Override
     public void c(org.telegram.ui.Components.voip.h3 h3Var) {
-        hh1 hh1Var = (hh1) this.f36955c;
+        hh1 hh1Var = (hh1) this.f36956c;
         org.telegram.ui.Components.voip.i3 i3Var = (org.telegram.ui.Components.voip.i3) this.d;
         VoIPService voIPService = (VoIPService) this.e;
         if (VoIPService.getSharedInstance() != null) {
             AndroidUtilities.cancelRunOnUIThread(hh1Var.S0);
             hh1Var.R0 = false;
-            VoIPService.getSharedInstance().toggleSpeakerphoneOrShowRouteSheet(hh1Var.f37633b, false, Integer.valueOf(this.f36954b));
+            VoIPService.getSharedInstance().toggleSpeakerphoneOrShowRouteSheet(hh1Var.f37634b, false, Integer.valueOf(this.f36955b));
             hh1Var.t(i3Var, voIPService);
         }
     }
 
     @Override
     public void d(CharSequence charSequence) {
-        org.telegram.ui.Components.p6 p6Var = (org.telegram.ui.Components.p6) this.f36955c;
+        org.telegram.ui.Components.p6 p6Var = (org.telegram.ui.Components.p6) this.f36956c;
         ArrayList arrayList = (ArrayList) this.d;
         ArrayList arrayList2 = (ArrayList) this.e;
-        StaticLayout j10 = p6Var.j(this.f36954b - ((int) Math.ceil(Math.min(p6Var.d, p6Var.f29231j))), charSequence);
+        StaticLayout j10 = p6Var.j(this.f36955b - ((int) Math.ceil(Math.min(p6Var.d, p6Var.f29232j))), charSequence);
         org.telegram.ui.Components.m6 m6Var = new org.telegram.ui.Components.m6(p6Var, j10, p6Var.d, arrayList.size());
-        org.telegram.ui.Components.m6 m6Var2 = new org.telegram.ui.Components.m6(p6Var, j10, p6Var.f29231j, arrayList2.size());
+        org.telegram.ui.Components.m6 m6Var2 = new org.telegram.ui.Components.m6(p6Var, j10, p6Var.f29232j, arrayList2.size());
         arrayList2.add(m6Var);
         arrayList.add(m6Var2);
         float f7 = p6Var.d;
         float f10 = m6Var.f28393f;
         p6Var.d = f7 + f10;
-        p6Var.f29231j += f10;
+        p6Var.f29232j += f10;
         p6Var.f(m6Var);
         p6Var.g(m6Var2);
     }
@@ -160,11 +160,11 @@ public final class fa implements org.telegram.ui.ActionBar.a2, org.telegram.ui.C
     @Override
     public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
         TL_bots.toggleUsername toggleusername;
-        int i11 = this.f36953a;
-        int i12 = this.f36954b;
+        int i11 = this.f36954a;
+        int i12 = this.f36955b;
         Object obj = this.e;
         Object obj2 = this.d;
-        Object obj3 = this.f36955c;
+        Object obj3 = this.f36956c;
         switch (i11) {
             case 0:
                 final ha haVar = (ha) obj3;
@@ -173,7 +173,7 @@ public final class fa implements org.telegram.ui.ActionBar.a2, org.telegram.ui.C
                 final boolean z10 = tL_username.active;
                 final String str = tL_username.username;
                 final boolean z11 = !z10;
-                sa saVar = haVar.f37561a;
+                sa saVar = haVar.f37562a;
                 long j10 = saVar.f41419x;
                 if (j10 == 0) {
                     TL_account.toggleUsername toggleusername2 = new TL_account.toggleUsername();
@@ -188,7 +188,7 @@ public final class fa implements org.telegram.ui.ActionBar.a2, org.telegram.ui.C
                     toggleusername = toggleusername3;
                 }
                 ConnectionsManager connectionsManager = saVar.getConnectionsManager();
-                final int i13 = this.f36954b;
+                final int i13 = this.f36955b;
                 connectionsManager.sendRequest(toggleusername, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
@@ -228,8 +228,8 @@ public final class fa implements org.telegram.ui.ActionBar.a2, org.telegram.ui.C
                 tL_poll.answers = poll.answers;
                 tL_poll.closed = true;
                 tL_messages_editMessage.media = tL_inputMediaPoll;
-                int i14 = this.f36954b;
-                tL_messages_editMessage.peer = MessagesController.getInstance(i14).getInputPeer(uv0Var.f31045j1);
+                int i14 = this.f36955b;
+                tL_messages_editMessage.peer = MessagesController.getInstance(i14).getInputPeer(uv0Var.f31046j1);
                 tL_messages_editMessage.f20359id = messageObject.getId();
                 tL_messages_editMessage.flags |= 16384;
                 AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.zr0(b2VarArr, i14, ConnectionsManager.getInstance(i14).sendRequest(tL_messages_editMessage, new ci.t8(uv0Var, b2VarArr, i14, tL_messages_editMessage, 5)), 1), 500L);
@@ -249,7 +249,7 @@ public final class fa implements org.telegram.ui.ActionBar.a2, org.telegram.ui.C
 
     @Override
     public void onProductDetailsResponse(c5.i iVar, List list) {
-        ArrayList arrayList = (ArrayList) this.f36955c;
+        ArrayList arrayList = (ArrayList) this.f36956c;
         TLRPC.Chat chat = (TLRPC.Chat) this.d;
         Utilities.Callback callback = (Utilities.Callback) this.e;
         Iterator it = list.iterator();
@@ -272,14 +272,14 @@ public final class fa implements org.telegram.ui.ActionBar.a2, org.telegram.ui.C
                 }
             }
         }
-        AndroidUtilities.runOnUIThread(new ug.n(chat, this.f36954b, arrayList, callback, 1));
+        AndroidUtilities.runOnUIThread(new ug.n(chat, this.f36955b, arrayList, callback, 1));
     }
 
     @Override
     public void run(boolean z10) {
         boolean z11;
         int i10;
-        cy cyVar = (cy) this.f36955c;
+        cy cyVar = (cy) this.f36956c;
         ArrayList arrayList = (ArrayList) this.d;
         HashSet hashSet = (HashSet) this.e;
         if (arrayList.isEmpty()) {
@@ -287,7 +287,7 @@ public final class fa implements org.telegram.ui.ActionBar.a2, org.telegram.ui.C
         }
         ArrayList arrayList2 = new ArrayList(arrayList);
         UndoView W3 = cyVar.W3();
-        int i11 = this.f36954b;
+        int i11 = this.f36955b;
         if (W3 != null) {
             if (i11 == 102) {
                 i10 = 27;
@@ -310,27 +310,27 @@ public final class fa implements org.telegram.ui.ActionBar.a2, org.telegram.ui.C
     }
 
     public fa(Object obj, int i10, Object obj2, Object obj3, int i11) {
-        this.f36953a = i11;
-        this.f36955c = obj;
-        this.f36954b = i10;
+        this.f36954a = i11;
+        this.f36956c = obj;
+        this.f36955b = i10;
         this.d = obj2;
         this.e = obj3;
     }
 
     public fa(Object obj, Object obj2, int i10, Object obj3, int i11) {
-        this.f36953a = i11;
-        this.f36955c = obj;
+        this.f36954a = i11;
+        this.f36956c = obj;
         this.d = obj2;
-        this.f36954b = i10;
+        this.f36955b = i10;
         this.e = obj3;
     }
 
     public fa(Object obj, Object obj2, Object obj3, int i10, int i11) {
-        this.f36953a = i11;
-        this.f36955c = obj;
+        this.f36954a = i11;
+        this.f36956c = obj;
         this.d = obj2;
         this.e = obj3;
-        this.f36954b = i10;
+        this.f36955b = i10;
     }
 
     @Override

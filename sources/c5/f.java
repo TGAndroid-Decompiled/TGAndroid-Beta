@@ -52,7 +52,7 @@ public final class f implements m0, xx {
         pf pfVar;
         ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) this.f4730c;
         if (chatActivityEnterView.f24045x3) {
-            if ((chatActivityEnterView.f24055z3 || (pfVar = chatActivityEnterView.E0) == null || pfVar.length() <= 0) && (kzVar = chatActivityEnterView.U0.f30792y0) != null && kzVar.h() > 0 && !chatActivityEnterView.f23975k3) {
+            if ((chatActivityEnterView.f24055z3 || (pfVar = chatActivityEnterView.E0) == null || pfVar.length() <= 0) && (kzVar = chatActivityEnterView.U0.f30793y0) != null && kzVar.h() > 0 && !chatActivityEnterView.f23975k3) {
                 return true;
             }
             return false;

@@ -18,7 +18,7 @@ public final class l21 extends EditTextBoldCursor {
         MotionEvent obtain = MotionEvent.obtain(motionEvent);
         float rawX = obtain.getRawX();
         float rawY = obtain.getRawY();
-        ThemeEditorView.EditorAlert editorAlert = this.f28010b.f28667c;
+        ThemeEditorView.EditorAlert editorAlert = this.f28010b.f28668c;
         viewGroup = ((org.telegram.ui.ActionBar.f3) editorAlert).containerView;
         obtain.setLocation(rawX, rawY - viewGroup.getTranslationY());
         editorAlert.f24398c.dispatchTouchEvent(obtain);

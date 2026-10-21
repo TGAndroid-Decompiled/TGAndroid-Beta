@@ -10,18 +10,18 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public final class ma extends FrameLayout {
-    public final EditTextBoldCursor f39163a;
-    public final TextView f39164b;
-    public final sa f39165c;
+    public final EditTextBoldCursor f39164a;
+    public final TextView f39165b;
+    public final sa f39166c;
 
     public ma(sa saVar, Activity activity) {
         super(activity);
         int i10;
-        this.f39165c = saVar;
+        this.f39166c = saVar;
         LinearLayout linearLayout = new LinearLayout(getContext());
         linearLayout.setOrientation(0);
         EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(getContext());
-        this.f39163a = editTextBoldCursor;
+        this.f39164a = editTextBoldCursor;
         editTextBoldCursor.setTextSize(1, 17.0f);
         editTextBoldCursor.setHintTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.H6, false));
         int i11 = org.telegram.ui.ActionBar.h6.G6;
@@ -53,7 +53,7 @@ public final class ma extends FrameLayout {
             editTextBoldCursor.setEnabled(false);
         }
         TextView textView = new TextView(getContext());
-        this.f39164b = textView;
+        this.f39165b = textView;
         textView.setMaxLines(1);
         textView.setLines(1);
         textView.setPadding(0, 0, 0, 0);

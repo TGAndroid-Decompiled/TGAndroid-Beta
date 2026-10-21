@@ -29,7 +29,7 @@ public final class e0 extends h0 {
         this.d = c71Var;
         c71Var.p1();
         c71 c71Var2 = this.d;
-        c71Var2.W2.f30860r = false;
+        c71Var2.W2.f30861r = false;
         c71Var2.setClipToPadding(false);
         this.d.setPadding(0, 0, 0, AndroidUtilities.dp(60.0f) + AndroidUtilities.navigationBarHeight);
         this.f12155c.addView(k0Var.G, z5.g());

@@ -3,18 +3,18 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import android.view.accessibility.AccessibilityNodeInfo;
 public final class t7 extends yj0 {
-    public float f30451r;
-    public float f30452s;
+    public float f30452r;
+    public float f30453s;
     public boolean v;
-    public final org.telegram.ui.Cells.k7 f30453w;
-    public final float f30454x;
-    public final k8 f30455y;
+    public final org.telegram.ui.Cells.k7 f30454w;
+    public final float f30455x;
+    public final k8 f30456y;
 
     public t7(k8 k8Var, Context context, float f7) {
         super(context);
-        this.f30455y = k8Var;
-        this.f30454x = f7;
-        this.f30453w = new org.telegram.ui.Cells.k7(this, 2);
+        this.f30456y = k8Var;
+        this.f30455x = f7;
+        this.f30454w = new org.telegram.ui.Cells.k7(this, 2);
     }
 
     @Override

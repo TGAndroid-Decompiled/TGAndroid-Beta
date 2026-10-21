@@ -166,7 +166,7 @@ public final class ru extends LinearLayout {
                 c4Var.f20726f.add(null);
                 c4Var.m(n2Var.getCurrentAccount());
                 org.telegram.ui.Components.vp vpVar = new org.telegram.ui.Components.vp(c4Var);
-                vpVar.f31851c = org.telegram.ui.ActionBar.h6.g1() ? 0 : 2;
+                vpVar.f31852c = org.telegram.ui.ActionBar.h6.g1() ? 0 : 2;
                 arrayList.add(vpVar);
             }
             upVar.d = arrayList;
@@ -233,7 +233,7 @@ public final class ru extends LinearLayout {
         org.telegram.ui.Components.up upVar = this.f41283c;
         if (upVar.d != null) {
             for (int i14 = 0; i14 < upVar.d.size(); i14++) {
-                ((org.telegram.ui.Components.vp) upVar.d.get(i14)).f31851c = this.v;
+                ((org.telegram.ui.Components.vp) upVar.d.get(i14)).f31852c = this.v;
             }
             upVar.q(0, upVar.d.size());
         }
@@ -293,10 +293,10 @@ public final class ru extends LinearLayout {
             if (i10 >= upVar.d.size()) {
                 break;
             }
-            TLRPC.TL_theme tL_theme = ((org.telegram.ui.ActionBar.b4) ((org.telegram.ui.Components.vp) upVar.d.get(i10)).f31849a.f20726f.get(this.v)).f20693b;
-            org.telegram.ui.ActionBar.g6 i11 = ((org.telegram.ui.Components.vp) upVar.d.get(i10)).f31849a.i(this.v);
+            TLRPC.TL_theme tL_theme = ((org.telegram.ui.ActionBar.b4) ((org.telegram.ui.Components.vp) upVar.d.get(i10)).f31850a.f20726f.get(this.v)).f20693b;
+            org.telegram.ui.ActionBar.g6 i11 = ((org.telegram.ui.Components.vp) upVar.d.get(i10)).f31850a.i(this.v);
             if (tL_theme != null) {
-                if (org.telegram.ui.ActionBar.h6.I.f20881a.equals(org.telegram.ui.ActionBar.h6.r0(tL_theme.settings.get(((org.telegram.ui.ActionBar.b4) ((org.telegram.ui.Components.vp) upVar.d.get(i10)).f31849a.f20726f.get(this.v)).d)))) {
+                if (org.telegram.ui.ActionBar.h6.I.f20881a.equals(org.telegram.ui.ActionBar.h6.r0(tL_theme.settings.get(((org.telegram.ui.ActionBar.b4) ((org.telegram.ui.Components.vp) upVar.d.get(i10)).f31850a.f20726f.get(this.v)).d)))) {
                     LongSparseArray longSparseArray = org.telegram.ui.ActionBar.h6.I.f20886c0;
                     if (longSparseArray == null) {
                         this.f41286r = i10;
@@ -314,7 +314,7 @@ public final class ru extends LinearLayout {
             } else {
                 if (i11 != null) {
                     if (org.telegram.ui.ActionBar.h6.I.f20881a.equals(i11.m())) {
-                        if (((org.telegram.ui.ActionBar.b4) ((org.telegram.ui.Components.vp) upVar.d.get(i10)).f31849a.f20726f.get(this.v)).e == org.telegram.ui.ActionBar.h6.I.Y) {
+                        if (((org.telegram.ui.ActionBar.b4) ((org.telegram.ui.Components.vp) upVar.d.get(i10)).f31850a.f20726f.get(this.v)).e == org.telegram.ui.ActionBar.h6.I.Y) {
                             this.f41286r = i10;
                             break;
                         }

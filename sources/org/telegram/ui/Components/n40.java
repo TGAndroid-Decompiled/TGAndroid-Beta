@@ -19,16 +19,16 @@ public abstract class n40 extends u61 {
     public String X;
     public String Y;
     public int Z;
-    public org.telegram.ui.i4 f28682a0;
-    public final boolean[] f28683b0;
+    public org.telegram.ui.i4 f28683a0;
+    public final boolean[] f28684b0;
 
     public n40(jm0 jm0Var, Context context, int i10) {
         super(jm0Var, context, i10, 0, false, null, null);
         this.O = new ArrayList();
         this.T = 0;
         this.U = -1;
-        this.f28683b0 = new boolean[1];
-        this.f30861s = new d(this, 16);
+        this.f28684b0 = new boolean[1];
+        this.f30862s = new d(this, 16);
         this.N = i10;
     }
 
@@ -69,7 +69,7 @@ public abstract class n40 extends u61 {
             ConnectionsManager.getInstance(this.N).cancelRequest(this.U, true);
             this.U = -1;
         }
-        AndroidUtilities.cancelRunOnUIThread(this.f28682a0);
+        AndroidUtilities.cancelRunOnUIThread(this.f28683a0);
         this.T++;
         this.S = false;
     }
@@ -88,7 +88,7 @@ public abstract class n40 extends u61 {
 
     public final void Y(String str) {
         this.X = str;
-        String X = X(str, this.f28683b0);
+        String X = X(str, this.f28684b0);
         if (!TextUtils.equals(this.Y, X)) {
             this.O.clear();
             this.V = false;
@@ -105,7 +105,7 @@ public abstract class n40 extends u61 {
         this.S = true;
         N(true);
         org.telegram.ui.i4 i4Var = new org.telegram.ui.i4(this, i10, X, 11);
-        this.f28682a0 = i4Var;
+        this.f28683a0 = i4Var;
         AndroidUtilities.runOnUIThread(i4Var, 300L);
     }
 }

@@ -3,39 +3,39 @@ package org.telegram.ui;
 import android.util.SparseIntArray;
 import android.view.View;
 public final class c91 extends s4.o {
-    public int f35890b;
-    public final u81 f35891c;
+    public int f35891b;
+    public final u81 f35892c;
     public final s4.b0 d;
     public final SparseIntArray e = new SparseIntArray();
-    public int f35892f = -1;
-    public int f35893g = -1;
+    public int f35893f = -1;
+    public int f35894g = -1;
     public int h = -1;
-    public int f35894i = -1;
-    public int f35895j = -1;
-    public int f35896k = -1;
-    public int f35897l = -1;
-    public int f35898m = -1;
-    public int f35899n = -1;
-    public int f35900o = -1;
-    public int f35901p = -1;
-    public int f35902q = -1;
-    public int f35903r = -1;
-    public int f35904s = -1;
-    public int f35905t = -1;
-    public int f35906u = -1;
+    public int f35895i = -1;
+    public int f35896j = -1;
+    public int f35897k = -1;
+    public int f35898l = -1;
+    public int f35899m = -1;
+    public int f35900n = -1;
+    public int f35901o = -1;
+    public int f35902p = -1;
+    public int f35903q = -1;
+    public int f35904r = -1;
+    public int f35905s = -1;
+    public int f35906t = -1;
+    public int f35907u = -1;
     public int v = -1;
-    public int f35907w = -1;
-    public int f35908x = -1;
-    public int f35909y = -1;
+    public int f35908w = -1;
+    public int f35909x = -1;
+    public int f35910y = -1;
 
     public c91(u81 u81Var, s4.b0 b0Var) {
-        this.f35891c = u81Var;
+        this.f35892c = u81Var;
         this.d = b0Var;
     }
 
     @Override
     public final boolean a(int i10, int i11) {
-        if (this.e.get(i10) == this.f35891c.j(i11)) {
+        if (this.e.get(i10) == this.f35892c.j(i11)) {
             return true;
         }
         return false;
@@ -45,71 +45,71 @@ public final class c91 extends s4.o {
     public final boolean b(int i10, int i11) {
         SparseIntArray sparseIntArray = this.e;
         int i12 = sparseIntArray.get(i10);
-        u81 u81Var = this.f35891c;
+        u81 u81Var = this.f35892c;
         if (i12 == 13 && u81Var.j(i11) == 13) {
             return true;
         }
         if (sparseIntArray.get(i10) == 10 && u81Var.j(i11) == 10) {
             return true;
         }
-        int i13 = this.f35908x;
-        if (i10 >= i13 && i10 <= this.f35909y) {
+        int i13 = this.f35909x;
+        if (i10 >= i13 && i10 <= this.f35910y) {
             if (i10 - i13 == i11 - u81Var.I) {
                 return true;
             }
             return false;
-        } else if (i10 == this.f35892f && i11 == u81Var.e) {
+        } else if (i10 == this.f35893f && i11 == u81Var.e) {
             return true;
         } else {
-            if (i10 == this.f35893g && i11 == u81Var.h) {
+            if (i10 == this.f35894g && i11 == u81Var.h) {
                 return true;
             }
             if (i10 == this.h && i11 == u81Var.f41876r) {
                 return true;
             }
-            if (i10 == this.f35894i && i11 == u81Var.f41877s) {
+            if (i10 == this.f35895i && i11 == u81Var.f41877s) {
                 return true;
             }
-            if (i10 == this.f35895j && i11 == u81Var.v) {
+            if (i10 == this.f35896j && i11 == u81Var.v) {
                 return true;
             }
-            if (i10 == this.f35896k && i11 == u81Var.f41878w) {
+            if (i10 == this.f35897k && i11 == u81Var.f41878w) {
                 return true;
             }
-            if (i10 == this.f35897l && i11 == u81Var.f41879x) {
+            if (i10 == this.f35898l && i11 == u81Var.f41879x) {
                 return true;
             }
-            if (i10 == this.f35898m && i11 == u81Var.f41875n) {
+            if (i10 == this.f35899m && i11 == u81Var.f41875n) {
                 return true;
             }
-            if (i10 == this.f35899n && i11 == u81Var.f41880y) {
+            if (i10 == this.f35900n && i11 == u81Var.f41880y) {
                 return true;
             }
-            if (i10 == this.f35903r && i11 == u81Var.K) {
+            if (i10 == this.f35904r && i11 == u81Var.K) {
                 return true;
             }
-            if (i10 == this.f35904s && i11 == u81Var.L) {
+            if (i10 == this.f35905s && i11 == u81Var.L) {
                 return true;
             }
-            if (i10 == this.f35905t && i11 == u81Var.M) {
+            if (i10 == this.f35906t && i11 == u81Var.M) {
                 return true;
             }
-            if (i10 == this.f35906u && i11 == u81Var.N) {
+            if (i10 == this.f35907u && i11 == u81Var.N) {
                 return true;
             }
             if (i10 == this.v && i11 == u81Var.O) {
                 return true;
             }
-            if (i10 == this.f35907w && i11 == u81Var.P) {
+            if (i10 == this.f35908w && i11 == u81Var.P) {
                 return true;
             }
-            if (i10 == this.f35900o && i11 == u81Var.E) {
+            if (i10 == this.f35901o && i11 == u81Var.E) {
                 return true;
             }
-            if (i10 == this.f35901p && i11 == u81Var.F) {
+            if (i10 == this.f35902p && i11 == u81Var.F) {
                 return true;
             }
-            if (i10 == this.f35902q && i11 == u81Var.G) {
+            if (i10 == this.f35903q && i11 == u81Var.G) {
                 return true;
             }
             return false;
@@ -118,12 +118,12 @@ public final class c91 extends s4.o {
 
     @Override
     public final int d() {
-        return this.f35891c.f41872c0;
+        return this.f35892c.f41872c0;
     }
 
     @Override
     public final int e() {
-        return this.f35890b;
+        return this.f35891b;
     }
 
     public final void f() {
@@ -132,32 +132,32 @@ public final class c91 extends s4.o {
         View m10;
         SparseIntArray sparseIntArray = this.e;
         sparseIntArray.clear();
-        u81 u81Var = this.f35891c;
-        this.f35890b = u81Var.f41872c0;
+        u81 u81Var = this.f35892c;
+        this.f35891b = u81Var.f41872c0;
         int i11 = 0;
-        for (int i12 = 0; i12 < this.f35890b; i12++) {
+        for (int i12 = 0; i12 < this.f35891b; i12++) {
             sparseIntArray.put(i12, u81Var.j(i12));
         }
-        this.f35892f = u81Var.e;
-        this.f35893g = u81Var.h;
+        this.f35893f = u81Var.e;
+        this.f35894g = u81Var.h;
         this.h = u81Var.f41876r;
-        this.f35894i = u81Var.f41877s;
-        this.f35895j = u81Var.v;
-        this.f35896k = u81Var.f41878w;
-        this.f35897l = u81Var.f41879x;
-        this.f35898m = u81Var.f41875n;
-        this.f35899n = u81Var.f41880y;
-        this.f35908x = u81Var.I;
-        this.f35909y = u81Var.J;
-        this.f35900o = u81Var.E;
-        this.f35901p = u81Var.F;
-        this.f35902q = u81Var.G;
-        this.f35903r = u81Var.K;
-        this.f35904s = u81Var.L;
-        this.f35905t = u81Var.M;
-        this.f35906u = u81Var.N;
+        this.f35895i = u81Var.f41877s;
+        this.f35896j = u81Var.v;
+        this.f35897k = u81Var.f41878w;
+        this.f35898l = u81Var.f41879x;
+        this.f35899m = u81Var.f41875n;
+        this.f35900n = u81Var.f41880y;
+        this.f35909x = u81Var.I;
+        this.f35910y = u81Var.J;
+        this.f35901o = u81Var.E;
+        this.f35902p = u81Var.F;
+        this.f35903q = u81Var.G;
+        this.f35904r = u81Var.K;
+        this.f35905s = u81Var.L;
+        this.f35906t = u81Var.M;
+        this.f35907u = u81Var.N;
         this.v = u81Var.O;
-        this.f35907w = u81Var.P;
+        this.f35908w = u81Var.P;
         u81Var.E();
         s4.b0 b0Var = this.d;
         int L0 = b0Var.L0();

@@ -5,11 +5,11 @@ import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesController;
 public final class dz0 extends org.telegram.ui.Components.s6 {
-    public final ProfileActivity f36467b;
+    public final ProfileActivity f36468b;
 
     public dz0(ProfileActivity profileActivity) {
         super("avatarAnimationProgress", 0);
-        this.f36467b = profileActivity;
+        this.f36468b = profileActivity;
     }
 
     @Override
@@ -28,20 +28,20 @@ public final class dz0 extends org.telegram.ui.Components.s6 {
         int color3;
         float f10;
         org.telegram.ui.ActionBar.k kVar3 = (org.telegram.ui.ActionBar.k) obj;
-        ProfileActivity profileActivity = this.f36467b;
+        ProfileActivity profileActivity = this.f36468b;
         profileActivity.G5 = f7;
         Drawable[] drawableArr = profileActivity.E;
         Drawable[] drawableArr2 = profileActivity.I;
-        Drawable[] drawableArr3 = profileActivity.f33751y;
-        uy0 uy0Var = profileActivity.f33728v0;
+        Drawable[] drawableArr3 = profileActivity.f33752y;
+        uy0 uy0Var = profileActivity.f33729v0;
         if (uy0Var != null) {
             uy0Var.setActionBarActionMode(f7);
         }
-        ai.j1 j1Var = profileActivity.f33736w0;
+        ai.j1 j1Var = profileActivity.f33737w0;
         if (j1Var != null) {
             j1Var.setActionBarActionMode(f7);
         }
-        profileActivity.f33611e1.invalidate();
+        profileActivity.f33612e1.invalidate();
         int i10 = -1;
         if (profileActivity.S5 != null) {
             w02 = -1;
@@ -51,8 +51,8 @@ public final class dz0 extends org.telegram.ui.Components.s6 {
         int i11 = org.telegram.ui.ActionBar.h6.Oi;
         int w010 = org.telegram.ui.ActionBar.h6.w0(i11, profileActivity.A0);
         int offsetColor = AndroidUtilities.getOffsetColor(w02, w010, f7, 1.0f);
-        profileActivity.f33617f[1].setTextColor(offsetColor);
-        Drawable drawable = profileActivity.f33743x;
+        profileActivity.f33618f[1].setTextColor(offsetColor);
+        Drawable drawable = profileActivity.f33744x;
         if (drawable != null) {
             if (profileActivity.S5 != null) {
                 offsetColor = -1;
@@ -81,7 +81,7 @@ public final class dz0 extends org.telegram.ui.Components.s6 {
         int w012 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21397z8, profileActivity.A0);
         kVar2 = ((org.telegram.ui.ActionBar.n2) profileActivity).actionBar;
         kVar2.B(AndroidUtilities.getOffsetColor(w04, w012, f7, 1.0f), false);
-        profileActivity.f33611e1.invalidate();
+        profileActivity.f33612e1.invalidate();
         org.telegram.ui.ActionBar.u0 u0Var2 = profileActivity.U0;
         if (profileActivity.S5 != null) {
             w05 = -1;
@@ -150,7 +150,7 @@ public final class dz0 extends org.telegram.ui.Components.s6 {
             drawableArr[1].setColorFilter(AndroidUtilities.getOffsetColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21405zh, profileActivity.A0), org.telegram.ui.ActionBar.h6.w0(i11, profileActivity.A0), f7, 1.0f), PorterDuff.Mode.MULTIPLY);
         }
         profileActivity.X4();
-        ProfileActivity profileActivity2 = profileActivity.f33686p0.f36484n;
+        ProfileActivity profileActivity2 = profileActivity.f33687p0.f36485n;
         if (profileActivity2.M0) {
             u0Var = profileActivity2.R0;
         } else if (profileActivity2.O0) {
@@ -171,6 +171,6 @@ public final class dz0 extends org.telegram.ui.Components.s6 {
     @Override
     public final Object get(Object obj) {
         org.telegram.ui.ActionBar.k kVar = (org.telegram.ui.ActionBar.k) obj;
-        return Float.valueOf(this.f36467b.G5);
+        return Float.valueOf(this.f36468b.G5);
     }
 }

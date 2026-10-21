@@ -6,18 +6,18 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class jl0 implements View.OnTouchListener {
-    public final int f38276a;
-    public final vm0 f38277b;
+    public final int f38277a;
+    public final vm0 f38278b;
 
     public jl0(vm0 vm0Var, int i10) {
-        this.f38276a = i10;
-        this.f38277b = vm0Var;
+        this.f38277a = i10;
+        this.f38278b = vm0Var;
     }
 
     @Override
     public final boolean onTouch(View view, MotionEvent motionEvent) {
-        int i10 = this.f38276a;
-        vm0 vm0Var = this.f38277b;
+        int i10 = this.f38277a;
+        vm0 vm0Var = this.f38278b;
         switch (i10) {
             case 0:
                 if (vm0Var.getParentActivity() == null) {

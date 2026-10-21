@@ -155,7 +155,7 @@ public final class rf0 extends FrameLayout {
             return;
         }
         this.f41209x = true;
-        this.f41201a.f35630a.V.f36369b0 = null;
+        this.f41201a.f35631a.V.f36370b0 = null;
         ValueAnimator duration = ValueAnimator.ofFloat(1.0f, 0.0f).setDuration(250L);
         duration.addListener(new qf0(this, 1));
         duration.addUpdateListener(new nf0(this, 0));

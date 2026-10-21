@@ -22,13 +22,13 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public final class h81 extends org.telegram.ui.Components.bb {
-    public static final int f37542d0 = 0;
+    public static final int f37543d0 = 0;
     public final ai.c X;
     public final LinearLayout Y;
     public final LinearLayout Z;
-    public boolean f37543a0;
-    public boolean f37544b0;
-    public org.telegram.ui.Components.u61 f37545c0;
+    public boolean f37544a0;
+    public boolean f37545b0;
+    public org.telegram.ui.Components.u61 f37546c0;
 
     public h81(final Context context, final int i10, final org.telegram.ui.ActionBar.d6 d6Var, final org.telegram.ui.ActionBar.j3 j3Var) {
         super(1, context, d6Var, true);
@@ -259,7 +259,7 @@ public final class h81 extends org.telegram.ui.Components.bb {
         org.telegram.ui.Components.jm0 jm0Var = this.d;
         int i24 = this.backgroundPaddingLeft;
         jm0Var.setPadding(i24, 0, i24, AndroidUtilities.dp(68.0f));
-        this.f37545c0.N(false);
+        this.f37546c0.N(false);
     }
 
     @Override
@@ -270,13 +270,13 @@ public final class h81 extends org.telegram.ui.Components.bb {
     public final void Q() {
         boolean z10;
         float f7;
-        if (this.f37543a0 && !isDismissed() && !isKeyboardVisible()) {
+        if (this.f37544a0 && !isDismissed() && !isKeyboardVisible()) {
             z10 = true;
         } else {
             z10 = false;
         }
-        if (this.f37544b0 != z10) {
-            this.f37544b0 = z10;
+        if (this.f37545b0 != z10) {
+            this.f37545b0 = z10;
             ai.c cVar = this.X;
             if (cVar != null) {
                 cVar.setEnabled(z10);
@@ -320,21 +320,21 @@ public final class h81 extends org.telegram.ui.Components.bb {
     @Override
     public final void onDismissAnimationStart() {
         super.onDismissAnimationStart();
-        this.f37543a0 = false;
+        this.f37544a0 = false;
         Q();
     }
 
     @Override
     public final void onOpenAnimationEnd() {
         super.onOpenAnimationEnd();
-        this.f37543a0 = true;
+        this.f37544a0 = true;
         Q();
     }
 
     @Override
     public final org.telegram.ui.Components.im0 x(org.telegram.ui.Components.jm0 jm0Var) {
         org.telegram.ui.Components.u61 u61Var = new org.telegram.ui.Components.u61(jm0Var, getContext(), this.currentAccount, 0, false, new g5(this, 27), this.resourcesProvider);
-        this.f37545c0 = u61Var;
+        this.f37546c0 = u61Var;
         return u61Var;
     }
 }

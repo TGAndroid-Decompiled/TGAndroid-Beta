@@ -128,7 +128,7 @@ public abstract class z41 extends org.telegram.ui.Components.jm0 {
                                 g51Var.invalidate();
                             }
                         }
-                        int i16 = g51Var.f37190c;
+                        int i16 = g51Var.f37191c;
                         if (x51Var.f43094w1) {
                             top = (int) childAt.getY();
                         } else {
@@ -137,7 +137,7 @@ public abstract class z41 extends org.telegram.ui.Components.jm0 {
                         ArrayList arrayList5 = (ArrayList) sparseArray.get(top);
                         canvas2.save();
                         canvas2.translate(g51Var.getX(), g51Var.getY());
-                        if (g51Var.f37195w != null) {
+                        if (g51Var.f37196w != null) {
                             ai.de collectionParticles = x51Var.getCollectionParticles();
                             i10 = i14;
                             boolean z13 = z12;
@@ -164,7 +164,7 @@ public abstract class z41 extends org.telegram.ui.Components.jm0 {
                             view = childAt;
                             canvas2.scale(f11, f12, g51Var.getWidth() / 2.0f, g51Var.getHeight() / 2.0f);
                             canvas2.rotate((i16 % 4) * 90, g51Var.getWidth() / 2.0f, g51Var.getHeight() / 2.0f);
-                            collectionParticles.a(canvas2, g51Var.f37195w.intValue());
+                            collectionParticles.a(canvas2, g51Var.f37196w.intValue());
                             canvas2.restore();
                             z12 = z14;
                         } else {
@@ -172,7 +172,7 @@ public abstract class z41 extends org.telegram.ui.Components.jm0 {
                             view = childAt;
                         }
                         boolean z15 = g51Var.L;
-                        if ((z15 || g51Var.M || g51Var.S > 0.0f) && !g51Var.f37189b) {
+                        if ((z15 || g51Var.M || g51Var.S > 0.0f) && !g51Var.f37190b) {
                             if (z15 || g51Var.M) {
                                 float f14 = g51Var.R;
                                 if (f14 < 1.0f) {
@@ -209,7 +209,7 @@ public abstract class z41 extends org.telegram.ui.Components.jm0 {
                             rectF.set(0.0f, 0.0f, g51Var.getMeasuredWidth(), g51Var.getMeasuredHeight());
                             float f16 = dp;
                             rectF.inset(f16, f16);
-                            if (!g51Var.f37188a) {
+                            if (!g51Var.f37189a) {
                                 Drawable drawable = g51Var.E;
                                 if (!(drawable instanceof org.telegram.ui.Components.r5) || !((org.telegram.ui.Components.r5) drawable).c()) {
                                     paint = x51Var2.L;
@@ -246,7 +246,7 @@ public abstract class z41 extends org.telegram.ui.Components.jm0 {
                         }
                         arrayList3.add(g51Var);
                         f51 f51Var = g51Var.J;
-                        if (f51Var != null && f51Var.getVisibility() == 0 && g51Var.J.getImageReceiver() == null && (imageReceiver2 = g51Var.f37193r) != null) {
+                        if (f51Var != null && f51Var.getVisibility() == 0 && g51Var.J.getImageReceiver() == null && (imageReceiver2 = g51Var.f37194r) != null) {
                             g51Var.J.setImageReceiver(imageReceiver2);
                         }
                     } else {
@@ -354,7 +354,7 @@ public abstract class z41 extends org.telegram.ui.Components.jm0 {
                         canvas2.translate((int) ((g51Var3.getX() + g51Var3.getMeasuredWidth()) - g51Var3.J.getMeasuredWidth()), (int) ((g51Var3.getY() + g51Var3.getMeasuredHeight()) - g51Var3.J.getMeasuredHeight()));
                         Drawable drawable2 = g51Var3.E;
                         if (drawable2 instanceof org.telegram.ui.Components.r5) {
-                            imageReceiver = ((org.telegram.ui.Components.r5) drawable2).f29837k;
+                            imageReceiver = ((org.telegram.ui.Components.r5) drawable2).f29838k;
                         } else {
                             imageReceiver = g51Var3.h;
                         }

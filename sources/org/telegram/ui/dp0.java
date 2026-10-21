@@ -10,16 +10,16 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesController;
 public final class dp0 extends Drawable {
-    public static final int f36430j = 0;
-    public float f36431a = AndroidUtilities.dpf2(10.6665f);
-    public final boolean f36432b;
-    public Paint f36433c;
+    public static final int f36431j = 0;
+    public float f36432a = AndroidUtilities.dpf2(10.6665f);
+    public final boolean f36433b;
+    public Paint f36434c;
     public final Paint d;
     public final Paint e;
-    public final Paint f36434f;
-    public final Path f36435g;
+    public final Paint f36435f;
+    public final Path f36436g;
     public final Path h;
-    public final org.telegram.ui.Components.p5 f36436i;
+    public final org.telegram.ui.Components.p5 f36437i;
 
     public dp0(int i10, int i11, int i12) {
         Paint paint = new Paint(1);
@@ -27,14 +27,14 @@ public final class dp0 extends Drawable {
         Paint paint2 = new Paint(1);
         this.e = paint2;
         Paint paint3 = new Paint(1);
-        this.f36434f = paint3;
-        this.f36435g = new Path();
+        this.f36435f = paint3;
+        this.f36436g = new Path();
         this.h = new Path();
-        this.f36432b = i12 != i10;
+        this.f36433b = i12 != i10;
         paint.setColor(i10);
         paint2.setColor(i11);
         paint3.setColor(i12);
-        this.f36436i = null;
+        this.f36437i = null;
         d();
     }
 
@@ -85,38 +85,38 @@ public final class dp0 extends Drawable {
     public final void d() {
         Path path = this.h;
         path.rewind();
-        float f7 = this.f36431a;
+        float f7 = this.f36432a;
         path.addCircle(f7, f7, f7, Path.Direction.CW);
-        Path path2 = this.f36435g;
+        Path path2 = this.f36436g;
         path2.rewind();
-        path2.moveTo(this.f36431a * 2.0f, 0.0f);
-        float f10 = this.f36431a;
+        path2.moveTo(this.f36432a * 2.0f, 0.0f);
+        float f10 = this.f36432a;
         path2.lineTo(f10 * 2.0f, f10 * 2.0f);
-        path2.lineTo(0.0f, this.f36431a * 2.0f);
+        path2.lineTo(0.0f, this.f36432a * 2.0f);
         path2.close();
     }
 
     @Override
     public final void draw(Canvas canvas) {
         canvas.save();
-        canvas.translate(getBounds().centerX() - this.f36431a, getBounds().centerY() - this.f36431a);
-        Paint paint = this.f36433c;
+        canvas.translate(getBounds().centerX() - this.f36432a, getBounds().centerY() - this.f36432a);
+        Paint paint = this.f36434c;
         if (paint != null) {
-            float f7 = this.f36431a;
+            float f7 = this.f36432a;
             canvas.drawCircle(f7, f7, f7, paint);
         }
         canvas.clipPath(this.h);
         canvas.drawPaint(this.d);
-        canvas.drawPath(this.f36435g, this.e);
-        if (this.f36432b) {
+        canvas.drawPath(this.f36436g, this.e);
+        if (this.f36433b) {
             RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(this.f36431a - AndroidUtilities.dp(3.66f), this.f36431a - AndroidUtilities.dp(3.66f), this.f36431a + AndroidUtilities.dp(3.66f), this.f36431a + AndroidUtilities.dp(3.66f));
-            float f10 = this.f36431a;
+            rectF.set(this.f36432a - AndroidUtilities.dp(3.66f), this.f36432a - AndroidUtilities.dp(3.66f), this.f36432a + AndroidUtilities.dp(3.66f), this.f36432a + AndroidUtilities.dp(3.66f));
+            float f10 = this.f36432a;
             canvas.rotate(45.0f, f10, f10);
-            canvas.drawRoundRect(rectF, AndroidUtilities.dp(2.33f), AndroidUtilities.dp(2.33f), this.f36434f);
+            canvas.drawRoundRect(rectF, AndroidUtilities.dp(2.33f), AndroidUtilities.dp(2.33f), this.f36435f);
         }
         canvas.restore();
-        org.telegram.ui.Components.p5 p5Var = this.f36436i;
+        org.telegram.ui.Components.p5 p5Var = this.f36437i;
         if (p5Var != null) {
             int dp = AndroidUtilities.dp(14.0f) / 2;
             p5Var.setBounds(getBounds().centerX() - dp, getBounds().centerY() - dp, getBounds().centerX() + dp, getBounds().centerY() + dp);
@@ -125,7 +125,7 @@ public final class dp0 extends Drawable {
     }
 
     public final void e(View view) {
-        org.telegram.ui.Components.p5 p5Var = this.f36436i;
+        org.telegram.ui.Components.p5 p5Var = this.f36437i;
         if (view == null) {
             if (p5Var != null) {
                 p5Var.b();
@@ -141,23 +141,23 @@ public final class dp0 extends Drawable {
     }
 
     public final void f(float f7, int i10) {
-        if (this.f36433c == null) {
+        if (this.f36434c == null) {
             Paint paint = new Paint(1);
-            this.f36433c = paint;
+            this.f36434c = paint;
             paint.setStyle(Paint.Style.STROKE);
         }
-        this.f36433c.setStrokeWidth(f7);
-        this.f36433c.setColor(i10);
+        this.f36434c.setStrokeWidth(f7);
+        this.f36434c.setColor(i10);
     }
 
     @Override
     public final int getIntrinsicHeight() {
-        return (int) (this.f36431a * 2.0f);
+        return (int) (this.f36432a * 2.0f);
     }
 
     @Override
     public final int getIntrinsicWidth() {
-        return (int) (this.f36431a * 2.0f);
+        return (int) (this.f36432a * 2.0f);
     }
 
     @Override
@@ -171,16 +171,16 @@ public final class dp0 extends Drawable {
         Paint paint2 = new Paint(1);
         this.e = paint2;
         Paint paint3 = new Paint(1);
-        this.f36434f = paint3;
-        this.f36435g = new Path();
+        this.f36435f = paint3;
+        this.f36436g = new Path();
         this.h = new Path();
-        this.f36432b = i12 != i10;
+        this.f36433b = i12 != i10;
         paint.setColor(i10);
         paint2.setColor(i11);
         paint3.setColor(i12);
         d();
         org.telegram.ui.Components.p5 p5Var = new org.telegram.ui.Components.p5(AndroidUtilities.dp(14.0f), null);
-        this.f36436i = p5Var;
+        this.f36437i = p5Var;
         p5Var.j(j10, false);
     }
 

@@ -14,7 +14,7 @@ public final class rs implements Runnable {
     public final void run() {
         switch (this.f41275a) {
             case 0:
-                this.f41276b.f36778c0 = null;
+                this.f41276b.f36779c0 = null;
                 return;
             case 1:
                 et etVar = this.f41276b;
@@ -22,7 +22,7 @@ public final class rs implements Runnable {
                 org.telegram.ui.Components.zd0 zd0Var = etVar.C;
                 if (zd0Var != null) {
                     zd0Var.a();
-                    etVar.f36799z.removeView(etVar.C);
+                    etVar.f36800z.removeView(etVar.C);
                     etVar.C = null;
                     return;
                 }

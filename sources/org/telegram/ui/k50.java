@@ -27,22 +27,22 @@ public final class k50 extends org.telegram.ui.Components.im0 {
     public int K;
     public boolean L;
     public final q50 M;
-    public final Context f38417c;
+    public final Context f38418c;
     public int d;
     public int e;
-    public int f38418f;
+    public int f38419f;
     public int h;
-    public int f38419n;
-    public int f38420r;
-    public int f38421s;
+    public int f38420n;
+    public int f38421r;
+    public int f38422s;
     public int v;
-    public int f38422w;
-    public int f38423x;
-    public int f38424y;
+    public int f38423w;
+    public int f38424x;
+    public int f38425y;
 
     public k50(q50 q50Var, LaunchActivity launchActivity) {
         this.M = q50Var;
-        this.f38417c = launchActivity;
+        this.f38418c = launchActivity;
     }
 
     @Override
@@ -61,9 +61,9 @@ public final class k50 extends org.telegram.ui.Components.im0 {
         ArrayList arrayList = q50Var.f40440q0;
         ChatObject.Call call = q50Var.f40376a1;
         if (call != null && !call.isScheduled() && !q50Var.f40450s0) {
-            this.f38422w = -1;
-            this.f38423x = -1;
-            this.f38424y = -1;
+            this.f38423w = -1;
+            this.f38424x = -1;
+            this.f38425y = -1;
             this.I = -1;
             this.J = -1;
             this.K = -1;
@@ -100,43 +100,43 @@ public final class k50 extends org.telegram.ui.Components.im0 {
             this.e = this.F;
             if (!q50Var.f40376a1.invitedUsers.isEmpty() && !q50Var.s1()) {
                 int i14 = this.F;
-                this.f38418f = i14;
+                this.f38419f = i14;
                 int size2 = q50Var.f40376a1.invitedUsers.size() + i14;
                 this.F = size2;
                 this.h = size2;
             } else {
-                this.f38418f = -1;
+                this.f38419f = -1;
                 this.h = -1;
             }
             if (!q50Var.f40376a1.shadyJoinParticipants.isEmpty() && !q50Var.s1()) {
                 int i15 = this.F;
-                this.f38419n = i15;
+                this.f38420n = i15;
                 int size3 = q50Var.f40376a1.shadyJoinParticipants.size() + i15;
                 this.F = size3;
-                this.f38420r = size3;
+                this.f38421r = size3;
             } else {
-                this.f38419n = -1;
-                this.f38420r = -1;
+                this.f38420n = -1;
+                this.f38421r = -1;
             }
             if (!q50Var.f40376a1.shadyLeftParticipants.isEmpty() && !q50Var.s1()) {
                 int i16 = this.F;
-                this.f38421s = i16;
+                this.f38422s = i16;
                 int size4 = q50Var.f40376a1.shadyLeftParticipants.size() + i16;
                 this.F = size4;
                 this.v = size4;
             } else {
-                this.f38421s = -1;
+                this.f38422s = -1;
                 this.v = -1;
             }
             if (q50Var.p1()) {
                 int i17 = this.F;
-                this.f38423x = i17;
+                this.f38424x = i17;
                 this.F = i17 + 2;
-                this.f38424y = i17 + 1;
+                this.f38425y = i17 + 1;
             } else if (!q50Var.s1() && (((!ChatObject.isChannel(q50Var.Z0) || ((chat2 = q50Var.Z0) != null && chat2.megagroup)) && ChatObject.canWriteToChat(q50Var.Z0)) || (ChatObject.isChannel(q50Var.Z0) && (chat = q50Var.Z0) != null && !chat.megagroup && ChatObject.isPublic(chat)))) {
                 int i18 = this.F;
                 this.F = i18 + 1;
-                this.f38422w = i18;
+                this.f38423w = i18;
             }
             int i19 = this.F;
             this.F = i19 + 1;
@@ -154,7 +154,7 @@ public final class k50 extends org.telegram.ui.Components.im0 {
         if (i10 == this.E) {
             return 3;
         }
-        if (i10 != this.f38422w && i10 != this.f38423x && i10 != this.f38424y) {
+        if (i10 != this.f38423w && i10 != this.f38424x && i10 != this.f38425y) {
             if (i10 == this.I) {
                 return 5;
             }
@@ -240,7 +240,7 @@ public final class k50 extends org.telegram.ui.Components.im0 {
         q50 q50Var = this.M;
         AccountInstance accountInstance = q50Var.d;
         int i17 = 3;
-        Context context = this.f38417c;
+        Context context = this.f38418c;
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 != 2) {

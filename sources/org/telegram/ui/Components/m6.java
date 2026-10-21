@@ -43,7 +43,7 @@ public final class m6 {
         this.f28394g = f12;
         this.h = staticLayout != null ? staticLayout.getHeight() - this.f28394g : 0.0f;
         if (p6Var.getCallback() instanceof View) {
-            this.f28390a = a6.update(p6Var.f29237p, (View) p6Var.getCallback(), this.f28390a, staticLayout);
+            this.f28390a = a6.update(p6Var.f29238p, (View) p6Var.getCallback(), this.f28390a, staticLayout);
         }
     }
 
@@ -51,7 +51,7 @@ public final class m6 {
         int i10;
         p6 p6Var = this.f28395i;
         int i11 = p6Var.B;
-        TextPaint textPaint = p6Var.f29223a;
+        TextPaint textPaint = p6Var.f29224a;
         int max = Math.max(0, Math.min(255, (int) (i11 * f7)));
         if (max != 0) {
             textPaint.setAlpha(255);
@@ -64,7 +64,7 @@ public final class m6 {
                 i10 = -1;
             }
             this.f28391b.draw(canvas);
-            a6.drawAnimatedEmojis(canvas, this.f28391b, this.f28390a, 0.0f, null, 0.0f, 0.0f, 0.0f, 1.0f, p6Var.f29224a0);
+            a6.drawAnimatedEmojis(canvas, this.f28391b, this.f28390a, 0.0f, null, 0.0f, 0.0f, 0.0f, 1.0f, p6Var.f29225a0);
             if (i10 != -1) {
                 canvas.restoreToCount(i10);
             }

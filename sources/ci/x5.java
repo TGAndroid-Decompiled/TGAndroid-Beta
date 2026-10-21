@@ -57,11 +57,11 @@ public final class x5 implements z4.e {
             case 2:
                 xd0 xd0Var = (xd0) this.f6167b;
                 xd0Var.h = i10;
-                xd0Var.f32397n = f7;
+                xd0Var.f32398n = f7;
                 if (xd0Var.d.getChildAt(i10) != null) {
                     xd0.a(xd0Var, i10, (int) (xd0Var.d.getChildAt(i10).getWidth() * f7));
                     xd0Var.invalidate();
-                    z4.e eVar = xd0Var.f32395c;
+                    z4.e eVar = xd0Var.f32396c;
                     if (eVar != null) {
                         eVar.a(f7, i10, i11);
                         return;
@@ -102,7 +102,7 @@ public final class x5 implements z4.e {
                 return;
             case 2:
                 xd0 xd0Var = (xd0) this.f6167b;
-                z4.e eVar = xd0Var.f32395c;
+                z4.e eVar = xd0Var.f32396c;
                 if (eVar != null) {
                     eVar.b(i10);
                 }
@@ -138,7 +138,7 @@ public final class x5 implements z4.e {
                 if (i10 == 0) {
                     xd0.a(xd0Var, xd0Var.e.getCurrentItem(), 0);
                 }
-                z4.e eVar = xd0Var.f32395c;
+                z4.e eVar = xd0Var.f32396c;
                 if (eVar != null) {
                     eVar.c(i10);
                     return;

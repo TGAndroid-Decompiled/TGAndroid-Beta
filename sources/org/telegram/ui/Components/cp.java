@@ -203,7 +203,7 @@ public abstract class cp extends LinearLayout {
         actionBarPopupWindow$ActionBarPopupWindowLayout.setOnSizeChangedListener(new q2(14, this, actionBarPopupWindow$ActionBarPopupWindowLayout));
         if (actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack() != null) {
             qh0 swipeBack = actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack();
-            swipeBack.f29598x.add(new ph0() {
+            swipeBack.f29599x.add(new ph0() {
                 @Override
                 public final void a(float f7, float f10) {
                     cp cpVar = cp.this;

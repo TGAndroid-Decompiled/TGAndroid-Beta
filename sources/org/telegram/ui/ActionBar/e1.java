@@ -290,9 +290,9 @@ public class e1 extends FrameLayout {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         accessibilityNodeInfo.setEnabled(isEnabled());
         xp xpVar = this.e;
-        if (xpVar != null && xpVar.f32458a.f24151q) {
+        if (xpVar != null && xpVar.f32459a.f24151q) {
             accessibilityNodeInfo.setCheckable(true);
-            accessibilityNodeInfo.setChecked(this.e.f32458a.f24151q);
+            accessibilityNodeInfo.setChecked(this.e.f32459a.f24151q);
             accessibilityNodeInfo.setClassName("android.widget.CheckBox");
         }
     }

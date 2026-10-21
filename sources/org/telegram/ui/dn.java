@@ -4,13 +4,13 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessageObject;
 public final class dn extends w7.a6 {
-    public MessageObject f36421a;
-    public int f36422b = 0;
-    public boolean f36423c = true;
+    public MessageObject f36422a;
+    public int f36423b = 0;
+    public boolean f36424c = true;
     public int d = 0;
     public int e;
-    public boolean f36424f;
-    public int f36425g;
+    public boolean f36425f;
+    public int f36426g;
     public final qn h;
 
     public dn(qn qnVar) {
@@ -19,19 +19,19 @@ public final class dn extends w7.a6 {
 
     @Override
     public final void a() {
-        MessageObject messageObject = this.f36421a;
+        MessageObject messageObject = this.f36422a;
         qn qnVar = this.h;
         if (messageObject != null) {
             qnVar.A0.T();
-            int indexOf = qnVar.f40868u6.indexOf(this.f36421a) + qnVar.A0.J;
+            int indexOf = qnVar.f40868u6.indexOf(this.f36422a) + qnVar.A0.J;
             if (indexOf >= 0) {
-                qnVar.f40926z0.i1(indexOf, (int) ((this.e + this.f36425g) - qnVar.f40845s9), this.f36424f);
+                qnVar.f40926z0.i1(indexOf, (int) ((this.e + this.f36426g) - qnVar.f40845s9), this.f36425f);
             }
         } else {
             qnVar.A0.T();
-            qnVar.f40926z0.i1(this.f36422b, this.d, this.f36423c);
+            qnVar.f40926z0.i1(this.f36423b, this.d, this.f36424c);
         }
-        this.f36421a = null;
+        this.f36422a = null;
         qnVar.f40763m3 = true;
         qnVar.bd(false);
         AndroidUtilities.runOnUIThread(new ti(this, 9));

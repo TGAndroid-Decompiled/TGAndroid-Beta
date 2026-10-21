@@ -2,32 +2,32 @@ package org.telegram.ui;
 
 import android.content.DialogInterface;
 public final class g20 implements DialogInterface.OnDismissListener {
-    public final int f37170a;
-    public final q50 f37171b;
+    public final int f37171a;
+    public final q50 f37172b;
 
     public g20(q50 q50Var, int i10) {
-        this.f37170a = i10;
-        this.f37171b = q50Var;
+        this.f37171a = i10;
+        this.f37172b = q50Var;
     }
 
     @Override
     public final void onDismiss(DialogInterface dialogInterface) {
-        switch (this.f37170a) {
+        switch (this.f37171a) {
             case 0:
                 org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
-                if (this.f37171b.f40472x0 && (U instanceof qn)) {
+                if (this.f37172b.f40472x0 && (U instanceof qn)) {
                     ((qn) U).Y9(true, true);
                     return;
                 }
                 return;
             case 1:
-                this.f37171b.dismiss();
+                this.f37172b.dismiss();
                 return;
             case 2:
-                this.f37171b.E1 = null;
+                this.f37172b.E1 = null;
                 return;
             default:
-                this.f37171b.f40445r0 = null;
+                this.f37172b.f40445r0 = null;
                 return;
         }
     }

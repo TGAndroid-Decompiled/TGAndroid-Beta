@@ -41,7 +41,7 @@ public final class mc0 extends View {
         int w02 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Nd, d6Var);
         if (d6Var instanceof org.telegram.ui.on) {
             org.telegram.ui.on onVar = (org.telegram.ui.on) d6Var;
-            if ((onVar.e() instanceof wc0) && (iArr = ((wc0) onVar.e()).f32064a) != null) {
+            if ((onVar.e() instanceof wc0) && (iArr = ((wc0) onVar.e()).f32065a) != null) {
                 w02 = AndroidUtilities.getAverageColor(AndroidUtilities.getAverageColor(iArr[0], iArr[1]), AndroidUtilities.getAverageColor(iArr[2], iArr[3]));
             }
         }

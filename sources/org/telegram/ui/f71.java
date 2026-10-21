@@ -12,15 +12,15 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class f71 implements Runnable {
-    public final int f36908a;
-    public final Object f36909b;
-    public final Object f36910c;
+    public final int f36909a;
+    public final Object f36910b;
+    public final Object f36911c;
     public final Object d;
 
     public f71(Object obj, Object obj2, Object obj3, int i10) {
-        this.f36908a = i10;
-        this.f36910c = obj;
-        this.f36909b = obj2;
+        this.f36909a = i10;
+        this.f36911c = obj;
+        this.f36910b = obj2;
         this.d = obj3;
     }
 
@@ -28,14 +28,14 @@ public final class f71 implements Runnable {
     public final void run() {
         TLRPC.Message message;
         int i10;
-        int i11 = this.f36908a;
+        int i11 = this.f36909a;
         gn gnVar = null;
         gnVar = null;
         gnVar = null;
         boolean z10 = false;
         Object obj = this.d;
-        Object obj2 = this.f36909b;
-        Object obj3 = this.f36910c;
+        Object obj2 = this.f36910b;
+        Object obj3 = this.f36911c;
         switch (i11) {
             case 0:
                 g71 g71Var = (g71) obj3;
@@ -44,7 +44,7 @@ public final class f71 implements Runnable {
                     byte[] decode = Base64.decode(((String) obj2).substring(17).replaceAll("\\/", "_").replaceAll("\\+", "-"), 8);
                     TLRPC.TL_auth_acceptLoginToken tL_auth_acceptLoginToken = new TLRPC.TL_auth_acceptLoginToken();
                     tL_auth_acceptLoginToken.token = decode;
-                    g71Var.f37213c.getConnectionsManager().sendRequest(tL_auth_acceptLoginToken, new x40(28, g71Var, n9Var));
+                    g71Var.f37214c.getConnectionsManager().sendRequest(tL_auth_acceptLoginToken, new x40(28, g71Var, n9Var));
                     return;
                 } catch (Exception e) {
                     FileLog.e("Failed to pass qr code auth", e);
@@ -79,10 +79,10 @@ public final class f71 implements Runnable {
                 if (messageObject != null && (message = messageObject.messageOwner) != null && (message.media instanceof TLRPC.TL_messageMediaToDo)) {
                     messageObject.getDialogId();
                     ?? obj4 = new Object();
-                    obj4.f37357a = messageObject;
-                    obj4.f37358b = -1;
-                    obj4.f37359c = -1;
-                    obj4.f37361g = true;
+                    obj4.f37358a = messageObject;
+                    obj4.f37359b = -1;
+                    obj4.f37360c = -1;
+                    obj4.f37362g = true;
                     obj4.d = i12;
                     obj4.f();
                     gnVar = obj4;
@@ -94,17 +94,17 @@ public final class f71 implements Runnable {
                 gd1 gd1Var = (gd1) obj3;
                 ArrayList arrayList = gd1Var.h;
                 arrayList.clear();
-                ArrayList arrayList2 = gd1Var.f37287f;
+                ArrayList arrayList2 = gd1Var.f37288f;
                 arrayList2.clear();
                 arrayList.addAll((ArrayList) obj2);
                 arrayList2.addAll(((TLRPC.TL_messages_inactiveChats) obj).chats);
                 gd1Var.d.l();
-                if (gd1Var.f37284a.getMeasuredHeight() > 0) {
+                if (gd1Var.f37285a.getMeasuredHeight() > 0) {
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                    gd1Var.f37293y = ofFloat;
+                    gd1Var.f37294y = ofFloat;
                     ofFloat.addUpdateListener(new c11(gd1Var, 13));
-                    gd1Var.f37293y.setDuration(100L);
-                    gd1Var.f37293y.start();
+                    gd1Var.f37294y.setDuration(100L);
+                    gd1Var.f37294y.start();
                 } else {
                     gd1Var.E = 1.0f;
                 }
@@ -155,14 +155,14 @@ public final class f71 implements Runnable {
                 kg1 kg1Var = (kg1) obj3;
                 ArrayList arrayList4 = (ArrayList) obj2;
                 ArrayList arrayList5 = (ArrayList) obj;
-                hg.a2 a2Var = kg1Var.f38603f;
-                if (kg1Var.f38604n) {
+                hg.a2 a2Var = kg1Var.f38604f;
+                if (kg1Var.f38605n) {
                     kg1Var.h = null;
                     kg1Var.d = arrayList4;
                     kg1Var.e = arrayList5;
                     a2Var.f(arrayList4, null);
-                    if (kg1Var.f38604n && !a2Var.e()) {
-                        kg1Var.v.f33958f.e(false, true);
+                    if (kg1Var.f38605n && !a2Var.e()) {
+                        kg1Var.v.f33959f.e(false, true);
                     }
                     kg1Var.l();
                     return;

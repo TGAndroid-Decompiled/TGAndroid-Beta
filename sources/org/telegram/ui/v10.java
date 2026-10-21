@@ -42,13 +42,13 @@ public final class v10 extends View {
                 super.onAttachedToWindow();
                 b50 b50Var = (b50) this.f42095b;
                 if (b50Var != null) {
-                    b50Var.f35504g = this;
+                    b50Var.f35505g = this;
                     int i10 = 0;
                     while (true) {
-                        d50[] d50VarArr = b50Var.f35502c;
+                        d50[] d50VarArr = b50Var.f35503c;
                         if (i10 < d50VarArr.length) {
                             d50 d50Var = d50VarArr[i10];
-                            d50Var.f36267i.add(this);
+                            d50Var.f36268i.add(this);
                             d50Var.a();
                             i10++;
                         } else {
@@ -82,17 +82,17 @@ public final class v10 extends View {
             case 1:
                 super.onDetachedFromWindow();
                 b50 b50Var = (b50) this.f42095b;
-                if (b50Var != null && b50Var.f35504g != this) {
+                if (b50Var != null && b50Var.f35505g != this) {
                     int i10 = 0;
                     while (true) {
-                        d50[] d50VarArr = b50Var.f35502c;
+                        d50[] d50VarArr = b50Var.f35503c;
                         if (i10 < d50VarArr.length) {
                             d50 d50Var = d50VarArr[i10];
-                            d50Var.f36267i.remove(this);
+                            d50Var.f36268i.remove(this);
                             d50Var.a();
                             i10++;
                         } else {
-                            b50Var.f35504g = null;
+                            b50Var.f35505g = null;
                             return;
                         }
                     }
@@ -143,25 +143,25 @@ public final class v10 extends View {
                 return;
             case 4:
                 jq0 jq0Var = (jq0) this.f42095b;
-                String format2 = String.format("%d", Integer.valueOf(Math.max(1, jq0Var.f38304c.size())));
-                int ceil2 = (int) Math.ceil(jq0Var.f38311h0.measureText(format2));
+                String format2 = String.format("%d", Integer.valueOf(Math.max(1, jq0Var.f38305c.size())));
+                int ceil2 = (int) Math.ceil(jq0Var.f38312h0.measureText(format2));
                 int max2 = Math.max(AndroidUtilities.dp(16.0f) + ceil2, AndroidUtilities.dp(24.0f));
                 int measuredWidth2 = getMeasuredWidth() / 2;
                 getMeasuredHeight();
-                jq0Var.f38311h0.setColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.C5, false));
-                jq0Var.f38313j0.setColor(org.telegram.ui.ActionBar.h6.x0(null, jq0Var.f38326u0, false));
+                jq0Var.f38312h0.setColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.C5, false));
+                jq0Var.f38314j0.setColor(org.telegram.ui.ActionBar.h6.x0(null, jq0Var.f38327u0, false));
                 int i13 = max2 / 2;
                 int i14 = measuredWidth2 - i13;
                 int i15 = i13 + measuredWidth2;
-                jq0Var.f38312i0.set(i14, 0.0f, i15, getMeasuredHeight());
-                canvas.drawRoundRect(jq0Var.f38312i0, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), jq0Var.f38313j0);
-                jq0Var.f38313j0.setColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.B5, false));
-                jq0Var.f38312i0.set(AndroidUtilities.dp(2.0f) + i14, AndroidUtilities.dp(2.0f), i15 - AndroidUtilities.dp(2.0f), getMeasuredHeight() - AndroidUtilities.dp(2.0f));
-                canvas.drawRoundRect(jq0Var.f38312i0, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), jq0Var.f38313j0);
-                canvas.drawText(format2, measuredWidth2 - (ceil2 / 2), AndroidUtilities.dp(16.2f), jq0Var.f38311h0);
+                jq0Var.f38313i0.set(i14, 0.0f, i15, getMeasuredHeight());
+                canvas.drawRoundRect(jq0Var.f38313i0, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), jq0Var.f38314j0);
+                jq0Var.f38314j0.setColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.B5, false));
+                jq0Var.f38313i0.set(AndroidUtilities.dp(2.0f) + i14, AndroidUtilities.dp(2.0f), i15 - AndroidUtilities.dp(2.0f), getMeasuredHeight() - AndroidUtilities.dp(2.0f));
+                canvas.drawRoundRect(jq0Var.f38313i0, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), jq0Var.f38314j0);
+                canvas.drawText(format2, measuredWidth2 - (ceil2 / 2), AndroidUtilities.dp(16.2f), jq0Var.f38312h0);
                 return;
             case 5:
-                ((PhotoViewer) this.f42095b).f33385q3.a(canvas, this);
+                ((PhotoViewer) this.f42095b).f33386q3.a(canvas, this);
                 return;
             case 6:
             case 7:
@@ -241,17 +241,17 @@ public final class v10 extends View {
                 return;
             case 6:
                 gw0 gw0Var = (gw0) this.f42095b;
-                PremiumPreviewFragment premiumPreviewFragment = gw0Var.f37428c;
+                PremiumPreviewFragment premiumPreviewFragment = gw0Var.f37429c;
                 if (premiumPreviewFragment.W) {
                     premiumPreviewFragment.Y = 0;
                 } else {
                     int dp2 = AndroidUtilities.dp(64.0f);
-                    if (AndroidUtilities.dp(8.0f) + gw0Var.f37428c.U.getMeasuredHeight() > dp2) {
-                        dp2 = gw0Var.f37428c.U.getMeasuredHeight() + AndroidUtilities.dp(8.0f);
+                    if (AndroidUtilities.dp(8.0f) + gw0Var.f37429c.U.getMeasuredHeight() > dp2) {
+                        dp2 = gw0Var.f37429c.U.getMeasuredHeight() + AndroidUtilities.dp(8.0f);
                     }
-                    gw0Var.f37428c.Y = dp2;
+                    gw0Var.f37429c.Y = dp2;
                 }
-                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(gw0Var.f37428c.Y, 1073741824));
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(gw0Var.f37429c.Y, 1073741824));
                 return;
             default:
                 super.onMeasure(i10, i11);

@@ -6,17 +6,17 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class ls extends org.telegram.ui.ActionBar.j {
-    public final ContactsActivity f39004a;
+    public final ContactsActivity f39005a;
 
     public ls(ContactsActivity contactsActivity) {
-        this.f39004a = contactsActivity;
+        this.f39005a = contactsActivity;
     }
 
     @Override
     public final void b(int i10) {
         int i11;
         org.telegram.ui.ActionBar.k kVar;
-        ContactsActivity contactsActivity = this.f39004a;
+        ContactsActivity contactsActivity = this.f39005a;
         if (i10 == -1) {
             kVar = ((org.telegram.ui.ActionBar.n2) contactsActivity).actionBar;
             if (kVar.t()) {
@@ -30,7 +30,7 @@ public final class ls extends org.telegram.ui.ActionBar.j {
         int i12 = 1;
         if (i10 == 100) {
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(contactsActivity.getParentActivity(), 0, contactsActivity.getResourceProvider());
-            a0.h hVar = contactsActivity.f33081d0;
+            a0.h hVar = contactsActivity.f33082d0;
             if (hVar.m() == 1) {
                 alertDialog$Builder.f20605a.R = LocaleController.getString(R.string.DeleteContactTitle);
                 alertDialog$Builder.f20605a.T = LocaleController.getString(R.string.DeleteContactSubtitle);
@@ -52,7 +52,7 @@ public final class ls extends org.telegram.ui.ActionBar.j {
                 i12 = 2;
             }
             nsVar.Y(i12, false);
-            org.telegram.ui.ActionBar.u0 u0Var = contactsActivity.f33098s;
+            org.telegram.ui.ActionBar.u0 u0Var = contactsActivity.f33099s;
             if (contactsActivity.v) {
                 i11 = R.drawable.msg_contacts_time;
             } else {
@@ -60,7 +60,7 @@ public final class ls extends org.telegram.ui.ActionBar.j {
             }
             u0Var.setIcon(i11);
         } else if (i10 == 0) {
-            contactsActivity.f33083f.x0(0);
+            contactsActivity.f33084f.x0(0);
             AndroidUtilities.doOnPreDraw(contactsActivity.Z.f27726r, new ti(this, 15));
         }
     }

@@ -80,7 +80,7 @@ public final class o1 extends View implements Drawable.Callback, org.telegram.ui
             canvas.restore();
         }
         float measuredHeight = getMeasuredHeight() - 1;
-        canvas.drawLine(0.0f, measuredHeight, getMeasuredWidth(), measuredHeight, l4.f38749r1);
+        canvas.drawLine(0.0f, measuredHeight, getMeasuredWidth(), measuredHeight, l4.f38750r1);
     }
 
     @Override
@@ -133,7 +133,7 @@ public final class o1 extends View implements Drawable.Callback, org.telegram.ui
                 int dp3 = ((AndroidUtilities.dp(21.0f) + this.f39741c.d.getHeight()) - this.f39741c.d.getHeight()) / 2;
                 this.e = dp3;
                 d3 d3Var = this.f39741c;
-                d3Var.f36241s = this.d;
+                d3Var.f36242s = this.d;
                 d3Var.v = dp3;
             }
         }

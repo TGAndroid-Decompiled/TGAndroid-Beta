@@ -30,15 +30,15 @@ public final class ls implements MessagesStorage.LongCallback, yl0 {
         ps psVar = this.f28268b;
         h61 G = psVar.X.G(i10 - 1);
         if (G != null) {
-            os osVar = psVar.f29374k0;
-            os osVar2 = psVar.f29373j0;
-            os osVar3 = psVar.f29372i0;
-            os osVar4 = psVar.f29375l0;
-            TLRPC.TL_chatBannedRights tL_chatBannedRights = psVar.f29385w0;
+            os osVar = psVar.f29375k0;
+            os osVar2 = psVar.f29374j0;
+            os osVar3 = psVar.f29373i0;
+            os osVar4 = psVar.f29376l0;
+            TLRPC.TL_chatBannedRights tL_chatBannedRights = psVar.f29386w0;
             int i11 = G.d;
             if (i11 == 103) {
-                boolean z11 = !psVar.f29378p0;
-                psVar.f29378p0 = z11;
+                boolean z11 = !psVar.f29379p0;
+                psVar.f29379p0 = z11;
                 ((org.telegram.ui.Cells.u8) view).setChecked(z11);
                 return;
             }
@@ -85,7 +85,7 @@ public final class ls implements MessagesStorage.LongCallback, yl0 {
                     }
                     psVar.X.N(true);
                 } else if (i12 == 40) {
-                    psVar.f29387y0 = !psVar.f29387y0;
+                    psVar.f29388y0 = !psVar.f29388y0;
                     psVar.K();
                     psVar.X.N(true);
                     psVar.u();
@@ -99,14 +99,14 @@ public final class ls implements MessagesStorage.LongCallback, yl0 {
                     psVar.u();
                     psVar.P();
                 } else if (i12 == 38) {
-                    boolean z13 = psVar.f29370g0;
-                    psVar.f29370g0 = !z13;
+                    boolean z13 = psVar.f29371g0;
+                    psVar.f29371g0 = !z13;
                     if (!z13) {
-                        zArr = psVar.f29376n0;
+                        zArr = psVar.f29377n0;
                     } else {
                         zArr = psVar.m0;
                     }
-                    if (osVar4.f29131g != 0) {
+                    if (osVar4.f29132g != 0) {
                         osVar4.e = zArr;
                         osVar4.f();
                         osVar4.g();
@@ -166,13 +166,13 @@ public final class ls implements MessagesStorage.LongCallback, yl0 {
                             tL_chatBannedRights.send_stickers = z14;
                             psVar.W();
                         } else if (i11 == 14) {
-                            if (!tL_chatBannedRights.send_plain && !psVar.f29384v0.send_plain) {
+                            if (!tL_chatBannedRights.send_plain && !psVar.f29385v0.send_plain) {
                                 tL_chatBannedRights.embed_links = !tL_chatBannedRights.embed_links;
                                 psVar.W();
                             } else {
                                 int i15 = 0;
                                 while (true) {
-                                    if (i15 >= psVar.X.f30863x.size()) {
+                                    if (i15 >= psVar.X.f30864x.size()) {
                                         break;
                                     }
                                     h61 G2 = psVar.X.G(i15);

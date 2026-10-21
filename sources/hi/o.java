@@ -147,7 +147,7 @@ public final class o extends n2 implements d50, NotificationCenter.NotificationC
                         imageLocation = ImageLocation.getForPhoto(oVar.I.chat_photo.video_sizes.get(0), oVar.I.chat_photo);
                     }
                 }
-                PhotoViewer.u1().h2(null, chat.photo.photo_big, null, imageLocation, null, null, null, 0, oVar.K, null, 0L, 0L, 0L, true, null, null);
+                PhotoViewer.u1().g2(null, chat.photo.photo_big, null, imageLocation, null, null, null, 0, oVar.K, null, 0L, 0L, 0L, true, null, null);
                 return;
             }
             return;
@@ -364,7 +364,7 @@ public final class o extends n2 implements d50, NotificationCenter.NotificationC
         this.d = c71Var;
         c71Var.setClipToPadding(false);
         c71 c71Var2 = this.d;
-        c71Var2.W2.f30860r = false;
+        c71Var2.W2.f30861r = false;
         c71Var2.p1();
         this.actionBar.setBackground(null);
         this.f12193c.addView(this.d, z5.c(-1.0f, -1));

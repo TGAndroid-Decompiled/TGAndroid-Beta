@@ -97,17 +97,17 @@ public final class a90 extends org.telegram.ui.ActionBar.f3 {
     public static void t(a90 a90Var, boolean z10, long j10) {
         TLRPC.Chat chat = a90Var.e;
         AndroidUtilities.runOnUIThread(new Runnable(a90Var) {
-            public final a90 f32587b;
+            public final a90 f32588b;
 
             {
-                this.f32587b = a90Var;
+                this.f32588b = a90Var;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        a90 a90Var2 = this.f32587b;
+                        a90 a90Var2 = this.f32588b;
                         if (!a90Var2.isDismissed()) {
                             a90Var2.f24553f.setVisibility(4);
                             a90Var2.h.setVisibility(0);
@@ -115,24 +115,24 @@ public final class a90 extends org.telegram.ui.ActionBar.f3 {
                         }
                         return;
                     default:
-                        this.f32587b.dismiss();
+                        this.f32588b.dismiss();
                         return;
                 }
             }
         }, 400L);
         if (a90Var.d == null && chat != null) {
             MessagesController.getInstance(a90Var.currentAccount).addUserToChat(chat.f20276id, UserConfig.getInstance(a90Var.currentAccount).getCurrentUser(), 0, null, null, true, new Runnable(a90Var) {
-                public final a90 f32587b;
+                public final a90 f32588b;
 
                 {
-                    this.f32587b = a90Var;
+                    this.f32588b = a90Var;
                 }
 
                 @Override
                 public final void run() {
                     switch (r2) {
                         case 0:
-                            a90 a90Var2 = this.f32587b;
+                            a90 a90Var2 = this.f32588b;
                             if (!a90Var2.isDismissed()) {
                                 a90Var2.f24553f.setVisibility(4);
                                 a90Var2.h.setVisibility(0);
@@ -140,7 +140,7 @@ public final class a90 extends org.telegram.ui.ActionBar.f3 {
                             }
                             return;
                         default:
-                            this.f32587b.dismiss();
+                            this.f32588b.dismiss();
                             return;
                     }
                 }
@@ -201,14 +201,14 @@ public final class a90 extends org.telegram.ui.ActionBar.f3 {
             xcVar = xc.a0(n2Var);
         }
         nc ncVar = new nc(context, n2Var.getResourceProvider());
-        ncVar.f28773a.f(R.raw.timer_3, 28, 28, null);
-        ncVar.f28774b.setText(LocaleController.getString(R.string.RequestToJoinSent));
+        ncVar.f28774a.f(R.raw.timer_3, 28, 28, null);
+        ncVar.f28775b.setText(LocaleController.getString(R.string.RequestToJoinSent));
         if (z10) {
             string = LocaleController.getString(R.string.RequestToJoinChannelSentDescription);
         } else {
             string = LocaleController.getString(R.string.RequestToJoinGroupSentDescription);
         }
-        ncVar.f28775c.setText(string);
+        ncVar.f28776c.setText(string);
         xcVar.b(ncVar, 2750).j();
     }
 }

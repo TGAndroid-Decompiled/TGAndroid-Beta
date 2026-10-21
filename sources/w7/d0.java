@@ -67,7 +67,7 @@ public abstract class d0 {
                 frameLayout.setFitsSystemWindows(true);
                 frameLayout.setWillNotDraw(false);
                 f48617a = frameLayout;
-                launchActivity.f33197w0.addView((View) frameLayout, new FrameLayout.LayoutParams(-1, -1));
+                launchActivity.f33198w0.addView((View) frameLayout, new FrameLayout.LayoutParams(-1, -1));
                 ng.i iVar2 = f48617a;
                 iVar2.f17464a.setVisibility(0);
                 o1.k kVar = new o1.k(new o1.j(0.0f));
@@ -76,7 +76,7 @@ public abstract class d0 {
                 kVar.h();
             } else {
                 iVar.getClass();
-                launchActivity.f33197w0.removeView(f48617a);
+                launchActivity.f33198w0.removeView(f48617a);
                 f48617a = null;
             }
             if (z11) {

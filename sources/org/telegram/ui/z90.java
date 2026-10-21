@@ -24,7 +24,7 @@ public final class z90 extends RelativeLayout {
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        ActionBarLayout actionBarLayout = this.f43681c.f33187r0;
+        ActionBarLayout actionBarLayout = this.f43681c.f33188r0;
         if (actionBarLayout != null) {
             actionBarLayout.N(canvas, this);
         }
@@ -40,18 +40,18 @@ public final class z90 extends RelativeLayout {
         if (!z11 && (!AndroidUtilities.isSmallTablet() || getResources().getConfiguration().orientation == 2)) {
             i0.b bVar = this.f43679a;
             int tabletLeftFragmentSize = AndroidUtilities.getTabletLeftFragmentSize(measuredWidth, bVar.f12283a, bVar.f12285c);
-            launchActivity.f33185q0.getView().layout(0, 0, launchActivity.f33185q0.getView().getMeasuredWidth(), launchActivity.f33185q0.getView().getMeasuredHeight());
-            launchActivity.f33189s0.getView().layout(tabletLeftFragmentSize, 0, launchActivity.f33189s0.getView().getMeasuredWidth() + tabletLeftFragmentSize, launchActivity.f33189s0.getView().getMeasuredHeight());
+            launchActivity.f33186q0.getView().layout(0, 0, launchActivity.f33186q0.getView().getMeasuredWidth(), launchActivity.f33186q0.getView().getMeasuredHeight());
+            launchActivity.f33190s0.getView().layout(tabletLeftFragmentSize, 0, launchActivity.f33190s0.getView().getMeasuredWidth() + tabletLeftFragmentSize, launchActivity.f33190s0.getView().getMeasuredHeight());
         } else {
-            launchActivity.f33185q0.getView().layout(0, 0, launchActivity.f33185q0.getView().getMeasuredWidth(), launchActivity.f33185q0.getView().getMeasuredHeight());
+            launchActivity.f33186q0.getView().layout(0, 0, launchActivity.f33186q0.getView().getMeasuredWidth(), launchActivity.f33186q0.getView().getMeasuredHeight());
         }
-        int measuredWidth2 = (measuredWidth - launchActivity.f33187r0.getView().getMeasuredWidth()) / 2;
+        int measuredWidth2 = (measuredWidth - launchActivity.f33188r0.getView().getMeasuredWidth()) / 2;
         int dp = AndroidUtilities.dp(8.0f) + this.f43679a.f12284b;
-        launchActivity.f33187r0.getView().layout(measuredWidth2, dp, launchActivity.f33187r0.getView().getMeasuredWidth() + measuredWidth2, launchActivity.f33187r0.getView().getMeasuredHeight() + dp);
-        ig.p1 p1Var = launchActivity.f33195v0;
-        p1Var.layout(0, 0, p1Var.getMeasuredWidth(), launchActivity.f33195v0.getMeasuredHeight());
-        FrameLayout frameLayout = launchActivity.f33193u0;
-        frameLayout.layout(0, 0, frameLayout.getMeasuredWidth(), launchActivity.f33193u0.getMeasuredHeight());
+        launchActivity.f33188r0.getView().layout(measuredWidth2, dp, launchActivity.f33188r0.getView().getMeasuredWidth() + measuredWidth2, launchActivity.f33188r0.getView().getMeasuredHeight() + dp);
+        ig.p1 p1Var = launchActivity.f33196v0;
+        p1Var.layout(0, 0, p1Var.getMeasuredWidth(), launchActivity.f33196v0.getMeasuredHeight());
+        FrameLayout frameLayout = launchActivity.f33194u0;
+        frameLayout.layout(0, 0, frameLayout.getMeasuredWidth(), launchActivity.f33194u0.getMeasuredHeight());
     }
 
     @Override
@@ -66,15 +66,15 @@ public final class z90 extends RelativeLayout {
             launchActivity.O0 = false;
             i0.b bVar = this.f43679a;
             int tabletLeftFragmentSize = AndroidUtilities.getTabletLeftFragmentSize(size, bVar.f12283a, bVar.f12285c);
-            launchActivity.f33185q0.getView().measure(View.MeasureSpec.makeMeasureSpec(tabletLeftFragmentSize, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
-            launchActivity.f33189s0.getView().measure(View.MeasureSpec.makeMeasureSpec(size - tabletLeftFragmentSize, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
+            launchActivity.f33186q0.getView().measure(View.MeasureSpec.makeMeasureSpec(tabletLeftFragmentSize, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
+            launchActivity.f33190s0.getView().measure(View.MeasureSpec.makeMeasureSpec(size - tabletLeftFragmentSize, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
         } else {
             launchActivity.O0 = true;
-            launchActivity.f33185q0.getView().measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
+            launchActivity.f33186q0.getView().measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
         }
-        launchActivity.f33195v0.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
-        launchActivity.f33193u0.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
-        ViewGroup view = launchActivity.f33187r0.getView();
+        launchActivity.f33196v0.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
+        launchActivity.f33194u0.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
+        ViewGroup view = launchActivity.f33188r0.getView();
         int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.dp(500.0f), size - AndroidUtilities.dp(16.0f)), 1073741824);
         i0.b bVar2 = this.f43679a;
         view.measure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec(((size2 - bVar2.f12284b) - bVar2.d) - AndroidUtilities.dp(16.0f), 1073741824));

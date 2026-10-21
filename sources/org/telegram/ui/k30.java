@@ -9,17 +9,17 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class k30 extends FrameLayout {
-    public final Rect f38406a;
-    public final RectF f38407b;
-    public final Path f38408c;
+    public final Rect f38407a;
+    public final RectF f38408b;
+    public final Path f38409c;
     public final q50 d;
 
     public k30(q50 q50Var, LaunchActivity launchActivity) {
         super(launchActivity);
         this.d = q50Var;
-        this.f38406a = new Rect();
-        this.f38407b = new RectF();
-        this.f38408c = new Path();
+        this.f38407a = new Rect();
+        this.f38408b = new RectF();
+        this.f38409c = new Path();
     }
 
     @Override
@@ -55,9 +55,9 @@ public final class k30 extends FrameLayout {
             }
         }
         j30Var.setAlpha(q50Var.f40390d2);
-        Path path = this.f38408c;
+        Path path = this.f38409c;
         path.reset();
-        RectF rectF = this.f38407b;
+        RectF rectF = this.f38408b;
         rectF.set(0.0f, 0.0f, getMeasuredHeight(), getMeasuredWidth());
         path.addRoundRect(rectF, new float[]{AndroidUtilities.dp(13.0f), AndroidUtilities.dp(13.0f), AndroidUtilities.dp(13.0f), AndroidUtilities.dp(13.0f), 0.0f, 0.0f, 0.0f, 0.0f}, Path.Direction.CCW);
         canvas.save();
@@ -73,7 +73,7 @@ public final class k30 extends FrameLayout {
         childAt = null;
         if (childAt != null && (tVar = q50Var.Z2) != null && tVar.v && !q50Var.F2) {
             canvas.save();
-            Rect rect = this.f38406a;
+            Rect rect = this.f38407a;
             rect.setEmpty();
             j30Var.getChildVisibleRect(childAt, rect, null);
             int i13 = rect.left;

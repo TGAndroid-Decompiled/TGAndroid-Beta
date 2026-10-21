@@ -30,9 +30,9 @@ public final class b00 implements Runnable {
                 e00 e00Var = this.f24763b;
                 tv tvVar = e00Var.f25680b0;
                 SurfaceTexture surfaceTexture = e00Var.f25688w;
-                r71 r71Var = (r71) tvVar.f30679b;
-                if (r71Var.f29859a != null) {
-                    r71Var.f29859a.T(new Surface(surfaceTexture));
+                r71 r71Var = (r71) tvVar.f30680b;
+                if (r71Var.f29860a != null) {
+                    r71Var.f29860a.T(new Surface(surfaceTexture));
                     return;
                 }
                 return;

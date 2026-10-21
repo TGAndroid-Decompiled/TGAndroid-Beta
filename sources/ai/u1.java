@@ -66,8 +66,8 @@ public final class u1 extends jm0 {
         switch (this.V2) {
             case 4:
                 ti tiVar = ((ig.i0) this.W2).f28173b;
-                int dp = AndroidUtilities.dp(30.0f) + tiVar.f30543e2[0];
-                if (!tiVar.f30548g0) {
+                int dp = AndroidUtilities.dp(30.0f) + tiVar.f30544e2[0];
+                if (!tiVar.f30549g0) {
                     i10 = AndroidUtilities.statusBarHeight;
                 } else {
                     i10 = 0;
@@ -78,8 +78,8 @@ public final class u1 extends jm0 {
                 return true;
             case 13:
                 ti tiVar2 = ((xj) this.W2).f28173b;
-                int dp2 = AndroidUtilities.dp(30.0f) + tiVar2.f30543e2[0];
-                if (!tiVar2.f30548g0) {
+                int dp2 = AndroidUtilities.dp(30.0f) + tiVar2.f30544e2[0];
+                if (!tiVar2.f30549g0) {
                     i11 = AndroidUtilities.statusBarHeight;
                 } else {
                     i11 = 0;
@@ -103,7 +103,7 @@ public final class u1 extends jm0 {
                 return false;
             case 17:
                 s00 s00Var = (s00) this.W2;
-                if (s00Var.isEnabled() && !((bw) s00Var.J).f35747b.f36119j2) {
+                if (s00Var.isEnabled() && !((bw) s00Var.J).f35748b.f36120j2) {
                     return true;
                 }
                 return false;
@@ -121,9 +121,9 @@ public final class u1 extends jm0 {
             case 11:
                 return ((org.telegram.ui.Components.bb) this.W2).v(view, f7, f10);
             case 17:
-                if (((s00) this.W2).f30080n) {
+                if (((s00) this.W2).f30081n) {
                     int dp = AndroidUtilities.dp(6.0f);
-                    RectF rectF = ((q00) view).f29436f;
+                    RectF rectF = ((q00) view).f29437f;
                     float f11 = dp;
                     if (rectF.left - f11 < f7 && rectF.right + f11 > f7) {
                         return false;
@@ -181,7 +181,7 @@ public final class u1 extends jm0 {
                     e00Var = null;
                 }
                 org.telegram.ui.ActionBar.d6 d6Var2 = this.f27579n2;
-                if (e00Var != null && e00Var.f36478l) {
+                if (e00Var != null && e00Var.f36479l) {
                     return Integer.valueOf(org.telegram.ui.ActionBar.h6.m1(0.12f, org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21211p7, d6Var2)));
                 }
                 return Integer.valueOf(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21079i6, d6Var2));
@@ -264,9 +264,9 @@ public final class u1 extends jm0 {
                 return;
             case 22:
                 lx lxVar = (lx) this.W2;
-                s4.b0 b0Var = lxVar.f32179c0;
-                s4.k kVar = lxVar.f32177a0;
-                po0 po0Var = lxVar.f32178b0;
+                s4.b0 b0Var = lxVar.f32180c0;
+                s4.k kVar = lxVar.f32178a0;
+                po0 po0Var = lxVar.f32179b0;
                 if (po0Var != null && kVar != null && b0Var != null && po0Var.m0) {
                     canvas.save();
                     invalidate();
@@ -367,9 +367,9 @@ public final class u1 extends jm0 {
                 return super.drawChild(canvas, view, j10);
             case 24:
                 qy0 qy0Var = (qy0) this.W2;
-                com.google.firebase.messaging.l lVar = qy0Var.f29757l0;
+                com.google.firebase.messaging.l lVar = qy0Var.f29758l0;
                 if ((view instanceof org.telegram.ui.Cells.e8) && qy0Var.R) {
-                    int b10 = qy0Var.f29746c.T(view).b();
+                    int b10 = qy0Var.f29747c.T(view).b();
                     canvas.save();
                     ArrayList arrayList = (ArrayList) lVar.d;
                     float f7 = 0.0f;
@@ -525,7 +525,7 @@ public final class u1 extends jm0 {
                 }
                 return super.onInterceptTouchEvent(motionEvent);
             case 12:
-                if (motionEvent.getAction() == 0 && motionEvent.getY() < ((ij) this.W2).f28173b.f30543e2[0] - AndroidUtilities.dp(80.0f)) {
+                if (motionEvent.getAction() == 0 && motionEvent.getY() < ((ij) this.W2).f28173b.f30544e2[0] - AndroidUtilities.dp(80.0f)) {
                     return false;
                 }
                 return super.onInterceptTouchEvent(motionEvent);
@@ -547,7 +547,7 @@ public final class u1 extends jm0 {
                 }
                 return super.onInterceptTouchEvent(motionEvent);
             case 23:
-                boolean r11 = et.q().r(motionEvent, ((yv0) this.W2).f32735b, null, this.f27579n2);
+                boolean r11 = et.q().r(motionEvent, ((yv0) this.W2).f32736b, null, this.f27579n2);
                 if (!super.onInterceptTouchEvent(motionEvent) && !r11) {
                     return false;
                 }
@@ -557,7 +557,7 @@ public final class u1 extends jm0 {
                 if (qy0Var.R) {
                     return super.onInterceptTouchEvent(motionEvent);
                 }
-                boolean r12 = et.q().r(motionEvent, qy0Var.f29746c, qy0Var.m0, this.f27579n2);
+                boolean r12 = et.q().r(motionEvent, qy0Var.f29747c, qy0Var.m0, this.f27579n2);
                 if (!super.onInterceptTouchEvent(motionEvent) && !r12) {
                     return false;
                 }
@@ -621,7 +621,7 @@ public final class u1 extends jm0 {
                 }
                 return super.onTouchEvent(motionEvent);
             case 12:
-                if (motionEvent.getAction() == 0 && motionEvent.getY() < ((ij) this.W2).f28173b.f30543e2[0] - AndroidUtilities.dp(80.0f)) {
+                if (motionEvent.getAction() == 0 && motionEvent.getY() < ((ij) this.W2).f28173b.f30544e2[0] - AndroidUtilities.dp(80.0f)) {
                     return false;
                 }
                 return super.onTouchEvent(motionEvent);
@@ -649,13 +649,13 @@ public final class u1 extends jm0 {
     public void requestLayout() {
         switch (this.V2) {
             case 5:
-                if (!((org.telegram.ui.m1) this.W2).f39088r) {
+                if (!((org.telegram.ui.m1) this.W2).f39089r) {
                     super.requestLayout();
                     return;
                 }
                 return;
             case 18:
-                if (!((v00) this.W2).f31102n) {
+                if (!((v00) this.W2).f31103n) {
                     super.requestLayout();
                     return;
                 }
@@ -667,7 +667,7 @@ public final class u1 extends jm0 {
                 }
                 return;
             case 24:
-                if (!((qy0) this.W2).f29752g0) {
+                if (!((qy0) this.W2).f29753g0) {
                     super.requestLayout();
                     return;
                 }

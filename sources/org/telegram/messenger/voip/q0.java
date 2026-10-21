@@ -2,31 +2,31 @@ package org.telegram.messenger.voip;
 
 import org.telegram.messenger.voip.VoIPService;
 public final class q0 implements Runnable {
-    public final int f19900a;
-    public final Object f19901b;
+    public final int f19897a;
+    public final Object f19898b;
 
     public q0(Object obj, int i10) {
-        this.f19900a = i10;
-        this.f19901b = obj;
+        this.f19897a = i10;
+        this.f19898b = obj;
     }
 
     @Override
     public final void run() {
-        switch (this.f19900a) {
+        switch (this.f19897a) {
             case 0:
-                ((VoIPService.AnonymousClass1) this.f19901b).lambda$run$0();
+                ((VoIPService.AnonymousClass1) this.f19898b).lambda$run$0();
                 return;
             case 1:
-                ((VoIPService.AnonymousClass9) this.f19901b).lambda$run$0();
+                ((VoIPService.AnonymousClass9) this.f19898b).lambda$run$0();
                 return;
             case 2:
-                VoIPPendingCall.a((VoIPPendingCall) this.f19901b);
+                VoIPPendingCall.a((VoIPPendingCall) this.f19898b);
                 return;
             case 3:
-                ((NativeInstance) this.f19901b).stopGroup();
+                ((NativeInstance) this.f19898b).stopGroup();
                 return;
             default:
-                VoIPService.lambda$updateBluetoothHeadsetState$113((VoipAudioManager) this.f19901b);
+                VoIPService.lambda$updateBluetoothHeadsetState$113((VoipAudioManager) this.f19898b);
                 return;
         }
     }

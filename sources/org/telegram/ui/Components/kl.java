@@ -29,10 +29,10 @@ public final class kl extends s4.r0 {
         if (i10 == 0) {
             int dp = AndroidUtilities.dp(13.0f);
             int backgroundPaddingTop = tiVar.getBackgroundPaddingTop();
-            if (((tiVar.f30543e2[0] - backgroundPaddingTop) - dp) + backgroundPaddingTop < org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && (tl0Var = (tl0) u1Var.K(0)) != null) {
+            if (((tiVar.f30544e2[0] - backgroundPaddingTop) - dp) + backgroundPaddingTop < org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && (tl0Var = (tl0) u1Var.K(0)) != null) {
                 View view = tl0Var.f45917a;
-                if (view.getTop() > rlVar.A0 - rlVar.f29976z0) {
-                    u1Var.v0(0, view.getTop() - (rlVar.A0 - rlVar.f29976z0), null);
+                if (view.getTop() > rlVar.A0 - rlVar.f29977z0) {
+                    u1Var.v0(0, view.getTop() - (rlVar.A0 - rlVar.f29977z0), null);
                 }
             }
         }

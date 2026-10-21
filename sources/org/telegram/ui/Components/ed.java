@@ -103,7 +103,7 @@ public final class ed extends Drawable {
                     rectF.set(((AndroidUtilities.dp(24.0f) - p6Var.c()) / 2.0f) - AndroidUtilities.dpf2(3.0f), AndroidUtilities.dpf2(0.2f) + ((AndroidUtilities.dp(24.0f) - p6Var.e) / 2.0f), AndroidUtilities.dpf2(3.0f) + ((p6Var.c() + AndroidUtilities.dp(24.0f)) / 2.0f), (AndroidUtilities.dp(24.0f) + p6Var.e) / 2.0f);
                     canvas.drawRoundRect(rectF, AndroidUtilities.dpf2(3.0f), AndroidUtilities.dpf2(3.0f), paint3);
                 }
-                p6Var.f29223a.setStrokeWidth(AndroidUtilities.dpf2(0.3f));
+                p6Var.f29224a.setStrokeWidth(AndroidUtilities.dpf2(0.3f));
                 p6Var.setBounds(0, (int) ((AndroidUtilities.dp(24.0f) - p6Var.e) / 2.0f), AndroidUtilities.dp(24.0f), (int) ((AndroidUtilities.dp(24.0f) + p6Var.e) / 2.0f));
                 p6Var.draw(canvas);
                 return;
@@ -184,7 +184,7 @@ public final class ed extends Drawable {
     public void l(float f7, boolean z10) {
         p6 p6Var = (p6) this.f25883c;
         String str = a(f7) + "X";
-        if (z10 && TextUtils.equals(p6Var.f29230i, str)) {
+        if (z10 && TextUtils.equals(p6Var.f29231i, str)) {
             return;
         }
         p6Var.a();
@@ -265,11 +265,11 @@ public final class ed extends Drawable {
         this.f25883c = p6Var;
         p6Var.setCallback(f1Var);
         p6Var.n(0.3f, 165L, bs.h);
-        p6Var.f29225b = 1;
+        p6Var.f29226b = 1;
         p6Var.x(AndroidUtilities.bold());
         p6Var.w(AndroidUtilities.dp(10.0f));
         Paint.Style style = Paint.Style.FILL_AND_STROKE;
-        TextPaint textPaint = p6Var.f29223a;
+        TextPaint textPaint = p6Var.f29224a;
         textPaint.setStyle(style);
         textPaint.setStrokeWidth(AndroidUtilities.dpf2(0.6f));
         Paint paint = new Paint(1);

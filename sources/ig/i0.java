@@ -111,7 +111,7 @@ public final class i0 extends li implements NotificationCenter.NotificationCente
     public final void B(int i10, int i11) {
         int i12;
         ti tiVar = this.f28173b;
-        if (tiVar.f30592u1.R() > AndroidUtilities.dp(20.0f)) {
+        if (tiVar.f30593u1.R() > AndroidUtilities.dp(20.0f)) {
             i12 = AndroidUtilities.dp(8.0f);
             tiVar.setAllowNestedScroll(false);
         } else {

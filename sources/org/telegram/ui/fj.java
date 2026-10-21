@@ -27,12 +27,12 @@ import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class fj extends org.telegram.ui.ActionBar.j {
-    public final Context f37018a;
-    public final qn f37019b;
+    public final Context f37019a;
+    public final qn f37020b;
 
     public fj(qn qnVar, Context context) {
-        this.f37019b = qnVar;
-        this.f37018a = context;
+        this.f37020b = qnVar;
+        this.f37019a = context;
     }
 
     @Override
@@ -57,7 +57,7 @@ public final class fj extends org.telegram.ui.ActionBar.j {
         boolean z15;
         TLRPC.User user3;
         org.telegram.ui.ActionBar.k kVar;
-        qn qnVar = this.f37019b;
+        qn qnVar = this.f37020b;
         SparseArray[] sparseArrayArr = qnVar.Y5;
         SparseArray[] sparseArrayArr2 = qnVar.X5;
         SparseArray[] sparseArrayArr3 = qnVar.W5;
@@ -72,22 +72,22 @@ public final class fj extends org.telegram.ui.ActionBar.j {
                     qnVar.Vb();
                 } else if (qnVar.R3 == 6 && qnVar.Y.v()) {
                     qnVar.Bb(new Runnable(this) {
-                        public final fj f35999b;
+                        public final fj f36000b;
 
                         {
-                            this.f35999b = this;
+                            this.f36000b = this;
                         }
 
                         @Override
                         public final void run() {
                             switch (r2) {
                                 case 0:
-                                    this.f35999b.f37019b.finishFragment();
+                                    this.f36000b.f37020b.finishFragment();
                                     return;
                                 default:
-                                    fj fjVar = this.f35999b;
+                                    fj fjVar = this.f36000b;
                                     fjVar.getClass();
-                                    qn qnVar2 = fjVar.f37019b;
+                                    qn qnVar2 = fjVar.f37020b;
                                     Intent intent = new Intent(qnVar2.getParentActivity(), LaunchActivity.class);
                                     intent.setAction("android.intent.action.SEND");
                                     intent.setType("text/plain");
@@ -328,7 +328,7 @@ public final class fj extends org.telegram.ui.ActionBar.j {
                 i13 = ((org.telegram.ui.ActionBar.n2) qnVar).currentAccount;
                 ig.x1.d0(parentActivity2, i13, qnVar.Q3, c10, qnVar.getResourceProvider(), new org.telegram.ui.ActionBar.j3(15, this, c10));
             } else if (i10 == 14) {
-                org.telegram.ui.ActionBar.e1 e1Var = new org.telegram.ui.ActionBar.e1(0, this.f37018a, qnVar.getResourceProvider(), true, true);
+                org.telegram.ui.ActionBar.e1 e1Var = new org.telegram.ui.ActionBar.e1(0, this.f37019a, qnVar.getResourceProvider(), true, true);
                 e1Var.g(LocaleController.getString(R.string.AttachMenu), R.drawable.input_attach, null);
                 e1Var.setOnClickListener(new a(this, 13));
                 org.telegram.ui.ActionBar.u0 u0Var = qnVar.f40701h0;
@@ -431,22 +431,22 @@ public final class fj extends org.telegram.ui.ActionBar.j {
                     org.telegram.ui.Components.xc.a0(LaunchActivity.R()).k(false).j();
                 } else if (i10 == 66) {
                     Runnable runnable = new Runnable(this) {
-                        public final fj f35999b;
+                        public final fj f36000b;
 
                         {
-                            this.f35999b = this;
+                            this.f36000b = this;
                         }
 
                         @Override
                         public final void run() {
                             switch (r2) {
                                 case 0:
-                                    this.f35999b.f37019b.finishFragment();
+                                    this.f36000b.f37020b.finishFragment();
                                     return;
                                 default:
-                                    fj fjVar = this.f35999b;
+                                    fj fjVar = this.f36000b;
                                     fjVar.getClass();
-                                    qn qnVar2 = fjVar.f37019b;
+                                    qn qnVar2 = fjVar.f37020b;
                                     Intent intent = new Intent(qnVar2.getParentActivity(), LaunchActivity.class);
                                     intent.setAction("android.intent.action.SEND");
                                     intent.setType("text/plain");
@@ -487,7 +487,7 @@ public final class fj extends org.telegram.ui.ActionBar.j {
                 } else if (i10 == 888) {
                     qnVar.dumpCanvas();
                 } else if (i10 == 889) {
-                    HashSet hashSet = l4.f38734b1;
+                    HashSet hashSet = l4.f38735b1;
                     org.telegram.ui.Components.xc.a0(qnVar).t("No rich message copied", null).j();
                 }
             } else if (qnVar.f40676f != null && qnVar.getParentActivity() != null) {

@@ -80,7 +80,7 @@ public final class a0 implements Runnable {
                 return;
             case 4:
                 u1 u1Var = (u1) this.e;
-                qn qnVar2 = ((cn) this.d).f36010a;
+                qn qnVar2 = ((cn) this.d).f36011a;
                 if (qnVar2.A1 != null) {
                     u1Var.getLocationInWindow(new int[2]);
                     qnVar2.A1.setTranslationY(mk.D(520.0f, iArr[1] - x3Var.getTop(), this.f12309b));
@@ -99,15 +99,15 @@ public final class a0 implements Runnable {
                     arrayList.remove(dialog);
                     int i13 = dialog.pinnedNum;
                     cyVar.W0 = null;
-                    ayVar.f35442a.invalidate();
-                    int N0 = ayVar.f35444c.N0();
+                    ayVar.f35443a.invalidate();
+                    int N0 = ayVar.f35445c.N0();
                     if (N0 == this.f12309b - 1) {
-                        ayVar.f35444c.m(N0).requestLayout();
+                        ayVar.f35445c.m(N0).requestLayout();
                     }
                     boolean z10 = false;
                     if (cyVar.getMessagesController().isPromoDialog(dialog.f20280id, false)) {
                         cyVar.getMessagesController().hidePromoDialog();
-                        ayVar.f35450x.D();
+                        ayVar.f35451x.D();
                         ayVar.q(true);
                         return;
                     }
@@ -122,7 +122,7 @@ public final class a0 implements Runnable {
                     int i14 = this.f12310c;
                     int i15 = 2;
                     if (addDialogToFolder != 2 || i14 != 0) {
-                        ayVar.f35450x.D();
+                        ayVar.f35451x.D();
                         ayVar.q(true);
                     }
                     if (cyVar.W2 == 0) {
@@ -130,16 +130,16 @@ public final class a0 implements Runnable {
                             if (SharedConfig.archiveHidden) {
                                 SharedConfig.toggleArchiveHidden();
                             }
-                            ayVar.f35450x.D();
+                            ayVar.f35451x.D();
                             if (i14 == 0) {
                                 cyVar.y4(true, true);
                                 ayVar.q(true);
                                 cyVar.m3();
                             } else {
                                 ayVar.q(true);
-                                if (!SharedConfig.archiveHidden && ayVar.f35444c.L0() == 0) {
-                                    cyVar.f36093e2 = true;
-                                    xx xxVar = ayVar.f35442a;
+                                if (!SharedConfig.archiveHidden && ayVar.f35445c.L0() == 0) {
+                                    cyVar.f36094e2 = true;
+                                    xx xxVar = ayVar.f35443a;
                                     if (SharedConfig.useThreeLinesLayout) {
                                         f7 = 76.0f;
                                     } else {
@@ -149,7 +149,7 @@ public final class a0 implements Runnable {
                                 }
                             }
                             i12 = ((n2) cyVar).currentAccount;
-                            cyVar.R1.add(0, (TLRPC.Dialog) cyVar.P3(i12, ayVar.f35448s, cyVar.W2, false).get(0));
+                            cyVar.R1.add(0, (TLRPC.Dialog) cyVar.P3(i12, ayVar.f35449s, cyVar.W2, false).get(0));
                             ayVar.q(true);
                             AndroidUtilities.runOnUIThread(new Runnable() {
                                 @Override
@@ -165,7 +165,7 @@ public final class a0 implements Runnable {
                                 }
                             }, 300L);
                         } else if (addDialogToFolder == 1) {
-                            s4.b1 K = ayVar.f35442a.K(0);
+                            s4.b1 K = ayVar.f35443a.K(0);
                             if (K != null) {
                                 View view = K.f45917a;
                                 if (view instanceof r2) {
@@ -210,8 +210,8 @@ public final class a0 implements Runnable {
                         }
                     }
                     if (cyVar.W2 != 0 && cyVar.R1.isEmpty()) {
-                        ayVar.f35442a.setEmptyView(null);
-                        ayVar.f35449w.setVisibility(4);
+                        ayVar.f35443a.setEmptyView(null);
+                        ayVar.f35450w.setVisibility(4);
                         return;
                     }
                     return;

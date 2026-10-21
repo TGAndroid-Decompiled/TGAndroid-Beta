@@ -88,7 +88,7 @@ public final class e implements Runnable {
                         }
                         int scrollY = editText.getScrollY();
                         if (z10) {
-                            i10 = gVar.f29709a.length();
+                            i10 = gVar.f29710a.length();
                         } else {
                             i10 = 0;
                         }

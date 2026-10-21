@@ -30,7 +30,7 @@ public final class rq implements yp {
             channelParticipant.rank = str;
         }
         hr hrVar = this.d;
-        ar arVar = hrVar.f37742m1;
+        ar arVar = hrVar.f37743m1;
         long j10 = this.f41268b;
         if (arVar != null && i10 == 1) {
             arVar.b(j10);

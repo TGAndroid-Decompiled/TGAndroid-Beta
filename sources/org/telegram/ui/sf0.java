@@ -13,11 +13,11 @@ public final class sf0 implements Runnable {
         switch (this.f41456a) {
             case 0:
                 cg0 cg0Var = this.f41457b;
-                kj0 kj0Var = cg0Var.f35962a;
+                kj0 kj0Var = cg0Var.f35963a;
                 dg0 dg0Var = cg0Var.V;
-                zf0 zf0Var = cg0Var.f35963b;
+                zf0 zf0Var = cg0Var.f35964b;
                 if (zf0Var != null) {
-                    if (dg0Var.f36371c0) {
+                    if (dg0Var.f36372c0) {
                         kj0Var.clearFocus();
                         zf0Var.clearFocus();
                     } else if (kj0Var.length() != 0) {
@@ -48,7 +48,7 @@ public final class sf0 implements Runnable {
                 return;
             default:
                 cg0 cg0Var3 = this.f41457b;
-                dg0.T0(cg0Var3.V, cg0Var3.f35963b);
+                dg0.T0(cg0Var3.V, cg0Var3.f35964b);
                 return;
         }
     }

@@ -53,14 +53,14 @@ public final class h3 implements TextWatcher {
                 return;
             default:
                 de0 de0Var = (de0) this.d;
-                ei.e2 e2Var = de0Var.f36346c;
+                ei.e2 e2Var = de0Var.f36347c;
                 if (!this.f22328b) {
                     boolean z10 = true;
                     de0Var.q(true);
                     AndroidUtilities.cancelRunOnUIThread(de0Var.V);
                     de0Var.o(false);
                     if (TextUtils.isEmpty(editable)) {
-                        de0Var.f36353y = false;
+                        de0Var.f36354y = false;
                     }
                     if (!de0Var.p(editable.toString())) {
                         de0Var.s(true);
@@ -68,7 +68,7 @@ public final class h3 implements TextWatcher {
                         if (e2Var.getSelectionEnd() < e2Var.getText().length()) {
                             z10 = false;
                         }
-                        if (!de0Var.f36353y) {
+                        if (!de0Var.f36354y) {
                             String str = de0Var.K;
                             e2Var.setText(str.substring(0, Utilities.clamp(this.f22329c, str.length(), 0)));
                             if (z10) {

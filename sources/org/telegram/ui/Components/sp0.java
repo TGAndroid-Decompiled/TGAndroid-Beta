@@ -26,23 +26,23 @@ public abstract class sp0 extends org.telegram.ui.ActionBar.m1 {
     public int E;
     public int F;
     public ArrayList G;
-    public mp0 f30328o;
-    public TextView f30329p;
-    public boolean f30330q;
-    public TLRPC.Peer f30331r;
-    public TLRPC.TL_channels_sendAsPeers f30332s;
-    public ah.x f30333t;
-    public View f30334u;
+    public mp0 f30329o;
+    public TextView f30330p;
+    public boolean f30331q;
+    public TLRPC.Peer f30332r;
+    public TLRPC.TL_channels_sendAsPeers f30333s;
+    public ah.x f30334t;
+    public View f30335u;
     public jm0 v;
-    public s4.b0 f30335w;
-    public Boolean f30336x;
-    public boolean f30337y;
-    public ArrayList f30338z;
+    public s4.b0 f30336w;
+    public Boolean f30337x;
+    public boolean f30338y;
+    public ArrayList f30339z;
 
     public static void k(ef efVar, List list, Context context, org.telegram.ui.qn qnVar, boolean z10, ai.u2 u2Var, View view, int i10) {
         TLRPC.User user;
         TLRPC.TL_sendAsPeer tL_sendAsPeer = (TLRPC.TL_sendAsPeer) list.get(i10);
-        if (!efVar.f30337y) {
+        if (!efVar.f30338y) {
             if (tL_sendAsPeer.premium_required && !UserConfig.getInstance(UserConfig.selectedAccount).isPremium()) {
                 try {
                     view.performHapticFeedback(3, 2);
@@ -82,7 +82,7 @@ public abstract class sp0 extends org.telegram.ui.ActionBar.m1 {
                     ccVar.f25170b.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.SelectSendAsPeerPremiumHint)));
                     oc ocVar = new oc(context, onVar, true);
                     ocVar.e(LocaleController.getString(R.string.SelectSendAsPeerPremiumOpen));
-                    ocVar.f28982a = ho0Var2;
+                    ocVar.f28983a = ho0Var2;
                     ccVar.setButton(ocVar);
                     qc f7 = qc.f(pp0Var, ccVar, 1500);
                     f7.e.addCallback(new qp0(efVar, f7));
@@ -93,7 +93,7 @@ public abstract class sp0 extends org.telegram.ui.ActionBar.m1 {
                 AndroidUtilities.runOnUIThread(ho0Var3, 2500L);
                 return;
             }
-            efVar.f30337y = true;
+            efVar.f30338y = true;
             jm0 jm0Var = efVar.v;
             rp0 rp0Var = (rp0) view;
             TLRPC.Peer peer = tL_sendAsPeer.peer;
@@ -112,7 +112,7 @@ public abstract class sp0 extends org.telegram.ui.ActionBar.m1 {
                 messagesController.setDefaultSendAs(chatActivityEnterView.Q2, DialogObject.getPeerDialogId(peer));
             }
             int[] iArr = new int[2];
-            bw0 bw0Var = rp0Var.f29986a;
+            bw0 bw0Var = rp0Var.f29987a;
             boolean isSelected = bw0Var.isSelected();
             bw0Var.getLocationInWindow(iArr);
             bw0Var.a(true, true);
@@ -133,7 +133,7 @@ public abstract class sp0 extends org.telegram.ui.ActionBar.m1 {
             for (int i12 = 0; i12 < jm0Var.getChildCount(); i12++) {
                 View childAt = jm0Var.getChildAt(i12);
                 if ((childAt instanceof rp0) && childAt != rp0Var) {
-                    ((rp0) childAt).f29986a.a(false, true);
+                    ((rp0) childAt).f29987a.a(false, true);
                 }
             }
             org.telegram.messenger.camera.i iVar = new org.telegram.messenger.camera.i(chatActivityEnterView, bw0Var2, iArr, rp0Var, 22);
@@ -158,9 +158,9 @@ public abstract class sp0 extends org.telegram.ui.ActionBar.m1 {
     }
 
     public final void l(o1.k... kVarArr) {
-        mp0 mp0Var = this.f30328o;
-        ah.x xVar = this.f30333t;
-        ArrayList arrayList = this.f30338z;
+        mp0 mp0Var = this.f30329o;
+        ah.x xVar = this.f30334t;
+        ArrayList arrayList = this.f30339z;
         ArrayList arrayList2 = new ArrayList(arrayList);
         int size = arrayList2.size();
         int i10 = 0;
@@ -199,7 +199,7 @@ public abstract class sp0 extends org.telegram.ui.ActionBar.m1 {
         if (kVarArr.length <= 0) {
             z10 = false;
         }
-        this.f30330q = z10;
+        this.f30331q = z10;
         ((o1.k) arrayList3.get(0)).a(new hb(this, 3));
         int size2 = arrayList3.size();
         int i11 = 0;

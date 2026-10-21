@@ -76,10 +76,10 @@ public final class d2 extends org.telegram.ui.Components.s6 {
                 return;
             case 3:
                 s00 s00Var = (s00) this.f22119c;
-                s00Var.f30093w0 = f7;
+                s00Var.f30094w0 = f7;
                 int i10 = s00Var.U;
-                org.telegram.ui.ActionBar.d6 d6Var = s00Var.f30064a;
-                s00Var.T.setColor(i0.a.f(f7, org.telegram.ui.ActionBar.h6.w0(i10, d6Var), org.telegram.ui.ActionBar.h6.w0(s00Var.f30069c0, d6Var)));
+                org.telegram.ui.ActionBar.d6 d6Var = s00Var.f30065a;
+                s00Var.T.setColor(i0.a.f(f7, org.telegram.ui.ActionBar.h6.w0(i10, d6Var), org.telegram.ui.ActionBar.h6.w0(s00Var.f30070c0, d6Var)));
                 ai.u1 u1Var = s00Var.F;
                 u1Var.f1();
                 u1Var.invalidate();
@@ -111,7 +111,7 @@ public final class d2 extends org.telegram.ui.Components.s6 {
                 return;
             default:
                 ProfileActivity profileActivity = (ProfileActivity) obj;
-                ((ProfileActivity) this.f22119c).f33597c1 = f7;
+                ((ProfileActivity) this.f22119c).f33598c1 = f7;
                 return;
         }
     }
@@ -129,7 +129,7 @@ public final class d2 extends org.telegram.ui.Components.s6 {
                 return Float.valueOf(((org.telegram.ui.Components.k8) this.f22119c).Q0);
             case 3:
                 s00 s00Var = (s00) obj;
-                return Float.valueOf(((s00) this.f22119c).f30093w0);
+                return Float.valueOf(((s00) this.f22119c).f30094w0);
             case 4:
                 f91 f91Var = (f91) obj;
                 return Float.valueOf(((f91) this.f22119c).f26163x);
@@ -140,7 +140,7 @@ public final class d2 extends org.telegram.ui.Components.s6 {
                 return Float.valueOf(((View) obj).getAlpha());
             default:
                 ProfileActivity profileActivity = (ProfileActivity) obj;
-                return Float.valueOf(((ProfileActivity) this.f22119c).f33597c1);
+                return Float.valueOf(((ProfileActivity) this.f22119c).f33598c1);
         }
     }
 

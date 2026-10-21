@@ -32,7 +32,7 @@ public final class n8 implements r0.n, Utilities.Callback5, Utilities.Callback5R
         ((Float) obj5).getClass();
         Object obj6 = ((org.telegram.ui.Components.h61) obj).G;
         if (obj6 instanceof i9) {
-            this.f39448a.e0(((i9) obj6).f37891c, (h9) view);
+            this.f39448a.e0(((i9) obj6).f37892c, (h9) view);
             z10 = true;
         } else {
             z10 = false;

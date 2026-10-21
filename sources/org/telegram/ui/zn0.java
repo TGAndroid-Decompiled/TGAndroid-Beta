@@ -21,7 +21,7 @@ public final class zn0 implements TextWatcher {
     public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
         boolean z10 = false;
         if (i11 == 0 && i12 == 1) {
-            if (TextUtils.indexOf((CharSequence) this.d.f36711f[1].getText(), '/') != -1) {
+            if (TextUtils.indexOf((CharSequence) this.d.f36712f[1].getText(), '/') != -1) {
                 z10 = true;
             }
             this.f43783b = z10;

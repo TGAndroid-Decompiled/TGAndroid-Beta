@@ -26,7 +26,7 @@ public class c71 extends jm0 {
         int i10 = 0;
         while (true) {
             u61 u61Var = this.W2;
-            if (i10 < u61Var.f30863x.size()) {
+            if (i10 < u61Var.f30864x.size()) {
                 h61 G = u61Var.G(i10);
                 if (G != null && G.G == obj) {
                     break;
@@ -60,10 +60,10 @@ public class c71 extends jm0 {
             ArrayList arrayList = u61Var.F;
             for (int i11 = 0; i11 < arrayList.size(); i11++) {
                 s61 s61Var = (s61) arrayList.get(i11);
-                int i12 = s61Var.f30206b;
+                int i12 = s61Var.f30207b;
                 if (i12 >= 0) {
-                    int i13 = s61Var.f30205a;
-                    if (u61Var.f30859n) {
+                    int i13 = s61Var.f30206a;
+                    if (u61Var.f30860n) {
                         i10 = org.telegram.ui.ActionBar.h6.f21061h5;
                     } else {
                         i10 = org.telegram.ui.ActionBar.h6.f20990d6;
@@ -150,7 +150,7 @@ public class c71 extends jm0 {
         int i11 = 0;
         while (true) {
             u61 u61Var = this.W2;
-            if (i11 < u61Var.f30863x.size()) {
+            if (i11 < u61Var.f30864x.size()) {
                 h61 G = u61Var.G(i11);
                 if (G != null && G.d == i10) {
                     return i11;
@@ -166,7 +166,7 @@ public class c71 extends jm0 {
         int i11 = 0;
         while (true) {
             u61 u61Var = this.W2;
-            if (i11 < u61Var.f30863x.size()) {
+            if (i11 < u61Var.f30864x.size()) {
                 h61 G = u61Var.G(i11);
                 if (G != null && G.d == i10) {
                     break;

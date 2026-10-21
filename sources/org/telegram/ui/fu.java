@@ -21,7 +21,7 @@ public final class fu extends pg.b {
     public final boolean D(s4.b1 b1Var) {
         switch (this.d) {
             case 0:
-                cu cuVar = (cu) ((hu) this.e).f37789a3.get(b1Var.b());
+                cu cuVar = (cu) ((hu) this.e).f37790a3.get(b1Var.b());
                 int i10 = cuVar.f44296a;
                 if (i10 != 5 && (i10 != 2 || cuVar.h == -1)) {
                     return false;
@@ -40,7 +40,7 @@ public final class fu extends pg.b {
     public final int h() {
         switch (this.d) {
             case 0:
-                return ((hu) this.e).f37789a3.size();
+                return ((hu) this.e).f37790a3.size();
             default:
                 return ((qb0) this.e).f40529s.size();
         }
@@ -50,7 +50,7 @@ public final class fu extends pg.b {
     public final int j(int i10) {
         switch (this.d) {
             case 0:
-                return ((cu) ((hu) this.e).f37789a3.get(i10)).f44296a;
+                return ((cu) ((hu) this.e).f37790a3.get(i10)).f44296a;
             default:
                 qb0 qb0Var = (qb0) this.e;
                 if (i10 >= 0 && i10 < qb0Var.f40529s.size()) {
@@ -74,7 +74,7 @@ public final class fu extends pg.b {
         switch (i11) {
             case 0:
                 hu huVar = (hu) obj;
-                lu luVar = huVar.f37801m3;
+                lu luVar = huVar.f37802m3;
                 org.telegram.ui.ActionBar.d6 d6Var = huVar.f27579n2;
                 if (i10 != 0) {
                     if (i10 != 1) {
@@ -87,16 +87,16 @@ public final class fu extends pg.b {
                                         } else {
                                             View unVar = new org.telegram.ui.Components.un(huVar.getContext(), 14);
                                             int i12 = org.telegram.ui.ActionBar.h6.f20990d6;
-                                            int i13 = hu.f37788n3;
+                                            int i13 = hu.f37789n3;
                                             unVar.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(i12, huVar.f27579n2));
                                             q8Var = unVar;
                                         }
                                     } else {
                                         ?? view2 = new View(huVar.getContext());
-                                        view2.f38347a = new Path();
+                                        view2.f38348a = new Path();
                                         Paint paint = new Paint(1);
-                                        view2.f38348b = paint;
-                                        view2.f38349c = true;
+                                        view2.f38349b = paint;
+                                        view2.f38350c = true;
                                         paint.setShadowLayer(AndroidUtilities.dp(1.0f), 0.0f, AndroidUtilities.dp(-0.66f), 251658240);
                                         paint.setColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20990d6, false));
                                         q8Var = view2;
@@ -119,7 +119,7 @@ public final class fu extends pg.b {
                         Context context = huVar.getContext();
                         ?? frameLayout = new FrameLayout(context);
                         TextView textView = new TextView(context);
-                        frameLayout.f38671a = textView;
+                        frameLayout.f38672a = textView;
                         textView.setGravity(17);
                         textView.setTextSize(1, 13.0f);
                         textView.setTextColor(luVar.getThemedColor(org.telegram.ui.ActionBar.h6.f21378y6));
@@ -130,10 +130,10 @@ public final class fu extends pg.b {
                 } else {
                     Context context2 = huVar.getContext();
                     int[] iArr = lu.e;
-                    eu euVar = new eu(this, context2, iArr.length, iArr, lu.f39019f);
-                    huVar.f37800l3 = euVar;
+                    eu euVar = new eu(this, context2, iArr.length, iArr, lu.f39020f);
+                    huVar.f37801l3 = euVar;
                     euVar.setInterceptTouch(false);
-                    View view3 = huVar.f37800l3;
+                    View view3 = huVar.f37801l3;
                     view3.setTag(-33024);
                     q8Var = view3;
                 }

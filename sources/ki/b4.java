@@ -1274,7 +1274,7 @@ public final class b4 extends FrameLayout {
             vj0 animatedDrawable = yj0Var.getAnimatedDrawable();
             if (animatedDrawable != null) {
                 if (z10) {
-                    if (animatedDrawable.f31264a0 > 34) {
+                    if (animatedDrawable.f31265a0 > 34) {
                         animatedDrawable.N(0, false, false);
                     }
                     animatedDrawable.P(33);

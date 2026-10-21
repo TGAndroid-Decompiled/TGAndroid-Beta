@@ -62,7 +62,7 @@ public abstract class w extends FrameLayout {
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
             spannableStringBuilder.append((CharSequence) "* ");
             spannableStringBuilder.append((CharSequence) vVar.e);
-            spannableStringBuilder.setSpan(new a6(vVar.f11506f, 1.4f, p6Var.f29223a.getFontMetricsInt()), 0, 1, 33);
+            spannableStringBuilder.setSpan(new a6(vVar.f11506f, 1.4f, p6Var.f29224a.getFontMetricsInt()), 0, 1, 33);
             p6Var.t(spannableStringBuilder, z10, true);
             return;
         }
@@ -228,7 +228,7 @@ public abstract class w extends FrameLayout {
                 if (p6Var3.Z != m12) {
                     p6Var3.Z = m12;
                     str = str2;
-                    p6Var3.f29224a0 = new PorterDuffColorFilter(m12, PorterDuff.Mode.SRC_IN);
+                    p6Var3.f29225a0 = new PorterDuffColorFilter(m12, PorterDuff.Mode.SRC_IN);
                 } else {
                     str = str2;
                 }

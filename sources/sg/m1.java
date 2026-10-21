@@ -411,7 +411,7 @@ public class m1 extends bb implements NotificationCenter.NotificationCenterDeleg
             valueAnimator.cancel();
         }
         z00 z00Var = this.f46340o0;
-        if (z00Var.f32792c) {
+        if (z00Var.f32793c) {
             z00Var.animate().alpha(0.0f).setDuration(150L).start();
         }
     }

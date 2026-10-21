@@ -15,10 +15,10 @@ public final class zc1 extends AnimatorListenerAdapter {
     public final void onAnimationEnd(Animator animator) {
         switch (this.f43723a) {
             case 0:
-                this.f43724b.f35351s.f37290s.setVisibility(8);
+                this.f43724b.f35352s.f37291s.setVisibility(8);
                 return;
             default:
-                this.f43724b.f35351s.f37284a.setVisibility(8);
+                this.f43724b.f35352s.f37285a.setVisibility(8);
                 return;
         }
     }

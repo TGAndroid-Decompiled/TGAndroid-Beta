@@ -20,7 +20,7 @@ public final class om implements Runnable {
         switch (this.f39924a) {
             case 0:
                 cn cnVar = this.f39925b;
-                qn qnVar = cnVar.f36010a;
+                qn qnVar = cnVar.f36011a;
                 qnVar.T7();
                 UndoView undoView = qnVar.y3;
                 if (undoView != null) {
@@ -36,12 +36,12 @@ public final class om implements Runnable {
                 }
                 return;
             case 1:
-                qn qnVar2 = this.f39925b.f36010a;
+                qn qnVar2 = this.f39925b.f36011a;
                 qnVar2.f40898wb = this.f39926c.getId();
                 qnVar2.f40912xb = 0;
                 return;
             default:
-                qn qnVar3 = this.f39925b.f36010a;
+                qn qnVar3 = this.f39925b.f36011a;
                 if (qnVar3.i7()) {
                     SendMessagesHelper.SendMessageParams of2 = SendMessagesHelper.SendMessageParams.of(this.f39926c.getDiceEmoji(), qnVar3.T5, qnVar3.f40779n5, qnVar3.X3, null, false, null, null, null, true, 0, 0, null, false);
                     of2.sendMessageChatArguments = qnVar3.H8();

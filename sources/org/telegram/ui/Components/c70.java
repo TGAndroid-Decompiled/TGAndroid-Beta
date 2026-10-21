@@ -17,7 +17,7 @@ public final class c70 extends q90 {
         org.telegram.ui.ActionBar.d3 d3Var = l70Var.container;
         d6Var = ((org.telegram.ui.ActionBar.f3) l70Var).resourcesProvider;
         qc Q = new xc(d3Var, d6Var).Q(i10, 36, spannableStringBuilder);
-        Q.f29538r = false;
+        Q.f29539r = false;
         Q.k(true);
     }
 }

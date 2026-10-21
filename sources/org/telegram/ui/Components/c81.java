@@ -125,10 +125,10 @@ public class c81 implements b2.d1, b2.z1, j2.b, NotificationCenter.NotificationC
         } else {
             String str2 = dialogId + "_" + id2 + "q2";
             StringBuilder sb2 = new StringBuilder();
-            sb2.append(y71Var.f32582b);
+            sb2.append(y71Var.f32583b);
             sb2.append("x");
-            sb2.append(y71Var.f32583c);
-            if (y71Var.f32581a) {
+            sb2.append(y71Var.f32584c);
+            if (y71Var.f32582a) {
                 str = "s";
             } else {
                 str = "";
@@ -350,7 +350,7 @@ public class c81 implements b2.d1, b2.z1, j2.b, NotificationCenter.NotificationC
                         Object obj2 = arrayList6.get(i16);
                         i16++;
                         y71Var = (y71) obj2;
-                        if (!y71Var.f32581a && y71Var.f32582b == a81Var2.f24541i && y71Var.f32583c == a81Var2.f24542j) {
+                        if (!y71Var.f32582a && y71Var.f32583b == a81Var2.f24541i && y71Var.f32584c == a81Var2.f24542j) {
                             break;
                         }
                     } else {
@@ -1269,7 +1269,7 @@ public class c81 implements b2.d1, b2.z1, j2.b, NotificationCenter.NotificationC
             try {
                 if (this.f25132c0) {
                     for (int i10 = 0; i10 < t(); i10++) {
-                        if (u(i10).f32581a) {
+                        if (u(i10).f32582a) {
                             return i10;
                         }
                     }
@@ -1281,7 +1281,7 @@ public class c81 implements b2.d1, b2.z1, j2.b, NotificationCenter.NotificationC
                     if (wVar != null) {
                         for (int i11 = 0; i11 < t(); i11++) {
                             y71 u10 = u(i11);
-                            if (!u10.f32581a && wVar.f4134z == u10.f32582b && wVar.A == u10.f32583c && wVar.f4119j == ((int) Math.floor(((a81) u10.d.get(0)).f24544l * 8.0d))) {
+                            if (!u10.f32582a && wVar.f4134z == u10.f32583b && wVar.A == u10.f32584c && wVar.f4119j == ((int) Math.floor(((a81) u10.d.get(0)).f24544l * 8.0d))) {
                                 return i11;
                             }
                         }
@@ -1427,7 +1427,7 @@ public class c81 implements b2.d1, b2.z1, j2.b, NotificationCenter.NotificationC
         y71 y71Var = null;
         for (int i10 = 0; i10 < t(); i10++) {
             y71 u10 = u(i10);
-            if (u10.f32581a == bool.booleanValue() && (y71Var == null || y71Var.f32582b * y71Var.f32583c < u10.f32582b * u10.f32583c)) {
+            if (u10.f32582a == bool.booleanValue() && (y71Var == null || y71Var.f32583b * y71Var.f32584c < u10.f32583b * u10.f32584c)) {
                 y71Var = u10;
             }
         }

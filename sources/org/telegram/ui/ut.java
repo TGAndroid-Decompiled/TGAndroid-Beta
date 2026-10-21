@@ -67,16 +67,16 @@ public final class ut implements org.telegram.ui.Components.ow0, org.telegram.ui
     public void L0(ht htVar) {
         cg0 cg0Var = (cg0) this.f42039b;
         cg0Var.I = true;
-        String str = htVar.f37785c;
-        cg0Var.f35962a.setText(str);
+        String str = htVar.f37786c;
+        cg0Var.f35963a.setText(str);
         cg0Var.t(str, htVar);
-        cg0Var.f35971y = htVar;
-        cg0Var.f35970x = 0;
+        cg0Var.f35972y = htVar;
+        cg0Var.f35971x = 0;
         cg0Var.I = false;
         SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
-        edit.putString("phone_code_last_matched_" + htVar.f37785c, htVar.d).apply();
+        edit.putString("phone_code_last_matched_" + htVar.f37786c, htVar.d).apply();
         AndroidUtilities.runOnUIThread(new sf0(cg0Var, 4), 300L);
-        zf0 zf0Var = cg0Var.f35963b;
+        zf0 zf0Var = cg0Var.f35964b;
         zf0Var.requestFocus();
         zf0Var.setSelection(zf0Var.length());
     }
@@ -208,7 +208,7 @@ public final class ut implements org.telegram.ui.Components.ow0, org.telegram.ui
             int i11 = kb0Var.f44296a;
             int i12 = kb0Var.e;
             if (i11 != 3 && i11 != 4) {
-                if (i11 == 5 && kb0Var.f38504f == 1) {
+                if (i11 == 5 && kb0Var.f38505f == 1) {
                     SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
                     boolean z10 = globalMainSettings.getBoolean("view_animations", true);
                     SharedPreferences.Editor edit = globalMainSettings.edit();
@@ -238,15 +238,15 @@ public final class ut implements org.telegram.ui.Components.ow0, org.telegram.ui
                 j60 j60Var = (j60) this.f42039b;
                 l60 l60Var = j60Var.I;
                 l60Var.q0(j60Var.H);
-                if (j60Var.h == null && !j60Var.f38177f.e() && j60Var.h() == 0) {
-                    l60Var.f38823s.e(false, true);
+                if (j60Var.h == null && !j60Var.f38178f.e() && j60Var.h() == 0) {
+                    l60Var.f38824s.e(false, true);
                 }
                 j60Var.l();
                 return;
             default:
                 ak0 ak0Var = (ak0) this.f42039b;
-                if (ak0Var.f35382f == null && !ak0Var.h.e()) {
-                    ak0Var.f35383n.f33207c.c();
+                if (ak0Var.f35383f == null && !ak0Var.h.e()) {
+                    ak0Var.f35384n.f33208c.c();
                 }
                 ak0Var.l();
                 return;
@@ -298,7 +298,7 @@ public final class ut implements org.telegram.ui.Components.ow0, org.telegram.ui
                 ((org.telegram.messenger.xi) obj).run();
                 return;
             case 27:
-                kk0 kk0Var = ((gk0) obj).f37348b;
+                kk0 kk0Var = ((gk0) obj).f37349b;
                 SparseArray sparseArray = kk0Var.J;
                 ArrayList arrayList = new ArrayList();
                 for (int i13 = 0; i13 < sparseArray.size(); i13++) {
@@ -326,7 +326,7 @@ public final class ut implements org.telegram.ui.Components.ow0, org.telegram.ui
                             }
                         }
                     }
-                    if (ik0Var.f38023g != null && (dVar = kk0Var.getMediaDataController().ringtoneUploaderHashMap.get(ik0Var.f38023g)) != null) {
+                    if (ik0Var.f38024g != null && (dVar = kk0Var.getMediaDataController().ringtoneUploaderHashMap.get(ik0Var.f38024g)) != null) {
                         dVar.f48946c = true;
                         dVar.a();
                         int i15 = dVar.f48944a;
@@ -337,11 +337,11 @@ public final class ut implements org.telegram.ui.Components.ow0, org.telegram.ui
                     }
                     if (ik0Var == kk0Var.H) {
                         kk0Var.N = null;
-                        kk0Var.H = (ik0) kk0Var.f38626b.get(0);
+                        kk0Var.H = (ik0) kk0Var.f38627b.get(0);
                         kk0Var.I = true;
                     }
-                    kk0Var.f38625a.remove(ik0Var);
-                    kk0Var.f38627c.remove(ik0Var);
+                    kk0Var.f38626a.remove(ik0Var);
+                    kk0Var.f38628c.remove(ik0Var);
                 }
                 kk0Var.getMediaDataController().ringtoneDataStore.h();
                 for (int i16 = 0; i16 < arrayList.size(); i16++) {
@@ -361,7 +361,7 @@ public final class ut implements org.telegram.ui.Components.ow0, org.telegram.ui
                 }
                 kk0.W(kk0Var);
                 kk0Var.c0();
-                kk0Var.f38628f.l();
+                kk0Var.f38629f.l();
                 b2Var.dismiss();
                 return;
             default:
@@ -371,11 +371,11 @@ public final class ut implements org.telegram.ui.Components.ow0, org.telegram.ui
                 SharedConfig.appLocked = false;
                 SharedConfig.saveConfig();
                 passcodeActivity.getMediaDataController().buildShortcuts();
-                int childCount = passcodeActivity.f33227c.getChildCount();
+                int childCount = passcodeActivity.f33228c.getChildCount();
                 int i17 = 0;
                 while (true) {
                     if (i17 < childCount) {
-                        View childAt = passcodeActivity.f33227c.getChildAt(i17);
+                        View childAt = passcodeActivity.f33228c.getChildAt(i17);
                         if (childAt instanceof org.telegram.ui.Cells.ba) {
                             ((org.telegram.ui.Cells.ba) childAt).setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.E6, false));
                         } else {
@@ -392,8 +392,8 @@ public final class ut implements org.telegram.ui.Components.ow0, org.telegram.ui
     @Override
     public void h(int i10) {
         DataAutoDownloadActivity dataAutoDownloadActivity = ((vt) this.f42039b).d;
-        DownloadController.Preset preset = (DownloadController.Preset) dataAutoDownloadActivity.f33112c.get(i10);
-        if (preset == dataAutoDownloadActivity.f33119y) {
+        DownloadController.Preset preset = (DownloadController.Preset) dataAutoDownloadActivity.f33113c.get(i10);
+        if (preset == dataAutoDownloadActivity.f33120y) {
             dataAutoDownloadActivity.e = 0;
         } else if (preset == dataAutoDownloadActivity.E) {
             dataAutoDownloadActivity.e = 1;
@@ -402,7 +402,7 @@ public final class ut implements org.telegram.ui.Components.ow0, org.telegram.ui
         } else {
             dataAutoDownloadActivity.e = 3;
         }
-        int i11 = dataAutoDownloadActivity.f33113f;
+        int i11 = dataAutoDownloadActivity.f33114f;
         if (i11 == 0) {
             DownloadController.getInstance(DataAutoDownloadActivity.d0(dataAutoDownloadActivity)).currentMobilePreset = dataAutoDownloadActivity.e;
         } else if (i11 == 1) {
@@ -415,9 +415,9 @@ public final class ut implements org.telegram.ui.Components.ow0, org.telegram.ui
         edit.commit();
         DownloadController.getInstance(DataAutoDownloadActivity.h0(dataAutoDownloadActivity)).checkAutodownloadSettings();
         for (int i12 = 0; i12 < 4; i12++) {
-            s4.b1 K = dataAutoDownloadActivity.f33111b.K(DataAutoDownloadActivity.i0(dataAutoDownloadActivity) + i12);
+            s4.b1 K = dataAutoDownloadActivity.f33112b.K(DataAutoDownloadActivity.i0(dataAutoDownloadActivity) + i12);
             if (K != null) {
-                dataAutoDownloadActivity.f33110a.v(K, DataAutoDownloadActivity.i0(dataAutoDownloadActivity) + i12);
+                dataAutoDownloadActivity.f33111a.v(K, DataAutoDownloadActivity.i0(dataAutoDownloadActivity) + i12);
             }
         }
         dataAutoDownloadActivity.I = true;
@@ -426,14 +426,14 @@ public final class ut implements org.telegram.ui.Components.ow0, org.telegram.ui
     @Override
     public void j(org.telegram.ui.Components.me0 me0Var) {
         ExternalActionActivity externalActionActivity = (ExternalActionActivity) this.f42039b;
-        ArrayList arrayList = ExternalActionActivity.f33130x;
+        ArrayList arrayList = ExternalActionActivity.f33131x;
         SharedConfig.isWaitingForPasscodeEnter = false;
         Intent intent = externalActionActivity.h;
         if (intent != null) {
-            externalActionActivity.d(intent, externalActionActivity.f33136n, externalActionActivity.v, true, externalActionActivity.f33137r, externalActionActivity.f33138s);
+            externalActionActivity.d(intent, externalActionActivity.f33137n, externalActionActivity.v, true, externalActionActivity.f33138r, externalActionActivity.f33139s);
             externalActionActivity.h = null;
         }
-        externalActionActivity.f33134c.c0();
+        externalActionActivity.f33135c.c0();
         if (AndroidUtilities.isTablet()) {
             externalActionActivity.d.c0();
         }
@@ -443,8 +443,8 @@ public final class ut implements org.telegram.ui.Components.ow0, org.telegram.ui
     @Override
     public void n(KeyEvent keyEvent) {
         jz jzVar = (jz) this.f42039b;
-        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && jzVar.f36838x.isShowing()) {
-            jzVar.f36838x.d(true);
+        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && jzVar.f36839x.isShowing()) {
+            jzVar.f36839x.d(true);
         }
     }
 
@@ -458,7 +458,7 @@ public final class ut implements org.telegram.ui.Components.ow0, org.telegram.ui
 
     @Override
     public int run() {
-        return ((FiltersSetupActivity) this.f42039b).f33147w;
+        return ((FiltersSetupActivity) this.f42039b).f33148w;
     }
 
     @Override

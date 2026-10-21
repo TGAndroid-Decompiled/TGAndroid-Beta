@@ -28,14 +28,14 @@ public final class sg1 implements View.OnClickListener {
                 return;
             case 1:
                 hh1 hh1Var2 = this.f41465b;
-                if (hh1Var2.f37659n0 && hh1Var2.m0 && System.currentTimeMillis() - hh1Var2.K0 > 500) {
+                if (hh1Var2.f37660n0 && hh1Var2.m0 && System.currentTimeMillis() - hh1Var2.K0 > 500) {
                     AndroidUtilities.cancelRunOnUIThread(hh1Var2.S0);
                     hh1Var2.R0 = false;
                     hh1Var2.K0 = System.currentTimeMillis();
                     hh1Var2.Z.setRelativePosition(hh1Var2.Y);
-                    hh1Var2.f37631a0 = true;
+                    hh1Var2.f37632a0 = true;
                     hh1Var2.H0 = true;
-                    hh1Var2.f37662q0 = hh1Var2.f37661p0;
+                    hh1Var2.f37663q0 = hh1Var2.f37662p0;
                     hh1Var2.G();
                     return;
                 }
@@ -47,9 +47,9 @@ public final class sg1 implements View.OnClickListener {
                     hh1Var3.R0 = false;
                     hh1Var3.K0 = System.currentTimeMillis();
                     hh1Var3.Y.setRelativePosition(hh1Var3.Z);
-                    hh1Var3.f37631a0 = false;
+                    hh1Var3.f37632a0 = false;
                     hh1Var3.H0 = false;
-                    hh1Var3.f37662q0 = hh1Var3.f37661p0;
+                    hh1Var3.f37663q0 = hh1Var3.f37662p0;
                     hh1Var3.G();
                     return;
                 }
@@ -90,7 +90,7 @@ public final class sg1 implements View.OnClickListener {
                     } else {
                         i10 = 1;
                     }
-                    sharedInstance.toggleSpeakerphoneOrShowRouteSheet(hh1Var6.f37633b, false, Integer.valueOf(i10));
+                    sharedInstance.toggleSpeakerphoneOrShowRouteSheet(hh1Var6.f37634b, false, Integer.valueOf(i10));
                     return;
                 }
                 return;

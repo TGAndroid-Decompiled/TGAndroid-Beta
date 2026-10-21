@@ -33,10 +33,10 @@ public final class z00 extends org.telegram.ui.Components.fm0 {
     public final int M(int i10) {
         e10 e10Var = this.v;
         int i11 = 1;
-        if (i10 >= e10Var.f36507n.size()) {
+        if (i10 >= e10Var.f36508n.size()) {
             return 1;
         }
-        int size = ((ArrayList) e10Var.f36512r.get(e10Var.f36507n.get(i10))).size();
+        int size = ((ArrayList) e10Var.f36513r.get(e10Var.f36508n.get(i10))).size();
         if (i10 == 0) {
             i11 = 0;
         }
@@ -50,7 +50,7 @@ public final class z00 extends org.telegram.ui.Components.fm0 {
 
     @Override
     public final int P(int i10, int i11) {
-        if (i10 >= this.v.f36507n.size()) {
+        if (i10 >= this.v.f36508n.size()) {
             return 2;
         }
         if (i10 != 0 && i11 == 0) {
@@ -67,11 +67,11 @@ public final class z00 extends org.telegram.ui.Components.fm0 {
     public final int R() {
         e10 e10Var = this.v;
         int i10 = 0;
-        if (e10Var.f36507n.isEmpty()) {
+        if (e10Var.f36508n.isEmpty()) {
             return 0;
         }
-        int size = e10Var.f36507n.size();
-        if (!e10Var.f36507n.isEmpty() && !e10Var.N) {
+        int size = e10Var.f36508n.size();
+        if (!e10Var.f36508n.isEmpty() && !e10Var.N) {
             i10 = 1;
         }
         return size + i10;
@@ -88,9 +88,9 @@ public final class z00 extends org.telegram.ui.Components.fm0 {
             return view;
         }
         e10 e10Var = this.v;
-        if (i10 < e10Var.f36507n.size()) {
+        if (i10 < e10Var.f36508n.size()) {
             view.setAlpha(1.0f);
-            ((org.telegram.ui.Cells.u3) view).setText(LocaleController.formatSectionDate(((MessageObject) ((ArrayList) e10Var.f36512r.get((String) e10Var.f36507n.get(i10))).get(0)).messageOwner.date));
+            ((org.telegram.ui.Cells.u3) view).setText(LocaleController.formatSectionDate(((MessageObject) ((ArrayList) e10Var.f36513r.get((String) e10Var.f36508n.get(i10))).get(0)).messageOwner.date));
         }
         return view;
     }
@@ -108,11 +108,11 @@ public final class z00 extends org.telegram.ui.Components.fm0 {
         boolean z10;
         boolean z11;
         e10 e10Var = this.v;
-        ArrayList arrayList = e10Var.f36507n;
+        ArrayList arrayList = e10Var.f36508n;
         int i12 = b1Var.f45920f;
         View view = b1Var.f45917a;
         if (i12 != 2) {
-            ArrayList arrayList2 = (ArrayList) e10Var.f36512r.get((String) arrayList.get(i10));
+            ArrayList arrayList2 = (ArrayList) e10Var.f36513r.get((String) arrayList.get(i10));
             int i13 = b1Var.f45920f;
             boolean z12 = false;
             if (i13 != 0) {

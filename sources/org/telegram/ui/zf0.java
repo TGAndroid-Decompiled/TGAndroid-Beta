@@ -21,20 +21,20 @@ public final class zf0 extends AnimatedPhoneNumberEditText {
         super.onFocusChanged(z10, i10, rect);
         cg0 cg0Var = this.G;
         dg0 dg0Var = cg0Var.V;
-        org.telegram.ui.Components.sd0 sd0Var = cg0Var.f35965f;
-        if (!z10 && !cg0Var.f35962a.isFocused()) {
+        org.telegram.ui.Components.sd0 sd0Var = cg0Var.f35966f;
+        if (!z10 && !cg0Var.f35963a.isFocused()) {
             f7 = 0.0f;
         } else {
             f7 = 1.0f;
         }
         sd0Var.b(f7, f7, true);
         if (z10) {
-            dg0Var.f36370c.setEditText(this);
-            dg0Var.f36370c.setDispatchBackWhenEmpty(true);
-            if (cg0Var.f35970x == 2) {
+            dg0Var.f36371c.setEditText(this);
+            dg0Var.f36371c.setDispatchBackWhenEmpty(true);
+            if (cg0Var.f35971x == 2) {
                 cg0Var.setCountryButtonText(LocaleController.getString(R.string.WrongCountry));
             }
-        } else if (cg0Var.f35970x == 2) {
+        } else if (cg0Var.f35971x == 2) {
             cg0Var.setCountryButtonText(null);
         }
     }
@@ -42,8 +42,8 @@ public final class zf0 extends AnimatedPhoneNumberEditText {
     @Override
     public final boolean onKeyDown(int i10, KeyEvent keyEvent) {
         cg0 cg0Var = this.G;
-        kj0 kj0Var = cg0Var.f35962a;
-        if (i10 == 67 && cg0Var.f35963b.length() == 0) {
+        kj0 kj0Var = cg0Var.f35963a;
+        if (i10 == 67 && cg0Var.f35964b.length() == 0) {
             kj0Var.requestFocus();
             kj0Var.setSelection(kj0Var.length());
             kj0Var.dispatchKeyEvent(keyEvent);

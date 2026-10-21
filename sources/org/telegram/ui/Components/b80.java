@@ -101,11 +101,11 @@ public final class b80 implements ValueAnimator.AnimatorUpdateListener {
             case 12:
                 zm0 zm0Var = (zm0) this.f24825b;
                 float floatValue7 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                zm0Var.f32973r = floatValue7;
-                zm0Var.f32977y.setScaleX(AndroidUtilities.lerp(0.8f, 1.0f, floatValue7));
-                zm0Var.f32977y.setScaleY(AndroidUtilities.lerp(0.8f, 1.0f, zm0Var.f32973r));
-                zm0Var.f32977y.setAlpha(zm0Var.f32973r);
-                zm0Var.f32974s.invalidate();
+                zm0Var.f32974r = floatValue7;
+                zm0Var.f32978y.setScaleX(AndroidUtilities.lerp(0.8f, 1.0f, floatValue7));
+                zm0Var.f32978y.setScaleY(AndroidUtilities.lerp(0.8f, 1.0f, zm0Var.f32974r));
+                zm0Var.f32978y.setAlpha(zm0Var.f32974r);
+                zm0Var.f32975s.invalidate();
                 zm0Var.v.invalidate();
                 return;
             case 13:
@@ -133,7 +133,7 @@ public final class b80 implements ValueAnimator.AnimatorUpdateListener {
             case 17:
                 tp0 tp0Var = (tp0) this.f24825b;
                 tp0Var.getClass();
-                tp0Var.f30645n = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                tp0Var.f30646n = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 tp0Var.invalidate();
                 return;
             case 18:

@@ -58,10 +58,10 @@ public final class td0 implements RequestDelegate {
                                         int lastIndexOf = str.lastIndexOf(42);
                                         if (indexOf != lastIndexOf && indexOf != -1 && lastIndexOf != -1) {
                                             ?? obj = new Object();
-                                            obj.f28649a |= 256;
-                                            obj.f28650b = indexOf;
+                                            obj.f28650a |= 256;
+                                            obj.f28651b = indexOf;
                                             int i12 = lastIndexOf + 1;
-                                            obj.f28651c = i12;
+                                            obj.f28652c = i12;
                                             valueOf.setSpan(new org.telegram.ui.Components.o11(obj, 0), indexOf, i12, 0);
                                         }
                                         SpannableStringBuilder formatSpannable = AndroidUtilities.formatSpannable(LocaleController.getString(R.string.RestoreEmailSent), valueOf);
@@ -164,10 +164,10 @@ public final class td0 implements RequestDelegate {
                                         int lastIndexOf = str.lastIndexOf(42);
                                         if (indexOf != lastIndexOf && indexOf != -1 && lastIndexOf != -1) {
                                             ?? obj = new Object();
-                                            obj.f28649a |= 256;
-                                            obj.f28650b = indexOf;
+                                            obj.f28650a |= 256;
+                                            obj.f28651b = indexOf;
                                             int i12 = lastIndexOf + 1;
-                                            obj.f28651c = i12;
+                                            obj.f28652c = i12;
                                             valueOf.setSpan(new org.telegram.ui.Components.o11(obj, 0), indexOf, i12, 0);
                                         }
                                         SpannableStringBuilder formatSpannable = AndroidUtilities.formatSpannable(LocaleController.getString(R.string.RestoreEmailSent), valueOf);
@@ -270,10 +270,10 @@ public final class td0 implements RequestDelegate {
                                         int lastIndexOf = str.lastIndexOf(42);
                                         if (indexOf != lastIndexOf && indexOf != -1 && lastIndexOf != -1) {
                                             ?? obj = new Object();
-                                            obj.f28649a |= 256;
-                                            obj.f28650b = indexOf;
+                                            obj.f28650a |= 256;
+                                            obj.f28651b = indexOf;
                                             int i12 = lastIndexOf + 1;
-                                            obj.f28651c = i12;
+                                            obj.f28652c = i12;
                                             valueOf.setSpan(new org.telegram.ui.Components.o11(obj, 0), indexOf, i12, 0);
                                         }
                                         SpannableStringBuilder formatSpannable = AndroidUtilities.formatSpannable(LocaleController.getString(R.string.RestoreEmailSent), valueOf);

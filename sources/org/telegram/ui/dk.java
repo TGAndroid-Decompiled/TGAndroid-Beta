@@ -5,16 +5,16 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 public final class dk implements Runnable {
-    public final qn f36409a;
+    public final qn f36410a;
 
     public dk(qn qnVar) {
-        this.f36409a = qnVar;
+        this.f36410a = qnVar;
     }
 
     @Override
     public final void run() {
         String formatPluralString;
-        qn qnVar = this.f36409a;
+        qn qnVar = this.f36410a;
         MessageObject messageObject = qnVar.f40657d5;
         if (messageObject != null && qnVar.T8 != null) {
             int max = Math.max(0, messageObject.messageOwner.ttl_period - (qnVar.getConnectionsManager().getCurrentTime() - qnVar.f40657d5.messageOwner.date));

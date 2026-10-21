@@ -61,7 +61,7 @@ public final class lu extends iu {
         boolean z10;
         super.onSelectionChanged(i10, i11);
         qu quVar = this.e;
-        om0 om0Var = quVar.f29711c;
+        om0 om0Var = quVar.f29712c;
         if (om0Var != null) {
             boolean z11 = false;
             if (i11 != i10) {
@@ -73,8 +73,8 @@ public final class lu extends iu {
                 XiaomiUtilities.isMIUI();
                 z11 = true;
             }
-            if (quVar.f29713n != z11) {
-                quVar.f29713n = z11;
+            if (quVar.f29714n != z11) {
+                quVar.f29714n = z11;
                 if (z11) {
                     this.f28276c = om0Var.d;
                     om0Var.a(R.drawable.msg_edit, true);
@@ -93,9 +93,9 @@ public final class lu extends iu {
         qu quVar = this.e;
         if (quVar.e && motionEvent.getAction() == 0) {
             quVar.u();
-            if (quVar.f29717x && (muVar = quVar.d) != null) {
+            if (quVar.f29718x && (muVar = quVar.d) != null) {
                 muVar.u(false);
-                quVar.f29717x = false;
+                quVar.f29718x = false;
                 quVar.k(true);
                 AndroidUtilities.showKeyboard(this);
             } else {

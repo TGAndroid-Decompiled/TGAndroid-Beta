@@ -16,10 +16,10 @@ public final class pr0 implements Utilities.Callback {
         Uri uri = (Uri) obj;
         switch (this.f40287a) {
             case 0:
-                new org.telegram.ui.Components.xc(this.f40288b.f43544b.f33278e0, null).m(org.telegram.ui.Components.wc.f32054r, 1, -115203550, -1, null).j();
+                new org.telegram.ui.Components.xc(this.f40288b.f43544b.f33279e0, null).m(org.telegram.ui.Components.wc.f32055r, 1, -115203550, -1, null).j();
                 return;
             default:
-                new org.telegram.ui.Components.xc(this.f40288b.f43544b.f33278e0, null).m(org.telegram.ui.Components.wc.f32054r, 1, -115203550, -1, null).j();
+                new org.telegram.ui.Components.xc(this.f40288b.f43544b.f33279e0, null).m(org.telegram.ui.Components.wc.f32055r, 1, -115203550, -1, null).j();
                 return;
         }
     }

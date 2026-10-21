@@ -1107,10 +1107,10 @@ public final class md extends y10 implements NotificationCenter.NotificationCent
         this.V = new SpannableStringBuilder("S");
         d70 d70Var = new d70(this.W, 42.0f, this.currentAccount);
         vj0 vj0Var = new vj0(R.raw.star_reaction, AndroidUtilities.dp(42.0f), AndroidUtilities.dp(42.0f));
-        ImageReceiver imageReceiver = d70Var.f36280b;
+        ImageReceiver imageReceiver = d70Var.f36281b;
         imageReceiver.setImageBitmap(vj0Var);
         imageReceiver.setAutoRepeat(2);
-        d70Var.f36282f = false;
+        d70Var.f36283f = false;
         d70Var.h = -AndroidUtilities.dp(3.0f);
         this.V.setSpan(d70Var, 0, 1, 33);
         this.U.addView(this.W, w7.z5.d(-1, 40.0f, 17, 24.0f, 0.0f, 24.0f, 0.0f));
@@ -1416,7 +1416,7 @@ public final class md extends y10 implements NotificationCenter.NotificationCent
     public final s4.g0 n0() {
         lc lcVar = new lc(this, this.f43325c, getParentActivity(), this.currentAccount, this.classGuid, new q(this, 6), getResourceProvider());
         this.f1855g0 = lcVar;
-        lcVar.f30860r = false;
+        lcVar.f30861r = false;
         return lcVar;
     }
 

@@ -52,15 +52,15 @@ public final class z60 extends org.telegram.ui.Components.im0 {
             z60Var.t(0, h);
         }
         if (TextUtils.isEmpty(str)) {
-            a70Var.f35291b.setVisibility(8);
-            a70Var.f35291b.e(false, true);
+            a70Var.f35292b.setVisibility(8);
+            a70Var.f35292b.e(false, true);
             return;
         }
-        if (a70Var.f35291b.getVisibility() != 0) {
-            a70Var.f35291b.setVisibility(0);
-            a70Var.f35291b.e(true, false);
+        if (a70Var.f35292b.getVisibility() != 0) {
+            a70Var.f35292b.setVisibility(0);
+            a70Var.f35292b.e(true, false);
         } else {
-            a70Var.f35291b.e(true, true);
+            a70Var.f35292b.e(true, true);
         }
         lt ltVar2 = new lt(27, z60Var, str);
         z60Var.f43647f = ltVar2;
@@ -169,7 +169,7 @@ public final class z60 extends org.telegram.ui.Components.im0 {
             spannableString2.setSpan(new org.telegram.ui.Components.m10(org.telegram.ui.ActionBar.h6.q6, resourceProvider), length, str.length() + length, 0);
             l8Var.f22541c.setText(spannableString2);
         }
-        TLRPC.TL_messages_stickerSet tL_messages_stickerSet2 = a70Var.f35295r;
+        TLRPC.TL_messages_stickerSet tL_messages_stickerSet2 = a70Var.f35296r;
         if (tL_messages_stickerSet2 != null) {
             j10 = tL_messages_stickerSet2.set.f20303id;
         } else if (a70Var.b0(a70Var.v) != null) {
@@ -193,7 +193,7 @@ public final class z60 extends org.telegram.ui.Components.im0 {
             a70 a70Var = this.f43649r;
             org.telegram.ui.Cells.l4 l4Var = new org.telegram.ui.Cells.l4(this.f43646c, i12, 21, 0, 0, false, false, a70Var.getResourceProvider());
             org.telegram.ui.Components.zq zqVar = new org.telegram.ui.Components.zq(new ColorDrawable(a70Var.getThemedColor(org.telegram.ui.ActionBar.h6.f20932a7)), org.telegram.ui.ActionBar.h6.W0(context, R.drawable.greydivider_bottom, org.telegram.ui.ActionBar.h6.f20952b7));
-            zqVar.f33023w = true;
+            zqVar.f33024w = true;
             l4Var.setBackground(zqVar);
             if (a70Var.N) {
                 i11 = R.string.ChooseStickerMyEmojiPacks;

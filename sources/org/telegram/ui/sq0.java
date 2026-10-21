@@ -25,14 +25,14 @@ public final class sq0 implements Runnable {
         switch (this.f41518a) {
             case 0:
                 PhotoViewer photoViewer = this.f41519b;
-                photoViewer.f33304h0.setImageBitmap(null);
+                photoViewer.f33305h0.setImageBitmap(null);
                 ju0 ju0Var = this.f41520c;
-                if (ju0Var != null && !AndroidUtilities.isTablet() && (clippingImageView = ju0Var.f38359m) != null) {
+                if (ju0Var != null && !AndroidUtilities.isTablet() && (clippingImageView = ju0Var.f38360m) != null) {
                     clippingImageView.setImageBitmap(null);
                 }
                 try {
-                    if (photoViewer.f33295g0.getParent() != null) {
-                        ((WindowManager) photoViewer.f33457y.getSystemService("window")).removeView(photoViewer.f33295g0);
+                    if (photoViewer.f33296g0.getParent() != null) {
+                        ((WindowManager) photoViewer.f33458y.getSystemService("window")).removeView(photoViewer.f33296g0);
                         photoViewer.Y1();
                         return;
                     }
@@ -43,14 +43,14 @@ public final class sq0 implements Runnable {
                 }
             case 1:
                 PhotoViewer photoViewer2 = this.f41519b;
-                photoViewer2.f33378p4 = null;
+                photoViewer2.f33379p4 = null;
                 int i10 = 0;
-                photoViewer2.f33278e0.setLayerType(0, null);
-                photoViewer2.f33360n4 = 0;
+                photoViewer2.f33279e0.setLayerType(0, null);
+                photoViewer2.f33361n4 = 0;
                 photoViewer2.H1();
                 photoViewer2.a2(this.f41520c);
                 MediaController.getInstance().tryResumePausedAudio();
-                if (photoViewer2.f33435v7 && !photoViewer2.f33445w7 && (arrayList = photoViewer2.f33302g7) != null) {
+                if (photoViewer2.f33436v7 && !photoViewer2.f33446w7 && (arrayList = photoViewer2.f33303g7) != null) {
                     int size = arrayList.size();
                     while (i10 < size) {
                         Object obj = arrayList.get(i10);
@@ -64,17 +64,17 @@ public final class sq0 implements Runnable {
                 return;
             default:
                 PhotoViewer photoViewer3 = this.f41519b;
-                photoViewer3.f33378p4 = null;
-                bu0 bu0Var = photoViewer3.f33278e0;
+                photoViewer3.f33379p4 = null;
+                bu0 bu0Var = photoViewer3.f33279e0;
                 if (bu0Var != null) {
                     int i11 = 0;
                     bu0Var.setLayerType(0, null);
-                    photoViewer3.f33360n4 = 0;
+                    photoViewer3.f33361n4 = 0;
                     photoViewer3.a2(this.f41520c);
-                    photoViewer3.f33278e0.setScaleX(1.0f);
-                    photoViewer3.f33278e0.setScaleY(1.0f);
+                    photoViewer3.f33279e0.setScaleX(1.0f);
+                    photoViewer3.f33279e0.setScaleY(1.0f);
                     MediaController.getInstance().tryResumePausedAudio();
-                    if (photoViewer3.f33435v7 && !photoViewer3.f33445w7 && (arrayList2 = photoViewer3.f33302g7) != null) {
+                    if (photoViewer3.f33436v7 && !photoViewer3.f33446w7 && (arrayList2 = photoViewer3.f33303g7) != null) {
                         int size2 = arrayList2.size();
                         while (i11 < size2) {
                             Object obj2 = arrayList2.get(i11);

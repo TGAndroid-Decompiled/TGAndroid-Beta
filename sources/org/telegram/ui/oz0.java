@@ -146,9 +146,9 @@ public class oz0 extends org.telegram.ui.Components.w9 implements org.telegram.u
         float z14 = org.telegram.messenger.g0.z(1.0f, this.V, this.f40019e0, (1.0f - this.f40016b0) * f7);
         org.telegram.ui.Components.r5 r5Var = this.e;
         if (r5Var != null) {
-            imageReceiver = r5Var.f29837k;
+            imageReceiver = r5Var.f29838k;
         } else {
-            imageReceiver = this.f31992a;
+            imageReceiver = this.f31993a;
         }
         int i11 = this.K;
         if (i11 > 0) {

@@ -38,8 +38,8 @@ public class r extends LinearLayout {
                 if (getParent() instanceof xo0) {
                     xo0 xo0Var = (xo0) getParent();
                     canvas.save();
-                    LinearLayout linearLayout = xo0Var.f32454b;
-                    Path path = xo0Var.f32457n;
+                    LinearLayout linearLayout = xo0Var.f32455b;
+                    Path path = xo0Var.f32458n;
                     if (view != null && xo0.e(view)) {
                         int indexOfChild = linearLayout.indexOfChild(view);
                         int i10 = indexOfChild - 1;
@@ -85,7 +85,7 @@ public class r extends LinearLayout {
                         }
                         if (!z10 && !z11) {
                             path.rewind();
-                            float f7 = xo0Var.f32455c;
+                            float f7 = xo0Var.f32456c;
                             path.addRoundRect(rectF, f7, f7, Path.Direction.CW);
                             canvas.clipPath(path);
                         } else if (!z10) {

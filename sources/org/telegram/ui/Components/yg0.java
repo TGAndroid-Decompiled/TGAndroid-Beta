@@ -9,14 +9,14 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.ui.PhotoViewer;
 public final class yg0 extends u20 {
-    public float f32649a;
-    public float f32650b;
-    public final int f32651c;
+    public float f32650a;
+    public float f32651b;
+    public final int f32652c;
     public final ah0 d;
 
     public yg0(ah0 ah0Var, int i10) {
         this.d = ah0Var;
-        this.f32651c = i10;
+        this.f32652c = i10;
     }
 
     @Override
@@ -77,9 +77,9 @@ public final class yg0 extends u20 {
                     if (z11) {
                         t71Var.e(true);
                         t71Var.d(!z10);
-                        long j11 = t71Var.f30470o + 10000;
-                        t71Var.f30470o = j11;
-                        t71Var.f30471p = LocaleController.formatPluralString("Seconds", (int) (j11 / 1000), new Object[0]);
+                        long j11 = t71Var.f30471o + 10000;
+                        t71Var.f30471o = j11;
+                        t71Var.f30472p = LocaleController.formatPluralString("Seconds", (int) (j11 / 1000), new Object[0]);
                         lg0 lg0Var = ah0Var.f24616r;
                         if (lg0Var != null) {
                             lg0Var.i(j10);
@@ -127,8 +127,8 @@ public final class yg0 extends u20 {
                 }
             }
         }
-        this.f32649a = ah0Var.K;
-        this.f32650b = ah0Var.L;
+        this.f32650a = ah0Var.K;
+        this.f32651b = ah0Var.L;
         return true;
     }
 
@@ -171,7 +171,7 @@ public final class yg0 extends u20 {
         ah0 ah0Var = this.d;
         if (!ah0Var.f24618w && ah0Var.F == null && !ah0Var.f24619x) {
             float abs = Math.abs(f7);
-            float f11 = this.f32651c;
+            float f11 = this.f32652c;
             if (abs >= f11 || Math.abs(f10) >= f11) {
                 ah0Var.f24618w = true;
                 ah0Var.M.c();
@@ -183,8 +183,8 @@ public final class yg0 extends u20 {
         }
         if (ah0Var.f24618w) {
             float f12 = ah0Var.K;
-            float rawX = (motionEvent2.getRawX() + this.f32649a) - motionEvent.getRawX();
-            ah0Var.L = (motionEvent2.getRawY() + this.f32650b) - motionEvent.getRawY();
+            float rawX = (motionEvent2.getRawX() + this.f32650a) - motionEvent.getRawX();
+            ah0Var.L = (motionEvent2.getRawY() + this.f32651b) - motionEvent.getRawY();
             int i10 = ah0Var.H;
             if (rawX > (-i10) * 0.25f && rawX < AndroidUtilities.displaySize.x - (i10 * 0.75f)) {
                 boolean z10 = ah0Var.f24605d0;

@@ -18,10 +18,10 @@ public final class sr0 implements Utilities.Callback {
         Uri uri = (Uri) obj;
         switch (this.f41522a) {
             case 0:
-                org.telegram.ui.Components.xc.F(this.f41523b.f43544b.f33278e0, this.f41524c).j();
+                org.telegram.ui.Components.xc.F(this.f41523b.f43544b.f33279e0, this.f41524c).j();
                 return;
             default:
-                org.telegram.ui.Components.xc.F(this.f41523b.f43544b.f33278e0, this.f41524c).j();
+                org.telegram.ui.Components.xc.F(this.f41523b.f43544b.f33279e0, this.f41524c).j();
                 return;
         }
     }

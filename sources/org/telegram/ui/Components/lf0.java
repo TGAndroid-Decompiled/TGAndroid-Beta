@@ -21,11 +21,11 @@ public final class lf0 extends s6 {
     public final void c(Object obj, float f7) {
         switch (this.f28146b) {
             case 0:
-                this.f28147c.f29040r = f7;
+                this.f28147c.f29041r = f7;
                 ((of0) obj).invalidate();
                 return;
             default:
-                this.f28147c.f29039n = f7;
+                this.f28147c.f29040n = f7;
                 ((of0) obj).invalidate();
                 return;
         }
@@ -36,10 +36,10 @@ public final class lf0 extends s6 {
         switch (this.f28146b) {
             case 0:
                 of0 of0Var = (of0) obj;
-                return Float.valueOf(this.f28147c.f29040r);
+                return Float.valueOf(this.f28147c.f29041r);
             default:
                 of0 of0Var2 = (of0) obj;
-                return Float.valueOf(this.f28147c.f29039n);
+                return Float.valueOf(this.f28147c.f29040n);
         }
     }
 }

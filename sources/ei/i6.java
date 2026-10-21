@@ -83,13 +83,13 @@ public final class i6 implements ValueAnimator.AnimatorUpdateListener {
             case 8:
                 org.telegram.ui.Components.voip.q0 q0Var = (org.telegram.ui.Components.voip.q0) obj;
                 q0Var.getClass();
-                q0Var.f31637i = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                q0Var.f31638i = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 return;
             case 9:
                 ah1 ah1Var = (ah1) obj;
                 ah1Var.E = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 int dp = (AndroidUtilities.displaySize.x - AndroidUtilities.dp(36.0f)) - AndroidUtilities.dp(52.0f);
-                org.telegram.ui.Components.voip.z0 z0Var = ah1Var.f31348c;
+                org.telegram.ui.Components.voip.z0 z0Var = ah1Var.f31349c;
                 z0Var.getLayoutParams().width = AndroidUtilities.dp(52.0f) + ((int) (dp * ah1Var.E));
                 z0Var.requestLayout();
                 return;
@@ -108,11 +108,11 @@ public final class i6 implements ValueAnimator.AnimatorUpdateListener {
                 org.telegram.ui.Components.voip.k2 k2Var = (org.telegram.ui.Components.voip.k2) obj;
                 k2Var.getClass();
                 k2Var.v = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                k2Var.f31497b.invalidate();
+                k2Var.f31498b.invalidate();
                 return;
             case 13:
                 ci.g3 g3Var = (ci.g3) obj;
-                ((ci.k4) g3Var.f5416b).f31992a.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                ((ci.k4) g3Var.f5416b).f31993a.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 g3Var.invalidate();
                 return;
             case 14:
@@ -133,7 +133,7 @@ public final class i6 implements ValueAnimator.AnimatorUpdateListener {
                 n0Var.invalidate();
                 return;
             case 16:
-                ((ft0) ((rg.w0) obj)).K.f33278e0.invalidate();
+                ((ft0) ((rg.w0) obj)).K.f33279e0.invalidate();
                 return;
             case 17:
                 rg.r1 r1Var = (rg.r1) obj;

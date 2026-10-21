@@ -3,19 +3,19 @@ package org.telegram.ui.Components;
 import android.animation.ValueAnimator;
 import android.view.View;
 public final class s81 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f30218a;
-    public final e91 f30219b;
+    public final int f30219a;
+    public final e91 f30220b;
 
     public s81(e91 e91Var, int i10) {
-        this.f30218a = i10;
-        this.f30219b = e91Var;
+        this.f30219a = i10;
+        this.f30220b = e91Var;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f30218a) {
+        switch (this.f30219a) {
             case 0:
-                e91 e91Var = this.f30219b;
+                e91 e91Var = this.f30220b;
                 e91Var.getClass();
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 View[] viewArr = e91Var.e;
@@ -43,19 +43,19 @@ public final class s81 implements ValueAnimator.AnimatorUpdateListener {
                 }
                 return;
             case 1:
-                e91 e91Var2 = this.f30219b;
+                e91 e91Var2 = this.f30220b;
                 e91Var2.getClass();
                 e91Var2.R = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 return;
             case 2:
-                e91 e91Var3 = this.f30219b;
+                e91 e91Var3 = this.f30220b;
                 e91Var3.N.onAnimationUpdate(valueAnimator);
                 e91Var3.M.f25391a = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 e91Var3.M.v.f1();
                 e91Var3.M.invalidate();
                 return;
             default:
-                e91 e91Var4 = this.f30219b;
+                e91 e91Var4 = this.f30220b;
                 e91Var4.getClass();
                 e91Var4.R = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 return;

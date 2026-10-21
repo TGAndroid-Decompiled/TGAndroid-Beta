@@ -5,25 +5,25 @@ import android.text.TextWatcher;
 import android.text.style.ImageSpan;
 import org.telegram.messenger.Emoji;
 public final class yn implements TextWatcher {
-    public final xn f32703a;
-    public final int f32704b;
-    public final co f32705c;
+    public final xn f32704a;
+    public final int f32705b;
+    public final co f32706c;
 
     public yn(co coVar, xn xnVar, int i10) {
-        this.f32705c = coVar;
-        this.f32703a = xnVar;
-        this.f32704b = i10;
+        this.f32706c = coVar;
+        this.f32704a = xnVar;
+        this.f32705b = i10;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
         int i10;
-        fo foVar = this.f32705c.d;
-        xn xnVar = this.f32703a;
+        fo foVar = this.f32706c.d;
+        xn xnVar = this.f32704a;
         if (xnVar.getTag() != null) {
             return;
         }
-        int i11 = this.f32704b;
+        int i11 = this.f32705b;
         if (i11 == 11) {
             i10 = foVar.f26307n0;
         } else {

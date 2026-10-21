@@ -91,7 +91,7 @@ public final class wa implements xl0 {
                     int id2 = messageObject.getId();
                     ci.t6 t6Var = rVar.f8054a;
                     ci.r7 a2 = ci.r7.a(rVar.f8057f);
-                    if ((n2Var instanceof ProfileActivity) && ((ProfileActivity) n2Var).f33715t1) {
+                    if ((n2Var instanceof ProfileActivity) && ((ProfileActivity) n2Var).f33716t1) {
                         i11 = AndroidUtilities.dp(68.0f);
                     } else {
                         i11 = 0;
@@ -218,7 +218,7 @@ public final class wa implements xl0 {
                 if (nxVar2 != null) {
                     cy cyVar = nxVar2.f39701a;
                     long longValue2 = ((Long) view.getTag()).longValue();
-                    if (cyVar.f36128l2) {
+                    if (cyVar.f36129l2) {
                         if (cyVar.f5(longValue2)) {
                             if (!cyVar.I2.isEmpty()) {
                                 cyVar.N3(longValue2, cyVar.f3(longValue2, null));
@@ -239,13 +239,13 @@ public final class wa implements xl0 {
                         bundle.putLong("chat_id", -longValue2);
                     }
                     cyVar.H3();
-                    if (AndroidUtilities.isTablet() && cyVar.f36091e0 != null) {
+                    if (AndroidUtilities.isTablet() && cyVar.f36092e0 != null) {
                         int i13 = 0;
                         while (true) {
-                            ay[] ayVarArr = cyVar.f36091e0;
+                            ay[] ayVarArr = cyVar.f36092e0;
                             if (i13 < ayVarArr.length) {
                                 jw jwVar = ayVarArr[i13].d;
-                                cyVar.f36147p2.dialogId = longValue2;
+                                cyVar.f36148p2.dialogId = longValue2;
                                 jwVar.f11973s = longValue2;
                                 i13++;
                             } else {
@@ -253,7 +253,7 @@ public final class wa implements xl0 {
                             }
                         }
                     }
-                    if (cyVar.f36137n2 != null) {
+                    if (cyVar.f36138n2 != null) {
                         if (cyVar.getMessagesController().checkCanOpenChat(bundle, cyVar)) {
                             cyVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeChats, new Object[0]);
                             cyVar.presentFragment(new qn(bundle));
@@ -293,8 +293,8 @@ public final class wa implements xl0 {
                 }
                 if (O instanceof ig.z1) {
                     if (!UserConfig.getInstance(tiVar.M1).isPremium()) {
-                        if (tiVar.f30545f0 != null) {
-                            new sg.y0(tiVar.f30545f0, i0Var.getContext(), tiVar.M1, true, 31, false, null).show();
+                        if (tiVar.f30546f0 != null) {
+                            new sg.y0(tiVar.f30546f0, i0Var.getContext(), tiVar.M1, true, 31, false, null).show();
                             return;
                         }
                         return;

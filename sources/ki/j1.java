@@ -77,7 +77,7 @@ public final class j1 implements View.OnClickListener {
                     d2Var2.A0 = tzVar;
                     tzVar.setVisibility(8);
                     tz tzVar2 = d2Var2.A0;
-                    tzVar2.f30786w2 = false;
+                    tzVar2.f30787w2 = false;
                     tzVar2.setDelegate(new u1(d2Var2));
                     int indexOfChild = d2Var2.O.indexOfChild(d2Var2.f15197a0);
                     if (indexOfChild < 0) {
@@ -257,7 +257,7 @@ public final class j1 implements View.OnClickListener {
                 d2Var7.r0();
                 mi0 mi0Var = d2Var7.O0;
                 if (mi0Var != null) {
-                    mi0Var.h(true);
+                    mi0Var.g(true);
                     d2Var7.O0 = null;
                     return;
                 }

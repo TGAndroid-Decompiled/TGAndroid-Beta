@@ -18,9 +18,9 @@ public final class zy extends wz {
     @Override
     public final int A() {
         tz tzVar = this.Y;
-        s4.g0 adapter = tzVar.f30737h0.getAdapter();
-        yy yyVar = tzVar.f30743j0;
-        if (adapter == yyVar && yyVar.f32764x.isEmpty()) {
+        s4.g0 adapter = tzVar.f30738h0.getAdapter();
+        yy yyVar = tzVar.f30744j0;
+        if (adapter == yyVar && yyVar.f32765x.isEmpty()) {
             return 0;
         }
         return B() - 1;
@@ -31,16 +31,16 @@ public final class zy extends wz {
         ArrayList<TLRPC.DocumentAttribute> arrayList;
         TLRPC.Document document;
         tz tzVar = this.Y;
-        yy yyVar = tzVar.f30743j0;
-        s4.g0 adapter = tzVar.f30737h0.getAdapter();
-        yy yyVar2 = tzVar.f30754n0;
+        yy yyVar = tzVar.f30744j0;
+        s4.g0 adapter = tzVar.f30738h0.getAdapter();
+        yy yyVar2 = tzVar.f30755n0;
         TLRPC.Document document2 = null;
         r4 = null;
         ArrayList<TLRPC.DocumentAttribute> arrayList2 = null;
         if (adapter == yyVar2) {
             int i11 = yyVar2.H;
             if (i10 > i11) {
-                TLRPC.BotInlineResult botInlineResult = (TLRPC.BotInlineResult) yyVar2.f32764x.get((i10 - i11) - 1);
+                TLRPC.BotInlineResult botInlineResult = (TLRPC.BotInlineResult) yyVar2.f32765x.get((i10 - i11) - 1);
                 document = botInlineResult.document;
                 if (document != null) {
                     arrayList2 = document.attributes;
@@ -61,12 +61,12 @@ public final class zy extends wz {
             } else if (i10 == i11) {
                 return null;
             } else {
-                document2 = (TLRPC.Document) tzVar.f30741i1.get(i10);
+                document2 = (TLRPC.Document) tzVar.f30742i1.get(i10);
                 arrayList = document2.attributes;
                 return F1(document2, arrayList);
             }
-        } else if (!yyVar.f32764x.isEmpty()) {
-            TLRPC.BotInlineResult botInlineResult2 = (TLRPC.BotInlineResult) yyVar.f32764x.get(i10);
+        } else if (!yyVar.f32765x.isEmpty()) {
+            TLRPC.BotInlineResult botInlineResult2 = (TLRPC.BotInlineResult) yyVar.f32765x.get(i10);
             document = botInlineResult2.document;
             if (document != null) {
                 arrayList2 = document.attributes;

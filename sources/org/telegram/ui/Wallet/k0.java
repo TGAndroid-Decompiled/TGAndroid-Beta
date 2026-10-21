@@ -10,32 +10,32 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_wallet;
 public final class k0 implements Utilities.Callback2 {
-    public final int f34411a;
-    public final l0 f34412b;
-    public final TL_wallet.getTransactions f34413c;
+    public final int f34412a;
+    public final l0 f34413b;
+    public final TL_wallet.getTransactions f34414c;
 
     public k0(l0 l0Var, TL_wallet.getTransactions gettransactions, int i10) {
-        this.f34411a = i10;
-        this.f34412b = l0Var;
-        this.f34413c = gettransactions;
+        this.f34412a = i10;
+        this.f34413b = l0Var;
+        this.f34414c = gettransactions;
     }
 
     @Override
     public final void run(Object obj, Object obj2) {
         boolean z10;
         boolean z11;
-        switch (this.f34411a) {
+        switch (this.f34412a) {
             case 0:
-                l0 l0Var = this.f34412b;
-                HashMap hashMap = l0Var.f34449f;
+                l0 l0Var = this.f34413b;
+                HashMap hashMap = l0Var.f34450f;
                 HashSet hashSet = l0Var.d;
                 TL_wallet.walletTransactions wallettransactions = (TL_wallet.walletTransactions) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                int i10 = l0Var.f34454l.f34476a;
-                ArrayList arrayList = l0Var.f34447b;
-                l0Var.f34452j = -1;
+                int i10 = l0Var.f34455l.f34477a;
+                ArrayList arrayList = l0Var.f34448b;
+                l0Var.f34453j = -1;
                 boolean z12 = false;
-                l0Var.f34451i = false;
+                l0Var.f34452i = false;
                 if (wallettransactions != null) {
                     MessagesController.getInstance(i10).putUsers(wallettransactions.users, false);
                     MessagesController.getInstance(i10).putChats(wallettransactions.chats, false);
@@ -119,8 +119,8 @@ public final class k0 implements Utilities.Callback2 {
                                     l0Var.f(wallettransaction5);
                                 }
                             }
-                            l0Var.f34450g = wallettransactions.next_offset;
-                            if (wallettransactions.transactions.size() < this.f34413c.limit) {
+                            l0Var.f34451g = wallettransactions.next_offset;
+                            if (wallettransactions.transactions.size() < this.f34414c.limit) {
                                 z12 = true;
                             }
                             l0Var.h = z12;
@@ -137,9 +137,9 @@ public final class k0 implements Utilities.Callback2 {
             default:
                 TL_wallet.walletTransactions wallettransactions2 = (TL_wallet.walletTransactions) obj;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
-                l0 l0Var2 = this.f34412b;
-                int i15 = l0Var2.f34454l.f34476a;
-                l0Var2.f34453k = -1;
+                l0 l0Var2 = this.f34413b;
+                int i15 = l0Var2.f34455l.f34477a;
+                l0Var2.f34454k = -1;
                 if (wallettransactions2 != null) {
                     int i16 = 0;
                     MessagesController.getInstance(i15).putUsers(wallettransactions2.users, false);
@@ -159,12 +159,12 @@ public final class k0 implements Utilities.Callback2 {
                                     c11.f20535id = wallettransaction7.f20535id;
                                 }
                             } else {
-                                l0Var2.f34447b.add(wallettransaction7);
+                                l0Var2.f34448b.add(wallettransaction7);
                             }
                         }
                     }
-                    l0Var2.f34450g = wallettransactions2.next_offset;
-                    if (wallettransactions2.transactions.size() < this.f34413c.limit) {
+                    l0Var2.f34451g = wallettransactions2.next_offset;
+                    if (wallettransactions2.transactions.size() < this.f34414c.limit) {
                         l0Var2.h = true;
                     }
                 } else {

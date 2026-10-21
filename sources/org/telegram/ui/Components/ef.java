@@ -27,12 +27,12 @@ public final class ef extends sp0 {
         this.f21578f = -1L;
         this.f21581j = new AnimationNotificationsLocker();
         e();
-        this.f30338z = new ArrayList();
+        this.f30339z = new ArrayList();
         this.G = new ArrayList();
-        this.f30331r = peer;
-        this.f30332s = tL_channels_sendAsPeers;
+        this.f30332r = peer;
+        this.f30333s = tL_channels_sendAsPeers;
         ah.x xVar = new ah.x(this, context, 21);
-        this.f30333t = xVar;
+        this.f30334t = xVar;
         xVar.setLayoutParams(w7.z5.c(-2.0f, -2));
         setContentView(xVar);
         setWidth(-2);
@@ -52,10 +52,10 @@ public final class ef extends sp0 {
         }
         int i10 = (int) (width * 0.75f);
         mp0 mp0Var = new mp0(context, i10, dp);
-        this.f30328o = mp0Var;
+        this.f30329o = mp0Var;
         mp0Var.setOrientation(1);
         TextView textView = new TextView(context);
-        this.f30329p = textView;
+        this.f30330p = textView;
         org.telegram.messenger.mk.o(org.telegram.ui.ActionBar.h6.f21152m5, d6Var, textView, 1, 16.0f);
         textView.setText(LocaleController.getString(R.string.SendMessageAsTitle));
         textView.setTypeface(AndroidUtilities.bold(), 1);
@@ -67,7 +67,7 @@ public final class ef extends sp0 {
         jm0 jm0Var = new jm0(context, null);
         this.v = jm0Var;
         s4.b0 b0Var = new s4.b0();
-        this.f30335w = b0Var;
+        this.f30336w = b0Var;
         jm0Var.setLayoutManager(b0Var);
         jm0Var.setAdapter(new np0(d6Var, arrayList, messagesController, i10, peer));
         jm0Var.j(new op0(this));
@@ -80,7 +80,7 @@ public final class ef extends sp0 {
         jm0Var.setOverScrollMode(2);
         frameLayout.addView(jm0Var);
         View view = new View(context);
-        this.f30334u = view;
+        this.f30335u = view;
         Drawable drawable = context.getDrawable(R.drawable.header_shadow);
         drawable.setAlpha(153);
         view.setBackground(drawable);
@@ -92,7 +92,7 @@ public final class ef extends sp0 {
 
     @Override
     public final void dismiss() {
-        ArrayList arrayList = this.f30338z;
+        ArrayList arrayList = this.f30339z;
         ChatActivityEnterView chatActivityEnterView = this.H;
         if (chatActivityEnterView.f24003q0 != this) {
             super.dismiss();
@@ -100,7 +100,7 @@ public final class ef extends sp0 {
         }
         chatActivityEnterView.f24003q0 = null;
         int i10 = 0;
-        if (!this.f30330q) {
+        if (!this.f30331q) {
             l(new o1.k[0]);
             chatActivityEnterView.f23998p0.a(true, true, 0.0f);
             return;

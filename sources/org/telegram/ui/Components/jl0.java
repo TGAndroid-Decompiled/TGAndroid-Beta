@@ -29,7 +29,7 @@ public final class jl0 implements View.OnLayoutChangeListener {
         long min;
         View view2;
         ml0 ml0Var = this.e;
-        HashMap hashMap = (HashMap) ml0Var.f28549k;
+        HashMap hashMap = (HashMap) ml0Var.f28550k;
         jm0 jm0Var = (jm0) ml0Var.e;
         jm0Var.removeOnLayoutChangeListener(this);
         final ArrayList arrayList2 = new ArrayList();
@@ -57,7 +57,7 @@ public final class jl0 implements View.OnLayoutChangeListener {
                 ((org.telegram.ui.Cells.n4) childAt).e(true, false);
             }
             s4.g0 g0Var = this.f27549a;
-            if (g0Var != null && (g0Var.f45963b || ml0Var.f28544c)) {
+            if (g0Var != null && (g0Var.f45963b || ml0Var.f28545c)) {
                 jm0Var.getClass();
                 long i24 = g0Var.i(RecyclerView.R(childAt));
                 if (hashMap.containsKey(Long.valueOf(i24)) && (view2 = (View) hashMap.get(Long.valueOf(i24))) != null) {
@@ -65,7 +65,7 @@ public final class jl0 implements View.OnLayoutChangeListener {
                         ((org.telegram.ui.Cells.n4) view2).e(false, false);
                     }
                     arrayList.remove(view2);
-                    w7.a6 a6Var = (w7.a6) ml0Var.f28547i;
+                    w7.a6 a6Var = (w7.a6) ml0Var.f28548i;
                     if (a6Var != null) {
                         a6Var.d(view2);
                     }
@@ -97,7 +97,7 @@ public final class jl0 implements View.OnLayoutChangeListener {
             }
             if (view3.getParent() == null) {
                 jm0Var.addView(view3);
-                ((s4.b0) ml0Var.f28545f).M(view3);
+                ((s4.b0) ml0Var.f28546f).M(view3);
             }
             if (view3 instanceof org.telegram.ui.Cells.n4) {
                 ((org.telegram.ui.Cells.n4) view3).e(true, true);
@@ -108,7 +108,7 @@ public final class jl0 implements View.OnLayoutChangeListener {
         } else {
             i18 = i27;
         }
-        w7.a6 a6Var2 = (w7.a6) ml0Var.f28547i;
+        w7.a6 a6Var2 = (w7.a6) ml0Var.f28548i;
         if (a6Var2 != null) {
             a6Var2.b();
         }
@@ -127,13 +127,13 @@ public final class jl0 implements View.OnLayoutChangeListener {
             i19 = height + i25;
         }
         final int paddingBottom = jm0Var.getPaddingBottom();
-        ValueAnimator valueAnimator = (ValueAnimator) ml0Var.f28546g;
+        ValueAnimator valueAnimator = (ValueAnimator) ml0Var.f28547g;
         if (valueAnimator != null) {
             valueAnimator.removeAllListeners();
-            ((ValueAnimator) ml0Var.f28546g).cancel();
+            ((ValueAnimator) ml0Var.f28547g).cancel();
         }
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-        ml0Var.f28546g = ofFloat;
+        ml0Var.f28547g = ofFloat;
         final boolean z12 = this.f27551c;
         final int i28 = i19;
         ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -182,19 +182,19 @@ public final class jl0 implements View.OnLayoutChangeListener {
                 }
             }
         });
-        ((ValueAnimator) ml0Var.f28546g).addListener(new ai.me(29, this, arrayList2));
+        ((ValueAnimator) ml0Var.f28547g).addListener(new ai.me(29, this, arrayList2));
         long j10 = 300;
         if (ml0Var.d) {
             if (z10) {
-                ((ValueAnimator) ml0Var.f28546g).setDuration(150L);
-                ((ValueAnimator) ml0Var.f28546g).setInterpolator(bs.f25022g);
+                ((ValueAnimator) ml0Var.f28547g).setDuration(150L);
+                ((ValueAnimator) ml0Var.f28547g).setInterpolator(bs.f25022g);
             } else {
                 long measuredHeight = ((i28 / jm0Var.getMeasuredHeight()) + 1.0f) * 200.0f;
                 if (measuredHeight >= 300) {
                     j10 = measuredHeight;
                 }
-                ((ValueAnimator) ml0Var.f28546g).setDuration(Math.min(j10, 1300L));
-                ((ValueAnimator) ml0Var.f28546g).setInterpolator(bs.h);
+                ((ValueAnimator) ml0Var.f28547g).setDuration(Math.min(j10, 1300L));
+                ((ValueAnimator) ml0Var.f28547g).setInterpolator(bs.h);
             }
         } else {
             if (z10) {
@@ -206,9 +206,9 @@ public final class jl0 implements View.OnLayoutChangeListener {
                 }
                 min = Math.min(j10, 1300L);
             }
-            ((ValueAnimator) ml0Var.f28546g).setDuration(min);
-            ((ValueAnimator) ml0Var.f28546g).setInterpolator(bs.h);
+            ((ValueAnimator) ml0Var.f28547g).setDuration(min);
+            ((ValueAnimator) ml0Var.f28547g).setInterpolator(bs.h);
         }
-        ((ValueAnimator) ml0Var.f28546g).start();
+        ((ValueAnimator) ml0Var.f28547g).start();
     }
 }

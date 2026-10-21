@@ -14,19 +14,19 @@ import android.widget.FrameLayout;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
 public final class ea extends org.telegram.ui.ActionBar.j {
-    public final int f36610a;
-    public final Object f36611b;
+    public final int f36611a;
+    public final Object f36612b;
 
     public ea(Object obj, int i10) {
-        this.f36610a = i10;
-        this.f36611b = obj;
+        this.f36611a = i10;
+        this.f36612b = obj;
     }
 
     @Override
     public final void b(int i10) {
         Runnable runnable;
-        int i11 = this.f36610a;
-        Object obj = this.f36611b;
+        int i11 = this.f36611a;
+        Object obj = this.f36612b;
         switch (i11) {
             case 0:
                 sa saVar = (sa) obj;
@@ -49,7 +49,7 @@ public final class ea extends org.telegram.ui.ActionBar.j {
             case 2:
                 bd bdVar = (bd) obj;
                 if (i10 == -1) {
-                    if (bdVar.f35574b >= bdVar.S0() && bdVar.Q0()) {
+                    if (bdVar.f35575b >= bdVar.S0() && bdVar.Q0()) {
                         bdVar.V0();
                         return;
                     } else {
@@ -78,14 +78,14 @@ public final class ea extends org.telegram.ui.ActionBar.j {
                     lc lcVar = new lc(bdVar, bdVar.getParentActivity(), canvas, (bdVar.L.getMeasuredWidth() / 2.0f) + f7, (bdVar.L.getMeasuredHeight() / 2.0f) + f10, max, paint, createBitmap, paint2, f7, f10, 0);
                     bdVar.m0 = lcVar;
                     lcVar.setOnTouchListener(new di.d(2));
-                    bdVar.f35589n0 = 0.0f;
+                    bdVar.f35590n0 = 0.0f;
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                    bdVar.f35590o0 = ofFloat;
+                    bdVar.f35591o0 = ofFloat;
                     ofFloat.addUpdateListener(new ei.eb(bdVar, 1));
-                    bdVar.f35590o0.addListener(new m.a(bdVar, 22));
-                    bdVar.f35590o0.setDuration(400L);
-                    bdVar.f35590o0.setInterpolator(org.telegram.ui.Components.st.e);
-                    bdVar.f35590o0.start();
+                    bdVar.f35591o0.addListener(new m.a(bdVar, 22));
+                    bdVar.f35591o0.setDuration(400L);
+                    bdVar.f35591o0.setInterpolator(org.telegram.ui.Components.st.e);
+                    bdVar.f35591o0.start();
                     frameLayout.addView(bdVar.m0, new ViewGroup.LayoutParams(-1, -1));
                     AndroidUtilities.runOnUIThread(new gc(bdVar, 0));
                     return;
@@ -275,12 +275,12 @@ public final class ea extends org.telegram.ui.ActionBar.j {
                         lzVar.c0();
                         return;
                     } else if (Math.abs(lzVar.T - 0.5f) < 0.1f) {
-                        for (int i12 = 0; i12 < lzVar.f39054a.getChildCount(); i12++) {
-                            View childAt = lzVar.f39054a.getChildAt(i12);
-                            lzVar.f39054a.getClass();
+                        for (int i12 = 0; i12 < lzVar.f39055a.getChildCount(); i12++) {
+                            View childAt = lzVar.f39055a.getChildAt(i12);
+                            lzVar.f39055a.getClass();
                             if (RecyclerView.R(childAt) == lzVar.L && (childAt instanceof org.telegram.ui.Components.h10)) {
-                                int i13 = -lzVar.f39060s;
-                                lzVar.f39060s = i13;
+                                int i13 = -lzVar.f39061s;
+                                lzVar.f39061s = i13;
                                 AndroidUtilities.shakeViewSpring(childAt, i13);
                                 return;
                             }

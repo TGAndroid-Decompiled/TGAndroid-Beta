@@ -55,7 +55,7 @@ public final class l2 extends FrameLayout implements NotificationCenter.Notifica
         this.f50367c = d6Var;
         g2 g2Var = new g2(context, i10, new hg.o(this, 28), new f2(this), new f2(this), d6Var, ks0Var);
         this.f50368f = g2Var;
-        g2Var.W2.f30860r = false;
+        g2Var.W2.f30861r = false;
         g2Var.setSelectorType(9);
         g2Var.setSelectorDrawableColor(0);
         g2Var.setPadding(AndroidUtilities.dp(9.0f), ks0Var.K, AndroidUtilities.dp(9.0f), AndroidUtilities.dp(86.0f));

@@ -22,7 +22,7 @@ public final class kk extends AnimatorListenerAdapter {
                 View view = oqVar.f39957b;
                 view.setAlpha(1.0f);
                 s4.n0.x0(view);
-                ((mk) oqVar.d).X.f28822r.removeView(view);
+                ((mk) oqVar.d).X.f28823r.removeView(view);
                 return;
         }
     }

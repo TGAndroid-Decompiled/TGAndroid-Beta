@@ -7,39 +7,39 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class vk implements Runnable {
-    public final int f19817a = 0;
-    public final boolean f19818b;
-    public final long f19819c;
+    public final int f19814a = 0;
+    public final boolean f19815b;
+    public final long f19816c;
     public final BaseController d;
     public final Object e;
-    public final Object f19820f;
+    public final Object f19817f;
     public final Object h;
-    public final Object f19821n;
+    public final Object f19818n;
 
     public vk(long j10, Set set, TranslateController.PendingTranslation pendingTranslation, TranslateController translateController, TLObject tLObject, TLRPC.TL_error tL_error, boolean z10) {
         this.d = translateController;
         this.e = pendingTranslation;
-        this.f19820f = tLObject;
-        this.f19818b = z10;
+        this.f19817f = tLObject;
+        this.f19815b = z10;
         this.h = tL_error;
-        this.f19819c = j10;
-        this.f19821n = set;
+        this.f19816c = j10;
+        this.f19818n = set;
     }
 
     @Override
     public final void run() {
-        switch (this.f19817a) {
+        switch (this.f19814a) {
             case 0:
-                long j10 = this.f19819c;
-                ((TranslateController) this.d).lambda$pushToTranslate$22((TranslateController.PendingTranslation) this.e, (TLObject) this.f19820f, this.f19818b, (TLRPC.TL_error) this.h, j10, (Set) this.f19821n);
+                long j10 = this.f19816c;
+                ((TranslateController) this.d).lambda$pushToTranslate$22((TranslateController.PendingTranslation) this.e, (TLObject) this.f19817f, this.f19815b, (TLRPC.TL_error) this.h, j10, (Set) this.f19818n);
                 return;
             case 1:
-                long j11 = this.f19819c;
-                ((MediaDataController) this.d).lambda$broadcastReplyMessages$179((ArrayList) this.e, this.f19818b, (ArrayList) this.f19820f, (ArrayList) this.h, (a0.h) this.f19821n, j11);
+                long j11 = this.f19816c;
+                ((MediaDataController) this.d).lambda$broadcastReplyMessages$179((ArrayList) this.e, this.f19815b, (ArrayList) this.f19817f, (ArrayList) this.h, (a0.h) this.f19818n, j11);
                 return;
             default:
-                long j12 = this.f19819c;
-                ((MemberRequestsController) this.d).lambda$getImporters$0((TLRPC.TL_error) this.h, (TLObject) this.f19820f, (TLRPC.TL_chatInviteImporter) this.e, this.f19818b, j12, (RequestDelegate) this.f19821n);
+                long j12 = this.f19816c;
+                ((MemberRequestsController) this.d).lambda$getImporters$0((TLRPC.TL_error) this.h, (TLObject) this.f19817f, (TLRPC.TL_chatInviteImporter) this.e, this.f19815b, j12, (RequestDelegate) this.f19818n);
                 return;
         }
     }
@@ -47,20 +47,20 @@ public final class vk implements Runnable {
     public vk(long j10, MemberRequestsController memberRequestsController, RequestDelegate requestDelegate, TLObject tLObject, TLRPC.TL_chatInviteImporter tL_chatInviteImporter, TLRPC.TL_error tL_error, boolean z10) {
         this.d = memberRequestsController;
         this.h = tL_error;
-        this.f19820f = tLObject;
+        this.f19817f = tLObject;
         this.e = tL_chatInviteImporter;
-        this.f19818b = z10;
-        this.f19819c = j10;
-        this.f19821n = requestDelegate;
+        this.f19815b = z10;
+        this.f19816c = j10;
+        this.f19818n = requestDelegate;
     }
 
     public vk(MediaDataController mediaDataController, ArrayList arrayList, boolean z10, ArrayList arrayList2, ArrayList arrayList3, a0.h hVar, long j10) {
         this.d = mediaDataController;
         this.e = arrayList;
-        this.f19818b = z10;
-        this.f19820f = arrayList2;
+        this.f19815b = z10;
+        this.f19817f = arrayList2;
         this.h = arrayList3;
-        this.f19821n = hVar;
-        this.f19819c = j10;
+        this.f19818n = hVar;
+        this.f19816c = j10;
     }
 }

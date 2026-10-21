@@ -15,12 +15,12 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 public final class u00 extends im0 {
-    public final Context f30806c;
+    public final Context f30807c;
     public final v00 d;
 
     public u00(v00 v00Var, Activity activity) {
         this.d = v00Var;
-        this.f30806c = activity;
+        this.f30807c = activity;
     }
 
     @Override
@@ -30,7 +30,7 @@ public final class u00 extends im0 {
 
     @Override
     public final int h() {
-        int size = this.d.f31104s.size();
+        int size = this.d.f31105s.size();
         if (size < 10) {
             return size + 1;
         }
@@ -48,7 +48,7 @@ public final class u00 extends im0 {
         org.telegram.ui.ActionBar.y2 y2Var = (org.telegram.ui.ActionBar.y2) b1Var.f45917a;
         v00 v00Var = this.d;
         ArrayList arrayList = v00Var.v;
-        ArrayList arrayList2 = v00Var.f31104s;
+        ArrayList arrayList2 = v00Var.f31105s;
         if (i10 < arrayList2.size()) {
             y2Var.getImageView().setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.J5, false), PorterDuff.Mode.MULTIPLY));
             MessagesController.DialogFilter dialogFilter = (MessagesController.DialogFilter) arrayList2.get(i10);
@@ -87,7 +87,7 @@ public final class u00 extends im0 {
             return;
         }
         y2Var.getImageView().setColorFilter((ColorFilter) null);
-        Context context = this.f30806c;
+        Context context = this.f30807c;
         Drawable drawable = context.getResources().getDrawable(R.drawable.poll_add_circle);
         Drawable drawable2 = context.getResources().getDrawable(R.drawable.poll_add_plus);
         int x02 = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.N6, false);
@@ -101,7 +101,7 @@ public final class u00 extends im0 {
 
     @Override
     public final s4.b1 x(ViewGroup viewGroup, int i10) {
-        org.telegram.ui.ActionBar.y2 y2Var = new org.telegram.ui.ActionBar.y2(this.f30806c, 0, null);
+        org.telegram.ui.ActionBar.y2 y2Var = new org.telegram.ui.ActionBar.y2(this.f30807c, 0, null);
         y2Var.setBackground(null);
         y2Var.setLayoutParams(new s4.o0(-1, -2));
         return new s4.b1(y2Var);

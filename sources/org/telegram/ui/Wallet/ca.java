@@ -28,14 +28,14 @@ import org.telegram.ui.Components.w61;
 import org.telegram.ui.Components.x61;
 public final class ca extends x61 implements NotificationCenter.NotificationCenterDelegate {
     public static void Y(ca caVar, TL_wallet.tonConnectSession tonconnectsession, Utilities.Callback callback) {
-        f2 f2Var = m0.w(caVar.currentAccount).f34480g;
+        f2 f2Var = m0.w(caVar.currentAccount).f34481g;
         f2Var.getClass();
         AndroidUtilities.runOnUIThread(new h(f2Var, tonconnectsession, callback, 4));
     }
 
     @Override
     public final void U(ArrayList arrayList, u61 u61Var) {
-        f2 f2Var = m0.w(this.currentAccount).f34480g;
+        f2 f2Var = m0.w(this.currentAccount).f34481g;
         if (!f2Var.d.isEmpty()) {
             i2.e.p(R.string.WalletActiveConnections, arrayList);
         }
@@ -45,7 +45,7 @@ public final class ca extends x61 implements NotificationCenter.NotificationCent
         while (i10 < size) {
             Object obj = arrayList2.get(i10);
             i10++;
-            int i11 = aa.f34008a;
+            int i11 = aa.f34009a;
             h61 J = h61.J(aa.class);
             J.G = (TL_wallet.tonConnectSession) obj;
             arrayList.add(J);
@@ -140,16 +140,16 @@ public final class ca extends x61 implements NotificationCenter.NotificationCent
     @Override
     public final View createView(Context context) {
         this.fragmentView = super.createView(context);
-        this.actionBar.setAdaptiveBackground(this.f32355a);
-        this.f32355a.p1();
-        this.f32355a.setClipToPadding(false);
+        this.actionBar.setAdaptiveBackground(this.f32356a);
+        this.f32356a.p1();
+        this.f32356a.setClipToPadding(false);
         return this.fragmentView;
     }
 
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         w61 w61Var;
-        if (i10 == NotificationCenter.walletUpdate && (w61Var = this.f32355a) != null) {
+        if (i10 == NotificationCenter.walletUpdate && (w61Var = this.f32356a) != null) {
             w61Var.W2.N(true);
         }
     }
@@ -173,7 +173,7 @@ public final class ca extends x61 implements NotificationCenter.NotificationCent
 
     @Override
     public final void onInsets(int i10, int i11, int i12, int i13) {
-        this.f32355a.setPadding(0, 0, 0, i13);
-        this.f32355a.setClipToPadding(false);
+        this.f32356a.setPadding(0, 0, 0, i13);
+        this.f32356a.setClipToPadding(false);
     }
 }

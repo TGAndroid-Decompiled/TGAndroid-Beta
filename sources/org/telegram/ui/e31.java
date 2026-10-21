@@ -32,12 +32,12 @@ public final class e31 extends pg.b {
 
     @Override
     public final int h() {
-        return this.d.f33781s.size();
+        return this.d.f33782s.size();
     }
 
     @Override
     public final int j(int i10) {
-        return ((f31) this.d.f33781s.get(i10)).f44296a;
+        return ((f31) this.d.f33782s.get(i10)).f44296a;
     }
 
     @Override
@@ -46,7 +46,7 @@ public final class e31 extends pg.b {
         int i11;
         View view = b1Var.f45917a;
         SaveToGallerySettingsActivity saveToGallerySettingsActivity = this.d;
-        ArrayList arrayList = saveToGallerySettingsActivity.f33781s;
+        ArrayList arrayList = saveToGallerySettingsActivity.f33782s;
         boolean z10 = false;
         if (((f31) arrayList.get(i10)).f44296a == 1) {
             org.telegram.ui.Cells.q8 q8Var = (org.telegram.ui.Cells.q8) view;
@@ -68,11 +68,11 @@ public final class e31 extends pg.b {
             org.telegram.ui.Cells.d9 d9Var = (org.telegram.ui.Cells.d9) view;
             if (i10 == saveToGallerySettingsActivity.h) {
                 long j10 = saveToGallerySettingsActivity.X().limitVideo;
-                if (saveToGallerySettingsActivity.f33777c != null) {
+                if (saveToGallerySettingsActivity.f33778c != null) {
                     d9Var.setText(LocaleController.formatString("SaveToGalleryVideoHintCurrent", R.string.SaveToGalleryVideoHintCurrent, new Object[0]));
                     return;
                 }
-                int i12 = saveToGallerySettingsActivity.f33775a;
+                int i12 = saveToGallerySettingsActivity.f33776a;
                 if (i12 == 1) {
                     d9Var.setText(LocaleController.formatString("SaveToGalleryVideoHintUser", R.string.SaveToGalleryVideoHintUser, new Object[0]));
                     return;
@@ -91,7 +91,7 @@ public final class e31 extends pg.b {
             ((org.telegram.ui.Cells.l4) view).setText(((f31) arrayList.get(i10)).d);
         } else if (((f31) arrayList.get(i10)).f44296a == 2) {
             org.telegram.ui.Cells.va vaVar = (org.telegram.ui.Cells.va) view;
-            SaveToGallerySettingsHelper.DialogException dialogException = ((f31) arrayList.get(i10)).f36887c;
+            SaveToGallerySettingsHelper.DialogException dialogException = ((f31) arrayList.get(i10)).f36888c;
             TLObject userOrChat = saveToGallerySettingsActivity.getMessagesController().getUserOrChat(dialogException.dialogId);
             if (userOrChat instanceof TLRPC.User) {
                 TLRPC.User user = (TLRPC.User) userOrChat;
@@ -203,12 +203,12 @@ public final class e31 extends pg.b {
                 break;
             case 9:
                 org.telegram.ui.Cells.ua uaVar2 = new org.telegram.ui.Cells.ua(saveToGallerySettingsActivity.getParentActivity(), saveToGallerySettingsActivity.getResourceProvider());
-                if (DialogObject.isUserDialog(saveToGallerySettingsActivity.f33776b)) {
+                if (DialogObject.isUserDialog(saveToGallerySettingsActivity.f33777b)) {
                     i12 = ((org.telegram.ui.ActionBar.n2) saveToGallerySettingsActivity).currentAccount;
-                    chat = MessagesController.getInstance(i12).getUser(Long.valueOf(saveToGallerySettingsActivity.f33776b));
+                    chat = MessagesController.getInstance(i12).getUser(Long.valueOf(saveToGallerySettingsActivity.f33777b));
                 } else {
                     i11 = ((org.telegram.ui.ActionBar.n2) saveToGallerySettingsActivity).currentAccount;
-                    chat = MessagesController.getInstance(i11).getChat(Long.valueOf(-saveToGallerySettingsActivity.f33776b));
+                    chat = MessagesController.getInstance(i11).getChat(Long.valueOf(-saveToGallerySettingsActivity.f33777b));
                 }
                 uaVar2.a(chat, null);
                 uaVar2.setBackgroundColor(saveToGallerySettingsActivity.getThemedColor(org.telegram.ui.ActionBar.h6.f20990d6));

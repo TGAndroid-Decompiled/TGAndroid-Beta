@@ -91,7 +91,7 @@ public final class fm extends nm {
         chatAttachAlertPhotoLayout.f24118t0 = false;
         if (ChatAttachAlertPhotoLayout.f24077q1) {
             ti tiVar = chatAttachAlertPhotoLayout.f28173b;
-            tiVar.f30537c2.b0(0, true, true, 0, 0, 0L, tiVar.u1(), false, 0L);
+            tiVar.f30538c2.b0(0, true, true, 0, 0, 0L, tiVar.u1(), false, 0L);
             return;
         }
         if (!chatAttachAlertPhotoLayout.f24084b0) {
@@ -111,7 +111,7 @@ public final class fm extends nm {
             if (videoEditedInfo != null && i10 >= 0 && i10 < arrayList.size()) {
                 ((MediaController.PhotoEntry) arrayList.get(i10)).editedInfo = videoEditedInfo;
             }
-            org.telegram.ui.ActionBar.n2 n2Var = tiVar.f30545f0;
+            org.telegram.ui.ActionBar.n2 n2Var = tiVar.f30546f0;
             if (!(n2Var instanceof org.telegram.ui.qn) || !((org.telegram.ui.qn) n2Var).x()) {
                 int size = arrayList.size();
                 for (int i13 = 0; i13 < size; i13++) {
@@ -124,7 +124,7 @@ public final class fm extends nm {
             tiVar.a1();
             PhotoViewer.u1();
             PhotoViewer.u1().O = false;
-            PhotoViewer.u1().f33421u2 = false;
+            PhotoViewer.u1().f33422u2 = false;
             f5.Z(tiVar.M1, tiVar.l1() + ChatAttachAlertPhotoLayout.f24079s1.size(), tiVar.p1(), new am(this, z11, z10, i11));
         }
     }

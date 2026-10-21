@@ -761,7 +761,7 @@ public class LocationController extends BaseController implements NotificationCe
         this.sharingLocations.add(sharingLocationInfo);
         saveSharingLocation(sharingLocationInfo, 0);
         this.lastLocationSendTime = SystemClock.elapsedRealtime() - 25000;
-        AndroidUtilities.runOnUIThread(new h0(this, sharingLocationInfo2, sharingLocationInfo, 26));
+        AndroidUtilities.runOnUIThread(new h0(this, sharingLocationInfo2, sharingLocationInfo, 27));
     }
 
     public void cleanup() {

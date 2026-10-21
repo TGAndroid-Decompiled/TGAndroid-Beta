@@ -10,12 +10,12 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 public final class kf implements Runnable {
-    public final int f38592a;
-    public final qn f38593b;
+    public final int f38593a;
+    public final qn f38594b;
 
     public kf(qn qnVar, int i10) {
-        this.f38592a = i10;
-        this.f38593b = qnVar;
+        this.f38593a = i10;
+        this.f38594b = qnVar;
     }
 
     @Override
@@ -24,8 +24,8 @@ public final class kf implements Runnable {
         fk fkVar;
         View sendButton;
         View sendButton2;
-        int i10 = this.f38592a;
-        qn qnVar = this.f38593b;
+        int i10 = this.f38593a;
+        qn qnVar = this.f38594b;
         switch (i10) {
             case 0:
                 qnVar.D7(true);
@@ -194,7 +194,7 @@ public final class kf implements Runnable {
                     ObjectAnimator ofFloat = ObjectAnimator.ofFloat(cameraContainer, View.SCALE_X, 0.5f);
                     ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(cameraContainer, View.SCALE_Y, 0.5f);
                     Property property = View.ALPHA;
-                    animatorSet.playTogether(ofFloat, ofFloat2, ObjectAnimator.ofFloat(cameraContainer, property, 0.0f), ObjectAnimator.ofFloat(qnVar.f40628b3.getButtonsLayout(), property, 0.0f), ObjectAnimator.ofInt(qnVar.f40628b3.getPaint(), org.telegram.ui.Components.t6.f30444b, 0), ObjectAnimator.ofFloat(qnVar.f40628b3.getMuteImageView(), property, 0.0f));
+                    animatorSet.playTogether(ofFloat, ofFloat2, ObjectAnimator.ofFloat(cameraContainer, property, 0.0f), ObjectAnimator.ofFloat(qnVar.f40628b3.getButtonsLayout(), property, 0.0f), ObjectAnimator.ofInt(qnVar.f40628b3.getPaint(), org.telegram.ui.Components.t6.f30445b, 0), ObjectAnimator.ofFloat(qnVar.f40628b3.getMuteImageView(), property, 0.0f));
                     animatorSet.addListener(new oi(qnVar, 0));
                     animatorSet.start();
                     return;

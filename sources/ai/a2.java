@@ -523,7 +523,7 @@ public final class a2 extends org.telegram.ui.Components.bb {
     public final im0 x(jm0 jm0Var) {
         t1 t1Var = new t1(this, this.d, getContext(), this.X, new q(this, 3), this.resourcesProvider);
         this.f935k0 = t1Var;
-        t1Var.f30860r = false;
+        t1Var.f30861r = false;
         return t1Var;
     }
 

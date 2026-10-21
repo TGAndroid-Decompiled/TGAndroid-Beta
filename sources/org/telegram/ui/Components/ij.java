@@ -21,10 +21,10 @@ public final class ij extends li {
     public final void F(li liVar) {
         ti tiVar = this.f28173b;
         try {
-            tiVar.f30529a1.getTitleTextView().setBuildFullLayout(true);
+            tiVar.f30530a1.getTitleTextView().setBuildFullLayout(true);
         } catch (Exception unused) {
         }
-        tiVar.f30529a1.setTitle(LocaleController.getString(R.string.SelectColor));
+        tiVar.f30530a1.setTitle(LocaleController.getString(R.string.SelectColor));
         this.f27281s.h1(0, 0);
     }
 

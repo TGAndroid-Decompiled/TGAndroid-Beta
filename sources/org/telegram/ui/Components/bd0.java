@@ -61,7 +61,7 @@ public final class bd0 {
         Matrix matrix = this.f24919i;
         matrix.setRectToRect(rectF2, rectF, scaleToFit);
         q10 q10Var = this.f24916c;
-        ad0 ad0Var = (ad0) q10Var.f29457c;
+        ad0 ad0Var = (ad0) q10Var.f29458c;
         ad0Var.f24574b.set(matrix);
         BitmapShader bitmapShader = ad0Var.d;
         if (bitmapShader != null) {
@@ -75,10 +75,10 @@ public final class bd0 {
         }
         zc0 zc0Var = this.d;
         if (zc0Var != null && Build.VERSION.SDK_INT >= 33) {
-            float[] fArr = zc0Var.f32873g;
+            float[] fArr = zc0Var.f32874g;
             a(matrix, fArr);
             zc0Var.e.a(fArr);
-            zc0Var.f32872f.a(fArr);
+            zc0Var.f32873f.a(fArr);
         }
     }
 
@@ -102,7 +102,7 @@ public final class bd0 {
         ad0Var.a(z10);
         zc0 zc0Var = this.d;
         if (zc0Var != null && Build.VERSION.SDK_INT >= 33) {
-            float[] fArr2 = zc0Var.f32873g;
+            float[] fArr2 = zc0Var.f32874g;
             a(matrix, fArr2);
             ad0 ad0Var2 = zc0Var.d;
             if (b(fArr2[0]) && b(fArr2[1])) {
@@ -110,7 +110,7 @@ public final class bd0 {
             }
             ad0Var2.a(z11);
             zc0Var.e.b(fArr2);
-            zc0Var.f32872f.b(fArr2);
+            zc0Var.f32873f.b(fArr2);
         }
     }
 
@@ -144,23 +144,23 @@ public final class bd0 {
             return zc0Var.a(bitmap, bitmap4, bitmap6, i11, i12);
         }
         q10 q10Var = this.f24916c;
-        pt ptVar = (pt) q10Var.f29458f;
-        pt ptVar2 = (pt) q10Var.f29459g;
+        pt ptVar = (pt) q10Var.f29459f;
+        pt ptVar2 = (pt) q10Var.f29460g;
         ad0 ad0Var = (ad0) q10Var.d;
-        Paint paint = (Paint) q10Var.f29456b;
-        ad0 ad0Var2 = (ad0) q10Var.f29457c;
+        Paint paint = (Paint) q10Var.f29457b;
+        ad0 ad0Var2 = (ad0) q10Var.f29458c;
         boolean b10 = ad0Var2.b(bitmap);
         ad0 ad0Var3 = (ad0) q10Var.e;
         boolean b11 = b10 | ad0Var3.b(bitmap4);
         if (i12 >= 0) {
-            if ((ad0Var.b(bitmap6) | b11) || q10Var.f29455a != 1) {
-                q10Var.f29455a = 1;
+            if ((ad0Var.b(bitmap6) | b11) || q10Var.f29456a != 1) {
+                q10Var.f29456a = 1;
                 paint.setShader(new ComposeShader(ad0Var2.d, new ComposeShader(ad0Var.d, ad0Var3.d, PorterDuff.Mode.DST_IN), PorterDuff.Mode.SRC_OVER));
                 return paint;
             }
-        } else if ((ptVar2.a(i0.a.o(-1, ((-i12) * i11) / 100)) | b11 | ptVar.a(-16777216)) || q10Var.f29455a != 2) {
-            q10Var.f29455a = 2;
-            paint.setShader(new ComposeShader((zf.i) ptVar.f29390b, new ComposeShader(new ComposeShader(ad0Var2.d, ad0Var3.d, PorterDuff.Mode.DST_IN), (zf.i) ptVar2.f29390b, PorterDuff.Mode.MULTIPLY), PorterDuff.Mode.SRC_OVER));
+        } else if ((ptVar2.a(i0.a.o(-1, ((-i12) * i11) / 100)) | b11 | ptVar.a(-16777216)) || q10Var.f29456a != 2) {
+            q10Var.f29456a = 2;
+            paint.setShader(new ComposeShader((zf.i) ptVar.f29391b, new ComposeShader(new ComposeShader(ad0Var2.d, ad0Var3.d, PorterDuff.Mode.DST_IN), (zf.i) ptVar2.f29391b, PorterDuff.Mode.MULTIPLY), PorterDuff.Mode.SRC_OVER));
             return paint;
         }
         return paint;

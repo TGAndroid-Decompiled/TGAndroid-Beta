@@ -138,8 +138,8 @@ public final class l3 implements View.OnClickListener {
                         });
                         return;
                     }
-                    float f7 = -x01Var.f32297y;
-                    x01Var.f32297y = f7;
+                    float f7 = -x01Var.f32298y;
+                    x01Var.f32298y = f7;
                     AndroidUtilities.shakeViewSpring(textView, f7);
                     BotWebViewVibrationEffect.APP_ERROR.vibrate();
                     return;

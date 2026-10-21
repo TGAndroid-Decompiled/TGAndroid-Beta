@@ -49,7 +49,7 @@ public final class o1 extends jm0 {
                 } else {
                     i12 = 1;
                 }
-                ml0Var.f28543b = i12;
+                ml0Var.f28544b = i12;
                 o1Var.V2.c(i10, i11, false, false);
                 return;
             }
@@ -212,7 +212,7 @@ public final class o1 extends jm0 {
         if (n0Var instanceof s4.b0) {
             ml0 ml0Var = new ml0(this, (s4.b0) n0Var);
             this.V2 = ml0Var;
-            ml0Var.f28547i = new k1(this, 0);
+            ml0Var.f28548i = new k1(this, 0);
             ml0Var.h = new e1.c(this, 3);
         }
     }

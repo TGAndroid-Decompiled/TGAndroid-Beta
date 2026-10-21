@@ -53,10 +53,10 @@ public final class q3 extends g61 {
             if (connectedbotstarref.commission_permille > 0) {
                 spannableStringBuilder.append((CharSequence) " d");
                 l00 l00Var = new l00();
-                l00Var.f38710f = h6.x0(null, h6.uj, false);
-                l00Var.f38711n = l.H0(connectedbotstarref.commission_permille);
-                if (l00Var.f38709c != null) {
-                    l00Var.f38709c = null;
+                l00Var.f38711f = h6.x0(null, h6.uj, false);
+                l00Var.f38712n = l.H0(connectedbotstarref.commission_permille);
+                if (l00Var.f38710c != null) {
+                    l00Var.f38710c = null;
                     l00Var.a();
                 }
                 spannableStringBuilder.setSpan(l00Var, 1, 2, 33);
@@ -119,10 +119,10 @@ public final class q3 extends g61 {
             if (starrefprogram.commission_permille > 0) {
                 spannableStringBuilder2.append((CharSequence) " d");
                 l00 l00Var2 = new l00();
-                l00Var2.f38710f = h6.x0(null, h6.uj, false);
-                l00Var2.f38711n = l.H0(starrefprogram.commission_permille);
-                if (l00Var2.f38709c != null) {
-                    l00Var2.f38709c = null;
+                l00Var2.f38711f = h6.x0(null, h6.uj, false);
+                l00Var2.f38712n = l.H0(starrefprogram.commission_permille);
+                if (l00Var2.f38710c != null) {
+                    l00Var2.f38710c = null;
                     l00Var2.a();
                 }
                 spannableStringBuilder2.setSpan(l00Var2, 1, 2, 33);

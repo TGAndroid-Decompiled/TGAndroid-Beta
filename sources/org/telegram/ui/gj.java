@@ -8,24 +8,24 @@ import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
 public final class gj implements View.OnTouchListener {
-    public View f37337a;
-    public org.telegram.ui.ActionBar.m1 f37338b;
-    public final Rect f37339c = new Rect();
+    public View f37338a;
+    public org.telegram.ui.ActionBar.m1 f37339b;
+    public final Rect f37340c = new Rect();
     public boolean d;
     public boolean e;
-    public final org.telegram.ui.Components.s20 f37340f;
+    public final org.telegram.ui.Components.s20 f37341f;
     public final int[] h;
-    public View f37341n;
-    public float f37342r;
-    public float f37343s;
+    public View f37342n;
+    public float f37343r;
+    public float f37344s;
     public final View v;
-    public final qn f37344w;
+    public final qn f37345w;
 
     public gj(qn qnVar, ImageView imageView) {
-        this.f37344w = qnVar;
+        this.f37345w = qnVar;
         this.v = imageView;
         org.telegram.ui.Components.s20 s20Var = new org.telegram.ui.Components.s20((Context) null, new g(this, 24));
-        this.f37340f = s20Var;
+        this.f37341f = s20Var;
         this.h = new int[2];
         s20Var.v = true;
     }
@@ -33,27 +33,27 @@ public final class gj implements View.OnTouchListener {
     @Override
     public final boolean onTouch(View view, MotionEvent motionEvent) {
         View view2;
-        this.f37337a = view;
+        this.f37338a = view;
         if (motionEvent.getAction() == 0) {
-            this.f37342r = motionEvent.getX();
-            this.f37343s = motionEvent.getY();
+            this.f37343r = motionEvent.getX();
+            this.f37344s = motionEvent.getY();
             this.e = false;
         }
-        this.f37340f.a(motionEvent);
-        if (this.f37338b != null && !this.d && motionEvent.getAction() == 2) {
-            View view3 = this.f37337a;
+        this.f37341f.a(motionEvent);
+        if (this.f37339b != null && !this.d && motionEvent.getAction() == 2) {
+            View view3 = this.f37338a;
             int[] iArr = this.h;
             view3.getLocationOnScreen(iArr);
             float x10 = motionEvent.getX() + iArr[0];
             float y3 = motionEvent.getY() + iArr[1];
-            this.f37338b.getContentView().getLocationOnScreen(iArr);
+            this.f37339b.getContentView().getLocationOnScreen(iArr);
             float f7 = x10 - iArr[0];
             float f10 = y3 - iArr[1];
-            this.f37341n = null;
-            ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = (ActionBarPopupWindow$ActionBarPopupWindowLayout) this.f37338b.getContentView();
+            this.f37342n = null;
+            ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = (ActionBarPopupWindow$ActionBarPopupWindowLayout) this.f37339b.getContentView();
             for (int i10 = 0; i10 < actionBarPopupWindow$ActionBarPopupWindowLayout.getItemsCount(); i10++) {
                 View childAt = actionBarPopupWindow$ActionBarPopupWindowLayout.L.getChildAt(i10);
-                Rect rect = this.f37339c;
+                Rect rect = this.f37340c;
                 childAt.getHitRect(rect);
                 childAt.getTag();
                 if (childAt.getVisibility() == 0 && childAt.isClickable()) {
@@ -64,23 +64,23 @@ public final class gj implements View.OnTouchListener {
                         childAt.setPressed(true);
                         childAt.setSelected(true);
                         childAt.drawableHotspotChanged(f7, f10 - childAt.getTop());
-                        this.f37341n = childAt;
+                        this.f37342n = childAt;
                     }
                 }
             }
         }
-        if ((motionEvent.getAction() == 2 && Math.abs(motionEvent.getX() - this.f37342r) > AndroidUtilities.touchSlop * 2.0f) || Math.abs(motionEvent.getY() - this.f37343s) > AndroidUtilities.touchSlop * 2.0f) {
+        if ((motionEvent.getAction() == 2 && Math.abs(motionEvent.getX() - this.f37343r) > AndroidUtilities.touchSlop * 2.0f) || Math.abs(motionEvent.getY() - this.f37344s) > AndroidUtilities.touchSlop * 2.0f) {
             this.e = true;
-            this.f37337a.setPressed(false);
-            this.f37337a.setSelected(false);
+            this.f37338a.setPressed(false);
+            this.f37338a.setSelected(false);
         }
         if (motionEvent.getAction() == 1 && !this.d && !this.e) {
-            View view4 = this.f37341n;
+            View view4 = this.f37342n;
             if (view4 != null) {
                 view4.callOnClick();
                 this.d = true;
                 return true;
-            } else if (this.f37338b == null && (view2 = this.f37337a) != null) {
+            } else if (this.f37339b == null && (view2 = this.f37338a) != null) {
                 view2.callOnClick();
             }
         }

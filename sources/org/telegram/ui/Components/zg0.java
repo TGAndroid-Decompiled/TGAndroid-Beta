@@ -10,21 +10,21 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MediaController;
 import org.telegram.ui.PhotoViewer;
 public final class zg0 extends FrameLayout {
-    public final int f32896a;
-    public final ah0 f32897b;
+    public final int f32897a;
+    public final ah0 f32898b;
 
     public zg0(ah0 ah0Var, Context context, int i10) {
         super(context);
-        this.f32896a = i10;
-        this.f32897b = ah0Var;
+        this.f32897a = i10;
+        this.f32898b = ah0Var;
     }
 
     @Override
     public void dispatchDraw(Canvas canvas) {
-        switch (this.f32896a) {
+        switch (this.f32897a) {
             case 1:
                 super.dispatchDraw(canvas);
-                ah0 ah0Var = this.f32897b;
+                ah0 ah0Var = this.f32898b;
                 hp0 hp0Var = ah0Var.R;
                 if (hp0Var != null && hp0Var.a()) {
                     ah0Var.R.setBounds(getLeft(), getTop(), getRight(), getBottom());
@@ -45,10 +45,10 @@ public final class zg0 extends FrameLayout {
         int dp;
         PhotoViewer photoViewer;
         org.telegram.ui.qs0 qs0Var;
-        switch (this.f32896a) {
+        switch (this.f32897a) {
             case 0:
                 int actionMasked = motionEvent.getActionMasked();
-                ah0 ah0Var = this.f32897b;
+                ah0 ah0Var = this.f32898b;
                 if (actionMasked == 0 || actionMasked == 5) {
                     if (motionEvent.getPointerCount() == 1) {
                         ah0Var.f24608f0 = true;
@@ -61,7 +61,7 @@ public final class zg0 extends FrameLayout {
                     }
                 }
                 if (actionMasked != 1 && actionMasked != 3 && actionMasked != 6) {
-                    if (actionMasked == 2 && (photoViewer = ah0Var.V) != null && (qs0Var = photoViewer.f33264c4) != null && qs0Var.rewinding) {
+                    if (actionMasked == 2 && (photoViewer = ah0Var.V) != null && (qs0Var = photoViewer.f33265c4) != null && qs0Var.rewinding) {
                         qs0Var.setX(motionEvent.getX());
                     }
                 } else {
@@ -147,10 +147,10 @@ public final class zg0 extends FrameLayout {
     public void onConfigurationChanged(Configuration configuration) {
         float dp;
         float f7;
-        switch (this.f32896a) {
+        switch (this.f32897a) {
             case 0:
                 AndroidUtilities.checkDisplaySize(getContext(), configuration);
-                ah0 ah0Var = this.f32897b;
+                ah0 ah0Var = this.f32898b;
                 ah0Var.G = null;
                 AndroidUtilities.setPreferredMaxRefreshRate(ah0Var.f24601b, ah0Var.d, ah0Var.f24603c);
                 if (ah0Var.H != ah0Var.t() * ah0Var.J || ah0Var.I != ah0Var.r() * ah0Var.J) {
@@ -193,19 +193,19 @@ public final class zg0 extends FrameLayout {
 
     @Override
     public void onDraw(Canvas canvas) {
-        switch (this.f32896a) {
+        switch (this.f32897a) {
             case 1:
-                ah0 ah0Var = this.f32897b;
+                ah0 ah0Var = this.f32898b;
                 t71 t71Var = ah0Var.Q;
-                if (t71Var.f30465j) {
+                if (t71Var.f30466j) {
                     t71Var.setBounds(getLeft(), getTop(), getRight(), getBottom());
                     ah0Var.Q.draw(canvas);
                 }
                 PhotoViewer photoViewer = ah0Var.V;
-                if (photoViewer != null && photoViewer.f33254b4 != null) {
+                if (photoViewer != null && photoViewer.f33255b4 != null) {
                     canvas.save();
                     canvas.translate(getLeft(), getTop());
-                    ah0Var.V.f33254b4.draw(canvas, getRight() - getLeft(), getBottom() - getTop());
+                    ah0Var.V.f33255b4.draw(canvas, getRight() - getLeft(), getBottom() - getTop());
                     canvas.restore();
                     return;
                 }

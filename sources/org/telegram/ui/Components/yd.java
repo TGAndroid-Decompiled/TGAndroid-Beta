@@ -2,22 +2,22 @@ package org.telegram.ui.Components;
 
 import org.telegram.messenger.AndroidUtilities;
 public final class yd implements Runnable {
-    public final int f32636a;
-    public final ChatActivityEnterView f32637b;
-    public final boolean f32638c;
+    public final int f32637a;
+    public final ChatActivityEnterView f32638b;
+    public final boolean f32639c;
 
     public yd(ChatActivityEnterView chatActivityEnterView, boolean z10, int i10) {
-        this.f32636a = i10;
-        this.f32637b = chatActivityEnterView;
-        this.f32638c = z10;
+        this.f32637a = i10;
+        this.f32638b = chatActivityEnterView;
+        this.f32639c = z10;
     }
 
     @Override
     public final void run() {
         mf mfVar;
-        int i10 = this.f32636a;
-        ChatActivityEnterView chatActivityEnterView = this.f32637b;
-        boolean z10 = this.f32638c;
+        int i10 = this.f32637a;
+        ChatActivityEnterView chatActivityEnterView = this.f32638b;
+        boolean z10 = this.f32639c;
         switch (i10) {
             case 0:
                 if (!z10) {
@@ -36,12 +36,12 @@ public final class yd implements Runnable {
                 chatActivityEnterView.getClass();
                 return;
             default:
-                ChatActivityEnterView chatActivityEnterView2 = this.f32637b;
+                ChatActivityEnterView chatActivityEnterView2 = this.f32638b;
                 rd rdVar = chatActivityEnterView2.F4;
                 chatActivityEnterView2.M0 = System.currentTimeMillis();
                 boolean R0 = chatActivityEnterView2.R0(0, false, 0, true, 0L);
                 if (!z10 && (mfVar = chatActivityEnterView2.L0) != null) {
-                    mfVar.h(!R0);
+                    mfVar.g(!R0);
                     chatActivityEnterView2.L0 = null;
                     return;
                 }

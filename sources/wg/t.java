@@ -97,7 +97,7 @@ public final class t extends FrameLayout {
         wh.n nVar = this.f49001a;
         nVar.setPadding(dp, dp2, dp3, dp4);
         ?? obj = new Object();
-        obj.f28649a |= 256;
+        obj.f28650a |= 256;
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("t.me/giftcode/" + this.f49003c);
         if (this.f49003c == null) {
             spannableStringBuilder.append((CharSequence) "1234567891011123654897566536223");

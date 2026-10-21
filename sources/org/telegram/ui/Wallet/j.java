@@ -18,22 +18,22 @@ import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.gt0;
 import org.telegram.ui.z70;
 public final class j implements Runnable {
-    public final int f34369a;
-    public final int f34370b;
-    public final Object f34371c;
+    public final int f34370a;
+    public final int f34371b;
+    public final Object f34372c;
 
     public j(int i10, Object obj, int i11) {
-        this.f34369a = i11;
-        this.f34370b = i10;
-        this.f34371c = obj;
+        this.f34370a = i11;
+        this.f34371b = i10;
+        this.f34372c = obj;
     }
 
     @Override
     public final void run() {
         CharSequence text;
-        int i10 = this.f34369a;
-        Object obj = this.f34371c;
-        final int i11 = this.f34370b;
+        int i10 = this.f34370a;
+        Object obj = this.f34372c;
+        final int i11 = this.f34371b;
         switch (i10) {
             case 0:
                 m0 m0Var = (m0) obj;
@@ -62,8 +62,8 @@ public final class j implements Runnable {
                 return;
             case 3:
                 m6 m6Var = (m6) obj;
-                if (m6Var.f34532r && !m6Var.f34535x && i11 == m6Var.f34529k0) {
-                    m6Var.postDelayed(m6Var.f34530l0, 500L);
+                if (m6Var.f34533r && !m6Var.f34536x && i11 == m6Var.f34530k0) {
+                    m6Var.postDelayed(m6Var.f34531l0, 500L);
                     return;
                 }
                 return;
@@ -87,9 +87,9 @@ public final class j implements Runnable {
                 }
             case 5:
                 r9 r9Var = (r9) obj;
-                if (!r9Var.f34815n && i11 == r9Var.I) {
+                if (!r9Var.f34816n && i11 == r9Var.I) {
                     r9Var.K = false;
-                    r9Var.f32355a.W2.N(true);
+                    r9Var.f32356a.W2.N(true);
                     return;
                 }
                 return;
@@ -166,8 +166,8 @@ public final class j implements Runnable {
     }
 
     public j(Object obj, int i10, int i11) {
-        this.f34369a = i11;
-        this.f34371c = obj;
-        this.f34370b = i10;
+        this.f34370a = i11;
+        this.f34372c = obj;
+        this.f34371b = i10;
     }
 }

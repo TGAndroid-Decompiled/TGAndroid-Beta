@@ -31,16 +31,16 @@ public final class h61 extends org.telegram.ui.Components.bb {
     public TLRPC.Chat X;
     public final TLRPC.User Y;
     public final org.telegram.ui.Components.e2 Z;
-    public TLObject f37505a0;
-    public final FrameLayout f37506b0;
-    public final z51 f37507c0;
-    public final b61 f37508d0;
-    public final g61 f37509e0;
-    public final g61 f37510f0;
-    public final g61 f37511g0;
-    public final ei.d f37512h0;
-    public org.telegram.ui.Components.u61 f37513i0;
-    public Context f37514j0;
+    public TLObject f37506a0;
+    public final FrameLayout f37507b0;
+    public final z51 f37508c0;
+    public final b61 f37509d0;
+    public final g61 f37510e0;
+    public final g61 f37511f0;
+    public final g61 f37512g0;
+    public final ei.d f37513h0;
+    public org.telegram.ui.Components.u61 f37514i0;
+    public Context f37515j0;
 
     public h61(Context context, TLRPC.Chat chat, TLRPC.User user, org.telegram.ui.Components.e2 e2Var, org.telegram.ui.ActionBar.d6 d6Var) {
         super(2, context, d6Var, true);
@@ -48,11 +48,11 @@ public final class h61 extends org.telegram.ui.Components.bb {
         this.smoothKeyboardAnimationEnabled = true;
         this.X = chat;
         this.Y = user;
-        this.f37505a0 = user;
+        this.f37506a0 = user;
         this.Z = e2Var;
         UserConfig.getInstance(this.currentAccount).getCurrentUser();
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f37506b0 = frameLayout;
+        this.f37507b0 = frameLayout;
         FrameLayout frameLayout2 = new FrameLayout(context);
         frameLayout2.setBackground(org.telegram.ui.ActionBar.h6.c0(AndroidUtilities.dp(20.0f), getThemedColor(org.telegram.ui.ActionBar.h6.O5)));
         ImageView imageView = new ImageView(context);
@@ -62,7 +62,7 @@ public final class h61 extends org.telegram.ui.Components.bb {
         imageView.setColorFilter(new PorterDuffColorFilter(getThemedColor(i10), PorterDuff.Mode.SRC_IN));
         frameLayout2.addView(imageView, w7.z5.d(24, 24.0f, 19, 11.0f, 0.0f, 0.0f, 0.0f));
         ?? editTextBoldCursor = new EditTextBoldCursor(context);
-        this.f37507c0 = editTextBoldCursor;
+        this.f37508c0 = editTextBoldCursor;
         editTextBoldCursor.setTextColor(getThemedColor(org.telegram.ui.ActionBar.h6.R5));
         editTextBoldCursor.setHintTextColor(getThemedColor(i10));
         editTextBoldCursor.setTextSize(1, 15.0f);
@@ -86,19 +86,19 @@ public final class h61 extends org.telegram.ui.Components.bb {
         float f7 = this.backgroundPaddingLeft / AndroidUtilities.density;
         viewGroup.addView(frameLayout, max, w7.z5.d(-1, 64.0f, 55, f7, 0.0f, f7, 0.0f));
         ?? frameLayout3 = new FrameLayout(context);
-        this.f37508d0 = frameLayout3;
+        this.f37509d0 = frameLayout3;
         org.telegram.ui.Components.w9 w9Var = new org.telegram.ui.Components.w9(context);
         w9Var.setImageDrawable(new org.telegram.ui.Components.vj0(R.raw.utyan_empty, AndroidUtilities.dp(130.0f), AndroidUtilities.dp(130.0f)));
         frameLayout3.addView(w9Var, w7.z5.e(130, 130, 17));
         g61 g61Var = new g61(this.currentAccount, chat.f20276id, new TLRPC.TL_channelParticipantsAdmins());
         g61Var.e.add(new qy0(this, 16));
-        this.f37509e0 = g61Var;
+        this.f37510e0 = g61Var;
         g61 g61Var2 = new g61(this.currentAccount, chat.f20276id, new TLRPC.TL_channelParticipantsRecent());
         g61Var2.e.add(new qy0(this, 16));
-        this.f37510f0 = g61Var2;
+        this.f37511f0 = g61Var2;
         g61 g61Var3 = new g61(this.currentAccount, chat.f20276id, new TLRPC.TL_channelParticipantsSearch());
         g61Var3.e.add(new qy0(this, 16));
-        this.f37511g0 = g61Var3;
+        this.f37512g0 = g61Var3;
         org.telegram.ui.Components.jm0 jm0Var = this.d;
         int i11 = this.backgroundPaddingLeft;
         jm0Var.setPadding(i11, 0, i11, AndroidUtilities.dp(68.0f));
@@ -115,14 +115,14 @@ public final class h61 extends org.telegram.ui.Components.bb {
         this.containerView.addView(new f61(this, getContext()), w7.z5.e(-1, 68, 87));
         ei.d dVar = new ei.d(getContext(), d6Var, true);
         dVar.setRoundRadius(24);
-        this.f37512h0 = dVar;
+        this.f37513h0 = dVar;
         dVar.setColor(getThemedColor(org.telegram.ui.ActionBar.h6.f21248r7));
         V(false);
         ViewGroup viewGroup2 = this.containerView;
         float f10 = (this.backgroundPaddingLeft / AndroidUtilities.density) + 10.0f;
         viewGroup2.addView(dVar, w7.z5.d(-1, 48.0f, 87, f10, 10.0f, f10, 10.0f));
         dVar.setOnClickListener(new c31(this, 3));
-        org.telegram.ui.Components.u61 u61Var = this.f37513i0;
+        org.telegram.ui.Components.u61 u61Var = this.f37514i0;
         if (u61Var != null) {
             u61Var.N(false);
         }
@@ -149,10 +149,10 @@ public final class h61 extends org.telegram.ui.Components.bb {
         int i13;
         boolean z15;
         boolean z16;
-        g61 g61Var = h61Var.f37511g0;
-        g61 g61Var2 = h61Var.f37510f0;
+        g61 g61Var = h61Var.f37512g0;
+        g61 g61Var2 = h61Var.f37511f0;
         TLRPC.User user = h61Var.Y;
-        g61 g61Var3 = h61Var.f37509e0;
+        g61 g61Var3 = h61Var.f37510e0;
         if (g61Var3 != null) {
             ArrayList arrayList2 = g61Var3.d;
             if (g61Var2 != null) {
@@ -160,7 +160,7 @@ public final class h61 extends org.telegram.ui.Components.bb {
                 HashSet hashSet = new HashSet();
                 hashSet.add(Long.valueOf(UserConfig.getInstance(h61Var.currentAccount).getClientUserId()));
                 arrayList.add(org.telegram.ui.Components.h61.D(3, AndroidUtilities.dp(64.0f)));
-                if (g61Var != null && !TextUtils.isEmpty(g61Var.f37202c.f20275q)) {
+                if (g61Var != null && !TextUtils.isEmpty(g61Var.f37203c.f20275q)) {
                     ArrayList arrayList4 = g61Var.d;
                     int size = arrayList4.size();
                     int i14 = 0;
@@ -171,7 +171,7 @@ public final class h61 extends org.telegram.ui.Components.bb {
                         if (!hashSet.contains(Long.valueOf(DialogObject.getDialogId(tLObject)))) {
                             hashSet.add(Long.valueOf(DialogObject.getDialogId(tLObject)));
                             org.telegram.ui.Components.h61 v = org.telegram.ui.Components.h61.v(tLObject);
-                            if (DialogObject.getDialogId(tLObject) == DialogObject.getDialogId(h61Var.f37505a0)) {
+                            if (DialogObject.getDialogId(tLObject) == DialogObject.getDialogId(h61Var.f37506a0)) {
                                 z16 = true;
                             } else {
                                 z16 = false;
@@ -180,13 +180,13 @@ public final class h61 extends org.telegram.ui.Components.bb {
                             arrayList.add(v);
                         }
                     }
-                    if (g61Var.f37203f) {
+                    if (g61Var.f37204f) {
                         arrayList.add(org.telegram.ui.Components.h61.n(29));
                         arrayList.add(org.telegram.ui.Components.h61.n(29));
                         arrayList.add(org.telegram.ui.Components.h61.n(29));
                     }
                     if (arrayList.size() == 1) {
-                        arrayList.add(org.telegram.ui.Components.h61.k(h61Var.f37508d0));
+                        arrayList.add(org.telegram.ui.Components.h61.k(h61Var.f37509d0));
                         return;
                     }
                     return;
@@ -210,7 +210,7 @@ public final class h61 extends org.telegram.ui.Components.bb {
                                 arrayList.add(org.telegram.ui.Components.h61.q(LocaleController.getString(i13)));
                                 hashSet.add(Long.valueOf(DialogObject.getDialogId(user)));
                                 org.telegram.ui.Components.h61 v10 = org.telegram.ui.Components.h61.v(user);
-                                if (DialogObject.getDialogId(user) == DialogObject.getDialogId(h61Var.f37505a0)) {
+                                if (DialogObject.getDialogId(user) == DialogObject.getDialogId(h61Var.f37506a0)) {
                                     z15 = true;
                                 } else {
                                     z15 = false;
@@ -241,7 +241,7 @@ public final class h61 extends org.telegram.ui.Components.bb {
                         }
                         hashSet.add(Long.valueOf(DialogObject.getDialogId(tLObject2)));
                         org.telegram.ui.Components.h61 v11 = org.telegram.ui.Components.h61.v(tLObject2);
-                        if (DialogObject.getDialogId(tLObject2) == DialogObject.getDialogId(h61Var.f37505a0)) {
+                        if (DialogObject.getDialogId(tLObject2) == DialogObject.getDialogId(h61Var.f37506a0)) {
                             z14 = true;
                         } else {
                             z14 = false;
@@ -250,7 +250,7 @@ public final class h61 extends org.telegram.ui.Components.bb {
                         arrayList.add(v11);
                     }
                 }
-                if (g61Var3.f37203f) {
+                if (g61Var3.f37204f) {
                     arrayList.add(org.telegram.ui.Components.h61.n(29));
                     arrayList.add(org.telegram.ui.Components.h61.n(29));
                     arrayList.add(org.telegram.ui.Components.h61.n(29));
@@ -264,7 +264,7 @@ public final class h61 extends org.telegram.ui.Components.bb {
                     arrayList.add(org.telegram.ui.Components.h61.q(LocaleController.getString(i11)));
                     hashSet.add(Long.valueOf(DialogObject.getDialogId(user)));
                     org.telegram.ui.Components.h61 v12 = org.telegram.ui.Components.h61.v(user);
-                    if (DialogObject.getDialogId(user) == DialogObject.getDialogId(h61Var.f37505a0)) {
+                    if (DialogObject.getDialogId(user) == DialogObject.getDialogId(h61Var.f37506a0)) {
                         z13 = true;
                     } else {
                         z13 = false;
@@ -293,7 +293,7 @@ public final class h61 extends org.telegram.ui.Components.bb {
                         }
                         hashSet.add(Long.valueOf(DialogObject.getDialogId(tLObject3)));
                         org.telegram.ui.Components.h61 v13 = org.telegram.ui.Components.h61.v(tLObject3);
-                        if (DialogObject.getDialogId(tLObject3) == DialogObject.getDialogId(h61Var.f37505a0)) {
+                        if (DialogObject.getDialogId(tLObject3) == DialogObject.getDialogId(h61Var.f37506a0)) {
                             z12 = true;
                         } else {
                             z12 = false;
@@ -302,7 +302,7 @@ public final class h61 extends org.telegram.ui.Components.bb {
                         arrayList.add(v13);
                     }
                 }
-                if (!arrayList3.isEmpty() && g61Var2.f37203f) {
+                if (!arrayList3.isEmpty() && g61Var2.f37204f) {
                     arrayList.add(org.telegram.ui.Components.h61.n(29));
                     arrayList.add(org.telegram.ui.Components.h61.n(29));
                     arrayList.add(org.telegram.ui.Components.h61.n(29));
@@ -323,10 +323,10 @@ public final class h61 extends org.telegram.ui.Components.bb {
         int i16;
         int i17;
         if (tL_error != null) {
-            if (h61Var.f37514j0 != null) {
+            if (h61Var.f37515j0 != null) {
                 if ("PASSWORD_HASH_INVALID".equals(tL_error.text)) {
                     if (inputCheckPasswordSRP == null) {
-                        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(h61Var.f37514j0);
+                        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(h61Var.f37515j0);
                         if (ChatObject.isChannelAndNotMegaGroup(h61Var.X)) {
                             i17 = R.string.EditAdminChannelTransfer;
                         } else {
@@ -348,7 +348,7 @@ public final class h61 extends org.telegram.ui.Components.bb {
                             public final void g(org.telegram.ui.ActionBar.b2 b2Var2, int i18) {
                                 switch (r2) {
                                     case 0:
-                                        this.f43356b.f37512h0.setLoading(false);
+                                        this.f43356b.f37513h0.setLoading(false);
                                         return;
                                     case 1:
                                         h61 h61Var2 = this.f43356b;
@@ -361,10 +361,10 @@ public final class h61 extends org.telegram.ui.Components.bb {
                                         }
                                         return;
                                     case 2:
-                                        this.f43356b.f37512h0.setLoading(false);
+                                        this.f43356b.f37513h0.setLoading(false);
                                         return;
                                     default:
-                                        this.f43356b.f37512h0.setLoading(false);
+                                        this.f43356b.f37513h0.setLoading(false);
                                         return;
                                 }
                             }
@@ -375,10 +375,10 @@ public final class h61 extends org.telegram.ui.Components.bb {
                     if ("SRP_ID_INVALID".equals(tL_error.text)) {
                         ConnectionsManager.getInstance(h61Var.currentAccount).sendRequest(new TL_account.getPassword(), new tr0(h61Var, twoStepVerificationActivity, user, 7), 8);
                     } else if (tL_error.text.equals("CHANNELS_TOO_MUCH")) {
-                        if (h61Var.f37514j0 != null && !AccountInstance.getInstance(h61Var.currentAccount).getUserConfig().isPremium()) {
+                        if (h61Var.f37515j0 != null && !AccountInstance.getInstance(h61Var.currentAccount).getUserConfig().isPremium()) {
                             org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
                             if (U != null) {
-                                h61Var.showDialog(new sg.k0(5, h61Var.currentAccount, h61Var.f37514j0, U, null));
+                                h61Var.showDialog(new sg.k0(5, h61Var.currentAccount, h61Var.f37515j0, U, null));
                                 return;
                             }
                             return;
@@ -402,13 +402,13 @@ public final class h61 extends org.telegram.ui.Components.bb {
                     if (twoStepVerificationActivity != null) {
                         twoStepVerificationActivity.o0();
                     }
-                    AlertDialog$Builder alertDialog$Builder2 = new AlertDialog$Builder(h61Var.f37514j0);
+                    AlertDialog$Builder alertDialog$Builder2 = new AlertDialog$Builder(h61Var.f37515j0);
                     alertDialog$Builder2.f20605a.R = LocaleController.getString(R.string.EditAdminTransferAlertTitle);
-                    LinearLayout linearLayout = new LinearLayout(h61Var.f37514j0);
+                    LinearLayout linearLayout = new LinearLayout(h61Var.f37515j0);
                     linearLayout.setPadding(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(24.0f), 0);
                     linearLayout.setOrientation(1);
                     alertDialog$Builder2.n(linearLayout);
-                    TextView textView = new TextView(h61Var.f37514j0);
+                    TextView textView = new TextView(h61Var.f37515j0);
                     int i18 = org.telegram.ui.ActionBar.h6.f21096j5;
                     textView.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, i18, false));
                     textView.setTextSize(1, 16.0f);
@@ -424,10 +424,10 @@ public final class h61 extends org.telegram.ui.Components.bb {
                         org.telegram.messenger.mk.r(R.string.EditAdminTransferAlertText, new Object[]{UserObject.getFirstName(user)}, textView);
                     }
                     linearLayout.addView(textView, w7.z5.n(-1, -2));
-                    LinearLayout linearLayout2 = new LinearLayout(h61Var.f37514j0);
+                    LinearLayout linearLayout2 = new LinearLayout(h61Var.f37515j0);
                     linearLayout2.setOrientation(0);
                     linearLayout.addView(linearLayout2, w7.z5.k(0.0f, 11.0f, 0.0f, 0.0f, -1, -2));
-                    ImageView imageView = new ImageView(h61Var.f37514j0);
+                    ImageView imageView = new ImageView(h61Var.f37515j0);
                     imageView.setImageResource(R.drawable.list_circle);
                     if (LocaleController.isRTL) {
                         i11 = AndroidUtilities.dp(11.0f);
@@ -444,7 +444,7 @@ public final class h61 extends org.telegram.ui.Components.bb {
                     int x02 = org.telegram.ui.ActionBar.h6.x0(null, i18, false);
                     PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
                     imageView.setColorFilter(new PorterDuffColorFilter(x02, mode));
-                    TextView textView2 = new TextView(h61Var.f37514j0);
+                    TextView textView2 = new TextView(h61Var.f37515j0);
                     textView2.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, i18, false));
                     textView2.setTextSize(1, 16.0f);
                     if (LocaleController.isRTL) {
@@ -461,10 +461,10 @@ public final class h61 extends org.telegram.ui.Components.bb {
                         linearLayout2.addView(imageView, w7.z5.n(-2, -2));
                         linearLayout2.addView(textView2, w7.z5.n(-1, -2));
                     }
-                    LinearLayout linearLayout3 = new LinearLayout(h61Var.f37514j0);
+                    LinearLayout linearLayout3 = new LinearLayout(h61Var.f37515j0);
                     linearLayout3.setOrientation(0);
                     linearLayout.addView(linearLayout3, w7.z5.k(0.0f, 11.0f, 0.0f, 0.0f, -1, -2));
-                    ImageView imageView2 = new ImageView(h61Var.f37514j0);
+                    ImageView imageView2 = new ImageView(h61Var.f37515j0);
                     imageView2.setImageResource(R.drawable.list_circle);
                     if (LocaleController.isRTL) {
                         i13 = AndroidUtilities.dp(11.0f);
@@ -479,7 +479,7 @@ public final class h61 extends org.telegram.ui.Components.bb {
                     }
                     imageView2.setPadding(i13, dp4, dp2, 0);
                     imageView2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.x0(null, i18, false), mode));
-                    TextView textView3 = new TextView(h61Var.f37514j0);
+                    TextView textView3 = new TextView(h61Var.f37515j0);
                     textView3.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, i18, false));
                     textView3.setTextSize(1, 16.0f);
                     if (LocaleController.isRTL) {
@@ -510,7 +510,7 @@ public final class h61 extends org.telegram.ui.Components.bb {
                             public final void g(org.telegram.ui.ActionBar.b2 b2Var2, int i182) {
                                 switch (r2) {
                                     case 0:
-                                        this.f43356b.f37512h0.setLoading(false);
+                                        this.f43356b.f37513h0.setLoading(false);
                                         return;
                                     case 1:
                                         h61 h61Var2 = this.f43356b;
@@ -523,10 +523,10 @@ public final class h61 extends org.telegram.ui.Components.bb {
                                         }
                                         return;
                                     case 2:
-                                        this.f43356b.f37512h0.setLoading(false);
+                                        this.f43356b.f37513h0.setLoading(false);
                                         return;
                                     default:
-                                        this.f43356b.f37512h0.setLoading(false);
+                                        this.f43356b.f37513h0.setLoading(false);
                                         return;
                                 }
                             }
@@ -542,7 +542,7 @@ public final class h61 extends org.telegram.ui.Components.bb {
                             public final void g(org.telegram.ui.ActionBar.b2 b2Var2, int i182) {
                                 switch (r2) {
                                     case 0:
-                                        this.f43356b.f37512h0.setLoading(false);
+                                        this.f43356b.f37513h0.setLoading(false);
                                         return;
                                     case 1:
                                         h61 h61Var2 = this.f43356b;
@@ -555,16 +555,16 @@ public final class h61 extends org.telegram.ui.Components.bb {
                                         }
                                         return;
                                     case 2:
-                                        this.f43356b.f37512h0.setLoading(false);
+                                        this.f43356b.f37513h0.setLoading(false);
                                         return;
                                     default:
-                                        this.f43356b.f37512h0.setLoading(false);
+                                        this.f43356b.f37513h0.setLoading(false);
                                         return;
                                 }
                             }
                         });
                     } else {
-                        TextView textView4 = new TextView(h61Var.f37514j0);
+                        TextView textView4 = new TextView(h61Var.f37515j0);
                         textView4.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, i18, false));
                         textView4.setTextSize(1, 16.0f);
                         if (LocaleController.isRTL) {
@@ -586,7 +586,7 @@ public final class h61 extends org.telegram.ui.Components.bb {
                             public final void g(org.telegram.ui.ActionBar.b2 b2Var2, int i182) {
                                 switch (r2) {
                                     case 0:
-                                        this.f43356b.f37512h0.setLoading(false);
+                                        this.f43356b.f37513h0.setLoading(false);
                                         return;
                                     case 1:
                                         h61 h61Var2 = this.f43356b;
@@ -599,10 +599,10 @@ public final class h61 extends org.telegram.ui.Components.bb {
                                         }
                                         return;
                                     case 2:
-                                        this.f43356b.f37512h0.setLoading(false);
+                                        this.f43356b.f37513h0.setLoading(false);
                                         return;
                                     default:
-                                        this.f43356b.f37512h0.setLoading(false);
+                                        this.f43356b.f37513h0.setLoading(false);
                                         return;
                                 }
                             }
@@ -637,7 +637,7 @@ public final class h61 extends org.telegram.ui.Components.bb {
             }
             i10++;
         }
-        h61Var.f37506b0.setTranslationY(f7);
+        h61Var.f37507b0.setTranslationY(f7);
     }
 
     @Override
@@ -648,15 +648,15 @@ public final class h61 extends org.telegram.ui.Components.bb {
     public final void U(TLRPC.User user, TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP, TwoStepVerificationActivity twoStepVerificationActivity) {
         TLRPC.InputCheckPasswordSRP tL_inputCheckPasswordEmpty;
         if (getContext() != null) {
-            this.f37514j0 = getContext();
+            this.f37515j0 = getContext();
         }
-        if (this.f37514j0 != null) {
+        if (this.f37515j0 != null) {
             if (inputCheckPasswordSRP != null && !ChatObject.isChannel(this.X)) {
                 org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
                 if (U == null) {
                     return;
                 }
-                MessagesController.getInstance(this.currentAccount).convertToMegaGroup(this.f37514j0, this.X.f20276id, U, new a1.d(this, user, inputCheckPasswordSRP, twoStepVerificationActivity, 19));
+                MessagesController.getInstance(this.currentAccount).convertToMegaGroup(this.f37515j0, this.X.f20276id, U, new a1.d(this, user, inputCheckPasswordSRP, twoStepVerificationActivity, 19));
                 return;
             }
             TLRPC.TL_channels_editCreator tL_channels_editCreator = new TLRPC.TL_channels_editCreator();
@@ -689,27 +689,27 @@ public final class h61 extends org.telegram.ui.Components.bb {
             i10 = R.string.LeaveGroupAndAppoint;
         }
         float dp2 = AndroidUtilities.dp(32.0f);
-        ei.d dVar = this.f37512h0;
+        ei.d dVar = this.f37513h0;
         if (dVar.getWidth() > 0) {
             dp = dVar.getWidth();
         } else {
             dp = AndroidUtilities.displaySize.x - AndroidUtilities.dp(20.0f);
         }
-        dVar.g(LocaleController.formatString(i10, TextUtils.ellipsize(DialogObject.getShortTitle(this.f37505a0), dVar.getTextPaint(), Math.max(dp2, (dp - AndroidUtilities.dp(16.0f)) - dVar.getTextPaint().measureText(LocaleController.getString(i10))), TextUtils.TruncateAt.MIDDLE)), z10, true);
+        dVar.g(LocaleController.formatString(i10, TextUtils.ellipsize(DialogObject.getShortTitle(this.f37506a0), dVar.getTextPaint(), Math.max(dp2, (dp - AndroidUtilities.dp(16.0f)) - dVar.getTextPaint().measureText(LocaleController.getString(i10))), TextUtils.TruncateAt.MIDDLE)), z10, true);
     }
 
     @Override
     public final void dismiss() {
         super.dismiss();
-        this.f37509e0.a();
-        this.f37510f0.a();
-        this.f37511g0.a();
+        this.f37510e0.a();
+        this.f37511f0.a();
+        this.f37512g0.a();
     }
 
     @Override
     public final org.telegram.ui.Components.im0 x(org.telegram.ui.Components.jm0 jm0Var) {
         org.telegram.ui.Components.u61 u61Var = new org.telegram.ui.Components.u61(jm0Var, getContext(), this.currentAccount, 0, false, new g5(this, 23), this.resourcesProvider);
-        this.f37513i0 = u61Var;
+        this.f37514i0 = u61Var;
         return u61Var;
     }
 }

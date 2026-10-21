@@ -11,16 +11,16 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class xu extends WebViewClient {
-    public final cv f32484a;
+    public final cv f32485a;
 
     public xu(cv cvVar) {
-        this.f32484a = cvVar;
+        this.f32485a = cvVar;
     }
 
     @Override
     public final void onPageFinished(WebView webView, String str) {
         super.onPageFinished(webView, str);
-        cv cvVar = this.f32484a;
+        cv cvVar = this.f32485a;
         ImageView imageView = cvVar.f25267x;
         if (!cvVar.f25268y) {
             cvVar.f25263n.setVisibility(4);
@@ -33,7 +33,7 @@ public final class xu extends WebViewClient {
     @Override
     public final boolean onRenderProcessGone(WebView webView, RenderProcessGoneDetail renderProcessGoneDetail) {
         org.telegram.ui.ActionBar.d6 d6Var;
-        cv cvVar = this.f32484a;
+        cv cvVar = this.f32485a;
         try {
             if (!AndroidUtilities.isSafeToShow(cvVar.getContext())) {
                 return true;
@@ -54,7 +54,7 @@ public final class xu extends WebViewClient {
 
     @Override
     public final boolean shouldOverrideUrlLoading(WebView webView, String str) {
-        if (this.f32484a.f25268y) {
+        if (this.f32485a.f25268y) {
             pf.d.r(webView.getContext(), str);
             return true;
         }

@@ -19,7 +19,7 @@ public final class zf1 implements Utilities.Callback {
             case 0:
                 UserInfoActivity userInfoActivity = this.f43740b;
                 userInfoActivity.J = (TL_account.TL_birthday) obj;
-                org.telegram.ui.Components.w61 w61Var = userInfoActivity.f33953x;
+                org.telegram.ui.Components.w61 w61Var = userInfoActivity.f33954x;
                 if (w61Var != null) {
                     w61Var.W2.N(true);
                 }
@@ -34,7 +34,7 @@ public final class zf1 implements Utilities.Callback {
                         org.telegram.messenger.g0.q(R.string.EditProfileChannelSet, org.telegram.ui.Components.xc.a0(userInfoActivity2), R.raw.contact_check, 36);
                     }
                     userInfoActivity2.b0(true);
-                    org.telegram.ui.Components.w61 w61Var2 = userInfoActivity2.f33953x;
+                    org.telegram.ui.Components.w61 w61Var2 = userInfoActivity2.f33954x;
                     if (w61Var2 != null) {
                         w61Var2.W2.N(true);
                         return;

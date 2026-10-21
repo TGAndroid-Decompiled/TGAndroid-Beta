@@ -21,32 +21,32 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.ui.PhotoViewer;
 public final class ts0 extends kv0 {
-    public float f30666o3;
-    public float f30667p3;
-    public final qs0 f30668q3;
-    public final rs0 f30669r3;
-    public final uv0 f30670s3;
+    public float f30667o3;
+    public float f30668p3;
+    public final qs0 f30669q3;
+    public final rs0 f30670r3;
+    public final uv0 f30671s3;
 
     public ts0(uv0 uv0Var, Context context, qs0 qs0Var, rs0 rs0Var) {
         super(context);
-        this.f30670s3 = uv0Var;
-        this.f30668q3 = qs0Var;
-        this.f30669r3 = rs0Var;
+        this.f30671s3 = uv0Var;
+        this.f30669q3 = qs0Var;
+        this.f30670r3 = rs0Var;
     }
 
     @Override
     public final boolean A1() {
-        return this.f30670s3.f31054o1;
+        return this.f30671s3.f31055o1;
     }
 
     @Override
     public final boolean B1() {
-        return uv0.q0(this.f30670s3.f31056p1);
+        return uv0.q0(this.f30671s3.f31057p1);
     }
 
     @Override
     public final boolean C1() {
-        if (this == this.f30668q3.h) {
+        if (this == this.f30669q3.h) {
             return true;
         }
         return false;
@@ -69,7 +69,7 @@ public final class ts0 extends kv0 {
     @Override
     public final Integer W0(int i10) {
         s4.g0 adapter = getAdapter();
-        du0 du0Var = this.f30670s3.Q;
+        du0 du0Var = this.f30671s3.Q;
         if (adapter == du0Var && du0Var.e > 0 && i10 == du0Var.d.size() - 1) {
             return 0;
         }
@@ -83,24 +83,24 @@ public final class ts0 extends kv0 {
         int i11;
         View childAt2;
         s4.g0 adapter = getAdapter();
-        uv0 uv0Var = this.f30670s3;
-        org.telegram.ui.ActionBar.n2 n2Var = uv0Var.f31070v1;
-        cu0 cu0Var = uv0Var.f31028c0;
-        is0 is0Var = uv0Var.f31033e0;
-        qs0 qs0Var = this.f30668q3;
+        uv0 uv0Var = this.f30671s3;
+        org.telegram.ui.ActionBar.n2 n2Var = uv0Var.f31071v1;
+        cu0 cu0Var = uv0Var.f31029c0;
+        is0 is0Var = uv0Var.f31034e0;
+        qs0 qs0Var = this.f30669q3;
         if ((adapter == is0Var || getAdapter() == cu0Var) && getChildCount() > 0 && (childAt = getChildAt(0)) != null && RecyclerView.R(childAt) == 0) {
             int top = childAt.getTop();
-            if (uv0Var.f31054o1) {
-                int i12 = uv0Var.f31056p1;
+            if (uv0Var.f31055o1) {
+                int i12 = uv0Var.f31057p1;
                 if (getAdapter() == cu0Var) {
                     i11 = 8;
                 } else {
                     i11 = 9;
                 }
-                if (i12 == i11 && qs0Var.f28880r.getChildCount() > 0 && (childAt2 = qs0Var.f28880r.getChildAt(0)) != null) {
-                    qs0Var.f28880r.getClass();
+                if (i12 == i11 && qs0Var.f28881r.getChildCount() > 0 && (childAt2 = qs0Var.f28881r.getChildAt(0)) != null) {
+                    qs0Var.f28881r.getClass();
                     if (RecyclerView.R(childAt2) == 0) {
-                        top = AndroidUtilities.lerp(top, childAt2.getTop(), uv0Var.f31052n1);
+                        top = AndroidUtilities.lerp(top, childAt2.getTop(), uv0Var.f31053n1);
                     }
                 }
             }
@@ -115,7 +115,7 @@ public final class ts0 extends kv0 {
                 int measuredWidth = getMeasuredWidth() - AndroidUtilities.dp(60.0f);
                 StaticLayout staticLayout = this.f27959i3;
                 if (staticLayout == null || staticLayout.getWidth() != measuredWidth) {
-                    z10 = (n2Var == null || !ChatObject.isChannelAndNotMegaGroup(n2Var.getMessagesController().getChat(Long.valueOf(-uv0Var.f31045j1)))) ? false : false;
+                    z10 = (n2Var == null || !ChatObject.isChannelAndNotMegaGroup(n2Var.getMessagesController().getChat(Long.valueOf(-uv0Var.f31046j1)))) ? false : false;
                     if (uv0Var.r0()) {
                         if (z10) {
                             i10 = R.string.ProfileStoriesArchiveChannelHint;
@@ -159,24 +159,24 @@ public final class ts0 extends kv0 {
             this.f27962l3 = iaVarArr[currentAccount];
         }
         this.f27962l3.a(this);
-        if (!uv0Var.f31054o1) {
-            uv0Var.f31056p1 = -1;
+        if (!uv0Var.f31055o1) {
+            uv0Var.f31057p1 = -1;
         }
     }
 
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        uv0 uv0Var = this.f30670s3;
-        org.telegram.ui.ActionBar.n2 n2Var = uv0Var.f31070v1;
+        uv0 uv0Var = this.f30671s3;
+        org.telegram.ui.ActionBar.n2 n2Var = uv0Var.f31071v1;
         if (n2Var != null && n2Var.isInPreviewMode()) {
-            this.f30666o3 = motionEvent.getY();
+            this.f30667o3 = motionEvent.getY();
             if (motionEvent.getAction() == 1) {
-                uv0Var.f31070v1.finishPreviewFragment();
+                uv0Var.f31071v1.finishPreviewFragment();
             } else if (motionEvent.getAction() == 2) {
-                float f7 = this.f30667p3 - this.f30666o3;
-                uv0Var.f31070v1.movePreviewFragment(f7);
+                float f7 = this.f30668p3 - this.f30667o3;
+                uv0Var.f31071v1.movePreviewFragment(f7);
                 if (f7 < 0.0f) {
-                    this.f30667p3 = this.f30666o3;
+                    this.f30668p3 = this.f30667o3;
                 }
             }
             return true;
@@ -186,57 +186,57 @@ public final class ts0 extends kv0 {
 
     @Override
     public final int getAnimateToColumnsCount() {
-        return this.f30670s3.f31058q1;
+        return this.f30671s3.f31059q1;
     }
 
     @Override
     public final float getChangeColumnsProgress() {
-        return this.f30670s3.f31052n1;
+        return this.f30671s3.f31053n1;
     }
 
     @Override
     public final int getColumnsCount() {
-        uv0 uv0Var = this.f30670s3;
-        if (uv0.q0(uv0Var.f31056p1)) {
-            return uv0Var.f31049m1[1];
+        uv0 uv0Var = this.f30671s3;
+        if (uv0.q0(uv0Var.f31057p1)) {
+            return uv0Var.f31050m1[1];
         }
-        return uv0Var.f31049m1[0];
+        return uv0Var.f31050m1[0];
     }
 
     @Override
     public final SparseArray getMessageAlphaEnter() {
-        return this.f30670s3.O1;
+        return this.f30671s3.O1;
     }
 
     @Override
     public final rl0 getMovingAdapter() {
-        uv0 uv0Var = this.f30670s3;
-        if (uv0.q0(uv0Var.f31056p1)) {
-            return uv0Var.m1(uv0Var.f31056p1);
+        uv0 uv0Var = this.f30671s3;
+        if (uv0.q0(uv0Var.f31057p1)) {
+            return uv0Var.m1(uv0Var.f31057p1);
         }
         return uv0Var.H;
     }
 
     @Override
     public final rl0 getSupportingAdapter() {
-        uv0 uv0Var = this.f30670s3;
-        if (uv0.q0(uv0Var.f31056p1)) {
-            return uv0Var.n1(uv0Var.f31056p1);
+        uv0 uv0Var = this.f30671s3;
+        if (uv0.q0(uv0Var.f31057p1)) {
+            return uv0Var.n1(uv0Var.f31057p1);
         }
         return uv0Var.I;
     }
 
     @Override
     public final mu0 getSupportingListView() {
-        return this.f30668q3.f28880r;
+        return this.f30669q3.f28881r;
     }
 
     @Override
     public final void k0(int i10, int i11) {
         org.telegram.ui.ActionBar.n2 n2Var;
         boolean z10 = this.I1;
-        uv0 uv0Var = this.f30670s3;
-        if (z10 && uv0Var.getSelectedTab() == 11 && (n2Var = uv0Var.f31070v1) != null) {
+        uv0 uv0Var = this.f30671s3;
+        if (z10 && uv0Var.getSelectedTab() == 11 && (n2Var = uv0Var.f31071v1) != null) {
             AndroidUtilities.hideKeyboard(n2Var.getParentActivity().getCurrentFocus());
         }
         uv0Var.I();
@@ -251,15 +251,15 @@ public final class ts0 extends kv0 {
                     arrayList.add(((org.telegram.ui.Cells.u1) childAt).getMessageObject());
                 }
             }
-            MessagesController.getInstance(bv0Var.d).addToPollsQueue(bv0Var.f25045s.f31045j1, arrayList);
+            MessagesController.getInstance(bv0Var.d).addToPollsQueue(bv0Var.f25045s.f31046j1, arrayList);
         }
     }
 
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
-        qs0 qs0Var = this.f30668q3;
-        this.f30670s3.G(qs0Var, qs0Var.h, this.f30669r3);
+        qs0 qs0Var = this.f30669q3;
+        this.f30671s3.G(qs0Var, qs0Var.h, this.f30670r3);
         if (qs0Var.F == 0) {
             PhotoViewer.u1().z0();
         }
@@ -292,7 +292,7 @@ public final class ts0 extends kv0 {
     public final void z1(org.telegram.ui.Cells.s7 s7Var) {
         float f7;
         int messageId = s7Var.getMessageId();
-        qs0 qs0Var = this.f30668q3;
+        qs0 qs0Var = this.f30669q3;
         if (messageId == qs0Var.J && s7Var.f23027c.hasBitmapImage()) {
             if (!qs0Var.K) {
                 qs0Var.L = 0.0f;

@@ -19,17 +19,17 @@ public final class lz0 extends org.telegram.ui.Components.lw0 implements r0.m {
     public final ArrayList B0;
     public final jg0 C0;
     public final ProfileActivity D0;
-    public final b2.u0 f39064w0;
-    public final ProfileActivity f39065x0;
-    public boolean f39066y0;
-    public final Paint f39067z0;
+    public final b2.u0 f39065w0;
+    public final ProfileActivity f39066x0;
+    public boolean f39067y0;
+    public final Paint f39068z0;
 
     public lz0(ProfileActivity profileActivity, Context context) {
         super(context, null);
         this.D0 = profileActivity;
-        this.f39065x0 = profileActivity;
-        this.f39064w0 = new Object();
-        this.f39067z0 = new Paint();
+        this.f39066x0 = profileActivity;
+        this.f39065w0 = new Object();
+        this.f39068z0 = new Paint();
         this.B0 = new ArrayList();
         this.C0 = new jg0(4);
     }
@@ -41,8 +41,8 @@ public final class lz0 extends org.telegram.ui.Components.lw0 implements r0.m {
         org.telegram.ui.Components.jm0 currentListView;
         int L0;
         int max;
-        ProfileActivity profileActivity = this.f39065x0;
-        if (viewGroup == profileActivity.f33580a) {
+        ProfileActivity profileActivity = this.f39066x0;
+        if (viewGroup == profileActivity.f33581a) {
             int i14 = -1;
             if (profileActivity.L4 != -1 && profileActivity.Q) {
                 kVar = ((org.telegram.ui.ActionBar.n2) profileActivity).actionBar;
@@ -91,8 +91,8 @@ public final class lz0 extends org.telegram.ui.Components.lw0 implements r0.m {
     @Override
     public final void L(Canvas canvas, ArrayList arrayList) {
         canvas.save();
-        ProfileActivity profileActivity = this.f39065x0;
-        canvas.translate(0.0f, profileActivity.f33580a.getY());
+        ProfileActivity profileActivity = this.f39066x0;
+        canvas.translate(0.0f, profileActivity.f33581a.getY());
         profileActivity.O.Q(canvas, arrayList);
         canvas.restore();
     }
@@ -103,11 +103,11 @@ public final class lz0 extends org.telegram.ui.Components.lw0 implements r0.m {
         org.telegram.ui.ActionBar.k kVar;
         boolean z10;
         ProfileActivity profileActivity = this.D0;
-        org.telegram.ui.Components.p50 p50Var = profileActivity.f33752y0;
-        Paint paint = profileActivity.f33701r2;
-        gh.d dVar = profileActivity.f33705r6;
+        org.telegram.ui.Components.p50 p50Var = profileActivity.f33753y0;
+        Paint paint = profileActivity.f33702r2;
+        gh.d dVar = profileActivity.f33706r6;
         bh.f fVar = profileActivity.q6;
-        Paint paint2 = profileActivity.f33758z0;
+        Paint paint2 = profileActivity.f33759z0;
         if (Build.VERSION.SDK_INT >= 31 && fVar != null) {
             ProfileActivity.C0(profileActivity);
             int measuredWidth = getMeasuredWidth();
@@ -123,31 +123,31 @@ public final class lz0 extends org.telegram.ui.Components.lw0 implements r0.m {
         }
         int i10 = org.telegram.ui.ActionBar.h6.f20932a7;
         paint.setColor(org.telegram.ui.ActionBar.h6.w0(i10, profileActivity.A0));
-        if (profileActivity.f33580a.getVisibility() == 0) {
+        if (profileActivity.f33581a.getVisibility() == 0) {
             int w02 = org.telegram.ui.ActionBar.h6.w0(i10, profileActivity.A0);
-            Paint paint3 = this.f39067z0;
+            Paint paint3 = this.f39068z0;
             paint3.setColor(w02);
             if (profileActivity.I1) {
-                paint.setAlpha((int) (profileActivity.f33580a.getAlpha() * 255.0f));
+                paint.setAlpha((int) (profileActivity.f33581a.getAlpha() * 255.0f));
             }
             if (profileActivity.I1) {
-                paint3.setAlpha((int) (profileActivity.f33580a.getAlpha() * 255.0f));
+                paint3.setAlpha((int) (profileActivity.f33581a.getAlpha() * 255.0f));
             }
-            int childCount = profileActivity.f33580a.getChildCount();
+            int childCount = profileActivity.f33581a.getChildCount();
             ArrayList arrayList = this.B0;
             arrayList.clear();
             boolean z11 = false;
             for (int i11 = 0; i11 < childCount; i11++) {
-                View childAt = profileActivity.f33580a.getChildAt(i11);
-                profileActivity.f33580a.getClass();
+                View childAt = profileActivity.f33581a.getChildAt(i11);
+                profileActivity.f33581a.getClass();
                 if (RecyclerView.R(childAt) != -1) {
-                    arrayList.add(profileActivity.f33580a.getChildAt(i11));
+                    arrayList.add(profileActivity.f33581a.getChildAt(i11));
                 } else {
                     z11 = true;
                 }
             }
             Collections.sort(arrayList, this.C0);
-            profileActivity.f33580a.getY();
+            profileActivity.f33581a.getY();
             int size = arrayList.size();
             if (!profileActivity.H1 && size > 0 && !z11) {
                 ((View) arrayList.get(0)).getY();
@@ -160,7 +160,7 @@ public final class lz0 extends org.telegram.ui.Components.lw0 implements r0.m {
                 } else {
                     z10 = false;
                 }
-                profileActivity.f33580a.getY();
+                profileActivity.f33581a.getY();
                 view.getY();
                 if (z12 == z10) {
                     view.getAlpha();
@@ -172,21 +172,21 @@ public final class lz0 extends org.telegram.ui.Components.lw0 implements r0.m {
         }
         super.dispatchDraw(canvas);
         if (p50Var.getAlpha() > 0) {
-            canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), profileActivity.f33752y0);
+            canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), profileActivity.f33753y0);
         }
-        if (profileActivity.f33744x0 != null) {
+        if (profileActivity.f33745x0 != null) {
             int save = canvas.save();
-            canvas.translate(profileActivity.f33744x0.getLeft(), profileActivity.f33744x0.getTop());
-            View view2 = profileActivity.f33744x0;
+            canvas.translate(profileActivity.f33745x0.getLeft(), profileActivity.f33745x0.getTop());
+            View view2 = profileActivity.f33745x0;
             kVar = ((org.telegram.ui.ActionBar.n2) profileActivity).actionBar;
             if (view2 == kVar.getBackButton()) {
                 int alpha = paint2.getAlpha();
                 paint2.setAlpha((int) (((p50Var.getAlpha() / 255.0f) * alpha) / 0.3f));
-                float max = Math.max(profileActivity.f33744x0.getMeasuredWidth(), profileActivity.f33744x0.getMeasuredHeight()) / 2;
+                float max = Math.max(profileActivity.f33745x0.getMeasuredWidth(), profileActivity.f33745x0.getMeasuredHeight()) / 2;
                 canvas.drawCircle(max, max, 0.7f * max, paint2);
                 paint2.setAlpha(alpha);
             }
-            profileActivity.f33744x0.draw(canvas);
+            profileActivity.f33745x0.draw(canvas);
             canvas.restoreToCount(save);
         }
         v10 v10Var = profileActivity.U;
@@ -205,7 +205,7 @@ public final class lz0 extends org.telegram.ui.Components.lw0 implements r0.m {
         }
         if (!profileActivity.J0) {
             canvas.save();
-            hy0 hy0Var = profileActivity.f33580a;
+            hy0 hy0Var = profileActivity.f33581a;
             if (hy0Var != null) {
                 f7 = hy0Var.getTranslationX();
             } else {
@@ -213,8 +213,8 @@ public final class lz0 extends org.telegram.ui.Components.lw0 implements r0.m {
             }
             canvas.translate(f7, 0.0f);
             int w03 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20990d6, profileActivity.A0);
-            int i13 = profileActivity.f33691p6;
-            hy0 hy0Var2 = profileActivity.f33580a;
+            int i13 = profileActivity.f33692p6;
+            hy0 hy0Var2 = profileActivity.f33581a;
             if (hy0Var2 != null) {
                 f10 = hy0Var2.getAlpha();
             }
@@ -233,7 +233,7 @@ public final class lz0 extends org.telegram.ui.Components.lw0 implements r0.m {
             return wy0Var.g(motionEvent);
         }
         nz0 nz0Var = profileActivity.O;
-        if (nz0Var != null && (nu0Var = (nu0VarArr = nz0Var.f31046k0)[0]) != null && nu0Var.h.getFastScroll() != null && nu0VarArr[0].h.getFastScroll().f29647n) {
+        if (nz0Var != null && (nu0Var = (nu0VarArr = nz0Var.f31047k0)[0]) != null && nu0Var.h.getFastScroll() != null && nu0VarArr[0].h.getFastScroll().f29648n) {
             nz0 nz0Var2 = profileActivity.O;
             if (nz0Var2.d) {
                 return nz0Var2.O(motionEvent);
@@ -273,9 +273,9 @@ public final class lz0 extends org.telegram.ui.Components.lw0 implements r0.m {
 
     @Override
     public final void i(ViewGroup viewGroup, int i10, int i11, int i12, int i13, int i14, int[] iArr) {
-        ProfileActivity profileActivity = this.f39065x0;
+        ProfileActivity profileActivity = this.f39066x0;
         try {
-            if (viewGroup == profileActivity.f33580a && profileActivity.Q) {
+            if (viewGroup == profileActivity.f33581a && profileActivity.Q) {
                 org.telegram.ui.Components.jm0 currentListView = profileActivity.O.getCurrentListView();
                 if (profileActivity.O.getTop() == 0) {
                     iArr[1] = i13;
@@ -290,7 +290,7 @@ public final class lz0 extends org.telegram.ui.Components.lw0 implements r0.m {
 
     @Override
     public final void n(int i10, View view) {
-        this.f39064w0.f4053a = 0;
+        this.f39065w0.f4053a = 0;
     }
 
     @Override
@@ -376,13 +376,13 @@ public final class lz0 extends org.telegram.ui.Components.lw0 implements r0.m {
     public final void onSizeChanged(int i10, int i11, int i12, int i13) {
         super.onSizeChanged(i10, i11, i12, i13);
         ProfileActivity profileActivity = this.D0;
-        hh.d.c(profileActivity.f33720t6, profileActivity.fragmentView);
-        profileActivity.f33727u6.d();
+        hh.d.c(profileActivity.f33721t6, profileActivity.fragmentView);
+        profileActivity.f33728u6.d();
     }
 
     @Override
     public final boolean p(View view, View view2, int i10, int i11) {
-        if (this.f39065x0.L4 != -1 && i10 == 2) {
+        if (this.f39066x0.L4 != -1 && i10 == 2) {
             return true;
         }
         return false;
@@ -390,7 +390,7 @@ public final class lz0 extends org.telegram.ui.Components.lw0 implements r0.m {
 
     @Override
     public final void requestLayout() {
-        if (this.f39066y0) {
+        if (this.f39067y0) {
             return;
         }
         super.requestLayout();
@@ -398,7 +398,7 @@ public final class lz0 extends org.telegram.ui.Components.lw0 implements r0.m {
 
     @Override
     public final void s(View view, View view2, int i10, int i11) {
-        this.f39064w0.f4053a = i10;
+        this.f39065w0.f4053a = i10;
     }
 
     @Override

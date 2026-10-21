@@ -232,7 +232,7 @@ public final class g implements Runnable {
                 MessagesController.getInstance(i13).loadFullChat(((TLRPC.Chat) obj).f20276id, 0, true);
                 return;
             case 19:
-                ((v4) ((org.telegram.ui.g) obj).f37149b).V(i13, true);
+                ((v4) ((org.telegram.ui.g) obj).f37150b).V(i13, true);
                 return;
             case 20:
                 u1 u1Var = (u1) obj;
@@ -263,7 +263,7 @@ public final class g implements Runnable {
                 }
                 return;
             case 21:
-                ((de) obj).f36342f.c(i13);
+                ((de) obj).f36343f.c(i13);
                 return;
             case 22:
                 qn qnVar = ((qi) obj).f40586g;
@@ -308,7 +308,7 @@ public final class g implements Runnable {
                 qnVar6.f40926z0.h1(i13, qnVar6.f40918y4);
                 return;
             default:
-                i11 = ((org.telegram.ui.ActionBar.n2) ((cn) obj).f36010a).currentAccount;
+                i11 = ((org.telegram.ui.ActionBar.n2) ((cn) obj).f36011a).currentAccount;
                 ConnectionsManager.getInstance(i11).cancelRequest(i13, true);
                 return;
         }

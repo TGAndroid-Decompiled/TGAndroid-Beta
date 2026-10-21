@@ -33,8 +33,8 @@ public final class iy implements View.OnClickListener {
                 fy fyVar = jyVar.f27674s;
                 if (fyVar != null && (stickerSet = fyVar.f26435b) != null) {
                     tz tzVar = jyVar.E;
-                    if (!tzVar.f30782v2) {
-                        tzVar.f30782v2 = true;
+                    if (!tzVar.f30783v2) {
+                        tzVar.f30783v2 = true;
                         ArrayList arrayList = new ArrayList(1);
                         TLRPC.TL_inputStickerSetID tL_inputStickerSetID = new TLRPC.TL_inputStickerSetID();
                         tL_inputStickerSetID.f20296id = stickerSet.f20303id;
@@ -64,13 +64,13 @@ public final class iy implements View.OnClickListener {
                 }
             case 2:
                 tz tzVar2 = jyVar.E;
-                ArrayList arrayList2 = tzVar2.f30761p1;
+                ArrayList arrayList2 = tzVar2.f30762p1;
                 fy fyVar2 = jyVar.f27674s;
                 if (fyVar2 != null && (stickerSet2 = fyVar2.f26435b) != null) {
                     fyVar2.f26437f = true;
                     ay ayVar = tzVar2.R;
-                    int i12 = tzVar2.f30722c1;
-                    ArrayList arrayList3 = tzVar2.f30764q1;
+                    int i12 = tzVar2.f30723c1;
+                    ArrayList arrayList3 = tzVar2.f30765q1;
                     ey eyVar = tzVar2.P;
                     if (!arrayList2.contains(Long.valueOf(stickerSet2.f20303id))) {
                         arrayList2.add(Long.valueOf(jyVar.f27674s.f26435b.f20303id));
@@ -120,8 +120,8 @@ public final class iy implements View.OnClickListener {
                 fy fyVar3 = jyVar.f27674s;
                 if (fyVar3 != null && (stickerSet3 = fyVar3.f26435b) != null) {
                     fyVar3.f26437f = false;
-                    ArrayList arrayList4 = tzVar3.f30761p1;
-                    int i14 = tzVar3.f30722c1;
+                    ArrayList arrayList4 = tzVar3.f30762p1;
+                    int i14 = tzVar3.f30723c1;
                     arrayList4.remove(Long.valueOf(stickerSet3.f20303id));
                     jyVar.a(true);
                     vx vxVar = tzVar3.I;
@@ -159,21 +159,21 @@ public final class iy implements View.OnClickListener {
                 }
                 return;
             case 4:
-                uy uyVar = jyVar.E.f30775t1;
+                uy uyVar = jyVar.E.f30776t1;
                 if (uyVar != null) {
                     uyVar.q();
                     return;
                 }
                 return;
             case 5:
-                uy uyVar2 = jyVar.E.f30775t1;
+                uy uyVar2 = jyVar.E.f30776t1;
                 if (uyVar2 != null) {
                     uyVar2.q();
                     return;
                 }
                 return;
             default:
-                uy uyVar3 = jyVar.E.f30775t1;
+                uy uyVar3 = jyVar.E.f30776t1;
                 if (uyVar3 != null) {
                     uyVar3.q();
                     return;

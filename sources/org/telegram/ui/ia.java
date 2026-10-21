@@ -16,7 +16,7 @@ public final class ia extends pa {
     public final String getUsernameEditable() {
         switch (this.J) {
             case 0:
-                return ((ja) this.K).f38219c.f41416r;
+                return ((ja) this.K).f38220c.f41416r;
             default:
                 ei.e2 e2Var = ((uo) this.K).f42022c.Y2.f42906a;
                 if (e2Var == null) {

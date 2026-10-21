@@ -5,26 +5,26 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.Utilities;
 public final class pk0 implements Utilities.Callback {
-    public final int f29325a;
-    public final dl0 f29326b;
+    public final int f29326a;
+    public final dl0 f29327b;
 
     public pk0(dl0 dl0Var, int i10) {
-        this.f29325a = i10;
-        this.f29326b = dl0Var;
+        this.f29326a = i10;
+        this.f29327b = dl0Var;
     }
 
     @Override
     public final void run(Object obj) {
         float f7;
         View view = (View) obj;
-        switch (this.f29325a) {
+        switch (this.f29326a) {
             case 0:
-                dl0 dl0Var = this.f29326b;
+                dl0 dl0Var = this.f29327b;
                 ArrayList arrayList = dl0Var.d;
                 dl0Var.f25525b.getClass();
                 int R = RecyclerView.R(view);
                 if (R >= 0 && R < arrayList.size() && (view instanceof bl0)) {
-                    ((bl0) view).f(((uk0) arrayList.get(R)).f30955c, true);
+                    ((bl0) view).f(((uk0) arrayList.get(R)).f30956c, true);
                     return;
                 }
                 return;
@@ -35,7 +35,7 @@ public final class pk0 implements Utilities.Callback {
                     bl0Var.N = false;
                     float f10 = 1.0f;
                     al0Var.setAlpha(1.0f);
-                    if (this.f29326b.N0) {
+                    if (this.f29327b.N0) {
                         float f11 = bl0Var.I;
                         if (bl0Var.f24982w) {
                             f7 = 0.76f;

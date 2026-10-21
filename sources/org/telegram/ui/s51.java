@@ -48,7 +48,7 @@ public final class s51 extends AnimatorListenerAdapter {
         }
         if (!z10) {
             if (this.d) {
-                t51Var.f41595a.f37189b = false;
+                t51Var.f41595a.f37190b = false;
                 t51Var.P.f43061h0.invalidate();
             }
             NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 4);

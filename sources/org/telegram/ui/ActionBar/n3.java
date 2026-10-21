@@ -116,7 +116,7 @@ public final class n3 extends FrameLayout {
         if (launchActivity == null) {
             w3Var = null;
         } else {
-            w3Var = launchActivity.f33201y0;
+            w3Var = launchActivity.f33202y0;
         }
         if (w3Var != null && (valueAnimator = w3Var.d) != null) {
             valueAnimator.cancel();
@@ -517,8 +517,8 @@ public final class n3 extends FrameLayout {
         for (int i10 = 0; i10 < tabs.size(); i10++) {
             m3 m3Var = tabs.get(i10);
             org.telegram.ui.l4 l4Var = m3Var.J;
-            if (l4Var != null && !l4Var.f38762d0.isEmpty()) {
-                Object h = i2.e.h(1, m3Var.J.f38762d0);
+            if (l4Var != null && !l4Var.f38763d0.isEmpty()) {
+                Object h = i2.e.h(1, m3Var.J.f38763d0);
                 if ((h instanceof TLRPC.WebPage) && ((TLRPC.WebPage) h).f20429id == webPage.f20429id) {
                     e(m3Var);
                     return m3Var;

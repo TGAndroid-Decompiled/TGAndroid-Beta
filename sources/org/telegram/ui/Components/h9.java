@@ -175,7 +175,7 @@ public class h9 extends Drawable {
         Paint paint = org.telegram.ui.ActionBar.h6.f21222q0;
         if (this.f26812c && (x20Var = this.f26813f) != null) {
             x20Var.b(bounds.left, bounds.top, i10 + width, i11 + width);
-            paint = this.f26813f.f32313c;
+            paint = this.f26813f.f32314c;
         } else if (this.f26811b) {
             int o11 = i0.a.o(b(), this.f26830y);
             int o12 = i0.a.o(c(), this.f26830y);
@@ -238,8 +238,8 @@ public class h9 extends Drawable {
                 org.telegram.ui.ActionBar.h6.C1 = true;
             }
             vj0 vj0Var3 = org.telegram.ui.ActionBar.h6.f21301u1;
-            int i15 = vj0Var3.f31265b;
-            int i16 = vj0Var3.f31267c;
+            int i15 = vj0Var3.f31266b;
+            int i16 = vj0Var3.f31268c;
             int i17 = (width - i15) / 2;
             int i18 = (width - i16) / 2;
             canvas.save();

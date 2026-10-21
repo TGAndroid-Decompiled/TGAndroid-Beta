@@ -150,12 +150,12 @@ public final class a2 extends s4.g0 {
                 int dp2 = AndroidUtilities.dp(56.0f);
                 int dp3 = AndroidUtilities.dp(56.0f);
                 zqVar.h = dp2;
-                zqVar.f33020n = dp3;
+                zqVar.f33021n = dp3;
                 int dp4 = AndroidUtilities.dp(24.0f);
                 int dp5 = AndroidUtilities.dp(24.0f);
                 zqVar.e = dp4;
-                zqVar.f33019f = dp5;
-                zqVar.f33021r = true;
+                zqVar.f33020f = dp5;
+                zqVar.f33022r = true;
                 n1Var.setDrawable(zqVar);
                 return;
             }

@@ -553,7 +553,7 @@ public abstract class fj0 {
             canvas.restore();
             if (!z12 && this.e && this.C > 0.0f) {
                 canvas.save();
-                float f57 = org.telegram.ui.ActionBar.h6.f21301u1.f31265b;
+                float f57 = org.telegram.ui.ActionBar.h6.f21301u1.f31266b;
                 float dp7 = AndroidUtilities.dp(24.0f) / f57;
                 float f58 = this.C;
                 float c10 = r4.c.c(1.0f - dp7, f58, dp7, f12);

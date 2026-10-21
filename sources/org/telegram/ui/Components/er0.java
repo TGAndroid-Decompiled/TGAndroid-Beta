@@ -40,7 +40,7 @@ public abstract class er0 extends FrameLayout {
         this.f25957f.setInterpolator(bs.f25022g);
         this.f25957f.addListener(new c80(this, 18));
         this.f25957f.start();
-        ((rq0) this).f29991r.b1();
+        ((rq0) this).f29992r.b1();
     }
 
     @Override

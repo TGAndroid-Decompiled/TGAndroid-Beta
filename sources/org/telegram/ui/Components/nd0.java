@@ -4,76 +4,76 @@ import android.view.View;
 import android.view.ViewConfiguration;
 import org.telegram.messenger.EmojiData;
 public final class nd0 implements Runnable {
-    public final int f28783a = 0;
-    public int f28784b;
-    public int f28785c;
+    public final int f28784a = 0;
+    public int f28785b;
+    public int f28786c;
     public final Object d;
 
     public nd0(org.telegram.ui.oy oyVar, int i10, int i11) {
         this.d = oyVar;
-        this.f28784b = i10;
-        this.f28785c = i11;
+        this.f28785b = i10;
+        this.f28786c = i11;
     }
 
     public void a() {
-        this.f28785c = 0;
-        this.f28784b = 0;
+        this.f28786c = 0;
+        this.f28785b = 0;
         od0 od0Var = (od0) this.d;
         od0Var.removeCallbacks(this);
-        if (od0Var.f29016n0) {
-            od0Var.f29016n0 = false;
+        if (od0Var.f29017n0) {
+            od0Var.f29017n0 = false;
             od0Var.invalidate(0, od0Var.m0, od0Var.getRight(), od0Var.getBottom());
         }
-        od0Var.f29017o0 = false;
+        od0Var.f29018o0 = false;
     }
 
     @Override
     public final void run() {
         org.telegram.ui.Cells.u1 u1Var;
         org.telegram.ui.qn qnVar;
-        switch (this.f28783a) {
+        switch (this.f28784a) {
             case 0:
                 od0 od0Var = (od0) this.d;
-                int i10 = this.f28785c;
+                int i10 = this.f28786c;
                 if (i10 != 1) {
                     if (i10 == 2) {
-                        int i11 = this.f28784b;
+                        int i11 = this.f28785b;
                         if (i11 != 1) {
                             if (i11 == 2) {
-                                if (!od0Var.f29017o0) {
+                                if (!od0Var.f29018o0) {
                                     od0Var.postDelayed(this, ViewConfiguration.getPressedStateDuration());
                                 }
-                                od0Var.f29017o0 = (byte) (!od0Var.f29017o0 ? 1 : 0);
-                                od0Var.invalidate(0, 0, od0Var.getRight(), od0Var.f29014l0);
+                                od0Var.f29018o0 = (byte) (!od0Var.f29018o0 ? 1 : 0);
+                                od0Var.invalidate(0, 0, od0Var.getRight(), od0Var.f29015l0);
                                 return;
                             }
                             return;
                         }
-                        if (!od0Var.f29016n0) {
+                        if (!od0Var.f29017n0) {
                             od0Var.postDelayed(this, ViewConfiguration.getPressedStateDuration());
                         }
-                        od0Var.f29016n0 = (byte) (!od0Var.f29016n0 ? 1 : 0);
+                        od0Var.f29017n0 = (byte) (!od0Var.f29017n0 ? 1 : 0);
                         od0Var.invalidate(0, od0Var.m0, od0Var.getRight(), od0Var.getBottom());
                         return;
                     }
                     return;
                 }
-                int i12 = this.f28784b;
+                int i12 = this.f28785b;
                 if (i12 != 1) {
                     if (i12 == 2) {
-                        od0Var.f29017o0 = true;
-                        od0Var.invalidate(0, 0, od0Var.getRight(), od0Var.f29014l0);
+                        od0Var.f29018o0 = true;
+                        od0Var.invalidate(0, 0, od0Var.getRight(), od0Var.f29015l0);
                         return;
                     }
                     return;
                 }
-                od0Var.f29016n0 = true;
+                od0Var.f29017n0 = true;
                 od0Var.invalidate(0, od0Var.m0, od0Var.getRight(), od0Var.getBottom());
                 return;
             default:
                 org.telegram.ui.oy oyVar = (org.telegram.ui.oy) this.d;
-                int i13 = this.f28784b;
-                int i14 = this.f28785c;
+                int i13 = this.f28785b;
+                int i14 = this.f28786c;
                 jm0 jm0Var = oyVar.H;
                 if (oyVar.f40004n) {
                     int i15 = 0;

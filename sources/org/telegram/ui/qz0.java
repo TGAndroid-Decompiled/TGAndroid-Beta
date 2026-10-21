@@ -18,7 +18,7 @@ public final class qz0 implements View.OnClickListener {
             case 0:
                 b01 b01Var = this.f41022b;
                 ProfileActivity profileActivity = b01Var.e;
-                TLRPC.User user = profileActivity.getMessagesController().getUser(Long.valueOf(profileActivity.f33619f1));
+                TLRPC.User user = profileActivity.getMessagesController().getUser(Long.valueOf(profileActivity.f33620f1));
                 MessagesController messagesController = profileActivity.getMessagesController();
                 ProfileActivity profileActivity2 = b01Var.e;
                 messagesController.openApp(profileActivity2, user, null, profileActivity2.getClassGuid(), null);
@@ -34,7 +34,7 @@ public final class qz0 implements View.OnClickListener {
                 profileActivity3.d.m(profileActivity3.P3);
                 int i10 = profileActivity3.W5;
                 if (i10 >= 0) {
-                    profileActivity3.f33595c.h1(i10, profileActivity3.X5 - profileActivity3.f33580a.getPaddingTop());
+                    profileActivity3.f33596c.h1(i10, profileActivity3.X5 - profileActivity3.f33581a.getPaddingTop());
                     return;
                 }
                 return;

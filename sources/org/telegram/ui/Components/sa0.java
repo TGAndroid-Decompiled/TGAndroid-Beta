@@ -3,15 +3,15 @@ package org.telegram.ui.Components;
 import android.view.View;
 import org.telegram.tgnet.TLRPC;
 public final class sa0 implements gu0 {
-    public final wa0 f30238a;
+    public final wa0 f30239a;
 
     public sa0(wa0 wa0Var) {
-        this.f30238a = wa0Var;
+        this.f30239a = wa0Var;
     }
 
     @Override
     public final void R() {
-        this.f30238a.a0();
+        this.f30239a.a0();
     }
 
     @Override

@@ -54,7 +54,7 @@ public abstract class k51 extends FrameLayout implements org.telegram.ui.ActionB
         t3Var.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
         t3Var.setGravity(1);
         t3Var.setIgnoreRTL(!LocaleController.isRTL);
-        t3Var.f29481n = false;
+        t3Var.f29482n = false;
         final org.telegram.ui.rk rkVar = (org.telegram.ui.rk) this;
         t3Var.setOnClickListener(new u80(rkVar, 23));
         addView(t3Var, w7.z5.d(-1, -1.0f, 3, 0.0f, 0.0f, 34.0f, 0.0f));

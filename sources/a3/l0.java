@@ -191,7 +191,7 @@ public final class l0 implements Runnable {
                 } else {
                     J = X.J(R.raw.contact_check, charSequence, LocaleController.getString(R.string.Gift2UniqueView), runnable);
                 }
-                J.f29540t = true;
+                J.f29541t = true;
                 J.j();
                 return;
             case 9:

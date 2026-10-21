@@ -26,7 +26,7 @@ public final class ak implements Comparator {
                         if (isDirectory != hkVar2.f26910f.isDirectory()) {
                             if (isDirectory) {
                             }
-                        } else if (!isDirectory && !nkVar.f28817c0) {
+                        } else if (!isDirectory && !nkVar.f28818c0) {
                             int i10 = (hkVar.f26910f.lastModified() > hkVar2.f26910f.lastModified() ? 1 : (hkVar.f26910f.lastModified() == hkVar2.f26910f.lastModified() ? 0 : -1));
                             if (i10 == 0) {
                                 return 0;
@@ -41,7 +41,7 @@ public final class ak implements Comparator {
                 }
                 return -1;
             default:
-                if (this.f24631b.f28817c0) {
+                if (this.f24631b.f28818c0) {
                     return hkVar.f26910f.getName().compareToIgnoreCase(hkVar2.f26910f.getName());
                 }
                 int i11 = (hkVar.f26910f.lastModified() > hkVar2.f26910f.lastModified() ? 1 : (hkVar.f26910f.lastModified() == hkVar2.f26910f.lastModified() ? 0 : -1));

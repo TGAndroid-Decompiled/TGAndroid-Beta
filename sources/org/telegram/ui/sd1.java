@@ -13,7 +13,7 @@ public final class sd1 implements View.OnTouchListener {
                 HashSet hashSet = re1.f41147n1;
                 return true;
             default:
-                int[][] iArr = WallpapersListActivity.f35206k0;
+                int[][] iArr = WallpapersListActivity.f35207k0;
                 return true;
         }
     }

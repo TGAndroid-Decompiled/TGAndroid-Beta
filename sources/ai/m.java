@@ -112,7 +112,7 @@ public final class m implements Runnable {
                     replaceTags = AndroidUtilities.replaceTags(LocaleController.formatString(R.string.StoriesMovedToContacts, ContactsController.formatName(str, null, 10)));
                 }
                 org.telegram.ui.Components.qc V = new org.telegram.ui.Components.xc(q4Var.f5773d1, q4Var.B0).V(Arrays.asList(tLObject2), replaceTags, null, eVar);
-                V.f29524a = 2;
+                V.f29525a = 2;
                 V.k(true);
                 return;
             case 2:
@@ -209,7 +209,7 @@ public final class m implements Runnable {
                 TLObject tLObject3 = (TLObject) obj2;
                 String str3 = (String) obj;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj3;
-                int i11 = ib0Var.f37912b;
+                int i11 = ib0Var.f37913b;
                 ib0Var.c();
                 if (tLObject3 instanceof TLRPC.TL_contacts_resolvedPeer) {
                     TLRPC.TL_contacts_resolvedPeer tL_contacts_resolvedPeer = (TLRPC.TL_contacts_resolvedPeer) tLObject3;
@@ -218,10 +218,10 @@ public final class m implements Runnable {
                     TLRPC.User user = MessagesController.getInstance(i11).getUser(Long.valueOf(tL_contacts_resolvedPeer.peer.user_id));
                     if (user != null) {
                         org.telegram.ui.Wallet.i9 i9Var = new org.telegram.ui.Wallet.i9(user);
-                        i9Var.f34362r = j10;
-                        i9Var.f34347d0 = str3;
-                        i9Var.f34348e0 = z10;
-                        i9Var.f34346c0 = true;
+                        i9Var.f34363r = j10;
+                        i9Var.f34348d0 = str3;
+                        i9Var.f34349e0 = z10;
+                        i9Var.f34347c0 = true;
                         ib0Var.u(i9Var, false);
                         return;
                     }
@@ -234,8 +234,8 @@ public final class m implements Runnable {
                 }
             default:
                 jz0 jz0Var = (jz0) obj4;
-                ProfileActivity profileActivity = jz0Var.f38379b;
-                bq bqVar = new bq(profileActivity.f33619f1, -j10, (TLRPC.TL_chatAdminRights) obj3, null, null, (String) obj2, 2, true, !z10, null);
+                ProfileActivity profileActivity = jz0Var.f38380b;
+                bq bqVar = new bq(profileActivity.f33620f1, -j10, (TLRPC.TL_chatAdminRights) obj3, null, null, (String) obj2, 2, true, !z10, null);
                 bqVar.X0 = new iz0(jz0Var, (cy) obj);
                 profileActivity.presentFragment(bqVar);
                 return;

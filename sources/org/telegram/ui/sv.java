@@ -20,7 +20,7 @@ public final class sv implements Runnable {
             case 0:
                 cy cyVar = this.f41539b;
                 lx lxVar = cyVar.C0;
-                if (lxVar != null && lxVar.f32200y0) {
+                if (lxVar != null && lxVar.f32201y0) {
                     lxVar.Q(false);
                     return;
                 }
@@ -43,7 +43,7 @@ public final class sv implements Runnable {
                 }
             case 2:
                 cy cyVar3 = this.f41539b;
-                ih.f fVar = cyVar3.f36195y1;
+                ih.f fVar = cyVar3.f36196y1;
                 if (fVar != null) {
                     fVar.d();
                 }
@@ -73,14 +73,14 @@ public final class sv implements Runnable {
                 return;
             case 8:
                 cy cyVar4 = this.f41539b;
-                ei.x3 x3Var = cyVar4.f36150q0;
+                ei.x3 x3Var = cyVar4.f36151q0;
                 if (x3Var != null) {
                     x3Var.e(true);
                 }
                 cyVar4.presentFragment(new PremiumPreviewFragment(0, "stories"));
                 return;
             case 9:
-                this.f41539b.f36091e0[0].d.l();
+                this.f41539b.f36092e0[0].d.l();
                 return;
             case 10:
                 cy cyVar5 = this.f41539b;

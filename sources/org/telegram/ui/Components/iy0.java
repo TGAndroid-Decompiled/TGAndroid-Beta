@@ -48,10 +48,10 @@ public final class iy0 extends FrameLayout {
         int i22;
         int min;
         qy0 qy0Var = this.e;
-        int i23 = qy0Var.f29749e0;
+        int i23 = qy0Var.f29750e0;
         i10 = ((org.telegram.ui.ActionBar.f3) qy0Var).backgroundPaddingTop;
         int dp = AndroidUtilities.dp(6.0f) + (i23 - i10);
-        int i24 = qy0Var.f29749e0;
+        int i24 = qy0Var.f29750e0;
         i11 = ((org.telegram.ui.ActionBar.f3) qy0Var).backgroundPaddingTop;
         int dp2 = (i24 - i11) - AndroidUtilities.dp(13.0f);
         int i25 = AndroidUtilities.statusBarHeight;
@@ -140,7 +140,7 @@ public final class iy0 extends FrameLayout {
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         if (motionEvent.getAction() == 0) {
             qy0 qy0Var = this.e;
-            if (qy0Var.f29749e0 != 0 && motionEvent.getY() < qy0Var.f29749e0) {
+            if (qy0Var.f29750e0 != 0 && motionEvent.getY() < qy0Var.f29750e0) {
                 qy0Var.dismiss();
                 return true;
             }
@@ -182,14 +182,14 @@ public final class iy0 extends FrameLayout {
         qy0 qy0Var = this.e;
         ArrayList arrayList = qy0Var.X;
         boolean z10 = true;
-        qy0Var.f29752g0 = true;
+        qy0Var.f29753g0 = true;
         i12 = ((org.telegram.ui.ActionBar.f3) qy0Var).backgroundPaddingLeft;
         int i22 = AndroidUtilities.statusBarHeight;
         i13 = ((org.telegram.ui.ActionBar.f3) qy0Var).backgroundPaddingLeft;
         setPadding(i12, i22, i13, 0);
-        qy0Var.f29752g0 = false;
+        qy0Var.f29753g0 = false;
         if (qy0Var.t0()) {
-            int measuredWidth = qy0Var.f29746c.getMeasuredWidth();
+            int measuredWidth = qy0Var.f29747c.getMeasuredWidth();
             if (measuredWidth == 0) {
                 measuredWidth = AndroidUtilities.displaySize.x;
             }
@@ -209,7 +209,7 @@ public final class iy0 extends FrameLayout {
             qy0Var.P = AndroidUtilities.dp(82.0f);
         }
         float f10 = qy0Var.d.d;
-        ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) qy0Var.f29746c.getLayoutParams();
+        ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) qy0Var.f29747c.getLayoutParams();
         int i23 = 3;
         if (arrayList != null) {
             int max = Math.max(3, (int) Math.ceil(arrayList.size() / f10)) * qy0Var.P;
@@ -219,7 +219,7 @@ public final class iy0 extends FrameLayout {
             if (qy0Var.W != null) {
                 int size3 = (qy0Var.W.size() * AndroidUtilities.dp(60.0f)) + AndroidUtilities.dp(8.0f) + marginLayoutParams.bottomMargin;
                 i19 = ((org.telegram.ui.ActionBar.f3) qy0Var).backgroundPaddingTop;
-                i17 = i19 + (qy0Var.d.f28626n * qy0Var.P) + size3;
+                i17 = i19 + (qy0Var.d.f28627n * qy0Var.P) + size3;
                 i16 = AndroidUtilities.dp(24.0f);
             } else {
                 int dp = AndroidUtilities.dp(48.0f) + marginLayoutParams.bottomMargin;
@@ -256,11 +256,11 @@ public final class iy0 extends FrameLayout {
         if (qy0Var.W != null) {
             i20 += AndroidUtilities.dp(8.0f);
         }
-        if (qy0Var.f29746c.getPaddingTop() != i20) {
-            qy0Var.f29752g0 = true;
-            qy0Var.f29746c.setPadding(AndroidUtilities.dp(10.0f), i20, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(8.0f));
+        if (qy0Var.f29747c.getPaddingTop() != i20) {
+            qy0Var.f29753g0 = true;
+            qy0Var.f29747c.setPadding(AndroidUtilities.dp(10.0f), i20, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(8.0f));
             qy0Var.K.setPadding(0, i20, 0, 0);
-            qy0Var.f29752g0 = false;
+            qy0Var.f29753g0 = false;
         }
         if (i18 < size) {
             z10 = false;
@@ -279,7 +279,7 @@ public final class iy0 extends FrameLayout {
 
     @Override
     public final void requestLayout() {
-        if (this.e.f29752g0) {
+        if (this.e.f29753g0) {
             return;
         }
         super.requestLayout();

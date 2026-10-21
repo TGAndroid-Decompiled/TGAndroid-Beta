@@ -1920,13 +1920,13 @@ public abstract class h6 {
             f21264s3 = new f5(1, true, false, null);
             f21283t3 = new f5(1, true, true, null);
             ?? obj = new Object();
-            obj.f30510a = new Path();
-            obj.f30511b = -1.0f;
-            obj.f30514g = new ArrayList();
-            obj.f30512c = 0.293f;
+            obj.f30511a = new Path();
+            obj.f30512b = -1.0f;
+            obj.f30515g = new ArrayList();
+            obj.f30513c = 0.293f;
             obj.d = -26.0f;
             obj.e = -28.0f;
-            obj.f30513f = 1.0f;
+            obj.f30514f = 1.0f;
             f21357x3 = obj;
             obj.a("M 34.141 16.042 C 37.384 17.921 40.886 20.001 44.211 21.965 C 46.139 23.104 49.285 24.729 49.586 25.917 C 50.289 28.687 48.484 30 46.274 30 L 6 30.021 C 3.79 30.021 2.075 30.023 2 26.021 L 2.009 3.417 C 2.009 0.417 5.326 -0.58 7.068 0.417 C 10.545 2.406 25.024 10.761 34.141 16.042 Z", 166.0f);
             f21357x3.a("M 37.843 17.769 C 41.143 19.508 44.131 21.164 47.429 23.117 C 48.542 23.775 49.623 24.561 49.761 25.993 C 50.074 28.708 48.557 30 46.347 30 L 6 30.012 C 3.79 30.012 2 28.222 2 26.012 L 2.009 4.609 C 2.009 1.626 5.276 0.664 7.074 1.541 C 10.608 3.309 28.488 12.842 37.843 17.769 Z", 200.0f);
@@ -2261,7 +2261,7 @@ public abstract class h6 {
         shapeDrawable.getPaint().setColor(-1);
         zq zqVar = new zq(shapeDrawable, drawable);
         zqVar.h = i10;
-        zqVar.f33020n = i10;
+        zqVar.f33021n = i10;
         return zqVar;
     }
 
@@ -3313,7 +3313,7 @@ public abstract class h6 {
         } else {
             z10 = false;
         }
-        if (z10 && Y != (bitmap = ((wc0) drawable).f32075k)) {
+        if (z10 && Y != (bitmap = ((wc0) drawable).f32076k)) {
             Y = bitmap;
             Bitmap bitmap2 = Y;
             Shader.TileMode tileMode = Shader.TileMode.CLAMP;
@@ -3391,7 +3391,7 @@ public abstract class h6 {
         boolean z10 = drawable instanceof wc0;
         if ((z10 || (drawable instanceof BitmapDrawable)) && SharedConfig.getDevicePerformanceClass() != 0 && LiteMode.isEnabled(32)) {
             if (z10) {
-                bitmap = ((wc0) drawable).f32075k;
+                bitmap = ((wc0) drawable).f32076k;
             } else {
                 if (drawable instanceof BitmapDrawable) {
                     WeakReference weakReference = Il;
@@ -3490,7 +3490,7 @@ public abstract class h6 {
             ColorMatrix colorMatrix2 = new ColorMatrix();
             if (z10) {
                 float f14 = -0.06f;
-                if (((wc0) drawable).f32081q >= 0.0f) {
+                if (((wc0) drawable).f32082q >= 0.0f) {
                     colorMatrix2.setSaturation(1.6f);
                     if (I.q()) {
                         f13 = 0.97f;
@@ -4308,7 +4308,7 @@ public abstract class h6 {
         }
         Drawable drawable = f21001e0;
         if (drawable instanceof wc0) {
-            S = ((wc0) drawable).f32073i;
+            S = ((wc0) drawable).f32074i;
         } else {
             S = 0;
         }
@@ -4828,9 +4828,9 @@ public abstract class h6 {
             return;
         }
         if (z10) {
-            drawable2 = ((zq) drawable).f33017b;
+            drawable2 = ((zq) drawable).f33018b;
         } else {
-            drawable2 = ((zq) drawable).f33016a;
+            drawable2 = ((zq) drawable).f33017a;
         }
         if (drawable2 instanceof ColorDrawable) {
             ((ColorDrawable) drawable2).setColor(i10);

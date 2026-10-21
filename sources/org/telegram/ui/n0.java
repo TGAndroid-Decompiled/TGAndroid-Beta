@@ -20,7 +20,7 @@ public final class n0 extends org.telegram.ui.web.t1 {
 
     @Override
     public final org.telegram.ui.web.f2 getInstantViewLoader() {
-        o3 o3Var = this.B0.f38778u0[0];
+        o3 o3Var = this.B0.f38779u0[0];
         if (!o3Var.f()) {
             org.telegram.ui.web.f2 f2Var = o3Var.f39761y;
             if (f2Var != null) {
@@ -92,7 +92,7 @@ public final class n0 extends org.telegram.ui.web.t1 {
         g2Var.b(i0.a.f(this.f42786a0, this.f42813w, this.f42817y));
         this.L.invalidate();
         l4 l4Var = this.B0;
-        org.telegram.ui.web.k kVar = l4Var.f38767i0;
+        org.telegram.ui.web.k kVar = l4Var.f38768i0;
         if (kVar != null) {
             kVar.setOpenProgress(f7);
         }
@@ -148,7 +148,7 @@ public final class n0 extends org.telegram.ui.web.t1 {
             }
             AndroidUtilities.runOnUIThread(o1Var, j10);
         }
-        org.telegram.ui.web.k kVar = this.B0.f38767i0;
+        org.telegram.ui.web.k kVar = this.B0.f38768i0;
         if (kVar != null) {
             kVar.setOpened(z10);
         }
@@ -157,6 +157,6 @@ public final class n0 extends org.telegram.ui.web.t1 {
     @Override
     public final void onMeasure(int i10, int i11) {
         super.onMeasure(i10, i11);
-        ((ViewGroup.MarginLayoutParams) this.B0.f38767i0.getLayoutParams()).topMargin = getMeasuredHeight();
+        ((ViewGroup.MarginLayoutParams) this.B0.f38768i0.getLayoutParams()).topMargin = getMeasuredHeight();
     }
 }

@@ -7,14 +7,14 @@ import org.telegram.messenger.FileLog;
 import org.telegram.ui.Components.cz0;
 import org.telegram.ui.Components.y31;
 public final class z0 {
-    public final int f35162a;
-    public final long f35163b;
-    public final a1 f35164c;
+    public final int f35163a;
+    public final long f35164b;
+    public final a1 f35165c;
 
     public z0(a1 a1Var, int i10, long j10) {
-        this.f35164c = a1Var;
-        this.f35162a = i10;
-        this.f35163b = j10;
+        this.f35165c = a1Var;
+        this.f35163a = i10;
+        this.f35164b = j10;
     }
 
     public final void a(tc.u uVar, tc.x xVar, tc.x xVar2, boolean z10) {
@@ -34,14 +34,14 @@ public final class z0 {
             obj = Integer.valueOf(xVar2.b());
         }
         sb2.append(obj);
-        AndroidUtilities.runOnUIThread(new cz0(this.f35164c, uVar, this.f35162a, sb2.toString(), 15, false));
+        AndroidUtilities.runOnUIThread(new cz0(this.f35165c, uVar, this.f35163a, sb2.toString(), 15, false));
     }
 
     public final void b(tc.u uVar, String str) {
         StringBuilder sb2 = new StringBuilder("[gram-wallet-streaming] account=");
-        sb2.append(this.f35164c.f33970a);
+        sb2.append(this.f35165c.f33971a);
         sb2.append(" generation=");
-        int i10 = this.f35162a;
+        int i10 = this.f35163a;
         sb2.append(i10);
         sb2.append(" receive <- ");
         sb2.append(str);

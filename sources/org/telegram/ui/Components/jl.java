@@ -14,7 +14,7 @@ public final class jl extends s4.c0 {
     public final int k(int i10, View view) {
         int k10 = super.k(i10, view);
         rl rlVar = (rl) this.f27548r.V;
-        return k10 - (rlVar.P.getPaddingTop() - (rlVar.A0 - rlVar.f29976z0));
+        return k10 - (rlVar.P.getPaddingTop() - (rlVar.A0 - rlVar.f29977z0));
     }
 
     @Override

@@ -18,14 +18,14 @@ public final class it0 extends g.o {
         switch (this.f27336c) {
             case 0:
                 nu0 nu0Var = (nu0) this.d;
-                s4.g0 adapter = nu0Var.f28880r.getAdapter();
+                s4.g0 adapter = nu0Var.f28881r.getAdapter();
                 uv0 uv0Var = (uv0) this.e;
                 ov0 ov0Var = uv0Var.I;
                 if (adapter == ov0Var) {
                     if (ov0Var.j(i10) != 2) {
                         return 1;
                     }
-                    return nu0Var.f28881s.J;
+                    return nu0Var.f28882s.J;
                 } else if (uv0.p(uv0Var, adapter) == -1) {
                     return 1;
                 } else {

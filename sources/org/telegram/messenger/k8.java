@@ -12,30 +12,30 @@ import org.telegram.ui.ba0;
 import org.telegram.ui.bq;
 import org.telegram.ui.cy;
 public final class k8 implements Runnable {
-    public final int f18770a = 0;
-    public final boolean f18771b;
-    public final int f18772c;
+    public final int f18763a = 0;
+    public final boolean f18764b;
+    public final int f18765c;
     public final long d;
     public final Object e;
-    public final Object f18773f;
+    public final Object f18766f;
     public final Object h;
-    public final Object f18774n;
-    public final Object f18775r;
-    public final Object f18776s;
+    public final Object f18767n;
+    public final Object f18768r;
+    public final Object f18769s;
     public final Object v;
-    public final Object f18777w;
+    public final Object f18770w;
 
     public k8(MediaDataController mediaDataController, Timer.Task task, a0.h hVar, AtomicInteger atomicInteger, Runnable runnable, int i10, Timer timer, a0.h hVar2, a0.h hVar3, boolean z10, long j10) {
         this.e = mediaDataController;
-        this.f18773f = task;
+        this.f18766f = task;
         this.h = hVar;
-        this.f18776s = atomicInteger;
+        this.f18769s = atomicInteger;
         this.v = runnable;
-        this.f18772c = i10;
-        this.f18777w = timer;
-        this.f18774n = hVar2;
-        this.f18775r = hVar3;
-        this.f18771b = z10;
+        this.f18765c = i10;
+        this.f18770w = timer;
+        this.f18767n = hVar2;
+        this.f18768r = hVar3;
+        this.f18764b = z10;
         this.d = j10;
     }
 
@@ -53,18 +53,18 @@ public final class k8 implements Runnable {
         boolean z18;
         boolean z19;
         boolean z20;
-        int i10 = this.f18770a;
-        Object obj = this.f18777w;
+        int i10 = this.f18763a;
+        Object obj = this.f18770w;
         Object obj2 = this.v;
-        Object obj3 = this.f18776s;
-        Object obj4 = this.f18775r;
-        Object obj5 = this.f18774n;
+        Object obj3 = this.f18769s;
+        Object obj4 = this.f18768r;
+        Object obj5 = this.f18767n;
         Object obj6 = this.h;
-        Object obj7 = this.f18773f;
+        Object obj7 = this.f18766f;
         Object obj8 = this.e;
         switch (i10) {
             case 0:
-                ((MediaDataController) obj8).lambda$loadReplyMessagesForMessages$177((Timer.Task) obj7, (a0.h) obj6, (AtomicInteger) obj3, (Runnable) obj2, this.f18772c, (Timer) obj, (a0.h) obj5, (a0.h) obj4, this.f18771b, this.d);
+                ((MediaDataController) obj8).lambda$loadReplyMessagesForMessages$177((Timer.Task) obj7, (a0.h) obj6, (AtomicInteger) obj3, (Runnable) obj2, this.f18765c, (Timer) obj, (a0.h) obj5, (a0.h) obj4, this.f18764b, this.d);
                 return;
             default:
                 LaunchActivity launchActivity = (LaunchActivity) obj8;
@@ -307,8 +307,8 @@ public final class k8 implements Runnable {
                         tL_chatAdminRights2.other = z20;
                     }
                 }
-                boolean z21 = this.f18771b;
-                int i11 = this.f18772c;
+                boolean z21 = this.f18764b;
+                int i11 = this.f18765c;
                 if (z21 && tL_chatAdminRights == null && !TextUtils.isEmpty(str2)) {
                     MessagesController.getInstance(launchActivity.O).addUserToChat(chat.f20276id, user, 0, str2, cyVar, true, new cz0(i11, 5, launchActivity, chat, cyVar), null);
                     return;
@@ -322,15 +322,15 @@ public final class k8 implements Runnable {
 
     public k8(LaunchActivity launchActivity, String str, TLRPC.TL_chatAdminRights tL_chatAdminRights, boolean z10, String str2, int i10, TLRPC.Chat chat, cy cyVar, TLRPC.User user, long j10, String str3) {
         this.e = launchActivity;
-        this.f18773f = str;
+        this.f18766f = str;
         this.h = tL_chatAdminRights;
-        this.f18771b = z10;
-        this.f18774n = str2;
-        this.f18772c = i10;
-        this.f18775r = chat;
-        this.f18776s = cyVar;
+        this.f18764b = z10;
+        this.f18767n = str2;
+        this.f18765c = i10;
+        this.f18768r = chat;
+        this.f18769s = cyVar;
         this.v = user;
         this.d = j10;
-        this.f18777w = str3;
+        this.f18770w = str3;
     }
 }

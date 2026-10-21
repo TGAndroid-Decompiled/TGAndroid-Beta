@@ -148,7 +148,7 @@ public class ChatThemeController extends BaseController {
             resultCallback.onComplete(null);
             return;
         }
-        chatThemeQueue.postRunnable(new h3(14, getPatternFile(j10), resultCallback));
+        chatThemeQueue.postRunnable(new i3(14, getPatternFile(j10), resultCallback));
     }
 
     public static String getWallpaperEmoticon(TLRPC.WallPaper wallPaper) {
@@ -204,7 +204,7 @@ public class ChatThemeController extends BaseController {
             FileLog.e(e);
         }
         if (resultCallback != null) {
-            AndroidUtilities.runOnUIThread(new h3(15, resultCallback, bitmap));
+            AndroidUtilities.runOnUIThread(new i3(15, resultCallback, bitmap));
         }
     }
 
@@ -330,7 +330,7 @@ public class ChatThemeController extends BaseController {
             }
             AndroidUtilities.runOnUIThread(new g5(this, tl_chatThemes, arrayList3, arrayList, resultCallback, 3));
         } else if (chatThemes instanceof TL_account.TL_chatThemesNotModified) {
-            AndroidUtilities.runOnUIThread(new h3(19, this, resultCallback));
+            AndroidUtilities.runOnUIThread(new i3(19, this, resultCallback));
         }
     }
 
@@ -461,7 +461,7 @@ public class ChatThemeController extends BaseController {
     private void loadWallpaperPatternBitmap(long j10, Utilities.Callback<eg.a> callback) {
         File filesDirFixed = ApplicationLoader.getFilesDirFixed("rasterized/wallpaper");
         Locale locale = Locale.US;
-        chatThemeQueue.postRunnable(new h3(17, new File(filesDirFixed, r4.c.g(j10, "pattern_", ".pgm.gz")), callback));
+        chatThemeQueue.postRunnable(new i3(17, new File(filesDirFixed, r4.c.g(j10, "pattern_", ".pgm.gz")), callback));
     }
 
     private void preloadSticker(String str) {
@@ -493,7 +493,7 @@ public class ChatThemeController extends BaseController {
     }
 
     private void saveWallpaperBitmap(Bitmap bitmap, long j10) {
-        chatThemeQueue.postRunnable(new h3(20, getPatternFile(j10), bitmap));
+        chatThemeQueue.postRunnable(new i3(20, getPatternFile(j10), bitmap));
     }
 
     private void saveWallpaperPatternBitmap(Bitmap bitmap, List<eg.c> list, long j10) {
@@ -746,7 +746,7 @@ public class ChatThemeController extends BaseController {
             }
             getMessagesStorage().updateChatInfo(chatFull, false);
             saveChatWallpaper(j11, chatFull.wallpaper);
-            AndroidUtilities.runOnUIThread(new h3(16, this, chatFull));
+            AndroidUtilities.runOnUIThread(new i3(16, this, chatFull));
         }
     }
 

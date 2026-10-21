@@ -7,25 +7,25 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 public final class q7 extends FrameLayout {
-    public final int f29484a;
-    public final k8 f29485b;
+    public final int f29485a;
+    public final k8 f29486b;
 
     public q7(k8 k8Var, Context context, int i10) {
         super(context);
-        this.f29484a = i10;
-        this.f29485b = k8Var;
+        this.f29485a = i10;
+        this.f29486b = k8Var;
     }
 
     @Override
     public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         TextView textView;
-        switch (this.f29484a) {
+        switch (this.f29485a) {
             case 0:
                 int A = org.telegram.messenger.mk.A(248.0f, i12 - i10, 4);
                 for (int i14 = 0; i14 < 5; i14++) {
                     int dp = (A * i14) + AndroidUtilities.dp((i14 * 48) + 4);
                     int dp2 = AndroidUtilities.dp(9.0f);
-                    k8 k8Var = this.f29485b;
+                    k8 k8Var = this.f29486b;
                     View view = k8Var.f27791n0[i14];
                     view.layout(dp, dp2, view.getMeasuredWidth() + dp, k8Var.f27791n0[i14].getMeasuredHeight() + dp2);
                 }
@@ -36,7 +36,7 @@ public final class q7 extends FrameLayout {
                 return;
             case 2:
                 super.onLayout(z10, i10, i11, i12, i13);
-                k8 k8Var2 = this.f29485b;
+                k8 k8Var2 = this.f29486b;
                 if (k8Var2.V != null && (textView = k8Var2.f27775a0) != null) {
                     int left = (textView.getLeft() - AndroidUtilities.dp(4.0f)) - k8Var2.V.getMeasuredWidth();
                     org.telegram.ui.ActionBar.u0 u0Var = k8Var2.V;
@@ -49,9 +49,9 @@ public final class q7 extends FrameLayout {
 
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.f29484a) {
+        switch (this.f29485a) {
             case 1:
-                k8 k8Var = this.f29485b;
+                k8 k8Var = this.f29486b;
                 if (k8Var.f27786i0.getTag() != null) {
                     k8Var.B0(false, true);
                 }

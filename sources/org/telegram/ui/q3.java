@@ -75,7 +75,7 @@ public final class q3 implements du0 {
     @Override
     public final boolean e(int i10) {
         if (i10 < this.f40356b.size() && i10 >= 0 && !h4.g(this.f40355a, get(i10))) {
-            j4 j4Var = this.f40357c.f38778u0[0].f39754c;
+            j4 j4Var = this.f40357c.f38779u0[0].f39754c;
             TL_iv.PageBlock pageBlock = get(i10);
             j4Var.getClass();
             if (j4.I(pageBlock) == 5) {
@@ -130,9 +130,9 @@ public final class q3 implements du0 {
     @Override
     public final void h(TL_iv.PageBlock pageBlock) {
         l4 l4Var = this.f40357c;
-        int childCount = l4Var.f38778u0[0].f39753b.getChildCount();
+        int childCount = l4Var.f38779u0[0].f39753b.getChildCount();
         for (int i10 = 0; i10 < childCount; i10++) {
-            View childAt = l4Var.f38778u0[0].f39753b.getChildAt(i10);
+            View childAt = l4Var.f38779u0[0].f39753b.getChildAt(i10);
             if (childAt instanceof s2) {
                 s2 s2Var = (s2) childAt;
                 int indexOf = s2Var.d.items.indexOf(pageBlock);

@@ -176,7 +176,7 @@ public final class lr implements Runnable {
                                         replaceSingleLink.setSpan(new org.telegram.ui.Cells.i(d6Var2, eeVar, 6), charSequenceIndexOf, charSequenceIndexOf + 10, 33);
                                     }
                                     qc M = xcVar.M(string, replaceSingleLink, i14);
-                                    M.f29530j = 8000;
+                                    M.f29531j = 8000;
                                     M.j();
                                 } else {
                                     String str4 = tL_error.text;

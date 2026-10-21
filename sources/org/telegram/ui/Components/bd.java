@@ -64,7 +64,7 @@ public final class bd {
         p6Var.n(0.35f, 200L, bsVar);
         p6Var.x(AndroidUtilities.bold());
         p6Var.w(AndroidUtilities.dp(15.0f));
-        p6Var.f29225b = 17;
+        p6Var.f29226b = 17;
         this.f24902p = new Path();
         Paint paint2 = new Paint(1);
         this.f24903q = paint2;

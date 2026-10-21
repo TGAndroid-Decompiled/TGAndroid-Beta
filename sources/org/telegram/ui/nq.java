@@ -37,7 +37,7 @@ public final class nq extends AnimatorListenerAdapter {
                 View view = oqVar.f39957b;
                 view.setAlpha(1.0f);
                 s4.n0.x0(view);
-                ((hr) oqVar.d).f37721c.removeView(view);
+                ((hr) oqVar.d).f37722c.removeView(view);
                 return;
             case 1:
                 org.telegram.ui.Components.i6 i6Var = (org.telegram.ui.Components.i6) this.f39673b;
@@ -53,23 +53,23 @@ public final class nq extends AnimatorListenerAdapter {
                 super.onAnimationEnd(animator);
                 org.telegram.ui.Components.p6 p6Var = (org.telegram.ui.Components.p6) this.f39673b;
                 p6Var.b();
-                p6Var.f29236o = null;
-                p6Var.f29231j = 0.0f;
-                p6Var.f29234m = 0.0f;
-                p6Var.f29233l = 0.0f;
-                p6Var.f29232k = 0.0f;
-                p6Var.f29239r = 0.0f;
-                p6Var.f29238q = 0.0f;
+                p6Var.f29237o = null;
+                p6Var.f29232j = 0.0f;
+                p6Var.f29235m = 0.0f;
+                p6Var.f29234l = 0.0f;
+                p6Var.f29233k = 0.0f;
+                p6Var.f29240r = 0.0f;
+                p6Var.f29239q = 0.0f;
                 p6Var.invalidateSelf();
-                Runnable runnable = p6Var.f29226b0;
+                Runnable runnable = p6Var.f29227b0;
                 if (runnable != null) {
                     runnable.run();
                 }
-                p6Var.f29241t = null;
-                CharSequence charSequence = p6Var.f29242u;
+                p6Var.f29242t = null;
+                CharSequence charSequence = p6Var.f29243u;
                 if (charSequence != null) {
                     p6Var.t(charSequence, true, p6Var.v);
-                    p6Var.f29242u = null;
+                    p6Var.f29243u = null;
                     p6Var.v = false;
                     return;
                 }
@@ -86,7 +86,7 @@ public final class nq extends AnimatorListenerAdapter {
                 w9Var.setAlpha(1.0f);
                 return;
             case 5:
-                org.telegram.ui.Components.e9 e9Var = ((org.telegram.ui.Components.s8) this.f39673b).f30215b;
+                org.telegram.ui.Components.e9 e9Var = ((org.telegram.ui.Components.s8) this.f39673b).f30216b;
                 e9Var.f25847f = false;
                 e9Var.e.setVisibility(8);
                 return;
@@ -107,28 +107,28 @@ public final class nq extends AnimatorListenerAdapter {
                 j9Var.f27451f = null;
                 return;
             case 7:
-                ((org.telegram.ui.Components.rf) this.f39673b).f29926f.f23916b0.setVisibility(8);
+                ((org.telegram.ui.Components.rf) this.f39673b).f29927f.f23916b0.setVisibility(8);
                 return;
             case 8:
-                ((org.telegram.ui.Components.vg) this.f39673b).f31236d0 = 1.0f;
+                ((org.telegram.ui.Components.vg) this.f39673b).f31237d0 = 1.0f;
                 return;
             case 9:
-                ((org.telegram.ui.Components.ti) ((org.telegram.ui.Components.bi) this.f39673b).d).f30584s.setVisibility(8);
+                ((org.telegram.ui.Components.ti) ((org.telegram.ui.Components.bi) this.f39673b).d).f30585s.setVisibility(8);
                 return;
             case 10:
                 ((org.telegram.ui.Components.di) this.f39673b).d.v.setVisibility(8);
                 return;
             case 11:
                 org.telegram.ui.Components.ti tiVar = (org.telegram.ui.Components.ti) this.f39673b;
-                tiVar.f30536c1 = null;
-                if (!tiVar.f30589t1) {
-                    if (tiVar.f30529a1.getTag() == null && tiVar.T0 == 0 && !tiVar.W0) {
-                        tiVar.f30539d1.setVisibility(4);
+                tiVar.f30537c1 = null;
+                if (!tiVar.f30590t1) {
+                    if (tiVar.f30530a1.getTag() == null && tiVar.T0 == 0 && !tiVar.W0) {
+                        tiVar.f30540d1.setVisibility(4);
                     }
                     tiVar.l1.setVisibility(4);
                     return;
                 }
-                org.telegram.ui.ActionBar.u0 u0Var = tiVar.f30552h1;
+                org.telegram.ui.ActionBar.u0 u0Var = tiVar.f30553h1;
                 if (u0Var != null) {
                     u0Var.setVisibility(4);
                     return;
@@ -137,9 +137,9 @@ public final class nq extends AnimatorListenerAdapter {
             case 12:
                 super.onAnimationEnd(animator);
                 org.telegram.ui.Components.nk nkVar = (org.telegram.ui.Components.nk) this.f39673b;
-                nkVar.f28823s.setVisibility(8);
-                nkVar.f28821n = 0;
-                org.telegram.ui.Components.ck ckVar = nkVar.f28822r;
+                nkVar.f28824s.setVisibility(8);
+                nkVar.f28822n = 0;
+                org.telegram.ui.Components.ck ckVar = nkVar.f28823r;
                 ckVar.setAlpha(1.0f);
                 ckVar.setScaleX(1.0f);
                 ckVar.setScaleY(1.0f);
@@ -206,7 +206,7 @@ public final class nq extends AnimatorListenerAdapter {
                 if (wqVar.K == wqVar.L) {
                     wqVar.G.setVisibility(4);
                 }
-                wqVar.f32237y = null;
+                wqVar.f32238y = null;
                 return;
             case 20:
                 org.telegram.ui.Components.fr frVar = (org.telegram.ui.Components.fr) this.f39673b;
@@ -233,7 +233,7 @@ public final class nq extends AnimatorListenerAdapter {
                 quVar.j();
                 return;
             case 22:
-                ((org.telegram.ui.Components.yu) this.f39673b).f32732a.O = false;
+                ((org.telegram.ui.Components.yu) this.f39673b).f32733a.O = false;
                 return;
             case 23:
                 super.onAnimationEnd(animator);
@@ -251,14 +251,14 @@ public final class nq extends AnimatorListenerAdapter {
                 return;
             case 27:
                 org.telegram.ui.Components.s00 s00Var = (org.telegram.ui.Components.s00) this.f39673b;
-                s00Var.U = s00Var.f30069c0;
-                s00Var.f30067b0 = s00Var.f30073f0;
-                s00Var.V = s00Var.f30070d0;
-                s00Var.W = s00Var.f30071e0;
-                s00Var.f30069c0 = -1;
-                s00Var.f30070d0 = -1;
-                s00Var.f30071e0 = -1;
-                s00Var.f30073f0 = -1;
+                s00Var.U = s00Var.f30070c0;
+                s00Var.f30068b0 = s00Var.f30074f0;
+                s00Var.V = s00Var.f30071d0;
+                s00Var.W = s00Var.f30072e0;
+                s00Var.f30070c0 = -1;
+                s00Var.f30071d0 = -1;
+                s00Var.f30072e0 = -1;
+                s00Var.f30074f0 = -1;
                 return;
             case 28:
                 org.telegram.ui.Components.g10 g10Var = (org.telegram.ui.Components.g10) this.f39673b;

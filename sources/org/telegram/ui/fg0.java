@@ -7,19 +7,19 @@ import android.widget.FrameLayout;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class fg0 extends org.telegram.ui.Components.im0 {
-    public final Context f36997c;
+    public final Context f36998c;
     public final gg0 d;
 
     public fg0(gg0 gg0Var, Context context) {
         this.d = gg0Var;
-        this.f36997c = context;
+        this.f36998c = context;
     }
 
     @Override
     public final boolean D(s4.b1 b1Var) {
         int b10 = b1Var.b();
         gg0 gg0Var = this.d;
-        if (b10 != gg0Var.f37317c && b10 != gg0Var.d && b10 != gg0Var.e && b10 != gg0Var.f37318f && b10 != gg0Var.h && b10 != gg0Var.f37320r) {
+        if (b10 != gg0Var.f37318c && b10 != gg0Var.d && b10 != gg0Var.e && b10 != gg0Var.f37319f && b10 != gg0Var.h && b10 != gg0Var.f37321r) {
             return false;
         }
         return true;
@@ -37,11 +37,11 @@ public final class fg0 extends org.telegram.ui.Components.im0 {
         if (i10 == 0) {
             return 0;
         }
-        if (i10 != gg0Var.f37317c && i10 != gg0Var.d && i10 != gg0Var.e && i10 != gg0Var.f37318f && i10 != gg0Var.h) {
-            if (i10 == gg0Var.f37319n) {
+        if (i10 != gg0Var.f37318c && i10 != gg0Var.d && i10 != gg0Var.e && i10 != gg0Var.f37319f && i10 != gg0Var.h) {
+            if (i10 == gg0Var.f37320n) {
                 return 2;
             }
-            if (i10 == gg0Var.f37320r) {
+            if (i10 == gg0Var.f37321r) {
                 return 3;
             }
             return 4;
@@ -59,7 +59,7 @@ public final class fg0 extends org.telegram.ui.Components.im0 {
                 if (i11 != 3) {
                     if (i11 == 4) {
                         org.telegram.ui.Cells.d9 d9Var = (org.telegram.ui.Cells.d9) view;
-                        if (i10 == gg0Var.f37321s) {
+                        if (i10 == gg0Var.f37322s) {
                             d9Var.setText(LocaleController.getString(R.string.LogOutInfo));
                             return;
                         }
@@ -68,7 +68,7 @@ public final class fg0 extends org.telegram.ui.Components.im0 {
                     return;
                 }
                 org.telegram.ui.Cells.ba baVar = (org.telegram.ui.Cells.ba) view;
-                if (i10 == gg0Var.f37320r) {
+                if (i10 == gg0Var.f37321r) {
                     baVar.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21211p7, false));
                     baVar.b(LocaleController.getString(R.string.LogOutTitle), false);
                     return;
@@ -76,7 +76,7 @@ public final class fg0 extends org.telegram.ui.Components.im0 {
                 return;
             }
             org.telegram.ui.Cells.c9 c9Var = (org.telegram.ui.Cells.c9) view;
-            if (i10 == gg0Var.f37317c) {
+            if (i10 == gg0Var.f37318c) {
                 c9Var.b(R.drawable.msg_contact_add, LocaleController.getString(R.string.AddAnotherAccount), LocaleController.getString(R.string.AddAnotherAccountInfo), true);
                 return;
             } else if (i10 == gg0Var.d) {
@@ -85,7 +85,7 @@ public final class fg0 extends org.telegram.ui.Components.im0 {
             } else if (i10 == gg0Var.e) {
                 c9Var.b(R.drawable.msg_clearcache, LocaleController.getString(R.string.ClearCache), LocaleController.getString(R.string.ClearCacheInfo), true);
                 return;
-            } else if (i10 == gg0Var.f37318f) {
+            } else if (i10 == gg0Var.f37319f) {
                 c9Var.b(R.drawable.msg_newphone, LocaleController.getString(R.string.ChangePhoneNumber), LocaleController.getString(R.string.ChangePhoneNumberInfo), true);
                 return;
             } else if (i10 == gg0Var.h) {
@@ -105,7 +105,7 @@ public final class fg0 extends org.telegram.ui.Components.im0 {
     public final s4.b1 x(ViewGroup viewGroup, int i10) {
         org.telegram.ui.Cells.c9 c9Var;
         View view;
-        Context context = this.f36997c;
+        Context context = this.f36998c;
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 != 2) {

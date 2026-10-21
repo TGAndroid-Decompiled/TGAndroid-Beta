@@ -28,11 +28,11 @@ public final class xp0 extends s4.r0 {
             } else {
                 abs = Math.abs(jq0Var.M.N0() - L0) + 1;
             }
-            if (abs > 0 && L0 + abs > jq0Var.M.B() - 2 && !jq0Var.f38321r && !jq0Var.f38323s) {
-                if (jq0Var.f38300a == 1) {
+            if (abs > 0 && L0 + abs > jq0Var.M.B() - 2 && !jq0Var.f38322r && !jq0Var.f38324s) {
+                if (jq0Var.f38301a == 1) {
                     z10 = true;
                 }
-                jq0Var.d0(jq0Var.v, jq0Var.f38328w, z10, true);
+                jq0Var.d0(jq0Var.v, jq0Var.f38329w, z10, true);
             }
         }
     }

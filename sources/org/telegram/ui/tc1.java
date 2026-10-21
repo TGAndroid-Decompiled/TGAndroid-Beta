@@ -56,7 +56,7 @@ public final class tc1 implements View.OnClickListener {
             if (SharedConfig.messageSeenHintCount > 0 && qnVar.X0.getKeyboardHeight() < AndroidUtilities.dp(20.0f)) {
                 org.telegram.ui.Components.qc t10 = new org.telegram.ui.Components.xc(org.telegram.ui.Components.lb.a(yc1Var.getContext()), yc1Var.f43448a).t(AndroidUtilities.replaceTags(LocaleController.getString(R.string.MessageSeenTooltipMessage)), null);
                 qnVar.f40775n1 = t10;
-                t10.f29530j = 4000;
+                t10.f29531j = 4000;
                 t10.j();
                 SharedConfig.updateMessageSeenHintCount(SharedConfig.messageSeenHintCount - 1);
             }

@@ -12,7 +12,7 @@ public final class df implements q81, e5 {
         boolean R0 = chatActivityEnterView.R0(i10, z10, i11, true, 0L);
         mf mfVar = chatActivityEnterView.L0;
         if (mfVar != null) {
-            mfVar.h(!R0);
+            mfVar.g(!R0);
             chatActivityEnterView.L0 = null;
         }
     }

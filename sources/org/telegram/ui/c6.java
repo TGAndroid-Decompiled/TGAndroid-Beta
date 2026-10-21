@@ -27,22 +27,22 @@ public final class c6 extends pg.b {
 
     @Override
     public final int h() {
-        return this.d.f36554c.size();
+        return this.d.f36555c.size();
     }
 
     @Override
     public final int j(int i10) {
-        return ((d6) this.d.f36554c.get(i10)).f44296a;
+        return ((d6) this.d.f36555c.get(i10)).f44296a;
     }
 
     @Override
     public final void v(s4.b1 b1Var, int i10) {
         String str;
         e6 e6Var = this.d;
-        ArrayList arrayList = e6Var.f36554c;
+        ArrayList arrayList = e6Var.f36555c;
         if (((d6) arrayList.get(i10)).f44296a == 2) {
             org.telegram.ui.Cells.va vaVar = (org.telegram.ui.Cells.va) b1Var.f45917a;
-            CacheByChatsController.KeepMediaException keepMediaException = ((d6) arrayList.get(i10)).f36274c;
+            CacheByChatsController.KeepMediaException keepMediaException = ((d6) arrayList.get(i10)).f36275c;
             TLObject userOrChat = e6Var.getMessagesController().getUserOrChat(keepMediaException.dialogId);
             if (userOrChat instanceof TLRPC.User) {
                 TLRPC.User user = (TLRPC.User) userOrChat;

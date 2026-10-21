@@ -642,14 +642,14 @@ public class w0 extends a0 implements DownloadController.FileDownloadProgressLis
                 float walletActionTop = w0Var.getWalletActionTop();
                 w0Var.I0.getClass();
                 float dp9 = AndroidUtilities.dp(206.0f) + dp8;
-                if (w0Var.I0.f34583q0 == null) {
+                if (w0Var.I0.f34584q0 == null) {
                     dp2 = AndroidUtilities.dp(140.0f);
                     f14 = 140.0f;
                     f15 = 20.0f;
                 } else {
                     f14 = 140.0f;
                     f15 = 20.0f;
-                    dp2 = AndroidUtilities.dp(150.0f) + ((int) Math.ceil(n3Var.f34583q0.j()));
+                    dp2 = AndroidUtilities.dp(150.0f) + ((int) Math.ceil(n3Var.f34584q0.j()));
                 }
                 RectF rectF2 = w0Var.N0;
                 rectF2.set(dp8, walletActionTop, dp9, dp2 + walletActionTop);
@@ -1304,29 +1304,29 @@ public class w0 extends a0 implements DownloadController.FileDownloadProgressLis
             float y3 = getY() + getPaddingTop() + getWalletActionTop();
             if (y3 >= f7 && y3 + AndroidUtilities.dp(140.0f) <= f10) {
                 org.telegram.ui.Wallet.n3 n3Var = this.I0;
-                vj0 vj0Var = n3Var.f34573l;
-                if (n3Var.f34568i0 && n3Var.f34570j0 == null) {
-                    n3Var.f34568i0 = false;
-                    n3Var.f34572k0 = kgVar;
+                vj0 vj0Var = n3Var.f34574l;
+                if (n3Var.f34569i0 && n3Var.f34571j0 == null) {
+                    n3Var.f34569i0 = false;
+                    n3Var.f34573k0 = kgVar;
                     n3Var.K.d(0.0f, true);
                     n3Var.M = false;
                     n3Var.N = 0L;
                     n3Var.b();
                     n3Var.g();
-                    n3Var.f34588t = 18.0f;
-                    n3Var.f34590u.f();
+                    n3Var.f34589t = 18.0f;
+                    n3Var.f34591u.f();
                     vj0Var.T(0.0f, true);
                     vj0Var.start();
                     n3Var.H = true;
                     float f11 = n3Var.R;
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                    n3Var.f34570j0 = ofFloat;
+                    n3Var.f34571j0 = ofFloat;
                     ofFloat.setDuration(2400L);
-                    n3Var.f34570j0.setInterpolator(bs.h);
-                    n3Var.f34570j0.addUpdateListener(new dg(n3Var, f11, 5));
-                    n3Var.f34570j0.addListener(new tf1(n3Var, 3));
-                    n3Var.f34570j0.start();
-                    n3Var.f34554a.invalidate();
+                    n3Var.f34571j0.setInterpolator(bs.h);
+                    n3Var.f34571j0.addUpdateListener(new dg(n3Var, f11, 5));
+                    n3Var.f34571j0.addListener(new tf1(n3Var, 3));
+                    n3Var.f34571j0.start();
+                    n3Var.f34555a.invalidate();
                     this.P0.messageOwner.premiumEffectWasPlayed = true;
                     MessagesStorage.getInstance(this.H).updateMessageCustomParams(this.P0.getDialogId(), this.P0.messageOwner);
                     return true;
@@ -1747,7 +1747,7 @@ public class w0 extends a0 implements DownloadController.FileDownloadProgressLis
         if (n3Var == null) {
             m3Var = null;
         } else {
-            m3Var = n3Var.f34575m;
+            m3Var = n3Var.f34576m;
         }
         if (m3Var != null) {
             m3Var.layout(0, 0, AndroidUtilities.dp(42.0f), AndroidUtilities.dp(42.0f));

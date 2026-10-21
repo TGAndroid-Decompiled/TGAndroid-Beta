@@ -20,8 +20,8 @@ public final class lw0 extends sg.r1 {
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(textView.getLeft(), textView.getTop(), textView.getRight(), textView.getBottom());
             mw0 mw0Var = this.N;
-            mw0Var.d.f39700n.f33514n0.d(0, 0.0f, 0, getMeasuredWidth(), -this.f46415n.h, mw0Var.d.f39700n.O);
-            canvas.drawRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), mw0Var.d.f39700n.f33514n0.f46191f);
+            mw0Var.d.f39700n.f33515n0.d(0, 0.0f, 0, getMeasuredWidth(), -this.f46415n.h, mw0Var.d.f39700n.O);
+            canvas.drawRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), mw0Var.d.f39700n.f33515n0.f46191f);
         }
         super.dispatchDraw(canvas);
     }

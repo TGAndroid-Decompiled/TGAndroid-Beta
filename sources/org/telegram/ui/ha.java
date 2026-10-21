@@ -6,10 +6,10 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class ha implements org.telegram.ui.Components.xl0 {
-    public final sa f37561a;
+    public final sa f37562a;
 
     public ha(sa saVar) {
-        this.f37561a = saVar;
+        this.f37562a = saVar;
     }
 
     @Override
@@ -18,7 +18,7 @@ public final class ha implements org.telegram.ui.Components.xl0 {
         int i12;
         int i13;
         boolean z10 = view instanceof pa;
-        sa saVar = this.f37561a;
+        sa saVar = this.f37562a;
         if (z10) {
             pa paVar = (pa) view;
             TLRPC.TL_username tL_username = paVar.v;

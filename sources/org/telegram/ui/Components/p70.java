@@ -10,10 +10,10 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class p70 extends im0 {
-    public final v70 f29250c;
+    public final v70 f29251c;
 
     public p70(v70 v70Var) {
-        this.f29250c = v70Var;
+        this.f29251c = v70Var;
     }
 
     @Override
@@ -28,9 +28,9 @@ public final class p70 extends im0 {
     public final TLObject E(int i10) {
         int i11;
         int i12;
-        v70 v70Var = this.f29250c;
+        v70 v70Var = this.f29251c;
         if (v70Var.m0 != null) {
-            TLRPC.Dialog dialog = (TLRPC.Dialog) v70Var.f31179n0.get(i10 - v70Var.Y);
+            TLRPC.Dialog dialog = (TLRPC.Dialog) v70Var.f31180n0.get(i10 - v70Var.Y);
             if (DialogObject.isUserDialog(dialog.f20280id)) {
                 i12 = ((org.telegram.ui.ActionBar.f3) v70Var).currentAccount;
                 return MessagesController.getInstance(i12).getUser(Long.valueOf(dialog.f20280id));
@@ -38,17 +38,17 @@ public final class p70 extends im0 {
             i11 = ((org.telegram.ui.ActionBar.f3) v70Var).currentAccount;
             return MessagesController.getInstance(i11).getChat(Long.valueOf(-dialog.f20280id));
         }
-        return (TLObject) v70Var.f31171e0.get(i10 - v70Var.Y);
+        return (TLObject) v70Var.f31172e0.get(i10 - v70Var.Y);
     }
 
     @Override
     public final int h() {
-        return this.f29250c.f31169c0;
+        return this.f29251c.f31170c0;
     }
 
     @Override
     public final int j(int i10) {
-        v70 v70Var = this.f29250c;
+        v70 v70Var = this.f29251c;
         if (i10 == v70Var.X) {
             return 1;
         }
@@ -59,10 +59,10 @@ public final class p70 extends im0 {
         if (i10 >= v70Var.Y && i10 < v70Var.Z) {
             return 3;
         }
-        if (i10 == v70Var.f31168b0) {
+        if (i10 == v70Var.f31169b0) {
             return 4;
         }
-        if (i10 == v70Var.f31167a0) {
+        if (i10 == v70Var.f31168a0) {
             return 5;
         }
         return 0;
@@ -88,7 +88,7 @@ public final class p70 extends im0 {
                 } else {
                     j10 = 0;
                 }
-                v70 v70Var = this.f29250c;
+                v70 v70Var = this.f29251c;
                 boolean z12 = false;
                 if (i10 != v70Var.Z) {
                     z10 = true;
@@ -110,7 +110,7 @@ public final class p70 extends im0 {
                         f4Var.setCheckBoxEnabled(false);
                         return;
                     }
-                    if (v70Var.f31172f0.h(j11) >= 0) {
+                    if (v70Var.f31173f0.h(j11) >= 0) {
                         z11 = true;
                     } else {
                         z11 = false;
@@ -135,7 +135,7 @@ public final class p70 extends im0 {
         boolean z10;
         Context context = viewGroup.getContext();
         if (i10 != 2) {
-            v70 v70Var = this.f29250c;
+            v70 v70Var = this.f29251c;
             if (i10 != 3) {
                 if (i10 != 4) {
                     if (i10 != 5) {

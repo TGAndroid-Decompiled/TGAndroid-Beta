@@ -111,7 +111,7 @@ public abstract class g9 extends FrameLayout {
         }
         r5 r5Var = new r5(4, this.f26539r, tL_emojiList.document_id.get(i10).longValue());
         this.f26535b = r5Var;
-        r5Var.f29839m = true;
+        r5Var.f29840m = true;
         r5Var.v();
     }
 
@@ -128,18 +128,18 @@ public abstract class g9 extends FrameLayout {
         }
         float f7 = this.f26541w;
         if (f7 == 1.0f) {
-            this.e.f32313c.setAlpha(255);
-            canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), this.e.f32313c);
+            this.e.f32314c.setAlpha(255);
+            canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), this.e.f32314c);
             this.f26536c.setAlpha(1.0f);
             this.f26536c.setScaleX(1.0f);
             this.f26536c.setScaleY(1.0f);
             this.d.setAlpha(0.0f);
         } else {
             float interpolation = bs.f25021f.getInterpolation(f7);
-            this.e.f32313c.setAlpha(255);
-            canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), this.e.f32313c);
-            this.f26537f.f32313c.setAlpha((int) (255.0f * interpolation));
-            canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), this.f26537f.f32313c);
+            this.e.f32314c.setAlpha(255);
+            canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), this.e.f32314c);
+            this.f26537f.f32314c.setAlpha((int) (255.0f * interpolation));
+            canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), this.f26537f.f32314c);
             this.f26541w += 0.064f;
             float f10 = 1.0f - interpolation;
             this.f26536c.setAlpha(f10);

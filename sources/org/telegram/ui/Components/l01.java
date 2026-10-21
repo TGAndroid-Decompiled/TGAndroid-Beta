@@ -253,14 +253,14 @@ public final class l01 extends TableLayout {
         zcVar.setDisablePaddingsOffsetY(true);
         org.telegram.ui.l5 l5Var = new org.telegram.ui.l5(zcVar, 24.0f, i10);
         int i12 = (j10 > 2666000L ? 1 : (j10 == 2666000L ? 0 : -1));
-        ImageReceiver imageReceiver = l5Var.f38788b;
+        ImageReceiver imageReceiver = l5Var.f38789b;
         if (i12 == 0) {
             str3 = LocaleController.getString(R.string.StarsTransactionHidden);
             zq a2 = ai.hd.a(44, "anonymous");
             int dp = AndroidUtilities.dp(16.0f);
             int dp2 = AndroidUtilities.dp(16.0f);
             a2.e = dp;
-            a2.f33019f = dp2;
+            a2.f33020f = dp2;
             imageReceiver.setImageBitmap(a2);
             z10 = false;
             z11 = false;
@@ -270,7 +270,7 @@ public final class l01 extends TableLayout {
             int dp3 = AndroidUtilities.dp(16.0f);
             int dp4 = AndroidUtilities.dp(16.0f);
             a10.e = dp3;
-            a10.f33019f = dp4;
+            a10.f33020f = dp4;
             imageReceiver.setImageBitmap(a10);
             z11 = true;
             z10 = false;
@@ -334,14 +334,14 @@ public final class l01 extends TableLayout {
         v90Var.setTextSize(14);
         org.telegram.ui.l5 l5Var = new org.telegram.ui.l5(v90Var, 24.0f, i10);
         int i12 = (j10 > 2666000L ? 1 : (j10 == 2666000L ? 0 : -1));
-        ImageReceiver imageReceiver = l5Var.f38788b;
+        ImageReceiver imageReceiver = l5Var.f38789b;
         if (i12 == 0) {
             str3 = LocaleController.getString(R.string.StarsTransactionHidden);
             zq a2 = ai.hd.a(44, "anonymous");
             int dp = AndroidUtilities.dp(16.0f);
             int dp2 = AndroidUtilities.dp(16.0f);
             a2.e = dp;
-            a2.f33019f = dp2;
+            a2.f33020f = dp2;
             imageReceiver.setImageBitmap(a2);
             z10 = false;
         } else {
@@ -351,7 +351,7 @@ public final class l01 extends TableLayout {
                 int dp3 = AndroidUtilities.dp(16.0f);
                 int dp4 = AndroidUtilities.dp(16.0f);
                 a10.e = dp3;
-                a10.f33019f = dp4;
+                a10.f33020f = dp4;
                 imageReceiver.setImageBitmap(a10);
             } else {
                 if (j10 >= 0) {

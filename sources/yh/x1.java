@@ -25,7 +25,7 @@ public final class x1 extends iu {
         p6Var.n(0.2f, 160L, bs.h);
         p6Var.w(AndroidUtilities.dp(15.33f));
         p6Var.setCallback(this);
-        p6Var.f29225b = 5;
+        p6Var.f29226b = 5;
     }
 
     @Override

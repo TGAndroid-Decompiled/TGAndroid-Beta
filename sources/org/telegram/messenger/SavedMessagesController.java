@@ -545,7 +545,7 @@ public class SavedMessagesController {
         this.saving = true;
         ArrayList arrayList = new ArrayList(this.allDialogs);
         MessagesStorage messagesStorage = MessagesStorage.getInstance(this.currentAccount);
-        messagesStorage.getStorageQueue().postRunnable(new l8(this, messagesStorage, arrayList, 22));
+        messagesStorage.getStorageQueue().postRunnable(new l8(this, messagesStorage, arrayList, 23));
     }
 
     private void saveCacheSchedule() {

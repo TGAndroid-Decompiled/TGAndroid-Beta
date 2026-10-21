@@ -12,18 +12,18 @@ public class yx extends hn0 {
     public boolean B0;
     public VelocityTracker C0;
     public final tz D0;
-    public final int f32742u0;
-    public boolean f32743v0;
-    public float f32744w0;
-    public boolean f32745x0;
-    public float f32746y0;
-    public float f32747z0;
+    public final int f32743u0;
+    public boolean f32744v0;
+    public float f32745w0;
+    public boolean f32746x0;
+    public float f32747y0;
+    public float f32748z0;
 
     public yx(tz tzVar, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context, d6Var, tzVar.f30742i2);
+        super(context, d6Var, tzVar.f30743i2);
         this.D0 = tzVar;
-        this.f32745x0 = true;
-        this.f32742u0 = ViewConfiguration.get(context).getScaledTouchSlop();
+        this.f32746x0 = true;
+        this.f32743u0 = ViewConfiguration.get(context).getScaledTouchSlop();
     }
 
     @Override
@@ -37,17 +37,17 @@ public class yx extends hn0 {
         if (motionEvent.getAction() == 0) {
             this.B0 = false;
             this.A0 = false;
-            this.f32746y0 = motionEvent.getRawX();
-            this.f32747z0 = motionEvent.getRawY();
+            this.f32747y0 = motionEvent.getRawX();
+            this.f32748z0 = motionEvent.getRawY();
         } else if (!this.A0 && !this.B0) {
             tz tzVar = this.D0;
-            if (tzVar.O0 != null && Math.abs(motionEvent.getRawY() - this.f32747z0) >= this.f32742u0) {
+            if (tzVar.O0 != null && Math.abs(motionEvent.getRawY() - this.f32748z0) >= this.f32743u0) {
                 this.A0 = true;
-                this.f32747z0 = motionEvent.getRawY();
+                this.f32748z0 = motionEvent.getRawY();
                 ((c5.f) tzVar.O0).e();
-                if (this.f32743v0) {
+                if (this.f32744v0) {
                     tzVar.h.i();
-                    this.f32743v0 = false;
+                    this.f32744v0 = false;
                 }
                 return true;
             }
@@ -60,14 +60,14 @@ public class yx extends hn0 {
         boolean z10;
         int i10;
         tz tzVar = this.D0;
-        org.telegram.ui.Cells.k7 k7Var = tzVar.f30733f2;
+        org.telegram.ui.Cells.k7 k7Var = tzVar.f30734f2;
         gx gxVar = tzVar.h;
         if (this.f26946s != null) {
             return super.onTouchEvent(motionEvent);
         }
-        if (this.f32745x0) {
-            this.f32745x0 = false;
-            this.f32744w0 = motionEvent.getX();
+        if (this.f32746x0) {
+            this.f32746x0 = false;
+            this.f32745w0 = motionEvent.getX();
         }
         if (motionEvent.getAction() == 0 || motionEvent.getAction() == 2) {
             tzVar.W1 = motionEvent.getRawX();
@@ -75,23 +75,23 @@ public class yx extends hn0 {
         if (motionEvent.getAction() == 0) {
             this.B0 = false;
             this.A0 = false;
-            this.f32746y0 = motionEvent.getRawX();
-            this.f32747z0 = motionEvent.getRawY();
+            this.f32747y0 = motionEvent.getRawX();
+            this.f32748z0 = motionEvent.getRawY();
         } else if (!this.A0 && !this.B0 && tzVar.O0 != null) {
-            float abs = Math.abs(motionEvent.getRawX() - this.f32746y0);
-            float f7 = this.f32742u0;
-            if (abs >= f7 && canScrollHorizontally((int) (this.f32746y0 - motionEvent.getRawX()))) {
+            float abs = Math.abs(motionEvent.getRawX() - this.f32747y0);
+            float f7 = this.f32743u0;
+            if (abs >= f7 && canScrollHorizontally((int) (this.f32747y0 - motionEvent.getRawX()))) {
                 this.B0 = true;
                 AndroidUtilities.cancelRunOnUIThread(k7Var);
                 tzVar.X1 = true;
                 tzVar.Y();
-            } else if (Math.abs(motionEvent.getRawY() - this.f32747z0) >= f7) {
+            } else if (Math.abs(motionEvent.getRawY() - this.f32748z0) >= f7) {
                 this.A0 = true;
-                this.f32747z0 = motionEvent.getRawY();
+                this.f32748z0 = motionEvent.getRawY();
                 ((c5.f) tzVar.O0).e();
-                if (this.f32743v0) {
+                if (this.f32744v0) {
                     gxVar.i();
-                    this.f32743v0 = false;
+                    this.f32744v0 = false;
                 }
             }
         }
@@ -105,7 +105,7 @@ public class yx extends hn0 {
             this.C0.addMovement(motionEvent);
             if (motionEvent.getAction() != 1 && motionEvent.getAction() != 3) {
                 xx xxVar = tzVar.O0;
-                int round = Math.round(motionEvent.getRawY() - this.f32747z0);
+                int round = Math.round(motionEvent.getRawY() - this.f32748z0);
                 c5.f fVar = (c5.f) xxVar;
                 ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) fVar.f4730c;
                 if (fVar.d()) {
@@ -148,7 +148,7 @@ public class yx extends hn0 {
                         chatActivityEnterView3.k1(fVar3.f4729b, true, false, true);
                     }
                 }
-                this.f32745x0 = true;
+                this.f32746x0 = true;
                 this.B0 = false;
                 this.A0 = false;
             }
@@ -157,7 +157,7 @@ public class yx extends hn0 {
         }
         float translationX = getTranslationX();
         if (getScrollX() == 0 && translationX == 0.0f) {
-            if (!this.f32743v0 && this.f32744w0 - motionEvent.getX() < 0.0f) {
+            if (!this.f32744v0 && this.f32745w0 - motionEvent.getX() < 0.0f) {
                 if (!gxVar.M) {
                     gxVar.f50690e0 = true;
                     gxVar.setScrollState(1);
@@ -173,28 +173,28 @@ public class yx extends hn0 {
                     MotionEvent obtain = MotionEvent.obtain(uptimeMillis, uptimeMillis, 0, 0.0f, 0.0f, 0);
                     gxVar.W.addMovement(obtain);
                     obtain.recycle();
-                    this.f32743v0 = true;
+                    this.f32744v0 = true;
                     getTranslationX();
                 }
-            } else if (this.f32743v0 && this.f32744w0 - motionEvent.getX() > 0.0f && gxVar.f50690e0) {
+            } else if (this.f32744v0 && this.f32745w0 - motionEvent.getX() > 0.0f && gxVar.f50690e0) {
                 gxVar.i();
-                this.f32743v0 = false;
+                this.f32744v0 = false;
             }
         }
-        if (this.f32743v0) {
+        if (this.f32744v0) {
             motionEvent.getX();
         }
-        this.f32744w0 = motionEvent.getX();
+        this.f32745w0 = motionEvent.getX();
         if (motionEvent.getAction() == 3 || motionEvent.getAction() == 1) {
-            this.f32745x0 = true;
+            this.f32746x0 = true;
             this.B0 = false;
             this.A0 = false;
-            if (this.f32743v0) {
+            if (this.f32744v0) {
                 gxVar.i();
-                this.f32743v0 = false;
+                this.f32744v0 = false;
             }
         }
-        if (!this.f32743v0 && !super.onTouchEvent(motionEvent)) {
+        if (!this.f32744v0 && !super.onTouchEvent(motionEvent)) {
             return false;
         }
         return true;

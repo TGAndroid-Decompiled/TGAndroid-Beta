@@ -86,7 +86,7 @@ public final class c4 extends GestureDetector.SimpleOnGestureListener {
                 return super.onFling(motionEvent, motionEvent2, f7, f10);
             case 2:
                 qh0 qh0Var = (qh0) this.f11118c;
-                if (!qh0Var.f29593f && !qh0Var.h && f7 >= 600.0f) {
+                if (!qh0Var.f29594f && !qh0Var.h && f7 >= 600.0f) {
                     qh0Var.e = false;
                     qh0Var.h = false;
                     qh0Var.a(0.0f, f7 / 6000.0f);

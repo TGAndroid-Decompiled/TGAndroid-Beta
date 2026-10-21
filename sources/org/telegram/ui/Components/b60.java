@@ -99,7 +99,7 @@ public final class b60 implements Runnable {
             case 4:
                 ks0 ks0Var = (ks0) obj;
                 if (!z11) {
-                    ks0Var.U.f31057q0.setVisibility(0);
+                    ks0Var.U.f31058q0.setVisibility(0);
                     return;
                 } else {
                     ks0Var.getClass();
@@ -108,7 +108,7 @@ public final class b60 implements Runnable {
             case 5:
                 ps0 ps0Var = (ps0) obj;
                 if (!z11) {
-                    ps0Var.H.f31057q0.setVisibility(0);
+                    ps0Var.H.f31058q0.setVisibility(0);
                     return;
                 } else {
                     ps0Var.getClass();
@@ -131,10 +131,10 @@ public final class b60 implements Runnable {
                 ArrayList arrayList2 = mw0Var.f28309r;
                 kw0 kw0Var2 = mw0Var.f28304n;
                 if (kw0Var2 != null) {
-                    kw0Var2.G(mw0Var.f28616y0, z11);
+                    kw0Var2.G(mw0Var.f28617y0, z11);
                 }
                 while (i13 < arrayList2.size()) {
-                    ((kw0) arrayList2.get(i13)).G(mw0Var.f28616y0, z11);
+                    ((kw0) arrayList2.get(i13)).G(mw0Var.f28617y0, z11);
                     i13++;
                 }
                 return;

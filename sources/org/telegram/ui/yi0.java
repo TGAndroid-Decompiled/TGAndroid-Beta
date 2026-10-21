@@ -16,8 +16,8 @@ public final class yi0 extends yg.h {
         super.onLayout(z10, i10, i11, i12, i13);
         int dp = AndroidUtilities.dp(64.0f) + getMeasuredHeight();
         bj0 bj0Var = this.K;
-        bj0Var.f35657l0 = dp;
-        bj0Var.f35656k0.G();
+        bj0Var.f35658l0 = dp;
+        bj0Var.f35657k0.G();
         if (this.J != bj0Var.isKeyboardVisible()) {
             boolean isKeyboardVisible = bj0Var.isKeyboardVisible();
             this.J = isKeyboardVisible;

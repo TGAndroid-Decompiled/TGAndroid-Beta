@@ -339,7 +339,7 @@ public abstract class kd extends ei.m {
         int i10 = org.telegram.ui.ActionBar.h6.f21403zf;
         ShapeDrawable K = org.telegram.ui.ActionBar.h6.K(dp, org.telegram.ui.ActionBar.h6.w0(i10, d6Var));
         zq zqVar = this.f9407n;
-        zqVar.f33016a = K;
+        zqVar.f33017a = K;
         zqVar.invalidateSelf();
         this.W0.e(-1, org.telegram.ui.ActionBar.h6.w0(i10, d6Var), -1);
     }
@@ -480,10 +480,10 @@ public abstract class kd extends ei.m {
             }
             ycVar.c(z10);
         } else if (motionEvent.getAction() == 2) {
-            if (ycVar.f32631i && (f6Var.f26086c <= 0.0f || !rectF.contains(motionEvent.getX(), motionEvent.getY()))) {
+            if (ycVar.f32632i && (f6Var.f26086c <= 0.0f || !rectF.contains(motionEvent.getX(), motionEvent.getY()))) {
                 ycVar.c(false);
             }
-        } else if ((motionEvent.getAction() == 1 || motionEvent.getAction() == 3) && ycVar.f32631i) {
+        } else if ((motionEvent.getAction() == 1 || motionEvent.getAction() == 3) && ycVar.f32632i) {
             if (motionEvent.getAction() == 1) {
                 A();
                 if (this instanceof org.telegram.ui.is0) {
@@ -496,7 +496,7 @@ public abstract class kd extends ei.m {
             ycVar.c(false);
             return true;
         }
-        if (!ycVar.f32631i && !super.dispatchTouchEvent(motionEvent)) {
+        if (!ycVar.f32632i && !super.dispatchTouchEvent(motionEvent)) {
             return false;
         }
         return true;

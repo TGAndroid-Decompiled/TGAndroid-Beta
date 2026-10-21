@@ -24,8 +24,8 @@ public final class uv0 implements org.telegram.ui.Components.og {
             return;
         }
         int i12 = popupNotificationActivity.S;
-        if (i12 >= 0 && i12 < popupNotificationActivity.f33487a0.size()) {
-            popupNotificationActivity.f33487a0.remove(popupNotificationActivity.S);
+        if (i12 >= 0 && i12 < popupNotificationActivity.f33488a0.size()) {
+            popupNotificationActivity.f33488a0.remove(popupNotificationActivity.S);
         }
         MessagesController.getInstance(popupNotificationActivity.Q.currentAccount).markDialogAsRead(popupNotificationActivity.Q.getDialogId(), popupNotificationActivity.Q.getId(), Math.max(0, popupNotificationActivity.Q.getId()), popupNotificationActivity.Q.messageOwner.date, true, 0L, 0, true, 0);
         popupNotificationActivity.Q = null;

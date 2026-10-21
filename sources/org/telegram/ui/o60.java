@@ -215,7 +215,7 @@ public final class o60 extends org.telegram.ui.ActionBar.j {
                     jq0Var.L.l();
                     return;
                 } else if (i10 == 2) {
-                    iq0 iq0Var = jq0Var.f38324s0;
+                    iq0 iq0Var = jq0Var.f38325s0;
                     if (iq0Var != null) {
                         iq0Var.g();
                     }
@@ -237,11 +237,11 @@ public final class o60 extends org.telegram.ui.ActionBar.j {
                     popupNotificationActivity.finish();
                     return;
                 } else if (i10 == 1) {
-                    int i16 = PopupNotificationActivity.f33485b0;
+                    int i16 = PopupNotificationActivity.f33486b0;
                     popupNotificationActivity.k();
                     return;
                 } else if (i10 == 2) {
-                    int i17 = PopupNotificationActivity.f33485b0;
+                    int i17 = PopupNotificationActivity.f33486b0;
                     popupNotificationActivity.p();
                     return;
                 } else {

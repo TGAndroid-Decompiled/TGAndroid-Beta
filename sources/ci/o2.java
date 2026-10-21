@@ -62,12 +62,12 @@ public final class o2 extends w7.j0 {
                 ac0 ac0Var = ic0Var.e;
                 ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = ic0Var.f27241s;
                 oc0 oc0Var = ic0Var.f27237c0;
-                if (oc0Var.f28991s) {
-                    if (!z10 && actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().f29591b > 0.0f) {
+                if (oc0Var.f28992s) {
+                    if (!z10 && actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().f29592b > 0.0f) {
                         actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().b(true);
                         return;
                     } else if (z10) {
-                        if (ac0Var.v - ac0Var.f22013u > MessagesController.getInstance(oc0Var.f28992w).quoteLengthMax) {
+                        if (ac0Var.v - ac0Var.f22013u > MessagesController.getInstance(oc0Var.f28993w).quoteLengthMax) {
                             ic0Var.g();
                             return;
                         }

@@ -21,34 +21,34 @@ public final class ps0 extends AnimatorListenerAdapter {
     @Override
     public final void onAnimationEnd(Animator animator) {
         PhotoViewer photoViewer = this.f40292c;
-        photoViewer.f33379p6 = null;
-        photoViewer.f33293f6 = 0.0f;
-        photoViewer.f33256b6 = 0.0f;
-        photoViewer.f33301g6 = 0.0f;
+        photoViewer.f33380p6 = null;
+        photoViewer.f33294f6 = 0.0f;
+        photoViewer.f33257b6 = 0.0f;
+        photoViewer.f33302g6 = 0.0f;
         float t22 = photoViewer.t2(false);
-        photoViewer.f33284e6 = t22;
-        photoViewer.f33246a6 = t22;
-        photoViewer.f33278e0.invalidate();
-        CropAreaView cropAreaView = photoViewer.C1.f29036b.f16917a;
+        photoViewer.f33285e6 = t22;
+        photoViewer.f33247a6 = t22;
+        photoViewer.f33279e0.invalidate();
+        CropAreaView cropAreaView = photoViewer.C1.f29037b.f16917a;
         float t23 = photoViewer.t2(false);
         cropAreaView.f24199n0 = 0.0f;
         cropAreaView.f24200o0 = t23;
         cropAreaView.f24201p0 = 0.0f;
         cropAreaView.f24202q0 = 0.0f;
         cropAreaView.invalidate();
-        photoViewer.C1.f29037c.setRotated(false);
+        photoViewer.C1.f29038c.setRotated(false);
         float f7 = this.f40290a;
         if (Math.abs(f7) > 0.0f) {
             org.telegram.ui.Components.of0 of0Var = photoViewer.C1;
-            mg.f fVar = of0Var.f29037c;
+            mg.f fVar = of0Var.f29038c;
             if (fVar != null) {
                 fVar.b(0.0f);
                 fVar.setRotated(false);
             }
-            if (of0Var.f29036b.m(f7)) {
-                photoViewer.f33251b1.setColorFilter(new PorterDuffColorFilter(photoViewer.A1(org.telegram.ui.ActionBar.h6.f21403zf), PorterDuff.Mode.MULTIPLY));
+            if (of0Var.f29037b.m(f7)) {
+                photoViewer.f33252b1.setColorFilter(new PorterDuffColorFilter(photoViewer.A1(org.telegram.ui.ActionBar.h6.f21403zf), PorterDuff.Mode.MULTIPLY));
             } else {
-                photoViewer.f33251b1.setColorFilter((ColorFilter) null);
+                photoViewer.f33252b1.setColorFilter((ColorFilter) null);
             }
         }
         MediaController.CropState cropState = photoViewer.X4.f43551c;

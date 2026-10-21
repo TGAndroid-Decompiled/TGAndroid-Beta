@@ -88,7 +88,7 @@ public final class d0 extends s4.r0 {
                 ti tiVar = ijVar.f28173b;
                 if (i10 == 0) {
                     int dp = AndroidUtilities.dp(13.0f);
-                    org.telegram.ui.ActionBar.u0 u0Var = tiVar.f30539d1;
+                    org.telegram.ui.ActionBar.u0 u0Var = tiVar.f30540d1;
                     if (u0Var != null) {
                         i11 = AndroidUtilities.dp(u0Var.getAlpha() * 26.0f);
                     } else {
@@ -96,7 +96,7 @@ public final class d0 extends s4.r0 {
                     }
                     int i13 = dp + i11;
                     int backgroundPaddingTop = tiVar.getBackgroundPaddingTop();
-                    if (((tiVar.f30543e2[0] - backgroundPaddingTop) - i13) + backgroundPaddingTop < org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && (tl0Var2 = (tl0) u1Var.K(0)) != null) {
+                    if (((tiVar.f30544e2[0] - backgroundPaddingTop) - i13) + backgroundPaddingTop < org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && (tl0Var2 = (tl0) u1Var.K(0)) != null) {
                         View view2 = tl0Var2.f45917a;
                         if (view2.getTop() > AndroidUtilities.dp(7.0f)) {
                             u1Var.v0(0, view2.getTop() - AndroidUtilities.dp(7.0f), null);
@@ -109,17 +109,17 @@ public final class d0 extends s4.r0 {
                 return;
             case 24:
                 nk nkVar = (nk) this.f687b;
-                ck ckVar = nkVar.f28822r;
+                ck ckVar = nkVar.f28823r;
                 ti tiVar2 = nkVar.f28173b;
                 boolean z10 = false;
                 if (i10 == 0) {
                     int dp2 = AndroidUtilities.dp(13.0f);
                     int backgroundPaddingTop2 = tiVar2.getBackgroundPaddingTop();
-                    if (((tiVar2.f30543e2[0] - backgroundPaddingTop2) - dp2) + backgroundPaddingTop2 < org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && (tl0Var3 = (tl0) ckVar.K(0)) != null && (top = (tl0Var3.f45917a.getTop() - AndroidUtilities.statusBarHeight) - AndroidUtilities.dp(56.0f)) > 0) {
+                    if (((tiVar2.f30544e2[0] - backgroundPaddingTop2) - dp2) + backgroundPaddingTop2 < org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && (tl0Var3 = (tl0) ckVar.K(0)) != null && (top = (tl0Var3.f45917a.getTop() - AndroidUtilities.statusBarHeight) - AndroidUtilities.dp(56.0f)) > 0) {
                         ckVar.v0(0, top, null);
                     }
                 }
-                if (i10 == 1 && nkVar.f28816b0 && ckVar.getAdapter() == nkVar.f28826y) {
+                if (i10 == 1 && nkVar.f28817b0 && ckVar.getAdapter() == nkVar.f28827y) {
                     AndroidUtilities.hideKeyboard(tiVar2.getCurrentFocus());
                 }
                 if (i10 != 0) {
@@ -129,11 +129,11 @@ public final class d0 extends s4.r0 {
                 return;
             case 25:
                 ok okVar = (ok) this.f687b;
-                jm0 jm0Var = okVar.f29052r;
+                jm0 jm0Var = okVar.f29053r;
                 ti tiVar3 = okVar.f28173b;
                 if (i10 == 0) {
                     int dp3 = AndroidUtilities.dp(13.0f);
-                    org.telegram.ui.ActionBar.u0 u0Var2 = tiVar3.f30539d1;
+                    org.telegram.ui.ActionBar.u0 u0Var2 = tiVar3.f30540d1;
                     if (u0Var2 != null) {
                         i12 = AndroidUtilities.dp(u0Var2.getAlpha() * 26.0f);
                     } else {
@@ -141,7 +141,7 @@ public final class d0 extends s4.r0 {
                     }
                     int i14 = dp3 + i12;
                     int backgroundPaddingTop3 = tiVar3.getBackgroundPaddingTop();
-                    if (((tiVar3.f30543e2[0] - backgroundPaddingTop3) - i14) + backgroundPaddingTop3 < org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && (tl0Var4 = (tl0) jm0Var.K(0)) != null) {
+                    if (((tiVar3.f30544e2[0] - backgroundPaddingTop3) - i14) + backgroundPaddingTop3 < org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && (tl0Var4 = (tl0) jm0Var.K(0)) != null) {
                         View view3 = tl0Var4.f45917a;
                         if (view3.getTop() > AndroidUtilities.dp(7.0f)) {
                             jm0Var.v0(0, view3.getTop() - AndroidUtilities.dp(7.0f), null);
@@ -155,7 +155,7 @@ public final class d0 extends s4.r0 {
             case 26:
                 if (i10 == 1) {
                     rl rlVar = (rl) this.f687b;
-                    if (rlVar.f29957l0 && rlVar.m0) {
+                    if (rlVar.f29958l0 && rlVar.m0) {
                         AndroidUtilities.hideKeyboard(rlVar.f28173b.getCurrentFocus());
                         return;
                     }
@@ -169,7 +169,7 @@ public final class d0 extends s4.r0 {
                 if (i10 == 0) {
                     int dp4 = AndroidUtilities.dp(13.0f);
                     int backgroundPaddingTop4 = tiVar4.getBackgroundPaddingTop();
-                    if (((tiVar4.f30543e2[0] - backgroundPaddingTop4) - dp4) + backgroundPaddingTop4 < org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && (tl0Var5 = (tl0) sa1Var.K(1)) != null && (top2 = (tl0Var5.f45917a.getTop() - AndroidUtilities.statusBarHeight) - AndroidUtilities.dp(65.0f)) > 0) {
+                    if (((tiVar4.f30544e2[0] - backgroundPaddingTop4) - dp4) + backgroundPaddingTop4 < org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && (tl0Var5 = (tl0) sa1Var.K(1)) != null && (top2 = (tl0Var5.f45917a.getTop() - AndroidUtilities.statusBarHeight) - AndroidUtilities.dp(65.0f)) > 0) {
                         sa1Var.v0(0, top2, null);
                     }
                     int i15 = foVar.W0;

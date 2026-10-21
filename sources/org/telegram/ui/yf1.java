@@ -15,7 +15,7 @@ public final class yf1 implements Runnable {
                 this.f43484b.presentFragment(new PrivacyControlActivity(9, true));
                 return;
             case 1:
-                org.telegram.ui.Components.w61 w61Var = this.f43484b.f33953x;
+                org.telegram.ui.Components.w61 w61Var = this.f43484b.f33954x;
                 if (w61Var != null) {
                     w61Var.W2.N(true);
                     return;

@@ -6,36 +6,36 @@ import android.view.VelocityTracker;
 import android.view.ViewConfiguration;
 import org.telegram.ui.PhotoViewer;
 public final class s20 {
-    public static final int f30138x;
-    public static final int f30139y;
-    public final int f30140a;
-    public final int f30141b;
-    public final int f30142c;
+    public static final int f30139x;
+    public static final int f30140y;
+    public final int f30141a;
+    public final int f30142b;
+    public final int f30143c;
     public final int d;
     public final int e;
-    public final ab.o0 f30143f;
-    public final r20 f30144g;
+    public final ab.o0 f30144f;
+    public final r20 f30145g;
     public q20 h;
-    public boolean f30145i;
-    public boolean f30146j;
-    public boolean f30147k;
-    public boolean f30148l;
-    public boolean f30149m;
-    public MotionEvent f30150n;
-    public MotionEvent f30151o;
-    public MotionEvent f30152p;
-    public boolean f30153q;
-    public float f30154r;
-    public float f30155s;
-    public float f30156t;
-    public float f30157u;
+    public boolean f30146i;
+    public boolean f30147j;
+    public boolean f30148k;
+    public boolean f30149l;
+    public boolean f30150m;
+    public MotionEvent f30151n;
+    public MotionEvent f30152o;
+    public MotionEvent f30153p;
+    public boolean f30154q;
+    public float f30155r;
+    public float f30156s;
+    public float f30157t;
+    public float f30158u;
     public boolean v;
-    public VelocityTracker f30158w;
+    public VelocityTracker f30159w;
 
     static {
         ViewConfiguration.getLongPressTimeout();
-        f30138x = ViewConfiguration.getTapTimeout();
-        f30139y = ViewConfiguration.getDoubleTapTimeout();
+        f30139x = ViewConfiguration.getTapTimeout();
+        f30140y = ViewConfiguration.getDoubleTapTimeout();
     }
 
     public s20(Context context, PhotoViewer photoViewer) {
@@ -54,8 +54,8 @@ public final class s20 {
         int scaledTouchSlop;
         int i10;
         int i11;
-        this.f30143f = new ab.o0(this, 8);
-        this.f30144g = r20Var;
+        this.f30144f = new ab.o0(this, 8);
+        this.f30145g = r20Var;
         if (r20Var instanceof q20) {
             this.h = (q20) r20Var;
         }
@@ -76,8 +76,8 @@ public final class s20 {
             i10 = scaledTouchSlop2;
             i11 = scaledDoubleTapSlop;
         }
-        this.f30140a = i10 * i10;
-        this.f30141b = scaledTouchSlop * scaledTouchSlop;
-        this.f30142c = i11 * i11;
+        this.f30141a = i10 * i10;
+        this.f30142b = scaledTouchSlop * scaledTouchSlop;
+        this.f30143c = i11 * i11;
     }
 }

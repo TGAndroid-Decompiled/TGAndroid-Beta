@@ -326,7 +326,7 @@ public abstract class z81 extends FrameLayout {
         boolean z11;
         boolean z12;
         if (b91Var != null) {
-            String str = b91Var.f35547j;
+            String str = b91Var.f35548j;
             lg.c cVar = this.d;
             cVar.setTitle(str);
             if (getContext().getResources().getConfiguration().orientation == 2) {
@@ -341,18 +341,18 @@ public abstract class z81 extends FrameLayout {
             jg.g gVar2 = this.f43672c;
             gVar2.setLandscape(z11);
             this.f43675r = b91Var;
-            boolean z13 = b91Var.f35549l;
+            boolean z13 = b91Var.f35550l;
             ArrayList arrayList2 = this.f43674n;
             j41 j41Var = this.h;
             RadialProgressView radialProgressView = this.e;
             TextView textView = this.f43673f;
-            if (!z13 && !b91Var.f35541a) {
+            if (!z13 && !b91Var.f35542a) {
                 textView.setVisibility(8);
                 lg.e eVar = gVar.f14480t0;
-                boolean z14 = b91Var.f35551n;
+                boolean z14 = b91Var.f35552n;
                 eVar.f16043a = z14;
                 cVar.c(!z14);
-                if (b91Var.d == null && b91Var.f35544f != null) {
+                if (b91Var.d == null && b91Var.f35545f != null) {
                     radialProgressView.setAlpha(1.0f);
                     radialProgressView.setVisibility(0);
                     b(b91Var);
@@ -367,10 +367,10 @@ public abstract class z81 extends FrameLayout {
                     jVar.f14503l = 1.0f;
                     jVar.f14495a.A(true, false, false);
                 }
-                cVar.setUseWeekInterval(b91Var.f35552o);
-                gVar.f14480t0.setUseWeek(b91Var.f35552o);
+                cVar.setUseWeekInterval(b91Var.f35553o);
+                gVar.f14480t0.setUseWeek(b91Var.f35553o);
                 lg.e eVar2 = gVar.f14480t0;
-                if (this.f43675r.f35545g == null && this.f43676s != 4) {
+                if (this.f43675r.f35546g == null && this.f43676s != 4) {
                     z12 = false;
                 } else {
                     z12 = true;
@@ -397,7 +397,7 @@ public abstract class z81 extends FrameLayout {
                         a10Var.setOnLongClickListener(new ci.m2(6, y81Var, fVar));
                     }
                 }
-                long j10 = this.f43675r.f35543c;
+                long j10 = this.f43675r.f35544c;
                 if (j10 > 0) {
                     gVar.f14479s0 = Arrays.binarySearch(gVar.f14463h0.f15052a, j10);
                     gVar.f14481u0 = true;
@@ -428,7 +428,7 @@ public abstract class z81 extends FrameLayout {
                 return;
             }
             radialProgressView.setVisibility(8);
-            String str3 = b91Var.f35542b;
+            String str3 = b91Var.f35543b;
             if (str3 != null) {
                 textView.setText(str3);
                 if (textView.getVisibility() == 8) {
@@ -508,7 +508,7 @@ public abstract class z81 extends FrameLayout {
                 return;
             }
         }
-        this.f43675r.f35543c = selectedDate;
+        this.f43675r.f35544c = selectedDate;
         gVar.f14480t0.setAlpha(0.0f);
         gVar.f14482v0 = 0.0f;
         gVar.f14481u0 = false;
@@ -569,7 +569,7 @@ public abstract class z81 extends FrameLayout {
             jg.g gVar2 = this.f43672c;
             gVar2.setHeader(null);
             long selectedDate = gVar.getSelectedDate();
-            this.f43675r.f35543c = 0L;
+            this.f43675r.f35544c = 0L;
             int i10 = 0;
             gVar.setVisibility(0);
             gVar2.d();

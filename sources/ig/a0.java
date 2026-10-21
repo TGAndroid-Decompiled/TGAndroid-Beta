@@ -489,7 +489,7 @@ public final class a0 {
             arrayList = this.f12817k;
         }
         UsersSelectActivity usersSelectActivity = new UsersSelectActivity(d(), arrayList, z10);
-        usersSelectActivity.f33963x = 2;
+        usersSelectActivity.f33964x = 2;
         usersSelectActivity.G = false;
         if (this.f12815i && !this.h && !z10) {
             z11 = true;
@@ -502,7 +502,7 @@ public final class a0 {
             z12 = true;
         }
         usersSelectActivity.H = z12;
-        usersSelectActivity.f33959n = new ci.f(1, this, z10);
+        usersSelectActivity.f33960n = new ci.f(1, this, z10);
         if (n2Var != null) {
             n2Var.presentFragment(usersSelectActivity);
             return true;

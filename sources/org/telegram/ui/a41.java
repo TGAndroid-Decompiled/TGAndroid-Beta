@@ -4,20 +4,20 @@ import org.telegram.messenger.MediaDataController;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_account;
 public final class a41 implements org.telegram.ui.ActionBar.a2, org.telegram.ui.Components.ll0 {
-    public final x51 f35272a;
+    public final x51 f35273a;
 
     public a41(x51 x51Var) {
-        this.f35272a = x51Var;
+        this.f35273a = x51Var;
     }
 
     @Override
     public void b() {
-        this.f35272a.m();
+        this.f35273a.m();
     }
 
     @Override
     public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        x51 x51Var = this.f35272a;
+        x51 x51Var = this.f35273a;
         int i11 = x51Var.V;
         ConnectionsManager.getInstance(i11).sendRequest(new TL_account.clearRecentEmojiStatuses(), null);
         MediaDataController.getInstance(i11).clearRecentEmojiStatuses();

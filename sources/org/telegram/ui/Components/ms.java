@@ -6,21 +6,21 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class ms implements Predicate {
-    public final int f28592a;
-    public final TLObject f28593b;
+    public final int f28593a;
+    public final TLObject f28594b;
 
     public ms(int i10, TLObject tLObject) {
-        this.f28592a = i10;
-        this.f28593b = tLObject;
+        this.f28593a = i10;
+        this.f28594b = tLObject;
     }
 
     public Predicate and(Predicate predicate) {
-        int i10 = this.f28592a;
+        int i10 = this.f28593a;
         return Predicate$CC.$default$and(this, predicate);
     }
 
     public Predicate negate() {
-        switch (this.f28592a) {
+        switch (this.f28593a) {
             case 0:
                 return Predicate$CC.$default$negate(this);
             default:
@@ -29,18 +29,18 @@ public final class ms implements Predicate {
     }
 
     public Predicate or(Predicate predicate) {
-        int i10 = this.f28592a;
+        int i10 = this.f28593a;
         return Predicate$CC.$default$or(this, predicate);
     }
 
     @Override
     public final boolean test(Object obj) {
-        switch (this.f28592a) {
+        switch (this.f28593a) {
             case 0:
-                return MessageObject.peersEqual((TLRPC.InputPeer) this.f28593b, ((MessageObject) obj).messageOwner.from_id);
+                return MessageObject.peersEqual((TLRPC.InputPeer) this.f28594b, ((MessageObject) obj).messageOwner.from_id);
             default:
                 MessageObject messageObject = (MessageObject) obj;
-                TLObject tLObject = this.f28593b;
+                TLObject tLObject = this.f28594b;
                 if (!(tLObject instanceof TLRPC.User) ? !(!(tLObject instanceof TLRPC.Chat) || messageObject.messageOwner.from_id.user_id != ((TLRPC.Chat) tLObject).f20276id) : messageObject.messageOwner.from_id.user_id == ((TLRPC.User) tLObject).f20423id) {
                     return true;
                 }

@@ -20,7 +20,7 @@ public final class wt implements Runnable {
             case 1:
                 DataSettingsActivity dataSettingsActivity = this.f42953b;
                 dataSettingsActivity.X = true;
-                if (dataSettingsActivity.f33120a != null && (i10 = dataSettingsActivity.f33126s) >= 0) {
+                if (dataSettingsActivity.f33121a != null && (i10 = dataSettingsActivity.f33127s) >= 0) {
                     dataSettingsActivity.n0(i10);
                     return;
                 }

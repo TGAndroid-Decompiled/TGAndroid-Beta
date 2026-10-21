@@ -14,21 +14,21 @@ public final class mx0 extends yj0 {
     public ValueAnimator F;
     public ValueAnimator G;
     public final rx0 H;
-    public int f28619r;
-    public float f28620s;
+    public int f28620r;
+    public float f28621s;
     public ValueAnimator v;
-    public boolean f28621w;
-    public long f28622x;
-    public float f28623y;
+    public boolean f28622w;
+    public long f28623x;
+    public float f28624y;
 
     public mx0(rx0 rx0Var, Context context) {
         super(context);
         int w02;
         org.telegram.ui.ActionBar.d6 d6Var = rx0Var.f27579n2;
         this.H = rx0Var;
-        this.f28621w = false;
-        this.f28623y = 1.0f;
-        if (rx0Var.f30053u3) {
+        this.f28622w = false;
+        this.f28624y = 1.0f;
+        if (rx0Var.f30054u3) {
             w02 = i0.a.o(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Wk, d6Var), (int) 102.0f);
         } else {
             w02 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Me, d6Var);
@@ -40,14 +40,14 @@ public final class mx0 extends yj0 {
 
     @Override
     public final void c() {
-        this.f28621w = true;
-        if (this.f28623y < 1.0f) {
+        this.f28622w = true;
+        if (this.f28624y < 1.0f) {
             ValueAnimator valueAnimator = this.G;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
                 this.G = null;
             }
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.f28623y, 1.0f);
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.f28624y, 1.0f);
             this.G = ofFloat;
             ofFloat.addUpdateListener(new jx0(this, 2));
             this.G.addListener(new lx0(this, 0));
@@ -67,7 +67,7 @@ public final class mx0 extends yj0 {
                 this.H.invalidate();
             }
         }
-        float y3 = com.google.android.gms.internal.play_billing.k3.y(1.0f, this.E, 0.15f, 0.85f) * this.f28623y;
+        float y3 = com.google.android.gms.internal.play_billing.k3.y(1.0f, this.E, 0.15f, 0.85f) * this.f28624y;
         int i10 = (y3 > 1.0f ? 1 : (y3 == 1.0f ? 0 : -1));
         if (i10 != 0) {
             canvas.save();
@@ -80,8 +80,8 @@ public final class mx0 extends yj0 {
     }
 
     public final void j() {
-        if (System.currentTimeMillis() - this.f28622x > 250) {
-            this.f28622x = System.currentTimeMillis();
+        if (System.currentTimeMillis() - this.f28623x > 250) {
+            this.f28623x = System.currentTimeMillis();
             vj0 animatedDrawable = getAnimatedDrawable();
             if (animatedDrawable == null && getImageReceiver() != null) {
                 animatedDrawable = getImageReceiver().getLottieAnimation();
@@ -98,14 +98,14 @@ public final class mx0 extends yj0 {
     }
 
     public final void k(int i10) {
-        if (this.f28619r != i10) {
-            this.f28619r = i10;
+        if (this.f28620r != i10) {
+            this.f28620r = i10;
             setColorFilter(new PorterDuffColorFilter(i10, PorterDuff.Mode.SRC_IN));
         }
     }
 
     public final void l(boolean z10, boolean z11) {
-        if (Math.abs(this.f28620s - (z10 ? 1.0f : 0.0f)) > 0.01f) {
+        if (Math.abs(this.f28621s - (z10 ? 1.0f : 0.0f)) > 0.01f) {
             ValueAnimator valueAnimator = this.v;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
@@ -113,7 +113,7 @@ public final class mx0 extends yj0 {
             }
             float f7 = 0.0f;
             if (z11) {
-                float f10 = this.f28620s;
+                float f10 = this.f28621s;
                 if (z10) {
                     f7 = 1.0f;
                 }
@@ -134,13 +134,13 @@ public final class mx0 extends yj0 {
     }
 
     public final void m(float f7) {
-        this.f28620s = f7;
+        this.f28621s = f7;
         rx0 rx0Var = this.H;
         org.telegram.ui.ActionBar.d6 d6Var = rx0Var.f27579n2;
-        if (rx0Var.f30053u3) {
+        if (rx0Var.f30054u3) {
             k(i0.a.o(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Wk, d6Var), (int) (AndroidUtilities.lerp(0.4f, 0.8f, f7) * 255.0f)));
         } else {
-            k(i0.a.f(this.f28620s, org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Me, d6Var), org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Oe, d6Var)));
+            k(i0.a.f(this.f28621s, org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Me, d6Var), org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Oe, d6Var)));
         }
         invalidate();
     }

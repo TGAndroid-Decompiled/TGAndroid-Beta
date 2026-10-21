@@ -80,7 +80,7 @@ public final class f4 extends FrameLayout {
             int dp = AndroidUtilities.dp(18.0f);
             int dp2 = AndroidUtilities.dp(18.0f);
             zqVar.e = dp;
-            zqVar.f33019f = dp2;
+            zqVar.f33020f = dp2;
         }
         return zqVar;
     }
@@ -267,7 +267,7 @@ public final class f4 extends FrameLayout {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         xp xpVar = this.d;
         if (xpVar != null) {
-            z10 = xpVar.f32458a.f24151q;
+            z10 = xpVar.f32459a.f24151q;
         } else {
             z10 = this.H;
         }

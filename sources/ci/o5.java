@@ -25,15 +25,15 @@ public final class o5 extends tx0 {
                 super.e(z10, z11);
                 float f7 = 1.0f;
                 if (z11) {
-                    ViewPropertyAnimator animate = re1Var.f41176n.f37586a.animate();
+                    ViewPropertyAnimator animate = re1Var.f41176n.f37587a.animate();
                     if (z10) {
                         f7 = 0.0f;
                     }
                     animate.alpha(f7).start();
                     return;
                 }
-                re1Var.f41176n.f37586a.animate().cancel();
-                TextView textView = re1Var.f41176n.f37586a;
+                re1Var.f41176n.f37587a.animate().cancel();
+                TextView textView = re1Var.f41176n.f37587a;
                 if (z10) {
                     f7 = 0.0f;
                 }

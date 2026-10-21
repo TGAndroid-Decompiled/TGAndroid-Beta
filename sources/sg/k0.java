@@ -1469,18 +1469,18 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
                             }
                         }
                         a0 a0Var = this.E0;
-                        a0Var.f46390w.f31436p = null;
+                        a0Var.f46390w.f31437p = null;
                         a0Var.f46392y.setVisibility(8);
                         return;
                     }
                     a0 a0Var2 = this.E0;
-                    a0Var2.f46390w.f31436p = null;
+                    a0Var2.f46390w.f31437p = null;
                     a0Var2.f46392y.setVisibility(8);
                     return;
                 }
                 this.E0.d.setText(LocaleController.getString(R.string.OK));
                 a0 a0Var3 = this.E0;
-                a0Var3.f46390w.f31436p = null;
+                a0Var3.f46390w.f31437p = null;
                 a0Var3.f46392y.setVisibility(8);
                 return;
             }
@@ -1725,7 +1725,7 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
                 canApplyBoost.setMyBoosts(tL_premium_myBoosts);
                 if (C1()) {
                     qc Q = new xc(this.container, this.resourcesProvider).Q(R.raw.ic_boosts_replace, 30, LocaleController.formatPluralString("BoostingReassignedFromPlural", intValue, LocaleController.formatPluralString("BoostingFromOtherChannel", intValue2, new Object[0])));
-                    Q.f29530j = 4000;
+                    Q.f29531j = 4000;
                     Q.k(true);
                 }
             }

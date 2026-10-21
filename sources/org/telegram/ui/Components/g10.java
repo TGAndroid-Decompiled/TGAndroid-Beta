@@ -77,7 +77,7 @@ public final class g10 extends FrameLayout {
         this.f26466f.draw(canvas);
         if (this.h > 0.0f) {
             if (this.F == null) {
-                this.F = new dq(p6Var2.f29223a.getColor());
+                this.F = new dq(p6Var2.f29224a.getColor());
             }
             int dp = (int) ((1.0f - this.h) * AndroidUtilities.dp(24.0f));
             this.F.setBounds(0, dp, getWidth(), getHeight() + dp);
@@ -132,7 +132,7 @@ public final class g10 extends FrameLayout {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         accessibilityNodeInfo.setClassName("android.widget.Button");
         StringBuilder sb2 = new StringBuilder();
-        sb2.append((Object) this.f26464b.f29230i);
+        sb2.append((Object) this.f26464b.f29231i);
         if (this.f26470w > 0) {
             str = ", " + LocaleController.formatPluralString("Chats", this.f26470w, new Object[0]);
         } else {

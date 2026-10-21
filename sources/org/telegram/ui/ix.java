@@ -11,17 +11,17 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.tgnet.TLRPC;
 public final class ix extends zt0 {
-    public final boolean[] f38126a;
-    public final cy f38127b;
+    public final boolean[] f38127a;
+    public final cy f38128b;
 
     public ix(cy cyVar, boolean[] zArr) {
-        this.f38127b = cyVar;
-        this.f38126a = zArr;
+        this.f38128b = cyVar;
+        this.f38127a = zArr;
     }
 
     @Override
     public final CharSequence C(int i10) {
-        cy cyVar = this.f38127b;
+        cy cyVar = this.f38128b;
         if (i10 >= 0 && i10 < cyVar.D2.size() && ((MediaController.PhotoEntry) cyVar.D2.get(i10)).isVideo) {
             return null;
         }
@@ -31,7 +31,7 @@ public final class ix extends zt0 {
     @Override
     public final void D() {
         int i10;
-        cy cyVar = this.f38127b;
+        cy cyVar = this.f38128b;
         org.telegram.ui.Components.kr0 kr0Var = cyVar.G2;
         if (kr0Var != null) {
             i10 = ((org.telegram.ui.ActionBar.n2) cyVar).currentAccount;
@@ -42,7 +42,7 @@ public final class ix extends zt0 {
     @Override
     public final ju0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
         org.telegram.ui.Components.w9 w9Var;
-        cy cyVar = this.f38127b;
+        cy cyVar = this.f38128b;
         org.telegram.ui.Components.kr0 kr0Var = cyVar.G2;
         if (kr0Var != null) {
             w9Var = kr0Var.f(i10);
@@ -55,20 +55,20 @@ public final class ix extends zt0 {
         int[] iArr = new int[2];
         w9Var.getLocationInWindow(iArr);
         ju0 ju0Var = new ju0();
-        ju0Var.f38351b = iArr[0];
-        ju0Var.f38352c = iArr[1];
+        ju0Var.f38352b = iArr[0];
+        ju0Var.f38353c = iArr[1];
         ju0Var.d = cyVar.G2;
         ImageReceiver imageReceiver = w9Var.getImageReceiver();
-        ju0Var.f38350a = imageReceiver;
+        ju0Var.f38351a = imageReceiver;
         ju0Var.e = imageReceiver.getBitmapSafe();
-        ju0Var.f38357k = w9Var.getScaleX();
+        ju0Var.f38358k = w9Var.getScaleX();
         ju0Var.h = new int[]{AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f)};
         return ju0Var;
     }
 
     @Override
     public final int H() {
-        ArrayList arrayList = this.f38127b.D2;
+        ArrayList arrayList = this.f38128b.D2;
         if (arrayList != null) {
             return arrayList.size();
         }
@@ -77,12 +77,12 @@ public final class ix extends zt0 {
 
     @Override
     public final boolean I() {
-        return this.f38127b.l3();
+        return this.f38128b.l3();
     }
 
     @Override
     public final long a() {
-        cy cyVar = this.f38127b;
+        cy cyVar = this.f38128b;
         if (cyVar.I2.isEmpty()) {
             return 0L;
         }
@@ -97,7 +97,7 @@ public final class ix extends zt0 {
     @Override
     public final CharSequence c0(int i10) {
         int i11;
-        cy cyVar = this.f38127b;
+        cy cyVar = this.f38128b;
         ArrayList arrayList = cyVar.D2;
         if (arrayList != null && !arrayList.isEmpty()) {
             int size = cyVar.D2.size();
@@ -136,7 +136,7 @@ public final class ix extends zt0 {
 
     @Override
     public final void e(CharSequence charSequence) {
-        cy cyVar = this.f38127b;
+        cy cyVar = this.f38128b;
         mw mwVar = cyVar.B1;
         if (mwVar != null) {
             mwVar.setFieldText(charSequence);
@@ -161,7 +161,7 @@ public final class ix extends zt0 {
     @Override
     public final ImageReceiver.BitmapHolder j(int i10) {
         org.telegram.ui.Components.w9 w9Var;
-        org.telegram.ui.Components.kr0 kr0Var = this.f38127b.G2;
+        org.telegram.ui.Components.kr0 kr0Var = this.f38128b.G2;
         if (kr0Var != null) {
             w9Var = kr0Var.f(i10);
         } else {
@@ -177,7 +177,7 @@ public final class ix extends zt0 {
     public final void o(int i10, VideoEditedInfo videoEditedInfo, boolean z10, int i11, int i12, boolean z11) {
         int i13;
         ArrayList arrayList;
-        cy cyVar = this.f38127b;
+        cy cyVar = this.f38128b;
         ArrayList arrayList2 = cyVar.I2;
         if (cyVar.B1 != null && (arrayList = cyVar.D2) != null && !arrayList.isEmpty()) {
             mw mwVar = cyVar.B1;
@@ -216,7 +216,7 @@ public final class ix extends zt0 {
         if (u12.T1() && (g12 = u12.g1()) != null) {
             charSequence = g12.getText();
         }
-        cy cyVar = this.f38127b;
+        cy cyVar = this.f38128b;
         if (charSequence != null && (mwVar = cyVar.B1) != null) {
             mwVar.setFieldText(charSequence);
         }
@@ -234,7 +234,7 @@ public final class ix extends zt0 {
 
     @Override
     public final boolean x(int i10) {
-        return this.f38126a[i10];
+        return this.f38127a[i10];
     }
 
     @Override

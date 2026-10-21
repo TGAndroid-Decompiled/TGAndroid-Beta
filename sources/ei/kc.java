@@ -28,10 +28,10 @@ public final class kc extends View {
         p6Var.u(-1);
         p6Var.x(AndroidUtilities.bold());
         p6Var.setCallback(this);
-        p6Var.f29225b = 1;
+        p6Var.f29226b = 1;
         StringBuilder sb2 = new StringBuilder(8);
         sb2.append("00:00:00");
-        if (!TextUtils.equals(sb2, p6Var.f29230i)) {
+        if (!TextUtils.equals(sb2, p6Var.f29231i)) {
             p6Var.a();
             p6Var.t(sb2, false, true);
         }

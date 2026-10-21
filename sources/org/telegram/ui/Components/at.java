@@ -38,7 +38,7 @@ public class at extends u61 {
         this.f24716f0 = new ws(this, 0);
         this.f24717g0 = true;
         this.f24718h0 = new z2(this, 3);
-        this.f30861s = new d(this, 8);
+        this.f30862s = new d(this, 8);
         this.N = i10;
         this.O = i11;
         this.P = z10;

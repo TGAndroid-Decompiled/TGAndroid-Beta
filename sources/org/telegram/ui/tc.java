@@ -37,7 +37,7 @@ public final class tc extends FrameLayout implements org.telegram.ui.ActionBar.y
         addView(oo0Var, w7.z5.e(-1, -1, 119));
         Context context2 = getContext();
         i10 = ((org.telegram.ui.ActionBar.n2) bdVar).currentAccount;
-        long j10 = bdVar.f35572a;
+        long j10 = bdVar.f35573a;
         d6Var2 = ((org.telegram.ui.ActionBar.n2) bdVar).resourceProvider;
         sc scVar = new sc(this, context2, i10, j10, d6Var2);
         this.f41637b = scVar;
@@ -78,13 +78,13 @@ public final class tc extends FrameLayout implements org.telegram.ui.ActionBar.y
             TextView textView2 = new TextView(activity);
             this.e = textView2;
             textView2.setTextSize(1, 12.0f);
-            if (bdVar.d && bdVar.f35595s == -1) {
+            if (bdVar.d && bdVar.f35596s == -1) {
                 i11 = bdVar.getThemedColor(i13);
             } else {
                 i11 = -1;
             }
             textView2.setTextColor(i11);
-            TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = bdVar.f35576c;
+            TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = bdVar.f35577c;
             if (tL_premium_boostsStatus != null) {
                 i12 = tL_premium_boostsStatus.boosts;
             } else {
@@ -133,13 +133,13 @@ public final class tc extends FrameLayout implements org.telegram.ui.ActionBar.y
         if (j5Var != null) {
             bd bdVar = this.h;
             int i10 = -1;
-            if (bdVar.d && bdVar.f35595s != -1) {
+            if (bdVar.d && bdVar.f35596s != -1) {
                 themedColor = -1;
             } else {
                 themedColor = bdVar.getThemedColor(org.telegram.ui.ActionBar.h6.A8);
             }
             j5Var.setTextColor(themedColor);
-            if (bdVar.d && bdVar.f35595s == -1) {
+            if (bdVar.d && bdVar.f35596s == -1) {
                 i10 = bdVar.getThemedColor(org.telegram.ui.ActionBar.h6.A8);
             }
             this.e.setTextColor(i10);

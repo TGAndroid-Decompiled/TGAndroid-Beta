@@ -3,28 +3,28 @@ package org.telegram.ui.Components;
 import android.animation.ValueAnimator;
 import android.widget.FrameLayout;
 public final class zj implements ValueAnimator.AnimatorUpdateListener {
-    public final int f32916a;
-    public final int f32917b;
-    public final float f32918c;
+    public final int f32917a;
+    public final int f32918b;
+    public final float f32919c;
     public final FrameLayout d;
 
     public zj(FrameLayout frameLayout, int i10, float f7, int i11) {
-        this.f32916a = i11;
+        this.f32917a = i11;
         this.d = frameLayout;
-        this.f32917b = i10;
-        this.f32918c = f7;
+        this.f32918b = i10;
+        this.f32919c = f7;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f32916a) {
+        switch (this.f32917a) {
             case 0:
                 nk nkVar = (nk) this.d;
-                ck ckVar = nkVar.f28822r;
-                ck ckVar2 = nkVar.f28823s;
+                ck ckVar = nkVar.f28823r;
+                ck ckVar2 = nkVar.f28824s;
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                int i10 = this.f32917b;
-                float f7 = this.f32918c;
+                int i10 = this.f32918b;
+                float f7 = this.f32919c;
                 if (i10 == 1) {
                     ckVar.setTranslationX(f7 * floatValue);
                     ckVar.setAlpha(1.0f - floatValue);
@@ -48,9 +48,9 @@ public final class zj implements ValueAnimator.AnimatorUpdateListener {
                 ic0 ic0Var = (ic0) this.d;
                 float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 float f12 = 1.0f - floatValue2;
-                int i11 = (int) ((ic0Var.R * floatValue2) + (this.f32917b * f12));
+                int i11 = (int) ((ic0Var.R * floatValue2) + (this.f32918b * f12));
                 ic0Var.T = i11;
-                ic0Var.f((ic0Var.S * floatValue2) + (this.f32918c * f12), i11);
+                ic0Var.f((ic0Var.S * floatValue2) + (this.f32919c * f12), i11);
                 return;
         }
     }

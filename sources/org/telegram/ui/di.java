@@ -12,18 +12,18 @@ public final class di extends lh0 {
     public di(qn qnVar, Context context, int i10, MessageObject messageObject) {
         super(context);
         this.e = qnVar;
-        this.f38929a = null;
+        this.f38930a = null;
         if (!messageObject.isRoundVideo()) {
             messageObject.isVoice();
         }
         org.telegram.ui.Components.b10 b10Var = new org.telegram.ui.Components.b10(context, null);
-        this.f38931c = b10Var;
+        this.f38932c = b10Var;
         b10Var.f(org.telegram.ui.ActionBar.h6.G8, org.telegram.ui.ActionBar.h6.f21079i6, -1);
         b10Var.setViewType(13);
         b10Var.setIsSingleCell(false);
         addView(b10Var, w7.z5.c(-1.0f, -2));
         org.telegram.ui.Components.x90 x90Var = new org.telegram.ui.Components.x90(context, null);
-        this.f38930b = x90Var;
+        this.f38931b = x90Var;
         x90Var.setTextSize(1, 14.0f);
         x90Var.setGravity(19);
         x90Var.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.E8, false));

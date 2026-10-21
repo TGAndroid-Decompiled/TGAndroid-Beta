@@ -43,14 +43,14 @@ import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.ThemeActivity;
 public final class qy implements Utilities.Callback {
-    public final int f29739a;
-    public final Object f29740b;
-    public final Object f29741c;
+    public final int f29740a;
+    public final Object f29741b;
+    public final Object f29742c;
 
     public qy(int i10, Object obj, Object obj2) {
-        this.f29739a = i10;
-        this.f29740b = obj;
-        this.f29741c = obj2;
+        this.f29740a = i10;
+        this.f29741b = obj;
+        this.f29742c = obj2;
     }
 
     @Override
@@ -62,20 +62,20 @@ public final class qy implements Utilities.Callback {
         int i10;
         TLRPC.Document document;
         s4.b1 K;
-        int i11 = this.f29739a;
+        int i11 = this.f29740a;
         float f10 = -0.02f;
         float f11 = 0.05f;
         float f12 = -0.04f;
         float f13 = 0.25f;
         int i12 = 0;
-        Object obj2 = this.f29741c;
-        Object obj3 = this.f29740b;
+        Object obj2 = this.f29742c;
+        Object obj3 = this.f29741b;
         switch (i11) {
             case 0:
                 ArrayList arrayList2 = (ArrayList) obj2;
                 Runnable runnable = (Runnable) obj;
-                ty tyVar = ((sy) obj3).f30372a;
-                if (ConnectionsManager.getInstance(tyVar.F.f30722c1).getConnectionState() != 3) {
+                ty tyVar = ((sy) obj3).f30373a;
+                if (ConnectionsManager.getInstance(tyVar.F.f30723c1).getConnectionState() != 3) {
                     runnable.run();
                     return;
                 } else {
@@ -94,7 +94,7 @@ public final class qy implements Utilities.Callback {
                     if (stickerSetCovered instanceof TLRPC.TL_stickerSetFullCovered) {
                         arrayList = ((TLRPC.TL_stickerSetFullCovered) stickerSetCovered).documents;
                     } else if (stickerSetCovered instanceof TLRPC.TL_stickerSetNoCovered) {
-                        TLRPC.TL_messages_stickerSet stickerSet = MediaDataController.getInstance(mzVar.f28635w.Q.f30722c1).getStickerSet(MediaDataController.getInputStickerSet(stickerSetCovered.set), Integer.valueOf(stickerSetCovered.set.hash), true);
+                        TLRPC.TL_messages_stickerSet stickerSet = MediaDataController.getInstance(mzVar.f28636w.Q.f30723c1).getStickerSet(MediaDataController.getInputStickerSet(stickerSetCovered.set), Integer.valueOf(stickerSetCovered.set.hash), true);
                         if (stickerSet != null) {
                             arrayList = stickerSet.documents;
                         } else {
@@ -104,7 +104,7 @@ public final class qy implements Utilities.Callback {
                         arrayList = stickerSetCovered.covers;
                     }
                     if (arrayList != null && !arrayList.isEmpty()) {
-                        mzVar.f28632n.add(new ky(stickerSetCovered, arrayList));
+                        mzVar.f28633n.add(new ky(stickerSetCovered, arrayList));
                     }
                 }
                 runnable2.run();
@@ -115,7 +115,7 @@ public final class qy implements Utilities.Callback {
                 org.telegram.ui.ActionBar.n2 n2Var = (org.telegram.ui.ActionBar.n2) obj;
                 if (k10Var.f27695a0 == null && !(k10Var.Z instanceof TL_chatlists.TL_chatlists_chatlistInviteAlready)) {
                     qc M = xc.a0(n2Var).M(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.FolderLinkAddedTitle, k10Var.f27700f0)), LocaleController.formatPluralString("FolderLinkAddedSubtitle", arrayList4.size(), new Object[0]), R.raw.contact_check);
-                    M.f29530j = 5000;
+                    M.f29531j = 5000;
                     M.j();
                     return;
                 }
@@ -128,7 +128,7 @@ public final class qy implements Utilities.Callback {
                     formatPluralString = LocaleController.formatPluralString("FolderLinkUpdatedJoinedSubtitle", arrayList4.size(), new Object[0]);
                 }
                 qc M2 = a02.M(replaceTags, formatPluralString, i13);
-                M2.f29530j = 5000;
+                M2.f29531j = 5000;
                 M2.j();
                 return;
             case 3:
@@ -213,7 +213,7 @@ public final class qy implements Utilities.Callback {
                 atVar.getClass();
                 ((Utilities.Callback) obj2).run(bool);
                 if (bool.booleanValue()) {
-                    atVar.f35415a.p();
+                    atVar.f35416a.p();
                     return;
                 }
                 return;
@@ -255,10 +255,10 @@ public final class qy implements Utilities.Callback {
                     a50Var.getClass();
                     v10Var.setVisibility(0);
                 }
-                a50Var.f35275c = bitmap2;
+                a50Var.f35276c = bitmap2;
                 Paint paint = new Paint(1);
                 a50Var.d = paint;
-                Bitmap bitmap3 = a50Var.f35275c;
+                Bitmap bitmap3 = a50Var.f35276c;
                 Shader.TileMode tileMode = Shader.TileMode.CLAMP;
                 BitmapShader bitmapShader = new BitmapShader(bitmap3, tileMode, tileMode);
                 a50Var.e = bitmapShader;
@@ -292,7 +292,7 @@ public final class qy implements Utilities.Callback {
                 String str = (String) obj2;
                 List<TLRPC.User> list = (List) obj;
                 HashSet hashSet = new HashSet();
-                ArrayList arrayList5 = bj0Var.f35651f0;
+                ArrayList arrayList5 = bj0Var.f35652f0;
                 arrayList5.clear();
                 if (list != null) {
                     for (TLRPC.User user2 : list) {
@@ -302,7 +302,7 @@ public final class qy implements Utilities.Callback {
                         }
                     }
                 }
-                Boolean bool2 = bj0Var.f35662r0;
+                Boolean bool2 = bj0Var.f35663r0;
                 if (bool2 != null && bool2.booleanValue()) {
                     qy qyVar = new qy(13, bj0Var, hashSet);
                     MessagesController messagesController2 = MessagesController.getInstance(UserConfig.selectedAccount);
@@ -327,7 +327,7 @@ public final class qy implements Utilities.Callback {
                 if (list2 != null) {
                     for (TLRPC.User user3 : list2) {
                         if (user3 != null && !hashSet2.contains(Long.valueOf(user3.f20423id)) && bj0Var2.S(user3)) {
-                            bj0Var2.f35651f0.add(user3);
+                            bj0Var2.f35652f0.add(user3);
                             hashSet2.add(Long.valueOf(user3.f20423id));
                         }
                     }
@@ -499,9 +499,9 @@ public final class qy implements Utilities.Callback {
                     SharedConfig.saveConfig();
                     themeActivity.N0 = true;
                     ((Dialog) atomicReference.get()).dismiss();
-                    jm0 jm0Var = themeActivity.f33898b;
+                    jm0 jm0Var = themeActivity.f33899b;
                     if (jm0Var != null && jm0Var.G && (K = jm0Var.K(themeActivity.M)) != null) {
-                        themeActivity.f33896a.v(K, themeActivity.M);
+                        themeActivity.f33897a.v(K, themeActivity.M);
                         return;
                     }
                     return;
@@ -527,7 +527,7 @@ public final class qy implements Utilities.Callback {
                     return;
                 }
                 org.telegram.ui.Wallet.m0.F("sending disableBackup to server");
-                org.telegram.ui.Wallet.s2.a(m0Var.f34476a, new gi.c(7), null, null, null, new ci.c0(3, m0Var, d8Var), true, true, new org.telegram.ui.na0((Object) null, 1));
+                org.telegram.ui.Wallet.s2.a(m0Var.f34477a, new gi.c(7), null, null, null, new ci.c0(3, m0Var, d8Var), true, true, new org.telegram.ui.na0((Object) null, 1));
                 return;
             case 27:
                 org.telegram.ui.Wallet.j0 j0Var = (org.telegram.ui.Wallet.j0) obj3;
@@ -547,14 +547,14 @@ public final class qy implements Utilities.Callback {
                 ((org.telegram.ui.Wallet.x7) obj2).run((String) obj);
                 return;
             default:
-                ((org.telegram.ui.Wallet.m0) obj3).f34489q.put((TL_wallet.walletTransaction) obj, (ai.k4) obj2);
+                ((org.telegram.ui.Wallet.m0) obj3).f34490q.put((TL_wallet.walletTransaction) obj, (ai.k4) obj2);
                 return;
         }
     }
 
     public qy(ArrayList arrayList, w9[] w9VarArr) {
-        this.f29739a = 15;
-        this.f29741c = arrayList;
-        this.f29740b = w9VarArr;
+        this.f29740a = 15;
+        this.f29742c = arrayList;
+        this.f29741b = w9VarArr;
     }
 }

@@ -87,10 +87,10 @@ public final class u0 extends WebChromeClient {
                 U = ((ActionBarLayout) U.getParentLayout()).getSheetFragment();
             }
             l4 createArticleViewer = U.createArticleViewer(true);
-            if (createArticleViewer.f38778u0 != null) {
+            if (createArticleViewer.f38779u0 != null) {
                 int i10 = 0;
                 while (true) {
-                    o3[] o3VarArr = createArticleViewer.f38778u0;
+                    o3[] o3VarArr = createArticleViewer.f38779u0;
                     if (i10 >= o3VarArr.length) {
                         break;
                     }
@@ -103,12 +103,12 @@ public final class u0 extends WebChromeClient {
             }
             x0 x0Var2 = null;
             createArticleViewer.N(null, null, null, null);
-            o3 o3Var2 = createArticleViewer.f38778u0[0];
+            o3 o3Var2 = createArticleViewer.f38779u0[0];
             if (o3Var2 != null && o3Var2.f()) {
-                if (createArticleViewer.f38778u0[0].getWebView() == null) {
-                    createArticleViewer.f38778u0[0].f39755f.c();
+                if (createArticleViewer.f38779u0[0].getWebView() == null) {
+                    createArticleViewer.f38779u0[0].f39755f.c();
                 }
-                x0Var2 = createArticleViewer.f38778u0[0].getWebView();
+                x0Var2 = createArticleViewer.f38779u0[0].getWebView();
             }
             if (!TextUtils.isEmpty(url)) {
                 x0Var2.f42854y = url;

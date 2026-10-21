@@ -34,20 +34,20 @@ public final class nt extends org.telegram.ui.ActionBar.f3 {
             imageView.setColorFilter(f3Var.getThemedColor(org.telegram.ui.ActionBar.h6.Ji));
             imageView.setImageResource(R.drawable.ic_layer_close);
             imageView.setOnClickListener(new View.OnClickListener(f3Var) {
-                public final nt f28597b;
+                public final nt f28598b;
 
                 {
-                    this.f28597b = f3Var;
+                    this.f28598b = f3Var;
                 }
 
                 @Override
                 public final void onClick(View view) {
                     switch (r2) {
                         case 0:
-                            this.f28597b.dismiss();
+                            this.f28598b.dismiss();
                             return;
                         default:
-                            nt.n(this.f28597b);
+                            nt.n(this.f28598b);
                             return;
                     }
                 }
@@ -106,20 +106,20 @@ public final class nt extends org.telegram.ui.ActionBar.f3 {
             f3Var.setCustomView(nestedScrollView);
             textView3.setOnClickListener(new ca(10, f3Var, n2Var));
             textView4.setOnClickListener(new View.OnClickListener(f3Var) {
-                public final nt f28597b;
+                public final nt f28598b;
 
                 {
-                    this.f28597b = f3Var;
+                    this.f28598b = f3Var;
                 }
 
                 @Override
                 public final void onClick(View view) {
                     switch (r2) {
                         case 0:
-                            this.f28597b.dismiss();
+                            this.f28598b.dismiss();
                             return;
                         default:
-                            nt.n(this.f28597b);
+                            nt.n(this.f28598b);
                             return;
                     }
                 }

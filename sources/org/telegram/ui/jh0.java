@@ -6,11 +6,11 @@ import android.widget.FrameLayout;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class jh0 extends org.telegram.ui.ActionBar.n2 {
-    public final org.telegram.ui.Components.xa0 f38265a;
+    public final org.telegram.ui.Components.xa0 f38266a;
 
     public jh0(long j10) {
         super(null);
-        this.f38265a = new org.telegram.ui.Components.xa0(this, this, getLayoutContainer(), j10);
+        this.f38266a = new org.telegram.ui.Components.xa0(this, this, getLayoutContainer(), j10);
     }
 
     @Override
@@ -20,7 +20,7 @@ public final class jh0 extends org.telegram.ui.ActionBar.n2 {
         this.actionBar.setActionBarMenuOnItemClick(new o60(this, 11));
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
         org.telegram.ui.ActionBar.k kVar = this.actionBar;
-        org.telegram.ui.Components.xa0 xa0Var = this.f38265a;
+        org.telegram.ui.Components.xa0 xa0Var = this.f38266a;
         if (xa0Var.f49863a) {
             i10 = R.string.SubscribeRequests;
         } else {
@@ -73,7 +73,7 @@ public final class jh0 extends org.telegram.ui.ActionBar.n2 {
 
     @Override
     public final boolean onBackPressed(boolean z10) {
-        xh.j jVar = this.f38265a.f49878s;
+        xh.j jVar = this.f38266a.f49878s;
         if (jVar != null) {
             if (z10) {
                 jVar.e(false);

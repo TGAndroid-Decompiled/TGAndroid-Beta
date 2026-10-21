@@ -86,7 +86,7 @@ public final class uc extends LinearLayout {
                 RectF rectF = (RectF) this.f2277b;
                 Paint paint = (Paint) this.f2278c;
                 wq wqVar = (wq) this.d;
-                paint.setColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21078i5, wqVar.f32230d0));
+                paint.setColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21078i5, wqVar.f32231d0));
                 int left = wqVar.E[0].getLeft() - AndroidUtilities.dp(13.0f);
                 float dp = AndroidUtilities.dp(91.0f);
                 org.telegram.ui.ActionBar.j0 j0Var = wqVar.F;

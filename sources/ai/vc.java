@@ -204,11 +204,11 @@ public final class vc extends org.telegram.ui.Components.bb implements Notificat
             }
             super.dismiss();
             org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
-            ja0 ja0Var = LaunchActivity.H1.f33199x0;
+            ja0 ja0Var = LaunchActivity.H1.f33200x0;
             if (U != null) {
                 if (bool.booleanValue()) {
                     org.telegram.ui.Components.qc K = org.telegram.ui.Components.xc.a0(U).K(R.raw.stars_send, LocaleController.getString(R.string.StarsGiftSentPopup), AndroidUtilities.replaceTags(LocaleController.formatPluralString("StarsGiftSentPopupInfo", (int) h61Var.B, UserObject.getForcedFirstName(vcVar.Z))), LocaleController.getString(R.string.ViewInChat), new o4(j10, 1));
-                    K.f29530j = 5000;
+                    K.f29531j = 5000;
                     K.k(true);
                     if (ja0Var != null) {
                         ja0Var.c(true);

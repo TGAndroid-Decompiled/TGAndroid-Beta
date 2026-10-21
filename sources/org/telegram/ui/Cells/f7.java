@@ -70,7 +70,7 @@ public final class f7 extends FrameLayout {
         f90Var.a("");
         f90Var.f26154i = 1.8f;
         zq zqVar = new zq(aVar, f90Var, 0, 0);
-        zqVar.f33023w = true;
+        zqVar.f33024w = true;
         w9Var.setImageDrawable(zqVar);
     }
 }

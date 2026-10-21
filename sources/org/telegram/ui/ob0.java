@@ -94,8 +94,8 @@ public final class ob0 extends FrameLayout {
         this.f39818b = spannableStringBuilder;
         org.telegram.ui.Components.y9 y9Var = new org.telegram.ui.Components.y9();
         this.f39817a = y9Var;
-        y9Var.f32589a = x1Var2.getPaint();
-        y9Var.f32592f = AndroidUtilities.dp(1.5f);
+        y9Var.f32590a = x1Var2.getPaint();
+        y9Var.f32593f = AndroidUtilities.dp(1.5f);
         y9Var.setBounds(AndroidUtilities.dp(3.0f), AndroidUtilities.dp(-20.0f), AndroidUtilities.dp(23.0f), 0);
         spannableStringBuilder.setSpan(new ImageSpan(y9Var, 0), 0, spannableStringBuilder.length(), 33);
         TextView textView3 = new TextView(context);
@@ -166,17 +166,17 @@ public final class ob0 extends FrameLayout {
             ValueAnimator ofFloat = ValueAnimator.ofFloat(this.f39823s, f7);
             this.v = ofFloat;
             ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                public final ob0 f38879b;
+                public final ob0 f38880b;
 
                 {
-                    this.f38879b = this;
+                    this.f38880b = this;
                 }
 
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
                     switch (r2) {
                         case 0:
-                            ob0 ob0Var = this.f38879b;
+                            ob0 ob0Var = this.f38880b;
                             TextView textView = ob0Var.f39820f;
                             int x02 = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21378y6, false);
                             int x03 = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21173n6, false);
@@ -185,7 +185,7 @@ public final class ob0 extends FrameLayout {
                             textView.setTextColor(i0.a.f(floatValue, x02, x03));
                             return;
                         default:
-                            ob0 ob0Var2 = this.f38879b;
+                            ob0 ob0Var2 = this.f38880b;
                             TextView textView2 = ob0Var2.d;
                             int x04 = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21378y6, false);
                             int x05 = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21173n6, false);
@@ -214,17 +214,17 @@ public final class ob0 extends FrameLayout {
             ValueAnimator ofFloat2 = ValueAnimator.ofFloat(this.f39824w, f12);
             this.f39825x = ofFloat2;
             ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                public final ob0 f38879b;
+                public final ob0 f38880b;
 
                 {
-                    this.f38879b = this;
+                    this.f38880b = this;
                 }
 
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator22) {
                     switch (r2) {
                         case 0:
-                            ob0 ob0Var = this.f38879b;
+                            ob0 ob0Var = this.f38880b;
                             TextView textView = ob0Var.f39820f;
                             int x02 = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21378y6, false);
                             int x03 = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21173n6, false);
@@ -233,7 +233,7 @@ public final class ob0 extends FrameLayout {
                             textView.setTextColor(i0.a.f(floatValue, x02, x03));
                             return;
                         default:
-                            ob0 ob0Var2 = this.f38879b;
+                            ob0 ob0Var2 = this.f38880b;
                             TextView textView2 = ob0Var2.d;
                             int x04 = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21378y6, false);
                             int x05 = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21173n6, false);

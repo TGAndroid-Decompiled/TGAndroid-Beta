@@ -38,16 +38,16 @@ public final class p4 implements DialogInterface.OnClickListener {
                 if (i10 == 0) {
                     cyVar.getMessagesStorage().readAllDialogs(1);
                     return;
-                } else if (i10 != 1 || cyVar.f36091e0 == null) {
+                } else if (i10 != 1 || cyVar.f36092e0 == null) {
                     return;
                 } else {
                     while (true) {
-                        ay[] ayVarArr = cyVar.f36091e0;
+                        ay[] ayVarArr = cyVar.f36092e0;
                         if (i11 < ayVarArr.length) {
                             ay ayVar = ayVarArr[i11];
-                            if (ayVar.f35448s == 0 && ayVar.getVisibility() == 0) {
-                                org.telegram.ui.Cells.r2 O3 = cy.O3(cyVar.f36091e0[i11]);
-                                xx xxVar = cyVar.f36091e0[i11].f35442a;
+                            if (ayVar.f35449s == 0 && ayVar.getVisibility() == 0) {
+                                org.telegram.ui.Cells.r2 O3 = cy.O3(cyVar.f36092e0[i11]);
+                                xx xxVar = cyVar.f36092e0[i11].f35443a;
                                 int i12 = xx.f43289t3;
                                 xxVar.A1(true, O3);
                             }

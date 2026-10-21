@@ -183,7 +183,7 @@ public final class q1 implements vx, org.telegram.ui.ActionBar.a2, mi.n, ResultC
         vp vpVar = (vp) this.e;
         Pair pair = (Pair) obj;
         if (pair != null && ((Long) pair.first).longValue() == this.f11393c) {
-            Drawable drawable = vpVar.f31850b;
+            Drawable drawable = vpVar.f31851b;
             if (drawable instanceof wc0) {
                 wc0 wc0Var = (wc0) drawable;
                 if (this.f11392b >= 0) {

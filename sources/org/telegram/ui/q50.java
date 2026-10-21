@@ -537,17 +537,17 @@ public final class q50 extends org.telegram.ui.ActionBar.f3 implements Notificat
         jm0Var.setLayoutManager(sVar);
         sVar.z1(new r20(this));
         jm0Var.setOnItemClickListener(new org.telegram.ui.Components.xl0(this) {
-            public final q50 f35486b;
+            public final q50 f35487b;
 
             {
-                this.f35486b = this;
+                this.f35487b = this;
             }
 
             @Override
             public final void a(int i15, View view) {
                 switch (r2) {
                     case 0:
-                        q50 q50Var2 = this.f35486b;
+                        q50 q50Var2 = this.f35487b;
                         q50Var2.getClass();
                         org.telegram.ui.Components.z20 z20Var = (org.telegram.ui.Components.z20) view;
                         if (z20Var.getVideoParticipant() == null) {
@@ -558,7 +558,7 @@ public final class q50 extends org.telegram.ui.ActionBar.f3 implements Notificat
                             return;
                         }
                     default:
-                        q50 q50Var3 = this.f35486b;
+                        q50 q50Var3 = this.f35487b;
                         q50Var3.getClass();
                         org.telegram.ui.Components.voip.l lVar = (org.telegram.ui.Components.voip.l) view;
                         if (lVar.getParticipant() != null) {
@@ -651,20 +651,20 @@ public final class q50 extends org.telegram.ui.ActionBar.f3 implements Notificat
         t2Var5.setTextSize(12);
         t2Var5.c(R.drawable.calls_decline, -1, org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.Dg), 0.3f, false, LocaleController.getString(R.string.VoipGroupLeave), false, false);
         t2Var5.setOnClickListener(new View.OnClickListener(this) {
-            public final q50 f36875b;
+            public final q50 f36876b;
 
             {
-                this.f36875b = this;
+                this.f36876b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r3) {
                     case 0:
-                        q50.p(this.f36875b, launchActivity);
+                        q50.p(this.f36876b, launchActivity);
                         return;
                     default:
-                        q50 q50Var2 = this.f36875b;
+                        q50 q50Var2 = this.f36876b;
                         q50Var2.a2.e();
                         ChatObject.Call call2 = q50Var2.f40376a1;
                         if (call2 != null && !call2.isScheduled()) {
@@ -905,17 +905,17 @@ public final class q50 extends org.telegram.ui.ActionBar.f3 implements Notificat
         d30Var.setAdapter(a30Var2);
         a30Var2.F(d30Var, false);
         d30Var.setOnItemClickListener(new org.telegram.ui.Components.xl0(this) {
-            public final q50 f35486b;
+            public final q50 f35487b;
 
             {
-                this.f35486b = this;
+                this.f35487b = this;
             }
 
             @Override
             public final void a(int i152, View view2) {
                 switch (r2) {
                     case 0:
-                        q50 q50Var2 = this.f35486b;
+                        q50 q50Var2 = this.f35487b;
                         q50Var2.getClass();
                         org.telegram.ui.Components.z20 z20Var2 = (org.telegram.ui.Components.z20) view2;
                         if (z20Var2.getVideoParticipant() == null) {
@@ -926,7 +926,7 @@ public final class q50 extends org.telegram.ui.ActionBar.f3 implements Notificat
                             return;
                         }
                     default:
-                        q50 q50Var3 = this.f35486b;
+                        q50 q50Var3 = this.f35487b;
                         q50Var3.getClass();
                         org.telegram.ui.Components.voip.l lVar = (org.telegram.ui.Components.voip.l) view2;
                         if (lVar.getParticipant() != null) {
@@ -1126,20 +1126,20 @@ public final class q50 extends org.telegram.ui.ActionBar.f3 implements Notificat
         z30Var.E = new a40(q50Var);
         j30Var.setPinchToZoomHelper(z30Var);
         q50Var.f40427n.setOnClickListener(new View.OnClickListener(q50Var) {
-            public final q50 f36875b;
+            public final q50 f36876b;
 
             {
-                this.f36875b = q50Var;
+                this.f36876b = q50Var;
             }
 
             @Override
             public final void onClick(View view4) {
                 switch (r3) {
                     case 0:
-                        q50.p(this.f36875b, launchActivity2);
+                        q50.p(this.f36876b, launchActivity2);
                         return;
                     default:
-                        q50 q50Var2 = this.f36875b;
+                        q50 q50Var2 = this.f36876b;
                         q50Var2.a2.e();
                         ChatObject.Call call2 = q50Var2.f40376a1;
                         if (call2 != null && !call2.isScheduled()) {
@@ -1293,7 +1293,7 @@ public final class q50 extends org.telegram.ui.ActionBar.f3 implements Notificat
         for (int i10 = 0; i10 < iArr.length; i10++) {
             TLRPC.GroupCallParticipant groupCallParticipant = q50Var.f40376a1.participantsBySources.get(iArr[i10]);
             if (groupCallParticipant != null) {
-                if (!h30Var.f31514b) {
+                if (!h30Var.f31515b) {
                     if (q50Var.f40450s0) {
                         arrayList = q50Var.D0;
                     } else {
@@ -1363,7 +1363,7 @@ public final class q50 extends org.telegram.ui.ActionBar.f3 implements Notificat
         int i10;
         if (q50Var.s1()) {
             h30 h30Var = q50Var.a2;
-            if (!h30Var.V && h30Var.f31514b && (F3 == q50Var.r1() || AndroidUtilities.isTablet())) {
+            if (!h30Var.V && h30Var.f31515b && (F3 == q50Var.r1() || AndroidUtilities.isTablet())) {
                 z10 = false;
             } else {
                 z10 = true;
@@ -1692,15 +1692,15 @@ public final class q50 extends org.telegram.ui.ActionBar.f3 implements Notificat
                 org.telegram.ui.Cells.v3 v3Var = (org.telegram.ui.Cells.v3) view;
                 if (v3Var.getUser() != null) {
                     if (q50Var.p1()) {
-                        int i11 = i10 - k50Var.f38419n;
+                        int i11 = i10 - k50Var.f38420n;
                         if (i11 >= 0 && i11 < q50Var.f40376a1.shadyJoinParticipants.size()) {
-                            l4 = q50Var.f40376a1.shadyJoinParticipants.get(i10 - k50Var.f38419n);
+                            l4 = q50Var.f40376a1.shadyJoinParticipants.get(i10 - k50Var.f38420n);
                         } else {
-                            int i12 = i10 - k50Var.f38421s;
+                            int i12 = i10 - k50Var.f38422s;
                             if (i12 >= 0 && i12 < q50Var.f40376a1.shadyLeftParticipants.size()) {
-                                l4 = q50Var.f40376a1.shadyLeftParticipants.get(i10 - k50Var.f38421s);
+                                l4 = q50Var.f40376a1.shadyLeftParticipants.get(i10 - k50Var.f38422s);
                             } else {
-                                int i13 = i10 - k50Var.f38418f;
+                                int i13 = i10 - k50Var.f38419f;
                                 if (q50Var.f40450s0) {
                                     if (i13 >= 0 && i13 < arrayList.size()) {
                                         l4 = (Long) arrayList.get(i13);
@@ -1714,39 +1714,39 @@ public final class q50 extends org.telegram.ui.ActionBar.f3 implements Notificat
                         if (!z10 && (invitedUser = q50Var.f40376a1.invitedUsersMessageIds.get(l4)) != null) {
                             org.telegram.ui.Components.i80 F = org.telegram.ui.Components.i80.F(q50Var.container, q50Var.resourcesProvider, v3Var);
                             F.l(R.drawable.msg_endcall, LocaleController.getString(R.string.GroupCallStopCallingInvite), new Runnable(q50Var) {
-                                public final q50 f37839b;
+                                public final q50 f37840b;
 
                                 {
-                                    this.f37839b = q50Var;
+                                    this.f37840b = q50Var;
                                 }
 
                                 @Override
                                 public final void run() {
                                     switch (r4) {
                                         case 0:
-                                            q50.t(this.f37839b, invitedUser, l4);
+                                            q50.t(this.f37840b, invitedUser, l4);
                                             return;
                                         default:
-                                            q50.n(this.f37839b, invitedUser, l4);
+                                            q50.n(this.f37840b, invitedUser, l4);
                                             return;
                                     }
                                 }
                             }, invitedUser.isCalling());
                             F.c(R.drawable.msg_remove, LocaleController.getString(R.string.GroupCallDiscardInvite), new Runnable(q50Var) {
-                                public final q50 f37839b;
+                                public final q50 f37840b;
 
                                 {
-                                    this.f37839b = q50Var;
+                                    this.f37840b = q50Var;
                                 }
 
                                 @Override
                                 public final void run() {
                                     switch (r4) {
                                         case 0:
-                                            q50.t(this.f37839b, invitedUser, l4);
+                                            q50.t(this.f37840b, invitedUser, l4);
                                             return;
                                         default:
-                                            q50.n(this.f37839b, invitedUser, l4);
+                                            q50.n(this.f37840b, invitedUser, l4);
                                             return;
                                     }
                                 }
@@ -1767,7 +1767,7 @@ public final class q50 extends org.telegram.ui.ActionBar.f3 implements Notificat
                     q50Var.f40409i0.t0(new ProfileActivity(bundle, null));
                     q50Var.dismiss();
                 }
-            } else if (i10 == k50Var.f38422w) {
+            } else if (i10 == k50Var.f38423w) {
                 if (ChatObject.isChannel(q50Var.Z0) && (chat = q50Var.Z0) != null && !chat.megagroup && ChatObject.isPublic(chat)) {
                     q50Var.k1(false);
                     return;
@@ -1786,7 +1786,7 @@ public final class q50 extends org.telegram.ui.ActionBar.f3 implements Notificat
                     a40Var2.f24490g0 = new q20(q50Var);
                     a40Var2.show();
                 }
-            } else if (i10 == k50Var.f38423x) {
+            } else if (i10 == k50Var.f38424x) {
                 ChatObject.Call call3 = q50Var.f40376a1;
                 if (call3 != null && call3.call != null) {
                     ug.m1 m1Var = new ug.m1(activity, q50Var.currentAccount, null, 4, new ci.k0());
@@ -1801,7 +1801,7 @@ public final class q50 extends org.telegram.ui.ActionBar.f3 implements Notificat
                     m1Var.D0 = new ai.r5(18, q50Var, call);
                     m1Var.show();
                 }
-            } else if (i10 == k50Var.f38424y) {
+            } else if (i10 == k50Var.f38425y) {
                 q50Var.w1();
             }
         }
@@ -1847,7 +1847,7 @@ public final class q50 extends org.telegram.ui.ActionBar.f3 implements Notificat
     public static void q(q50 q50Var, float f7, float f10, float f11, int i10, ValueAnimator valueAnimator) {
         float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         q50Var.f40390d2 = floatValue;
-        q50Var.a2.f31528n = floatValue;
+        q50Var.a2.f31529n = floatValue;
         float f12 = (floatValue * 1.0f) + ((1.0f - floatValue) * f7);
         k30 k30Var = q50Var.C2;
         k30Var.setScaleX(f12);
@@ -1859,7 +1859,7 @@ public final class q50 extends org.telegram.ui.ActionBar.f3 implements Notificat
         }
         org.telegram.ui.Components.voip.t tVar = q50Var.Z2;
         if (tVar != null) {
-            tVar.f31707a.setRoundCorners((1.0f - q50Var.f40390d2) * AndroidUtilities.dp(8.0f));
+            tVar.f31708a.setRoundCorners((1.0f - q50Var.f40390d2) * AndroidUtilities.dp(8.0f));
         }
         k30Var.invalidate();
         q50Var.containerView.invalidate();
@@ -2158,7 +2158,7 @@ public final class q50 extends org.telegram.ui.ActionBar.f3 implements Notificat
         if (h30Var == null) {
             f10 = 0.0f;
         } else {
-            f10 = h30Var.f31516c;
+            f10 = h30Var.f31517c;
         }
         float max = Math.max(f7, f10);
         int i12 = org.telegram.ui.ActionBar.h6.f21107jg;
@@ -2173,8 +2173,8 @@ public final class q50 extends org.telegram.ui.ActionBar.f3 implements Notificat
         int offsetColor2 = AndroidUtilities.getOffsetColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21126kg, false), org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21296tg, false), f7, 1.0f);
         b50 b50Var = this.f40436p0;
         if (b50Var != null) {
-            b50Var.f35506j = offsetColor2;
-            v10 v10Var = b50Var.f35504g;
+            b50Var.f35507j = offsetColor2;
+            v10 v10Var = b50Var.f35505g;
             if (v10Var != null) {
                 v10Var.invalidate();
             }
@@ -2257,7 +2257,7 @@ public final class q50 extends org.telegram.ui.ActionBar.f3 implements Notificat
         ChatObject.Call call = this.f40376a1;
         if (call != null && (w40Var = this.Q) != null && (groupCallParticipant = (TLRPC.GroupCallParticipant) call.participants.f(MessageObject.getPeerId(this.A0))) != null) {
             h30 h30Var = this.a2;
-            if (!h30Var.f31514b) {
+            if (!h30Var.f31515b) {
                 if (this.f40450s0) {
                     arrayList = this.D0;
                 } else {
@@ -2341,17 +2341,17 @@ public final class q50 extends org.telegram.ui.ActionBar.f3 implements Notificat
             z20Var.setScaleX(Math.max(0.9f, z10));
             z20Var.setScaleY(Math.max(0.9f, z10));
             float f11 = 1.0f - (min * 1.2f);
-            z20Var.setAlpha((1.0f - h30Var.f31516c) * Math.max(0.0f, f11));
+            z20Var.setAlpha((1.0f - h30Var.f31517c) * Math.max(0.0f, f11));
             b30Var.setScaleX(Math.max(0.9f, z10));
             b30Var.setScaleY(Math.max(0.9f, z10));
-            b30Var.setAlpha((1.0f - h30Var.f31516c) * Math.max(0.0f, f11));
+            b30Var.setAlpha((1.0f - h30Var.f31517c) * Math.max(0.0f, f11));
         } else {
             z20Var.setScaleX(1.0f);
             z20Var.setScaleY(1.0f);
-            z20Var.setAlpha(1.0f - h30Var.f31516c);
+            z20Var.setAlpha(1.0f - h30Var.f31517c);
             b30Var.setScaleX(1.0f);
             b30Var.setScaleY(1.0f);
-            b30Var.setAlpha(1.0f - h30Var.f31516c);
+            b30Var.setAlpha(1.0f - h30Var.f31517c);
             if (this.U1 > 1.0E-4f) {
                 C1(0.0f);
             }
@@ -2596,7 +2596,7 @@ public final class q50 extends org.telegram.ui.ActionBar.f3 implements Notificat
             u0Var2.setVisibility(8);
             boolean z13 = this.f40376a1.recording;
             l50 l50Var = this.f40389d1;
-            l50Var.f38797f = z13;
+            l50Var.f38798f = z13;
             l50Var.d = 1.0f;
             l50Var.invalidateSelf();
             if (this.f40376a1.recording) {
@@ -2891,7 +2891,7 @@ public final class q50 extends org.telegram.ui.ActionBar.f3 implements Notificat
                 if (!groupCallParticipant.self) {
                     h30 h30Var = this.a2;
                     h30Var.getClass();
-                    if (h30Var.f31540w.get(MessageObject.getPeerId(groupCallParticipant.peer)) <= 0 && this.B2.get(j10, 0) != 1) {
+                    if (h30Var.f31541w.get(MessageObject.getPeerId(groupCallParticipant.peer)) <= 0 && this.B2.get(j10, 0) != 1) {
                         long peerId = MessageObject.getPeerId(groupCallParticipant.peer);
                         if (spannableStringBuilder == null) {
                             spannableStringBuilder = new SpannableStringBuilder();
@@ -3083,7 +3083,7 @@ public final class q50 extends org.telegram.ui.ActionBar.f3 implements Notificat
             FrameLayout frameLayout = this.topBulletinContainer;
             m40 m40Var = this.O;
             frameLayout.setTranslationY(AndroidUtilities.lerp(((-frameLayout.getTop()) - this.topBulletinContainer.getHeight()) + paddingTop + AndroidUtilities.dp(10.0f), m40Var.getY() + (-this.topBulletinContainer.getTop()) + m40Var.getHeight(), f7));
-            org.telegram.ui.Components.qc qcVar = org.telegram.ui.Components.qc.f29523w;
+            org.telegram.ui.Components.qc qcVar = org.telegram.ui.Components.qc.f29524w;
             if (qcVar != null && (ubVar = qcVar.e) != null && ubVar.getParent() != null && ubVar.getParent().getParent() == this.topBulletinContainer) {
                 if (f7 > 0.5f) {
                     z10 = true;
@@ -3221,7 +3221,7 @@ public final class q50 extends org.telegram.ui.ActionBar.f3 implements Notificat
         } else if (F3) {
             dp = 0.0f;
         } else {
-            dp = ((this.f40483z3.e * AndroidUtilities.dp(94.0f)) - (AndroidUtilities.dp(104.0f) * this.a2.f31516c)) - AndroidUtilities.dp(91.0f);
+            dp = ((this.f40483z3.e * AndroidUtilities.dp(94.0f)) - (AndroidUtilities.dp(104.0f) * this.a2.f31517c)) - AndroidUtilities.dp(91.0f);
         }
         float lerp = AndroidUtilities.lerp(dp, f10, iVar.f44737b.f17407a);
         float measuredHeight = ((this.containerView.getMeasuredHeight() - this.f40477y0) + lerp) - this.backgroundPaddingTop;
@@ -3267,7 +3267,7 @@ public final class q50 extends org.telegram.ui.ActionBar.f3 implements Notificat
     public final void c1() {
         org.telegram.ui.Components.voip.t tVar = this.Z2;
         if (tVar != null) {
-            tVar.f31707a.setRoundCorners(AndroidUtilities.dp(8.0f));
+            tVar.f31708a.setRoundCorners(AndroidUtilities.dp(8.0f));
             org.telegram.ui.Components.voip.t tVar2 = this.Z2;
             tVar2.h = false;
             tVar2.j(false);
@@ -3301,7 +3301,7 @@ public final class q50 extends org.telegram.ui.ActionBar.f3 implements Notificat
 
     @Override
     public final boolean canDismissWithTouchOutside() {
-        return !this.a2.f31514b;
+        return !this.a2.f31515b;
     }
 
     @Override
@@ -3437,10 +3437,10 @@ public final class q50 extends org.telegram.ui.ActionBar.f3 implements Notificat
             }
         } else if (i10 == NotificationCenter.groupCallSpeakingUsersUpdated) {
             h30 h30Var = this.a2;
-            if (h30Var.f31514b && this.f40376a1 != null) {
+            if (h30Var.f31515b && this.f40376a1 != null) {
                 boolean c10 = h30Var.c();
                 ChatObject.Call call3 = this.f40376a1;
-                if (call3 != null && h30Var.f31514b && (videoParticipant = h30Var.e) != null && call3.participants.f(MessageObject.getPeerId(videoParticipant.participant.peer)) == null) {
+                if (call3 != null && h30Var.f31515b && (videoParticipant = h30Var.e) != null && call3.participants.f(MessageObject.getPeerId(videoParticipant.participant.peer)) == null) {
                     c10 = true;
                 }
                 if (c10) {
@@ -3616,7 +3616,7 @@ public final class q50 extends org.telegram.ui.ActionBar.f3 implements Notificat
     @Override
     public final void dismiss() {
         LaunchActivity launchActivity = this.f40409i0;
-        launchActivity.f33156a1.remove(this.f40464v2);
+        launchActivity.f33157a1.remove(this.f40464v2);
         this.f40409i0.setRequestedOrientation(-1);
         E3 = false;
         org.telegram.ui.Components.a40 a40Var = this.E1;
@@ -3744,7 +3744,7 @@ public final class q50 extends org.telegram.ui.ActionBar.f3 implements Notificat
         }
         if (VoIPService.getSharedInstance() != null) {
             h30 h30Var = this.a2;
-            if (h30Var.f31533r != null) {
+            if (h30Var.f31534r != null) {
                 return;
             }
             boolean z10 = G3;
@@ -3764,7 +3764,7 @@ public final class q50 extends org.telegram.ui.ActionBar.f3 implements Notificat
                     arrayList3.addAll(arrayList2);
                     for (int i11 = 0; i11 < arrayList3.size(); i11++) {
                         org.telegram.ui.Components.voip.t tVar = (org.telegram.ui.Components.voip.t) arrayList3.get(i11);
-                        org.telegram.ui.Components.voip.l lVar = tVar.f31711c;
+                        org.telegram.ui.Components.voip.l lVar = tVar.f31712c;
                         if (lVar != null) {
                             lVar.setRenderer(null);
                             org.telegram.ui.Components.z20 z20Var = tVar.d;
@@ -3775,7 +3775,7 @@ public final class q50 extends org.telegram.ui.ActionBar.f3 implements Notificat
                             if (lVar2 != null) {
                                 lVar2.setRenderer(null);
                             }
-                            arrayList.add(tVar.f31735w);
+                            arrayList.add(tVar.f31736w);
                             tVar.b(false);
                             tVar.animate().alpha(0.0f).setListener(new c40(this, tVar));
                         }
@@ -3787,14 +3787,14 @@ public final class q50 extends org.telegram.ui.ActionBar.f3 implements Notificat
                     arrayList3.addAll(arrayList2);
                     for (int i12 = 0; i12 < arrayList3.size(); i12++) {
                         org.telegram.ui.Components.voip.t tVar2 = (org.telegram.ui.Components.voip.t) arrayList3.get(i12);
-                        if (tVar2.e != null && ((videoParticipant2 = tVar2.f31735w) == null || !videoParticipant2.equals(videoParticipant))) {
-                            arrayList.add(tVar2.f31735w);
+                        if (tVar2.e != null && ((videoParticipant2 = tVar2.f31736w) == null || !videoParticipant2.equals(videoParticipant))) {
+                            arrayList.add(tVar2.f31736w);
                             tVar2.b(false);
                             org.telegram.ui.Components.z20 z20Var2 = tVar2.d;
                             if (z20Var2 != null) {
                                 z20Var2.setRenderer(null);
                             }
-                            org.telegram.ui.Components.voip.l lVar3 = tVar2.f31711c;
+                            org.telegram.ui.Components.voip.l lVar3 = tVar2.f31712c;
                             if (lVar3 != null) {
                                 lVar3.setRenderer(null);
                             }
@@ -3808,7 +3808,7 @@ public final class q50 extends org.telegram.ui.ActionBar.f3 implements Notificat
                     }
                 }
                 ViewTreeObserver viewTreeObserver = w40Var.getViewTreeObserver();
-                f40 f40Var = new f40(this, videoParticipant, !h30Var.f31514b);
+                f40 f40Var = new f40(this, videoParticipant, !h30Var.f31515b);
                 this.f40442q2 = f40Var;
                 viewTreeObserver.addOnPreDrawListener(f40Var);
                 return;
@@ -3824,7 +3824,7 @@ public final class q50 extends org.telegram.ui.ActionBar.f3 implements Notificat
                     org.telegram.ui.Components.a30 a30Var = this.f40438p2;
                     a30Var.G(d30Var, false);
                     this.f40450s0 = true;
-                    if (!h30Var.f31514b) {
+                    if (!h30Var.f31515b) {
                         ArrayList arrayList4 = a30Var.e;
                         s4.b0 b0Var = (s4.b0) d30Var.getLayoutManager();
                         if (b0Var != null) {
@@ -3938,7 +3938,7 @@ public final class q50 extends org.telegram.ui.ActionBar.f3 implements Notificat
     public final UndoView l1() {
         if (!G3) {
             h30 h30Var = this.a2;
-            if (h30Var.f31514b) {
+            if (h30Var.f31515b) {
                 return h30Var.getUndoView();
             }
         }
@@ -4093,7 +4093,7 @@ public final class q50 extends org.telegram.ui.ActionBar.f3 implements Notificat
             b40Var.b(false, false);
         } else if (this.f40399f2) {
             e1(true);
-        } else if (this.a2.f31514b) {
+        } else if (this.a2.f31515b) {
             f1(null);
         } else {
             super.onBackPressed();
@@ -4123,7 +4123,7 @@ public final class q50 extends org.telegram.ui.ActionBar.f3 implements Notificat
     public final void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         LaunchActivity launchActivity = this.f40409i0;
-        launchActivity.f33156a1.add(this.f40464v2);
+        launchActivity.f33157a1.add(this.f40464v2);
     }
 
     @Override
@@ -4218,7 +4218,7 @@ public final class q50 extends org.telegram.ui.ActionBar.f3 implements Notificat
     @Override
     public final void show() {
         super.show();
-        if (org.telegram.ui.Components.voip.h1.f31440d0.V) {
+        if (org.telegram.ui.Components.voip.h1.f31441d0.V) {
             org.telegram.ui.Components.voip.h1.j();
         }
     }

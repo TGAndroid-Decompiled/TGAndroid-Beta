@@ -21,8 +21,8 @@ public final class zu extends FrameLayout {
         zu zuVar;
         super.setTranslationX(f7);
         av avVar = this.h;
-        zu[] zuVarArr = avVar.f35430f;
-        if (avVar.f35431n && (zuVar = zuVarArr[0]) == this) {
+        zu[] zuVarArr = avVar.f35431f;
+        if (avVar.f35432n && (zuVar = zuVarArr[0]) == this) {
             avVar.e.j(Math.abs(zuVar.getTranslationX()) / zuVarArr[0].getMeasuredWidth(), zuVarArr[1].f43807f);
         }
     }

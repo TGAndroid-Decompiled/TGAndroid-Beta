@@ -22,7 +22,7 @@ public final class i1 implements ValueAnimator.AnimatorUpdateListener {
                 nl0 nl0Var = (nl0) this.f46273b;
                 nl0Var.getClass();
                 ((Drawable) this.f46274c).setAlpha(((Integer) valueAnimator.getAnimatedValue()).intValue());
-                View view = ((m1) nl0Var.f28842c).A0;
+                View view = ((m1) nl0Var.f28843c).A0;
                 if (view instanceof org.telegram.ui.Cells.u1) {
                     ((org.telegram.ui.Cells.u1) view).a3();
                     return;

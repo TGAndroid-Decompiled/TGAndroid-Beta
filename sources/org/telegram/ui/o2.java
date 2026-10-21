@@ -25,8 +25,8 @@ public final class o2 implements z4.e {
             case 1:
                 j70 j70Var = (j70) this.f39744b;
                 org.telegram.ui.Components.sa saVar = j70Var.e;
-                saVar.f30233b = f7;
-                saVar.f30234c = i10;
+                saVar.f30234b = f7;
+                saVar.f30235c = i10;
                 saVar.invalidate();
                 float measuredWidth2 = j70Var.d.getMeasuredWidth();
                 if (measuredWidth2 != 0.0f) {
@@ -51,7 +51,7 @@ public final class o2 implements z4.e {
                 ((j70) this.f39744b).H = i10;
                 return;
             default:
-                ((kc1) this.f39744b).f38517a0.invalidate();
+                ((kc1) this.f39744b).f38518a0.invalidate();
                 return;
         }
     }
@@ -72,8 +72,8 @@ public final class o2 implements z4.e {
                     if (j70Var.K) {
                         j70Var.K = false;
                     }
-                    if (j70Var.f38193w != j70Var.d.getCurrentItem()) {
-                        j70Var.f38193w = j70Var.d.getCurrentItem();
+                    if (j70Var.f38194w != j70Var.d.getCurrentItem()) {
+                        j70Var.f38194w = j70Var.d.getCurrentItem();
                         return;
                     }
                     return;

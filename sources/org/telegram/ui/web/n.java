@@ -32,7 +32,7 @@ public final class n extends org.telegram.ui.ActionBar.j {
                 kVar2 = ((n2) pVar).actionBar;
                 kVar2.s();
                 hashSet.clear();
-                AndroidUtilities.forEachViews((RecyclerView) pVar.f32355a, (Utilities.Callback<View>) new ci.e(22));
+                AndroidUtilities.forEachViews((RecyclerView) pVar.f32356a, (Utilities.Callback<View>) new ci.e(22));
                 return;
             }
             pVar.finishFragment();

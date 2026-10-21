@@ -37,10 +37,10 @@ public final class y3 extends RadialProgressView {
                 return;
             case 1:
                 ProfileActivity profileActivity = (ProfileActivity) this.M;
-                ry0 ry0Var = profileActivity.f33618f0;
+                ry0 ry0Var = profileActivity.f33619f0;
                 if (ry0Var != null && ry0Var.getImageReceiver().hasNotThumb()) {
                     Paint paint2 = this.L;
-                    paint2.setAlpha((int) (profileActivity.f33618f0.getImageReceiver().getCurrentAlpha() * 85.0f));
+                    paint2.setAlpha((int) (profileActivity.f33619f0.getImageReceiver().getCurrentAlpha() * 85.0f));
                     canvas.drawCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, getMeasuredWidth() / 2.0f, paint2);
                 }
                 super.onDraw(canvas);

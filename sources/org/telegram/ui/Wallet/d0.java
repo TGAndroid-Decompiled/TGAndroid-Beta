@@ -2,10 +2,10 @@ package org.telegram.ui.Wallet;
 
 import java.util.ArrayList;
 public final class d0 {
-    public String f34088a;
-    public long f34089b;
-    public byte[] f34090c;
+    public String f34089a;
+    public long f34090b;
+    public byte[] f34091c;
     public int d;
     public boolean e;
-    public ArrayList f34091f;
+    public ArrayList f34092f;
 }

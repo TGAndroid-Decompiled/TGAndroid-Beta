@@ -111,13 +111,13 @@ public final class s5 extends FrameLayout {
     }
 
     public final boolean a() {
-        return this.d.f32458a.f24151q;
+        return this.d.f32459a.f24151q;
     }
 
     public final void b(int i10, boolean z10, boolean z11) {
         float f7;
         float f10;
-        this.d.f32458a.f(i10, z10, z11);
+        this.d.f32459a.f(i10, z10, z11);
         boolean z12 = false;
         if (this.f23011x) {
             AnimatorSet animatorSet = this.J;
@@ -202,14 +202,14 @@ public final class s5 extends FrameLayout {
             this.J = null;
             xp xpVar = this.d;
             float f10 = 1.0f;
-            if (xpVar.f32458a.f24151q) {
+            if (xpVar.f32459a.f24151q) {
                 f7 = 0.787f;
             } else {
                 f7 = 1.0f;
             }
             n5 n5Var = this.f23004b;
             n5Var.setScaleX(f7);
-            if (xpVar.f32458a.f24151q) {
+            if (xpVar.f32459a.f24151q) {
                 f10 = 0.787f;
             }
             n5Var.setScaleY(f10);
@@ -437,7 +437,7 @@ public final class s5 extends FrameLayout {
     public final void onDraw(Canvas canvas) {
         MediaController.PhotoEntry photoEntry;
         MediaController.SearchImage searchImage;
-        boolean z10 = this.d.f32458a.f24151q;
+        boolean z10 = this.d.f32459a.f24151q;
         o5 o5Var = this.f23003a;
         if (!z10 && this.f23004b.getScaleX() == 1.0f && o5Var.getImageReceiver().hasNotThumb() && o5Var.getImageReceiver().getCurrentAlpha() == 1.0f && (((photoEntry = this.G) == null || !PhotoViewer.O1(photoEntry.path)) && ((searchImage = this.H) == null || !PhotoViewer.O1(searchImage.getPathToAttach())))) {
             return;
@@ -472,7 +472,7 @@ public final class s5 extends FrameLayout {
             sb2.append(LocaleController.getInstance().getFormatterStats().format(this.G.dateTaken * 1000));
         }
         accessibilityNodeInfo.setText(sb2);
-        if (this.d.f32458a.f24151q) {
+        if (this.d.f32459a.f24151q) {
             accessibilityNodeInfo.setSelected(true);
         }
         accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(R.id.acc_action_open_photo, LocaleController.getString(R.string.Open)));

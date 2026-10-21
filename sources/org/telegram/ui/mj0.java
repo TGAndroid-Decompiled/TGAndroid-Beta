@@ -258,7 +258,7 @@ public final class mj0 extends org.telegram.ui.ActionBar.f3 implements AdapterVi
             return;
         }
         this.E = true;
-        this.O.setText(((ht) this.f39301w.get(i10)).f37785c);
+        this.O.setText(((ht) this.f39301w.get(i10)).f37786c);
         this.E = false;
     }
 
@@ -296,7 +296,7 @@ public final class mj0 extends org.telegram.ui.ActionBar.f3 implements AdapterVi
         }
         tL_contacts_importContacts.contacts.add(tL_inputPhoneContact);
         ConnectionsManager.getInstance(this.currentAccount).bindRequestToGuid(ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_contacts_importContacts, new ca(this, tL_inputPhoneContact, tL_contacts_importContacts, 26), 2), this.N);
-        if (this.S.f32458a.f24151q) {
+        if (this.S.f32459a.f24151q) {
             Context context = getContext();
             ArrayList<ContentProviderOperation> arrayList = new ArrayList<>();
             ContentProviderOperation.Builder newInsert = ContentProviderOperation.newInsert(ContactsContract.RawContacts.CONTENT_URI);
@@ -359,7 +359,7 @@ public final class mj0 extends org.telegram.ui.ActionBar.f3 implements AdapterVi
                     if (i10 >= 1) {
                         List list = (List) this.f39302x.get(str2.substring(0, i10));
                         if (list != null && list.size() > 0) {
-                            String str3 = ((ht) list.get(0)).f37785c;
+                            String str3 = ((ht) list.get(0)).f37786c;
                             this.O.setText(str3);
                             if (str3.endsWith("0") && this.I.startsWith("0")) {
                                 this.I = this.I.substring(1);
@@ -414,7 +414,7 @@ public final class mj0 extends org.telegram.ui.ActionBar.f3 implements AdapterVi
         float f10;
         float f11;
         float f12;
-        boolean z11 = this.S.f32458a.f24151q;
+        boolean z11 = this.S.f32459a.f24151q;
         final boolean z12 = !z11;
         float f13 = 0.0f;
         int i12 = 0;
@@ -429,10 +429,10 @@ public final class mj0 extends org.telegram.ui.ActionBar.f3 implements AdapterVi
             ViewPropertyAnimator alpha = animate.alpha(f11);
             org.telegram.ui.Components.bs bsVar = org.telegram.ui.Components.bs.h;
             alpha.setInterpolator(bsVar).setDuration(420L).withEndAction(new Runnable(this) {
-                public final mj0 f38015b;
+                public final mj0 f38016b;
 
                 {
-                    this.f38015b = this;
+                    this.f38016b = this;
                 }
 
                 @Override
@@ -440,7 +440,7 @@ public final class mj0 extends org.telegram.ui.ActionBar.f3 implements AdapterVi
                     switch (r3) {
                         case 0:
                             boolean z13 = z12;
-                            mj0 mj0Var = this.f38015b;
+                            mj0 mj0Var = this.f38016b;
                             if (!z13) {
                                 mj0Var.f39298n.setVisibility(4);
                                 return;
@@ -450,7 +450,7 @@ public final class mj0 extends org.telegram.ui.ActionBar.f3 implements AdapterVi
                             }
                         case 1:
                             boolean z14 = z12;
-                            mj0 mj0Var2 = this.f38015b;
+                            mj0 mj0Var2 = this.f38016b;
                             if (!z14) {
                                 mj0Var2.h.setVisibility(4);
                                 return;
@@ -460,7 +460,7 @@ public final class mj0 extends org.telegram.ui.ActionBar.f3 implements AdapterVi
                             }
                         default:
                             boolean z15 = z12;
-                            mj0 mj0Var3 = this.f38015b;
+                            mj0 mj0Var3 = this.f38016b;
                             if (z15) {
                                 mj0Var3.f39299r.setVisibility(4);
                                 return;
@@ -479,10 +479,10 @@ public final class mj0 extends org.telegram.ui.ActionBar.f3 implements AdapterVi
                 f12 = 0.0f;
             }
             animate2.alpha(f12).setInterpolator(bsVar).setDuration(420L).withEndAction(new Runnable(this) {
-                public final mj0 f38015b;
+                public final mj0 f38016b;
 
                 {
-                    this.f38015b = this;
+                    this.f38016b = this;
                 }
 
                 @Override
@@ -490,7 +490,7 @@ public final class mj0 extends org.telegram.ui.ActionBar.f3 implements AdapterVi
                     switch (r3) {
                         case 0:
                             boolean z13 = z12;
-                            mj0 mj0Var = this.f38015b;
+                            mj0 mj0Var = this.f38016b;
                             if (!z13) {
                                 mj0Var.f39298n.setVisibility(4);
                                 return;
@@ -500,7 +500,7 @@ public final class mj0 extends org.telegram.ui.ActionBar.f3 implements AdapterVi
                             }
                         case 1:
                             boolean z14 = z12;
-                            mj0 mj0Var2 = this.f38015b;
+                            mj0 mj0Var2 = this.f38016b;
                             if (!z14) {
                                 mj0Var2.h.setVisibility(4);
                                 return;
@@ -510,7 +510,7 @@ public final class mj0 extends org.telegram.ui.ActionBar.f3 implements AdapterVi
                             }
                         default:
                             boolean z15 = z12;
-                            mj0 mj0Var3 = this.f38015b;
+                            mj0 mj0Var3 = this.f38016b;
                             if (z15) {
                                 mj0Var3.f39299r.setVisibility(4);
                                 return;
@@ -527,10 +527,10 @@ public final class mj0 extends org.telegram.ui.ActionBar.f3 implements AdapterVi
                 f13 = 1.0f;
             }
             animate3.alpha(f13).setInterpolator(bsVar).setDuration(420L).withEndAction(new Runnable(this) {
-                public final mj0 f38015b;
+                public final mj0 f38016b;
 
                 {
-                    this.f38015b = this;
+                    this.f38016b = this;
                 }
 
                 @Override
@@ -538,7 +538,7 @@ public final class mj0 extends org.telegram.ui.ActionBar.f3 implements AdapterVi
                     switch (r3) {
                         case 0:
                             boolean z13 = z12;
-                            mj0 mj0Var = this.f38015b;
+                            mj0 mj0Var = this.f38016b;
                             if (!z13) {
                                 mj0Var.f39298n.setVisibility(4);
                                 return;
@@ -548,7 +548,7 @@ public final class mj0 extends org.telegram.ui.ActionBar.f3 implements AdapterVi
                             }
                         case 1:
                             boolean z14 = z12;
-                            mj0 mj0Var2 = this.f38015b;
+                            mj0 mj0Var2 = this.f38016b;
                             if (!z14) {
                                 mj0Var2.h.setVisibility(4);
                                 return;
@@ -558,7 +558,7 @@ public final class mj0 extends org.telegram.ui.ActionBar.f3 implements AdapterVi
                             }
                         default:
                             boolean z15 = z12;
-                            mj0 mj0Var3 = this.f38015b;
+                            mj0 mj0Var3 = this.f38016b;
                             if (z15) {
                                 mj0Var3.f39299r.setVisibility(4);
                                 return;

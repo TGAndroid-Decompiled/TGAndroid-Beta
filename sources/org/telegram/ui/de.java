@@ -6,25 +6,25 @@ import java.util.ArrayList;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class de extends org.telegram.ui.Components.w81 {
-    public final Context f36339a;
-    public final int f36340b;
-    public final int f36341c;
+    public final Context f36340a;
+    public final int f36341b;
+    public final int f36342c;
     public final org.telegram.ui.ActionBar.d6 d;
     public final ArrayList e = new ArrayList();
-    public final ee f36342f;
+    public final ee f36343f;
 
     public de(ee eeVar, Context context, int i10, long j10, int i11, org.telegram.ui.ActionBar.d6 d6Var) {
-        this.f36342f = eeVar;
-        this.f36339a = context;
-        this.f36340b = i10;
-        this.f36341c = i11;
+        this.f36343f = eeVar;
+        this.f36340a = context;
+        this.f36341b = i10;
+        this.f36342c = i11;
         this.d = d6Var;
         i();
     }
 
     @Override
     public final View d(int i10) {
-        return new ce(this.f36342f, this.f36339a, i10, this.f36340b, this.f36341c, new ah.g(this, i10, 21), this.d);
+        return new ce(this.f36343f, this.f36340a, i10, this.f36341b, this.f36342c, new ah.g(this, i10, 21), this.d);
     }
 
     @Override
@@ -59,11 +59,11 @@ public final class de extends org.telegram.ui.Components.w81 {
     public final void i() {
         ArrayList arrayList = this.e;
         arrayList.clear();
-        ee eeVar = this.f36342f;
+        ee eeVar = this.f36343f;
         if (!eeVar.h.isEmpty()) {
             arrayList.add(org.telegram.ui.Components.h61.C(1));
         }
-        if (!eeVar.f36643n.isEmpty()) {
+        if (!eeVar.f36644n.isEmpty()) {
             arrayList.add(org.telegram.ui.Components.h61.C(0));
         }
     }

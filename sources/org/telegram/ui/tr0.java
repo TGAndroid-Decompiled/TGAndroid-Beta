@@ -67,8 +67,8 @@ public final class tr0 implements RequestDelegate {
                     try {
                         JSONObject jSONObject = new JSONObject(((TL_stats.TL_statsGraph) tLObject).json.data);
                         b91 b91Var = a91Var.f43675r;
-                        int i10 = b91Var.f35546i;
-                        if (b91Var != a91Var.f35319w.f40155w) {
+                        int i10 = b91Var.f35547i;
+                        if (b91Var != a91Var.f35320w.f40155w) {
                             z10 = false;
                         }
                         bVar = p91.e0(jSONObject, i10, z10);

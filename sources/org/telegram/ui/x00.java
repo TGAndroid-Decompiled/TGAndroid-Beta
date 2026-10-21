@@ -19,15 +19,15 @@ public final class x00 extends org.telegram.ui.Components.im0 {
     @Override
     public final int h() {
         e10 e10Var = this.f42987c;
-        if (e10Var.f36499f.isEmpty()) {
+        if (e10Var.f36500f.isEmpty()) {
             return 0;
         }
-        return e10Var.f36499f.size() + (!e10Var.N ? 1 : 0);
+        return e10Var.f36500f.size() + (!e10Var.N ? 1 : 0);
     }
 
     @Override
     public final int j(int i10) {
-        if (i10 >= this.f42987c.f36499f.size()) {
+        if (i10 >= this.f42987c.f36500f.size()) {
             return 3;
         }
         return 0;
@@ -40,8 +40,8 @@ public final class x00 extends org.telegram.ui.Components.im0 {
         if (b1Var.f45920f == 0) {
             org.telegram.ui.Cells.r2 r2Var = (org.telegram.ui.Cells.r2) b1Var.f45917a;
             e10 e10Var = this.f42987c;
-            MessageObject messageObject = (MessageObject) e10Var.f36499f.get(i10);
-            r2Var.O = e10Var.f36510p0;
+            MessageObject messageObject = (MessageObject) e10Var.f36500f.get(i10);
+            r2Var.O = e10Var.f36511p0;
             r2Var.W(messageObject.getDialogId(), messageObject, messageObject.messageOwner.date, false, false);
             if (i10 != h() - 1) {
                 z10 = true;

@@ -321,7 +321,7 @@ public final class i30 implements NotificationCenter.NotificationCenterDelegate 
 
     public static boolean c() {
         VoIPService sharedInstance;
-        if (!org.telegram.ui.Components.voip.h1.f31440d0.V && f27099d0 == null) {
+        if (!org.telegram.ui.Components.voip.h1.f31441d0.V && f27099d0 == null) {
             if (ApplicationLoader.canDrawOverlays && (sharedInstance = VoIPService.getSharedInstance()) != null && sharedInstance.groupCall != null && !sharedInstance.isHangingUp() && !f27100e0) {
                 if (ApplicationLoader.mainInterfaceStopped || !org.telegram.ui.q50.E3) {
                     return true;

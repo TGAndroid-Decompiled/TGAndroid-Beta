@@ -32,7 +32,7 @@ public abstract class f3 extends FrameLayout {
         this.v = p6Var;
         p6Var.n(0.2f, 160L, bs.h);
         p6Var.w(AndroidUtilities.dp(15.33f));
-        p6Var.f29225b = 5;
+        p6Var.f29226b = 5;
         this.f22230c = i10;
         d3 d3Var = new d3(this, context, lw0Var, d6Var, z10);
         this.f22229b = d3Var;

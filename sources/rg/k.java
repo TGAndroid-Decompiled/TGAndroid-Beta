@@ -37,7 +37,7 @@ public final class k implements View.OnClickListener {
                 n2Var.r0(new jc(m0Var2, 4));
                 n2Var.setOnDismissListener(new qb(m0Var2, i10));
                 n2Var.show();
-                PhotoViewer photoViewer = ((gt0) m0Var2).f37413o2;
+                PhotoViewer photoViewer = ((gt0) m0Var2).f37414o2;
                 if (photoViewer.F2 != null) {
                     photoViewer.H2 = false;
                     photoViewer.v0();

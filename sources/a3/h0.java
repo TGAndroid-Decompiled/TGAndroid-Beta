@@ -105,7 +105,7 @@ public final class h0 implements Runnable {
                     ArrayList arrayList = new ArrayList();
                     arrayList.add(MessagesStorage.TopicKey.of(j14, j15));
                     cyVar.C2.w(cyVar, arrayList, null, false, cyVar.J2, cyVar.K2, cyVar.L2, re1Var);
-                    if (cyVar.f36114i2) {
+                    if (cyVar.f36115i2) {
                         cyVar.C2 = null;
                         return;
                     }
@@ -125,7 +125,7 @@ public final class h0 implements Runnable {
                 t10.append(" TL_forumTopic ");
                 t10.append(findTopic);
                 FileLog.d(t10.toString());
-                if (launchActivity.f33185q0 != null) {
+                if (launchActivity.f33186q0 != null) {
                     og.d.a(qnVar, MessagesStorage.TopicKey.of(-j16, j17));
                     ((ActionBarLayout) launchActivity.O()).P(qnVar);
                     return;

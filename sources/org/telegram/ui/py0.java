@@ -19,7 +19,7 @@ public final class py0 implements yp {
         int i10;
         ProfileActivity profileActivity = this.f40318c;
         UndoView undoView = profileActivity.M;
-        long j10 = -profileActivity.f33626g1;
+        long j10 = -profileActivity.f33627g1;
         if (profileActivity.F2.megagroup) {
             i10 = 10;
         } else {
@@ -33,8 +33,8 @@ public final class py0 implements yp {
         TLRPC.Chat chat;
         ProfileActivity profileActivity = this.f40318c;
         profileActivity.removeSelfFromStack();
-        TLRPC.User user = profileActivity.getMessagesController().getUser(Long.valueOf(profileActivity.f33619f1));
-        if (user != null && (chat = this.f40316a) != null && profileActivity.f33619f1 != 0) {
+        TLRPC.User user = profileActivity.getMessagesController().getUser(Long.valueOf(profileActivity.f33620f1));
+        if (user != null && (chat = this.f40316a) != null && profileActivity.f33620f1 != 0) {
             bq bqVar = this.f40317b;
             if (bqVar.Q && bqVar.getParentLayout() != null) {
                 for (org.telegram.ui.ActionBar.n2 n2Var : bqVar.getParentLayout().getFragmentStack()) {

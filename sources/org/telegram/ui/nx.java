@@ -26,10 +26,10 @@ public final class nx {
         int i10;
         cy cyVar = this.f39701a;
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(cyVar.getParentActivity());
-        org.telegram.ui.Components.po0 po0Var = cyVar.C0.f32178b0;
+        org.telegram.ui.Components.po0 po0Var = cyVar.C0.f32179b0;
         if (po0Var.N && po0Var.P()) {
             alertDialog$Builder.f20605a.R = LocaleController.getString(R.string.ClearSearchAlertPartialTitle);
-            org.telegram.ui.Components.po0 po0Var2 = cyVar.C0.f32178b0;
+            org.telegram.ui.Components.po0 po0Var2 = cyVar.C0.f32179b0;
             if (po0Var2.N) {
                 arrayList = po0Var2.f11897v0;
             } else {
@@ -52,15 +52,15 @@ public final class nx {
                 public final void g(org.telegram.ui.ActionBar.b2 b2Var, int i11) {
                     switch (r2) {
                         case 0:
-                            this.f39362b.f39701a.C0.f32178b0.E();
+                            this.f39362b.f39701a.C0.f32179b0.E();
                             return;
                         default:
                             cy cyVar2 = this.f39362b.f39701a;
-                            if (cyVar2.C0.f32178b0.P()) {
-                                cyVar2.C0.f32178b0.E();
+                            if (cyVar2.C0.f32179b0.P()) {
+                                cyVar2.C0.f32179b0.E();
                                 return;
                             }
-                            org.telegram.ui.Components.po0 po0Var3 = cyVar2.C0.f32178b0;
+                            org.telegram.ui.Components.po0 po0Var3 = cyVar2.C0.f32179b0;
                             po0Var3.f11883j0.c();
                             po0Var3.J.clear();
                             po0Var3.l();
@@ -82,15 +82,15 @@ public final class nx {
                 public final void g(org.telegram.ui.ActionBar.b2 b2Var, int i11) {
                     switch (r2) {
                         case 0:
-                            this.f39362b.f39701a.C0.f32178b0.E();
+                            this.f39362b.f39701a.C0.f32179b0.E();
                             return;
                         default:
                             cy cyVar2 = this.f39362b.f39701a;
-                            if (cyVar2.C0.f32178b0.P()) {
-                                cyVar2.C0.f32178b0.E();
+                            if (cyVar2.C0.f32179b0.P()) {
+                                cyVar2.C0.f32179b0.E();
                                 return;
                             }
-                            org.telegram.ui.Components.po0 po0Var3 = cyVar2.C0.f32178b0;
+                            org.telegram.ui.Components.po0 po0Var3 = cyVar2.C0.f32179b0;
                             po0Var3.f11883j0.c();
                             po0Var3.J.clear();
                             po0Var3.l();
@@ -112,7 +112,7 @@ public final class nx {
         int i10;
         lx lxVar = this.f39701a.C0;
         if (lxVar != null) {
-            org.telegram.ui.Components.ol0 ol0Var = lxVar.f32180d0;
+            org.telegram.ui.Components.ol0 ol0Var = lxVar.f32181d0;
             int i11 = lxVar.S0;
             if (i11 > 0) {
                 i10 = i11 + 1;
@@ -120,7 +120,7 @@ public final class nx {
                 i10 = 0;
             }
             ol0Var.b(i10);
-            lxVar.S0 = lxVar.f32178b0.h();
+            lxVar.S0 = lxVar.f32179b0.h();
         }
     }
 
@@ -129,19 +129,19 @@ public final class nx {
         if (cyVar.C0.W.getVisibility() == 0) {
             z11 = true;
         }
-        if (cyVar.f36119j2 && cyVar.f36124k2) {
+        if (cyVar.f36120j2 && cyVar.f36125k2) {
             lx lxVar = cyVar.C0;
             if (lxVar.W != null) {
-                if (!z10 && lxVar.f32178b0.h() == 0) {
+                if (!z10 && lxVar.f32179b0.h() == 0) {
                     cyVar.C0.W.e(false, z11);
                 } else {
                     cyVar.C0.W.e(true, z11);
                 }
             }
         }
-        if (z10 && cyVar.C0.f32178b0.h() == 0) {
+        if (z10 && cyVar.C0.f32179b0.h() == 0) {
             lx lxVar2 = cyVar.C0;
-            lxVar2.f32180d0.a();
+            lxVar2.f32181d0.a();
             lxVar2.V.invalidate();
             lxVar2.S0 = 0;
         }

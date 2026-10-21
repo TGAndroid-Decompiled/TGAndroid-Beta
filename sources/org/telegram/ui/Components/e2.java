@@ -199,10 +199,10 @@ public final class e2 implements Runnable {
             case 7:
                 tz tzVar = (tz) obj;
                 if (tzVar.P1) {
-                    uy uyVar = tzVar.f30775t1;
+                    uy uyVar = tzVar.f30776t1;
                     if (uyVar != null && uyVar.k()) {
                         try {
-                            tzVar.f30787x.performHapticFeedback(3);
+                            tzVar.f30788x.performHapticFeedback(3);
                         } catch (Exception unused) {
                         }
                     }
@@ -268,7 +268,7 @@ public final class e2 implements Runnable {
                     tj0Var.C(true);
                     return;
                 }
-                tj0Var.f30615a1 = i17;
+                tj0Var.f30616a1 = i17;
                 tj0Var.I();
                 tj0Var.x();
                 return;
@@ -290,7 +290,7 @@ public final class e2 implements Runnable {
                 return;
             case 15:
                 w91 w91Var = (w91) obj;
-                c81 c81Var = w91Var.f32016a;
+                c81 c81Var = w91Var.f32017a;
                 if (i17 == -1) {
                     if (c81Var.y()) {
                         c81Var.B();
@@ -362,14 +362,14 @@ public final class e2 implements Runnable {
             case 18:
                 org.telegram.ui.l60 l60Var = (org.telegram.ui.l60) obj;
                 AnimatorSet animatorSet = new AnimatorSet();
-                int childCount = l60Var.f38816n.getChildCount();
+                int childCount = l60Var.f38817n.getChildCount();
                 for (int i19 = 0; i19 < childCount; i19++) {
-                    View childAt = l60Var.f38816n.getChildAt(i19);
-                    l60Var.f38816n.getClass();
+                    View childAt = l60Var.f38817n.getChildAt(i19);
+                    l60Var.f38817n.getClass();
                     if (RecyclerView.R(childAt) >= i17) {
                         childAt.setAlpha(0.0f);
                         ObjectAnimator ofFloat = ObjectAnimator.ofFloat(childAt, View.ALPHA, 0.0f, 1.0f);
-                        ofFloat.setStartDelay((int) ((Math.min(l60Var.f38816n.getMeasuredHeight(), Math.max(0, childAt.getTop())) / l60Var.f38816n.getMeasuredHeight()) * 100.0f));
+                        ofFloat.setStartDelay((int) ((Math.min(l60Var.f38817n.getMeasuredHeight(), Math.max(0, childAt.getTop())) / l60Var.f38817n.getMeasuredHeight()) * 100.0f));
                         ofFloat.setDuration(200L);
                         animatorSet.playTogether(ofFloat);
                     }
@@ -382,24 +382,24 @@ public final class e2 implements Runnable {
                 nc0Var.z0(false);
                 return;
             case 20:
-                ((org.telegram.ui.md0) obj).f39209a.f40959f[i17].l(1.0f);
+                ((org.telegram.ui.md0) obj).f39210a.f40959f[i17].l(1.0f);
                 return;
             case 21:
                 NotificationsSettingsActivity notificationsSettingsActivity = (NotificationsSettingsActivity) obj;
                 notificationsSettingsActivity.V = true;
-                notificationsSettingsActivity.f33217c.m(i17);
+                notificationsSettingsActivity.f33218c.m(i17);
                 return;
             case 22:
                 ((org.telegram.ui.qk0) obj).run(Integer.valueOf(i17));
                 return;
             case 23:
-                ((org.telegram.ui.vo0) obj).e.f36037p0.I.D(1 - i17);
+                ((org.telegram.ui.vo0) obj).e.f36038p0.I.D(1 - i17);
                 return;
             case 24:
                 PhotoViewer photoViewer = (PhotoViewer) obj;
                 Drawable[] drawableArr = PhotoViewer.U8;
                 int i20 = i17 + 1;
-                if (i20 < 6 && (bu0Var = photoViewer.f33278e0) != null) {
+                if (i20 < 6 && (bu0Var = photoViewer.f33279e0) != null) {
                     bu0Var.invalidate();
                     AndroidUtilities.runOnUIThread(new e2(photoViewer, i20, 24), 100L);
                     return;
@@ -458,7 +458,7 @@ public final class e2 implements Runnable {
                 SessionsActivity sessionsActivity = (SessionsActivity) obj;
                 sessionsActivity.h.remove(i17);
                 sessionsActivity.m0();
-                org.telegram.ui.h71 h71Var = sessionsActivity.f33843a;
+                org.telegram.ui.h71 h71Var = sessionsActivity.f33844a;
                 if (h71Var != null) {
                     h71Var.l();
                     return;

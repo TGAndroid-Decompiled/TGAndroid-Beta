@@ -16,7 +16,7 @@ public final class lx0 extends AnimatorListenerAdapter {
         switch (this.f28318a) {
             case 0:
                 mx0 mx0Var = this.f28319b;
-                mx0Var.f28623y = 1.0f;
+                mx0Var.f28624y = 1.0f;
                 mx0Var.invalidate();
                 mx0Var.G = null;
                 return;

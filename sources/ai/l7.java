@@ -413,7 +413,7 @@ public class l7 extends org.telegram.ui.Components.bb implements NotificationCen
         org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
         if (U != null) {
             org.telegram.ui.Components.qc Q = org.telegram.ui.Components.xc.a0(U).Q(R.raw.error, 36, LocaleController.getString(R.string.MessageNotFound));
-            Q.f29540t = true;
+            Q.f29541t = true;
             Q.j();
         }
     }
@@ -432,7 +432,7 @@ public class l7 extends org.telegram.ui.Components.bb implements NotificationCen
             return;
         }
         org.telegram.ui.Components.qc Y = l7Var.getBulletinFactory().Y(tL_error);
-        Y.f29540t = true;
+        Y.f29541t = true;
         Y.j();
     }
 
@@ -657,7 +657,7 @@ public class l7 extends org.telegram.ui.Components.bb implements NotificationCen
             formatString = LocaleController.formatString(R.string.GiftRepostedToChannelProfile, str);
         }
         org.telegram.ui.Components.qc Q = bulletinFactory.Q(i10, 36, AndroidUtilities.replaceTags(formatString));
-        Q.f29540t = true;
+        Q.f29541t = true;
         Q.j();
     }
 
@@ -752,7 +752,7 @@ public class l7 extends org.telegram.ui.Components.bb implements NotificationCen
             return;
         }
         org.telegram.ui.Components.qc Y = l7Var.getBulletinFactory().Y(tL_error);
-        Y.f29540t = true;
+        Y.f29541t = true;
         Y.j();
     }
 
@@ -1370,7 +1370,7 @@ public class l7 extends org.telegram.ui.Components.bb implements NotificationCen
             }
         }
         org.telegram.ui.Components.qc Y = l7Var.getBulletinFactory().Y(tL_error);
-        Y.f29540t = true;
+        Y.f29541t = true;
         Y.j();
     }
 
@@ -1847,7 +1847,7 @@ public class l7 extends org.telegram.ui.Components.bb implements NotificationCen
                     U.presentFragment(W9);
                 } else {
                     org.telegram.ui.Components.qc M = org.telegram.ui.Components.xc.a0(U).M(LocaleController.getString(R.string.Gift2TransferredTitle), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2TransferredText, l7Var.X1(), DialogObject.getShortName(j10))), R.raw.forward);
-                    M.f29540t = true;
+                    M.f29541t = true;
                     M.j();
                 }
             }
@@ -1935,7 +1935,7 @@ public class l7 extends org.telegram.ui.Components.bb implements NotificationCen
             return;
         }
         org.telegram.ui.Components.qc Y = l7Var.getBulletinFactory().Y(tL_error);
-        Y.f29540t = true;
+        Y.f29541t = true;
         Y.j();
     }
 
@@ -2198,7 +2198,7 @@ public class l7 extends org.telegram.ui.Components.bb implements NotificationCen
         }
         callback.run(tL_error);
         org.telegram.ui.Components.qc Y = l7Var.getBulletinFactory().Y(tL_error);
-        Y.f29540t = true;
+        Y.f29541t = true;
         Y.j();
     }
 
@@ -2350,28 +2350,28 @@ public class l7 extends org.telegram.ui.Components.bb implements NotificationCen
             } else if (tLObject instanceof TLRPC.TL_boolTrue) {
                 TL_stars.TL_starGiftUnique f22 = l7Var.f2();
                 org.telegram.ui.Wallet.m0 w9 = org.telegram.ui.Wallet.m0.w(l7Var.currentAccount);
-                org.telegram.ui.Wallet.g gVar = w9.f34497z;
+                org.telegram.ui.Wallet.g gVar = w9.f34498z;
                 if (f22 != null) {
                     str = f22.gift_address;
                 } else {
                     str = null;
                 }
                 AndroidUtilities.cancelRunOnUIThread(gVar);
-                w9.f34495x = str;
-                w9.f34496y = 0;
-                if (w9.f34487o == null) {
-                    w9.f34487o = new org.telegram.ui.Wallet.e0(w9);
+                w9.f34496x = str;
+                w9.f34497y = 0;
+                if (w9.f34488o == null) {
+                    w9.f34488o = new org.telegram.ui.Wallet.e0(w9);
                 }
-                org.telegram.ui.Wallet.e0 e0Var = w9.f34487o;
-                if (!e0Var.f34138j) {
+                org.telegram.ui.Wallet.e0 e0Var = w9.f34488o;
+                if (!e0Var.f34139j) {
                     e0Var.b();
                     e0Var.f(true);
                 }
                 w9.A().g();
                 w9.C();
-                int i10 = w9.f34496y;
+                int i10 = w9.f34497y;
                 if (i10 < 7) {
-                    w9.f34496y = i10 + 1;
+                    w9.f34497y = i10 + 1;
                     AndroidUtilities.runOnUIThread(gVar, org.telegram.ui.Wallet.m0.P[i10]);
                 }
                 if (f22 != null && !TextUtils.isEmpty(f22.slug)) {
@@ -2657,7 +2657,7 @@ public class l7 extends org.telegram.ui.Components.bb implements NotificationCen
                     j12 = j10;
                     l7Var2 = l7Var;
                     org.telegram.ui.Components.qc M = org.telegram.ui.Components.xc.a0(U).M(LocaleController.getString(R.string.Gift2TransferredTitle), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2TransferredText, l7Var2.X1(), DialogObject.getShortName(j12))), R.raw.forward);
-                    M.f29540t = true;
+                    M.f29541t = true;
                     M.j();
                 }
             } else {
@@ -2794,7 +2794,7 @@ public class l7 extends org.telegram.ui.Components.bb implements NotificationCen
                     tL_payments_getPaymentForm.invoice = tL_inputInvoiceStarGiftPrepaidUpgrade;
                 } else {
                     TLRPC.TL_inputInvoiceStarGiftUpgrade tL_inputInvoiceStarGiftUpgrade = new TLRPC.TL_inputInvoiceStarGiftUpgrade();
-                    tL_inputInvoiceStarGiftUpgrade.keep_original_details = xpVar.f32458a.f24151q;
+                    tL_inputInvoiceStarGiftUpgrade.keep_original_details = xpVar.f32459a.f24151q;
                     tL_inputInvoiceStarGiftUpgrade.stargift = Z1;
                     tL_payments_getPaymentForm.invoice = tL_inputInvoiceStarGiftUpgrade;
                 }
@@ -3774,7 +3774,7 @@ public class l7 extends org.telegram.ui.Components.bb implements NotificationCen
                 xp xpVar = this.f1760w0;
                 if (i10 > 0) {
                     TL_stars.upgradeStarGift upgradestargift = new TL_stars.upgradeStarGift();
-                    upgradestargift.keep_original_details = xpVar.f32458a.f24151q;
+                    upgradestargift.keep_original_details = xpVar.f32459a.f24151q;
                     upgradestargift.stargift = Z1;
                     ConnectionsManager.getInstance(this.currentAccount).sendRequest(upgradestargift, new g(3, this, Z1));
                     return;
@@ -3794,7 +3794,7 @@ public class l7 extends org.telegram.ui.Components.bb implements NotificationCen
                     tL_payments_sendStarsForm.invoice = tL_inputInvoiceStarGiftPrepaidUpgrade;
                 } else {
                     TLRPC.TL_inputInvoiceStarGiftUpgrade tL_inputInvoiceStarGiftUpgrade = new TLRPC.TL_inputInvoiceStarGiftUpgrade();
-                    tL_inputInvoiceStarGiftUpgrade.keep_original_details = xpVar.f32458a.f24151q;
+                    tL_inputInvoiceStarGiftUpgrade.keep_original_details = xpVar.f32459a.f24151q;
                     tL_inputInvoiceStarGiftUpgrade.stargift = Z1;
                     tL_payments_sendStarsForm.invoice = tL_inputInvoiceStarGiftUpgrade;
                 }
@@ -4067,7 +4067,7 @@ public class l7 extends org.telegram.ui.Components.bb implements NotificationCen
             if (V1 >= 0) {
                 if (!UserConfig.getInstance(this.currentAccount).isPremium()) {
                     org.telegram.ui.Components.qc P = getBulletinFactory().P(R.raw.star_premium_2, AndroidUtilities.premiumText(LocaleController.getString(R.string.Gift2ActionWearNeededPremium), new d2(this, 2)));
-                    P.f29540t = true;
+                    P.f29541t = true;
                     P.j();
                     return;
                 }
@@ -4921,8 +4921,8 @@ public class l7 extends org.telegram.ui.Components.bb implements NotificationCen
         }
         e4 e4Var = new e4(this, twoStepVerificationActivity, z10, 0);
         twoStepVerificationActivity.Z = i10;
-        twoStepVerificationActivity.f33938b0 = e4Var;
-        twoStepVerificationActivity.f33936a0 = X1();
+        twoStepVerificationActivity.f33939b0 = e4Var;
+        twoStepVerificationActivity.f33937a0 = X1();
         twoStepVerificationActivity.s0(new a3.l0(this, runnable, cVar, twoStepVerificationActivity, 7));
     }
 

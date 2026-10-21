@@ -105,9 +105,9 @@ public final class w3 extends View {
 
     public static void g(ViewGroup viewGroup, float f7, final j3 j3Var) {
         if (viewGroup.getWidth() > 0 && viewGroup.getHeight() > 0) {
-            final SurfaceTexture b10 = org.telegram.messenger.z3.b();
-            b10.setDefaultBufferSize(viewGroup.getWidth(), viewGroup.getHeight());
-            final Surface surface = new Surface(b10);
+            final SurfaceTexture c10 = c9.b.c();
+            c10.setDefaultBufferSize(viewGroup.getWidth(), viewGroup.getHeight());
+            final Surface surface = new Surface(c10);
             final Bitmap createBitmap = Bitmap.createBitmap(viewGroup.getWidth(), viewGroup.getHeight(), Bitmap.Config.ARGB_8888);
             Canvas lockHardwareCanvas = surface.lockHardwareCanvas();
             lockHardwareCanvas.translate(0.0f, f7);
@@ -119,7 +119,7 @@ public final class w3 extends View {
                     j3 j3Var2 = j3.this;
                     Bitmap bitmap = createBitmap;
                     Surface surface2 = surface;
-                    SurfaceTexture surfaceTexture = b10;
+                    SurfaceTexture surfaceTexture = c10;
                     if (i10 == 0) {
                         j3Var2.run(bitmap);
                     } else {

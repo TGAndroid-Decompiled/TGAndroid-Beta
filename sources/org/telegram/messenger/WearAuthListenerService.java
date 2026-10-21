@@ -165,6 +165,6 @@ public class WearAuthListenerService extends x8.k {
                 FileLog.e("wear-auth: failed to pop LaunchActivity", e);
             }
         }
-        AndroidUtilities.runOnUIThread(new tl(str, str2, bArr));
+        AndroidUtilities.runOnUIThread(new sl(str, str2, bArr, 1));
     }
 }

@@ -28,10 +28,10 @@ public final class qm implements Runnable {
                 cnVar.a(chat);
                 return;
             case 2:
-                cnVar.f36010a.pa(chat);
+                cnVar.f36011a.pa(chat);
                 return;
             default:
-                org.telegram.ui.Components.xc a02 = org.telegram.ui.Components.xc.a0(cnVar.f36010a);
+                org.telegram.ui.Components.xc a02 = org.telegram.ui.Components.xc.a0(cnVar.f36011a);
                 int i11 = R.raw.contact_check;
                 int i12 = R.string.YouJoinedChannel;
                 if (chat == null) {

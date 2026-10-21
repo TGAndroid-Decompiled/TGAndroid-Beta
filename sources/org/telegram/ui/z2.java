@@ -145,8 +145,8 @@ public final class z2 extends FrameLayout implements DownloadController.FileDown
         b70 b70Var;
         VideoPlayerHolderBase videoPlayerHolderBase;
         TL_iv.pageBlockVideo pageblockvideo2 = this.L;
-        if (pageblockvideo2 != null && (videoPlayerHolderBase = (b70Var = this.f43608a).f35528w) != null && b70Var.f35529x == this) {
-            a0.h hVar = b70Var.f35530y;
+        if (pageblockvideo2 != null && (videoPlayerHolderBase = (b70Var = this.f43608a).f35529w) != null && b70Var.f35530x == this) {
+            a0.h hVar = b70Var.f35531y;
             long j10 = pageblockvideo2.video_id;
             a3 a2 = a3.a(videoPlayerHolderBase, this);
             this.M = a2;
@@ -179,14 +179,14 @@ public final class z2 extends FrameLayout implements DownloadController.FileDown
         Bitmap bitmap2;
         Bitmap bitmap3;
         a3 a3Var2 = this.M;
-        if (a3Var2 != null && (bitmap2 = a3Var.f35261b) != null && (bitmap3 = a3Var2.f35261b) != null && bitmap2 != bitmap3) {
+        if (a3Var2 != null && (bitmap2 = a3Var.f35262b) != null && (bitmap3 = a3Var2.f35262b) != null && bitmap2 != bitmap3) {
             bitmap3.recycle();
-            this.M.f35261b = null;
+            this.M.f35262b = null;
         }
         a3 a3Var3 = this.M;
-        if (a3Var3 != null && a3Var.f35261b == null && (bitmap = a3Var3.f35261b) != null) {
-            a3Var.f35260a = a3Var3.f35260a;
-            a3Var.f35261b = bitmap;
+        if (a3Var3 != null && a3Var.f35262b == null && (bitmap = a3Var3.f35262b) != null) {
+            a3Var.f35261a = a3Var3.f35261a;
+            a3Var.f35262b = bitmap;
         }
         this.M = a3Var;
     }
@@ -206,8 +206,8 @@ public final class z2 extends FrameLayout implements DownloadController.FileDown
             this.U = false;
             TL_iv.pageBlockVideo pageblockvideo = this.L;
             b70 b70Var = this.f43608a;
-            if (pageblockvideo != null && (videoPlayerHolderBase = b70Var.f35528w) != null && b70Var.f35529x == this) {
-                a0.h hVar = b70Var.f35530y;
+            if (pageblockvideo != null && (videoPlayerHolderBase = b70Var.f35529w) != null && b70Var.f35530x == this) {
+                a0.h hVar = b70Var.f35531y;
                 long j10 = pageblockvideo.video_id;
                 a3 a2 = a3.a(videoPlayerHolderBase, this);
                 c(a2);
@@ -253,7 +253,7 @@ public final class z2 extends FrameLayout implements DownloadController.FileDown
             DownloadController.getInstance(i10).addLoadingFileObserver(attachFileName, null, this);
             a3 a3Var = this.M;
             float f7 = 0.0f;
-            if (a3Var != null && a3Var.f35261b != null) {
+            if (a3Var != null && a3Var.f35262b != null) {
                 this.I = -1;
             } else {
                 if (!FileLoader.getInstance(i10).isLoadingFile(attachFileName)) {
@@ -345,7 +345,7 @@ public final class z2 extends FrameLayout implements DownloadController.FileDown
         if (this.L != null) {
             ImageReceiver imageReceiver = this.e;
             if (!imageReceiver.hasBitmapImage() || imageReceiver.getCurrentAlpha() != 1.0f) {
-                canvas.drawRect(imageReceiver.getDrawRegion(), l4.f38746o1);
+                canvas.drawRect(imageReceiver.getDrawRegion(), l4.f38747o1);
             }
             imageReceiver.draw(canvas);
             d3 d3Var = this.f43610c;

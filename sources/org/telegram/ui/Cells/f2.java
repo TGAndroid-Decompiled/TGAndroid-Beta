@@ -470,7 +470,7 @@ public final class f2 extends FrameLayout implements DownloadController.FileDown
         float f10;
         ImageReceiver imageReceiver = this.f22210a;
         xp xpVar = this.f22211a0;
-        if (xpVar != null && (xpVar.f32458a.f24151q || !imageReceiver.hasBitmapImage() || imageReceiver.getCurrentAlpha() != 1.0f || PhotoViewer.P1((MessageObject) this.e))) {
+        if (xpVar != null && (xpVar.f32459a.f24151q || !imageReceiver.hasBitmapImage() || imageReceiver.getCurrentAlpha() != 1.0f || PhotoViewer.P1((MessageObject) this.e))) {
             canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), this.S);
         }
         float f11 = 8.0f;
@@ -675,7 +675,7 @@ public final class f2 extends FrameLayout implements DownloadController.FileDown
         }
         accessibilityNodeInfo.setText(sb2);
         xp xpVar = this.f22211a0;
-        if (xpVar != null && xpVar.f32458a.f24151q) {
+        if (xpVar != null && xpVar.f32459a.f24151q) {
             accessibilityNodeInfo.setCheckable(true);
             accessibilityNodeInfo.setChecked(true);
         }

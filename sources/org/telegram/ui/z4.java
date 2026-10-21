@@ -62,7 +62,7 @@ public final class z4 extends FrameLayout {
                             } else {
                                 na0Var = radialProgress2.f24309i;
                             }
-                            if (na0Var.f28768w < 1.0f) {
+                            if (na0Var.f28769w < 1.0f) {
                                 radialProgress2.o(1.0f, true);
                             }
                             ValueAnimator ofFloat = ValueAnimator.ofFloat(((Float) ((ValueAnimator) this.h).getAnimatedValue()).floatValue(), 0.0f);
@@ -136,16 +136,16 @@ public final class z4 extends FrameLayout {
             default:
                 Paint paint = (Paint) obj;
                 kc1 kc1Var = (kc1) this.h;
-                kb1 kb1Var = kc1Var.f38516a;
+                kb1 kb1Var = kc1Var.f38517a;
                 if (this.f43624c) {
                     RectF rectF = AndroidUtilities.rectTmp;
                     rectF.set(0.0f, 0.0f, getWidth(), getHeight());
                     canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
-                    org.telegram.ui.ActionBar.h6.s(this, kc1Var.f38578x0, kb1Var);
+                    org.telegram.ui.ActionBar.h6.s(this, kc1Var.f38579x0, kb1Var);
                     Paint n10 = kb1Var.n("paintChatActionBackground");
                     ColorFilter colorFilter = n10.getColorFilter();
                     n10.setColorFilter((ColorMatrixColorFilter) this.f43625f);
-                    zb1 zb1Var = kc1Var.f38578x0;
+                    zb1 zb1Var = kc1Var.f38579x0;
                     if (zb1Var != null && (zb1Var.getBackground() instanceof org.telegram.ui.Components.wc0) && kc1Var.l1 < 0.0f) {
                         f7 = 0.33f;
                     }
@@ -155,9 +155,9 @@ public final class z4 extends FrameLayout {
                     n10.setAlpha(alpha);
                     n10.setColorFilter(colorFilter);
                     if (kc1Var.M1) {
-                        float f10 = kc1Var.f38555n1;
+                        float f10 = kc1Var.f38556n1;
                         if (f10 > 0.0f) {
-                            canvas.drawColor(i0.a.o(-16777216, (int) (f10 * 255.0f * kc1Var.f38557o1)));
+                            canvas.drawColor(i0.a.o(-16777216, (int) (f10 * 255.0f * kc1Var.f38558o1)));
                         }
                     }
                     canvas.save();

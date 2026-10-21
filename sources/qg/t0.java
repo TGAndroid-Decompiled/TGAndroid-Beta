@@ -379,7 +379,7 @@ public final class t0 {
                     GLES20.glActiveTexture(33985);
                     pa paVar = this.F.f27482m;
                     if (paVar != null) {
-                        i10 = paVar.f29285s[2];
+                        i10 = paVar.f29286s[2];
                     } else {
                         i10 = -1;
                     }

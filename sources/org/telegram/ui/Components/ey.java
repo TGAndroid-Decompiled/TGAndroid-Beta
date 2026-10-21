@@ -74,13 +74,13 @@ public final class ey extends jm0 {
         }
         sparseArray.clear();
         int i13 = 1;
-        if (tzVar.f30779u2 > 0 && SystemClock.elapsedRealtime() - tzVar.f30779u2 < x1() && tzVar.f30769r2 != null && tzVar.f30773s2 >= 0) {
+        if (tzVar.f30780u2 > 0 && SystemClock.elapsedRealtime() - tzVar.f30780u2 < x1() && tzVar.f30770r2 != null && tzVar.f30774s2 >= 0) {
             z10 = true;
         } else {
             z10 = false;
         }
         float f7 = 0.0f;
-        if (tzVar.f30726d2 != null && eyVar != null) {
+        if (tzVar.f30727d2 != null && eyVar != null) {
             int i14 = 0;
             while (i14 < eyVar.getChildCount()) {
                 View childAt = eyVar.getChildAt(i14);
@@ -97,9 +97,9 @@ public final class ey extends jm0 {
                     }
                     arrayList4.add((cz) childAt);
                 }
-                if (z10 && childAt != null && RecyclerView.R(childAt) == tzVar.f30773s2 - i13) {
+                if (z10 && childAt != null && RecyclerView.R(childAt) == tzVar.f30774s2 - i13) {
                     z11 = z10;
-                    float interpolation = bs.f25022g.getInterpolation(w7.r.a(((float) (SystemClock.elapsedRealtime() - tzVar.f30779u2)) / 140.0f, f7, 1.0f));
+                    float interpolation = bs.f25022g.getInterpolation(w7.r.a(((float) (SystemClock.elapsedRealtime() - tzVar.f30780u2)) / 140.0f, f7, 1.0f));
                     if (interpolation >= 1.0f || (Build.VERSION.SDK_INT >= 30 && canvas2.quickReject(childAt.getLeft(), childAt.getTop(), childAt.getRight(), childAt.getBottom()))) {
                         i10 = i14;
                     } else {
@@ -109,7 +109,7 @@ public final class ey extends jm0 {
                         canvas2.translate(childAt.getLeft(), childAt.getTop());
                         float f11 = (f10 * 0.5f) + 0.5f;
                         canvas2.scale(f11, f11, childAt.getWidth() / 2.0f, childAt.getHeight() / 2.0f);
-                        tzVar.f30769r2.draw(canvas2);
+                        tzVar.f30770r2.draw(canvas2);
                         canvas2.restore();
                     }
                 } else {
@@ -200,7 +200,7 @@ public final class ey extends jm0 {
         super.dispatchDraw(canvas);
         tz tzVar = this.f25993d3;
         ey eyVar = tzVar.P;
-        tzVar.f30752m2.h++;
+        tzVar.f30753m2.h++;
         if (this.f25991b3 != getChildCount()) {
             z1();
             this.f25991b3 = getChildCount();
@@ -220,12 +220,12 @@ public final class ey extends jm0 {
             i11++;
         }
         sparseArray.clear();
-        if (tzVar.f30779u2 > 0 && SystemClock.elapsedRealtime() - tzVar.f30779u2 < x1() && tzVar.f30769r2 != null && tzVar.f30773s2 >= 0) {
+        if (tzVar.f30780u2 > 0 && SystemClock.elapsedRealtime() - tzVar.f30780u2 < x1() && tzVar.f30770r2 != null && tzVar.f30774s2 >= 0) {
             z10 = true;
         } else {
             z10 = false;
         }
-        if (tzVar.f30726d2 != null && eyVar != null) {
+        if (tzVar.f30727d2 != null && eyVar != null) {
             for (int i12 = 0; i12 < eyVar.getChildCount(); i12++) {
                 View childAt = eyVar.getChildAt(i12);
                 if (childAt instanceof cz) {
@@ -241,15 +241,15 @@ public final class ey extends jm0 {
                     }
                     arrayList4.add((cz) childAt);
                 }
-                if (z10 && childAt != null && RecyclerView.R(childAt) == tzVar.f30773s2 - 1) {
-                    float interpolation = bs.f25022g.getInterpolation(w7.r.a(((float) (SystemClock.elapsedRealtime() - tzVar.f30779u2)) / 140.0f, 0.0f, 1.0f));
+                if (z10 && childAt != null && RecyclerView.R(childAt) == tzVar.f30774s2 - 1) {
+                    float interpolation = bs.f25022g.getInterpolation(w7.r.a(((float) (SystemClock.elapsedRealtime() - tzVar.f30780u2)) / 140.0f, 0.0f, 1.0f));
                     if (interpolation < 1.0f) {
                         float f7 = 1.0f - interpolation;
                         canvas.saveLayerAlpha(childAt.getLeft(), childAt.getTop(), childAt.getRight(), childAt.getBottom(), (int) (255.0f * f7), 31);
                         canvas.translate(childAt.getLeft(), childAt.getTop());
                         float f10 = (f7 * 0.5f) + 0.5f;
                         canvas.scale(f10, f10, childAt.getWidth() / 2.0f, childAt.getHeight() / 2.0f);
-                        tzVar.f30769r2.draw(canvas);
+                        tzVar.f30770r2.draw(canvas);
                         canvas.restore();
                     }
                 }
@@ -427,7 +427,7 @@ public final class ey extends jm0 {
     public final void onDetachedFromWindow() {
         ArrayList arrayList;
         super.onDetachedFromWindow();
-        a6.release(this, this.f25993d3.f30726d2);
+        a6.release(this, this.f25993d3.f30727d2);
         int i10 = 0;
         int i11 = 0;
         while (true) {
@@ -454,8 +454,8 @@ public final class ey extends jm0 {
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         tz tzVar = this.f25993d3;
-        if (!tzVar.f30730f) {
-            boolean r10 = org.telegram.ui.et.q().r(motionEvent, this, tzVar.f30736g2, this.f27579n2);
+        if (!tzVar.f30731f) {
+            boolean r10 = org.telegram.ui.et.q().r(motionEvent, this, tzVar.f30737g2, this.f27579n2);
             if (!super.onInterceptTouchEvent(motionEvent) && !r10) {
                 return false;
             }
@@ -467,10 +467,10 @@ public final class ey extends jm0 {
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         tz tzVar = this.f25993d3;
-        if (tzVar.f30724d0 && tzVar.f30721c0) {
+        if (tzVar.f30725d0 && tzVar.f30722c0) {
             this.V2 = true;
             tzVar.Q.h1(0, 0);
-            tzVar.f30721c0 = false;
+            tzVar.f30722c0 = false;
             this.V2 = false;
         }
         super.onLayout(z10, i10, i11, i12, i13);
@@ -591,7 +591,7 @@ public final class ey extends jm0 {
 
     public final long x1() {
         tz tzVar = this.f25993d3;
-        return Math.max(400L, Math.min(45, tzVar.f30776t2 - tzVar.f30773s2) * 35) + Math.max(600L, Math.min(55, tzVar.f30776t2 - tzVar.f30773s2) * 40) + 150;
+        return Math.max(400L, Math.min(45, tzVar.f30777t2 - tzVar.f30774s2) * 35) + Math.max(600L, Math.min(55, tzVar.f30777t2 - tzVar.f30774s2) * 40) + 150;
     }
 
     public final void y1(View view) {
@@ -618,7 +618,7 @@ public final class ey extends jm0 {
 
     public final void z1() {
         tz tzVar = this.f25993d3;
-        int i10 = tzVar.f30720c;
+        int i10 = tzVar.f30721c;
         ey eyVar = tzVar.P;
         ey eyVar2 = tzVar.P;
         a6[] a6VarArr = new a6[eyVar.getChildCount()];
@@ -628,6 +628,6 @@ public final class ey extends jm0 {
                 a6VarArr[i11] = ((cz) childAt).getSpan();
             }
         }
-        tzVar.f30726d2 = a6.update(i10, this, a6VarArr, tzVar.f30726d2);
+        tzVar.f30727d2 = a6.update(i10, this, a6VarArr, tzVar.f30727d2);
     }
 }

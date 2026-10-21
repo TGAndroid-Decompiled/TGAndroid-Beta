@@ -31,7 +31,7 @@ public final class y91 extends View {
         path.addCircle(dp, measuredHeight, AndroidUtilities.dp(30.0f), Path.Direction.CW);
         imageReceiver.draw(canvas);
         if (this.f43430c != null) {
-            CropAreaView cropAreaView = this.d.f29036b.f16917a;
+            CropAreaView cropAreaView = this.d.f29037b.f16917a;
             float dp2 = AndroidUtilities.dp(60.0f) / cropAreaView.f24182a;
             float left = (0.0f - this.d.getLeft()) - cropAreaView.f24184b;
             canvas.save();
@@ -39,9 +39,9 @@ public final class y91 extends View {
             canvas.scale(dp2, dp2, 0.0f, 0.0f);
             canvas.translate(left, (0.0f - this.d.getTop()) - cropAreaView.f24186c);
             canvas.translate((dp - AndroidUtilities.dp(30.0f)) / dp2, (measuredHeight - AndroidUtilities.dp(30.0f)) / dp2);
-            PhotoViewer.u1().f33299g4 = true;
+            PhotoViewer.u1().f33300g4 = true;
             this.f43430c.draw(canvas);
-            PhotoViewer.u1().f33299g4 = false;
+            PhotoViewer.u1().f33300g4 = false;
             canvas.restore();
         }
         super.draw(canvas);

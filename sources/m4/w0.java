@@ -112,7 +112,7 @@ public final class w0 implements e2.j, g1, mi.n, org.telegram.ui.Cells.v, yl0, a
                 cn cnVar = (cn) this.f16766b;
                 MessageObject messageObject = (MessageObject) this.f16767c;
                 if (z10) {
-                    cnVar.f36010a.getMessagesController().approveSuggestedMessage(DialogObject.getPeerDialogId(messageObject.messageOwner.peer_id), messageObject.messageOwner.f20297id, i10);
+                    cnVar.f36011a.getMessagesController().approveSuggestedMessage(DialogObject.getPeerDialogId(messageObject.messageOwner.peer_id), messageObject.messageOwner.f20297id, i10);
                     return;
                 } else {
                     cnVar.getClass();
@@ -164,7 +164,7 @@ public final class w0 implements e2.j, g1, mi.n, org.telegram.ui.Cells.v, yl0, a
         int ordinal = i5Var.ordinal();
         if (ordinal != 0) {
             if (ordinal == 3) {
-                rb rbVar = mbVar.f39170a;
+                rb rbVar = mbVar.f39171a;
                 if (user != null) {
                     Bundle bundle = new Bundle();
                     bundle.putLong("user_id", user.f20423id);
@@ -241,12 +241,12 @@ public final class w0 implements e2.j, g1, mi.n, org.telegram.ui.Cells.v, yl0, a
                     l4Var.o(false, true);
                 } else if (z10 instanceof e4) {
                     e4 e4Var = (e4) z10;
-                    l4Var.Q(e4Var.f36539a.articles.get(e4Var.f36540b).url, null, null);
+                    l4Var.Q(e4Var.f36540a.articles.get(e4Var.f36541b).url, null, null);
                 } else if (z10 instanceof TL_iv.pageBlockDetails) {
                     View y3 = l4.y(view);
                     if (y3 instanceof org.telegram.ui.o1) {
                         l4Var.d = null;
-                        l4Var.f35524f = null;
+                        l4Var.f35525f = null;
                         if (adapter.e.indexOf(pageBlock) >= 0) {
                             TL_iv.pageBlockDetails pageblockdetails = (TL_iv.pageBlockDetails) z10;
                             pageblockdetails.open = !pageblockdetails.open;
@@ -407,7 +407,7 @@ public final class w0 implements e2.j, g1, mi.n, org.telegram.ui.Cells.v, yl0, a
             Bitmap bitmap = (Bitmap) pair.second;
             c4 c4Var = onVar.f39932f;
             if (c4Var != null && longValue == c4Var.h(onVar.G ? 1 : 0) && bitmap != null) {
-                wc0Var.f32087x = bitmap;
+                wc0Var.f32088x = bitmap;
                 wc0Var.i();
             }
         }
@@ -427,7 +427,7 @@ public final class w0 implements e2.j, g1, mi.n, org.telegram.ui.Cells.v, yl0, a
     @Override
     public boolean w(cy cyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, re1 re1Var) {
         e6 e6Var = (e6) this.f16766b;
-        ArrayList arrayList2 = e6Var.f36554c;
+        ArrayList arrayList2 = e6Var.f36555c;
         ((cy) this.f16767c).finishFragment();
         CacheByChatsController.KeepMediaException keepMediaException = null;
         int i12 = 0;
@@ -468,7 +468,7 @@ public final class w0 implements e2.j, g1, mi.n, org.telegram.ui.Cells.v, yl0, a
             int i16 = 0;
             while (true) {
                 if (i16 < arrayList2.size()) {
-                    if (((d6) arrayList2.get(i16)).f36274c != null && ((d6) arrayList2.get(i16)).f36274c.dialogId == keepMediaException.dialogId) {
+                    if (((d6) arrayList2.get(i16)).f36275c != null && ((d6) arrayList2.get(i16)).f36275c.dialogId == keepMediaException.dialogId) {
                         i12 = i16;
                         break;
                     }
@@ -477,7 +477,7 @@ public final class w0 implements e2.j, g1, mi.n, org.telegram.ui.Cells.v, yl0, a
                     break;
                 }
             }
-            e6Var.f36553b.u0(i12);
+            e6Var.f36554b.u0(i12);
             AndroidUtilities.runOnUIThread(new org.telegram.ui.i0(4, e6Var, keepMediaException), 150L);
         }
         return true;
@@ -505,16 +505,16 @@ public final class w0 implements e2.j, g1, mi.n, org.telegram.ui.Cells.v, yl0, a
                 if (j10 == 0) {
                     return;
                 }
-                ioVar.f38061w0 = j10;
+                ioVar.f38062w0 = j10;
                 TLRPC.Chat chat = ioVar.getMessagesController().getChat(Long.valueOf(j10));
-                ioVar.f38063x0 = chat;
-                TLRPC.ChatFull chatFull = ioVar.f38065y0;
+                ioVar.f38064x0 = chat;
+                TLRPC.ChatFull chatFull = ioVar.f38066y0;
                 if (chatFull != null) {
                     chatFull.hidden_prehistory = true;
                 }
                 boolean z10 = chat.forum_tabs != ioVar.H0;
-                ioVar.getMessagesController().toggleChannelForum(ioVar.f38061w0, ioVar.F0, ioVar.H0);
-                TLRPC.Chat chat2 = ioVar.f38063x0;
+                ioVar.getMessagesController().toggleChannelForum(ioVar.f38062w0, ioVar.F0, ioVar.H0);
+                TLRPC.Chat chat2 = ioVar.f38064x0;
                 chat2.forum = ioVar.F0;
                 chat2.forum_tabs = ioVar.H0;
                 if (z10) {
@@ -527,12 +527,12 @@ public final class w0 implements e2.j, g1, mi.n, org.telegram.ui.Cells.v, yl0, a
                 ep epVar = (ep) this.f16766b;
                 Runnable runnable = (Runnable) this.f16767c;
                 if (j10 != 0) {
-                    ip ipVar = epVar.f36740x.d;
-                    if (ipVar.f38075s) {
+                    ip ipVar = epVar.f36741x.d;
+                    if (ipVar.f38076s) {
                         ipVar.v.set(0, ipVar.getMessagesController().getChat(Long.valueOf(j10)));
                     } else {
                         ipVar.E = j10;
-                        ipVar.f38072f = ipVar.getMessagesController().getChat(Long.valueOf(j10));
+                        ipVar.f38073f = ipVar.getMessagesController().getChat(Long.valueOf(j10));
                     }
                     runnable.run();
                     return;
@@ -555,7 +555,7 @@ public final class w0 implements e2.j, g1, mi.n, org.telegram.ui.Cells.v, yl0, a
     @Override
     public void run(boolean z10) {
         long j10 = ((TLRPC.User) this.f16767c).f20423id;
-        qn qnVar = ((fj) this.f16766b).f37019b;
+        qn qnVar = ((fj) this.f16766b).f37020b;
         long j11 = qnVar.f40656d4;
         if (j10 != j11) {
             return;

@@ -16,7 +16,7 @@ public final class zn extends org.telegram.ui.Cells.c6 {
         if (b6Var.isFocused() && b6Var.hasSelection()) {
             Menu menu = actionMode.getMenu();
             if (menu.findItem(16908321) != null) {
-                org.telegram.ui.qn.n8(menu, ((org.telegram.ui.qn) this.F.d.f28173b.f30545f0).h, false, true, true, true);
+                org.telegram.ui.qn.n8(menu, ((org.telegram.ui.qn) this.F.d.f28173b.f30546f0).h, false, true, true, true);
             }
         }
     }

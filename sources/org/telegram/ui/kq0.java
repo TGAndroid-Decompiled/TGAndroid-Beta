@@ -4,10 +4,10 @@ import android.view.View;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class kq0 implements org.telegram.ui.Components.kn0 {
-    public final oq0 f38654a;
+    public final oq0 f38655a;
 
     public kq0(oq0 oq0Var) {
-        this.f38654a = oq0Var;
+        this.f38655a = oq0Var;
     }
 
     @Override
@@ -18,7 +18,7 @@ public final class kq0 implements org.telegram.ui.Components.kn0 {
     @Override
     public final void f(int i10, boolean z10) {
         boolean z11;
-        oq0 oq0Var = this.f38654a;
+        oq0 oq0Var = this.f38655a;
         if (oq0Var.f39964n[0].e == i10) {
             return;
         }
@@ -43,7 +43,7 @@ public final class kq0 implements org.telegram.ui.Components.kn0 {
     @Override
     public final void k0(float f7) {
         int i10 = (f7 > 1.0f ? 1 : (f7 == 1.0f ? 0 : -1));
-        oq0 oq0Var = this.f38654a;
+        oq0 oq0Var = this.f38655a;
         if (i10 != 0 || oq0Var.f39964n[1].getVisibility() == 0) {
             if (oq0Var.v) {
                 mq0 mq0Var = oq0Var.f39964n[0];

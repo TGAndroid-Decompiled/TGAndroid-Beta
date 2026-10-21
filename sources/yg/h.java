@@ -124,7 +124,7 @@ public abstract class h extends ScrollView {
             return;
         }
         v30 v30Var = (v30) view;
-        if (v30Var.f31135y) {
+        if (v30Var.f31136y) {
             this.f50156f = null;
             n9 n9Var = this.d;
             h hVar = (h) n9Var.f9527n;

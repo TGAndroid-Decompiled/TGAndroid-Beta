@@ -73,7 +73,7 @@ public final class fi0 extends w9 implements iw0 {
                         } else {
                             na0Var = radialProgress2.f24309i;
                         }
-                        if (na0Var.f28768w < 1.0f) {
+                        if (na0Var.f28769w < 1.0f) {
                             radialProgress2.o(1.0f, true);
                             j11 = 100;
                         }

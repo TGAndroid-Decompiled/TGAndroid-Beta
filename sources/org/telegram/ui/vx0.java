@@ -24,8 +24,8 @@ public final class vx0 implements Utilities.Callback {
                     org.telegram.ui.Cells.b9 b9Var = (org.telegram.ui.Cells.b9) view;
                     wh.n nVar = b9Var.f22059a;
                     ProfileActivity profileActivity = this.f42409b;
-                    nVar.setLoading(profileActivity.f33658k5);
-                    b9Var.f22060b.setLoading(profileActivity.f33658k5);
+                    nVar.setLoading(profileActivity.f33659k5);
+                    b9Var.f22060b.setLoading(profileActivity.f33659k5);
                     return;
                 }
                 return;
@@ -63,7 +63,7 @@ public final class vx0 implements Utilities.Callback {
                     ((org.telegram.ui.Cells.g6) view2).d();
                 }
                 b01 b01Var = profileActivity2.d;
-                profileActivity2.f33580a.getClass();
+                profileActivity2.f33581a.getClass();
                 RecyclerView.R(view2);
                 b01Var.getClass();
                 profileActivity2.d.getClass();

@@ -4,22 +4,22 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 public final class j4 implements Utilities.Callback2 {
-    public final int f18664a;
-    public final Utilities.Callback f18665b;
+    public final int f18662a;
+    public final Utilities.Callback f18663b;
 
     public j4(int i10, Utilities.Callback callback) {
-        this.f18664a = i10;
-        this.f18665b = callback;
+        this.f18662a = i10;
+        this.f18663b = callback;
     }
 
     @Override
     public final void run(Object obj, Object obj2) {
-        switch (this.f18664a) {
+        switch (this.f18662a) {
             case 0:
-                GiftAuctionController.lambda$requestAuctionUpgrades$5(this.f18665b, (TL_stars.starGiftUpgradeAttributes) obj, (TLRPC.TL_error) obj2);
+                GiftAuctionController.lambda$requestAuctionUpgrades$5(this.f18663b, (TL_stars.starGiftUpgradeAttributes) obj, (TLRPC.TL_error) obj2);
                 return;
             default:
-                MediaDataController.lambda$searchStickerSets$250(this.f18665b, (TLRPC.messages_FoundStickerSets) obj, (TLRPC.TL_error) obj2);
+                MediaDataController.lambda$searchStickerSets$250(this.f18663b, (TLRPC.messages_FoundStickerSets) obj, (TLRPC.TL_error) obj2);
                 return;
         }
     }

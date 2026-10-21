@@ -37,9 +37,9 @@ public final class rx0 implements Runnable {
                     }
                     if (this.e.offset == 0) {
                         profileActivity2.D1.b();
-                        profileActivity2.f33730v2.participants = new TLRPC.TL_chatParticipants();
+                        profileActivity2.f33731v2.participants = new TLRPC.TL_chatParticipants();
                         profileActivity2.getMessagesStorage().putUsersAndChats(tL_channels_channelParticipants.users, tL_channels_channelParticipants.chats, true, true);
-                        profileActivity2.getMessagesStorage().updateChannelUsers(profileActivity2.f33626g1, tL_channels_channelParticipants.participants);
+                        profileActivity2.getMessagesStorage().updateChannelUsers(profileActivity2.f33627g1, tL_channels_channelParticipants.participants);
                     }
                     for (int i10 = 0; i10 < tL_channels_channelParticipants.participants.size(); i10++) {
                         TLRPC.TL_chatChannelParticipant tL_chatChannelParticipant = new TLRPC.TL_chatChannelParticipant();
@@ -50,11 +50,11 @@ public final class rx0 implements Runnable {
                         tL_chatChannelParticipant.user_id = peerId;
                         tL_chatChannelParticipant.date = tL_chatChannelParticipant.channelParticipant.date;
                         if (profileActivity2.D1.h(peerId) < 0) {
-                            TLRPC.ChatFull chatFull = profileActivity2.f33730v2;
+                            TLRPC.ChatFull chatFull = profileActivity2.f33731v2;
                             if (chatFull.participants == null) {
                                 chatFull.participants = new TLRPC.TL_chatParticipants();
                             }
-                            profileActivity2.f33730v2.participants.participants.add(tL_chatChannelParticipant);
+                            profileActivity2.f33731v2.participants.participants.add(tL_chatChannelParticipant);
                             profileActivity2.D1.k(tL_chatChannelParticipant, tL_chatChannelParticipant.user_id);
                         }
                     }

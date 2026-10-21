@@ -4,12 +4,12 @@ import android.graphics.Point;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class o71 implements View.OnLayoutChangeListener {
-    public Boolean f28958a;
-    public boolean f28959b;
-    public final m.g3 f28960c;
+    public Boolean f28959a;
+    public boolean f28960b;
+    public final m.g3 f28961c;
 
     public o71(m.g3 g3Var, View view) {
-        this.f28960c = g3Var;
+        this.f28961c = g3Var;
         o1.k kVar = new o1.k(view, o1.h.f17542n, 0.0f);
         g3Var.f16203c = kVar;
         kVar.f17559u.a(1.0f);
@@ -25,13 +25,13 @@ public final class o71 implements View.OnLayoutChangeListener {
         } else {
             z10 = false;
         }
-        Boolean bool = this.f28958a;
+        Boolean bool = this.f28959a;
         if (bool == null || bool.booleanValue() != z10) {
-            this.f28958a = Boolean.valueOf(z10);
-            this.f28959b = true;
+            this.f28959a = Boolean.valueOf(z10);
+            this.f28960b = true;
         }
-        if (i15 != 0 && i15 != i11 && !this.f28959b) {
-            m.g3 g3Var = this.f28960c;
+        if (i15 != 0 && i15 != i11 && !this.f28960b) {
+            m.g3 g3Var = this.f28961c;
             ((o1.k) g3Var.f16203c).c();
             if (view.getVisibility() != 0) {
                 view.setTranslationY(0.0f);
@@ -42,6 +42,6 @@ public final class o71 implements View.OnLayoutChangeListener {
             ((o1.k) g3Var.f16203c).h();
             return;
         }
-        this.f28959b = false;
+        this.f28960b = false;
     }
 }

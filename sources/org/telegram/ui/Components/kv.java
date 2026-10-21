@@ -121,7 +121,7 @@ public final class kv extends s4.r0 {
                 }
                 return;
             case 14:
-                if (i10 == 1 && (n8Var = ((org.telegram.ui.Wallet.o5) obj).f34649h0) != null) {
+                if (i10 == 1 && (n8Var = ((org.telegram.ui.Wallet.o5) obj).f34650h0) != null) {
                     n8Var.a();
                     return;
                 }
@@ -190,8 +190,8 @@ public final class kv extends s4.r0 {
             case 0:
                 aw awVar = (aw) this.f27953b;
                 qv qvVar = awVar.f24727f;
-                if (qvVar != null && awVar.h.I1 && qvVar.f29731w) {
-                    qvVar.f29731w = false;
+                if (qvVar != null && awVar.h.I1 && qvVar.f29732w) {
+                    qvVar.f29732w = false;
                     qvVar.invalidate();
                     return;
                 }
@@ -327,7 +327,7 @@ public final class kv extends s4.r0 {
                 return;
             case 14:
                 org.telegram.ui.Wallet.o5 o5Var = (org.telegram.ui.Wallet.o5) this.f27953b;
-                if (i11 != 0 && recyclerView.getScrollState() == 1 && (k5Var = o5Var.f34657p0) != null && k5Var.f34426f) {
+                if (i11 != 0 && recyclerView.getScrollState() == 1 && (k5Var = o5Var.f34658p0) != null && k5Var.f34427f) {
                     k5Var.d = true;
                 }
                 o5Var.N0();
@@ -338,14 +338,14 @@ public final class kv extends s4.r0 {
                 return;
             case 16:
                 org.telegram.ui.Wallet.r9 r9Var = (org.telegram.ui.Wallet.r9) this.f27953b;
-                if (r9Var.f32355a.I1) {
+                if (r9Var.f32356a.I1) {
                     AndroidUtilities.hideKeyboard(r9Var.M);
                     return;
                 }
                 return;
             case 17:
                 org.telegram.ui.web.p pVar = (org.telegram.ui.web.p) this.f27953b;
-                if (!pVar.f32355a.canScrollVertically(1)) {
+                if (!pVar.f32356a.canScrollVertically(1)) {
                     if (TextUtils.isEmpty(pVar.f42748s)) {
                         pVar.d.d();
                     } else {
@@ -355,14 +355,14 @@ public final class kv extends s4.r0 {
                         }
                     }
                 }
-                if (pVar.f32355a.I1) {
+                if (pVar.f32356a.I1) {
                     AndroidUtilities.hideKeyboard(pVar.fragmentView);
                     return;
                 }
                 return;
             case 18:
                 org.telegram.ui.web.f1 f1Var = (org.telegram.ui.web.f1) this.f27953b;
-                if (f1Var.f32355a.I1) {
+                if (f1Var.f32356a.I1) {
                     AndroidUtilities.hideKeyboard(f1Var.fragmentView);
                     return;
                 }

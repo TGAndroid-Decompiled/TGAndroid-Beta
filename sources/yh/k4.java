@@ -83,7 +83,7 @@ public final class k4 extends bb implements NotificationCenter.NotificationCente
     public final im0 x(jm0 jm0Var) {
         u61 u61Var = new u61(jm0Var, getContext(), this.currentAccount, 0, false, new t3(this, 1), this.resourcesProvider);
         this.f50351e0 = u61Var;
-        u61Var.f30860r = false;
+        u61Var.f30861r = false;
         return u61Var;
     }
 }

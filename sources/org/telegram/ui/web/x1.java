@@ -249,7 +249,7 @@ public final class x1 extends x61 implements NotificationCenter.NotificationCent
             boolean z11 = !getMessagesController().isWebBrowserUseCustomTabs();
             getMessagesController().toggleWebBrowserUseCustomTabs(z11);
             ((v8) view).setChecked(z11);
-            this.f32355a.W2.N(true);
+            this.f32356a.W2.N(true);
         } else {
             View view2 = null;
             if (i13 == 1) {
@@ -263,13 +263,13 @@ public final class x1 extends x61 implements NotificationCenter.NotificationCent
                     i12 = h6.f21007e6;
                 }
                 v8Var.b(h6.x0(null, i12, false), isWebBrowserInAppEnabled);
-                this.f32355a.W2.N(true);
+                this.f32356a.W2.N(true);
             } else if (i13 == 10) {
                 getMessagesController().toggleWebBrowserUseCustomTabs(true);
-                this.f32355a.W2.N(true);
+                this.f32356a.W2.N(true);
             } else if (i13 == 11) {
                 getMessagesController().toggleWebBrowserUseCustomTabs(false);
-                this.f32355a.W2.N(true);
+                this.f32356a.W2.N(true);
             } else {
                 String str = "";
                 if (i13 == 2) {
@@ -362,12 +362,12 @@ public final class x1 extends x61 implements NotificationCenter.NotificationCent
                                         FileLog.e(e11);
                                     }
                                     x1Var3.f42856n = 0L;
-                                    x1Var3.f32355a.W2.N(true);
+                                    x1Var3.f32356a.W2.N(true);
                                     return;
                                 default:
                                     x1 x1Var4 = this.f42827b;
                                     x1Var4.getMessagesController().clearAllWebBrowserExceptions();
-                                    x1Var4.f32355a.W2.N(true);
+                                    x1Var4.f32356a.W2.N(true);
                                     return;
                             }
                         }
@@ -465,12 +465,12 @@ public final class x1 extends x61 implements NotificationCenter.NotificationCent
                                         FileLog.e(e11);
                                     }
                                     x1Var3.f42856n = 0L;
-                                    x1Var3.f32355a.W2.N(true);
+                                    x1Var3.f32356a.W2.N(true);
                                     return;
                                 default:
                                     x1 x1Var4 = this.f42827b;
                                     x1Var4.getMessagesController().clearAllWebBrowserExceptions();
-                                    x1Var4.f32355a.W2.N(true);
+                                    x1Var4.f32356a.W2.N(true);
                                     return;
                             }
                         }
@@ -573,12 +573,12 @@ public final class x1 extends x61 implements NotificationCenter.NotificationCent
                                         FileLog.e(e11);
                                     }
                                     x1Var3.f42856n = 0L;
-                                    x1Var3.f32355a.W2.N(true);
+                                    x1Var3.f32356a.W2.N(true);
                                     return;
                                 default:
                                     x1 x1Var4 = this.f42827b;
                                     x1Var4.getMessagesController().clearAllWebBrowserExceptions();
-                                    x1Var4.f32355a.W2.N(true);
+                                    x1Var4.f32356a.W2.N(true);
                                     return;
                             }
                         }
@@ -677,12 +677,12 @@ public final class x1 extends x61 implements NotificationCenter.NotificationCent
                                         FileLog.e(e11);
                                     }
                                     x1Var3.f42856n = 0L;
-                                    x1Var3.f32355a.W2.N(true);
+                                    x1Var3.f32356a.W2.N(true);
                                     return;
                                 default:
                                     x1 x1Var4 = this.f42827b;
                                     x1Var4.getMessagesController().clearAllWebBrowserExceptions();
-                                    x1Var4.f32355a.W2.N(true);
+                                    x1Var4.f32356a.W2.N(true);
                                     return;
                             }
                         }
@@ -811,7 +811,7 @@ public final class x1 extends x61 implements NotificationCenter.NotificationCent
         ArrayList a2 = c1.a(new ig.l0(this, 11));
         if (a2 != null) {
             this.f42856n = a2.size();
-            w61 w61Var = this.f32355a;
+            w61 w61Var = this.f32356a;
             if (w61Var != null && (u61Var = w61Var.W2) != null && w61Var.G) {
                 u61Var.N(true);
             }
@@ -828,18 +828,18 @@ public final class x1 extends x61 implements NotificationCenter.NotificationCent
         mutate.setColorFilter(new PorterDuffColorFilter(themedColor, mode));
         mutate2.setColorFilter(new PorterDuffColorFilter(getThemedColor(h6.f21118k7), mode));
         p2 p2Var = new p2(mutate, mutate2, 4);
-        p2Var.f33024x = AndroidUtilities.dp(2.0f);
+        p2Var.f33025x = AndroidUtilities.dp(2.0f);
         this.d = p2Var;
         this.fragmentView = super.createView(context);
-        this.f32355a.p1();
-        this.actionBar.setAdaptiveBackground(this.f32355a);
+        this.f32356a.p1();
+        this.actionBar.setAdaptiveBackground(this.f32356a);
         return this.fragmentView;
     }
 
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         w61 w61Var;
-        if (i10 == NotificationCenter.webBrowserSettingsUpdate && (w61Var = this.f32355a) != null) {
+        if (i10 == NotificationCenter.webBrowserSettingsUpdate && (w61Var = this.f32356a) != null) {
             w61Var.W2.N(true);
         }
     }
@@ -865,8 +865,8 @@ public final class x1 extends x61 implements NotificationCenter.NotificationCent
     @Override
     public final void onInsets(int i10, int i11, int i12, int i13) {
         super.onInsets(i10, i11, i12, i13);
-        w61 w61Var = this.f32355a;
+        w61 w61Var = this.f32356a;
         w61Var.setPadding(0, w61Var.getPaddingTop(), 0, i13);
-        this.f32355a.setClipToPadding(false);
+        this.f32356a.setClipToPadding(false);
     }
 }

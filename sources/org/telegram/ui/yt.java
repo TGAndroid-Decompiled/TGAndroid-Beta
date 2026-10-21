@@ -38,7 +38,7 @@ public final class yt implements DialogInterface.OnClickListener {
             this.f43547b.edit().putInt("VoipDataSaving", i11).commit();
             dataSettingsActivity.V = true;
         }
-        zt ztVar = dataSettingsActivity.f33120a;
+        zt ztVar = dataSettingsActivity.f33121a;
         if (ztVar != null) {
             ztVar.m(this.f43548c);
         }

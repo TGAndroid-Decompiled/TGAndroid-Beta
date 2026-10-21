@@ -84,17 +84,17 @@ public final class pb implements org.telegram.ui.Cells.t0 {
         MessageObject messageObject = w0Var.getMessageObject();
         if (messageObject.type == 22) {
             bd bdVar = new bd(a());
-            bdVar.f35587l0 = vbVar;
+            bdVar.f35588l0 = vbVar;
             vbVar.presentFragment(bdVar);
             return;
         }
         PhotoViewer.u1().M2(null, vbVar, null);
         TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(messageObject.photoThumbs, 640);
         if (closestPhotoSizeWithSize != null) {
-            PhotoViewer.u1().g2(closestPhotoSizeWithSize.location, ImageLocation.getForPhoto(closestPhotoSizeWithSize, messageObject.messageOwner.action.photo), vbVar.B0);
+            PhotoViewer.u1().f2(closestPhotoSizeWithSize.location, ImageLocation.getForPhoto(closestPhotoSizeWithSize, messageObject.messageOwner.action.photo), vbVar.B0);
             return;
         }
-        PhotoViewer.u1().f2(messageObject, null, 0L, 0L, 0L, vbVar.B0);
+        PhotoViewer.u1().h2(messageObject, null, 0L, 0L, 0L, vbVar.B0);
     }
 
     @Override

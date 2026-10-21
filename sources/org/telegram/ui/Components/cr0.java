@@ -143,7 +143,7 @@ public final class cr0 extends im0 {
                         f90Var.a(str);
                         f90Var.f26154i = 1.8f;
                         zq zqVar = new zq(aVar, f90Var, 0, 0);
-                        zqVar.f33023w = true;
+                        zqVar.f33024w = true;
                         w9Var.setImageDrawable(zqVar);
                     }
                     if (chat != null && chat.forum && !z10) {

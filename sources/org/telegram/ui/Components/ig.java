@@ -64,12 +64,12 @@ public final class ig implements Runnable {
                         }
                         xg xgVar = chatActivityEnterView.Y0;
                         if (xgVar != null) {
-                            xgVar.f32408a = false;
+                            xgVar.f32409a = false;
                             xgVar.d = 0L;
                             xgVar.e = 0L;
                             xgVar.h = 0L;
-                            xgVar.f32412n = 0L;
-                            xgVar.f32409b = false;
+                            xgVar.f32413n = 0L;
+                            xgVar.f32410b = false;
                             return;
                         }
                         return;

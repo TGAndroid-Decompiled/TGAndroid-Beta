@@ -31,7 +31,7 @@ public final class hj0 {
         this.d = false;
         p6Var.t(LocaleController.getString(R.string.QuoteCollapse), false, true);
         String string = LocaleController.getString(R.string.QuoteExpand);
-        TextPaint textPaint = p6Var.f29223a;
+        TextPaint textPaint = p6Var.f29224a;
         this.f26904c = (int) Math.ceil(Math.max(textPaint.measureText(string), textPaint.measureText(LocaleController.getString(R.string.QuoteCollapse))));
     }
 
@@ -67,13 +67,13 @@ public final class hj0 {
             float f12 = dp2 / 2.0f;
             nj0 nj0Var = this.e;
             nj0Var.setBounds((int) ((rectF.right - AndroidUtilities.dp(3.33f)) - dp2), (int) ((rectF.centerY() - f12) + AndroidUtilities.dp(0.33f)), (int) (rectF.right - AndroidUtilities.dp(3.33f)), (int) (rectF.centerY() + f12 + AndroidUtilities.dp(0.33f)));
-            Paint paint2 = nj0Var.f28811b;
+            Paint paint2 = nj0Var.f28812b;
             paint2.setColor(i10);
             paint2.setAlpha(nj0Var.d);
             boolean z13 = !z10;
             if (nj0Var.e != z13) {
                 nj0Var.e = z13;
-                nj0Var.f28810a.invalidate();
+                nj0Var.f28811a.invalidate();
             }
             nj0Var.draw(canvas);
             canvas.restore();

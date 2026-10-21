@@ -90,7 +90,7 @@ public final class dd extends org.telegram.ui.Components.bb implements Notificat
                     org.telegram.ui.Components.xc.a0(U).M(LocaleController.getString(R.string.StarsAcquired), AndroidUtilities.replaceTags(LocaleController.formatPluralString("StarsAcquiredInfo", (int) h61Var.B, new Object[0])), R.raw.stars_topup).j();
                     LaunchActivity launchActivity = LaunchActivity.H1;
                     if (launchActivity != null) {
-                        launchActivity.f33199x0.c(true);
+                        launchActivity.f33200x0.c(true);
                     }
                 } else if (str != null) {
                     i2.e.s(R.string.UnknownErrorCode, new Object[]{str}, org.telegram.ui.Components.xc.a0(U), R.raw.error, 36);
@@ -181,7 +181,7 @@ public final class dd extends org.telegram.ui.Components.bb implements Notificat
     public final im0 x(jm0 jm0Var) {
         u61 u61Var = new u61(this.d, getContext(), this.currentAccount, 0, true, new q(this, 9), this.resourcesProvider);
         this.Y = u61Var;
-        u61Var.f30860r = false;
+        u61Var.f30861r = false;
         return u61Var;
     }
 }

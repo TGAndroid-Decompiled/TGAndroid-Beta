@@ -54,7 +54,7 @@ public final class h9 extends c9 {
             this.L.setImage(ImageLocation.getForDocument(tL_availableReaction.center_icon), "40_40_lastreactframe", null, "webp", tL_availableReaction, 1);
         }
         org.telegram.ui.Components.p6 p6Var = this.N;
-        p6Var.f29225b = 17;
+        p6Var.f29226b = 17;
         p6Var.x(AndroidUtilities.getTypeface("fonts/rcondensedbold.ttf"));
         this.N.w(AndroidUtilities.dp(18.0f));
         this.N.M = AndroidUtilities.displaySize.x;

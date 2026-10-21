@@ -43,7 +43,7 @@ public final class i implements View.OnLongClickListener {
                     return false;
                 }
                 org.telegram.ui.mi0 mi0Var = new org.telegram.ui.mi0(chatActivityEnterView.getContext(), d6Var);
-                mi0Var.f39265h0 = true;
+                mi0Var.f39265g0 = true;
                 ArrayList arrayList = new ArrayList();
                 if (groupedMessages != null) {
                     for (int i11 = 0; i11 < groupedMessages.messages.size(); i11++) {
@@ -58,15 +58,15 @@ public final class i implements View.OnLongClickListener {
                 } else {
                     arrayList.add(chatActivityEnterView.e0(messageObject, true));
                 }
-                mi0Var.q(arrayList);
+                mi0Var.p(arrayList);
                 i80 F = i80.F(chatActivityEnterView.f23982m1, d6Var, chatActivityEnterView.F1);
                 nc0 nc0Var = new nc0(chatActivityEnterView.getContext(), R.raw.position_below, LocaleController.getString(R.string.CaptionAbove), R.raw.position_above, LocaleController.getString(R.string.CaptionBelow), chatActivityEnterView.W3);
                 nc0Var.a(!chatActivityEnterView.R4, false);
                 nc0Var.setOnClickListener(new ci.c4(chatActivityEnterView, arrayList, nc0Var, mi0Var, 10));
                 F.q(nc0Var);
                 F.Y();
-                mi0Var.p(F);
-                mi0Var.r(chatActivityEnterView.F1, false, new ci.c4(chatActivityEnterView, groupedMessages, messageObject, mi0Var, 11));
+                mi0Var.o(F);
+                mi0Var.q(chatActivityEnterView.F1, false, new ci.c4(chatActivityEnterView, groupedMessages, messageObject, mi0Var, 11));
                 mi0Var.show();
                 return true;
         }

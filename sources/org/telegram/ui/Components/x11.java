@@ -8,17 +8,17 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.ui.Components.ThemeEditorView;
 public final class x11 implements k91 {
-    public final ThemeEditorView f32306a;
+    public final ThemeEditorView f32307a;
 
     public x11(ThemeEditorView themeEditorView) {
-        this.f32306a = themeEditorView;
+        this.f32307a = themeEditorView;
     }
 
     @Override
     public final void a() {
         int i10 = 0;
         while (true) {
-            ThemeEditorView themeEditorView = this.f32306a;
+            ThemeEditorView themeEditorView = this.f32307a;
             if (i10 < themeEditorView.f24389c.size()) {
                 org.telegram.ui.ActionBar.j6 j6Var = (org.telegram.ui.ActionBar.j6) themeEditorView.f24389c.get(i10);
                 int x02 = org.telegram.ui.ActionBar.h6.x0(j6Var.f21462j, j6Var.f21459f, false);
@@ -38,7 +38,7 @@ public final class x11 implements k91 {
 
     @Override
     public final void b(File file, Bitmap bitmap, boolean z10) {
-        org.telegram.ui.ActionBar.g6 g6Var = this.f32306a.f24396m;
+        org.telegram.ui.ActionBar.g6 g6Var = this.f32307a.f24396m;
         org.telegram.ui.ActionBar.h6.ul.delete(org.telegram.ui.ActionBar.h6.Nd);
         org.telegram.ui.ActionBar.h6.ul.delete(org.telegram.ui.ActionBar.h6.Od);
         org.telegram.ui.ActionBar.h6.ul.delete(org.telegram.ui.ActionBar.h6.Pd);

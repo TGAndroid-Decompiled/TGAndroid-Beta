@@ -196,7 +196,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
 
             @Override
             public void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                AndroidUtilities.runOnUIThread(new h3(10, this, this.val$path));
+                AndroidUtilities.runOnUIThread(new i3(10, this, this.val$path));
             }
         }
 
@@ -1591,7 +1591,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
     }
 
     public void lambda$performSendDelayedMessage$53(DelayedMessage delayedMessage, TLObject tLObject, TLRPC.TL_error tL_error) {
-        AndroidUtilities.runOnUIThread(new l8(this, tLObject, delayedMessage, 25));
+        AndroidUtilities.runOnUIThread(new l8(this, tLObject, delayedMessage, 26));
     }
 
     public void lambda$performSendDelayedMessage$54(TLObject tLObject, TLRPC.InputMedia inputMedia, DelayedMessage delayedMessage) {
@@ -3512,6 +3512,10 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
         prepareSendingDocuments(accountInstance, arrayList, arrayList3, arrayList2, null, null, null, j10, messageObject, messageObject2, storyItem, gnVar, null, z10, i10, 0, null, sendMessageChatArguments, 0L, false, j11, j12, messageSuggestionParams, hVar, arrayList4, arrayList5, false);
     }
 
+    public static void lambda$prepareSendingPoll$137(Runnable runnable) {
+        AndroidUtilities.runOnUIThread(runnable);
+    }
+
     public static void lambda$prepareSendingPoll$138(ArrayList arrayList, int[] iArr, AccountInstance accountInstance, long j10, MessageObject messageObject, MessageObject messageObject2, TL_stories.StoryItem storyItem, gn gnVar, boolean z10, int i10, SendMessageChatArguments sendMessageChatArguments, long j11, long j12, MessageSuggestionParams messageSuggestionParams, rh.h hVar, Runnable runnable) {
         boolean z11;
         if (!arrayList.isEmpty()) {
@@ -3523,7 +3527,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
                 z11 = false;
             }
             prepareSendingMedia(accountInstance, arrayList, j10, messageObject, messageObject2, storyItem, gnVar, false, true, null, null, z10, i10, 0, 0, false, null, sendMessageChatArguments, 0L, false, j11, j12, messageSuggestionParams, hVar, z11);
-            mediaSendQueue.postRunnable(new i3(3, runnable));
+            mediaSendQueue.postRunnable(new j3(3, runnable));
             return;
         }
         runnable.run();
@@ -3624,7 +3628,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
         TwoStepVerificationActivity twoStepVerificationActivity = new TwoStepVerificationActivity();
         ek ekVar = new ek(messageObject, this, keyboardButtonProto, qnVar, twoStepVerificationActivity, z10);
         twoStepVerificationActivity.Z = 0;
-        twoStepVerificationActivity.f33938b0 = ekVar;
+        twoStepVerificationActivity.f33939b0 = ekVar;
         qnVar.presentFragment(twoStepVerificationActivity);
     }
 
@@ -4319,7 +4323,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
             getMessagesController().lambda$processUpdates$377((TLRPC.Updates) tLObject, false);
             this.voteSendTime.k(Long.valueOf(SystemClock.elapsedRealtime()), messageObject.getPollId());
         }
-        AndroidUtilities.runOnUIThread(new l8((BaseController) this, str, (Object) runnable, 24));
+        AndroidUtilities.runOnUIThread(new l8((BaseController) this, str, (Object) runnable, 25));
     }
 
     public void lambda$toggleTodo$36(int i10, boolean z10, Runnable runnable) {
@@ -5527,10 +5531,10 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
             putToSendingMessages(arrayList.get(i10).messageOwner, z10);
         }
         if (!ai.ga.y(this.currentAccount, false).c(tLObject, arrayList, new Runnable(this) {
-            public final SendMessagesHelper f18395b;
+            public final SendMessagesHelper f18392b;
 
             {
-                this.f18395b = this;
+                this.f18392b = this;
             }
 
             @Override
@@ -5539,20 +5543,20 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
                     case 0:
                         SendMessagesHelper.DelayedMessage delayedMessage2 = delayedMessage;
                         boolean z11 = z10;
-                        this.f18395b.lambda$performSendMessageRequestMulti$65(tLObject, arrayList, arrayList2, arrayList3, delayedMessage2, z11);
+                        this.f18392b.lambda$performSendMessageRequestMulti$65(tLObject, arrayList, arrayList2, arrayList3, delayedMessage2, z11);
                         return;
                     default:
                         SendMessagesHelper.DelayedMessage delayedMessage3 = delayedMessage;
                         boolean z12 = z10;
-                        this.f18395b.lambda$performSendMessageRequestMulti$66(tLObject, arrayList, arrayList2, arrayList3, delayedMessage3, z12);
+                        this.f18392b.lambda$performSendMessageRequestMulti$66(tLObject, arrayList, arrayList2, arrayList3, delayedMessage3, z12);
                         return;
                 }
             }
         }) || !BotForumHelper.getInstance(this.currentAccount).beforeSendingFinalRequest(tLObject, arrayList, new Runnable(this) {
-            public final SendMessagesHelper f18395b;
+            public final SendMessagesHelper f18392b;
 
             {
-                this.f18395b = this;
+                this.f18392b = this;
             }
 
             @Override
@@ -5561,12 +5565,12 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
                     case 0:
                         SendMessagesHelper.DelayedMessage delayedMessage2 = delayedMessage;
                         boolean z11 = z10;
-                        this.f18395b.lambda$performSendMessageRequestMulti$65(tLObject, arrayList, arrayList2, arrayList3, delayedMessage2, z11);
+                        this.f18392b.lambda$performSendMessageRequestMulti$65(tLObject, arrayList, arrayList2, arrayList3, delayedMessage2, z11);
                         return;
                     default:
                         SendMessagesHelper.DelayedMessage delayedMessage3 = delayedMessage;
                         boolean z12 = z10;
-                        this.f18395b.lambda$performSendMessageRequestMulti$66(tLObject, arrayList, arrayList2, arrayList3, delayedMessage3, z12);
+                        this.f18392b.lambda$performSendMessageRequestMulti$66(tLObject, arrayList, arrayList2, arrayList3, delayedMessage3, z12);
                         return;
                 }
             }
@@ -7571,34 +7575,34 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
             tL_inputReplyToMessage.flags |= 1;
             tL_inputReplyToMessage.top_msg_id = i11;
         }
-        if (gnVar != null && gnVar.h && (pollAnswer = gnVar.f37365l) != null) {
+        if (gnVar != null && gnVar.h && (pollAnswer = gnVar.f37366l) != null) {
             tL_inputReplyToMessage.poll_option = pollAnswer.option;
-        } else if (gnVar != null && gnVar.f37361g && (todoItem = gnVar.f37364k) != null) {
+        } else if (gnVar != null && gnVar.f37362g && (todoItem = gnVar.f37365k) != null) {
             tL_inputReplyToMessage.flags |= 64;
             tL_inputReplyToMessage.todo_item_id = todoItem.f20421id;
-        } else if (gnVar != null && (z10 = gnVar.f37366m)) {
-            ArrayList arrayList = gnVar.f37367n;
+        } else if (gnVar != null && (z10 = gnVar.f37367m)) {
+            ArrayList arrayList = gnVar.f37368n;
             if (arrayList != null && !arrayList.isEmpty()) {
-                tL_inputReplyToMessage.quote_rich = new ArrayList<>(gnVar.f37367n);
+                tL_inputReplyToMessage.quote_rich = new ArrayList<>(gnVar.f37368n);
                 tL_inputReplyToMessage.flags |= 16;
-                tL_inputReplyToMessage.quote_offset = z10 ? gnVar.f37368o : gnVar.f37358b;
+                tL_inputReplyToMessage.quote_offset = z10 ? gnVar.f37369o : gnVar.f37359b;
             }
-        } else if (gnVar != null && !gnVar.f37361g && !gnVar.h) {
-            String str = gnVar.f37362i;
+        } else if (gnVar != null && !gnVar.f37362g && !gnVar.h) {
+            String str = gnVar.f37363i;
             tL_inputReplyToMessage.quote_text = str;
             if (!TextUtils.isEmpty(str)) {
                 tL_inputReplyToMessage.flags |= 4;
-                ArrayList<TLRPC.MessageEntity> arrayList2 = gnVar.f37363j;
+                ArrayList<TLRPC.MessageEntity> arrayList2 = gnVar.f37364j;
                 tL_inputReplyToMessage.quote_entities = arrayList2;
                 if (arrayList2 != null && !arrayList2.isEmpty()) {
                     tL_inputReplyToMessage.quote_entities = new ArrayList<>(tL_inputReplyToMessage.quote_entities);
                     tL_inputReplyToMessage.flags |= 8;
                 }
                 tL_inputReplyToMessage.flags |= 16;
-                tL_inputReplyToMessage.quote_offset = gnVar.f37358b;
+                tL_inputReplyToMessage.quote_offset = gnVar.f37359b;
             }
         }
-        if (gnVar != null && (messageObject = gnVar.f37357a) != null) {
+        if (gnVar != null && (messageObject = gnVar.f37358a) != null) {
             TLRPC.InputPeer inputPeer2 = getMessagesController().getInputPeer(messageObject.getDialogId());
             if (inputPeer2 != null && !MessageObject.peersEqual(inputPeer2, inputPeer)) {
                 tL_inputReplyToMessage.flags |= 2;

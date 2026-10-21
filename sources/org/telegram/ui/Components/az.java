@@ -67,9 +67,9 @@ public final class az extends FrameLayout {
     public final void onMeasure(int i10, int i11) {
         int dp;
         tz tzVar = this.e;
-        int measuredHeight = tzVar.f30737h0.getMeasuredHeight();
+        int measuredHeight = tzVar.f30738h0.getMeasuredHeight();
         if (!this.d) {
-            dp = (int) (org.telegram.messenger.mk.A(8.0f, measuredHeight - tzVar.f30718b1, 3) * 1.7f);
+            dp = (int) (org.telegram.messenger.mk.A(8.0f, measuredHeight - tzVar.f30719b1, 3) * 1.7f);
         } else {
             dp = measuredHeight - AndroidUtilities.dp(80.0f);
         }

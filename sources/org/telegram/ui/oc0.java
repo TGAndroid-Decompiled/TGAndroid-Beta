@@ -16,11 +16,11 @@ public final class oc0 implements Runnable {
     public final void run() {
         switch (this.f39833a) {
             case 0:
-                this.f39834b.f36371c0 = false;
+                this.f39834b.f36372c0 = false;
                 return;
             case 1:
                 dg0 dg0Var = this.f39834b;
-                dg0Var.f36388r0 = false;
+                dg0Var.f36389r0 = false;
                 dg0Var.x1(true, true);
                 return;
             default:

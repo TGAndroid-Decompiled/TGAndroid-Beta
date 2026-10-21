@@ -63,16 +63,16 @@ public final class v implements Utilities.Callback2 {
                         Boolean bool = tL_requestPeerTypeUser.bot;
                         Boolean bool2 = tL_requestPeerTypeUser.premium;
                         c0 c0Var = new c0(a1Var2, zArr, str2, tL_buttonTypeRequestPeer, z7Var2);
-                        bj0 bj0Var2 = bj0.f35645u0;
+                        bj0 bj0Var2 = bj0.f35646u0;
                         n2 R = LaunchActivity.R();
                         if (R == null) {
                             bj0Var = null;
                         } else {
-                            bj0Var = bj0.f35645u0;
+                            bj0Var = bj0.f35646u0;
                             if (bj0Var == null) {
                                 bj0 bj0Var3 = new bj0(R, i10, bool, bool2, c0Var);
                                 bj0Var3.show();
-                                bj0.f35645u0 = bj0Var3;
+                                bj0.f35646u0 = bj0Var3;
                                 bj0Var = bj0Var3;
                             }
                         }

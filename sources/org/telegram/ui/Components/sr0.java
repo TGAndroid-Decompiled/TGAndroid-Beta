@@ -4,26 +4,26 @@ import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.BirthdayController;
 public final class sr0 implements View.OnClickListener {
-    public final int f30345a;
-    public final boolean f30346b;
-    public final int f30347c;
+    public final int f30346a;
+    public final boolean f30347b;
+    public final int f30348c;
     public final FrameLayout d;
 
     public sr0(FrameLayout frameLayout, boolean z10, int i10, int i11) {
-        this.f30345a = i11;
+        this.f30346a = i11;
         this.d = frameLayout;
-        this.f30346b = z10;
-        this.f30347c = i10;
+        this.f30347b = z10;
+        this.f30348c = i10;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f30345a) {
+        switch (this.f30346a) {
             case 0:
                 uv0 uv0Var = (uv0) this.d;
-                org.telegram.ui.ActionBar.n2 n2Var = uv0Var.f31070v1;
-                if (this.f30346b) {
-                    uv0Var.Q0(n2Var, uv0Var.f31045j1, this.f30347c);
+                org.telegram.ui.ActionBar.n2 n2Var = uv0Var.f31071v1;
+                if (this.f30347b) {
+                    uv0Var.Q0(n2Var, uv0Var.f31046j1, this.f30348c);
                     return;
                 }
                 n2Var.getMessagesController().getMainSettings().edit().putBoolean("story_keep", true).apply();
@@ -35,8 +35,8 @@ public final class sr0 implements View.OnClickListener {
                     ks0Var.a();
                     return;
                 }
-                boolean z10 = this.f30346b;
-                int i10 = this.f30347c;
+                boolean z10 = this.f30347b;
+                int i10 = this.f30348c;
                 if (z10) {
                     yh.o1 o1Var = new yh.o1(ks0Var.getContext(), i10, ks0Var.f50465c, null, null);
                     o1Var.W(BirthdayController.getInstance(i10).isToday(ks0Var.f50465c));

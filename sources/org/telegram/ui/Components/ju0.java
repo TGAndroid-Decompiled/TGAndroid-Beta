@@ -49,12 +49,12 @@ public final class ju0 implements hg.z1, org.telegram.ui.Cells.z4 {
                 int i12 = 0;
                 while (true) {
                     uv0 uv0Var = lu0Var.f28281s;
-                    nu0[] nu0VarArr = uv0Var.f31046k0;
+                    nu0[] nu0VarArr = uv0Var.f31047k0;
                     if (i12 < nu0VarArr.length) {
                         nu0 nu0Var = nu0VarArr[i12];
                         if (nu0Var.F == 7) {
                             if (lu0Var.h == 0) {
-                                nu0Var.f28882w.e(false, true);
+                                nu0Var.f28883w.e(false, true);
                             } else {
                                 uv0Var.z(nu0Var.h, 0, null);
                             }

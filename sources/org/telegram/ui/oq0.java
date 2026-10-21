@@ -114,19 +114,19 @@ public final class oq0 extends org.telegram.ui.ActionBar.n2 {
         lq0Var.setWillNotDraw(false);
         jq0 jq0Var = this.f39960a;
         jq0Var.setParentFragment(this);
-        org.telegram.ui.Components.qu quVar = jq0Var.f38306d0;
+        org.telegram.ui.Components.qu quVar = jq0Var.f38307d0;
         this.d = quVar;
         quVar.setSizeNotifierLayout(lq0Var);
         for (int i13 = 0; i13 < 4; i13++) {
             if (i13 != 0) {
                 if (i13 != 1) {
                     if (i13 != 2) {
-                        view = jq0Var.f38305c0;
+                        view = jq0Var.f38306c0;
                     } else {
-                        view = jq0Var.f38303b0;
+                        view = jq0Var.f38304b0;
                     }
                 } else {
-                    view = jq0Var.f38301a0;
+                    view = jq0Var.f38302a0;
                 }
             } else {
                 view = jq0Var.Z;
@@ -134,17 +134,17 @@ public final class oq0 extends org.telegram.ui.ActionBar.n2 {
             ((ViewGroup) view.getParent()).removeView(view);
         }
         FrameLayout frameLayout = jq0Var.Z;
-        m0 m0Var = jq0Var.f38301a0;
-        v10 v10Var = jq0Var.f38303b0;
-        View view2 = jq0Var.f38305c0;
-        org.telegram.ui.Components.qu quVar2 = jq0Var.f38306d0;
+        m0 m0Var = jq0Var.f38302a0;
+        v10 v10Var = jq0Var.f38304b0;
+        View view2 = jq0Var.f38306c0;
+        org.telegram.ui.Components.qu quVar2 = jq0Var.f38307d0;
         jq0 jq0Var2 = this.f39961b;
         jq0Var2.Z = frameLayout;
-        jq0Var2.f38301a0 = m0Var;
-        jq0Var2.f38306d0 = quVar2;
-        jq0Var2.f38303b0 = v10Var;
-        jq0Var2.f38305c0 = view2;
-        jq0Var2.f38320q0 = false;
+        jq0Var2.f38302a0 = m0Var;
+        jq0Var2.f38307d0 = quVar2;
+        jq0Var2.f38304b0 = v10Var;
+        jq0Var2.f38306c0 = view2;
+        jq0Var2.f38321q0 = false;
         jq0Var2.setParentFragment(this);
         int i14 = 0;
         while (true) {
@@ -184,8 +184,8 @@ public final class oq0 extends org.telegram.ui.ActionBar.n2 {
         float f11 = f7;
         lq0Var.addView(this.actionBar, w7.z5.c(-2.0f, -1));
         lq0Var.addView(jq0Var.Z, w7.z5.e(-1, 48, 83));
-        lq0Var.addView(jq0Var.f38301a0, w7.z5.d(60, 60.0f, 85, 0.0f, 0.0f, 12.0f, 10.0f));
-        lq0Var.addView(jq0Var.f38303b0, w7.z5.d(42, 24.0f, 85, 0.0f, 0.0f, -2.0f, 9.0f));
+        lq0Var.addView(jq0Var.f38302a0, w7.z5.d(60, 60.0f, 85, 0.0f, 0.0f, 12.0f, 10.0f));
+        lq0Var.addView(jq0Var.f38304b0, w7.z5.d(42, 24.0f, 85, 0.0f, 0.0f, -2.0f, 9.0f));
         ScrollSlidingTextTabStrip scrollSlidingTextTabStrip3 = this.h;
         if (scrollSlidingTextTabStrip3 != null) {
             scrollSlidingTextTabStrip3.a(0, LocaleController.getString(R.string.ImagesTab2), null);

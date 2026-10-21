@@ -12,12 +12,12 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.R;
 public final class cu0 extends org.telegram.ui.Components.im0 {
-    public final Context f36055c;
+    public final Context f36056c;
     public final PhotoViewer d;
 
     public cu0(Context context, PhotoViewer photoViewer) {
         this.d = photoViewer;
-        this.f36055c = context;
+        this.f36056c = context;
     }
 
     @Override
@@ -66,7 +66,7 @@ public final class cu0 extends org.telegram.ui.Components.im0 {
             y5Var.setTag(photoEntry);
             o5Var.setVisibility(4);
             String str = photoEntry.thumbPath;
-            Context context = this.f36055c;
+            Context context = this.f36056c;
             if (str != null) {
                 w9Var.f(str, null, context.getResources().getDrawable(R.drawable.nophotos));
             } else if (photoEntry.path != null) {
@@ -81,21 +81,21 @@ public final class cu0 extends org.telegram.ui.Components.im0 {
             } else {
                 w9Var.setImageResource(R.drawable.nophotos);
             }
-            xpVar.f32458a.f(-1, true, false);
+            xpVar.f32459a.f(-1, true, false);
             xpVar.setVisibility(0);
         } else if (obj instanceof MediaController.SearchImage) {
             MediaController.SearchImage searchImage = (MediaController.SearchImage) obj;
             y5Var.setTag(searchImage);
             y5Var.setImage(searchImage);
             o5Var.setVisibility(4);
-            xpVar.f32458a.f(-1, true, false);
+            xpVar.f32459a.f(-1, true, false);
             xpVar.setVisibility(0);
         }
     }
 
     @Override
     public final s4.b1 x(ViewGroup viewGroup, int i10) {
-        Context context = this.f36055c;
+        Context context = this.f36056c;
         ?? frameLayout = new FrameLayout(context);
         new Paint();
         frameLayout.setWillNotDraw(false);

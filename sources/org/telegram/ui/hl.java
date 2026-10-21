@@ -11,21 +11,21 @@ import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
 public final class hl implements org.telegram.ui.Components.ri {
-    public final qn f37682a;
+    public final qn f37683a;
 
     public hl(qn qnVar) {
-        this.f37682a = qnVar;
+        this.f37683a = qnVar;
     }
 
     @Override
     public final void J() {
-        this.f37682a.Y.N();
+        this.f37683a.Y.N();
     }
 
     @Override
     public final void X(TLRPC.User user) {
         String publicUsername = UserObject.getPublicUsername(user);
-        qn qnVar = this.f37682a;
+        qn qnVar = this.f37683a;
         if (qnVar.Y != null && user != null && !TextUtils.isEmpty(publicUsername)) {
             fk fkVar = qnVar.Y;
             fkVar.setFieldText("@" + publicUsername + " ");
@@ -50,7 +50,7 @@ public final class hl implements org.telegram.ui.Components.ri {
         boolean z19;
         String str2;
         TLRPC.Message message;
-        qn qnVar = this.f37682a;
+        qn qnVar = this.f37683a;
         if (qnVar.getParentActivity() != null && (b3Var = qnVar.J1) != null) {
             boolean z20 = b3Var.G;
             MessageObject messageObject = b3Var.K1;
@@ -58,7 +58,7 @@ public final class hl implements org.telegram.ui.Components.ri {
             if (messageObject != null && (message = messageObject.messageOwner) != null) {
                 message.invert_media = z12;
             }
-            if (i10 != 8 && i10 != 7 && (i10 != 4 || b3Var.f30557j0.getSelectedPhotos().isEmpty())) {
+            if (i10 != 8 && i10 != 7 && (i10 != 4 || b3Var.f30558j0.getSelectedPhotos().isEmpty())) {
                 ci.b3 b3Var2 = qnVar.J1;
                 if (b3Var2 != null) {
                     b3Var2.dismissWithButtonClick(i10);
@@ -70,8 +70,8 @@ public final class hl implements org.telegram.ui.Components.ri {
             if (b3Var3 != null && i10 != 8) {
                 b3Var3.dismiss(true);
             }
-            HashMap<Object, Object> selectedPhotos = qnVar.J1.f30557j0.getSelectedPhotos();
-            ArrayList<Object> selectedPhotosOrder = qnVar.J1.f30557j0.getSelectedPhotosOrder();
+            HashMap<Object, Object> selectedPhotos = qnVar.J1.f30558j0.getSelectedPhotos();
+            ArrayList<Object> selectedPhotosOrder = qnVar.J1.f30558j0.getSelectedPhotosOrder();
             if (!selectedPhotos.isEmpty()) {
                 int ceil = (int) Math.ceil(selectedPhotos.size() / 10.0f);
                 int i15 = 0;
@@ -221,12 +221,12 @@ public final class hl implements org.telegram.ui.Components.ri {
 
     @Override
     public final void u(org.telegram.ui.Components.gh ghVar) {
-        this.f37682a.k8(ghVar);
+        this.f37683a.k8(ghVar);
     }
 
     @Override
     public final boolean v() {
-        return this.f37682a.U9();
+        return this.f37683a.U9();
     }
 
     @Override

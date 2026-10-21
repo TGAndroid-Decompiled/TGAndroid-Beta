@@ -41,7 +41,7 @@ public final class ca implements ViewTreeObserver.OnPreDrawListener {
                 ofFloat.start();
                 return false;
             case 1:
-                ((vu) obj).f31868a.f25261c.getViewTreeObserver().removeOnPreDrawListener(this);
+                ((vu) obj).f31869a.f25261c.getViewTreeObserver().removeOnPreDrawListener(this);
                 return true;
             case 2:
                 i30 i30Var = (i30) obj;
@@ -85,8 +85,8 @@ public final class ca implements ViewTreeObserver.OnPreDrawListener {
                 ((ei.g6) obj).invalidate();
                 return true;
             default:
-                w91 w91Var = (w91) ((t50) obj).f30442b;
-                w91Var.f32031n.getViewTreeObserver().removeOnPreDrawListener(this);
+                w91 w91Var = (w91) ((t50) obj).f30443b;
+                w91Var.f32032n.getViewTreeObserver().removeOnPreDrawListener(this);
                 ImageView imageView = w91Var.e;
                 if (imageView != null) {
                     imageView.setVisibility(4);
@@ -98,7 +98,7 @@ public final class ca implements ViewTreeObserver.OnPreDrawListener {
                     }
                 }
                 AndroidUtilities.runOnUIThread(new u71(this, 3));
-                w91Var.f32032r = 0;
+                w91Var.f32033r = 0;
                 return true;
         }
     }

@@ -276,7 +276,7 @@ public final class em0 implements s4.q0 {
         this.f25931b = jm0Var;
         le.b bVar = new le.b(context, (u20) new dm0(this));
         jm0Var.K1 = bVar;
-        ((t20) bVar.f16009b).f30418t = false;
+        ((t20) bVar.f16009b).f30419t = false;
     }
 
     private final void d(RecyclerView recyclerView, MotionEvent motionEvent) {

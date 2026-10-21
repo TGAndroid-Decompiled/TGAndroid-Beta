@@ -35,14 +35,14 @@ public final class nw0 extends LinearLayout {
         setOrientation(1);
         FrameLayout frameLayout = new FrameLayout(context);
         this.f39698c = frameLayout;
-        int i13 = premiumPreviewFragment.f33507g0;
+        int i13 = premiumPreviewFragment.f33508g0;
         if (i13 == 1) {
             i10 = 175;
         } else {
             i10 = 190;
         }
         addView(frameLayout, w7.z5.q(i10, i10, 1));
-        boolean z10 = premiumPreviewFragment.f33508h0;
+        boolean z10 = premiumPreviewFragment.f33509h0;
         if (i13 == 1) {
             i11 = 1;
         } else {
@@ -125,30 +125,30 @@ public final class nw0 extends LinearLayout {
         int i12;
         int i13;
         PremiumPreviewFragment premiumPreviewFragment = this.f39700n;
-        int i14 = premiumPreviewFragment.f33507g0;
+        int i14 = premiumPreviewFragment.f33508g0;
         TextView textView = this.f39696a;
         TextView textView2 = this.f39697b;
         if (i14 == 0) {
-            if (premiumPreviewFragment.f33516p0) {
+            if (premiumPreviewFragment.f33517p0) {
                 i12 = R.string.TelegramPremiumSubscribedTitle;
             } else {
                 i12 = R.string.TelegramPremium;
             }
             textView.setText(LocaleController.getString(i12));
-            if (!premiumPreviewFragment.getUserConfig().isPremium() && !premiumPreviewFragment.f33516p0) {
+            if (!premiumPreviewFragment.getUserConfig().isPremium() && !premiumPreviewFragment.f33517p0) {
                 i13 = R.string.TelegramPremiumSubtitle;
             } else {
                 i13 = R.string.TelegramPremiumSubscribedSubtitle;
             }
             org.telegram.messenger.g0.n(i13, textView2);
         } else if (i14 == 1) {
-            if (premiumPreviewFragment.f33516p0) {
+            if (premiumPreviewFragment.f33517p0) {
                 i10 = R.string.TelegramPremiumSubscribedTitle;
             } else {
                 i10 = R.string.TelegramBusiness;
             }
             textView.setText(LocaleController.getString(i10));
-            if (!premiumPreviewFragment.getUserConfig().isPremium() && !premiumPreviewFragment.f33516p0) {
+            if (!premiumPreviewFragment.getUserConfig().isPremium() && !premiumPreviewFragment.f33517p0) {
                 i11 = R.string.TelegramBusinessSubtitleTemp;
             } else {
                 i11 = R.string.TelegramBusinessSubscribedSubtitleTemp;
@@ -157,7 +157,7 @@ public final class nw0 extends LinearLayout {
         }
         textView2.getLayoutParams().width = Math.min(AndroidUtilities.displaySize.x - AndroidUtilities.dp(42.0f), ei.x3.a(textView2.getText(), textView2.getPaint()));
         int i15 = 0;
-        if (!premiumPreviewFragment.f33516p0 && !BuildVars.IS_BILLING_UNAVAILABLE && premiumPreviewFragment.d.size() > 1) {
+        if (!premiumPreviewFragment.f33517p0 && !BuildVars.IS_BILLING_UNAVAILABLE && premiumPreviewFragment.d.size() > 1) {
             z10 = false;
         } else {
             z10 = true;

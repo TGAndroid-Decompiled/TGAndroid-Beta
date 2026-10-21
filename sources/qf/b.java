@@ -741,8 +741,8 @@ public class b implements h, OnCompleteListener, com.google.android.gms.internal
                     }
                     PhotoViewer u12 = PhotoViewer.u1();
                     d.i();
-                    if (u12.E != null && u12.f33278e0 != null && u12.T1()) {
-                        xc xcVar = new xc(u12.f33278e0, new ci.b());
+                    if (u12.E != null && u12.f33279e0 != null && u12.T1()) {
+                        xc xcVar = new xc(u12.f33279e0, new ci.b());
                         int i10 = R.raw.forward;
                         if (!TextUtils.isEmpty(str)) {
                             string = LocaleController.formatString(R.string.ChromecastStartedTo, str);
@@ -1205,13 +1205,13 @@ public class b implements h, OnCompleteListener, com.google.android.gms.internal
         this.f44448c = new float[]{0.0f, 0.5f, 1.0f};
     }
 
+    @Override
+    public void b(e2.k0 k0Var, c3.q qVar, j4.f0 f0Var) {
+    }
+
     public b(a3.f fVar) {
         this.f44446a = 1;
         this.f44448c = fVar;
-    }
-
-    @Override
-    public void b(e2.k0 k0Var, c3.q qVar, j4.f0 f0Var) {
     }
 
     public b(x1 x1Var, int[] iArr) {

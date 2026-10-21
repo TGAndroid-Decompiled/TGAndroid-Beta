@@ -22,9 +22,9 @@ public final class mb0 extends ReplacementSpan {
     public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
         switch (this.f28476a) {
             case 0:
-                return ((ob0) this.f28477b).f28980x;
+                return ((ob0) this.f28477b).f28981x;
             case 1:
-                return (int) ((org.telegram.ui.bj0) this.f28477b).f35658n0;
+                return (int) ((org.telegram.ui.bj0) this.f28477b).f35659n0;
             default:
                 return (int) ((ug.m1) this.f28477b).f47728t0;
         }

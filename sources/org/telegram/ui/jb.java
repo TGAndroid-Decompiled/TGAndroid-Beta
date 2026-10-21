@@ -8,13 +8,13 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessageObject;
 public final class jb extends sb {
-    public final ih.k f38221x0;
-    public final vb f38222y0;
+    public final ih.k f38222x0;
+    public final vb f38223y0;
 
     public jb(vb vbVar, Context context) {
         super(vbVar, context);
-        this.f38222y0 = vbVar;
-        this.f38221x0 = new ih.k();
+        this.f38223y0 = vbVar;
+        this.f38222x0 = new ih.k();
     }
 
     @Override
@@ -22,10 +22,10 @@ public final class jb extends sb {
         if (drawable instanceof org.telegram.ui.Components.wc0) {
             ((org.telegram.ui.Components.wc0) drawable).p();
         }
-        ih.k kVar = this.f38221x0;
+        ih.k kVar = this.f38222x0;
         gh.a c10 = kVar.c(drawable);
         AndroidUtilities.computePerceivedBrightness(kVar.a(c10));
-        vb vbVar = this.f38222y0;
+        vb vbVar = this.f38223y0;
         vbVar.f42160a.f11063a = c10;
         kh.f fVar = vbVar.W;
         if (fVar != null) {
@@ -53,7 +53,7 @@ public final class jb extends sb {
         MessageObject playingMessageObject = MediaController.getInstance().getPlayingMessageObject();
         if (playingMessageObject != null && playingMessageObject.isRoundVideo() && playingMessageObject.eventId != 0) {
             long dialogId = playingMessageObject.getDialogId();
-            vb vbVar = this.f38222y0;
+            vb vbVar = this.f38223y0;
             if (dialogId == (-vbVar.f42168f.f20276id)) {
                 MediaController.getInstance().setTextureView(vbVar.Q0(false), vbVar.f42167e0, vbVar.f42166d0, true);
             }
@@ -69,7 +69,7 @@ public final class jb extends sb {
     public final void onMeasure(int i10, int i11) {
         int size = View.MeasureSpec.getSize(i10);
         int size2 = View.MeasureSpec.getSize(i11);
-        vb vbVar = this.f38222y0;
+        vb vbVar = this.f38223y0;
         gh.a aVar = vbVar.f42160a.f11063a;
         if (aVar instanceof gh.b) {
             ((gh.b) aVar).c(size, size2);

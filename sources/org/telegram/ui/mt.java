@@ -50,7 +50,7 @@ public final class mt extends org.telegram.ui.Components.im0 {
         org.telegram.ui.Cells.ba baVar = (org.telegram.ui.Cells.ba) b1Var.f45917a;
         CharSequence replaceEmoji = Emoji.replaceEmoji(ot.V(htVar), baVar.getTextView().getPaint().getFontMetricsInt(), false);
         if (this.h.h) {
-            str = "+" + htVar.f37785c;
+            str = "+" + htVar.f37786c;
         } else {
             str = null;
         }

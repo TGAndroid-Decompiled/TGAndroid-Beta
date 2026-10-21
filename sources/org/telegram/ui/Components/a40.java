@@ -248,7 +248,7 @@ public final class a40 extends l71 {
     public final void G(String str) {
         z30 z30Var = this.T;
         hg.a2 a2Var = z30Var.d;
-        a40 a40Var = z30Var.f32826w;
+        a40 a40Var = z30Var.f32827w;
         x30 x30Var = z30Var.e;
         if (x30Var != null) {
             AndroidUtilities.cancelRunOnUIThread(x30Var);
@@ -266,8 +266,8 @@ public final class a40 extends l71 {
             u1Var.W1 = true;
             u1Var.X1 = 0;
             z30Var.h = true;
-            int i10 = z30Var.f32823n + 1;
-            z30Var.f32823n = i10;
+            int i10 = z30Var.f32824n + 1;
+            z30Var.f32824n = i10;
             x30 x30Var2 = new x30(z30Var, str, i10, 0);
             z30Var.e = x30Var2;
             AndroidUtilities.runOnUIThread(x30Var2, 300L);
@@ -279,7 +279,7 @@ public final class a40 extends l71 {
             }
             return;
         }
-        z30Var.f32823n = -1;
+        z30Var.f32824n = -1;
     }
 
     @Override

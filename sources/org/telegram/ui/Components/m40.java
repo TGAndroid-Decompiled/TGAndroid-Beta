@@ -27,7 +27,7 @@ public final class m40 extends FrameLayout {
         c71Var.setClipToPadding(false);
         u61 u61Var = (u61) c71Var.getAdapter();
         this.f28382f = u61Var;
-        u61Var.f30860r = false;
+        u61Var.f30861r = false;
         addView(c71Var, -1, -1);
         FrameLayout frameLayout = new FrameLayout(activity);
         this.d = frameLayout;

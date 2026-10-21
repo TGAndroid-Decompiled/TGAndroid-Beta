@@ -72,7 +72,7 @@ public final class g0 implements Runnable {
                             synchronized (a11Var) {
                                 y01 y01Var = (y01) a11Var.f24461c.get(Long.valueOf(j11));
                                 if (y01Var != null && !y01Var.e) {
-                                    z01Var = new z01(Math.max(y01Var.f32533c, file.length()), y01Var.f32534f, y01Var.f32535g, y01Var.h, y01Var.f32536i);
+                                    z01Var = new z01(Math.max(y01Var.f32534c, file.length()), y01Var.f32535f, y01Var.f32536g, y01Var.h, y01Var.f32537i);
                                 }
                                 z01Var = new z01(file.length(), null, null, null, null);
                             }

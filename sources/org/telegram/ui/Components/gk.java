@@ -112,7 +112,7 @@ public final class gk extends im0 {
             }
         }
         org.telegram.ui.Cells.l4 l4Var = (org.telegram.ui.Cells.l4) view;
-        if (nkVar.f28817c0) {
+        if (nkVar.f28818c0) {
             l4Var.setText(LocaleController.getString(R.string.RecentFilesAZ));
         } else {
             l4Var.setText(LocaleController.getString(R.string.RecentFiles));

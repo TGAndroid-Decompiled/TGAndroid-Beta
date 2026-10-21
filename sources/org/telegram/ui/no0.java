@@ -299,13 +299,13 @@ public final class no0 extends View {
         int i13 = this.f39660a;
         if (z10) {
             TLRPC.TL_emojiStatusCollectible tL_emojiStatusCollectible = (TLRPC.TL_emojiStatusCollectible) emojiStatus;
-            int i14 = dp0.f36430j;
+            int i14 = dp0.f36431j;
             int i15 = tL_emojiStatusCollectible.center_color | (-16777216);
             this.f39667w = new dp0(tL_emojiStatusCollectible.document_id, i15, i15, i15);
         } else {
             if (UserObject.getProfileColorId(user) >= 0) {
                 dp0Var = dp0.c(i13, UserObject.getProfileColorId(user));
-                dp0Var.f36431a = AndroidUtilities.dp(11.0f);
+                dp0Var.f36432a = AndroidUtilities.dp(11.0f);
                 dp0Var.d();
             } else {
                 dp0Var = null;
@@ -349,7 +349,7 @@ public final class no0 extends View {
             this.f39665r.o(i10);
             paint.setColor(org.telegram.ui.ActionBar.h6.m1(0.1f, i10));
             dp0 dp0Var4 = new dp0(tL_peerColorCollectible.gift_emoji_id, intValue, i11, i12);
-            dp0Var4.f36431a = AndroidUtilities.dp(11.0f);
+            dp0Var4.f36432a = AndroidUtilities.dp(11.0f);
             dp0Var4.d();
             this.f39668x = dp0Var4;
             dp0Var4.e(this);
@@ -377,7 +377,7 @@ public final class no0 extends View {
         this.f39665r.o(w02);
         paint.setColor(org.telegram.ui.ActionBar.h6.m1(0.1f, w02));
         dp0 a2 = dp0.a(i13, colorId);
-        a2.f36431a = AndroidUtilities.dp(11.0f);
+        a2.f36432a = AndroidUtilities.dp(11.0f);
         a2.d();
         this.f39668x = a2;
     }

@@ -29,7 +29,7 @@ public final class iv0 extends fm0 {
 
     @Override
     public final int M(int i10) {
-        jv0[] jv0VarArr = this.f27341s.f31066t1;
+        jv0[] jv0VarArr = this.f27341s.f31067t1;
         int i11 = 1;
         if ((jv0VarArr[3].f27643c.size() == 0 && !jv0VarArr[3].f27645g) || i10 >= jv0VarArr[3].f27643c.size()) {
             return 1;
@@ -49,7 +49,7 @@ public final class iv0 extends fm0 {
 
     @Override
     public final int P(int i10, int i11) {
-        jv0[] jv0VarArr = this.f27341s.f31066t1;
+        jv0[] jv0VarArr = this.f27341s.f31067t1;
         if (jv0VarArr[3].f27643c.size() == 0 && !jv0VarArr[3].f27645g) {
             return 5;
         }
@@ -77,16 +77,16 @@ public final class iv0 extends fm0 {
             view.setAlpha(0.0f);
             return view;
         }
-        if (i10 < uv0Var.f31066t1[3].f27643c.size()) {
+        if (i10 < uv0Var.f31067t1[3].f27643c.size()) {
             view.setAlpha(1.0f);
-            ((org.telegram.ui.Cells.u3) view).setText(LocaleController.formatSectionDate(((MessageObject) ((ArrayList) uv0Var.f31066t1[3].d.get((String) uv0Var.f31066t1[3].f27643c.get(i10))).get(0)).messageOwner.date));
+            ((org.telegram.ui.Cells.u3) view).setText(LocaleController.formatSectionDate(((MessageObject) ((ArrayList) uv0Var.f31067t1[3].d.get((String) uv0Var.f31067t1[3].f27643c.get(i10))).get(0)).messageOwner.date));
         }
         return view;
     }
 
     @Override
     public final boolean V(int i10, int i11, s4.b1 b1Var) {
-        jv0[] jv0VarArr = this.f27341s.f31066t1;
+        jv0[] jv0VarArr = this.f27341s.f31067t1;
         if (jv0VarArr[3].f27643c.size() != 0 || jv0VarArr[3].f27645g) {
             if (i10 != 0 && i11 == 0) {
                 return false;
@@ -101,7 +101,7 @@ public final class iv0 extends fm0 {
         boolean z10;
         char c10;
         uv0 uv0Var = this.f27341s;
-        jv0[] jv0VarArr = uv0Var.f31066t1;
+        jv0[] jv0VarArr = uv0Var.f31067t1;
         int i12 = b1Var.f45920f;
         View view = b1Var.f45917a;
         if (i12 != 6 && i12 != 5) {
@@ -127,7 +127,7 @@ public final class iv0 extends fm0 {
                         m7Var.requestLayout();
                         if (uv0Var.C1) {
                             SparseArray[] sparseArrayArr = uv0Var.Z0;
-                            if (messageObject.getDialogId() == uv0Var.f31045j1) {
+                            if (messageObject.getDialogId() == uv0Var.f31046j1) {
                                 c10 = 0;
                             } else {
                                 c10 = 1;
@@ -135,10 +135,10 @@ public final class iv0 extends fm0 {
                             if (sparseArrayArr[c10].indexOfKey(messageObject.getId()) >= 0) {
                                 z11 = true;
                             }
-                            m7Var.f(z11, !uv0Var.f31025b1);
+                            m7Var.f(z11, !uv0Var.f31026b1);
                             return;
                         }
-                        m7Var.f(false, !uv0Var.f31025b1);
+                        m7Var.f(false, !uv0Var.f31026b1);
                         return;
                     }
                     return;
@@ -167,7 +167,7 @@ public final class iv0 extends fm0 {
                     b10Var.setViewType(5);
                     u3Var = b10Var;
                 } else {
-                    hu0 M = uv0.M(3, uv0Var.f31045j1, context, d6Var);
+                    hu0 M = uv0.M(3, uv0Var.f31046j1, context, d6Var);
                     M.setLayoutParams(new s4.o0(-1, -1));
                     return new s4.b1(M);
                 }

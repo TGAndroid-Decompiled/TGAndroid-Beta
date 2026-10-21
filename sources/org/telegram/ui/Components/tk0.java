@@ -41,7 +41,7 @@ public final class tk0 extends pg.b {
         bl0 bl0Var = (bl0) b1Var.f45917a;
         bl0Var.setScaleX(1.0f);
         bl0Var.setScaleY(1.0f);
-        bl0.a(bl0Var, ((uk0) this.d.d.get(i10)).f30955c, i10);
+        bl0.a(bl0Var, ((uk0) this.d.d.get(i10)).f30956c, i10);
     }
 
     @Override
@@ -68,17 +68,17 @@ public final class tk0 extends pg.b {
                 dl0Var.f25559v0.setContentDescription(LocaleController.getString(R.string.AccDescrExpandPanel));
                 dl0Var.S.addView(dl0Var.f25559v0, w7.z5.e(30, 30, 17));
                 dl0Var.f25559v0.setOnClickListener(new View.OnClickListener(this) {
-                    public final tk0 f30311b;
+                    public final tk0 f30312b;
 
                     {
-                        this.f30311b = this;
+                        this.f30312b = this;
                     }
 
                     @Override
                     public final void onClick(View view2) {
                         switch (r2) {
                             case 0:
-                                tk0 tk0Var = this.f30311b;
+                                tk0 tk0Var = this.f30312b;
                                 tk0Var.getClass();
                                 view2.getLocationOnScreen(new int[2]);
                                 dl0 dl0Var2 = tk0Var.d;
@@ -88,7 +88,7 @@ public final class tk0 extends pg.b {
                                 new sg.y0(dl0Var2.f25557t0, 4, true).show();
                                 return;
                             default:
-                                dl0.a(this.f30311b.d);
+                                dl0.a(this.f30312b.d);
                                 return;
                         }
                     }
@@ -108,17 +108,17 @@ public final class tk0 extends pg.b {
             dl0Var.f25558u0.setPadding(AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f));
             dl0Var.R.addView(dl0Var.f25558u0, w7.z5.e(26, 26, 17));
             dl0Var.f25558u0.setOnClickListener(new View.OnClickListener(this) {
-                public final tk0 f30311b;
+                public final tk0 f30312b;
 
                 {
-                    this.f30311b = this;
+                    this.f30312b = this;
                 }
 
                 @Override
                 public final void onClick(View view2) {
                     switch (r2) {
                         case 0:
-                            tk0 tk0Var = this.f30311b;
+                            tk0 tk0Var = this.f30312b;
                             tk0Var.getClass();
                             view2.getLocationOnScreen(new int[2]);
                             dl0 dl0Var2 = tk0Var.d;
@@ -128,7 +128,7 @@ public final class tk0 extends pg.b {
                             new sg.y0(dl0Var2.f25557t0, 4, true).show();
                             return;
                         default:
-                            dl0.a(this.f30311b.d);
+                            dl0.a(this.f30312b.d);
                             return;
                     }
                 }
@@ -146,7 +146,7 @@ public final class tk0 extends pg.b {
         ArrayList arrayList = this.d.d;
         int i10 = b1Var.f45920f;
         if ((i10 == 0 || i10 == 3) && (b10 = b1Var.b()) >= 0 && b10 < arrayList.size()) {
-            ((bl0) b1Var.f45917a).f(((uk0) arrayList.get(b10)).f30955c, false);
+            ((bl0) b1Var.f45917a).f(((uk0) arrayList.get(b10)).f30956c, false);
         }
     }
 }

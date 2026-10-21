@@ -16,13 +16,13 @@ public final class k00 implements ValueAnimator.AnimatorUpdateListener {
             case 0:
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 q00 q00Var = this.f27689b;
-                q00Var.f29448x = floatValue;
+                q00Var.f29449x = floatValue;
                 q00Var.invalidate();
                 return;
             default:
                 q00 q00Var2 = this.f27689b;
                 q00Var2.getClass();
-                q00Var2.f29449y = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                q00Var2.f29450y = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 q00Var2.invalidate();
                 return;
         }

@@ -18,13 +18,13 @@ public final class y extends o2 {
 
     @Override
     public final void q(vj0 vj0Var) {
-        PhotoViewer photoViewer = ((gt0) this.f45709y0).f37413o2;
+        PhotoViewer photoViewer = ((gt0) this.f45709y0).f37414o2;
         c81 c81Var = photoViewer.F2;
         if (c81Var == null) {
             return;
         }
         long n10 = c81Var.n();
-        long j10 = photoViewer.f33354m8;
+        long j10 = photoViewer.f33355m8;
         long j11 = 0;
         if (j10 > 0) {
             j11 = j10 / 1000;

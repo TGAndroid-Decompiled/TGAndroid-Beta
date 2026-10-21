@@ -20,16 +20,16 @@ public final class db implements Runnable {
                 qc qcVar = this.f25435b;
                 FrameLayout frameLayout = qcVar.h;
                 ub ubVar = qcVar.e;
-                ob obVar = qcVar.f29536p;
+                ob obVar = qcVar.f29537p;
                 if (obVar != null && !ubVar.top) {
                     obVar.c(0.0f);
-                    qcVar.f29536p.d(qcVar);
+                    qcVar.f29537p.d(qcVar);
                 }
                 ubVar.transitionRunningExit = false;
                 ubVar.onExitTransitionEnd();
                 ubVar.onHide();
-                frameLayout.removeView(qcVar.f29527f);
-                frameLayout.removeOnLayoutChangeListener(qcVar.f29526c);
+                frameLayout.removeView(qcVar.f29528f);
+                frameLayout.removeOnLayoutChangeListener(qcVar.f29527c);
                 ubVar.onDetach();
                 Runnable runnable = qcVar.v;
                 if (runnable != null) {
@@ -40,8 +40,8 @@ public final class db implements Runnable {
             default:
                 qc qcVar2 = this.f25435b;
                 FrameLayout frameLayout2 = qcVar2.h;
-                frameLayout2.removeView(qcVar2.f29527f);
-                frameLayout2.removeOnLayoutChangeListener(qcVar2.f29526c);
+                frameLayout2.removeView(qcVar2.f29528f);
+                frameLayout2.removeOnLayoutChangeListener(qcVar2.f29527c);
                 return;
         }
     }

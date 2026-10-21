@@ -13,11 +13,11 @@ public final class s4 implements Runnable {
         ?? n2Var = new org.telegram.ui.ActionBar.n2(null);
         n2Var.N = new a0.h();
         n2Var.O = new ArrayList();
-        n2Var.f33963x = 1;
+        n2Var.f33964x = 1;
         n2Var.G = false;
         v4 v4Var = this.f41360a;
         n2Var.R = v4Var.U();
-        n2Var.f33959n = new b1(this, 2);
+        n2Var.f33960n = new b1(this, 2);
         v4Var.presentFragment((org.telegram.ui.ActionBar.n2) n2Var);
     }
 }

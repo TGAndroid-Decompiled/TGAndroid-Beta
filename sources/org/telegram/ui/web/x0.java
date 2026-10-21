@@ -348,7 +348,7 @@ public final class x0 extends WebView {
         if (z0Var != null) {
             getScrollX();
             getScrollY();
-            ((o3) ((org.telegram.ui.g) z0Var).f37149b).K.f0();
+            ((o3) ((org.telegram.ui.g) z0Var).f37150b).K.f0();
         }
         getScrollX();
         getScrollY();

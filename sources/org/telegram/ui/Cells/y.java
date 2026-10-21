@@ -128,7 +128,7 @@ public final class y extends FrameLayout {
             if (r32 != null) {
                 z10 = r32.h;
             } else if (xpVar != null) {
-                z10 = xpVar.f32458a.f24151q;
+                z10 = xpVar.f32459a.f24151q;
             }
             accessibilityNodeInfo.setChecked(z10);
             accessibilityNodeInfo.setClassName("android.widget.Switch");
@@ -136,7 +136,7 @@ public final class y extends FrameLayout {
             if (r32 != null) {
                 z10 = r32.h;
             } else if (xpVar != null) {
-                z10 = xpVar.f32458a.f24151q;
+                z10 = xpVar.f32459a.f24151q;
             }
             if (z10) {
                 accessibilityNodeInfo.setSelected(true);

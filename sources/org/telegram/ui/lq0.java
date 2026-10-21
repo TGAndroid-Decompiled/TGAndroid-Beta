@@ -18,10 +18,10 @@ public final class lq0 extends org.telegram.ui.Components.lw0 {
     public VelocityTracker B0;
     public boolean C0;
     public final oq0 D0;
-    public int f38986w0;
-    public boolean f38987x0;
-    public boolean f38988y0;
-    public int f38989z0;
+    public int f38987w0;
+    public boolean f38988x0;
+    public boolean f38989y0;
+    public int f38990z0;
 
     public lq0(oq0 oq0Var, Context context) {
         super(context, null);
@@ -50,9 +50,9 @@ public final class lq0 extends org.telegram.ui.Components.lw0 {
             return false;
         }
         getParent().requestDisallowInterceptTouchEvent(true);
-        this.f38988y0 = false;
-        this.f38987x0 = true;
-        this.f38989z0 = (int) motionEvent.getX();
+        this.f38989y0 = false;
+        this.f38988x0 = true;
+        this.f38990z0 = (int) motionEvent.getX();
         kVar = ((org.telegram.ui.ActionBar.n2) oq0Var).actionBar;
         kVar.setEnabled(false);
         oq0Var.h.setEnabled(false);
@@ -142,24 +142,24 @@ public final class lq0 extends org.telegram.ui.Components.lw0 {
             }
             this.B0.addMovement(motionEvent);
         }
-        if (motionEvent != null && motionEvent.getAction() == 0 && !this.f38987x0 && !this.f38988y0) {
-            this.f38986w0 = motionEvent.getPointerId(0);
-            this.f38988y0 = true;
-            this.f38989z0 = (int) motionEvent.getX();
+        if (motionEvent != null && motionEvent.getAction() == 0 && !this.f38988x0 && !this.f38989y0) {
+            this.f38987w0 = motionEvent.getPointerId(0);
+            this.f38989y0 = true;
+            this.f38990z0 = (int) motionEvent.getX();
             this.A0 = (int) motionEvent.getY();
             this.B0.clear();
-        } else if (motionEvent != null && motionEvent.getAction() == 2 && motionEvent.getPointerId(0) == this.f38986w0) {
-            int x10 = (int) (motionEvent.getX() - this.f38989z0);
+        } else if (motionEvent != null && motionEvent.getAction() == 2 && motionEvent.getPointerId(0) == this.f38987w0) {
+            int x10 = (int) (motionEvent.getX() - this.f38990z0);
             int abs = Math.abs(((int) motionEvent.getY()) - this.A0);
-            if (this.f38987x0 && (((z12 = oq0Var.v) && x10 > 0) || (!z12 && x10 < 0))) {
+            if (this.f38988x0 && (((z12 = oq0Var.v) && x10 > 0) || (!z12 && x10 < 0))) {
                 if (x10 < 0) {
                     z13 = true;
                 } else {
                     z13 = false;
                 }
                 if (!a0(motionEvent, z13)) {
-                    this.f38988y0 = true;
-                    this.f38987x0 = false;
+                    this.f38989y0 = true;
+                    this.f38988x0 = false;
                     mq0VarArr[0].setTranslationX(0.0f);
                     mq0 mq0Var5 = mq0VarArr[1];
                     if (oq0Var.v) {
@@ -171,14 +171,14 @@ public final class lq0 extends org.telegram.ui.Components.lw0 {
                     oq0Var.h.j(0.0f, mq0VarArr[1].e);
                 }
             }
-            if (this.f38988y0 && !this.f38987x0) {
+            if (this.f38989y0 && !this.f38988x0) {
                 if (Math.abs(x10) >= AndroidUtilities.getPixelsInCM(0.3f, true) && Math.abs(x10) > abs) {
                     if (x10 < 0) {
                         z14 = true;
                     }
                     a0(motionEvent, z14);
                 }
-            } else if (this.f38987x0) {
+            } else if (this.f38988x0) {
                 mq0VarArr[0].setTranslationX(x10);
                 if (oq0Var.v) {
                     mq0VarArr[1].setTranslationX(mq0VarArr[0].getMeasuredWidth() + x10);
@@ -187,12 +187,12 @@ public final class lq0 extends org.telegram.ui.Components.lw0 {
                 }
                 oq0Var.h.j(Math.abs(x10) / mq0VarArr[0].getMeasuredWidth(), mq0VarArr[1].e);
             }
-        } else if (motionEvent == null || (motionEvent.getPointerId(0) == this.f38986w0 && (motionEvent.getAction() == 3 || motionEvent.getAction() == 1 || motionEvent.getAction() == 6))) {
+        } else if (motionEvent == null || (motionEvent.getPointerId(0) == this.f38987w0 && (motionEvent.getAction() == 3 || motionEvent.getAction() == 1 || motionEvent.getAction() == 6))) {
             this.B0.computeCurrentVelocity(1000, oq0Var.f39968x);
             if (motionEvent != null && motionEvent.getAction() != 3) {
                 f7 = this.B0.getXVelocity();
                 f10 = this.B0.getYVelocity();
-                if (!this.f38987x0 && Math.abs(f7) >= 3000.0f && Math.abs(f7) > Math.abs(f10)) {
+                if (!this.f38988x0 && Math.abs(f7) >= 3000.0f && Math.abs(f7) > Math.abs(f10)) {
                     if (f7 < 0.0f) {
                         z11 = true;
                     } else {
@@ -204,7 +204,7 @@ public final class lq0 extends org.telegram.ui.Components.lw0 {
                 f7 = 0.0f;
                 f10 = 0.0f;
             }
-            if (this.f38987x0) {
+            if (this.f38988x0) {
                 float x11 = mq0VarArr[0].getX();
                 oq0Var.f39965r = new AnimatorSet();
                 if (Math.abs(x11) < mq0VarArr[0].getMeasuredWidth() / 3.0f && (Math.abs(f7) < 3500.0f || Math.abs(f7) < Math.abs(f10))) {
@@ -243,9 +243,9 @@ public final class lq0 extends org.telegram.ui.Components.lw0 {
                 oq0Var.f39965r.addListener(new zb0(this, 6));
                 oq0Var.f39965r.start();
                 oq0Var.f39966s = true;
-                this.f38987x0 = false;
+                this.f38988x0 = false;
             } else {
-                this.f38988y0 = false;
+                this.f38989y0 = false;
                 kVar = ((org.telegram.ui.ActionBar.n2) oq0Var).actionBar;
                 kVar.setEnabled(true);
                 oq0Var.h.setEnabled(true);
@@ -256,7 +256,7 @@ public final class lq0 extends org.telegram.ui.Components.lw0 {
                 this.B0 = null;
             }
         }
-        return this.f38987x0;
+        return this.f38988x0;
     }
 
     @Override

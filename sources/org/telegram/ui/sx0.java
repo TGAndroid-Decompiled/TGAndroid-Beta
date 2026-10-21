@@ -15,7 +15,7 @@ public final class sx0 implements ValueAnimator.AnimatorUpdateListener {
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
         switch (this.f41549a) {
             case 0:
-                this.f41550b.f33752y0.setAlpha((int) (((Float) valueAnimator.getAnimatedValue()).floatValue() * 255.0f));
+                this.f41550b.f33753y0.setAlpha((int) (((Float) valueAnimator.getAnimatedValue()).floatValue() * 255.0f));
                 return;
             case 1:
                 ProfileActivity profileActivity = this.f41550b;

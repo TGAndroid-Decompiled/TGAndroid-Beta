@@ -19,15 +19,15 @@ public class u61 extends pg.b {
     public boolean M;
     public final jm0 d;
     public final Context e;
-    public final int f30858f;
+    public final int f30859f;
     public final int h;
-    public final boolean f30859n;
-    public Utilities.Callback2 f30861s;
+    public final boolean f30860n;
+    public Utilities.Callback2 f30862s;
     public final org.telegram.ui.ActionBar.d6 v;
-    public jg.f f30864y;
-    public boolean f30860r = true;
-    public final ArrayList f30862w = new ArrayList();
-    public final ArrayList f30863x = new ArrayList();
+    public jg.f f30865y;
+    public boolean f30861r = true;
+    public final ArrayList f30863w = new ArrayList();
+    public final ArrayList f30864x = new ArrayList();
     public int E = 0;
     public final ArrayList F = new ArrayList();
     public final ArrayList G = new ArrayList();
@@ -35,10 +35,10 @@ public class u61 extends pg.b {
     public u61(jm0 jm0Var, Context context, int i10, int i11, boolean z10, Utilities.Callback2 callback2, org.telegram.ui.ActionBar.d6 d6Var) {
         this.d = jm0Var;
         this.e = context;
-        this.f30858f = i10;
+        this.f30859f = i10;
         this.h = i11;
-        this.f30859n = z10;
-        this.f30861s = callback2;
+        this.f30860n = z10;
+        this.f30862s = callback2;
         this.v = d6Var;
         N(false);
     }
@@ -80,7 +80,7 @@ public class u61 extends pg.b {
             ArrayList arrayList = this.G;
             if (i10 < arrayList.size()) {
                 s61 s61Var = (s61) arrayList.get(i10);
-                this.L.run(Integer.valueOf(i10), new ArrayList(this.f30863x.subList(s61Var.f30205a, s61Var.f30206b + 1)));
+                this.L.run(Integer.valueOf(i10), new ArrayList(this.f30864x.subList(s61Var.f30206a, s61Var.f30207b + 1)));
                 this.K = false;
             }
         }
@@ -88,7 +88,7 @@ public class u61 extends pg.b {
 
     public final h61 G(int i10) {
         if (i10 >= 0) {
-            ArrayList arrayList = this.f30863x;
+            ArrayList arrayList = this.f30864x;
             if (i10 < arrayList.size()) {
                 return (h61) arrayList.get(i10);
             }
@@ -103,7 +103,7 @@ public class u61 extends pg.b {
             ArrayList arrayList = this.G;
             if (i11 < arrayList.size()) {
                 s61 s61Var = (s61) arrayList.get(i11);
-                if (i10 >= s61Var.f30205a && i10 <= s61Var.f30206b) {
+                if (i10 >= s61Var.f30206a && i10 <= s61Var.f30207b) {
                     return i11;
                 }
                 i11++;
@@ -129,16 +129,16 @@ public class u61 extends pg.b {
     public final void L() {
         s61 s61Var = this.I;
         if (s61Var != null) {
-            s61Var.f30206b = Math.max(0, this.f30863x.size() - 1);
+            s61Var.f30207b = Math.max(0, this.f30864x.size() - 1);
         }
     }
 
     public final int M() {
         ?? obj = new Object();
         this.I = obj;
-        obj.f30205a = this.f30863x.size();
+        obj.f30206a = this.f30864x.size();
         s61 s61Var = this.I;
-        s61Var.f30206b = -1;
+        s61Var.f30207b = -1;
         ArrayList arrayList = this.G;
         arrayList.add(s61Var);
         return arrayList.size() - 1;
@@ -159,7 +159,7 @@ public class u61 extends pg.b {
         if (view instanceof org.telegram.ui.ActionBar.y5) {
             ((org.telegram.ui.ActionBar.y5) view).d();
             int i11 = b1Var.f45920f;
-            if (this.f30860r) {
+            if (this.f30861r) {
                 if (i11 < 10000) {
                     switch (i11) {
                         case -3:
@@ -215,7 +215,7 @@ public class u61 extends pg.b {
                             return;
                     }
                 }
-                if (this.f30859n) {
+                if (this.f30860n) {
                     i10 = org.telegram.ui.ActionBar.h6.f21061h5;
                 } else {
                     i10 = org.telegram.ui.ActionBar.h6.f20990d6;
@@ -228,15 +228,15 @@ public class u61 extends pg.b {
     public final void P(boolean z10) {
         jm0 jm0Var = this.d;
         if (jm0Var == null || !jm0Var.b0()) {
-            ArrayList arrayList = this.f30862w;
+            ArrayList arrayList = this.f30863w;
             arrayList.clear();
-            ArrayList arrayList2 = this.f30863x;
+            ArrayList arrayList2 = this.f30864x;
             arrayList.addAll(arrayList2);
             arrayList2.clear();
             this.H = null;
             this.F.clear();
             this.G.clear();
-            Utilities.Callback2 callback2 = this.f30861s;
+            Utilities.Callback2 callback2 = this.f30862s;
             if (callback2 != null) {
                 callback2.run(arrayList2, this);
                 R();
@@ -281,20 +281,20 @@ public class u61 extends pg.b {
                 Object obj = arrayList2.get(i10);
                 i10++;
                 s61 s61Var = (s61) obj;
-                jm0Var.I2.add(Long.valueOf(AndroidUtilities.pack(s61Var.f30205a, s61Var.f30206b)));
+                jm0Var.I2.add(Long.valueOf(AndroidUtilities.pack(s61Var.f30206a, s61Var.f30207b)));
             }
         }
     }
 
     public final void S() {
-        ArrayList arrayList = this.f30862w;
+        ArrayList arrayList = this.f30863w;
         arrayList.clear();
-        ArrayList arrayList2 = this.f30863x;
+        ArrayList arrayList2 = this.f30864x;
         arrayList.addAll(arrayList2);
         arrayList2.clear();
         this.F.clear();
         this.G.clear();
-        Utilities.Callback2 callback2 = this.f30861s;
+        Utilities.Callback2 callback2 = this.f30862s;
         if (callback2 != null) {
             callback2.run(arrayList2, this);
         }
@@ -304,9 +304,9 @@ public class u61 extends pg.b {
     public final void T() {
         s61 s61Var = this.H;
         if (s61Var != null) {
-            s61Var.f30206b = Math.max(0, (this.f30863x.size() + this.E) - 1);
+            s61Var.f30207b = Math.max(0, (this.f30864x.size() + this.E) - 1);
             s61 s61Var2 = this.H;
-            if (s61Var2.f30205a == s61Var2.f30206b) {
+            if (s61Var2.f30206a == s61Var2.f30207b) {
                 this.F.remove(s61Var2);
             }
             this.H = null;
@@ -316,15 +316,15 @@ public class u61 extends pg.b {
     public final void U() {
         ?? obj = new Object();
         this.H = obj;
-        obj.f30205a = this.f30863x.size() + this.E;
+        obj.f30206a = this.f30864x.size() + this.E;
         s61 s61Var = this.H;
-        s61Var.f30206b = -1;
+        s61Var.f30207b = -1;
         this.F.add(s61Var);
     }
 
     @Override
     public final int h() {
-        return this.f30863x.size();
+        return this.f30864x.size();
     }
 
     @Override
@@ -356,7 +356,7 @@ public class u61 extends pg.b {
         int i15;
         org.telegram.ui.Cells.l4 l4Var2;
         int i16;
-        boolean z10 = this.f30859n;
+        boolean z10 = this.f30860n;
         if (z10) {
             i11 = org.telegram.ui.ActionBar.h6.f21061h5;
         } else {
@@ -366,7 +366,7 @@ public class u61 extends pg.b {
         if (i10 >= 10000) {
             g61 F = h61.F(i10);
             if (F != null) {
-                a2Var = F.createView(this.e, this.d, this.f30858f, this.h, this.v);
+                a2Var = F.createView(this.e, this.d, this.f30859f, this.h, this.v);
             } else {
                 a2Var = new View(context);
             }
@@ -386,7 +386,7 @@ public class u61 extends pg.b {
                     break;
                 case -3:
                     ?? frameLayout = new FrameLayout(context);
-                    frameLayout.f29852a = 0;
+                    frameLayout.f29853a = 0;
                     a2Var = frameLayout;
                     break;
                 case -2:
@@ -534,10 +534,10 @@ public class u61 extends pg.b {
                 case 21:
                 case 22:
                 case 23:
-                    if (this.f30864y == null) {
-                        this.f30864y = new jg.f(null);
+                    if (this.f30865y == null) {
+                        this.f30865y = new jg.f(null);
                     }
-                    a2Var = new org.telegram.ui.n91(this.e, this.f30858f, i10 - 18, this.f30864y, this.h);
+                    a2Var = new org.telegram.ui.n91(this.e, this.f30859f, i10 - 18, this.f30865y, this.h);
                     break;
                 case 24:
                     a2Var = new org.telegram.ui.ge(context, d6Var);
@@ -631,7 +631,7 @@ public class u61 extends pg.b {
                     break;
             }
         }
-        if (this.f30860r) {
+        if (this.f30861r) {
             if (i10 < 10000) {
                 switch (i10) {
                 }

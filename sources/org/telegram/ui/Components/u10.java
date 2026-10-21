@@ -7,18 +7,18 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.Utilities;
 public final class u10 implements View.OnLongClickListener {
-    public final int f30811a;
-    public final Object f30812b;
+    public final int f30812a;
+    public final Object f30813b;
 
     public u10(Object obj, int i10) {
-        this.f30811a = i10;
-        this.f30812b = obj;
+        this.f30812a = i10;
+        this.f30813b = obj;
     }
 
     @Override
     public final boolean onLongClick(View view) {
-        int i10 = this.f30811a;
-        Object obj = this.f30812b;
+        int i10 = this.f30812a;
+        Object obj = this.f30813b;
         switch (i10) {
             case 0:
                 final FragmentContextView fragmentContextView = (FragmentContextView) obj;

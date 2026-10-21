@@ -19,38 +19,38 @@ public final class wh0 extends s4.g0 {
 
     @Override
     public final int h() {
-        return this.e.N.size();
+        return this.e.M.size();
     }
 
     @Override
     public final void v(s4.b1 b1Var, int i10) {
         mi0 mi0Var = this.e;
-        ArrayList arrayList = mi0Var.N;
+        ArrayList arrayList = mi0Var.M;
         boolean z10 = true;
         MessageObject messageObject = (MessageObject) arrayList.get((h() - 1) - i10);
         org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) b1Var.f45917a;
-        MessageObject.GroupedMessages l4 = mi0Var.l(messageObject);
+        MessageObject.GroupedMessages k10 = mi0Var.k(messageObject);
         int i11 = 0;
-        if (l4 == null) {
+        if (k10 == null) {
             z10 = false;
         }
         u1Var.setInvalidatesParent(z10);
-        u1Var.X3(messageObject, l4, false, false, false, false);
-        if (!mi0Var.P.i() && arrayList.size() >= 10) {
+        u1Var.X3(messageObject, k10, false, false, false, false);
+        if (!mi0Var.O.i() && arrayList.size() >= 10) {
             i11 = arrayList.size() % 10;
         }
         if (i10 == i11 && !messageObject.needDrawForwarded()) {
-            mi0Var.Q = u1Var;
+            mi0Var.P = u1Var;
             Point point = AndroidUtilities.displaySize;
             u1Var.Z3(point.x, point.y);
-            mi0Var.R = messageObject.getId();
+            mi0Var.Q = messageObject.getId();
         }
     }
 
     @Override
     public final s4.b1 x(ViewGroup viewGroup, int i10) {
         mi0 mi0Var = this.e;
-        li0 li0Var = new li0(mi0Var, this.f42881c, mi0Var.f39258c, this.d);
+        li0 li0Var = new li0(mi0Var, this.f42881c, mi0Var.f39259c, this.d);
         li0Var.setDelegate(new rb.b(17));
         return new s4.b1(li0Var);
     }

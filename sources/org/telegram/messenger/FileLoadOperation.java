@@ -79,7 +79,6 @@ public class FileLoadOperation {
     private boolean forceSmallChunk;
     private long foundMoovSize;
     private int initialDatacenterId;
-    private boolean isAudioDocument;
     private boolean isCdn;
     private boolean isForceRequest;
     private boolean isPreloadVideoOperation;
@@ -373,6 +372,13 @@ public class FileLoadOperation {
 
     private boolean canFinishPreload() {
         if (this.isStory && this.priority < 3) {
+            return true;
+        }
+        return false;
+    }
+
+    private boolean canUseDownloadByteBudget() {
+        if (this.currentDownloadChunkSize != 0 && !this.forceSmallChunk && !this.isStory && !this.isStream) {
             return true;
         }
         return false;
@@ -1011,6 +1017,9 @@ public class FileLoadOperation {
         this.requestedBytesCount = 0L;
         clearOperation(null, true, true);
         this.isPreloadVideoOperation = z10;
+        if (canUseDownloadByteBudget()) {
+            updateDownloadByteBudget();
+        }
         startDownloadRequest(-1);
     }
 
@@ -1429,6 +1438,31 @@ public class FileLoadOperation {
         FileRefController.getInstance(this.currentAccount).requestReference(this.parentObject, this.location, this, requestInfo);
     }
 
+    private void updateDownloadByteBudget() {
+        boolean z10;
+        int i10;
+        if (!MessagesController.getInstance(this.currentAccount).downloadImprovementKillswitch && this.totalBytesCount > 0 && this.key == null && !this.encryptFile && !this.isPreloadVideoOperation && this.preloadPrefixSize == 0) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        this.useDownloadByteBudget = z10;
+        if (z10) {
+            boolean isPremium = UserConfig.getInstance(this.currentAccount).isPremium();
+            int i11 = 2;
+            if (isPremium) {
+                i10 = 8;
+            } else {
+                i10 = 2;
+            }
+            this.downloadConnectionsCount = i10;
+            if (isPremium) {
+                i11 = 16;
+            }
+            this.currentMaxDownloadRequests = (i11 * 1048576) / this.currentDownloadChunkSize;
+        }
+    }
+
     private void updateParams() {
         if ((this.preloadPrefixSize > 0 || MessagesController.getInstance(this.currentAccount).getfileExperimentalParams) && !this.forceSmallChunk) {
             this.downloadChunkSizeBig = 524288;
@@ -1621,6 +1655,9 @@ public class FileLoadOperation {
                 if (!z10 && this.isPreloadVideoOperation) {
                     if (this.state == 3) {
                         this.isPreloadVideoOperation = z10;
+                        if (canUseDownloadByteBudget()) {
+                            updateDownloadByteBudget();
+                        }
                         this.state = 0;
                         this.preloadFinished = false;
                         start();
@@ -1993,7 +2030,7 @@ public class FileLoadOperation {
         Utilities.stageQueue.postRunnable(new t2(this, z10, 3));
     }
 
-    public boolean start(final org.telegram.messenger.FileLoadOperationStream r31, final long r32, final boolean r34) {
+    public boolean start(final org.telegram.messenger.FileLoadOperationStream r30, final long r31, final boolean r33) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.FileLoadOperation.start(org.telegram.messenger.FileLoadOperationStream, long, boolean):boolean");
     }
 

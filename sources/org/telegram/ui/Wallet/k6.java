@@ -4,16 +4,16 @@ import android.content.Context;
 import android.graphics.SurfaceTexture;
 import android.view.MotionEvent;
 public final class k6 extends tg.n {
-    public final m6 f34430i0;
+    public final m6 f34431i0;
 
     public k6(m6 m6Var, Context context) {
         super(context, 1, 4);
-        this.f34430i0 = m6Var;
+        this.f34431i0 = m6Var;
     }
 
     @Override
     public final void i() {
-        m6 m6Var = this.f34430i0;
+        m6 m6Var = this.f34431i0;
         if (m6Var.e == this) {
             m6.c(m6Var);
         }
@@ -44,7 +44,7 @@ public final class k6 extends tg.n {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (!this.f34430i0.f34535x && super.onTouchEvent(motionEvent)) {
+        if (!this.f34431i0.f34536x && super.onTouchEvent(motionEvent)) {
             return true;
         }
         return false;

@@ -24,7 +24,7 @@ public final class r40 extends s4.o {
         int i16;
         q50 q50Var = this.f41057b;
         k50 k50Var = q50Var.P;
-        int i17 = k50Var.f38422w;
+        int i17 = k50Var.f38423w;
         if (i17 >= 0) {
             int i18 = q50Var.f40408h3;
             if (i10 == i18 && i11 == i17) {
@@ -34,7 +34,7 @@ public final class r40 extends s4.o {
                 return false;
             }
         }
-        int i19 = k50Var.f38423x;
+        int i19 = k50Var.f38424x;
         if (i19 >= 0) {
             int i20 = q50Var.f40461u3;
             if (i10 == i20 && i11 == i19) {
@@ -44,7 +44,7 @@ public final class r40 extends s4.o {
                 return false;
             }
         }
-        int i21 = k50Var.f38424y;
+        int i21 = k50Var.f38425y;
         if (i21 >= 0) {
             int i22 = q50Var.f40465v3;
             if (i10 == i22 && i11 == i21) {
@@ -92,14 +92,14 @@ public final class r40 extends s4.o {
                     return false;
                 }
                 return true;
-            } else if (i11 >= k50Var.f38418f && i11 < k50Var.h && i10 >= (i14 = q50Var.f40420k3) && i10 < q50Var.f40423l3) {
-                return ((Long) q50Var.F0.get(i10 - i14)).equals(q50Var.f40376a1.invitedUsers.get(i11 - q50Var.P.f38418f));
+            } else if (i11 >= k50Var.f38419f && i11 < k50Var.h && i10 >= (i14 = q50Var.f40420k3) && i10 < q50Var.f40423l3) {
+                return ((Long) q50Var.F0.get(i10 - i14)).equals(q50Var.f40376a1.invitedUsers.get(i11 - q50Var.P.f38419f));
             } else {
-                if (i11 >= k50Var.f38419n && i11 < k50Var.f38420r && i10 >= (i13 = q50Var.f40426m3) && i10 < q50Var.f40431n3) {
-                    return ((Long) q50Var.G0.get(i10 - i13)).equals(q50Var.f40376a1.shadyJoinParticipants.get(i11 - q50Var.P.f38419n));
+                if (i11 >= k50Var.f38420n && i11 < k50Var.f38421r && i10 >= (i13 = q50Var.f40426m3) && i10 < q50Var.f40431n3) {
+                    return ((Long) q50Var.G0.get(i10 - i13)).equals(q50Var.f40376a1.shadyJoinParticipants.get(i11 - q50Var.P.f38420n));
                 }
-                if (i11 >= k50Var.f38421s && i11 < k50Var.v && i10 >= (i12 = q50Var.f40435o3) && i10 < q50Var.f40439p3) {
-                    return ((Long) q50Var.H0.get(i10 - i12)).equals(q50Var.f40376a1.shadyLeftParticipants.get(i11 - q50Var.P.f38421s));
+                if (i11 >= k50Var.f38422s && i11 < k50Var.v && i10 >= (i12 = q50Var.f40435o3) && i10 < q50Var.f40439p3) {
+                    return ((Long) q50Var.H0.get(i10 - i12)).equals(q50Var.f40376a1.shadyLeftParticipants.get(i11 - q50Var.P.f38422s));
                 }
             }
         }

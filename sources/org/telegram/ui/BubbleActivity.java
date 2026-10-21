@@ -303,7 +303,7 @@ public class BubbleActivity extends m5 implements org.telegram.ui.ActionBar.a5 {
             return;
         }
         SharedConfig.appLocked = true;
-        if (SecretMediaViewer.g() && SecretMediaViewer.f().f33823s) {
+        if (SecretMediaViewer.g() && SecretMediaViewer.f().f33824s) {
             SecretMediaViewer.f().e(false, false);
         } else if (PhotoViewer.E1() && PhotoViewer.u1().T1()) {
             PhotoViewer.u1().H0(false, true);

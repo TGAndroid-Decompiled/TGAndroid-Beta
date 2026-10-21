@@ -7,31 +7,31 @@ import android.graphics.Rect;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public abstract class mw0 extends lw0 {
-    public Activity f28614w0;
-    public final Rect f28615x0;
-    public int f28616y0;
-    public boolean f28617z0;
+    public Activity f28615w0;
+    public final Rect f28616x0;
+    public int f28617y0;
+    public boolean f28618z0;
 
     public mw0(Context context, Activity activity) {
         super(context, null);
-        this.f28615x0 = new Rect();
+        this.f28616x0 = new Rect();
         setActivity(activity);
     }
 
     @Override
     public int R() {
         View rootView = getRootView();
-        Rect rect = this.f28615x0;
+        Rect rect = this.f28616x0;
         getWindowVisibleDisplayFrame(rect);
         int i10 = 0;
-        if (this.f28617z0) {
+        if (this.f28618z0) {
             int height = rootView.getHeight();
             if (rect.top != 0) {
                 i10 = AndroidUtilities.statusBarHeight;
             }
             return ((height - i10) - AndroidUtilities.getViewInset(rootView)) - (rect.bottom - rect.top);
         }
-        int height2 = (this.f28614w0.getWindow().getDecorView().getHeight() - AndroidUtilities.getViewInset(rootView)) - rootView.getBottom();
+        int height2 = (this.f28615w0.getWindow().getDecorView().getHeight() - AndroidUtilities.getViewInset(rootView)) - rootView.getBottom();
         if (height2 <= Math.max(AndroidUtilities.dp(10.0f), AndroidUtilities.statusBarHeight)) {
             return 0;
         }
@@ -44,7 +44,7 @@ public abstract class mw0 extends lw0 {
         if (this.f28304n == null && this.f28309r.isEmpty()) {
             return;
         }
-        this.f28616y0 = R();
+        this.f28617y0 = R();
         Point point = AndroidUtilities.displaySize;
         if (point.x > point.y) {
             z10 = true;
@@ -61,7 +61,7 @@ public abstract class mw0 extends lw0 {
 
     @Override
     public int getKeyboardHeight() {
-        return this.f28616y0;
+        return this.f28617y0;
     }
 
     @Override
@@ -71,10 +71,10 @@ public abstract class mw0 extends lw0 {
     }
 
     public void setActivity(Activity activity) {
-        this.f28614w0 = activity;
+        this.f28615w0 = activity;
     }
 
     public void setWithoutWindow(boolean z10) {
-        this.f28617z0 = z10;
+        this.f28618z0 = z10;
     }
 }

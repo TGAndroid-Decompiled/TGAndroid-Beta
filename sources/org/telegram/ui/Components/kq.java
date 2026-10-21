@@ -11,13 +11,13 @@ public final class kq implements ow0 {
     @Override
     public final void h(int i10) {
         mq mqVar = this.f27913b;
-        mqVar.f28585r = i10;
+        mqVar.f28586r = i10;
         mqVar.q(true);
     }
 
     @Override
     public final void m() {
-        int measuredHeight = this.f27913b.f28582c.getMeasuredHeight();
+        int measuredHeight = this.f27913b.f28583c.getMeasuredHeight();
         iq iqVar = this.f27912a;
         iqVar.y(0 - iqVar.getScrollX(), measuredHeight - iqVar.getScrollY(), false);
     }

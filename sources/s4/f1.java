@@ -15,7 +15,7 @@ public final class f1 extends c0 {
 
     @Override
     public final void g(View view, w0 w0Var) {
-        RecyclerView recyclerView = this.f45958r.f34423a;
+        RecyclerView recyclerView = this.f45958r.f34424a;
         if (recyclerView != null) {
             n0 layoutManager = recyclerView.getLayoutManager();
             layoutManager.getClass();

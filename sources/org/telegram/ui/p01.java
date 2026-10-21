@@ -62,7 +62,7 @@ public final class p01 extends FrameLayout {
             this.e = peerColor.getBgColor1(org.telegram.ui.ActionBar.h6.I.q());
             int bgColor2 = peerColor.getBgColor2(org.telegram.ui.ActionBar.h6.I.q());
             this.f40044f = bgColor2;
-            profileActivity.f33604d1 = i0.a.f(0.25f, this.e, bgColor2);
+            profileActivity.f33605d1 = i0.a.f(0.25f, this.e, bgColor2);
             int i10 = peerColor.patternColor;
             if (i10 != 0) {
                 this.G = i10;
@@ -72,7 +72,7 @@ public final class p01 extends FrameLayout {
                 this.H = org.telegram.ui.ActionBar.h6.m1(0.15f, ip0.w0(this.e));
             }
         } else {
-            profileActivity.f33604d1 = this.f40041a;
+            profileActivity.f33605d1 = this.f40041a;
             this.f40043c = false;
             int i11 = org.telegram.ui.ActionBar.h6.f21269s8;
             if (AndroidUtilities.computePerceivedBrightness(org.telegram.ui.ActionBar.h6.w0(i11, profileActivity.A0)) > 0.8f) {
@@ -151,7 +151,7 @@ public final class p01 extends FrameLayout {
             paint3.setColor(this.f40041a);
             int a2 = this.h.a(this.e, false);
             int a10 = this.f40045n.a(this.f40044f, false);
-            org.telegram.ui.Components.zh0 zh0Var = profileActivity.f33581a0;
+            org.telegram.ui.Components.zh0 zh0Var = profileActivity.f33582a0;
             if (zh0Var != null) {
                 int i13 = this.H;
                 boolean z10 = this.f40043c;
@@ -161,7 +161,7 @@ public final class p01 extends FrameLayout {
                     zh0Var.g();
                 }
             }
-            org.telegram.ui.Components.si0 si0Var = profileActivity.f33596c0;
+            org.telegram.ui.Components.si0 si0Var = profileActivity.f33597c0;
             if (si0Var != null) {
                 si0Var.f(this.H, this.f40043c);
             }
@@ -215,8 +215,8 @@ public final class p01 extends FrameLayout {
                 boolean z12 = true;
                 if (!z11) {
                     if (p5Var != null) {
-                        Drawable drawable = p5Var.f29210f[0];
-                        if ((drawable instanceof org.telegram.ui.Components.r5) && (g3Var = ((org.telegram.ui.Components.r5) drawable).f29837k) != null && g3Var.hasImageLoaded()) {
+                        Drawable drawable = p5Var.f29211f[0];
+                        if ((drawable instanceof org.telegram.ui.Components.r5) && (g3Var = ((org.telegram.ui.Components.r5) drawable).f29838k) != null && g3Var.hasImageLoaded()) {
                             this.L = true;
                         }
                     }
@@ -243,7 +243,7 @@ public final class p01 extends FrameLayout {
                     rectF.set(m0Var.getX(), m0Var.getY(), (m0Var.getScaleX() * m0Var.getWidth()) + m0Var.getX(), (m0Var.getScaleY() * m0Var.getHeight()) + m0Var.getY());
                     ai.m1.c(canvas2, p5Var, measuredWidth, z13, y3, rectF, 1.0f);
                     canvas2.restore();
-                    bhVar = profileActivity.f33644i5;
+                    bhVar = profileActivity.f33645i5;
                     if (bhVar != null && (yVar = (actionBar = ((org.telegram.ui.ActionBar.n2) bhVar).getActionBar()).E) != null) {
                         int save = canvas2.save();
                         canvas2.translate(yVar.getX() + actionBar.getX(), yVar.getY() + actionBar.getY());
@@ -254,7 +254,7 @@ public final class p01 extends FrameLayout {
                 }
             }
             f10 = 1.0f;
-            bhVar = profileActivity.f33644i5;
+            bhVar = profileActivity.f33645i5;
             if (bhVar != null) {
                 int save2 = canvas2.save();
                 canvas2.translate(yVar.getX() + actionBar.getX(), yVar.getY() + actionBar.getY());
@@ -269,7 +269,7 @@ public final class p01 extends FrameLayout {
         if (i12 != f12 && !profileActivity.H1) {
             paint.setColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20990d6, profileActivity.A0));
             this.M.set(0, i12, getMeasuredWidth(), (int) f12);
-            profileActivity.f33684o5.J(canvas2, getY(), this.M, paint, true);
+            profileActivity.f33685o5.J(canvas2, getY(), this.M, paint, true);
         }
     }
 
@@ -280,7 +280,7 @@ public final class p01 extends FrameLayout {
             this.f40042b.setColor(i10);
             invalidate();
             if (!this.f40043c) {
-                this.N.f33604d1 = this.f40041a;
+                this.N.f33605d1 = this.f40041a;
             }
         }
     }

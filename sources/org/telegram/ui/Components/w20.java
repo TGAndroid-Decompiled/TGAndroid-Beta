@@ -78,11 +78,11 @@ public abstract class w20 extends org.telegram.ui.ActionBar.f3 {
         }
         ?? frameLayout = new FrameLayout(context);
         View view = new View(context);
-        frameLayout.f31121a = view;
+        frameLayout.f31122a = view;
         view.setBackground(org.telegram.ui.ActionBar.x5.f(new float[]{4.0f}, org.telegram.ui.ActionBar.h6.Oh));
         frameLayout.addView(view, w7.z5.d(-1, -1.0f, 0, 16.0f, 16.0f, 16.0f, 16.0f));
         TextView textView3 = new TextView(context);
-        frameLayout.f31122b = textView3;
+        frameLayout.f31123b = textView3;
         textView3.setLines(1);
         textView3.setSingleLine(true);
         textView3.setGravity(1);

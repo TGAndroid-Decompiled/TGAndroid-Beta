@@ -23,9 +23,9 @@ public final class hx extends ImageView {
             AndroidUtilities.runOnUIThread(new e2(tzVar, 350, 7), 350);
         } else if (motionEvent.getAction() == 3 || motionEvent.getAction() == 1) {
             tzVar.P1 = false;
-            if (!tzVar.Q1 && (uyVar = tzVar.f30775t1) != null && uyVar.k()) {
+            if (!tzVar.Q1 && (uyVar = tzVar.f30776t1) != null && uyVar.k()) {
                 try {
-                    tzVar.f30787x.performHapticFeedback(3);
+                    tzVar.f30788x.performHapticFeedback(3);
                 } catch (Exception unused) {
                 }
             }

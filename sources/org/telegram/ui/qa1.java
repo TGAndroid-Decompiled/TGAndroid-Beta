@@ -491,7 +491,7 @@ public final class qa1 extends LinearLayout {
             case 13:
                 super.onMeasure(i10, i11);
                 if (LocaleController.isRTL) {
-                    ((org.telegram.ui.Components.r41) this.f40519b).f29821c.setPivotX(getMeasuredWidth());
+                    ((org.telegram.ui.Components.r41) this.f40519b).f29822c.setPivotX(getMeasuredWidth());
                     return;
                 }
                 return;
@@ -507,14 +507,14 @@ public final class qa1 extends LinearLayout {
                 int size5 = View.MeasureSpec.getSize(i11);
                 if (i14 != 0) {
                     int min = Math.min(AndroidUtilities.dp(56.0f), size4 / i14);
-                    if (((PhotoViewer) this.f40519b).f33323j1.getVisibility() == 0) {
+                    if (((PhotoViewer) this.f40519b).f33324j1.getVisibility() == 0) {
                         if (((PhotoViewer) this.f40519b).Y7 < 2) {
                             i12 = 48;
                         } else {
                             i12 = 64;
                         }
                         int max = Math.max(0, (min - AndroidUtilities.dp(i12)) / 2);
-                        ((PhotoViewer) this.f40519b).f33323j1.setPadding(max, 0, max, 0);
+                        ((PhotoViewer) this.f40519b).f33324j1.setPadding(max, 0, max, 0);
                     }
                     for (int i16 = 0; i16 < childCount; i16++) {
                         View childAt = getChildAt(i16);
@@ -548,7 +548,7 @@ public final class qa1 extends LinearLayout {
                 return;
             case 19:
                 super.onMeasure(i10, i11);
-                setMeasuredDimension(getMeasuredWidth(), Math.round((1.0f - ((org.telegram.ui.Wallet.o5) this.f40519b).f34672z0) * getMeasuredHeight()));
+                setMeasuredDimension(getMeasuredWidth(), Math.round((1.0f - ((org.telegram.ui.Wallet.o5) this.f40519b).f34673z0) * getMeasuredHeight()));
                 return;
             default:
                 super.onMeasure(i10, i11);
@@ -574,7 +574,7 @@ public final class qa1 extends LinearLayout {
         switch (this.f40518a) {
             case 12:
                 org.telegram.ui.Components.tx0 tx0Var = (org.telegram.ui.Components.tx0) this.f40519b;
-                org.telegram.ui.Components.w9 w9Var = tx0Var.f30696b;
+                org.telegram.ui.Components.w9 w9Var = tx0Var.f30697b;
                 if (getVisibility() == 8 && i10 == 0) {
                     tx0Var.c();
                     if (LiteMode.isEnabled(3)) {

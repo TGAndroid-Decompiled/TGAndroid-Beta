@@ -16,7 +16,7 @@ public final class cc0 implements Runnable {
             case 0:
                 dc0 dc0Var = this.f25172b;
                 if (dc0Var.W != -1) {
-                    NotificationCenter.getInstance(dc0Var.Y.f27237c0.f28992w).onAnimationFinish(dc0Var.W);
+                    NotificationCenter.getInstance(dc0Var.Y.f27237c0.f28993w).onAnimationFinish(dc0Var.W);
                     dc0Var.W = -1;
                     return;
                 }
@@ -27,7 +27,7 @@ public final class cc0 implements Runnable {
             default:
                 dc0 dc0Var2 = this.f25172b;
                 if (dc0Var2.W != -1) {
-                    NotificationCenter.getInstance(dc0Var2.Y.f27237c0.f28992w).onAnimationFinish(dc0Var2.W);
+                    NotificationCenter.getInstance(dc0Var2.Y.f27237c0.f28993w).onAnimationFinish(dc0Var2.W);
                     dc0Var2.W = -1;
                     return;
                 }

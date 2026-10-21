@@ -81,7 +81,7 @@ public final class ee implements Runnable {
                 return;
             case 6:
                 ti tiVar = (ti) this.f25888b;
-                TLRPC.TL_attachMenuBot tL_attachMenuBot = ((mi) this.f25889c).f28524c;
+                TLRPC.TL_attachMenuBot tL_attachMenuBot = ((mi) this.f25889c).f28525c;
                 tL_attachMenuBot.side_menu_disclaimer_needed = false;
                 tL_attachMenuBot.inactive = false;
                 tiVar.R1(tL_attachMenuBot.bot_id, null, false, true);
@@ -91,7 +91,7 @@ public final class ee implements Runnable {
                 ti tiVar2 = (ti) this.f25888b;
                 MediaDataController.getInstance(tiVar2.M1).loadAttachMenuBots(false, true);
                 if (tiVar2.B0 == tiVar2.A0.get(((TLRPC.TL_attachMenuBot) this.f25889c).bot_id)) {
-                    tiVar2.U1(tiVar2.f30557j0);
+                    tiVar2.U1(tiVar2.f30558j0);
                     return;
                 }
                 return;
@@ -127,22 +127,22 @@ public final class ee implements Runnable {
                 mk mkVar2 = (mk) this.f25888b;
                 ArrayList arrayList2 = (ArrayList) this.f25889c;
                 nk nkVar = mkVar2.X;
-                boolean z11 = nkVar.f28816b0;
-                ck ckVar = nkVar.f28822r;
+                boolean z11 = nkVar.f28817b0;
+                ck ckVar = nkVar.f28823r;
                 if (z11) {
                     s4.g0 adapter = ckVar.getAdapter();
-                    mk mkVar3 = nkVar.f28826y;
+                    mk mkVar3 = nkVar.f28827y;
                     if (adapter != mkVar3) {
                         ckVar.setAdapter(mkVar3);
                     }
                 }
-                mkVar2.f28538s = arrayList2;
+                mkVar2.f28539s = arrayList2;
                 mkVar2.l();
                 return;
             case 14:
                 ti tiVar3 = ((al) this.f25888b).f28173b;
                 tiVar3.dismiss();
-                tiVar3.f30545f0.presentFragment(org.telegram.ui.qn.W9(((TLRPC.User) this.f25889c).f20423id));
+                tiVar3.f30546f0.presentFragment(org.telegram.ui.qn.W9(((TLRPC.User) this.f25889c).f20423id));
                 return;
             case 15:
                 org.telegram.messenger.g0.q(R.string.WalletAddressCopiedBulletin, new xc((al) this.f25888b, (org.telegram.ui.ActionBar.d6) this.f25889c), R.raw.copy, 36);
@@ -183,14 +183,14 @@ public final class ee implements Runnable {
                 u1Var.scrollBy(0, listTopPadding2);
                 return;
             case 20:
-                to.a(((ro) this.f25888b).f29981c);
+                to.a(((ro) this.f25888b).f29982c);
                 ((ig.g) this.f25889c).run();
                 return;
             case 21:
-                ((rp) this.f25888b).f29985b.z((List) this.f25889c);
+                ((rp) this.f25888b).f29986b.z((List) this.f25889c);
                 return;
             case 22:
-                ((sp) this.f25888b).f30327b.z((List) this.f25889c);
+                ((sp) this.f25888b).f30328b.z((List) this.f25889c);
                 return;
             case 23:
                 ((org.telegram.ui.ActionBar.f3) this.f25888b).dismiss();
@@ -224,32 +224,32 @@ public final class ee implements Runnable {
                 TLObject tLObject = (TLObject) this.f25889c;
                 if (tLObject != null && (tLObject instanceof TL_phone.groupCallStreamRtmpUrl)) {
                     TL_phone.groupCallStreamRtmpUrl groupcallstreamrtmpurl = (TL_phone.groupCallStreamRtmpUrl) tLObject;
-                    xrVar2.f32466b0 = groupcallstreamrtmpurl.url;
-                    xrVar2.f32467c0 = groupcallstreamrtmpurl.key;
-                    SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(xrVar2.f32467c0);
-                    xrVar2.f32468d0 = spannableStringBuilder;
+                    xrVar2.f32467b0 = groupcallstreamrtmpurl.url;
+                    xrVar2.f32468c0 = groupcallstreamrtmpurl.key;
+                    SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(xrVar2.f32468c0);
+                    xrVar2.f32469d0 = spannableStringBuilder;
                     ?? obj = new Object();
-                    obj.f28649a |= 256;
-                    obj.f28650b = 0;
-                    obj.f28651c = spannableStringBuilder.length();
-                    xrVar2.f32468d0.setSpan(new o11(obj, 0), 0, xrVar2.f32468d0.length(), 0);
-                    xrVar2.f32469e0.N(false);
+                    obj.f28650a |= 256;
+                    obj.f28651b = 0;
+                    obj.f28652c = spannableStringBuilder.length();
+                    xrVar2.f32469d0.setSpan(new o11(obj, 0), 0, xrVar2.f32469d0.length(), 0);
+                    xrVar2.f32470e0.N(false);
                     return;
                 }
                 return;
             case 27:
                 zs zsVar = (zs) this.f25888b;
                 TLObject tLObject2 = (TLObject) this.f25889c;
-                ws wsVar = zsVar.f33031b;
+                ws wsVar = zsVar.f33032b;
                 ArrayList arrayList3 = zsVar.h;
-                int i12 = zsVar.f33030a;
+                int i12 = zsVar.f33031a;
                 if (tLObject2 instanceof TL_bots.popularAppBots) {
                     TL_bots.popularAppBots popularappbots = (TL_bots.popularAppBots) tLObject2;
                     MessagesController.getInstance(i12).putUsers(popularappbots.users, false);
                     MessagesStorage.getInstance(i12).putUsersAndChats(popularappbots.users, null, false, true);
                     arrayList3.addAll(popularappbots.users);
                     String str4 = popularappbots.next_offset;
-                    zsVar.f33034g = str4;
+                    zsVar.f33035g = str4;
                     if (str4 == null) {
                         z10 = true;
                     } else {
@@ -257,10 +257,10 @@ public final class ee implements Runnable {
                     }
                     zsVar.e = z10;
                     long currentTimeMillis = System.currentTimeMillis();
-                    zsVar.f33033f = currentTimeMillis;
-                    if (!zsVar.f33035i) {
-                        zsVar.f33035i = true;
-                        String str5 = zsVar.f33034g;
+                    zsVar.f33034f = currentTimeMillis;
+                    if (!zsVar.f33036i) {
+                        zsVar.f33036i = true;
+                        String str5 = zsVar.f33035g;
                         if (str5 == null) {
                             str = "";
                         } else {
@@ -272,13 +272,13 @@ public final class ee implements Runnable {
                         MessagesStorage messagesStorage = MessagesStorage.getInstance(i12);
                         messagesStorage.getStorageQueue().postRunnable(new ai.z(zsVar, messagesStorage, arrayList4, currentTimeMillis, str, 11));
                     }
-                    zsVar.f33032c = false;
+                    zsVar.f33033c = false;
                     wsVar.run();
                     return;
                 }
-                zsVar.f33034g = null;
+                zsVar.f33035g = null;
                 zsVar.e = true;
-                zsVar.f33032c = false;
+                zsVar.f33033c = false;
                 wsVar.run();
                 return;
             case 28:

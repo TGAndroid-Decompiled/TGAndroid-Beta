@@ -2,18 +2,18 @@ package org.telegram.ui.Components;
 
 import android.os.Build;
 public final class wl implements Runnable {
-    public final int f32147a;
-    public final ChatAttachAlertPhotoLayout f32148b;
+    public final int f32148a;
+    public final ChatAttachAlertPhotoLayout f32149b;
 
     public wl(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout, int i10) {
-        this.f32147a = i10;
-        this.f32148b = chatAttachAlertPhotoLayout;
+        this.f32148a = i10;
+        this.f32149b = chatAttachAlertPhotoLayout;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f32147a;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f32148b;
+        int i10 = this.f32148a;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f32149b;
         switch (i10) {
             case 0:
                 boolean z10 = ChatAttachAlertPhotoLayout.f24077q1;
@@ -39,9 +39,9 @@ public final class wl implements Runnable {
             case 5:
                 boolean z13 = ChatAttachAlertPhotoLayout.f24077q1;
                 ti tiVar = chatAttachAlertPhotoLayout.f28173b;
-                if (f0.c.b(tiVar.f30545f0.getParentActivity(), "android.permission.CAMERA") != 0) {
+                if (f0.c.b(tiVar.f30546f0.getParentActivity(), "android.permission.CAMERA") != 0) {
                     try {
-                        tiVar.f30545f0.getParentActivity().requestPermissions(new String[]{"android.permission.CAMERA"}, 18);
+                        tiVar.f30546f0.getParentActivity().requestPermissions(new String[]{"android.permission.CAMERA"}, 18);
                         return;
                     } catch (Exception unused) {
                         return;
@@ -54,9 +54,9 @@ public final class wl implements Runnable {
                 ti tiVar2 = chatAttachAlertPhotoLayout.f28173b;
                 try {
                     if (Build.VERSION.SDK_INT >= 33) {
-                        tiVar2.f30545f0.getParentActivity().requestPermissions(new String[]{"android.permission.READ_MEDIA_VIDEO", "android.permission.READ_MEDIA_IMAGES"}, 4);
+                        tiVar2.f30546f0.getParentActivity().requestPermissions(new String[]{"android.permission.READ_MEDIA_VIDEO", "android.permission.READ_MEDIA_IMAGES"}, 4);
                     } else {
-                        tiVar2.f30545f0.getParentActivity().requestPermissions(new String[]{"android.permission.READ_EXTERNAL_STORAGE"}, 4);
+                        tiVar2.f30546f0.getParentActivity().requestPermissions(new String[]{"android.permission.READ_EXTERNAL_STORAGE"}, 4);
                     }
                     return;
                 } catch (Exception unused2) {

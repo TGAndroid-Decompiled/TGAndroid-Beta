@@ -78,11 +78,11 @@ public final class n6 implements View.OnAttachStateChangeListener {
                 return;
             case 9:
                 qm0 qm0Var = (qm0) this.f1877b;
-                org.telegram.ui.Components.p5 p5Var = qm0Var.f29672t;
+                org.telegram.ui.Components.p5 p5Var = qm0Var.f29673t;
                 if (p5Var != null) {
                     p5Var.a();
                 }
-                org.telegram.ui.Components.p5 p5Var2 = qm0Var.f29673u;
+                org.telegram.ui.Components.p5 p5Var2 = qm0Var.f29674u;
                 if (p5Var2 != null) {
                     p5Var2.a();
                     return;
@@ -187,11 +187,11 @@ public final class n6 implements View.OnAttachStateChangeListener {
                 return;
             case 9:
                 qm0 qm0Var = (qm0) this.f1877b;
-                org.telegram.ui.Components.p5 p5Var = qm0Var.f29672t;
+                org.telegram.ui.Components.p5 p5Var = qm0Var.f29673t;
                 if (p5Var != null) {
                     p5Var.b();
                 }
-                org.telegram.ui.Components.p5 p5Var2 = qm0Var.f29673u;
+                org.telegram.ui.Components.p5 p5Var2 = qm0Var.f29674u;
                 if (p5Var2 != null) {
                     p5Var2.a();
                     return;

@@ -9,24 +9,24 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class gq implements Utilities.Callback2 {
-    public final int f37390a;
-    public final boolean f37391b;
-    public final NotificationCenter.NotificationCenterDelegate f37392c;
+    public final int f37391a;
+    public final boolean f37392b;
+    public final NotificationCenter.NotificationCenterDelegate f37393c;
     public final Object d;
 
     public gq(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, Object obj, boolean z10, int i10) {
-        this.f37390a = i10;
-        this.f37392c = notificationCenterDelegate;
+        this.f37391a = i10;
+        this.f37393c = notificationCenterDelegate;
         this.d = obj;
-        this.f37391b = z10;
+        this.f37392b = z10;
     }
 
     @Override
     public final void run(Object obj, Object obj2) {
         String str;
-        switch (this.f37390a) {
+        switch (this.f37391a) {
             case 0:
-                hr hrVar = (hr) this.f37392c;
+                hr hrVar = (hr) this.f37393c;
                 org.telegram.ui.Cells.q8 q8Var = (org.telegram.ui.Cells.q8) this.d;
                 TLRPC.Updates updates = (TLRPC.Updates) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
@@ -36,13 +36,13 @@ public final class gq implements Utilities.Callback2 {
                 }
                 hrVar.getClass();
                 if (tL_error != null) {
-                    q8Var.setChecked(this.f37391b);
+                    q8Var.setChecked(this.f37392b);
                     org.telegram.ui.Components.xc.a0(hrVar).f0(tL_error, false);
                     return;
                 }
                 return;
             default:
-                zh.r0 r0Var = (zh.r0) this.f37392c;
+                zh.r0 r0Var = (zh.r0) this.f37393c;
                 TLRPC.TL_exportedNoPaidMessagesToken tL_exportedNoPaidMessagesToken = (TLRPC.TL_exportedNoPaidMessagesToken) obj;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
                 int i10 = r0Var.f52093a;
@@ -50,7 +50,7 @@ public final class gq implements Utilities.Callback2 {
                 boolean z10 = false;
                 if (r0Var.f52097n == ((int[]) this.d)[0] && !r0Var.E) {
                     r0Var.f52097n = 0;
-                    boolean z11 = this.f37391b;
+                    boolean z11 = this.f37392b;
                     boolean z12 = true;
                     if (tL_exportedNoPaidMessagesToken == null) {
                         String str2 = null;

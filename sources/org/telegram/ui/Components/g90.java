@@ -73,11 +73,11 @@ public final class g90 extends View {
             if (this.f26551s == null) {
                 org.telegram.ui.Components.voip.h hVar = new org.telegram.ui.Components.voip.h(160, 0);
                 this.f26551s = hVar;
-                hVar.f31431k = false;
-                hVar.f31434n = 0.8f;
-                hVar.f31433m = 1.2f;
+                hVar.f31432k = false;
+                hVar.f31435n = 0.8f;
+                hVar.f31434m = 1.2f;
             }
-            this.f26551s.f31427f = getMeasuredWidth();
+            this.f26551s.f31428f = getMeasuredWidth();
             this.f26551s.a(getHeight() / 2.0f, canvas, rectF, null);
             invalidate();
         }

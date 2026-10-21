@@ -56,7 +56,7 @@ import org.telegram.ui.q50;
 import org.telegram.ui.qy0;
 import w7.z5;
 public abstract class d2 {
-    public static long f31378a;
+    public static long f31379a;
 
     public static boolean a(TLRPC.TL_messageActionPhoneCall tL_messageActionPhoneCall) {
         TLRPC.PhoneCallDiscardReason phoneCallDiscardReason = tL_messageActionPhoneCall.reason;
@@ -83,7 +83,7 @@ public abstract class d2 {
             if (user == null && chat == null) {
                 return;
             }
-            if (SystemClock.elapsedRealtime() - f31378a < (chat != null ? 200 : 2000)) {
+            if (SystemClock.elapsedRealtime() - f31379a < (chat != null ? 200 : 2000)) {
                 return;
             }
             if (z14 && chat != null && !z13 && (chatFull2 = accountInstance.getMessagesController().getChatFull(chat.f20276id)) != null && (peer = chatFull2.groupcall_default_join_as) != null) {
@@ -149,7 +149,7 @@ public abstract class d2 {
                     q50.d1((LaunchActivity) activity, accountInstance, chat, inputPeer, z10, str);
                     return;
                 }
-                f31378a = SystemClock.elapsedRealtime();
+                f31379a = SystemClock.elapsedRealtime();
                 Intent intent = new Intent(activity, VoIPService.class);
                 if (user != null) {
                     intent.putExtra("user_id", user.f20423id);
@@ -352,7 +352,7 @@ public abstract class d2 {
             VoIPService.getSharedInstance().hangUp(new ki.r2(activity, i10, inputGroupCall, z10, groupCall, hashSet));
             return;
         }
-        f31378a = SystemClock.elapsedRealtime();
+        f31379a = SystemClock.elapsedRealtime();
         Intent intent = new Intent(activity, VoIPService.class);
         intent.putExtra("chat_id", 0L);
         int i11 = 0;

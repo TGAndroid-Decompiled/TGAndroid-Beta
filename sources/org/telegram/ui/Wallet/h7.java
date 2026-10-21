@@ -5,9 +5,9 @@ import android.util.LruCache;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.tl.TL_stars;
 public abstract class h7 {
-    public static final LruCache f34289a = new LruCache(128);
-    public static final float[] f34290b = {0.017513232f, 0.2844959f, 1.2347647f, 0.012535676f, 0.21663007f, 0.8356014f, 0.02682078f, 0.40080056f, 2.4040875f, 0.0032399998f, 0.171f, 0.47039998f};
-    public static final float[] f34291c = {0.0f, 0.47809f, 1.0f};
+    public static final LruCache f34290a = new LruCache(128);
+    public static final float[] f34291b = {0.017513232f, 0.2844959f, 1.2347647f, 0.012535676f, 0.21663007f, 0.8356014f, 0.02682078f, 0.40080056f, 2.4040875f, 0.0032399998f, 0.171f, 0.47039998f};
+    public static final float[] f34292c = {0.0f, 0.47809f, 1.0f};
     public static final LruCache d = new LruCache(64);
     public static final int e;
 
@@ -268,7 +268,7 @@ public abstract class h7 {
         float[] fArr;
         float f7;
         String str = i10 + ":" + i11 + ":" + i12;
-        LruCache lruCache = f34289a;
+        LruCache lruCache = f34290a;
         Integer num = (Integer) lruCache.get(str);
         if (num != null) {
             return num.intValue();

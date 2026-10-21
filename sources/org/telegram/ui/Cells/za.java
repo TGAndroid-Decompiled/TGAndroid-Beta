@@ -99,7 +99,7 @@ public final class za extends FrameLayout {
                     TLRPC.WallPaperSettings wallPaperSettings2 = tL_wallPaper.settings;
                     wc0 wc0Var = new wc0(true, wallPaperSettings2.background_color, wallPaperSettings2.second_background_color, wallPaperSettings2.third_background_color, wallPaperSettings2.fourth_background_color);
                     if (tL_wallPaper.settings.intensity < 0 && org.telegram.ui.ActionBar.h6.I.q()) {
-                        w9Var2.getImageReceiver().setGradientBitmap(wc0Var.f32075k);
+                        w9Var2.getImageReceiver().setGradientBitmap(wc0Var.f32076k);
                     } else {
                         w9Var2.setBackground(wc0Var);
                         if (Build.VERSION.SDK_INT >= 29) {
@@ -158,7 +158,7 @@ public final class za extends FrameLayout {
                         w9Var2.getImageReceiver().setBlendMode(BlendMode.SOFT_LIGHT);
                     }
                 } else {
-                    w9Var2.getImageReceiver().setGradientBitmap(wc0Var2.f32075k);
+                    w9Var2.getImageReceiver().setGradientBitmap(wc0Var2.f32076k);
                 }
                 patternColor = wc0.g(i13, i12, i11, sh1Var.e);
             } else {

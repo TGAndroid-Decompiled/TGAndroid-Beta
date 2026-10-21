@@ -84,7 +84,7 @@ public final class q1 extends s4.m0 {
                     rect.left = AndroidUtilities.dp(5.0f);
                     rect.right = AndroidUtilities.dp(5.0f);
                     recyclerView.getClass();
-                    if (RecyclerView.R(view) + 1 > tzVar.R.E && !UserConfig.getInstance(tzVar.f30722c1).isPremium() && !tzVar.U0) {
+                    if (RecyclerView.R(view) + 1 > tzVar.R.E && !UserConfig.getInstance(tzVar.f30723c1).isPremium() && !tzVar.U0) {
                         rect.top = AndroidUtilities.dp(10.0f);
                         return;
                     }
@@ -123,8 +123,8 @@ public final class q1 extends s4.m0 {
                 recyclerView.getClass();
                 int R = RecyclerView.R(view);
                 bj0 bj0Var = (bj0) this.f9619b;
-                if (R == bj0Var.f35648c0.size()) {
-                    rect.bottom = bj0Var.f35657l0;
+                if (R == bj0Var.f35649c0.size()) {
+                    rect.bottom = bj0Var.f35658l0;
                     return;
                 }
                 return;
@@ -132,9 +132,9 @@ public final class q1 extends s4.m0 {
                 recyclerView.getClass();
                 int R2 = RecyclerView.R(view);
                 cp0 cp0Var = (cp0) this.f9619b;
-                int i13 = cp0Var.f36021b0;
+                int i13 = cp0Var.f36022b0;
                 if (R2 >= i13) {
-                    int i14 = cp0Var.f36027f0;
+                    int i14 = cp0Var.f36028f0;
                     if (R2 < i13 + i14) {
                         int i15 = R2 - i13;
                         int i16 = i15 / 3;

@@ -21,7 +21,7 @@ public final class x8 implements bh.k {
                 if (view == profileActivity.O) {
                     return true;
                 }
-                return profileActivity.f33580a.drawChild(canvas, view, j10);
+                return profileActivity.f33581a.drawChild(canvas, view, j10);
             default:
                 return ((pe1) this.f43134b).drawChild(canvas, view, j10);
         }

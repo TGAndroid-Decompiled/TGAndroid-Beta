@@ -17,7 +17,7 @@ public final class nz implements org.telegram.ui.Components.zl0, org.telegram.ui
         e00 e00Var = (e00) n00Var.P.get(i10);
         if (e00Var != null && (view instanceof org.telegram.ui.Cells.va)) {
             org.telegram.ui.Cells.va vaVar = (org.telegram.ui.Cells.va) view;
-            n00Var.v0(e00Var, vaVar.getName(), vaVar.getCurrentObject(), e00Var.f36474g);
+            n00Var.v0(e00Var, vaVar.getName(), vaVar.getCurrentObject(), e00Var.f36475g);
             return true;
         }
         return false;

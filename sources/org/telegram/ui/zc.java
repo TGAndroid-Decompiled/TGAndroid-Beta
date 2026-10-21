@@ -78,7 +78,7 @@ public final class zc extends FrameLayout {
                 break;
             }
             org.telegram.ui.Components.vp vpVar = (org.telegram.ui.Components.vp) arrayList.get(i11);
-            if (!TextUtils.equals(this.f43718s, vpVar.a()) && (!TextUtils.isEmpty(str) || !vpVar.f31849a.f20723a)) {
+            if (!TextUtils.equals(this.f43718s, vpVar.a()) && (!TextUtils.isEmpty(str) || !vpVar.f31850a.f20723a)) {
                 z11 = false;
             }
             vpVar.d = z11;
@@ -109,7 +109,7 @@ public final class zc extends FrameLayout {
         AndroidUtilities.forEachViews((RecyclerView) this.d, (Utilities.Callback<View>) new uc(this, 1));
         if (this.v != null) {
             ArrayList arrayList = this.f43714c;
-            if ((arrayList.isEmpty() || ((org.telegram.ui.Components.vp) arrayList.get(0)).f31849a.f20723a) && this.f43715f) {
+            if ((arrayList.isEmpty() || ((org.telegram.ui.Components.vp) arrayList.get(0)).f31850a.f20723a) && this.f43715f) {
                 arrayList.add(0, new org.telegram.ui.Components.vp(org.telegram.ui.ActionBar.c4.a(this.f43712a)));
                 this.h.l();
             }

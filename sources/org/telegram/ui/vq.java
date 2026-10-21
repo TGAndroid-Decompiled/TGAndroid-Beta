@@ -38,7 +38,7 @@ public final class vq implements ar {
             }
             tL_channelParticipantBanned.date = hrVar.getConnectionsManager().getCurrentTime();
             tL_channelParticipantBanned.kicked_by = hrVar.getAccountInstance().getUserConfig().clientUserId;
-            hrVar.f37755s.kicked_count++;
+            hrVar.f37756s.kicked_count++;
             hrVar.F.add(tL_channelParticipantBanned);
             hrVar.K.k(tL_channelParticipantBanned, j10);
             hrVar.z0(hrVar.F);

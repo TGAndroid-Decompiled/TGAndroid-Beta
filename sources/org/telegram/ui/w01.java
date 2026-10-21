@@ -69,11 +69,11 @@ public final class w01 extends org.telegram.ui.ActionBar.j {
             if (z01Var.f43592r != null) {
                 ?? obj = new Object();
                 obj.d = j11;
-                obj.f36682b = true;
+                obj.f36683b = true;
                 int c10 = org.telegram.messenger.g0.c("notify2_", str, notificationsSettings, 0);
-                obj.f36683c = c10;
+                obj.f36684c = c10;
                 if (c10 != 0) {
-                    obj.f36681a = org.telegram.messenger.g0.c("notifyuntil_", str, notificationsSettings, 0);
+                    obj.f36682a = org.telegram.messenger.g0.c("notifyuntil_", str, notificationsSettings, 0);
                 }
                 z01Var.f43592r.r(obj);
             }

@@ -54,9 +54,9 @@ public final class d1 implements RequestDelegateTimestamp, MessagesStorage.Strin
         boolean J1;
         ti tiVar = (ti) this.f5311c;
         li liVar = tiVar.B0;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = tiVar.f30557j0;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = tiVar.f30558j0;
         long j10 = this.f5310b;
-        if (liVar != chatAttachAlertPhotoLayout && liVar != tiVar.f30577q0) {
+        if (liVar != chatAttachAlertPhotoLayout && liVar != tiVar.f30578q0) {
             if (!liVar.K(i10, z10, i11, tiVar.u1(), j10)) {
                 tiVar.D2 = true;
                 tiVar.dismiss();
@@ -65,10 +65,10 @@ public final class d1 implements RequestDelegateTimestamp, MessagesStorage.Strin
         } else {
             J1 = tiVar.J1(i10, z10, i11, tiVar.u1(), j10);
         }
-        mf mfVar = tiVar.f30551h0;
+        mf mfVar = tiVar.f30552h0;
         if (mfVar != null) {
-            mfVar.h(!J1);
-            tiVar.f30551h0 = null;
+            mfVar.g(!J1);
+            tiVar.f30552h0 = null;
         }
     }
 
@@ -139,7 +139,7 @@ public final class d1 implements RequestDelegateTimestamp, MessagesStorage.Strin
     public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
         switch (this.f5309a) {
             case 8:
-                po0 po0Var = ((cy) this.f5311c).C0.f32178b0;
+                po0 po0Var = ((cy) this.f5311c).C0.f32179b0;
                 a0.h hVar = po0Var.f11901x0;
                 long j10 = this.f5310b;
                 hg.g0 g0Var = (hg.g0) hVar.f(j10);
@@ -162,7 +162,7 @@ public final class d1 implements RequestDelegateTimestamp, MessagesStorage.Strin
     @Override
     public void i(int i10, ArrayList arrayList) {
         be1 be1Var = (be1) this.f5311c;
-        org.telegram.ui.ActionBar.n2 n2Var = be1Var.f35618b;
+        org.telegram.ui.ActionBar.n2 n2Var = be1Var.f35619b;
         int size = arrayList.size();
         int[] iArr = new int[1];
         TLRPC.TL_messages_invitedUsers tL_messages_invitedUsers = new TLRPC.TL_messages_invitedUsers();

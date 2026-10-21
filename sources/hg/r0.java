@@ -66,7 +66,7 @@ public final class r0 implements View.OnClickListener {
                 if (stickerSet != null && e2Var.h.indexOfKey(stickerSet.set.f20303id) < 0 && longSparseArray.indexOfKey(stickerSet.set.f20303id) < 0) {
                     if (r3Var.f22942r) {
                         longSparseArray.put(stickerSet.set.f20303id, stickerSet);
-                        e2Var.e.f29846a.h(r3Var.getStickerSet());
+                        e2Var.e.f29847a.h(r3Var.getStickerSet());
                         return;
                     }
                     e2Var.F(stickerSet, r3Var);
@@ -142,7 +142,7 @@ public final class r0 implements View.OnClickListener {
                 qVar.K(0, true, 0, false, 0L);
                 mi0 mi0Var = qVar.O;
                 if (mi0Var != null) {
-                    mi0Var.h(true);
+                    mi0Var.g(true);
                     qVar.O = null;
                     return;
                 }
@@ -188,8 +188,8 @@ public final class r0 implements View.OnClickListener {
                 return;
             case 12:
                 org.telegram.ui.Components.voip.v0 v0Var = (org.telegram.ui.Components.voip.v0) this.f12028b;
-                if (!v0Var.f31779a) {
-                    if (v0Var.f31787x == 0 && v0Var.f31788y) {
+                if (!v0Var.f31780a) {
+                    if (v0Var.f31788x == 0 && v0Var.f31789y) {
                         ((Activity) v0Var.getContext()).startActivityForResult(((MediaProjectionManager) v0Var.getContext().getSystemService("media_projection")).createScreenCaptureIntent(), 520);
                         return;
                     } else {
@@ -200,8 +200,8 @@ public final class r0 implements View.OnClickListener {
                 return;
             case 13:
                 ah1 ah1Var = (ah1) this.f12028b;
-                if (!ah1Var.f31346a) {
-                    if (ah1Var.f31353w == 0) {
+                if (!ah1Var.f31347a) {
+                    if (ah1Var.f31354w == 0) {
                         ((Activity) ah1Var.getContext()).startActivityForResult(((MediaProjectionManager) ah1Var.getContext().getSystemService("media_projection")).createScreenCaptureIntent(), 520);
                         return;
                     } else {

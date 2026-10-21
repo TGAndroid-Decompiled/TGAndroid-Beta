@@ -175,7 +175,7 @@ public abstract class hn0 extends HorizontalScrollView {
             g(j10, yx0Var, i11);
         } else {
             yx0Var = new yx0(getContext(), 1);
-            yx0Var.f32751f.setImageDrawable(drawable);
+            yx0Var.f32752f.setImageDrawable(drawable);
             yx0Var.setFocusable(true);
             yx0Var.setOnClickListener(new an0(this, 4));
             yx0Var.setExpanded(this.f26932f0);
@@ -236,25 +236,25 @@ public abstract class hn0 extends HorizontalScrollView {
             }
             if (qa1Var.getChildAt(i10) instanceof yx0) {
                 yx0 yx0Var = (yx0) qa1Var.getChildAt(i10);
-                float f16 = yx0Var.f32757y;
+                float f16 = yx0Var.f32758y;
                 if (yx0Var.getLeft() != f16 && yx0Var.E) {
-                    yx0Var.f32749b = f16 - yx0Var.getLeft();
-                    ValueAnimator valueAnimator = yx0Var.f32756x;
+                    yx0Var.f32750b = f16 - yx0Var.getLeft();
+                    ValueAnimator valueAnimator = yx0Var.f32757x;
                     if (valueAnimator != null) {
                         valueAnimator.removeAllListeners();
-                        yx0Var.f32756x.cancel();
+                        yx0Var.f32757x.cancel();
                     }
-                    ValueAnimator ofFloat = ValueAnimator.ofFloat(yx0Var.f32749b, 0.0f);
-                    yx0Var.f32756x = ofFloat;
+                    ValueAnimator ofFloat = ValueAnimator.ofFloat(yx0Var.f32750b, 0.0f);
+                    yx0Var.f32757x = ofFloat;
                     ofFloat.addUpdateListener(new xx0(yx0Var, this, 0));
-                    yx0Var.f32756x.addListener(new nl0(4, yx0Var, this));
-                    yx0Var.f32756x.start();
+                    yx0Var.f32757x.addListener(new nl0(4, yx0Var, this));
+                    yx0Var.f32757x.start();
                 }
                 yx0Var.E = false;
                 if (this.f26933g0) {
-                    yx0Var.setTranslationX(com.google.android.gms.internal.play_billing.k3.y(1.0f, this.f26935i0, i10 * f14, f15) + yx0Var.f32749b);
+                    yx0Var.setTranslationX(com.google.android.gms.internal.play_billing.k3.y(1.0f, this.f26935i0, i10 * f14, f15) + yx0Var.f32750b);
                 } else {
-                    yx0Var.setTranslationX(yx0Var.f32749b);
+                    yx0Var.setTranslationX(yx0Var.f32750b);
                 }
             }
             i10++;
@@ -372,7 +372,7 @@ public abstract class hn0 extends HorizontalScrollView {
                 View childAt = qa1Var.getChildAt(i10);
                 if (childAt instanceof yx0) {
                     yx0 yx0Var = (yx0) childAt;
-                    if (yx0Var.f32748a == 0 && !yx0Var.d) {
+                    if (yx0Var.f32749a == 0 && !yx0Var.d) {
                         return true;
                     }
                     return false;
@@ -422,7 +422,7 @@ public abstract class hn0 extends HorizontalScrollView {
                 for (int i11 = 0; i11 < qa1Var.getChildCount(); i11++) {
                     if (i11 != this.U) {
                         yx0 yx0Var = (yx0) qa1Var.getChildAt(i11);
-                        yx0Var.f32757y = yx0Var.getLeft();
+                        yx0Var.f32758y = yx0Var.getLeft();
                         yx0Var.E = true;
                         yx0Var.invalidate();
                     }

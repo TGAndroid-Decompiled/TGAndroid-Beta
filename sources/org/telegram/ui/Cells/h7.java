@@ -560,7 +560,7 @@ public class h7 extends FrameLayout implements DownloadController.FileDownloadPr
         } else if (this.f22386s != null && this.H != null) {
             accessibilityNodeInfo.setText(((Object) this.f22386s.getText()) + ", " + ((Object) this.H.getText()));
         }
-        if (this.f22371b.f32458a.f24151q) {
+        if (this.f22371b.f32459a.f24151q) {
             accessibilityNodeInfo.setCheckable(true);
             accessibilityNodeInfo.setChecked(true);
         }

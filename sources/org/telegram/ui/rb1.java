@@ -22,7 +22,7 @@ public final class rb1 extends AnimatorListenerAdapter {
     public final void onAnimationEnd(Animator animator) {
         kc1 kc1Var = this.e;
         FrameLayout[] frameLayoutArr = kc1Var.L0;
-        kc1Var.f38564r1 = null;
+        kc1Var.f38565r1 = null;
         int i10 = this.f41117c;
         int i11 = this.f41116b;
         boolean z10 = this.f41115a;
@@ -32,7 +32,7 @@ public final class rb1 extends AnimatorListenerAdapter {
         } else if (!z10) {
             frameLayoutArr[i10].setVisibility(4);
         }
-        int i12 = kc1Var.f38519b;
+        int i12 = kc1Var.f38520b;
         char c10 = 2;
         if (i12 != 1 && i12 != 2) {
             if (i10 == 1) {

@@ -21,7 +21,7 @@ public final class fw extends s4.b0 {
     @Override
     public final int R0() {
         ay ayVar = this.L;
-        if (ayVar.f35448s == 0 && this.M.X3() && ayVar.v == 2) {
+        if (ayVar.f35449s == 0 && this.M.X3() && ayVar.v == 2) {
             return 1;
         }
         return 0;
@@ -38,7 +38,7 @@ public final class fw extends s4.b0 {
                 cy cyVar = this.M;
                 sb2.append(cyVar.S1);
                 sb2.append(" lastUpdateAction=");
-                sb2.append(cyVar.f36200z3);
+                sb2.append(cyVar.f36201z3);
                 throw new RuntimeException(sb2.toString());
             }
         }
@@ -65,7 +65,7 @@ public final class fw extends s4.b0 {
             this.K.cancel();
         }
         ay ayVar = this.L;
-        if (ayVar.f35442a.getScrollState() != 1) {
+        if (ayVar.f35443a.getScrollState() != 1) {
             ValueAnimator ofFloat = ValueAnimator.ofFloat(this.M.T, 0.0f);
             this.K = ofFloat;
             ofFloat.addUpdateListener(new ah.l0(23, this, ayVar));
@@ -79,7 +79,7 @@ public final class fw extends s4.b0 {
     @Override
     public final void h1(int i10, int i11) {
         if (this.I) {
-            i11 -= this.L.f35442a.getPaddingTop();
+            i11 -= this.L.f35443a.getPaddingTop();
         }
         super.h1(i10, i11);
     }

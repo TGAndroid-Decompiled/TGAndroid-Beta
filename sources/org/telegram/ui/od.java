@@ -22,7 +22,7 @@ public final class od implements Runnable {
                 pf.d.r(this.f39846b.getContext(), LocaleController.getString(R.string.MonetizationStarsInfoLink));
                 return;
             case 1:
-                org.telegram.ui.Components.c71 c71Var = this.f39846b.f37930a1;
+                org.telegram.ui.Components.c71 c71Var = this.f39846b.f37931a1;
                 if (c71Var != null) {
                     c71Var.W2.N(true);
                     return;
@@ -32,7 +32,7 @@ public final class od implements Runnable {
                 ie ieVar = this.f39846b;
                 ieVar.getClass();
                 try {
-                    org.telegram.ui.Components.jm0 currentListView = ieVar.f37934e1.getCurrentListView();
+                    org.telegram.ui.Components.jm0 currentListView = ieVar.f37935e1.getCurrentListView();
                     if (currentListView != null && currentListView.getAdapter() != null) {
                         currentListView.getAdapter().l();
                         return;
@@ -43,28 +43,28 @@ public final class od implements Runnable {
                 }
             case 3:
                 ie ieVar2 = this.f39846b;
-                int i10 = ieVar2.f37954y0;
-                AndroidUtilities.cancelRunOnUIThread(ieVar2.f37950v1);
-                if (ieVar2.f37941m1 != ieVar2.f37942n1) {
+                int i10 = ieVar2.f37955y0;
+                AndroidUtilities.cancelRunOnUIThread(ieVar2.f37951v1);
+                if (ieVar2.f37942m1 != ieVar2.f37943n1) {
                     TLRPC.TL_channels_restrictSponsoredMessages tL_channels_restrictSponsoredMessages = new TLRPC.TL_channels_restrictSponsoredMessages();
-                    tL_channels_restrictSponsoredMessages.channel = MessagesController.getInstance(i10).getInputChannel(-ieVar2.f37955z0);
-                    tL_channels_restrictSponsoredMessages.restricted = ieVar2.f37941m1;
+                    tL_channels_restrictSponsoredMessages.channel = MessagesController.getInstance(i10).getInputChannel(-ieVar2.f37956z0);
+                    tL_channels_restrictSponsoredMessages.restricted = ieVar2.f37942m1;
                     ConnectionsManager.getInstance(i10).sendRequest(tL_channels_restrictSponsoredMessages, new ud(ieVar2, 0));
                     return;
                 }
                 return;
             case 4:
                 ie ieVar3 = this.f39846b;
-                ieVar3.f37942n1 = ieVar3.f37941m1;
+                ieVar3.f37943n1 = ieVar3.f37942m1;
                 return;
             case 5:
                 this.f39846b.T0.setLoading(false);
                 return;
             case 6:
-                this.f39846b.f37932c1.setVisibility(8);
+                this.f39846b.f37933c1.setVisibility(8);
                 return;
             case 7:
-                this.f39846b.f37932c1.setVisibility(8);
+                this.f39846b.f37933c1.setVisibility(8);
                 return;
             default:
                 pf.d.r(this.f39846b.getContext(), LocaleController.getString(R.string.MonetizationBalanceInfoLink));

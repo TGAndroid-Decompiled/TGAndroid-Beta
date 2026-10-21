@@ -27,7 +27,7 @@ public final class gm extends AnimatorListenerAdapter {
                     chatAttachAlertPhotoLayout.P.invalidate();
                 }
                 if (chatAttachAlertPhotoLayout.f24084b0) {
-                    chatAttachAlertPhotoLayout.f28173b.f30537c2.J();
+                    chatAttachAlertPhotoLayout.f28173b.f30538c2.J();
                 }
                 om omVar2 = chatAttachAlertPhotoLayout.P;
                 if (omVar2 != null) {

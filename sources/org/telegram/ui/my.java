@@ -32,7 +32,7 @@ public final class my implements ImageReceiver.ImageReceiverDelegate {
     @Override
     public final void onAnimationReady(ImageReceiver imageReceiver) {
         MessageObject messageObject;
-        if (this.f39366b && (messageObject = this.f39367c) != null && messageObject.isAnimatedAnimatedEmoji() && imageReceiver.getLottieAnimation() != null && imageReceiver.getLottieAnimation().f31293x == null) {
+        if (this.f39366b && (messageObject = this.f39367c) != null && messageObject.isAnimatedAnimatedEmoji() && imageReceiver.getLottieAnimation() != null && imageReceiver.getLottieAnimation().f31294x == null) {
             try {
                 this.d.G.performHapticFeedback(3, 1);
             } catch (Exception unused) {

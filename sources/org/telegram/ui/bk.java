@@ -7,18 +7,18 @@ import java.util.WeakHashMap;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class bk extends org.telegram.ui.Components.w81 {
-    public final Context f35665a;
-    public final qn f35666b;
+    public final Context f35666a;
+    public final qn f35667b;
 
     public bk(qn qnVar, Context context) {
-        this.f35666b = qnVar;
-        this.f35665a = context;
+        this.f35667b = qnVar;
+        this.f35666a = context;
     }
 
     @Override
     public final void b(View view, int i10, int i11) {
         if (view instanceof sn) {
-            ((sn) view).f41496a.Oc(this.f35666b.f40865u3);
+            ((sn) view).f41496a.Oc(this.f35667b.f40865u3);
         }
         WeakHashMap weakHashMap = r0.i0.f44826a;
         r0.y.c(view);
@@ -26,8 +26,8 @@ public final class bk extends org.telegram.ui.Components.w81 {
 
     @Override
     public final View d(int i10) {
-        Context context = this.f35665a;
-        qn qnVar = this.f35666b;
+        Context context = this.f35666a;
+        qn qnVar = this.f35667b;
         if (i10 == 0) {
             return new en(qnVar, context);
         }

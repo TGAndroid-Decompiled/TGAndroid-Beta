@@ -19,7 +19,7 @@ public final class fx extends FrameLayout {
     public final void dispatchDraw(Canvas canvas) {
         tz tzVar = this.f26432b;
         ex exVar = tzVar.B0;
-        float dp = AndroidUtilities.dp(50.0f) * tzVar.f30775t1.p();
+        float dp = AndroidUtilities.dp(50.0f) * tzVar.f30776t1.p();
         if (dp > getMeasuredHeight()) {
             return;
         }

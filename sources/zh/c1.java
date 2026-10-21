@@ -1074,7 +1074,7 @@ public final class c1 extends View {
         p6Var.w(AndroidUtilities.dp(11.0f));
         p6Var.n(0.35f, 280L, bs.h);
         p6Var.setCallback(this);
-        p6Var.f29225b = 3;
+        p6Var.f29226b = 3;
         a1 t10 = t(H9);
         this.f51832n = t10;
         this.f51733c7 = W0(t10.f51642c);
@@ -3256,7 +3256,7 @@ public final class c1 extends View {
 
     public final Bitmap V(r5 r5Var) {
         Bitmap bitmap;
-        g3 g3Var = r5Var.f29837k;
+        g3 g3Var = r5Var.f29838k;
         if (g3Var != null) {
             vj0 lottieAnimation = g3Var.getLottieAnimation();
             if (lottieAnimation != null) {
@@ -3373,7 +3373,7 @@ public final class c1 extends View {
         g3 g3Var;
         if (z0Var != null && z0Var.e == null && (r5Var = z0Var.f52158c) != null) {
             s sVar = z0Var.F;
-            if ((sVar == null || sVar.h) && (g3Var = r5Var.f29837k) != null && g3Var.hasImageLoaded() && g3Var.hasNotThumb()) {
+            if ((sVar == null || sVar.h) && (g3Var = r5Var.f29838k) != null && g3Var.hasImageLoaded() && g3Var.hasNotThumb()) {
                 int dp = AndroidUtilities.dp(48.0f);
                 Bitmap createBitmap = Bitmap.createBitmap(dp, dp, Bitmap.Config.ARGB_8888);
                 Canvas canvas = new Canvas(createBitmap);

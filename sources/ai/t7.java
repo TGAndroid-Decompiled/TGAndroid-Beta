@@ -66,7 +66,7 @@ public final class t7 implements BillingController.ProductDetailsResponseListene
             rectF5.set(centerX - width2, centerY - height, centerX + width2, centerY + height);
         } catch (Exception unused) {
         }
-        int i10 = ProfileStoriesView.f33865s0;
+        int i10 = ProfileStoriesView.f33866s0;
         ((uy0) lVar.f279b).a(canvas, s4Var, s4Var2);
         rectF4.set(rectF2);
         rectF5.set(rectF3);

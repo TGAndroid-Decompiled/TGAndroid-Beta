@@ -22,12 +22,12 @@ import org.telegram.messenger.camera.CameraController;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class td implements View.OnClickListener {
-    public final int f30503a;
-    public final ChatActivityEnterView f30504b;
+    public final int f30504a;
+    public final ChatActivityEnterView f30505b;
 
     public td(ChatActivityEnterView chatActivityEnterView, int i10) {
-        this.f30503a = i10;
-        this.f30504b = chatActivityEnterView;
+        this.f30504a = i10;
+        this.f30505b = chatActivityEnterView;
     }
 
     @Override
@@ -54,8 +54,8 @@ public final class td implements View.OnClickListener {
         int i13;
         int i14;
         int i15;
-        int i16 = this.f30503a;
-        ChatActivityEnterView chatActivityEnterView = this.f30504b;
+        int i16 = this.f30504a;
+        ChatActivityEnterView chatActivityEnterView = this.f30505b;
         switch (i16) {
             case 0:
                 pf pfVar2 = chatActivityEnterView.E0;
@@ -74,7 +74,7 @@ public final class td implements View.OnClickListener {
                 }
             case 1:
                 mf mfVar = chatActivityEnterView.L0;
-                if (mfVar == null || mfVar.f39274q0) {
+                if (mfVar == null || mfVar.f39274p0) {
                     AnimatorSet animatorSet = chatActivityEnterView.f24022t2;
                     if ((animatorSet == null || !animatorSet.isRunning()) && chatActivityEnterView.f23942f0 == null) {
                         chatActivityEnterView.Q0();
@@ -285,7 +285,7 @@ public final class td implements View.OnClickListener {
                 if (ogVar4 != null && !ogVar4.o()) {
                     og ogVar5 = chatActivityEnterView.Z2;
                     wg wgVar = chatActivityEnterView.F0;
-                    ogVar5.o1(wgVar, wgVar.f32098a.getText(), true);
+                    ogVar5.o1(wgVar, wgVar.f32099a.getText(), true);
                     return;
                 }
                 return;
@@ -329,7 +329,7 @@ public final class td implements View.OnClickListener {
                 f5.L(chatActivityEnterView.O2, chatActivityEnterView.P2.a(), new ki.t1(chatActivityEnterView, 13), chatActivityEnterView.W3);
                 return;
             case 12:
-                ChatActivityEnterView chatActivityEnterView2 = this.f30504b;
+                ChatActivityEnterView chatActivityEnterView2 = this.f30505b;
                 lf lfVar2 = chatActivityEnterView2.N0;
                 if (lfVar2 != null && lfVar2.isShowing()) {
                     chatActivityEnterView2.N0.dismiss();
@@ -337,7 +337,7 @@ public final class td implements View.OnClickListener {
                 chatActivityEnterView2.R0(2147483646, true, 0, true, 0L);
                 return;
             case 13:
-                ChatActivityEnterView chatActivityEnterView3 = this.f30504b;
+                ChatActivityEnterView chatActivityEnterView3 = this.f30505b;
                 lf lfVar3 = chatActivityEnterView3.N0;
                 if (lfVar3 != null && lfVar3.isShowing()) {
                     chatActivityEnterView3.N0.dismiss();
@@ -441,7 +441,7 @@ public final class td implements View.OnClickListener {
                 }
                 return;
             case 16:
-                ChatActivityEnterView chatActivityEnterView4 = this.f30504b;
+                ChatActivityEnterView chatActivityEnterView4 = this.f30505b;
                 org.telegram.ui.qn qnVar4 = chatActivityEnterView4.P2;
                 if (!chatActivityEnterView4.f23981l5 ? chatActivityEnterView4.getTranslationY() != 0.0f : chatActivityEnterView4.r0()) {
                     chatActivityEnterView4.f24009r0 = new ie(chatActivityEnterView4, 3);
@@ -541,7 +541,7 @@ public final class td implements View.OnClickListener {
                     } else {
                         i12 = AndroidUtilities.statusBarHeight;
                     }
-                    if (measuredHeight < (i21 - i12) - chatActivityEnterView4.f24003q0.f30329p.getMeasuredHeight()) {
+                    if (measuredHeight < (i21 - i12) - chatActivityEnterView4.f24003q0.f30330p.getMeasuredHeight()) {
                         chatActivityEnterView4.getLocationInWindow(iArr);
                         i14 = ((iArr[1] - measuredHeight) - i20) - AndroidUtilities.dp(2.0f);
                     } else {
@@ -550,17 +550,17 @@ public final class td implements View.OnClickListener {
                         } else {
                             i13 = AndroidUtilities.statusBarHeight;
                         }
-                        chatActivityEnterView4.f24003q0.f30328o.getLayoutParams().height = ((Y02 - i13) - AndroidUtilities.dp(14.0f)) - chatActivityEnterView4.getHeightWithTopView();
+                        chatActivityEnterView4.f24003q0.f30329o.getLayoutParams().height = ((Y02 - i13) - AndroidUtilities.dp(14.0f)) - chatActivityEnterView4.getHeightWithTopView();
                         i14 = i13;
                     }
                     ef efVar3 = chatActivityEnterView4.f24003q0;
-                    View view2 = efVar3.f30334u;
+                    View view2 = efVar3.f30335u;
                     jm0 jm0Var = efVar3.v;
-                    TLRPC.Peer peer5 = efVar3.f30331r;
-                    mp0 mp0Var = efVar3.f30328o;
-                    ah.x xVar = efVar3.f30333t;
+                    TLRPC.Peer peer5 = efVar3.f30332r;
+                    mp0 mp0Var = efVar3.f30329o;
+                    ah.x xVar = efVar3.f30334t;
                     int i22 = 1;
-                    ArrayList arrayList2 = efVar3.f30338z;
+                    ArrayList arrayList2 = efVar3.f30339z;
                     int size = arrayList2.size();
                     int i23 = 0;
                     while (i23 < size) {
@@ -573,7 +573,7 @@ public final class td implements View.OnClickListener {
                     xVar.setPivotY(xVar.getMeasuredHeight() - AndroidUtilities.dp(8.0f));
                     mp0Var.setPivotX(0.0f);
                     mp0Var.setPivotY(0.0f);
-                    ArrayList<TLRPC.TL_sendAsPeer> arrayList3 = efVar3.f30332s.peers;
+                    ArrayList<TLRPC.TL_sendAsPeer> arrayList3 = efVar3.f30333s.peers;
                     if (peer5 != null) {
                         int dp = AndroidUtilities.dp(54.0f);
                         int size2 = arrayList3.size() * dp;
@@ -599,7 +599,7 @@ public final class td implements View.OnClickListener {
                             } else {
                                 i15 = 0;
                             }
-                            efVar3.f30335w.h1(i24, (size2 - ((arrayList4.size() - 2) * i25)) + AndroidUtilities.dp(7.0f) + i15);
+                            efVar3.f30336w.h1(i24, (size2 - ((arrayList4.size() - 2) * i25)) + AndroidUtilities.dp(7.0f) + i15);
                             if (jm0Var.computeVerticalScrollOffset() > 0) {
                                 view2.animate().cancel();
                                 view2.animate().alpha(1.0f).setDuration(150L).start();

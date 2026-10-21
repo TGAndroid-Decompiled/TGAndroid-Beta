@@ -1,21 +1,28 @@
 package org.telegram.messenger;
-public final class sl implements Runnable {
-    public final int f19553a;
-    public final VideoEncodingService f19554b;
 
-    public sl(VideoEncodingService videoEncodingService, int i10) {
-        this.f19553a = i10;
-        this.f19554b = videoEncodingService;
+import java.io.Serializable;
+import org.telegram.messenger.Utilities;
+public final class sl implements Runnable {
+    public final int f19550a;
+    public final Serializable f19551b;
+    public final Serializable f19552c;
+    public final Object d;
+
+    public sl(Serializable serializable, Serializable serializable2, Object obj, int i10) {
+        this.f19550a = i10;
+        this.f19551b = serializable;
+        this.f19552c = serializable2;
+        this.d = obj;
     }
 
     @Override
     public final void run() {
-        switch (this.f19553a) {
+        switch (this.f19550a) {
             case 0:
-                VideoEncodingService.a(this.f19554b);
+                Utilities.a((int[]) this.f19551b, (Utilities.Callback[]) this.f19552c, (Runnable) this.d);
                 return;
             default:
-                VideoEncodingService.b(this.f19554b);
+                WearAuthListenerService.a((String) this.f19551b, (String) this.f19552c, (byte[]) this.d);
                 return;
         }
     }

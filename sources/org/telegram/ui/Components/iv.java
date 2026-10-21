@@ -227,7 +227,7 @@ public final class iv implements org.telegram.ui.ct {
         Context context2 = awVar.getContext();
         d6Var3 = ((org.telegram.ui.ActionBar.f3) awVar).resourcesProvider;
         oc ocVar = new oc(context2, d6Var3, true);
-        ocVar.f28982a = ytVar;
+        ocVar.f28983a = ytVar;
         icVar.setButton(ocVar);
         viewGroup2 = ((org.telegram.ui.ActionBar.f3) awVar).containerView;
         qc.f((FrameLayout) viewGroup2, icVar, 1500).j();

@@ -9,10 +9,10 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class ke1 extends org.telegram.ui.Components.im0 {
-    public final ne1 f38591c;
+    public final ne1 f38592c;
 
     public ke1(ne1 ne1Var) {
-        this.f38591c = ne1Var;
+        this.f38592c = ne1Var;
     }
 
     @Override
@@ -26,7 +26,7 @@ public final class ke1 extends org.telegram.ui.Components.im0 {
 
     @Override
     public final int h() {
-        ne1 ne1Var = this.f38591c;
+        ne1 ne1Var = this.f38592c;
         if (ne1Var.f39574l0) {
             return 0;
         }
@@ -35,7 +35,7 @@ public final class ke1 extends org.telegram.ui.Components.im0 {
 
     @Override
     public final int j(int i10) {
-        ne1 ne1Var = this.f38591c;
+        ne1 ne1Var = this.f38592c;
         if (i10 != ne1Var.f39570h0 && i10 != ne1Var.f39567e0) {
             if (i10 >= ne1Var.f39568f0 && i10 < ne1Var.f39569g0) {
                 return 2;
@@ -53,7 +53,7 @@ public final class ke1 extends org.telegram.ui.Components.im0 {
         int i11;
         boolean z10;
         View view = b1Var.f45917a;
-        ne1 ne1Var = this.f38591c;
+        ne1 ne1Var = this.f38592c;
         re1 re1Var = ne1Var.f39581t0;
         if (j(i10) == 1) {
             org.telegram.ui.Cells.u3 u3Var = (org.telegram.ui.Cells.u3) view;
@@ -101,7 +101,7 @@ public final class ke1 extends org.telegram.ui.Components.im0 {
     public final s4.b1 x(ViewGroup viewGroup, int i10) {
         FrameLayout frameLayout;
         boolean z10;
-        re1 re1Var = this.f38591c.f39581t0;
+        re1 re1Var = this.f38592c.f39581t0;
         if (i10 != 1) {
             if (i10 != 2) {
                 if (i10 == 3) {

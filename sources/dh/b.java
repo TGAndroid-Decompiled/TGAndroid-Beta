@@ -99,11 +99,11 @@ public final class b extends ViewOutlineProvider {
                 }
             case 5:
                 q2 q2Var = (q2) obj;
-                if (q2Var.f31645b < 1.0f) {
+                if (q2Var.f31646b < 1.0f) {
                     outline.setRect((int) q2Var.O, (int) q2Var.N, (int) (view.getMeasuredWidth() - q2Var.O), (int) (view.getMeasuredHeight() - q2Var.N));
                     return;
                 } else {
-                    outline.setRoundRect((int) q2Var.O, (int) q2Var.N, (int) (view.getMeasuredWidth() - q2Var.O), (int) (view.getMeasuredHeight() - q2Var.N), q2Var.f31645b);
+                    outline.setRoundRect((int) q2Var.O, (int) q2Var.N, (int) (view.getMeasuredWidth() - q2Var.O), (int) (view.getMeasuredHeight() - q2Var.N), q2Var.f31646b);
                     return;
                 }
             default:

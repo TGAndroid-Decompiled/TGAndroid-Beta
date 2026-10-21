@@ -8,10 +8,10 @@ import android.view.MotionEvent;
 import android.widget.TextView;
 import org.telegram.messenger.FileLog;
 public final class q61 extends LinkMovementMethod {
-    public final UndoView f29483a;
+    public final UndoView f29484a;
 
     public q61(UndoView undoView) {
-        this.f29483a = undoView;
+        this.f29484a = undoView;
     }
 
     @Override
@@ -22,7 +22,7 @@ public final class q61 extends LinkMovementMethod {
                 if (motionEvent.getAction() == 1) {
                     CharacterStyle[] characterStyleArr2 = (CharacterStyle[]) spannable.getSpans(textView.getSelectionStart(), textView.getSelectionEnd(), CharacterStyle.class);
                     if (characterStyleArr2 != null && characterStyleArr2.length > 0) {
-                        this.f29483a.b(characterStyleArr2[0]);
+                        this.f29484a.b(characterStyleArr2[0]);
                     }
                     Selection.removeSelection(spannable);
                     return true;

@@ -118,12 +118,12 @@ public abstract class ie extends View {
         p6Var.w(AndroidUtilities.dp(21.0f));
         p6Var.setCallback(this);
         p6Var.M = AndroidUtilities.displaySize.x;
-        p6Var.f29225b = 17;
+        p6Var.f29226b = 17;
         p6Var2.u(-570425345);
         p6Var2.w(AndroidUtilities.dp(11.0f));
         p6Var2.setCallback(this);
         p6Var2.M = AndroidUtilities.displaySize.x;
-        p6Var2.f29225b = 17;
+        p6Var2.f29226b = 17;
         paint.setColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21061h5, d6Var));
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(AndroidUtilities.dp(1.0f));

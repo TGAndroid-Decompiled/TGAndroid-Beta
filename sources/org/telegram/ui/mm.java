@@ -47,14 +47,14 @@ public final class mm extends zt0 {
                     }
                     if (imageReceiver != null) {
                         ju0 ju0Var = new ju0();
-                        ju0Var.f38351b = iArr[0];
-                        ju0Var.f38352c = iArr[1];
+                        ju0Var.f38352b = iArr[0];
+                        ju0Var.f38353c = iArr[1];
                         ju0Var.d = qnVar.f40901x0;
-                        ju0Var.f38350a = imageReceiver;
+                        ju0Var.f38351a = imageReceiver;
                         ju0Var.e = imageReceiver.getBitmapSafe();
                         ju0Var.h = imageReceiver.getRoundRadius(true);
-                        ju0Var.f38356j = (int) ((qnVar.f40845s9 - qnVar.f40871u9) - AndroidUtilities.dp(4.0f));
-                        ju0Var.f38355i = (int) (qnVar.b9(org.telegram.ui.Components.n31.f28680c) + qnVar.v.d() + AndroidUtilities.dp(9.0f) + qnVar.Ba + qnVar.f40861tc);
+                        ju0Var.f38357j = (int) ((qnVar.f40845s9 - qnVar.f40871u9) - AndroidUtilities.dp(4.0f));
+                        ju0Var.f38356i = (int) (qnVar.b9(org.telegram.ui.Components.n31.f28681c) + qnVar.v.d() + AndroidUtilities.dp(9.0f) + qnVar.Ba + qnVar.f40861tc);
                         return ju0Var;
                     }
                 }

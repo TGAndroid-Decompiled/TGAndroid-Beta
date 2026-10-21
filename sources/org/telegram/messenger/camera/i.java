@@ -40,13 +40,13 @@ public final class i implements Runnable {
         TLRPC.TL_messages_getStickers tL_messages_getStickers = (TLRPC.TL_messages_getStickers) this.d;
         TLObject tLObject = (TLObject) this.e;
         Runnable runnable = (Runnable) this.f18059b;
-        ArrayList arrayList = mzVar.f28634s;
-        oz ozVar = mzVar.f28635w;
-        if (ozVar.M != mzVar.f28629b) {
+        ArrayList arrayList = mzVar.f28635s;
+        oz ozVar = mzVar.f28636w;
+        if (ozVar.M != mzVar.f28630b) {
             return;
         }
         ozVar.L = 0;
-        if (tL_messages_getStickers.emoticon.equals(mzVar.f28628a)) {
+        if (tL_messages_getStickers.emoticon.equals(mzVar.f28629a)) {
             if (!(tLObject instanceof TLRPC.TL_messages_stickers)) {
                 runnable.run();
                 return;
@@ -61,7 +61,7 @@ public final class i implements Runnable {
                 }
             }
             if (size != arrayList.size()) {
-                mzVar.f28631f.put(arrayList, ozVar.N);
+                mzVar.f28632f.put(arrayList, ozVar.N);
                 if (size == 0) {
                     mzVar.h.add(arrayList);
                 }

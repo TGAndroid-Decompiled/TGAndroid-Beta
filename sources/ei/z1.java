@@ -398,7 +398,7 @@ public final class z1 implements Runnable {
                 r51 r51Var = e2Var.e;
                 if (str5.equals(str6)) {
                     c2Var.a();
-                    r51Var.f29847b.h.getProgressDrawable().e = false;
+                    r51Var.f29848b.h.getProgressDrawable().e = false;
                     e2Var.N = 0;
                     r51Var.b(true);
                     e2Var.E.addAll(tL_messages_foundStickerSets.sets);

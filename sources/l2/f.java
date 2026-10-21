@@ -497,7 +497,7 @@ public class f implements l.i, i, cp0, ne.f, bh.h, c91, com.google.android.gms.c
                 h6.f21221q = f7;
                 if (i11 != i12) {
                     ThemeActivity themeActivity = pa1Var.e.e;
-                    tl0 tl0Var = (tl0) themeActivity.f33898b.K(themeActivity.f33905f0);
+                    tl0 tl0Var = (tl0) themeActivity.f33899b.K(themeActivity.f33906f0);
                     if (tl0Var != null) {
                         ((d9) tl0Var.f45917a).setText(LocaleController.formatString("AutoNightBrightnessInfo", R.string.AutoNightBrightnessInfo, Integer.valueOf((int) (h6.f21221q * 100.0f))));
                     }

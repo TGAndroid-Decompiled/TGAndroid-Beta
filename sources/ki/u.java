@@ -119,19 +119,19 @@ public final class u implements Runnable {
                 if (!h1Var2.e.isInLayout()) {
                     h1Var2.e.requestLayout();
                     h1Var2.d.requestLayout();
-                    h1Var2.f31445f.requestLayout();
+                    h1Var2.f31446f.requestLayout();
                     return;
                 }
                 return;
             case 16:
-                ((org.telegram.ui.Components.voip.g1) this.f15534b).f31421a.i(false);
+                ((org.telegram.ui.Components.voip.g1) this.f15534b).f31422a.i(false);
                 return;
             case 17:
                 org.telegram.ui.Components.voip.f2 f2Var = (org.telegram.ui.Components.voip.f2) this.f15534b;
                 f2Var.e = false;
-                HashMap hashMap = f2Var.f31408a;
-                ArrayList arrayList = f2Var.f31410c;
-                ArrayList arrayList2 = f2Var.f31409b;
+                HashMap hashMap = f2Var.f31409a;
+                ArrayList arrayList = f2Var.f31411c;
+                ArrayList arrayList2 = f2Var.f31410b;
                 if (!arrayList2.isEmpty() || !arrayList.isEmpty()) {
                     if (f2Var.getParent() != null) {
                         TransitionManager.beginDelayedTransition(f2Var, f2Var.d);
@@ -143,7 +143,7 @@ public final class u implements Runnable {
                         while (true) {
                             if (i11 >= arrayList.size()) {
                                 break;
-                            } else if (e2Var.f31396a.equals(((org.telegram.ui.Components.voip.e2) arrayList.get(i11)).f31396a)) {
+                            } else if (e2Var.f31397a.equals(((org.telegram.ui.Components.voip.e2) arrayList.get(i11)).f31397a)) {
                                 arrayList2.remove(i10);
                                 arrayList.remove(i11);
                                 i10--;
@@ -162,7 +162,7 @@ public final class u implements Runnable {
                     hashMap.clear();
                     for (int i14 = 0; i14 < f2Var.getChildCount(); i14++) {
                         org.telegram.ui.Components.voip.e2 e2Var2 = (org.telegram.ui.Components.voip.e2) f2Var.getChildAt(i14);
-                        hashMap.put(e2Var2.f31396a, e2Var2);
+                        hashMap.put(e2Var2.f31397a, e2Var2);
                     }
                     arrayList2.clear();
                     arrayList.clear();
@@ -177,13 +177,13 @@ public final class u implements Runnable {
                 }
                 return;
             case 18:
-                TextView[] textViewArr = ((org.telegram.ui.Components.voip.n2) this.f15534b).f31583a;
+                TextView[] textViewArr = ((org.telegram.ui.Components.voip.n2) this.f15534b).f31584a;
                 TextView textView = textViewArr[0];
                 textViewArr[0] = textViewArr[1];
                 textViewArr[1] = textView;
                 return;
             case 19:
-                TextView[] textViewArr2 = ((org.telegram.ui.Components.voip.n2) ((hg.j0) this.f15534b).e).f31583a;
+                TextView[] textViewArr2 = ((org.telegram.ui.Components.voip.n2) ((hg.j0) this.f15534b).e).f31584a;
                 TextView textView2 = textViewArr2[0];
                 textViewArr2[0] = textViewArr2[1];
                 textViewArr2[1] = textView2;
@@ -198,7 +198,7 @@ public final class u implements Runnable {
             case 21:
                 org.telegram.ui.Components.voip.v2 v2Var = (org.telegram.ui.Components.voip.v2) this.f15534b;
                 v2Var.e = Bitmap.createBitmap(v2Var.getMeasuredWidth(), v2Var.getMeasuredHeight(), Bitmap.Config.ARGB_8888);
-                new Canvas(v2Var.e).drawText(v2Var.d, v2Var.getMeasuredWidth() / 2, (int) ((v2Var.getMeasuredHeight() / 2) - ((v2Var.f31795a.ascent() + v2Var.f31795a.descent()) / 2.0f)), v2Var.f31795a);
+                new Canvas(v2Var.e).drawText(v2Var.d, v2Var.getMeasuredWidth() / 2, (int) ((v2Var.getMeasuredHeight() / 2) - ((v2Var.f31796a.ascent() + v2Var.f31796a.descent()) / 2.0f)), v2Var.f31796a);
                 v2Var.postInvalidate();
                 return;
             case 22:

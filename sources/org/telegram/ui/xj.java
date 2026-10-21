@@ -85,7 +85,7 @@ public final class xj extends org.telegram.ui.Components.ib0 {
             if (weVar != null) {
                 if (z10) {
                     weVar.e = true;
-                    weVar.f29354b = System.currentTimeMillis();
+                    weVar.f29355b = System.currentTimeMillis();
                     weVar.invalidateSelf();
                     return;
                 }

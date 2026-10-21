@@ -84,10 +84,10 @@ public final class ne0 extends org.telegram.ui.Components.qw0 implements org.tel
         this.h = g6Var;
         frameLayout.addView(g6Var, w7.z5.c(-1.0f, -1));
         g6Var.setOnClickListener(new View.OnClickListener(this) {
-            public final ne0 f37957b;
+            public final ne0 f37958b;
 
             {
-                this.f37957b = this;
+                this.f37958b = this;
             }
 
             @Override
@@ -95,7 +95,7 @@ public final class ne0 extends org.telegram.ui.Components.qw0 implements org.tel
                 boolean z10;
                 switch (r2) {
                     case 0:
-                        ne0 ne0Var = this.f37957b;
+                        ne0 ne0Var = this.f37958b;
                         jd jdVar = ne0Var.f39557n;
                         org.telegram.ui.Components.vj0 vj0Var = ne0Var.I;
                         org.telegram.ui.Components.e50 e50Var2 = ne0Var.L;
@@ -112,7 +112,7 @@ public final class ne0 extends org.telegram.ui.Components.qw0 implements org.tel
                         jdVar.d();
                         return;
                     default:
-                        ne0 ne0Var2 = this.f37957b;
+                        ne0 ne0Var2 = this.f37958b;
                         if (ne0Var2.O.V.getTag() == null) {
                             ne0Var2.c(false);
                             return;
@@ -167,10 +167,10 @@ public final class ne0 extends org.telegram.ui.Components.qw0 implements org.tel
         editTextBoldCursor.setMaxLines(1);
         editTextBoldCursor.setInputType(8192);
         editTextBoldCursor.setOnFocusChangeListener(new View.OnFocusChangeListener(this) {
-            public final ne0 f38240b;
+            public final ne0 f38241b;
 
             {
-                this.f38240b = this;
+                this.f38241b = this;
             }
 
             @Override
@@ -179,7 +179,7 @@ public final class ne0 extends org.telegram.ui.Components.qw0 implements org.tel
                 float f11;
                 switch (r2) {
                     case 0:
-                        org.telegram.ui.Components.sd0 sd0Var2 = this.f38240b.f39553a;
+                        org.telegram.ui.Components.sd0 sd0Var2 = this.f38241b.f39553a;
                         if (z10) {
                             f10 = 1.0f;
                         } else {
@@ -188,7 +188,7 @@ public final class ne0 extends org.telegram.ui.Components.qw0 implements org.tel
                         sd0Var2.b(f10, f10, true);
                         return;
                     default:
-                        org.telegram.ui.Components.sd0 sd0Var3 = this.f38240b.f39554b;
+                        org.telegram.ui.Components.sd0 sd0Var3 = this.f38241b.f39554b;
                         if (z10) {
                             f11 = 1.0f;
                         } else {
@@ -204,17 +204,17 @@ public final class ne0 extends org.telegram.ui.Components.qw0 implements org.tel
         sd0Var.e(editTextBoldCursor);
         sd0Var.addView(editTextBoldCursor, w7.z5.e(-1, -2, 48));
         editTextBoldCursor.setOnEditorActionListener(new TextView.OnEditorActionListener(this) {
-            public final ne0 f38590b;
+            public final ne0 f38591b;
 
             {
-                this.f38590b = this;
+                this.f38591b = this;
             }
 
             @Override
             public final boolean onEditorAction(TextView textView3, int i11, KeyEvent keyEvent) {
                 switch (r2) {
                     case 0:
-                        ne0 ne0Var = this.f38590b;
+                        ne0 ne0Var = this.f38591b;
                         if (i11 == 5) {
                             ne0Var.d.requestFocus();
                             return true;
@@ -222,7 +222,7 @@ public final class ne0 extends org.telegram.ui.Components.qw0 implements org.tel
                         ne0Var.getClass();
                         return false;
                     default:
-                        ne0 ne0Var2 = this.f38590b;
+                        ne0 ne0Var2 = this.f38591b;
                         ne0Var2.getClass();
                         if (i11 != 6 && i11 != 5) {
                             return false;
@@ -244,10 +244,10 @@ public final class ne0 extends org.telegram.ui.Components.qw0 implements org.tel
         editTextBoldCursor2.setMaxLines(1);
         editTextBoldCursor2.setInputType(8192);
         editTextBoldCursor2.setOnFocusChangeListener(new View.OnFocusChangeListener(this) {
-            public final ne0 f38240b;
+            public final ne0 f38241b;
 
             {
-                this.f38240b = this;
+                this.f38241b = this;
             }
 
             @Override
@@ -256,7 +256,7 @@ public final class ne0 extends org.telegram.ui.Components.qw0 implements org.tel
                 float f11;
                 switch (r2) {
                     case 0:
-                        org.telegram.ui.Components.sd0 sd0Var22 = this.f38240b.f39553a;
+                        org.telegram.ui.Components.sd0 sd0Var22 = this.f38241b.f39553a;
                         if (z10) {
                             f10 = 1.0f;
                         } else {
@@ -265,7 +265,7 @@ public final class ne0 extends org.telegram.ui.Components.qw0 implements org.tel
                         sd0Var22.b(f10, f10, true);
                         return;
                     default:
-                        org.telegram.ui.Components.sd0 sd0Var3 = this.f38240b.f39554b;
+                        org.telegram.ui.Components.sd0 sd0Var3 = this.f38241b.f39554b;
                         if (z10) {
                             f11 = 1.0f;
                         } else {
@@ -281,17 +281,17 @@ public final class ne0 extends org.telegram.ui.Components.qw0 implements org.tel
         sd0Var2.e(editTextBoldCursor2);
         sd0Var2.addView(editTextBoldCursor2, w7.z5.e(-1, -2, 48));
         editTextBoldCursor2.setOnEditorActionListener(new TextView.OnEditorActionListener(this) {
-            public final ne0 f38590b;
+            public final ne0 f38591b;
 
             {
-                this.f38590b = this;
+                this.f38591b = this;
             }
 
             @Override
             public final boolean onEditorAction(TextView textView3, int i11, KeyEvent keyEvent) {
                 switch (r2) {
                     case 0:
-                        ne0 ne0Var = this.f38590b;
+                        ne0 ne0Var = this.f38591b;
                         if (i11 == 5) {
                             ne0Var.d.requestFocus();
                             return true;
@@ -299,7 +299,7 @@ public final class ne0 extends org.telegram.ui.Components.qw0 implements org.tel
                         ne0Var.getClass();
                         return false;
                     default:
-                        ne0 ne0Var2 = this.f38590b;
+                        ne0 ne0Var2 = this.f38591b;
                         ne0Var2.getClass();
                         if (i11 != 6 && i11 != 5) {
                             return false;
@@ -349,10 +349,10 @@ public final class ne0 extends org.telegram.ui.Components.qw0 implements org.tel
         textView3.setVisibility(8);
         addView(textView3, w7.z5.t(-2, -2, (LocaleController.isRTL ? 5 : 3) | 48, 0, 20, 0, 0));
         textView3.setOnClickListener(new View.OnClickListener(this) {
-            public final ne0 f37957b;
+            public final ne0 f37958b;
 
             {
-                this.f37957b = this;
+                this.f37958b = this;
             }
 
             @Override
@@ -360,7 +360,7 @@ public final class ne0 extends org.telegram.ui.Components.qw0 implements org.tel
                 boolean z10;
                 switch (r2) {
                     case 0:
-                        ne0 ne0Var = this.f37957b;
+                        ne0 ne0Var = this.f37958b;
                         jd jdVar2 = ne0Var.f39557n;
                         org.telegram.ui.Components.vj0 vj0Var2 = ne0Var.I;
                         org.telegram.ui.Components.e50 e50Var2 = ne0Var.L;
@@ -377,7 +377,7 @@ public final class ne0 extends org.telegram.ui.Components.qw0 implements org.tel
                         jdVar2.d();
                         return;
                     default:
-                        ne0 ne0Var2 = this.f37957b;
+                        ne0 ne0Var2 = this.f37958b;
                         if (ne0Var2.O.V.getTag() == null) {
                             ne0Var2.c(false);
                             return;
@@ -473,7 +473,7 @@ public final class ne0 extends org.telegram.ui.Components.qw0 implements org.tel
             return;
         }
         dg0 dg0Var = this.O;
-        TLRPC.TL_help_termsOfService tL_help_termsOfService = dg0Var.f36385p0;
+        TLRPC.TL_help_termsOfService tL_help_termsOfService = dg0Var.f36386p0;
         if (tL_help_termsOfService != null && tL_help_termsOfService.popup) {
             q(true);
             return;
@@ -498,7 +498,7 @@ public final class ne0 extends org.telegram.ui.Components.qw0 implements org.tel
     public final void j() {
         TextView textView = this.f39561x;
         if (textView != null) {
-            if (this.O.f36374f) {
+            if (this.O.f36375f) {
                 textView.setAlpha(1.0f);
             } else {
                 textView.setAlpha(0.0f);
@@ -511,7 +511,7 @@ public final class ne0 extends org.telegram.ui.Components.qw0 implements org.tel
             editTextBoldCursor.setSelection(editTextBoldCursor.length());
             AndroidUtilities.showKeyboard(editTextBoldCursor);
         }
-        AndroidUtilities.runOnUIThread(new zc0(this, 3), dg0.f36365t0);
+        AndroidUtilities.runOnUIThread(new zc0(this, 3), dg0.f36366t0);
     }
 
     @Override
@@ -526,7 +526,7 @@ public final class ne0 extends org.telegram.ui.Components.qw0 implements org.tel
             String string = bundle.getString("terms");
             if (string != null && (decode = Base64.decode(string, 0)) != null) {
                 SerializedData serializedData = new SerializedData(decode);
-                this.O.f36385p0 = TLRPC.TL_help_termsOfService.TLdeserialize(serializedData, serializedData.readInt32(false), false);
+                this.O.f36386p0 = TLRPC.TL_help_termsOfService.TLdeserialize(serializedData, serializedData.readInt32(false), false);
                 serializedData.cleanup();
             }
         } catch (Exception e) {
@@ -553,10 +553,10 @@ public final class ne0 extends org.telegram.ui.Components.qw0 implements org.tel
             bundle.putString("registerview_last", obj2);
         }
         dg0 dg0Var = this.O;
-        TLRPC.TL_help_termsOfService tL_help_termsOfService = dg0Var.f36385p0;
+        TLRPC.TL_help_termsOfService tL_help_termsOfService = dg0Var.f36386p0;
         if (tL_help_termsOfService != null) {
             SerializedData serializedData = new SerializedData(tL_help_termsOfService.getObjectSize());
-            dg0Var.f36385p0.serializeToStream(serializedData);
+            dg0Var.f36386p0.serializeToStream(serializedData);
             bundle.putString("terms", Base64.encodeToString(serializedData.toByteArray(), 0));
             serializedData.cleanup();
         }
@@ -637,7 +637,7 @@ public final class ne0 extends org.telegram.ui.Components.qw0 implements org.tel
 
     public final void q(boolean z10) {
         dg0 dg0Var = this.O;
-        if (dg0Var.f36385p0 == null) {
+        if (dg0Var.f36386p0 == null) {
             return;
         }
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(dg0Var.getParentActivity());
@@ -648,8 +648,8 @@ public final class ne0 extends org.telegram.ui.Components.qw0 implements org.tel
         } else {
             alertDialog$Builder.k(LocaleController.getString("OK", R.string.OK), null);
         }
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(dg0Var.f36385p0.text);
-        MessageObject.addEntitiesToText(spannableStringBuilder, dg0Var.f36385p0.entities, false, false, false, false);
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(dg0Var.f36386p0.text);
+        MessageObject.addEntitiesToText(spannableStringBuilder, dg0Var.f36386p0.entities, false, false, false, false);
         org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20605a;
         b2Var.T = spannableStringBuilder;
         dg0Var.showDialog(b2Var);

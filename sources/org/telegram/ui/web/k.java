@@ -74,7 +74,7 @@ public final class k extends FrameLayout {
         this.f42694a = qVar;
         c cVar = new c(this, activity, i11, oVar, aVar, qVar);
         this.f42701w = cVar;
-        cVar.W2.f30860r = false;
+        cVar.W2.f30861r = false;
         cVar.setOverScrollMode(2);
         cVar.setPadding(0, 0, 0, 0);
         addView(cVar, z5.e(-1, -1, 119));

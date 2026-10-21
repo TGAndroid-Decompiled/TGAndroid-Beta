@@ -21,25 +21,25 @@ public final class wm extends org.telegram.ui.Components.fr0 {
     @Override
     public final void T0(a0.h hVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
         cn cnVar = this.f42898d1;
-        qn qnVar = cnVar.f36010a;
+        qn qnVar = cnVar.f36011a;
         int i11 = qn.Ic;
         qnVar.T7();
-        if (cnVar.f36010a.y3 != null && z10) {
+        if (cnVar.f36011a.y3 != null && z10) {
             if (hVar.m() == 1) {
-                if (((TLRPC.Dialog) hVar.n(0)).f20280id != cnVar.f36010a.getUserConfig().getClientUserId() || !org.telegram.ui.Components.xc.a0(cnVar.f36010a).g0(i10, ((TLRPC.Dialog) hVar.n(0)).f20280id)) {
-                    cnVar.f36010a.y3.k(((TLRPC.Dialog) hVar.n(0)).f20280id, 53, Integer.valueOf(i10), tL_forumTopic, null, null);
+                if (((TLRPC.Dialog) hVar.n(0)).f20280id != cnVar.f36011a.getUserConfig().getClientUserId() || !org.telegram.ui.Components.xc.a0(cnVar.f36011a).g0(i10, ((TLRPC.Dialog) hVar.n(0)).f20280id)) {
+                    cnVar.f36011a.y3.k(((TLRPC.Dialog) hVar.n(0)).f20280id, 53, Integer.valueOf(i10), tL_forumTopic, null, null);
                     return;
                 }
                 return;
             }
-            cnVar.f36010a.y3.k(0L, 53, Integer.valueOf(i10), Integer.valueOf(hVar.m()), null, null);
+            cnVar.f36011a.y3.k(0L, 53, Integer.valueOf(i10), Integer.valueOf(hVar.m()), null, null);
         }
     }
 
     @Override
     public final void U0(final View view) {
         ei.ob obVar;
-        qn qnVar = this.f42898d1.f36010a;
+        qn qnVar = this.f42898d1.f36011a;
         MessageObject.GroupedMessages groupedMessages = null;
         if (view instanceof org.telegram.ui.Cells.e7) {
             obVar = ei.qb.b((org.telegram.ui.Cells.e7) view);
@@ -87,7 +87,7 @@ public final class wm extends org.telegram.ui.Components.fr0 {
     @Override
     public final void dismissInternal() {
         int i10;
-        qn qnVar = this.f42898d1.f36010a;
+        qn qnVar = this.f42898d1.f36011a;
         Activity parentActivity = qnVar.getParentActivity();
         i10 = ((org.telegram.ui.ActionBar.n2) qnVar).classGuid;
         AndroidUtilities.requestAdjustResize(parentActivity, i10);

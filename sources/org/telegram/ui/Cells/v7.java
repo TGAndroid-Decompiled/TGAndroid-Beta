@@ -214,11 +214,11 @@ public final class v7 extends FrameLayout {
             int dp = AndroidUtilities.dp(42.0f);
             int dp2 = AndroidUtilities.dp(42.0f);
             zqVar.h = dp;
-            zqVar.f33020n = dp2;
+            zqVar.f33021n = dp2;
             int dp3 = AndroidUtilities.dp(24.0f);
             int dp4 = AndroidUtilities.dp(24.0f);
             zqVar.e = dp3;
-            zqVar.f33019f = dp4;
+            zqVar.f33020f = dp4;
             w9Var.setImageDrawable(zqVar);
             j5Var.l(Emoji.replaceEmoji(MessagesController.getInstance(this.f23650x).getPeerName(DialogObject.getPeerDialogId(messageObject.messageOwner.peer_id)), j5Var.getPaint().getFontMetricsInt(), false), false);
             this.e = false;
@@ -296,11 +296,11 @@ public final class v7 extends FrameLayout {
             int dp5 = AndroidUtilities.dp(42.0f);
             int dp6 = AndroidUtilities.dp(42.0f);
             zqVar2.h = dp5;
-            zqVar2.f33020n = dp6;
+            zqVar2.f33021n = dp6;
             int dp7 = AndroidUtilities.dp(f7);
             int dp8 = AndroidUtilities.dp(f7);
             zqVar2.e = dp7;
-            zqVar2.f33019f = dp8;
+            zqVar2.f33020f = dp8;
             w9Var.setImageDrawable(zqVar2);
         }
         j5Var.l(charSequence, false);
@@ -350,7 +350,7 @@ public final class v7 extends FrameLayout {
                 i11 = sharingLocationInfo.stopTime;
                 i10 = sharingLocationInfo.period;
             } else {
-                TLRPC.Message message = this.f23648s.f37570b;
+                TLRPC.Message message = this.f23648s.f37571b;
                 int i12 = message.date;
                 i10 = message.media.period;
                 i11 = i12 + i10;

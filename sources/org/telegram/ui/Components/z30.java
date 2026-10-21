@@ -6,20 +6,20 @@ import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 public final class z30 extends im0 {
-    public final Context f32821c;
+    public final Context f32822c;
     public final hg.a2 d;
     public x30 e;
-    public int f32822f;
+    public int f32823f;
     public boolean h;
-    public int f32823n;
-    public int f32824r;
-    public int f32825s;
+    public int f32824n;
+    public int f32825r;
+    public int f32826s;
     public int v;
-    public final a40 f32826w;
+    public final a40 f32827w;
 
     public z30(a40 a40Var, Context context) {
-        this.f32826w = a40Var;
-        this.f32821c = context;
+        this.f32827w = a40Var;
+        this.f32822c = context;
         hg.a2 a2Var = new hg.a2(true);
         this.d = a2Var;
         a2Var.f11792a = new y30(this);
@@ -36,7 +36,7 @@ public final class z30 extends im0 {
     @Override
     public final boolean D(s4.b1 b1Var) {
         View view = b1Var.f45917a;
-        if ((!(view instanceof org.telegram.ui.Cells.a5) || !this.f32826w.f24489f0.contains(Long.valueOf(((org.telegram.ui.Cells.a5) view).getUserId()))) && b1Var.f45920f == 0) {
+        if ((!(view instanceof org.telegram.ui.Cells.a5) || !this.f32827w.f24489f0.contains(Long.valueOf(((org.telegram.ui.Cells.a5) view).getUserId()))) && b1Var.f45920f == 0) {
             return true;
         }
         return false;
@@ -44,7 +44,7 @@ public final class z30 extends im0 {
 
     @Override
     public final int h() {
-        return this.f32822f;
+        return this.f32823f;
     }
 
     @Override
@@ -52,10 +52,10 @@ public final class z30 extends im0 {
         if (i10 == 0) {
             return 2;
         }
-        if (i10 == this.f32824r) {
+        if (i10 == this.f32825r) {
             return 3;
         }
-        if (i10 != this.v && i10 != this.f32825s) {
+        if (i10 != this.v && i10 != this.f32826s) {
             return 0;
         }
         return 1;
@@ -63,27 +63,27 @@ public final class z30 extends im0 {
 
     @Override
     public final void l() {
-        this.f32822f = 1;
+        this.f32823f = 1;
         hg.a2 a2Var = this.d;
         int size = a2Var.f11796g.size();
         if (size != 0) {
-            int i10 = this.f32822f;
-            this.f32825s = i10;
-            this.f32822f = size + 1 + i10;
+            int i10 = this.f32823f;
+            this.f32826s = i10;
+            this.f32823f = size + 1 + i10;
         } else {
-            this.f32825s = -1;
+            this.f32826s = -1;
         }
         int size2 = a2Var.e.size();
         if (size2 != 0) {
-            int i11 = this.f32822f;
+            int i11 = this.f32823f;
             this.v = i11;
-            this.f32822f = size2 + 1 + i11;
+            this.f32823f = size2 + 1 + i11;
         } else {
             this.v = -1;
         }
-        int i12 = this.f32822f;
-        this.f32822f = i12 + 1;
-        this.f32824r = i12;
+        int i12 = this.f32823f;
+        this.f32823f = i12 + 1;
+        this.f32825r = i12;
         super.l();
     }
 
@@ -96,7 +96,7 @@ public final class z30 extends im0 {
     public final s4.b1 x(ViewGroup viewGroup, int i10) {
         View view;
         if (i10 != 0) {
-            Context context = this.f32821c;
+            Context context = this.f32822c;
             if (i10 != 1) {
                 if (i10 != 2) {
                     view = new View(context);
@@ -111,7 +111,7 @@ public final class z30 extends im0 {
                 view = u3Var;
             }
         } else {
-            org.telegram.ui.Cells.a5 a5Var = new org.telegram.ui.Cells.a5(2, 2, this.f32821c, null, false);
+            org.telegram.ui.Cells.a5 a5Var = new org.telegram.ui.Cells.a5(2, 2, this.f32822c, null, false);
             a5Var.setCustomRightImage(R.drawable.msg_invited);
             a5Var.setNameColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21183ng, false));
             int x02 = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21144lg, false);

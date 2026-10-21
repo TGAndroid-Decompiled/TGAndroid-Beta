@@ -65,7 +65,7 @@ public final class m31 extends FrameLayout {
         p6Var.w(AndroidUtilities.dp(11.0f));
         p6Var.x(AndroidUtilities.bold());
         p6Var.M = AndroidUtilities.displaySize.x;
-        p6Var.f29225b = 17;
+        p6Var.f29226b = 17;
         ci.i3 i3Var = new ci.i3(this, context, d6Var);
         this.f28372f = i3Var;
         addView(i3Var, w7.z5.d(-2, -2.0f, 21, 4.66f, 0.0f, 11.0f, 0.0f));
@@ -308,9 +308,9 @@ public final class m31 extends FrameLayout {
         if (userOrChat != null) {
             spannableStringBuilder.append((CharSequence) "x  ");
             org.telegram.ui.l5 l5Var3 = this.E;
-            h9 h9Var = l5Var3.f38789c;
+            h9 h9Var = l5Var3.f38790c;
             h9Var.j(l5Var3.e, userOrChat);
-            l5Var3.f38788b.setForUserOrChat(userOrChat, h9Var);
+            l5Var3.f38789b.setForUserOrChat(userOrChat, h9Var);
             spannableStringBuilder.setSpan(this.E, 0, 1, 33);
         }
         spannableStringBuilder.append((CharSequence) DialogObject.getName(peerDialogId));

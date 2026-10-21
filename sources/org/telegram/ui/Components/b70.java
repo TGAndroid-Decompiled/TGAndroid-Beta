@@ -36,7 +36,7 @@ public final class b70 implements View.OnClickListener {
                 return;
             default:
                 uv0 uv0Var = ((eu0) this.h).f25970f;
-                x01.b(uv0Var.getContext(), uv0Var.f31070v1.getCurrentAccount(), uv0Var.f31045j1, this.f24820b, this.f24821c, this.d, this.e, this.f24822f, uv0Var.F1);
+                x01.b(uv0Var.getContext(), uv0Var.f31071v1.getCurrentAccount(), uv0Var.f31046j1, this.f24820b, this.f24821c, this.d, this.e, this.f24822f, uv0Var.F1);
                 return;
         }
     }

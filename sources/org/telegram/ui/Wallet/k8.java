@@ -15,22 +15,22 @@ import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.zq;
 public final class k8 extends FrameLayout {
-    public final org.telegram.ui.ActionBar.d6 f34434a;
-    public final FrameLayout f34435b;
-    public final org.telegram.ui.Components.h9 f34436c;
+    public final org.telegram.ui.ActionBar.d6 f34435a;
+    public final FrameLayout f34436b;
+    public final org.telegram.ui.Components.h9 f34437c;
     public final org.telegram.ui.Components.w9 d;
     public final TextView e;
-    public final j8 f34437f;
+    public final j8 f34438f;
     public final ImageView h;
-    public TLRPC.User f34438n;
-    public String f34439r;
+    public TLRPC.User f34439n;
+    public String f34440r;
 
     public k8(Context context, Runnable runnable, Runnable runnable2, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
-        this.f34436c = new org.telegram.ui.Components.h9((org.telegram.ui.ActionBar.d6) null);
-        this.f34434a = d6Var;
+        this.f34437c = new org.telegram.ui.Components.h9((org.telegram.ui.ActionBar.d6) null);
+        this.f34435a = d6Var;
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f34435b = frameLayout;
+        this.f34436b = frameLayout;
         frameLayout.setDuplicateParentStateEnabled(true);
         frameLayout.setPivotX(0.0f);
         frameLayout.setPivotY(0.0f);
@@ -51,7 +51,7 @@ public final class k8 extends FrameLayout {
         textView.setTypeface(AndroidUtilities.bold());
         frameLayout.addView(textView, w7.z5.d(-1, -2.0f, 51, 60.0f, 7.0f, 52.0f, 0.0f));
         j8 j8Var = new j8(this, context);
-        this.f34437f = j8Var;
+        this.f34438f = j8Var;
         frameLayout.addView(j8Var, w7.z5.d(-1, -2.0f, 51, 60.0f, 26.0f, 52.0f, 0.0f));
         ImageView imageView = new ImageView(context);
         this.h = imageView;
@@ -67,7 +67,7 @@ public final class k8 extends FrameLayout {
     public final void a(String str, TLRPC.User user) {
         long j10;
         boolean z10;
-        TLRPC.User user2 = this.f34438n;
+        TLRPC.User user2 = this.f34439n;
         long j11 = 0;
         if (user2 == null) {
             j10 = 0;
@@ -82,22 +82,22 @@ public final class k8 extends FrameLayout {
         } else {
             z10 = false;
         }
-        this.f34438n = user;
-        this.f34439r = str;
+        this.f34439n = user;
+        this.f34440r = str;
         setClickable(!TextUtils.isEmpty(str));
-        TLRPC.User user3 = this.f34438n;
+        TLRPC.User user3 = this.f34439n;
         TextView textView = this.e;
         org.telegram.ui.Components.w9 w9Var = this.d;
         ImageView imageView = this.h;
-        j8 j8Var = this.f34437f;
+        j8 j8Var = this.f34438f;
         if (user3 != null) {
             setClickable(true);
             setVisibility(0);
-            TLRPC.User user4 = this.f34438n;
-            org.telegram.ui.Components.h9 h9Var = this.f34436c;
+            TLRPC.User user4 = this.f34439n;
+            org.telegram.ui.Components.h9 h9Var = this.f34437c;
             h9Var.r(user4);
-            w9Var.e(this.f34438n, h9Var);
-            textView.setText(UserObject.getUserName(this.f34438n));
+            w9Var.e(this.f34439n, h9Var);
+            textView.setText(UserObject.getUserName(this.f34439n));
             if (!TextUtils.isEmpty(str)) {
                 j8Var.c(str, z10);
                 imageView.setVisibility(0);
@@ -108,7 +108,7 @@ public final class k8 extends FrameLayout {
         } else if (!TextUtils.isEmpty(str)) {
             setClickable(false);
             setVisibility(0);
-            w9Var.setImageDrawable(new zq(org.telegram.ui.ActionBar.h6.K(AndroidUtilities.dp(34.0f), org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Oh, this.f34434a)), getContext().getResources().getDrawable(R.drawable.menu_gram_24).mutate()));
+            w9Var.setImageDrawable(new zq(org.telegram.ui.ActionBar.h6.K(AndroidUtilities.dp(34.0f), org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Oh, this.f34435a)), getContext().getResources().getDrawable(R.drawable.menu_gram_24).mutate()));
             textView.setText(LocaleController.getString(R.string.WalletGramWalletAddress));
             j8Var.c(str, z10);
             imageView.setVisibility(8);
@@ -120,13 +120,13 @@ public final class k8 extends FrameLayout {
     }
 
     public float getContentBottom() {
-        FrameLayout frameLayout = this.f34435b;
+        FrameLayout frameLayout = this.f34436b;
         return (frameLayout.getScaleY() * (frameLayout.getHeight() - frameLayout.getPivotY())) + frameLayout.getPivotY() + frameLayout.getY();
     }
 
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        FrameLayout frameLayout = this.f34435b;
+        FrameLayout frameLayout = this.f34436b;
         int round = Math.round((getMeasuredHeight() - (frameLayout.getScaleY() * frameLayout.getMeasuredHeight())) / 2.0f);
         frameLayout.layout(0, round, frameLayout.getMeasuredWidth(), frameLayout.getMeasuredHeight() + round);
     }
@@ -134,7 +134,7 @@ public final class k8 extends FrameLayout {
     @Override
     public final void onMeasure(int i10, int i11) {
         super.onMeasure(i10, i11);
-        j8 j8Var = this.f34437f;
+        j8 j8Var = this.f34438f;
         FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) j8Var.getLayoutParams();
         int ceil = ((int) Math.ceil(j8Var.a())) + 1 + layoutParams.leftMargin + layoutParams.rightMargin;
         setMeasuredDimension(View.resolveSize(Math.max(getMeasuredWidth(), ceil), i10), getMeasuredHeight());
@@ -142,7 +142,7 @@ public final class k8 extends FrameLayout {
         float measuredWidth = getMeasuredWidth() / max;
         int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(max, 1073741824);
         int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824);
-        FrameLayout frameLayout = this.f34435b;
+        FrameLayout frameLayout = this.f34436b;
         frameLayout.measure(makeMeasureSpec, makeMeasureSpec2);
         frameLayout.setScaleX(measuredWidth);
         frameLayout.setScaleY(measuredWidth);

@@ -270,7 +270,7 @@ public final class ul implements org.telegram.ui.Cells.t0 {
             i10 = ((org.telegram.ui.ActionBar.n2) qnVar).currentAccount;
             MessagesController messagesController = MessagesController.getInstance(i10);
             RadialProgress2 radialProgress2 = w0Var.J1;
-            if (radialProgress2 != null && radialProgress2.f24309i.f28763q == 3 && messageObject.getId() < 0 && (str = messagesController.uploadingWallpaper) != null && TextUtils.equals(messageObject.messageOwner.action.wallpaper.uploadingImage, str)) {
+            if (radialProgress2 != null && radialProgress2.f24309i.f28764q == 3 && messageObject.getId() < 0 && (str = messagesController.uploadingWallpaper) != null && TextUtils.equals(messageObject.messageOwner.action.wallpaper.uploadingImage, str)) {
                 messagesController.cancelUploadWallpaper();
                 qnVar.Ka(messageObject);
                 return;
@@ -300,12 +300,12 @@ public final class ul implements org.telegram.ui.Cells.t0 {
                         boolean z13 = wallPaperSettings3.motion;
                         tb1Var.F1 = z12;
                         tb1Var.E1 = z13;
-                        tb1Var.f38555n1 = wallPaperSettings3.intensity / 100.0f;
+                        tb1Var.f38556n1 = wallPaperSettings3.intensity / 100.0f;
                     }
-                    tb1Var.f38560q0 = messageObject;
+                    tb1Var.f38561q0 = messageObject;
                     tb1Var.c1(messageObject.getDialogId());
-                    tb1Var.f38516a.f38505a = qnVar.f40673ea;
-                    tb1Var.f38559p1 = new ub1(qnVar, q6);
+                    tb1Var.f38517a.f38506a = qnVar.f40673ea;
+                    tb1Var.f38560p1 = new ub1(qnVar, q6);
                     qnVar.presentFragment(tb1Var);
                     return;
                 }
@@ -328,7 +328,7 @@ public final class ul implements org.telegram.ui.Cells.t0 {
                     org.telegram.ui.Components.e50 e50Var = new org.telegram.ui.Components.e50(0, true, true);
                     e50Var.f25720a = qnVar;
                     e50Var.e();
-                    e50Var.f25722c.f30557j0.r0(null, videoSize2, 0L);
+                    e50Var.f25722c.f30558j0.r0(null, videoSize2, 0L);
                     e50Var.f25721b = new ai.y3(qnVar, new TLRPC.FileLocation[1], new TLRPC.FileLocation[1], qnVar.getUserConfig().getClientUserId(), 8);
                     return;
                 }
@@ -372,17 +372,17 @@ public final class ul implements org.telegram.ui.Cells.t0 {
                 PhotoViewer.u1().z2(c50Var);
             }
         } else if (videoSize != null) {
-            PhotoViewer.u1().g2(videoSize.location, ImageLocation.getForPhoto(videoSize, messageObject.messageOwner.action.photo), qnVar.Ga);
+            PhotoViewer.u1().f2(videoSize.location, ImageLocation.getForPhoto(videoSize, messageObject.messageOwner.action.photo), qnVar.Ga);
             if (w0Var.getMessageObject().type == 21) {
                 PhotoViewer.u1().Q2(LocaleController.getString(R.string.SuggestedVideo));
             }
         } else if (closestPhotoSizeWithSize != null) {
-            PhotoViewer.u1().g2(closestPhotoSizeWithSize.location, ImageLocation.getForPhoto(closestPhotoSizeWithSize, messageObject.messageOwner.action.photo), qnVar.Ga);
+            PhotoViewer.u1().f2(closestPhotoSizeWithSize.location, ImageLocation.getForPhoto(closestPhotoSizeWithSize, messageObject.messageOwner.action.photo), qnVar.Ga);
             if (w0Var.getMessageObject().type == 21) {
                 PhotoViewer.u1().Q2(LocaleController.getString(R.string.SuggestedPhoto));
             }
         } else {
-            PhotoViewer.u1().f2(messageObject, null, 0L, 0L, 0L, qnVar.Ga);
+            PhotoViewer.u1().h2(messageObject, null, 0L, 0L, 0L, qnVar.Ga);
         }
     }
 

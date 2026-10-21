@@ -24,36 +24,36 @@ public final class wm0 implements Runnable {
                 return;
             case 1:
                 eo0 eo0Var = this.f42900b;
-                Utilities.Callback callback = eo0Var.f36708d1;
+                Utilities.Callback callback = eo0Var.f36709d1;
                 TLObject tLObject = this.f42901c;
                 if (callback != null) {
                     callback.run((TLRPC.TL_payments_paymentVerificationNeeded) tLObject);
                 }
                 eo0Var.D0(false);
-                eo0Var.f36738z0 = true;
+                eo0Var.f36739z0 = true;
                 eo0Var.H0(true, true);
-                org.telegram.ui.Components.dr drVar = eo0Var.f36725r;
+                org.telegram.ui.Components.dr drVar = eo0Var.f36726r;
                 if (drVar != null) {
                     drVar.setVisibility(0);
                 }
-                org.telegram.ui.ActionBar.u0 u0Var = eo0Var.f36720n;
+                org.telegram.ui.ActionBar.u0 u0Var = eo0Var.f36721n;
                 if (u0Var != null) {
                     u0Var.setEnabled(false);
-                    eo0Var.f36720n.getContentView().setVisibility(4);
+                    eo0Var.f36721n.getContentView().setVisibility(4);
                 }
                 org.telegram.ui.ActionBar.d5 parentLayout = eo0Var.getParentLayout();
                 Activity parentActivity = eo0Var.getParentActivity();
                 eo0Var.getMessagesController().newMessageCallback = new e7(eo0Var, parentLayout, parentActivity, 17);
-                WebView webView = eo0Var.f36732w;
+                WebView webView = eo0Var.f36733w;
                 if (webView != null) {
                     webView.setVisibility(0);
-                    WebView webView2 = eo0Var.f36732w;
+                    WebView webView2 = eo0Var.f36733w;
                     String str = ((TLRPC.TL_payments_paymentVerificationNeeded) tLObject).url;
-                    eo0Var.f36734x = str;
+                    eo0Var.f36735x = str;
                     webView2.loadUrl(str);
                 }
-                eo0Var.f36700a1 = true;
-                eo0Var.f36713f1 = 3;
+                eo0Var.f36701a1 = true;
+                eo0Var.f36714f1 = 3;
                 do0 do0Var = eo0Var.Z0;
                 if (do0Var != null) {
                     do0Var.c(3);

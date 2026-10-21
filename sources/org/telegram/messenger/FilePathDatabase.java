@@ -454,7 +454,7 @@ public class FilePathDatabase {
     public boolean hasAnotherRefOnFile(String str) {
         CountDownLatch countDownLatch = new CountDownLatch(1);
         boolean[] zArr = {false};
-        postRunnable(new l3(this, str, zArr, countDownLatch, 1));
+        postRunnable(new m3(this, str, zArr, countDownLatch, 1));
         try {
             countDownLatch.await();
         } catch (InterruptedException e) {
@@ -466,7 +466,7 @@ public class FilePathDatabase {
     public boolean isLocallyCreated(String str) {
         CountDownLatch countDownLatch = new CountDownLatch(1);
         boolean[] zArr = {false};
-        postRunnable(new l3(this, str, zArr, countDownLatch, 0));
+        postRunnable(new m3(this, str, zArr, countDownLatch, 0));
         try {
             countDownLatch.await();
         } catch (InterruptedException e) {
@@ -489,7 +489,7 @@ public class FilePathDatabase {
     }
 
     public void putPath(long j10, int i10, int i11, int i12, String str) {
-        postRunnable(new m3(this, j10, i10, i11, str, i12));
+        postRunnable(new n3(this, j10, i10, i11, str, i12));
     }
 
     public void removeFiles(List<bi.b> list) {
@@ -498,7 +498,7 @@ public class FilePathDatabase {
 
     public void saveFileDialogId(File file, FileMeta fileMeta) {
         if (file != null && fileMeta != null) {
-            postRunnable(new h0(this, file, fileMeta, 24));
+            postRunnable(new h0(this, file, fileMeta, 25));
         }
     }
 }

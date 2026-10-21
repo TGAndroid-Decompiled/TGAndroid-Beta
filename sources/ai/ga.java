@@ -691,7 +691,7 @@ public final class ga {
                                         X.M(LocaleController.getString(R.string.StarsSubscriptionCompleted), AndroidUtilities.replaceTags(LocaleController.formatPluralString("StarsSubscriptionCompletedText", (int) j13, str6)), R.raw.stars_send).j();
                                     }
                                     LaunchActivity launchActivity = LaunchActivity.H1;
-                                    if (launchActivity != null && (ja0Var = launchActivity.f33199x0) != null) {
+                                    if (launchActivity != null && (ja0Var = launchActivity.f33200x0) != null) {
                                         ja0Var.c(true);
                                     }
                                     gaVar2.T(true);
@@ -1210,7 +1210,7 @@ public final class ga {
             return;
         }
         org.telegram.ui.Components.qc J = org.telegram.ui.Components.xc.a0(U).J(R.raw.stars_topup, LocaleController.getString(R.string.StarsTopupLinkEnough), LocaleController.getString(R.string.StarsTopupLinkTopupAnyway), new ah.j(3));
-        J.f29530j = 5000;
+        J.f29531j = 5000;
         J.k(true);
     }
 
@@ -1480,7 +1480,7 @@ public final class ga {
                                             }
                                             MessagesController.getInstance(gaVar4.f1363a).getMainSettings().edit().putBoolean("show_gift_for_" + j17, true).putBoolean(Calendar.getInstance().get(1) + "show_gift_for_" + j17, true).apply();
                                             LaunchActivity launchActivity = LaunchActivity.H1;
-                                            if (launchActivity != null && (ja0Var = launchActivity.f33199x0) != null) {
+                                            if (launchActivity != null && (ja0Var = launchActivity.f33200x0) != null) {
                                                 ja0Var.c(true);
                                             }
                                         }

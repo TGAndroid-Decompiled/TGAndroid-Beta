@@ -6,34 +6,34 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 public final class vz0 {
-    public final boolean f31895a;
+    public final boolean f31896a;
     public m.g3 d;
-    public m.g3 f31898f;
+    public m.g3 f31899f;
     public m.g3 h;
-    public int[] f31901j;
-    public int[] f31903l;
-    public tz0[] f31905n;
-    public int[] f31907p;
-    public boolean f31909r;
-    public int[] f31911t;
-    public final f01 f31914x;
-    public int f31896b = Integer.MIN_VALUE;
-    public int f31897c = Integer.MIN_VALUE;
+    public int[] f31902j;
+    public int[] f31904l;
+    public tz0[] f31906n;
+    public int[] f31908p;
+    public boolean f31910r;
+    public int[] f31912t;
+    public final f01 f31915x;
+    public int f31897b = Integer.MIN_VALUE;
+    public int f31898c = Integer.MIN_VALUE;
     public boolean e = false;
-    public boolean f31899g = false;
-    public boolean f31900i = false;
-    public boolean f31902k = false;
-    public boolean f31904m = false;
-    public boolean f31906o = false;
-    public boolean f31908q = false;
-    public boolean f31910s = false;
-    public boolean f31912u = true;
+    public boolean f31900g = false;
+    public boolean f31901i = false;
+    public boolean f31903k = false;
+    public boolean f31905m = false;
+    public boolean f31907o = false;
+    public boolean f31909q = false;
+    public boolean f31911s = false;
+    public boolean f31913u = true;
     public final b01 v = new b01(0);
-    public final b01 f31913w = new b01(-100000);
+    public final b01 f31914w = new b01(-100000);
 
     public vz0(f01 f01Var, boolean z10) {
-        this.f31914x = f01Var;
-        this.f31895a = z10;
+        this.f31915x = f01Var;
+        this.f31896a = z10;
     }
 
     public static void j(ArrayList arrayList, zz0 zz0Var, b01 b01Var, boolean z10) {
@@ -44,7 +44,7 @@ public final class vz0 {
                 while (i10 < size) {
                     Object obj = arrayList.get(i10);
                     i10++;
-                    if (((tz0) obj).f30798a.equals(zz0Var)) {
+                    if (((tz0) obj).f30799a.equals(zz0Var)) {
                         return;
                     }
                 }
@@ -54,11 +54,11 @@ public final class vz0 {
     }
 
     public static boolean m(int[] iArr, tz0 tz0Var) {
-        if (tz0Var.f30800c) {
-            zz0 zz0Var = tz0Var.f30798a;
-            int i10 = zz0Var.f33073a;
-            int i11 = zz0Var.f33074b;
-            int i12 = iArr[i10] + tz0Var.f30799b.f24764a;
+        if (tz0Var.f30801c) {
+            zz0 zz0Var = tz0Var.f30799a;
+            int i10 = zz0Var.f33074a;
+            int i11 = zz0Var.f33075b;
+            int i12 = iArr[i10] + tz0Var.f30800b.f24764a;
             if (i12 > iArr[i11]) {
                 iArr[i11] = i12;
                 return true;
@@ -89,16 +89,16 @@ public final class vz0 {
         c01 c01Var;
         int i10;
         if (z10) {
-            iArr = this.f31901j;
+            iArr = this.f31902j;
         } else {
-            iArr = this.f31903l;
+            iArr = this.f31904l;
         }
-        f01 f01Var = this.f31914x;
+        f01 f01Var = this.f31915x;
         int childCount = f01Var.getChildCount();
         for (int i11 = 0; i11 < childCount; i11++) {
             yz0 d = f01Var.d(i11);
-            a01 a01Var = d.f32768a;
-            boolean z11 = this.f31895a;
+            a01 a01Var = d.f32769a;
+            boolean z11 = this.f31896a;
             if (z11) {
                 c01Var = a01Var.f24431b;
             } else {
@@ -106,9 +106,9 @@ public final class vz0 {
             }
             zz0 zz0Var = c01Var.f25081b;
             if (z10) {
-                i10 = zz0Var.f33073a;
+                i10 = zz0Var.f33074a;
             } else {
-                i10 = zz0Var.f33074b;
+                i10 = zz0Var.f33075b;
             }
             iArr[i10] = Math.max(iArr[i10], f01Var.f(d, z11, z10));
         }
@@ -124,7 +124,7 @@ public final class vz0 {
                 zz0Var = c01VarArr[i10].f25081b;
             } else {
                 zz0 zz0Var2 = c01VarArr[i10].f25081b;
-                zz0Var = new zz0(zz0Var2.f33074b, zz0Var2.f33073a);
+                zz0Var = new zz0(zz0Var2.f33075b, zz0Var2.f33074a);
             }
             ?? obj = new Object();
             obj.f24764a = Integer.MIN_VALUE;
@@ -134,17 +134,17 @@ public final class vz0 {
     }
 
     public final tz0[] d() {
-        if (this.f31905n == null) {
+        if (this.f31906n == null) {
             ArrayList arrayList = new ArrayList();
             ArrayList arrayList2 = new ArrayList();
-            if (this.f31898f == null) {
-                this.f31898f = c(true);
+            if (this.f31899f == null) {
+                this.f31899f = c(true);
             }
-            if (!this.f31899g) {
-                a(this.f31898f, true);
-                this.f31899g = true;
+            if (!this.f31900g) {
+                a(this.f31899f, true);
+                this.f31900g = true;
             }
-            m.g3 g3Var = this.f31898f;
+            m.g3 g3Var = this.f31899f;
             int i10 = 0;
             while (true) {
                 zz0[] zz0VarArr = (zz0[]) ((Object[]) g3Var.f16203c);
@@ -157,9 +157,9 @@ public final class vz0 {
             if (this.h == null) {
                 this.h = c(false);
             }
-            if (!this.f31900i) {
+            if (!this.f31901i) {
                 a(this.h, false);
-                this.f31900i = true;
+                this.f31901i = true;
             }
             m.g3 g3Var2 = this.h;
             int i11 = 0;
@@ -171,7 +171,7 @@ public final class vz0 {
                 j(arrayList2, zz0VarArr2[i11], ((b01[]) ((Object[]) g3Var2.d))[i11], false);
                 i11++;
             }
-            if (this.f31912u) {
+            if (this.f31913u) {
                 int i12 = 0;
                 while (i12 < e()) {
                     int i13 = i12 + 1;
@@ -181,36 +181,36 @@ public final class vz0 {
             }
             int e = e();
             j(arrayList, new zz0(0, e), this.v, false);
-            j(arrayList2, new zz0(e, 0), this.f31913w, false);
+            j(arrayList2, new zz0(e, 0), this.f31914w, false);
             tz0[] q6 = q(arrayList);
             tz0[] q10 = q(arrayList2);
             Object[] objArr = (Object[]) Array.newInstance(tz0[].class.getComponentType(), q6.length + q10.length);
             System.arraycopy(q6, 0, objArr, 0, q6.length);
             System.arraycopy(q10, 0, objArr, q6.length, q10.length);
-            this.f31905n = (tz0[]) objArr;
+            this.f31906n = (tz0[]) objArr;
         }
-        if (!this.f31906o) {
-            if (this.f31898f == null) {
-                this.f31898f = c(true);
+        if (!this.f31907o) {
+            if (this.f31899f == null) {
+                this.f31899f = c(true);
             }
-            if (!this.f31899g) {
-                a(this.f31898f, true);
-                this.f31899g = true;
+            if (!this.f31900g) {
+                a(this.f31899f, true);
+                this.f31900g = true;
             }
             if (this.h == null) {
                 this.h = c(false);
             }
-            if (!this.f31900i) {
+            if (!this.f31901i) {
                 a(this.h, false);
-                this.f31900i = true;
+                this.f31901i = true;
             }
-            this.f31906o = true;
+            this.f31907o = true;
         }
-        return this.f31905n;
+        return this.f31906n;
     }
 
     public final int e() {
-        int max = Math.max(this.f31896b, h());
+        int max = Math.max(this.f31897b, h());
         if (max <= 1024) {
             return max;
         }
@@ -226,19 +226,19 @@ public final class vz0 {
         c01 c01Var2;
         wz0 wz0Var;
         m.g3 g3Var = this.d;
-        boolean z10 = this.f31895a;
-        f01 f01Var = this.f31914x;
+        boolean z10 = this.f31896a;
+        f01 f01Var = this.f31915x;
         if (g3Var == null) {
             uz0 uz0Var = new uz0(c01.class, wz0.class);
             int childCount = f01Var.getChildCount();
             for (int i13 = 0; i13 < childCount; i13++) {
-                a01 a01Var = f01Var.d(i13).f32768a;
+                a01 a01Var = f01Var.d(i13).f32769a;
                 if (z10) {
                     c01Var2 = a01Var.f24431b;
                 } else {
                     c01Var2 = a01Var.f24430a;
                 }
-                switch (c01.a(c01Var2, z10).f30059a) {
+                switch (c01.a(c01Var2, z10).f30060a) {
                     case 3:
                         wz0Var = new wz0();
                         break;
@@ -257,34 +257,34 @@ public final class vz0 {
             int childCount2 = f01Var.getChildCount();
             for (int i14 = 0; i14 < childCount2; i14++) {
                 yz0 d = f01Var.d(i14);
-                a01 a01Var2 = d.f32768a;
+                a01 a01Var2 = d.f32769a;
                 if (z10) {
                     c01Var = a01Var2.f24431b;
                 } else {
                     c01Var = a01Var2.f24430a;
                 }
                 if (z10) {
-                    i10 = d.f32775k;
+                    i10 = d.f32776k;
                 } else {
-                    i10 = d.f32776l;
+                    i10 = d.f32777l;
                 }
                 int e = f01Var.e(d, z10, false) + f01Var.e(d, z10, true) + i10;
                 float f7 = c01Var.d;
                 if (f7 == 0.0f) {
                     i11 = 0;
                 } else {
-                    i11 = this.f31911t[i14];
+                    i11 = this.f31912t[i14];
                 }
                 int i15 = e + i11;
                 m.g3 g3Var2 = this.d;
                 wz0 wz0Var3 = (wz0) ((Object[]) g3Var2.d)[((int[]) g3Var2.f16202b)[i14]];
-                int i16 = wz0Var3.f32283c;
+                int i16 = wz0Var3.f32284c;
                 if (c01Var.f25082c == f01.R && f7 == 0.0f) {
                     i12 = 0;
                 } else {
                     i12 = 2;
                 }
-                wz0Var3.f32283c = i12 & i16;
+                wz0Var3.f32284c = i12 & i16;
                 int a2 = c01.a(c01Var, z10).a(d, i15);
                 wz0Var3.b(a2, i15 - a2);
             }
@@ -297,21 +297,21 @@ public final class vz0 {
         c01 c01Var;
         boolean z10;
         c01 c01Var2;
-        if (this.f31907p == null) {
-            this.f31907p = new int[e() + 1];
+        if (this.f31908p == null) {
+            this.f31908p = new int[e() + 1];
         }
-        if (!this.f31908q) {
-            int[] iArr = this.f31907p;
-            boolean z11 = this.f31910s;
+        if (!this.f31909q) {
+            int[] iArr = this.f31908p;
+            boolean z11 = this.f31911s;
             float f7 = 0.0f;
-            boolean z12 = this.f31895a;
-            f01 f01Var = this.f31914x;
+            boolean z12 = this.f31896a;
+            f01 f01Var = this.f31915x;
             if (!z11) {
                 int childCount = f01Var.getChildCount();
                 int i10 = 0;
                 while (true) {
                     if (i10 < childCount) {
-                        a01 a01Var = f01Var.d(i10).f32768a;
+                        a01 a01Var = f01Var.d(i10).f32769a;
                         if (z12) {
                             c01Var2 = a01Var.f24431b;
                         } else {
@@ -327,22 +327,22 @@ public final class vz0 {
                         break;
                     }
                 }
-                this.f31909r = z10;
-                this.f31910s = true;
+                this.f31910r = z10;
+                this.f31911s = true;
             }
-            if (!this.f31909r) {
+            if (!this.f31910r) {
                 p(d(), iArr, true);
             } else {
-                if (this.f31911t == null) {
-                    this.f31911t = new int[f01Var.getChildCount()];
+                if (this.f31912t == null) {
+                    this.f31912t = new int[f01Var.getChildCount()];
                 }
-                Arrays.fill(this.f31911t, 0);
+                Arrays.fill(this.f31912t, 0);
                 p(d(), iArr, true);
                 int childCount2 = (f01Var.getChildCount() * this.v.f24764a) + 1;
                 if (childCount2 >= 2) {
                     int childCount3 = f01Var.getChildCount();
                     for (int i11 = 0; i11 < childCount3; i11++) {
-                        a01 a01Var2 = f01Var.d(i11).f32768a;
+                        a01 a01Var2 = f01Var.d(i11).f32769a;
                         if (z12) {
                             c01Var = a01Var2.f24431b;
                         } else {
@@ -373,47 +373,47 @@ public final class vz0 {
                     }
                 }
             }
-            if (!this.f31912u) {
+            if (!this.f31913u) {
                 int i15 = iArr[0];
                 int length = iArr.length;
                 for (int i16 = 0; i16 < length; i16++) {
                     iArr[i16] = iArr[i16] - i15;
                 }
             }
-            this.f31908q = true;
+            this.f31909q = true;
         }
-        return this.f31907p;
+        return this.f31908p;
     }
 
     public final int h() {
         c01 c01Var;
         int i10 = Integer.MIN_VALUE;
-        if (this.f31897c == Integer.MIN_VALUE) {
-            f01 f01Var = this.f31914x;
+        if (this.f31898c == Integer.MIN_VALUE) {
+            f01 f01Var = this.f31915x;
             int childCount = f01Var.getChildCount();
             int i11 = -1;
             for (int i12 = 0; i12 < childCount; i12++) {
-                a01 a01Var = f01Var.d(i12).f32768a;
-                if (this.f31895a) {
+                a01 a01Var = f01Var.d(i12).f32769a;
+                if (this.f31896a) {
                     c01Var = a01Var.f24431b;
                 } else {
                     c01Var = a01Var.f24430a;
                 }
                 zz0 zz0Var = c01Var.f25081b;
-                i11 = Math.max(Math.max(Math.max(i11, zz0Var.f33073a), zz0Var.f33074b), zz0Var.a());
+                i11 = Math.max(Math.max(Math.max(i11, zz0Var.f33074a), zz0Var.f33075b), zz0Var.a());
             }
             if (i11 != -1) {
                 i10 = i11;
             }
-            this.f31897c = Math.max(0, i10);
+            this.f31898c = Math.max(0, i10);
         }
-        return this.f31897c;
+        return this.f31898c;
     }
 
     public final int i(int i10) {
         int mode = View.MeasureSpec.getMode(i10);
         int size = View.MeasureSpec.getSize(i10);
-        b01 b01Var = this.f31913w;
+        b01 b01Var = this.f31914w;
         b01 b01Var2 = this.v;
         if (mode != Integer.MIN_VALUE) {
             if (mode != 0) {
@@ -422,48 +422,48 @@ public final class vz0 {
                 }
                 b01Var2.f24764a = size;
                 b01Var.f24764a = -size;
-                this.f31908q = false;
+                this.f31909q = false;
                 return g()[e()];
             }
             b01Var2.f24764a = 0;
             b01Var.f24764a = -100000;
-            this.f31908q = false;
+            this.f31909q = false;
             return g()[e()];
         }
         b01Var2.f24764a = 0;
         b01Var.f24764a = -size;
-        this.f31908q = false;
+        this.f31909q = false;
         return g()[e()];
     }
 
     public final void k() {
-        this.f31897c = Integer.MIN_VALUE;
+        this.f31898c = Integer.MIN_VALUE;
         this.d = null;
-        this.f31898f = null;
+        this.f31899f = null;
         this.h = null;
-        this.f31901j = null;
-        this.f31903l = null;
-        this.f31905n = null;
-        this.f31907p = null;
-        this.f31911t = null;
-        this.f31910s = false;
+        this.f31902j = null;
+        this.f31904l = null;
+        this.f31906n = null;
+        this.f31908p = null;
+        this.f31912t = null;
+        this.f31911s = false;
         l();
     }
 
     public final void l() {
         this.e = false;
-        this.f31899g = false;
-        this.f31900i = false;
-        this.f31902k = false;
-        this.f31904m = false;
-        this.f31906o = false;
-        this.f31908q = false;
+        this.f31900g = false;
+        this.f31901i = false;
+        this.f31903k = false;
+        this.f31905m = false;
+        this.f31907o = false;
+        this.f31909q = false;
     }
 
     public final void n(int i10) {
         String str;
         if (i10 != Integer.MIN_VALUE && i10 < h()) {
-            if (this.f31895a) {
+            if (this.f31896a) {
                 str = "column";
             } else {
                 str = "row";
@@ -471,17 +471,17 @@ public final class vz0 {
             f01.g(str.concat("Count must be greater than or equal to the maximum of all grid indices (and spans) defined in the LayoutParams of each child"));
             throw null;
         }
-        this.f31896b = i10;
+        this.f31897b = i10;
     }
 
     public final void o(float f7, int i10) {
         c01 c01Var;
-        Arrays.fill(this.f31911t, 0);
-        f01 f01Var = this.f31914x;
+        Arrays.fill(this.f31912t, 0);
+        f01 f01Var = this.f31915x;
         int childCount = f01Var.getChildCount();
         for (int i11 = 0; i11 < childCount; i11++) {
-            a01 a01Var = f01Var.d(i11).f32768a;
-            if (this.f31895a) {
+            a01 a01Var = f01Var.d(i11).f32769a;
+            if (this.f31896a) {
                 c01Var = a01Var.f24431b;
             } else {
                 c01Var = a01Var.f24430a;
@@ -489,7 +489,7 @@ public final class vz0 {
             float f10 = c01Var.d;
             if (f10 != 0.0f) {
                 int round = Math.round((i10 * f10) / f7);
-                this.f31911t[i11] = round;
+                this.f31912t[i11] = round;
                 i10 -= round;
                 f7 -= f10;
             }
@@ -526,9 +526,9 @@ public final class vz0 {
                 }
                 if (zArr[i14]) {
                     tz0 tz0Var2 = tz0VarArr[i14];
-                    zz0 zz0Var = tz0Var2.f30798a;
-                    if (zz0Var.f33073a >= zz0Var.f33074b) {
-                        tz0Var2.f30800c = false;
+                    zz0 zz0Var = tz0Var2.f30799a;
+                    if (zz0Var.f33074a >= zz0Var.f33075b) {
+                        tz0Var2.f30801c = false;
                         break;
                     }
                 }

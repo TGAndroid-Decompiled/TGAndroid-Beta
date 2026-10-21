@@ -14,13 +14,13 @@ public final class a3 implements Runnable {
     public final void run() {
         switch (this.f17833a) {
             case 0:
-                FileLoader.u(this.f17834b, this.f17835c);
+                FileLoader.w(this.f17834b, this.f17835c);
                 return;
             case 1:
                 FileLoader.a(this.f17834b, this.f17835c);
                 return;
             default:
-                FileLoader.r(this.f17834b, this.f17835c);
+                FileLoader.u(this.f17834b, this.f17835c);
                 return;
         }
     }

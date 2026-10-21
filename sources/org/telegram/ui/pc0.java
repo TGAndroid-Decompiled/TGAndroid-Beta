@@ -18,8 +18,8 @@ public final class pc0 implements ValueAnimator.AnimatorUpdateListener {
                 dg0 dg0Var = this.f40189b;
                 dg0Var.getClass();
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                dg0Var.f36370c.setAlpha(floatValue);
-                dg0Var.f36370c.setTranslationY((1.0f - floatValue) * AndroidUtilities.dp(230.0f));
+                dg0Var.f36371c.setAlpha(floatValue);
+                dg0Var.f36371c.setTranslationY((1.0f - floatValue) * AndroidUtilities.dp(230.0f));
                 return;
             case 1:
                 dg0 dg0Var2 = this.f40189b;
@@ -34,8 +34,8 @@ public final class pc0 implements ValueAnimator.AnimatorUpdateListener {
                 dg0 dg0Var3 = this.f40189b;
                 dg0Var3.getClass();
                 float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                dg0Var3.f36370c.setAlpha(floatValue3);
-                dg0Var3.f36370c.setTranslationY((1.0f - floatValue3) * AndroidUtilities.dp(230.0f));
+                dg0Var3.f36371c.setAlpha(floatValue3);
+                dg0Var3.f36371c.setTranslationY((1.0f - floatValue3) * AndroidUtilities.dp(230.0f));
                 return;
         }
     }

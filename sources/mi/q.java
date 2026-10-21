@@ -422,9 +422,9 @@ public class q implements ne.f, d6, cp0, gu, zb, l7, km0, gh.a, z71, n5.b, y2.n,
     @Override
     public void onError(c81 c81Var, Exception exc) {
         SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f16974c;
-        int i10 = secretMediaViewer.f33787b0;
+        int i10 = secretMediaViewer.f33788b0;
         if (i10 > 0) {
-            secretMediaViewer.f33787b0 = i10 - 1;
+            secretMediaViewer.f33788b0 = i10 - 1;
             AndroidUtilities.runOnUIThread(new jv0(28, this, (File) this.f16973b), 100L);
             return;
         }
@@ -438,27 +438,27 @@ public class q implements ne.f, d6, cp0, gu, zb, l7, km0, gh.a, z71, n5.b, y2.n,
     @Override
     public void onStateChanged(boolean z10, int i10) {
         SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f16974c;
-        j31 j31Var = secretMediaViewer.f33804i1;
-        if (secretMediaViewer.f33837y != null && secretMediaViewer.f33801h0 != null) {
+        j31 j31Var = secretMediaViewer.f33805i1;
+        if (secretMediaViewer.f33838y != null && secretMediaViewer.f33802h0 != null) {
             AndroidUtilities.cancelRunOnUIThread(j31Var);
             AndroidUtilities.runOnUIThread(j31Var);
             if (i10 != 4 && i10 != 1) {
                 try {
-                    secretMediaViewer.f33786b.getWindow().addFlags(128);
+                    secretMediaViewer.f33787b.getWindow().addFlags(128);
                 } catch (Exception e) {
                     FileLog.e(e);
                 }
             } else {
                 try {
-                    secretMediaViewer.f33786b.getWindow().clearFlags(128);
+                    secretMediaViewer.f33787b.getWindow().clearFlags(128);
                 } catch (Exception e7) {
                     FileLog.e(e7);
                 }
             }
-            if (i10 == 3 && secretMediaViewer.f33832w.getVisibility() != 0) {
-                secretMediaViewer.f33832w.setVisibility(0);
+            if (i10 == 3 && secretMediaViewer.f33833w.getVisibility() != 0) {
+                secretMediaViewer.f33833w.setVisibility(0);
             }
-            if (secretMediaViewer.f33837y.y() && i10 != 4) {
+            if (secretMediaViewer.f33838y.y() && i10 != 4) {
                 if (!secretMediaViewer.E) {
                     secretMediaViewer.E = true;
                 }
@@ -467,11 +467,11 @@ public class q implements ne.f, d6, cp0, gu, zb, l7, km0, gh.a, z71, n5.b, y2.n,
                 if (i10 == 4) {
                     secretMediaViewer.H = true;
                     if (secretMediaViewer.I) {
-                        secretMediaViewer.e(true, !secretMediaViewer.f33819q1);
+                        secretMediaViewer.e(true, !secretMediaViewer.f33820q1);
                         return;
                     }
-                    secretMediaViewer.f33837y.L(0L, false);
-                    secretMediaViewer.f33837y.C();
+                    secretMediaViewer.f33838y.L(0L, false);
+                    secretMediaViewer.f33838y.C();
                 }
             }
         }
@@ -485,7 +485,7 @@ public class q implements ne.f, d6, cp0, gu, zb, l7, km0, gh.a, z71, n5.b, y2.n,
     @Override
     public void onVideoSizeChanged(int i10, int i11, int i12, float f7) {
         float f10;
-        o4 o4Var = ((SecretMediaViewer) this.f16974c).f33832w;
+        o4 o4Var = ((SecretMediaViewer) this.f16974c).f33833w;
         if (o4Var != null) {
             if (i11 == 0) {
                 f10 = 1.0f;
@@ -498,7 +498,7 @@ public class q implements ne.f, d6, cp0, gu, zb, l7, km0, gh.a, z71, n5.b, y2.n,
 
     @Override
     public void p(String str, String str2) {
-        vm0 vm0Var = ((em0) this.f16974c).f36686a;
+        vm0 vm0Var = ((em0) this.f16974c).f36687a;
         if ("PHONE_VERIFICATION_NEEDED".equals(str)) {
             vm0Var.N1(true, str2, (ck0) this.f16973b, this, vm0Var.B1);
         } else {
@@ -548,35 +548,35 @@ public class q implements ne.f, d6, cp0, gu, zb, l7, km0, gh.a, z71, n5.b, y2.n,
             if (a2Var != null) {
                 wy0 wy0Var = wy0VarArr[0];
                 boolean z11 = cVar.f4438m;
-                wy0Var.f32280c = z11;
+                wy0Var.f32281c = z11;
                 a2Var.c(z11, true);
             }
             a2 a2Var2 = a2VarArr[1];
             if (a2Var2 != null) {
                 wy0 wy0Var2 = wy0VarArr[1];
                 boolean z12 = cVar.f4439n;
-                wy0Var2.f32280c = z12;
+                wy0Var2.f32281c = z12;
                 a2Var2.c(z12, true);
             }
             a2 a2Var3 = a2VarArr[2];
             if (a2Var3 != null) {
                 wy0 wy0Var3 = wy0VarArr[2];
                 boolean z13 = cVar.f4440o;
-                wy0Var3.f32280c = z13;
+                wy0Var3.f32281c = z13;
                 a2Var3.c(z13, true);
             }
             a2 a2Var4 = a2VarArr[3];
             if (a2Var4 != null) {
                 wy0 wy0Var4 = wy0VarArr[3];
                 boolean z14 = cVar.f4441p;
-                wy0Var4.f32280c = z14;
+                wy0Var4.f32281c = z14;
                 a2Var4.c(z14, true);
             }
             a2 a2Var5 = a2VarArr[4];
             if (a2Var5 != null) {
                 wy0 wy0Var5 = wy0VarArr[4];
                 boolean z15 = cVar.f4442q;
-                wy0Var5.f32280c = z15;
+                wy0Var5.f32281c = z15;
                 a2Var5.c(z15, true);
             }
             vuVar.f42371a0.a(uuVar.d(), true);
@@ -664,10 +664,10 @@ public class q implements ne.f, d6, cp0, gu, zb, l7, km0, gh.a, z71, n5.b, y2.n,
     @Override
     public void onRenderedFirstFrame() {
         SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f16974c;
-        if (secretMediaViewer.f33790c0) {
+        if (secretMediaViewer.f33791c0) {
             return;
         }
-        secretMediaViewer.f33790c0 = true;
+        secretMediaViewer.f33791c0 = true;
         secretMediaViewer.e.invalidate();
     }
 
@@ -766,7 +766,7 @@ public class q implements ne.f, d6, cp0, gu, zb, l7, km0, gh.a, z71, n5.b, y2.n,
     public q(PhotoViewer photoViewer) {
         this.f16972a = 13;
         this.f16974c = photoViewer;
-        this.f16973b = new na(photoViewer.f33250b0, photoViewer.f33278e0, 0, false);
+        this.f16973b = new na(photoViewer.f33251b0, photoViewer.f33279e0, 0, false);
     }
 
     @Override

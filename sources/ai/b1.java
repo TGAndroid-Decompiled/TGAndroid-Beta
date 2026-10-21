@@ -733,7 +733,7 @@ public final class b1 extends org.telegram.ui.Components.bb {
     public final im0 x(jm0 jm0Var) {
         u61 u61Var = new u61(this.d, getContext(), this.currentAccount, 0, true, new q(this, 2), this.resourcesProvider);
         this.f1022u0 = u61Var;
-        u61Var.f30860r = false;
+        u61Var.f30861r = false;
         return u61Var;
     }
 }

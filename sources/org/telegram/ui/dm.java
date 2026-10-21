@@ -31,24 +31,24 @@ public final class dm extends org.telegram.ui.Components.kl0 {
     public final ArrayList P;
     public final qn Q;
     public final Context h;
-    public final boolean f36413n;
-    public int f36414r;
-    public int f36415s;
+    public final boolean f36414n;
+    public int f36415r;
+    public int f36416s;
     public int v;
-    public int f36416w;
-    public int f36417x;
-    public int f36418y;
+    public int f36417w;
+    public int f36418x;
+    public int f36419y;
 
     public dm(qn qnVar, Context context) {
         boolean z10;
         this.Q = qnVar;
         this.e = new ArrayList();
         this.f27902f = new ArrayList();
-        this.f36415s = -5;
+        this.f36416s = -5;
         this.v = -5;
-        this.f36416w = -5;
-        this.f36417x = -5;
-        this.f36418y = -5;
+        this.f36417w = -5;
+        this.f36418x = -5;
+        this.f36419y = -5;
         this.E = -5;
         this.F = -5;
         this.G = -5;
@@ -63,7 +63,7 @@ public final class dm extends org.telegram.ui.Components.kl0 {
         } else {
             z10 = false;
         }
-        this.f36413n = z10;
+        this.f36414n = z10;
         C(true);
     }
 
@@ -298,10 +298,10 @@ public final class dm extends org.telegram.ui.Components.kl0 {
     }
 
     public final void T() {
-        int i10 = this.f36414r;
-        int i11 = this.f36416w;
-        int i12 = this.f36418y;
-        int i13 = this.f36415s;
+        int i10 = this.f36415r;
+        int i11 = this.f36417w;
+        int i12 = this.f36419y;
+        int i13 = this.f36416s;
         int i14 = this.v;
         int i15 = this.E;
         int i16 = this.F;
@@ -311,7 +311,7 @@ public final class dm extends org.telegram.ui.Components.kl0 {
         int i20 = this.H;
         int i21 = this.I;
         S();
-        if (i10 == this.f36414r && i11 == this.f36416w && i15 == this.E && i16 == this.F && i17 == this.J && i18 == this.K && i13 == this.f36415s && i14 == this.v && i12 == this.f36418y && i19 == this.G && i20 == this.H && i21 == this.I) {
+        if (i10 == this.f36415r && i11 == this.f36417w && i15 == this.E && i16 == this.F && i17 == this.J && i18 == this.K && i13 == this.f36416s && i14 == this.v && i12 == this.f36419y && i19 == this.G && i20 == this.H && i21 == this.I) {
             return;
         }
         O(false);
@@ -319,7 +319,7 @@ public final class dm extends org.telegram.ui.Components.kl0 {
 
     @Override
     public final int h() {
-        this.f36417x = -5;
+        this.f36418x = -5;
         qn qnVar = this.Q;
         a0.h hVar = qnVar.f40660d8;
         if (qnVar.M5.get(qnVar.f40656d4, 0) != 0) {
@@ -327,17 +327,17 @@ public final class dm extends org.telegram.ui.Components.kl0 {
             if (user == null || !user.bot || qnVar.R3 != 0 || ((hVar.m() <= 0 || (((TL_bots.BotInfo) hVar.f(qnVar.f40676f.f20423id)).description == null && ((TL_bots.BotInfo) hVar.f(qnVar.f40676f.f20423id)).description_photo == null && ((TL_bots.BotInfo) hVar.f(qnVar.f40676f.f20423id)).description_document == null)) && !UserObject.isReplyUser(qnVar.f40676f) && !UserObject.isBotForum(qnVar.f40676f))) {
                 return 0;
             }
-            this.f36417x = 0;
+            this.f36418x = 0;
             return 1;
         }
-        return this.f36414r;
+        return this.f36415r;
     }
 
     @Override
     public final long i(int i10) {
         ArrayList arrayList;
         qn qnVar = this.Q;
-        if (qnVar.M5.get(qnVar.f40656d4, 0) == 0 || i10 != this.f36417x) {
+        if (qnVar.M5.get(qnVar.f40656d4, 0) == 0 || i10 != this.f36418x) {
             if (this.L) {
                 arrayList = this.M;
             } else if (this.N) {
@@ -349,17 +349,17 @@ public final class dm extends org.telegram.ui.Components.kl0 {
             if (i10 >= i11 && i10 < this.K) {
                 return ((MessageObject) arrayList.get(i10 - i11)).stableId;
             }
-            if (i10 != this.f36416w && i10 != this.f36417x) {
+            if (i10 != this.f36417w && i10 != this.f36418x) {
                 if (i10 == this.E) {
                     return 2L;
                 }
                 if (i10 == this.F) {
                     return 3L;
                 }
-                if (i10 == this.f36415s) {
+                if (i10 == this.f36416s) {
                     return 4L;
                 }
-                if (i10 == this.f36418y) {
+                if (i10 == this.f36419y) {
                     return 6L;
                 }
                 if (i10 == this.G) {
@@ -385,8 +385,8 @@ public final class dm extends org.telegram.ui.Components.kl0 {
     public final int j(int i10) {
         ArrayList arrayList;
         qn qnVar = this.Q;
-        if (qnVar.M5.get(qnVar.f40656d4, 0) == 0 || i10 != this.f36417x) {
-            if (i10 != this.f36415s && i10 != this.v) {
+        if (qnVar.M5.get(qnVar.f40656d4, 0) == 0 || i10 != this.f36418x) {
+            if (i10 != this.f36416s && i10 != this.v) {
                 int i11 = this.J;
                 if (i10 >= i11 && i10 < this.K) {
                     if (this.L) {
@@ -397,10 +397,10 @@ public final class dm extends org.telegram.ui.Components.kl0 {
                         arrayList = qnVar.f40868u6;
                     }
                     return ((MessageObject) arrayList.get(i10 - i11)).contentType;
-                } else if (i10 == this.f36416w) {
+                } else if (i10 == this.f36417w) {
                     return 3;
                 } else {
-                    if (i10 == this.f36418y) {
+                    if (i10 == this.f36419y) {
                         return 6;
                     }
                     if (i10 != this.H && i10 != this.G) {

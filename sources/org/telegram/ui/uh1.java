@@ -22,7 +22,7 @@ public final class uh1 extends org.telegram.ui.Components.im0 {
 
     @Override
     public final int h() {
-        return this.d.f35210a;
+        return this.d.f35211a;
     }
 
     @Override
@@ -30,9 +30,9 @@ public final class uh1 extends org.telegram.ui.Components.im0 {
         int i11;
         WallpapersListActivity wallpapersListActivity = this.d;
         i11 = wallpapersListActivity.uploadImageRow;
-        if (i10 != i11 && i10 != wallpapersListActivity.f35225r && i10 != wallpapersListActivity.f35212b && i10 != wallpapersListActivity.h) {
-            if (i10 != wallpapersListActivity.f35214c && i10 != wallpapersListActivity.f35218f) {
-                if (i10 != wallpapersListActivity.f35224n && i10 != wallpapersListActivity.f35226s) {
+        if (i10 != i11 && i10 != wallpapersListActivity.f35226r && i10 != wallpapersListActivity.f35213b && i10 != wallpapersListActivity.h) {
+            if (i10 != wallpapersListActivity.f35215c && i10 != wallpapersListActivity.f35219f) {
+                if (i10 != wallpapersListActivity.f35225n && i10 != wallpapersListActivity.f35227s) {
                     return 2;
                 }
                 return 3;

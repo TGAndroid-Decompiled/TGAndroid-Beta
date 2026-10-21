@@ -349,32 +349,32 @@ public final class nj extends ci.q5 {
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(f7, AndroidUtilities.dp(8.0f) + f7);
                     qnVar.Q9 = ofFloat;
                     ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                        public final nj f38937b;
+                        public final nj f38938b;
 
                         {
-                            this.f38937b = this;
+                            this.f38938b = this;
                         }
 
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator) {
                             switch (r2) {
                                 case 0:
-                                    qn qnVar2 = this.f38937b.f39631x3;
+                                    qn qnVar2 = this.f38938b.f39631x3;
                                     qnVar2.N9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                                     qnVar2.f40901x0.invalidate();
                                     return;
                                 case 1:
-                                    qn qnVar3 = this.f38937b.f39631x3;
+                                    qn qnVar3 = this.f38938b.f39631x3;
                                     qnVar3.N9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                                     qnVar3.f40901x0.invalidate();
                                     return;
                                 case 2:
-                                    qn qnVar4 = this.f38937b.f39631x3;
+                                    qn qnVar4 = this.f38938b.f39631x3;
                                     qnVar4.N9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                                     qnVar4.f40901x0.invalidate();
                                     return;
                                 default:
-                                    qn qnVar5 = this.f38937b.f39631x3;
+                                    qn qnVar5 = this.f38938b.f39631x3;
                                     qnVar5.N9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                                     qnVar5.f40901x0.invalidate();
                                     return;
@@ -404,7 +404,7 @@ public final class nj extends ci.q5 {
                                     lpVar3.getClass();
                                     lpVar3.K = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                                     lpVar3.T.invalidate();
-                                    View view = lpVar3.f38960a0;
+                                    View view = lpVar3.f38961a0;
                                     if (view != null) {
                                         view.invalidate();
                                         return;
@@ -414,7 +414,7 @@ public final class nj extends ci.q5 {
                                     lp lpVar4 = lpVar2;
                                     lpVar4.getClass();
                                     lpVar4.L = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                    View view2 = lpVar4.f38960a0;
+                                    View view2 = lpVar4.f38961a0;
                                     if (view2 != null) {
                                         view2.invalidate();
                                         return;
@@ -433,7 +433,7 @@ public final class nj extends ci.q5 {
                                     lpVar3.getClass();
                                     lpVar3.K = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                                     lpVar3.T.invalidate();
-                                    View view = lpVar3.f38960a0;
+                                    View view = lpVar3.f38961a0;
                                     if (view != null) {
                                         view.invalidate();
                                         return;
@@ -443,7 +443,7 @@ public final class nj extends ci.q5 {
                                     lp lpVar4 = lpVar2;
                                     lpVar4.getClass();
                                     lpVar4.L = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                    View view2 = lpVar4.f38960a0;
+                                    View view2 = lpVar4.f38961a0;
                                     if (view2 != null) {
                                         view2.invalidate();
                                         return;
@@ -473,32 +473,32 @@ public final class nj extends ci.q5 {
                         }
                         ValueAnimator ofFloat4 = ValueAnimator.ofFloat(qnVar.N9, AndroidUtilities.dp(111.0f));
                         ofFloat4.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                            public final nj f38937b;
+                            public final nj f38938b;
 
                             {
-                                this.f38937b = this;
+                                this.f38938b = this;
                             }
 
                             @Override
                             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
                                 switch (r2) {
                                     case 0:
-                                        qn qnVar2 = this.f38937b.f39631x3;
+                                        qn qnVar2 = this.f38938b.f39631x3;
                                         qnVar2.N9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                                         qnVar2.f40901x0.invalidate();
                                         return;
                                     case 1:
-                                        qn qnVar3 = this.f38937b.f39631x3;
+                                        qn qnVar3 = this.f38938b.f39631x3;
                                         qnVar3.N9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                                         qnVar3.f40901x0.invalidate();
                                         return;
                                     case 2:
-                                        qn qnVar4 = this.f38937b.f39631x3;
+                                        qn qnVar4 = this.f38938b.f39631x3;
                                         qnVar4.N9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                                         qnVar4.f40901x0.invalidate();
                                         return;
                                     default:
-                                        qn qnVar5 = this.f38937b.f39631x3;
+                                        qn qnVar5 = this.f38938b.f39631x3;
                                         qnVar5.N9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                                         qnVar5.f40901x0.invalidate();
                                         return;
@@ -509,32 +509,32 @@ public final class nj extends ci.q5 {
                         ofFloat4.setInterpolator(org.telegram.ui.Components.bs.f25021f);
                         ValueAnimator ofFloat5 = ValueAnimator.ofFloat(AndroidUtilities.dp(111.0f), 0.0f);
                         ofFloat5.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                            public final nj f38937b;
+                            public final nj f38938b;
 
                             {
-                                this.f38937b = this;
+                                this.f38938b = this;
                             }
 
                             @Override
                             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
                                 switch (r2) {
                                     case 0:
-                                        qn qnVar2 = this.f38937b.f39631x3;
+                                        qn qnVar2 = this.f38938b.f39631x3;
                                         qnVar2.N9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                                         qnVar2.f40901x0.invalidate();
                                         return;
                                     case 1:
-                                        qn qnVar3 = this.f38937b.f39631x3;
+                                        qn qnVar3 = this.f38938b.f39631x3;
                                         qnVar3.N9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                                         qnVar3.f40901x0.invalidate();
                                         return;
                                     case 2:
-                                        qn qnVar4 = this.f38937b.f39631x3;
+                                        qn qnVar4 = this.f38938b.f39631x3;
                                         qnVar4.N9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                                         qnVar4.f40901x0.invalidate();
                                         return;
                                     default:
-                                        qn qnVar5 = this.f38937b.f39631x3;
+                                        qn qnVar5 = this.f38938b.f39631x3;
                                         qnVar5.N9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                                         qnVar5.f40901x0.invalidate();
                                         return;
@@ -554,32 +554,32 @@ public final class nj extends ci.q5 {
                     bVar.a(false, true);
                 }
                 ofFloat6.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                    public final nj f38937b;
+                    public final nj f38938b;
 
                     {
-                        this.f38937b = this;
+                        this.f38938b = this;
                     }
 
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
                         switch (r2) {
                             case 0:
-                                qn qnVar2 = this.f38937b.f39631x3;
+                                qn qnVar2 = this.f38938b.f39631x3;
                                 qnVar2.N9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                                 qnVar2.f40901x0.invalidate();
                                 return;
                             case 1:
-                                qn qnVar3 = this.f38937b.f39631x3;
+                                qn qnVar3 = this.f38938b.f39631x3;
                                 qnVar3.N9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                                 qnVar3.f40901x0.invalidate();
                                 return;
                             case 2:
-                                qn qnVar4 = this.f38937b.f39631x3;
+                                qn qnVar4 = this.f38938b.f39631x3;
                                 qnVar4.N9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                                 qnVar4.f40901x0.invalidate();
                                 return;
                             default:
-                                qn qnVar5 = this.f38937b.f39631x3;
+                                qn qnVar5 = this.f38938b.f39631x3;
                                 qnVar5.N9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                                 qnVar5.f40901x0.invalidate();
                                 return;
@@ -847,8 +847,8 @@ public final class nj extends ci.q5 {
                             org.telegram.ui.Wallet.n3 n3Var = w0Var.I0;
                             float f11 = (x10 - w0Var.K0) - (w0Var.f23708j0 / 2.0f);
                             float paddingTop = (y3 - w0Var.L0) - w0Var.getPaddingTop();
-                            org.telegram.ui.Wallet.m3 m3Var = n3Var.f34575m;
-                            if (m3Var != null && m3Var.f47188n && n3Var.f34593w.contains((int) f11, (int) paddingTop)) {
+                            org.telegram.ui.Wallet.m3 m3Var = n3Var.f34576m;
+                            if (m3Var != null && m3Var.f47188n && n3Var.f34594w.contains((int) f11, (int) paddingTop)) {
                                 return;
                             }
                         } else {

@@ -111,7 +111,7 @@ public abstract class l71 extends org.telegram.ui.ActionBar.f3 {
         int i17 = this.N;
         int i18 = this.K;
         nVar.setTag(Integer.valueOf(i16));
-        org.telegram.ui.ActionBar.d6 d6Var2 = tx0Var.f30699n;
+        org.telegram.ui.ActionBar.d6 d6Var2 = tx0Var.f30700n;
         nVar.setTextColor(org.telegram.ui.ActionBar.h6.w0(i16, d6Var2));
         x90Var.setTag(Integer.valueOf(i17));
         x90Var.setTextColor(org.telegram.ui.ActionBar.h6.w0(i17, d6Var2));

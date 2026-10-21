@@ -25,7 +25,7 @@ public final class uc implements Utilities.Callback {
             default:
                 if (view instanceof org.telegram.ui.Components.r21) {
                     org.telegram.ui.Components.r21 r21Var = (org.telegram.ui.Components.r21) view;
-                    if (r21Var.G.f31849a.f20724b) {
+                    if (r21Var.G.f31850a.f20724b) {
                         wallPaper = null;
                     } else {
                         wallPaper = this.f41928b.v;

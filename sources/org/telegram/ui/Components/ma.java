@@ -36,15 +36,15 @@ public final class ma extends Drawable {
     public final void draw(Canvas canvas) {
         Bitmap b10;
         na naVar = this.f28468i;
-        ja jaVar = naVar.f28732a;
-        Matrix matrix = naVar.f28744p;
+        ja jaVar = naVar.f28733a;
+        Matrix matrix = naVar.f28745p;
         Paint paint = null;
         if (jaVar != null && (b10 = jaVar.b()) != null) {
-            if (naVar.f28743o == null || naVar.f28742n != b10) {
-                naVar.f28742n = b10;
+            if (naVar.f28744o == null || naVar.f28743n != b10) {
+                naVar.f28743n = b10;
                 Shader.TileMode tileMode = Shader.TileMode.CLAMP;
                 BitmapShader bitmapShader = new BitmapShader(b10, tileMode, tileMode);
-                naVar.f28743o = bitmapShader;
+                naVar.f28744o = bitmapShader;
                 naVar.h.setShader(bitmapShader);
             }
             matrix.reset();
@@ -53,7 +53,7 @@ public final class ma extends Drawable {
             if (view != null) {
                 matrix.preScale(view.getWidth() / b10.getWidth(), jaVar.f27474b.getHeight() / b10.getHeight());
             }
-            naVar.f28743o.setLocalMatrix(matrix);
+            naVar.f28744o.setLocalMatrix(matrix);
             naVar.h.setAlpha((int) (this.f28463a * 255.0f));
             paint = naVar.h;
         }

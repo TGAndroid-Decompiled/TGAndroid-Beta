@@ -11,14 +11,14 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 public final class xq0 extends im0 {
-    public final Context f32463c;
+    public final Context f32464c;
     public final ArrayList d = new ArrayList();
     public final a0.h e = new a0.h();
-    public final fr0 f32464f;
+    public final fr0 f32465f;
 
     public xq0(fr0 fr0Var, Context context) {
-        this.f32464f = fr0Var;
-        this.f32463c = context;
+        this.f32465f = fr0Var;
+        this.f32464c = context;
         E();
     }
 
@@ -41,7 +41,7 @@ public final class xq0 extends im0 {
         arrayList.clear();
         a0.h hVar = this.e;
         hVar.b();
-        fr0 fr0Var = this.f32464f;
+        fr0 fr0Var = this.f32465f;
         i10 = ((org.telegram.ui.ActionBar.f3) fr0Var).currentAccount;
         long j10 = UserConfig.getInstance(i10).clientUserId;
         if (fr0Var.f26363a0) {
@@ -133,8 +133,8 @@ public final class xq0 extends im0 {
         View vq0Var;
         org.telegram.ui.ActionBar.d6 d6Var;
         float f7;
-        fr0 fr0Var = this.f32464f;
-        Context context = this.f32463c;
+        fr0 fr0Var = this.f32465f;
+        Context context = this.f32464c;
         if (i10 == 0) {
             d6Var = ((org.telegram.ui.ActionBar.f3) fr0Var).resourcesProvider;
             vq0Var = new vq0(this, context, d6Var);

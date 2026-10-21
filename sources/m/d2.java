@@ -38,25 +38,25 @@ public final class d2 implements View.OnTouchListener {
             case 1:
                 ty tyVar = (ty) this.f16176b;
                 if (motionEvent.getAction() == 0) {
-                    tyVar.F.f30730f = true;
+                    tyVar.F.f30731f = true;
                 } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-                    tyVar.F.f30730f = false;
+                    tyVar.F.f30731f = false;
                 }
                 return false;
             case 2:
                 gz gzVar = (gz) this.f16176b;
                 if (motionEvent.getAction() == 0) {
-                    gzVar.G.f30730f = true;
+                    gzVar.G.f30731f = true;
                 } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-                    gzVar.G.f30730f = false;
+                    gzVar.G.f30731f = false;
                 }
                 return false;
             default:
                 oz ozVar = (oz) this.f16176b;
                 if (motionEvent.getAction() == 0) {
-                    ozVar.Q.f30730f = true;
+                    ozVar.Q.f30731f = true;
                 } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-                    ozVar.Q.f30730f = false;
+                    ozVar.Q.f30731f = false;
                 }
                 return false;
         }

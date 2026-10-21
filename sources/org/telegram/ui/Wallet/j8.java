@@ -15,40 +15,40 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class j8 extends View {
     public final k8 E;
-    public final Paint f34389a;
-    public final char[] f34390b;
-    public final Random f34391c;
+    public final Paint f34390a;
+    public final char[] f34391b;
+    public final Random f34392c;
     public final int[] d;
     public final float[] e;
-    public final float f34392f;
+    public final float f34393f;
     public final float h;
-    public final float f34393n;
-    public final float f34394r;
-    public final Paint.FontMetrics f34395s;
+    public final float f34394n;
+    public final float f34395r;
+    public final Paint.FontMetrics f34396s;
     public String v;
-    public float f34396w;
-    public boolean f34397x;
-    public ValueAnimator f34398y;
+    public float f34397w;
+    public boolean f34398x;
+    public ValueAnimator f34399y;
 
     public j8(k8 k8Var, Context context) {
         super(context);
         this.E = k8Var;
         Paint paint = new Paint(1);
-        this.f34389a = paint;
-        this.f34390b = new char[1];
-        this.f34391c = new Random();
+        this.f34390a = paint;
+        this.f34391b = new char[1];
+        this.f34392c = new Random();
         this.d = new int[48];
         this.e = new float[48];
         paint.setTypeface(AndroidUtilities.getTypeface("fonts/rmono.ttf"));
         paint.setTextSize(AndroidUtilities.dp(12.0f));
-        this.f34392f = paint.measureText("U");
+        this.f34393f = paint.measureText("U");
         Paint.FontMetrics fontMetrics = paint.getFontMetrics();
-        this.f34395s = fontMetrics;
+        this.f34396s = fontMetrics;
         float f7 = fontMetrics.top;
-        this.f34393n = -f7;
+        this.f34394n = -f7;
         float f10 = fontMetrics.descent - fontMetrics.ascent;
         this.h = f10;
-        this.f34394r = (fontMetrics.bottom - f7) + f10;
+        this.f34395r = (fontMetrics.bottom - f7) + f10;
         setImportantForAccessibility(1);
         setContentDescription(LocaleController.getString(R.string.Loading));
     }
@@ -59,7 +59,7 @@ public final class j8 extends View {
         if (str != null) {
             i10 = Math.min(24, str.length());
         }
-        return this.f34392f * (Math.max(0, (i10 - 1) / 4) + i10);
+        return this.f34393f * (Math.max(0, (i10 - 1) / 4) + i10);
     }
 
     public final int b() {
@@ -75,13 +75,13 @@ public final class j8 extends View {
         if (!z10 && TextUtils.equals(this.v, str)) {
             return;
         }
-        ValueAnimator valueAnimator = this.f34398y;
+        ValueAnimator valueAnimator = this.f34399y;
         if (valueAnimator != null) {
             valueAnimator.cancel();
-            this.f34398y = null;
+            this.f34399y = null;
         }
         this.v = str;
-        this.f34396w = 0.0f;
+        this.f34397w = 0.0f;
         Arrays.fill(this.d, -1);
         String str2 = this.v;
         if (str2 != null) {
@@ -89,7 +89,7 @@ public final class j8 extends View {
         } else {
             z11 = false;
         }
-        this.f34397x = z11;
+        this.f34398x = z11;
         if (str2 == null) {
             str2 = LocaleController.getString(R.string.Loading);
         }
@@ -100,20 +100,20 @@ public final class j8 extends View {
     }
 
     public final void d() {
-        if (this.f34397x && isAttachedToWindow() && isShown()) {
-            this.f34397x = false;
+        if (this.f34398x && isAttachedToWindow() && isShown()) {
+            this.f34398x = false;
             int b10 = b();
             if (Build.VERSION.SDK_INT >= 26 && !ValueAnimator.areAnimatorsEnabled()) {
-                this.f34396w = b10;
+                this.f34397w = b10;
                 invalidate();
                 return;
             }
             ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, b10);
-            this.f34398y = ofFloat;
+            this.f34399y = ofFloat;
             ofFloat.setDuration(b10);
-            this.f34398y.setInterpolator(new LinearInterpolator());
-            this.f34398y.addUpdateListener(new b3(this, 6));
-            this.f34398y.start();
+            this.f34399y.setInterpolator(new LinearInterpolator());
+            this.f34399y.addUpdateListener(new b3(this, 6));
+            this.f34399y.start();
         }
     }
 
@@ -125,13 +125,13 @@ public final class j8 extends View {
 
     @Override
     public final void onDetachedFromWindow() {
-        ValueAnimator valueAnimator = this.f34398y;
+        ValueAnimator valueAnimator = this.f34399y;
         if (valueAnimator != null) {
             valueAnimator.cancel();
-            this.f34398y = null;
+            this.f34399y = null;
         }
-        if (this.v != null && !this.f34397x) {
-            this.f34396w = b();
+        if (this.v != null && !this.f34398x) {
+            this.f34397w = b();
         }
         super.onDetachedFromWindow();
     }
@@ -163,7 +163,7 @@ public final class j8 extends View {
         int i15;
         super.onDraw(canvas);
         int i16 = org.telegram.ui.ActionBar.h6.D6;
-        org.telegram.ui.ActionBar.d6 d6Var = this.E.f34434a;
+        org.telegram.ui.ActionBar.d6 d6Var = this.E.f34435a;
         int w02 = org.telegram.ui.ActionBar.h6.w0(i16, d6Var);
         int w03 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.G6, d6Var);
         String str = this.v;
@@ -178,12 +178,12 @@ public final class j8 extends View {
             if (i20 < i18) {
                 int i21 = i20 / 24;
                 int i22 = (i19 % 6) * 5;
-                float f18 = this.f34392f;
+                float f18 = this.f34393f;
                 float f19 = i22 * f18;
                 float f20 = i21 * this.h;
-                float f21 = this.f34393n;
+                float f21 = this.f34394n;
                 float f22 = f20 + f21;
-                float f23 = this.f34396w - (i10 * 90);
+                float f23 = this.f34397w - (i10 * 90);
                 if (this.v == null) {
                     max = 1.0f;
                 } else {
@@ -191,9 +191,9 @@ public final class j8 extends View {
                 }
                 int i23 = (max > 0.0f ? 1 : (max == 0.0f ? 0 : -1));
                 float f24 = 0.0f;
-                Paint.FontMetrics fontMetrics = this.f34395s;
+                Paint.FontMetrics fontMetrics = this.f34396s;
                 int i24 = i19;
-                Paint paint2 = this.f34389a;
+                Paint paint2 = this.f34390a;
                 if (i23 > 0) {
                     paint2.setColor(w02);
                     paint2.setAlpha(Math.round(paint2.getAlpha() * 0.22f * max));
@@ -223,7 +223,7 @@ public final class j8 extends View {
                     while (i25 < i26) {
                         int i27 = i20 + i25;
                         if (i27 < i18) {
-                            float f25 = this.f34396w - ((i11 + i25) * 18);
+                            float f25 = this.f34397w - ((i11 + i25) * 18);
                             if (f25 <= f24) {
                                 i15 = i26;
                                 i12 = i20;
@@ -252,14 +252,14 @@ public final class j8 extends View {
                                     f15 = f14;
                                     charAt = this.v.charAt(i27);
                                 }
-                                this.f34390b[0] = charAt;
+                                this.f34391b[0] = charAt;
                                 float[] fArr2 = this.e;
                                 if (z10) {
                                     int[] iArr = this.d;
                                     fArr = fArr2;
                                     if (iArr[i27] != i28) {
                                         iArr[i27] = i28;
-                                        fArr[i27] = this.f34391c.nextFloat();
+                                        fArr[i27] = this.f34392c.nextFloat();
                                     }
                                 } else {
                                     fArr = fArr2;
@@ -288,7 +288,7 @@ public final class j8 extends View {
                                 canvas2.clipRect(0.0f, f16, width, dp);
                                 i14 = i25;
                                 i15 = 4;
-                                canvas2.drawText(this.f34390b, 0, 1, (i25 * f7) + f12, f13 - (AndroidUtilities.dp(24.0f) * cos), paint);
+                                canvas2.drawText(this.f34391b, 0, 1, (i25 * f7) + f12, f13 - (AndroidUtilities.dp(24.0f) * cos), paint);
                                 canvas2.restoreToCount(save);
                             }
                             i25 = i14 + 1;
@@ -308,7 +308,7 @@ public final class j8 extends View {
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        setMeasuredDimension(View.resolveSize((int) Math.ceil(a()), i10), View.resolveSize((int) Math.ceil(this.f34394r), i11));
+        setMeasuredDimension(View.resolveSize((int) Math.ceil(a()), i10), View.resolveSize((int) Math.ceil(this.f34395r), i11));
     }
 
     @Override
@@ -319,18 +319,18 @@ public final class j8 extends View {
             d();
             return;
         }
-        ValueAnimator valueAnimator = this.f34398y;
+        ValueAnimator valueAnimator = this.f34399y;
         if (valueAnimator != null) {
             if (valueAnimator != null) {
                 valueAnimator.cancel();
-                this.f34398y = null;
+                this.f34399y = null;
             }
             if (this.v == null) {
                 b10 = 0.0f;
             } else {
                 b10 = b();
             }
-            this.f34396w = b10;
+            this.f34397w = b10;
         }
     }
 }

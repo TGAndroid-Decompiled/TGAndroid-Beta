@@ -130,7 +130,7 @@ public final class b implements c3.q {
     }
 
     public static boolean g(c5 c5Var) {
-        if (c5Var.f35812a == null && c5Var.f35813b == null) {
+        if (c5Var.f35813a == null && c5Var.f35814b == null) {
             return false;
         }
         return true;
@@ -222,8 +222,8 @@ public final class b implements c3.q {
             try {
                 try {
                     tc.u uVar = (tc.u) this.f4490b;
-                    a1 a1Var = z0Var.f35164c;
-                    int i11 = z0Var.f35162a;
+                    a1 a1Var = z0Var.f35165c;
+                    int i11 = z0Var.f35163a;
                     AndroidUtilities.runOnUIThread(new cz0(a1Var, uVar, i11, "websocket error: " + a1.a(vVar), 15, false));
                 } catch (Throwable unused) {
                 }

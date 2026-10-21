@@ -49,9 +49,9 @@ public final class x3 implements org.telegram.ui.ActionBar.j2, org.telegram.ui.A
         float progress;
         org.telegram.ui.ActionBar.m3 m3Var = new org.telegram.ui.ActionBar.m3();
         l4 l4Var = this.K;
-        m3Var.E = l4Var.f38766h0.getTitle();
+        m3Var.E = l4Var.f38767h0.getTitle();
         m3Var.J = l4Var;
-        o3 o3Var = l4Var.f38778u0[0];
+        o3 o3Var = l4Var.f38779u0[0];
         Bitmap bitmap = null;
         if (o3Var != null && SharedConfig.adaptableColorInBrowser) {
             x02 = o3Var.getActionBarColor();
@@ -59,7 +59,7 @@ public final class x3 implements org.telegram.ui.ActionBar.j2, org.telegram.ui.A
             x02 = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.Pk, false);
         }
         m3Var.f21595q = x02;
-        o3 o3Var2 = l4Var.f38778u0[0];
+        o3 o3Var2 = l4Var.f38779u0[0];
         if (o3Var2 != null && SharedConfig.adaptableColorInBrowser) {
             x03 = o3Var2.getBackgroundColor();
         } else {
@@ -70,13 +70,13 @@ public final class x3 implements org.telegram.ui.ActionBar.j2, org.telegram.ui.A
         if (!this.F) {
             progress = 0.0f;
         } else {
-            progress = l4Var.f38778u0[0].getProgress();
+            progress = l4Var.f38779u0[0].getProgress();
         }
         m3Var.I = progress;
-        o3 o3Var3 = l4Var.f38778u0[0];
+        o3 o3Var3 = l4Var.f38779u0[0];
         m3Var.f21584c = o3Var3;
         if (o3Var3 != null && o3Var3.getWebView() != null) {
-            bitmap = l4Var.f38778u0[0].getWebView().getFavicon();
+            bitmap = l4Var.f38779u0[0].getWebView().getFavicon();
         }
         m3Var.F = bitmap;
         o3 o3Var4 = m3Var.f21584c;
@@ -182,21 +182,21 @@ public final class x3 implements org.telegram.ui.ActionBar.j2, org.telegram.ui.A
             }
         }
         l4 l4Var = this.K;
-        o3 o3Var = l4Var.f38778u0[0];
+        o3 o3Var = l4Var.f38779u0[0];
         if (o3Var != null && o3Var.E) {
             if (o3Var.getWebView() != null) {
                 o3Var.getWebView().onResume();
             }
             o3Var.E = false;
         }
-        o3 o3Var2 = l4Var.f38778u0[1];
+        o3 o3Var2 = l4Var.f38779u0[1];
         if (o3Var2 != null && o3Var2.E) {
             if (o3Var2.getWebView() != null) {
                 o3Var2.getWebView().onResume();
             }
             o3Var2.E = false;
         }
-        l4.f38734b1.add(l4Var);
+        l4.f38735b1.add(l4Var);
     }
 
     @Override
@@ -213,7 +213,7 @@ public final class x3 implements org.telegram.ui.ActionBar.j2, org.telegram.ui.A
             min = Math.min(this.f43016w, 1.0f - this.f43017x) * (1.0f - this.I);
         }
         int j10 = j();
-        n0 n0Var = this.K.f38766h0;
+        n0 n0Var = this.K.f38767h0;
         if (n0Var != null) {
             j10 = i0.a.f(n0Var.f42786a0, j10, n0Var.f42815x);
         }
@@ -295,10 +295,10 @@ public final class x3 implements org.telegram.ui.ActionBar.j2, org.telegram.ui.A
                 f7 = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.Pk, false);
             } else {
                 l4 l4Var = this.K;
-                if (l4Var.f38778u0[0].getVisibility() == 0) {
-                    f10 = 1.0f - (l4Var.f38778u0[0].getTranslationX() / l4Var.f38778u0[0].getWidth());
+                if (l4Var.f38779u0[0].getVisibility() == 0) {
+                    f10 = 1.0f - (l4Var.f38779u0[0].getTranslationX() / l4Var.f38779u0[0].getWidth());
                 }
-                f7 = i0.a.f(1.0f - f10, l4Var.f38778u0[0].getActionBarColor(), l4Var.f38778u0[1].getActionBarColor());
+                f7 = i0.a.f(1.0f - f10, l4Var.f38779u0[0].getActionBarColor(), l4Var.f38779u0[1].getActionBarColor());
             }
             if (AndroidUtilities.computePerceivedBrightness(f7) >= 0.721f) {
                 return true;
@@ -330,12 +330,12 @@ public final class x3 implements org.telegram.ui.ActionBar.j2, org.telegram.ui.A
             return org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.Sk, false);
         }
         l4 l4Var = this.K;
-        if (l4Var.f38778u0[0].getVisibility() != 0) {
+        if (l4Var.f38779u0[0].getVisibility() != 0) {
             translationX = 0.0f;
         } else {
-            translationX = 1.0f - (l4Var.f38778u0[0].getTranslationX() / l4Var.f38778u0[0].getWidth());
+            translationX = 1.0f - (l4Var.f38779u0[0].getTranslationX() / l4Var.f38779u0[0].getWidth());
         }
-        return i0.a.f(1.0f - translationX, l4Var.f38778u0[0].getBackgroundColor(), l4Var.f38778u0[1].getBackgroundColor());
+        return i0.a.f(1.0f - translationX, l4Var.f38779u0[0].getBackgroundColor(), l4Var.f38779u0[1].getBackgroundColor());
     }
 
     public final int k() {
@@ -354,28 +354,28 @@ public final class x3 implements org.telegram.ui.ActionBar.j2, org.telegram.ui.A
         float f7;
         l4 l4Var = this.K;
         int i10 = 0;
-        o3 o3Var = l4Var.f38778u0[0];
+        o3 o3Var = l4Var.f38779u0[0];
         if (o3Var != null && o3Var.getVisibility() == 0) {
-            f7 = 1.0f - (l4Var.f38778u0[0].getTranslationX() / l4Var.f38778u0[0].getWidth());
+            f7 = 1.0f - (l4Var.f38779u0[0].getTranslationX() / l4Var.f38779u0[0].getWidth());
         } else {
             f7 = 0.0f;
         }
         float f10 = 1.0f - f7;
-        o3 o3Var2 = l4Var.f38778u0[0];
+        o3 o3Var2 = l4Var.f38779u0[0];
         if (o3Var2 != null && o3Var2.getVisibility() == 0) {
-            i10 = (int) (l4Var.f38778u0[0].getAlpha() * l4Var.f38778u0[0].getListTop() * f7);
+            i10 = (int) (l4Var.f38779u0[0].getAlpha() * l4Var.f38779u0[0].getListTop() * f7);
         }
-        o3 o3Var3 = l4Var.f38778u0[1];
+        o3 o3Var3 = l4Var.f38779u0[1];
         if (o3Var3 != null && o3Var3.getVisibility() == 0) {
-            return i10 + ((int) (l4Var.f38778u0[1].getAlpha() * l4Var.f38778u0[1].getListTop() * f10));
+            return i10 + ((int) (l4Var.f38779u0[1].getAlpha() * l4Var.f38779u0[1].getListTop() * f10));
         }
         return i10;
     }
 
     public final void m() {
         l4 l4Var = this.K;
-        l4Var.f38778u0[0].setLastVisible(this.J);
-        l4Var.f38778u0[1].setLastVisible(false);
+        l4Var.f38779u0[0].setLastVisible(this.J);
+        l4Var.f38779u0[1].setLastVisible(false);
     }
 
     public final void n() {
@@ -398,11 +398,11 @@ public final class x3 implements org.telegram.ui.ActionBar.j2, org.telegram.ui.A
     @Override
     public final boolean onAttachedBackPressed() {
         l4 l4Var = this.K;
-        if (l4Var.f38772o0) {
+        if (l4Var.f38773o0) {
             AndroidUtilities.hideKeyboard(this.f43011c);
             return true;
         }
-        n0 n0Var = l4Var.f38766h0;
+        n0 n0Var = l4Var.f38767h0;
         if (n0Var.T) {
             n0Var.h(false);
             return true;
@@ -411,7 +411,7 @@ public final class x3 implements org.telegram.ui.ActionBar.j2, org.telegram.ui.A
             return true;
         } else {
             if (l4Var.J()) {
-                o3 o3Var = l4Var.f38778u0[0];
+                o3 o3Var = l4Var.f38779u0[0];
                 if (o3Var.f39758s) {
                     if (o3Var.f() && o3Var.getWebView() != null) {
                         o3Var.getWebView().goBack();
@@ -419,7 +419,7 @@ public final class x3 implements org.telegram.ui.ActionBar.j2, org.telegram.ui.A
                     return true;
                 }
             }
-            if (l4Var.f38762d0.size() > 1) {
+            if (l4Var.f38763d0.size() > 1) {
                 l4Var.G();
                 return true;
             }
@@ -432,20 +432,20 @@ public final class x3 implements org.telegram.ui.ActionBar.j2, org.telegram.ui.A
     public final void release() {
         this.f43014r = true;
         l4 l4Var = this.K;
-        o3 o3Var = l4Var.f38778u0[0];
+        o3 o3Var = l4Var.f38779u0[0];
         if (o3Var != null && o3Var.h) {
             l3 l3Var = o3Var.e;
             l3Var.setSwipeOffsetY((-l3Var.f11185f) + l3Var.e);
-            l4Var.f38778u0[0].h = false;
+            l4Var.f38779u0[0].h = false;
         }
-        o3 o3Var2 = l4Var.f38778u0[0];
+        o3 o3Var2 = l4Var.f38779u0[0];
         if (o3Var2 != null && !o3Var2.E) {
             if (o3Var2.getWebView() != null) {
                 o3Var2.getWebView().onPause();
             }
             o3Var2.E = true;
         }
-        o3 o3Var3 = l4Var.f38778u0[1];
+        o3 o3Var3 = l4Var.f38779u0[1];
         if (o3Var3 != null && !o3Var3.E) {
             if (o3Var3.getWebView() != null) {
                 o3Var3.getWebView().onPause();
@@ -468,15 +468,15 @@ public final class x3 implements org.telegram.ui.ActionBar.j2, org.telegram.ui.A
             t3Var.run();
             this.v = null;
         }
-        l4.f38734b1.remove(l4Var);
+        l4.f38735b1.remove(l4Var);
     }
 
     @Override
     public final void setLastVisible(boolean z10) {
         this.J = z10;
         l4 l4Var = this.K;
-        l4Var.f38778u0[0].setLastVisible(z10);
-        l4Var.f38778u0[1].setLastVisible(false);
+        l4Var.f38779u0[0].setLastVisible(z10);
+        l4Var.f38779u0[1].setLastVisible(false);
     }
 
     @Override
@@ -497,7 +497,7 @@ public final class x3 implements org.telegram.ui.ActionBar.j2, org.telegram.ui.A
         this.h = true;
         this.f43013n = z10;
         if (z10) {
-            LaunchActivity.H1.f33201y0.b(this);
+            LaunchActivity.H1.f33202y0.b(this);
         } else {
             e(true, new st0(this, 10));
         }

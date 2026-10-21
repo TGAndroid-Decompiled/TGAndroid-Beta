@@ -23,8 +23,8 @@ public final class fu0 extends im0 {
         uv0 uv0Var = fu0Var.f26416n;
         if (!fu0Var.e) {
             TLRPC.TL_messages_getCommonChats tL_messages_getCommonChats = new TLRPC.TL_messages_getCommonChats();
-            long j11 = uv0Var.f31045j1;
-            org.telegram.ui.ActionBar.n2 n2Var = uv0Var.f31070v1;
+            long j11 = uv0Var.f31046j1;
+            org.telegram.ui.ActionBar.n2 n2Var = uv0Var.f31071v1;
             if (DialogObject.isEncryptedDialog(j11)) {
                 j11 = org.telegram.messenger.g0.l(n2Var.getMessagesController(), j11).user_id;
             }
@@ -105,7 +105,7 @@ public final class fu0 extends im0 {
                 b10Var.setViewType(1);
                 h6Var = b10Var;
             } else {
-                hu0 M = uv0.M(6, uv0Var.f31045j1, context, d6Var);
+                hu0 M = uv0.M(6, uv0Var.f31046j1, context, d6Var);
                 M.setLayoutParams(new s4.o0(-1, -1));
                 return new s4.b1(M);
             }

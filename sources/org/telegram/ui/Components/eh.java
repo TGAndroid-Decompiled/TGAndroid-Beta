@@ -30,7 +30,7 @@ public final class eh implements ValueAnimator.AnimatorUpdateListener {
             case 4:
                 ti tiVar2 = this.f25903b;
                 li liVar = tiVar2.B0;
-                al alVar = tiVar2.f30598w0;
+                al alVar = tiVar2.f30599w0;
                 if (liVar == alVar && alVar != null) {
                     alVar.invalidate();
                     return;

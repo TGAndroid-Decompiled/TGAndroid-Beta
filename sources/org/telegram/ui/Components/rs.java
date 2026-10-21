@@ -6,13 +6,13 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 public final class rs {
-    public final org.telegram.ui.Cells.r2 f30002a;
-    public final ArrayList f30003b = new ArrayList();
-    public final ArrayList f30004c = new ArrayList();
+    public final org.telegram.ui.Cells.r2 f30003a;
+    public final ArrayList f30004b = new ArrayList();
+    public final ArrayList f30005c = new ArrayList();
     public qs d = null;
 
     public rs(org.telegram.ui.Cells.r2 r2Var) {
-        this.f30002a = r2Var;
+        this.f30003a = r2Var;
     }
 
     public final void a(Canvas canvas, int i10) {
@@ -28,7 +28,7 @@ public final class rs {
         int dp = i10 - AndroidUtilities.dp(25.0f);
         int i11 = 0;
         while (true) {
-            arrayList = this.f30004c;
+            arrayList = this.f30005c;
             if (i11 >= arrayList.size()) {
                 break;
             }
@@ -50,14 +50,14 @@ public final class rs {
         if (i11 < arrayList.size()) {
             int size = arrayList.size() - i11;
             qs qsVar2 = this.d;
-            if (qsVar2 == null || qsVar2.f29693a != size) {
+            if (qsVar2 == null || qsVar2.f29694a != size) {
                 ?? obj = new Object();
-                obj.f29693a = size;
+                obj.f29694a = size;
                 f11 f11Var = new f11(i2.e.j(size, "+"), 10.0f, AndroidUtilities.bold());
-                f11Var.s(this.f30002a);
-                obj.f29695c = f11Var;
+                f11Var.s(this.f30003a);
+                obj.f29696c = f11Var;
                 int dp2 = AndroidUtilities.dp(9.32f);
-                f11 f11Var2 = obj.f29695c;
+                f11 f11Var2 = obj.f29696c;
                 obj.e = dp2 + ((int) f11Var2.f26021c);
                 f11Var2.j();
                 obj.d = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21175n8, false);
@@ -76,6 +76,6 @@ public final class rs {
     }
 
     public final boolean b() {
-        return this.f30004c.isEmpty();
+        return this.f30005c.isEmpty();
     }
 }

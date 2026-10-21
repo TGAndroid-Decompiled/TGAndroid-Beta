@@ -161,7 +161,7 @@ public final class v3 implements Runnable {
                 vbVar2.f10021x = null;
                 Activity activity = vbVar2.f9950b;
                 if (activity instanceof LaunchActivity) {
-                    ((LaunchActivity) activity).f33203z0.post(new ei.t9(vbVar2, 5));
+                    ((LaunchActivity) activity).f33204z0.post(new ei.t9(vbVar2, 5));
                     return;
                 } else {
                     vbVar2.p(true);
@@ -207,7 +207,7 @@ public final class v3 implements Runnable {
                 return;
             case 14:
                 ki.q qVar = (ki.q) obj;
-                org.telegram.ui.Components.f5.L(qVar.f28173b.f30545f0.getParentActivity(), j10, new ya.d(qVar, 27), qVar.f28172a);
+                org.telegram.ui.Components.f5.L(qVar.f28173b.f30546f0.getParentActivity(), j10, new ya.d(qVar, 27), qVar.f28172a);
                 return;
             case 15:
                 ki.d2 d2Var = (ki.d2) obj;
@@ -241,7 +241,7 @@ public final class v3 implements Runnable {
                 return;
             case 22:
                 org.telegram.ui.Components.qc Q = org.telegram.ui.Components.xc.a0((org.telegram.ui.c7) obj).Q(R.raw.ic_delete, 36, LocaleController.formatString(R.string.CacheWasCleared, AndroidUtilities.formatFileSize(j10)));
-                Q.f29538r = false;
+                Q.f29539r = false;
                 Q.j();
                 return;
             case 23:
@@ -253,8 +253,8 @@ public final class v3 implements Runnable {
                 al alVar = (al) obj;
                 ti tiVar = alVar.f28173b;
                 if (!alVar.H && alVar.I0 && alVar.isShown()) {
-                    ji jiVar = tiVar.f30592u1;
-                    org.telegram.ui.ActionBar.n2 n2Var2 = tiVar.f30545f0;
+                    ji jiVar = tiVar.f30593u1;
+                    org.telegram.ui.ActionBar.n2 n2Var2 = tiVar.f30546f0;
                     if ((jiVar.R() <= AndroidUtilities.dp(20.0f) || alVar.f24665y0 || alVar.H0) && SystemClock.uptimeMillis() < j10) {
                         alVar.postDelayed(alVar.L0, 32L);
                         return;

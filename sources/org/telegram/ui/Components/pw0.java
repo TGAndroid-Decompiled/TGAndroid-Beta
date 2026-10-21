@@ -24,38 +24,38 @@ public final class pw0 extends View {
     public final f6 M;
     public ow0 N;
     public final org.telegram.ui.ActionBar.d6 O;
-    public final nw0 f29397a;
-    public final Paint f29398b;
-    public final Paint f29399c;
+    public final nw0 f29398a;
+    public final Paint f29399b;
+    public final Paint f29400c;
     public final TextPaint d;
     public int e;
-    public int f29400f;
+    public int f29401f;
     public int h;
-    public int f29401n;
-    public int f29402r;
-    public int f29403s;
+    public int f29402n;
+    public int f29403r;
+    public int f29404s;
     public boolean v;
-    public boolean f29404w;
-    public float f29405x;
-    public float f29406y;
+    public boolean f29405w;
+    public float f29406x;
+    public float f29407y;
 
     public pw0(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
-        this.f29403s = -1;
+        this.f29404s = -1;
         this.J = Integer.MIN_VALUE;
         bs bsVar = bs.f25021f;
         this.L = new f6(this, 120L, bsVar);
         this.M = new f6(this, 150L, bsVar);
         this.O = d6Var;
-        this.f29398b = new Paint(1);
+        this.f29399b = new Paint(1);
         TextPaint textPaint = new TextPaint(1);
         this.d = textPaint;
         Paint paint = new Paint(1);
-        this.f29399c = paint;
+        this.f29400c = paint;
         paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
         paint.setStrokeCap(Paint.Cap.ROUND);
         textPaint.setTextSize(AndroidUtilities.dp(13.0f));
-        this.f29397a = new nw0(this);
+        this.f29398a = new nw0(this);
     }
 
     public void setOption(int i10) {
@@ -126,11 +126,11 @@ public final class pw0 extends View {
         while (true) {
             int length = this.F.length;
             org.telegram.ui.ActionBar.d6 d6Var2 = this.O;
-            Paint paint = this.f29398b;
+            Paint paint = this.f29399b;
             if (i13 < length) {
-                int i14 = this.f29401n;
-                int i15 = (this.h * i12) + this.f29402r;
-                int i16 = this.f29400f;
+                int i14 = this.f29402n;
+                int i15 = (this.h * i12) + this.f29403r;
+                int i16 = this.f29401f;
                 int i17 = (i16 / i12) + ((i15 + i16) * i13) + i14;
                 float f16 = i13;
                 float f17 = f16 - d;
@@ -149,16 +149,16 @@ public final class pw0 extends View {
                 }
                 int f19 = i0.a.f(a2, w02, org.telegram.ui.ActionBar.h6.m1(f10, w03));
                 paint.setColor(f19);
-                Paint paint2 = this.f29399c;
+                Paint paint2 = this.f29400c;
                 paint2.setColor(f19);
                 float f20 = dp3;
-                canvas2.drawCircle(i17, f20, AndroidUtilities.lerp(this.f29400f / 2, AndroidUtilities.dp(6.0f), max), paint);
+                canvas2.drawCircle(i17, f20, AndroidUtilities.lerp(this.f29401f / 2, AndroidUtilities.dp(6.0f), max), paint);
                 if (i13 != 0) {
                     f11 = 3.0f;
-                    int i20 = (i17 - (this.f29400f / 2)) - this.h;
-                    int i21 = this.f29402r;
+                    int i20 = (i17 - (this.f29401f / 2)) - this.h;
+                    int i21 = this.f29403r;
                     int i22 = i20 - i21;
-                    int i23 = this.f29403s;
+                    int i23 = this.f29404s;
                     if (i23 != -1 && i13 - 1 >= i23) {
                         int dp4 = AndroidUtilities.dp(3.0f) + i22;
                         int dp5 = (i21 - AndroidUtilities.dp(3.0f)) / AndroidUtilities.dp(13.0f);
@@ -237,9 +237,9 @@ public final class pw0 extends View {
                 f15 = f18;
                 i12 = 2;
             } else {
-                int i25 = (this.h * 2) + this.f29402r;
-                int i26 = this.f29400f;
-                float f23 = ((i25 + i26) * d) + this.f29401n + (i26 / 2);
+                int i25 = (this.h * 2) + this.f29403r;
+                int i26 = this.f29401f;
+                float f23 = ((i25 + i26) * d) + this.f29402n + (i26 / 2);
                 int i27 = org.telegram.ui.ActionBar.h6.N6;
                 paint.setColor(i0.a.o(org.telegram.ui.ActionBar.h6.w0(i27, d6Var2), 80));
                 float f24 = dp3;
@@ -254,19 +254,19 @@ public final class pw0 extends View {
     @Override
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        this.f29397a.e(this, accessibilityNodeInfo);
+        this.f29398a.e(this, accessibilityNodeInfo);
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
         super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(74.0f), 1073741824));
-        this.f29400f = AndroidUtilities.dp(6.0f);
+        this.f29401f = AndroidUtilities.dp(6.0f);
         this.h = AndroidUtilities.dp(2.0f);
-        this.f29401n = AndroidUtilities.dp(22.0f);
+        this.f29402n = AndroidUtilities.dp(22.0f);
         int measuredWidth = getMeasuredWidth();
-        int i12 = this.f29400f;
+        int i12 = this.f29401f;
         String[] strArr = this.F;
-        this.f29402r = (((measuredWidth - (i12 * strArr.length)) - ((strArr.length - 1) * (this.h * 2))) - (this.f29401n * 2)) / Math.max(1, strArr.length - 1);
+        this.f29403r = (((measuredWidth - (i12 * strArr.length)) - ((strArr.length - 1) * (this.h * 2))) - (this.f29402n * 2)) / Math.max(1, strArr.length - 1);
     }
 
     @Override
@@ -275,7 +275,7 @@ public final class pw0 extends View {
         boolean z10;
         float x10 = motionEvent.getX();
         float y3 = motionEvent.getY();
-        float a2 = w7.r.a(((this.f29400f / 2.0f) + (x10 - this.f29401n)) / (((this.h * 2) + this.f29402r) + i10), 0.0f, this.F.length - 1);
+        float a2 = w7.r.a(((this.f29401f / 2.0f) + (x10 - this.f29402n)) / (((this.h * 2) + this.f29403r) + i10), 0.0f, this.F.length - 1);
         if (Math.abs(a2 - Math.round(a2)) < 0.35f) {
             z10 = true;
         } else {
@@ -289,20 +289,20 @@ public final class pw0 extends View {
             a2 = Math.max(a2, i11);
         }
         if (motionEvent.getAction() == 0) {
-            this.f29405x = x10;
-            this.f29406y = y3;
+            this.f29406x = x10;
+            this.f29407y = y3;
             this.K = a2;
             this.E = this.I;
-            this.f29404w = true;
+            this.f29405w = true;
             invalidate();
             return true;
         } else if (motionEvent.getAction() == 2) {
-            if (!this.v && Math.abs(this.f29405x - x10) > Math.abs(this.f29406y - y3)) {
+            if (!this.v && Math.abs(this.f29406x - x10) > Math.abs(this.f29407y - y3)) {
                 getParent().requestDisallowInterceptTouchEvent(true);
             }
-            if (this.f29404w && Math.abs(this.f29405x - x10) >= AndroidUtilities.touchSlop) {
+            if (this.f29405w && Math.abs(this.f29406x - x10) >= AndroidUtilities.touchSlop) {
                 this.v = true;
-                this.f29404w = false;
+                this.f29405w = false;
             }
             if (this.v) {
                 this.K = a2;
@@ -331,7 +331,7 @@ public final class pw0 extends View {
             if (ow0Var != null) {
                 ow0Var.m();
             }
-            this.f29404w = false;
+            this.f29405w = false;
             this.v = false;
             invalidate();
             getParent().requestDisallowInterceptTouchEvent(false);
@@ -341,7 +341,7 @@ public final class pw0 extends View {
 
     @Override
     public final boolean performAccessibilityAction(int i10, Bundle bundle) {
-        if (!super.performAccessibilityAction(i10, bundle) && !this.f29397a.g(this, i10, bundle)) {
+        if (!super.performAccessibilityAction(i10, bundle) && !this.f29398a.g(this, i10, bundle)) {
             return false;
         }
         return true;
@@ -352,7 +352,7 @@ public final class pw0 extends View {
     }
 
     public void setDashedFrom(int i10) {
-        this.f29403s = i10;
+        this.f29404s = i10;
     }
 
     public void setMinAllowedIndex(int i10) {

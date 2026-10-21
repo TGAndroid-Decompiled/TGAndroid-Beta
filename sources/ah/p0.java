@@ -80,7 +80,7 @@ public final class p0 extends AnimatorListenerAdapter {
                 }
                 return;
             case 28:
-                ((md) this.f846c).f39193n = null;
+                ((md) this.f846c).f39194n = null;
                 return;
             case 29:
                 qn qnVar = (qn) this.f846c;
@@ -453,9 +453,9 @@ public final class p0 extends AnimatorListenerAdapter {
                     f24 = 0.0f;
                 }
                 l4Var.Y0 = f24;
-                l4Var.f38774q0.setTranslationY(((1.0f - f24) * AndroidUtilities.dp(51.0f)) + l4Var.f38773p0);
+                l4Var.f38775q0.setTranslationY(((1.0f - f24) * AndroidUtilities.dp(51.0f)) + l4Var.f38774p0);
                 if (!z20) {
-                    l4Var.f38774q0.setVisibility(8);
+                    l4Var.f38775q0.setVisibility(8);
                     return;
                 }
                 return;
@@ -471,13 +471,13 @@ public final class p0 extends AnimatorListenerAdapter {
                         }
                         x4 x4Var = (x4) bVar.d;
                         x4Var.E = true;
-                        e5 e5Var = x4Var.f37494y;
+                        e5 e5Var = x4Var.f37495y;
                         if (e5Var != null) {
-                            if (e5Var.f36549g) {
-                                e5Var.f36549g = false;
-                                e5Var.f36546b.removeObserver(e5Var.f36545a, e5Var.e);
+                            if (e5Var.f36550g) {
+                                e5Var.f36550g = false;
+                                e5Var.f36547b.removeObserver(e5Var.f36546a, e5Var.e);
                             }
-                            x4Var.f37494y = null;
+                            x4Var.f37495y = null;
                         }
                         bVar.d = null;
                         ((ViewGroup) bVar.f4490b).requestDisallowInterceptTouchEvent(false);
@@ -561,13 +561,13 @@ public final class p0 extends AnimatorListenerAdapter {
                 return;
             case 28:
                 md mdVar = (md) this.f846c;
-                if (mdVar.f39193n != null && (jdVar = mdVar.h) != null) {
+                if (mdVar.f39194n != null && (jdVar = mdVar.h) != null) {
                     if (this.f845b) {
                         jdVar.setVisibility(4);
                     } else {
-                        mdVar.f39198r.setVisibility(4);
+                        mdVar.f39199r.setVisibility(4);
                     }
-                    mdVar.f39193n = null;
+                    mdVar.f39194n = null;
                     return;
                 }
                 return;

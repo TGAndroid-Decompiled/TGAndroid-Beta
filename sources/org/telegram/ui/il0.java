@@ -6,42 +6,42 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class il0 implements View.OnClickListener {
-    public final int f38024a;
-    public final vm0 f38025b;
+    public final int f38025a;
+    public final vm0 f38026b;
 
     public il0(vm0 vm0Var, int i10) {
-        this.f38024a = i10;
-        this.f38025b = vm0Var;
+        this.f38025a = i10;
+        this.f38026b = vm0Var;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f38024a) {
+        switch (this.f38025a) {
             case 0:
-                vm0 vm0Var = this.f38025b;
+                vm0 vm0Var = this.f38026b;
                 vm0Var.S0 = 2;
                 vm0Var.C1();
                 return;
             case 1:
-                this.f38025b.c1();
+                this.f38026b.c1();
                 return;
             case 2:
-                vm0 vm0Var2 = this.f38025b;
+                vm0 vm0Var2 = this.f38026b;
                 vm0Var2.S0 = 3;
                 vm0Var2.C1();
                 return;
             case 3:
-                vm0 vm0Var3 = this.f38025b;
+                vm0 vm0Var3 = this.f38026b;
                 vm0Var3.S0 = 1;
                 vm0Var3.C1();
                 return;
             case 4:
-                vm0 vm0Var4 = this.f38025b;
+                vm0 vm0Var4 = this.f38026b;
                 vm0Var4.S0 = 4;
                 vm0Var4.C1();
                 return;
             case 5:
-                vm0 vm0Var5 = this.f38025b;
+                vm0 vm0Var5 = this.f38026b;
                 if (vm0Var5.getParentActivity().checkSelfPermission("android.permission.CAMERA") != 0) {
                     vm0Var5.getParentActivity().requestPermissions(new String[]{"android.permission.CAMERA"}, 22);
                     return;
@@ -51,35 +51,35 @@ public final class il0 implements View.OnClickListener {
                 vm0Var5.presentFragment(w9Var);
                 return;
             case 6:
-                vm0 vm0Var6 = this.f38025b;
+                vm0 vm0Var6 = this.f38026b;
                 vm0Var6.f42294f = true;
                 vm0Var6.L.callOnClick();
                 vm0Var6.f42294f = false;
                 return;
             case 7:
-                vm0 vm0Var7 = this.f38025b;
+                vm0 vm0Var7 = this.f38026b;
                 vm0Var7.S0 = 0;
                 vm0Var7.C1();
                 return;
             case 8:
-                vm0 vm0Var8 = this.f38025b;
+                vm0 vm0Var8 = this.f38026b;
                 vm0Var8.S0 = 4;
                 vm0Var8.C1();
                 return;
             case 9:
-                this.f38025b.c1();
+                this.f38026b.c1();
                 return;
             case 10:
-                vm0.b0(this.f38025b);
+                vm0.b0(this.f38026b);
                 return;
             case 11:
-                vm0.c0(this.f38025b);
+                vm0.c0(this.f38026b);
                 return;
             case 12:
-                this.f38025b.B1();
+                this.f38026b.B1();
                 return;
             case 13:
-                vm0 vm0Var9 = this.f38025b;
+                vm0 vm0Var9 = this.f38026b;
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(vm0Var9.getParentActivity());
                 alertDialog$Builder.f20605a.R = LocaleController.getString(R.string.TelegramPassportDeleteTitle);
                 alertDialog$Builder.f20605a.T = LocaleController.getString(R.string.TelegramPassportDeleteAlert);
@@ -94,13 +94,13 @@ public final class il0 implements View.OnClickListener {
                 }
                 return;
             case 14:
-                this.f38025b.B1();
+                this.f38026b.B1();
                 return;
             case 15:
-                vm0.V(this.f38025b);
+                vm0.V(this.f38026b);
                 return;
             default:
-                vm0 vm0Var10 = this.f38025b;
+                vm0 vm0Var10 = this.f38026b;
                 vm0Var10.f42294f = true;
                 vm0Var10.L.callOnClick();
                 vm0Var10.f42294f = false;

@@ -61,7 +61,7 @@ public final class v3 extends s8 {
                     org.telegram.ui.ActionBar.d6 d6Var = this.f6076y0;
                     qc h = new xc(r3Var, d6Var).h(document, 2, new ai.a4(this, this.f6075x0, d6Var, 1));
                     if (h != null) {
-                        h.f29524a = 1;
+                        h.f29525a = 1;
                         h.k(true);
                     }
                 }
@@ -279,7 +279,7 @@ public final class v3 extends s8 {
             MessagesController.getInstance(q4Var.C2).getStoriesController().d0(n8Var.f5659b.longValue(), n8Var.f5660c.intValue(), new z2(this, n8Var, aaVar, d6Var, 1));
         } else {
             qc Q = new xc(q4Var.f5769c1, d6Var).Q(R.raw.error, 36, LocaleController.getString(R.string.StoryHidAccount));
-            Q.f29524a = 3;
+            Q.f29525a = 3;
             Q.k(true);
         }
     }
@@ -309,7 +309,7 @@ public final class v3 extends s8 {
             }
             return;
         }
-        if ((characterStyle instanceof n61) && (n11Var = ((n61) characterStyle).f28694a) != null && (n11Var.f28649a & 1024) != 0) {
+        if ((characterStyle instanceof n61) && (n11Var = ((n61) characterStyle).f28695a) != null && (n11Var.f28650a & 1024) != 0) {
             z11 = true;
         } else {
             z11 = false;

@@ -136,7 +136,7 @@ public final class tn extends Drawable {
                     }
                     org.telegram.ui.Components.wc0 wc0Var = new org.telegram.ui.Components.wc0();
                     wc0Var.n(o10, o11, o12, i10);
-                    a2 = new BitmapDrawable(wc0Var.f32075k);
+                    a2 = new BitmapDrawable(wc0Var.f32076k);
                 }
             } else {
                 a2 = a(new ColorDrawable(-16777216));

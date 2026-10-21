@@ -16,14 +16,14 @@ public final class nb1 implements org.telegram.ui.Components.vq {
     @Override
     public final void j0(int i10, int i11, boolean z10) {
         kc1 kc1Var = this.f39496a;
-        if (kc1Var.f38519b == 2) {
+        if (kc1Var.f38520b == 2) {
             kc1Var.a1(i10, i11, true);
             return;
         }
         Runnable runnable = kc1Var.Y;
-        org.telegram.ui.ActionBar.f6 f6Var = kc1Var.f38565s;
+        org.telegram.ui.ActionBar.f6 f6Var = kc1Var.f38566s;
         if (i11 == -1) {
-            int i12 = kc1Var.f38553n;
+            int i12 = kc1Var.f38554n;
             if (i12 == 1 || i12 == 2) {
                 long j10 = kc1Var.I;
                 if (j10 != 0) {
@@ -81,9 +81,9 @@ public final class nb1 implements org.telegram.ui.Components.vq {
                     wqVar4.e(C0, 0);
                 }
             }
-            int i17 = kc1Var.f38553n;
+            int i17 = kc1Var.f38554n;
             if (i17 == 1 || i17 == 3) {
-                int i18 = kc1Var.f38580y;
+                int i18 = kc1Var.f38581y;
                 if (i18 != 0) {
                     f6Var.e = i18;
                 } else {
@@ -120,7 +120,7 @@ public final class nb1 implements org.telegram.ui.Components.vq {
                 }
             }
             org.telegram.ui.ActionBar.h6.o1(false, false);
-            kc1Var.f38570u0.f1();
+            kc1Var.f38571u0.f1();
             return;
         }
         int i23 = kc1Var.X;
@@ -142,7 +142,7 @@ public final class nb1 implements org.telegram.ui.Components.vq {
         int i10;
         int i11;
         kc1 kc1Var = this.f39496a;
-        org.telegram.ui.ActionBar.f6 f6Var = kc1Var.f38565s;
+        org.telegram.ui.ActionBar.f6 f6Var = kc1Var.f38566s;
         if (z10) {
             if (f6Var.f20846r == null) {
                 kc1Var.finishFragment();
@@ -167,8 +167,8 @@ public final class nb1 implements org.telegram.ui.Components.vq {
     public final int r0(int i10) {
         org.telegram.ui.ActionBar.f6 f6Var;
         kc1 kc1Var = this.f39496a;
-        if (kc1Var.f38553n == 3) {
-            org.telegram.ui.ActionBar.g6 g6Var = kc1Var.f38530e0;
+        if (kc1Var.f38554n == 3) {
+            org.telegram.ui.ActionBar.g6 g6Var = kc1Var.f38531e0;
             if (g6Var.S && i10 == 0 && (f6Var = (org.telegram.ui.ActionBar.f6) g6Var.f20882a0.get(org.telegram.ui.ActionBar.h6.f21166n)) != null) {
                 return f6Var.e;
             }

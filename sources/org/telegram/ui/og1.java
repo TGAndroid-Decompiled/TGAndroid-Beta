@@ -34,7 +34,7 @@ public abstract class og1 extends org.telegram.ui.ActionBar.n2 {
             mg1 mg1Var = (mg1) sparseArray.valueAt(i10);
             int keyAt = sparseArray.keyAt(i10);
             if (mg1Var != null) {
-                org.telegram.ui.ActionBar.n2 n2Var = mg1Var.f39242a;
+                org.telegram.ui.ActionBar.n2 n2Var = mg1Var.f39243a;
                 if (n2Var.fragmentView != null) {
                     float r10 = this.f39888c.r(keyAt);
                     boolean z11 = this.f39889f;
@@ -44,9 +44,9 @@ public abstract class og1 extends org.telegram.ui.ActionBar.n2 {
                         f7 = 0.0f;
                     }
                     boolean z12 = this.h;
-                    float f11 = mg1Var.f39245f;
+                    float f11 = mg1Var.f39246f;
                     float f12 = f7 * r10;
-                    mg1Var.f39245f = f12;
+                    mg1Var.f39246f = f12;
                     if (f12 > f11) {
                         z10 = true;
                     } else {
@@ -72,13 +72,13 @@ public abstract class og1 extends org.telegram.ui.ActionBar.n2 {
                         n2Var.onTransitionAnimationEnd(z10, false);
                         mg1Var.e = false;
                     }
-                    if (!mg1Var.f39244c && f12 >= 1.0f) {
+                    if (!mg1Var.f39245c && f12 >= 1.0f) {
                         n2Var.onBecomeFullyVisible();
-                        mg1Var.f39244c = true;
+                        mg1Var.f39245c = true;
                     }
-                    if (mg1Var.f39244c && ((f12 == 0.0f && !z12) || r10 == 0.0f)) {
+                    if (mg1Var.f39245c && ((f12 == 0.0f && !z12) || r10 == 0.0f)) {
                         n2Var.onBecomeFullyHidden();
-                        mg1Var.f39244c = false;
+                        mg1Var.f39245c = false;
                     }
                     if (mg1Var.d && ((f12 == 0.0f && !z11) || r10 == 0.0f)) {
                         n2Var.onPause();
@@ -95,8 +95,8 @@ public abstract class og1 extends org.telegram.ui.ActionBar.n2 {
         SparseArray sparseArray = this.f39886a;
         mg1 mg1Var = (mg1) sparseArray.get(i10);
         if (mg1Var != null) {
-            org.telegram.ui.ActionBar.n2 n2Var = mg1Var.f39242a;
-            if (mg1Var.f39244c) {
+            org.telegram.ui.ActionBar.n2 n2Var = mg1Var.f39243a;
+            if (mg1Var.f39245c) {
                 n2Var.onBecomeFullyHidden();
             }
             if (mg1Var.d) {
@@ -117,7 +117,7 @@ public abstract class og1 extends org.telegram.ui.ActionBar.n2 {
         if (mg1Var == null) {
             return null;
         }
-        return mg1Var.f39242a;
+        return mg1Var.f39243a;
     }
 
     @Override
@@ -131,7 +131,7 @@ public abstract class og1 extends org.telegram.ui.ActionBar.n2 {
         for (int i10 = 0; i10 < size; i10++) {
             mg1 mg1Var = (mg1) sparseArray.valueAt(i10);
             if (mg1Var != null) {
-                org.telegram.ui.ActionBar.n2 n2Var = mg1Var.f39242a;
+                org.telegram.ui.ActionBar.n2 n2Var = mg1Var.f39243a;
                 if (mg1Var.d) {
                     n2Var.onPause();
                     mg1Var.d = false;
@@ -180,7 +180,7 @@ public abstract class og1 extends org.telegram.ui.ActionBar.n2 {
         for (int i10 = 0; i10 < size; i10++) {
             mg1 mg1Var = (mg1) sparseArray.valueAt(i10);
             if (mg1Var != null) {
-                org.telegram.ui.ActionBar.n2 n2Var = mg1Var.f39242a;
+                org.telegram.ui.ActionBar.n2 n2Var = mg1Var.f39243a;
                 if (n2Var.fragmentView != null) {
                     arrayList.addAll(n2Var.getThemeDescriptions());
                 }
@@ -242,8 +242,8 @@ public abstract class og1 extends org.telegram.ui.ActionBar.n2 {
         int size = sparseArray.size();
         for (int i10 = 0; i10 < size; i10++) {
             mg1 mg1Var = (mg1) sparseArray.valueAt(i10);
-            boolean z10 = mg1Var.f39243b;
-            org.telegram.ui.ActionBar.n2 n2Var = mg1Var.f39242a;
+            boolean z10 = mg1Var.f39244b;
+            org.telegram.ui.ActionBar.n2 n2Var = mg1Var.f39243a;
             if (z10) {
                 n2Var.onFragmentDestroy();
                 n2Var.setParentLayout(null);
@@ -296,7 +296,7 @@ public abstract class og1 extends org.telegram.ui.ActionBar.n2 {
         for (int i11 = 0; i11 < size; i11++) {
             mg1 mg1Var = (mg1) sparseArray.valueAt(i11);
             if (mg1Var != null) {
-                mg1Var.f39242a.setTitleOverlayText(str, i10, runnable);
+                mg1Var.f39243a.setTitleOverlayText(str, i10, runnable);
             }
         }
     }

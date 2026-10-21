@@ -89,7 +89,7 @@ public final class k9 implements GestureDetector.OnGestureListener {
                 aaVar.f5185e0 = f12 + f10;
             }
             o9 o9Var = aaVar.f5214s;
-            qc qcVar2 = qc.f29523w;
+            qc qcVar2 = qc.f29524w;
             if (qcVar2 != null && qcVar2.h == o9Var) {
                 qcVar2.b();
             }
@@ -109,7 +109,7 @@ public final class k9 implements GestureDetector.OnGestureListener {
                 f11 = 0.3f;
                 aaVar.W -= f10 * f11;
                 o9 o9Var2 = aaVar.f5214s;
-                qcVar = qc.f29523w;
+                qcVar = qc.f29524w;
                 if (qcVar != null && qcVar.h == o9Var2) {
                     qcVar.b();
                 }
@@ -120,7 +120,7 @@ public final class k9 implements GestureDetector.OnGestureListener {
         f11 = 0.6f;
         aaVar.W -= f10 * f11;
         o9 o9Var22 = aaVar.f5214s;
-        qcVar = qc.f29523w;
+        qcVar = qc.f29524w;
         if (qcVar != null) {
             qcVar.b();
         }

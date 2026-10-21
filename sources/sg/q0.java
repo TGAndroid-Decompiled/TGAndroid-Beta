@@ -66,7 +66,7 @@ public class q0 extends FrameLayout implements aa0 {
         }
         this.E = true;
         p0 p0Var = this.d;
-        if (z10 && p0Var.f29479c.h()) {
+        if (z10 && p0Var.f29480c.h()) {
             p0Var.a();
         }
         p0Var.c(str, z10, true);
@@ -174,7 +174,7 @@ public class q0 extends FrameLayout implements aa0 {
         if (!BuildVars.IS_BILLING_UNAVAILABLE && !this.F) {
             int measuredWidth = getMeasuredWidth();
             org.telegram.ui.Components.voip.h hVar = this.f46390w;
-            hVar.f31427f = measuredWidth;
+            hVar.f31428f = measuredWidth;
             hVar.a(i11, canvas, rectF, null);
         }
         float f13 = this.f46387n;
@@ -253,8 +253,8 @@ public class q0 extends FrameLayout implements aa0 {
         yj0 yj0Var = this.f46392y;
         yj0Var.f(i10, 24, 24, null);
         org.telegram.ui.Components.voip.h hVar = this.f46390w;
-        hVar.f31428g = 2.0f;
-        hVar.f31436p = new org.telegram.ui.web.z1(this, 22);
+        hVar.f31429g = 2.0f;
+        hVar.f31437p = new org.telegram.ui.web.z1(this, 22);
         invalidate();
         yj0Var.setVisibility(0);
     }
@@ -297,9 +297,9 @@ public class q0 extends FrameLayout implements aa0 {
         this.f46386f = i10;
         org.telegram.ui.Components.voip.h hVar = new org.telegram.ui.Components.voip.h();
         this.f46390w = hVar;
-        hVar.f31434n = 1.2f;
-        hVar.f31431k = false;
-        hVar.f31433m = 4.0f;
+        hVar.f31435n = 1.2f;
+        hVar.f31432k = false;
+        hVar.f31434m = 4.0f;
         LinearLayout e = mk.e(context, 0);
         p0 p0Var = new p0(this, context, 0);
         this.d = p0Var;

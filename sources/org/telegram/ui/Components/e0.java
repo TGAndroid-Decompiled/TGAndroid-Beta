@@ -307,7 +307,7 @@ public final class e0 extends bb implements NotificationCenter.NotificationCente
                 return;
             }
             y yVar = new y(e0Var.getContext(), e0Var.resourcesProvider);
-            yVar.f32519k0 = new e(e0Var, 1);
+            yVar.f32520k0 = new e(e0Var, 1);
             yVar.show();
         } else if (d0Var.getSelectedTone() == aiComposeTone) {
         } else {
@@ -1316,7 +1316,7 @@ public final class e0 extends bb implements NotificationCenter.NotificationCente
     public final im0 x(jm0 jm0Var) {
         u61 u61Var = new u61(jm0Var, getContext(), this.currentAccount, 0, true, new d(this, 0), this.resourcesProvider);
         this.O0 = u61Var;
-        u61Var.f30860r = false;
+        u61Var.f30861r = false;
         return u61Var;
     }
 }

@@ -47,10 +47,10 @@ public final class hr0 implements Runnable {
                 }
                 return;
             case 2:
-                ((st0) obj).f30356r.o1(false);
+                ((st0) obj).f30357r.o1(false);
                 return;
             case 3:
-                org.telegram.ui.ActionBar.n2 n2Var = ((du0) obj).f25631f.f31070v1;
+                org.telegram.ui.ActionBar.n2 n2Var = ((du0) obj).f25631f.f31071v1;
                 if (n2Var != null) {
                     n2Var.presentFragment(new PremiumPreviewFragment(0, "similar_channels"));
                     return;
@@ -70,7 +70,7 @@ public final class hr0 implements Runnable {
                             arrayList4.add(Long.valueOf(((SavedMessagesController.SavedDialog) arrayList3.get(i11)).dialogId));
                         }
                     }
-                    ev0Var.f25982x.f31070v1.getMessagesController().getSavedMessagesController().updatePinnedOrder(arrayList4);
+                    ev0Var.f25982x.f31071v1.getMessagesController().getSavedMessagesController().updatePinnedOrder(arrayList4);
                     return;
                 }
                 return;
@@ -85,8 +85,8 @@ public final class hr0 implements Runnable {
                 return;
             case 9:
                 mx0 mx0Var = (mx0) obj;
-                if (!mx0Var.f28621w) {
-                    mx0Var.f28623y = 0.0f;
+                if (!mx0Var.f28622w) {
+                    mx0Var.f28624y = 0.0f;
                     return;
                 }
                 return;
@@ -260,7 +260,7 @@ public final class hr0 implements Runnable {
                 ((m11) obj).a();
                 return;
             case 15:
-                ArrayList arrayList7 = ((s11) obj).f30114a;
+                ArrayList arrayList7 = ((s11) obj).f30115a;
                 for (int i15 = 0; i15 < arrayList7.size(); i15++) {
                     ((View) arrayList7.get(i15)).setVisibility(8);
                     if (arrayList7.get(i15) instanceof org.telegram.ui.Cells.u1) {
@@ -277,14 +277,14 @@ public final class hr0 implements Runnable {
             case 17:
                 v21 v21Var = (v21) obj;
                 ViewPropertyAnimator duration = v21Var.animate().alpha(0.0f).setListener(new c80(v21Var, 28)).setDuration(300L);
-                v21Var.f31124b = duration;
+                v21Var.f31125b = duration;
                 duration.start();
                 return;
             case 18:
                 x21 x21Var = (x21) obj;
-                Utilities.Callback callback = x21Var.f32322b;
+                Utilities.Callback callback = x21Var.f32323b;
                 if (callback != null) {
-                    callback.run(Long.valueOf(x21Var.f32321a.f32564s));
+                    callback.run(Long.valueOf(x21Var.f32322a.f32565s));
                     return;
                 }
                 return;
@@ -331,7 +331,7 @@ public final class hr0 implements Runnable {
                 ((e71) obj).invalidateSelf();
                 return;
             default:
-                e00 e00Var = ((r71) obj).f29860b;
+                e00 e00Var = ((r71) obj).f29861b;
                 if (e00Var != null) {
                     e00Var.d(false, true, false);
                     return;

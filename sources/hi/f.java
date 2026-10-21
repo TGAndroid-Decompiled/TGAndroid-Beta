@@ -112,7 +112,7 @@ public final class f extends n2 implements NotificationCenter.NotificationCenter
         this.e = c71Var;
         c71Var.setClipToPadding(false);
         c71 c71Var2 = this.e;
-        c71Var2.W2.f30860r = false;
+        c71Var2.W2.f30861r = false;
         c71Var2.p1();
         this.d.addView(this.e, z5.c(-1.0f, -1));
         this.d.addView(this.actionBar, z5.e(-1, -2, 48));

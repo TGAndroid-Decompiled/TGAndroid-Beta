@@ -8,10 +8,10 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_forum;
 public final class jd1 extends org.telegram.ui.ActionBar.j {
-    public final nd1 f38235a;
+    public final nd1 f38236a;
 
     public jd1(nd1 nd1Var) {
-        this.f38235a = nd1Var;
+        this.f38236a = nd1Var;
     }
 
     @Override
@@ -22,7 +22,7 @@ public final class jd1 extends org.telegram.ui.ActionBar.j {
         int i12;
         String obj;
         int i13;
-        nd1 nd1Var = this.f38235a;
+        nd1 nd1Var = this.f38236a;
         if (i10 == -1) {
             nd1Var.finishFragment();
             return;

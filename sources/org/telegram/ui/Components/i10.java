@@ -61,7 +61,7 @@ public final class i10 extends View {
             canvas.save();
             float f15 = f11Var4.f26021c;
             f7 = 15.32f;
-            CharSequence charSequence = p6Var.f29230i;
+            CharSequence charSequence = p6Var.f29231i;
             if (charSequence != null && charSequence.length() != 0) {
                 f14 = p6Var.c() + AndroidUtilities.dp(15.32f);
             } else {
@@ -78,7 +78,7 @@ public final class i10 extends View {
             f10 = measuredWidth;
             f11 = 0.0f;
         }
-        CharSequence charSequence2 = p6Var.f29230i;
+        CharSequence charSequence2 = p6Var.f29231i;
         if (charSequence2 == null || charSequence2.length() == 0) {
             f12 = measuredHeight;
             f11Var = f11Var4;

@@ -326,7 +326,7 @@ public final class k10 extends bb {
         p6Var.x(AndroidUtilities.bold());
         p6Var.u(org.telegram.ui.ActionBar.h6.x0(null, i18, false));
         p6Var.t("", true, true);
-        p6Var.f29225b = 1;
+        p6Var.f29226b = 1;
         p6 p6Var2 = new p6(false, false, true);
         frameLayout.f26465c = p6Var2;
         p6Var2.n(0.3f, 250L, bsVar);
@@ -335,7 +335,7 @@ public final class k10 extends bb {
         p6Var2.x(AndroidUtilities.bold());
         p6Var2.u(org.telegram.ui.ActionBar.h6.x0(null, i17, false));
         p6Var2.t("", true, true);
-        p6Var2.f29225b = 1;
+        p6Var2.f29226b = 1;
         frameLayout.setWillNotDraw(false);
         this.f27706l0 = frameLayout;
         frameLayout.setOnClickListener(new f0(this, 15));
@@ -380,12 +380,12 @@ public final class k10 extends bb {
                 if (arrayList2 != null && !arrayList2.isEmpty()) {
                     int i12 = 0;
                     if (chatlist_chatlistinvite instanceof TL_chatlists.TL_chatlists_chatlistInvite) {
-                        this.f27706l0.b(LocaleController.formatSpannable(R.string.FolderLinkButtonAdd, MessageObject.replaceAnimatedEmoji(Emoji.replaceEmoji(this.f27697c0, this.f27706l0.f26464b.f29223a.getFontMetricsInt(), false), this.f27698d0, this.f27706l0.f26464b.f29223a.getFontMetricsInt())), z10);
+                        this.f27706l0.b(LocaleController.formatSpannable(R.string.FolderLinkButtonAdd, MessageObject.replaceAnimatedEmoji(Emoji.replaceEmoji(this.f27697c0, this.f27706l0.f26464b.f29224a.getFontMetricsInt(), false), this.f27698d0, this.f27706l0.f26464b.f29224a.getFontMetricsInt())), z10);
                         g10 g10Var2 = this.f27706l0;
                         if (this.f27699e0) {
                             i12 = 26;
                         }
-                        g10Var2.f26464b.f29237p = i12;
+                        g10Var2.f26464b.f29238p = i12;
                     } else {
                         g10 g10Var3 = this.f27706l0;
                         if (size > 0) {

@@ -102,7 +102,7 @@ public final class v7 implements Runnable {
                 y90 y90Var = (y90) this.f6083c;
                 y90 y90Var2 = q8Var.f5848a;
                 if (y90Var == y90Var2 && y90Var2 != null) {
-                    CharacterStyle characterStyle = y90Var2.f32601i;
+                    CharacterStyle characterStyle = y90Var2.f32602i;
                     if (characterStyle instanceof URLSpan) {
                         r8 r8Var = q8Var.v;
                         u90 u90Var = q8Var.f5850c;

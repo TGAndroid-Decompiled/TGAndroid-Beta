@@ -41,7 +41,7 @@ public final class gg implements uy {
         wg wgVar2 = chatActivityEnterView.F0;
         org.telegram.ui.qn qnVar = chatActivityEnterView.P2;
         org.telegram.ui.gn gnVar = chatActivityEnterView.V2;
-        if (gnVar != null && qnVar != null && gnVar.f37360f) {
+        if (gnVar != null && qnVar != null && gnVar.f37361f) {
             qnVar.Wb();
         } else if (c() && i10 == 0) {
             f5.L(chatActivityEnterView.O2, qnVar.a(), new org.telegram.ui.hq(this, view, obj, str, obj2, photoEntry, z11), chatActivityEnterView.W3);
@@ -53,7 +53,7 @@ public final class gg implements uy {
                 } else {
                     wgVar = wgVar2;
                 }
-                ogVar.o1(wgVar, wgVar2.f32098a.getText(), true);
+                ogVar.o1(wgVar, wgVar2.f32099a.getText(), true);
             }
         } else {
             f5.Z(chatActivityEnterView.Q, 1, chatActivityEnterView.Q2, new fe(this, obj, photoEntry, z10, i10, i11, z11, str, obj2));
@@ -244,7 +244,7 @@ public final class gg implements uy {
                     if (view == null) {
                         view = wgVar;
                     }
-                    ogVar.o1(view, wgVar.f32098a.getText(), true);
+                    ogVar.o1(view, wgVar.f32099a.getText(), true);
                     return;
                 }
                 return;

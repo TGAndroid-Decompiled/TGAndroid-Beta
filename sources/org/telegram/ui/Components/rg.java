@@ -6,16 +6,16 @@ import java.util.ArrayList;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class rg extends j1.b {
-    public final sg f29927o;
+    public final sg f29928o;
 
     public rg(sg sgVar, sg sgVar2) {
         super(sgVar2);
-        this.f29927o = sgVar;
+        this.f29928o = sgVar;
     }
 
     @Override
     public final int g(float f7, float f10) {
-        sg sgVar = this.f29927o;
+        sg sgVar = this.f29928o;
         ChatActivityEnterView chatActivityEnterView = sgVar.V;
         if (chatActivityEnterView.f24019s4 && chatActivityEnterView.N1 != null && chatActivityEnterView.S3.contains(f7, f10)) {
             return 2;
@@ -28,7 +28,7 @@ public final class rg extends j1.b {
 
     @Override
     public final void h(ArrayList arrayList) {
-        ChatActivityEnterView chatActivityEnterView = this.f29927o.V;
+        ChatActivityEnterView chatActivityEnterView = this.f29928o.V;
         if (chatActivityEnterView.f24019s4) {
             arrayList.add(2);
         }
@@ -46,7 +46,7 @@ public final class rg extends j1.b {
     public final void l(int i10, s0.c cVar) {
         int i11;
         int i12;
-        sg sgVar = this.f29927o;
+        sg sgVar = this.f29928o;
         ChatActivityEnterView chatActivityEnterView = sgVar.V;
         if (i10 == 2) {
             Rect rect = chatActivityEnterView.U3;

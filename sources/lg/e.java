@@ -98,7 +98,7 @@ public class e extends FrameLayout {
         int dp = AndroidUtilities.dp(4.0f);
         this.I = h6.j0(dp, dp, dp, dp, h6.w0(h6.f21061h5, d6Var), h6.w0(h6.f21079i6, d6Var), -16777216);
         zq zqVar = new zq(this.H, this.I, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f));
-        zqVar.f33023w = true;
+        zqVar.f33024w = true;
         setBackground(zqVar);
     }
 

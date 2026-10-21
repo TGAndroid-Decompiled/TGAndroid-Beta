@@ -79,7 +79,7 @@ public final class e6 implements RequestDelegate {
                 int i13 = e11.e;
                 return;
             case 17:
-                int i14 = hf0.f37591t0;
+                int i14 = hf0.f37592t0;
                 return;
             case 18:
                 AndroidUtilities.runOnUIThread(new ck0(tLObject, 3));
@@ -88,7 +88,7 @@ public final class e6 implements RequestDelegate {
                 int i15 = rm0.R;
                 return;
             case 20:
-                List list = eo0.f36696g1;
+                List list = eo0.f36697g1;
                 return;
             default:
                 int i16 = u61.e;

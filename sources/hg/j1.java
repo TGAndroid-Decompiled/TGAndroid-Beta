@@ -1130,7 +1130,7 @@ public final class j1 extends im0 implements NotificationCenter.NotificationCent
                                         w02 = h6.w0(h6.f20932a7, d6Var);
                                     }
                                     zq zqVar = new zq(new ColorDrawable(w02), h6.V0(context, R.drawable.greydivider, h6.w0(h6.f20952b7, d6Var)), 0, 0);
-                                    zqVar.f33023w = true;
+                                    zqVar.f33024w = true;
                                     unVar.setBackground(zqVar);
                                     view = unVar;
                                 }

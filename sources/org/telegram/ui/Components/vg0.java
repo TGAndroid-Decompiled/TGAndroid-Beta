@@ -3,24 +3,24 @@ package org.telegram.ui.Components;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.PhotoViewer;
 public final class vg0 implements Runnable {
-    public final int f31251a;
-    public final ah0 f31252b;
+    public final int f31252a;
+    public final ah0 f31253b;
 
     public vg0(ah0 ah0Var, int i10) {
-        this.f31251a = i10;
-        this.f31252b = ah0Var;
+        this.f31252a = i10;
+        this.f31253b = ah0Var;
     }
 
     @Override
     public final void run() {
         lg0 lg0Var;
         boolean z10;
-        switch (this.f31251a) {
+        switch (this.f31252a) {
             case 0:
-                this.f31252b.u();
+                this.f31253b.u();
                 return;
             case 1:
-                ah0 ah0Var = this.f31252b;
+                ah0 ah0Var = this.f31253b;
                 PhotoViewer photoViewer = ah0Var.V;
                 if (photoViewer != null) {
                     if (ah0Var.f24616r != null) {
@@ -42,7 +42,7 @@ public final class vg0 implements Runnable {
                 }
                 return;
             case 2:
-                ah0 ah0Var2 = this.f31252b;
+                ah0 ah0Var2 = this.f31253b;
                 PhotoViewer photoViewer2 = ah0Var2.V;
                 if (photoViewer2 != null) {
                     if ((photoViewer2.F2 != null || ah0Var2.f24616r != null) && !ah0Var2.f24604c0 && !ah0Var2.Y && !ah0Var2.f24618w && !ah0Var2.f24617s.isInProgress() && ah0Var2.f24608f0) {
@@ -58,10 +58,10 @@ public final class vg0 implements Runnable {
                             lg0 lg0Var2 = ah0Var2.f24616r;
                             if (lg0Var2 != null) {
                                 PhotoViewer photoViewer3 = ah0Var2.V;
-                                photoViewer3.f33264c4.startRewind(lg0Var2, z10, ah0Var2.f24609g0[0], photoViewer3.f33411t1, ah0Var2.R);
+                                photoViewer3.f33265c4.startRewind(lg0Var2, z10, ah0Var2.f24609g0[0], photoViewer3.f33412t1, ah0Var2.R);
                             } else {
                                 PhotoViewer photoViewer4 = ah0Var2.V;
-                                photoViewer4.f33264c4.startRewind(c81Var2, z10, ah0Var2.f24609g0[0], photoViewer4.f33411t1, ah0Var2.R);
+                                photoViewer4.f33265c4.startRewind(c81Var2, z10, ah0Var2.f24609g0[0], photoViewer4.f33412t1, ah0Var2.R);
                             }
                             if (!ah0Var2.E) {
                                 ah0Var2.E = true;
@@ -81,9 +81,9 @@ public final class vg0 implements Runnable {
                 }
                 return;
             default:
-                ah0 ah0Var3 = this.f31252b;
+                ah0 ah0Var3 = this.f31253b;
                 PhotoViewer photoViewer5 = ah0Var3.V;
-                if (photoViewer5 != null && photoViewer5.f33264c4.rewinding) {
+                if (photoViewer5 != null && photoViewer5.f33265c4.rewinding) {
                     AndroidUtilities.runOnUIThread(ah0Var3.f24612j0, 1500L);
                     return;
                 }

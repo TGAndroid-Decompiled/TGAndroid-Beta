@@ -96,7 +96,7 @@ public final class b extends FrameLayout implements og0, d {
         this.f44312f = p6Var;
         p6Var.x(AndroidUtilities.bold());
         p6Var.setCallback(this);
-        p6Var.f29225b = 17;
+        p6Var.f29226b = 17;
         p6Var.u(-1);
         p6Var.w(AndroidUtilities.dp(10.0f));
     }
@@ -178,10 +178,10 @@ public final class b extends FrameLayout implements og0, d {
                     if (animatedDrawable != null) {
                         if (z12) {
                             animatedDrawable.P(this.f44318y.d);
-                            if (animatedDrawable.f31264a0 >= this.f44318y.e - 2) {
+                            if (animatedDrawable.f31265a0 >= this.f44318y.e - 2) {
                                 animatedDrawable.N(0, false, false);
                             }
-                            int i14 = animatedDrawable.f31264a0;
+                            int i14 = animatedDrawable.f31265a0;
                             int i15 = this.f44318y.d;
                             if (i14 <= i15) {
                                 animatedDrawable.start();
@@ -189,7 +189,7 @@ public final class b extends FrameLayout implements og0, d {
                                 animatedDrawable.M(i15);
                             }
                         } else {
-                            int i16 = animatedDrawable.f31264a0;
+                            int i16 = animatedDrawable.f31265a0;
                             a aVar2 = this.f44318y;
                             if (i16 >= aVar2.d - 1) {
                                 animatedDrawable.P(aVar2.e - 1);

@@ -247,7 +247,7 @@ public final class s implements e2.o, e2.j, MessagesStorage.BooleanCallback, kd0
     public void g(b2 b2Var, int i10) {
         switch (this.f12575a) {
             case 11:
-                ArrayList arrayList = ((LaunchActivity) this.f12577c).f33161d0;
+                ArrayList arrayList = ((LaunchActivity) this.f12577c).f33162d0;
                 if (!arrayList.isEmpty()) {
                     MessagesController.getInstance(this.f12576b).openByUserName("spambot", (n2) e.h(1, arrayList), 1);
                     return;
@@ -258,14 +258,14 @@ public final class s implements e2.o, e2.j, MessagesStorage.BooleanCallback, kd0
             case 15:
             default:
                 ProfileActivity profileActivity = (ProfileActivity) this.f12577c;
-                TLRPC.UserFull userFull = profileActivity.getMessagesController().getUserFull(profileActivity.f33619f1);
+                TLRPC.UserFull userFull = profileActivity.getMessagesController().getUserFull(profileActivity.f33620f1);
                 if (userFull != null) {
                     userFull.flags2 &= -4194305;
                     userFull.note = null;
                     profileActivity.getMessagesStorage().updateUserInfo(userFull, true);
                 }
                 TLRPC.TL_updateContactNote tL_updateContactNote = new TLRPC.TL_updateContactNote();
-                tL_updateContactNote.f20415id = profileActivity.getMessagesController().getInputUser(profileActivity.f33619f1);
+                tL_updateContactNote.f20415id = profileActivity.getMessagesController().getInputUser(profileActivity.f33620f1);
                 tL_updateContactNote.note = new TLRPC.TL_textWithEntities();
                 profileActivity.getConnectionsManager().sendRequest(tL_updateContactNote, null);
                 profileActivity.j5();
@@ -281,7 +281,7 @@ public final class s implements e2.o, e2.j, MessagesStorage.BooleanCallback, kd0
                 dg0Var.finishFragment();
                 return;
             case 16:
-                vm0 vm0Var = ((em0) this.f12577c).f36686a;
+                vm0 vm0Var = ((em0) this.f12577c).f36687a;
                 vm0Var.y1(vm0Var.Y[this.f12576b]);
                 return;
             case 17:
@@ -373,7 +373,7 @@ public final class s implements e2.o, e2.j, MessagesStorage.BooleanCallback, kd0
 
     @Override
     public void run(boolean z10) {
-        qn qnVar = ((fj) this.f12577c).f37019b;
+        qn qnVar = ((fj) this.f12577c).f37020b;
         int i10 = this.f12576b;
         if (i10 == 15 && ChatObject.isChannel(qnVar.e)) {
             TLRPC.Chat chat = qnVar.e;

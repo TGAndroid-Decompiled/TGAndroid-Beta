@@ -84,17 +84,17 @@ public final class fj extends li implements NotificationCenter.NotificationCente
         this.Q = 2;
         this.R = 3;
         this.S = new Runnable(this) {
-            public final fj f30944b;
+            public final fj f30945b;
 
             {
-                this.f30944b = this;
+                this.f30945b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        bj bjVar = this.f30944b.v;
+                        bj bjVar = this.f30945b.v;
                         int i10 = -1;
                         boolean canScrollVertically = bjVar.canScrollVertically(-1);
                         int i11 = -1;
@@ -125,13 +125,13 @@ public final class fj extends li implements NotificationCenter.NotificationCente
                             return;
                         }
                     case 1:
-                        this.f30944b.Q();
+                        this.f30945b.Q();
                         return;
                     case 2:
-                        this.f30944b.R();
+                        this.f30945b.R();
                         return;
                     default:
-                        fj fjVar = this.f30944b;
+                        fj fjVar = this.f30945b;
                         String[] strArr = {"_id", "artist", "title", "_data", "duration", "album"};
                         ArrayList arrayList = new ArrayList();
                         try {
@@ -214,17 +214,17 @@ public final class fj extends li implements NotificationCenter.NotificationCente
         };
         this.U = -1;
         this.f26224a0 = new Runnable(this) {
-            public final fj f30944b;
+            public final fj f30945b;
 
             {
-                this.f30944b = this;
+                this.f30945b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        bj bjVar = this.f30944b.v;
+                        bj bjVar = this.f30945b.v;
                         int i10 = -1;
                         boolean canScrollVertically = bjVar.canScrollVertically(-1);
                         int i11 = -1;
@@ -255,13 +255,13 @@ public final class fj extends li implements NotificationCenter.NotificationCente
                             return;
                         }
                     case 1:
-                        this.f30944b.Q();
+                        this.f30945b.Q();
                         return;
                     case 2:
-                        this.f30944b.R();
+                        this.f30945b.R();
                         return;
                     default:
-                        fj fjVar = this.f30944b;
+                        fj fjVar = this.f30945b;
                         String[] strArr = {"_id", "artist", "title", "_data", "duration", "album"};
                         ArrayList arrayList = new ArrayList();
                         try {
@@ -344,17 +344,17 @@ public final class fj extends li implements NotificationCenter.NotificationCente
         };
         this.f26227d0 = -1;
         this.f26229f0 = new Runnable(this) {
-            public final fj f30944b;
+            public final fj f30945b;
 
             {
-                this.f30944b = this;
+                this.f30945b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        bj bjVar = this.f30944b.v;
+                        bj bjVar = this.f30945b.v;
                         int i10 = -1;
                         boolean canScrollVertically = bjVar.canScrollVertically(-1);
                         int i11 = -1;
@@ -385,13 +385,13 @@ public final class fj extends li implements NotificationCenter.NotificationCente
                             return;
                         }
                     case 1:
-                        this.f30944b.Q();
+                        this.f30945b.Q();
                         return;
                     case 2:
-                        this.f30944b.R();
+                        this.f30945b.R();
                         return;
                     default:
-                        fj fjVar = this.f30944b;
+                        fj fjVar = this.f30945b;
                         String[] strArr = {"_id", "artist", "title", "_data", "duration", "album"};
                         ArrayList arrayList = new ArrayList();
                         try {
@@ -479,17 +479,17 @@ public final class fj extends li implements NotificationCenter.NotificationCente
         NotificationCenter.getInstance(this.f28173b.M1).addObserver(this, NotificationCenter.musicListLoaded);
         this.G = true;
         Utilities.globalQueue.postRunnable(new Runnable(this) {
-            public final fj f30944b;
+            public final fj f30945b;
 
             {
-                this.f30944b = this;
+                this.f30945b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        bj bjVar = this.f30944b.v;
+                        bj bjVar = this.f30945b.v;
                         int i10 = -1;
                         boolean canScrollVertically = bjVar.canScrollVertically(-1);
                         int i11 = -1;
@@ -520,13 +520,13 @@ public final class fj extends li implements NotificationCenter.NotificationCente
                             return;
                         }
                     case 1:
-                        this.f30944b.Q();
+                        this.f30945b.Q();
                         return;
                     case 2:
-                        this.f30944b.R();
+                        this.f30945b.R();
                         return;
                     default:
-                        fj fjVar = this.f30944b;
+                        fj fjVar = this.f30945b;
                         String[] strArr = {"_id", "artist", "title", "_data", "duration", "album"};
                         ArrayList arrayList = new ArrayList();
                         try {
@@ -625,11 +625,11 @@ public final class fj extends li implements NotificationCenter.NotificationCente
         this.f26240x = usVar;
         usVar.setPadding(AndroidUtilities.dp(11.0f), AndroidUtilities.dp(21.0f), AndroidUtilities.dp(11.0f), AndroidUtilities.dp(21.0f));
         usVar.setOnAnimatedHeightChangedListener(new ee(9, this, tiVar));
-        if (tiVar.f30545f0 != null) {
+        if (tiVar.f30546f0 != null) {
             FrameLayout frameLayout3 = new FrameLayout(context);
             usVar.addView(frameLayout3);
             usVar.i(frameLayout3, true, false);
-            aj ajVar = new aj(this, context, tiVar.f30545f0, frameLayout2, d6Var, frameLayout3);
+            aj ajVar = new aj(this, context, tiVar.f30546f0, frameLayout2, d6Var, frameLayout3);
             frameLayout = frameLayout2;
             frameLayout3.addView(ajVar);
             usVar.setCallFragmentContextView(ajVar);
@@ -641,7 +641,7 @@ public final class fj extends li implements NotificationCenter.NotificationCente
         frameLayout.addView(usVar, d10);
         bj bjVar = new bj(this, context, tiVar.M1, new d(this, 5), new xi(this), new xi(this), d6Var);
         this.v = bjVar;
-        bjVar.W2.f30860r = false;
+        bjVar.W2.f30861r = false;
         bjVar.p1();
         this.f28174c = bjVar;
         this.d = bjVar;
@@ -713,7 +713,7 @@ public final class fj extends li implements NotificationCenter.NotificationCente
     public final void O() {
         int i10;
         ti tiVar = this.f28173b;
-        if (tiVar.f30592u1.R() > AndroidUtilities.dp(20.0f)) {
+        if (tiVar.f30593u1.R() > AndroidUtilities.dp(20.0f)) {
             i10 = AndroidUtilities.dp(8.0f);
             tiVar.setAllowNestedScroll(false);
         } else {

@@ -252,7 +252,7 @@ public final class u implements TextWatcher {
                 return;
             case 12:
                 vn0 vn0Var = (vn0) this.f2236b;
-                ImageView imageView2 = vn0Var.f31317c;
+                ImageView imageView2 = vn0Var.f31318c;
                 ei.e2 e2Var2 = vn0Var.e;
                 boolean z19 = false;
                 if (e2Var2.length() > 0) {
@@ -328,7 +328,7 @@ public final class u implements TextWatcher {
                 return;
             case 17:
                 final org.telegram.ui.Wallet.r9 r9Var = (org.telegram.ui.Wallet.r9) this.f2236b;
-                ArrayList arrayList = r9Var.f34817s;
+                ArrayList arrayList = r9Var.f34818s;
                 arrayList.clear();
                 final String trim = editable.toString().trim();
                 Runnable runnable = r9Var.J;
@@ -338,26 +338,26 @@ public final class u implements TextWatcher {
                     r9Var.J = null;
                 }
                 boolean z20 = false;
-                if (r9Var.f34820y != 0) {
-                    r9Var.getConnectionsManager().cancelRequest(r9Var.f34820y, true);
-                    r9Var.f34820y = 0;
+                if (r9Var.f34821y != 0) {
+                    r9Var.getConnectionsManager().cancelRequest(r9Var.f34821y, true);
+                    r9Var.f34821y = 0;
                 }
                 if (WalletEngine2.isValidRecipientAddress(trim)) {
                     str2 = trim;
                 } else {
                     str2 = null;
                 }
-                r9Var.f34818w = str2;
+                r9Var.f34819w = str2;
                 if (str2 == null && trim != null && trim.length() <= 126) {
                     String lowerCase = trim.toLowerCase(Locale.ROOT);
                     if (lowerCase.matches("[a-z0-9_-]+(?:\\.[a-z0-9_-]+)*\\.ton")) {
                         str3 = lowerCase;
                     }
                 }
-                r9Var.f34819x = str3;
+                r9Var.f34820x = str3;
                 final int i13 = r9Var.I + 1;
                 r9Var.I = i13;
-                if (!TextUtils.isEmpty(trim) && r9Var.f34818w == null) {
+                if (!TextUtils.isEmpty(trim) && r9Var.f34819w == null) {
                     z14 = true;
                 } else {
                     z14 = false;
@@ -366,12 +366,12 @@ public final class u implements TextWatcher {
                 r9Var.v.g(null, true, false, false, false, 0L, false, 0, i13);
                 ei.d dVar2 = r9Var.V;
                 if (dVar2 != null) {
-                    if (r9Var.f34818w != null) {
+                    if (r9Var.f34819w != null) {
                         z20 = true;
                     }
                     dVar2.setEnabled(z20);
                 }
-                if (!TextUtils.isEmpty(trim) && r9Var.f34818w == null && r9Var.f34819x == null) {
+                if (!TextUtils.isEmpty(trim) && r9Var.f34819w == null && r9Var.f34820x == null) {
                     r9Var.e0(trim);
                     Runnable runnable2 = new Runnable() {
                         @Override
@@ -394,8 +394,8 @@ public final class u implements TextWatcher {
                     AndroidUtilities.runOnUIThread(runnable2, 300L);
                 } else {
                     arrayList.clear();
-                    r9Var.f32355a.W2.N(true);
-                    final String str4 = r9Var.f34819x;
+                    r9Var.f32356a.W2.N(true);
+                    final String str4 = r9Var.f34820x;
                     if (str4 != null) {
                         Runnable runnable3 = new Runnable() {
                             @Override
@@ -427,10 +427,10 @@ public final class u implements TextWatcher {
                 }
                 haVar.e();
                 haVar.d();
-                if (haVar.f34302a.hasFocus()) {
+                if (haVar.f34303a.hasFocus()) {
                     haVar.f(editable.toString().trim().toLowerCase());
                 }
-                Runnable runnable4 = haVar.f34305f;
+                Runnable runnable4 = haVar.f34306f;
                 if (runnable4 != null) {
                     runnable4.run();
                     return;
@@ -456,17 +456,17 @@ public final class u implements TextWatcher {
                 if (TextUtils.isEmpty(lowerCase2)) {
                     l4Var.E.clear();
                     l4Var.F = lowerCase2;
-                    l4Var.f38778u0[0].f39754c.f38167y.clear();
+                    l4Var.f38779u0[0].f39754c.f38168y.clear();
                     l4Var.d0(false);
-                    if (l4Var.f38778u0[0].f()) {
-                        if (l4Var.f38778u0[0].getWebView() != null) {
-                            org.telegram.ui.web.x0 webView = l4Var.f38778u0[0].getWebView();
+                    if (l4Var.f38779u0[0].f()) {
+                        if (l4Var.f38779u0[0].getWebView() != null) {
+                            org.telegram.ui.web.x0 webView = l4Var.f38779u0[0].getWebView();
                             webView.I = new org.telegram.ui.b0(l4Var, 9);
                             webView.findAllAsync("");
                             l4Var.h0();
                         }
                     } else {
-                        l4Var.f38778u0[0].f39753b.f1();
+                        l4Var.f38779u0[0].f39753b.f1();
                         l4Var.W(0);
                     }
                     l4Var.W0 = -1;
@@ -474,10 +474,10 @@ public final class u implements TextWatcher {
                 }
                 int i14 = l4Var.W0 + 1;
                 l4Var.W0 = i14;
-                if (l4Var.f38778u0[0].f()) {
+                if (l4Var.f38779u0[0].f()) {
                     l4Var.d0(true);
-                    if (l4Var.f38778u0[0].getWebView() != null) {
-                        org.telegram.ui.web.x0 webView2 = l4Var.f38778u0[0].getWebView();
+                    if (l4Var.f38779u0[0].getWebView() != null) {
+                        org.telegram.ui.web.x0 webView2 = l4Var.f38779u0[0].getWebView();
                         webView2.I = new org.telegram.ui.b0(l4Var, 9);
                         webView2.findAllAsync(lowerCase2);
                         l4Var.h0();

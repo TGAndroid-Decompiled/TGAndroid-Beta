@@ -290,7 +290,7 @@ public class re1 extends org.telegram.ui.ActionBar.n2 implements NotificationCen
                         if (n2Var instanceof cy) {
                             cy cyVar2 = (cy) n2Var;
                             if (cyVar2.f4()) {
-                                MessagesStorage.TopicKey topicKey = cyVar2.f36147p2;
+                                MessagesStorage.TopicKey topicKey = cyVar2.f36148p2;
                                 if (topicKey.dialogId == j12 && topicKey.topicId == j13) {
                                     return;
                                 }
@@ -429,7 +429,7 @@ public class re1 extends org.telegram.ui.ActionBar.n2 implements NotificationCen
         this.J0 = this.f41183s.isLoading(this.f41148a);
         if (this.D0 != null) {
             ArrayList arrayList = this.f41151b;
-            if (arrayList.size() == 0 || (arrayList.size() == 1 && ((ie1) arrayList.get(0)).f37958c != null && ((ie1) arrayList.get(0)).f37958c.f20328id == 1)) {
+            if (arrayList.size() == 0 || (arrayList.size() == 1 && ((ie1) arrayList.get(0)).f37959c != null && ((ie1) arrayList.get(0)).f37959c.f20328id == 1)) {
                 this.D0.e(this.J0, this.fragmentBeginToShow);
             }
         }
@@ -627,8 +627,8 @@ public class re1 extends org.telegram.ui.ActionBar.n2 implements NotificationCen
         ?? r32 = {new ActionBarPopupWindow$ActionBarPopupWindowLayout(R.drawable.popup_fixed_alert, 1, getParentActivity(), getResourceProvider())};
         final TLRPC.TL_forumTopic tL_forumTopic = r2Var.N;
         org.telegram.ui.Components.zo zoVar = new org.telegram.ui.Components.zo(getParentActivity(), this.currentAccount, r32[0].getSwipeBack(), false, new xd1(this, tL_forumTopic), getResourceProvider());
-        int b10 = r32[0].b(zoVar.f32981f);
-        zoVar.f32989o = 1;
+        int b10 = r32[0].b(zoVar.f32982f);
+        zoVar.f32990o = 1;
         long j11 = this.f41148a;
         long j12 = -j11;
         zoVar.d(j12, tL_forumTopic.f20328id, null);
@@ -1176,7 +1176,7 @@ public class re1 extends org.telegram.ui.ActionBar.n2 implements NotificationCen
             this.f41190x = 0;
             for (int i11 = 0; i11 < arrayList.size(); i11++) {
                 ie1 ie1Var = (ie1) arrayList.get(i11);
-                if (ie1Var != null && (tL_forumTopic = ie1Var.f37958c) != null && tL_forumTopic.hidden) {
+                if (ie1Var != null && (tL_forumTopic = ie1Var.f37959c) != null && tL_forumTopic.hidden) {
                     this.f41190x++;
                 }
             }
@@ -1299,7 +1299,7 @@ public class re1 extends org.telegram.ui.ActionBar.n2 implements NotificationCen
                         return;
                     default:
                         cy cyVar3 = this.f39850b.M0;
-                        if (cyVar3 != null && (u0Var = cyVar3.f36117j0) != null) {
+                        if (cyVar3 != null && (u0Var = cyVar3.f36118j0) != null) {
                             u0Var.performClick();
                             return;
                         }
@@ -1343,7 +1343,7 @@ public class re1 extends org.telegram.ui.ActionBar.n2 implements NotificationCen
                             return;
                         default:
                             cy cyVar3 = this.f39850b.M0;
-                            if (cyVar3 != null && (u0Var = cyVar3.f36117j0) != null) {
+                            if (cyVar3 != null && (u0Var = cyVar3.f36118j0) != null) {
                                 u0Var.performClick();
                                 return;
                             }
@@ -1390,7 +1390,7 @@ public class re1 extends org.telegram.ui.ActionBar.n2 implements NotificationCen
         } else {
             z12 = false;
         }
-        ooVar3.f29086b = z12;
+        ooVar3.f29087b = z12;
         ooVar3.setClipChildren(false);
         this.actionBar.addView(this.f41161f, 0, w7.z5.d(-2, -1.0f, 51, 56.0f, 0.0f, 86.0f, 0.0f));
         if (!this.f41185t0) {
@@ -1499,7 +1499,7 @@ public class re1 extends org.telegram.ui.ActionBar.n2 implements NotificationCen
                         return;
                     default:
                         cy cyVar32 = this.f39850b.M0;
-                        if (cyVar32 != null && (u0Var2 = cyVar32.f36117j0) != null) {
+                        if (cyVar32 != null && (u0Var2 = cyVar32.f36118j0) != null) {
                             u0Var2.performClick();
                             return;
                         }
@@ -1517,7 +1517,7 @@ public class re1 extends org.telegram.ui.ActionBar.n2 implements NotificationCen
         b10Var.f24774w = true;
         ?? frameLayout = new FrameLayout(context);
         TextView textView = new TextView(context);
-        frameLayout.f37586a = textView;
+        frameLayout.f37587a = textView;
         if (LocaleController.isRTL) {
             spannableStringBuilder = new SpannableStringBuilder("  ");
             spannableStringBuilder.setSpan(new org.telegram.ui.Components.yq(R.drawable.attach_arrow_left, 0), 0, 1, 0);
@@ -1548,7 +1548,7 @@ public class re1 extends org.telegram.ui.ActionBar.n2 implements NotificationCen
         ci.o5 o5Var = new ci.o5(this, context, b10Var);
         this.D0 = o5Var;
         try {
-            o5Var.f30696b.getImageReceiver().setAutoRepeat(2);
+            o5Var.f30697b.getImageReceiver().setAutoRepeat(2);
         } catch (Exception unused) {
         }
         this.D0.e(this.J0, this.fragmentBeginToShow);
@@ -1611,7 +1611,7 @@ public class re1 extends org.telegram.ui.ActionBar.n2 implements NotificationCen
                         return;
                     default:
                         cy cyVar32 = this.f39850b.M0;
-                        if (cyVar32 != null && (u0Var2 = cyVar32.f36117j0) != null) {
+                        if (cyVar32 != null && (u0Var2 = cyVar32.f36118j0) != null) {
                             u0Var2.performClick();
                             return;
                         }
@@ -1716,7 +1716,7 @@ public class re1 extends org.telegram.ui.ActionBar.n2 implements NotificationCen
                         return;
                     default:
                         cy cyVar32 = this.f39850b.M0;
-                        if (cyVar32 != null && (u0Var2 = cyVar32.f36117j0) != null) {
+                        if (cyVar32 != null && (u0Var2 = cyVar32.f36118j0) != null) {
                             u0Var2.performClick();
                             return;
                         }
@@ -1736,7 +1736,7 @@ public class re1 extends org.telegram.ui.ActionBar.n2 implements NotificationCen
                 if (n2Var instanceof cy) {
                     cy cyVar4 = (cy) n2Var;
                     if (cyVar4.f4()) {
-                        MessagesStorage.TopicKey topicKey = cyVar4.f36147p2;
+                        MessagesStorage.TopicKey topicKey = cyVar4.f36148p2;
                         if (topicKey.dialogId == j10) {
                             this.Q0 = topicKey.topicId;
                             break;

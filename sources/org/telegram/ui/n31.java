@@ -20,7 +20,7 @@ public final class n31 extends AnimatorListenerAdapter {
             case 0:
                 SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f39404b.f25574b;
                 secretMediaViewer.Z.getNextView().setText((CharSequence) null);
-                ht0 ht0Var = secretMediaViewer.f33784a0;
+                ht0 ht0Var = secretMediaViewer.f33785a0;
                 ht0Var.f42051l0 = false;
                 if (ht0Var.m0 >= 0) {
                     ((ViewGroup.MarginLayoutParams) ht0Var.f42053o0.getLayoutParams()).topMargin = ht0Var.m0;
@@ -39,7 +39,7 @@ public final class n31 extends AnimatorListenerAdapter {
     public void onAnimationStart(Animator animator) {
         switch (this.f39403a) {
             case 0:
-                ht0 ht0Var = ((SecretMediaViewer) this.f39404b.f25574b).f33784a0;
+                ht0 ht0Var = ((SecretMediaViewer) this.f39404b.f25574b).f33785a0;
                 Method method = ht0Var.f42045f0;
                 if (method != null) {
                     try {

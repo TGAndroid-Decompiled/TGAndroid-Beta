@@ -18,11 +18,11 @@ public final class wi0 implements View.OnClickListener {
         switch (this.f42887a) {
             case 0:
                 bj0 bj0Var = this.f42888b;
-                aj0 aj0Var = bj0Var.f35661q0;
-                HashSet hashSet = bj0Var.f35649d0;
+                aj0 aj0Var = bj0Var.f35662q0;
+                HashSet hashSet = bj0Var.f35650d0;
                 if (hashSet.size() != 0 && aj0Var != null) {
                     ArrayList arrayList = new ArrayList();
-                    for (TLRPC.User user : bj0Var.f35654i0.values()) {
+                    for (TLRPC.User user : bj0Var.f35655i0.values()) {
                         if (hashSet.contains(Long.valueOf(user.f20423id))) {
                             arrayList.add(Long.valueOf(user.f20423id));
                         }
@@ -34,7 +34,7 @@ public final class wi0 implements View.OnClickListener {
                 return;
             default:
                 bj0 bj0Var2 = this.f42888b;
-                bj0Var2.f35649d0.clear();
+                bj0Var2.f35650d0.clear();
                 bj0Var2.Y.d.b(true);
                 bj0Var2.V(true, false);
                 return;

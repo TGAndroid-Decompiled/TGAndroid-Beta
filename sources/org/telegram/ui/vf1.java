@@ -893,20 +893,20 @@ public class vf1 extends org.telegram.ui.ActionBar.n2 {
         this.f42235c0 = h20Var;
         this.f42233b0 = new m.g3(h20Var);
         this.f42235c0.setOnClickListener(new View.OnClickListener(this) {
-            public final vf1 f37963b;
+            public final vf1 f37964b;
 
             {
-                this.f37963b = this;
+                this.f37964b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        this.f37963b.C0();
+                        this.f37964b.C0();
                         return;
                     case 1:
-                        vf1 vf1Var = this.f37963b;
+                        vf1 vf1Var = this.f37964b;
                         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(vf1Var.getParentActivity());
                         alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
                         alertDialog$Builder.k(LocaleController.getString(R.string.Reset), new lf1(vf1Var, 1));
@@ -917,10 +917,10 @@ public class vf1 extends org.telegram.ui.ActionBar.n2 {
                         vf1Var.showDialog(b2Var);
                         return;
                     case 2:
-                        vf1.V(this.f37963b);
+                        vf1.V(this.f37964b);
                         return;
                     case 3:
-                        vf1 vf1Var2 = this.f37963b;
+                        vf1 vf1Var2 = this.f37964b;
                         if (vf1Var2.h.getAlpha() >= 0.5f) {
                             int i17 = vf1Var2.O;
                             if (i17 == 0) {
@@ -952,7 +952,7 @@ public class vf1 extends org.telegram.ui.ActionBar.n2 {
                         }
                         return;
                     case 4:
-                        vf1 vf1Var3 = this.f37963b;
+                        vf1 vf1Var3 = this.f37964b;
                         if (vf1Var3.O == 8) {
                             TwoStepVerificationActivity twoStepVerificationActivity = new TwoStepVerificationActivity();
                             twoStepVerificationActivity.W = true;
@@ -970,10 +970,10 @@ public class vf1 extends org.telegram.ui.ActionBar.n2 {
                         }
                         return;
                     case 5:
-                        this.f37963b.C0();
+                        this.f37964b.C0();
                         return;
                     default:
-                        vf1 vf1Var4 = this.f37963b;
+                        vf1 vf1Var4 = this.f37964b;
                         int i18 = vf1Var4.O;
                         vf1Var4.M = true;
                         if (vf1Var4.f42244n.getTransformationMethod() == null) {
@@ -1028,20 +1028,20 @@ public class vf1 extends org.telegram.ui.ActionBar.n2 {
         m.g3.p(this.h);
         this.h.setPadding(AndroidUtilities.dp(32.0f), 0, AndroidUtilities.dp(32.0f), 0);
         this.h.setOnClickListener(new View.OnClickListener(this) {
-            public final vf1 f37963b;
+            public final vf1 f37964b;
 
             {
-                this.f37963b = this;
+                this.f37964b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        this.f37963b.C0();
+                        this.f37964b.C0();
                         return;
                     case 1:
-                        vf1 vf1Var = this.f37963b;
+                        vf1 vf1Var = this.f37964b;
                         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(vf1Var.getParentActivity());
                         alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
                         alertDialog$Builder.k(LocaleController.getString(R.string.Reset), new lf1(vf1Var, 1));
@@ -1052,10 +1052,10 @@ public class vf1 extends org.telegram.ui.ActionBar.n2 {
                         vf1Var.showDialog(b2Var);
                         return;
                     case 2:
-                        vf1.V(this.f37963b);
+                        vf1.V(this.f37964b);
                         return;
                     case 3:
-                        vf1 vf1Var2 = this.f37963b;
+                        vf1 vf1Var2 = this.f37964b;
                         if (vf1Var2.h.getAlpha() >= 0.5f) {
                             int i17 = vf1Var2.O;
                             if (i17 == 0) {
@@ -1087,7 +1087,7 @@ public class vf1 extends org.telegram.ui.ActionBar.n2 {
                         }
                         return;
                     case 4:
-                        vf1 vf1Var3 = this.f37963b;
+                        vf1 vf1Var3 = this.f37964b;
                         if (vf1Var3.O == 8) {
                             TwoStepVerificationActivity twoStepVerificationActivity = new TwoStepVerificationActivity();
                             twoStepVerificationActivity.W = true;
@@ -1105,10 +1105,10 @@ public class vf1 extends org.telegram.ui.ActionBar.n2 {
                         }
                         return;
                     case 5:
-                        this.f37963b.C0();
+                        this.f37964b.C0();
                         return;
                     default:
-                        vf1 vf1Var4 = this.f37963b;
+                        vf1 vf1Var4 = this.f37964b;
                         int i18 = vf1Var4.O;
                         vf1Var4.M = true;
                         if (vf1Var4.f42244n.getTransformationMethod() == null) {
@@ -1185,20 +1185,20 @@ public class vf1 extends org.telegram.ui.ActionBar.n2 {
         this.e.setPadding(AndroidUtilities.dp(32.0f), 0, AndroidUtilities.dp(32.0f), 0);
         this.e.setVisibility(8);
         this.e.setOnClickListener(new View.OnClickListener(this) {
-            public final vf1 f37963b;
+            public final vf1 f37964b;
 
             {
-                this.f37963b = this;
+                this.f37964b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        this.f37963b.C0();
+                        this.f37964b.C0();
                         return;
                     case 1:
-                        vf1 vf1Var = this.f37963b;
+                        vf1 vf1Var = this.f37964b;
                         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(vf1Var.getParentActivity());
                         alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
                         alertDialog$Builder.k(LocaleController.getString(R.string.Reset), new lf1(vf1Var, 1));
@@ -1209,10 +1209,10 @@ public class vf1 extends org.telegram.ui.ActionBar.n2 {
                         vf1Var.showDialog(b2Var);
                         return;
                     case 2:
-                        vf1.V(this.f37963b);
+                        vf1.V(this.f37964b);
                         return;
                     case 3:
-                        vf1 vf1Var2 = this.f37963b;
+                        vf1 vf1Var2 = this.f37964b;
                         if (vf1Var2.h.getAlpha() >= 0.5f) {
                             int i172 = vf1Var2.O;
                             if (i172 == 0) {
@@ -1244,7 +1244,7 @@ public class vf1 extends org.telegram.ui.ActionBar.n2 {
                         }
                         return;
                     case 4:
-                        vf1 vf1Var3 = this.f37963b;
+                        vf1 vf1Var3 = this.f37964b;
                         if (vf1Var3.O == 8) {
                             TwoStepVerificationActivity twoStepVerificationActivity = new TwoStepVerificationActivity();
                             twoStepVerificationActivity.W = true;
@@ -1262,10 +1262,10 @@ public class vf1 extends org.telegram.ui.ActionBar.n2 {
                         }
                         return;
                     case 5:
-                        this.f37963b.C0();
+                        this.f37964b.C0();
                         return;
                     default:
-                        vf1 vf1Var4 = this.f37963b;
+                        vf1 vf1Var4 = this.f37964b;
                         int i18 = vf1Var4.O;
                         vf1Var4.M = true;
                         if (vf1Var4.f42244n.getTransformationMethod() == null) {
@@ -1312,20 +1312,20 @@ public class vf1 extends org.telegram.ui.ActionBar.n2 {
         this.f42232b.setTypeface(AndroidUtilities.bold());
         this.f42232b.setBackground(org.telegram.ui.ActionBar.x5.f(new float[]{24.0f}, org.telegram.ui.ActionBar.h6.Oh));
         this.f42232b.setOnClickListener(new View.OnClickListener(this) {
-            public final vf1 f37963b;
+            public final vf1 f37964b;
 
             {
-                this.f37963b = this;
+                this.f37964b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        this.f37963b.C0();
+                        this.f37964b.C0();
                         return;
                     case 1:
-                        vf1 vf1Var = this.f37963b;
+                        vf1 vf1Var = this.f37964b;
                         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(vf1Var.getParentActivity());
                         alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
                         alertDialog$Builder.k(LocaleController.getString(R.string.Reset), new lf1(vf1Var, 1));
@@ -1336,10 +1336,10 @@ public class vf1 extends org.telegram.ui.ActionBar.n2 {
                         vf1Var.showDialog(b2Var);
                         return;
                     case 2:
-                        vf1.V(this.f37963b);
+                        vf1.V(this.f37964b);
                         return;
                     case 3:
-                        vf1 vf1Var2 = this.f37963b;
+                        vf1 vf1Var2 = this.f37964b;
                         if (vf1Var2.h.getAlpha() >= 0.5f) {
                             int i172 = vf1Var2.O;
                             if (i172 == 0) {
@@ -1371,7 +1371,7 @@ public class vf1 extends org.telegram.ui.ActionBar.n2 {
                         }
                         return;
                     case 4:
-                        vf1 vf1Var3 = this.f37963b;
+                        vf1 vf1Var3 = this.f37964b;
                         if (vf1Var3.O == 8) {
                             TwoStepVerificationActivity twoStepVerificationActivity = new TwoStepVerificationActivity();
                             twoStepVerificationActivity.W = true;
@@ -1389,10 +1389,10 @@ public class vf1 extends org.telegram.ui.ActionBar.n2 {
                         }
                         return;
                     case 5:
-                        this.f37963b.C0();
+                        this.f37964b.C0();
                         return;
                     default:
-                        vf1 vf1Var4 = this.f37963b;
+                        vf1 vf1Var4 = this.f37964b;
                         int i18 = vf1Var4.O;
                         vf1Var4.M = true;
                         if (vf1Var4.f42244n.getTransformationMethod() == null) {
@@ -1481,17 +1481,17 @@ public class vf1 extends org.telegram.ui.ActionBar.n2 {
                 this.f42244n.setSingleLine(true);
                 this.f42244n.setCursorWidth(1.5f);
                 this.f42244n.setOnEditorActionListener(new TextView.OnEditorActionListener(this) {
-                    public final vf1 f38250b;
+                    public final vf1 f38251b;
 
                     {
-                        this.f38250b = this;
+                        this.f38251b = this;
                     }
 
                     @Override
                     public final boolean onEditorAction(TextView textView5, int i19, KeyEvent keyEvent) {
                         switch (r2) {
                             case 0:
-                                vf1 vf1Var = this.f38250b;
+                                vf1 vf1Var = this.f38251b;
                                 vf1Var.getClass();
                                 if (i19 != 5 && i19 != 6) {
                                     return false;
@@ -1499,7 +1499,7 @@ public class vf1 extends org.telegram.ui.ActionBar.n2 {
                                 vf1Var.C0();
                                 return true;
                             default:
-                                vf1 vf1Var2 = this.f38250b;
+                                vf1 vf1Var2 = this.f38251b;
                                 vf1Var2.getClass();
                                 if (i19 != 5 && i19 != 6) {
                                     return false;
@@ -1515,10 +1515,10 @@ public class vf1 extends org.telegram.ui.ActionBar.n2 {
                 });
                 this.f42246s.e(this.f42244n);
                 this.f42244n.setOnFocusChangeListener(new View.OnFocusChangeListener(this) {
-                    public final vf1 f38598b;
+                    public final vf1 f38599b;
 
                     {
-                        this.f38598b = this;
+                        this.f38599b = this;
                     }
 
                     @Override
@@ -1527,7 +1527,7 @@ public class vf1 extends org.telegram.ui.ActionBar.n2 {
                         float f10;
                         switch (r2) {
                             case 0:
-                                org.telegram.ui.Components.sd0 sd0Var2 = this.f38598b.v;
+                                org.telegram.ui.Components.sd0 sd0Var2 = this.f38599b.v;
                                 if (z11) {
                                     f7 = 1.0f;
                                 } else {
@@ -1536,7 +1536,7 @@ public class vf1 extends org.telegram.ui.ActionBar.n2 {
                                 sd0Var2.b(f7, f7, true);
                                 return;
                             case 1:
-                                vf1 vf1Var = this.f38598b;
+                                vf1 vf1Var = this.f38599b;
                                 if (z11) {
                                     vf1Var.f42237e0.setEditText((EditText) view);
                                     vf1Var.f42237e0.setDispatchBackWhenEmpty(true);
@@ -1545,7 +1545,7 @@ public class vf1 extends org.telegram.ui.ActionBar.n2 {
                                 vf1Var.getClass();
                                 return;
                             default:
-                                org.telegram.ui.Components.sd0 sd0Var3 = this.f38598b.f42246s;
+                                org.telegram.ui.Components.sd0 sd0Var3 = this.f38599b.f42246s;
                                 if (z11) {
                                     f10 = 1.0f;
                                 } else {
@@ -1568,20 +1568,20 @@ public class vf1 extends org.telegram.ui.ActionBar.n2 {
                 this.E.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.Xd, false), PorterDuff.Mode.MULTIPLY));
                 AndroidUtilities.updateViewVisibilityAnimated(this.E, false, 0.1f, false);
                 this.E.setOnClickListener(new View.OnClickListener(this) {
-                    public final vf1 f37963b;
+                    public final vf1 f37964b;
 
                     {
-                        this.f37963b = this;
+                        this.f37964b = this;
                     }
 
                     @Override
                     public final void onClick(View view) {
                         switch (r2) {
                             case 0:
-                                this.f37963b.C0();
+                                this.f37964b.C0();
                                 return;
                             case 1:
-                                vf1 vf1Var = this.f37963b;
+                                vf1 vf1Var = this.f37964b;
                                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(vf1Var.getParentActivity());
                                 alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
                                 alertDialog$Builder.k(LocaleController.getString(R.string.Reset), new lf1(vf1Var, 1));
@@ -1592,10 +1592,10 @@ public class vf1 extends org.telegram.ui.ActionBar.n2 {
                                 vf1Var.showDialog(b2Var);
                                 return;
                             case 2:
-                                vf1.V(this.f37963b);
+                                vf1.V(this.f37964b);
                                 return;
                             case 3:
-                                vf1 vf1Var2 = this.f37963b;
+                                vf1 vf1Var2 = this.f37964b;
                                 if (vf1Var2.h.getAlpha() >= 0.5f) {
                                     int i172 = vf1Var2.O;
                                     if (i172 == 0) {
@@ -1627,7 +1627,7 @@ public class vf1 extends org.telegram.ui.ActionBar.n2 {
                                 }
                                 return;
                             case 4:
-                                vf1 vf1Var3 = this.f37963b;
+                                vf1 vf1Var3 = this.f37964b;
                                 if (vf1Var3.O == 8) {
                                     TwoStepVerificationActivity twoStepVerificationActivity = new TwoStepVerificationActivity();
                                     twoStepVerificationActivity.W = true;
@@ -1645,10 +1645,10 @@ public class vf1 extends org.telegram.ui.ActionBar.n2 {
                                 }
                                 return;
                             case 5:
-                                this.f37963b.C0();
+                                this.f37964b.C0();
                                 return;
                             default:
-                                vf1 vf1Var4 = this.f37963b;
+                                vf1 vf1Var4 = this.f37964b;
                                 int i182 = vf1Var4.O;
                                 vf1Var4.M = true;
                                 if (vf1Var4.f42244n.getTransformationMethod() == null) {
@@ -1705,17 +1705,17 @@ public class vf1 extends org.telegram.ui.ActionBar.n2 {
                 this.f42245r.setSingleLine(true);
                 this.f42245r.setCursorWidth(1.5f);
                 this.f42245r.setOnEditorActionListener(new TextView.OnEditorActionListener(this) {
-                    public final vf1 f38250b;
+                    public final vf1 f38251b;
 
                     {
-                        this.f38250b = this;
+                        this.f38251b = this;
                     }
 
                     @Override
                     public final boolean onEditorAction(TextView textView5, int i19, KeyEvent keyEvent) {
                         switch (r2) {
                             case 0:
-                                vf1 vf1Var = this.f38250b;
+                                vf1 vf1Var = this.f38251b;
                                 vf1Var.getClass();
                                 if (i19 != 5 && i19 != 6) {
                                     return false;
@@ -1723,7 +1723,7 @@ public class vf1 extends org.telegram.ui.ActionBar.n2 {
                                 vf1Var.C0();
                                 return true;
                             default:
-                                vf1 vf1Var2 = this.f38250b;
+                                vf1 vf1Var2 = this.f38251b;
                                 vf1Var2.getClass();
                                 if (i19 != 5 && i19 != 6) {
                                     return false;
@@ -1739,10 +1739,10 @@ public class vf1 extends org.telegram.ui.ActionBar.n2 {
                 });
                 this.v.e(this.f42245r);
                 this.f42245r.setOnFocusChangeListener(new View.OnFocusChangeListener(this) {
-                    public final vf1 f38598b;
+                    public final vf1 f38599b;
 
                     {
-                        this.f38598b = this;
+                        this.f38599b = this;
                     }
 
                     @Override
@@ -1751,7 +1751,7 @@ public class vf1 extends org.telegram.ui.ActionBar.n2 {
                         float f10;
                         switch (r2) {
                             case 0:
-                                org.telegram.ui.Components.sd0 sd0Var2 = this.f38598b.v;
+                                org.telegram.ui.Components.sd0 sd0Var2 = this.f38599b.v;
                                 if (z11) {
                                     f7 = 1.0f;
                                 } else {
@@ -1760,7 +1760,7 @@ public class vf1 extends org.telegram.ui.ActionBar.n2 {
                                 sd0Var2.b(f7, f7, true);
                                 return;
                             case 1:
-                                vf1 vf1Var = this.f38598b;
+                                vf1 vf1Var = this.f38599b;
                                 if (z11) {
                                     vf1Var.f42237e0.setEditText((EditText) view);
                                     vf1Var.f42237e0.setDispatchBackWhenEmpty(true);
@@ -1769,7 +1769,7 @@ public class vf1 extends org.telegram.ui.ActionBar.n2 {
                                 vf1Var.getClass();
                                 return;
                             default:
-                                org.telegram.ui.Components.sd0 sd0Var3 = this.f38598b.f42246s;
+                                org.telegram.ui.Components.sd0 sd0Var3 = this.f38599b.f42246s;
                                 if (z11) {
                                     f10 = 1.0f;
                                 } else {
@@ -1799,10 +1799,10 @@ public class vf1 extends org.telegram.ui.ActionBar.n2 {
                     trVar.setShowSoftInputOnFocusCompat(v0() ^ i19);
                     trVar.addTextChangedListener(new rf1(this, 0));
                     trVar.setOnFocusChangeListener(new View.OnFocusChangeListener(this) {
-                        public final vf1 f38598b;
+                        public final vf1 f38599b;
 
                         {
-                            this.f38598b = this;
+                            this.f38599b = this;
                         }
 
                         @Override
@@ -1811,7 +1811,7 @@ public class vf1 extends org.telegram.ui.ActionBar.n2 {
                             float f10;
                             switch (i19) {
                                 case 0:
-                                    org.telegram.ui.Components.sd0 sd0Var2 = this.f38598b.v;
+                                    org.telegram.ui.Components.sd0 sd0Var2 = this.f38599b.v;
                                     if (z11) {
                                         f7 = 1.0f;
                                     } else {
@@ -1820,7 +1820,7 @@ public class vf1 extends org.telegram.ui.ActionBar.n2 {
                                     sd0Var2.b(f7, f7, true);
                                     return;
                                 case 1:
-                                    vf1 vf1Var = this.f38598b;
+                                    vf1 vf1Var = this.f38599b;
                                     if (z11) {
                                         vf1Var.f42237e0.setEditText((EditText) view);
                                         vf1Var.f42237e0.setDispatchBackWhenEmpty(true);
@@ -1829,7 +1829,7 @@ public class vf1 extends org.telegram.ui.ActionBar.n2 {
                                     vf1Var.getClass();
                                     return;
                                 default:
-                                    org.telegram.ui.Components.sd0 sd0Var3 = this.f38598b.f42246s;
+                                    org.telegram.ui.Components.sd0 sd0Var3 = this.f38599b.f42246s;
                                     if (z11) {
                                         f10 = 1.0f;
                                     } else {
@@ -1859,20 +1859,20 @@ public class vf1 extends org.telegram.ui.ActionBar.n2 {
                     this.f42238f.setText(LocaleController.getString(R.string.RestoreEmailTroubleNoEmail));
                     qa1Var.addView(this.f42238f, w7.z5.t(-2, -2, 49, 0, 0, 0, 25));
                     this.f42238f.setOnClickListener(new View.OnClickListener(this) {
-                        public final vf1 f37963b;
+                        public final vf1 f37964b;
 
                         {
-                            this.f37963b = this;
+                            this.f37964b = this;
                         }
 
                         @Override
                         public final void onClick(View view) {
                             switch (r2) {
                                 case 0:
-                                    this.f37963b.C0();
+                                    this.f37964b.C0();
                                     return;
                                 case 1:
-                                    vf1 vf1Var = this.f37963b;
+                                    vf1 vf1Var = this.f37964b;
                                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(vf1Var.getParentActivity());
                                     alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
                                     alertDialog$Builder.k(LocaleController.getString(R.string.Reset), new lf1(vf1Var, 1));
@@ -1883,10 +1883,10 @@ public class vf1 extends org.telegram.ui.ActionBar.n2 {
                                     vf1Var.showDialog(b2Var);
                                     return;
                                 case 2:
-                                    vf1.V(this.f37963b);
+                                    vf1.V(this.f37964b);
                                     return;
                                 case 3:
-                                    vf1 vf1Var2 = this.f37963b;
+                                    vf1 vf1Var2 = this.f37964b;
                                     if (vf1Var2.h.getAlpha() >= 0.5f) {
                                         int i172 = vf1Var2.O;
                                         if (i172 == 0) {
@@ -1918,7 +1918,7 @@ public class vf1 extends org.telegram.ui.ActionBar.n2 {
                                     }
                                     return;
                                 case 4:
-                                    vf1 vf1Var3 = this.f37963b;
+                                    vf1 vf1Var3 = this.f37964b;
                                     if (vf1Var3.O == 8) {
                                         TwoStepVerificationActivity twoStepVerificationActivity = new TwoStepVerificationActivity();
                                         twoStepVerificationActivity.W = true;
@@ -1936,10 +1936,10 @@ public class vf1 extends org.telegram.ui.ActionBar.n2 {
                                     }
                                     return;
                                 case 5:
-                                    this.f37963b.C0();
+                                    this.f37964b.C0();
                                     return;
                                 default:
-                                    vf1 vf1Var4 = this.f37963b;
+                                    vf1 vf1Var4 = this.f37964b;
                                     int i182 = vf1Var4.O;
                                     vf1Var4.M = true;
                                     if (vf1Var4.f42244n.getTransformationMethod() == null) {
@@ -2133,10 +2133,10 @@ public class vf1 extends org.telegram.ui.ActionBar.n2 {
                 int lastIndexOf = str.lastIndexOf(42);
                 if (indexOf != lastIndexOf && indexOf != -1 && lastIndexOf != -1) {
                     ?? obj = new Object();
-                    obj.f28649a |= 256;
-                    obj.f28650b = indexOf;
+                    obj.f28650a |= 256;
+                    obj.f28651b = indexOf;
                     int i21 = lastIndexOf + 1;
-                    obj.f28651c = i21;
+                    obj.f28652c = i21;
                     r82 = 0;
                     valueOf.setSpan(new org.telegram.ui.Components.o11(obj, 0), indexOf, i21, 0);
                 } else {
@@ -2174,20 +2174,20 @@ public class vf1 extends org.telegram.ui.ActionBar.n2 {
                 ((ViewGroup.MarginLayoutParams) this.h.getLayoutParams()).bottomMargin = 0;
                 this.h.setText(LocaleController.getString(R.string.ResendCode));
                 this.h.setOnClickListener(new View.OnClickListener(this) {
-                    public final vf1 f37963b;
+                    public final vf1 f37964b;
 
                     {
-                        this.f37963b = this;
+                        this.f37964b = this;
                     }
 
                     @Override
                     public final void onClick(View view) {
                         switch (r2) {
                             case 0:
-                                this.f37963b.C0();
+                                this.f37964b.C0();
                                 return;
                             case 1:
-                                vf1 vf1Var = this.f37963b;
+                                vf1 vf1Var = this.f37964b;
                                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(vf1Var.getParentActivity());
                                 alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
                                 alertDialog$Builder.k(LocaleController.getString(R.string.Reset), new lf1(vf1Var, 1));
@@ -2198,10 +2198,10 @@ public class vf1 extends org.telegram.ui.ActionBar.n2 {
                                 vf1Var.showDialog(b2Var);
                                 return;
                             case 2:
-                                vf1.V(this.f37963b);
+                                vf1.V(this.f37964b);
                                 return;
                             case 3:
-                                vf1 vf1Var2 = this.f37963b;
+                                vf1 vf1Var2 = this.f37964b;
                                 if (vf1Var2.h.getAlpha() >= 0.5f) {
                                     int i172 = vf1Var2.O;
                                     if (i172 == 0) {
@@ -2233,7 +2233,7 @@ public class vf1 extends org.telegram.ui.ActionBar.n2 {
                                 }
                                 return;
                             case 4:
-                                vf1 vf1Var3 = this.f37963b;
+                                vf1 vf1Var3 = this.f37964b;
                                 if (vf1Var3.O == 8) {
                                     TwoStepVerificationActivity twoStepVerificationActivity = new TwoStepVerificationActivity();
                                     twoStepVerificationActivity.W = true;
@@ -2251,10 +2251,10 @@ public class vf1 extends org.telegram.ui.ActionBar.n2 {
                                 }
                                 return;
                             case 5:
-                                this.f37963b.C0();
+                                this.f37964b.C0();
                                 return;
                             default:
-                                vf1 vf1Var4 = this.f37963b;
+                                vf1 vf1Var4 = this.f37964b;
                                 int i182 = vf1Var4.O;
                                 vf1Var4.M = true;
                                 if (vf1Var4.f42244n.getTransformationMethod() == null) {
@@ -2362,7 +2362,7 @@ public class vf1 extends org.telegram.ui.ActionBar.n2 {
     public final boolean finishFragment(boolean z10) {
         for (org.telegram.ui.ActionBar.n2 n2Var : getParentLayout().getFragmentStack()) {
             if (n2Var != this && (n2Var instanceof vf1)) {
-                ((org.telegram.ui.Components.o71) ((vf1) n2Var).f42233b0.f16202b).f28959b = true;
+                ((org.telegram.ui.Components.o71) ((vf1) n2Var).f42233b0.f16202b).f28960b = true;
             }
         }
         return super.finishFragment(z10);

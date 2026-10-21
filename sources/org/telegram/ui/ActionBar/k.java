@@ -1379,10 +1379,10 @@ public class k extends FrameLayout implements ne.d, y5 {
             } else {
                 this.S = null;
                 ?? obj = new Object();
-                obj.f32287c = new ArrayList();
+                obj.f32288c = new ArrayList();
                 obj.d = new ArrayList();
                 Paint paint = new Paint(1);
-                obj.f32285a = paint;
+                obj.f32286a = paint;
                 paint.setStrokeWidth(AndroidUtilities.dp(1.5f));
                 paint.setColor(h6.x0(null, h6.A8, false) & (-1644826));
                 paint.setStrokeCap(Paint.Cap.ROUND);
@@ -2371,7 +2371,7 @@ public class k extends FrameLayout implements ne.d, y5 {
         this.f21504q1 = i11;
         b();
         m4.z zVar = new m4.z(22, this, xo0Var);
-        xo0Var.f32456f.add(zVar);
+        xo0Var.f32457f.add(zVar);
         if (this.f21498n1) {
             zVar.run();
             return;

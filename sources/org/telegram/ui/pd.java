@@ -44,8 +44,8 @@ public final class pd implements View.OnFocusChangeListener {
             case 2:
                 dg0 dg0Var = ((md0) this.f40193b).W;
                 if (z10) {
-                    dg0Var.f36370c.setEditText((EditText) view);
-                    dg0Var.f36370c.setDispatchBackWhenEmpty(true);
+                    dg0Var.f36371c.setEditText((EditText) view);
+                    dg0Var.f36371c.setDispatchBackWhenEmpty(true);
                     return;
                 }
                 return;
@@ -68,7 +68,7 @@ public final class pd implements View.OnFocusChangeListener {
                 sd0Var2.b(f11, f11, true);
                 return;
             case 5:
-                org.telegram.ui.Components.sd0 sd0Var3 = ((de0) this.f40193b).f36345b;
+                org.telegram.ui.Components.sd0 sd0Var3 = ((de0) this.f40193b).f36346b;
                 if (z10) {
                     f12 = 1.0f;
                 } else {
@@ -77,10 +77,10 @@ public final class pd implements View.OnFocusChangeListener {
                 sd0Var3.b(f12, f12, true);
                 return;
             case 6:
-                dg0 dg0Var2 = ((ge0) this.f40193b).f37307y;
+                dg0 dg0Var2 = ((ge0) this.f40193b).f37308y;
                 if (z10) {
-                    dg0Var2.f36370c.setEditText((EditText) view);
-                    dg0Var2.f36370c.setDispatchBackWhenEmpty(true);
+                    dg0Var2.f36371c.setEditText((EditText) view);
+                    dg0Var2.f36371c.setDispatchBackWhenEmpty(true);
                     return;
                 }
                 return;
@@ -94,10 +94,10 @@ public final class pd implements View.OnFocusChangeListener {
                 sd0Var4.b(f13, f13, true);
                 return;
             case 8:
-                dg0 dg0Var3 = ((hf0) this.f40193b).f37616s0;
+                dg0 dg0Var3 = ((hf0) this.f40193b).f37617s0;
                 if (z10) {
-                    dg0Var3.f36370c.setEditText((EditText) view);
-                    dg0Var3.f36370c.setDispatchBackWhenEmpty(true);
+                    dg0Var3.f36371c.setEditText((EditText) view);
+                    dg0Var3.f36371c.setDispatchBackWhenEmpty(true);
                     return;
                 }
                 return;
@@ -111,7 +111,7 @@ public final class pd implements View.OnFocusChangeListener {
                 sd0Var5.b(f14, f14, true);
                 return;
             case 10:
-                org.telegram.ui.Components.sd0 sd0Var6 = ((PasscodeActivity) this.f40193b).f33228f;
+                org.telegram.ui.Components.sd0 sd0Var6 = ((PasscodeActivity) this.f40193b).f33229f;
                 if (z10) {
                     f15 = 1.0f;
                 } else {

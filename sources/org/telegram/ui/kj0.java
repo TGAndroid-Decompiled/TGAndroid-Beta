@@ -45,15 +45,15 @@ public final class kj0 extends AnimatedPhoneNumberEditText {
             default:
                 super.onFocusChanged(z10, i10, rect);
                 cg0 cg0Var = (cg0) this.H;
-                org.telegram.ui.Components.sd0 sd0Var3 = cg0Var.f35965f;
-                if (!z10 && !cg0Var.f35963b.isFocused()) {
+                org.telegram.ui.Components.sd0 sd0Var3 = cg0Var.f35966f;
+                if (!z10 && !cg0Var.f35964b.isFocused()) {
                     f11 = 0.0f;
                 } else {
                     f11 = 1.0f;
                 }
                 sd0Var3.b(f11, f11, true);
                 if (z10) {
-                    cg0Var.V.f36370c.setEditText(this);
+                    cg0Var.V.f36371c.setEditText(this);
                     return;
                 }
                 return;

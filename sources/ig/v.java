@@ -213,7 +213,7 @@ public final class v extends x61 implements NotificationCenter.NotificationCente
                 int indexOf = formatString.indexOf(str);
                 if (indexOf > -1) {
                     n4 n4Var = new n4(r4.c.h("https://", str), (n11) null);
-                    n4Var.f28681f = this;
+                    n4Var.f28682f = this;
                     spannableString.setSpan(n4Var, indexOf, str.length() + indexOf, 33);
                 }
             }
@@ -373,7 +373,7 @@ public final class v extends x61 implements NotificationCenter.NotificationCente
                         }
                     }
                 }, true);
-                H.W(this.f32355a.V0(view, false));
+                H.W(this.f32356a.V0(view, false));
                 H.Z();
                 return true;
             }
@@ -384,9 +384,9 @@ public final class v extends x61 implements NotificationCenter.NotificationCente
     @Override
     public final View createView(Context context) {
         super.createView(context);
-        this.f32355a.p1();
-        w61 w61Var = this.f32355a;
-        w61Var.W2.f30860r = false;
+        this.f32356a.p1();
+        w61 w61Var = this.f32356a;
+        w61Var.W2.f30861r = false;
         this.actionBar.A(w61Var, true);
         return this.fragmentView;
     }
@@ -407,7 +407,7 @@ public final class v extends x61 implements NotificationCenter.NotificationCente
                 return;
             }
         }
-        w61 w61Var = this.f32355a;
+        w61 w61Var = this.f32356a;
         if (w61Var != null && (u61Var = w61Var.W2) != null) {
             u61Var.N(true);
         }

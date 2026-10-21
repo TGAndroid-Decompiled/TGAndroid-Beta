@@ -162,10 +162,10 @@ public class x4 extends bb implements NotificationCenter.NotificationCenterDeleg
         } else {
             if (e instanceof wc0) {
                 wc0 wc0Var = (wc0) e;
-                if (wc0Var.f32081q < 0) {
+                if (wc0Var.f32082q < 0) {
                     num = -16777216;
                 } else {
-                    int[] iArr = wc0Var.f32064a;
+                    int[] iArr = wc0Var.f32065a;
                     if (iArr != null && iArr.length > 0) {
                         num = Integer.valueOf(iArr[0]);
                     }
@@ -403,7 +403,7 @@ public class x4 extends bb implements NotificationCenter.NotificationCenterDeleg
         this.P = true;
         a0Var.k1(true);
         this.f50602t0.N(false);
-        this.f24880c.h1(this.f50602t0.f30863x.size(), AndroidUtilities.dp(200.0f));
+        this.f24880c.h1(this.f50602t0.f30864x.size(), AndroidUtilities.dp(200.0f));
         jm0 jm0Var = this.d;
         int i23 = this.backgroundPaddingLeft;
         if (starGift != null && starGift.limited && this.f50597o0 == null) {
@@ -783,7 +783,7 @@ public class x4 extends bb implements NotificationCenter.NotificationCenterDeleg
     public final im0 x(jm0 jm0Var) {
         u61 u61Var = new u61(this.d, getContext(), this.Y, 0, true, new l4(this, 0), this.resourcesProvider);
         this.f50602t0 = u61Var;
-        u61Var.f30860r = false;
+        u61Var.f30861r = false;
         return u61Var;
     }
 }

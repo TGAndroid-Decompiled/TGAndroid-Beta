@@ -7,31 +7,31 @@ import android.graphics.drawable.Drawable;
 import android.util.StateSet;
 import android.view.MotionEvent;
 public final class nq extends q6 {
-    public final Rect f28861s;
+    public final Rect f28862s;
     public Drawable v;
-    public boolean f28862w;
+    public boolean f28863w;
 
     public nq(Context context) {
         super(context, false, false, false);
-        this.f28861s = new Rect();
+        this.f28862s = new Rect();
     }
 
     public Rect getClickBounds() {
-        return this.f28861s;
+        return this.f28862s;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         if (this.v != null) {
             Rect bounds = getDrawable().getBounds();
-            Rect rect = this.f28861s;
+            Rect rect = this.f28862s;
             rect.set(bounds);
             int ceil = (int) Math.ceil(getDrawable().c());
-            if (getDrawable().f29225b == 3) {
+            if (getDrawable().f29226b == 3) {
                 rect.right = rect.left + ceil;
-            } else if (getDrawable().f29225b == 5) {
+            } else if (getDrawable().f29226b == 5) {
                 rect.left = rect.right - ceil;
-            } else if (getDrawable().f29225b == 17) {
+            } else if (getDrawable().f29226b == 17) {
                 int i10 = (rect.left + rect.right) / 2;
                 int i11 = ceil / 2;
                 rect.left = i10 - i11;
@@ -51,7 +51,7 @@ public final class nq extends q6 {
     public final boolean onTouchEvent(MotionEvent motionEvent) {
         boolean contains = getClickBounds().contains((int) motionEvent.getX(), (int) motionEvent.getY());
         if (motionEvent.getAction() == 0 && contains) {
-            this.f28862w = true;
+            this.f28863w = true;
             Drawable drawable = this.v;
             if (drawable != null) {
                 drawable.setHotspot(motionEvent.getX(), motionEvent.getY());
@@ -61,17 +61,17 @@ public final class nq extends q6 {
             return contains;
         }
         if (motionEvent.getAction() == 1) {
-            if (this.f28862w && contains) {
+            if (this.f28863w && contains) {
                 callOnClick();
             }
-            this.f28862w = false;
+            this.f28863w = false;
             Drawable drawable2 = this.v;
             if (drawable2 != null) {
                 drawable2.setState(StateSet.NOTHING);
                 return contains;
             }
         } else if (motionEvent.getAction() == 3) {
-            this.f28862w = false;
+            this.f28863w = false;
             Drawable drawable3 = this.v;
             if (drawable3 != null) {
                 drawable3.setState(StateSet.NOTHING);

@@ -38,7 +38,7 @@ public class o6 extends FrameLayout {
         p6Var.setCallback(m0Var);
         p6Var.w(AndroidUtilities.dp(14.0f));
         p6Var.t(LocaleController.getString(R.string.ClearCache), true, true);
-        p6Var.f29225b = 5;
+        p6Var.f29226b = 5;
         p6Var.x(AndroidUtilities.bold());
         int i11 = org.telegram.ui.ActionBar.h6.Sh;
         p6Var.u(org.telegram.ui.ActionBar.h6.x0(null, i11, false));
@@ -50,7 +50,7 @@ public class o6 extends FrameLayout {
         p6Var2.x(AndroidUtilities.bold());
         p6Var2.u(org.telegram.ui.ActionBar.h6.v(org.telegram.ui.ActionBar.h6.x0(null, i10, false), org.telegram.ui.ActionBar.h6.m1(0.7f, org.telegram.ui.ActionBar.h6.x0(null, i11, false))));
         p6Var2.t("", true, true);
-        m0Var.setContentDescription(TextUtils.concat(p6Var.f29230i, "\t", p6Var2.f29230i));
+        m0Var.setContentDescription(TextUtils.concat(p6Var.f29231i, "\t", p6Var2.f29231i));
         addView(m0Var, w7.z5.d(-1, 48.0f, 119, 16.0f, 16.0f, 16.0f, 16.0f));
     }
 
@@ -81,7 +81,7 @@ public class o6 extends FrameLayout {
         setDisabled(z11);
         m0 m0Var = this.f39781a;
         m0Var.invalidate();
-        m0Var.setContentDescription(TextUtils.concat(p6Var.f29230i, "\t", p6Var2.f29230i));
+        m0Var.setContentDescription(TextUtils.concat(p6Var.f29231i, "\t", p6Var2.f29231i));
     }
 
     @Override

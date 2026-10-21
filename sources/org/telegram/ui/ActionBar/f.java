@@ -74,49 +74,49 @@ public final class f extends AnimatorListenerAdapter {
             default:
                 Runnable runnable = (Runnable) this.d;
                 mi0 mi0Var = (mi0) this.e;
-                fi0 fi0Var = mi0Var.K;
+                fi0 fi0Var = mi0Var.J;
                 boolean z11 = this.f20791b;
                 if (z11) {
                     f7 = 1.0f;
                 } else {
                     f7 = 0.0f;
                 }
-                mi0Var.E = f7;
-                mi0Var.f39284x = false;
-                mi0Var.f39286y = false;
-                mi0Var.H.setAlpha(f7);
+                mi0Var.f39287y = f7;
+                mi0Var.f39283w = false;
+                mi0Var.f39285x = false;
+                mi0Var.G.setAlpha(f7);
                 if (z11) {
-                    mi0Var.f39282w = false;
                     mi0Var.v = false;
+                    mi0Var.f39278s = false;
                 }
-                pf pfVar2 = mi0Var.S;
+                pf pfVar2 = mi0Var.R;
                 if (pfVar2 != null) {
                     pfVar2.setAlpha(1.0f);
                 }
-                org.telegram.ui.Cells.u1 u1Var2 = mi0Var.f39276r0;
+                org.telegram.ui.Cells.u1 u1Var2 = mi0Var.f39275q0;
                 if (u1Var2 != null) {
                     u1Var2.setVisibility(0);
                 }
-                vg vgVar = mi0Var.W;
-                if (vgVar != null && !mi0Var.f39277s) {
+                vg vgVar = mi0Var.V;
+                if (vgVar != null && !mi0Var.f39276r) {
                     vgVar.setAlpha(1.0f);
                 }
-                if (!z11 && (zh0Var = mi0Var.X) != null) {
+                if (!z11 && (zh0Var = mi0Var.W) != null) {
                     zh0Var.setAlpha(0.0f);
                 }
-                if (!this.f20792c && (viewGroup = mi0Var.Z) != null) {
-                    viewGroup.setAlpha(mi0Var.E);
+                if (!this.f20792c && (viewGroup = mi0Var.Y) != null) {
+                    viewGroup.setAlpha(mi0Var.f39287y);
                 }
                 fi0Var.invalidate();
-                fi0Var.setAlpha(mi0Var.E);
+                fi0Var.setAlpha(mi0Var.f39287y);
+                mi0Var.E.invalidate();
                 mi0Var.F.invalidate();
-                mi0Var.G.invalidate();
                 if (runnable != null) {
-                    if (!z11 && (u1Var = mi0Var.f39276r0) != null && u1Var.isAttachedToWindow()) {
-                        mi0Var.f39276r0.post(runnable);
+                    if (!z11 && (u1Var = mi0Var.f39275q0) != null && u1Var.isAttachedToWindow()) {
+                        mi0Var.f39275q0.post(runnable);
                         return;
-                    } else if (!z11 && (pfVar = mi0Var.S) != null && pfVar.isAttachedToWindow()) {
-                        mi0Var.S.post(runnable);
+                    } else if (!z11 && (pfVar = mi0Var.R) != null && pfVar.isAttachedToWindow()) {
+                        mi0Var.R.post(runnable);
                         return;
                     } else {
                         AndroidUtilities.runOnUIThread(runnable);

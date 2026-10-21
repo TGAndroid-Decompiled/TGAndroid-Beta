@@ -6,27 +6,27 @@ import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.ChatActivityEnterView;
 public final class iw0 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f38123a;
-    public final Object f38124b;
-    public final View f38125c;
+    public final int f38124a;
+    public final Object f38125b;
+    public final View f38126c;
     public final Object d;
 
     public iw0(Object obj, ViewGroup viewGroup, Object obj2, int i10) {
-        this.f38123a = i10;
-        this.f38124b = obj;
-        this.f38125c = viewGroup;
+        this.f38124a = i10;
+        this.f38125b = obj;
+        this.f38126c = viewGroup;
         this.d = obj2;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
         float dp;
-        switch (this.f38123a) {
+        switch (this.f38124a) {
             case 0:
-                nw0 nw0Var = (nw0) this.f38124b;
+                nw0 nw0Var = (nw0) this.f38125b;
                 PremiumPreviewFragment premiumPreviewFragment = nw0Var.f39700n;
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                View view = this.f38125c;
+                View view = this.f38126c;
                 view.setAlpha(floatValue);
                 view.setScaleX(floatValue);
                 view.setScaleY(floatValue);
@@ -44,10 +44,10 @@ public final class iw0 implements ValueAnimator.AnimatorUpdateListener {
                 }
                 return;
             default:
-                z91 z91Var = (z91) this.f38124b;
+                z91 z91Var = (z91) this.f38125b;
                 z91Var.getClass();
                 z91Var.f43682a = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                ((ChatActivityEnterView) this.f38125c).getEditField().setAlpha(z91Var.f43682a);
+                ((ChatActivityEnterView) this.f38126c).getEditField().setAlpha(z91Var.f43682a);
                 ((org.telegram.ui.Components.si) this.d).invalidate();
                 return;
         }

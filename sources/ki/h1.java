@@ -257,14 +257,14 @@ public final class h1 extends iu {
                 if (text instanceof Spanned) {
                     Spanned spanned = (Spanned) text;
                     for (o11 o11Var : (o11[]) spanned.getSpans(0, spanned.length(), o11.class)) {
-                        int i12 = o11Var.f28919b.f28649a;
+                        int i12 = o11Var.f28920b.f28650a;
                         if ((65536 & i12) != 0) {
                             int spanStart = spanned.getSpanStart(o11Var);
                             int spanEnd = spanned.getSpanEnd(o11Var);
                             if (spanStart >= 0 && spanEnd > spanStart) {
                                 if (r90Var == null) {
                                     r90Var = new r90(0);
-                                    r90Var.f29897n = false;
+                                    r90Var.f29898n = false;
                                 }
                                 r90Var.d(layout, spanStart, 0.0f);
                                 if ((32768 & i12) != 0) {
@@ -284,13 +284,13 @@ public final class h1 extends iu {
                                 } else {
                                     i11 = 0;
                                 }
-                                r90Var.f29898o = i11;
+                                r90Var.f29899o = i11;
                                 layout.getSelectionPath(spanStart, spanEnd, r90Var);
                             }
                         }
                     }
                     if (r90Var != null) {
-                        r90Var.f29897n = true;
+                        r90Var.f29898n = true;
                     }
                     this.F = r90Var;
                 }

@@ -62,11 +62,11 @@ public final class m1 implements Runnable {
                 }
                 String str2 = b2Var.e;
                 if (f2Var.y(b2Var) && !f2Var.i(b2Var)) {
-                    f2Var.f34198g = b2Var;
-                    if ("sendTransaction".equals(str2) && b2Var.f34018f != null) {
-                        SharedPreferences mainSettings = MessagesController.getMainSettings(f2Var.f34194a);
+                    f2Var.f34199g = b2Var;
+                    if ("sendTransaction".equals(str2) && b2Var.f34019f != null) {
+                        SharedPreferences mainSettings = MessagesController.getMainSettings(f2Var.f34195a);
                         if (mainSettings.contains(org.telegram.ui.Wallet.f2.j(this.f28335b, this.f28336c) + ".transfer")) {
-                            b2Var.f34024m = true;
+                            b2Var.f34025m = true;
                             f2Var.z(b2Var, j0Var, new Utilities.Callback() {
                                 @Override
                                 public final void run(Object obj) {
@@ -76,7 +76,7 @@ public final class m1 implements Runnable {
                                             f2 f2Var2 = f2Var;
                                             f2Var2.getClass();
                                             b2 b2Var2 = b2Var;
-                                            b2Var2.f34024m = false;
+                                            b2Var2.f34025m = false;
                                             f2Var2.s(b2Var2);
                                             s1Var.run(null, str3);
                                             return;
@@ -90,7 +90,7 @@ public final class m1 implements Runnable {
                             return;
                         }
                     }
-                    if (b2Var.f34023l < 0 && !"disconnect".equals(str2)) {
+                    if (b2Var.f34024l < 0 && !"disconnect".equals(str2)) {
                         s1Var.run(b2Var, null);
                         return;
                     }
@@ -104,7 +104,7 @@ public final class m1 implements Runnable {
                                     f2 f2Var2 = f2Var;
                                     f2Var2.getClass();
                                     b2 b2Var2 = b2Var;
-                                    b2Var2.f34024m = false;
+                                    b2Var2.f34025m = false;
                                     f2Var2.s(b2Var2);
                                     s1Var.run(null, str3);
                                     return;

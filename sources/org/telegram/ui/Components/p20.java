@@ -13,9 +13,9 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 public final class p20 extends LinearLayout {
-    public final ei.d f29192a;
-    public final ei.d f29193b;
-    public final ei.d f29194c;
+    public final ei.d f29193a;
+    public final ei.d f29194b;
+    public final ei.d f29195c;
     public final long d;
 
     public p20(Context context, int i10) {
@@ -46,12 +46,12 @@ public final class p20 extends LinearLayout {
         textView.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
         addView(textView, w7.z5.t(-2, -2, 49, 0, 0, 0, 14));
         ei.d dVar = new ei.d(context, null, true);
-        this.f29192a = dVar;
+        this.f29193a = dVar;
         dVar.e();
         dVar.g(LocaleController.getString(R.string.GalleryAccessAllowAccessButton), false, true);
         addView(dVar, w7.z5.q(-2, 44, 49));
         ei.d dVar2 = new ei.d(context, null, false);
-        this.f29193b = dVar2;
+        this.f29194b = dVar2;
         dVar2.e();
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("c");
         spannableStringBuilder.setSpan(new yq(R.drawable.outline_attach_camera_24, 0), 0, 1, 33);
@@ -59,7 +59,7 @@ public final class p20 extends LinearLayout {
         dVar2.g(spannableStringBuilder, false, true);
         addView(dVar2, w7.z5.t(-2, 44, 49, 0, 8, 0, 0));
         ei.d dVar3 = new ei.d(context, null, false);
-        this.f29194c = dVar3;
+        this.f29195c = dVar3;
         dVar3.e();
         dVar3.setVisibility(8);
         SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder("c");
@@ -81,11 +81,11 @@ public final class p20 extends LinearLayout {
     public final void onMeasure(int i10, int i11) {
         int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), Integer.MIN_VALUE);
         int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(44.0f), 1073741824);
-        ei.d dVar = this.f29192a;
+        ei.d dVar = this.f29193a;
         dVar.setUseWrapContent(true);
-        ei.d dVar2 = this.f29193b;
+        ei.d dVar2 = this.f29194b;
         dVar2.setUseWrapContent(true);
-        ei.d dVar3 = this.f29194c;
+        ei.d dVar3 = this.f29195c;
         dVar3.setUseWrapContent(true);
         dVar.measure(makeMeasureSpec, makeMeasureSpec2);
         dVar2.measure(makeMeasureSpec, makeMeasureSpec2);
@@ -107,6 +107,6 @@ public final class p20 extends LinearLayout {
         } else {
             i10 = 8;
         }
-        this.f29194c.setVisibility(i10);
+        this.f29195c.setVisibility(i10);
     }
 }

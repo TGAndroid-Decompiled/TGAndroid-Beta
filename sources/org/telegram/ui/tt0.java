@@ -10,7 +10,7 @@ public final class tt0 extends rg.d2 {
     public final PhotoViewer f41751r0;
 
     public tt0(PhotoViewer photoViewer) {
-        super(photoViewer.p5, photoViewer.E, photoViewer.f33430v2, photoViewer.f33250b0);
+        super(photoViewer.p5, photoViewer.E, photoViewer.f33431v2, photoViewer.f33251b0);
         this.f41751r0 = photoViewer;
         this.f41748o0 = new Path();
         this.f41750q0 = new org.telegram.ui.Components.f6(this, 0L, 420L, org.telegram.ui.Components.bs.h);
@@ -34,8 +34,8 @@ public final class tt0 extends rg.d2 {
         canvas.clipPath(path);
         canvas.translate(-getX(), -getY());
         PhotoViewer photoViewer = this.f41751r0;
-        if (this == photoViewer.f33433v5 || this == photoViewer.f33443w5) {
-            canvas.translate(-photoViewer.f33424u5.getX(), -photoViewer.f33424u5.getY());
+        if (this == photoViewer.f33434v5 || this == photoViewer.f33444w5) {
+            canvas.translate(-photoViewer.f33425u5.getX(), -photoViewer.f33425u5.getY());
         }
         photoViewer.V0(canvas, this.f45324h0, -13948117, 855638016, false, true, false);
         float e = this.f41750q0.e(this.f41749p0);

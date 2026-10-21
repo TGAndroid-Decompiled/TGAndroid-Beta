@@ -15,10 +15,10 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class pr extends im0 {
-    public final rr f29362c;
+    public final rr f29363c;
 
     public pr(rr rrVar) {
-        this.f29362c = rrVar;
+        this.f29363c = rrVar;
     }
 
     @Override
@@ -31,11 +31,11 @@ public final class pr extends im0 {
 
     @Override
     public final int h() {
-        rr rrVar = this.f29362c;
+        rr rrVar = this.f29363c;
         if (rrVar.Z) {
             return rrVar.Y.size() + 3;
         }
-        if (rrVar.f29992a0) {
+        if (rrVar.f29993a0) {
             return 2;
         }
         return 1;
@@ -67,7 +67,7 @@ public final class pr extends im0 {
         View view = b1Var.f45917a;
         boolean z11 = true;
         if (i13 == 3) {
-            rr rrVar = this.f29362c;
+            rr rrVar = this.f29363c;
             TLRPC.Peer peer = (TLRPC.Peer) rrVar.Y.get(i10 - 3);
             long peerId = MessageObject.getPeerId(peer);
             if (peerId > 0) {
@@ -86,7 +86,7 @@ public final class pr extends im0 {
                 z10 = false;
             }
             f4Var.e(chat, null, str, z10);
-            if (peer != rrVar.f29995d0) {
+            if (peer != rrVar.f29996d0) {
                 z11 = false;
             }
             f4Var.c(z11, false);
@@ -107,11 +107,11 @@ public final class pr extends im0 {
         String formatString;
         String formatString2;
         Context context = viewGroup.getContext();
-        rr rrVar = this.f29362c;
+        rr rrVar = this.f29363c;
         if (i10 != 1) {
             if (i10 != 2) {
                 if (i10 != 3) {
-                    boolean z10 = rrVar.f29993b0;
+                    boolean z10 = rrVar.f29994b0;
                     LinearLayout linearLayout = new LinearLayout(context);
                     linearLayout.setOrientation(1);
                     ?? imageView = new ImageView(context);

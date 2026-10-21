@@ -41,7 +41,7 @@ public final class oh1 implements org.telegram.ui.ActionBar.a2, vx {
         ph1 ph1Var = this.f39900a;
         WallpapersListActivity wallpapersListActivity = ph1Var.f40238a;
         Activity parentActivity = wallpapersListActivity.getParentActivity();
-        LongSparseArray longSparseArray = wallpapersListActivity.f35222i0;
+        LongSparseArray longSparseArray = wallpapersListActivity.f35223i0;
         org.telegram.ui.ActionBar.b2 b2Var2 = new org.telegram.ui.ActionBar.b2(parentActivity, 3, null);
         wallpapersListActivity.P = b2Var2;
         b2Var2.f20665g0 = false;
@@ -55,8 +55,8 @@ public final class oh1 implements org.telegram.ui.ActionBar.a2, vx {
                 TLRPC.WallPaper wallPaper = sh1Var.f41480l;
                 if (wallPaper != null && wallPaper.f20428id < 0) {
                     wallpapersListActivity.getMessagesStorage().deleteWallpaper(sh1Var.f41480l.f20428id);
-                    wallpapersListActivity.f35219f0.remove(sh1Var);
-                    wallpapersListActivity.f35216d0.remove(sh1Var.a());
+                    wallpapersListActivity.f35220f0.remove(sh1Var);
+                    wallpapersListActivity.f35217d0.remove(sh1Var.a());
                 } else {
                     valueAt = wallPaper;
                 }
@@ -118,7 +118,7 @@ public final class oh1 implements org.telegram.ui.ActionBar.a2, vx {
         StringBuilder sb2 = new StringBuilder();
         int i18 = 0;
         while (true) {
-            longSparseArray = wallpapersListActivity.f35222i0;
+            longSparseArray = wallpapersListActivity.f35223i0;
             if (i18 >= longSparseArray.size()) {
                 break;
             }

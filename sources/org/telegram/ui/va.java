@@ -21,7 +21,7 @@ public final class va implements MessagesStorage.IntCallback {
                 ((vb) obj).U0(true);
                 return;
             case 1:
-                qn qnVar = ((cn) obj).f36010a;
+                qn qnVar = ((cn) obj).f36011a;
                 if (i10 > 0 && qnVar.getParentActivity() != null && qnVar.fragmentView != null) {
                     org.telegram.ui.Components.xc.a0(qnVar).m(org.telegram.ui.Components.wc.I, i10, 0, 0, qnVar.f40673ea).j();
                     return;
@@ -32,7 +32,7 @@ public final class va implements MessagesStorage.IntCallback {
                 return;
             case 3:
                 PhotoViewer photoViewer = (PhotoViewer) obj;
-                if (photoViewer.f33457y != null && (bu0Var = photoViewer.f33278e0) != null && i10 > 0) {
+                if (photoViewer.f33458y != null && (bu0Var = photoViewer.f33279e0) != null && i10 > 0) {
                     org.telegram.ui.Components.xc.F(bu0Var, true).j();
                     return;
                 }
@@ -48,7 +48,7 @@ public final class va implements MessagesStorage.IntCallback {
                     profileActivity.finishFragment();
                     return;
                 }
-                profileActivity.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.peerSettingsDidLoad, Long.valueOf(profileActivity.f33619f1));
+                profileActivity.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.peerSettingsDidLoad, Long.valueOf(profileActivity.f33620f1));
                 return;
             default:
                 re1 re1Var = ((wd1) obj).f42543a;

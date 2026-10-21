@@ -109,22 +109,22 @@ public final class e5 implements Utilities.CallbackReturn {
                                     e0 e0Var2 = e0Var;
                                     y yVar = new y(e0Var2.getContext(), d6Var);
                                     TL_aicompose.TL_aiComposeTone tL_aiComposeTone2 = tL_aiComposeTone;
-                                    yVar.f32518j0 = tL_aiComposeTone2;
-                                    yVar.f32516h0 = Long.valueOf(tL_aiComposeTone2.emoji_id);
+                                    yVar.f32519j0 = tL_aiComposeTone2;
+                                    yVar.f32517h0 = Long.valueOf(tL_aiComposeTone2.emoji_id);
                                     yVar.Y();
-                                    yVar.f32509a0.setText(yVar.f32518j0.title);
-                                    yVar.f32510b0.setText(yVar.f32518j0.prompt);
-                                    if (yVar.f32518j0.author_id != 0) {
+                                    yVar.f32510a0.setText(yVar.f32519j0.title);
+                                    yVar.f32511b0.setText(yVar.f32519j0.prompt);
+                                    if (yVar.f32519j0.author_id != 0) {
                                         z10 = true;
                                     } else {
                                         z10 = false;
                                     }
-                                    yVar.f32512d0.a(z10, false);
+                                    yVar.f32513d0.a(z10, false);
                                     yVar.e.setTitle(LocaleController.getString(R.string.AIEditorEditStyle));
-                                    yVar.f32515g0.setText(LocaleController.getString(R.string.AIEditorStyleEdit));
+                                    yVar.f32516g0.setText(LocaleController.getString(R.string.AIEditorStyleEdit));
                                     yVar.X();
                                     yVar.m0.N(false);
-                                    yVar.f32520l0 = new e(e0Var2, 2);
+                                    yVar.f32521l0 = new e(e0Var2, 2);
                                     yVar.show();
                                     return;
                                 default:
@@ -151,22 +151,22 @@ public final class e5 implements Utilities.CallbackReturn {
                                     e0 e0Var2 = e0Var;
                                     y yVar = new y(e0Var2.getContext(), d6Var);
                                     TL_aicompose.TL_aiComposeTone tL_aiComposeTone2 = tL_aiComposeTone;
-                                    yVar.f32518j0 = tL_aiComposeTone2;
-                                    yVar.f32516h0 = Long.valueOf(tL_aiComposeTone2.emoji_id);
+                                    yVar.f32519j0 = tL_aiComposeTone2;
+                                    yVar.f32517h0 = Long.valueOf(tL_aiComposeTone2.emoji_id);
                                     yVar.Y();
-                                    yVar.f32509a0.setText(yVar.f32518j0.title);
-                                    yVar.f32510b0.setText(yVar.f32518j0.prompt);
-                                    if (yVar.f32518j0.author_id != 0) {
+                                    yVar.f32510a0.setText(yVar.f32519j0.title);
+                                    yVar.f32511b0.setText(yVar.f32519j0.prompt);
+                                    if (yVar.f32519j0.author_id != 0) {
                                         z10 = true;
                                     } else {
                                         z10 = false;
                                     }
-                                    yVar.f32512d0.a(z10, false);
+                                    yVar.f32513d0.a(z10, false);
                                     yVar.e.setTitle(LocaleController.getString(R.string.AIEditorEditStyle));
-                                    yVar.f32515g0.setText(LocaleController.getString(R.string.AIEditorStyleEdit));
+                                    yVar.f32516g0.setText(LocaleController.getString(R.string.AIEditorStyleEdit));
                                     yVar.X();
                                     yVar.m0.N(false);
-                                    yVar.f32520l0 = new e(e0Var2, 2);
+                                    yVar.f32521l0 = new e(e0Var2, 2);
                                     yVar.show();
                                     return;
                                 default:

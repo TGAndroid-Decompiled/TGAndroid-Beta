@@ -37,7 +37,7 @@ public final class v2 extends HorizontalScrollView {
         b70 b70Var = this.f42097a;
         if (b70Var.d != null) {
             b70Var.d = null;
-            b70Var.f35524f = null;
+            b70Var.f35525f = null;
         }
         this.f42098b.a();
         org.telegram.ui.Cells.n9 n9Var = ((l4) b70Var).O0;

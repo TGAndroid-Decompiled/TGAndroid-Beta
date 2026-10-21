@@ -53,16 +53,16 @@ public final class g1 extends c10 {
                 u1 u1Var = (u1) this.f22283f;
                 f1 f1Var = u1Var.G5;
                 if (u1Var.f23568y7.isMusic()) {
-                    f7 = f1Var.f32991b;
-                    i10 = f1Var.f32993f;
+                    f7 = f1Var.f32992b;
+                    i10 = f1Var.f32994f;
                     i11 = zo0.E;
                 } else if (u1Var.f23568y7.isVoice()) {
                     if (u1Var.F5) {
                         gp0 gp0Var = u1Var.H5;
                         return gp0Var.f26626a / gp0Var.f26630g;
                     }
-                    f7 = f1Var.f32991b;
-                    i10 = f1Var.f32993f;
+                    f7 = f1Var.f32992b;
+                    i10 = f1Var.f32994f;
                     i11 = zo0.E;
                 } else if (u1Var.f23568y7.isRoundVideo()) {
                     return u1Var.f23568y7.audioProgress;

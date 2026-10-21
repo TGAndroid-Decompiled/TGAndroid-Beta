@@ -23,27 +23,27 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 public final class x01 extends LinearLayout {
-    public final int f32288a;
-    public final long f32289b;
-    public final org.telegram.ui.ActionBar.d6 f32290c;
+    public final int f32289a;
+    public final long f32290b;
+    public final org.telegram.ui.ActionBar.d6 f32291c;
     public final av0 d;
     public final h9 e;
-    public final w9 f32291f;
+    public final w9 f32292f;
     public final org.telegram.ui.Cells.c6 h;
-    public final q6 f32292n;
-    public MessageObject f32293r;
-    public boolean f32294s;
+    public final q6 f32293n;
+    public MessageObject f32294r;
+    public boolean f32295s;
     public boolean v;
-    public Utilities.Callback f32295w;
-    public boolean f32296x;
-    public float f32297y;
+    public Utilities.Callback f32296w;
+    public boolean f32297x;
+    public float f32298y;
 
     public x01(int i10, long j10, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
-        this.f32297y = -6.0f;
-        this.f32288a = i10;
-        this.f32289b = j10;
-        this.f32290c = d6Var;
+        this.f32298y = -6.0f;
+        this.f32289a = i10;
+        this.f32290b = j10;
+        this.f32291c = d6Var;
         setOrientation(1);
         org.telegram.ui.y8 y8Var = new org.telegram.ui.y8(this, context, 2);
         y8Var.V(ei.r6.e(null, i10, j10, org.telegram.ui.ActionBar.h6.I.q()));
@@ -52,7 +52,7 @@ public final class x01 extends LinearLayout {
         y8Var.addView(av0Var, w7.z5.d(-1, -2.0f, 87, 0.0f, 12.0f, 0.0f, 12.0f));
         this.e = new h9((org.telegram.ui.ActionBar.d6) null);
         w9 w9Var = new w9(context);
-        this.f32291f = w9Var;
+        this.f32292f = w9Var;
         w9Var.setRoundRadius(AndroidUtilities.dp(21.0f));
         y8Var.addView(w9Var, w7.z5.d(42, 42.0f, 83, 8.0f, 0.0f, 0.0f, 12.0f));
         addView(y8Var, w7.z5.q(-1, -2, 7));
@@ -70,8 +70,8 @@ public final class x01 extends LinearLayout {
         w7.b6.a(imageView);
         imageView.setOnClickListener(new u80(textView, 19));
         q6 q6Var = new q6(context, false, true, false);
-        this.f32292n = q6Var;
-        q6Var.f29481n = false;
+        this.f32293n = q6Var;
+        q6Var.f29482n = false;
         q6Var.setTypeface(AndroidUtilities.bold());
         q6Var.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21228q7, d6Var));
         q6Var.setTextSize(AndroidUtilities.dp(14.0f));
@@ -381,23 +381,23 @@ public final class x01 extends LinearLayout {
         boolean z13;
         int i10;
         TLRPC.TL_message tL_message = new TLRPC.TL_message();
-        int i11 = this.f32288a;
+        int i11 = this.f32289a;
         tL_message.from_id = MessagesController.getInstance(i11).getPeer(user.f20423id);
         MessagesController messagesController = MessagesController.getInstance(i11);
-        long j10 = this.f32289b;
+        long j10 = this.f32290b;
         tL_message.peer_id = messagesController.getPeer(j10);
         tL_message.message = "";
         tL_message.date = ConnectionsManager.getInstance(i11).getCurrentTime();
         tL_message.out = false;
-        this.f32294s = z10;
+        this.f32295s = z10;
         this.v = z11;
         MessageObject messageObject = new MessageObject(i11, tL_message, true, false);
-        this.f32293r = messageObject;
+        this.f32294r = messageObject;
         messageObject.forceAvatar = true;
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("_\n_  ");
         spannableStringBuilder.setSpan(new w01((int) Math.min(AndroidUtilities.displaySize.x * 0.5f, AndroidUtilities.dp(200.0f))), 0, 1, 33);
         spannableStringBuilder.setSpan(new w01((int) Math.min(AndroidUtilities.displaySize.x * 0.44f, AndroidUtilities.dp(160.0f))), 2, 3, 33);
-        this.f32293r.messageText = spannableStringBuilder;
+        this.f32294r.messageText = spannableStringBuilder;
         TLRPC.Chat chat = MessagesController.getInstance(i11).getChat(Long.valueOf(-j10));
         if (chat != null) {
             z12 = true;
@@ -412,19 +412,19 @@ public final class x01 extends LinearLayout {
             z13 = false;
         }
         av0Var.S7 = z13;
-        this.f32293r.generateLayout(null);
-        av0Var.X3(this.f32293r, null, false, false, false, false);
+        this.f32294r.generateLayout(null);
+        av0Var.X3(this.f32294r, null, false, false, false, false);
         h9 h9Var = this.e;
         h9Var.r(user);
-        this.f32291f.e(user, h9Var);
-        this.f32295w = callback;
-        this.f32296x = true;
+        this.f32292f.e(user, h9Var);
+        this.f32296w = callback;
+        this.f32297x = true;
         if (TextUtils.isEmpty(str) && !z10) {
             i10 = R.string.MemberTagHintAdd;
         } else {
             i10 = R.string.MemberTagHintEdit;
         }
         this.h.n(str, LocaleController.getString(i10), false);
-        this.f32296x = false;
+        this.f32297x = false;
     }
 }

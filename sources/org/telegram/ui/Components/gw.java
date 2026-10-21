@@ -97,7 +97,7 @@ public class gw extends ViewGroup {
     public final void b() {
         ci.g3 g3Var;
         r5 r5Var = this.f26680w;
-        if (r5Var != null && (g3Var = r5Var.f29837k) != null) {
+        if (r5Var != null && (g3Var = r5Var.f29838k) != null) {
             if (g3Var.getLottieAnimation() != null) {
                 g3Var.getLottieAnimation().M(0);
                 g3Var.getLottieAnimation().stop();
@@ -223,7 +223,7 @@ public class gw extends ViewGroup {
                 c1Var.setColor(this.J.Q);
                 return;
             }
-            ci.g3 g3Var = ((r5) getDrawable()).f29837k;
+            ci.g3 g3Var = ((r5) getDrawable()).f29838k;
             if (g3Var != null) {
                 c1Var.setImageReceiver(g3Var);
                 c1Var.invalidate();
@@ -383,7 +383,7 @@ public class gw extends ViewGroup {
     public final boolean performClick() {
         ci.g3 g3Var;
         r5 r5Var = this.f26680w;
-        if (r5Var != null && (g3Var = r5Var.f29837k) != null) {
+        if (r5Var != null && (g3Var = r5Var.f29838k) != null) {
             if (g3Var.getAnimation() != null) {
                 g3Var.getAnimation().y(0L, true, false);
             }
@@ -492,7 +492,7 @@ public class gw extends ViewGroup {
         }
         w9 w9Var = new w9(context);
         this.d = w9Var;
-        w9Var.f31999w = false;
+        w9Var.f32000w = false;
         w9Var.setImageDrawable(context.getResources().getDrawable(i10).mutate());
         d();
         addView(w9Var);
@@ -507,7 +507,7 @@ public class gw extends ViewGroup {
         this.f26677n = false;
         dw dwVar = new dw(this, context);
         this.d = dwVar;
-        dwVar.f31999w = false;
+        dwVar.f32000w = false;
         this.f26679s = document;
         this.f26675c = true;
         dwVar.setColorFilter(kwVar.getEmojiColorFilter());
@@ -532,7 +532,7 @@ public class gw extends ViewGroup {
         this.f26677n = false;
         ci.k4 k4Var = new ci.k4(this, context, 8);
         this.d = k4Var;
-        k4Var.f31999w = false;
+        k4Var.f32000w = false;
         this.f26678r = Long.valueOf(j10);
         this.f26675c = true;
         k4Var.setColorFilter(kwVar.getEmojiColorFilter());

@@ -12,44 +12,44 @@ import org.telegram.ui.cn;
 import org.telegram.ui.qn;
 import org.telegram.ui.vm0;
 public final class jk implements org.telegram.ui.ActionBar.a2, e2.j {
-    public final int f18723a = 3;
-    public final boolean f18724b;
-    public final Object f18725c;
+    public final int f18721a = 3;
+    public final boolean f18722b;
+    public final Object f18723c;
     public final Object d;
     public final Object e;
-    public final Object f18726f;
+    public final Object f18724f;
 
     public jk(a5.a aVar, u2.u uVar, u2.c0 c0Var, IOException iOException, boolean z10) {
-        this.f18725c = aVar;
+        this.f18723c = aVar;
         this.d = uVar;
         this.e = c0Var;
-        this.f18726f = iOException;
-        this.f18724b = z10;
+        this.f18724f = iOException;
+        this.f18722b = z10;
     }
 
     @Override
     public void accept(Object obj) {
-        a5.a aVar = (a5.a) this.f18725c;
-        ((u2.l0) obj).g(aVar.f281b, (u2.g0) aVar.f282c, (u2.u) this.d, (u2.c0) this.e, (IOException) this.f18726f, this.f18724b);
+        a5.a aVar = (a5.a) this.f18723c;
+        ((u2.l0) obj).g(aVar.f281b, (u2.g0) aVar.f282c, (u2.u) this.d, (u2.c0) this.e, (IOException) this.f18724f, this.f18722b);
     }
 
     @Override
     public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
         int i11;
-        int i12 = this.f18723a;
-        boolean z10 = this.f18724b;
-        Object obj = this.f18726f;
+        int i12 = this.f18721a;
+        boolean z10 = this.f18722b;
+        Object obj = this.f18724f;
         Object obj2 = this.e;
         Object obj3 = this.d;
-        Object obj4 = this.f18725c;
+        Object obj4 = this.f18723c;
         switch (i12) {
             case 0:
-                ((SendMessagesHelper) obj4).lambda$sendCallback$44(this.f18724b, (MessageObject) obj3, (TL_keyboard.KeyboardButtonProto) obj2, (qn) obj, b2Var, i10);
+                ((SendMessagesHelper) obj4).lambda$sendCallback$44(this.f18722b, (MessageObject) obj3, (TL_keyboard.KeyboardButtonProto) obj2, (qn) obj, b2Var, i10);
                 return;
             case 1:
                 cn cnVar = (cn) obj4;
                 TL_account.contentSettings contentsettings = (TL_account.contentSettings) obj;
-                qn qnVar = cnVar.f36010a;
+                qn qnVar = cnVar.f36011a;
                 org.telegram.ui.ActionBar.j3 j3Var = new org.telegram.ui.ActionBar.j3(17, cnVar, (org.telegram.ui.Cells.u1) obj3);
                 if (((boolean[]) obj2)[0]) {
                     if (!z10 && (contentsettings == null || !contentsettings.sensitive_can_change)) {
@@ -91,26 +91,26 @@ public final class jk implements org.telegram.ui.ActionBar.a2, e2.j {
     }
 
     public jk(SendMessagesHelper sendMessagesHelper, boolean z10, MessageObject messageObject, TL_keyboard.KeyboardButtonProto keyboardButtonProto, qn qnVar) {
-        this.f18725c = sendMessagesHelper;
-        this.f18724b = z10;
+        this.f18723c = sendMessagesHelper;
+        this.f18722b = z10;
         this.d = messageObject;
         this.e = keyboardButtonProto;
-        this.f18726f = qnVar;
+        this.f18724f = qnVar;
     }
 
     public jk(cn cnVar, org.telegram.ui.Cells.u1 u1Var, boolean[] zArr, boolean z10, TL_account.contentSettings contentsettings) {
-        this.f18725c = cnVar;
+        this.f18723c = cnVar;
         this.d = u1Var;
         this.e = zArr;
-        this.f18724b = z10;
-        this.f18726f = contentsettings;
+        this.f18722b = z10;
+        this.f18724f = contentsettings;
     }
 
     public jk(boolean z10, od0 od0Var, od0 od0Var2, od0 od0Var3, hg.b2 b2Var) {
-        this.f18724b = z10;
-        this.f18725c = od0Var;
+        this.f18722b = z10;
+        this.f18723c = od0Var;
         this.d = od0Var2;
         this.e = od0Var3;
-        this.f18726f = b2Var;
+        this.f18724f = b2Var;
     }
 }

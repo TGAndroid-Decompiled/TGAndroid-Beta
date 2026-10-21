@@ -222,20 +222,20 @@ public abstract class h0 extends im0 {
             if (((TLRPC.User) obj).bot) {
                 return cyVar.A2;
             }
-            return cyVar.f36199z2;
+            return cyVar.f36200z2;
         } else if (!(obj instanceof TLRPC.Chat)) {
             return false;
         } else {
             TLRPC.Chat chat = (TLRPC.Chat) obj;
             if (ChatObject.isChannel(chat)) {
-                return cyVar.f36196y2;
+                return cyVar.f36197y2;
             }
             if (ChatObject.isMegagroup(chat)) {
-                if (cyVar.f36179v2 || cyVar.f36185w2) {
+                if (cyVar.f36180v2 || cyVar.f36186w2) {
                     return true;
                 }
                 return false;
-            } else if (cyVar.f36179v2 || cyVar.f36191x2) {
+            } else if (cyVar.f36180v2 || cyVar.f36192x2) {
                 return true;
             } else {
                 return false;
@@ -502,7 +502,7 @@ public abstract class h0 extends im0 {
 
     public final boolean M() {
         if (!this.N && !MediaDataController.getInstance(this.f11894s0).hints.isEmpty()) {
-            if (this.f11881h0 != 14 || this.f11892r0.f36199z2) {
+            if (this.f11881h0 != 14 || this.f11892r0.f36200z2) {
                 return true;
             }
             return false;

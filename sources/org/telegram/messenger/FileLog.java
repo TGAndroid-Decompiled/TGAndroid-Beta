@@ -599,7 +599,7 @@ public class FileLog {
             if (dispatchQueue == null) {
                 atomicInteger.decrementAndGet();
             } else {
-                dispatchQueue.postRunnable(new i3(0, runnable));
+                dispatchQueue.postRunnable(new j3(0, runnable));
             }
         } catch (Throwable th2) {
             pendingProtocolDumps.decrementAndGet();
@@ -661,7 +661,7 @@ public class FileLog {
             ensureInitied();
             th2.printStackTrace();
             if (getInstance().streamWriter != null) {
-                getInstance().logQueue.postRunnable(new j3(1, th2));
+                getInstance().logQueue.postRunnable(new k3(1, th2));
                 return;
             }
             th2.printStackTrace();
@@ -707,7 +707,7 @@ public class FileLog {
             ensureInitied();
             th2.printStackTrace();
             if (getInstance().streamWriter != null) {
-                getInstance().logQueue.postRunnable(new j3(0, th2));
+                getInstance().logQueue.postRunnable(new k3(0, th2));
             } else {
                 th2.printStackTrace();
             }

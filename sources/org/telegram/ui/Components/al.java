@@ -123,7 +123,7 @@ public final class al extends li implements NotificationCenter.NotificationCente
         frameLayout.setClipChildren(false);
         frameLayout.setClipToPadding(false);
         addView(frameLayout, w7.z5.e(-1, -1, 55));
-        org.telegram.ui.ActionBar.u0 a2 = this.f28173b.f30529a1.n().a(31, R.drawable.ic_ab_other);
+        org.telegram.ui.ActionBar.u0 a2 = this.f28173b.f30530a1.n().a(31, R.drawable.ic_ab_other);
         this.f24660w = a2;
         a2.setContentDescription(LocaleController.getString(R.string.AccDescrMoreOptions));
         a2.e(2, R.drawable.msg_addbot, LocaleController.getString(R.string.WalletDepositFunds));
@@ -149,35 +149,35 @@ public final class al extends li implements NotificationCenter.NotificationCente
         linearLayout.setClipChildren(false);
         linearLayout.setClipToPadding(false);
         linearLayout.setOnClickListener(new View.OnClickListener(this) {
-            public final al f29324b;
+            public final al f29325b;
 
             {
-                this.f29324b = this;
+                this.f29325b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        this.f29324b.c0();
+                        this.f29325b.c0();
                         return;
                     case 1:
-                        this.f29324b.Z();
+                        this.f29325b.Z();
                         return;
                     case 2:
-                        al.N(this.f29324b);
+                        al.N(this.f29325b);
                         return;
                     case 3:
-                        this.f29324b.c0();
+                        this.f29325b.c0();
                         return;
                     case 4:
-                        this.f29324b.c0();
+                        this.f29325b.c0();
                         return;
                     case 5:
-                        this.f29324b.c0();
+                        this.f29325b.c0();
                         return;
                     default:
-                        al.P(this.f29324b);
+                        al.P(this.f29325b);
                         return;
                 }
             }
@@ -186,35 +186,35 @@ public final class al extends li implements NotificationCenter.NotificationCente
         org.telegram.ui.Wallet.h9 h9Var = new org.telegram.ui.Wallet.h9(context, d6Var);
         this.O = h9Var;
         h9Var.setOnClickListener(new View.OnClickListener(this) {
-            public final al f29324b;
+            public final al f29325b;
 
             {
-                this.f29324b = this;
+                this.f29325b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        this.f29324b.c0();
+                        this.f29325b.c0();
                         return;
                     case 1:
-                        this.f29324b.Z();
+                        this.f29325b.Z();
                         return;
                     case 2:
-                        al.N(this.f29324b);
+                        al.N(this.f29325b);
                         return;
                     case 3:
-                        this.f29324b.c0();
+                        this.f29325b.c0();
                         return;
                     case 4:
-                        this.f29324b.c0();
+                        this.f29325b.c0();
                         return;
                     case 5:
-                        this.f29324b.c0();
+                        this.f29325b.c0();
                         return;
                     default:
-                        al.P(this.f29324b);
+                        al.P(this.f29325b);
                         return;
                 }
             }
@@ -226,35 +226,35 @@ public final class al extends li implements NotificationCenter.NotificationCente
         editText.setImeOptions(33554438);
         editText.setOnTouchListener(new rk(this, 0));
         editText.setOnClickListener(new View.OnClickListener(this) {
-            public final al f29324b;
+            public final al f29325b;
 
             {
-                this.f29324b = this;
+                this.f29325b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        this.f29324b.c0();
+                        this.f29325b.c0();
                         return;
                     case 1:
-                        this.f29324b.Z();
+                        this.f29325b.Z();
                         return;
                     case 2:
-                        al.N(this.f29324b);
+                        al.N(this.f29325b);
                         return;
                     case 3:
-                        this.f29324b.c0();
+                        this.f29325b.c0();
                         return;
                     case 4:
-                        this.f29324b.c0();
+                        this.f29325b.c0();
                         return;
                     case 5:
-                        this.f29324b.c0();
+                        this.f29325b.c0();
                         return;
                     default:
-                        al.P(this.f29324b);
+                        al.P(this.f29325b);
                         return;
                 }
             }
@@ -273,7 +273,7 @@ public final class al extends li implements NotificationCenter.NotificationCente
         spannableString2.setSpan(yqVar2, 0, spannableString2.length(), 33);
         q6 q6Var = new q6(context, false, true, true, true, true);
         this.Q = q6Var;
-        q6Var.f29479c.m(0.35f, 320L, 3.5f, bs.h);
+        q6Var.f29480c.m(0.35f, 320L, 3.5f, bs.h);
         q6Var.setScaleProperty(0.35f);
         q6Var.setText(U(org.telegram.ui.Wallet.m0.w(i10), 0L));
         int w02 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20990d6, this.f28172a);
@@ -288,35 +288,35 @@ public final class al extends li implements NotificationCenter.NotificationCente
         linearLayout.addView(q6Var, w7.z5.t(-2, 28, 49, 0, 8, 0, 0));
         w7.b6.a(q6Var);
         q6Var.setOnClickListener(new View.OnClickListener(this) {
-            public final al f29324b;
+            public final al f29325b;
 
             {
-                this.f29324b = this;
+                this.f29325b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        this.f29324b.c0();
+                        this.f29325b.c0();
                         return;
                     case 1:
-                        this.f29324b.Z();
+                        this.f29325b.Z();
                         return;
                     case 2:
-                        al.N(this.f29324b);
+                        al.N(this.f29325b);
                         return;
                     case 3:
-                        this.f29324b.c0();
+                        this.f29325b.c0();
                         return;
                     case 4:
-                        this.f29324b.c0();
+                        this.f29325b.c0();
                         return;
                     case 5:
-                        this.f29324b.c0();
+                        this.f29325b.c0();
                         return;
                     default:
-                        al.P(this.f29324b);
+                        al.P(this.f29325b);
                         return;
                 }
             }
@@ -338,35 +338,35 @@ public final class al extends li implements NotificationCenter.NotificationCente
         frameLayout3.addView(textView, w7.z5.d(-2, 28.0f, 49, 0.0f, 8.0f, 0.0f, 0.0f));
         w7.b6.a(textView);
         textView.setOnClickListener(new View.OnClickListener(this) {
-            public final al f29324b;
+            public final al f29325b;
 
             {
-                this.f29324b = this;
+                this.f29325b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        this.f29324b.c0();
+                        this.f29325b.c0();
                         return;
                     case 1:
-                        this.f29324b.Z();
+                        this.f29325b.Z();
                         return;
                     case 2:
-                        al.N(this.f29324b);
+                        al.N(this.f29325b);
                         return;
                     case 3:
-                        this.f29324b.c0();
+                        this.f29325b.c0();
                         return;
                     case 4:
-                        this.f29324b.c0();
+                        this.f29325b.c0();
                         return;
                     case 5:
-                        this.f29324b.c0();
+                        this.f29325b.c0();
                         return;
                     default:
-                        al.P(this.f29324b);
+                        al.P(this.f29325b);
                         return;
                 }
             }
@@ -401,35 +401,35 @@ public final class al extends li implements NotificationCenter.NotificationCente
         textView2.setMaxLines(4);
         linearLayout2.addView(textView2, w7.z5.t(-2, -2, 49, 32, 12, 32, 0));
         textView2.setOnClickListener(new View.OnClickListener(this) {
-            public final al f29324b;
+            public final al f29325b;
 
             {
-                this.f29324b = this;
+                this.f29325b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        this.f29324b.c0();
+                        this.f29325b.c0();
                         return;
                     case 1:
-                        this.f29324b.Z();
+                        this.f29325b.Z();
                         return;
                     case 2:
-                        al.N(this.f29324b);
+                        al.N(this.f29325b);
                         return;
                     case 3:
-                        this.f29324b.c0();
+                        this.f29325b.c0();
                         return;
                     case 4:
-                        this.f29324b.c0();
+                        this.f29325b.c0();
                         return;
                     case 5:
-                        this.f29324b.c0();
+                        this.f29325b.c0();
                         return;
                     default:
-                        al.P(this.f29324b);
+                        al.P(this.f29325b);
                         return;
                 }
             }
@@ -475,35 +475,35 @@ public final class al extends li implements NotificationCenter.NotificationCente
         f7.setText(LocaleController.getString(R.string.WalletSendGrams));
         f7.setEnabled(false);
         f7.setOnClickListener(new View.OnClickListener(this) {
-            public final al f29324b;
+            public final al f29325b;
 
             {
-                this.f29324b = this;
+                this.f29325b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        this.f29324b.c0();
+                        this.f29325b.c0();
                         return;
                     case 1:
-                        this.f29324b.Z();
+                        this.f29325b.Z();
                         return;
                     case 2:
-                        al.N(this.f29324b);
+                        al.N(this.f29325b);
                         return;
                     case 3:
-                        this.f29324b.c0();
+                        this.f29325b.c0();
                         return;
                     case 4:
-                        this.f29324b.c0();
+                        this.f29325b.c0();
                         return;
                     case 5:
-                        this.f29324b.c0();
+                        this.f29325b.c0();
                         return;
                     default:
-                        al.P(this.f29324b);
+                        al.P(this.f29325b);
                         return;
                 }
             }
@@ -751,7 +751,7 @@ public final class al extends li implements NotificationCenter.NotificationCente
         int i12;
         int dp2;
         ti tiVar = this.f28173b;
-        if (tiVar.f30592u1.R() > AndroidUtilities.dp(20.0f)) {
+        if (tiVar.f30593u1.R() > AndroidUtilities.dp(20.0f)) {
             z10 = true;
         } else {
             z10 = false;
@@ -836,13 +836,13 @@ public final class al extends li implements NotificationCenter.NotificationCente
         k8Var.setAlpha(1.0f);
         this.A0 = false;
         ti tiVar = this.f28173b;
-        tiVar.f30529a1.setTitle(LocaleController.getString(R.string.WalletSendMoneyTo));
-        tiVar.f30529a1.setDrawGlassTitle(false);
+        tiVar.f30530a1.setTitle(LocaleController.getString(R.string.WalletSendMoneyTo));
+        tiVar.f30530a1.setDrawGlassTitle(false);
         this.f24660w.setVisibility(0);
         editTextBoldCursor.clearFocus();
         Y();
         org.telegram.ui.Wallet.h9 h9Var = this.O;
-        if (h9Var.getDiamondView().f34523f == null) {
+        if (h9Var.getDiamondView().f34524f == null) {
             f7 = 1.0f;
         }
         this.f24646k0 = f7;
@@ -916,7 +916,7 @@ public final class al extends li implements NotificationCenter.NotificationCente
         }
         int[] iArr = this.f24658u0;
         view.getLocationOnScreen(iArr);
-        return ((f7 + iArr[1]) + this.f24661w0) - this.f28173b.f30606y0;
+        return ((f7 + iArr[1]) + this.f24661w0) - this.f28173b.f30607y0;
     }
 
     public final float X(View view) {
@@ -999,7 +999,7 @@ public final class al extends li implements NotificationCenter.NotificationCente
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        this.f28173b.f30529a1.getAlpha();
+        this.f28173b.f30530a1.getAlpha();
         j0();
         if (this.f24644i0 != null || this.f24645j0 < 1.0f) {
             k0();
@@ -1286,10 +1286,10 @@ public final class al extends li implements NotificationCenter.NotificationCente
                     f11 = 0.8f;
                 }
                 ViewPropertyAnimator duration = scaleX.scaleY(f11).withEndAction(new Runnable(this) {
-                    public final al f32143b;
+                    public final al f32144b;
 
                     {
-                        this.f32143b = this;
+                        this.f32144b = this;
                     }
 
                     @Override
@@ -1298,7 +1298,7 @@ public final class al extends li implements NotificationCenter.NotificationCente
                         int i11;
                         switch (r3) {
                             case 0:
-                                LinearLayout linearLayout2 = this.f32143b.L;
+                                LinearLayout linearLayout2 = this.f32144b.L;
                                 if (z10) {
                                     i10 = 0;
                                 } else {
@@ -1307,7 +1307,7 @@ public final class al extends li implements NotificationCenter.NotificationCente
                                 linearLayout2.setVisibility(i10);
                                 return;
                             default:
-                                TextView textView2 = this.f32143b.N;
+                                TextView textView2 = this.f32144b.N;
                                 if (!z10) {
                                     i11 = 0;
                                 } else {
@@ -1335,10 +1335,10 @@ public final class al extends li implements NotificationCenter.NotificationCente
                     f14 = 0.8f;
                 }
                 scaleX2.scaleY(f14).withEndAction(new Runnable(this) {
-                    public final al f32143b;
+                    public final al f32144b;
 
                     {
-                        this.f32143b = this;
+                        this.f32144b = this;
                     }
 
                     @Override
@@ -1347,7 +1347,7 @@ public final class al extends li implements NotificationCenter.NotificationCente
                         int i11;
                         switch (r3) {
                             case 0:
-                                LinearLayout linearLayout2 = this.f32143b.L;
+                                LinearLayout linearLayout2 = this.f32144b.L;
                                 if (z10) {
                                     i10 = 0;
                                 } else {
@@ -1356,7 +1356,7 @@ public final class al extends li implements NotificationCenter.NotificationCente
                                 linearLayout2.setVisibility(i10);
                                 return;
                             default:
-                                TextView textView2 = this.f32143b.N;
+                                TextView textView2 = this.f32144b.N;
                                 if (!z10) {
                                     i11 = 0;
                                 } else {
@@ -1373,7 +1373,7 @@ public final class al extends li implements NotificationCenter.NotificationCente
 
     @Override
     public final boolean j() {
-        if (this.f28173b.f30592u1.R() <= AndroidUtilities.dp(20.0f)) {
+        if (this.f28173b.f30593u1.R() <= AndroidUtilities.dp(20.0f)) {
             return false;
         }
         this.J0 = false;
@@ -1526,7 +1526,7 @@ public final class al extends li implements NotificationCenter.NotificationCente
         R();
         org.telegram.ui.Wallet.e6 e6Var = this.N0;
         if (e6Var != null) {
-            AnimatorSet animatorSet = e6Var.f34162m;
+            AnimatorSet animatorSet = e6Var.f34163m;
             if (!e6Var.v) {
                 if (animatorSet.isStarted()) {
                     animatorSet.cancel();
@@ -1538,8 +1538,8 @@ public final class al extends li implements NotificationCenter.NotificationCente
         }
         org.telegram.ui.Wallet.v9 v9Var = this.O0;
         if (v9Var != null) {
-            AnimatorSet animatorSet2 = v9Var.f35038m;
-            if (!v9Var.f35044s) {
+            AnimatorSet animatorSet2 = v9Var.f35039m;
+            if (!v9Var.f35045s) {
                 if (animatorSet2.isStarted()) {
                     animatorSet2.cancel();
                 } else {
@@ -1583,7 +1583,7 @@ public final class al extends li implements NotificationCenter.NotificationCente
             this.f24641f0 = null;
         }
         NotificationCenter.getInstance(this.f24648n).removeObserver(this, NotificationCenter.walletUpdate);
-        this.f28173b.f30529a1.n().removeView(this.f24660w);
+        this.f28173b.f30530a1.n().removeView(this.f24660w);
         AndroidUtilities.hideKeyboard(this.P);
     }
 
@@ -1632,7 +1632,7 @@ public final class al extends li implements NotificationCenter.NotificationCente
             }
             this.I = null;
         }
-        this.f28173b.f30529a1.setDrawGlassTitle(true);
+        this.f28173b.f30530a1.setDrawGlassTitle(true);
         this.I0 = false;
         this.J0 = false;
         ai.v3 v3Var = this.L0;

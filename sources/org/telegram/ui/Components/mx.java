@@ -3,52 +3,52 @@ package org.telegram.ui.Components;
 import android.view.MotionEvent;
 import org.telegram.tgnet.TLRPC;
 public final class mx extends a61 {
-    public final tz f28618b;
+    public final tz f28619b;
 
     public mx(tz tzVar) {
-        this.f28618b = tzVar;
+        this.f28619b = tzVar;
     }
 
     @Override
     public final boolean a() {
-        return this.f28618b.f30775t1.b();
+        return this.f28619b.f30776t1.b();
     }
 
     @Override
     public final String[] b() {
-        return this.f28618b.W0;
+        return this.f28619b.W0;
     }
 
     @Override
     public final boolean c() {
-        return this.f28618b.f30775t1.c();
+        return this.f28619b.f30776t1.c();
     }
 
     @Override
     public final boolean d(t51 t51Var, MotionEvent motionEvent) {
         org.telegram.ui.et q6 = org.telegram.ui.et.q();
-        tz tzVar = this.f28618b;
+        tz tzVar = this.f28619b;
         tzVar.getMeasuredHeight();
-        return q6.r(motionEvent, t51Var, tzVar.f30736g2, tzVar.Z1);
+        return q6.r(motionEvent, t51Var, tzVar.f30737g2, tzVar.Z1);
     }
 
     @Override
     public final boolean e(t51 t51Var, j jVar, MotionEvent motionEvent) {
         org.telegram.ui.et q6 = org.telegram.ui.et.q();
-        tz tzVar = this.f28618b;
+        tz tzVar = this.f28619b;
         tzVar.getMeasuredHeight();
-        return q6.s(motionEvent, t51Var, jVar, tzVar.f30736g2, tzVar.Z1);
+        return q6.s(motionEvent, t51Var, jVar, tzVar.f30737g2, tzVar.Z1);
     }
 
     @Override
     public final void f(TLRPC.Document document, Object obj, boolean z10, int i10) {
-        this.f28618b.f30775t1.m(null, document, null, obj, null, z10, i10);
+        this.f28619b.f30776t1.m(null, document, null, obj, null, z10, i10);
     }
 
     @Override
     public final void g(TLRPC.StickerSetCovered stickerSetCovered, boolean z10) {
-        tz tzVar = this.f28618b;
-        tzVar.f30775t1.r(stickerSetCovered);
+        tz tzVar = this.f28619b;
+        tzVar.f30776t1.r(stickerSetCovered);
         if (z10) {
             tzVar.X(true);
         }
@@ -56,11 +56,11 @@ public final class mx extends a61 {
 
     @Override
     public final void h(TLRPC.StickerSetCovered stickerSetCovered) {
-        this.f28618b.f30775t1.h(stickerSetCovered);
+        this.f28619b.f30776t1.h(stickerSetCovered);
     }
 
     @Override
     public final void i(String[] strArr) {
-        this.f28618b.W0 = strArr;
+        this.f28619b.W0 = strArr;
     }
 }

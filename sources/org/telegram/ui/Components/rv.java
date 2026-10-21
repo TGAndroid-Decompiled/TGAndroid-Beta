@@ -7,14 +7,14 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 public final class rv extends View {
-    public ImageReceiver.BackgroundThreadDrawHolder[] f30020a;
-    public ci.g3 f30021b;
-    public a6 f30022c;
+    public ImageReceiver.BackgroundThreadDrawHolder[] f30021a;
+    public ci.g3 f30022b;
+    public a6 f30023c;
     public ValueAnimator d;
     public float e;
 
     public TLRPC.Document getDocument() {
-        a6 a6Var = this.f30022c;
+        a6 a6Var = this.f30023c;
         if (a6Var != null) {
             TLRPC.Document document = a6Var.document;
             if (document == null) {

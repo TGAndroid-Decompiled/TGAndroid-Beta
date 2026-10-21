@@ -233,10 +233,10 @@ public final class s11 extends org.telegram.ui.ActionBar.n2 {
         this.f41317c.setOrientation(1);
         this.f41316b.addView(this.f41317c, new FrameLayout.LayoutParams(-1, -2));
         View.OnClickListener onClickListener = new View.OnClickListener(this) {
-            public final s11 f39096b;
+            public final s11 f39097b;
 
             {
-                this.f39096b = this;
+                this.f39097b = this;
             }
 
             @Override
@@ -244,10 +244,10 @@ public final class s11 extends org.telegram.ui.ActionBar.n2 {
                 String str;
                 switch (r2) {
                     case 0:
-                        this.f39096b.V(qi.a.e(((Integer) view.getTag()).intValue()), true, null);
+                        this.f39097b.V(qi.a.e(((Integer) view.getTag()).intValue()), true, null);
                         return;
                     default:
-                        s11 s11Var = this.f39096b;
+                        s11 s11Var = this.f39097b;
                         qi.a aVar = s11Var.f41322w;
                         if (aVar != null) {
                             int i12 = aVar.f44748a;
@@ -451,10 +451,10 @@ public final class s11 extends org.telegram.ui.ActionBar.n2 {
         int i17 = org.telegram.ui.ActionBar.h6.q6;
         baVar2.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, i17, false));
         this.f41319n.setOnClickListener(new View.OnClickListener(this) {
-            public final s11 f39096b;
+            public final s11 f39097b;
 
             {
-                this.f39096b = this;
+                this.f39097b = this;
             }
 
             @Override
@@ -462,10 +462,10 @@ public final class s11 extends org.telegram.ui.ActionBar.n2 {
                 String str;
                 switch (r2) {
                     case 0:
-                        this.f39096b.V(qi.a.e(((Integer) view.getTag()).intValue()), true, null);
+                        this.f39097b.V(qi.a.e(((Integer) view.getTag()).intValue()), true, null);
                         return;
                     default:
-                        s11 s11Var = this.f39096b;
+                        s11 s11Var = this.f39097b;
                         qi.a aVar = s11Var.f41322w;
                         if (aVar != null) {
                             int i122 = aVar.f44748a;

@@ -5,9 +5,9 @@ import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import org.telegram.messenger.AndroidUtilities;
 public final class up0 extends hx0 {
-    public boolean f30996a = false;
-    public long f30997b = 0;
-    public boolean f30998c = false;
+    public boolean f30997a = false;
+    public long f30998b = 0;
+    public boolean f30999c = false;
     public float d;
     public final Paint e;
 
@@ -31,13 +31,13 @@ public final class up0 extends hx0 {
 
     @Override
     public final void c(boolean z10) {
-        this.f30996a = z10;
+        this.f30997a = z10;
     }
 
     @Override
     public final void d() {
-        this.f30997b = System.currentTimeMillis();
-        this.f30998c = true;
+        this.f30998b = System.currentTimeMillis();
+        this.f30999c = true;
         invalidateSelf();
     }
 
@@ -61,7 +61,7 @@ public final class up0 extends hx0 {
                 paint2.setAlpha(255);
             }
             float dp = (AndroidUtilities.dp(5.0f) * i10) + (AndroidUtilities.dp(5.0f) * this.d);
-            if (this.f30996a) {
+            if (this.f30997a) {
                 f7 = 3.0f;
             } else {
                 f7 = 4.0f;
@@ -69,7 +69,7 @@ public final class up0 extends hx0 {
             float dp2 = AndroidUtilities.dp(f7);
             float dp3 = dp + AndroidUtilities.dp(4.0f);
             float f12 = 8.0f;
-            if (this.f30996a) {
+            if (this.f30997a) {
                 f10 = 7.0f;
             } else {
                 f10 = 8.0f;
@@ -77,24 +77,24 @@ public final class up0 extends hx0 {
             float dp4 = AndroidUtilities.dp(f10);
             Canvas canvas2 = canvas;
             canvas2.drawLine(dp, dp2, dp3, dp4, paint2);
-            if (this.f30996a) {
+            if (this.f30997a) {
                 f11 = 11.0f;
             } else {
                 f11 = 12.0f;
             }
             float dp5 = AndroidUtilities.dp(f11);
             float dp6 = dp + AndroidUtilities.dp(4.0f);
-            if (this.f30996a) {
+            if (this.f30997a) {
                 f12 = 7.0f;
             }
             canvas2.drawLine(dp, dp5, dp6, AndroidUtilities.dp(f12), paint2);
             i10++;
             canvas = canvas2;
         }
-        if (this.f30998c) {
+        if (this.f30999c) {
             long currentTimeMillis = System.currentTimeMillis();
-            long j10 = currentTimeMillis - this.f30997b;
-            this.f30997b = currentTimeMillis;
+            long j10 = currentTimeMillis - this.f30998b;
+            this.f30998b = currentTimeMillis;
             if (j10 > 50) {
                 j10 = 50;
             }
@@ -113,7 +113,7 @@ public final class up0 extends hx0 {
 
     @Override
     public final void e() {
-        this.f30998c = false;
+        this.f30999c = false;
     }
 
     @Override

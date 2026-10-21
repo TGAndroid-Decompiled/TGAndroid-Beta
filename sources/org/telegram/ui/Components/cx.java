@@ -11,9 +11,9 @@ public final class cx extends g.o {
     @Override
     public final int i(int i10) {
         tz tzVar = this.f25275c;
-        oz ozVar = tzVar.f30795z0;
+        oz ozVar = tzVar.f30796z0;
         s4.g0 adapter = tzVar.D0.getAdapter();
-        kz kzVar = tzVar.f30792y0;
+        kz kzVar = tzVar.f30793y0;
         if (adapter == kzVar) {
             if (i10 == 0) {
                 return kzVar.d;
@@ -22,7 +22,7 @@ public final class cx extends g.o {
                 return kzVar.d;
             }
             return 1;
-        } else if (i10 != ozVar.f29160x && (ozVar.f29157r.get(i10) == null || (ozVar.f29157r.get(i10) instanceof TLRPC.Document))) {
+        } else if (i10 != ozVar.f29161x && (ozVar.f29158r.get(i10) == null || (ozVar.f29158r.get(i10) instanceof TLRPC.Document))) {
             return 1;
         } else {
             return kzVar.d;

@@ -12,16 +12,16 @@ public final class jp0 implements o1.g {
     public final void a(o1.h hVar, float f7, float f10) {
         switch (this.f27613a) {
             case 0:
-                this.f27614b.f30328o.setScaleX(1.0f / f7);
+                this.f27614b.f30329o.setScaleX(1.0f / f7);
                 return;
             case 1:
-                this.f27614b.f30328o.setScaleY(1.0f / f7);
+                this.f27614b.f30329o.setScaleY(1.0f / f7);
                 return;
             case 2:
-                this.f27614b.f30328o.setScaleX(1.0f / f7);
+                this.f27614b.f30329o.setScaleX(1.0f / f7);
                 return;
             default:
-                this.f27614b.f30328o.setScaleY(1.0f / f7);
+                this.f27614b.f30329o.setScaleY(1.0f / f7);
                 return;
         }
     }

@@ -21,7 +21,7 @@ public final class sx extends org.telegram.ui.ActionBar.g5 {
         if (u0Var != null) {
             u0Var.setVisibility(0);
         }
-        if (cyVar.f36137n2 != null) {
+        if (cyVar.f36138n2 != null) {
             cyVar.finishFragment();
             return false;
         }
@@ -54,13 +54,13 @@ public final class sx extends org.telegram.ui.ActionBar.g5 {
                 }
             }
         }
-        cyVar.f36119j2 = false;
-        cyVar.f36124k2 = false;
-        ay ayVar = cyVar.f36091e0[0];
+        cyVar.f36120j2 = false;
+        cyVar.f36125k2 = false;
+        ay ayVar = cyVar.f36092e0[0];
         if (ayVar != null) {
-            xx xxVar = ayVar.f35442a;
+            xx xxVar = ayVar.f35443a;
             if (cyVar.W2 == 0) {
-                b10Var = ayVar.f35449w;
+                b10Var = ayVar.f35450w;
             } else {
                 b10Var = null;
             }
@@ -81,16 +81,16 @@ public final class sx extends org.telegram.ui.ActionBar.g5 {
         org.telegram.ui.Components.po0 po0Var;
         org.telegram.ui.Components.po0 po0Var2;
         cy cyVar = this.f41548r;
-        cyVar.f36119j2 = true;
+        cyVar.f36120j2 = true;
         org.telegram.ui.ActionBar.u0 u0Var = cyVar.D1;
         if (u0Var != null) {
             u0Var.setVisibility(8);
         }
         cyVar.K3();
-        ay ayVar = cyVar.f36091e0[0];
+        ay ayVar = cyVar.f36092e0[0];
         if (ayVar != null) {
-            if (cyVar.f36137n2 != null) {
-                ayVar.f35442a.c1();
+            if (cyVar.f36138n2 != null) {
+                ayVar.f35443a.c1();
                 lx lxVar = cyVar.C0;
                 if (lxVar != null) {
                     ai.u1 u1Var = lxVar.V;
@@ -100,12 +100,12 @@ public final class sx extends org.telegram.ui.ActionBar.g5 {
                     }
                 }
             }
-            if (!cyVar.f36128l2) {
-                ei.x3 x3Var = cyVar.f36145p0;
+            if (!cyVar.f36129l2) {
+                ei.x3 x3Var = cyVar.f36146p0;
                 if (x3Var != null) {
                     x3Var.e(true);
                 }
-                ei.x3 x3Var2 = cyVar.f36150q0;
+                ei.x3 x3Var2 = cyVar.f36151q0;
                 if (x3Var2 != null) {
                     x3Var2.e(true);
                 }
@@ -124,12 +124,12 @@ public final class sx extends org.telegram.ui.ActionBar.g5 {
         NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needCheckSystemBarColors, new Object[0]);
         cyVar.j3();
         lx lxVar2 = cyVar.C0;
-        if (lxVar2 != null && (po0Var2 = lxVar2.f32178b0) != null) {
+        if (lxVar2 != null && (po0Var2 = lxVar2.f32179b0) != null) {
             po0Var2.f11874c = hg.e0.All;
         }
-        if ((lxVar2 != null && (po0Var = lxVar2.f32178b0) != null && po0Var.N()) || cyVar.getMessagesController().getTotalDialogsCount() > 10 || cyVar.f36170t3 || cyVar.K) {
-            cyVar.f36124k2 = true;
-            if (!cyVar.f36153q3) {
+        if ((lxVar2 != null && (po0Var = lxVar2.f32179b0) != null && po0Var.N()) || cyVar.getMessagesController().getTotalDialogsCount() > 10 || cyVar.f36171t3 || cyVar.K) {
+            cyVar.f36125k2 = true;
+            if (!cyVar.f36154q3) {
                 cyVar.M4(true, false, true, false);
             }
         }
@@ -146,16 +146,16 @@ public final class sx extends org.telegram.ui.ActionBar.g5 {
         boolean isEmpty = obj.isEmpty();
         boolean z10 = true;
         cy cyVar = this.f41548r;
-        if (!isEmpty || (((lxVar = cyVar.C0) != null && (po0Var = lxVar.f32178b0) != null && po0Var.N()) || cyVar.f36170t3 || cyVar.K)) {
-            cyVar.f36124k2 = true;
-            if (!cyVar.f36153q3) {
+        if (!isEmpty || (((lxVar = cyVar.C0) != null && (po0Var = lxVar.f32179b0) != null && po0Var.N()) || cyVar.f36171t3 || cyVar.K)) {
+            cyVar.f36125k2 = true;
+            if (!cyVar.f36154q3) {
                 cyVar.M4(true, false, true, false);
             }
         }
         lx lxVar2 = cyVar.C0;
         if (lxVar2 != null) {
             View currentView = lxVar2.getCurrentView();
-            boolean z11 = !lxVar2.f32181e0;
+            boolean z11 = !lxVar2.f32182e0;
             if (!TextUtils.isEmpty(lxVar2.K0)) {
                 z10 = z11;
             }

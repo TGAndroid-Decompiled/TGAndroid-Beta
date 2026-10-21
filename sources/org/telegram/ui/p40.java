@@ -67,7 +67,7 @@ public final class p40 extends org.telegram.ui.Components.u30 {
         this.containerView.addView(textView2, w7.z5.d(-2, -2.0f, (LocaleController.isRTL ? 5 : 3) | 48, 24.0f, 62.0f, 24.0f, 0.0f));
         this.e = new TextView[3];
         z4.g gVar = new z4.g(context);
-        this.f30830b = gVar;
+        this.f30831b = gVar;
         gVar.setClipChildren(false);
         gVar.setOffscreenPageLimit(4);
         gVar.setClipToPadding(false);
@@ -84,7 +84,7 @@ public final class p40 extends org.telegram.ui.Components.u30 {
         view2.setBackground(new GradientDrawable(orientation, new int[]{0, x02}));
         this.containerView.addView(view2, w7.z5.d(120, -1.0f, 53, 0.0f, 100.0f, 0.0f, 130.0f));
         org.telegram.ui.Components.r30 r30Var = new org.telegram.ui.Components.r30(this, getContext());
-        this.f30831c = r30Var;
+        this.f30832c = r30Var;
         r30Var.setMinWidth(AndroidUtilities.dp(64.0f));
         r30Var.setTag(-1);
         r30Var.setTextSize(1, 14.0f);
@@ -127,7 +127,7 @@ public final class p40 extends org.telegram.ui.Components.u30 {
             i15++;
         }
         if (z10) {
-            this.f30830b.setCurrentItem(1);
+            this.f30831b.setCurrentItem(1);
         }
     }
 

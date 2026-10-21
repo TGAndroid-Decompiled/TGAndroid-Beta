@@ -3,11 +3,11 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import android.util.SparseIntArray;
 public final class u81 extends d91 {
-    public final e91 f30875t0;
+    public final e91 f30876t0;
 
     public u81(e91 e91Var, Context context, boolean z10, int i10, org.telegram.ui.ActionBar.d6 d6Var) {
         super(i10, context, d6Var, z10);
-        this.f30875t0 = e91Var;
+        this.f30876t0 = e91Var;
     }
 
     @Override
@@ -60,6 +60,6 @@ public final class u81 extends d91 {
         } else {
             z10 = false;
         }
-        this.f30875t0.y(i12, z10);
+        this.f30876t0.y(i12, z10);
     }
 }

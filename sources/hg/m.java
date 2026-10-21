@@ -513,7 +513,7 @@ public class m extends im0 implements n2 {
             case 8:
                 r22 = new z6(context, (org.telegram.ui.Cells.c1) null);
                 zq zqVar = new zq(new ColorDrawable(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20932a7, false)), org.telegram.ui.ActionBar.h6.W0(context, R.drawable.greydivider, org.telegram.ui.ActionBar.h6.f20952b7));
-                zqVar.f33023w = true;
+                zqVar.f33024w = true;
                 r22.setBackgroundDrawable(zqVar);
                 break;
             case 9:
@@ -531,7 +531,7 @@ public class m extends im0 implements n2 {
             case 11:
                 r22 = new i(this, context);
                 zq zqVar2 = new zq(new ColorDrawable(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20932a7, false)), org.telegram.ui.ActionBar.h6.W0(context, R.drawable.greydivider, org.telegram.ui.ActionBar.h6.f20952b7));
-                zqVar2.f33023w = true;
+                zqVar2.f33024w = true;
                 r22.setBackgroundDrawable(zqVar2);
                 break;
             case 14:

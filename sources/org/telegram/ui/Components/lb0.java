@@ -15,6 +15,6 @@ public final class lb0 extends a6 {
     public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
         int i15 = i14 + i12;
         int i16 = this.measuredSize;
-        this.f28131a.f28974c.set((int) f7, (i15 - i16) / 2, (int) (f7 + i16), (i15 + i16) / 2);
+        this.f28131a.f28975c.set((int) f7, (i15 - i16) / 2, (int) (f7 + i16), (i15 + i16) / 2);
     }
 }

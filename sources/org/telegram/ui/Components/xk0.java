@@ -4,9 +4,9 @@ import android.animation.ValueAnimator;
 import android.graphics.Paint;
 import androidx.recyclerview.widget.RecyclerView;
 public final class xk0 extends s4.r0 {
-    public boolean f32442a;
-    public boolean f32443b;
-    public ValueAnimator f32444c;
+    public boolean f32443a;
+    public boolean f32444b;
+    public ValueAnimator f32445c;
     public ValueAnimator d;
     public final dl0 e;
 
@@ -35,8 +35,8 @@ public final class xk0 extends s4.r0 {
             z10 = false;
         }
         float f10 = 0.0f;
-        if (z10 != this.f32442a) {
-            ValueAnimator valueAnimator = this.f32444c;
+        if (z10 != this.f32443a) {
+            ValueAnimator valueAnimator = this.f32445c;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
             }
@@ -46,11 +46,11 @@ public final class xk0 extends s4.r0 {
             } else {
                 f7 = 0.0f;
             }
-            this.f32444c = c(f11, f7, new q0.a(this) {
-                public final xk0 f31301b;
+            this.f32445c = c(f11, f7, new q0.a(this) {
+                public final xk0 f31302b;
 
                 {
-                    this.f31301b = this;
+                    this.f31302b = this;
                 }
 
                 @Override
@@ -58,7 +58,7 @@ public final class xk0 extends s4.r0 {
                     Float f12 = (Float) obj;
                     switch (r2) {
                         case 0:
-                            dl0 dl0Var2 = this.f31301b.e;
+                            dl0 dl0Var2 = this.f31302b.e;
                             Paint paint = dl0Var2.h;
                             float floatValue = f12.floatValue();
                             dl0Var2.f25553r = floatValue;
@@ -66,7 +66,7 @@ public final class xk0 extends s4.r0 {
                             dl0Var2.invalidate();
                             return;
                         default:
-                            dl0 dl0Var3 = this.f31301b.e;
+                            dl0 dl0Var3 = this.f31302b.e;
                             Paint paint2 = dl0Var3.f25548n;
                             float floatValue2 = f12.floatValue();
                             dl0Var3.f25555s = floatValue2;
@@ -76,30 +76,30 @@ public final class xk0 extends s4.r0 {
                     }
                 }
             }, new Runnable(this) {
-                public final xk0 f32146b;
+                public final xk0 f32147b;
 
                 {
-                    this.f32146b = this;
+                    this.f32147b = this;
                 }
 
                 @Override
                 public final void run() {
                     switch (r2) {
                         case 0:
-                            this.f32146b.f32444c = null;
+                            this.f32147b.f32445c = null;
                             return;
                         default:
-                            this.f32146b.d = null;
+                            this.f32147b.d = null;
                             return;
                     }
                 }
             });
-            this.f32442a = z10;
+            this.f32443a = z10;
         }
         if (i0Var.N0() != dl0Var.f25523a0.h() - 1) {
             z11 = true;
         }
-        if (z11 != this.f32443b) {
+        if (z11 != this.f32444b) {
             ValueAnimator valueAnimator2 = this.d;
             if (valueAnimator2 != null) {
                 valueAnimator2.cancel();
@@ -109,10 +109,10 @@ public final class xk0 extends s4.r0 {
                 f10 = 1.0f;
             }
             this.d = c(f12, f10, new q0.a(this) {
-                public final xk0 f31301b;
+                public final xk0 f31302b;
 
                 {
-                    this.f31301b = this;
+                    this.f31302b = this;
                 }
 
                 @Override
@@ -120,7 +120,7 @@ public final class xk0 extends s4.r0 {
                     Float f122 = (Float) obj;
                     switch (r2) {
                         case 0:
-                            dl0 dl0Var2 = this.f31301b.e;
+                            dl0 dl0Var2 = this.f31302b.e;
                             Paint paint = dl0Var2.h;
                             float floatValue = f122.floatValue();
                             dl0Var2.f25553r = floatValue;
@@ -128,7 +128,7 @@ public final class xk0 extends s4.r0 {
                             dl0Var2.invalidate();
                             return;
                         default:
-                            dl0 dl0Var3 = this.f31301b.e;
+                            dl0 dl0Var3 = this.f31302b.e;
                             Paint paint2 = dl0Var3.f25548n;
                             float floatValue2 = f122.floatValue();
                             dl0Var3.f25555s = floatValue2;
@@ -138,25 +138,25 @@ public final class xk0 extends s4.r0 {
                     }
                 }
             }, new Runnable(this) {
-                public final xk0 f32146b;
+                public final xk0 f32147b;
 
                 {
-                    this.f32146b = this;
+                    this.f32147b = this;
                 }
 
                 @Override
                 public final void run() {
                     switch (r2) {
                         case 0:
-                            this.f32146b.f32444c = null;
+                            this.f32147b.f32445c = null;
                             return;
                         default:
-                            this.f32146b.d = null;
+                            this.f32147b.d = null;
                             return;
                     }
                 }
             });
-            this.f32443b = z11;
+            this.f32444b = z11;
         }
     }
 }

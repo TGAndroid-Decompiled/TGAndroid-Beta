@@ -65,7 +65,7 @@ public final class w8 implements RequestDelegate {
                 TL_account.getAuthorizationForm getauthorizationform = (TL_account.getAuthorizationForm) obj3;
                 String str = (String) obj2;
                 String str2 = (String) obj;
-                ArrayList arrayList = ExternalActionActivity.f33130x;
+                ArrayList arrayList = ExternalActionActivity.f33131x;
                 TL_account.authorizationForm authorizationform = (TL_account.authorizationForm) tLObject;
                 if (authorizationform != null) {
                     TL_account.getPassword getpassword = new TL_account.getPassword();
@@ -76,7 +76,7 @@ public final class w8 implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new jq(externalActionActivity, b2Var, tL_error, 5));
                 return;
             case 2:
-                ArrayList arrayList2 = ExternalActionActivity.f33130x;
+                ArrayList arrayList2 = ExternalActionActivity.f33131x;
                 AndroidUtilities.runOnUIThread(new org.telegram.messenger.c6((ExternalActionActivity) obj6, (org.telegram.ui.ActionBar.b2) obj5, tLObject, this.f42491b, (TL_account.authorizationForm) obj4, (TL_account.getAuthorizationForm) obj3, (String) obj2, (String) obj));
                 return;
             default:

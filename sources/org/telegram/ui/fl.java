@@ -8,17 +8,17 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 public final class fl implements em {
-    public final qn f37026a;
-    public final qn f37027b;
+    public final qn f37027a;
+    public final qn f37028b;
 
     public fl(qn qnVar, qn qnVar2) {
-        this.f37027b = qnVar;
-        this.f37026a = qnVar2;
+        this.f37028b = qnVar;
+        this.f37027a = qnVar2;
     }
 
     @Override
     public final void D0(int i10) {
-        this.f37027b.j(i10, 0, true, 0, true, 0);
+        this.f37028b.j(i10, 0, true, 0, true, 0);
     }
 
     @Override
@@ -27,7 +27,7 @@ public final class fl implements em {
         ArrayList arrayList;
         org.telegram.ui.Components.yb ybVar;
         int i10;
-        qn qnVar = this.f37027b;
+        qn qnVar = this.f37028b;
         if (z10) {
             ArrayList arrayList2 = new ArrayList(qnVar.H4);
             ArrayList arrayList3 = new ArrayList(qnVar.J4.values());
@@ -54,7 +54,7 @@ public final class fl implements em {
             int i11 = qnVar.C3 + 1;
             qnVar.C3 = i11;
             boolean z12 = qnVar.f40705h4;
-            qn qnVar2 = this.f37026a;
+            qn qnVar2 = this.f37027a;
             if (z12) {
                 L8 = qnVar2.L8();
             } else {
@@ -76,18 +76,18 @@ public final class fl implements em {
                 if (z11) {
                     ?? ncVar = new org.telegram.ui.Components.nc(qnVar.getParentActivity(), onVar);
                     ncVar.c(R.raw.ic_unpin, 28, 28, "Pin", "Line");
-                    ncVar.f28774b.setText(LocaleController.getString(R.string.PinnedMessagesHidden));
-                    ncVar.f28775c.setText(LocaleController.getString(R.string.PinnedMessagesHiddenInfo));
+                    ncVar.f28775b.setText(LocaleController.getString(R.string.PinnedMessagesHidden));
+                    ncVar.f28776c.setText(LocaleController.getString(R.string.PinnedMessagesHiddenInfo));
                     ybVar = ncVar;
                 } else {
                     org.telegram.ui.Components.yb ybVar2 = new org.telegram.ui.Components.yb(qnVar.getParentActivity(), onVar);
                     ybVar2.c(R.raw.ic_unpin, 28, 28, "Pin", "Line");
-                    ybVar2.f32624b.setText(LocaleController.formatPluralString("MessagesUnpinned", i12, new Object[0]));
+                    ybVar2.f32625b.setText(LocaleController.formatPluralString("MessagesUnpinned", i12, new Object[0]));
                     ybVar = ybVar2;
                 }
                 org.telegram.ui.Components.oc ocVar = new org.telegram.ui.Components.oc(qnVar.getParentActivity(), onVar, true);
-                ocVar.f28982a = y7Var;
-                ocVar.f28983b = k0Var;
+                ocVar.f28983a = y7Var;
+                ocVar.f28984b = k0Var;
                 ybVar.setButton(ocVar);
                 qcVar = org.telegram.ui.Components.qc.g(qnVar, ybVar, 5000);
             }
@@ -103,6 +103,6 @@ public final class fl implements em {
 
     @Override
     public final void b0(String str) {
-        this.f37027b.ia(str, false);
+        this.f37028b.ia(str, false);
     }
 }

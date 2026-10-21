@@ -7,11 +7,11 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 public final class un extends View {
-    public final int f30974a;
+    public final int f30975a;
 
     public un(Context context, int i10) {
         super(context);
-        this.f30974a = i10;
+        this.f30975a = i10;
     }
 
     @Override
@@ -26,7 +26,7 @@ public final class un extends View {
         int i13;
         float dp5;
         int i14;
-        switch (this.f30974a) {
+        switch (this.f30975a) {
             case 1:
                 if (getAlpha() != 0.0f) {
                     AndroidUtilities.rectTmp.set(0.0f, 0.0f, getWidth(), getHeight());
@@ -129,7 +129,7 @@ public final class un extends View {
         boolean z10;
         float f7;
         float f10;
-        switch (this.f30974a) {
+        switch (this.f30975a) {
             case 2:
                 super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(32.0f), 1073741824));
                 return;
@@ -231,7 +231,7 @@ public final class un extends View {
 
     @Override
     public void onSizeChanged(int i10, int i11, int i12, int i13) {
-        switch (this.f30974a) {
+        switch (this.f30975a) {
             case 1:
                 super.onSizeChanged(i10, i11, i12, i13);
                 return;

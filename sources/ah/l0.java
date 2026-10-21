@@ -89,7 +89,7 @@ public final class l0 implements ValueAnimator.AnimatorUpdateListener {
             case 3:
                 ProfileStoriesView profileStoriesView = (ProfileStoriesView) this.f824b;
                 boolean[] zArr = (boolean[]) this.f825c;
-                int i11 = ProfileStoriesView.f33865s0;
+                int i11 = ProfileStoriesView.f33866s0;
                 float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 if (!zArr[0] && floatValue3 > 0.2f) {
                     zArr[0] = true;
@@ -238,19 +238,19 @@ public final class l0 implements ValueAnimator.AnimatorUpdateListener {
                 zh zhVar = (zh) this.f824b;
                 zhVar.getClass();
                 ((iu) this.f825c).setOffsetY(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                ti tiVar = zhVar.f32900c0;
+                ti tiVar = zhVar.f32901c0;
                 tiVar.Y1();
                 li liVar = tiVar.B0;
-                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = tiVar.f30557j0;
+                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = tiVar.f30558j0;
                 if (liVar == chatAttachAlertPhotoLayout) {
-                    chatAttachAlertPhotoLayout.l(tiVar.f30573o2);
+                    chatAttachAlertPhotoLayout.l(tiVar.f30574o2);
                     return;
                 }
                 return;
             case 17:
                 c2.b bVar3 = (c2.b) this.f824b;
                 bVar3.getClass();
-                ((su) this.f825c).f30358b = ((Integer) valueAnimator.getAnimatedValue()).intValue();
+                ((su) this.f825c).f30359b = ((Integer) valueAnimator.getAnimatedValue()).intValue();
                 while (i10 < ((ArrayList) bVar3.d).size()) {
                     if (!x0.f901b) {
                         ((View) ((ArrayList) bVar3.d).get(i10)).invalidate();
@@ -264,7 +264,7 @@ public final class l0 implements ValueAnimator.AnimatorUpdateListener {
                 xy0Var.getClass();
                 float floatValue9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 while (i10 < wy0VarArr.length) {
-                    xy0Var.f32501c[i10] = (xy0Var.d[i10] * floatValue9) + ((1.0f - floatValue9) * xy0Var.e[i10]);
+                    xy0Var.f32502c[i10] = (xy0Var.d[i10] * floatValue9) + ((1.0f - floatValue9) * xy0Var.e[i10]);
                     i10++;
                 }
                 xy0Var.invalidate();
@@ -304,8 +304,8 @@ public final class l0 implements ValueAnimator.AnimatorUpdateListener {
             case 22:
                 m3 m3Var = (m3) this.f824b;
                 int i13 = m3Var.e;
-                m3Var.f31568g = (int) ((((Float) valueAnimator.getAnimatedValue()).floatValue() * (m3Var.f31566c - i13)) + i13);
-                int i14 = m3Var.f31567f;
+                m3Var.f31569g = (int) ((((Float) valueAnimator.getAnimatedValue()).floatValue() * (m3Var.f31567c - i13)) + i13);
+                int i14 = m3Var.f31568f;
                 m3Var.h = (int) ((((Float) valueAnimator.getAnimatedValue()).floatValue() * (m3Var.d - i14)) + i14);
                 ((x2) this.f825c).invalidate();
                 return;
@@ -318,7 +318,7 @@ public final class l0 implements ValueAnimator.AnimatorUpdateListener {
                 photoViewer.getClass();
                 photoViewer.W = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 ((View) this.f825c).invalidateOutline();
-                ImageView imageView = photoViewer.f33451x3;
+                ImageView imageView = photoViewer.f33452x3;
                 if (imageView != null) {
                     imageView.invalidateOutline();
                 }

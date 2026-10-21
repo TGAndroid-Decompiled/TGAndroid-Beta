@@ -8,11 +8,11 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class rq0 extends er0 {
-    public final fr0 f29991r;
+    public final fr0 f29992r;
 
     public rq0(fr0 fr0Var, Context context) {
         super(context);
-        this.f29991r = fr0Var;
+        this.f29992r = fr0Var;
         this.h = new Paint(1);
         this.f25958n = new RectF();
         View view = new View(context);

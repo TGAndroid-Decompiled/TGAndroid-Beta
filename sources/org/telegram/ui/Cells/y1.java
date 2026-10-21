@@ -103,9 +103,9 @@ public final class y1 extends x90 {
                         charSequence.setSpan(new ForegroundColorSpan(mdVar.getThemedColor(org.telegram.ui.ActionBar.h6.f21211p7)), 0, indexOf2, 33);
                     }
                     e61[] e61VarArr2 = (e61[]) charSequence.getSpans(0, charSequence.length(), e61.class);
-                    EditTextBoldCursor editTextBoldCursor = mdVar.f39205w;
+                    EditTextBoldCursor editTextBoldCursor = mdVar.f39206w;
                     if (editTextBoldCursor != null && editTextBoldCursor.getText() != null) {
-                        str = mdVar.f39205w.getText().toString();
+                        str = mdVar.f39206w.getText().toString();
                     } else {
                         str = "";
                     }

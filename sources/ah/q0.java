@@ -146,11 +146,11 @@ public final class q0 extends AnimatorListenerAdapter {
                 } else {
                     f10 = 0.0f;
                 }
-                zm0Var.f32973r = f10;
-                zm0Var.f32977y.setScaleX(AndroidUtilities.lerp(0.8f, 1.0f, f10));
-                zm0Var.f32977y.setScaleY(AndroidUtilities.lerp(0.8f, 1.0f, zm0Var.f32973r));
-                zm0Var.f32977y.setAlpha(zm0Var.f32973r);
-                zm0Var.f32974s.invalidate();
+                zm0Var.f32974r = f10;
+                zm0Var.f32978y.setScaleX(AndroidUtilities.lerp(0.8f, 1.0f, f10));
+                zm0Var.f32978y.setScaleY(AndroidUtilities.lerp(0.8f, 1.0f, zm0Var.f32974r));
+                zm0Var.f32978y.setAlpha(zm0Var.f32974r);
+                zm0Var.f32975s.invalidate();
                 zm0Var.v.invalidate();
                 Runnable runnable2 = (Runnable) this.f851c;
                 if (runnable2 != null) {
@@ -165,7 +165,7 @@ public final class q0 extends AnimatorListenerAdapter {
                 tVar2.setScaleY(1.0f);
                 tVar2.setAlpha(1.0f);
                 if (this.f850b) {
-                    tVar.f31737x.removeView(tVar2);
+                    tVar.f31738x.removeView(tVar2);
                     tVar.e();
                 }
                 tVar2.setVisibility(8);
@@ -175,7 +175,7 @@ public final class q0 extends AnimatorListenerAdapter {
                 k30 k30Var = q50Var.C2;
                 org.telegram.ui.Components.voip.t tVar3 = (org.telegram.ui.Components.voip.t) this.f851c;
                 if (tVar3 != null) {
-                    tVar3.f31715f = false;
+                    tVar3.f31716f = false;
                 }
                 q50Var.d.getNotificationCenter().onAnimationFinish(q50Var.f40391d3);
                 q50Var.f40387c3 = false;
@@ -186,7 +186,7 @@ public final class q0 extends AnimatorListenerAdapter {
                     f11 = 0.0f;
                 }
                 q50Var.f40390d2 = f11;
-                q50Var.a2.f31528n = f11;
+                q50Var.a2.f31529n = f11;
                 if (!z10) {
                     q50Var.W2.setAlpha(0);
                     q50Var.c1();
@@ -205,7 +205,7 @@ public final class q0 extends AnimatorListenerAdapter {
                     }
                     org.telegram.ui.Components.voip.t tVar4 = q50Var.Z2;
                     if (tVar4 != null) {
-                        tVar4.f31707a.setRoundCorners(0.0f);
+                        tVar4.f31708a.setRoundCorners(0.0f);
                     }
                 } else {
                     k30Var.setAlpha(1.0f);

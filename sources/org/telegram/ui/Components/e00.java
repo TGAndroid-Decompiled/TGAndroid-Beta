@@ -77,11 +77,11 @@ public final class e00 extends DispatchQueue {
         if (z12) {
             pa paVar = new pa();
             this.I = paVar;
-            ja jaVar2 = paVar.f29286t;
+            ja jaVar2 = paVar.f29287t;
             if (jaVar2 != null && jaVar2.f27482m != null) {
                 jaVar2.f27482m = null;
             }
-            paVar.f29286t = jaVar;
+            paVar.f29287t = jaVar;
             if (jaVar != null && jaVar.f27482m != paVar) {
                 jaVar.f27482m = paVar;
                 jaVar.d();
@@ -483,11 +483,11 @@ public final class e00 extends DispatchQueue {
         if (z10) {
             pa paVar = new pa();
             this.I = paVar;
-            ja jaVar2 = paVar.f29286t;
+            ja jaVar2 = paVar.f29287t;
             if (jaVar2 != null && jaVar2.f27482m != null) {
                 jaVar2.f27482m = null;
             }
-            paVar.f29286t = jaVar;
+            paVar.f29287t = jaVar;
             if (jaVar != null && jaVar.f27482m != paVar) {
                 jaVar.f27482m = paVar;
                 jaVar.d();

@@ -174,11 +174,11 @@ public class VideoEditedInfo {
                 serializedData.writeFloat(this.filterState.blurAngle);
                 for (int i11 = 0; i11 < 4; i11++) {
                     if (i11 == 0) {
-                        ag0Var = this.filterState.curvesToolValue.f32888a;
+                        ag0Var = this.filterState.curvesToolValue.f32889a;
                     } else if (i11 == 1) {
-                        ag0Var = this.filterState.curvesToolValue.f32889b;
+                        ag0Var = this.filterState.curvesToolValue.f32890b;
                     } else if (i11 == 2) {
-                        ag0Var = this.filterState.curvesToolValue.f32890c;
+                        ag0Var = this.filterState.curvesToolValue.f32891c;
                     } else {
                         ag0Var = this.filterState.curvesToolValue.d;
                     }
@@ -369,11 +369,11 @@ public class VideoEditedInfo {
                             this.filterState.blurAngle = serializedData.readFloat(false);
                             for (int i11 = 0; i11 < 4; i11++) {
                                 if (i11 == 0) {
-                                    ag0Var = this.filterState.curvesToolValue.f32888a;
+                                    ag0Var = this.filterState.curvesToolValue.f32889a;
                                 } else if (i11 == 1) {
-                                    ag0Var = this.filterState.curvesToolValue.f32889b;
+                                    ag0Var = this.filterState.curvesToolValue.f32890b;
                                 } else if (i11 == 2) {
-                                    ag0Var = this.filterState.curvesToolValue.f32890c;
+                                    ag0Var = this.filterState.curvesToolValue.f32891c;
                                 } else {
                                     ag0Var = this.filterState.curvesToolValue.d;
                                 }

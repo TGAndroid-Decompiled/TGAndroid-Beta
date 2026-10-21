@@ -18,8 +18,8 @@ public final class zg1 extends org.telegram.ui.Components.voip.u2 {
     public zg1(Activity activity, boolean z10, hh1 hh1Var) {
         super(activity);
         this.f43754w = hh1Var;
-        this.f31773c = new AnimationNotificationsLocker();
-        this.f31771a = activity;
+        this.f31774c = new AnimationNotificationsLocker();
+        this.f31772a = activity;
         setSystemUiVisibility(1792);
         AndroidUtilities.lockOrientation(activity, 1);
         OrientationHelper.cameraRotationDisabled = true;
@@ -34,10 +34,10 @@ public final class zg1 extends org.telegram.ui.Components.voip.u2 {
     public final void dispatchDraw(Canvas canvas) {
         hh1 hh1Var = this.f43754w;
         if (hh1Var.E0 && getAlpha() != 0.0f) {
-            float scaleX = hh1Var.f37637c0.getScaleX() * hh1Var.f37637c0.getWidth();
-            float scaleY = hh1Var.f37637c0.getScaleY() * hh1Var.f37637c0.getHeight();
-            float x10 = hh1Var.f37637c0.getX() + ((hh1Var.f37637c0.getWidth() - scaleX) / 2.0f);
-            float y3 = hh1Var.f37637c0.getY() + ((hh1Var.f37637c0.getHeight() - scaleY) / 2.0f);
+            float scaleX = hh1Var.f37638c0.getScaleX() * hh1Var.f37638c0.getWidth();
+            float scaleY = hh1Var.f37638c0.getScaleY() * hh1Var.f37638c0.getHeight();
+            float x10 = hh1Var.f37638c0.getX() + ((hh1Var.f37638c0.getWidth() - scaleX) / 2.0f);
+            float y3 = hh1Var.f37638c0.getY() + ((hh1Var.f37638c0.getHeight() - scaleY) / 2.0f);
             canvas.save();
             Path path = this.f43753s;
             path.rewind();
@@ -63,7 +63,7 @@ public final class zg1 extends org.telegram.ui.Components.voip.u2 {
             if (keyCode == 4 && keyEvent.getAction() == 1) {
                 hh1Var.o();
                 return true;
-            } else if ((keyCode == 25 || keyCode == 24) && hh1Var.f37661p0 == 15 && (sharedState = VoIPService.getSharedState()) != null) {
+            } else if ((keyCode == 25 || keyCode == 24) && hh1Var.f37662p0 == 15 && (sharedState = VoIPService.getSharedState()) != null) {
                 sharedState.stopRinging();
                 return true;
             } else {
@@ -75,7 +75,7 @@ public final class zg1 extends org.telegram.ui.Components.voip.u2 {
 
     @Override
     public final void draw(Canvas canvas) {
-        if (this.f43754w.f37657m1) {
+        if (this.f43754w.f37658m1) {
             return;
         }
         super.draw(canvas);

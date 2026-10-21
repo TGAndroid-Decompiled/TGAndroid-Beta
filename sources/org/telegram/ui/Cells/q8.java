@@ -63,7 +63,7 @@ public class q8 extends FrameLayout {
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(charSequence);
         spannableStringBuilder.append((CharSequence) "  d");
         l00 l00Var = new l00();
-        l00Var.f38710f = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.Lj, false);
+        l00Var.f38711f = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.Lj, false);
         spannableStringBuilder.setSpan(l00Var, spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 0);
         return spannableStringBuilder;
     }
@@ -196,7 +196,7 @@ public class q8 extends FrameLayout {
         super.dispatchDraw(canvas);
         org.telegram.ui.Components.p5 p5Var3 = this.K;
         if (p5Var3 != null) {
-            p5Var3.setBounds((getWidth() - this.K.f29213s) - AndroidUtilities.dp(18.0f), (getHeight() - this.K.f29213s) / 2, getWidth() - AndroidUtilities.dp(18.0f), (getHeight() + this.K.f29213s) / 2);
+            p5Var3.setBounds((getWidth() - this.K.f29214s) - AndroidUtilities.dp(18.0f), (getHeight() - this.K.f29214s) / 2, getWidth() - AndroidUtilities.dp(18.0f), (getHeight() + this.K.f29214s) / 2);
             this.K.draw(canvas);
         }
     }

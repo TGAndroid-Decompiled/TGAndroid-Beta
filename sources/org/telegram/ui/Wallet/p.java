@@ -12,15 +12,15 @@ import org.telegram.tgnet.tl.TL_wallet;
 import org.telegram.ui.Components.x61;
 import org.telegram.ui.Components.xc;
 public final class p implements Utilities.Callback {
-    public final int f34679a;
-    public final Object f34680b;
-    public final Object f34681c;
+    public final int f34680a;
+    public final Object f34681b;
+    public final Object f34682c;
     public final Object d;
 
     public p(Object obj, Object obj2, Object obj3, int i10) {
-        this.f34679a = i10;
-        this.f34680b = obj;
-        this.f34681c = obj2;
+        this.f34680a = i10;
+        this.f34681b = obj;
+        this.f34682c = obj2;
         this.d = obj3;
     }
 
@@ -28,10 +28,10 @@ public final class p implements Utilities.Callback {
     public final void run(Object obj) {
         boolean z10;
         String str;
-        switch (this.f34679a) {
+        switch (this.f34680a) {
             case 0:
-                m0 m0Var = (m0) this.f34680b;
-                Utilities.Callback2 callback2 = (Utilities.Callback2) this.f34681c;
+                m0 m0Var = (m0) this.f34681b;
+                Utilities.Callback2 callback2 = (Utilities.Callback2) this.f34682c;
                 String str2 = (String) this.d;
                 byte[] bArr = (byte[]) obj;
                 m0Var.getClass();
@@ -47,39 +47,39 @@ public final class p implements Utilities.Callback {
                 callback2.run(walletuseraddress, null);
                 return;
             case 1:
-                f2 f2Var = (f2) this.f34680b;
-                b2 b2Var = (b2) this.f34681c;
+                f2 f2Var = (f2) this.f34681b;
+                b2 b2Var = (b2) this.f34682c;
                 ki.c cVar = (ki.c) this.d;
                 String str3 = (String) obj;
                 f2Var.getClass();
-                if (!b2Var.f34025n && !f2Var.i(b2Var) && f2Var.y(b2Var) && str3 == null) {
+                if (!b2Var.f34026n && !f2Var.i(b2Var) && f2Var.y(b2Var) && str3 == null) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                b2Var.f34027p = z10;
+                b2Var.f34028p = z10;
                 cVar.run(null, str3);
                 return;
             case 2:
-                f2 f2Var2 = (f2) this.f34680b;
-                b2 b2Var2 = (b2) this.f34681c;
+                f2 f2Var2 = (f2) this.f34681b;
+                b2 b2Var2 = (b2) this.f34682c;
                 Utilities.Callback callback = (Utilities.Callback) this.d;
                 String str4 = (String) obj;
                 f2Var2.getClass();
-                b2Var2.f34024m = false;
-                if (b2Var2.f34029r == null && f2Var2.f34198g == b2Var2) {
-                    f2Var2.f34198g = null;
+                b2Var2.f34025m = false;
+                if (b2Var2.f34030r == null && f2Var2.f34199g == b2Var2) {
+                    f2Var2.f34199g = null;
                 }
                 callback.run(str4);
                 return;
             case 3:
-                f2 f2Var3 = (f2) this.f34680b;
+                f2 f2Var3 = (f2) this.f34681b;
                 f2Var3.getClass();
-                AndroidUtilities.runOnUIThread(new w6((Object) f2Var3, (Object) ((TL_wallet.tonConnectSession) this.f34681c), (String) obj, (Object) ((l) this.d), 7));
+                AndroidUtilities.runOnUIThread(new w6((Object) f2Var3, (Object) ((TL_wallet.tonConnectSession) this.f34682c), (String) obj, (Object) ((l) this.d), 7));
                 return;
             case 4:
-                TL_wallet.walletTransaction wallettransaction = (TL_wallet.walletTransaction) this.f34680b;
-                b4 b4Var = (b4) this.f34681c;
+                TL_wallet.walletTransaction wallettransaction = (TL_wallet.walletTransaction) this.f34681b;
+                b4 b4Var = (b4) this.f34682c;
                 TL_wallet.walletTransaction[] wallettransactionArr = (TL_wallet.walletTransaction[]) this.d;
                 TL_wallet.walletTransaction wallettransaction2 = (TL_wallet.walletTransaction) obj;
                 if (wallettransaction2 != null) {
@@ -91,10 +91,10 @@ public final class p implements Utilities.Callback {
                 }
                 return;
             case 5:
-                k2[] k2VarArr = (k2[]) this.f34681c;
+                k2[] k2VarArr = (k2[]) this.f34682c;
                 org.telegram.ui.ActionBar.d6 d6Var = (org.telegram.ui.ActionBar.d6) this.d;
                 String str5 = (String) obj;
-                ((ei.d) this.f34680b).setLoading(false);
+                ((ei.d) this.f34681b).setLoading(false);
                 if (!TextUtils.isEmpty(str5)) {
                     new xc(k2VarArr[0].topBulletinContainer, d6Var).e0(str5, false);
                     return;
@@ -103,22 +103,22 @@ public final class p implements Utilities.Callback {
                     return;
                 }
             case 6:
-                m0 m0Var2 = (m0) this.f34680b;
-                m0Var2.j0(new e2.o0((Object) m0Var2, (Object) new o((h8) this.f34681c, (Utilities.Callback) obj, (ArrayList) this.d, m0Var2), true, false, 3));
+                m0 m0Var2 = (m0) this.f34681b;
+                m0Var2.j0(new e2.o0((Object) m0Var2, (Object) new o((h8) this.f34682c, (Utilities.Callback) obj, (ArrayList) this.d, m0Var2), true, false, 3));
                 return;
             case 7:
-                r9 r9Var = (r9) this.f34681c;
-                m0 m0Var3 = (m0) this.f34680b;
+                r9 r9Var = (r9) this.f34682c;
+                m0 m0Var3 = (m0) this.f34681b;
                 TLRPC.User user = (TLRPC.User) this.d;
                 String str6 = (String) obj;
-                if (!r9Var.f34815n) {
+                if (!r9Var.f34816n) {
                     if (!TextUtils.isEmpty(str6) && m0.a(r9Var.e, m0Var3.s())) {
                         c0 c0Var = new c0(m0Var3, str6, r9Var.d, null, new q(r9Var, m0Var3, user, str6));
                         m0Var3.j0(c0Var);
                         r9Var.h = new n(c0Var, 1);
                         return;
                     }
-                    r9Var.f34814f = false;
+                    r9Var.f34815f = false;
                     r9Var.V.setLoading(false);
                     xc a02 = xc.a0(r9Var);
                     if (TextUtils.isEmpty(str6)) {
@@ -131,13 +131,13 @@ public final class p implements Utilities.Callback {
                 }
                 return;
             case 8:
-                ((org.telegram.ui.Cells.h6) ((View) obj)).u((TLRPC.User) this.f34680b, null, (CharSequence) this.f34681c, (CharSequence) this.d, false, false);
+                ((org.telegram.ui.Cells.h6) ((View) obj)).u((TLRPC.User) this.f34681b, null, (CharSequence) this.f34682c, (CharSequence) this.d, false, false);
                 return;
             default:
-                k2 k2Var = (k2) this.f34681c;
+                k2 k2Var = (k2) this.f34682c;
                 org.telegram.ui.ActionBar.d6 d6Var2 = (org.telegram.ui.ActionBar.d6) this.d;
                 String str7 = (String) obj;
-                ((ei.d) this.f34680b).setLoading(false);
+                ((ei.d) this.f34681b).setLoading(false);
                 if (str7 == null) {
                     k2Var.dismiss();
                     return;
@@ -149,9 +149,9 @@ public final class p implements Utilities.Callback {
     }
 
     public p(x61 x61Var, m0 m0Var, Object obj, int i10) {
-        this.f34679a = i10;
-        this.f34681c = x61Var;
-        this.f34680b = m0Var;
+        this.f34680a = i10;
+        this.f34682c = x61Var;
+        this.f34681b = m0Var;
         this.d = obj;
     }
 }

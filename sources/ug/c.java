@@ -66,7 +66,7 @@ public final class c implements Runnable {
                     string2 = LocaleController.getString(i10);
                 }
                 qc M = xcVar.M(string, AndroidUtilities.replaceSingleTag(string2, h6.Gi, 0, new o3(chat), d6Var), i14);
-                M.f29530j = 5000;
+                M.f29531j = 5000;
                 M.j();
                 return;
             default:

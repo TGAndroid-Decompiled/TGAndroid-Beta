@@ -82,9 +82,9 @@ public final class ex0 extends View {
         x9Var.setBounds(0, 0, dp, dp2);
         cx0 cx0Var = this.f25987b;
         int i10 = cx0Var.f25278c;
-        if (x9Var.f32371f != i10) {
-            x9Var.f32371f = i10;
-            if (x9Var.f32370c != null) {
+        if (x9Var.f32372f != i10) {
+            x9Var.f32372f = i10;
+            if (x9Var.f32371c != null) {
                 x9Var.d.setColorFilter(i10, PorterDuff.Mode.MULTIPLY);
                 x9Var.invalidateSelf();
             }
@@ -92,7 +92,7 @@ public final class ex0 extends View {
         int i11 = cx0Var.d;
         if (x9Var.e != i11) {
             x9Var.e = i11;
-            Drawable drawable = x9Var.f32370c;
+            Drawable drawable = x9Var.f32371c;
             if (drawable != null) {
                 drawable.setColorFilter(i11, PorterDuff.Mode.MULTIPLY);
                 x9Var.invalidateSelf();
@@ -101,7 +101,7 @@ public final class ex0 extends View {
         int i12 = cx0Var.f25278c | (-16777216);
         if (x9Var.h != i12) {
             x9Var.h = i12;
-            x9Var.f32369b.v(i12, false);
+            x9Var.f32370b.v(i12, false);
             x9Var.invalidateSelf();
         }
         x9Var.draw(canvas);
@@ -125,15 +125,15 @@ public final class ex0 extends View {
         }
         int i11 = tl_starsRating.level;
         x9 x9Var = this.f25986a;
-        if (x9Var.f32373r != i11 || x9Var.f32370c == null || x9Var.d == null) {
-            p6 p6Var = x9Var.f32369b;
+        if (x9Var.f32374r != i11 || x9Var.f32371c == null || x9Var.d == null) {
+            p6 p6Var = x9Var.f32370b;
             if (i11 >= 0) {
                 str = Integer.toString(i11);
             } else {
                 str = "!";
             }
             p6Var.t(str, true, true);
-            x9Var.f32373r = i11;
+            x9Var.f32374r = i11;
             if (i11 < 0) {
                 b10 = 18;
             } else {
@@ -144,19 +144,19 @@ public final class ex0 extends View {
                 }
                 b10 = w7.r.b(i10, 0, 17);
             }
-            Context context = x9Var.f32368a;
-            if (x9Var.f32372n != b10 || x9Var.f32370c == null || x9Var.d == null) {
+            Context context = x9Var.f32369a;
+            if (x9Var.f32373n != b10 || x9Var.f32371c == null || x9Var.d == null) {
                 int i12 = b10 * 2;
-                Drawable mutate = context.getResources().getDrawable(x9.f32367s[i12]).mutate();
-                x9Var.f32370c = mutate;
+                Drawable mutate = context.getResources().getDrawable(x9.f32368s[i12]).mutate();
+                x9Var.f32371c = mutate;
                 int i13 = x9Var.e;
                 PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
                 mutate.setColorFilter(i13, mode);
-                Drawable mutate2 = context.getResources().getDrawable(x9.f32367s[i12 + 1]).mutate();
+                Drawable mutate2 = context.getResources().getDrawable(x9.f32368s[i12 + 1]).mutate();
                 x9Var.d = mutate2;
-                mutate2.setColorFilter(x9Var.f32371f, mode);
-                x9Var.f32372n = b10;
-                Drawable drawable = x9Var.f32370c;
+                mutate2.setColorFilter(x9Var.f32372f, mode);
+                x9Var.f32373n = b10;
+                Drawable drawable = x9Var.f32371c;
                 if (drawable != null) {
                     drawable.setBounds(x9Var.getBounds());
                 }

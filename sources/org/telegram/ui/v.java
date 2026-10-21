@@ -14,10 +14,10 @@ public final class v implements DialogInterface.OnDismissListener {
     public final void onDismiss(DialogInterface dialogInterface) {
         switch (this.f42080a) {
             case 0:
-                this.f42081b.f35523c.d(true);
+                this.f42081b.f35524c.d(true);
                 return;
             default:
-                this.f42081b.f38769k0 = null;
+                this.f42081b.f38770k0 = null;
                 return;
         }
     }

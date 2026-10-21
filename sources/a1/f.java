@@ -287,7 +287,7 @@ public final class f implements Runnable {
                 l7 l7Var = (l7) obj2;
                 if (!((ga) obj).e) {
                     qc Q = l7Var.getBulletinFactory().Q(R.raw.error, 36, LocaleController.formatString(R.string.UnknownErrorCode, "NO_BALANCE"));
-                    Q.f29540t = true;
+                    Q.f29541t = true;
                     Q.j();
                     return;
                 }

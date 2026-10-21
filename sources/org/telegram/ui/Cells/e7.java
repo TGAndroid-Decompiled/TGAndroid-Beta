@@ -399,7 +399,7 @@ public class e7 extends FrameLayout implements NotificationCenter.NotificationCe
     @Override
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        if (this.d.f32458a.f24151q) {
+        if (this.d.f32459a.f24151q) {
             accessibilityNodeInfo.setSelected(true);
         }
     }

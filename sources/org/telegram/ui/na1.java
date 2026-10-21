@@ -37,7 +37,7 @@ public final class na1 implements org.telegram.ui.Components.xl0 {
                 wa1 wa1Var = (wa1) obj2;
                 sa1 sa1Var = (sa1) obj;
                 ThemeActivity themeActivity = ((ua1) obj3).e;
-                int i12 = themeActivity.f33904f;
+                int i12 = themeActivity.f33905f;
                 if (i12 == 1) {
                     B0 = org.telegram.ui.ActionBar.h6.J;
                 } else {

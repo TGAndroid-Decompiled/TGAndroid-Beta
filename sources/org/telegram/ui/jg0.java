@@ -12,10 +12,10 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.tl.TL_wallet;
 public final class jg0 implements Comparator {
-    public final int f38254a;
+    public final int f38255a;
 
     public jg0(int i10) {
-        this.f38254a = i10;
+        this.f38255a = i10;
     }
 
     @Override
@@ -23,7 +23,7 @@ public final class jg0 implements Comparator {
         int i10;
         int i11;
         e9.v1 a2;
-        switch (this.f38254a) {
+        switch (this.f38255a) {
             case 0:
                 int i12 = (UserConfig.getInstance(((Integer) obj).intValue()).loginTime > UserConfig.getInstance(((Integer) obj2).intValue()).loginTime ? 1 : (UserConfig.getInstance(((Integer) obj).intValue()).loginTime == UserConfig.getInstance(((Integer) obj2).intValue()).loginTime ? 0 : -1));
                 if (i12 > 0) {
@@ -51,14 +51,14 @@ public final class jg0 implements Comparator {
                 return (int) (((View) obj).getY() - ((View) obj2).getY());
             case 5:
                 if (obj instanceof l01) {
-                    i10 = ((l01) obj).f38716g;
+                    i10 = ((l01) obj).f38717g;
                 } else if (obj instanceof MessagesController.FaqSearchResult) {
                     i10 = ((MessagesController.FaqSearchResult) obj).num;
                 } else {
                     i10 = 0;
                 }
                 if (obj2 instanceof l01) {
-                    i11 = ((l01) obj2).f38716g;
+                    i11 = ((l01) obj2).f38717g;
                 } else if (obj2 instanceof MessagesController.FaqSearchResult) {
                     i11 = ((MessagesController.FaqSearchResult) obj2).num;
                 } else {
@@ -92,7 +92,7 @@ public final class jg0 implements Comparator {
                 }
                 return 0;
             case 9:
-                return Integer.compare(((org.telegram.ui.Wallet.i0) obj2).f34315b, ((org.telegram.ui.Wallet.i0) obj).f34315b);
+                return Integer.compare(((org.telegram.ui.Wallet.i0) obj2).f34316b, ((org.telegram.ui.Wallet.i0) obj).f34316b);
             case 10:
                 return Integer.compare(((TL_wallet.walletTransaction) obj2).date, ((TL_wallet.walletTransaction) obj).date);
             case 11:

@@ -37,7 +37,7 @@ public final class yu extends FrameLayout {
         int i10;
         org.telegram.ui.ActionBar.k kVar;
         av avVar = this.f43558n;
-        zu[] zuVarArr = avVar.f35430f;
+        zu[] zuVarArr = avVar.f35431f;
         ScrollSlidingTextTabStrip scrollSlidingTextTabStrip = avVar.e;
         SparseIntArray sparseIntArray = scrollSlidingTextTabStrip.O;
         int i11 = scrollSlidingTextTabStrip.f24361n;
@@ -60,7 +60,7 @@ public final class yu extends FrameLayout {
         zu zuVar = zuVarArr[1];
         zuVar.f43807f = i12;
         zuVar.setVisibility(0);
-        avVar.f35432r = z10;
+        avVar.f35433r = z10;
         avVar.m0(true);
         if (z10) {
             zuVarArr[1].setTranslationX(zuVarArr[0].getMeasuredWidth());
@@ -115,7 +115,7 @@ public final class yu extends FrameLayout {
         org.telegram.ui.ActionBar.k kVar3;
         setMeasuredDimension(View.MeasureSpec.getSize(i10), View.MeasureSpec.getSize(i11));
         av avVar = this.f43558n;
-        zu[] zuVarArr = avVar.f35430f;
+        zu[] zuVarArr = avVar.f35431f;
         kVar = ((org.telegram.ui.ActionBar.n2) avVar).actionBar;
         measureChildWithMargins(kVar, i10, 0, i11, 0);
         kVar2 = ((org.telegram.ui.ActionBar.n2) avVar).actionBar;
@@ -165,7 +165,7 @@ public final class yu extends FrameLayout {
         boolean z13;
         int i10;
         av avVar = this.f43558n;
-        zu[] zuVarArr = avVar.f35430f;
+        zu[] zuVarArr = avVar.f35431f;
         d5Var = ((org.telegram.ui.ActionBar.n2) avVar).parentLayout;
         boolean z14 = false;
         if (((ActionBarLayout) d5Var).j() || a()) {
@@ -186,7 +186,7 @@ public final class yu extends FrameLayout {
         } else if (motionEvent != null && motionEvent.getAction() == 2 && motionEvent.getPointerId(0) == this.f43554a) {
             int x10 = (int) (motionEvent.getX() - this.d);
             int abs = Math.abs(((int) motionEvent.getY()) - this.e);
-            if (this.f43555b && (((z12 = avVar.f35432r) && x10 > 0) || (!z12 && x10 < 0))) {
+            if (this.f43555b && (((z12 = avVar.f35433r) && x10 > 0) || (!z12 && x10 < 0))) {
                 if (x10 < 0) {
                     z13 = true;
                 } else {
@@ -197,7 +197,7 @@ public final class yu extends FrameLayout {
                     this.f43555b = false;
                     zuVarArr[0].setTranslationX(0.0f);
                     zu zuVar5 = zuVarArr[1];
-                    if (avVar.f35432r) {
+                    if (avVar.f35433r) {
                         i10 = zuVarArr[0].getMeasuredWidth();
                     } else {
                         i10 = -zuVarArr[0].getMeasuredWidth();
@@ -215,7 +215,7 @@ public final class yu extends FrameLayout {
                 }
             } else if (this.f43555b) {
                 zuVarArr[0].setTranslationX(x10);
-                if (avVar.f35432r) {
+                if (avVar.f35433r) {
                     zuVarArr[1].setTranslationX(zuVarArr[0].getMeasuredWidth() + x10);
                 } else {
                     zuVarArr[1].setTranslationX(x10 - zuVarArr[0].getMeasuredWidth());
@@ -247,24 +247,24 @@ public final class yu extends FrameLayout {
                 } else {
                     z10 = false;
                 }
-                avVar.f35433s = z10;
+                avVar.f35434s = z10;
                 Property property = View.TRANSLATION_X;
                 if (z10) {
                     measuredWidth = Math.abs(x11);
-                    if (avVar.f35432r) {
+                    if (avVar.f35433r) {
                         avVar.h.playTogether(ObjectAnimator.ofFloat(zuVarArr[0], property, 0.0f), ObjectAnimator.ofFloat(zuVarArr[1], property, zuVar4.getMeasuredWidth()));
                     } else {
                         avVar.h.playTogether(ObjectAnimator.ofFloat(zuVarArr[0], property, 0.0f), ObjectAnimator.ofFloat(zuVarArr[1], property, -zuVar3.getMeasuredWidth()));
                     }
                 } else {
                     measuredWidth = zuVarArr[0].getMeasuredWidth() - Math.abs(x11);
-                    if (avVar.f35432r) {
+                    if (avVar.f35433r) {
                         avVar.h.playTogether(ObjectAnimator.ofFloat(zuVarArr[0], property, -zuVar2.getMeasuredWidth()), ObjectAnimator.ofFloat(zuVarArr[1], property, 0.0f));
                     } else {
                         avVar.h.playTogether(ObjectAnimator.ofFloat(zuVarArr[0], property, zuVar.getMeasuredWidth()), ObjectAnimator.ofFloat(zuVarArr[1], property, 0.0f));
                     }
                 }
-                avVar.h.setInterpolator(av.f35426x);
+                avVar.h.setInterpolator(av.f35427x);
                 int measuredWidth3 = getMeasuredWidth();
                 float f11 = measuredWidth3 / 2;
                 float distanceInfluenceForSnapDuration = (AndroidUtilities.distanceInfluenceForSnapDuration(Math.min(1.0f, (measuredWidth * 1.0f) / measuredWidth3)) * f11) + f11;
@@ -277,7 +277,7 @@ public final class yu extends FrameLayout {
                 avVar.h.setDuration(Math.max(150, Math.min(measuredWidth2, 600)));
                 avVar.h.addListener(new org.telegram.ui.Components.p31(this, 21));
                 avVar.h.start();
-                avVar.f35431n = true;
+                avVar.f35432n = true;
                 this.f43555b = false;
             } else {
                 this.f43556c = false;

@@ -15,14 +15,14 @@ public final class u00 extends AnimatorListenerAdapter {
     public final void onAnimationEnd(Animator animator) {
         switch (this.f41779a) {
             case 0:
-                ((e10) this.f41780b.d).f36506l0.unlock();
+                ((e10) this.f41780b.d).f36507l0.unlock();
                 return;
             default:
                 oq oqVar = this.f41780b;
                 View view = oqVar.f39957b;
                 view.setAlpha(1.0f);
                 s4.n0.x0(view);
-                ((e10) oqVar.d).f36493b.removeView(view);
+                ((e10) oqVar.d).f36494b.removeView(view);
                 return;
         }
     }

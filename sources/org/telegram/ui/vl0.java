@@ -74,11 +74,11 @@ public final class vl0 extends zt0 {
                 int[] iArr = new int[2];
                 tm0Var.f41701c.getLocationInWindow(iArr);
                 ju0 ju0Var = new ju0();
-                ju0Var.f38351b = iArr[0];
-                ju0Var.f38352c = iArr[1];
+                ju0Var.f38352b = iArr[0];
+                ju0Var.f38353c = iArr[1];
                 ju0Var.d = vm0Var.f42301i0;
                 ImageReceiver imageReceiver = tm0Var.f41701c.getImageReceiver();
-                ju0Var.f38350a = imageReceiver;
+                ju0Var.f38351a = imageReceiver;
                 ju0Var.e = imageReceiver.getBitmapSafe();
                 return ju0Var;
             }

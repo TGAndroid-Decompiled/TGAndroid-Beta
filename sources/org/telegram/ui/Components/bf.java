@@ -46,7 +46,7 @@ public final class bf extends ImageView {
                 super.setAlpha(f7);
                 ze zeVar = this.f24926b.J1;
                 if (zeVar != null) {
-                    zeVar.setTranslationX(zeVar.f32879a);
+                    zeVar.setTranslationX(zeVar.f32880a);
                     return;
                 }
                 return;
@@ -54,7 +54,7 @@ public final class bf extends ImageView {
                 super.setAlpha(f7);
                 ze zeVar2 = this.f24926b.J1;
                 if (zeVar2 != null) {
-                    zeVar2.setTranslationX(zeVar2.f32879a);
+                    zeVar2.setTranslationX(zeVar2.f32880a);
                     return;
                 }
                 return;

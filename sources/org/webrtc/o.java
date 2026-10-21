@@ -10,6 +10,6 @@ public final class o implements Choreographer.FrameCallback {
 
     @Override
     public final void doFrame(long j10) {
-        RenderSynchronizer.a(this.f43895a, j10);
+        this.f43895a.onDisplayRefreshCycleBegin(j10);
     }
 }

@@ -17,14 +17,14 @@ public final class m20 extends AnimatorListenerAdapter {
         switch (this.f28356a) {
             case 0:
                 n20 n20Var = this.f28357b;
-                NotificationCenter.getInstance(n20Var.f28664r.f28923a).onAnimationFinish(n20Var.f28662f);
+                NotificationCenter.getInstance(n20Var.f28665r.f28924a).onAnimationFinish(n20Var.f28663f);
                 n20Var.requestLayout();
                 return;
             default:
                 n20 n20Var2 = this.f28357b;
                 n20Var2.d = null;
-                n20Var2.f28659a = null;
-                n20Var2.f28660b = false;
+                n20Var2.f28660a = null;
+                n20Var2.f28661b = false;
                 return;
         }
     }

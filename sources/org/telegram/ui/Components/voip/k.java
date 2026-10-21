@@ -12,19 +12,19 @@ import org.telegram.ui.Components.bs;
 import org.telegram.ui.Components.ho0;
 import w7.z5;
 public final class k extends FrameLayout {
-    public final j f31491a;
-    public final TransitionSet f31492b;
-    public boolean f31493c;
+    public final j f31492a;
+    public final TransitionSet f31493b;
+    public boolean f31494c;
 
     public k(Activity activity) {
         super(activity);
-        this.f31493c = false;
+        this.f31494c = false;
         setWillNotDraw(false);
         j jVar = new j(activity);
-        this.f31491a = jVar;
+        this.f31492a = jVar;
         addView(jVar, z5.e(52, 52, 5));
         TransitionSet transitionSet = new TransitionSet();
-        this.f31492b = transitionSet;
+        this.f31493b = transitionSet;
         transitionSet.setOrdering(0);
         transitionSet.addTransition(new org.telegram.ui.ActionBar.i(1));
         transitionSet.setDuration(500L);
@@ -32,18 +32,18 @@ public final class k extends FrameLayout {
     }
 
     public final void a(View.OnClickListener onClickListener, boolean z10) {
-        if (this.f31493c) {
+        if (this.f31494c) {
             return;
         }
-        this.f31493c = true;
+        this.f31494c = true;
         if (z10) {
-            TransitionManager.beginDelayedTransition(this, this.f31492b);
+            TransitionManager.beginDelayedTransition(this, this.f31493b);
         }
-        j jVar = this.f31491a;
+        j jVar = this.f31492a;
         jVar.v = 255;
-        jVar.f31479n = -1;
-        jVar.f31481s = 0;
-        jVar.f31480r = AndroidUtilities.dp(8.0f);
+        jVar.f31480n = -1;
+        jVar.f31482s = 0;
+        jVar.f31481r = AndroidUtilities.dp(8.0f);
         ViewGroup.LayoutParams layoutParams = jVar.getLayoutParams();
         layoutParams.width = -1;
         jVar.setLayoutParams(layoutParams);
@@ -51,6 +51,6 @@ public final class k extends FrameLayout {
     }
 
     public j getEndCloseView() {
-        return this.f31491a;
+        return this.f31492a;
     }
 }

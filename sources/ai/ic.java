@@ -286,7 +286,7 @@ public final class ic extends View {
                             }
                             if (drawable instanceof wc0) {
                                 wc0 wc0Var = (wc0) drawable;
-                                if (wc0Var.f32085u == null) {
+                                if (wc0Var.f32086u == null) {
                                     z11 = false;
                                 }
                                 if (z11) {
@@ -324,7 +324,7 @@ public final class ic extends View {
                                         canvas.save();
                                         canvas.clipRect(0, 0, getMeasuredWidth(), getRootView().getMeasuredHeight() - lw0Var.h);
                                     }
-                                    wc0Var.f32071f = lw0Var.E;
+                                    wc0Var.f32072f = lw0Var.E;
                                     drawable.setBounds(0, 0, getMeasuredWidth(), (int) ((getRootView().getMeasuredHeight() - lw0Var.E) + f11));
                                     drawable.draw(canvas);
                                     if (lw0Var.h != 0) {
@@ -449,11 +449,11 @@ public final class ic extends View {
                 int x02 = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.Vi, false);
                 zy0 zy0Var = (zy0) this.f1512b;
                 org.telegram.ui.Components.voip.h hVar = zy0Var.L;
-                Paint paint3 = zy0Var.f33056a;
+                Paint paint3 = zy0Var.f33057a;
                 paint3.setColor(x02);
-                Paint paint4 = zy0Var.f33057b;
+                Paint paint4 = zy0Var.f33058b;
                 paint4.setColor(x02);
-                Paint paint5 = zy0Var.f33058c;
+                Paint paint5 = zy0Var.f33059c;
                 paint5.setColor(x02);
                 paint4.setAlpha(255);
                 paint5.setAlpha(82);
@@ -489,7 +489,7 @@ public final class ic extends View {
                     invalidate();
                     RectF rectF2 = AndroidUtilities.rectTmp;
                     rectF2.set(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(17.0f), getMeasuredWidth() - AndroidUtilities.dp(24.0f), AndroidUtilities.dp(23.0f));
-                    hVar.f31427f = getMeasuredWidth();
+                    hVar.f31428f = getMeasuredWidth();
                     hVar.a(AndroidUtilities.dp(3.0f), canvas, rectF2, null);
                 }
                 int dp2 = AndroidUtilities.dp(24.0f);
@@ -518,7 +518,7 @@ public final class ic extends View {
                 if (getAlpha() != 0.0f) {
                     RectF rectF3 = AndroidUtilities.rectTmp;
                     rectF3.set(0.0f, 0.0f, getWidth(), getHeight());
-                    ((org.telegram.ui.Components.voip.h1) this.f1512b).f31446n.a(AndroidUtilities.dp(10.0f), canvas, rectF3, null);
+                    ((org.telegram.ui.Components.voip.h1) this.f1512b).f31447n.a(AndroidUtilities.dp(10.0f), canvas, rectF3, null);
                     invalidate();
                     return;
                 }
@@ -648,12 +648,12 @@ public final class ic extends View {
                 super.onMeasure(View.MeasureSpec.makeMeasureSpec(getPaddingRight() + getPaddingLeft() + Math.round(((f11) this.f1512b).l()), 1073741824), View.MeasureSpec.makeMeasureSpec(Math.max(getPaddingBottom() + getPaddingTop() + Math.round(((f11) this.f1512b).j()), AndroidUtilities.dp(26.0f)), 1073741824));
                 return;
             case 19:
-                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f) + ((p70) this.f1512b).f29250c.f31180o0, 1073741824));
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f) + ((p70) this.f1512b).f29251c.f31181o0, 1073741824));
                 return;
             case 20:
                 int dp4 = AndroidUtilities.dp(48.0f);
-                v70 v70Var = ((r70) this.f1512b).f29858n;
-                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(dp4 + v70Var.f31180o0 + v70Var.f31186u0, 1073741824));
+                v70 v70Var = ((r70) this.f1512b).f29859n;
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(dp4 + v70Var.f31181o0 + v70Var.f31187u0, 1073741824));
                 return;
             case 23:
                 super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(((br0) this.f1512b).K.K.R, 1073741824));
@@ -666,14 +666,14 @@ public final class ic extends View {
                 }
                 int size2 = View.MeasureSpec.getSize(i11) - AndroidUtilities.dp(4.0f);
                 rx0 rx0Var = ix0Var.d;
-                int i21 = rx0Var.f30037e3;
+                int i21 = rx0Var.f30038e3;
                 if (i21 > 0) {
                     i18 = AndroidUtilities.dp(4.0f) + i21;
                 } else {
                     i18 = 0;
                 }
                 int max = Math.max(i18, (int) (size - Math.min(AndroidUtilities.dp(4.0f) + ((ix0Var.h() - 1) * size2), ix0Var.d.V2 * size2)));
-                rx0Var.f30036d3 = max;
+                rx0Var.f30037d3 = max;
                 super.onMeasure(View.MeasureSpec.makeMeasureSpec(max, 1073741824), i11);
                 return;
             case 27:
@@ -687,7 +687,7 @@ public final class ic extends View {
         switch (this.f1511a) {
             case 28:
                 super.onSizeChanged(i10, i11, i12, i13);
-                ((org.telegram.ui.Components.voip.h1) this.f1512b).f31446n.f31427f = i10;
+                ((org.telegram.ui.Components.voip.h1) this.f1512b).f31447n.f31428f = i10;
                 return;
             default:
                 super.onSizeChanged(i10, i11, i12, i13);
@@ -700,7 +700,7 @@ public final class ic extends View {
         switch (this.f1511a) {
             case 11:
                 super.setAlpha(f7);
-                View view = ((org.telegram.ui.f8) this.f1512b).f36912b.f37537x.fragmentView;
+                View view = ((org.telegram.ui.f8) this.f1512b).f36913b.f37538x.fragmentView;
                 if (view != null) {
                     view.invalidate();
                     return;

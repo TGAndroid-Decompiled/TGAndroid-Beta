@@ -3,12 +3,12 @@ package org.telegram.ui.Wallet;
 import android.content.Context;
 import android.view.View;
 public final class r5 extends View {
-    public boolean f34804a;
-    public final s5 f34805b;
+    public boolean f34805a;
+    public final s5 f34806b;
 
     public r5(s5 s5Var, Context context) {
         super(context);
-        this.f34805b = s5Var;
+        this.f34806b = s5Var;
     }
 
     @Override

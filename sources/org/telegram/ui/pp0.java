@@ -43,19 +43,19 @@ public final class pp0 implements org.telegram.ui.Cells.w5, org.telegram.ui.Comp
             case 7:
                 PremiumPreviewFragment premiumPreviewFragment = (PremiumPreviewFragment) this.f40278b;
                 i0.b defaultWindowInsets = AndroidUtilities.getDefaultWindowInsets(k1Var, false);
-                premiumPreviewFragment.f33515o0 = defaultWindowInsets;
-                premiumPreviewFragment.f33497a.setPadding(0, defaultWindowInsets.f12284b, 0, AndroidUtilities.dp(48.0f) + premiumPreviewFragment.f33515o0.d);
-                org.telegram.ui.Components.jm0 jm0Var = premiumPreviewFragment.f33497a;
-                i0.b bVar = premiumPreviewFragment.f33515o0;
+                premiumPreviewFragment.f33516o0 = defaultWindowInsets;
+                premiumPreviewFragment.f33498a.setPadding(0, defaultWindowInsets.f12284b, 0, AndroidUtilities.dp(48.0f) + premiumPreviewFragment.f33516o0.d);
+                org.telegram.ui.Components.jm0 jm0Var = premiumPreviewFragment.f33498a;
+                i0.b bVar = premiumPreviewFragment.f33516o0;
                 AndroidUtilities.setViewLayoutMargins(jm0Var, bVar.f12283a, 0, bVar.f12285c, 0);
                 nw0 nw0Var = premiumPreviewFragment.U;
-                i0.b bVar2 = premiumPreviewFragment.f33515o0;
+                i0.b bVar2 = premiumPreviewFragment.f33516o0;
                 nw0Var.setPadding(bVar2.f12283a, 0, bVar2.f12285c, 0);
                 FrameLayout frameLayout = premiumPreviewFragment.J;
                 if (frameLayout != null) {
-                    int i12 = premiumPreviewFragment.f33515o0.f12283a;
+                    int i12 = premiumPreviewFragment.f33516o0.f12283a;
                     int dp = AndroidUtilities.dp(14.0f);
-                    i0.b bVar3 = premiumPreviewFragment.f33515o0;
+                    i0.b bVar3 = premiumPreviewFragment.f33516o0;
                     frameLayout.setPadding(i12, dp, bVar3.f12285c, bVar3.d);
                 }
                 return r0.k1.f44834b;
@@ -107,7 +107,7 @@ public final class pp0 implements org.telegram.ui.Cells.w5, org.telegram.ui.Comp
                 int size = sparseArray.size();
                 for (int i15 = 0; i15 < size; i15++) {
                     mg1 mg1Var = (mg1) sparseArray.valueAt(i15);
-                    if (mg1Var != null && (fragmentView = mg1Var.f39242a.getFragmentView()) != null) {
+                    if (mg1Var != null && (fragmentView = mg1Var.f39243a.getFragmentView()) != null) {
                         r0.i0.b(fragmentView, k1Var);
                     }
                 }
@@ -136,7 +136,7 @@ public final class pp0 implements org.telegram.ui.Cells.w5, org.telegram.ui.Comp
                 u81 u81Var = p91Var.X;
                 int i11 = u81Var.I;
                 if (i10 >= i11 && i10 <= u81Var.J) {
-                    final MessageObject messageObject = ((m91) p91Var.f40154v0.get(i10 - i11)).f39162b;
+                    final MessageObject messageObject = ((m91) p91Var.f40154v0.get(i10 - i11)).f39163b;
                     if (messageObject.isStory()) {
                         return false;
                     }
@@ -240,8 +240,8 @@ public final class pp0 implements org.telegram.ui.Cells.w5, org.telegram.ui.Comp
     @Override
     public void f(int i10) {
         kg1 kg1Var = (kg1) this.f40278b;
-        if (kg1Var.h == null && !kg1Var.f38603f.e()) {
-            kg1Var.v.f33958f.e(false, true);
+        if (kg1Var.h == null && !kg1Var.f38604f.e()) {
+            kg1Var.v.f33959f.e(false, true);
         }
         kg1Var.l();
     }
@@ -256,7 +256,7 @@ public final class pp0 implements org.telegram.ui.Cells.w5, org.telegram.ui.Comp
             case 2:
                 PhotoViewer photoViewer = ((ws0) this.f40278b).f42951b;
                 try {
-                    AndroidUtilities.openForView(photoViewer.T4, photoViewer.f33457y, photoViewer.f33430v2, true);
+                    AndroidUtilities.openForView(photoViewer.T4, photoViewer.f33458y, photoViewer.f33431v2, true);
                     photoViewer.H0(false, false);
                     return;
                 } catch (Exception e) {
@@ -271,7 +271,7 @@ public final class pp0 implements org.telegram.ui.Cells.w5, org.telegram.ui.Comp
                 return;
             case 6:
                 PopupNotificationActivity popupNotificationActivity = (PopupNotificationActivity) this.f40278b;
-                int i14 = PopupNotificationActivity.f33485b0;
+                int i14 = PopupNotificationActivity.f33486b0;
                 popupNotificationActivity.getClass();
                 try {
                     Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
@@ -286,7 +286,7 @@ public final class pp0 implements org.telegram.ui.Cells.w5, org.telegram.ui.Comp
                 ((org.telegram.messenger.gk) this.f40278b).run(1);
                 return;
             case 13:
-                ProxyListActivity proxyListActivity = ((i11) this.f40278b).f37833b;
+                ProxyListActivity proxyListActivity = ((i11) this.f40278b).f37834b;
                 ArrayList arrayList = proxyListActivity.F;
                 int size = arrayList.size();
                 int i15 = 0;
@@ -304,17 +304,17 @@ public final class pp0 implements org.telegram.ui.Cells.w5, org.telegram.ui.Comp
                 NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(i16, new Object[0]);
                 NotificationCenter.getGlobalInstance().addObserver(proxyListActivity, i16);
                 proxyListActivity.b0(true);
-                j11 j11Var = proxyListActivity.f33765a;
+                j11 j11Var = proxyListActivity.f33766a;
                 if (j11Var != null) {
                     if (SharedConfig.currentProxy == null) {
                         j11Var.n(ProxyListActivity.a0(proxyListActivity), 0);
                     }
-                    proxyListActivity.f33765a.F();
+                    proxyListActivity.f33766a.F();
                     return;
                 }
                 return;
             case 19:
-                ThemeActivity themeActivity = ((ja1) this.f40278b).f38220a;
+                ThemeActivity themeActivity = ((ja1) this.f40278b).f38221a;
                 if (AndroidUtilities.isTablet()) {
                     i11 = 18;
                 } else {
@@ -325,14 +325,14 @@ public final class pp0 implements org.telegram.ui.Cells.w5, org.telegram.ui.Comp
                     k02 = true;
                 }
                 if (k02) {
-                    ua1 ua1Var = themeActivity.f33896a;
+                    ua1 ua1Var = themeActivity.f33897a;
                     i12 = themeActivity.textSizeRow;
                     ua1Var.n(i12, new Object());
-                    ua1 ua1Var2 = themeActivity.f33896a;
+                    ua1 ua1Var2 = themeActivity.f33897a;
                     i13 = themeActivity.bubbleRadiusRow;
                     ua1Var2.n(i13, new Object());
                 }
-                if (themeActivity.f33900c != null) {
+                if (themeActivity.f33901c != null) {
                     org.telegram.ui.ActionBar.g6 O0 = org.telegram.ui.ActionBar.h6.O0("Blue");
                     org.telegram.ui.ActionBar.g6 B0 = org.telegram.ui.ActionBar.h6.B0();
                     SparseArray sparseArray = O0.f20882a0;
@@ -349,19 +349,19 @@ public final class pp0 implements org.telegram.ui.Cells.w5, org.telegram.ui.Comp
                     if (O0 != B0) {
                         O0.u(i17);
                         org.telegram.ui.ActionBar.h6.u1(O0, true, false, true, false, false);
-                        themeActivity.f33900c.z1(O0);
-                        themeActivity.f33900c.x0(0);
+                        themeActivity.f33901c.z1(O0);
+                        themeActivity.f33901c.x0(0);
                         return;
                     } else if (O0.Y != i17) {
                         NotificationCenter globalInstance2 = NotificationCenter.getGlobalInstance();
                         int i18 = NotificationCenter.needSetDayNightTheme;
-                        if (themeActivity.f33904f == 1) {
+                        if (themeActivity.f33905f == 1) {
                             z10 = true;
                         } else {
                             z10 = false;
                         }
                         globalInstance2.lambda$postNotificationNameOnUIThread$1(i18, B0, Boolean.valueOf(z10), null, Integer.valueOf(i17));
-                        themeActivity.f33896a.m(themeActivity.f33916q0);
+                        themeActivity.f33897a.m(themeActivity.f33917q0);
                         return;
                     } else {
                         org.telegram.ui.ActionBar.h6.p1(true);
@@ -371,10 +371,10 @@ public final class pp0 implements org.telegram.ui.Cells.w5, org.telegram.ui.Comp
                 return;
             case 20:
                 kc1 kc1Var = ((nb1) this.f40278b).f39496a;
-                org.telegram.ui.ActionBar.h6.k0(kc1Var.f38530e0, kc1Var.f38565s, true);
+                org.telegram.ui.ActionBar.h6.k0(kc1Var.f38531e0, kc1Var.f38566s, true);
                 org.telegram.ui.ActionBar.h6.o();
                 org.telegram.ui.ActionBar.h6.o1(false, false);
-                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needSetDayNightTheme, kc1Var.f38530e0, Boolean.valueOf(kc1Var.f38534f0), null, -1);
+                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needSetDayNightTheme, kc1Var.f38531e0, Boolean.valueOf(kc1Var.f38535f0), null, -1);
                 kc1Var.finishFragment();
                 return;
             default:
@@ -440,15 +440,15 @@ public final class pp0 implements org.telegram.ui.Cells.w5, org.telegram.ui.Comp
         PrivacyControlActivity privacyControlActivity = ((cx0) this.f40278b).d;
         if (((Integer) obj).intValue() == 0) {
             if (!privacyControlActivity.getUserConfig().isPremium()) {
-                if (privacyControlActivity.f33566z0 == null) {
+                if (privacyControlActivity.f33567z0 == null) {
                     SpannableString spannableString = new SpannableString("l");
                     org.telegram.ui.Components.yq yqVar = new org.telegram.ui.Components.yq(R.drawable.msg_mini_lock3, 0);
                     yqVar.translate(AndroidUtilities.dp(2.0f), AndroidUtilities.dp(1.0f));
                     spannableString.setSpan(yqVar, 0, 1, 33);
-                    privacyControlActivity.f33566z0 = spannableString;
+                    privacyControlActivity.f33567z0 = spannableString;
                 }
                 SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-                spannableStringBuilder.append((CharSequence) privacyControlActivity.f33566z0);
+                spannableStringBuilder.append((CharSequence) privacyControlActivity.f33567z0);
                 spannableStringBuilder.append((CharSequence) " ");
                 spannableStringBuilder.append((CharSequence) LocaleController.formatPluralStringComma("Stars", num.intValue()));
                 return spannableStringBuilder;

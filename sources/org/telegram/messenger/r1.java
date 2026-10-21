@@ -9,34 +9,34 @@ import org.telegram.ui.cy;
 import org.telegram.ui.kv;
 import org.telegram.ui.pj0;
 public final class r1 implements Runnable {
-    public final int f19403a = 0;
-    public final boolean f19404b;
-    public final boolean f19405c;
+    public final int f19400a = 0;
+    public final boolean f19401b;
+    public final boolean f19402c;
     public final boolean d;
     public final Object e;
-    public final Object f19406f;
+    public final Object f19403f;
 
     public r1(ContactsController contactsController, HashMap hashMap, boolean z10, boolean z11, boolean z12) {
         this.e = contactsController;
-        this.f19406f = hashMap;
-        this.f19404b = z10;
-        this.f19405c = z11;
+        this.f19403f = hashMap;
+        this.f19401b = z10;
+        this.f19402c = z11;
         this.d = z12;
     }
 
     @Override
     public final void run() {
-        switch (this.f19403a) {
+        switch (this.f19400a) {
             case 0:
-                ((ContactsController) this.e).lambda$syncPhoneBookByAlert$7((HashMap) this.f19406f, this.f19404b, this.f19405c, this.d);
+                ((ContactsController) this.e).lambda$syncPhoneBookByAlert$7((HashMap) this.f19403f, this.f19401b, this.f19402c, this.d);
                 return;
             default:
                 cy cyVar = (cy) this.e;
-                Activity activity = (Activity) this.f19406f;
+                Activity activity = (Activity) this.f19403f;
                 if (cyVar.getParentActivity() != null) {
-                    cyVar.f36169t2 = false;
-                    boolean z10 = this.f19404b;
-                    boolean z11 = this.f19405c;
+                    cyVar.f36170t2 = false;
+                    boolean z10 = this.f19401b;
+                    boolean z11 = this.f19402c;
                     boolean z12 = this.d;
                     if (z10 || z11 || z12) {
                         cyVar.A0 = true;
@@ -69,9 +69,9 @@ public final class r1 implements Runnable {
 
     public r1(cy cyVar, boolean z10, boolean z11, boolean z12, Activity activity) {
         this.e = cyVar;
-        this.f19404b = z10;
-        this.f19405c = z11;
+        this.f19401b = z10;
+        this.f19402c = z11;
         this.d = z12;
-        this.f19406f = activity;
+        this.f19403f = activity;
     }
 }

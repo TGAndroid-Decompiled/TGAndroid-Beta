@@ -25,9 +25,9 @@ public final class f2 extends pq {
             case 2:
                 return org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Je, ((gz) this.f8994i).G.Z1);
             case 3:
-                return org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Q5, ((vn0) this.f8994i).f31318f);
+                return org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Q5, ((vn0) this.f8994i).f31319f);
             default:
-                return org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Je, ((o41) this.f8994i).f39122y.Z0);
+                return org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Je, ((o41) this.f8994i).f39123y.Z0);
         }
     }
 
@@ -35,20 +35,20 @@ public final class f2 extends pq {
         super(1.25f);
         this.h = 2;
         this.f8994i = gzVar;
-        this.f29356f = AndroidUtilities.dp(7.0f);
+        this.f29357f = AndroidUtilities.dp(7.0f);
     }
 
     public f2(org.telegram.ui.ActionBar.d6 d6Var) {
         super(1.25f);
         this.h = 0;
         this.f8994i = d6Var;
-        this.f29356f = AndroidUtilities.dp(7.0f);
+        this.f29357f = AndroidUtilities.dp(7.0f);
     }
 
     public f2(o41 o41Var) {
         super(1.25f);
         this.h = 4;
         this.f8994i = o41Var;
-        this.f29356f = AndroidUtilities.dp(7.0f);
+        this.f29357f = AndroidUtilities.dp(7.0f);
     }
 }

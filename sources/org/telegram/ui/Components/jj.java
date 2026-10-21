@@ -14,7 +14,7 @@ public final class jj implements zl0, oj {
     public boolean a(int i10, View view) {
         Object O;
         xj xjVar = this.f27538a;
-        s4.g0 adapter = xjVar.f32435s.getAdapter();
+        s4.g0 adapter = xjVar.f32436s.getAdapter();
         tj tjVar = xjVar.F;
         if (adapter == tjVar) {
             O = tjVar.E(i10);

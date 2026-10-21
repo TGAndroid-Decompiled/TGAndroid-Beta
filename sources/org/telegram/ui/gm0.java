@@ -8,22 +8,22 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class gm0 implements RequestDelegate {
-    public final int f37355a;
-    public final im0 f37356b;
+    public final int f37356a;
+    public final im0 f37357b;
 
     public gm0(im0 im0Var, int i10) {
-        this.f37355a = i10;
-        this.f37356b = im0Var;
+        this.f37356a = i10;
+        this.f37357b = im0Var;
     }
 
     @Override
     public final void run(TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f37355a) {
+        switch (this.f37356a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new hm0(this.f37356b, tLObject, tL_error));
+                AndroidUtilities.runOnUIThread(new hm0(this.f37357b, tLObject, tL_error));
                 return;
             case 1:
-                final im0 im0Var = this.f37356b;
+                final im0 im0Var = this.f37357b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -54,14 +54,14 @@ public final class gm0 implements RequestDelegate {
                                     ConnectionsManager.getInstance(i11).sendRequest(getpassword2, new gm0(im0Var3, 3), 8);
                                     return;
                                 }
-                                Utilities.globalQueue.postRunnable(new ve0(im0Var3, im0Var3.f38028b, im0Var3.d, 13));
+                                Utilities.globalQueue.postRunnable(new ve0(im0Var3, im0Var3.f38029b, im0Var3.d, 13));
                                 return;
                         }
                     }
                 });
                 return;
             case 2:
-                final im0 im0Var2 = this.f37356b;
+                final im0 im0Var2 = this.f37357b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -92,17 +92,17 @@ public final class gm0 implements RequestDelegate {
                                     ConnectionsManager.getInstance(i11).sendRequest(getpassword2, new gm0(im0Var3, 3), 8);
                                     return;
                                 }
-                                Utilities.globalQueue.postRunnable(new ve0(im0Var3, im0Var3.f38028b, im0Var3.d, 13));
+                                Utilities.globalQueue.postRunnable(new ve0(im0Var3, im0Var3.f38029b, im0Var3.d, 13));
                                 return;
                         }
                     }
                 });
                 return;
             case 3:
-                AndroidUtilities.runOnUIThread(new hm0(this.f37356b, tL_error, tLObject, 1));
+                AndroidUtilities.runOnUIThread(new hm0(this.f37357b, tL_error, tLObject, 1));
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new hm0(this.f37356b, tL_error, tLObject, 2));
+                AndroidUtilities.runOnUIThread(new hm0(this.f37357b, tL_error, tLObject, 2));
                 return;
         }
     }

@@ -1,27 +1,27 @@
 package org.telegram.messenger;
 public final class ol implements Runnable {
-    public final int f19186a;
-    public final UnconfirmedAuthController f19187b;
+    public final int f19183a;
+    public final UnconfirmedAuthController f19184b;
 
     public ol(UnconfirmedAuthController unconfirmedAuthController, int i10) {
-        this.f19186a = i10;
-        this.f19187b = unconfirmedAuthController;
+        this.f19183a = i10;
+        this.f19184b = unconfirmedAuthController;
     }
 
     @Override
     public final void run() {
-        switch (this.f19186a) {
+        switch (this.f19183a) {
             case 0:
-                UnconfirmedAuthController.h(this.f19187b);
+                UnconfirmedAuthController.h(this.f19184b);
                 return;
             case 1:
-                UnconfirmedAuthController.a(this.f19187b);
+                UnconfirmedAuthController.a(this.f19184b);
                 return;
             case 2:
-                UnconfirmedAuthController.d(this.f19187b);
+                UnconfirmedAuthController.d(this.f19184b);
                 return;
             default:
-                UnconfirmedAuthController.f(this.f19187b);
+                UnconfirmedAuthController.f(this.f19184b);
                 return;
         }
     }

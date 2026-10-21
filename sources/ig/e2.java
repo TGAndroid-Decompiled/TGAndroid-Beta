@@ -354,7 +354,7 @@ public final class e2 implements Runnable {
                 ff ffVar = (ff) this.f12880b;
                 ffVar.getClass();
                 ((bw0) this.f12881c).getViewTreeObserver().removeOnDrawListener(ffVar);
-                ((rp0) this.d).f29986a.setHideAvatar(true);
+                ((rp0) this.d).f29987a.setHideAvatar(true);
                 return;
             default:
                 ng ngVar = (ng) this.f12880b;

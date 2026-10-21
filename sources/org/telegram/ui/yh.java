@@ -82,7 +82,7 @@ public final class yh extends z4.a {
         nk0Var.h(dk0Var.getSeenUsers());
         nk0Var.G = new b1(this, 16);
         nk0Var.E = new m4.w0(15, this, this.f43493i);
-        nk0Var.f28836y = new gi.j4(this.f43494j, i10, this.f43495k, this.f43496l, this.f43497m, this.f43498n);
+        nk0Var.f28837y = new gi.j4(this.f43494j, i10, this.f43495k, this.f43496l, this.f43497m, this.f43498n);
         if (i11 < 0) {
             nk0Var.setPredictiveCount(this.f43499o);
             dk0Var.setSeenCallback(new j3(nk0Var, 1));

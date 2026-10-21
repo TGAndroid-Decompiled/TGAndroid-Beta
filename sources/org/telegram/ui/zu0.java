@@ -70,7 +70,7 @@ public final class zu0 implements org.telegram.ui.Components.uy {
 
     @Override
     public final boolean k() {
-        EditTextBoldCursor editField = this.f43808a.f37100b0.getEditField();
+        EditTextBoldCursor editField = this.f43808a.f37101b0.getEditField();
         if (editField == null) {
             return false;
         }
@@ -80,7 +80,7 @@ public final class zu0 implements org.telegram.ui.Components.uy {
 
     @Override
     public final void l(String str) {
-        EditTextBoldCursor editField = this.f43808a.f37100b0.getEditField();
+        EditTextBoldCursor editField = this.f43808a.f37101b0.getEditField();
         if (editField == null) {
             return;
         }
@@ -120,7 +120,7 @@ public final class zu0 implements org.telegram.ui.Components.uy {
     public final void x(long j10, TLRPC.Document document, String str, boolean z10) {
         org.telegram.ui.Components.a6 a6Var;
         fv0 fv0Var = this.f43808a;
-        EditTextBoldCursor editField = fv0Var.f37100b0.getEditField();
+        EditTextBoldCursor editField = fv0Var.f37101b0.getEditField();
         if (editField == null) {
             return;
         }
@@ -135,7 +135,7 @@ public final class zu0 implements org.telegram.ui.Components.uy {
             } else {
                 a6Var = new org.telegram.ui.Components.a6(j10, editField.getPaint().getFontMetricsInt());
             }
-            a6Var.cacheType = fv0Var.R.f30720c;
+            a6Var.cacheType = fv0Var.R.f30721c;
             spannableString.setSpan(a6Var, 0, spannableString.length(), 33);
             editField.setText(editField.getText().insert(selectionEnd, spannableString));
             int length = selectionEnd + spannableString.length();

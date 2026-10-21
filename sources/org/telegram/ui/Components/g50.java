@@ -171,7 +171,7 @@ public final class g50 extends org.telegram.ui.ActionBar.f3 implements Notificat
                 n();
                 return;
             }
-            if (!this.f26506n && ((180 - yj0Var.getAnimatedDrawable().f31264a0) * 16.6d) + 3000.0d >= importingHistory.timeUntilFinish) {
+            if (!this.f26506n && ((180 - yj0Var.getAnimatedDrawable().f31265a0) * 16.6d) + 3000.0d >= importingHistory.timeUntilFinish) {
                 yj0Var.setAutoRepeat(false);
                 this.f26506n = true;
             }
@@ -188,7 +188,7 @@ public final class g50 extends org.telegram.ui.ActionBar.f3 implements Notificat
                 n();
                 return;
             }
-            if (!this.f26506n && ((180 - yj0Var.getAnimatedDrawable().f31264a0) * 16.6d) + 3000.0d >= importingStickers.timeUntilFinish) {
+            if (!this.f26506n && ((180 - yj0Var.getAnimatedDrawable().f31265a0) * 16.6d) + 3000.0d >= importingStickers.timeUntilFinish) {
                 yj0Var.setAutoRepeat(false);
                 this.f26506n = true;
             }

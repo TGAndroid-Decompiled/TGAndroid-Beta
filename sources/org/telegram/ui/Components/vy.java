@@ -5,7 +5,7 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLRPC;
 public final class vy extends g61 {
-    public static final int f31890a = 0;
+    public static final int f31891a = 0;
 
     static {
         g61.setup(new g61());

@@ -186,11 +186,11 @@ public final class yj0 extends pg.b {
         ArrayList arrayList2;
         NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = this.e;
         ArrayList arrayList3 = notificationsCustomSettingsActivity.I;
-        int i10 = notificationsCustomSettingsActivity.f33211s;
-        if (i10 == 3 || ((arrayList2 = notificationsCustomSettingsActivity.f33212w) != null && arrayList2.isEmpty())) {
+        int i10 = notificationsCustomSettingsActivity.f33212s;
+        if (i10 == 3 || ((arrayList2 = notificationsCustomSettingsActivity.f33213w) != null && arrayList2.isEmpty())) {
             if (i10 == 3) {
-                Boolean bool = notificationsCustomSettingsActivity.f33209n;
-                if (bool != null && !bool.booleanValue() && ((arrayList = notificationsCustomSettingsActivity.f33212w) == null || arrayList.isEmpty())) {
+                Boolean bool = notificationsCustomSettingsActivity.f33210n;
+                if (bool != null && !bool.booleanValue() && ((arrayList = notificationsCustomSettingsActivity.f33213w) == null || arrayList.isEmpty())) {
                     isGlobalNotificationsEnabled = false;
                 } else {
                     isGlobalNotificationsEnabled = true;

@@ -3,19 +3,19 @@ package org.telegram.ui.Components;
 import android.view.TextureView;
 import java.util.ArrayList;
 public final class u71 implements Runnable {
-    public final int f30870a;
-    public final Object f30871b;
+    public final int f30871a;
+    public final Object f30872b;
 
     public u71(Object obj, int i10) {
-        this.f30870a = i10;
-        this.f30871b = obj;
+        this.f30871a = i10;
+        this.f30872b = obj;
     }
 
     @Override
     public final void run() {
-        switch (this.f30870a) {
+        switch (this.f30871a) {
             case 0:
-                c81 c81Var = (c81) this.f30871b;
+                c81 c81Var = (c81) this.f30872b;
                 i2.i0 i0Var = c81Var.d;
                 if (i0Var != null) {
                     TextureView textureView = c81Var.f25140n;
@@ -40,18 +40,18 @@ public final class u71 implements Runnable {
                 }
                 return;
             case 1:
-                c81 c81Var2 = ((b81) this.f30871b).f24829f;
+                c81 c81Var2 = ((b81) this.f30872b).f24829f;
                 c81Var2.f25128a0.removeCallbacksAndMessages(null);
                 c81Var2.K.onVisualizerUpdate(false, true, null);
                 return;
             case 2:
-                ((e81) this.f30871b).f25822g = false;
+                ((e81) this.f30872b).f25822g = false;
                 return;
             case 3:
-                ((w91) ((t50) ((org.telegram.ui.Cells.ca) this.f30871b).f22112b).f30442b).v.b();
+                ((w91) ((t50) ((org.telegram.ui.Cells.ca) this.f30872b).f22112b).f30443b).v.b();
                 return;
             default:
-                ((s91) this.f30871b).d(false, true);
+                ((s91) this.f30872b).d(false, true);
                 return;
         }
     }

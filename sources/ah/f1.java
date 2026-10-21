@@ -11,6 +11,10 @@ public final class f1 implements Drawable.Callback {
     public final int f733a;
     public Object f734b;
 
+    public f1() {
+        this.f733a = 2;
+    }
+
     @Override
     public final void invalidateDrawable(Drawable drawable) {
         switch (this.f733a) {

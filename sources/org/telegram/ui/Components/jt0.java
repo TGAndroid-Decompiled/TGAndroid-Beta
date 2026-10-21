@@ -16,11 +16,11 @@ public final class jt0 implements ValueAnimator.AnimatorUpdateListener {
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
         switch (this.f27635a) {
             case 0:
-                this.f27637c.f31052n1 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                this.f27637c.f31053n1 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 this.f27636b.h.invalidate();
                 return;
             default:
-                this.f27637c.f31052n1 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                this.f27637c.f31053n1 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 this.f27636b.h.invalidate();
                 return;
         }

@@ -3,10 +3,10 @@ package org.telegram.ui.Components;
 import android.view.View;
 import org.telegram.messenger.Utilities;
 public final class x81 implements yl0, zl0 {
-    public final d91 f32366a;
+    public final d91 f32367a;
 
     public x81(d91 d91Var) {
-        this.f32366a = d91Var;
+        this.f32367a = d91Var;
     }
 
     @Override
@@ -16,7 +16,7 @@ public final class x81 implements yl0, zl0 {
 
     @Override
     public boolean a(int i10, View view) {
-        Utilities.Callback2Return callback2Return = this.f32366a.f25393b;
+        Utilities.Callback2Return callback2Return = this.f32367a.f25393b;
         if (callback2Return == null) {
             return false;
         }
@@ -25,7 +25,7 @@ public final class x81 implements yl0, zl0 {
 
     @Override
     public void d(float f7, float f10, int i10, View view) {
-        d91 d91Var = this.f32366a;
+        d91 d91Var = this.f32367a;
         c91 c91Var = d91Var.f25417y;
         if (c91Var != null) {
             e91 e91Var = (e91) ((l2.f) c91Var).f15843b;

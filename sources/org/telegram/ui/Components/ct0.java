@@ -14,7 +14,7 @@ public final class ct0 extends b10 {
 
     @Override
     public final int getColumnsCount() {
-        return this.V.f31049m1[uv0.q0(this.U.F) ? 1 : 0];
+        return this.V.f31050m1[uv0.q0(this.U.F) ? 1 : 0];
     }
 
     @Override

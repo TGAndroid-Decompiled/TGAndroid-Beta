@@ -248,7 +248,7 @@ public final class h0 implements Runnable {
                     PhotoViewer.u1().M2(null, n2Var, null);
                     PhotoViewer u12 = PhotoViewer.u1();
                     u12.h = 0;
-                    u12.f33355n = false;
+                    u12.f33356n = false;
                     i12 = 3;
                 } else {
                     i12 = i15;
@@ -284,8 +284,8 @@ public final class h0 implements Runnable {
                 if (ChatAttachAlertPhotoLayout.T()) {
                     PhotoViewer u15 = PhotoViewer.u1();
                     Editable text = tiVar.o1().getText();
-                    u15.f33380p7 = true;
-                    u15.f33388q7 = text;
+                    u15.f33381p7 = true;
+                    u15.f33389q7 = text;
                     u15.C2(null, text, false, false);
                     u15.v3(null);
                     return;

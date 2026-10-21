@@ -140,29 +140,29 @@ public final class k0 implements ValueAnimator.AnimatorUpdateListener {
             case 9:
                 t2 t2Var = (t2) this.f817c;
                 TextView[] textViewArr = t2Var.h;
-                t2Var.f31758s = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                t2Var.f31759s = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 t2Var.invalidate();
                 if (this.f816b) {
-                    textViewArr[0].setAlpha(1.0f - t2Var.f31758s);
-                    textViewArr[0].setScaleX(1.0f - t2Var.f31758s);
-                    textViewArr[0].setScaleY(1.0f - t2Var.f31758s);
-                    textViewArr[1].setAlpha(t2Var.f31758s);
-                    textViewArr[1].setScaleX(t2Var.f31758s);
-                    textViewArr[1].setScaleY(t2Var.f31758s);
+                    textViewArr[0].setAlpha(1.0f - t2Var.f31759s);
+                    textViewArr[0].setScaleX(1.0f - t2Var.f31759s);
+                    textViewArr[0].setScaleY(1.0f - t2Var.f31759s);
+                    textViewArr[1].setAlpha(t2Var.f31759s);
+                    textViewArr[1].setScaleX(t2Var.f31759s);
+                    textViewArr[1].setScaleY(t2Var.f31759s);
                     return;
                 }
                 return;
             case 10:
                 mi0 mi0Var = (mi0) this.f817c;
                 float floatValue5 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                mi0Var.E = floatValue5;
-                mi0Var.H.setAlpha(floatValue5);
-                mi0Var.K.setAlpha(mi0Var.E);
-                if (!this.f816b && (viewGroup = mi0Var.Z) != null) {
-                    viewGroup.setAlpha(mi0Var.E);
+                mi0Var.f39287y = floatValue5;
+                mi0Var.G.setAlpha(floatValue5);
+                mi0Var.J.setAlpha(mi0Var.f39287y);
+                if (!this.f816b && (viewGroup = mi0Var.Y) != null) {
+                    viewGroup.setAlpha(mi0Var.f39287y);
                 }
+                mi0Var.E.invalidate();
                 mi0Var.F.invalidate();
-                mi0Var.G.invalidate();
                 return;
             case 11:
                 x31 x31Var = (x31) this.f817c;

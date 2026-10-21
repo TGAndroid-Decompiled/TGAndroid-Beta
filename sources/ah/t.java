@@ -105,7 +105,7 @@ public final class t implements Runnable {
                     }
                 }
                 l7Var2.U0 = -1;
-                qc qcVar = qc.f29523w;
+                qc qcVar = qc.f29524w;
                 if (qcVar != null) {
                     qcVar.c(0L, false);
                     return;
@@ -236,7 +236,7 @@ public final class t implements Runnable {
                 pf.d.r(context, LocaleController.getString(i11));
                 return;
             case 24:
-                iz0 iz0Var = ((hm) obj).f37687c.f40653d1;
+                iz0 iz0Var = ((hm) obj).f37688c.f40653d1;
                 if (iz0Var != null && z10) {
                     iz0Var.setVisibility(8);
                     return;
@@ -244,8 +244,8 @@ public final class t implements Runnable {
                 return;
             case 25:
                 io ioVar = (io) obj;
-                ioVar.f38063x0.autotranslation = z10;
-                ioVar.getMessagesController().putChat(ioVar.f38063x0, false);
+                ioVar.f38064x0.autotranslation = z10;
+                ioVar.getMessagesController().putChat(ioVar.f38064x0, false);
                 return;
             case 26:
                 wp wpVar = (wp) obj;
@@ -255,19 +255,19 @@ public final class t implements Runnable {
                     if (wpVar.M != null) {
                         wpVar.P = true;
                         if (!wpVar.x()) {
-                            wallPaper = wpVar.f32214n.h;
+                            wallPaper = wpVar.f32215n.h;
                         }
                         TLRPC.WallPaper wallPaper2 = wallPaper;
-                        org.telegram.ui.ActionBar.c4 c4Var2 = wpVar.M.f31849a;
+                        org.telegram.ui.ActionBar.c4 c4Var2 = wpVar.M.f31850a;
                         if (c4Var2.f20723a) {
-                            wpVar.f32214n.k(null, wallPaper2, false, Boolean.valueOf(z10), false);
+                            wpVar.f32215n.k(null, wallPaper2, false, Boolean.valueOf(z10), false);
                         } else {
-                            wpVar.f32214n.k(c4Var2, wallPaper2, false, Boolean.valueOf(z10), false);
+                            wpVar.f32215n.k(c4Var2, wallPaper2, false, Boolean.valueOf(z10), false);
                         }
                     }
                     if (upVar.d != null) {
                         while (i13 < upVar.d.size()) {
-                            ((vp) upVar.d.get(i13)).f31851c = z10 ? 1 : 0;
+                            ((vp) upVar.d.get(i13)).f31852c = z10 ? 1 : 0;
                             i13++;
                         }
                         upVar.l();

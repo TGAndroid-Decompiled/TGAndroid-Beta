@@ -157,7 +157,7 @@ public abstract class x0 extends FrameLayout implements NotificationCenter.Notif
         }, new b());
         this.e = h0Var;
         u1Var.setAdapter(h0Var);
-        h0Var.f30860r = false;
+        h0Var.f30861r = false;
         u1Var.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(7.5f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(7.5f));
         u1Var.setClipToPadding(false);
         addView(u1Var, w7.z5.d(-1, -1.0f, 87, 0.0f, 0.0f, 0.0f, 34.0f));
@@ -227,7 +227,7 @@ public abstract class x0 extends FrameLayout implements NotificationCenter.Notif
         }, null);
         this.f6140n = u61Var;
         sa1Var.setAdapter(u61Var);
-        u61Var.f30860r = false;
+        u61Var.f30861r = false;
         sa1Var.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), 0);
         sa1Var.setClipToPadding(false);
         addView(sa1Var, w7.z5.d(-1, 26.0f, 87, 0.0f, 0.0f, 0.0f, 9.66f));
@@ -246,7 +246,7 @@ public abstract class x0 extends FrameLayout implements NotificationCenter.Notif
         x0Var.R = l4.longValue();
         qc M = new xc(x0Var.f6131b, new b()).M(x0Var.getStarsToastTitle(), x0Var.getStarsToastSubtitle(), R.raw.stars_topup);
         boolean z10 = false;
-        M.f29538r = false;
+        M.f29539r = false;
         M.k(true);
         long j10 = 0;
         x0Var.R = 0L;
@@ -940,7 +940,7 @@ public abstract class x0 extends FrameLayout implements NotificationCenter.Notif
         int[] iArr;
         qc qcVar = this.W;
         b0 b0Var = this.f6135d0;
-        if (qcVar == null || !qcVar.f29532l) {
+        if (qcVar == null || !qcVar.f29533l) {
             b bVar = new b();
             kc kcVar = new kc(getContext(), bVar);
             this.f6130a0 = kcVar;
@@ -949,7 +949,7 @@ public abstract class x0 extends FrameLayout implements NotificationCenter.Notif
             oc ocVar = new oc(getContext(), bVar, true, false);
             this.f6132b0 = ocVar;
             ocVar.e(LocaleController.getString(R.string.StarsSentUndo));
-            this.f6132b0.f28982a = new a0((n2) this, 0);
+            this.f6132b0.f28983a = new a0((n2) this, 0);
             jc jcVar = new jc(getContext(), bVar);
             this.f6134c0 = jcVar;
             jcVar.f27492b = 5000L;
@@ -959,7 +959,7 @@ public abstract class x0 extends FrameLayout implements NotificationCenter.Notif
             this.f6130a0.setButton(this.f6132b0);
             qc f7 = qc.f(this.f6131b, this.f6130a0, -1);
             this.W = f7;
-            f7.f29538r = false;
+            f7.f29539r = false;
             f7.k(true);
             this.W.v = b0Var;
         }

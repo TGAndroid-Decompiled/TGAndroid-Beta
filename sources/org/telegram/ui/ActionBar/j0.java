@@ -82,7 +82,7 @@ public final class j0 extends ImageView {
         switch (this.f21415a) {
             case 1:
                 super.setAlpha(f7);
-                ((wq) this.f21416b).f32236x.invalidate();
+                ((wq) this.f21416b).f32237x.invalidate();
                 return;
             default:
                 super.setAlpha(f7);
@@ -96,7 +96,7 @@ public final class j0 extends ImageView {
             case 2:
                 super.setTranslationY(f7);
                 PhotoViewer photoViewer = (PhotoViewer) this.f21416b;
-                ArrayList arrayList = photoViewer.f33305h1;
+                ArrayList arrayList = photoViewer.f33306h1;
                 if (arrayList != null) {
                     int size = arrayList.size();
                     int i10 = 0;
@@ -106,11 +106,11 @@ public final class j0 extends ImageView {
                         ((ei.x3) obj).setTranslationY(f7);
                     }
                 }
-                fs0 fs0Var = photoViewer.f33296g1;
+                fs0 fs0Var = photoViewer.f33297g1;
                 if (fs0Var != null) {
                     fs0Var.setTranslationY(f7);
                 }
-                z90 z90Var = photoViewer.f33288f1;
+                z90 z90Var = photoViewer.f33289f1;
                 if (z90Var != null) {
                     z90Var.setTranslationY(f7);
                     return;

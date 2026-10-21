@@ -30,8 +30,8 @@ public final class ku0 implements Runnable {
                 String str2 = this.f27951c;
                 ArrayList arrayList = null;
                 lu0Var2.f28278f = null;
-                if (!ChatObject.isChannel(lu0Var2.f28279n) && lu0Var2.f28281s.f31032d1 != null) {
-                    arrayList = new ArrayList(lu0Var2.f28281s.f31032d1.participants.participants);
+                if (!ChatObject.isChannel(lu0Var2.f28279n) && lu0Var2.f28281s.f31033d1 != null) {
+                    arrayList = new ArrayList(lu0Var2.f28281s.f31033d1.participants.participants);
                 }
                 lu0Var2.f28280r = 2;
                 if (arrayList != null) {

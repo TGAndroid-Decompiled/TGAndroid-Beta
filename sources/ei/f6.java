@@ -1783,14 +1783,14 @@ public abstract class f6 extends mw0 implements rg.q1, rg.h, rg.m1, kw0, rb {
             }
             tz tzVar2 = this.f9028p2;
             ub ubVar = this.M1;
-            if (tzVar2 != null && tzVar2.f30722c1 != UserConfig.selectedAccount) {
+            if (tzVar2 != null && tzVar2.f30723c1 != UserConfig.selectedAccount) {
                 ubVar.removeView(tzVar2);
                 this.f9028p2 = null;
             }
             if (this.f9028p2 == null) {
                 tz tzVar3 = new tz(null, true, false, false, getContext(), false, null, null, true, this.G1, false, false);
                 this.f9028p2 = tzVar3;
-                tzVar3.f30786w2 = false;
+                tzVar3.f30787w2 = false;
                 tzVar3.U0 = true;
                 tzVar3.setVisibility(8);
                 if (AndroidUtilities.isTablet()) {
@@ -1912,15 +1912,15 @@ public abstract class f6 extends mw0 implements rg.q1, rg.h, rg.m1, kw0, rb {
         TLRPC.MessageMedia messageMedia;
         TLRPC.GeoPoint geoPoint;
         ti tiVar = new ti(getContext(), new p5(this, callback2), false, true, false, this.G1);
-        tiVar.f30537c2 = new Object();
+        tiVar.f30538c2 = new Object();
         wh whVar = tiVar.A1;
         if (t0Var != null && (messageMedia = t0Var.f45650u0) != null && (geoPoint = messageMedia.geo) != null) {
             tiVar.A2 = new double[]{geoPoint.lat, geoPoint._long};
             tiVar.O = true;
             whVar.setVisibility(8);
         } else if (this.U1) {
-            tiVar.f30608y2 = this.W1;
-            tiVar.f30611z2 = this.V1;
+            tiVar.f30609y2 = this.W1;
+            tiVar.f30612z2 = this.V1;
             tiVar.O = true;
             whVar.setVisibility(8);
         } else {

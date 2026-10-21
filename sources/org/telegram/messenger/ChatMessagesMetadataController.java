@@ -47,7 +47,7 @@ public class ChatMessagesMetadataController {
         ArrayList arrayList = new ArrayList();
         messageObject.forceUpdate = true;
         arrayList.add(messageObject);
-        this.chatActivity.getMessagesStorage().getStorageQueue().postRunnable(new h3(13, this, arrayList));
+        this.chatActivity.getMessagesStorage().getStorageQueue().postRunnable(new i3(13, this, arrayList));
         if (!isExpiredStory && messageObject.isExpiredStory() && messageObject.type == 24) {
             this.chatActivity.yc(arrayList, true);
         } else {

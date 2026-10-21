@@ -24,10 +24,10 @@ public final class wr implements Runnable {
                     if (user.phone == null && (str = fsVar.L) != null) {
                         user.phone = jf.b.d(str, false);
                     }
-                    fsVar.f37067b.setText(user.first_name);
-                    org.telegram.ui.Cells.g3 g3Var = fsVar.f37067b.f22402b;
+                    fsVar.f37068b.setText(user.first_name);
+                    org.telegram.ui.Cells.g3 g3Var = fsVar.f37068b.f22402b;
                     g3Var.setSelection(g3Var.length());
-                    fsVar.f37068c.setText(user.last_name);
+                    fsVar.f37069c.setText(user.last_name);
                 }
                 TLRPC.UserFull userFull = fsVar.getMessagesController().getUserFull(fsVar.H);
                 if (userFull != null) {

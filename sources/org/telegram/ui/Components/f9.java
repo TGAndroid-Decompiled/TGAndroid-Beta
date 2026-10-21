@@ -16,7 +16,7 @@ public final class f9 implements Runnable {
         AndroidUtilities.runOnUIThread(rmVar.f26543y, 1000L);
         TLRPC.TL_emojiList tL_emojiList = rmVar.f26538n;
         if (tL_emojiList != null && !tL_emojiList.document_id.isEmpty() && rmVar.f26541w == 1.0f) {
-            if (rmVar.f26542x || ((g3Var = rmVar.f26535b.f29837k) != null && g3Var.hasImageLoaded())) {
+            if (rmVar.f26542x || ((g3Var = rmVar.f26535b.f29838k) != null && g3Var.hasImageLoaded())) {
                 int i10 = rmVar.v + 1;
                 rmVar.v = i10;
                 rmVar.f26540s++;

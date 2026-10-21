@@ -78,7 +78,7 @@ public final class ti implements Runnable {
                 dmVar.Q.presentFragment(new ProfileActivity(bundle, null));
                 return;
             case 7:
-                ((hm) obj).f37687c.j9(true);
+                ((hm) obj).f37688c.j9(true);
                 return;
             case 8:
                 ((ri) obj).c(false);
@@ -88,7 +88,7 @@ public final class ti implements Runnable {
                 qnVar2.getNotificationCenter().onAnimationFinish(qnVar2.I9);
                 return;
             case 10:
-                qn qnVar3 = ((in) obj).f38031s;
+                qn qnVar3 = ((in) obj).f38032s;
                 qnVar3.f40724j0.getSearchField().requestFocus();
                 AndroidUtilities.showKeyboard(qnVar3.f40724j0.getSearchField());
                 if (qnVar3.f40806pa > 0) {
@@ -99,9 +99,9 @@ public final class ti implements Runnable {
                 }
                 return;
             case 11:
-                io ioVar = ((go) obj).f37374a;
-                ioVar.e.setImageDrawable(ioVar.f38053r);
-                ioVar.f38035b0.m(R.drawable.msg_addphoto, LocaleController.getString("ChatSetPhotoOrVideo", R.string.ChatSetPhotoOrVideo), true);
+                io ioVar = ((go) obj).f37375a;
+                ioVar.e.setImageDrawable(ioVar.f38054r);
+                ioVar.f38036b0.m(R.drawable.msg_addphoto, LocaleController.getString("ChatSetPhotoOrVideo", R.string.ChatSetPhotoOrVideo), true);
                 TLRPC.User user = ioVar.D0;
                 if (user != null) {
                     user.photo = null;
@@ -111,8 +111,8 @@ public final class ti implements Runnable {
                 if (ioVar.R0 == null) {
                     ioVar.R0 = new org.telegram.ui.Components.vj0(R.raw.camera_outline, AndroidUtilities.dp(50.0f), AndroidUtilities.dp(50.0f), false, null);
                 }
-                ioVar.f38035b0.e.setTranslationX(-AndroidUtilities.dp(8.0f));
-                ioVar.f38035b0.e.setAnimation(ioVar.R0);
+                ioVar.f38036b0.e.setTranslationX(-AndroidUtilities.dp(8.0f));
+                ioVar.f38036b0.e.setAnimation(ioVar.R0);
                 return;
             case 12:
                 ((lq) obj).run(0);
@@ -132,7 +132,7 @@ public final class ti implements Runnable {
                 urVar.invalidateSelf();
                 return;
             case 15:
-                ContactsActivity contactsActivity = ((ls) obj).f39004a;
+                ContactsActivity contactsActivity = ((ls) obj).f39005a;
                 contactsActivity.Z.f27726r.requestFocus();
                 AndroidUtilities.showKeyboard(contactsActivity.Z.f27726r);
                 return;
@@ -140,7 +140,7 @@ public final class ti implements Runnable {
                 ((ActionBarPopupWindow$ActionBarPopupWindowLayout) obj).getSwipeBack().b(true);
                 return;
             case 17:
-                ((at) obj).f35415a.p();
+                ((at) obj).f35416a.p();
                 return;
             case 18:
                 org.telegram.ui.ActionBar.f3[] f3VarArr = (org.telegram.ui.ActionBar.f3[]) obj;
@@ -166,16 +166,16 @@ public final class ti implements Runnable {
             case 23:
                 cy cyVar = ((aw) obj).B0;
                 cyVar.showDialog(new sg.y0((org.telegram.ui.ActionBar.n2) cyVar, 9, true));
-                cyVar.f36197z0.setIsEditing(false);
+                cyVar.f36198z0.setIsEditing(false);
                 cyVar.G4(false);
                 return;
             case 24:
-                cy cyVar2 = ((bw) obj).f35747b;
-                cyVar2.f36197z0.setIsEditing(true);
+                cy cyVar2 = ((bw) obj).f35748b;
+                cyVar2.f36198z0.setIsEditing(true);
                 cyVar2.G4(true);
                 return;
             case 25:
-                ((cw) obj).f36058a.f36097f0.setAlpha(1.0f);
+                ((cw) obj).f36059a.f36098f0.setAlpha(1.0f);
                 return;
             case 26:
                 Bundle bundle2 = new Bundle();

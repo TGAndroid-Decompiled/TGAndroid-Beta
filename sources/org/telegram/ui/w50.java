@@ -105,8 +105,8 @@ public final class w50 extends org.telegram.ui.Components.im0 {
         if (size > 1 && size != 2 && (size != 3 || i10 == 0 || i10 == 1)) {
             i11 = 3;
         }
-        lVar.f31508a = i11;
-        lVar.f31509b = this;
+        lVar.f31509a = i11;
+        lVar.f31510b = this;
         if (lVar.getMeasuredHeight() != F()) {
             lVar.requestLayout();
         }

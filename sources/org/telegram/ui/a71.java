@@ -3,33 +3,33 @@ package org.telegram.ui;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.tl.TL_account;
 public final class a71 implements Utilities.Callback {
-    public final int f35300a;
-    public final SessionsActivity f35301b;
+    public final int f35301a;
+    public final SessionsActivity f35302b;
 
     public a71(SessionsActivity sessionsActivity, int i10) {
-        this.f35300a = i10;
-        this.f35301b = sessionsActivity;
+        this.f35301a = i10;
+        this.f35302b = sessionsActivity;
     }
 
     @Override
     public final void run(Object obj) {
-        switch (this.f35300a) {
+        switch (this.f35301a) {
             case 0:
                 TL_account.connectedBots connectedbots = (TL_account.connectedBots) obj;
-                SessionsActivity sessionsActivity = this.f35301b;
+                SessionsActivity sessionsActivity = this.f35302b;
                 sessionsActivity.getClass();
                 if (connectedbots != null) {
                     sessionsActivity.h = connectedbots.connected_bots;
-                    if (sessionsActivity.f33843a != null) {
+                    if (sessionsActivity.f33844a != null) {
                         sessionsActivity.m0();
-                        sessionsActivity.f33843a.l();
+                        sessionsActivity.f33844a.l();
                         return;
                     }
                     return;
                 }
                 return;
             default:
-                SessionsActivity.V(this.f35301b, (Boolean) obj);
+                SessionsActivity.V(this.f35302b, (Boolean) obj);
                 return;
         }
     }

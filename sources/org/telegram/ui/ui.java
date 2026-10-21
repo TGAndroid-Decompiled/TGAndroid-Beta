@@ -29,7 +29,7 @@ public final class ui implements ValueAnimator.AnimatorUpdateListener {
                 }
                 return;
             default:
-                ((kc1) this.f41984b).f38578x0.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                ((kc1) this.f41984b).f38579x0.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 return;
         }
     }

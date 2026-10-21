@@ -51,12 +51,12 @@ public final class g extends FrameLayout {
             textView.setTextColor(h6.w0(h6.G6, d6Var));
             textView.setText(LocaleController.getString(R.string.UpgradedStories));
             addView(textView, z5.d(-2, -2.0f, 1, 0.0f, 111.0f, 0.0f, 0.0f));
-            x20Var.f32320m = true;
-            x20Var.f32311a = true;
+            x20Var.f32321m = true;
+            x20Var.f32312a = true;
             x20Var.d(h6.x0(null, h6.Mj, false), h6.x0(null, h6.Lj, false), 0, 0);
-            x20Var.f32313c.setStyle(Paint.Style.STROKE);
-            x20Var.f32313c.setStrokeCap(Paint.Cap.ROUND);
-            x20Var.f32313c.setStrokeWidth(AndroidUtilities.dpf2(3.3f));
+            x20Var.f32314c.setStyle(Paint.Style.STROKE);
+            x20Var.f32314c.setStrokeCap(Paint.Cap.ROUND);
+            x20Var.f32314c.setStrokeWidth(AndroidUtilities.dpf2(3.3f));
         } else if (i10 == 1) {
             gi.f fVar = new gi.f(context, 4);
             addView(fVar, z5.e(-1, 190, 55));
@@ -101,7 +101,7 @@ public final class g extends FrameLayout {
                 float f10 = (i10 * f7) - 90.0f;
                 float f11 = 5;
                 float f12 = f10 + f11;
-                canvas.drawArc(AndroidUtilities.rectTmp, f12, ((f10 + f7) - f11) - f12, false, x20Var.f32313c);
+                canvas.drawArc(AndroidUtilities.rectTmp, f12, ((f10 + f7) - f11) - f12, false, x20Var.f32314c);
             }
         }
         super.dispatchDraw(canvas);

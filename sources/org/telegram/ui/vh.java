@@ -35,9 +35,9 @@ public final class vh implements ViewTreeObserver.OnPreDrawListener {
                     view.getViewTreeObserver().removeOnPreDrawListener(this);
                     int rotation = ((WindowManager) ApplicationLoader.applicationContext.getSystemService("window")).getDefaultDisplay().getRotation();
                     if (rotation != 3 && rotation != 1) {
-                        ((c70) this.f42258b).f35854f.setOrientation(1);
+                        ((c70) this.f42258b).f35855f.setOrientation(1);
                     } else {
-                        ((c70) this.f42258b).f35854f.setOrientation(0);
+                        ((c70) this.f42258b).f35855f.setOrientation(0);
                     }
                     View view2 = ((c70) this.f42258b).fragmentView;
                     view2.setPadding(view2.getPaddingLeft(), 0, ((c70) this.f42258b).fragmentView.getPaddingRight(), ((c70) this.f42258b).fragmentView.getPaddingBottom());
@@ -60,8 +60,8 @@ public final class vh implements ViewTreeObserver.OnPreDrawListener {
                 return true;
             case 4:
                 PhotoViewer photoViewer = (PhotoViewer) this.f42258b;
-                photoViewer.f33441w3.getViewTreeObserver().removeOnPreDrawListener(this);
-                ImageView imageView = photoViewer.f33451x3;
+                photoViewer.f33442w3.getViewTreeObserver().removeOnPreDrawListener(this);
+                ImageView imageView = photoViewer.f33452x3;
                 if (imageView != null) {
                     if (photoViewer.J3) {
                         AndroidUtilities.runOnUIThread(new Runnable(this) {
@@ -76,8 +76,8 @@ public final class vh implements ViewTreeObserver.OnPreDrawListener {
                                 switch (r2) {
                                     case 0:
                                         PhotoViewer photoViewer2 = (PhotoViewer) this.f40968b.f42258b;
-                                        photoViewer2.f33451x3.setVisibility(4);
-                                        photoViewer2.f33451x3.setImageDrawable(null);
+                                        photoViewer2.f33452x3.setVisibility(4);
+                                        photoViewer2.f33452x3.setImageDrawable(null);
                                         Bitmap bitmap = photoViewer2.C3;
                                         if (bitmap != null) {
                                             bitmap.recycle();
@@ -97,7 +97,7 @@ public final class vh implements ViewTreeObserver.OnPreDrawListener {
                         }, 300L);
                     } else {
                         imageView.setVisibility(4);
-                        photoViewer.f33451x3.setImageDrawable(null);
+                        photoViewer.f33452x3.setImageDrawable(null);
                         Bitmap bitmap = photoViewer.C3;
                         if (bitmap != null) {
                             bitmap.recycle();
@@ -117,8 +117,8 @@ public final class vh implements ViewTreeObserver.OnPreDrawListener {
                         switch (r2) {
                             case 0:
                                 PhotoViewer photoViewer2 = (PhotoViewer) this.f40968b.f42258b;
-                                photoViewer2.f33451x3.setVisibility(4);
-                                photoViewer2.f33451x3.setImageDrawable(null);
+                                photoViewer2.f33452x3.setVisibility(4);
+                                photoViewer2.f33452x3.setImageDrawable(null);
                                 Bitmap bitmap2 = photoViewer2.C3;
                                 if (bitmap2 != null) {
                                     bitmap2.recycle();
@@ -148,7 +148,7 @@ public final class vh implements ViewTreeObserver.OnPreDrawListener {
                 return true;
             default:
                 WallpapersListActivity wallpapersListActivity = (WallpapersListActivity) this.f42258b;
-                int[][] iArr = WallpapersListActivity.f35206k0;
+                int[][] iArr = WallpapersListActivity.f35207k0;
                 if (wallpapersListActivity.getParentActivity() != null) {
                     int rotation3 = ((WindowManager) ApplicationLoader.applicationContext.getSystemService("window")).getDefaultDisplay().getRotation();
                     if (AndroidUtilities.isTablet()) {

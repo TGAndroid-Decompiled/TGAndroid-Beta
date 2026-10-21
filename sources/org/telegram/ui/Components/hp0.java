@@ -73,7 +73,7 @@ public final class hp0 extends Drawable {
         kVar.w(AndroidUtilities.dp(16.0f));
         c(2.0f, false);
         kVar.u(-1);
-        kVar.f29225b = 17;
+        kVar.f29226b = 17;
         paint.setPathEffect(new CornerPathEffect(AndroidUtilities.dp(1.66f)));
         path2.moveTo(AndroidUtilities.dp(8.66f), -AndroidUtilities.dp(6.33f));
         path2.lineTo(0.0f, 0.0f);
@@ -227,7 +227,7 @@ public final class hp0 extends Drawable {
                 canvas.drawRoundRect(this.f26973s, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), this.f26960c);
                 this.e.setBounds(AndroidUtilities.dp(11.0f) + ((int) this.f26973s.left), ((int) this.f26973s.centerY()) - (AndroidUtilities.dp(24.0f) / 2), AndroidUtilities.dp(35.0f) + ((int) this.f26973s.left), (AndroidUtilities.dp(24.0f) / 2) + ((int) this.f26973s.centerY()));
                 this.e.setAlpha((int) (255.0f * e7));
-                if (!this.e.f31277k0) {
+                if (!this.e.f31278k0) {
                     this.e.H(true);
                 }
                 this.e.draw(canvas);

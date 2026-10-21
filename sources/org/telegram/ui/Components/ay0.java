@@ -15,6 +15,6 @@ public final class ay0 implements org.telegram.ui.ActionBar.q0, MessagesStorage.
 
     @Override
     public void run(String str) {
-        new g50(r1.getContext(), r1.f29760o0, null, this.f24745a.resourcesProvider).show();
+        new g50(r1.getContext(), r1.f29761o0, null, this.f24745a.resourcesProvider).show();
     }
 }

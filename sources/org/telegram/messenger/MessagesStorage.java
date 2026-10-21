@@ -6311,7 +6311,7 @@ public class MessagesStorage extends BaseController {
         if (TextUtils.isEmpty(str)) {
             return;
         }
-        this.storageQueue.postRunnable(new l8((BaseController) this, str, (Object) str2, 19));
+        this.storageQueue.postRunnable(new l8((BaseController) this, str, (Object) str2, 20));
     }
 
     public void bindTaskToGuid(Runnable runnable, int i10) {
@@ -7000,7 +7000,7 @@ public class MessagesStorage extends BaseController {
     }
 
     public void getNewTask(a0.h hVar, a0.h hVar2) {
-        this.storageQueue.postRunnable(new l8(this, hVar, hVar2, 21));
+        this.storageQueue.postRunnable(new l8(this, hVar, hVar2, 22));
     }
 
     public void getSavedDialogMaxMessageId(long j10, IntCallback intCallback) {
@@ -7766,7 +7766,7 @@ public class MessagesStorage extends BaseController {
 
     public void saveBotCache(String str, TLObject tLObject) {
         if (tLObject != null && !TextUtils.isEmpty(str)) {
-            this.storageQueue.postRunnable(new l8(this, tLObject, str, 18));
+            this.storageQueue.postRunnable(new l8(this, tLObject, str, 19));
         }
     }
 
@@ -7783,7 +7783,7 @@ public class MessagesStorage extends BaseController {
     }
 
     public void saveDialogFilter(MessagesController.DialogFilter dialogFilter, boolean z10, boolean z11) {
-        this.storageQueue.postRunnable(new f3(this, dialogFilter, z10, z11, 1));
+        this.storageQueue.postRunnable(new g3(this, dialogFilter, z10, z11, 1));
     }
 
     public void saveDialogFiltersOrder() {
@@ -8078,7 +8078,7 @@ public class MessagesStorage extends BaseController {
     }
 
     public void updateRepliesCount(long j10, int i10, ArrayList<TLRPC.Peer> arrayList, int i11, int i12) {
-        this.storageQueue.postRunnable(new m3(this, i10, j10, i12, arrayList, i11));
+        this.storageQueue.postRunnable(new n3(this, i10, j10, i12, arrayList, i11));
     }
 
     public void updateRepliesMaxReadId(long j10, long j11, int i10, int i11, boolean z10) {
@@ -8116,7 +8116,7 @@ public class MessagesStorage extends BaseController {
     public void updateUsers(ArrayList<TLRPC.User> arrayList, boolean z10, boolean z11, boolean z12) {
         if (arrayList != null && !arrayList.isEmpty()) {
             if (z12) {
-                this.storageQueue.postRunnable(new f3(this, arrayList, z10, z11, 2));
+                this.storageQueue.postRunnable(new g3(this, arrayList, z10, z11, 2));
             } else {
                 lambda$updateUsers$215(arrayList, z10, z11);
             }

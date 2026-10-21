@@ -16,12 +16,12 @@ public final class uq extends s4.k {
 
     @Override
     public final void O() {
-        this.G.f37721c.invalidate();
+        this.G.f37722c.invalidate();
     }
 
     @Override
     public final void P(s4.b1 b1Var) {
-        this.G.f37721c.invalidate();
+        this.G.f37722c.invalidate();
     }
 
     @Override

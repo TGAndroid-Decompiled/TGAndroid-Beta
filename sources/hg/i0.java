@@ -90,7 +90,7 @@ public final class i0 extends s4.b0 {
         boolean z12;
         switch (this.I) {
             case 2:
-                i80 i80Var = ((bw) ((s00) this.J).J).f35747b.L0;
+                i80 i80Var = ((bw) ((s00) this.J).J).f35748b.L0;
                 if (i80Var != null && i80Var.D()) {
                     i10 = 0;
                 }
@@ -227,7 +227,7 @@ public final class i0 extends s4.b0 {
     public void z0(s4.y0 y0Var, int[] iArr) {
         switch (this.I) {
             case 7:
-                iArr[1] = ((StickersActivity) this.J).f33855a.getHeight();
+                iArr[1] = ((StickersActivity) this.J).f33856a.getHeight();
                 return;
             default:
                 super.z0(y0Var, iArr);

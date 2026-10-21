@@ -44,17 +44,17 @@ public final class vi extends AnimatorListenerAdapter {
             default:
                 int i11 = this.f42270c;
                 org.telegram.ui.Components.uv0 uv0Var = (org.telegram.ui.Components.uv0) this.e;
-                int[] iArr = uv0Var.f31049m1;
-                org.telegram.ui.Components.nu0[] nu0VarArr = uv0Var.f31046k0;
-                uv0Var.f31054o1 = false;
+                int[] iArr = uv0Var.f31050m1;
+                org.telegram.ui.Components.nu0[] nu0VarArr = uv0Var.f31047k0;
+                uv0Var.f31055o1 = false;
                 boolean z10 = this.f42269b;
                 if (z10) {
-                    int i12 = uv0Var.f31058q1;
+                    int i12 = uv0Var.f31059q1;
                     iArr[i11] = i12;
                     if (i11 == 0) {
                         SharedConfig.setMediaColumnsCount(i12);
                     } else if (uv0Var.c0(((org.telegram.ui.Components.nu0) this.d).F) >= 5) {
-                        SharedConfig.setStoriesColumnsCount(uv0Var.f31058q1);
+                        SharedConfig.setStoriesColumnsCount(uv0Var.f31059q1);
                     }
                 }
                 for (int i13 = 0; i13 < nu0VarArr.length; i13++) {
@@ -62,10 +62,10 @@ public final class vi extends AnimatorListenerAdapter {
                     if (nu0Var != null && nu0Var.h != null && (((i10 = nu0Var.F) == 0 || org.telegram.ui.Components.uv0.q0(i10)) && (adapter = nu0VarArr[i13].h.getAdapter()) != null)) {
                         int h = adapter.h();
                         if (i13 == 0) {
-                            uv0Var.f31066t1[0].g(false);
+                            uv0Var.f31067t1[0].g(false);
                         }
                         if (z10) {
-                            nu0VarArr[i13].f28883x.y1(iArr[i11]);
+                            nu0VarArr[i13].f28884x.y1(iArr[i11]);
                             nu0VarArr[i13].h.a0();
                             if (adapter.h() == h) {
                                 AndroidUtilities.updateVisibleRows(nu0VarArr[i13].h);
@@ -73,18 +73,18 @@ public final class vi extends AnimatorListenerAdapter {
                                 adapter.l();
                             }
                         }
-                        nu0VarArr[i13].f28880r.setVisibility(8);
+                        nu0VarArr[i13].f28881r.setVisibility(8);
                     }
                 }
-                if (uv0Var.f31062s >= 0) {
+                if (uv0Var.f31063s >= 0) {
                     for (int i14 = 0; i14 < nu0VarArr.length; i14++) {
                         org.telegram.ui.Components.nu0 nu0Var2 = nu0VarArr[i14];
-                        if (nu0Var2.F == uv0Var.f31056p1) {
-                            if (z10 && (m10 = nu0Var2.f28881s.m(uv0Var.f31062s)) != null) {
+                        if (nu0Var2.F == uv0Var.f31057p1) {
+                            if (z10 && (m10 = nu0Var2.f28882s.m(uv0Var.f31063s)) != null) {
                                 uv0Var.v = m10.getTop();
                             }
                             org.telegram.ui.Components.nu0 nu0Var3 = nu0VarArr[i14];
-                            nu0Var3.f28883x.h1(uv0Var.f31062s, (-nu0Var3.h.getPaddingTop()) + uv0Var.v);
+                            nu0Var3.f28884x.h1(uv0Var.f31063s, (-nu0Var3.h.getPaddingTop()) + uv0Var.v);
                         }
                     }
                 } else {

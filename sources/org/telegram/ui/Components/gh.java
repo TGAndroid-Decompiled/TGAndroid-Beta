@@ -19,7 +19,7 @@ public final class gh implements Runnable {
         switch (this.f26585a) {
             case 0:
                 ti tiVar = this.f26586b;
-                if (tiVar.f30535c0) {
+                if (tiVar.f30536c0) {
                     quVar = tiVar.S0;
                 } else {
                     quVar = tiVar.H0;
@@ -36,9 +36,9 @@ public final class gh implements Runnable {
                 return;
             case 2:
                 ti tiVar2 = this.f26586b;
-                mf mfVar = tiVar2.f30551h0;
+                mf mfVar = tiVar2.f30552h0;
                 if (mfVar != null) {
-                    j10 = mfVar.k();
+                    j10 = mfVar.j();
                 } else {
                     j10 = 0;
                 }
@@ -47,7 +47,7 @@ public final class gh implements Runnable {
                 tiVar2.Q0 = j11;
                 eiVar.setEffect(j11);
                 li liVar = tiVar2.B0;
-                if (liVar != tiVar2.f30557j0 && liVar != tiVar2.f30577q0) {
+                if (liVar != tiVar2.f30558j0 && liVar != tiVar2.f30578q0) {
                     if (!liVar.K(0, false, 0, tiVar2.u1(), j11)) {
                         tiVar2.dismiss();
                     }
@@ -55,10 +55,10 @@ public final class gh implements Runnable {
                 } else {
                     J1 = tiVar2.J1(0, false, 0, tiVar2.u1(), j11);
                 }
-                mf mfVar2 = tiVar2.f30551h0;
+                mf mfVar2 = tiVar2.f30552h0;
                 if (mfVar2 != null) {
-                    mfVar2.h(!J1);
-                    tiVar2.f30551h0 = null;
+                    mfVar2.g(!J1);
+                    tiVar2.f30552h0 = null;
                     return;
                 }
                 return;

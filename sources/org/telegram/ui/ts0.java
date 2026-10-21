@@ -17,7 +17,7 @@ public final class ts0 extends OrientationEventListener {
         Activity activity;
         int i11;
         PhotoViewer photoViewer = this.f41744a;
-        if (photoViewer.W3 != null && (ys0Var = photoViewer.f33460y2) != null && ys0Var.getVisibility() == 0 && (activity = photoViewer.f33457y) != null && (i11 = photoViewer.Y3) != 0) {
+        if (photoViewer.W3 != null && (ys0Var = photoViewer.f33461y2) != null && ys0Var.getVisibility() == 0 && (activity = photoViewer.f33458y) != null && (i11 = photoViewer.Y3) != 0) {
             if (i11 == 1) {
                 if (i10 >= 240 && i10 <= 300) {
                     photoViewer.Z3 = true;

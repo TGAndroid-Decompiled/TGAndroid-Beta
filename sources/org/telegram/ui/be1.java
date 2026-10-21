@@ -14,12 +14,12 @@ import org.telegram.messenger.TopicsController;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 public final class be1 extends org.telegram.ui.ActionBar.j {
-    public final Context f35617a;
-    public final re1 f35618b;
+    public final Context f35618a;
+    public final re1 f35619b;
 
     public be1(re1 re1Var, Context context) {
-        this.f35618b = re1Var;
-        this.f35617a = context;
+        this.f35619b = re1Var;
+        this.f35618a = context;
     }
 
     @Override
@@ -31,7 +31,7 @@ public final class be1 extends org.telegram.ui.ActionBar.j {
         boolean z11;
         oe1 oe1Var;
         TLRPC.TL_forumTopic tL_forumTopic;
-        re1 re1Var = this.f35618b;
+        re1 re1Var = this.f35619b;
         TopicsController topicsController = re1Var.f41183s;
         ArrayList arrayList = re1Var.f41151b;
         HashSet hashSet = re1Var.f41149a0;
@@ -73,8 +73,8 @@ public final class be1 extends org.telegram.ui.ActionBar.j {
                     }
                     long j11 = chatFull.f20277id;
                     i11 = ((org.telegram.ui.ActionBar.n2) re1Var).currentAccount;
-                    zd1 zd1Var = new zd1(this, this.f35617a, i11, hVar, chatFull.f20277id, re1Var, j11);
-                    zd1Var.f31178l0 = new ci.d1(this, j11, 11);
+                    zd1 zd1Var = new zd1(this, this.f35618a, i11, hVar, chatFull.f20277id, re1Var, j11);
+                    zd1Var.f31179l0 = new ci.d1(this, j11, 11);
                     zd1Var.show();
                     return;
                 }
@@ -169,8 +169,8 @@ public final class be1 extends org.telegram.ui.ActionBar.j {
                 if (tL_forumTopic2 == null) {
                     while (true) {
                         if (i13 < arrayList.size()) {
-                            if (arrayList.get(i13) != null && ((ie1) arrayList.get(i13)).f37958c != null && ((ie1) arrayList.get(i13)).f37958c.f20328id == 1) {
-                                tL_forumTopic2 = ((ie1) arrayList.get(i13)).f37958c;
+                            if (arrayList.get(i13) != null && ((ie1) arrayList.get(i13)).f37959c != null && ((ie1) arrayList.get(i13)).f37959c.f20328id == 1) {
+                                tL_forumTopic2 = ((ie1) arrayList.get(i13)).f37959c;
                             } else {
                                 i13++;
                             }

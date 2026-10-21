@@ -507,7 +507,7 @@ public final class gc extends View {
     public final void computeScroll() {
         mn0 mn0Var = this.W0;
         if (mn0Var.b()) {
-            int i10 = mn0Var.f28564j;
+            int i10 = mn0Var.f28565j;
             long min = Math.min(getBaseDuration(), getMaxScrollDuration());
             if (this.f9115q1) {
                 this.f9092f = Math.max(0.0f, (((i10 - this.f9136y1) - this.f9133x1) / this.f9125u1) * ((float) min));

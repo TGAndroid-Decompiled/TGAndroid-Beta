@@ -233,7 +233,7 @@ public final class dg0 extends FrameLayout implements h00, ei.rb {
             sf0Var.setVisibility(4);
             frameLayout.setVisibility(0);
             uf0Var.setVisibility(0);
-            this.W.f32891f = 0;
+            this.W.f32892f = 0;
             for (int i11 = 0; i11 < 4; i11++) {
                 RadioButton radioButton = this.f25490u0[i11];
                 if (i11 == 0) {
@@ -437,12 +437,12 @@ public final class dg0 extends FrameLayout implements h00, ei.rb {
         if (e00Var == null || (paVar = e00Var.I) == null) {
             return null;
         }
-        synchronized (paVar.f29280n) {
+        synchronized (paVar.f29281n) {
             try {
-                if (!paVar.f29283q) {
+                if (!paVar.f29284q) {
                     return null;
                 }
-                return paVar.f29282p;
+                return paVar.f29283p;
             } catch (Throwable th2) {
                 throw th2;
             }
@@ -510,7 +510,7 @@ public final class dg0 extends FrameLayout implements h00, ei.rb {
             if (textureView instanceof r71) {
                 float x10 = motionEvent.getX();
                 float y3 = motionEvent.getY();
-                fl0 fl0Var = ((r71) textureView).f29861c;
+                fl0 fl0Var = ((r71) textureView).f29862c;
                 float f7 = fl0Var.f26272a;
                 if (x10 >= f7 && x10 <= f7 + fl0Var.f26274c) {
                     float f10 = fl0Var.f26273b;

@@ -36,7 +36,7 @@ public final class xz extends g00 {
                 switch (r2) {
                     case 0:
                         xz xzVar = this.f42979b;
-                        String str = xzVar.f37161x;
+                        String str = xzVar.f37162x;
                         if (str != null && AndroidUtilities.addToClipboard(str)) {
                             new org.telegram.ui.Components.xc(xzVar.E.d.Z, null).k(false).j();
                             return;
@@ -63,7 +63,7 @@ public final class xz extends g00 {
                 switch (r2) {
                     case 0:
                         xz xzVar = this.f42979b;
-                        String str = xzVar.f37161x;
+                        String str = xzVar.f37162x;
                         if (str != null && AndroidUtilities.addToClipboard(str)) {
                             new org.telegram.ui.Components.xc(xzVar.E.d.Z, null).k(false).j();
                             return;
@@ -90,7 +90,7 @@ public final class xz extends g00 {
                 switch (r2) {
                     case 0:
                         xz xzVar = this.f42979b;
-                        String str = xzVar.f37161x;
+                        String str = xzVar.f37162x;
                         if (str != null && AndroidUtilities.addToClipboard(str)) {
                             new org.telegram.ui.Components.xc(xzVar.E.d.Z, null).k(false).j();
                             return;

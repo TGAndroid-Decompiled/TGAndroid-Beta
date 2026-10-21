@@ -26,7 +26,7 @@ public final class y3 implements org.telegram.ui.ActionBar.a2, d4, GenericProvid
     public Object provide(Object obj) {
         boolean z10;
         Void r22 = (Void) obj;
-        if (this.f11570a.f28173b.f30592u1.getKeyboardHeight() >= AndroidUtilities.dp(20.0f)) {
+        if (this.f11570a.f28173b.f30593u1.getKeyboardHeight() >= AndroidUtilities.dp(20.0f)) {
             z10 = true;
         } else {
             z10 = false;

@@ -21,19 +21,19 @@ public final class j90 implements View.OnClickListener {
         int i10;
         switch (this.f27470a) {
             case 0:
-                this.f27471b.f29500r.i();
+                this.f27471b.f29501r.i();
                 return;
             case 1:
                 q90 q90Var = this.f27471b;
-                org.telegram.ui.ActionBar.m1 m1Var = q90Var.f29501s;
+                org.telegram.ui.ActionBar.m1 m1Var = q90Var.f29502s;
                 if (m1Var != null) {
                     m1Var.d(true);
                 }
-                q90Var.f29500r.c();
+                q90Var.f29501r.c();
                 return;
             case 2:
                 q90 q90Var2 = this.f27471b;
-                String str = q90Var2.f29496b;
+                String str = q90Var2.f29497b;
                 if (str != null && str.endsWith("?direct")) {
                     z10 = true;
                 } else {
@@ -41,7 +41,7 @@ public final class j90 implements View.OnClickListener {
                 }
                 Context context = q90Var2.getContext();
                 String string = LocaleController.getString(R.string.InviteByQRCode);
-                String str2 = q90Var2.f29496b;
+                String str2 = q90Var2.f29497b;
                 String str3 = q90Var2.J;
                 if (str3 == null) {
                     if (q90Var2.H) {
@@ -59,7 +59,7 @@ public final class j90 implements View.OnClickListener {
                 q90Var2.E = n90Var;
                 n90Var.n(R.raw.qr_code_logo);
                 q90Var2.E.show();
-                org.telegram.ui.ActionBar.m1 m1Var2 = q90Var2.f29501s;
+                org.telegram.ui.ActionBar.m1 m1Var2 = q90Var2.f29502s;
                 if (m1Var2 != null) {
                     m1Var2.d(true);
                     return;
@@ -67,11 +67,11 @@ public final class j90 implements View.OnClickListener {
                 return;
             default:
                 q90 q90Var3 = this.f27471b;
-                org.telegram.ui.ActionBar.m1 m1Var3 = q90Var3.f29501s;
+                org.telegram.ui.ActionBar.m1 m1Var3 = q90Var3.f29502s;
                 if (m1Var3 != null) {
                     m1Var3.d(true);
                 }
-                org.telegram.ui.ActionBar.n2 n2Var = q90Var3.f29497c;
+                org.telegram.ui.ActionBar.n2 n2Var = q90Var3.f29498c;
                 if (n2Var.getParentActivity() != null) {
                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(n2Var.getParentActivity());
                     alertDialog$Builder.f20605a.R = LocaleController.getString(R.string.RevokeLink);

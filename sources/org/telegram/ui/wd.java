@@ -29,7 +29,7 @@ public final class wd implements TextView.OnEditorActionListener {
                     TwoStepVerificationActivity twoStepVerificationActivity = new TwoStepVerificationActivity();
                     sd sdVar = new sd(ieVar, twoStepVerificationActivity, 1);
                     twoStepVerificationActivity.Z = 1;
-                    twoStepVerificationActivity.f33938b0 = sdVar;
+                    twoStepVerificationActivity.f33939b0 = sdVar;
                     ieVar.Q0.setLoading(true);
                     twoStepVerificationActivity.s0(new td(ieVar, p91Var, twoStepVerificationActivity, 1));
                     return true;
@@ -84,7 +84,7 @@ public final class wd implements TextView.OnEditorActionListener {
                 cv0 cv0Var = (cv0) this.f42539c;
                 fv0 fv0Var = ((dv0) this.f42538b).d;
                 if (i10 == 5) {
-                    sa1 sa1Var2 = fv0Var.f37101c;
+                    sa1 sa1Var2 = fv0Var.f37102c;
                     View F2 = sa1Var2.F(cv0Var);
                     if (F2 == null) {
                         T2 = null;
@@ -94,17 +94,17 @@ public final class wd implements TextView.OnEditorActionListener {
                     if (T2 == null || (b11 = T2.b()) == -1) {
                         return true;
                     }
-                    int i14 = b11 - fv0Var.f37114n0;
-                    int i15 = fv0Var.f37129y;
+                    int i14 = b11 - fv0Var.f37115n0;
+                    int i15 = fv0Var.f37130y;
                     int i16 = i15 - 1;
-                    if (i14 == i16 && i15 < fv0Var.f37113n) {
+                    if (i14 == i16 && i15 < fv0Var.f37114n) {
                         fv0Var.f0();
                         return true;
                     } else if (i14 == i16) {
                         AndroidUtilities.hideKeyboard(cv0Var.getTextView());
                         return true;
                     } else {
-                        s4.b1 K2 = fv0Var.f37101c.K(b11 + 1);
+                        s4.b1 K2 = fv0Var.f37102c.K(b11 + 1);
                         if (K2 == null) {
                             return true;
                         }

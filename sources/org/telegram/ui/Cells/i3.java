@@ -36,7 +36,7 @@ public class i3 extends FrameLayout {
         this.v = p6Var;
         p6Var.n(0.2f, 160L, bs.h);
         p6Var.w(AndroidUtilities.dp(15.33f));
-        p6Var.f29225b = 5;
+        p6Var.f29226b = 5;
         this.f22403c = i10;
         g3 g3Var = new g3(this, context, d6Var, i10, d6Var, z11);
         this.f22402b = g3Var;

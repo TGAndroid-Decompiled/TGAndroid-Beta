@@ -13,13 +13,13 @@ public final class uc0 implements org.telegram.ui.ActionBar.a2 {
         switch (this.f41929a) {
             case 0:
                 dg0 dg0Var = this.f41930b;
-                dg0Var.f36368b[dg0Var.f36366a].d();
+                dg0Var.f36369b[dg0Var.f36367a].d();
                 dg0Var.k1(true, true);
                 return;
             default:
                 dg0 dg0Var2 = this.f41930b;
-                dg0Var2.f36381l0 = true;
-                if (dg0Var2.f36366a != 0) {
+                dg0Var2.f36382l0 = true;
+                if (dg0Var2.f36367a != 0) {
                     dg0Var2.u1(0, true, null, true);
                     return;
                 }

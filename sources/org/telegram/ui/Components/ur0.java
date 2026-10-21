@@ -8,24 +8,24 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class ur0 implements Runnable {
-    public final int f31003a = 0;
-    public final uv0 f31004b;
-    public final org.telegram.ui.ActionBar.d6 f31005c;
+    public final int f31004a = 0;
+    public final uv0 f31005b;
+    public final org.telegram.ui.ActionBar.d6 f31006c;
     public final MessageObject d;
     public final int e;
 
     public ur0(uv0 uv0Var, org.telegram.ui.ActionBar.d6 d6Var, int i10, MessageObject messageObject) {
-        this.f31004b = uv0Var;
-        this.f31005c = d6Var;
+        this.f31005b = uv0Var;
+        this.f31006c = d6Var;
         this.e = i10;
         this.d = messageObject;
     }
 
     @Override
     public final void run() {
-        switch (this.f31003a) {
+        switch (this.f31004a) {
             case 0:
-                org.telegram.ui.ActionBar.b2[] b2VarArr = {new org.telegram.ui.ActionBar.b2(this.f31004b.getContext(), 3, this.f31005c)};
+                org.telegram.ui.ActionBar.b2[] b2VarArr = {new org.telegram.ui.ActionBar.b2(this.f31005b.getContext(), 3, this.f31006c)};
                 int i10 = this.e;
                 int sendVote = SendMessagesHelper.getInstance(i10).sendVote(this.d, null, new vs(b2VarArr, 1));
                 if (sendVote != 0) {
@@ -34,9 +34,9 @@ public final class ur0 implements Runnable {
                 }
                 return;
             default:
-                uv0 uv0Var = this.f31004b;
+                uv0 uv0Var = this.f31005b;
                 Context context = uv0Var.getContext();
-                org.telegram.ui.ActionBar.d6 d6Var = this.f31005c;
+                org.telegram.ui.ActionBar.d6 d6Var = this.f31006c;
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, d6Var);
                 org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20605a;
                 b2Var.P0 = false;
@@ -55,8 +55,8 @@ public final class ur0 implements Runnable {
     }
 
     public ur0(uv0 uv0Var, org.telegram.ui.ActionBar.d6 d6Var, MessageObject messageObject, int i10) {
-        this.f31004b = uv0Var;
-        this.f31005c = d6Var;
+        this.f31005b = uv0Var;
+        this.f31006c = d6Var;
         this.d = messageObject;
         this.e = i10;
     }

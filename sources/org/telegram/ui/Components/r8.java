@@ -2,29 +2,29 @@ package org.telegram.ui.Components;
 
 import org.telegram.messenger.NotificationCenter;
 public final class r8 implements org.telegram.ui.ActionBar.a2, vq {
-    public final int f29866a;
-    public final e9 f29867b;
+    public final int f29867a;
+    public final e9 f29868b;
 
     public r8(e9 e9Var, int i10) {
-        this.f29866a = i10;
-        this.f29867b = e9Var;
+        this.f29867a = i10;
+        this.f29868b = e9Var;
     }
 
     @Override
     public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f29866a) {
+        switch (this.f29867a) {
             case 0:
-                this.f29867b.finishFragment();
+                this.f29868b.finishFragment();
                 return;
             default:
-                this.f29867b.finishFragment();
+                this.f29868b.finishFragment();
                 return;
         }
     }
 
     @Override
     public void j0(int i10, int i11, boolean z10) {
-        e9 e9Var = this.f29867b;
+        e9 e9Var = this.f29868b;
         if (i11 != 0) {
             if (i11 != 1) {
                 if (i11 != 2) {

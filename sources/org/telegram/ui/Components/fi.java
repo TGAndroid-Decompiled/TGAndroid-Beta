@@ -13,7 +13,7 @@ public final class fi implements oj {
 
     @Override
     public final void b(TLRPC.User user, boolean z10, int i10, long j10) {
-        org.telegram.ui.qn qnVar = (org.telegram.ui.qn) this.f26223a.f30545f0;
+        org.telegram.ui.qn qnVar = (org.telegram.ui.qn) this.f26223a.f30546f0;
         if (qnVar.i7()) {
             SendMessagesHelper.SendMessageParams of2 = SendMessagesHelper.SendMessageParams.of(user, qnVar.T5, qnVar.f40779n5, qnVar.X3, (TLRPC.ReplyMarkup) null, (HashMap<String, String>) null, z10, i10, 0);
             of2.sendMessageChatArguments = qnVar.H8();
@@ -29,6 +29,6 @@ public final class fi implements oj {
 
     @Override
     public final void c(ArrayList arrayList, String str, boolean z10, int i10, long j10, boolean z11) {
-        ((org.telegram.ui.qn) this.f26223a.f30545f0).ib(arrayList, str, z10, i10, j10, z11);
+        ((org.telegram.ui.qn) this.f26223a.f30546f0).ib(arrayList, str, z10, i10, j10, z11);
     }
 }

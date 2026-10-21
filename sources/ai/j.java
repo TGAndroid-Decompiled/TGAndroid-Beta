@@ -59,7 +59,7 @@ public final class j implements Runnable {
                     @Override
                     public final void onClick(View view) {
                         s31 s31Var2 = s31.this;
-                        int i11 = s31Var2.f30179b;
+                        int i11 = s31Var2.f30180b;
                         i80Var.u();
                         boolean z12 = z11;
                         TLRPC.User user2 = user;

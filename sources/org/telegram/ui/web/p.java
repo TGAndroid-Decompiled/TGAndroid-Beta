@@ -50,7 +50,7 @@ public final class p extends x61 {
         }
         pVar.f42749w.clear();
         pVar.actionBar.s();
-        pVar.f32355a.W2.N(true);
+        pVar.f32356a.W2.N(true);
     }
 
     public static boolean f0(String str, String str2) {
@@ -275,14 +275,14 @@ public final class p extends x61 {
         searchField.setTextColor(getThemedColor(i11));
         searchField.setHintTextColor(getThemedColor(h6.Si));
         searchField.setCursorColor(getThemedColor(i11));
-        this.f32355a.j(new kv(this, 17));
+        this.f32356a.j(new kv(this, 17));
         tx0 tx0Var = new tx0(context, null, 1, null);
         tx0Var.d.setText(LocaleController.getString(R.string.WebNoBookmarks));
         tx0Var.e.setVisibility(8);
         tx0Var.e(false, false);
         tx0Var.setAnimateLayoutChange(true);
         ((FrameLayout) this.fragmentView).addView(tx0Var, z5.c(-1.0f, -1));
-        this.f32355a.setEmptyView(tx0Var);
+        this.f32356a.setEmptyView(tx0Var);
         return this.fragmentView;
     }
 
@@ -316,9 +316,9 @@ public final class p extends x61 {
         int i11 = -1;
         int i12 = 0;
         while (true) {
-            if (i12 < this.f32355a.getChildCount()) {
-                View childAt = this.f32355a.getChildAt(i12);
-                this.f32355a.getClass();
+            if (i12 < this.f32356a.getChildCount()) {
+                View childAt = this.f32356a.getChildAt(i12);
+                this.f32356a.getClass();
                 int R = RecyclerView.R(childAt);
                 if (R < 0) {
                     i12++;
@@ -333,11 +333,11 @@ public final class p extends x61 {
                 break;
             }
         }
-        this.f32355a.W2.N(true);
+        this.f32356a.W2.N(true);
         if (i11 >= 0) {
-            this.f32355a.V2.h1(i11, i10);
+            this.f32356a.V2.h1(i11, i10);
         } else {
-            this.f32355a.V2.h1(0, 0);
+            this.f32356a.V2.h1(0, 0);
         }
     }
 

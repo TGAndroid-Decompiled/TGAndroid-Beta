@@ -165,7 +165,7 @@ public final class hc0 extends s4.g0 {
         Context context = viewGroup.getContext();
         ic0 ic0Var = this.f26852c;
         oc0 oc0Var = ic0Var.f27237c0;
-        fc0 fc0Var = new fc0(this, context, oc0Var.f28992w, ic0Var.J, oc0Var.F);
+        fc0 fc0Var = new fc0(this, context, oc0Var.f28993w, ic0Var.J, oc0Var.F);
         fc0Var.setClipChildren(false);
         fc0Var.setClipToPadding(false);
         fc0Var.setDelegate(new gc0(this));
@@ -206,19 +206,19 @@ public final class hc0 extends s4.g0 {
                         MessagePreviewParams messagePreviewParams2 = oc0Var.d;
                         MessagePreviewParams messagePreviewParams3 = oc0Var.d;
                         org.telegram.ui.gn gnVar = messagePreviewParams3.quote;
-                        if (gnVar.f37366m && messageObject != null && messageObject.richLayout != null && ((i11 = messagePreviewParams3.quoteStart) < 0 || messagePreviewParams3.quoteEnd <= i11)) {
-                            String str = gnVar.f37362i;
+                        if (gnVar.f37367m && messageObject != null && messageObject.richLayout != null && ((i11 = messagePreviewParams3.quoteStart) < 0 || messagePreviewParams3.quoteEnd <= i11)) {
+                            String str = gnVar.f37363i;
                             if (str == null) {
                                 findQuote = null;
                             } else {
-                                findQuote = RichQuote.findQuote(messageObject, str, gnVar.f37368o);
+                                findQuote = RichQuote.findQuote(messageObject, str, gnVar.f37369o);
                             }
                             if (findQuote != null) {
                                 messagePreviewParams2.quoteStart = findQuote[0];
                                 messagePreviewParams2.quoteEnd = findQuote[1];
                             } else {
                                 messagePreviewParams2.quoteStart = 0;
-                                messagePreviewParams2.quoteEnd = Math.min(MessagesController.getInstance(oc0Var.f28992w).quoteLengthMax, org.telegram.ui.gn.d(messageObject));
+                                messagePreviewParams2.quoteEnd = Math.min(MessagesController.getInstance(oc0Var.f28993w).quoteLengthMax, org.telegram.ui.gn.d(messageObject));
                             }
                         }
                     }

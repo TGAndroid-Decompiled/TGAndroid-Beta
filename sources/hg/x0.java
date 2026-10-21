@@ -177,7 +177,7 @@ public final class x0 implements Runnable {
             default:
                 ei.d dVar = (ei.d) obj7;
                 org.telegram.ui.Wallet.m0 m0Var = (org.telegram.ui.Wallet.m0) obj6;
-                f2 f2Var = m0Var.f34480g;
+                f2 f2Var = m0Var.f34481g;
                 TL_wallet.tonConnectSession tonconnectsession = (TL_wallet.tonConnectSession) obj5;
                 org.telegram.ui.Wallet.a2 a2Var = (org.telegram.ui.Wallet.a2) obj4;
                 TextView textView2 = (TextView) obj3;
@@ -215,7 +215,7 @@ public final class x0 implements Runnable {
                 } else {
                     z12 = r16;
                 }
-                if (z12 && !a2Var.f33986f) {
+                if (z12 && !a2Var.f33987f) {
                     z13 = true;
                 } else {
                     z13 = r16;

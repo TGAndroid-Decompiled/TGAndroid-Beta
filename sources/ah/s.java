@@ -331,7 +331,7 @@ public final class s extends org.telegram.ui.ActionBar.j {
                 if (i10 == -1) {
                     baVar.finishFragment();
                     return;
-                } else if (i10 == 1 && baVar.f35553a.getText().length() != 0) {
+                } else if (i10 == 1 && baVar.f35554a.getText().length() != 0) {
                     ba.U(baVar);
                     baVar.finishFragment();
                     return;

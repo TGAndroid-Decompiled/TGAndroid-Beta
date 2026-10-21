@@ -418,7 +418,7 @@ public final class s implements ee.b, g0, com.google.android.gms.common.api.inte
         ki.q qVar = (ki.q) this.f17126c;
         i80 i80Var = new i80(qVar, (d6) this.f17125b, view, false, false, true);
         i80Var.Q = true;
-        n2 n2Var = qVar.f28173b.f30545f0;
+        n2 n2Var = qVar.f28173b.f30546f0;
         qVar.getContext();
         qVar.H = j4.b(i80Var, n2Var, v3Var, true);
     }
@@ -583,13 +583,13 @@ public final class s implements ee.b, g0, com.google.android.gms.common.api.inte
     public void i(ki.a aVar) {
         ki.q qVar = (ki.q) this.f17126c;
         ti tiVar = qVar.f28173b;
-        n2 n2Var = tiVar.f30545f0;
+        n2 n2Var = tiVar.f30546f0;
         if (n2Var != null && aVar != null && (aVar.f15095b instanceof TL_iv.pageBlockMap) && AndroidUtilities.isMapsInstalled(n2Var)) {
-            ti tiVar2 = new ti(qVar.getContext(), tiVar.f30545f0, false, false, false, null);
-            tiVar2.f30537c2 = new t7.u(11);
+            ti tiVar2 = new ti(qVar.getContext(), tiVar.f30546f0, false, false, false, null);
+            tiVar2.f30538c2 = new t7.u(11);
             tiVar2.P = true;
             tiVar2.A1.setVisibility(8);
-            tiVar2.f30600w2 = new u2(qVar, aVar, tiVar2, 11);
+            tiVar2.f30601w2 = new u2(qVar, aVar, tiVar2, 11);
             tiVar2.t1();
             tiVar2.show();
         }
@@ -629,7 +629,7 @@ public final class s implements ee.b, g0, com.google.android.gms.common.api.inte
         ki.q qVar = (ki.q) this.f17126c;
         i80 i80Var = new i80(qVar, (d6) this.f17125b, view, false, false, true);
         i80Var.Q = true;
-        qVar.H = j4.c(i80Var, qVar.f28173b.f30545f0, qVar.getContext(), (d6) this.f17125b, t3Var, true);
+        qVar.H = j4.c(i80Var, qVar.f28173b.f30546f0, qVar.getContext(), (d6) this.f17125b, t3Var, true);
     }
 
     @Override

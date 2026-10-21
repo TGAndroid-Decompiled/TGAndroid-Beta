@@ -104,7 +104,7 @@ public abstract class s2 {
                                                                     i13 = i14;
                                                                     n2 n2Var2 = new n2(i13, callbackReturn4, callback24, r2Var2, callback34, z17, z18, na0Var4, 1);
                                                                     r2Var2.Z = 1;
-                                                                    r2Var2.f33938b0 = n2Var2;
+                                                                    r2Var2.f33939b0 = n2Var2;
                                                                     r2Var2.s0(new x70(na0Var4, z17, r2Var2, 13));
                                                                     r2Var = r2Var2;
                                                                 } else {
@@ -171,7 +171,7 @@ public abstract class s2 {
                                                         boolean z17 = z15;
                                                         n2 n2Var3 = new n2(i20, callbackReturn4, callback24, r2Var, callback34, z17, z16, na0Var4, 0);
                                                         r2Var.Z = 1;
-                                                        r2Var.f33938b0 = n2Var3;
+                                                        r2Var.f33939b0 = n2Var3;
                                                         r2Var.I = password;
                                                         r2Var.J = false;
                                                         org.telegram.ui.ActionBar.n2 U2 = LaunchActivity.U();

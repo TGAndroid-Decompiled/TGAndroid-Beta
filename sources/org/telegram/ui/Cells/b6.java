@@ -111,7 +111,7 @@ public final class b6 extends iu {
                 return;
             case 1:
                 if (z10) {
-                    ((o41) this.d).f39122y.q();
+                    ((o41) this.d).f39123y.q();
                     AndroidUtilities.runOnUIThread(new k51(this, 0), 200L);
                 }
                 super.onFocusChanged(z10, i10, rect);
@@ -178,7 +178,7 @@ public final class b6 extends iu {
                 }
                 return super.onTouchEvent(motionEvent);
             case 1:
-                if (motionEvent.getAction() == 1 && ((o41) this.d).f39122y.u()) {
+                if (motionEvent.getAction() == 1 && ((o41) this.d).f39123y.u()) {
                     AndroidUtilities.runOnUIThread(new k51(this, 1), 200L);
                     return false;
                 }

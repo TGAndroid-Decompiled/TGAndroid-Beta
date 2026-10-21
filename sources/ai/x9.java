@@ -123,7 +123,7 @@ public final class x9 implements Runnable {
             if (bArr7 != null && bArr7.length != 0) {
                 im0Var.b();
             } else {
-                Utilities.globalQueue.postRunnable(new ve0(im0Var, im0Var.f38028b, im0Var.d, 13));
+                Utilities.globalQueue.postRunnable(new ve0(im0Var, im0Var.f38029b, im0Var.d, 13));
             }
         }
     }
@@ -425,7 +425,7 @@ public final class x9 implements Runnable {
                 MessageObject messageObject = (MessageObject) this.e;
                 SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
                 int i19 = R.string.SuggestedMessageAcceptInfo;
-                qn qnVar = cnVar.f36010a;
+                qn qnVar = cnVar.f36011a;
                 spannableStringBuilder.append((CharSequence) AndroidUtilities.replaceTags(LocaleController.formatString(i19, qnVar.getMessagesController().getPeerName(DialogObject.getPeerDialogId(message.from_id)))));
                 spannableStringBuilder.append((CharSequence) "\n\n");
                 ag.a m10 = ag.a.m(message.suggested_post.price);
@@ -468,7 +468,7 @@ public final class x9 implements Runnable {
                     org.telegram.ui.Components.kb a2 = org.telegram.ui.Components.lb.a(qnVar.getParentActivity());
                     d6Var = ((org.telegram.ui.ActionBar.n2) qnVar).resourceProvider;
                     org.telegram.ui.Components.qc G = new org.telegram.ui.Components.xc(a2, d6Var).G(R.raw.info, 10, LocaleController.getString(R.string.SuggestedMessageAcceptStarsDisclaimer));
-                    G.f29530j = 60000;
+                    G.f29531j = 60000;
                     G.k(true);
                     qcVarArr[0] = G;
                     return;
@@ -524,14 +524,14 @@ public final class x9 implements Runnable {
                 TLRPC.Chat chat = (TLRPC.Chat) this.d;
                 boolean z24 = this.f2452b;
                 chat.join_to_send = z24;
-                epVar.f36740x.d.getMessagesController().toggleChatJoinToSend(chat.f20276id, z24, new y7(epVar, z24, chat, 18), new eh(17, epVar, (d90) this.e));
+                epVar.f36741x.d.getMessagesController().toggleChatJoinToSend(chat.f20276id, z24, new y7(epVar, z24, chat, 18), new eh(17, epVar, (d90) this.e));
                 return;
             case 15:
                 ep epVar2 = (ep) this.f2453c;
                 TLRPC.Chat chat2 = (TLRPC.Chat) this.d;
                 boolean z25 = this.f2452b;
                 chat2.join_request = z25;
-                epVar2.f36740x.d.getMessagesController().toggleChatJoinRequest(chat2.f20276id, z25, new dp(epVar2, 0), new eh(16, epVar2, (c90) this.e));
+                epVar2.f36741x.d.getMessagesController().toggleChatJoinRequest(chat2.f20276id, z25, new dp(epVar2, 0), new eh(16, epVar2, (c90) this.e));
                 return;
             case 16:
                 boolean z26 = this.f2452b;
@@ -763,7 +763,7 @@ public final class x9 implements Runnable {
                 boolean z34 = this.f2452b;
                 if (tL_error4 == null) {
                     TL_account.Password password2 = (TL_account.Password) tLObject8;
-                    eo0Var.f36699a0 = password2;
+                    eo0Var.f36700a0 = password2;
                     TwoStepVerificationActivity.m0(password2);
                     eo0Var.A0(z34);
                     return;

@@ -290,7 +290,7 @@ public final class r70 extends org.telegram.ui.ActionBar.n2 implements Notificat
         m0Var.addView(this.d, w7.z5.d(-1, -2.0f, 48, 0.0f, 0.0f, 0.0f, 0.0f));
         LaunchActivity launchActivity = LaunchActivity.H1;
         if (launchActivity != null) {
-            launchActivity.f33168g1.d.add(this);
+            launchActivity.f33169g1.d.add(this);
         }
         return this.fragmentView;
     }
@@ -373,7 +373,7 @@ public final class r70 extends org.telegram.ui.ActionBar.n2 implements Notificat
     @Override
     public final void onClick(View view) {
         org.telegram.ui.Components.v30 v30Var = (org.telegram.ui.Components.v30) view;
-        if (v30Var.f31135y) {
+        if (v30Var.f31136y) {
             this.H = null;
             this.f41077f.a(v30Var);
             this.f41076c.e(!this.G.isEmpty(), true);

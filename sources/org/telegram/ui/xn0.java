@@ -25,7 +25,7 @@ public final class xn0 extends WebViewClient {
     public final void onPageFinished(WebView webView, String str) {
         super.onPageFinished(webView, str);
         eo0 eo0Var = this.f43253b;
-        eo0Var.f36738z0 = false;
+        eo0Var.f36739z0 = false;
         eo0Var.H0(true, false);
         eo0Var.K0();
     }
@@ -54,7 +54,7 @@ public final class xn0 extends WebViewClient {
         Uri parse;
         boolean z10;
         eo0 eo0Var = this.f43253b;
-        eo0Var.f36736y = !str.equals(eo0Var.f36734x);
+        eo0Var.f36737y = !str.equals(eo0Var.f36735x);
         try {
             parse = Uri.parse(str);
         } catch (Exception unused) {
@@ -63,8 +63,8 @@ public final class xn0 extends WebViewClient {
             eo0Var.t0();
             return true;
         }
-        if (!eo0.f36697h1.contains(parse.getScheme())) {
-            if (!eo0.f36696g1.contains(parse.getScheme())) {
+        if (!eo0.f36698h1.contains(parse.getScheme())) {
+            if (!eo0.f36697g1.contains(parse.getScheme())) {
                 try {
                     if (eo0Var.getParentActivity() != null) {
                         z10 = true;
@@ -77,7 +77,7 @@ public final class xn0 extends WebViewClient {
                     }
                 } catch (ActivityNotFoundException unused2) {
                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(this.f43252a);
-                    alertDialog$Builder.f20605a.R = eo0Var.f36723p0;
+                    alertDialog$Builder.f20605a.R = eo0Var.f36724p0;
                     alertDialog$Builder.f20605a.T = LocaleController.getString(R.string.PaymentAppNotFoundForDeeplink);
                     alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
                     alertDialog$Builder.o();

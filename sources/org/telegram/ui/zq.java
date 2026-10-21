@@ -12,7 +12,7 @@ public final class zq extends org.telegram.ui.Components.w20 {
     @Override
     public final void o() {
         hr hrVar = this.f43792b;
-        hrVar.getMessagesController().convertToGigaGroup(hrVar.getParentActivity(), hrVar.f37752r, hrVar, new b1(this, 24));
+        hrVar.getMessagesController().convertToGigaGroup(hrVar.getParentActivity(), hrVar.f37753r, hrVar, new b1(this, 24));
     }
 
     @Override

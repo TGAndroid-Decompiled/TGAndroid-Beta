@@ -19,13 +19,13 @@ public final class zk0 extends org.telegram.ui.ActionBar.j {
         }
         int i11 = 1;
         if (i10 == 1) {
-            if (passcodeActivity.f33234y != 0) {
+            if (passcodeActivity.f33235y != 0) {
                 i11 = 0;
             }
-            passcodeActivity.f33234y = i11;
+            passcodeActivity.f33235y = i11;
             AndroidUtilities.runOnUIThread(new xg0(8, this, this.f43772a), 150L);
             passcodeActivity.h.setText("");
-            for (tr trVar : passcodeActivity.f33229n.f40959f) {
+            for (tr trVar : passcodeActivity.f33230n.f40959f) {
                 trVar.setText("");
             }
             passcodeActivity.o0();

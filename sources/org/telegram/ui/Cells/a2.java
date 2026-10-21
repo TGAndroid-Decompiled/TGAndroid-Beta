@@ -65,7 +65,7 @@ public final class a2 extends FrameLayout {
     public final boolean b() {
         xp xpVar = this.f21962r;
         if (xpVar != null) {
-            return xpVar.f32458a.f24151q;
+            return xpVar.f32459a.f24151q;
         }
         return this.f21961n.h;
     }

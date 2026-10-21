@@ -12,12 +12,12 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class w30 extends im0 {
-    public final Context f31958c;
+    public final Context f31959c;
     public final a40 d;
 
     public w30(a40 a40Var, Context context) {
         this.d = a40Var;
-        this.f31958c = context;
+        this.f31959c = context;
     }
 
     @Override
@@ -153,7 +153,7 @@ public final class w30 extends im0 {
     public final s4.b1 x(ViewGroup viewGroup, int i10) {
         org.telegram.ui.Cells.a5 a5Var;
         if (i10 != 0) {
-            Context context = this.f31958c;
+            Context context = this.f31959c;
             if (i10 != 1) {
                 if (i10 != 2) {
                     if (i10 != 3) {
@@ -185,7 +185,7 @@ public final class w30 extends im0 {
                 a5Var = x4Var;
             }
         } else {
-            org.telegram.ui.Cells.a5 a5Var2 = new org.telegram.ui.Cells.a5(6, 2, this.f31958c, null, false);
+            org.telegram.ui.Cells.a5 a5Var2 = new org.telegram.ui.Cells.a5(6, 2, this.f31959c, null, false);
             a5Var2.setCustomRightImage(R.drawable.msg_invited);
             a5Var2.setNameColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21183ng, false));
             int x02 = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21144lg, false);

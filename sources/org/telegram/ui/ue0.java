@@ -14,10 +14,10 @@ public final class ue0 implements org.telegram.ui.ActionBar.a2 {
             case 0:
                 hf0 hf0Var = this.f41945b;
                 hf0Var.c(true);
-                hf0Var.f37616s0.u1(0, true, null, true);
+                hf0Var.f37617s0.u1(0, true, null, true);
                 return;
             default:
-                this.f41945b.f37616s0.u1(0, true, null, true);
+                this.f41945b.f37617s0.u1(0, true, null, true);
                 return;
         }
     }

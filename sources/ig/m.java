@@ -79,16 +79,16 @@ public final class m extends x61 implements NotificationCenter.NotificationCente
             mVar2 = mVar;
             b3 b3Var = new b3(mVar2, mVar.getParentActivity(), mVar, mVar.resourceProvider, 1);
             mVar2.L = b3Var;
-            b3Var.f30537c2 = new ya.d(mVar2, 24);
+            b3Var.f30538c2 = new ya.d(mVar2, 24);
         }
-        mVar2.L.f30557j0.f0();
+        mVar2.L.f30558j0.f0();
         mVar2.L.N1(1, false);
         b3 b3Var2 = mVar2.L;
         b3Var2.X1 = true;
         b3Var2.k1(new hg.o(mVar2, 3));
         mVar2.L.t1();
         b3 b3Var3 = mVar2.L;
-        b3Var3.f30580r = null;
+        b3Var3.f30581r = null;
         if (mVar2.visibleDialog != null) {
             b3Var3.show();
         } else {
@@ -110,14 +110,14 @@ public final class m extends x61 implements NotificationCenter.NotificationCente
             if (animatorSet != null) {
                 animatorSet.cancel();
             }
-            iVar2.f30631n.getImageReceiver().setDelegate(new ro(iVar2, gVar));
+            iVar2.f30632n.getImageReceiver().setDelegate(new ro(iVar2, gVar));
             SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(greetingsSticker, h6.f21140lc, 1.0f);
             if (svgThumb != null) {
-                iVar2.f30631n.n(ImageLocation.getForDocument(greetingsSticker), to.b(greetingsSticker), svgThumb, greetingsSticker);
+                iVar2.f30632n.n(ImageLocation.getForDocument(greetingsSticker), to.b(greetingsSticker), svgThumb, greetingsSticker);
             } else {
-                iVar2.f30631n.j(ImageLocation.getForDocument(greetingsSticker), to.b(greetingsSticker), ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(greetingsSticker.thumbs, 90), greetingsSticker), null, 0, greetingsSticker);
+                iVar2.f30632n.j(ImageLocation.getForDocument(greetingsSticker), to.b(greetingsSticker), ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(greetingsSticker.thumbs, 90), greetingsSticker), null, 0, greetingsSticker);
             }
-            iVar2.f30631n.setOnClickListener(new qo(iVar2, greetingsSticker, 1));
+            iVar2.f30632n.setOnClickListener(new qo(iVar2, greetingsSticker, 1));
         }
     }
 
@@ -268,9 +268,9 @@ public final class m extends x61 implements NotificationCenter.NotificationCente
         g3Var2.setOnEditorActionListener(new t2(gVar2, 2));
         this.f12957n.d("", "");
         super.createView(context);
-        this.f32355a.p1();
-        w61 w61Var = this.f32355a;
-        w61Var.W2.f30860r = false;
+        this.f32356a.p1();
+        w61 w61Var = this.f32356a;
+        w61Var.W2.f30861r = false;
         this.actionBar.setAdaptiveBackground(w61Var);
         this.actionBar.setActionBarMenuOnItemClick(new ah.s(this, 12));
         Drawable mutate = context.getResources().getDrawable(R.drawable.ic_ab_done).mutate();
@@ -279,9 +279,9 @@ public final class m extends x61 implements NotificationCenter.NotificationCente
         this.e = new as(mutate, new dq(h6.x0(null, i11, false)));
         this.f12956f = this.actionBar.n().i(AndroidUtilities.dp(56.0f), LocaleController.getString(R.string.Done), this.e);
         e0(false);
-        this.f32355a.addOnLayoutChangeListener(new o2(this, 1));
-        this.f32355a.j(new ah.d0(this, 13));
-        w61 w61Var2 = this.f32355a;
+        this.f32356a.addOnLayoutChangeListener(new o2(this, 1));
+        this.f32356a.j(new ah.d0(this, 13));
+        w61 w61Var2 = this.f32356a;
         w61Var2.Y2 = true;
         w61Var2.setClipChildren(false);
         View view = this.fragmentView;
@@ -348,16 +348,16 @@ public final class m extends x61 implements NotificationCenter.NotificationCente
                 }
                 u0Var3.setScaleY(f13);
             }
-            w61 w61Var = this.f32355a;
+            w61 w61Var = this.f32356a;
             if (w61Var != null && w61Var.W2 != null && this.K != (!g0())) {
-                w61 w61Var2 = this.f32355a;
+                w61 w61Var2 = this.f32356a;
                 if (w61Var2 != null && w61Var2.getChildCount() > 0) {
                     View view = null;
                     int i10 = Integer.MAX_VALUE;
                     int i11 = -1;
-                    for (int i12 = 0; i12 < this.f32355a.getChildCount(); i12++) {
-                        int R = RecyclerView.R(this.f32355a.getChildAt(i12));
-                        View childAt = this.f32355a.getChildAt(i12);
+                    for (int i12 = 0; i12 < this.f32356a.getChildCount(); i12++) {
+                        int R = RecyclerView.R(this.f32356a.getChildAt(i12));
+                        View childAt = this.f32356a.getChildAt(i12);
                         if (R != -1 && childAt.getTop() < i10) {
                             i10 = childAt.getTop();
                             i11 = R;
@@ -365,20 +365,20 @@ public final class m extends x61 implements NotificationCenter.NotificationCente
                         }
                     }
                     if (view != null) {
-                        this.f32356b = i11;
+                        this.f32357b = i11;
                         int top = view.getTop();
-                        this.f32357c = top;
-                        if (this.f32356b == 0 && top > AndroidUtilities.dp(88.0f)) {
-                            this.f32357c = AndroidUtilities.dp(88.0f);
+                        this.f32358c = top;
+                        if (this.f32357b == 0 && top > AndroidUtilities.dp(88.0f)) {
+                            this.f32358c = AndroidUtilities.dp(88.0f);
                         }
-                        this.f32355a.V2.h1(i11, view.getTop() - this.f32355a.getPaddingTop());
+                        this.f32356a.V2.h1(i11, view.getTop() - this.f32356a.getPaddingTop());
                     }
                 }
-                this.f32355a.W2.N(true);
-                int i13 = this.f32356b;
+                this.f32356a.W2.N(true);
+                int i13 = this.f32357b;
                 if (i13 >= 0) {
-                    w61 w61Var3 = this.f32355a;
-                    w61Var3.V2.h1(i13, this.f32357c - w61Var3.getPaddingTop());
+                    w61 w61Var3 = this.f32356a;
+                    w61Var3.V2.h1(i13, this.f32358c - w61Var3.getPaddingTop());
                 }
             }
         }
@@ -536,7 +536,7 @@ public final class m extends x61 implements NotificationCenter.NotificationCente
             AndroidUtilities.cancelRunOnUIThread(gVar);
             AndroidUtilities.runOnUIThread(gVar, 5000L);
         }
-        w61 w61Var = this.f32355a;
+        w61 w61Var = this.f32356a;
         if (w61Var != null && (u61Var = w61Var.W2) != null) {
             u61Var.N(true);
         }
@@ -618,7 +618,7 @@ public final class m extends x61 implements NotificationCenter.NotificationCente
 
     @Override
     public final void onInsets(int i10, int i11, int i12, int i13) {
-        this.f32355a.setPadding(0, 0, 0, i13);
-        this.f32355a.setClipToPadding(false);
+        this.f32356a.setPadding(0, 0, 0, i13);
+        this.f32356a.setClipToPadding(false);
     }
 }

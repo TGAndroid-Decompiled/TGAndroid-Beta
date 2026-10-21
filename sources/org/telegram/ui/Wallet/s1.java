@@ -19,24 +19,24 @@ import org.telegram.ui.l80;
 import org.telegram.ui.po0;
 import org.telegram.ui.qn;
 public final class s1 implements Utilities.Callback2 {
-    public final int f34832a;
-    public final Object f34833b;
-    public final Object f34834c;
+    public final int f34833a;
+    public final Object f34834b;
+    public final Object f34835c;
 
     public s1(int i10, Object obj, Object obj2) {
-        this.f34832a = i10;
-        this.f34833b = obj;
-        this.f34834c = obj2;
+        this.f34833a = i10;
+        this.f34834b = obj;
+        this.f34835c = obj2;
     }
 
     @Override
     public final void run(Object obj, Object obj2) {
         boolean z10;
-        int i10 = this.f34832a;
+        int i10 = this.f34833a;
         Object obj3 = null;
         int i11 = 0;
-        Object obj4 = this.f34834c;
-        Object obj5 = this.f34833b;
+        Object obj4 = this.f34835c;
+        Object obj5 = this.f34834b;
         switch (i10) {
             case 0:
                 TL_wallet.inputTonConnectOauthSession[] inputtonconnectoauthsessionArr = (TL_wallet.inputTonConnectOauthSession[]) obj5;
@@ -106,7 +106,7 @@ public final class s1 implements Utilities.Callback2 {
                 zVar.f47818q0.f48947a.setLoading(false);
                 if (zVar.getContext() != null) {
                     org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
-                    ja0 ja0Var = LaunchActivity.H1.f33199x0;
+                    ja0 ja0Var = LaunchActivity.H1.f33200x0;
                     if (U != null) {
                         if (bool.booleanValue()) {
                             zVar.dismiss();

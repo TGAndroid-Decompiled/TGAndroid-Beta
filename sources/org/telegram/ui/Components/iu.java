@@ -72,9 +72,9 @@ public class iu extends EditTextBoldCursor implements org.telegram.ui.ActionBar.
     public static void j(iu iuVar, int i10, int i11, int i12, int i13) {
         Editable text = iuVar.getText();
         ?? obj = new Object();
-        obj.f28649a |= 128;
-        obj.f28650b = i10;
-        obj.f28651c = i11;
+        obj.f28650a |= 128;
+        obj.f28651b = i10;
+        obj.f28652c = i11;
         TLRPC.TL_messageEntityFormattedDate tL_messageEntityFormattedDate = new TLRPC.TL_messageEntityFormattedDate();
         tL_messageEntityFormattedDate.date = i12;
         tL_messageEntityFormattedDate.flags = i13;
@@ -125,7 +125,7 @@ public class iu extends EditTextBoldCursor implements org.telegram.ui.ActionBar.
         Editable text = getText();
         if (text != null && i11 >= 0 && i12 >= 0 && i11 < i12 && i11 < (min = Math.min(i12, text.length()))) {
             ?? obj = new Object();
-            obj.f28649a = i10;
+            obj.f28650a = i10;
             MediaDataController.addStyleToText(new o11(obj, 0), i11, min, text, true);
             if ((i10 & 256) != 0) {
                 invalidateSpoilers();
@@ -186,7 +186,7 @@ public class iu extends EditTextBoldCursor implements org.telegram.ui.ActionBar.
                 int i18 = i17;
                 while (i18 < o11VarArr.length) {
                     o11 o11Var = o11VarArr[i18];
-                    int i19 = o11Var.f28919b.f28649a;
+                    int i19 = o11Var.f28920b.f28650a;
                     int i20 = i12;
                     if ((i19 & 512) != 0) {
                         i19 |= 256;
@@ -240,7 +240,7 @@ public class iu extends EditTextBoldCursor implements org.telegram.ui.ActionBar.
             qj0[] qj0VarArr = (qj0[]) text.getSpans(i10, selectionEnd, qj0.class);
             for (int i11 = 0; i11 < qj0VarArr.length; i11++) {
                 text.removeSpan(qj0VarArr[i11]);
-                text.removeSpan(qj0VarArr[i11].f29620s);
+                text.removeSpan(qj0VarArr[i11].f29621s);
                 ki.y5 y5Var = qj0VarArr[i11].v;
                 if (y5Var != null) {
                     text.removeSpan(y5Var);
@@ -258,7 +258,7 @@ public class iu extends EditTextBoldCursor implements org.telegram.ui.ActionBar.
 
     public void makeSelectedBold() {
         ?? obj = new Object();
-        obj.f28649a |= 1;
+        obj.f28650a |= 1;
         l(new o11(obj, 0));
     }
 
@@ -447,13 +447,13 @@ public class iu extends EditTextBoldCursor implements org.telegram.ui.ActionBar.
 
     public void makeSelectedItalic() {
         ?? obj = new Object();
-        obj.f28649a |= 2;
+        obj.f28650a |= 2;
         l(new o11(obj, 0));
     }
 
     public void makeSelectedMono() {
         ?? obj = new Object();
-        obj.f28649a |= 4;
+        obj.f28650a |= 4;
         l(new o11(obj, 0));
     }
 
@@ -467,20 +467,20 @@ public class iu extends EditTextBoldCursor implements org.telegram.ui.ActionBar.
 
     public void makeSelectedSpoiler() {
         ?? obj = new Object();
-        obj.f28649a |= 256;
+        obj.f28650a |= 256;
         l(new o11(obj, 0));
         invalidateSpoilers();
     }
 
     public void makeSelectedStrike() {
         ?? obj = new Object();
-        obj.f28649a |= 8;
+        obj.f28650a |= 8;
         l(new o11(obj, 0));
     }
 
     public void makeSelectedUnderline() {
         ?? obj = new Object();
-        obj.f28649a |= 16;
+        obj.f28650a |= 16;
         l(new o11(obj, 0));
     }
 
@@ -627,7 +627,7 @@ public class iu extends EditTextBoldCursor implements org.telegram.ui.ActionBar.
                         pj0[] pj0VarArr2 = (pj0[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), pj0.class);
                         for (int i11 = 0; i11 < pj0VarArr2.length; i11++) {
                             spannableStringBuilder.removeSpan(pj0VarArr2[i11]);
-                            spannableStringBuilder.removeSpan(pj0VarArr2[i11].f29322a);
+                            spannableStringBuilder.removeSpan(pj0VarArr2[i11].f29323a);
                         }
                     } else {
                         qj0.a(spannableStringBuilder);
@@ -739,8 +739,8 @@ public class iu extends EditTextBoldCursor implements org.telegram.ui.ActionBar.
                 i10 |= 512;
             }
             for (o11 o11Var : (o11[]) text.getSpans(i11, min, o11.class)) {
-                n11 n11Var = o11Var.f28919b;
-                int i14 = n11Var.f28649a;
+                n11 n11Var = o11Var.f28920b;
+                int i14 = n11Var.f28650a;
                 if ((i14 & i10) != 0) {
                     int spanStart = text.getSpanStart(o11Var);
                     int spanEnd = text.getSpanEnd(o11Var);
@@ -756,7 +756,7 @@ public class iu extends EditTextBoldCursor implements org.telegram.ui.ActionBar.
                     int i15 = i14 & (~i10);
                     if (i15 != 0 && max < min2) {
                         n11 n11Var2 = new n11(n11Var);
-                        n11Var2.f28649a = i15;
+                        n11Var2.f28650a = i15;
                         text.setSpan(new o11(n11Var2, 0), max, min2, 33);
                     }
                 }

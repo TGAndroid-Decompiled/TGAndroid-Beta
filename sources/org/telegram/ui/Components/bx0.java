@@ -25,9 +25,9 @@ public final class bx0 implements Runnable {
                 if (dx0Var != null) {
                     ex0Var2.getVisibilityFactor();
                     ProfileActivity profileActivity = ((org.telegram.ui.mx0) dx0Var).f39364b;
-                    org.telegram.ui.ActionBar.j5[] j5VarArr = profileActivity.f33698r;
-                    j5VarArr[1].setTranslationX(profileActivity.W3(profileActivity.f33594b6, profileActivity.f33609d6));
-                    j5VarArr[1].setTranslationY(profileActivity.X3(profileActivity.f33616e6));
+                    org.telegram.ui.ActionBar.j5[] j5VarArr = profileActivity.f33699r;
+                    j5VarArr[1].setTranslationX(profileActivity.W3(profileActivity.f33595b6, profileActivity.f33610d6));
+                    j5VarArr[1].setTranslationY(profileActivity.X3(profileActivity.f33617e6));
                     return;
                 }
                 return;

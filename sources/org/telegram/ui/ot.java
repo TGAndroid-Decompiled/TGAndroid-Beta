@@ -43,7 +43,7 @@ public final class ot extends org.telegram.ui.ActionBar.n2 {
         }
         baVar.setPadding(dp, 0, AndroidUtilities.dp(f10), 0);
         ?? obj = new Object();
-        obj.f37412a = new ft(0, baVar);
+        obj.f37413a = new ft(0, baVar);
         baVar.addOnAttachStateChangeListener(obj);
         return baVar;
     }
@@ -55,7 +55,7 @@ public final class ot extends org.telegram.ui.ActionBar.n2 {
             spannableStringBuilder.append((CharSequence) languageFlag).append((CharSequence) " ");
             spannableStringBuilder.setSpan(new org.telegram.ui.Components.uz(1), languageFlag.length(), languageFlag.length() + 1, 0);
         }
-        spannableStringBuilder.append((CharSequence) htVar.f37783a);
+        spannableStringBuilder.append((CharSequence) htVar.f37784a);
         return spannableStringBuilder;
     }
 
@@ -83,7 +83,7 @@ public final class ot extends org.telegram.ui.ActionBar.n2 {
         this.e = false;
         kt ktVar = new kt(this, context, this.f39980s, this.f39978n);
         this.f39976c = ktVar;
-        this.d = new mt(this, context, ktVar.f38664s);
+        this.d = new mt(this, context, ktVar.f38665s);
         FrameLayout frameLayout = new FrameLayout(context);
         this.fragmentView = frameLayout;
         org.telegram.ui.Components.vz vzVar = new org.telegram.ui.Components.vz(context, null);

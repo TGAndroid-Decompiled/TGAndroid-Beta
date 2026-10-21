@@ -411,7 +411,7 @@ public class fr0 extends org.telegram.ui.ActionBar.f3 implements NotificationCen
                     if (messageObject3 != null) {
                         messageObject3.isTopicMainMessage = true;
                     }
-                    if (iq0Var.getTag() != null && jq0Var.f29709a.length() > 0) {
+                    if (iq0Var.getTag() != null && jq0Var.f29710a.length() > 0) {
                         CharSequence charSequence4 = charSequenceArr[0];
                         if (charSequence4 == null) {
                             charSequence3 = null;
@@ -523,7 +523,7 @@ public class fr0 extends org.telegram.ui.ActionBar.f3 implements NotificationCen
                         messageObject2 = null;
                     }
                     if (fr0Var.G0 == null) {
-                        if (iq0Var2.getTag() != null && jq0Var.f29709a.length() > 0) {
+                        if (iq0Var2.getTag() != null && jq0Var.f29710a.length() > 0) {
                             CharSequence charSequence5 = charSequenceArr[0];
                             if (charSequence5 == null) {
                                 charSequence2 = null;
@@ -535,7 +535,7 @@ public class fr0 extends org.telegram.ui.ActionBar.f3 implements NotificationCen
                             of2 = SendMessagesHelper.SendMessageParams.of(strArr[i13], j17, messageObject2, messageObject2, null, true, null, null, null, z10, 0, 0, null, false);
                         }
                     } else {
-                        if (iq0Var2.getTag() != null && jq0Var.f29709a.length() > 0 && charSequenceArr[0] != null) {
+                        if (iq0Var2.getTag() != null && jq0Var.f29710a.length() > 0 && charSequenceArr[0] != null) {
                             MessageObject messageObject6 = messageObject2;
                             messageObject2 = messageObject6;
                             SendMessagesHelper.getInstance(fr0Var.currentAccount).sendMessage(SendMessagesHelper.SendMessageParams.of(charSequenceArr[0].toString(), j17, null, messageObject6, null, true, null, null, null, z10, 0, 0, null, false));
@@ -584,7 +584,7 @@ public class fr0 extends org.telegram.ui.ActionBar.f3 implements NotificationCen
                             c10 = 0;
                             messageObject = null;
                         }
-                        if (iq0Var2.getTag() != null && jq0Var.f29709a.length() > 0) {
+                        if (iq0Var2.getTag() != null && jq0Var.f29710a.length() > 0) {
                             CharSequence charSequence6 = charSequenceArr[c10];
                             if (charSequence6 == null) {
                                 charSequence = null;
@@ -922,7 +922,7 @@ public class fr0 extends org.telegram.ui.ActionBar.f3 implements NotificationCen
             }
         }
         xp xpVar = this.f26372f0;
-        if (xpVar != null && xpVar.f32458a.f24151q) {
+        if (xpVar != null && xpVar.f32459a.f24151q) {
             try {
                 str2 = Uri.parse(str2).buildUpon().appendQueryParameter("t", AndroidUtilities.formatTimestamp(this.f26368c0)).build().toString();
             } catch (Exception e) {
@@ -1175,17 +1175,17 @@ public class fr0 extends org.telegram.ui.ActionBar.f3 implements NotificationCen
             boolean z11 = true;
             if (i14 < m10) {
                 long j10 = hVar.j(i14);
-                if (f5.g(getContext(), this.currentAccount, j10, (iq0Var.getTag() == null || jq0Var.f29709a.length() <= 0) ? false : false)) {
+                if (f5.g(getContext(), this.currentAccount, j10, (iq0Var.getTag() == null || jq0Var.f29710a.length() <= 0) ? false : false)) {
                     return;
                 }
                 i14++;
             } else {
                 Editable text = jq0Var.getText();
-                lu luVar = jq0Var.f29709a;
+                lu luVar = jq0Var.f29710a;
                 final CharSequence[] charSequenceArr = {text};
                 final ArrayList<TLRPC.MessageEntity> entities = MediaDataController.getInstance(this.currentAccount).getEntities(charSequenceArr, true);
                 xp xpVar = this.f26372f0;
-                if (xpVar != null && xpVar.f32458a.f24151q) {
+                if (xpVar != null && xpVar.f32459a.f24151q) {
                     i10 = this.f26368c0;
                 } else {
                     i10 = -1;
@@ -1488,7 +1488,7 @@ public class fr0 extends org.telegram.ui.ActionBar.f3 implements NotificationCen
         }
         Object tag = this.f26367c.getTag();
         jq0 jq0Var = this.d;
-        if (tag != null && jq0Var.f29709a.length() > 0) {
+        if (tag != null && jq0Var.f29710a.length() > 0) {
             size++;
         }
         long j10 = 0;

@@ -151,7 +151,7 @@ public final class s6 extends FrameLayout {
             if (sharingLocationInfo != null) {
                 p6Var.t(LocaleController.formatLocationLeftTime(Math.abs(sharingLocationInfo.stopTime - currentTime)), true, true);
             }
-            int length = p6Var.f29230i.length();
+            int length = p6Var.f29231i.length();
             if (length > 4) {
                 f7 = 0.75f;
             } else if (length > 3) {

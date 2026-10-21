@@ -19,25 +19,25 @@ import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_wallet;
 import org.telegram.ui.Wallet.WalletEngine2;
 public final class k71 implements Runnable {
-    public final int f38436a;
-    public final Object f38437b;
-    public final Object f38438c;
+    public final int f38437a;
+    public final Object f38438b;
+    public final Object f38439c;
 
     public k71(int i10, Object obj, Object obj2) {
-        this.f38436a = i10;
-        this.f38437b = obj;
-        this.f38438c = obj2;
+        this.f38437a = i10;
+        this.f38438b = obj;
+        this.f38439c = obj2;
     }
 
     @Override
     public final void run() {
         org.telegram.ui.Components.tl0 tl0Var;
         String message;
-        int i10 = this.f38436a;
+        int i10 = this.f38437a;
         long j10 = 0;
         int i11 = 0;
-        Object obj = this.f38438c;
-        Object obj2 = this.f38437b;
+        Object obj = this.f38439c;
+        Object obj2 = this.f38438b;
         switch (i10) {
             case 0:
                 AndroidUtilities.addToClipboard((String) obj);
@@ -83,7 +83,7 @@ public final class k71 implements Runnable {
                     org.telegram.ui.ActionBar.h6.f21335w = String.format("(%.06f, %.06f)", Double.valueOf(org.telegram.ui.ActionBar.h6.f21353x), Double.valueOf(org.telegram.ui.ActionBar.h6.f21372y));
                 }
                 org.telegram.ui.ActionBar.h6.r1();
-                org.telegram.ui.Components.jm0 jm0Var = themeActivity2.f33898b;
+                org.telegram.ui.Components.jm0 jm0Var = themeActivity2.f33899b;
                 if (jm0Var != null && (tl0Var = (org.telegram.ui.Components.tl0) jm0Var.K(themeActivity2.Y)) != null) {
                     View view2 = tl0Var.f45917a;
                     if (view2 instanceof org.telegram.ui.Cells.ba) {
@@ -96,7 +96,7 @@ public final class k71 implements Runnable {
             case 7:
                 kc1 kc1Var = (kc1) obj2;
                 SharedPreferences sharedPreferences = (SharedPreferences) obj;
-                if (kc1Var.f38553n == 3) {
+                if (kc1Var.f38554n == 3) {
                     sharedPreferences.edit().putBoolean("bganimationhint", true).commit();
                     kc1Var.A0.f(kc1Var.K0[0], true);
                     return;
@@ -140,9 +140,9 @@ public final class k71 implements Runnable {
                 while (true) {
                     ArrayList arrayList3 = re1Var2.f41151b;
                     if (i12 < arrayList3.size()) {
-                        if (((ie1) arrayList3.get(i12)).f37958c != null && ((ie1) arrayList3.get(i12)).f37958c.title.toLowerCase().contains(lowerCase)) {
-                            arrayList2.add(((ie1) arrayList3.get(i12)).f37958c);
-                            ((ie1) arrayList3.get(i12)).f37958c.searchQuery = lowerCase;
+                        if (((ie1) arrayList3.get(i12)).f37959c != null && ((ie1) arrayList3.get(i12)).f37959c.title.toLowerCase().contains(lowerCase)) {
+                            arrayList2.add(((ie1) arrayList3.get(i12)).f37959c);
+                            ((ie1) arrayList3.get(i12)).f37959c.searchQuery = lowerCase;
                         }
                         i12++;
                     } else {
@@ -188,15 +188,15 @@ public final class k71 implements Runnable {
             case 20:
                 bg1 bg1Var = (bg1) obj2;
                 TLObject tLObject = (TLObject) obj;
-                ArrayList arrayList4 = bg1Var.f35634f;
+                ArrayList arrayList4 = bg1Var.f35635f;
                 ArrayList<TLRPC.Chat> arrayList5 = bg1Var.e;
                 if (tLObject instanceof TLRPC.messages_Chats) {
                     arrayList5.clear();
                     arrayList5.addAll(((TLRPC.messages_Chats) tLObject).chats);
                 }
-                MessagesController.getInstance(bg1Var.f35631a).putChats(arrayList5, false);
+                MessagesController.getInstance(bg1Var.f35632a).putChats(arrayList5, false);
                 bg1Var.d = false;
-                bg1Var.f35633c = true;
+                bg1Var.f35634c = true;
                 int size = arrayList4.size();
                 while (i11 < size) {
                     Object obj3 = arrayList4.get(i11);
@@ -221,9 +221,9 @@ public final class k71 implements Runnable {
                 hh1Var2.I.animate().alpha(1.0f).setDuration(150L).setInterpolator(bsVar).start();
                 hh1Var2.N.animate().alpha(1.0f).setDuration(150L).setInterpolator(bsVar).start();
                 hh1Var2.X.animate().alpha(1.0f).setDuration(150L).setInterpolator(bsVar).start();
-                hh1Var2.f37652j0.animate().alpha(1.0f).setDuration(150L).setInterpolator(bsVar).start();
-                hh1Var2.f37648h0.animate().alpha(1.0f).setDuration(350L).setInterpolator(bsVar).start();
-                hh1Var2.f37650i0.animate().alpha(1.0f).setDuration(350L).setInterpolator(bsVar).start();
+                hh1Var2.f37653j0.animate().alpha(1.0f).setDuration(150L).setInterpolator(bsVar).start();
+                hh1Var2.f37649h0.animate().alpha(1.0f).setDuration(350L).setInterpolator(bsVar).start();
+                hh1Var2.f37651i0.animate().alpha(1.0f).setDuration(350L).setInterpolator(bsVar).start();
                 hh1Var2.M0.animate().alpha(1.0f).setDuration(350L).setInterpolator(bsVar).start();
                 valueAnimator.addListener(new vg1(hh1Var2, 2));
                 valueAnimator.setDuration(350L);
@@ -231,7 +231,7 @@ public final class k71 implements Runnable {
                 valueAnimator.start();
                 return;
             case 23:
-                MessagesController.getInstance(((org.telegram.ui.Wallet.m0) obj2).f34476a).lambda$processUpdates$377((TLRPC.Updates) obj, false);
+                MessagesController.getInstance(((org.telegram.ui.Wallet.m0) obj2).f34477a).lambda$processUpdates$377((TLRPC.Updates) obj, false);
                 return;
             case 24:
                 org.telegram.ui.Wallet.m0 m0Var = (org.telegram.ui.Wallet.m0) obj2;
@@ -255,7 +255,7 @@ public final class k71 implements Runnable {
                     kVar.run(500000L, null);
                     return;
                 }
-                WalletEngine2 walletEngine2 = m0Var2.f34477b;
+                WalletEngine2 walletEngine2 = m0Var2.f34478b;
                 if (walletEngine2 == null) {
                     org.telegram.ui.Wallet.m0.i("emulate disable backup: no engine!");
                     kVar.run(null, "NULL_ENGINE");
@@ -274,7 +274,7 @@ public final class k71 implements Runnable {
                 qVar.run(null, message);
                 return;
             case 28:
-                MessagesController.getInstance(((org.telegram.ui.Wallet.f2) obj2).f34194a).lambda$processUpdates$377((TLRPC.Updates) obj, false);
+                MessagesController.getInstance(((org.telegram.ui.Wallet.f2) obj2).f34195a).lambda$processUpdates$377((TLRPC.Updates) obj, false);
                 return;
             default:
                 org.telegram.ui.ActionBar.n2 n2Var2 = (org.telegram.ui.ActionBar.n2) obj2;
@@ -284,8 +284,8 @@ public final class k71 implements Runnable {
     }
 
     public k71(q71 q71Var, a0.h hVar, int i10) {
-        this.f38436a = 2;
-        this.f38437b = q71Var;
-        this.f38438c = hVar;
+        this.f38437a = 2;
+        this.f38438b = q71Var;
+        this.f38439c = hVar;
     }
 }

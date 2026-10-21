@@ -625,7 +625,7 @@ public abstract class t1 extends FrameLayout {
             this.f42817y = f13;
             int i11 = this.f42815x;
             l4 l4Var = ((org.telegram.ui.n0) this).B0;
-            k kVar = l4Var.f38767i0;
+            k kVar = l4Var.f38768i0;
             if (kVar != null) {
                 kVar.c(i11, f13);
             }
@@ -796,7 +796,7 @@ public abstract class t1 extends FrameLayout {
         } else if (motionEvent.getAction() == 2 && ((float) (System.currentTimeMillis() - this.f42818y0)) > ViewConfiguration.getLongPressTimeout() * 0.8f) {
             AndroidUtilities.cancelRunOnUIThread(o1Var);
             this.A0 = true;
-            o3 o3Var = ((org.telegram.ui.n0) this).B0.f38778u0[0];
+            o3 o3Var = ((org.telegram.ui.n0) this).B0.f38779u0[0];
             float clamp01 = Utilities.clamp01(o3Var.getProgress() + ((motionEvent.getX() - this.f42816x0) / (getWidth() * 0.8f)));
             if (!o3Var.c() && o3Var.f() && (webView = o3Var.f39755f.getWebView()) != null) {
                 webView.setScrollProgress(clamp01);
@@ -829,20 +829,20 @@ public abstract class t1 extends FrameLayout {
 
     public final void f(int i10, String str) {
         s1[] s1VarArr = this.f42787b;
-        CharSequence charSequence = s1VarArr[i10].f42777b.f29230i;
+        CharSequence charSequence = s1VarArr[i10].f42777b.f29231i;
         if (charSequence != null && TextUtils.equals(charSequence.toString(), str)) {
             return;
         }
-        s1VarArr[i10].f42777b.t(Emoji.replaceEmoji(str, s1VarArr[i10].f42777b.f29223a.getFontMetricsInt(), false), false, true);
+        s1VarArr[i10].f42777b.t(Emoji.replaceEmoji(str, s1VarArr[i10].f42777b.f29224a.getFontMetricsInt(), false), false, true);
     }
 
     public final void g(int i10, String str, boolean z10) {
         s1[] s1VarArr = this.f42787b;
-        CharSequence charSequence = s1VarArr[i10].f42776a.f29230i;
+        CharSequence charSequence = s1VarArr[i10].f42776a.f29231i;
         if (charSequence != null && TextUtils.equals(charSequence.toString(), str)) {
             return;
         }
-        s1VarArr[i10].f42776a.t(Emoji.replaceEmoji(str, s1VarArr[i10].f42776a.f29223a.getFontMetricsInt(), false), z10, true);
+        s1VarArr[i10].f42776a.t(Emoji.replaceEmoji(str, s1VarArr[i10].f42776a.f29224a.getFontMetricsInt(), false), z10, true);
     }
 
     public int getBackgroundColor() {
@@ -858,7 +858,7 @@ public abstract class t1 extends FrameLayout {
     }
 
     public String getTitle() {
-        CharSequence charSequence = this.f42787b[0].f42776a.f29230i;
+        CharSequence charSequence = this.f42787b[0].f42776a.f29231i;
         if (charSequence == null) {
             return "";
         }

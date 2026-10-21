@@ -70,7 +70,7 @@ public final class ca {
         org.telegram.ui.Components.oc ocVar = new org.telegram.ui.Components.oc(t10, n2Var.getResourceProvider(), true, false);
         this.e = ocVar;
         ocVar.e(LocaleController.getString(R.string.StarsSentUndo));
-        ocVar.f28982a = new Runnable(this) {
+        ocVar.f28983a = new Runnable(this) {
             public final ca f1050b;
 
             {
@@ -106,7 +106,7 @@ public final class ca {
         kcVar.setButton(ocVar);
         org.telegram.ui.Components.qc b10 = org.telegram.ui.Components.xc.a0(n2Var).b(kcVar, -1);
         this.f1093c = b10;
-        b10.f29538r = false;
+        b10.f29539r = false;
         b10.k(true);
         b10.v = new Runnable(this) {
             public final ca f1050b;

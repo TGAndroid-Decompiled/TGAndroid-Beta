@@ -25,10 +25,10 @@ public final class l3 extends ba0 {
     public final void b(Canvas canvas, Path path) {
         super.b(canvas, path);
         n3 n3Var = this.N;
-        RectF rectF = n3Var.f34562f;
-        if (n3Var.f34579o0 != null) {
+        RectF rectF = n3Var.f34563f;
+        if (n3Var.f34580o0 != null) {
             canvas.saveLayer(rectF, null);
-            n3Var.f34579o0.c((AndroidUtilities.dp(206.0f) - n3Var.f34579o0.l()) / 2.0f, (rectF.bottom - AndroidUtilities.dp(7.0f)) - n3Var.f34579o0.j(), 1.0f, -1, canvas);
+            n3Var.f34580o0.c((AndroidUtilities.dp(206.0f) - n3Var.f34580o0.l()) / 2.0f, (rectF.bottom - AndroidUtilities.dp(7.0f)) - n3Var.f34580o0.j(), 1.0f, -1, canvas);
             Shader shader = this.f24876x.getShader();
             Paint paint = this.M;
             paint.setShader(shader);
@@ -40,6 +40,6 @@ public final class l3 extends ba0 {
     @Override
     public final void invalidateSelf() {
         super.invalidateSelf();
-        this.N.f34554a.invalidate();
+        this.N.f34555a.invalidate();
     }
 }

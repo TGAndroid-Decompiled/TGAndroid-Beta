@@ -9,32 +9,32 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 public final class da0 implements MessagesController.MessagesLoadedCallback {
-    public final z70 f36314a;
-    public final String f36315b;
-    public final org.telegram.ui.ActionBar.n2 f36316c;
+    public final z70 f36315a;
+    public final String f36316b;
+    public final org.telegram.ui.ActionBar.n2 f36317c;
     public final long d;
     public final Integer e;
-    public final Bundle f36317f;
-    public final LaunchActivity f36318g;
+    public final Bundle f36318f;
+    public final LaunchActivity f36319g;
 
     public da0(LaunchActivity launchActivity, z70 z70Var, String str, org.telegram.ui.ActionBar.n2 n2Var, long j10, Integer num, Bundle bundle) {
-        this.f36318g = launchActivity;
-        this.f36314a = z70Var;
-        this.f36315b = str;
-        this.f36316c = n2Var;
+        this.f36319g = launchActivity;
+        this.f36315a = z70Var;
+        this.f36316b = str;
+        this.f36317c = n2Var;
         this.d = j10;
         this.e = num;
-        this.f36317f = bundle;
+        this.f36318f = bundle;
     }
 
     @Override
     public final void onError() {
-        LaunchActivity launchActivity = this.f36318g;
+        LaunchActivity launchActivity = this.f36319g;
         if (!launchActivity.isFinishing()) {
-            org.telegram.ui.Components.f5.t0((org.telegram.ui.ActionBar.n2) i2.e.h(1, launchActivity.f33161d0), null, LocaleController.getString(R.string.JoinToGroupErrorNotExist), null);
+            org.telegram.ui.Components.f5.t0((org.telegram.ui.ActionBar.n2) i2.e.h(1, launchActivity.f33162d0), null, LocaleController.getString(R.string.JoinToGroupErrorNotExist), null);
         }
         try {
-            this.f36314a.run();
+            this.f36315a.run();
         } catch (Exception e) {
             FileLog.e(e);
         }
@@ -43,15 +43,15 @@ public final class da0 implements MessagesController.MessagesLoadedCallback {
     @Override
     public final void onMessagesLoaded(boolean z10) {
         try {
-            this.f36314a.run();
+            this.f36315a.run();
         } catch (Exception e) {
             FileLog.e(e);
         }
-        LaunchActivity launchActivity = this.f36318g;
+        LaunchActivity launchActivity = this.f36319g;
         if (!launchActivity.isFinishing()) {
-            String str = this.f36315b;
+            String str = this.f36316b;
             long j10 = this.d;
-            org.telegram.ui.ActionBar.n2 n2Var = this.f36316c;
+            org.telegram.ui.ActionBar.n2 n2Var = this.f36317c;
             if (str == null || !(n2Var instanceof qn) || ((qn) n2Var).a() != j10) {
                 if (n2Var instanceof qn) {
                     qn qnVar = (qn) n2Var;
@@ -68,10 +68,10 @@ public final class da0 implements MessagesController.MessagesLoadedCallback {
                         }
                     }
                 }
-                n2Var = new qn(this.f36317f);
+                n2Var = new qn(this.f36318f);
                 ((ActionBarLayout) launchActivity.O()).P(n2Var);
             }
-            AndroidUtilities.runOnUIThread(new ai.c3(this, this.f36315b, this.d, n2Var, 22), 150L);
+            AndroidUtilities.runOnUIThread(new ai.c3(this, this.f36316b, this.d, n2Var, 22), 150L);
         }
     }
 }

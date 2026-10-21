@@ -2,19 +2,19 @@ package org.telegram.ui.Components;
 
 import org.telegram.messenger.AndroidUtilities;
 public final class zp0 implements Runnable {
-    public final int f33014a;
-    public final fr0 f33015b;
+    public final int f33015a;
+    public final fr0 f33016b;
 
     public zp0(fr0 fr0Var, int i10) {
-        this.f33014a = i10;
-        this.f33015b = fr0Var;
+        this.f33015a = i10;
+        this.f33016b = fr0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f33014a) {
+        switch (this.f33015a) {
             case 0:
-                fr0 fr0Var = this.f33015b;
+                fr0 fr0Var = this.f33016b;
                 fr0Var.B0 = true;
                 k20 k20Var = fr0Var.f26397z0;
                 k20Var.f27726r.setText("");
@@ -22,7 +22,7 @@ public final class zp0 implements Runnable {
                 return;
             default:
                 rc rcVar = new rc(14);
-                fr0 fr0Var2 = this.f33015b;
+                fr0 fr0Var2 = this.f33016b;
                 if (fr0Var2.isKeyboardVisible()) {
                     k20 k20Var2 = fr0Var2.f26397z0;
                     if (k20Var2 != null) {

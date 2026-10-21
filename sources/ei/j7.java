@@ -197,11 +197,11 @@ public final class j7 extends View {
                     ycVar.c(true);
                 }
             } else if (motionEvent.getAction() == 2) {
-                if (ycVar.f32631i && !rectF.contains(motionEvent.getX(), motionEvent.getY())) {
+                if (ycVar.f32632i && !rectF.contains(motionEvent.getX(), motionEvent.getY())) {
                     ycVar.c(false);
                 }
             } else if (motionEvent.getAction() == 1) {
-                if (ycVar.f32631i && (u9Var = this.f9259c) != null && this.E != null) {
+                if (ycVar.f32632i && (u9Var = this.f9259c) != null && this.E != null) {
                     u9Var.run(new f7(this, 1));
                 }
                 ycVar.c(false);
@@ -210,7 +210,7 @@ public final class j7 extends View {
                 ycVar.c(false);
                 this.L = false;
             }
-            if (!this.L && !ycVar.f32631i) {
+            if (!this.L && !ycVar.f32632i) {
                 return false;
             }
             return true;

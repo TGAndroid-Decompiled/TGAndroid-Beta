@@ -63,7 +63,7 @@ public final class e71 extends Drawable {
         this.f25806y = AndroidUtilities.dp(2.0f);
         this.f25786a = ApplicationLoader.applicationContext.getDrawable(R.drawable.send_plane_26).mutate();
         this.f25787b = ApplicationLoader.applicationContext.getDrawable(R.drawable.large_unsupported).mutate();
-        ycVar.f32629f = new hr0(this, 28);
+        ycVar.f32630f = new hr0(this, 28);
         textPaint.setTypeface(AndroidUtilities.bold());
         textPaint.setTextSize(AndroidUtilities.dp(14.0f));
         textPaint2.setTextSize(AndroidUtilities.dp(12.0f));

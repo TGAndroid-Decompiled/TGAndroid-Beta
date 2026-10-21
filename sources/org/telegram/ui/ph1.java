@@ -17,7 +17,7 @@ public final class ph1 extends org.telegram.ui.ActionBar.j {
         org.telegram.ui.ActionBar.k kVar;
         org.telegram.ui.ActionBar.k kVar2;
         WallpapersListActivity wallpapersListActivity = this.f40238a;
-        LongSparseArray longSparseArray = wallpapersListActivity.f35222i0;
+        LongSparseArray longSparseArray = wallpapersListActivity.f35223i0;
         if (i10 == -1) {
             kVar = ((org.telegram.ui.ActionBar.n2) wallpapersListActivity).actionBar;
             if (kVar.t()) {

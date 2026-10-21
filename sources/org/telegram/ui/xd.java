@@ -13,7 +13,7 @@ public final class xd implements org.telegram.ui.ActionBar.a2, Utilities.Callbac
 
     @Override
     public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        this.f43191a.f37951w0.presentFragment(new vf1(6, null));
+        this.f43191a.f37952w0.presentFragment(new vf1(6, null));
     }
 
     @Override
@@ -34,28 +34,28 @@ public final class xd implements org.telegram.ui.ActionBar.a2, Utilities.Callbac
         ((Float) obj4).getClass();
         ((Float) obj5).getClass();
         ie ieVar = this.f43191a;
-        od odVar = ieVar.f37950v1;
-        int i10 = ieVar.f37954y0;
-        long j10 = ieVar.f37955z0;
+        od odVar = ieVar.f37951v1;
+        int i10 = ieVar.f37955y0;
+        long j10 = ieVar.f37956z0;
         int i11 = ((org.telegram.ui.Components.h61) obj).d;
         if (i11 != 1) {
             if (i11 == 4) {
-                ieVar.f37951w0.presentFragment(new gi.u3(j10));
+                ieVar.f37952w0.presentFragment(new gi.u3(j10));
             }
         } else if (ieVar.B0 < MessagesController.getInstance(i10).channelRestrictSponsoredLevelMin) {
             if (ieVar.A0 == null) {
                 return;
             }
-            p91 p91Var = ieVar.f37951w0;
-            sg.k0 k0Var = new sg.k0(30, ieVar.f37954y0, ieVar.getContext(), p91Var, ieVar.f37953x0);
+            p91 p91Var = ieVar.f37952w0;
+            sg.k0 k0Var = new sg.k0(30, ieVar.f37955y0, ieVar.getContext(), p91Var, ieVar.f37954x0);
             k0Var.I1(j10);
             k0Var.G1(ieVar.A0, true);
             MessagesController.getInstance(i10).getBoostsController().userCanBoostChannel(j10, ieVar.A0, new org.telegram.ui.ActionBar.j3(7, ieVar, k0Var));
         } else {
-            ieVar.f37941m1 = !ieVar.f37941m1;
+            ieVar.f37942m1 = !ieVar.f37942m1;
             AndroidUtilities.cancelRunOnUIThread(odVar);
             AndroidUtilities.runOnUIThread(odVar, 1000L);
-            ieVar.f37930a1.W2.N(true);
+            ieVar.f37931a1.W2.N(true);
         }
     }
 }

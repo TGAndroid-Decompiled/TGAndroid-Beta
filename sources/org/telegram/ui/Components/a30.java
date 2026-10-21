@@ -91,7 +91,7 @@ public final class a30 extends im0 {
         TLRPC.GroupCallParticipant groupCallParticipant;
         ChatObject.VideoParticipant videoParticipant;
         z20 z20Var = (z20) b1Var.f45917a;
-        ChatObject.VideoParticipant videoParticipant2 = z20Var.f32810f;
+        ChatObject.VideoParticipant videoParticipant2 = z20Var.f32811f;
         ArrayList arrayList = this.e;
         if (i10 < arrayList.size()) {
             videoParticipant = (ChatObject.VideoParticipant) arrayList.get(i10);

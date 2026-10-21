@@ -116,7 +116,7 @@ public final class p4 implements Runnable {
                 if (tL_error != null) {
                     if (!"PASSWORD_MISSING".equals(tL_error.text) && !tL_error.text.startsWith("PASSWORD_TOO_FRESH_") && !tL_error.text.startsWith("SESSION_TOO_FRESH_")) {
                         if ("SRP_ID_INVALID".equals(tL_error.text)) {
-                            ConnectionsManager.getInstance(ieVar.f37954y0).sendRequest(new TL_account.getPassword(), new w9(ieVar, twoStepVerificationActivity, z10, 3), 8);
+                            ConnectionsManager.getInstance(ieVar.f37955y0).sendRequest(new TL_account.getPassword(), new w9(ieVar, twoStepVerificationActivity, z10, 3), 8);
                             return;
                         }
                         if (twoStepVerificationActivity != null) {
@@ -243,7 +243,7 @@ public final class p4 implements Runnable {
                         twoStepVerificationActivity.showDialog(b2Var);
                         return;
                     } else {
-                        ieVar.f37951w0.showDialog(b2Var);
+                        ieVar.f37952w0.showDialog(b2Var);
                         return;
                     }
                 }
@@ -313,7 +313,7 @@ public final class p4 implements Runnable {
                 int[] iArr2 = (int[]) obj4;
                 int[] iArr3 = (int[]) obj3;
                 int[] iArr4 = (int[]) obj2;
-                DispatchQueue dispatchQueue = org.telegram.ui.Wallet.w9.f35079a;
+                DispatchQueue dispatchQueue = org.telegram.ui.Wallet.w9.f35080a;
                 int i20 = 0;
                 while (true) {
                     int i21 = 287;
@@ -363,7 +363,7 @@ public final class p4 implements Runnable {
                                         }
                                     }
                                 }
-                                iArr3[(i30 * 288) + i28] = org.telegram.ui.Wallet.w9.f35080b[i31];
+                                iArr3[(i30 * 288) + i28] = org.telegram.ui.Wallet.w9.f35081b[i31];
                                 i30++;
                                 i18 = 0;
                                 i21 = 287;

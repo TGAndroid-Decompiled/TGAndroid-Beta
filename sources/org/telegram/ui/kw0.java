@@ -39,7 +39,7 @@ public final class kw0 extends org.telegram.ui.Components.jm0 {
 
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (this.X2.f39700n.f33517q0 >= 1.0f) {
+        if (this.X2.f39700n.f33518q0 >= 1.0f) {
             return false;
         }
         return super.dispatchTouchEvent(motionEvent);
@@ -47,7 +47,7 @@ public final class kw0 extends org.telegram.ui.Components.jm0 {
 
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (this.X2.f39700n.f33517q0 >= 1.0f) {
+        if (this.X2.f39700n.f33518q0 >= 1.0f) {
             return false;
         }
         return super.onInterceptTouchEvent(motionEvent);

@@ -7,23 +7,23 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.tl.TL_account;
 public final class dl0 implements Utilities.Callback2 {
-    public final int f36411a;
-    public final PasskeysActivity f36412b;
+    public final int f36412a;
+    public final PasskeysActivity f36413b;
 
     public dl0(PasskeysActivity passkeysActivity, int i10) {
-        this.f36411a = i10;
-        this.f36412b = passkeysActivity;
+        this.f36412a = i10;
+        this.f36413b = passkeysActivity;
     }
 
     @Override
     public final void run(Object obj, Object obj2) {
-        int i10 = this.f36411a;
-        PasskeysActivity passkeysActivity = this.f36412b;
+        int i10 = this.f36412a;
+        PasskeysActivity passkeysActivity = this.f36413b;
         switch (i10) {
             case 0:
                 ArrayList arrayList = (ArrayList) obj;
                 org.telegram.ui.Components.u61 u61Var = (org.telegram.ui.Components.u61) obj2;
-                ArrayList arrayList2 = passkeysActivity.f33236b;
+                ArrayList arrayList2 = passkeysActivity.f33237b;
                 passkeysActivity.addPasskeyRow = -1;
                 String string = LocaleController.getString(R.string.PasskeyTopInfo);
                 int i11 = R.raw.passkey;
@@ -33,7 +33,7 @@ public final class dl0 implements Utilities.Callback2 {
                 arrayList.add(h61Var);
                 for (int i12 = 0; i12 < arrayList2.size(); i12++) {
                     s50 s50Var = new s50(passkeysActivity, 15);
-                    int i13 = el0.f36685a;
+                    int i13 = el0.f36686a;
                     org.telegram.ui.Components.h61 J = org.telegram.ui.Components.h61.J(el0.class);
                     J.G = (TL_account.Passkey) arrayList2.get(i12);
                     J.D = s50Var;

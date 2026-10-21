@@ -2,16 +2,16 @@ package org.telegram.ui.Components;
 
 import org.telegram.messenger.AndroidUtilities;
 public final class oq0 extends org.telegram.ui.ActionBar.o1 {
-    public final pq0 f29122x;
+    public final pq0 f29123x;
 
     public oq0(pq0 pq0Var, pq0 pq0Var2) {
         super(pq0Var2);
-        this.f29122x = pq0Var;
+        this.f29123x = pq0Var;
     }
 
     @Override
     public final boolean b() {
-        fr0 fr0Var = this.f29122x.H0;
+        fr0 fr0Var = this.f29123x.H0;
         if (!fr0Var.isDismissed() && fr0Var.Z) {
             return !fr0Var.d.m();
         }
@@ -25,7 +25,7 @@ public final class oq0 extends org.telegram.ui.ActionBar.o1 {
 
     @Override
     public final void f() {
-        fr0 fr0Var = this.f29122x.H0;
+        fr0 fr0Var = this.f29123x.H0;
         jq0 jq0Var = fr0Var.d;
         if (jq0Var == null || !jq0Var.m()) {
             int i10 = fr0Var.O0;
@@ -45,7 +45,7 @@ public final class oq0 extends org.telegram.ui.ActionBar.o1 {
     @Override
     public final void g(int i10, boolean z10) {
         int i11;
-        pq0 pq0Var = this.f29122x;
+        pq0 pq0Var = this.f29123x;
         fr0 fr0Var = pq0Var.H0;
         int i12 = fr0Var.f26385r0;
         int i13 = fr0Var.f26383q0;
@@ -57,7 +57,7 @@ public final class oq0 extends org.telegram.ui.ActionBar.o1 {
         } else {
             pq0Var.B0 = -1;
         }
-        int i14 = pq0Var.f29361z0;
+        int i14 = pq0Var.f29362z0;
         int i15 = pq0Var.A0;
         if (i14 != i15) {
             pq0Var.D0 = 0;

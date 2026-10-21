@@ -296,10 +296,10 @@ public final class oc1 extends org.telegram.ui.ActionBar.n2 implements Notificat
         this.f39836b.setCursorWidth(1.5f);
         this.f39843x.addView(this.f39836b, w7.z5.k(23.0f, 0.0f, 23.0f, 0.0f, -1, 50));
         this.f39836b.setOnEditorActionListener(new TextView.OnEditorActionListener(this) {
-            public final oc1 f38895b;
+            public final oc1 f38896b;
 
             {
-                this.f38895b = this;
+                this.f38896b = this;
             }
 
             @Override
@@ -307,7 +307,7 @@ public final class oc1 extends org.telegram.ui.ActionBar.n2 implements Notificat
                 org.telegram.ui.ActionBar.u0 u0Var;
                 switch (r2) {
                     case 0:
-                        oc1 oc1Var = this.f38895b;
+                        oc1 oc1Var = this.f38896b;
                         if (i13 == 6) {
                             AndroidUtilities.hideKeyboard(oc1Var.f39836b);
                             return true;
@@ -315,7 +315,7 @@ public final class oc1 extends org.telegram.ui.ActionBar.n2 implements Notificat
                         oc1Var.getClass();
                         return false;
                     default:
-                        if (i13 == 6 && (u0Var = this.f38895b.f39837c) != null) {
+                        if (i13 == 6 && (u0Var = this.f38896b.f39837c) != null) {
                             u0Var.performClick();
                             return true;
                         }
@@ -362,10 +362,10 @@ public final class oc1 extends org.telegram.ui.ActionBar.n2 implements Notificat
         this.f39835a.setCursorWidth(1.5f);
         linearLayout4.addView(this.f39835a, w7.z5.n(-1, 50));
         this.f39835a.setOnEditorActionListener(new TextView.OnEditorActionListener(this) {
-            public final oc1 f38895b;
+            public final oc1 f38896b;
 
             {
-                this.f38895b = this;
+                this.f38896b = this;
             }
 
             @Override
@@ -373,7 +373,7 @@ public final class oc1 extends org.telegram.ui.ActionBar.n2 implements Notificat
                 org.telegram.ui.ActionBar.u0 u0Var;
                 switch (r2) {
                     case 0:
-                        oc1 oc1Var = this.f38895b;
+                        oc1 oc1Var = this.f38896b;
                         if (i13 == 6) {
                             AndroidUtilities.hideKeyboard(oc1Var.f39836b);
                             return true;
@@ -381,7 +381,7 @@ public final class oc1 extends org.telegram.ui.ActionBar.n2 implements Notificat
                         oc1Var.getClass();
                         return false;
                     default:
-                        if (i13 == 6 && (u0Var = this.f38895b.f39837c) != null) {
+                        if (i13 == 6 && (u0Var = this.f38896b.f39837c) != null) {
                             u0Var.performClick();
                             return true;
                         }

@@ -19,8 +19,8 @@ public final class w0 implements z4.e {
     public final void a(float f7, int i10, int i11) {
         int i12;
         sa saVar = this.f46473a;
-        saVar.f30233b = f7;
-        saVar.f30234c = i10;
+        saVar.f30234b = f7;
+        saVar.f30235c = i10;
         saVar.invalidate();
         y0 y0Var = this.f46474b;
         y0Var.G = i10;

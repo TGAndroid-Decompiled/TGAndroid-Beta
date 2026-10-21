@@ -193,7 +193,7 @@ public class d extends FrameLayout implements aa0 {
     }
 
     public TextPaint getTextPaint() {
-        return this.d.f29223a;
+        return this.d.f29224a;
     }
 
     public final void h(CharSequence charSequence) {
@@ -240,7 +240,7 @@ public class d extends FrameLayout implements aa0 {
             int i13 = this.f8850b;
             view.setBackground(org.telegram.ui.ActionBar.h6.Z(w03, i13, i13));
         } else {
-            int m12 = org.telegram.ui.ActionBar.h6.m1(0.1f, p6Var.f29223a.getColor());
+            int m12 = org.telegram.ui.ActionBar.h6.m1(0.1f, p6Var.f29224a.getColor());
             int i14 = this.f8850b;
             view.setBackground(org.telegram.ui.ActionBar.h6.Z(m12, i14, i14));
         }
@@ -313,7 +313,7 @@ public class d extends FrameLayout implements aa0 {
         org.telegram.ui.Components.p6 p6Var = this.d;
         if (i12 > 0) {
             if (this.f8851b0 == null) {
-                this.f8851b0 = new dq(p6Var.f29223a.getColor());
+                this.f8851b0 = new dq(p6Var.f29224a.getColor());
             }
             int dp = (int) ((1.0f - this.M) * AndroidUtilities.dp(24.0f));
             this.f8851b0.setBounds(0, dp, getWidth(), getHeight() + dp);
@@ -397,7 +397,7 @@ public class d extends FrameLayout implements aa0 {
             } else {
                 f11 = 0.5f;
             }
-            CharSequence charSequence = p6Var2.f29230i;
+            CharSequence charSequence = p6Var2.f29231i;
             if (charSequence != null) {
                 i11 = charSequence.length();
             }
@@ -494,7 +494,7 @@ public class d extends FrameLayout implements aa0 {
         if (this.E) {
             color = this.f8864y;
         } else {
-            color = this.d.f29223a.getColor();
+            color = this.d.f29224a.getColor();
         }
         p6Var.u(color);
     }
@@ -614,7 +614,7 @@ public class d extends FrameLayout implements aa0 {
         org.telegram.ui.Components.p6 p6Var = this.d;
         p6Var.u(i10);
         if (!this.f8861s) {
-            int m12 = org.telegram.ui.ActionBar.h6.m1(0.1f, p6Var.f29223a.getColor());
+            int m12 = org.telegram.ui.ActionBar.h6.m1(0.1f, p6Var.f29224a.getColor());
             int i11 = this.f8850b;
             this.f8860r.setBackground(org.telegram.ui.ActionBar.h6.Z(m12, i11, i11));
         }
@@ -668,13 +668,13 @@ public class d extends FrameLayout implements aa0 {
         if (z10) {
             p6Var.x(AndroidUtilities.bold());
         }
-        p6Var.f29225b = 1;
+        p6Var.f29226b = 1;
         org.telegram.ui.Components.p6 p6Var2 = new org.telegram.ui.Components.p6(i(), true, false);
         this.e = p6Var2;
         p6Var2.n(0.3f, 250L, bsVar);
         p6Var2.setCallback(this);
         p6Var2.w(AndroidUtilities.dp(12.0f));
-        p6Var2.f29225b = 1;
+        p6Var2.f29226b = 1;
         org.telegram.ui.Components.p6 p6Var3 = new org.telegram.ui.Components.p6(false, false, true);
         this.f8856f = p6Var3;
         p6Var3.n(0.3f, 250L, bsVar);
@@ -682,7 +682,7 @@ public class d extends FrameLayout implements aa0 {
         p6Var3.w(AndroidUtilities.dp(12.0f));
         p6Var3.x(AndroidUtilities.bold());
         p6Var3.t("", true, true);
-        p6Var3.f29225b = 1;
+        p6Var3.f29226b = 1;
         setWillNotDraw(false);
         j();
     }

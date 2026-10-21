@@ -17,10 +17,10 @@ public final class gp implements Utilities.Callback {
         switch (this.f26624a) {
             case 0:
                 wp wpVar = this.f26625b;
-                wpVar.f32211f0 = (TL_stories.TL_premium_boostsStatus) obj;
-                wpVar.f32209e0 = true;
+                wpVar.f32212f0 = (TL_stories.TL_premium_boostsStatus) obj;
+                wpVar.f32210e0 = true;
                 wpVar.F(true);
-                wpVar.f32208d0 = false;
+                wpVar.f32209d0 = false;
                 return;
             default:
                 wp.n(this.f26625b, (ChannelBoostsController.CanApplyBoost) obj);

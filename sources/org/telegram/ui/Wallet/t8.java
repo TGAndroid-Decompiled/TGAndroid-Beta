@@ -6,65 +6,65 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.tl.TL_wallet;
 import org.telegram.ui.Components.w61;
 public final class t8 implements Utilities.Callback2 {
-    public final int f34971a;
-    public final i9 f34972b;
+    public final int f34972a;
+    public final i9 f34973b;
 
     public t8(i9 i9Var, int i10) {
-        this.f34971a = i10;
-        this.f34972b = i9Var;
+        this.f34972a = i10;
+        this.f34973b = i9Var;
     }
 
     @Override
     public final void run(Object obj, Object obj2) {
         int i10;
         int i11;
-        switch (this.f34971a) {
+        switch (this.f34972a) {
             case 0:
                 String str = (String) obj2;
-                i9.b0(this.f34972b, (TL_wallet.walletUserAddress) obj);
+                i9.b0(this.f34973b, (TL_wallet.walletUserAddress) obj);
                 return;
             case 1:
                 TL_wallet.walletTransaction wallettransaction = (TL_wallet.walletTransaction) obj;
                 String str2 = (String) obj2;
-                i9 i9Var = this.f34972b;
+                i9 i9Var = this.f34973b;
                 i9Var.getClass();
                 if (wallettransaction != null) {
-                    i9Var.f34345b0 = wallettransaction.fee;
+                    i9Var.f34346b0 = wallettransaction.fee;
                     i9Var.x0();
                     return;
                 }
                 return;
             case 2:
                 TL_wallet.walletUserAddress walletuseraddress = (TL_wallet.walletUserAddress) obj;
-                i9 i9Var2 = this.f34972b;
-                i9Var2.f34357n = false;
+                i9 i9Var2 = this.f34973b;
+                i9Var2.f34358n = false;
                 if (TextUtils.equals((String) obj2, "WALLET_USER_UNAVAILABLE")) {
                     i9Var2.finishFragment();
                     return;
                 }
                 i9Var2.d = walletuseraddress;
                 if (walletuseraddress != null) {
-                    i9Var2.f34349f = walletuseraddress.address;
+                    i9Var2.f34350f = walletuseraddress.address;
                 }
-                w61 w61Var = i9Var2.f32355a;
+                w61 w61Var = i9Var2.f32356a;
                 if (w61Var != null) {
                     w61Var.W2.N(true);
                 }
                 i9Var2.w0();
                 i9Var2.n0();
-                k8 k8Var = i9Var2.f34364s;
+                k8 k8Var = i9Var2.f34365s;
                 if (k8Var != null) {
-                    k8Var.a(i9Var2.f34349f, i9Var2.e);
+                    k8Var.a(i9Var2.f34350f, i9Var2.e);
                     return;
                 }
                 return;
             case 3:
-                i9 i9Var3 = this.f34972b;
-                i9Var3.f34347d0 = (String) obj;
-                i9Var3.f34348e0 = ((Boolean) obj2).booleanValue();
-                i9Var3.M.setText(i9Var3.f34347d0);
+                i9 i9Var3 = this.f34973b;
+                i9Var3.f34348d0 = (String) obj;
+                i9Var3.f34349e0 = ((Boolean) obj2).booleanValue();
+                i9Var3.M.setText(i9Var3.f34348d0);
                 TextView textView = i9Var3.M;
-                if (TextUtils.isEmpty(i9Var3.f34347d0)) {
+                if (TextUtils.isEmpty(i9Var3.f34348d0)) {
                     i10 = 8;
                 } else {
                     i10 = 0;
@@ -73,12 +73,12 @@ public final class t8 implements Utilities.Callback2 {
                 i9Var3.y0();
                 return;
             default:
-                i9 i9Var4 = this.f34972b;
-                i9Var4.f34347d0 = (String) obj;
-                i9Var4.f34348e0 = ((Boolean) obj2).booleanValue();
-                i9Var4.M.setText(i9Var4.f34347d0);
+                i9 i9Var4 = this.f34973b;
+                i9Var4.f34348d0 = (String) obj;
+                i9Var4.f34349e0 = ((Boolean) obj2).booleanValue();
+                i9Var4.M.setText(i9Var4.f34348d0);
                 TextView textView2 = i9Var4.M;
-                if (TextUtils.isEmpty(i9Var4.f34347d0)) {
+                if (TextUtils.isEmpty(i9Var4.f34348d0)) {
                     i11 = 8;
                 } else {
                     i11 = 0;

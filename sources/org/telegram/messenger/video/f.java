@@ -30,36 +30,36 @@ import org.telegram.ui.v30;
 import org.telegram.ui.x30;
 import org.telegram.ui.z20;
 public final class f implements View.OnClickListener {
-    public final int f19782a;
-    public final Object f19783b;
-    public final Object f19784c;
+    public final int f19779a;
+    public final Object f19780b;
+    public final Object f19781c;
     public final Object d;
     public final Object e;
-    public final Object f19785f;
+    public final Object f19782f;
     public final Object h;
-    public final Object f19786n;
+    public final Object f19783n;
 
     public f(ei.d dVar, r4 r4Var, Utilities.Callback3 callback3, String[] strArr, boolean[] zArr, k2[] k2VarArr, d6 d6Var) {
-        this.f19782a = 2;
-        this.f19783b = dVar;
-        this.f19784c = r4Var;
+        this.f19779a = 2;
+        this.f19780b = dVar;
+        this.f19781c = r4Var;
         this.d = callback3;
         this.e = strArr;
         this.h = zArr;
-        this.f19786n = k2VarArr;
-        this.f19785f = d6Var;
+        this.f19783n = k2VarArr;
+        this.f19782f = d6Var;
     }
 
     @Override
     public final void onClick(View view) {
-        int i10 = this.f19782a;
-        Object obj = this.f19785f;
-        Object obj2 = this.f19786n;
+        int i10 = this.f19779a;
+        Object obj = this.f19782f;
+        Object obj2 = this.f19783n;
         Object obj3 = this.h;
         Object obj4 = this.e;
         Object obj5 = this.d;
-        Object obj6 = this.f19784c;
-        Object obj7 = this.f19783b;
+        Object obj6 = this.f19781c;
+        Object obj7 = this.f19780b;
         switch (i10) {
             case 0:
                 ((VideoAds) obj7).lambda$show$17((qc) obj6, (TLRPC.TL_sponsoredMessage) obj5, (Context) obj4, (d6) obj, (VideoAds.AdLayout) obj3, (e) obj2, view);
@@ -123,13 +123,13 @@ public final class f implements View.OnClickListener {
     }
 
     public f(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, Object obj6, Object obj7, int i10) {
-        this.f19782a = i10;
-        this.f19783b = obj;
-        this.f19784c = obj2;
+        this.f19779a = i10;
+        this.f19780b = obj;
+        this.f19781c = obj2;
         this.d = obj3;
         this.e = obj4;
-        this.f19785f = obj5;
+        this.f19782f = obj5;
         this.h = obj6;
-        this.f19786n = obj7;
+        this.f19783n = obj7;
     }
 }

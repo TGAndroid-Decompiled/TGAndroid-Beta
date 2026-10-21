@@ -25,7 +25,7 @@ public final class gk0 extends s4.g0 {
     public final int h() {
         int i10;
         nk0 nk0Var = this.h;
-        int size = nk0Var.f28831n.size();
+        int size = nk0Var.f28832n.size();
         if (!nk0Var.H.isEmpty() && !MessagesController.getInstance(this.f26594c).premiumFeaturesBlocked()) {
             i10 = 1;
         } else {
@@ -36,7 +36,7 @@ public final class gk0 extends s4.g0 {
 
     @Override
     public final int j(int i10) {
-        if (i10 < this.h.f28831n.size()) {
+        if (i10 < this.h.f28832n.size()) {
             return 0;
         }
         return 1;
@@ -45,7 +45,7 @@ public final class gk0 extends s4.g0 {
     @Override
     public final void v(s4.b1 b1Var, int i10) {
         if (b1Var.f45920f == 0) {
-            ((org.telegram.ui.Cells.n6) b1Var.f45917a).setUserReaction((TLRPC.MessagePeerReaction) this.h.f28831n.get(i10));
+            ((org.telegram.ui.Cells.n6) b1Var.f45917a).setUserReaction((TLRPC.MessagePeerReaction) this.h.f28832n.get(i10));
         }
     }
 

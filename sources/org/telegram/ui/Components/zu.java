@@ -6,17 +6,17 @@ import java.util.Locale;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.Utilities;
 public final class zu extends org.telegram.ui.ActionBar.g5 {
-    public final boolean f33041r;
-    public final cv f33042s;
+    public final boolean f33042r;
+    public final cv f33043s;
 
     public zu(cv cvVar, boolean z10) {
-        this.f33042s = cvVar;
-        this.f33041r = z10;
+        this.f33043s = cvVar;
+        this.f33042r = z10;
     }
 
     @Override
     public final boolean h() {
-        cv cvVar = this.f33042s;
+        cv cvVar = this.f33043s;
         w91 w91Var = cvVar.f25261c;
         boolean z10 = w91Var.T;
         if (z10) {
@@ -40,12 +40,12 @@ public final class zu extends org.telegram.ui.ActionBar.g5 {
     public final void onOpenAnimationEnd() {
         String str;
         int intValue;
-        cv cvVar = this.f33042s;
+        cv cvVar = this.f33043s;
         int i10 = cvVar.Q;
         RadialProgressView radialProgressView = cvVar.f25263n;
         wu wuVar = cvVar.f25260b;
         w91 w91Var = cvVar.f25261c;
-        if (this.f33041r && cvVar.f25261c.g(cvVar.K, null, null, cvVar.I, true)) {
+        if (this.f33042r && cvVar.f25261c.g(cvVar.K, null, null, cvVar.I, true)) {
             radialProgressView.setVisibility(4);
             wuVar.setVisibility(4);
             w91Var.setVisibility(0);

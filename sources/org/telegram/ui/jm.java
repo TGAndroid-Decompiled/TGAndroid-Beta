@@ -27,16 +27,16 @@ public final class jm extends org.telegram.ui.Components.lw0 {
     public long H0;
     public boolean I0;
     public final qn J0;
-    public int f38278w0;
-    public int f38279x0;
-    public int f38280y0;
-    public final ArrayList f38281z0;
+    public int f38279w0;
+    public int f38280x0;
+    public int f38281y0;
+    public final ArrayList f38282z0;
 
     public jm(qn qnVar, Context context, org.telegram.ui.ActionBar.d5 d5Var) {
         super(context, d5Var);
         this.J0 = qnVar;
-        this.f38278w0 = 0;
-        this.f38281z0 = new ArrayList();
+        this.f38279w0 = 0;
+        this.f38282z0 = new ArrayList();
         this.A0 = new ArrayList();
         this.B0 = new ArrayList();
         this.C0 = new ArrayList();
@@ -239,7 +239,7 @@ public final class jm extends org.telegram.ui.Components.lw0 {
     @Override
     public final boolean dispatchKeyEvent(KeyEvent keyEvent) {
         al alVar;
-        if (keyEvent.getKeyCode() == 4 && keyEvent.getAction() == 1 && (alVar = this.J0.Fa) != null && alVar.f28991s) {
+        if (keyEvent.getKeyCode() == 4 && keyEvent.getAction() == 1 && (alVar = this.J0.Fa) != null && alVar.f28992s) {
             alVar.a(true);
             return true;
         }
@@ -351,10 +351,10 @@ public final class jm extends org.telegram.ui.Components.lw0 {
         qn qnVar = this.J0;
         lp lpVar = qnVar.P9;
         if (lpVar != null) {
-            NotificationCenter.getInstance(lpVar.f38966e0).removeObserver(lpVar, NotificationCenter.updateInterfaces);
+            NotificationCenter.getInstance(lpVar.f38967e0).removeObserver(lpVar, NotificationCenter.updateInterfaces);
             lpVar.F.onDetachedFromWindow();
-            org.telegram.ui.Components.r5 r5Var = lpVar.f38973k0;
-            if (r5Var != null && (view = lpVar.f38960a0) != null) {
+            org.telegram.ui.Components.r5 r5Var = lpVar.f38974k0;
+            if (r5Var != null && (view = lpVar.f38961a0) != null) {
                 r5Var.o(view);
             }
             lpVar.Q = 0.0f;

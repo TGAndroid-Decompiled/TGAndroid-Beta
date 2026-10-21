@@ -140,10 +140,10 @@ public final class qv0 extends Dialog {
         ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, f7);
         this.f40988f0 = ofFloat;
         ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-            public final qv0 f37805b;
+            public final qv0 f37806b;
 
             {
-                this.f37805b = this;
+                this.f37806b = this;
             }
 
             @Override
@@ -151,7 +151,7 @@ public final class qv0 extends Dialog {
                 switch (r2) {
                     case 0:
                         float floatValue = ((Float) valueAnimator3.getAnimatedValue()).floatValue();
-                        qv0 qv0Var = this.f37805b;
+                        qv0 qv0Var = this.f37806b;
                         qv0Var.f40995y = floatValue;
                         qv0Var.f40983c.invalidate();
                         qv0Var.d.invalidate();
@@ -162,7 +162,7 @@ public final class qv0 extends Dialog {
                         qv0Var.e();
                         return;
                     default:
-                        qv0 qv0Var2 = this.f37805b;
+                        qv0 qv0Var2 = this.f37806b;
                         qv0Var2.getClass();
                         qv0Var2.E = ((Float) valueAnimator3.getAnimatedValue()).floatValue();
                         return;
@@ -187,10 +187,10 @@ public final class qv0 extends Dialog {
         ValueAnimator ofFloat2 = ValueAnimator.ofFloat(f12, f11);
         this.f40989g0 = ofFloat2;
         ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-            public final qv0 f37805b;
+            public final qv0 f37806b;
 
             {
-                this.f37805b = this;
+                this.f37806b = this;
             }
 
             @Override
@@ -198,7 +198,7 @@ public final class qv0 extends Dialog {
                 switch (r2) {
                     case 0:
                         float floatValue = ((Float) valueAnimator32.getAnimatedValue()).floatValue();
-                        qv0 qv0Var = this.f37805b;
+                        qv0 qv0Var = this.f37806b;
                         qv0Var.f40995y = floatValue;
                         qv0Var.f40983c.invalidate();
                         qv0Var.d.invalidate();
@@ -209,7 +209,7 @@ public final class qv0 extends Dialog {
                         qv0Var.e();
                         return;
                     default:
-                        qv0 qv0Var2 = this.f37805b;
+                        qv0 qv0Var2 = this.f37806b;
                         qv0Var2.getClass();
                         qv0Var2.E = ((Float) valueAnimator32.getAnimatedValue()).floatValue();
                         return;

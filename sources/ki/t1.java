@@ -288,7 +288,7 @@ public class t1 implements org.telegram.ui.Components.e5, j0, m.f2, y2.g, m.y0, 
                 d2Var.s0(i10, i11, z10);
                 mi0 mi0Var = d2Var.O0;
                 if (mi0Var != null) {
-                    mi0Var.i();
+                    mi0Var.h();
                     d2Var.O0 = null;
                     return;
                 }
@@ -306,7 +306,7 @@ public class t1 implements org.telegram.ui.Components.e5, j0, m.f2, y2.g, m.y0, 
 
     @Override
     public void E(boolean z10) {
-        ((of0) this.f15525b).f29037c.setAspectLock(z10);
+        ((of0) this.f15525b).f29038c.setAspectLock(z10);
     }
 
     @Override
@@ -420,7 +420,7 @@ public class t1 implements org.telegram.ui.Components.e5, j0, m.f2, y2.g, m.y0, 
     public void R(boolean z10) {
         of0 of0Var = (of0) this.f15525b;
         of0Var.getClass();
-        nf0 nf0Var = of0Var.f29035a;
+        nf0 nf0Var = of0Var.f29036a;
         if (nf0Var != null) {
             ((zr0) nf0Var).a(z10);
         }
@@ -440,10 +440,10 @@ public class t1 implements org.telegram.ui.Components.e5, j0, m.f2, y2.g, m.y0, 
 
     @Override
     public void W() {
-        nf0 nf0Var = ((of0) this.f15525b).f29035a;
+        nf0 nf0Var = ((of0) this.f15525b).f29036a;
         if (nf0Var != null) {
             PhotoViewer photoViewer = ((zr0) nf0Var).f43798a;
-            if (photoViewer.f33262c2 == 1) {
+            if (photoViewer.f33263c2 == 1) {
                 photoViewer.H2 = true;
                 photoViewer.s3();
             }
@@ -616,7 +616,7 @@ public class t1 implements org.telegram.ui.Components.e5, j0, m.f2, y2.g, m.y0, 
                 return;
             default:
                 r9 r9Var = (r9) this.f15525b;
-                if (!r9Var.f34815n && i10 == r9Var.I) {
+                if (!r9Var.f34816n && i10 == r9Var.I) {
                     r9Var.e0(r9Var.M.getText().toString().trim());
                     return;
                 }
@@ -876,9 +876,9 @@ public class t1 implements org.telegram.ui.Components.e5, j0, m.f2, y2.g, m.y0, 
 
     @Override
     public void v() {
-        nf0 nf0Var = ((of0) this.f15525b).f29035a;
+        nf0 nf0Var = ((of0) this.f15525b).f29036a;
         if (nf0Var != null) {
-            ((zr0) nf0Var).f43798a.f33278e0.invalidate();
+            ((zr0) nf0Var).f43798a.f33279e0.invalidate();
         }
     }
 

@@ -447,7 +447,7 @@ public class b2 extends Dialog implements Drawable.Callback, NotificationCenter.
                         for (Map.Entry entry : this.Z.entrySet()) {
                             Integer num = (Integer) entry.getValue();
                             num.getClass();
-                            animatedDrawable.f31286s.put((String) entry.getKey(), num);
+                            animatedDrawable.f31287s.put((String) entry.getKey(), num);
                             animatedDrawable.G();
                         }
                     }

@@ -11,13 +11,13 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.ui.Components.RadioButton;
 public final class b80 extends org.telegram.ui.Components.im0 {
-    public final Context f35535c;
+    public final Context f35536c;
     public final boolean d;
     public final LanguageSelectActivity e;
 
     public b80(LanguageSelectActivity languageSelectActivity, Context context, boolean z10) {
         this.e = languageSelectActivity;
-        this.f35535c = context;
+        this.f35536c = context;
         this.d = z10;
     }
 
@@ -59,7 +59,7 @@ public final class b80 extends org.telegram.ui.Components.im0 {
             }
             i11 = i10 + 1;
         }
-        int size = languageSelectActivity.f33152f.size() + i11 + 1;
+        int size = languageSelectActivity.f33153f.size() + i11 + 1;
         if (!languageSelectActivity.h.isEmpty()) {
             return languageSelectActivity.h.size() + 1 + size;
         }
@@ -87,7 +87,7 @@ public final class b80 extends org.telegram.ui.Components.im0 {
         float f11;
         org.telegram.ui.Cells.z6 z6Var;
         int i15 = 5;
-        Context context = this.f35535c;
+        Context context = this.f35536c;
         if (i10 != 0) {
             if (i10 != 2) {
                 if (i10 != 3) {

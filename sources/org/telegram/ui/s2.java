@@ -156,7 +156,7 @@ public final class s2 extends FrameLayout implements org.telegram.ui.Cells.m9 {
             this.f41329n = dp3;
             TL_iv.pageBlockSlideshow pageblockslideshow = this.d;
             TL_iv.RichText richText = pageblockslideshow.caption.text;
-            HashSet hashSet = l4.f38734b1;
+            HashSet hashSet = l4.f38735b1;
             Layout.Alignment alignment = Layout.Alignment.ALIGN_NORMAL;
             l4 l4Var = this.f41333x;
             d3 p5 = l4.p(l4Var, this, null, richText, dp2, dp3, pageblockslideshow, alignment, 0, this.f41332w);
@@ -167,7 +167,7 @@ public final class s2 extends FrameLayout implements org.telegram.ui.Cells.m9 {
                 this.f41330r = height;
                 dp = org.telegram.messenger.g0.C(4.0f, height, dp);
                 d3 d3Var = this.e;
-                d3Var.f36241s = i13;
+                d3Var.f36242s = i13;
                 d3Var.v = this.f41329n;
             } else {
                 this.f41330r = 0;
@@ -182,7 +182,7 @@ public final class s2 extends FrameLayout implements org.telegram.ui.Cells.m9 {
             if (p9 != null) {
                 dp += this.f41328f.d.getHeight() + AndroidUtilities.dp(4.0f);
                 d3 d3Var2 = this.f41328f;
-                d3Var2.f36241s = i13;
+                d3Var2.f36242s = i13;
                 d3Var2.v = this.f41329n + this.f41330r;
             }
             i12 = AndroidUtilities.dp(16.0f) + dp;

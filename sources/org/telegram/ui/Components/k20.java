@@ -334,7 +334,7 @@ public class k20 extends FrameLayout implements ne.d, org.telegram.ui.ActionBar.
             }
             f();
             j20 j20Var = this.H;
-            if (j20Var != null && (lxVar = ((org.telegram.ui.hx) j20Var).f37813b.C0) != null) {
+            if (j20Var != null && (lxVar = ((org.telegram.ui.hx) j20Var).f37814b.C0) != null) {
                 lxVar.Q(false);
             }
         }

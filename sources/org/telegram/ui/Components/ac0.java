@@ -21,7 +21,7 @@ public final class ac0 extends org.telegram.ui.Cells.o9 {
         ac0 ac0Var = ic0Var.e;
         int i12 = ac0Var.v - ac0Var.f22013u;
         oc0 oc0Var = ic0Var.f27237c0;
-        if (i12 > MessagesController.getInstance(oc0Var.f28992w).quoteLengthMax) {
+        if (i12 > MessagesController.getInstance(oc0Var.f28993w).quoteLengthMax) {
             ic0Var.g();
             return;
         }
@@ -29,7 +29,7 @@ public final class ac0 extends org.telegram.ui.Cells.o9 {
         messagePreviewParams.quoteStart = ac0Var.f22013u;
         messagePreviewParams.quoteEnd = ac0Var.v;
         MessageObject c10 = ic0Var.c(messageObject);
-        if (c10 != null && ((gnVar = oc0Var.d.quote) == null || gnVar.f37366m || (messageObject2 = gnVar.f37357a) == null || messageObject2.getId() != c10.getId())) {
+        if (c10 != null && ((gnVar = oc0Var.d.quote) == null || gnVar.f37367m || (messageObject2 = gnVar.f37358a) == null || messageObject2.getId() != c10.getId())) {
             oc0Var.d.quote = org.telegram.ui.gn.c(c10, i10, i11);
         }
         oc0Var.b();

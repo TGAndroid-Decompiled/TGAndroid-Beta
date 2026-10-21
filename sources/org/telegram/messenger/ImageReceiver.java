@@ -291,8 +291,8 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
                 float f12 = backgroundThreadDrawHolder.imageH;
                 ColorFilter colorFilter = backgroundThreadDrawHolder.colorFilter;
                 int i11 = backgroundThreadDrawHolder.threadIndex;
-                Paint[] paintArr = vj0Var.f31276j0;
-                RectF[] rectFArr = vj0Var.f31275i0;
+                Paint[] paintArr = vj0Var.f31277j0;
+                RectF[] rectFArr = vj0Var.f31276i0;
                 if (rectFArr[i11] == null) {
                     rectFArr[i11] = new RectF();
                     Paint paint = new Paint(1);
@@ -534,7 +534,7 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
                 float f10 = roundRadius[1];
                 float f11 = roundRadius[2];
                 float f12 = roundRadius[3];
-                float[] fArr = oqVar.f29121f;
+                float[] fArr = oqVar.f29122f;
                 float max = Math.max(0.0f, f7);
                 fArr[1] = max;
                 fArr[0] = max;
@@ -804,7 +804,7 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
         }
         vj0 lottieAnimation = getLottieAnimation();
         if (lottieAnimation != null) {
-            return lottieAnimation.f31267c;
+            return lottieAnimation.f31268c;
         }
         Bitmap bitmap = getBitmap();
         if (bitmap == null) {
@@ -837,7 +837,7 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
         }
         vj0 lottieAnimation = getLottieAnimation();
         if (lottieAnimation != null) {
-            return lottieAnimation.f31265b;
+            return lottieAnimation.f31266b;
         }
         Bitmap bitmap = getBitmap();
         if (bitmap == null) {
@@ -1290,7 +1290,7 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
 
     public boolean isLottieRunning() {
         vj0 lottieAnimation = getLottieAnimation();
-        if (lottieAnimation != null && lottieAnimation.f31277k0) {
+        if (lottieAnimation != null && lottieAnimation.f31278k0) {
             return true;
         }
         return false;
@@ -1697,7 +1697,7 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
             if (lottieAnimation != null) {
                 if (z10) {
                     lottieAnimation.stop();
-                } else if (!lottieAnimation.f31277k0) {
+                } else if (!lottieAnimation.f31278k0) {
                     lottieAnimation.start();
                 }
             }
@@ -2072,9 +2072,9 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
         Drawable drawable2 = this.staticThumbDrawable;
         if (drawable2 instanceof gl0) {
             qd0 qd0Var = (qd0) ((gl0) drawable2);
-            DownloadController.getInstance(qd0Var.f29557r.currentAccount).removeLoadingFileObserver(qd0Var);
-            qd0Var.f29556n = null;
-            qd0Var.f29557r = null;
+            DownloadController.getInstance(qd0Var.f29558r.currentAccount).removeLoadingFileObserver(qd0Var);
+            qd0Var.f29557n = null;
+            qd0Var.f29558r = null;
         }
         if (drawable instanceof org.telegram.ui.Components.r5) {
             org.telegram.ui.Components.r5 r5Var = (org.telegram.ui.Components.r5) drawable;
@@ -2197,7 +2197,7 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
             return;
         }
         vj0 lottieAnimation = getLottieAnimation();
-        if (lottieAnimation == null || lottieAnimation.f31277k0) {
+        if (lottieAnimation == null || lottieAnimation.f31278k0) {
             return;
         }
         lottieAnimation.H(z10);

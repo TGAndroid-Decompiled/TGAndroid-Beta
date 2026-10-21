@@ -16,7 +16,7 @@ public final class qb0 extends e91 {
         boolean z10;
         int i10 = 0;
         while (true) {
-            View[] viewArr = this.T.f28988f.e;
+            View[] viewArr = this.T.f28989f.e;
             if (i10 < viewArr.length) {
                 View view = viewArr[i10];
                 if (view != null) {
@@ -49,7 +49,7 @@ public final class qb0 extends e91 {
     @Override
     public final void w(boolean z10) {
         oc0 oc0Var = this.T;
-        oc0Var.e.setSelectedTab(oc0Var.f28988f.getPositionAnimated());
+        oc0Var.e.setSelectedTab(oc0Var.f28989f.getPositionAnimated());
         View[] viewArr = this.e;
         View view = viewArr[0];
         if (view instanceof ic0) {

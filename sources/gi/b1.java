@@ -126,8 +126,8 @@ public final class b1 implements Runnable {
                 String str4 = (String) this.h;
                 TLRPC.User user = (TLRPC.User) this.f11093n;
                 String str5 = (String) this.f11094r;
-                ArrayList arrayList = launchActivity.f33165f0;
-                ArrayList arrayList2 = launchActivity.f33161d0;
+                ArrayList arrayList = launchActivity.f33166f0;
+                ArrayList arrayList2 = launchActivity.f33162d0;
                 ArrayList arrayList3 = launchActivity.E0;
                 TLObject tLObject3 = this.f11090b;
                 if (tLObject3 instanceof TLRPC.TL_attachMenuBotsBot) {

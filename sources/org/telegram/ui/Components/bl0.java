@@ -87,9 +87,9 @@ public final class bl0 extends FrameLayout {
         }
         al0Var.setLayerNum(Integer.MAX_VALUE);
         al0Var2.setLayerNum(Integer.MAX_VALUE);
-        al0Var2.f31992a.setAutoRepeat(0);
-        al0Var2.f31992a.setAllowStartAnimation(false);
-        al0Var2.f31992a.setAllowStartLottieAnimation(false);
+        al0Var2.f31993a.setAutoRepeat(0);
+        al0Var2.f31993a.setAllowStartAnimation(false);
+        al0Var2.f31993a.setAllowStartLottieAnimation(false);
         al0Var3.setLayerNum(Integer.MAX_VALUE);
     }
 
@@ -208,14 +208,14 @@ public final class bl0 extends FrameLayout {
         al0 al0Var = this.f24976b;
         r5 r5Var = al0Var.e;
         if (r5Var != null) {
-            imageReceiver = r5Var.f29837k;
+            imageReceiver = r5Var.f29838k;
         } else {
-            imageReceiver = al0Var.f31992a;
+            imageReceiver = al0Var.f31993a;
         }
         if (imageReceiver != null && imageReceiver.getLottieAnimation() != null) {
             dl0 dl0Var = this.P;
             if (dl0Var.f25563x0 == null && !this.N && dl0Var.G0) {
-                if (imageReceiver.getLottieAnimation().f31264a0 <= 2) {
+                if (imageReceiver.getLottieAnimation().f31265a0 <= 2) {
                     imageReceiver.getLottieAnimation().stop();
                     return;
                 }
@@ -269,7 +269,7 @@ public final class bl0 extends FrameLayout {
                 AndroidUtilities.runOnUIThread(this.G, i10);
                 return;
             }
-            if (this.f24975a.getImageReceiver().getLottieAnimation() != null && this.f24979n && !this.f24975a.getImageReceiver().getLottieAnimation().f31277k0 && !this.f24975a.getImageReceiver().getLottieAnimation().y()) {
+            if (this.f24975a.getImageReceiver().getLottieAnimation() != null && this.f24979n && !this.f24975a.getImageReceiver().getLottieAnimation().f31278k0 && !this.f24975a.getImageReceiver().getLottieAnimation().y()) {
                 this.f24975a.getImageReceiver().getLottieAnimation().N(this.f24975a.getImageReceiver().getLottieAnimation().e[0] - 1, false, false);
             }
             al0 al0Var3 = this.f24976b;
@@ -377,7 +377,7 @@ public final class bl0 extends FrameLayout {
             canvas.drawCircle(measuredWidth, measuredHeight, measuredWidth2, paint);
         }
         r5 r5Var = this.f24976b.e;
-        if (r5Var != null && (g3Var = r5Var.f29837k) != null) {
+        if (r5Var != null && (g3Var = r5Var.f29838k) != null) {
             int i11 = 0;
             if (this.f24984y == 0) {
                 g3Var.setRoundRadius(AndroidUtilities.dp(6.0f), 0, 0, AndroidUtilities.dp(6.0f));
@@ -395,7 +395,7 @@ public final class bl0 extends FrameLayout {
             rectF.set((getWidth() / 2.0f) - height, (getHeight() / 2.0f) - height, (getWidth() / 2.0f) + height, (getHeight() / 2.0f) + height);
             vj0 lottieAnimation = this.f24975a.getImageReceiver().getLottieAnimation();
             ai.de deVar = this.F;
-            if (lottieAnimation != null && (i10 = lottieAnimation.f31264a0) > 30) {
+            if (lottieAnimation != null && (i10 = lottieAnimation.f31265a0) > 30) {
                 f7 = Utilities.clamp01((i10 - 30) / 30.0f);
             } else {
                 f7 = 0.0f;

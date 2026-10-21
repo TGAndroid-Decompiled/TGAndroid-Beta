@@ -16,13 +16,13 @@ public final class rr extends bb {
     public final p80 X;
     public final ArrayList Y;
     public final boolean Z;
-    public final boolean f29992a0;
-    public final boolean f29993b0;
-    public boolean f29994c0;
-    public TLRPC.Peer f29995d0;
-    public TLRPC.InputPeer f29996e0;
-    public final org.telegram.ui.ActionBar.n2 f29997f0;
-    public final long f29998g0;
+    public final boolean f29993a0;
+    public final boolean f29994b0;
+    public boolean f29995c0;
+    public TLRPC.Peer f29996d0;
+    public TLRPC.InputPeer f29997e0;
+    public final org.telegram.ui.ActionBar.n2 f29998f0;
+    public final long f29999g0;
 
     public rr(org.telegram.ui.ActionBar.n2 n2Var, ArrayList arrayList, long j10, p80 p80Var) {
         super(n2Var, false);
@@ -30,22 +30,22 @@ public final class rr extends bb {
         String formatString;
         String formatString2;
         TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j10));
-        this.f29997f0 = n2Var;
-        this.f29998g0 = j10;
+        this.f29998f0 = n2Var;
+        this.f29999g0 = j10;
         this.v = 0.26f;
         ArrayList arrayList2 = new ArrayList(arrayList);
         this.Y = arrayList2;
         this.X = p80Var;
         boolean isChannelOrGiga = ChatObject.isChannelOrGiga(chat);
-        this.f29993b0 = isChannelOrGiga;
-        this.f29995d0 = (TLRPC.Peer) arrayList2.get(0);
+        this.f29994b0 = isChannelOrGiga;
+        this.f29996d0 = (TLRPC.Peer) arrayList2.get(0);
         if (arrayList2.size() > 1) {
             z10 = true;
         } else {
             z10 = false;
         }
         this.Z = z10;
-        this.f29992a0 = ChatObject.canManageCalls(chat);
+        this.f29993a0 = ChatObject.canManageCalls(chat);
         Context context = this.containerView.getContext();
         this.containerView.addView(new ai.ic(this, context, 17), w7.z5.d(-1, 120.0f, 80, 0.0f, 0.0f, 0.0f, 0.0f));
         TextView textView = new TextView(context);
@@ -87,39 +87,39 @@ public final class rr extends bb {
         textView2.setBackground(org.telegram.ui.ActionBar.h6.j0(dp2, dp2, dp2, dp2, 0, o11, o11));
         this.containerView.addView(textView2, w7.z5.d(-1, 48.0f, 80, 16.0f, 0.0f, 16.0f, 6.0f));
         textView.setOnClickListener(new View.OnClickListener(this) {
-            public final rr f29124b;
+            public final rr f29125b;
 
             {
-                this.f29124b = this;
+                this.f29125b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        rr.Q(this.f29124b);
+                        rr.Q(this.f29125b);
                         return;
                     default:
-                        rr.R(this.f29124b);
+                        rr.R(this.f29125b);
                         return;
                 }
             }
         });
         textView2.setOnClickListener(new View.OnClickListener(this) {
-            public final rr f29124b;
+            public final rr f29125b;
 
             {
-                this.f29124b = this;
+                this.f29125b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        rr.Q(this.f29124b);
+                        rr.Q(this.f29125b);
                         return;
                     default:
-                        rr.R(this.f29124b);
+                        rr.R(this.f29125b);
                         return;
                 }
             }
@@ -133,19 +133,19 @@ public final class rr extends bb {
     }
 
     public static void Q(rr rrVar) {
-        rrVar.f29996e0 = MessagesController.getInstance(rrVar.currentAccount).getInputPeer(MessageObject.getPeerId(rrVar.f29995d0));
+        rrVar.f29997e0 = MessagesController.getInstance(rrVar.currentAccount).getInputPeer(MessageObject.getPeerId(rrVar.f29996d0));
         rrVar.dismiss();
     }
 
     public static void R(rr rrVar) {
-        rrVar.f29996e0 = MessagesController.getInstance(rrVar.currentAccount).getInputPeer(MessageObject.getPeerId(rrVar.f29995d0));
-        rrVar.f29994c0 = true;
+        rrVar.f29997e0 = MessagesController.getInstance(rrVar.currentAccount).getInputPeer(MessageObject.getPeerId(rrVar.f29996d0));
+        rrVar.f29995c0 = true;
         rrVar.dismiss();
     }
 
     @Override
     public final CharSequence A() {
-        if (this.f29993b0) {
+        if (this.f29994b0) {
             return LocaleController.getString(R.string.StartVoipChannelTitle);
         }
         return LocaleController.getString(R.string.StartVoipChatTitle);
@@ -154,13 +154,13 @@ public final class rr extends bb {
     @Override
     public final void dismissInternal() {
         super.dismissInternal();
-        TLRPC.InputPeer inputPeer = this.f29996e0;
+        TLRPC.InputPeer inputPeer = this.f29997e0;
         if (inputPeer != null) {
             boolean z10 = true;
             if (this.Y.size() <= 1) {
                 z10 = false;
             }
-            this.X.a(inputPeer, z10, this.f29994c0, false);
+            this.X.a(inputPeer, z10, this.f29995c0, false);
         }
     }
 

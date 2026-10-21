@@ -191,7 +191,7 @@ public final class e2 extends EditTextBoldCursor {
         switch (this.f8949b) {
             case 8:
                 if (i10 == 16908322 || i10 == 16908337) {
-                    ((de0) this.f8950c).f36353y = true;
+                    ((de0) this.f8950c).f36354y = true;
                     postDelayed(new dz(this, 22), 1000L);
                 }
                 return super.onTextContextMenuItem(i10);

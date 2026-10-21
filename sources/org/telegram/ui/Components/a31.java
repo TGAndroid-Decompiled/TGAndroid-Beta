@@ -17,7 +17,7 @@ public final class a31 implements Runnable {
                 s31 s31Var = this.f24483b;
                 h31 h31Var = s31Var.G;
                 h31Var.x1(true);
-                f31 f31Var = s31Var.f30188s;
+                f31 f31Var = s31Var.f30189s;
                 f31Var.x1(true);
                 s31Var.J.a(true, true);
                 AndroidUtilities.updateVisibleRows(f31Var);

@@ -114,7 +114,7 @@ public final class y3 implements org.telegram.ui.ActionBar.a2, ei.y7, org.telegr
                 return;
             default:
                 TLRPC.User user = (TLRPC.User) this.e;
-                ProfileActivity profileActivity = ((jz0) this.f2478c).f38379b;
+                ProfileActivity profileActivity = ((jz0) this.f2478c).f38380b;
                 profileActivity.O1 = true;
                 Bundle h = a1.g.h("scrollToTopOnResume", true);
                 long j10 = -this.f2477b;

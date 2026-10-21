@@ -24,14 +24,14 @@ public final class uy0 extends ProfileStoriesView {
         boolean I = storiesController.I(a2);
         Context context = this.f42074t0;
         if (!I && !storiesController.K(a2) && !storiesController.N(a2)) {
-            TLRPC.UserFull userFull = profileActivity.f33738w2;
-            if (userFull != null && (peerStories2 = userFull.stories) != null && !peerStories2.stories.isEmpty() && profileActivity.f33619f1 != profileActivity.getUserConfig().clientUserId) {
-                profileActivity.getOrCreateStoryViewer().E(context, profileActivity.f33738w2.stories, lVar);
+            TLRPC.UserFull userFull = profileActivity.f33739w2;
+            if (userFull != null && (peerStories2 = userFull.stories) != null && !peerStories2.stories.isEmpty() && profileActivity.f33620f1 != profileActivity.getUserConfig().clientUserId) {
+                profileActivity.getOrCreateStoryViewer().E(context, profileActivity.f33739w2.stories, lVar);
                 return;
             }
-            TLRPC.ChatFull chatFull = profileActivity.f33730v2;
+            TLRPC.ChatFull chatFull = profileActivity.f33731v2;
             if (chatFull != null && (peerStories = chatFull.stories) != null && !peerStories.stories.isEmpty()) {
-                profileActivity.getOrCreateStoryViewer().E(context, profileActivity.f33730v2.stories, lVar);
+                profileActivity.getOrCreateStoryViewer().E(context, profileActivity.f33731v2.stories, lVar);
                 return;
             } else {
                 profileActivity.K3();

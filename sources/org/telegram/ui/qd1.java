@@ -21,7 +21,7 @@ public final class qd1 implements xh.c, MessagesController.ErrorDelegate, r0.n, 
         }
         he1 he1Var = re1Var.f41176n;
         if (he1Var != null) {
-            he1Var.f37586a.setTranslationY((-re1Var.f41160e1) - re1Var.f41158d1);
+            he1Var.f37587a.setTranslationY((-re1Var.f41160e1) - re1Var.f41158d1);
         }
         re1Var.h.setTranslationY(((-re1Var.X0) - re1Var.f41160e1) - re1Var.f41158d1);
         re1Var.B0();

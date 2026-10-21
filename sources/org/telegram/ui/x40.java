@@ -122,7 +122,7 @@ public final class x40 implements RequestDelegate {
                 TLRPC.TL_payments_sendPaymentForm tL_payments_sendPaymentForm = (TLRPC.TL_payments_sendPaymentForm) obj;
                 if (tLObject != null) {
                     if (tLObject instanceof TLRPC.TL_payments_paymentResult) {
-                        Utilities.Callback callback = eo0Var2.f36706c1;
+                        Utilities.Callback callback = eo0Var2.f36707c1;
                         if (callback != null) {
                             callback.run((TLRPC.TL_payments_paymentResult) tLObject);
                             return;
@@ -153,7 +153,7 @@ public final class x40 implements RequestDelegate {
                         return;
                     }
                 }
-                t10 t10Var = eo0Var2.f36710e1;
+                t10 t10Var = eo0Var2.f36711e1;
                 if (t10Var == null || !((Boolean) t10Var.run(tL_error)).booleanValue()) {
                     AndroidUtilities.runOnUIThread(new ve0(eo0Var2, tL_error, tL_payments_sendPaymentForm, 16));
                     return;

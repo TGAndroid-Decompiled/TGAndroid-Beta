@@ -12,16 +12,16 @@ public final class q implements Runnable {
     public final void run() {
         switch (this.f43898a) {
             case 0:
-                this.f43899b.lambda$stopListening$1();
+                SurfaceTextureHelper.a(this.f43899b);
                 return;
             case 1:
-                this.f43899b.lambda$dispose$6();
+                SurfaceTextureHelper.d(this.f43899b);
                 return;
             case 2:
-                this.f43899b.lambda$returnTextureFrame$5();
+                SurfaceTextureHelper.c(this.f43899b);
                 return;
             default:
-                this.f43899b.lambda$forceFrame$3();
+                SurfaceTextureHelper.e(this.f43899b);
                 return;
         }
     }

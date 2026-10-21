@@ -30,15 +30,15 @@ public final class uj0 implements org.telegram.ui.Components.yo {
             return;
         }
         NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = this.h;
-        ArrayList arrayList = notificationsCustomSettingsActivity.f33212w;
+        ArrayList arrayList = notificationsCustomSettingsActivity.f33213w;
         ek0 ek0Var = this.f42005c;
         ArrayList arrayList2 = this.f42006f;
         if (arrayList2 != arrayList && (indexOf = arrayList.indexOf(ek0Var)) >= 0) {
-            notificationsCustomSettingsActivity.f33212w.remove(indexOf);
-            notificationsCustomSettingsActivity.f33213x.remove(Long.valueOf(ek0Var.d));
+            notificationsCustomSettingsActivity.f33213w.remove(indexOf);
+            notificationsCustomSettingsActivity.f33214x.remove(Long.valueOf(ek0Var.d));
         }
         arrayList2.remove(ek0Var);
-        if (arrayList2 == notificationsCustomSettingsActivity.f33212w) {
+        if (arrayList2 == notificationsCustomSettingsActivity.f33213w) {
             notificationsCustomSettingsActivity.l0(true);
             notificationsCustomSettingsActivity.d0();
         } else {
@@ -60,21 +60,21 @@ public final class uj0 implements org.telegram.ui.Components.yo {
         StringBuilder sb2 = new StringBuilder("custom_");
         ek0 ek0Var = this.f42005c;
         sb2.append(ek0Var.d);
-        ek0Var.f36682b = notificationsSettings.getBoolean(sb2.toString(), false);
+        ek0Var.f36683b = notificationsSettings.getBoolean(sb2.toString(), false);
         int i10 = notificationsSettings.getInt("notify2_" + ek0Var.d, 0);
-        ek0Var.f36683c = i10;
+        ek0Var.f36684c = i10;
         if (i10 != 0) {
             int i11 = notificationsSettings.getInt("notifyuntil_" + ek0Var.d, -1);
             if (i11 != -1) {
-                ek0Var.f36681a = i11;
+                ek0Var.f36682a = i11;
             }
         }
         if (this.d) {
-            notificationsCustomSettingsActivity.f33212w.add(ek0Var);
-            notificationsCustomSettingsActivity.f33213x.put(Long.valueOf(ek0Var.d), ek0Var);
+            notificationsCustomSettingsActivity.f33213w.add(ek0Var);
+            notificationsCustomSettingsActivity.f33214x.put(Long.valueOf(ek0Var.d), ek0Var);
             notificationsCustomSettingsActivity.l0(true);
         } else {
-            notificationsCustomSettingsActivity.f33205a.getAdapter().m(this.e);
+            notificationsCustomSettingsActivity.f33206a.getAdapter().m(this.e);
         }
         kVar = ((org.telegram.ui.ActionBar.n2) notificationsCustomSettingsActivity).actionBar;
         kVar.h(true);

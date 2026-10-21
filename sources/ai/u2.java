@@ -78,7 +78,7 @@ public final class u2 implements vx, androidx.car.app.utils.b, MessagesStorage.S
         switch (this.f2240a) {
             case 27:
                 rl rlVar = (rl) this.f2241b;
-                rlVar.f29973x0.b((TLRPC.TL_messageMediaGeo) this.f2242c, rlVar.f29975y0, z10, i10, ((Long) this.d).longValue());
+                rlVar.f29974x0.b((TLRPC.TL_messageMediaGeo) this.f2242c, rlVar.f29976y0, z10, i10, ((Long) this.d).longValue());
                 rlVar.f28173b.dismiss(true);
                 return;
             default:
@@ -404,7 +404,7 @@ public final class u2 implements vx, androidx.car.app.utils.b, MessagesStorage.S
         } else {
             s7Var.e(canvas, rectF, f7);
         }
-        if (ql0Var != null && ql0Var.f29632a0 && ql0Var.getVisibility() == 0) {
+        if (ql0Var != null && ql0Var.f29633a0 && ql0Var.getVisibility() == 0) {
             canvas.saveLayerAlpha(0.0f, 0.0f, canvas.getWidth(), canvas.getHeight(), (int) (f7 * 255.0f), 31);
             canvas.translate(iArr[0], iArr[1]);
             ql0Var.draw(canvas);

@@ -719,172 +719,172 @@ public class FileRefController extends BaseController {
             tL_stories_getStoriesByID.peer = getMessagesController().getInputPeer(storyItem.dialogId);
             tL_stories_getStoriesByID.f20517id.add(Integer.valueOf(storyItem.f20510id));
             getConnectionsManager().sendRequest(tL_stories_getStoriesByID, new RequestDelegate(this) {
-                public final FileRefController f19493b;
+                public final FileRefController f19567b;
 
                 {
-                    this.f19493b = this;
+                    this.f19567b = this;
                 }
 
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                     switch (r4) {
                         case 0:
-                            this.f19493b.lambda$requestReferenceFromServer$11(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$11(str, str2, tLObject, tL_error);
                             return;
                         case 1:
-                            this.f19493b.lambda$requestReferenceFromServer$12(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$12(str, str2, tLObject, tL_error);
                             return;
                         case 2:
-                            this.f19493b.lambda$requestReferenceFromServer$13(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$13(str, str2, tLObject, tL_error);
                             return;
                         case 3:
-                            this.f19493b.lambda$requestReferenceFromServer$14(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$14(str, str2, tLObject, tL_error);
                             return;
                         case 4:
-                            this.f19493b.lambda$requestReferenceFromServer$15(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$15(str, str2, tLObject, tL_error);
                             return;
                         case 5:
-                            this.f19493b.lambda$requestReferenceFromServer$16(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$16(str, str2, tLObject, tL_error);
                             return;
                         case 6:
-                            this.f19493b.lambda$requestReferenceFromServer$17(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$17(str, str2, tLObject, tL_error);
                             return;
                         case 7:
-                            this.f19493b.lambda$requestReferenceFromServer$2(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$2(str, str2, tLObject, tL_error);
                             return;
                         case 8:
-                            this.f19493b.lambda$requestReferenceFromServer$22(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$22(str, str2, tLObject, tL_error);
                             return;
                         case 9:
-                            this.f19493b.lambda$requestReferenceFromServer$23(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$23(str, str2, tLObject, tL_error);
                             return;
                         case 10:
-                            this.f19493b.lambda$requestReferenceFromServer$24(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$24(str, str2, tLObject, tL_error);
                             return;
                         case 11:
-                            this.f19493b.lambda$requestReferenceFromServer$25(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$25(str, str2, tLObject, tL_error);
                             return;
                         case 12:
-                            this.f19493b.lambda$requestReferenceFromServer$26(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$26(str, str2, tLObject, tL_error);
                             return;
                         case 13:
-                            this.f19493b.lambda$requestReferenceFromServer$27(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$27(str, str2, tLObject, tL_error);
                             return;
                         case 14:
-                            this.f19493b.lambda$requestReferenceFromServer$28(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$28(str, str2, tLObject, tL_error);
                             return;
                         case 15:
-                            this.f19493b.lambda$requestReferenceFromServer$29(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$29(str, str2, tLObject, tL_error);
                             return;
                         case 16:
-                            this.f19493b.lambda$requestReferenceFromServer$3(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$3(str, str2, tLObject, tL_error);
                             return;
                         case 17:
-                            this.f19493b.lambda$requestReferenceFromServer$4(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$4(str, str2, tLObject, tL_error);
                             return;
                         case 18:
-                            this.f19493b.lambda$requestReferenceFromServer$5(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$5(str, str2, tLObject, tL_error);
                             return;
                         case 19:
-                            this.f19493b.lambda$requestReferenceFromServer$6(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$6(str, str2, tLObject, tL_error);
                             return;
                         case 20:
-                            this.f19493b.lambda$requestReferenceFromServer$7(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$7(str, str2, tLObject, tL_error);
                             return;
                         case 21:
-                            this.f19493b.lambda$requestReferenceFromServer$8(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$8(str, str2, tLObject, tL_error);
                             return;
                         case 22:
-                            this.f19493b.lambda$requestReferenceFromServer$9(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$9(str, str2, tLObject, tL_error);
                             return;
                         default:
-                            this.f19493b.lambda$requestReferenceFromServer$10(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$10(str, str2, tLObject, tL_error);
                             return;
                     }
                 }
             });
         } else if (obj instanceof TLRPC.TL_help_premiumPromo) {
             getConnectionsManager().sendRequest(new TLRPC.TL_help_getPremiumPromo(), new RequestDelegate(this) {
-                public final FileRefController f19493b;
+                public final FileRefController f19567b;
 
                 {
-                    this.f19493b = this;
+                    this.f19567b = this;
                 }
 
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                     switch (r4) {
                         case 0:
-                            this.f19493b.lambda$requestReferenceFromServer$11(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$11(str, str2, tLObject, tL_error);
                             return;
                         case 1:
-                            this.f19493b.lambda$requestReferenceFromServer$12(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$12(str, str2, tLObject, tL_error);
                             return;
                         case 2:
-                            this.f19493b.lambda$requestReferenceFromServer$13(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$13(str, str2, tLObject, tL_error);
                             return;
                         case 3:
-                            this.f19493b.lambda$requestReferenceFromServer$14(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$14(str, str2, tLObject, tL_error);
                             return;
                         case 4:
-                            this.f19493b.lambda$requestReferenceFromServer$15(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$15(str, str2, tLObject, tL_error);
                             return;
                         case 5:
-                            this.f19493b.lambda$requestReferenceFromServer$16(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$16(str, str2, tLObject, tL_error);
                             return;
                         case 6:
-                            this.f19493b.lambda$requestReferenceFromServer$17(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$17(str, str2, tLObject, tL_error);
                             return;
                         case 7:
-                            this.f19493b.lambda$requestReferenceFromServer$2(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$2(str, str2, tLObject, tL_error);
                             return;
                         case 8:
-                            this.f19493b.lambda$requestReferenceFromServer$22(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$22(str, str2, tLObject, tL_error);
                             return;
                         case 9:
-                            this.f19493b.lambda$requestReferenceFromServer$23(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$23(str, str2, tLObject, tL_error);
                             return;
                         case 10:
-                            this.f19493b.lambda$requestReferenceFromServer$24(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$24(str, str2, tLObject, tL_error);
                             return;
                         case 11:
-                            this.f19493b.lambda$requestReferenceFromServer$25(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$25(str, str2, tLObject, tL_error);
                             return;
                         case 12:
-                            this.f19493b.lambda$requestReferenceFromServer$26(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$26(str, str2, tLObject, tL_error);
                             return;
                         case 13:
-                            this.f19493b.lambda$requestReferenceFromServer$27(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$27(str, str2, tLObject, tL_error);
                             return;
                         case 14:
-                            this.f19493b.lambda$requestReferenceFromServer$28(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$28(str, str2, tLObject, tL_error);
                             return;
                         case 15:
-                            this.f19493b.lambda$requestReferenceFromServer$29(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$29(str, str2, tLObject, tL_error);
                             return;
                         case 16:
-                            this.f19493b.lambda$requestReferenceFromServer$3(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$3(str, str2, tLObject, tL_error);
                             return;
                         case 17:
-                            this.f19493b.lambda$requestReferenceFromServer$4(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$4(str, str2, tLObject, tL_error);
                             return;
                         case 18:
-                            this.f19493b.lambda$requestReferenceFromServer$5(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$5(str, str2, tLObject, tL_error);
                             return;
                         case 19:
-                            this.f19493b.lambda$requestReferenceFromServer$6(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$6(str, str2, tLObject, tL_error);
                             return;
                         case 20:
-                            this.f19493b.lambda$requestReferenceFromServer$7(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$7(str, str2, tLObject, tL_error);
                             return;
                         case 21:
-                            this.f19493b.lambda$requestReferenceFromServer$8(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$8(str, str2, tLObject, tL_error);
                             return;
                         case 22:
-                            this.f19493b.lambda$requestReferenceFromServer$9(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$9(str, str2, tLObject, tL_error);
                             return;
                         default:
-                            this.f19493b.lambda$requestReferenceFromServer$10(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$10(str, str2, tLObject, tL_error);
                             return;
                     }
                 }
@@ -893,86 +893,86 @@ public class FileRefController extends BaseController {
             TLRPC.TL_messages_getAvailableReactions tL_messages_getAvailableReactions = new TLRPC.TL_messages_getAvailableReactions();
             tL_messages_getAvailableReactions.hash = 0;
             getConnectionsManager().sendRequest(tL_messages_getAvailableReactions, new RequestDelegate(this) {
-                public final FileRefController f19493b;
+                public final FileRefController f19567b;
 
                 {
-                    this.f19493b = this;
+                    this.f19567b = this;
                 }
 
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                     switch (r4) {
                         case 0:
-                            this.f19493b.lambda$requestReferenceFromServer$11(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$11(str, str2, tLObject, tL_error);
                             return;
                         case 1:
-                            this.f19493b.lambda$requestReferenceFromServer$12(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$12(str, str2, tLObject, tL_error);
                             return;
                         case 2:
-                            this.f19493b.lambda$requestReferenceFromServer$13(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$13(str, str2, tLObject, tL_error);
                             return;
                         case 3:
-                            this.f19493b.lambda$requestReferenceFromServer$14(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$14(str, str2, tLObject, tL_error);
                             return;
                         case 4:
-                            this.f19493b.lambda$requestReferenceFromServer$15(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$15(str, str2, tLObject, tL_error);
                             return;
                         case 5:
-                            this.f19493b.lambda$requestReferenceFromServer$16(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$16(str, str2, tLObject, tL_error);
                             return;
                         case 6:
-                            this.f19493b.lambda$requestReferenceFromServer$17(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$17(str, str2, tLObject, tL_error);
                             return;
                         case 7:
-                            this.f19493b.lambda$requestReferenceFromServer$2(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$2(str, str2, tLObject, tL_error);
                             return;
                         case 8:
-                            this.f19493b.lambda$requestReferenceFromServer$22(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$22(str, str2, tLObject, tL_error);
                             return;
                         case 9:
-                            this.f19493b.lambda$requestReferenceFromServer$23(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$23(str, str2, tLObject, tL_error);
                             return;
                         case 10:
-                            this.f19493b.lambda$requestReferenceFromServer$24(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$24(str, str2, tLObject, tL_error);
                             return;
                         case 11:
-                            this.f19493b.lambda$requestReferenceFromServer$25(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$25(str, str2, tLObject, tL_error);
                             return;
                         case 12:
-                            this.f19493b.lambda$requestReferenceFromServer$26(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$26(str, str2, tLObject, tL_error);
                             return;
                         case 13:
-                            this.f19493b.lambda$requestReferenceFromServer$27(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$27(str, str2, tLObject, tL_error);
                             return;
                         case 14:
-                            this.f19493b.lambda$requestReferenceFromServer$28(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$28(str, str2, tLObject, tL_error);
                             return;
                         case 15:
-                            this.f19493b.lambda$requestReferenceFromServer$29(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$29(str, str2, tLObject, tL_error);
                             return;
                         case 16:
-                            this.f19493b.lambda$requestReferenceFromServer$3(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$3(str, str2, tLObject, tL_error);
                             return;
                         case 17:
-                            this.f19493b.lambda$requestReferenceFromServer$4(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$4(str, str2, tLObject, tL_error);
                             return;
                         case 18:
-                            this.f19493b.lambda$requestReferenceFromServer$5(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$5(str, str2, tLObject, tL_error);
                             return;
                         case 19:
-                            this.f19493b.lambda$requestReferenceFromServer$6(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$6(str, str2, tLObject, tL_error);
                             return;
                         case 20:
-                            this.f19493b.lambda$requestReferenceFromServer$7(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$7(str, str2, tLObject, tL_error);
                             return;
                         case 21:
-                            this.f19493b.lambda$requestReferenceFromServer$8(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$8(str, str2, tLObject, tL_error);
                             return;
                         case 22:
-                            this.f19493b.lambda$requestReferenceFromServer$9(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$9(str, str2, tLObject, tL_error);
                             return;
                         default:
-                            this.f19493b.lambda$requestReferenceFromServer$10(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$10(str, str2, tLObject, tL_error);
                             return;
                     }
                 }
@@ -981,86 +981,86 @@ public class FileRefController extends BaseController {
             TLRPC.TL_users_getFullUser tL_users_getFullUser = new TLRPC.TL_users_getFullUser();
             tL_users_getFullUser.f20416id = getMessagesController().getInputUser(((TL_bots.BotInfo) obj).user_id);
             getConnectionsManager().sendRequest(tL_users_getFullUser, new RequestDelegate(this) {
-                public final FileRefController f19493b;
+                public final FileRefController f19567b;
 
                 {
-                    this.f19493b = this;
+                    this.f19567b = this;
                 }
 
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                     switch (r4) {
                         case 0:
-                            this.f19493b.lambda$requestReferenceFromServer$11(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$11(str, str2, tLObject, tL_error);
                             return;
                         case 1:
-                            this.f19493b.lambda$requestReferenceFromServer$12(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$12(str, str2, tLObject, tL_error);
                             return;
                         case 2:
-                            this.f19493b.lambda$requestReferenceFromServer$13(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$13(str, str2, tLObject, tL_error);
                             return;
                         case 3:
-                            this.f19493b.lambda$requestReferenceFromServer$14(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$14(str, str2, tLObject, tL_error);
                             return;
                         case 4:
-                            this.f19493b.lambda$requestReferenceFromServer$15(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$15(str, str2, tLObject, tL_error);
                             return;
                         case 5:
-                            this.f19493b.lambda$requestReferenceFromServer$16(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$16(str, str2, tLObject, tL_error);
                             return;
                         case 6:
-                            this.f19493b.lambda$requestReferenceFromServer$17(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$17(str, str2, tLObject, tL_error);
                             return;
                         case 7:
-                            this.f19493b.lambda$requestReferenceFromServer$2(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$2(str, str2, tLObject, tL_error);
                             return;
                         case 8:
-                            this.f19493b.lambda$requestReferenceFromServer$22(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$22(str, str2, tLObject, tL_error);
                             return;
                         case 9:
-                            this.f19493b.lambda$requestReferenceFromServer$23(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$23(str, str2, tLObject, tL_error);
                             return;
                         case 10:
-                            this.f19493b.lambda$requestReferenceFromServer$24(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$24(str, str2, tLObject, tL_error);
                             return;
                         case 11:
-                            this.f19493b.lambda$requestReferenceFromServer$25(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$25(str, str2, tLObject, tL_error);
                             return;
                         case 12:
-                            this.f19493b.lambda$requestReferenceFromServer$26(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$26(str, str2, tLObject, tL_error);
                             return;
                         case 13:
-                            this.f19493b.lambda$requestReferenceFromServer$27(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$27(str, str2, tLObject, tL_error);
                             return;
                         case 14:
-                            this.f19493b.lambda$requestReferenceFromServer$28(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$28(str, str2, tLObject, tL_error);
                             return;
                         case 15:
-                            this.f19493b.lambda$requestReferenceFromServer$29(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$29(str, str2, tLObject, tL_error);
                             return;
                         case 16:
-                            this.f19493b.lambda$requestReferenceFromServer$3(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$3(str, str2, tLObject, tL_error);
                             return;
                         case 17:
-                            this.f19493b.lambda$requestReferenceFromServer$4(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$4(str, str2, tLObject, tL_error);
                             return;
                         case 18:
-                            this.f19493b.lambda$requestReferenceFromServer$5(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$5(str, str2, tLObject, tL_error);
                             return;
                         case 19:
-                            this.f19493b.lambda$requestReferenceFromServer$6(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$6(str, str2, tLObject, tL_error);
                             return;
                         case 20:
-                            this.f19493b.lambda$requestReferenceFromServer$7(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$7(str, str2, tLObject, tL_error);
                             return;
                         case 21:
-                            this.f19493b.lambda$requestReferenceFromServer$8(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$8(str, str2, tLObject, tL_error);
                             return;
                         case 22:
-                            this.f19493b.lambda$requestReferenceFromServer$9(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$9(str, str2, tLObject, tL_error);
                             return;
                         default:
-                            this.f19493b.lambda$requestReferenceFromServer$10(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$10(str, str2, tLObject, tL_error);
                             return;
                     }
                 }
@@ -1069,86 +1069,86 @@ public class FileRefController extends BaseController {
             TLRPC.TL_messages_getAttachMenuBot tL_messages_getAttachMenuBot = new TLRPC.TL_messages_getAttachMenuBot();
             tL_messages_getAttachMenuBot.bot = getMessagesController().getInputUser(((TLRPC.TL_attachMenuBot) obj).bot_id);
             getConnectionsManager().sendRequest(tL_messages_getAttachMenuBot, new RequestDelegate(this) {
-                public final FileRefController f19493b;
+                public final FileRefController f19567b;
 
                 {
-                    this.f19493b = this;
+                    this.f19567b = this;
                 }
 
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                     switch (r4) {
                         case 0:
-                            this.f19493b.lambda$requestReferenceFromServer$11(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$11(str, str2, tLObject, tL_error);
                             return;
                         case 1:
-                            this.f19493b.lambda$requestReferenceFromServer$12(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$12(str, str2, tLObject, tL_error);
                             return;
                         case 2:
-                            this.f19493b.lambda$requestReferenceFromServer$13(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$13(str, str2, tLObject, tL_error);
                             return;
                         case 3:
-                            this.f19493b.lambda$requestReferenceFromServer$14(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$14(str, str2, tLObject, tL_error);
                             return;
                         case 4:
-                            this.f19493b.lambda$requestReferenceFromServer$15(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$15(str, str2, tLObject, tL_error);
                             return;
                         case 5:
-                            this.f19493b.lambda$requestReferenceFromServer$16(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$16(str, str2, tLObject, tL_error);
                             return;
                         case 6:
-                            this.f19493b.lambda$requestReferenceFromServer$17(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$17(str, str2, tLObject, tL_error);
                             return;
                         case 7:
-                            this.f19493b.lambda$requestReferenceFromServer$2(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$2(str, str2, tLObject, tL_error);
                             return;
                         case 8:
-                            this.f19493b.lambda$requestReferenceFromServer$22(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$22(str, str2, tLObject, tL_error);
                             return;
                         case 9:
-                            this.f19493b.lambda$requestReferenceFromServer$23(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$23(str, str2, tLObject, tL_error);
                             return;
                         case 10:
-                            this.f19493b.lambda$requestReferenceFromServer$24(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$24(str, str2, tLObject, tL_error);
                             return;
                         case 11:
-                            this.f19493b.lambda$requestReferenceFromServer$25(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$25(str, str2, tLObject, tL_error);
                             return;
                         case 12:
-                            this.f19493b.lambda$requestReferenceFromServer$26(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$26(str, str2, tLObject, tL_error);
                             return;
                         case 13:
-                            this.f19493b.lambda$requestReferenceFromServer$27(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$27(str, str2, tLObject, tL_error);
                             return;
                         case 14:
-                            this.f19493b.lambda$requestReferenceFromServer$28(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$28(str, str2, tLObject, tL_error);
                             return;
                         case 15:
-                            this.f19493b.lambda$requestReferenceFromServer$29(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$29(str, str2, tLObject, tL_error);
                             return;
                         case 16:
-                            this.f19493b.lambda$requestReferenceFromServer$3(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$3(str, str2, tLObject, tL_error);
                             return;
                         case 17:
-                            this.f19493b.lambda$requestReferenceFromServer$4(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$4(str, str2, tLObject, tL_error);
                             return;
                         case 18:
-                            this.f19493b.lambda$requestReferenceFromServer$5(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$5(str, str2, tLObject, tL_error);
                             return;
                         case 19:
-                            this.f19493b.lambda$requestReferenceFromServer$6(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$6(str, str2, tLObject, tL_error);
                             return;
                         case 20:
-                            this.f19493b.lambda$requestReferenceFromServer$7(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$7(str, str2, tLObject, tL_error);
                             return;
                         case 21:
-                            this.f19493b.lambda$requestReferenceFromServer$8(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$8(str, str2, tLObject, tL_error);
                             return;
                         case 22:
-                            this.f19493b.lambda$requestReferenceFromServer$9(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$9(str, str2, tLObject, tL_error);
                             return;
                         default:
-                            this.f19493b.lambda$requestReferenceFromServer$10(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$10(str, str2, tLObject, tL_error);
                             return;
                     }
                 }
@@ -1162,86 +1162,86 @@ public class FileRefController extends BaseController {
                 tL_messages_getScheduledMessages.peer = getMessagesController().getInputPeer(messageObject.getDialogId());
                 tL_messages_getScheduledMessages.f20376id.add(Integer.valueOf(messageObject.getRealId()));
                 getConnectionsManager().sendRequest(tL_messages_getScheduledMessages, new RequestDelegate(this) {
-                    public final FileRefController f19493b;
+                    public final FileRefController f19567b;
 
                     {
-                        this.f19493b = this;
+                        this.f19567b = this;
                     }
 
                     @Override
                     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                         switch (r4) {
                             case 0:
-                                this.f19493b.lambda$requestReferenceFromServer$11(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$11(str, str2, tLObject, tL_error);
                                 return;
                             case 1:
-                                this.f19493b.lambda$requestReferenceFromServer$12(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$12(str, str2, tLObject, tL_error);
                                 return;
                             case 2:
-                                this.f19493b.lambda$requestReferenceFromServer$13(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$13(str, str2, tLObject, tL_error);
                                 return;
                             case 3:
-                                this.f19493b.lambda$requestReferenceFromServer$14(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$14(str, str2, tLObject, tL_error);
                                 return;
                             case 4:
-                                this.f19493b.lambda$requestReferenceFromServer$15(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$15(str, str2, tLObject, tL_error);
                                 return;
                             case 5:
-                                this.f19493b.lambda$requestReferenceFromServer$16(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$16(str, str2, tLObject, tL_error);
                                 return;
                             case 6:
-                                this.f19493b.lambda$requestReferenceFromServer$17(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$17(str, str2, tLObject, tL_error);
                                 return;
                             case 7:
-                                this.f19493b.lambda$requestReferenceFromServer$2(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$2(str, str2, tLObject, tL_error);
                                 return;
                             case 8:
-                                this.f19493b.lambda$requestReferenceFromServer$22(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$22(str, str2, tLObject, tL_error);
                                 return;
                             case 9:
-                                this.f19493b.lambda$requestReferenceFromServer$23(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$23(str, str2, tLObject, tL_error);
                                 return;
                             case 10:
-                                this.f19493b.lambda$requestReferenceFromServer$24(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$24(str, str2, tLObject, tL_error);
                                 return;
                             case 11:
-                                this.f19493b.lambda$requestReferenceFromServer$25(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$25(str, str2, tLObject, tL_error);
                                 return;
                             case 12:
-                                this.f19493b.lambda$requestReferenceFromServer$26(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$26(str, str2, tLObject, tL_error);
                                 return;
                             case 13:
-                                this.f19493b.lambda$requestReferenceFromServer$27(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$27(str, str2, tLObject, tL_error);
                                 return;
                             case 14:
-                                this.f19493b.lambda$requestReferenceFromServer$28(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$28(str, str2, tLObject, tL_error);
                                 return;
                             case 15:
-                                this.f19493b.lambda$requestReferenceFromServer$29(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$29(str, str2, tLObject, tL_error);
                                 return;
                             case 16:
-                                this.f19493b.lambda$requestReferenceFromServer$3(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$3(str, str2, tLObject, tL_error);
                                 return;
                             case 17:
-                                this.f19493b.lambda$requestReferenceFromServer$4(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$4(str, str2, tLObject, tL_error);
                                 return;
                             case 18:
-                                this.f19493b.lambda$requestReferenceFromServer$5(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$5(str, str2, tLObject, tL_error);
                                 return;
                             case 19:
-                                this.f19493b.lambda$requestReferenceFromServer$6(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$6(str, str2, tLObject, tL_error);
                                 return;
                             case 20:
-                                this.f19493b.lambda$requestReferenceFromServer$7(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$7(str, str2, tLObject, tL_error);
                                 return;
                             case 21:
-                                this.f19493b.lambda$requestReferenceFromServer$8(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$8(str, str2, tLObject, tL_error);
                                 return;
                             case 22:
-                                this.f19493b.lambda$requestReferenceFromServer$9(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$9(str, str2, tLObject, tL_error);
                                 return;
                             default:
-                                this.f19493b.lambda$requestReferenceFromServer$10(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$10(str, str2, tLObject, tL_error);
                                 return;
                         }
                     }
@@ -1252,86 +1252,86 @@ public class FileRefController extends BaseController {
                 tL_messages_getQuickReplyMessages.flags |= 1;
                 tL_messages_getQuickReplyMessages.f20375id.add(Integer.valueOf(messageObject.getRealId()));
                 getConnectionsManager().sendRequest(tL_messages_getQuickReplyMessages, new RequestDelegate(this) {
-                    public final FileRefController f19493b;
+                    public final FileRefController f19567b;
 
                     {
-                        this.f19493b = this;
+                        this.f19567b = this;
                     }
 
                     @Override
                     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                         switch (r4) {
                             case 0:
-                                this.f19493b.lambda$requestReferenceFromServer$11(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$11(str, str2, tLObject, tL_error);
                                 return;
                             case 1:
-                                this.f19493b.lambda$requestReferenceFromServer$12(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$12(str, str2, tLObject, tL_error);
                                 return;
                             case 2:
-                                this.f19493b.lambda$requestReferenceFromServer$13(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$13(str, str2, tLObject, tL_error);
                                 return;
                             case 3:
-                                this.f19493b.lambda$requestReferenceFromServer$14(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$14(str, str2, tLObject, tL_error);
                                 return;
                             case 4:
-                                this.f19493b.lambda$requestReferenceFromServer$15(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$15(str, str2, tLObject, tL_error);
                                 return;
                             case 5:
-                                this.f19493b.lambda$requestReferenceFromServer$16(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$16(str, str2, tLObject, tL_error);
                                 return;
                             case 6:
-                                this.f19493b.lambda$requestReferenceFromServer$17(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$17(str, str2, tLObject, tL_error);
                                 return;
                             case 7:
-                                this.f19493b.lambda$requestReferenceFromServer$2(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$2(str, str2, tLObject, tL_error);
                                 return;
                             case 8:
-                                this.f19493b.lambda$requestReferenceFromServer$22(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$22(str, str2, tLObject, tL_error);
                                 return;
                             case 9:
-                                this.f19493b.lambda$requestReferenceFromServer$23(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$23(str, str2, tLObject, tL_error);
                                 return;
                             case 10:
-                                this.f19493b.lambda$requestReferenceFromServer$24(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$24(str, str2, tLObject, tL_error);
                                 return;
                             case 11:
-                                this.f19493b.lambda$requestReferenceFromServer$25(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$25(str, str2, tLObject, tL_error);
                                 return;
                             case 12:
-                                this.f19493b.lambda$requestReferenceFromServer$26(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$26(str, str2, tLObject, tL_error);
                                 return;
                             case 13:
-                                this.f19493b.lambda$requestReferenceFromServer$27(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$27(str, str2, tLObject, tL_error);
                                 return;
                             case 14:
-                                this.f19493b.lambda$requestReferenceFromServer$28(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$28(str, str2, tLObject, tL_error);
                                 return;
                             case 15:
-                                this.f19493b.lambda$requestReferenceFromServer$29(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$29(str, str2, tLObject, tL_error);
                                 return;
                             case 16:
-                                this.f19493b.lambda$requestReferenceFromServer$3(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$3(str, str2, tLObject, tL_error);
                                 return;
                             case 17:
-                                this.f19493b.lambda$requestReferenceFromServer$4(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$4(str, str2, tLObject, tL_error);
                                 return;
                             case 18:
-                                this.f19493b.lambda$requestReferenceFromServer$5(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$5(str, str2, tLObject, tL_error);
                                 return;
                             case 19:
-                                this.f19493b.lambda$requestReferenceFromServer$6(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$6(str, str2, tLObject, tL_error);
                                 return;
                             case 20:
-                                this.f19493b.lambda$requestReferenceFromServer$7(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$7(str, str2, tLObject, tL_error);
                                 return;
                             case 21:
-                                this.f19493b.lambda$requestReferenceFromServer$8(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$8(str, str2, tLObject, tL_error);
                                 return;
                             case 22:
-                                this.f19493b.lambda$requestReferenceFromServer$9(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$9(str, str2, tLObject, tL_error);
                                 return;
                             default:
-                                this.f19493b.lambda$requestReferenceFromServer$10(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$10(str, str2, tLObject, tL_error);
                                 return;
                         }
                     }
@@ -1343,86 +1343,86 @@ public class FileRefController extends BaseController {
                     getrichmessage.peer = inputPeer;
                     getrichmessage.f20493id = messageObject.getRealId();
                     getConnectionsManager().sendRequest(getrichmessage, new RequestDelegate(this) {
-                        public final FileRefController f19493b;
+                        public final FileRefController f19567b;
 
                         {
-                            this.f19493b = this;
+                            this.f19567b = this;
                         }
 
                         @Override
                         public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                             switch (r4) {
                                 case 0:
-                                    this.f19493b.lambda$requestReferenceFromServer$11(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$11(str, str2, tLObject, tL_error);
                                     return;
                                 case 1:
-                                    this.f19493b.lambda$requestReferenceFromServer$12(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$12(str, str2, tLObject, tL_error);
                                     return;
                                 case 2:
-                                    this.f19493b.lambda$requestReferenceFromServer$13(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$13(str, str2, tLObject, tL_error);
                                     return;
                                 case 3:
-                                    this.f19493b.lambda$requestReferenceFromServer$14(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$14(str, str2, tLObject, tL_error);
                                     return;
                                 case 4:
-                                    this.f19493b.lambda$requestReferenceFromServer$15(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$15(str, str2, tLObject, tL_error);
                                     return;
                                 case 5:
-                                    this.f19493b.lambda$requestReferenceFromServer$16(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$16(str, str2, tLObject, tL_error);
                                     return;
                                 case 6:
-                                    this.f19493b.lambda$requestReferenceFromServer$17(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$17(str, str2, tLObject, tL_error);
                                     return;
                                 case 7:
-                                    this.f19493b.lambda$requestReferenceFromServer$2(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$2(str, str2, tLObject, tL_error);
                                     return;
                                 case 8:
-                                    this.f19493b.lambda$requestReferenceFromServer$22(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$22(str, str2, tLObject, tL_error);
                                     return;
                                 case 9:
-                                    this.f19493b.lambda$requestReferenceFromServer$23(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$23(str, str2, tLObject, tL_error);
                                     return;
                                 case 10:
-                                    this.f19493b.lambda$requestReferenceFromServer$24(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$24(str, str2, tLObject, tL_error);
                                     return;
                                 case 11:
-                                    this.f19493b.lambda$requestReferenceFromServer$25(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$25(str, str2, tLObject, tL_error);
                                     return;
                                 case 12:
-                                    this.f19493b.lambda$requestReferenceFromServer$26(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$26(str, str2, tLObject, tL_error);
                                     return;
                                 case 13:
-                                    this.f19493b.lambda$requestReferenceFromServer$27(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$27(str, str2, tLObject, tL_error);
                                     return;
                                 case 14:
-                                    this.f19493b.lambda$requestReferenceFromServer$28(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$28(str, str2, tLObject, tL_error);
                                     return;
                                 case 15:
-                                    this.f19493b.lambda$requestReferenceFromServer$29(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$29(str, str2, tLObject, tL_error);
                                     return;
                                 case 16:
-                                    this.f19493b.lambda$requestReferenceFromServer$3(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$3(str, str2, tLObject, tL_error);
                                     return;
                                 case 17:
-                                    this.f19493b.lambda$requestReferenceFromServer$4(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$4(str, str2, tLObject, tL_error);
                                     return;
                                 case 18:
-                                    this.f19493b.lambda$requestReferenceFromServer$5(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$5(str, str2, tLObject, tL_error);
                                     return;
                                 case 19:
-                                    this.f19493b.lambda$requestReferenceFromServer$6(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$6(str, str2, tLObject, tL_error);
                                     return;
                                 case 20:
-                                    this.f19493b.lambda$requestReferenceFromServer$7(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$7(str, str2, tLObject, tL_error);
                                     return;
                                 case 21:
-                                    this.f19493b.lambda$requestReferenceFromServer$8(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$8(str, str2, tLObject, tL_error);
                                     return;
                                 case 22:
-                                    this.f19493b.lambda$requestReferenceFromServer$9(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$9(str, str2, tLObject, tL_error);
                                     return;
                                 default:
-                                    this.f19493b.lambda$requestReferenceFromServer$10(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$10(str, str2, tLObject, tL_error);
                                     return;
                             }
                         }
@@ -1432,86 +1432,86 @@ public class FileRefController extends BaseController {
                     tL_channels_getMessages.channel = getMessagesController().getInputChannel(channelId);
                     tL_channels_getMessages.f20314id.add(Integer.valueOf(messageObject.getRealId()));
                     getConnectionsManager().sendRequest(tL_channels_getMessages, new RequestDelegate(this) {
-                        public final FileRefController f19493b;
+                        public final FileRefController f19567b;
 
                         {
-                            this.f19493b = this;
+                            this.f19567b = this;
                         }
 
                         @Override
                         public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                             switch (r4) {
                                 case 0:
-                                    this.f19493b.lambda$requestReferenceFromServer$11(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$11(str, str2, tLObject, tL_error);
                                     return;
                                 case 1:
-                                    this.f19493b.lambda$requestReferenceFromServer$12(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$12(str, str2, tLObject, tL_error);
                                     return;
                                 case 2:
-                                    this.f19493b.lambda$requestReferenceFromServer$13(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$13(str, str2, tLObject, tL_error);
                                     return;
                                 case 3:
-                                    this.f19493b.lambda$requestReferenceFromServer$14(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$14(str, str2, tLObject, tL_error);
                                     return;
                                 case 4:
-                                    this.f19493b.lambda$requestReferenceFromServer$15(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$15(str, str2, tLObject, tL_error);
                                     return;
                                 case 5:
-                                    this.f19493b.lambda$requestReferenceFromServer$16(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$16(str, str2, tLObject, tL_error);
                                     return;
                                 case 6:
-                                    this.f19493b.lambda$requestReferenceFromServer$17(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$17(str, str2, tLObject, tL_error);
                                     return;
                                 case 7:
-                                    this.f19493b.lambda$requestReferenceFromServer$2(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$2(str, str2, tLObject, tL_error);
                                     return;
                                 case 8:
-                                    this.f19493b.lambda$requestReferenceFromServer$22(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$22(str, str2, tLObject, tL_error);
                                     return;
                                 case 9:
-                                    this.f19493b.lambda$requestReferenceFromServer$23(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$23(str, str2, tLObject, tL_error);
                                     return;
                                 case 10:
-                                    this.f19493b.lambda$requestReferenceFromServer$24(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$24(str, str2, tLObject, tL_error);
                                     return;
                                 case 11:
-                                    this.f19493b.lambda$requestReferenceFromServer$25(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$25(str, str2, tLObject, tL_error);
                                     return;
                                 case 12:
-                                    this.f19493b.lambda$requestReferenceFromServer$26(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$26(str, str2, tLObject, tL_error);
                                     return;
                                 case 13:
-                                    this.f19493b.lambda$requestReferenceFromServer$27(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$27(str, str2, tLObject, tL_error);
                                     return;
                                 case 14:
-                                    this.f19493b.lambda$requestReferenceFromServer$28(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$28(str, str2, tLObject, tL_error);
                                     return;
                                 case 15:
-                                    this.f19493b.lambda$requestReferenceFromServer$29(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$29(str, str2, tLObject, tL_error);
                                     return;
                                 case 16:
-                                    this.f19493b.lambda$requestReferenceFromServer$3(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$3(str, str2, tLObject, tL_error);
                                     return;
                                 case 17:
-                                    this.f19493b.lambda$requestReferenceFromServer$4(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$4(str, str2, tLObject, tL_error);
                                     return;
                                 case 18:
-                                    this.f19493b.lambda$requestReferenceFromServer$5(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$5(str, str2, tLObject, tL_error);
                                     return;
                                 case 19:
-                                    this.f19493b.lambda$requestReferenceFromServer$6(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$6(str, str2, tLObject, tL_error);
                                     return;
                                 case 20:
-                                    this.f19493b.lambda$requestReferenceFromServer$7(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$7(str, str2, tLObject, tL_error);
                                     return;
                                 case 21:
-                                    this.f19493b.lambda$requestReferenceFromServer$8(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$8(str, str2, tLObject, tL_error);
                                     return;
                                 case 22:
-                                    this.f19493b.lambda$requestReferenceFromServer$9(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$9(str, str2, tLObject, tL_error);
                                     return;
                                 default:
-                                    this.f19493b.lambda$requestReferenceFromServer$10(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$10(str, str2, tLObject, tL_error);
                                     return;
                             }
                         }
@@ -1520,86 +1520,86 @@ public class FileRefController extends BaseController {
                     TLRPC.TL_messages_getMessages tL_messages_getMessages = new TLRPC.TL_messages_getMessages();
                     tL_messages_getMessages.f20370id.add(Integer.valueOf(messageObject.getRealId()));
                     getConnectionsManager().sendRequest(tL_messages_getMessages, new RequestDelegate(this) {
-                        public final FileRefController f19493b;
+                        public final FileRefController f19567b;
 
                         {
-                            this.f19493b = this;
+                            this.f19567b = this;
                         }
 
                         @Override
                         public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                             switch (r4) {
                                 case 0:
-                                    this.f19493b.lambda$requestReferenceFromServer$11(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$11(str, str2, tLObject, tL_error);
                                     return;
                                 case 1:
-                                    this.f19493b.lambda$requestReferenceFromServer$12(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$12(str, str2, tLObject, tL_error);
                                     return;
                                 case 2:
-                                    this.f19493b.lambda$requestReferenceFromServer$13(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$13(str, str2, tLObject, tL_error);
                                     return;
                                 case 3:
-                                    this.f19493b.lambda$requestReferenceFromServer$14(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$14(str, str2, tLObject, tL_error);
                                     return;
                                 case 4:
-                                    this.f19493b.lambda$requestReferenceFromServer$15(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$15(str, str2, tLObject, tL_error);
                                     return;
                                 case 5:
-                                    this.f19493b.lambda$requestReferenceFromServer$16(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$16(str, str2, tLObject, tL_error);
                                     return;
                                 case 6:
-                                    this.f19493b.lambda$requestReferenceFromServer$17(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$17(str, str2, tLObject, tL_error);
                                     return;
                                 case 7:
-                                    this.f19493b.lambda$requestReferenceFromServer$2(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$2(str, str2, tLObject, tL_error);
                                     return;
                                 case 8:
-                                    this.f19493b.lambda$requestReferenceFromServer$22(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$22(str, str2, tLObject, tL_error);
                                     return;
                                 case 9:
-                                    this.f19493b.lambda$requestReferenceFromServer$23(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$23(str, str2, tLObject, tL_error);
                                     return;
                                 case 10:
-                                    this.f19493b.lambda$requestReferenceFromServer$24(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$24(str, str2, tLObject, tL_error);
                                     return;
                                 case 11:
-                                    this.f19493b.lambda$requestReferenceFromServer$25(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$25(str, str2, tLObject, tL_error);
                                     return;
                                 case 12:
-                                    this.f19493b.lambda$requestReferenceFromServer$26(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$26(str, str2, tLObject, tL_error);
                                     return;
                                 case 13:
-                                    this.f19493b.lambda$requestReferenceFromServer$27(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$27(str, str2, tLObject, tL_error);
                                     return;
                                 case 14:
-                                    this.f19493b.lambda$requestReferenceFromServer$28(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$28(str, str2, tLObject, tL_error);
                                     return;
                                 case 15:
-                                    this.f19493b.lambda$requestReferenceFromServer$29(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$29(str, str2, tLObject, tL_error);
                                     return;
                                 case 16:
-                                    this.f19493b.lambda$requestReferenceFromServer$3(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$3(str, str2, tLObject, tL_error);
                                     return;
                                 case 17:
-                                    this.f19493b.lambda$requestReferenceFromServer$4(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$4(str, str2, tLObject, tL_error);
                                     return;
                                 case 18:
-                                    this.f19493b.lambda$requestReferenceFromServer$5(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$5(str, str2, tLObject, tL_error);
                                     return;
                                 case 19:
-                                    this.f19493b.lambda$requestReferenceFromServer$6(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$6(str, str2, tLObject, tL_error);
                                     return;
                                 case 20:
-                                    this.f19493b.lambda$requestReferenceFromServer$7(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$7(str, str2, tLObject, tL_error);
                                     return;
                                 case 21:
-                                    this.f19493b.lambda$requestReferenceFromServer$8(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$8(str, str2, tLObject, tL_error);
                                     return;
                                 case 22:
-                                    this.f19493b.lambda$requestReferenceFromServer$9(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$9(str, str2, tLObject, tL_error);
                                     return;
                                 default:
-                                    this.f19493b.lambda$requestReferenceFromServer$10(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$10(str, str2, tLObject, tL_error);
                                     return;
                             }
                         }
@@ -1614,86 +1614,86 @@ public class FileRefController extends BaseController {
             tL_inputWallPaper.access_hash = tL_wallPaper.access_hash;
             getwallpaper.wallpaper = tL_inputWallPaper;
             getConnectionsManager().sendRequest(getwallpaper, new RequestDelegate(this) {
-                public final FileRefController f19493b;
+                public final FileRefController f19567b;
 
                 {
-                    this.f19493b = this;
+                    this.f19567b = this;
                 }
 
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                     switch (r4) {
                         case 0:
-                            this.f19493b.lambda$requestReferenceFromServer$11(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$11(str, str2, tLObject, tL_error);
                             return;
                         case 1:
-                            this.f19493b.lambda$requestReferenceFromServer$12(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$12(str, str2, tLObject, tL_error);
                             return;
                         case 2:
-                            this.f19493b.lambda$requestReferenceFromServer$13(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$13(str, str2, tLObject, tL_error);
                             return;
                         case 3:
-                            this.f19493b.lambda$requestReferenceFromServer$14(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$14(str, str2, tLObject, tL_error);
                             return;
                         case 4:
-                            this.f19493b.lambda$requestReferenceFromServer$15(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$15(str, str2, tLObject, tL_error);
                             return;
                         case 5:
-                            this.f19493b.lambda$requestReferenceFromServer$16(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$16(str, str2, tLObject, tL_error);
                             return;
                         case 6:
-                            this.f19493b.lambda$requestReferenceFromServer$17(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$17(str, str2, tLObject, tL_error);
                             return;
                         case 7:
-                            this.f19493b.lambda$requestReferenceFromServer$2(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$2(str, str2, tLObject, tL_error);
                             return;
                         case 8:
-                            this.f19493b.lambda$requestReferenceFromServer$22(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$22(str, str2, tLObject, tL_error);
                             return;
                         case 9:
-                            this.f19493b.lambda$requestReferenceFromServer$23(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$23(str, str2, tLObject, tL_error);
                             return;
                         case 10:
-                            this.f19493b.lambda$requestReferenceFromServer$24(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$24(str, str2, tLObject, tL_error);
                             return;
                         case 11:
-                            this.f19493b.lambda$requestReferenceFromServer$25(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$25(str, str2, tLObject, tL_error);
                             return;
                         case 12:
-                            this.f19493b.lambda$requestReferenceFromServer$26(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$26(str, str2, tLObject, tL_error);
                             return;
                         case 13:
-                            this.f19493b.lambda$requestReferenceFromServer$27(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$27(str, str2, tLObject, tL_error);
                             return;
                         case 14:
-                            this.f19493b.lambda$requestReferenceFromServer$28(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$28(str, str2, tLObject, tL_error);
                             return;
                         case 15:
-                            this.f19493b.lambda$requestReferenceFromServer$29(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$29(str, str2, tLObject, tL_error);
                             return;
                         case 16:
-                            this.f19493b.lambda$requestReferenceFromServer$3(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$3(str, str2, tLObject, tL_error);
                             return;
                         case 17:
-                            this.f19493b.lambda$requestReferenceFromServer$4(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$4(str, str2, tLObject, tL_error);
                             return;
                         case 18:
-                            this.f19493b.lambda$requestReferenceFromServer$5(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$5(str, str2, tLObject, tL_error);
                             return;
                         case 19:
-                            this.f19493b.lambda$requestReferenceFromServer$6(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$6(str, str2, tLObject, tL_error);
                             return;
                         case 20:
-                            this.f19493b.lambda$requestReferenceFromServer$7(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$7(str, str2, tLObject, tL_error);
                             return;
                         case 21:
-                            this.f19493b.lambda$requestReferenceFromServer$8(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$8(str, str2, tLObject, tL_error);
                             return;
                         case 22:
-                            this.f19493b.lambda$requestReferenceFromServer$9(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$9(str, str2, tLObject, tL_error);
                             return;
                         default:
-                            this.f19493b.lambda$requestReferenceFromServer$10(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$10(str, str2, tLObject, tL_error);
                             return;
                     }
                 }
@@ -1707,86 +1707,86 @@ public class FileRefController extends BaseController {
             gettheme.theme = tL_inputTheme;
             gettheme.format = "android";
             getConnectionsManager().sendRequest(gettheme, new RequestDelegate(this) {
-                public final FileRefController f19493b;
+                public final FileRefController f19567b;
 
                 {
-                    this.f19493b = this;
+                    this.f19567b = this;
                 }
 
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                     switch (r4) {
                         case 0:
-                            this.f19493b.lambda$requestReferenceFromServer$11(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$11(str, str2, tLObject, tL_error);
                             return;
                         case 1:
-                            this.f19493b.lambda$requestReferenceFromServer$12(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$12(str, str2, tLObject, tL_error);
                             return;
                         case 2:
-                            this.f19493b.lambda$requestReferenceFromServer$13(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$13(str, str2, tLObject, tL_error);
                             return;
                         case 3:
-                            this.f19493b.lambda$requestReferenceFromServer$14(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$14(str, str2, tLObject, tL_error);
                             return;
                         case 4:
-                            this.f19493b.lambda$requestReferenceFromServer$15(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$15(str, str2, tLObject, tL_error);
                             return;
                         case 5:
-                            this.f19493b.lambda$requestReferenceFromServer$16(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$16(str, str2, tLObject, tL_error);
                             return;
                         case 6:
-                            this.f19493b.lambda$requestReferenceFromServer$17(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$17(str, str2, tLObject, tL_error);
                             return;
                         case 7:
-                            this.f19493b.lambda$requestReferenceFromServer$2(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$2(str, str2, tLObject, tL_error);
                             return;
                         case 8:
-                            this.f19493b.lambda$requestReferenceFromServer$22(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$22(str, str2, tLObject, tL_error);
                             return;
                         case 9:
-                            this.f19493b.lambda$requestReferenceFromServer$23(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$23(str, str2, tLObject, tL_error);
                             return;
                         case 10:
-                            this.f19493b.lambda$requestReferenceFromServer$24(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$24(str, str2, tLObject, tL_error);
                             return;
                         case 11:
-                            this.f19493b.lambda$requestReferenceFromServer$25(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$25(str, str2, tLObject, tL_error);
                             return;
                         case 12:
-                            this.f19493b.lambda$requestReferenceFromServer$26(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$26(str, str2, tLObject, tL_error);
                             return;
                         case 13:
-                            this.f19493b.lambda$requestReferenceFromServer$27(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$27(str, str2, tLObject, tL_error);
                             return;
                         case 14:
-                            this.f19493b.lambda$requestReferenceFromServer$28(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$28(str, str2, tLObject, tL_error);
                             return;
                         case 15:
-                            this.f19493b.lambda$requestReferenceFromServer$29(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$29(str, str2, tLObject, tL_error);
                             return;
                         case 16:
-                            this.f19493b.lambda$requestReferenceFromServer$3(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$3(str, str2, tLObject, tL_error);
                             return;
                         case 17:
-                            this.f19493b.lambda$requestReferenceFromServer$4(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$4(str, str2, tLObject, tL_error);
                             return;
                         case 18:
-                            this.f19493b.lambda$requestReferenceFromServer$5(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$5(str, str2, tLObject, tL_error);
                             return;
                         case 19:
-                            this.f19493b.lambda$requestReferenceFromServer$6(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$6(str, str2, tLObject, tL_error);
                             return;
                         case 20:
-                            this.f19493b.lambda$requestReferenceFromServer$7(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$7(str, str2, tLObject, tL_error);
                             return;
                         case 21:
-                            this.f19493b.lambda$requestReferenceFromServer$8(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$8(str, str2, tLObject, tL_error);
                             return;
                         case 22:
-                            this.f19493b.lambda$requestReferenceFromServer$9(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$9(str, str2, tLObject, tL_error);
                             return;
                         default:
-                            this.f19493b.lambda$requestReferenceFromServer$10(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$10(str, str2, tLObject, tL_error);
                             return;
                     }
                 }
@@ -1796,86 +1796,86 @@ public class FileRefController extends BaseController {
             tL_messages_getWebPage.url = ((TLRPC.WebPage) obj).url;
             tL_messages_getWebPage.hash = 0;
             getConnectionsManager().sendRequest(tL_messages_getWebPage, new RequestDelegate(this) {
-                public final FileRefController f19493b;
+                public final FileRefController f19567b;
 
                 {
-                    this.f19493b = this;
+                    this.f19567b = this;
                 }
 
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                     switch (r4) {
                         case 0:
-                            this.f19493b.lambda$requestReferenceFromServer$11(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$11(str, str2, tLObject, tL_error);
                             return;
                         case 1:
-                            this.f19493b.lambda$requestReferenceFromServer$12(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$12(str, str2, tLObject, tL_error);
                             return;
                         case 2:
-                            this.f19493b.lambda$requestReferenceFromServer$13(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$13(str, str2, tLObject, tL_error);
                             return;
                         case 3:
-                            this.f19493b.lambda$requestReferenceFromServer$14(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$14(str, str2, tLObject, tL_error);
                             return;
                         case 4:
-                            this.f19493b.lambda$requestReferenceFromServer$15(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$15(str, str2, tLObject, tL_error);
                             return;
                         case 5:
-                            this.f19493b.lambda$requestReferenceFromServer$16(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$16(str, str2, tLObject, tL_error);
                             return;
                         case 6:
-                            this.f19493b.lambda$requestReferenceFromServer$17(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$17(str, str2, tLObject, tL_error);
                             return;
                         case 7:
-                            this.f19493b.lambda$requestReferenceFromServer$2(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$2(str, str2, tLObject, tL_error);
                             return;
                         case 8:
-                            this.f19493b.lambda$requestReferenceFromServer$22(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$22(str, str2, tLObject, tL_error);
                             return;
                         case 9:
-                            this.f19493b.lambda$requestReferenceFromServer$23(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$23(str, str2, tLObject, tL_error);
                             return;
                         case 10:
-                            this.f19493b.lambda$requestReferenceFromServer$24(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$24(str, str2, tLObject, tL_error);
                             return;
                         case 11:
-                            this.f19493b.lambda$requestReferenceFromServer$25(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$25(str, str2, tLObject, tL_error);
                             return;
                         case 12:
-                            this.f19493b.lambda$requestReferenceFromServer$26(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$26(str, str2, tLObject, tL_error);
                             return;
                         case 13:
-                            this.f19493b.lambda$requestReferenceFromServer$27(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$27(str, str2, tLObject, tL_error);
                             return;
                         case 14:
-                            this.f19493b.lambda$requestReferenceFromServer$28(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$28(str, str2, tLObject, tL_error);
                             return;
                         case 15:
-                            this.f19493b.lambda$requestReferenceFromServer$29(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$29(str, str2, tLObject, tL_error);
                             return;
                         case 16:
-                            this.f19493b.lambda$requestReferenceFromServer$3(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$3(str, str2, tLObject, tL_error);
                             return;
                         case 17:
-                            this.f19493b.lambda$requestReferenceFromServer$4(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$4(str, str2, tLObject, tL_error);
                             return;
                         case 18:
-                            this.f19493b.lambda$requestReferenceFromServer$5(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$5(str, str2, tLObject, tL_error);
                             return;
                         case 19:
-                            this.f19493b.lambda$requestReferenceFromServer$6(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$6(str, str2, tLObject, tL_error);
                             return;
                         case 20:
-                            this.f19493b.lambda$requestReferenceFromServer$7(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$7(str, str2, tLObject, tL_error);
                             return;
                         case 21:
-                            this.f19493b.lambda$requestReferenceFromServer$8(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$8(str, str2, tLObject, tL_error);
                             return;
                         case 22:
-                            this.f19493b.lambda$requestReferenceFromServer$9(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$9(str, str2, tLObject, tL_error);
                             return;
                         default:
-                            this.f19493b.lambda$requestReferenceFromServer$10(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$10(str, str2, tLObject, tL_error);
                             return;
                     }
                 }
@@ -1884,86 +1884,86 @@ public class FileRefController extends BaseController {
             TLRPC.TL_users_getUsers tL_users_getUsers = new TLRPC.TL_users_getUsers();
             tL_users_getUsers.f20417id.add(getMessagesController().getInputUser((TLRPC.User) obj));
             getConnectionsManager().sendRequest(tL_users_getUsers, new RequestDelegate(this) {
-                public final FileRefController f19493b;
+                public final FileRefController f19567b;
 
                 {
-                    this.f19493b = this;
+                    this.f19567b = this;
                 }
 
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                     switch (r4) {
                         case 0:
-                            this.f19493b.lambda$requestReferenceFromServer$11(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$11(str, str2, tLObject, tL_error);
                             return;
                         case 1:
-                            this.f19493b.lambda$requestReferenceFromServer$12(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$12(str, str2, tLObject, tL_error);
                             return;
                         case 2:
-                            this.f19493b.lambda$requestReferenceFromServer$13(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$13(str, str2, tLObject, tL_error);
                             return;
                         case 3:
-                            this.f19493b.lambda$requestReferenceFromServer$14(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$14(str, str2, tLObject, tL_error);
                             return;
                         case 4:
-                            this.f19493b.lambda$requestReferenceFromServer$15(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$15(str, str2, tLObject, tL_error);
                             return;
                         case 5:
-                            this.f19493b.lambda$requestReferenceFromServer$16(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$16(str, str2, tLObject, tL_error);
                             return;
                         case 6:
-                            this.f19493b.lambda$requestReferenceFromServer$17(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$17(str, str2, tLObject, tL_error);
                             return;
                         case 7:
-                            this.f19493b.lambda$requestReferenceFromServer$2(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$2(str, str2, tLObject, tL_error);
                             return;
                         case 8:
-                            this.f19493b.lambda$requestReferenceFromServer$22(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$22(str, str2, tLObject, tL_error);
                             return;
                         case 9:
-                            this.f19493b.lambda$requestReferenceFromServer$23(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$23(str, str2, tLObject, tL_error);
                             return;
                         case 10:
-                            this.f19493b.lambda$requestReferenceFromServer$24(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$24(str, str2, tLObject, tL_error);
                             return;
                         case 11:
-                            this.f19493b.lambda$requestReferenceFromServer$25(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$25(str, str2, tLObject, tL_error);
                             return;
                         case 12:
-                            this.f19493b.lambda$requestReferenceFromServer$26(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$26(str, str2, tLObject, tL_error);
                             return;
                         case 13:
-                            this.f19493b.lambda$requestReferenceFromServer$27(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$27(str, str2, tLObject, tL_error);
                             return;
                         case 14:
-                            this.f19493b.lambda$requestReferenceFromServer$28(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$28(str, str2, tLObject, tL_error);
                             return;
                         case 15:
-                            this.f19493b.lambda$requestReferenceFromServer$29(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$29(str, str2, tLObject, tL_error);
                             return;
                         case 16:
-                            this.f19493b.lambda$requestReferenceFromServer$3(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$3(str, str2, tLObject, tL_error);
                             return;
                         case 17:
-                            this.f19493b.lambda$requestReferenceFromServer$4(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$4(str, str2, tLObject, tL_error);
                             return;
                         case 18:
-                            this.f19493b.lambda$requestReferenceFromServer$5(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$5(str, str2, tLObject, tL_error);
                             return;
                         case 19:
-                            this.f19493b.lambda$requestReferenceFromServer$6(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$6(str, str2, tLObject, tL_error);
                             return;
                         case 20:
-                            this.f19493b.lambda$requestReferenceFromServer$7(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$7(str, str2, tLObject, tL_error);
                             return;
                         case 21:
-                            this.f19493b.lambda$requestReferenceFromServer$8(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$8(str, str2, tLObject, tL_error);
                             return;
                         case 22:
-                            this.f19493b.lambda$requestReferenceFromServer$9(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$9(str, str2, tLObject, tL_error);
                             return;
                         default:
-                            this.f19493b.lambda$requestReferenceFromServer$10(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$10(str, str2, tLObject, tL_error);
                             return;
                     }
                 }
@@ -1974,86 +1974,86 @@ public class FileRefController extends BaseController {
                 TLRPC.TL_messages_getChats tL_messages_getChats = new TLRPC.TL_messages_getChats();
                 tL_messages_getChats.f20364id.add(Long.valueOf(chat.f20276id));
                 getConnectionsManager().sendRequest(tL_messages_getChats, new RequestDelegate(this) {
-                    public final FileRefController f19493b;
+                    public final FileRefController f19567b;
 
                     {
-                        this.f19493b = this;
+                        this.f19567b = this;
                     }
 
                     @Override
                     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                         switch (r4) {
                             case 0:
-                                this.f19493b.lambda$requestReferenceFromServer$11(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$11(str, str2, tLObject, tL_error);
                                 return;
                             case 1:
-                                this.f19493b.lambda$requestReferenceFromServer$12(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$12(str, str2, tLObject, tL_error);
                                 return;
                             case 2:
-                                this.f19493b.lambda$requestReferenceFromServer$13(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$13(str, str2, tLObject, tL_error);
                                 return;
                             case 3:
-                                this.f19493b.lambda$requestReferenceFromServer$14(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$14(str, str2, tLObject, tL_error);
                                 return;
                             case 4:
-                                this.f19493b.lambda$requestReferenceFromServer$15(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$15(str, str2, tLObject, tL_error);
                                 return;
                             case 5:
-                                this.f19493b.lambda$requestReferenceFromServer$16(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$16(str, str2, tLObject, tL_error);
                                 return;
                             case 6:
-                                this.f19493b.lambda$requestReferenceFromServer$17(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$17(str, str2, tLObject, tL_error);
                                 return;
                             case 7:
-                                this.f19493b.lambda$requestReferenceFromServer$2(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$2(str, str2, tLObject, tL_error);
                                 return;
                             case 8:
-                                this.f19493b.lambda$requestReferenceFromServer$22(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$22(str, str2, tLObject, tL_error);
                                 return;
                             case 9:
-                                this.f19493b.lambda$requestReferenceFromServer$23(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$23(str, str2, tLObject, tL_error);
                                 return;
                             case 10:
-                                this.f19493b.lambda$requestReferenceFromServer$24(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$24(str, str2, tLObject, tL_error);
                                 return;
                             case 11:
-                                this.f19493b.lambda$requestReferenceFromServer$25(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$25(str, str2, tLObject, tL_error);
                                 return;
                             case 12:
-                                this.f19493b.lambda$requestReferenceFromServer$26(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$26(str, str2, tLObject, tL_error);
                                 return;
                             case 13:
-                                this.f19493b.lambda$requestReferenceFromServer$27(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$27(str, str2, tLObject, tL_error);
                                 return;
                             case 14:
-                                this.f19493b.lambda$requestReferenceFromServer$28(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$28(str, str2, tLObject, tL_error);
                                 return;
                             case 15:
-                                this.f19493b.lambda$requestReferenceFromServer$29(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$29(str, str2, tLObject, tL_error);
                                 return;
                             case 16:
-                                this.f19493b.lambda$requestReferenceFromServer$3(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$3(str, str2, tLObject, tL_error);
                                 return;
                             case 17:
-                                this.f19493b.lambda$requestReferenceFromServer$4(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$4(str, str2, tLObject, tL_error);
                                 return;
                             case 18:
-                                this.f19493b.lambda$requestReferenceFromServer$5(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$5(str, str2, tLObject, tL_error);
                                 return;
                             case 19:
-                                this.f19493b.lambda$requestReferenceFromServer$6(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$6(str, str2, tLObject, tL_error);
                                 return;
                             case 20:
-                                this.f19493b.lambda$requestReferenceFromServer$7(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$7(str, str2, tLObject, tL_error);
                                 return;
                             case 21:
-                                this.f19493b.lambda$requestReferenceFromServer$8(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$8(str, str2, tLObject, tL_error);
                                 return;
                             case 22:
-                                this.f19493b.lambda$requestReferenceFromServer$9(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$9(str, str2, tLObject, tL_error);
                                 return;
                             default:
-                                this.f19493b.lambda$requestReferenceFromServer$10(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$10(str, str2, tLObject, tL_error);
                                 return;
                         }
                     }
@@ -2063,86 +2063,86 @@ public class FileRefController extends BaseController {
                 TLRPC.TL_channels_getChannels tL_channels_getChannels = new TLRPC.TL_channels_getChannels();
                 tL_channels_getChannels.f20312id.add(MessagesController.getInputChannel(chat));
                 getConnectionsManager().sendRequest(tL_channels_getChannels, new RequestDelegate(this) {
-                    public final FileRefController f19493b;
+                    public final FileRefController f19567b;
 
                     {
-                        this.f19493b = this;
+                        this.f19567b = this;
                     }
 
                     @Override
                     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                         switch (r4) {
                             case 0:
-                                this.f19493b.lambda$requestReferenceFromServer$11(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$11(str, str2, tLObject, tL_error);
                                 return;
                             case 1:
-                                this.f19493b.lambda$requestReferenceFromServer$12(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$12(str, str2, tLObject, tL_error);
                                 return;
                             case 2:
-                                this.f19493b.lambda$requestReferenceFromServer$13(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$13(str, str2, tLObject, tL_error);
                                 return;
                             case 3:
-                                this.f19493b.lambda$requestReferenceFromServer$14(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$14(str, str2, tLObject, tL_error);
                                 return;
                             case 4:
-                                this.f19493b.lambda$requestReferenceFromServer$15(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$15(str, str2, tLObject, tL_error);
                                 return;
                             case 5:
-                                this.f19493b.lambda$requestReferenceFromServer$16(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$16(str, str2, tLObject, tL_error);
                                 return;
                             case 6:
-                                this.f19493b.lambda$requestReferenceFromServer$17(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$17(str, str2, tLObject, tL_error);
                                 return;
                             case 7:
-                                this.f19493b.lambda$requestReferenceFromServer$2(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$2(str, str2, tLObject, tL_error);
                                 return;
                             case 8:
-                                this.f19493b.lambda$requestReferenceFromServer$22(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$22(str, str2, tLObject, tL_error);
                                 return;
                             case 9:
-                                this.f19493b.lambda$requestReferenceFromServer$23(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$23(str, str2, tLObject, tL_error);
                                 return;
                             case 10:
-                                this.f19493b.lambda$requestReferenceFromServer$24(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$24(str, str2, tLObject, tL_error);
                                 return;
                             case 11:
-                                this.f19493b.lambda$requestReferenceFromServer$25(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$25(str, str2, tLObject, tL_error);
                                 return;
                             case 12:
-                                this.f19493b.lambda$requestReferenceFromServer$26(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$26(str, str2, tLObject, tL_error);
                                 return;
                             case 13:
-                                this.f19493b.lambda$requestReferenceFromServer$27(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$27(str, str2, tLObject, tL_error);
                                 return;
                             case 14:
-                                this.f19493b.lambda$requestReferenceFromServer$28(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$28(str, str2, tLObject, tL_error);
                                 return;
                             case 15:
-                                this.f19493b.lambda$requestReferenceFromServer$29(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$29(str, str2, tLObject, tL_error);
                                 return;
                             case 16:
-                                this.f19493b.lambda$requestReferenceFromServer$3(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$3(str, str2, tLObject, tL_error);
                                 return;
                             case 17:
-                                this.f19493b.lambda$requestReferenceFromServer$4(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$4(str, str2, tLObject, tL_error);
                                 return;
                             case 18:
-                                this.f19493b.lambda$requestReferenceFromServer$5(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$5(str, str2, tLObject, tL_error);
                                 return;
                             case 19:
-                                this.f19493b.lambda$requestReferenceFromServer$6(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$6(str, str2, tLObject, tL_error);
                                 return;
                             case 20:
-                                this.f19493b.lambda$requestReferenceFromServer$7(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$7(str, str2, tLObject, tL_error);
                                 return;
                             case 21:
-                                this.f19493b.lambda$requestReferenceFromServer$8(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$8(str, str2, tLObject, tL_error);
                                 return;
                             case 22:
-                                this.f19493b.lambda$requestReferenceFromServer$9(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$9(str, str2, tLObject, tL_error);
                                 return;
                             default:
-                                this.f19493b.lambda$requestReferenceFromServer$10(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$10(str, str2, tLObject, tL_error);
                                 return;
                         }
                     }
@@ -2153,26 +2153,26 @@ public class FileRefController extends BaseController {
             if ("wallpaper".equals(str3)) {
                 if (this.wallpaperWaiters.isEmpty()) {
                     getConnectionsManager().sendRequest(new TL_account.getWallPapers(), new RequestDelegate(this) {
-                        public final FileRefController f19569b;
+                        public final FileRefController f19636b;
 
                         {
-                            this.f19569b = this;
+                            this.f19636b = this;
                         }
 
                         @Override
                         public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                             switch (r2) {
                                 case 0:
-                                    this.f19569b.lambda$requestReferenceFromServer$18(tLObject, tL_error);
+                                    this.f19636b.lambda$requestReferenceFromServer$18(tLObject, tL_error);
                                     return;
                                 case 1:
-                                    this.f19569b.lambda$requestReferenceFromServer$19(tLObject, tL_error);
+                                    this.f19636b.lambda$requestReferenceFromServer$19(tLObject, tL_error);
                                     return;
                                 case 2:
-                                    this.f19569b.lambda$requestReferenceFromServer$20(tLObject, tL_error);
+                                    this.f19636b.lambda$requestReferenceFromServer$20(tLObject, tL_error);
                                     return;
                                 default:
-                                    this.f19569b.lambda$requestReferenceFromServer$21(tLObject, tL_error);
+                                    this.f19636b.lambda$requestReferenceFromServer$21(tLObject, tL_error);
                                     return;
                             }
                         }
@@ -2182,26 +2182,26 @@ public class FileRefController extends BaseController {
             } else if (str3.startsWith("gif")) {
                 if (this.savedGifsWaiters.isEmpty()) {
                     getConnectionsManager().sendRequest(new TLRPC.TL_messages_getSavedGifs(), new RequestDelegate(this) {
-                        public final FileRefController f19569b;
+                        public final FileRefController f19636b;
 
                         {
-                            this.f19569b = this;
+                            this.f19636b = this;
                         }
 
                         @Override
                         public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                             switch (r2) {
                                 case 0:
-                                    this.f19569b.lambda$requestReferenceFromServer$18(tLObject, tL_error);
+                                    this.f19636b.lambda$requestReferenceFromServer$18(tLObject, tL_error);
                                     return;
                                 case 1:
-                                    this.f19569b.lambda$requestReferenceFromServer$19(tLObject, tL_error);
+                                    this.f19636b.lambda$requestReferenceFromServer$19(tLObject, tL_error);
                                     return;
                                 case 2:
-                                    this.f19569b.lambda$requestReferenceFromServer$20(tLObject, tL_error);
+                                    this.f19636b.lambda$requestReferenceFromServer$20(tLObject, tL_error);
                                     return;
                                 default:
-                                    this.f19569b.lambda$requestReferenceFromServer$21(tLObject, tL_error);
+                                    this.f19636b.lambda$requestReferenceFromServer$21(tLObject, tL_error);
                                     return;
                             }
                         }
@@ -2211,26 +2211,26 @@ public class FileRefController extends BaseController {
             } else if ("recent".equals(str3)) {
                 if (this.recentStickersWaiter.isEmpty()) {
                     getConnectionsManager().sendRequest(new TLRPC.TL_messages_getRecentStickers(), new RequestDelegate(this) {
-                        public final FileRefController f19569b;
+                        public final FileRefController f19636b;
 
                         {
-                            this.f19569b = this;
+                            this.f19636b = this;
                         }
 
                         @Override
                         public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                             switch (r2) {
                                 case 0:
-                                    this.f19569b.lambda$requestReferenceFromServer$18(tLObject, tL_error);
+                                    this.f19636b.lambda$requestReferenceFromServer$18(tLObject, tL_error);
                                     return;
                                 case 1:
-                                    this.f19569b.lambda$requestReferenceFromServer$19(tLObject, tL_error);
+                                    this.f19636b.lambda$requestReferenceFromServer$19(tLObject, tL_error);
                                     return;
                                 case 2:
-                                    this.f19569b.lambda$requestReferenceFromServer$20(tLObject, tL_error);
+                                    this.f19636b.lambda$requestReferenceFromServer$20(tLObject, tL_error);
                                     return;
                                 default:
-                                    this.f19569b.lambda$requestReferenceFromServer$21(tLObject, tL_error);
+                                    this.f19636b.lambda$requestReferenceFromServer$21(tLObject, tL_error);
                                     return;
                             }
                         }
@@ -2240,26 +2240,26 @@ public class FileRefController extends BaseController {
             } else if ("fav".equals(str3)) {
                 if (this.favStickersWaiter.isEmpty()) {
                     getConnectionsManager().sendRequest(new TLRPC.TL_messages_getFavedStickers(), new RequestDelegate(this) {
-                        public final FileRefController f19569b;
+                        public final FileRefController f19636b;
 
                         {
-                            this.f19569b = this;
+                            this.f19636b = this;
                         }
 
                         @Override
                         public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                             switch (r2) {
                                 case 0:
-                                    this.f19569b.lambda$requestReferenceFromServer$18(tLObject, tL_error);
+                                    this.f19636b.lambda$requestReferenceFromServer$18(tLObject, tL_error);
                                     return;
                                 case 1:
-                                    this.f19569b.lambda$requestReferenceFromServer$19(tLObject, tL_error);
+                                    this.f19636b.lambda$requestReferenceFromServer$19(tLObject, tL_error);
                                     return;
                                 case 2:
-                                    this.f19569b.lambda$requestReferenceFromServer$20(tLObject, tL_error);
+                                    this.f19636b.lambda$requestReferenceFromServer$20(tLObject, tL_error);
                                     return;
                                 default:
-                                    this.f19569b.lambda$requestReferenceFromServer$21(tLObject, tL_error);
+                                    this.f19636b.lambda$requestReferenceFromServer$21(tLObject, tL_error);
                                     return;
                             }
                         }
@@ -2276,86 +2276,86 @@ public class FileRefController extends BaseController {
                     tL_help_getAppUpdate.source = "";
                 }
                 getConnectionsManager().sendRequest(tL_help_getAppUpdate, new RequestDelegate(this) {
-                    public final FileRefController f19493b;
+                    public final FileRefController f19567b;
 
                     {
-                        this.f19493b = this;
+                        this.f19567b = this;
                     }
 
                     @Override
                     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                         switch (r4) {
                             case 0:
-                                this.f19493b.lambda$requestReferenceFromServer$11(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$11(str, str2, tLObject, tL_error);
                                 return;
                             case 1:
-                                this.f19493b.lambda$requestReferenceFromServer$12(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$12(str, str2, tLObject, tL_error);
                                 return;
                             case 2:
-                                this.f19493b.lambda$requestReferenceFromServer$13(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$13(str, str2, tLObject, tL_error);
                                 return;
                             case 3:
-                                this.f19493b.lambda$requestReferenceFromServer$14(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$14(str, str2, tLObject, tL_error);
                                 return;
                             case 4:
-                                this.f19493b.lambda$requestReferenceFromServer$15(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$15(str, str2, tLObject, tL_error);
                                 return;
                             case 5:
-                                this.f19493b.lambda$requestReferenceFromServer$16(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$16(str, str2, tLObject, tL_error);
                                 return;
                             case 6:
-                                this.f19493b.lambda$requestReferenceFromServer$17(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$17(str, str2, tLObject, tL_error);
                                 return;
                             case 7:
-                                this.f19493b.lambda$requestReferenceFromServer$2(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$2(str, str2, tLObject, tL_error);
                                 return;
                             case 8:
-                                this.f19493b.lambda$requestReferenceFromServer$22(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$22(str, str2, tLObject, tL_error);
                                 return;
                             case 9:
-                                this.f19493b.lambda$requestReferenceFromServer$23(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$23(str, str2, tLObject, tL_error);
                                 return;
                             case 10:
-                                this.f19493b.lambda$requestReferenceFromServer$24(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$24(str, str2, tLObject, tL_error);
                                 return;
                             case 11:
-                                this.f19493b.lambda$requestReferenceFromServer$25(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$25(str, str2, tLObject, tL_error);
                                 return;
                             case 12:
-                                this.f19493b.lambda$requestReferenceFromServer$26(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$26(str, str2, tLObject, tL_error);
                                 return;
                             case 13:
-                                this.f19493b.lambda$requestReferenceFromServer$27(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$27(str, str2, tLObject, tL_error);
                                 return;
                             case 14:
-                                this.f19493b.lambda$requestReferenceFromServer$28(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$28(str, str2, tLObject, tL_error);
                                 return;
                             case 15:
-                                this.f19493b.lambda$requestReferenceFromServer$29(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$29(str, str2, tLObject, tL_error);
                                 return;
                             case 16:
-                                this.f19493b.lambda$requestReferenceFromServer$3(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$3(str, str2, tLObject, tL_error);
                                 return;
                             case 17:
-                                this.f19493b.lambda$requestReferenceFromServer$4(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$4(str, str2, tLObject, tL_error);
                                 return;
                             case 18:
-                                this.f19493b.lambda$requestReferenceFromServer$5(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$5(str, str2, tLObject, tL_error);
                                 return;
                             case 19:
-                                this.f19493b.lambda$requestReferenceFromServer$6(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$6(str, str2, tLObject, tL_error);
                                 return;
                             case 20:
-                                this.f19493b.lambda$requestReferenceFromServer$7(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$7(str, str2, tLObject, tL_error);
                                 return;
                             case 21:
-                                this.f19493b.lambda$requestReferenceFromServer$8(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$8(str, str2, tLObject, tL_error);
                                 return;
                             case 22:
-                                this.f19493b.lambda$requestReferenceFromServer$9(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$9(str, str2, tLObject, tL_error);
                                 return;
                             default:
-                                this.f19493b.lambda$requestReferenceFromServer$10(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$10(str, str2, tLObject, tL_error);
                                 return;
                         }
                     }
@@ -2369,86 +2369,86 @@ public class FileRefController extends BaseController {
                     tL_photos_getUserPhotos.max_id = 0L;
                     tL_photos_getUserPhotos.user_id = getMessagesController().getInputUser(longValue);
                     getConnectionsManager().sendRequest(tL_photos_getUserPhotos, new RequestDelegate(this) {
-                        public final FileRefController f19493b;
+                        public final FileRefController f19567b;
 
                         {
-                            this.f19493b = this;
+                            this.f19567b = this;
                         }
 
                         @Override
                         public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                             switch (r4) {
                                 case 0:
-                                    this.f19493b.lambda$requestReferenceFromServer$11(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$11(str, str2, tLObject, tL_error);
                                     return;
                                 case 1:
-                                    this.f19493b.lambda$requestReferenceFromServer$12(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$12(str, str2, tLObject, tL_error);
                                     return;
                                 case 2:
-                                    this.f19493b.lambda$requestReferenceFromServer$13(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$13(str, str2, tLObject, tL_error);
                                     return;
                                 case 3:
-                                    this.f19493b.lambda$requestReferenceFromServer$14(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$14(str, str2, tLObject, tL_error);
                                     return;
                                 case 4:
-                                    this.f19493b.lambda$requestReferenceFromServer$15(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$15(str, str2, tLObject, tL_error);
                                     return;
                                 case 5:
-                                    this.f19493b.lambda$requestReferenceFromServer$16(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$16(str, str2, tLObject, tL_error);
                                     return;
                                 case 6:
-                                    this.f19493b.lambda$requestReferenceFromServer$17(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$17(str, str2, tLObject, tL_error);
                                     return;
                                 case 7:
-                                    this.f19493b.lambda$requestReferenceFromServer$2(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$2(str, str2, tLObject, tL_error);
                                     return;
                                 case 8:
-                                    this.f19493b.lambda$requestReferenceFromServer$22(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$22(str, str2, tLObject, tL_error);
                                     return;
                                 case 9:
-                                    this.f19493b.lambda$requestReferenceFromServer$23(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$23(str, str2, tLObject, tL_error);
                                     return;
                                 case 10:
-                                    this.f19493b.lambda$requestReferenceFromServer$24(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$24(str, str2, tLObject, tL_error);
                                     return;
                                 case 11:
-                                    this.f19493b.lambda$requestReferenceFromServer$25(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$25(str, str2, tLObject, tL_error);
                                     return;
                                 case 12:
-                                    this.f19493b.lambda$requestReferenceFromServer$26(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$26(str, str2, tLObject, tL_error);
                                     return;
                                 case 13:
-                                    this.f19493b.lambda$requestReferenceFromServer$27(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$27(str, str2, tLObject, tL_error);
                                     return;
                                 case 14:
-                                    this.f19493b.lambda$requestReferenceFromServer$28(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$28(str, str2, tLObject, tL_error);
                                     return;
                                 case 15:
-                                    this.f19493b.lambda$requestReferenceFromServer$29(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$29(str, str2, tLObject, tL_error);
                                     return;
                                 case 16:
-                                    this.f19493b.lambda$requestReferenceFromServer$3(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$3(str, str2, tLObject, tL_error);
                                     return;
                                 case 17:
-                                    this.f19493b.lambda$requestReferenceFromServer$4(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$4(str, str2, tLObject, tL_error);
                                     return;
                                 case 18:
-                                    this.f19493b.lambda$requestReferenceFromServer$5(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$5(str, str2, tLObject, tL_error);
                                     return;
                                 case 19:
-                                    this.f19493b.lambda$requestReferenceFromServer$6(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$6(str, str2, tLObject, tL_error);
                                     return;
                                 case 20:
-                                    this.f19493b.lambda$requestReferenceFromServer$7(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$7(str, str2, tLObject, tL_error);
                                     return;
                                 case 21:
-                                    this.f19493b.lambda$requestReferenceFromServer$8(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$8(str, str2, tLObject, tL_error);
                                     return;
                                 case 22:
-                                    this.f19493b.lambda$requestReferenceFromServer$9(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$9(str, str2, tLObject, tL_error);
                                     return;
                                 default:
-                                    this.f19493b.lambda$requestReferenceFromServer$10(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$10(str, str2, tLObject, tL_error);
                                     return;
                             }
                         }
@@ -2462,86 +2462,86 @@ public class FileRefController extends BaseController {
                 tL_messages_search.f20385q = "";
                 tL_messages_search.peer = getMessagesController().getInputPeer(longValue);
                 getConnectionsManager().sendRequest(tL_messages_search, new RequestDelegate(this) {
-                    public final FileRefController f19493b;
+                    public final FileRefController f19567b;
 
                     {
-                        this.f19493b = this;
+                        this.f19567b = this;
                     }
 
                     @Override
                     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                         switch (r4) {
                             case 0:
-                                this.f19493b.lambda$requestReferenceFromServer$11(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$11(str, str2, tLObject, tL_error);
                                 return;
                             case 1:
-                                this.f19493b.lambda$requestReferenceFromServer$12(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$12(str, str2, tLObject, tL_error);
                                 return;
                             case 2:
-                                this.f19493b.lambda$requestReferenceFromServer$13(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$13(str, str2, tLObject, tL_error);
                                 return;
                             case 3:
-                                this.f19493b.lambda$requestReferenceFromServer$14(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$14(str, str2, tLObject, tL_error);
                                 return;
                             case 4:
-                                this.f19493b.lambda$requestReferenceFromServer$15(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$15(str, str2, tLObject, tL_error);
                                 return;
                             case 5:
-                                this.f19493b.lambda$requestReferenceFromServer$16(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$16(str, str2, tLObject, tL_error);
                                 return;
                             case 6:
-                                this.f19493b.lambda$requestReferenceFromServer$17(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$17(str, str2, tLObject, tL_error);
                                 return;
                             case 7:
-                                this.f19493b.lambda$requestReferenceFromServer$2(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$2(str, str2, tLObject, tL_error);
                                 return;
                             case 8:
-                                this.f19493b.lambda$requestReferenceFromServer$22(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$22(str, str2, tLObject, tL_error);
                                 return;
                             case 9:
-                                this.f19493b.lambda$requestReferenceFromServer$23(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$23(str, str2, tLObject, tL_error);
                                 return;
                             case 10:
-                                this.f19493b.lambda$requestReferenceFromServer$24(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$24(str, str2, tLObject, tL_error);
                                 return;
                             case 11:
-                                this.f19493b.lambda$requestReferenceFromServer$25(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$25(str, str2, tLObject, tL_error);
                                 return;
                             case 12:
-                                this.f19493b.lambda$requestReferenceFromServer$26(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$26(str, str2, tLObject, tL_error);
                                 return;
                             case 13:
-                                this.f19493b.lambda$requestReferenceFromServer$27(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$27(str, str2, tLObject, tL_error);
                                 return;
                             case 14:
-                                this.f19493b.lambda$requestReferenceFromServer$28(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$28(str, str2, tLObject, tL_error);
                                 return;
                             case 15:
-                                this.f19493b.lambda$requestReferenceFromServer$29(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$29(str, str2, tLObject, tL_error);
                                 return;
                             case 16:
-                                this.f19493b.lambda$requestReferenceFromServer$3(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$3(str, str2, tLObject, tL_error);
                                 return;
                             case 17:
-                                this.f19493b.lambda$requestReferenceFromServer$4(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$4(str, str2, tLObject, tL_error);
                                 return;
                             case 18:
-                                this.f19493b.lambda$requestReferenceFromServer$5(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$5(str, str2, tLObject, tL_error);
                                 return;
                             case 19:
-                                this.f19493b.lambda$requestReferenceFromServer$6(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$6(str, str2, tLObject, tL_error);
                                 return;
                             case 20:
-                                this.f19493b.lambda$requestReferenceFromServer$7(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$7(str, str2, tLObject, tL_error);
                                 return;
                             case 21:
-                                this.f19493b.lambda$requestReferenceFromServer$8(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$8(str, str2, tLObject, tL_error);
                                 return;
                             case 22:
-                                this.f19493b.lambda$requestReferenceFromServer$9(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$9(str, str2, tLObject, tL_error);
                                 return;
                             default:
-                                this.f19493b.lambda$requestReferenceFromServer$10(str, str2, tLObject, tL_error);
+                                this.f19567b.lambda$requestReferenceFromServer$10(str, str2, tLObject, tL_error);
                                 return;
                         }
                     }
@@ -2555,86 +2555,86 @@ public class FileRefController extends BaseController {
                         tL_channels_getMessages2.channel = getMessagesController().getInputChannel(longValue2);
                         tL_channels_getMessages2.f20314id.add(Utilities.parseInt((CharSequence) split[2]));
                         getConnectionsManager().sendRequest(tL_channels_getMessages2, new RequestDelegate(this) {
-                            public final FileRefController f19493b;
+                            public final FileRefController f19567b;
 
                             {
-                                this.f19493b = this;
+                                this.f19567b = this;
                             }
 
                             @Override
                             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                                 switch (r4) {
                                     case 0:
-                                        this.f19493b.lambda$requestReferenceFromServer$11(str, str2, tLObject, tL_error);
+                                        this.f19567b.lambda$requestReferenceFromServer$11(str, str2, tLObject, tL_error);
                                         return;
                                     case 1:
-                                        this.f19493b.lambda$requestReferenceFromServer$12(str, str2, tLObject, tL_error);
+                                        this.f19567b.lambda$requestReferenceFromServer$12(str, str2, tLObject, tL_error);
                                         return;
                                     case 2:
-                                        this.f19493b.lambda$requestReferenceFromServer$13(str, str2, tLObject, tL_error);
+                                        this.f19567b.lambda$requestReferenceFromServer$13(str, str2, tLObject, tL_error);
                                         return;
                                     case 3:
-                                        this.f19493b.lambda$requestReferenceFromServer$14(str, str2, tLObject, tL_error);
+                                        this.f19567b.lambda$requestReferenceFromServer$14(str, str2, tLObject, tL_error);
                                         return;
                                     case 4:
-                                        this.f19493b.lambda$requestReferenceFromServer$15(str, str2, tLObject, tL_error);
+                                        this.f19567b.lambda$requestReferenceFromServer$15(str, str2, tLObject, tL_error);
                                         return;
                                     case 5:
-                                        this.f19493b.lambda$requestReferenceFromServer$16(str, str2, tLObject, tL_error);
+                                        this.f19567b.lambda$requestReferenceFromServer$16(str, str2, tLObject, tL_error);
                                         return;
                                     case 6:
-                                        this.f19493b.lambda$requestReferenceFromServer$17(str, str2, tLObject, tL_error);
+                                        this.f19567b.lambda$requestReferenceFromServer$17(str, str2, tLObject, tL_error);
                                         return;
                                     case 7:
-                                        this.f19493b.lambda$requestReferenceFromServer$2(str, str2, tLObject, tL_error);
+                                        this.f19567b.lambda$requestReferenceFromServer$2(str, str2, tLObject, tL_error);
                                         return;
                                     case 8:
-                                        this.f19493b.lambda$requestReferenceFromServer$22(str, str2, tLObject, tL_error);
+                                        this.f19567b.lambda$requestReferenceFromServer$22(str, str2, tLObject, tL_error);
                                         return;
                                     case 9:
-                                        this.f19493b.lambda$requestReferenceFromServer$23(str, str2, tLObject, tL_error);
+                                        this.f19567b.lambda$requestReferenceFromServer$23(str, str2, tLObject, tL_error);
                                         return;
                                     case 10:
-                                        this.f19493b.lambda$requestReferenceFromServer$24(str, str2, tLObject, tL_error);
+                                        this.f19567b.lambda$requestReferenceFromServer$24(str, str2, tLObject, tL_error);
                                         return;
                                     case 11:
-                                        this.f19493b.lambda$requestReferenceFromServer$25(str, str2, tLObject, tL_error);
+                                        this.f19567b.lambda$requestReferenceFromServer$25(str, str2, tLObject, tL_error);
                                         return;
                                     case 12:
-                                        this.f19493b.lambda$requestReferenceFromServer$26(str, str2, tLObject, tL_error);
+                                        this.f19567b.lambda$requestReferenceFromServer$26(str, str2, tLObject, tL_error);
                                         return;
                                     case 13:
-                                        this.f19493b.lambda$requestReferenceFromServer$27(str, str2, tLObject, tL_error);
+                                        this.f19567b.lambda$requestReferenceFromServer$27(str, str2, tLObject, tL_error);
                                         return;
                                     case 14:
-                                        this.f19493b.lambda$requestReferenceFromServer$28(str, str2, tLObject, tL_error);
+                                        this.f19567b.lambda$requestReferenceFromServer$28(str, str2, tLObject, tL_error);
                                         return;
                                     case 15:
-                                        this.f19493b.lambda$requestReferenceFromServer$29(str, str2, tLObject, tL_error);
+                                        this.f19567b.lambda$requestReferenceFromServer$29(str, str2, tLObject, tL_error);
                                         return;
                                     case 16:
-                                        this.f19493b.lambda$requestReferenceFromServer$3(str, str2, tLObject, tL_error);
+                                        this.f19567b.lambda$requestReferenceFromServer$3(str, str2, tLObject, tL_error);
                                         return;
                                     case 17:
-                                        this.f19493b.lambda$requestReferenceFromServer$4(str, str2, tLObject, tL_error);
+                                        this.f19567b.lambda$requestReferenceFromServer$4(str, str2, tLObject, tL_error);
                                         return;
                                     case 18:
-                                        this.f19493b.lambda$requestReferenceFromServer$5(str, str2, tLObject, tL_error);
+                                        this.f19567b.lambda$requestReferenceFromServer$5(str, str2, tLObject, tL_error);
                                         return;
                                     case 19:
-                                        this.f19493b.lambda$requestReferenceFromServer$6(str, str2, tLObject, tL_error);
+                                        this.f19567b.lambda$requestReferenceFromServer$6(str, str2, tLObject, tL_error);
                                         return;
                                     case 20:
-                                        this.f19493b.lambda$requestReferenceFromServer$7(str, str2, tLObject, tL_error);
+                                        this.f19567b.lambda$requestReferenceFromServer$7(str, str2, tLObject, tL_error);
                                         return;
                                     case 21:
-                                        this.f19493b.lambda$requestReferenceFromServer$8(str, str2, tLObject, tL_error);
+                                        this.f19567b.lambda$requestReferenceFromServer$8(str, str2, tLObject, tL_error);
                                         return;
                                     case 22:
-                                        this.f19493b.lambda$requestReferenceFromServer$9(str, str2, tLObject, tL_error);
+                                        this.f19567b.lambda$requestReferenceFromServer$9(str, str2, tLObject, tL_error);
                                         return;
                                     default:
-                                        this.f19493b.lambda$requestReferenceFromServer$10(str, str2, tLObject, tL_error);
+                                        this.f19567b.lambda$requestReferenceFromServer$10(str, str2, tLObject, tL_error);
                                         return;
                                 }
                             }
@@ -2644,86 +2644,86 @@ public class FileRefController extends BaseController {
                     TLRPC.TL_messages_getMessages tL_messages_getMessages2 = new TLRPC.TL_messages_getMessages();
                     tL_messages_getMessages2.f20370id.add(Utilities.parseInt((CharSequence) split[2]));
                     getConnectionsManager().sendRequest(tL_messages_getMessages2, new RequestDelegate(this) {
-                        public final FileRefController f19493b;
+                        public final FileRefController f19567b;
 
                         {
-                            this.f19493b = this;
+                            this.f19567b = this;
                         }
 
                         @Override
                         public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                             switch (r4) {
                                 case 0:
-                                    this.f19493b.lambda$requestReferenceFromServer$11(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$11(str, str2, tLObject, tL_error);
                                     return;
                                 case 1:
-                                    this.f19493b.lambda$requestReferenceFromServer$12(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$12(str, str2, tLObject, tL_error);
                                     return;
                                 case 2:
-                                    this.f19493b.lambda$requestReferenceFromServer$13(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$13(str, str2, tLObject, tL_error);
                                     return;
                                 case 3:
-                                    this.f19493b.lambda$requestReferenceFromServer$14(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$14(str, str2, tLObject, tL_error);
                                     return;
                                 case 4:
-                                    this.f19493b.lambda$requestReferenceFromServer$15(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$15(str, str2, tLObject, tL_error);
                                     return;
                                 case 5:
-                                    this.f19493b.lambda$requestReferenceFromServer$16(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$16(str, str2, tLObject, tL_error);
                                     return;
                                 case 6:
-                                    this.f19493b.lambda$requestReferenceFromServer$17(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$17(str, str2, tLObject, tL_error);
                                     return;
                                 case 7:
-                                    this.f19493b.lambda$requestReferenceFromServer$2(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$2(str, str2, tLObject, tL_error);
                                     return;
                                 case 8:
-                                    this.f19493b.lambda$requestReferenceFromServer$22(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$22(str, str2, tLObject, tL_error);
                                     return;
                                 case 9:
-                                    this.f19493b.lambda$requestReferenceFromServer$23(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$23(str, str2, tLObject, tL_error);
                                     return;
                                 case 10:
-                                    this.f19493b.lambda$requestReferenceFromServer$24(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$24(str, str2, tLObject, tL_error);
                                     return;
                                 case 11:
-                                    this.f19493b.lambda$requestReferenceFromServer$25(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$25(str, str2, tLObject, tL_error);
                                     return;
                                 case 12:
-                                    this.f19493b.lambda$requestReferenceFromServer$26(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$26(str, str2, tLObject, tL_error);
                                     return;
                                 case 13:
-                                    this.f19493b.lambda$requestReferenceFromServer$27(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$27(str, str2, tLObject, tL_error);
                                     return;
                                 case 14:
-                                    this.f19493b.lambda$requestReferenceFromServer$28(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$28(str, str2, tLObject, tL_error);
                                     return;
                                 case 15:
-                                    this.f19493b.lambda$requestReferenceFromServer$29(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$29(str, str2, tLObject, tL_error);
                                     return;
                                 case 16:
-                                    this.f19493b.lambda$requestReferenceFromServer$3(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$3(str, str2, tLObject, tL_error);
                                     return;
                                 case 17:
-                                    this.f19493b.lambda$requestReferenceFromServer$4(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$4(str, str2, tLObject, tL_error);
                                     return;
                                 case 18:
-                                    this.f19493b.lambda$requestReferenceFromServer$5(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$5(str, str2, tLObject, tL_error);
                                     return;
                                 case 19:
-                                    this.f19493b.lambda$requestReferenceFromServer$6(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$6(str, str2, tLObject, tL_error);
                                     return;
                                 case 20:
-                                    this.f19493b.lambda$requestReferenceFromServer$7(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$7(str, str2, tLObject, tL_error);
                                     return;
                                 case 21:
-                                    this.f19493b.lambda$requestReferenceFromServer$8(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$8(str, str2, tLObject, tL_error);
                                     return;
                                 case 22:
-                                    this.f19493b.lambda$requestReferenceFromServer$9(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$9(str, str2, tLObject, tL_error);
                                     return;
                                 default:
-                                    this.f19493b.lambda$requestReferenceFromServer$10(str, str2, tLObject, tL_error);
+                                    this.f19567b.lambda$requestReferenceFromServer$10(str, str2, tLObject, tL_error);
                                     return;
                             }
                         }
@@ -2742,86 +2742,86 @@ public class FileRefController extends BaseController {
             tL_inputStickerSetID.f20296id = stickerSet.f20303id;
             tL_inputStickerSetID.access_hash = stickerSet.access_hash;
             getConnectionsManager().sendRequest(tL_messages_getStickerSet, new RequestDelegate(this) {
-                public final FileRefController f19493b;
+                public final FileRefController f19567b;
 
                 {
-                    this.f19493b = this;
+                    this.f19567b = this;
                 }
 
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                     switch (r4) {
                         case 0:
-                            this.f19493b.lambda$requestReferenceFromServer$11(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$11(str, str2, tLObject, tL_error);
                             return;
                         case 1:
-                            this.f19493b.lambda$requestReferenceFromServer$12(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$12(str, str2, tLObject, tL_error);
                             return;
                         case 2:
-                            this.f19493b.lambda$requestReferenceFromServer$13(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$13(str, str2, tLObject, tL_error);
                             return;
                         case 3:
-                            this.f19493b.lambda$requestReferenceFromServer$14(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$14(str, str2, tLObject, tL_error);
                             return;
                         case 4:
-                            this.f19493b.lambda$requestReferenceFromServer$15(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$15(str, str2, tLObject, tL_error);
                             return;
                         case 5:
-                            this.f19493b.lambda$requestReferenceFromServer$16(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$16(str, str2, tLObject, tL_error);
                             return;
                         case 6:
-                            this.f19493b.lambda$requestReferenceFromServer$17(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$17(str, str2, tLObject, tL_error);
                             return;
                         case 7:
-                            this.f19493b.lambda$requestReferenceFromServer$2(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$2(str, str2, tLObject, tL_error);
                             return;
                         case 8:
-                            this.f19493b.lambda$requestReferenceFromServer$22(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$22(str, str2, tLObject, tL_error);
                             return;
                         case 9:
-                            this.f19493b.lambda$requestReferenceFromServer$23(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$23(str, str2, tLObject, tL_error);
                             return;
                         case 10:
-                            this.f19493b.lambda$requestReferenceFromServer$24(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$24(str, str2, tLObject, tL_error);
                             return;
                         case 11:
-                            this.f19493b.lambda$requestReferenceFromServer$25(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$25(str, str2, tLObject, tL_error);
                             return;
                         case 12:
-                            this.f19493b.lambda$requestReferenceFromServer$26(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$26(str, str2, tLObject, tL_error);
                             return;
                         case 13:
-                            this.f19493b.lambda$requestReferenceFromServer$27(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$27(str, str2, tLObject, tL_error);
                             return;
                         case 14:
-                            this.f19493b.lambda$requestReferenceFromServer$28(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$28(str, str2, tLObject, tL_error);
                             return;
                         case 15:
-                            this.f19493b.lambda$requestReferenceFromServer$29(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$29(str, str2, tLObject, tL_error);
                             return;
                         case 16:
-                            this.f19493b.lambda$requestReferenceFromServer$3(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$3(str, str2, tLObject, tL_error);
                             return;
                         case 17:
-                            this.f19493b.lambda$requestReferenceFromServer$4(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$4(str, str2, tLObject, tL_error);
                             return;
                         case 18:
-                            this.f19493b.lambda$requestReferenceFromServer$5(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$5(str, str2, tLObject, tL_error);
                             return;
                         case 19:
-                            this.f19493b.lambda$requestReferenceFromServer$6(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$6(str, str2, tLObject, tL_error);
                             return;
                         case 20:
-                            this.f19493b.lambda$requestReferenceFromServer$7(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$7(str, str2, tLObject, tL_error);
                             return;
                         case 21:
-                            this.f19493b.lambda$requestReferenceFromServer$8(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$8(str, str2, tLObject, tL_error);
                             return;
                         case 22:
-                            this.f19493b.lambda$requestReferenceFromServer$9(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$9(str, str2, tLObject, tL_error);
                             return;
                         default:
-                            this.f19493b.lambda$requestReferenceFromServer$10(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$10(str, str2, tLObject, tL_error);
                             return;
                     }
                 }
@@ -2834,86 +2834,86 @@ public class FileRefController extends BaseController {
             tL_inputStickerSetID2.f20296id = stickerSet2.f20303id;
             tL_inputStickerSetID2.access_hash = stickerSet2.access_hash;
             getConnectionsManager().sendRequest(tL_messages_getStickerSet2, new RequestDelegate(this) {
-                public final FileRefController f19493b;
+                public final FileRefController f19567b;
 
                 {
-                    this.f19493b = this;
+                    this.f19567b = this;
                 }
 
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                     switch (r4) {
                         case 0:
-                            this.f19493b.lambda$requestReferenceFromServer$11(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$11(str, str2, tLObject, tL_error);
                             return;
                         case 1:
-                            this.f19493b.lambda$requestReferenceFromServer$12(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$12(str, str2, tLObject, tL_error);
                             return;
                         case 2:
-                            this.f19493b.lambda$requestReferenceFromServer$13(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$13(str, str2, tLObject, tL_error);
                             return;
                         case 3:
-                            this.f19493b.lambda$requestReferenceFromServer$14(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$14(str, str2, tLObject, tL_error);
                             return;
                         case 4:
-                            this.f19493b.lambda$requestReferenceFromServer$15(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$15(str, str2, tLObject, tL_error);
                             return;
                         case 5:
-                            this.f19493b.lambda$requestReferenceFromServer$16(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$16(str, str2, tLObject, tL_error);
                             return;
                         case 6:
-                            this.f19493b.lambda$requestReferenceFromServer$17(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$17(str, str2, tLObject, tL_error);
                             return;
                         case 7:
-                            this.f19493b.lambda$requestReferenceFromServer$2(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$2(str, str2, tLObject, tL_error);
                             return;
                         case 8:
-                            this.f19493b.lambda$requestReferenceFromServer$22(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$22(str, str2, tLObject, tL_error);
                             return;
                         case 9:
-                            this.f19493b.lambda$requestReferenceFromServer$23(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$23(str, str2, tLObject, tL_error);
                             return;
                         case 10:
-                            this.f19493b.lambda$requestReferenceFromServer$24(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$24(str, str2, tLObject, tL_error);
                             return;
                         case 11:
-                            this.f19493b.lambda$requestReferenceFromServer$25(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$25(str, str2, tLObject, tL_error);
                             return;
                         case 12:
-                            this.f19493b.lambda$requestReferenceFromServer$26(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$26(str, str2, tLObject, tL_error);
                             return;
                         case 13:
-                            this.f19493b.lambda$requestReferenceFromServer$27(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$27(str, str2, tLObject, tL_error);
                             return;
                         case 14:
-                            this.f19493b.lambda$requestReferenceFromServer$28(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$28(str, str2, tLObject, tL_error);
                             return;
                         case 15:
-                            this.f19493b.lambda$requestReferenceFromServer$29(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$29(str, str2, tLObject, tL_error);
                             return;
                         case 16:
-                            this.f19493b.lambda$requestReferenceFromServer$3(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$3(str, str2, tLObject, tL_error);
                             return;
                         case 17:
-                            this.f19493b.lambda$requestReferenceFromServer$4(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$4(str, str2, tLObject, tL_error);
                             return;
                         case 18:
-                            this.f19493b.lambda$requestReferenceFromServer$5(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$5(str, str2, tLObject, tL_error);
                             return;
                         case 19:
-                            this.f19493b.lambda$requestReferenceFromServer$6(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$6(str, str2, tLObject, tL_error);
                             return;
                         case 20:
-                            this.f19493b.lambda$requestReferenceFromServer$7(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$7(str, str2, tLObject, tL_error);
                             return;
                         case 21:
-                            this.f19493b.lambda$requestReferenceFromServer$8(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$8(str, str2, tLObject, tL_error);
                             return;
                         case 22:
-                            this.f19493b.lambda$requestReferenceFromServer$9(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$9(str, str2, tLObject, tL_error);
                             return;
                         default:
-                            this.f19493b.lambda$requestReferenceFromServer$10(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$10(str, str2, tLObject, tL_error);
                             return;
                     }
                 }
@@ -2922,86 +2922,86 @@ public class FileRefController extends BaseController {
             TLRPC.TL_messages_getStickerSet tL_messages_getStickerSet3 = new TLRPC.TL_messages_getStickerSet();
             tL_messages_getStickerSet3.stickerset = (TLRPC.InputStickerSet) obj;
             getConnectionsManager().sendRequest(tL_messages_getStickerSet3, new RequestDelegate(this) {
-                public final FileRefController f19493b;
+                public final FileRefController f19567b;
 
                 {
-                    this.f19493b = this;
+                    this.f19567b = this;
                 }
 
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                     switch (r4) {
                         case 0:
-                            this.f19493b.lambda$requestReferenceFromServer$11(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$11(str, str2, tLObject, tL_error);
                             return;
                         case 1:
-                            this.f19493b.lambda$requestReferenceFromServer$12(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$12(str, str2, tLObject, tL_error);
                             return;
                         case 2:
-                            this.f19493b.lambda$requestReferenceFromServer$13(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$13(str, str2, tLObject, tL_error);
                             return;
                         case 3:
-                            this.f19493b.lambda$requestReferenceFromServer$14(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$14(str, str2, tLObject, tL_error);
                             return;
                         case 4:
-                            this.f19493b.lambda$requestReferenceFromServer$15(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$15(str, str2, tLObject, tL_error);
                             return;
                         case 5:
-                            this.f19493b.lambda$requestReferenceFromServer$16(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$16(str, str2, tLObject, tL_error);
                             return;
                         case 6:
-                            this.f19493b.lambda$requestReferenceFromServer$17(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$17(str, str2, tLObject, tL_error);
                             return;
                         case 7:
-                            this.f19493b.lambda$requestReferenceFromServer$2(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$2(str, str2, tLObject, tL_error);
                             return;
                         case 8:
-                            this.f19493b.lambda$requestReferenceFromServer$22(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$22(str, str2, tLObject, tL_error);
                             return;
                         case 9:
-                            this.f19493b.lambda$requestReferenceFromServer$23(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$23(str, str2, tLObject, tL_error);
                             return;
                         case 10:
-                            this.f19493b.lambda$requestReferenceFromServer$24(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$24(str, str2, tLObject, tL_error);
                             return;
                         case 11:
-                            this.f19493b.lambda$requestReferenceFromServer$25(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$25(str, str2, tLObject, tL_error);
                             return;
                         case 12:
-                            this.f19493b.lambda$requestReferenceFromServer$26(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$26(str, str2, tLObject, tL_error);
                             return;
                         case 13:
-                            this.f19493b.lambda$requestReferenceFromServer$27(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$27(str, str2, tLObject, tL_error);
                             return;
                         case 14:
-                            this.f19493b.lambda$requestReferenceFromServer$28(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$28(str, str2, tLObject, tL_error);
                             return;
                         case 15:
-                            this.f19493b.lambda$requestReferenceFromServer$29(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$29(str, str2, tLObject, tL_error);
                             return;
                         case 16:
-                            this.f19493b.lambda$requestReferenceFromServer$3(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$3(str, str2, tLObject, tL_error);
                             return;
                         case 17:
-                            this.f19493b.lambda$requestReferenceFromServer$4(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$4(str, str2, tLObject, tL_error);
                             return;
                         case 18:
-                            this.f19493b.lambda$requestReferenceFromServer$5(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$5(str, str2, tLObject, tL_error);
                             return;
                         case 19:
-                            this.f19493b.lambda$requestReferenceFromServer$6(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$6(str, str2, tLObject, tL_error);
                             return;
                         case 20:
-                            this.f19493b.lambda$requestReferenceFromServer$7(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$7(str, str2, tLObject, tL_error);
                             return;
                         case 21:
-                            this.f19493b.lambda$requestReferenceFromServer$8(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$8(str, str2, tLObject, tL_error);
                             return;
                         case 22:
-                            this.f19493b.lambda$requestReferenceFromServer$9(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$9(str, str2, tLObject, tL_error);
                             return;
                         default:
-                            this.f19493b.lambda$requestReferenceFromServer$10(str, str2, tLObject, tL_error);
+                            this.f19567b.lambda$requestReferenceFromServer$10(str, str2, tLObject, tL_error);
                             return;
                     }
                 }

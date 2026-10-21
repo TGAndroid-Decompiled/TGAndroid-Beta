@@ -66,7 +66,7 @@ public final class d implements Utilities.Callback2 {
         ty tyVar = (ty) this.f25291b;
         ArrayList arrayList = (ArrayList) obj;
         u61 u61Var = (u61) obj2;
-        ArrayList arrayList2 = tyVar.f30709s;
+        ArrayList arrayList2 = tyVar.f30710s;
         int size = arrayList2.size();
         int i10 = 0;
         while (i10 < size) {
@@ -79,7 +79,7 @@ public final class d implements Utilities.Callback2 {
                 if (tL_messages_stickerSet.set.f20303id != tyVar.d) {
                     z10 = false;
                 }
-                int i11 = vy.f31890a;
+                int i11 = vy.f31891a;
                 h61 J = h61.J(vy.class);
                 long j10 = tL_messages_stickerSet.set.f20303id;
                 J.d = (int) ((j10 >>> 32) ^ j10);
@@ -121,7 +121,7 @@ public final class d implements Utilities.Callback2 {
                 if (tL_messages_stickerSet.set.f20303id != ozVar.d) {
                     z11 = false;
                 }
-                int i11 = vy.f31890a;
+                int i11 = vy.f31891a;
                 h61 J = h61.J(vy.class);
                 long j10 = tL_messages_stickerSet.set.f20303id;
                 J.d = (int) ((j10 >>> 32) ^ j10);
@@ -253,7 +253,7 @@ public final class d implements Utilities.Callback2 {
         ArrayList arrayList = (ArrayList) obj;
         u61 u61Var = (u61) obj2;
         ArrayList arrayList2 = uh0Var.e;
-        ArrayList arrayList3 = uh0Var.f30937n;
+        ArrayList arrayList3 = uh0Var.f30938n;
         int i10 = 0;
         if (uh0Var.d == null) {
             arrayList.add(h61.o(-1, 7));
@@ -262,7 +262,7 @@ public final class d implements Utilities.Callback2 {
             uh0Var.Q = false;
             return;
         }
-        boolean isEmpty = TextUtils.isEmpty(uh0Var.f30940w);
+        boolean isEmpty = TextUtils.isEmpty(uh0Var.f30941w);
         if (isEmpty) {
             if (!arrayList2.isEmpty()) {
                 arrayList.add(h61.q(LocaleController.getString(R.string.SearchPostsHeaderNews)));
@@ -288,7 +288,7 @@ public final class d implements Utilities.Callback2 {
                 arrayList.add(h61Var2);
             }
         }
-        if (uh0Var.v || ((uh0Var.M && !uh0Var.N) || (!isEmpty && !arrayList3.isEmpty() && !uh0Var.f30939s))) {
+        if (uh0Var.v || ((uh0Var.M && !uh0Var.N) || (!isEmpty && !arrayList3.isEmpty() && !uh0Var.f30940s))) {
             arrayList.add(h61.o(uh0Var.L * 3, 7));
             arrayList.add(h61.o((uh0Var.L * 3) + 1, 7));
             arrayList.add(h61.o((uh0Var.L * 3) + 2, 7));
@@ -298,19 +298,19 @@ public final class d implements Utilities.Callback2 {
 
     private final void i(Object obj, Object obj2) {
         zm0 zm0Var = (zm0) this.f25291b;
-        zm0Var.f32970c = (Bitmap) obj;
+        zm0Var.f32971c = (Bitmap) obj;
         Paint paint = new Paint(1);
         zm0Var.e = paint;
-        Bitmap bitmap = zm0Var.f32970c;
+        Bitmap bitmap = zm0Var.f32971c;
         Shader.TileMode tileMode = Shader.TileMode.CLAMP;
         BitmapShader bitmapShader = new BitmapShader(bitmap, tileMode, tileMode);
         zm0Var.d = bitmapShader;
         paint.setShader(bitmapShader);
-        zm0Var.f32971f = new Matrix();
+        zm0Var.f32972f = new Matrix();
         gh.b bVar = zm0Var.h;
         bVar.a((Bitmap) obj2);
-        hh.d.c(bVar, zm0Var.f32974s);
-        ViewGroup viewGroup = zm0Var.f32977y;
+        hh.d.c(bVar, zm0Var.f32975s);
+        ViewGroup viewGroup = zm0Var.f32978y;
         if (viewGroup != null) {
             viewGroup.invalidate();
         }

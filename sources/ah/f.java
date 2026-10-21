@@ -80,7 +80,7 @@ public final class f implements View.OnClickListener {
                 }
                 return;
             case 11:
-                int i16 = wq.f32223e0;
+                int i16 = wq.f32224e0;
                 return;
             case 12:
                 int i17 = fs.f26398s;
@@ -123,7 +123,7 @@ public final class f implements View.OnClickListener {
                 ug.m1.f0(0, null);
                 return;
             case 19:
-                ArrayList arrayList = ExternalActionActivity.f33130x;
+                ArrayList arrayList = ExternalActionActivity.f33131x;
                 return;
             case 20:
                 return;

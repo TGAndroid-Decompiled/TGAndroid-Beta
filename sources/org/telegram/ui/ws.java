@@ -17,43 +17,43 @@ public final class ws implements View.OnClickListener {
 
     @Override
     public final void onClick(View view) {
-        et etVar = this.f42949c.f35415a;
-        if (etVar.f36796w != null) {
+        et etVar = this.f42949c.f35416a;
+        if (etVar.f36797w != null) {
             int intValue = ((Integer) view.getTag()).intValue();
             ArrayList arrayList = this.f42947a;
             if (((Integer) arrayList.get(intValue)).intValue() != 0 && ((Integer) arrayList.get(intValue)).intValue() != 6) {
                 if (((Integer) arrayList.get(intValue)).intValue() == 1) {
-                    ct ctVar = etVar.f36786l;
+                    ct ctVar = etVar.f36787l;
                     if (ctVar != null) {
-                        ctVar.M(etVar.f36774a0, etVar.f36783i);
+                        ctVar.M(etVar.f36775a0, etVar.f36784i);
                     }
                 } else if (((Integer) arrayList.get(intValue)).intValue() == 2) {
-                    MediaDataController.getInstance(etVar.f36792r).addRecentSticker(2, etVar.f36776b0, etVar.W, (int) (System.currentTimeMillis() / 1000), this.f42948b);
+                    MediaDataController.getInstance(etVar.f36793r).addRecentSticker(2, etVar.f36777b0, etVar.W, (int) (System.currentTimeMillis() / 1000), this.f42948b);
                 } else if (((Integer) arrayList.get(intValue)).intValue() == 3) {
                     TLRPC.Document document = etVar.W;
-                    Object obj = etVar.f36776b0;
+                    Object obj = etVar.f36777b0;
                     String str = etVar.Y;
-                    ct ctVar2 = etVar.f36786l;
+                    ct ctVar2 = etVar.f36787l;
                     if (ctVar2 == null) {
                         return;
                     }
-                    org.telegram.ui.Components.f5.K(etVar.f36796w, ctVar2.a(), new a1.d(ctVar2, document, str, obj, 12));
+                    org.telegram.ui.Components.f5.K(etVar.f36797w, ctVar2.a(), new a1.d(ctVar2, document, str, obj, 12));
                 } else if (((Integer) arrayList.get(intValue)).intValue() == 4) {
-                    MediaDataController.getInstance(etVar.f36792r).addRecentSticker(0, etVar.f36776b0, etVar.W, (int) (System.currentTimeMillis() / 1000), true);
+                    MediaDataController.getInstance(etVar.f36793r).addRecentSticker(0, etVar.f36777b0, etVar.W, (int) (System.currentTimeMillis() / 1000), true);
                 } else if (((Integer) arrayList.get(intValue)).intValue() == 5) {
-                    etVar.f36786l.i(etVar.X);
+                    etVar.f36787l.i(etVar.X);
                 } else if (((Integer) arrayList.get(intValue)).intValue() == 7) {
-                    etVar.f36786l.n(etVar.W);
+                    etVar.f36787l.n(etVar.W);
                 } else if (((Integer) arrayList.get(intValue)).intValue() == 8) {
-                    etVar.f36786l.F(etVar.W);
+                    etVar.f36787l.F(etVar.W);
                 }
             } else {
-                ct ctVar3 = etVar.f36786l;
+                ct ctVar3 = etVar.f36787l;
                 if (ctVar3 != null) {
                     TLRPC.Document document2 = etVar.W;
                     String str2 = etVar.Y;
                     boolean z10 = true;
-                    Object obj2 = etVar.f36776b0;
+                    Object obj2 = etVar.f36777b0;
                     if (((Integer) arrayList.get(intValue)).intValue() != 0) {
                         z10 = false;
                     }

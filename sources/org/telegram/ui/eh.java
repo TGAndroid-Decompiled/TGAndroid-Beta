@@ -15,14 +15,14 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_aicompose;
 import org.telegram.ui.Components.ChatActivityEnterView;
 public final class eh implements Runnable {
-    public final int f36656a;
-    public final Object f36657b;
-    public final Object f36658c;
+    public final int f36657a;
+    public final Object f36658b;
+    public final Object f36659c;
 
     public eh(int i10, Object obj, Object obj2) {
-        this.f36656a = i10;
-        this.f36657b = obj;
-        this.f36658c = obj2;
+        this.f36657a = i10;
+        this.f36658b = obj;
+        this.f36659c = obj2;
     }
 
     @Override
@@ -33,11 +33,11 @@ public final class eh implements Runnable {
         String str;
         String formatString;
         TLRPC.Chat chat;
-        int i10 = this.f36656a;
+        int i10 = this.f36657a;
         MessageObject messageObject = null;
         boolean z10 = false;
-        Object obj = this.f36658c;
-        Object obj2 = this.f36657b;
+        Object obj = this.f36659c;
+        Object obj2 = this.f36658b;
         switch (i10) {
             case 0:
                 ((qn) obj2).pa((TLRPC.Chat) obj);
@@ -92,7 +92,7 @@ public final class eh implements Runnable {
                     ei.x3 x3Var = qnVar2.K0;
                     x3Var.f10080l0 = new ke(qnVar2, 26);
                     x3Var.u();
-                    org.telegram.ui.Components.s40.f30196w.b();
+                    org.telegram.ui.Components.s40.f30197w.b();
                     return;
                 }
                 return;
@@ -121,7 +121,7 @@ public final class eh implements Runnable {
                 return;
             case 9:
                 ei.x3 x3Var2 = (ei.x3) obj;
-                qn qnVar5 = ((cn) obj2).f36010a;
+                qn qnVar5 = ((cn) obj2).f36011a;
                 qnVar5.X0.removeView(x3Var2);
                 if (x3Var2 == qnVar5.A1) {
                     qnVar5.A1 = null;
@@ -130,7 +130,7 @@ public final class eh implements Runnable {
                 return;
             case 10:
                 Long l4 = (Long) obj;
-                qn qnVar6 = ((wm) obj2).f42898d1.f36010a;
+                qn qnVar6 = ((wm) obj2).f42898d1.f36011a;
                 if (l4.longValue() < 0 && (chat = qnVar6.getMessagesController().getChat(Long.valueOf(-l4.longValue()))) != null) {
                     str = chat.title;
                 } else {
@@ -189,20 +189,20 @@ public final class eh implements Runnable {
                         }
                     }
                 }
-                ipVar.f38076w = false;
-                ipVar.f38077x = true;
+                ipVar.f38077w = false;
+                ipVar.f38078x = true;
                 ipVar.b0();
                 return;
             case 16:
-                ((ep) obj2).f36740x.d.P = false;
+                ((ep) obj2).f36741x.d.P = false;
                 ((org.telegram.ui.Components.c90) obj).run();
                 return;
             case 17:
-                ((ep) obj2).f36740x.d.O = false;
+                ((ep) obj2).f36741x.d.O = false;
                 ((org.telegram.ui.Components.d90) obj).run();
                 return;
             case 18:
-                ip ipVar2 = ((ep) obj2).f36740x.d;
+                ip ipVar2 = ((ep) obj2).f36741x.d;
                 ipVar2.O = false;
                 ipVar2.P = false;
                 ((Runnable) obj).run();
@@ -262,13 +262,13 @@ public final class eh implements Runnable {
             case 26:
                 org.telegram.ui.Components.qc qcVar = (org.telegram.ui.Components.qc) obj2;
                 CharSequence charSequence = (CharSequence) obj;
-                qcVar.f29534n = true;
+                qcVar.f29535n = true;
                 org.telegram.ui.Components.ub ubVar = qcVar.e;
                 if (ubVar instanceof org.telegram.ui.Components.vb) {
                     org.telegram.ui.Components.wb wbVar = (org.telegram.ui.Components.wb) ((org.telegram.ui.Components.vb) ubVar);
-                    wbVar.f32624b.setText(charSequence);
+                    wbVar.f32625b.setText(charSequence);
                     AndroidUtilities.updateViewShow(wbVar.d, false, false, true);
-                    AndroidUtilities.updateViewShow(wbVar.f32624b, true, false, true);
+                    AndroidUtilities.updateViewShow(wbVar.f32625b, true, false, true);
                 }
                 qcVar.i(true);
                 return;

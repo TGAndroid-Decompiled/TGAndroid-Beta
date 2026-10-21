@@ -11,17 +11,17 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 public final class im0 implements RequestDelegate {
-    public final boolean f38027a;
-    public final byte[] f38028b;
-    public final TL_account.getPasswordSettings f38029c;
+    public final boolean f38028a;
+    public final byte[] f38029b;
+    public final TL_account.getPasswordSettings f38030c;
     public final String d;
     public final vm0 e;
 
     public im0(vm0 vm0Var, boolean z10, byte[] bArr, TL_account.getPasswordSettings getpasswordsettings, String str) {
         this.e = vm0Var;
-        this.f38027a = z10;
-        this.f38028b = bArr;
-        this.f38029c = getpasswordsettings;
+        this.f38028a = z10;
+        this.f38029b = bArr;
+        this.f38030c = getpasswordsettings;
         this.d = str;
     }
 
@@ -34,9 +34,9 @@ public final class im0 implements RequestDelegate {
         if (vm0Var.Y == null) {
             return;
         }
-        if (!this.f38027a) {
+        if (!this.f38028a) {
             i11 = ((org.telegram.ui.ActionBar.n2) vm0Var).currentAccount;
-            UserConfig.getInstance(i11).savePassword(this.f38028b, vm0Var.f42293e1);
+            UserConfig.getInstance(i11).savePassword(this.f38029b, vm0Var.f42293e1);
         }
         int i12 = 0;
         AndroidUtilities.hideKeyboard(vm0Var.Y[0]);
@@ -71,7 +71,7 @@ public final class im0 implements RequestDelegate {
         TL_account.Password password = vm0Var.J;
         TLRPC.PasswordKdfAlgo passwordKdfAlgo = password.current_algo;
         if (passwordKdfAlgo instanceof TLRPC.TL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow) {
-            updatepasswordsettings.password = SRPHelper.startCheck(this.f38028b, password.srp_id, password.srp_B, (TLRPC.TL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow) passwordKdfAlgo);
+            updatepasswordsettings.password = SRPHelper.startCheck(this.f38029b, password.srp_id, password.srp_B, (TLRPC.TL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow) passwordKdfAlgo);
         }
         TL_account.passwordInputSettings passwordinputsettings = new TL_account.passwordInputSettings();
         updatepasswordsettings.new_settings = passwordinputsettings;
@@ -83,7 +83,7 @@ public final class im0 implements RequestDelegate {
         passwordinputsettings2.new_secure_settings.secure_secret_id = 0L;
         passwordinputsettings2.flags |= 4;
         i10 = ((org.telegram.ui.ActionBar.n2) vm0Var).currentAccount;
-        ConnectionsManager.getInstance(i10).sendRequest(this.f38029c, new gm0(this, 1));
+        ConnectionsManager.getInstance(i10).sendRequest(this.f38030c, new gm0(this, 1));
     }
 
     @Override
@@ -92,11 +92,11 @@ public final class im0 implements RequestDelegate {
         if (tL_error != null && "SRP_ID_INVALID".equals(tL_error.text)) {
             TL_account.getPassword getpassword = new TL_account.getPassword();
             i10 = ((org.telegram.ui.ActionBar.n2) this.e).currentAccount;
-            ConnectionsManager.getInstance(i10).sendRequest(getpassword, new ei.o3(9, this, this.f38027a), 8);
+            ConnectionsManager.getInstance(i10).sendRequest(getpassword, new ei.o3(9, this, this.f38028a), 8);
         } else if (tL_error == null) {
-            Utilities.globalQueue.postRunnable(new ai.x9((Object) this, tLObject, (Object) this.d, this.f38027a, 24));
+            Utilities.globalQueue.postRunnable(new ai.x9((Object) this, tLObject, (Object) this.d, this.f38028a, 24));
         } else {
-            AndroidUtilities.runOnUIThread(new x70(this, this.f38027a, tL_error, 4));
+            AndroidUtilities.runOnUIThread(new x70(this, this.f38028a, tL_error, 4));
         }
     }
 }

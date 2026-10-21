@@ -34,7 +34,7 @@ public final class rs0 extends wz {
         int i12;
         s4.g0 adapter = this.Y.h.getAdapter();
         uv0 uv0Var = this.Z;
-        jv0[] jv0VarArr = uv0Var.f31066t1;
+        jv0[] jv0VarArr = uv0Var.f31067t1;
         if (adapter == uv0Var.O && !jv0VarArr[5].f27641a.isEmpty()) {
             document = ((MessageObject) jv0VarArr[5].f27641a.get(i10)).getDocument();
         } else {

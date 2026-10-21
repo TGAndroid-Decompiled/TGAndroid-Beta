@@ -78,12 +78,12 @@ public final class ed extends g61 {
             if (starsSubscription.photo != null) {
                 d70 d70Var = new d70(textView3, 14.0f, i12);
                 d70Var.a(4.0f);
-                d70Var.f36282f = false;
+                d70Var.f36283f = false;
                 SpannableString spannableString = new SpannableString("x");
                 j5Var = j5Var2;
                 z12 = z11;
                 spannableString.setSpan(d70Var, 0, 1, 33);
-                d70Var.f36280b.setImage(ImageLocation.getForWebFile(WebFile.createWithWebDocument(starsSubscription.photo)), "14_14", null, null, 0, 0);
+                d70Var.f36281b.setImage(ImageLocation.getForWebFile(WebFile.createWithWebDocument(starsSubscription.photo)), "14_14", null, null, 0, 0);
                 spannableStringBuilder.append((CharSequence) spannableString).append((CharSequence) " ");
             } else {
                 j5Var = j5Var2;

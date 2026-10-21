@@ -31,7 +31,7 @@ public final class w1 extends fr0 {
                 long j10 = hVar.j(0);
                 if (j10 == UserConfig.getInstance(this.currentAccount).clientUserId) {
                     qc G = a02.G(R.raw.saved_messages, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.GiftCollectionSharedToSavedMessages, new Object[0])));
-                    G.f29538r = false;
+                    G.f29539r = false;
                     G.j();
                 } else if (j10 < 0) {
                     TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j10));
@@ -43,16 +43,16 @@ public final class w1 extends fr0 {
                         str = chat.title;
                     }
                     qc G2 = a02.G(i11, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(i12, str)));
-                    G2.f29538r = false;
+                    G2.f29539r = false;
                     G2.j();
                 } else {
                     qc G3 = a02.G(R.raw.forward, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.GiftCollectionSharedTo, MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j10)).first_name)));
-                    G3.f29538r = false;
+                    G3.f29539r = false;
                     G3.j();
                 }
             } else {
                 qc Q = a02.Q(R.raw.forward, 36, AndroidUtilities.replaceTags(LocaleController.formatPluralString("GiftCollectionSharedToManyChats", hVar.m(), Integer.valueOf(hVar.m()))));
-                Q.f29538r = false;
+                Q.f29539r = false;
                 Q.j();
             }
             try {

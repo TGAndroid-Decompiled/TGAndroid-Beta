@@ -43,7 +43,7 @@ public final class n90 implements ViewTreeObserver.OnGlobalLayoutListener {
             default:
                 kc1 kc1Var = (kc1) obj;
                 kc1Var.P = SystemClock.elapsedRealtime() + 1500;
-                kc1Var.f38549k0.invalidate();
+                kc1Var.f38550k0.invalidate();
                 return;
         }
     }

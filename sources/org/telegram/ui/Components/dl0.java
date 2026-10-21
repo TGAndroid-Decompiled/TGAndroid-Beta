@@ -242,7 +242,7 @@ public class dl0 extends FrameLayout implements NotificationCenter.NotificationC
         if (bVar != null) {
             eh.e eVar = dl0Var.f25524a1;
             org.telegram.ui.o41 o41Var = t0Var.f877m.f43057f0;
-            o41Var.f39121x = true;
+            o41Var.f39122x = true;
             o41Var.setBackground(null);
             o41Var.d();
             o41Var.invalidate();

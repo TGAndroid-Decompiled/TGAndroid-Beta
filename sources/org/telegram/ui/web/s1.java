@@ -55,7 +55,7 @@ public final class s1 {
         float i10 = p6Var.i();
         p6 p6Var2 = this.f42777b;
         float i11 = p6Var2.i();
-        TextPaint textPaint = p6Var2.f29223a;
+        TextPaint textPaint = p6Var2.f29224a;
         float f12 = i11 * i10;
         canvas.save();
         float f13 = 0.82f * f10;

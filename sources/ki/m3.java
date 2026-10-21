@@ -45,7 +45,7 @@ public final class m3 extends s4.r0 {
                 return;
             case 5:
                 av avVar = (av) this.f15390c;
-                zu[] zuVarArr = avVar.f35430f;
+                zu[] zuVarArr = avVar.f35431f;
                 ((s4.r0) this.f15389b).a(recyclerView, i10);
                 if (i10 != 1) {
                     int i11 = (int) (-av.h0(avVar).getTranslationY());
@@ -128,7 +128,7 @@ public final class m3 extends s4.r0 {
                 }
                 return;
             case 1:
-                c71 c71Var = ((ce) this.f15390c).f35945a;
+                c71 c71Var = ((ce) this.f15390c).f35946a;
                 if (c71Var.canScrollVertically(1)) {
                     for (int i15 = 0; i15 < c71Var.getChildCount(); i15++) {
                         if (!(c71Var.getChildAt(i15) instanceof b10)) {
@@ -183,11 +183,11 @@ public final class m3 extends s4.r0 {
             case 3:
                 cy cyVar = (cy) this.f15389b;
                 uh0 uh0Var = (uh0) this.f15390c;
-                c71 c71Var2 = uh0Var.f30935c;
-                if (TextUtils.isEmpty(uh0Var.f30940w)) {
+                c71 c71Var2 = uh0Var.f30936c;
+                if (TextUtils.isEmpty(uh0Var.f30941w)) {
                     arrayList = uh0Var.e;
                 } else {
-                    arrayList = uh0Var.f30937n;
+                    arrayList = uh0Var.f30938n;
                 }
                 if (!arrayList.isEmpty()) {
                     if (c71Var2.canScrollVertically(1)) {
@@ -212,7 +212,7 @@ public final class m3 extends s4.r0 {
             case 5:
                 ((s4.r0) this.f15389b).b(recyclerView, i10, i11);
                 av avVar = (av) this.f15390c;
-                zu zuVar = avVar.f35430f[0];
+                zu zuVar = avVar.f35431f[0];
                 if (recyclerView == zuVar.d || recyclerView == zuVar.e) {
                     float translationY = av.i0(avVar).getTranslationY();
                     float f7 = translationY - i11;
@@ -230,7 +230,7 @@ public final class m3 extends s4.r0 {
                 return;
             case 6:
                 ih0 ih0Var = (ih0) this.f15390c;
-                if (ih0Var.f37979b0 && !ih0Var.W) {
+                if (ih0Var.f37980b0 && !ih0Var.W) {
                     if (ih0Var.X - ((hg.a0) this.f15389b).N0() < 10) {
                         ih0Var.d0(true);
                         return;

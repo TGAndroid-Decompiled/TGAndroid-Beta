@@ -21,7 +21,7 @@ public final class r1 implements ri {
     @Override
     public final void b0(int i10, boolean z10, boolean z11, int i11, int i12, long j10, boolean z12, boolean z13, long j11) {
         ti tiVar = this.f15482a;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = tiVar.f30557j0;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = tiVar.f30558j0;
         d2 d2Var = this.f15483b;
         if (i10 == 7 || i10 == 8) {
             HashMap<Object, Object> selectedPhotos = chatAttachAlertPhotoLayout.getSelectedPhotos();

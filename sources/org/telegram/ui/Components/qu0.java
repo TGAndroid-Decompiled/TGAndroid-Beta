@@ -13,25 +13,25 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class qu0 extends im0 {
-    public final Context f29719c;
+    public final Context f29720c;
     public ho0 e;
-    public int f29721n;
-    public final int f29722r;
-    public int f29723s;
+    public int f29722n;
+    public final int f29723r;
+    public int f29724s;
     public final uv0 v;
     public ArrayList d = new ArrayList();
-    public ArrayList f29720f = new ArrayList();
+    public ArrayList f29721f = new ArrayList();
     public int h = 0;
 
     public qu0(uv0 uv0Var, Context context, int i10) {
         this.v = uv0Var;
-        this.f29719c = context;
-        this.f29722r = i10;
+        this.f29720c = context;
+        this.f29723r = i10;
     }
 
     @Override
     public final boolean D(s4.b1 b1Var) {
-        if (this.f29720f.size() + this.d.size() != 0) {
+        if (this.f29721f.size() + this.d.size() != 0) {
             return true;
         }
         return false;
@@ -41,22 +41,22 @@ public final class qu0 extends im0 {
         if (i10 < this.d.size()) {
             return (MessageObject) this.d.get(i10);
         }
-        return (MessageObject) this.f29720f.get(i10 - this.d.size());
+        return (MessageObject) this.f29721f.get(i10 - this.d.size());
     }
 
     public final void F(final int i10, final String str, long j10, long j11) {
-        org.telegram.ui.ActionBar.n2 n2Var = this.v.f31070v1;
+        org.telegram.ui.ActionBar.n2 n2Var = this.v.f31071v1;
         if (!DialogObject.isEncryptedDialog(j10)) {
             if (this.h != 0) {
                 n2Var.getConnectionsManager().cancelRequest(this.h, true);
                 this.h = 0;
-                this.f29723s--;
+                this.f29724s--;
             }
             if (str != null && str.length() != 0) {
                 TLRPC.TL_messages_search tL_messages_search = new TLRPC.TL_messages_search();
                 tL_messages_search.limit = 50;
                 tL_messages_search.offset_id = i10;
-                int i11 = this.f29722r;
+                int i11 = this.f29723r;
                 if (i11 == 1) {
                     tL_messages_search.filter = new TLRPC.TL_inputMessagesFilterDocument();
                 } else if (i11 == 3) {
@@ -78,9 +78,9 @@ public final class qu0 extends im0 {
                 if (tL_messages_search.peer == null) {
                     return;
                 }
-                final int i12 = this.f29721n + 1;
-                this.f29721n = i12;
-                this.f29723s++;
+                final int i12 = this.f29722n + 1;
+                this.f29722n = i12;
+                this.f29724s++;
                 this.h = n2Var.getConnectionsManager().sendRequest(tL_messages_search, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
@@ -92,7 +92,7 @@ public final class qu0 extends im0 {
                                 TLRPC.Message message = messages_messages.messages.get(i13);
                                 int i14 = i10;
                                 if (i14 == 0 || message.f20297id <= i14) {
-                                    arrayList.add(new MessageObject(qu0Var.v.f31070v1.getCurrentAccount(), message, false, true));
+                                    arrayList.add(new MessageObject(qu0Var.v.f31071v1.getCurrentAccount(), message, false, true));
                                 }
                             }
                         }
@@ -102,8 +102,8 @@ public final class qu0 extends im0 {
                 n2Var.getConnectionsManager().bindRequestToGuid(this.h, n2Var.getClassGuid());
                 return;
             }
-            this.f29720f.clear();
-            this.f29721n = 0;
+            this.f29721f.clear();
+            this.f29722n = 0;
             l();
         }
     }
@@ -114,22 +114,22 @@ public final class qu0 extends im0 {
             AndroidUtilities.cancelRunOnUIThread(ho0Var);
             this.e = null;
         }
-        if (!this.d.isEmpty() || !this.f29720f.isEmpty()) {
+        if (!this.d.isEmpty() || !this.f29721f.isEmpty()) {
             this.d.clear();
-            this.f29720f.clear();
+            this.f29721f.clear();
             l();
         }
         boolean isEmpty = TextUtils.isEmpty(str);
         int i10 = 0;
         uv0 uv0Var = this.v;
         if (isEmpty) {
-            if (!this.d.isEmpty() || !this.f29720f.isEmpty() || this.f29723s != 0) {
+            if (!this.d.isEmpty() || !this.f29721f.isEmpty() || this.f29724s != 0) {
                 this.d.clear();
-                this.f29720f.clear();
+                this.f29721f.clear();
                 if (this.h != 0) {
-                    uv0Var.f31070v1.getConnectionsManager().cancelRequest(this.h, true);
+                    uv0Var.f31071v1.getConnectionsManager().cancelRequest(this.h, true);
                     this.h = 0;
-                    this.f29723s--;
+                    this.f29724s--;
                     return;
                 }
                 return;
@@ -137,11 +137,11 @@ public final class qu0 extends im0 {
             return;
         }
         while (true) {
-            nu0[] nu0VarArr = uv0Var.f31046k0;
+            nu0[] nu0VarArr = uv0Var.f31047k0;
             if (i10 < nu0VarArr.length) {
                 nu0 nu0Var = nu0VarArr[i10];
-                if (nu0Var.F == this.f29722r) {
-                    nu0Var.f28882w.e(true, z10);
+                if (nu0Var.F == this.f29723r) {
+                    nu0Var.f28883w.e(true, z10);
                 }
                 i10++;
             } else {
@@ -156,7 +156,7 @@ public final class qu0 extends im0 {
     @Override
     public final int h() {
         int size = this.d.size();
-        int size2 = this.f29720f.size();
+        int size2 = this.f29721f.size();
         if (size2 != 0) {
             return size + size2;
         }
@@ -178,10 +178,10 @@ public final class qu0 extends im0 {
         char c12;
         View view = b1Var.f45917a;
         uv0 uv0Var = this.v;
-        long j10 = uv0Var.f31045j1;
+        long j10 = uv0Var.f31046j1;
         SparseArray[] sparseArrayArr = uv0Var.Z0;
         boolean z13 = false;
-        int i11 = this.f29722r;
+        int i11 = this.f29723r;
         if (i11 == 1) {
             if (view instanceof org.telegram.ui.Cells.i7) {
                 org.telegram.ui.Cells.i7 i7Var = (org.telegram.ui.Cells.i7) view;
@@ -201,10 +201,10 @@ public final class qu0 extends im0 {
                     if (sparseArrayArr[c12].indexOfKey(E.getId()) >= 0) {
                         z13 = true;
                     }
-                    i7Var.b(z13, !uv0Var.f31025b1);
+                    i7Var.b(z13, !uv0Var.f31026b1);
                     return;
                 }
-                i7Var.b(false, !uv0Var.f31025b1);
+                i7Var.b(false, !uv0Var.f31026b1);
             }
         } else if (i11 == 3) {
             if (view instanceof org.telegram.ui.Cells.m7) {
@@ -228,10 +228,10 @@ public final class qu0 extends im0 {
                     if (sparseArrayArr[c11].indexOfKey(E2.getId()) >= 0) {
                         z13 = true;
                     }
-                    m7Var.f(z13, !uv0Var.f31025b1);
+                    m7Var.f(z13, !uv0Var.f31026b1);
                     return;
                 }
-                m7Var.f(false, !uv0Var.f31025b1);
+                m7Var.f(false, !uv0Var.f31026b1);
             }
         } else if (i11 == 4 && (view instanceof org.telegram.ui.Cells.h7)) {
             org.telegram.ui.Cells.h7 h7Var = (org.telegram.ui.Cells.h7) view;
@@ -251,10 +251,10 @@ public final class qu0 extends im0 {
                 if (sparseArrayArr[c10].indexOfKey(E3.getId()) >= 0) {
                     z13 = true;
                 }
-                h7Var.e(z13, !uv0Var.f31025b1);
+                h7Var.e(z13, !uv0Var.f31026b1);
                 return;
             }
-            h7Var.e(false, !uv0Var.f31025b1);
+            h7Var.e(false, !uv0Var.f31026b1);
         }
     }
 
@@ -263,8 +263,8 @@ public final class qu0 extends im0 {
         View view;
         uv0 uv0Var = this.v;
         org.telegram.ui.ActionBar.d6 d6Var = uv0Var.F1;
-        Context context = this.f29719c;
-        int i11 = this.f29722r;
+        Context context = this.f29720c;
+        int i11 = this.f29723r;
         if (i11 == 1) {
             view = new org.telegram.ui.Cells.i7(context, 0, d6Var);
         } else if (i11 == 4) {

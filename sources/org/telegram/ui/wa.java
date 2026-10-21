@@ -31,15 +31,15 @@ public final class wa implements ch.a {
             case 1:
                 ip0 ip0Var = (ip0) this.f42523b;
                 m0 m0Var = ip0Var.d;
-                to0 to0Var = ip0Var.h.f36020b;
+                to0 to0Var = ip0Var.h.f36021b;
                 hh.d.a(to0Var, canvas, rectF, to0Var, m0Var);
-                to0 to0Var2 = ip0Var.f38094n.f36020b;
+                to0 to0Var2 = ip0Var.f38095n.f36021b;
                 hh.d.a(to0Var2, canvas, rectF, to0Var2, m0Var);
                 return;
             default:
                 PremiumPreviewFragment premiumPreviewFragment = (PremiumPreviewFragment) this.f42523b;
-                org.telegram.ui.Components.jm0 jm0Var = premiumPreviewFragment.f33497a;
-                hh.d.a(jm0Var, canvas, rectF, jm0Var, premiumPreviewFragment.f33503d0);
+                org.telegram.ui.Components.jm0 jm0Var = premiumPreviewFragment.f33498a;
+                hh.d.a(jm0Var, canvas, rectF, jm0Var, premiumPreviewFragment.f33504d0);
                 return;
         }
     }

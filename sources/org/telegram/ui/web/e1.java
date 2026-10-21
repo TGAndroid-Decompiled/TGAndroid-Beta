@@ -39,10 +39,10 @@ public final class e1 extends g5 {
         f1Var.f42634n = null;
         f1Var.h = false;
         AndroidUtilities.cancelRunOnUIThread(this.f42626r);
-        w61 w61Var = f1Var.f32355a;
+        w61 w61Var = f1Var.f32356a;
         if (w61Var != null) {
             w61Var.W2.N(true);
-            f1Var.f32355a.V2.h1(0, 0);
+            f1Var.f32356a.V2.h1(0, 0);
         }
         wh.n nVar = f1Var.f42637w.d;
         if (TextUtils.isEmpty(f1Var.f42634n)) {
@@ -73,11 +73,11 @@ public final class e1 extends g5 {
             }
             nVar.setText(LocaleController.getString(i10));
         }
-        w61 w61Var = f1Var.f32355a;
+        w61 w61Var = f1Var.f32356a;
         if (w61Var != null) {
             w61Var.W2.N(true);
             if (z10 != (!TextUtils.isEmpty(obj))) {
-                f1Var.f32355a.V2.h1(0, 0);
+                f1Var.f32356a.V2.h1(0, 0);
             }
         }
     }

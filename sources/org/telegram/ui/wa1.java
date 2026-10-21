@@ -41,7 +41,7 @@ public final class wa1 extends org.telegram.ui.Components.im0 {
     @Override
     public final void l() {
         org.telegram.ui.ActionBar.g6 B0;
-        if (this.f42526f.f33904f == 1) {
+        if (this.f42526f.f33905f == 1) {
             B0 = org.telegram.ui.ActionBar.h6.J;
         } else {
             B0 = org.telegram.ui.ActionBar.h6.B0();
@@ -61,13 +61,13 @@ public final class wa1 extends org.telegram.ui.Components.im0 {
             }
             ma1 ma1Var = (ma1) view;
             org.telegram.ui.ActionBar.g6 g6Var = this.d;
-            int i11 = ma1.f39167c;
+            int i11 = ma1.f39168c;
             ma1Var.getClass();
             if (g6Var.W >= 8) {
-                ma1Var.f39169b = new int[]{g6Var.l(6), g6Var.l(4), g6Var.l(7), g6Var.l(2), g6Var.l(0), g6Var.l(5), g6Var.l(3)};
+                ma1Var.f39170b = new int[]{g6Var.l(6), g6Var.l(4), g6Var.l(7), g6Var.l(2), g6Var.l(0), g6Var.l(5), g6Var.l(3)};
                 return;
             } else {
-                ma1Var.f39169b = new int[7];
+                ma1Var.f39170b = new int[7];
                 return;
             }
         }

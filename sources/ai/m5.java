@@ -81,7 +81,7 @@ public final class m5 extends im0 {
             case 4:
                 return ((qh0) obj).f40579c.size();
             case 5:
-                int[][] iArr = WallpapersListActivity.f35206k0;
+                int[][] iArr = WallpapersListActivity.f35207k0;
                 return 12;
             default:
                 return ((sg.j) obj).d.size();
@@ -110,8 +110,8 @@ public final class m5 extends im0 {
                 int[] iArr = ((l7) this.d).S0;
                 org.telegram.ui.Components.ta taVar = (org.telegram.ui.Components.ta) b1Var.f45917a;
                 int i11 = iArr[(iArr.length - 1) - i10];
-                if (taVar.f30482a != i11) {
-                    taVar.f30482a = i11;
+                if (taVar.f30483a != i11) {
+                    taVar.f30483a = i11;
                     taVar.requestLayout();
                     return;
                 }
@@ -160,7 +160,7 @@ public final class m5 extends im0 {
                     boolean z12 = eo0Var4.f764u;
                     org.telegram.ui.Components.p6 p6Var = eo0Var4.G;
                     if (z12) {
-                        p6Var.t(Emoji.replaceEmoji(do0Var.f25577c, p6Var.f29223a.getFontMetricsInt(), false), !z10, true);
+                        p6Var.t(Emoji.replaceEmoji(do0Var.f25577c, p6Var.f29224a.getFontMetricsInt(), false), !z10, true);
                     } else if (p6Var != null) {
                         p6Var.t("", !z10, true);
                     }
@@ -228,7 +228,7 @@ public final class m5 extends im0 {
         switch (this.f1816c) {
             case 0:
                 ?? view2 = new View(((l7) this.d).getContext());
-                view2.f30482a = 0;
+                view2.f30483a = 0;
                 return new s4.b1(view2);
             case 1:
                 hg.n0 n0Var = new hg.n0(viewGroup.getContext(), ((hg.q0) this.d).f27579n2);

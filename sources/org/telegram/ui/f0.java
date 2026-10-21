@@ -3,29 +3,29 @@ package org.telegram.ui;
 import android.view.View;
 import android.widget.PopupWindow;
 public final class f0 implements PopupWindow.OnDismissListener {
-    public final int f36844a;
-    public final Object f36845b;
+    public final int f36845a;
+    public final Object f36846b;
 
     public f0(Object obj, int i10) {
-        this.f36844a = i10;
-        this.f36845b = obj;
+        this.f36845a = i10;
+        this.f36846b = obj;
     }
 
     @Override
     public final void onDismiss() {
-        switch (this.f36844a) {
+        switch (this.f36845a) {
             case 0:
-                l4 l4Var = (l4) this.f36845b;
-                View view = l4Var.f35524f;
+                l4 l4Var = (l4) this.f36846b;
+                View view = l4Var.f35525f;
                 if (view != null) {
                     l4Var.d = null;
                     view.invalidate();
-                    l4Var.f35524f = null;
+                    l4Var.f35525f = null;
                     return;
                 }
                 return;
             case 1:
-                qn qnVar = (qn) this.f36845b;
+                qn qnVar = (qn) this.f36846b;
                 qnVar.Q8 = null;
                 qnVar.T8 = null;
                 qnVar.S8 = null;
@@ -38,9 +38,9 @@ public final class f0 implements PopupWindow.OnDismissListener {
                 }
                 return;
             case 2:
-                gj gjVar = (gj) this.f36845b;
-                gjVar.f37338b = null;
-                qn qnVar2 = gjVar.f37344w;
+                gj gjVar = (gj) this.f36846b;
+                gjVar.f37339b = null;
+                qn qnVar2 = gjVar.f37345w;
                 qnVar2.Q8 = null;
                 qnVar2.T8 = null;
                 qnVar2.S8 = null;
@@ -57,7 +57,7 @@ public final class f0 implements PopupWindow.OnDismissListener {
                 }
                 return;
             default:
-                ((ProfileActivity) this.f36845b).H3(0.0f);
+                ((ProfileActivity) this.f36846b).H3(0.0f);
                 return;
         }
     }

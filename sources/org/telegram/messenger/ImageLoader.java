@@ -544,7 +544,7 @@ public class ImageLoader {
         @Override
         public void onPostExecute(String str) {
             if (str != null) {
-                ImageLoader.this.imageLoadQueue.postRunnable(new h3(2, this, str));
+                ImageLoader.this.imageLoadQueue.postRunnable(new i3(2, this, str));
             } else if (this.canRetry) {
                 ImageLoader.this.artworkLoadError(this.cacheImage.url);
             }
@@ -948,7 +948,7 @@ public class ImageLoader {
                 canvas = new Canvas(createBitmap);
             }
             vj0Var.b();
-            Bitmap createBitmap2 = Bitmap.createBitmap(vj0Var.f31265b, vj0Var.f31267c, Bitmap.Config.ARGB_8888);
+            Bitmap createBitmap2 = Bitmap.createBitmap(vj0Var.f31266b, vj0Var.f31268c, Bitmap.Config.ARGB_8888);
             if (z10) {
                 i12 = vj0Var.e[0] - 1;
             } else {
@@ -976,7 +976,7 @@ public class ImageLoader {
         }
 
         private void onPostExecute(Drawable drawable) {
-            AndroidUtilities.runOnUIThread(new h3(3, this, drawable));
+            AndroidUtilities.runOnUIThread(new i3(3, this, drawable));
         }
 
         public void cancel() {
@@ -1231,7 +1231,7 @@ public class ImageLoader {
             if (thumbGenerateInfo == null) {
                 return;
             }
-            ImageLoader.this.imageLoadQueue.postRunnable(new h3(4, this, FileLoader.getAttachFileName(thumbGenerateInfo.parentDocument)));
+            ImageLoader.this.imageLoadQueue.postRunnable(new i3(4, this, FileLoader.getAttachFileName(thumbGenerateInfo.parentDocument)));
         }
 
         @Override
@@ -2263,9 +2263,9 @@ public class ImageLoader {
             if (i10 == 1) {
                 if (httpFileTask.canRetry) {
                     imageLoader = this;
-                    h3 h3Var = new h3(1, this, new HttpFileTask(httpFileTask.url, httpFileTask.tempFile, httpFileTask.ext, httpFileTask.currentAccount));
-                    imageLoader.retryHttpsTasks.put(httpFileTask.url, h3Var);
-                    AndroidUtilities.runOnUIThread(h3Var, 1000L);
+                    i3 i3Var = new i3(1, this, new HttpFileTask(httpFileTask.url, httpFileTask.tempFile, httpFileTask.ext, httpFileTask.currentAccount));
+                    imageLoader.retryHttpsTasks.put(httpFileTask.url, i3Var);
+                    AndroidUtilities.runOnUIThread(i3Var, 1000L);
                 } else {
                     imageLoader = this;
                     imageLoader.httpFileLoadTasksByKeys.remove(httpFileTask.url);
@@ -2585,7 +2585,7 @@ public class ImageLoader {
             return Math.max(e6Var.getIntrinsicHeight() * e6Var.getIntrinsicWidth(), e6Var.f25755j0 * e6Var.f25754i0) * 12;
         } else if (bitmapDrawable instanceof vj0) {
             vj0 vj0Var = (vj0) bitmapDrawable;
-            int i10 = vj0Var.f31265b * vj0Var.f31267c;
+            int i10 = vj0Var.f31266b * vj0Var.f31268c;
             if (vj0Var.G) {
                 return i10 * 2;
             }

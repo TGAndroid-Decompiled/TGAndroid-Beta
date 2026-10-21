@@ -19,23 +19,23 @@ import org.telegram.ui.Components.ChatActivityEnterView;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PremiumPreviewFragment;
 public final class rd implements Runnable {
-    public final int f29918a;
-    public final ChatActivityEnterView f29919b;
+    public final int f29919a;
+    public final ChatActivityEnterView f29920b;
 
     public rd(ChatActivityEnterView chatActivityEnterView, int i10) {
-        this.f29918a = i10;
-        this.f29919b = chatActivityEnterView;
+        this.f29919a = i10;
+        this.f29920b = chatActivityEnterView;
     }
 
     @Override
     public final void run() {
         pf pfVar;
         long S8;
-        int i10 = this.f29918a;
+        int i10 = this.f29919a;
         ViewGroup viewGroup = null;
         ArrayList<TLRPC.RestrictionReason> arrayList = null;
         boolean z10 = true;
-        ChatActivityEnterView chatActivityEnterView = this.f29919b;
+        ChatActivityEnterView chatActivityEnterView = this.f29920b;
         switch (i10) {
             case 0:
                 org.telegram.ui.qn qnVar = chatActivityEnterView.P2;
@@ -74,7 +74,7 @@ public final class rd implements Runnable {
                 if (AndroidUtilities.isTablet()) {
                     Activity activity = chatActivityEnterView.O2;
                     if (activity instanceof LaunchActivity) {
-                        ActionBarLayout actionBarLayout = ((LaunchActivity) activity).f33187r0;
+                        ActionBarLayout actionBarLayout = ((LaunchActivity) activity).f33188r0;
                         if (actionBarLayout != null) {
                             viewGroup = actionBarLayout.getView();
                         }
@@ -106,7 +106,7 @@ public final class rd implements Runnable {
             case 7:
                 mf mfVar = chatActivityEnterView.L0;
                 if (mfVar != null) {
-                    mfVar.h(chatActivityEnterView.E4);
+                    mfVar.g(chatActivityEnterView.E4);
                     chatActivityEnterView.L0 = null;
                     return;
                 }
@@ -159,7 +159,7 @@ public final class rd implements Runnable {
             case 17:
                 mf mfVar2 = chatActivityEnterView.L0;
                 if (mfVar2 != null) {
-                    mfVar2.h(false);
+                    mfVar2.g(false);
                     chatActivityEnterView.L0 = null;
                 }
                 AndroidUtilities.runOnUIThread(new ie(chatActivityEnterView, 0), 600L);
@@ -169,11 +169,11 @@ public final class rd implements Runnable {
                 return;
             case 19:
                 int i14 = ChatActivityEnterView.f23908n5;
-                ChatActivityEnterView chatActivityEnterView2 = this.f29919b;
+                ChatActivityEnterView chatActivityEnterView2 = this.f29920b;
                 chatActivityEnterView2.R0(2147483646, true, 0, true, 0L);
                 mf mfVar3 = chatActivityEnterView2.L0;
                 if (mfVar3 != null) {
-                    mfVar3.h(false);
+                    mfVar3.g(false);
                     chatActivityEnterView2.L0 = null;
                     return;
                 }

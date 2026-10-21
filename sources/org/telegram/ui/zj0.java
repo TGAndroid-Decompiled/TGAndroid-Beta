@@ -27,10 +27,10 @@ public final class zj0 implements Runnable {
                 ak0 ak0Var2 = this.f43768b;
                 String str2 = this.f43769c;
                 hg.a2 a2Var = ak0Var2.h;
-                int i10 = ak0Var2.f35383n.f33211s;
+                int i10 = ak0Var2.f35384n.f33212s;
                 boolean z10 = true;
                 a2Var.g(str2, true, (i10 == 1 || i10 == 3) ? false : false, true, false, 0L, false, 0, 0);
-                Utilities.searchQueue.postRunnable(new ve0(ak0Var2, str2, new ArrayList(ak0Var2.f35383n.f33212w), 9));
+                Utilities.searchQueue.postRunnable(new ve0(ak0Var2, str2, new ArrayList(ak0Var2.f35384n.f33213w), 9));
                 return;
         }
     }

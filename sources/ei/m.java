@@ -225,7 +225,7 @@ public abstract class m extends FrameLayout {
         int dp = AndroidUtilities.dp(36.0f);
         int dp2 = AndroidUtilities.dp(36.0f);
         zqVar.h = dp;
-        zqVar.f33020n = dp2;
+        zqVar.f33021n = dp2;
         jVar3.setImageDrawable(zqVar);
         jVar3.setScaleType(ImageView.ScaleType.CENTER);
         jVar3.setContentDescription(LocaleController.getString(R.string.Done));
@@ -330,7 +330,7 @@ public abstract class m extends FrameLayout {
                             this.L.b(false);
                             gVar.getEditText().setForceCursorEnd(true);
                             gVar.getEditText().requestFocus();
-                            lu luVar = gVar.f29709a;
+                            lu luVar = gVar.f29710a;
                             luVar.requestFocus();
                             AndroidUtilities.showKeyboard(luVar);
                             gVar.getEditText().setScrollY(0);
@@ -527,7 +527,7 @@ public abstract class m extends FrameLayout {
 
     public final boolean p() {
         g gVar = this.f9399f;
-        boolean z10 = gVar.f29717x;
+        boolean z10 = gVar.f29718x;
         b4 b4Var = this.L;
         if (z10 && gVar.getEmojiView() != null) {
             if (b4Var.c()) {

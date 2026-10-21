@@ -80,7 +80,7 @@ public final class i2 extends s4.v {
                     ks0Var.f(true);
                 }
                 org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
-                if ((U instanceof ProfileActivity) && (j1Var = ((ProfileActivity) U).f33736w0) != null) {
+                if ((U instanceof ProfileActivity) && (j1Var = ((ProfileActivity) U).f33737w0) != null) {
                     j1Var.a();
                 }
                 return true;

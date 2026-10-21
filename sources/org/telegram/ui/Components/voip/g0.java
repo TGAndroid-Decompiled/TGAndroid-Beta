@@ -9,23 +9,23 @@ import org.telegram.ui.Components.bs;
 import org.telegram.ui.Components.k9;
 import org.telegram.ui.h30;
 public final class g0 extends FrameLayout {
-    public final ShapeDrawable f31419a;
-    public final h30 f31420b;
+    public final ShapeDrawable f31420a;
+    public final h30 f31421b;
 
     public g0(h30 h30Var, Context context, ShapeDrawable shapeDrawable) {
         super(context);
-        this.f31420b = h30Var;
-        this.f31419a = shapeDrawable;
+        this.f31421b = h30Var;
+        this.f31420a = shapeDrawable;
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        h30 h30Var = this.f31420b;
+        h30 h30Var = this.f31421b;
         k9 k9Var = h30Var.J;
         TextView textView = h30Var.K;
         float f7 = h30Var.O;
         int i10 = (f7 > 1.0f ? 1 : (f7 == 1.0f ? 0 : -1));
-        ShapeDrawable shapeDrawable = this.f31419a;
+        ShapeDrawable shapeDrawable = this.f31420a;
         if (i10 == 0) {
             shapeDrawable.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
             k9Var.setTranslationX(0.0f);

@@ -143,7 +143,7 @@ public final class eg implements org.telegram.ui.hu0 {
         ei.g gVar;
         kd g12 = PhotoViewer.u1().g1();
         if (g12 != null && (gVar = g12.f9399f) != null) {
-            lu luVar = gVar.f29709a;
+            lu luVar = gVar.f29710a;
             luVar.requestFocus();
             AndroidUtilities.showKeyboard(luVar);
         }

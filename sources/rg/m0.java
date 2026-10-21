@@ -1052,7 +1052,7 @@ public abstract class m0 extends mw0 implements q1, h, m1, kw0, NotificationCent
                 this.f45483f2.setLayoutParams(layoutParams);
                 this.f45491j2 = layoutParams.height;
                 requestLayout();
-                b4 b4Var = ((gt0) this).f37413o2.K1;
+                b4 b4Var = ((gt0) this).f37414o2.K1;
                 if (b4Var != null) {
                     b4Var.a();
                 }
@@ -1083,7 +1083,7 @@ public abstract class m0 extends mw0 implements q1, h, m1, kw0, NotificationCent
         if (this.f45491j2 != 0 && !(z11 = this.f45487h2) && z11 != z13 && !this.f45485g2) {
             this.f45491j2 = 0;
             requestLayout();
-            b4 b4Var2 = ((gt0) this).f37413o2.K1;
+            b4 b4Var2 = ((gt0) this).f37414o2.K1;
             if (b4Var2 != null) {
                 b4Var2.a();
             }
@@ -1342,7 +1342,7 @@ public abstract class m0 extends mw0 implements q1, h, m1, kw0, NotificationCent
     }
 
     public final v2 j0(boolean z10) {
-        ((gt0) this).f37413o2.f33295g0.isFocusable();
+        ((gt0) this).f37414o2.f33296g0.isFocusable();
         fw0 paintingSize = getPaintingSize();
         PointF B0 = B0(null);
         v2 v2Var = new v2(getContext(), B0, (int) (paintingSize.f26428a / 9.0f), "", this.K1, this.U0);
@@ -1464,7 +1464,7 @@ public abstract class m0 extends mw0 implements q1, h, m1, kw0, NotificationCent
     public final void n0() {
         tz tzVar;
         b4 b4Var;
-        if (this.f45491j2 > 0 && (b4Var = ((gt0) this).f37413o2.K1) != null) {
+        if (this.f45491j2 > 0 && (b4Var = ((gt0) this).f37414o2.K1) != null) {
             b4Var.a();
         }
         if (!this.f45485g2 && (tzVar = this.f45483f2) != null && tzVar.getVisibility() != 8) {
@@ -1846,7 +1846,7 @@ public abstract class m0 extends mw0 implements q1, h, m1, kw0, NotificationCent
             return;
         }
         boolean z10 = this.f45485g2;
-        if (z10 && (b4Var = ((gt0) this).f37413o2.K1) != null) {
+        if (z10 && (b4Var = ((gt0) this).f37414o2.K1) != null) {
             b4Var.e = true;
         }
         y0(!z10 ? 1 : 0);
@@ -2091,7 +2091,7 @@ public abstract class m0 extends mw0 implements q1, h, m1, kw0, NotificationCent
                 z10 = false;
             }
             tz tzVar2 = this.f45483f2;
-            if (tzVar2 != null && tzVar2.f30722c1 != UserConfig.selectedAccount) {
+            if (tzVar2 != null && tzVar2.f30723c1 != UserConfig.selectedAccount) {
                 removeView(tzVar2);
                 this.f45483f2 = null;
             }
@@ -2140,7 +2140,7 @@ public abstract class m0 extends mw0 implements q1, h, m1, kw0, NotificationCent
             }
             this.f45491j2 = i11;
             requestLayout();
-            b4 b4Var = ((gt0) this).f37413o2.K1;
+            b4 b4Var = ((gt0) this).f37414o2.K1;
             if (b4Var != null) {
                 b4Var.a();
             }
@@ -2172,7 +2172,7 @@ public abstract class m0 extends mw0 implements q1, h, m1, kw0, NotificationCent
         if (i10 == 0) {
             this.f45491j2 = 0;
         }
-        b4 b4Var2 = ((gt0) this).f37413o2.K1;
+        b4 b4Var2 = ((gt0) this).f37414o2.K1;
         if (b4Var2 != null) {
             b4Var2.a();
         }

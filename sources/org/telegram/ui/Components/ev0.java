@@ -23,7 +23,7 @@ public final class ev0 extends im0 {
     public ev0(uv0 uv0Var, Context context) {
         this.f25982x = uv0Var;
         this.f25976c = context;
-        SavedMessagesController savedMessagesController = uv0Var.f31070v1.getMessagesController().getSavedMessagesController();
+        SavedMessagesController savedMessagesController = uv0Var.f31071v1.getMessagesController().getSavedMessagesController();
         this.d = savedMessagesController;
         if (uv0Var.m0()) {
             savedMessagesController.loadDialogs(false);
@@ -76,11 +76,11 @@ public final class ev0 extends im0 {
                 hashSet.add(Long.valueOf(savedDialog.dialogId));
                 if (hashSet.size() > 0 && !uv0Var.C1) {
                     uv0Var.d1(true);
-                    org.telegram.ui.ActionBar.u0 u0Var = uv0Var.f31067u0;
+                    org.telegram.ui.ActionBar.u0 u0Var = uv0Var.f31068u0;
                     if (u0Var != null) {
                         u0Var.setVisibility(8);
                     }
-                    org.telegram.ui.ActionBar.u0 u0Var2 = uv0Var.f31065t0;
+                    org.telegram.ui.ActionBar.u0 u0Var2 = uv0Var.f31066t0;
                     if (u0Var2 != null) {
                         u0Var2.setVisibility(8);
                     }
@@ -113,7 +113,7 @@ public final class ev0 extends im0 {
                     break;
                 }
             }
-            org.telegram.ui.ActionBar.u0 u0Var3 = uv0Var.f31069v0;
+            org.telegram.ui.ActionBar.u0 u0Var3 = uv0Var.f31070v0;
             if (u0Var3 != null) {
                 if (z10) {
                     i10 = 8;
@@ -122,7 +122,7 @@ public final class ev0 extends im0 {
                 }
                 u0Var3.setVisibility(i10);
             }
-            org.telegram.ui.ActionBar.u0 u0Var4 = uv0Var.f31072w0;
+            org.telegram.ui.ActionBar.u0 u0Var4 = uv0Var.f31073w0;
             if (u0Var4 != null) {
                 if (!z10) {
                     i11 = 8;

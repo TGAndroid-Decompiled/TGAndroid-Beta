@@ -108,7 +108,7 @@ public abstract class b1 extends FrameLayout {
         x0Var.n(0.3f, 165L, bsVar);
         x0Var.w(AndroidUtilities.dpf2(14.0f));
         Paint.Style style = Paint.Style.FILL_AND_STROKE;
-        TextPaint textPaint = x0Var.f29223a;
+        TextPaint textPaint = x0Var.f29224a;
         textPaint.setStyle(style);
         textPaint.setStrokeWidth(AndroidUtilities.dpf2(0.3f));
         if (LocaleController.isRTL) {
@@ -116,14 +116,14 @@ public abstract class b1 extends FrameLayout {
         } else {
             i10 = 3;
         }
-        x0Var.f29225b = i10;
+        x0Var.f29226b = i10;
         x0 x0Var2 = new x0(this, 1);
         this.d = x0Var2;
         x0Var2.setCallback(this);
         x0Var2.x(AndroidUtilities.bold());
         x0Var2.n(0.3f, 165L, bsVar);
         x0Var2.w(AndroidUtilities.dpf2(14.0f));
-        TextPaint textPaint2 = x0Var2.f29223a;
+        TextPaint textPaint2 = x0Var2.f29224a;
         textPaint2.setStyle(style);
         textPaint2.setStrokeWidth(AndroidUtilities.dpf2(0.3f));
         if (LocaleController.isRTL) {
@@ -131,7 +131,7 @@ public abstract class b1 extends FrameLayout {
         } else {
             i11 = 5;
         }
-        x0Var2.f29225b = i11;
+        x0Var2.f29226b = i11;
         paint.setColor(0);
         paint.setShadowLayer(AndroidUtilities.dpf2(1.33f), 0.0f, AndroidUtilities.dpf2(0.33f), 1056964608);
         ColorMatrix colorMatrix = new ColorMatrix();
@@ -228,7 +228,7 @@ public abstract class b1 extends FrameLayout {
         }
         if (str2 != null) {
             x0 x0Var = this.f20642c;
-            if (!TextUtils.equals(x0Var.f29230i, str2)) {
+            if (!TextUtils.equals(x0Var.f29231i, str2)) {
                 x0Var.a();
                 x0Var.t(str2, true, true);
             }
@@ -238,7 +238,7 @@ public abstract class b1 extends FrameLayout {
         }
         if (str != null) {
             x0 x0Var2 = this.d;
-            if (!TextUtils.equals(x0Var2.f29230i, str)) {
+            if (!TextUtils.equals(x0Var2.f29231i, str)) {
                 x0Var2.a();
                 x0Var2.t(str, true, true);
             }
@@ -354,7 +354,7 @@ public abstract class b1 extends FrameLayout {
             } else {
                 Pair pair = null;
                 if (s02 instanceof wc0) {
-                    bitmap = ((wc0) s02).f32075k;
+                    bitmap = ((wc0) s02).f32076k;
                 } else if (s02 instanceof BitmapDrawable) {
                     bitmap = ((BitmapDrawable) s02).getBitmap();
                 } else {

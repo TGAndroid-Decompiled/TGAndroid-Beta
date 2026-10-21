@@ -23,7 +23,7 @@ public final class l51 extends s4.r0 {
                 }
                 return;
             default:
-                if (i10 == 1 && (n8Var = ((org.telegram.ui.Wallet.k4) this.f28027c).f34422b.f34649h0) != null) {
+                if (i10 == 1 && (n8Var = ((org.telegram.ui.Wallet.k4) this.f28027c).f34423b.f34650h0) != null) {
                     n8Var.a();
                     return;
                 }
@@ -50,7 +50,7 @@ public final class l51 extends s4.r0 {
                 }
                 return;
             default:
-                org.telegram.ui.Wallet.o5 o5Var = ((org.telegram.ui.Wallet.k4) this.f28027c).f34422b;
+                org.telegram.ui.Wallet.o5 o5Var = ((org.telegram.ui.Wallet.k4) this.f28027c).f34423b;
                 if (this.f28026b == 0) {
                     o5Var.z0();
                     return;

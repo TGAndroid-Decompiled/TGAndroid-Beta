@@ -115,11 +115,11 @@ public class ui0 extends org.telegram.ui.ActionBar.n2 implements NotificationCen
             ui0Var.f41999y = false;
             TL_stats.TL_loadAsyncGraph tL_loadAsyncGraph = new TL_stats.TL_loadAsyncGraph();
             b91 b91Var2 = ui0Var.f41995r;
-            tL_loadAsyncGraph.token = b91Var2.f35545g;
+            tL_loadAsyncGraph.token = b91Var2.f35546g;
             long[] jArr = b91Var2.d.f15052a;
             tL_loadAsyncGraph.f20504x = jArr[jArr.length - 1];
             tL_loadAsyncGraph.flags |= 1;
-            ConnectionsManager.getInstance(ui0Var.currentAccount).bindRequestToGuid(ConnectionsManager.getInstance(ui0Var.currentAccount).sendRequest(tL_loadAsyncGraph, new ca(ui0Var, ui0Var.f41995r.f35545g + "_" + tL_loadAsyncGraph.f20504x, tL_loadAsyncGraph, 24), null, null, 0, ui0Var.f41985a.stats_dc, 1, true), ui0Var.classGuid);
+            ConnectionsManager.getInstance(ui0Var.currentAccount).bindRequestToGuid(ConnectionsManager.getInstance(ui0Var.currentAccount).sendRequest(tL_loadAsyncGraph, new ca(ui0Var, ui0Var.f41995r.f35546g + "_" + tL_loadAsyncGraph.f20504x, tL_loadAsyncGraph, 24), null, null, 0, ui0Var.f41985a.stats_dc, 1, true), ui0Var.classGuid);
             return;
         }
         ui0Var.g0();
@@ -475,7 +475,7 @@ public class ui0 extends org.telegram.ui.ActionBar.n2 implements NotificationCen
             view.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20990d6, getResourceProvider()));
         } else if (view instanceof org.telegram.ui.Cells.z6) {
             org.telegram.ui.Components.zq zqVar = new org.telegram.ui.Components.zq(new ColorDrawable(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20932a7, getResourceProvider())), org.telegram.ui.ActionBar.h6.W0(ApplicationLoader.applicationContext, R.drawable.greydivider, org.telegram.ui.ActionBar.h6.f20952b7), 0, 0);
-            zqVar.f33023w = true;
+            zqVar.f33024w = true;
             view.setBackground(zqVar);
         } else if (view instanceof lg.c) {
             ((lg.c) view).a();
@@ -512,7 +512,7 @@ public class ui0 extends org.telegram.ui.ActionBar.n2 implements NotificationCen
                 qi0Var.getSubtitleTextView().setVisibility(8);
             }
             qi0 qi0Var2 = this.f41988b0;
-            qi0Var2.f29086b = true;
+            qi0Var2.f29087b = true;
             qi0Var2.setStoriesForceState(1);
             ArrayList<TLRPC.PhotoSize> arrayList = messageObject.photoThumbs;
             if (arrayList != null) {

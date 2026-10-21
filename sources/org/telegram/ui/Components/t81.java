@@ -4,19 +4,19 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.view.View;
 public final class t81 extends AnimatorListenerAdapter {
-    public final int f30476a;
-    public final e91 f30477b;
+    public final int f30477a;
+    public final e91 f30478b;
 
     public t81(e91 e91Var, int i10) {
-        this.f30476a = i10;
-        this.f30477b = e91Var;
+        this.f30477a = i10;
+        this.f30478b = e91Var;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f30476a) {
+        switch (this.f30477a) {
             case 0:
-                e91 e91Var = this.f30477b;
+                e91 e91Var = this.f30478b;
                 View[] viewArr = e91Var.e;
                 View[] viewArr2 = e91Var.e;
                 if (viewArr[1] != null) {
@@ -38,7 +38,7 @@ public final class t81 extends AnimatorListenerAdapter {
                 e91Var.J.unlock();
                 return;
             case 1:
-                e91 e91Var2 = this.f30477b;
+                e91 e91Var2 = this.f30478b;
                 e91Var2.f25868w = null;
                 View[] viewArr3 = e91Var2.e;
                 if (viewArr3[1] != null) {
@@ -61,7 +61,7 @@ public final class t81 extends AnimatorListenerAdapter {
                 e91Var2.J.unlock();
                 return;
             case 2:
-                e91 e91Var3 = this.f30477b;
+                e91 e91Var3 = this.f30478b;
                 e91Var3.f25868w = null;
                 View[] viewArr4 = e91Var3.e;
                 View view = viewArr4[1];
@@ -82,7 +82,7 @@ public final class t81 extends AnimatorListenerAdapter {
                 }
                 return;
             default:
-                e91 e91Var4 = this.f30477b;
+                e91 e91Var4 = this.f30478b;
                 e91Var4.f25868w = null;
                 View[] viewArr5 = e91Var4.e;
                 if (viewArr5[1] != null) {

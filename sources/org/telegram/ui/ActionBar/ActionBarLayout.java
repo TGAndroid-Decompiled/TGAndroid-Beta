@@ -1347,8 +1347,8 @@ public class ActionBarLayout extends FrameLayout implements d5, ng.b {
                             }
                         } else {
                             this.K = animatorSet;
-                            qc qcVar = qc.f29523w;
-                            if (qcVar != null && qcVar.f29532l) {
+                            qc qcVar = qc.f29524w;
+                            if (qcVar != null && qcVar.f29533l) {
                                 qcVar.b();
                             }
                         }
@@ -1863,7 +1863,7 @@ public class ActionBarLayout extends FrameLayout implements d5, ng.b {
             FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(-1, AndroidUtilities.dp(76.0f));
             layoutParams.gravity = 87;
             addView(this.E, layoutParams);
-            w3 w3Var = LaunchActivity.H1.f33201y0;
+            w3 w3Var = LaunchActivity.H1.f33202y0;
             if (w3Var != null) {
                 w3Var.setTabsView(this.E);
             }
@@ -2061,7 +2061,7 @@ public class ActionBarLayout extends FrameLayout implements d5, ng.b {
         }
         ln lnVar = this.f20562g0;
         if (lnVar != null) {
-            on onVar = lnVar.f38955a;
+            on onVar = lnVar.f38956a;
             onVar.V.f40901x0.invalidate();
             onVar.I.K = f7;
             onVar.J.K = f7;

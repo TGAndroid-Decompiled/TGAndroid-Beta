@@ -74,7 +74,7 @@ public final class o0 {
     public final void b() {
         mn0 mn0Var = this.E;
         if (mn0Var.b()) {
-            float f7 = mn0Var.f28564j;
+            float f7 = mn0Var.f28565j;
             this.f22685o = f7;
             this.f22685o = Utilities.clamp(f7, this.f22686p - (this.f22692w.width() - AndroidUtilities.dp(14.0f)), 0.0f);
             this.f22674a.a3();

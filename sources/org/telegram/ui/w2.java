@@ -57,12 +57,12 @@ public final class w2 extends FrameLayout implements org.telegram.ui.Components.
         int childCount = f01Var.getChildCount();
         for (int i11 = 0; i11 < childCount; i11++) {
             org.telegram.ui.Components.yz0 d = f01Var.d(i11);
-            org.telegram.ui.Components.xz0 xz0Var = d.f32769b;
+            org.telegram.ui.Components.xz0 xz0Var = d.f32770b;
             if (xz0Var != null) {
                 xz0Var.setX((AndroidUtilities.dp(18.0f) + (d.b() + this.f42445f)) - this.f42444c.getScrollX());
-                d.f32769b.setY(d.c() + this.h);
-                d.f32769b.setRow(d.f32774j + 10);
-                d.f32782r = i10;
+                d.f32770b.setY(d.c() + this.h);
+                d.f32770b.setRow(d.f32775j + 10);
+                d.f32783r = i10;
                 i10++;
             }
         }
@@ -105,7 +105,7 @@ public final class w2 extends FrameLayout implements org.telegram.ui.Components.
         org.telegram.ui.Components.f01 f01Var = this.e;
         int childCount = f01Var.getChildCount();
         for (int i10 = 0; i10 < childCount; i10++) {
-            org.telegram.ui.Components.xz0 xz0Var = f01Var.d(i10).f32769b;
+            org.telegram.ui.Components.xz0 xz0Var = f01Var.d(i10).f32770b;
             if (xz0Var != null) {
                 arrayList.add(xz0Var);
             }
@@ -113,22 +113,22 @@ public final class w2 extends FrameLayout implements org.telegram.ui.Components.
     }
 
     public Paint getHalfLinePaint() {
-        return l4.f38751t1;
+        return l4.f38752t1;
     }
 
     @Override
     public Paint getHeaderPaint() {
-        return l4.f38752u1;
+        return l4.f38753u1;
     }
 
     @Override
     public Paint getLinePaint() {
-        return l4.f38750s1;
+        return l4.f38751s1;
     }
 
     @Override
     public Paint getStripPaint() {
-        return l4.f38753v1;
+        return l4.f38754v1;
     }
 
     @Override
@@ -147,7 +147,7 @@ public final class w2 extends FrameLayout implements org.telegram.ui.Components.
         org.telegram.ui.Components.f01 f01Var = this.e;
         int childCount = f01Var.getChildCount();
         for (int i10 = 0; i10 < childCount; i10++) {
-            org.telegram.ui.Components.xz0 xz0Var = f01Var.d(i10).f32769b;
+            org.telegram.ui.Components.xz0 xz0Var = f01Var.d(i10).f32770b;
             if (xz0Var != null) {
                 xz0Var.attach(this);
             }
@@ -164,7 +164,7 @@ public final class w2 extends FrameLayout implements org.telegram.ui.Components.
         org.telegram.ui.Components.f01 f01Var = this.e;
         int childCount = f01Var.getChildCount();
         for (int i10 = 0; i10 < childCount; i10++) {
-            org.telegram.ui.Components.xz0 xz0Var = f01Var.d(i10).f32769b;
+            org.telegram.ui.Components.xz0 xz0Var = f01Var.d(i10).f32770b;
             if (xz0Var != null) {
                 xz0Var.detach(this);
             }
@@ -231,7 +231,7 @@ public final class w2 extends FrameLayout implements org.telegram.ui.Components.
                         int length = b70Var.F.length() + indexOf;
                         if (indexOf == 0 || AndroidUtilities.isPunctuationCharacter(lowerCase.charAt(indexOf - 1))) {
                             StaticLayout staticLayout = d3Var.d;
-                            this.f42443b.f38167y.put(b70Var.F + this.f42448s + d3Var.f36240r + indexOf, Integer.valueOf(staticLayout.getLineTop(staticLayout.getLineForOffset(indexOf)) + i11));
+                            this.f42443b.f38168y.put(b70Var.F + this.f42448s + d3Var.f36241r + indexOf, Integer.valueOf(staticLayout.getLineTop(staticLayout.getLineForOffset(indexOf)) + i11));
                         }
                         i12 = length;
                     } else {
@@ -273,7 +273,7 @@ public final class w2 extends FrameLayout implements org.telegram.ui.Components.
                 i13 = AndroidUtilities.dp(8.0f) + p5.d.getHeight();
                 this.h = i13;
                 d3 d3Var = this.d;
-                d3Var.f36241s = this.f42446n;
+                d3Var.f36242s = this.f42446n;
                 d3Var.v = 0;
             } else {
                 this.h = AndroidUtilities.dp(8.0f);
@@ -303,7 +303,7 @@ public final class w2 extends FrameLayout implements org.telegram.ui.Components.
         int i10 = 0;
         while (i10 < childCount) {
             org.telegram.ui.Components.yz0 d = f01Var.d(i10);
-            org.telegram.ui.Components.xz0 xz0Var = d.f32769b;
+            org.telegram.ui.Components.xz0 xz0Var = d.f32770b;
             if (xz0Var instanceof d3) {
                 d3 d3Var = (d3) xz0Var;
                 v2 v2Var = this.f42444c;

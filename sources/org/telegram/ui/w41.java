@@ -98,7 +98,7 @@ public final class w41 extends org.telegram.ui.Components.im0 {
                 Context context2 = x51Var.getContext();
                 ?? frameLayout = new FrameLayout(context2);
                 TextView textView = new TextView(context2);
-                frameLayout.f35510a = textView;
+                frameLayout.f35511a = textView;
                 textView.setTextSize(1, 12.0f);
                 textView.setTextColor(-1);
                 if (x51Var.f43060g1) {
@@ -114,19 +114,19 @@ public final class w41 extends org.telegram.ui.Components.im0 {
             } else if (i10 == 5) {
                 ?? frameLayout2 = new FrameLayout(x51Var.getContext());
                 org.telegram.ui.Cells.t3 t3Var = new org.telegram.ui.Cells.t3(frameLayout2.getContext(), false, false, false, 4);
-                frameLayout2.f35280b = t3Var;
+                frameLayout2.f35281b = t3Var;
                 t3Var.b(0.3f, 250L, org.telegram.ui.Components.bs.h);
                 t3Var.setTextSize(AndroidUtilities.dp(14.0f));
                 t3Var.setTypeface(AndroidUtilities.bold());
                 t3Var.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Sh, d6Var));
                 t3Var.setGravity(17);
                 FrameLayout frameLayout3 = new FrameLayout(frameLayout2.getContext());
-                frameLayout2.f35279a = frameLayout3;
+                frameLayout2.f35280a = frameLayout3;
                 frameLayout3.setBackground(org.telegram.ui.ActionBar.x5.e(new float[]{8.0f}, org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Oh, d6Var)));
                 frameLayout3.addView(t3Var, w7.z5.e(-1, -2, 17));
                 frameLayout2.addView(frameLayout3, w7.z5.c(-1.0f, -1));
                 sg.q0 q0Var = new sg.q0(frameLayout2.getContext(), d6Var, false);
-                frameLayout2.f35281c = q0Var;
+                frameLayout2.f35282c = q0Var;
                 q0Var.setIcon(R.raw.unlock_icon);
                 frameLayout2.addView(q0Var, w7.z5.c(-1.0f, -1));
                 kd0Var = frameLayout2;
@@ -156,7 +156,7 @@ public final class w41 extends org.telegram.ui.Components.im0 {
                 g51Var.Q = true;
                 ImageReceiver imageReceiver = new ImageReceiver(g51Var);
                 g51Var.h = imageReceiver;
-                g51Var.f37193r = imageReceiver;
+                g51Var.f37194r = imageReceiver;
                 imageReceiver.setImageBitmap(x51Var.N);
                 x51Var.O = g51Var;
                 g51Var.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));

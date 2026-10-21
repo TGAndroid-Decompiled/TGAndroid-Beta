@@ -462,20 +462,20 @@ public final class k8 extends org.telegram.ui.ActionBar.f3 implements Notificati
         spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.AudioAddToProfile));
         dVar.setText(spannableStringBuilder);
         dVar.setOnClickListener(new View.OnClickListener(this) {
-            public final k8 f28956b;
+            public final k8 f28957b;
 
             {
-                this.f28956b = this;
+                this.f28957b = this;
             }
 
             @Override
             public final void onClick(View view4) {
                 switch (r3) {
                     case 0:
-                        k8.E(this.f28956b, d6Var);
+                        k8.E(this.f28957b, d6Var);
                         return;
                     default:
-                        k8.D(this.f28956b, d6Var);
+                        k8.D(this.f28957b, d6Var);
                         return;
                 }
             }
@@ -487,20 +487,20 @@ public final class k8 extends org.telegram.ui.ActionBar.f3 implements Notificati
         this.G = dVar2;
         dVar2.setText(LocaleController.getString(R.string.AudioRemoveFromProfile));
         dVar2.setOnClickListener(new View.OnClickListener(this) {
-            public final k8 f28956b;
+            public final k8 f28957b;
 
             {
-                this.f28956b = this;
+                this.f28957b = this;
             }
 
             @Override
             public final void onClick(View view4) {
                 switch (r3) {
                     case 0:
-                        k8.E(this.f28956b, d6Var);
+                        k8.E(this.f28957b, d6Var);
                         return;
                     default:
-                        k8.D(this.f28956b, d6Var);
+                        k8.D(this.f28957b, d6Var);
                         return;
                 }
             }

@@ -205,8 +205,8 @@ public final class u9 implements Utilities.Callback {
                     f7 = 1.0f;
                 }
                 mk.s(animate, f7, 120L);
-                org.telegram.ui.Components.qc qcVar = org.telegram.ui.Components.qc.f29523w;
-                if (qcVar != null && qcVar.f29524a == 2) {
+                org.telegram.ui.Components.qc qcVar = org.telegram.ui.Components.qc.f29524w;
+                if (qcVar != null && qcVar.f29525a == 2) {
                     qcVar.l();
                     return;
                 }
@@ -415,8 +415,8 @@ public final class u9 implements Utilities.Callback {
                     }
                     maVar2.setTranslationY(i16 - contentHeight);
                 }
-                org.telegram.ui.Components.qc qcVar2 = org.telegram.ui.Components.qc.f29523w;
-                if (qcVar2 != null && qcVar2.f29524a == 2) {
+                org.telegram.ui.Components.qc qcVar2 = org.telegram.ui.Components.qc.f29524w;
+                if (qcVar2 != null && qcVar2.f29525a == 2) {
                     qcVar2.l();
                 }
                 if (vbVar12.f9956c1.f9410p0 && (maVar = vbVar12.f9959d1) != null) {

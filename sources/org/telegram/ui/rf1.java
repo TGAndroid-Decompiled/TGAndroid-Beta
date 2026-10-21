@@ -47,7 +47,7 @@ public final class rf1 implements TextWatcher {
                                     vf1Var.f42239f0[2].T(0.0f, false);
                                     vf1Var.f42230a.d();
                                     return;
-                                } else if (vj0Var2.f31264a0 < 49) {
+                                } else if (vj0Var2.f31265a0 < 49) {
                                     vj0Var2.P(49);
                                     return;
                                 } else {

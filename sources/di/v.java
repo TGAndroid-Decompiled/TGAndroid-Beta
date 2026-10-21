@@ -109,9 +109,9 @@ public abstract class v extends FrameLayout implements NotificationCenter.Notifi
             tiVar.N1(1, false);
             tiVar.W0 = true;
             tiVar.V0 = false;
-            tiVar.f30565m1.setText(LocaleController.getString(R.string.ChoosePhotoOrVideo));
-            tiVar.f30557j0.f0();
-            tiVar.f30537c2 = new c(this, tiVar, str);
+            tiVar.f30566m1.setText(LocaleController.getString(R.string.ChoosePhotoOrVideo));
+            tiVar.f30558j0.f0();
+            tiVar.f30538c2 = new c(this, tiVar, str);
             tiVar.t1();
             tiVar.show();
         }

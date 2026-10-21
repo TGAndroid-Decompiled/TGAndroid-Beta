@@ -57,7 +57,7 @@ public final class xl implements ViewTreeObserver.OnPreDrawListener {
                 ObjectAnimator ofFloat3 = ObjectAnimator.ofFloat(cameraContainer, View.TRANSLATION_Y, iArr2[1] - cameraRect.top);
                 View buttonsLayout = qnVar.f40628b3.getButtonsLayout();
                 Property property = View.ALPHA;
-                animatorSet.playTogether(ofFloat, ofFloat2, ofFloat3, ObjectAnimator.ofFloat(buttonsLayout, property, 0.0f), ObjectAnimator.ofInt(qnVar.f40628b3.getPaint(), org.telegram.ui.Components.t6.f30444b, 0), ObjectAnimator.ofFloat(qnVar.f40628b3.getMuteImageView(), property, 0.0f));
+                animatorSet.playTogether(ofFloat, ofFloat2, ofFloat3, ObjectAnimator.ofFloat(buttonsLayout, property, 0.0f), ObjectAnimator.ofInt(qnVar.f40628b3.getPaint(), org.telegram.ui.Components.t6.f30445b, 0), ObjectAnimator.ofFloat(qnVar.f40628b3.getMuteImageView(), property, 0.0f));
                 animatorSet.setInterpolator(org.telegram.ui.Components.bs.h);
                 ObjectAnimator ofFloat4 = ObjectAnimator.ofFloat(cameraContainer, View.TRANSLATION_X, iArr2[0] - cameraRect.left);
                 ofFloat4.setInterpolator(org.telegram.ui.Components.bs.f25021f);
@@ -71,7 +71,7 @@ public final class xl implements ViewTreeObserver.OnPreDrawListener {
                 animatorSet2.start();
                 return true;
             case 1:
-                ((hx) obj).f37813b.f36091e0[0].f35442a.getViewTreeObserver().removeOnPreDrawListener(this);
+                ((hx) obj).f37814b.f36092e0[0].f35443a.getViewTreeObserver().removeOnPreDrawListener(this);
                 AndroidUtilities.runOnUIThread((ai.v3) obj2, 100L);
                 return false;
             default:
@@ -90,8 +90,8 @@ public final class xl implements ViewTreeObserver.OnPreDrawListener {
                         f7 = -ybVar2.getBottomOffset();
                     }
                     hVar.f48436a.getLocationInWindow(iArr3);
-                    hVar.X = (hVar.W.f32623a.getMeasuredWidth() / 2.0f) + (f10 - iArr3[0]) + hVar.W.f32623a.getLeft();
-                    hVar.Y = (hVar.W.f32623a.getMeasuredHeight() / 2.0f) + ((translationY + f7) - iArr3[1]) + hVar.W.f32623a.getTop();
+                    hVar.X = (hVar.W.f32624a.getMeasuredWidth() / 2.0f) + (f10 - iArr3[0]) + hVar.W.f32624a.getLeft();
+                    hVar.Y = (hVar.W.f32624a.getMeasuredHeight() / 2.0f) + ((translationY + f7) - iArr3[1]) + hVar.W.f32624a.getTop();
                 }
                 hVar.c();
                 return true;

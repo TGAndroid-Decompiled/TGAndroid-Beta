@@ -160,8 +160,8 @@ public final class d61 extends FrameLayout implements NotificationCenter.Notific
                 x51Var = null;
             }
             qy0 qy0Var = new qy0(getContext(), this.f25355x, inputStickerSet2, null, x51Var, this.P);
-            qy0Var.f29755j0 = false;
-            qy0Var.f29747c0 = new y51(this, inputStickerSet2);
+            qy0Var.f29756j0 = false;
+            qy0Var.f29748c0 = new y51(this, inputStickerSet2);
             this.f25355x.showDialog(qy0Var);
         }
     }

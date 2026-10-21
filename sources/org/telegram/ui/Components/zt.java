@@ -3,12 +3,12 @@ package org.telegram.ui.Components;
 import android.text.Editable;
 import org.telegram.messenger.Utilities;
 public final class zt implements Utilities.Callback0Return {
-    public final int f33039a;
-    public final Object f33040b;
+    public final int f33040a;
+    public final Object f33041b;
 
     public zt(Object obj, int i10) {
-        this.f33039a = i10;
-        this.f33040b = obj;
+        this.f33040a = i10;
+        this.f33041b = obj;
     }
 
     @Override
@@ -16,8 +16,8 @@ public final class zt implements Utilities.Callback0Return {
         boolean z10;
         Editable text;
         pj0[] pj0VarArr;
-        int i10 = this.f33039a;
-        Object obj = this.f33040b;
+        int i10 = this.f33040a;
+        Object obj = this.f33041b;
         switch (i10) {
             case 0:
                 EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) obj;

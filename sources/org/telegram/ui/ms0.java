@@ -34,9 +34,9 @@ public final class ms0 extends org.telegram.ui.Components.fr0 {
             AndroidUtilities.runOnUIThread(new ck0(this, 17), 50L);
         }
         PhotoViewer photoViewer = this.f39346e1;
-        photoViewer.f33269d0.softInputMode = 272;
+        photoViewer.f33270d0.softInputMode = 272;
         try {
-            ((WindowManager) photoViewer.f33457y.getSystemService("window")).updateViewLayout(photoViewer.f33295g0, photoViewer.f33269d0);
+            ((WindowManager) photoViewer.f33458y.getSystemService("window")).updateViewLayout(photoViewer.f33296g0, photoViewer.f33270d0);
         } catch (Exception e) {
             FileLog.e(e);
         }

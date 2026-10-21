@@ -40,16 +40,16 @@ public final class wb implements org.telegram.ui.Components.xl0 {
                     TL_stories.Boost boost = bVar.getBoost();
                     boolean z12 = boost.giveaway;
                     if (z12 && boost.stars > 0) {
-                        ai.md.f1(this.f42529c, ccVar.f35927b, j10, boost, d6Var);
+                        ai.md.f1(this.f42529c, ccVar.f35928b, j10, boost, d6Var);
                     } else {
                         boolean z13 = boost.gift;
                         if (((!z13 && !z12) || boost.user_id < 0) && !boost.unclaimed) {
                             if (z12 && boost.user_id == -1) {
                                 org.telegram.ui.Components.yb ybVar = new org.telegram.ui.Components.yb(p91Var.getParentActivity(), p91Var.getResourceProvider());
                                 ybVar.c(R.raw.chats_infotip, 36, 36, new String[0]);
-                                ybVar.f32624b.setText(LocaleController.getString(R.string.BoostingRecipientWillBeSelected));
-                                ybVar.f32624b.setSingleLine(false);
-                                ybVar.f32624b.setMaxLines(2);
+                                ybVar.f32625b.setText(LocaleController.getString(R.string.BoostingRecipientWillBeSelected));
+                                ybVar.f32625b.setSingleLine(false);
+                                ybVar.f32625b.setMaxLines(2);
                                 org.telegram.ui.Components.qc.g(p91Var, ybVar, 2750).j();
                             } else if (!z13 && !z12) {
                                 p91Var.presentFragment(ProfileActivity.m4(bVar.getDialogId()));
@@ -81,8 +81,8 @@ public final class wb implements org.telegram.ui.Components.xl0 {
                 if (view instanceof zg.c) {
                     ug.m.n(p91Var, d6Var, j10, ((zg.c) view).getPrepaidGiveaway());
                 }
-                if (((bc) ccVar.f35934x.get(i10)).f44296a == 9) {
-                    if (ccVar.f35935y == 1) {
+                if (((bc) ccVar.f35935x.get(i10)).f44296a == 9) {
+                    if (ccVar.f35936y == 1) {
                         z11 = true;
                     }
                     ccVar.c(Boolean.valueOf(z11));

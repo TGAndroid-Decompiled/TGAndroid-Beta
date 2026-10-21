@@ -1,31 +1,31 @@
 package org.telegram.ui;
 public final class eo implements Runnable {
-    public final int f36693a;
-    public final long f36694b;
-    public final long f36695c;
+    public final int f36694a;
+    public final long f36695b;
+    public final long f36696c;
     public final Object d;
 
     public eo(Object obj, long j10, long j11, int i10) {
-        this.f36693a = i10;
+        this.f36694a = i10;
         this.d = obj;
-        this.f36694b = j10;
-        this.f36695c = j11;
+        this.f36695b = j10;
+        this.f36696c = j11;
     }
 
     @Override
     public final void run() {
         org.telegram.ui.Components.u61 u61Var;
-        switch (this.f36693a) {
+        switch (this.f36694a) {
             case 0:
-                io.W((io) this.d, this.f36694b, this.f36695c);
+                io.W((io) this.d, this.f36695b, this.f36696c);
                 return;
             case 1:
                 org.telegram.ui.web.x1 x1Var = (org.telegram.ui.web.x1) this.d;
-                long j10 = this.f36694b;
-                long j11 = this.f36695c;
+                long j10 = this.f36695b;
+                long j11 = this.f36696c;
                 x1Var.f42855f = j10;
                 x1Var.h = j11;
-                org.telegram.ui.Components.w61 w61Var = x1Var.f32355a;
+                org.telegram.ui.Components.w61 w61Var = x1Var.f32356a;
                 if (w61Var != null && (u61Var = w61Var.W2) != null && w61Var.G) {
                     u61Var.N(true);
                     return;
@@ -33,8 +33,8 @@ public final class eo implements Runnable {
                 return;
             case 2:
                 ri.o oVar = (ri.o) this.d;
-                long j12 = this.f36694b;
-                long j13 = this.f36695c;
+                long j12 = this.f36695b;
+                long j13 = this.f36696c;
                 if (oVar.f45842n == ri.m.h) {
                     long j14 = ((j12 - j13) * 48000) / 1000;
                     oVar.f45845q = j14;
@@ -45,8 +45,8 @@ public final class eo implements Runnable {
                 }
                 return;
             default:
-                long j15 = this.f36694b;
-                long j16 = this.f36695c;
+                long j15 = this.f36695b;
+                long j16 = this.f36696c;
                 ri.o oVar2 = (ri.o) ((cc.e) this.d).f5093c;
                 if (j15 == oVar2.f45844p) {
                     oVar2.f45843o = null;

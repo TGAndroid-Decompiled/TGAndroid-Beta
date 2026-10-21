@@ -26,8 +26,8 @@ public final class qe1 extends s4.v {
         int b10 = b1Var.b();
         if (b10 >= 0) {
             re1 re1Var = this.e;
-            if (b10 < re1Var.f41151b.size() && ((ie1) re1Var.f41151b.get(b10)).f37958c != null && ChatObject.canManageTopics(re1Var.g())) {
-                TLRPC.TL_forumTopic tL_forumTopic = ((ie1) re1Var.f41151b.get(b10)).f37958c;
+            if (b10 < re1Var.f41151b.size() && ((ie1) re1Var.f41151b.get(b10)).f37959c != null && ChatObject.canManageTopics(re1Var.g())) {
+                TLRPC.TL_forumTopic tL_forumTopic = ((ie1) re1Var.f41151b.get(b10)).f37959c;
                 if (re1Var.f41149a0.isEmpty()) {
                     View view = b1Var.f45917a;
                     if ((view instanceof oe1) && tL_forumTopic.f20328id == 1) {
@@ -55,7 +55,7 @@ public final class qe1 extends s4.v {
         int b10;
         re1 re1Var = this.e;
         ArrayList arrayList = re1Var.f41151b;
-        if (b1Var.f45920f == b1Var2.f45920f && (b10 = b1Var2.b()) >= 0 && b10 < arrayList.size() && ((ie1) arrayList.get(b10)).f37958c != null && ((ie1) arrayList.get(b10)).f37958c.pinned) {
+        if (b1Var.f45920f == b1Var2.f45920f && (b10 = b1Var2.b()) >= 0 && b10 < arrayList.size() && ((ie1) arrayList.get(b10)).f37959c != null && ((ie1) arrayList.get(b10)).f37959c.pinned) {
             ge1 ge1Var = re1Var.f41181r;
             int b11 = b1Var.b();
             int b12 = b1Var2.b();
@@ -80,7 +80,7 @@ public final class qe1 extends s4.v {
             ArrayList arrayList = re1Var.f41151b;
             ArrayList<Integer> arrayList2 = new ArrayList<>();
             for (int i11 = 0; i11 < arrayList.size(); i11++) {
-                TLRPC.TL_forumTopic tL_forumTopic = ((ie1) arrayList.get(i11)).f37958c;
+                TLRPC.TL_forumTopic tL_forumTopic = ((ie1) arrayList.get(i11)).f37959c;
                 if (tL_forumTopic != null && tL_forumTopic.pinned) {
                     arrayList2.add(Integer.valueOf(tL_forumTopic.f20328id));
                 }

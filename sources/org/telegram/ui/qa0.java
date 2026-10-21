@@ -30,10 +30,10 @@ public final class qa0 implements org.telegram.ui.Components.e5, org.telegram.ui
                 ab0 ab0Var = this.f40517b;
                 ArrayList arrayList = ab0Var.P;
                 if (i10 < arrayList.size()) {
-                    ab0Var.f35334w.setText(LocaleController.formatDateAudio(ab0Var.getConnectionsManager().getCurrentTime() + ((Integer) arrayList.get(i10)).intValue(), false));
+                    ab0Var.f35335w.setText(LocaleController.formatDateAudio(ab0Var.getConnectionsManager().getCurrentTime() + ((Integer) arrayList.get(i10)).intValue(), false));
                     return;
                 }
-                ab0Var.f35334w.setText("");
+                ab0Var.f35335w.setText("");
                 return;
             default:
                 ab0 ab0Var2 = this.f40517b;

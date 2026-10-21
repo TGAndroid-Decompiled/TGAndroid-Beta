@@ -30,7 +30,7 @@ public final class lb extends r {
     @Override
     public final boolean e() {
         org.telegram.ui.Components.qc qcVar;
-        if (MessagesController.getInstance(this.U).premiumFeaturesBlocked() || ((qcVar = org.telegram.ui.Components.qc.f29523w) != null && qcVar.f29524a == 2)) {
+        if (MessagesController.getInstance(this.U).premiumFeaturesBlocked() || ((qcVar = org.telegram.ui.Components.qc.f29524w) != null && qcVar.f29525a == 2)) {
             return false;
         }
         int i10 = MessagesController.getInstance(this.U).storyCaptionLengthLimitPremium;
@@ -46,8 +46,8 @@ public final class lb extends r {
             }
         }
         org.telegram.ui.Components.qc M = new xc(this.S1.f9983l0, this.f9391a).M(LocaleController.getString(R.string.CaptionPremiumTitle), replaceTags, R.raw.caption_limit);
-        M.f29524a = 2;
-        M.f29530j = 5000;
+        M.f29525a = 2;
+        M.f29531j = 5000;
         M.k(false);
         return true;
     }

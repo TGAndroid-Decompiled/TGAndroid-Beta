@@ -16,16 +16,16 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
 public final class in extends org.telegram.ui.ActionBar.g5 {
-    public float f38030r;
-    public final qn f38031s;
+    public float f38031r;
+    public final qn f38032s;
 
     public in(qn qnVar) {
-        this.f38031s = qnVar;
+        this.f38032s = qnVar;
     }
 
     @Override
     public final boolean a() {
-        if (this.f38031s.f40865u3 == null) {
+        if (this.f38032s.f40865u3 == null) {
             return true;
         }
         return false;
@@ -34,7 +34,7 @@ public final class in extends org.telegram.ui.ActionBar.g5 {
     @Override
     public final boolean b() {
         qn qnVar;
-        qn qnVar2 = this.f38031s;
+        qn qnVar2 = this.f38032s;
         if (!qnVar2.Bc.f17384f) {
             if (qnVar2.f40865u3 != null && qnVar2.f40799p1 != null) {
                 View currentView = qnVar2.f40810q1.getCurrentView();
@@ -63,13 +63,13 @@ public final class in extends org.telegram.ui.ActionBar.g5 {
 
     @Override
     public final boolean f() {
-        return this.f38031s.f40777n3;
+        return this.f38032s.f40777n3;
     }
 
     @Override
     public final void k() {
         int i10;
-        qn qnVar = this.f38031s;
+        qn qnVar = this.f38032s;
         qnVar.O7();
         if (qnVar.f40790o3 == null && qnVar.f40801p3 == null) {
             if (qnVar.f40777n3) {
@@ -106,7 +106,7 @@ public final class in extends org.telegram.ui.ActionBar.g5 {
         int i11;
         int i12;
         MessageObject messageObject;
-        qn qnVar = this.f38031s;
+        qn qnVar = this.f38032s;
         qnVar.f40839s3 = false;
         qnVar.Ac();
         qnVar.Nc();
@@ -257,7 +257,7 @@ public final class in extends org.telegram.ui.ActionBar.g5 {
         qnVar.mc(false);
         qnVar.Dc(0, true);
         qnVar.bd(false);
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.f38030r, 0.0f);
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.f38031r, 0.0f);
         ofFloat.addUpdateListener(new hn(this, 1));
         ofFloat.setInterpolator(org.telegram.ui.Components.bs.h);
         ofFloat.setDuration(320L);
@@ -284,7 +284,7 @@ public final class in extends org.telegram.ui.ActionBar.g5 {
     public final void n() {
         ck ckVar;
         int i10;
-        qn qnVar = this.f38031s;
+        qn qnVar = this.f38032s;
         boolean z10 = true;
         qnVar.f40839s3 = true;
         qnVar.Ac();
@@ -309,7 +309,7 @@ public final class in extends org.telegram.ui.ActionBar.g5 {
                 r40Var.b(true);
             }
         }
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.f38030r, 1.0f);
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.f38031r, 1.0f);
         ofFloat.addUpdateListener(new hn(this, 0));
         ofFloat.setInterpolator(org.telegram.ui.Components.bs.h);
         ofFloat.setDuration(320L);
@@ -332,7 +332,7 @@ public final class in extends org.telegram.ui.ActionBar.g5 {
 
     @Override
     public final void o(hg.o0 o0Var) {
-        qn qnVar = this.f38031s;
+        qn qnVar = this.f38032s;
         qk qkVar = qnVar.f40788o1;
         if (qkVar != null) {
             qkVar.d.M(new xq(2));
@@ -352,7 +352,7 @@ public final class in extends org.telegram.ui.ActionBar.g5 {
         int i12;
         int i13;
         org.telegram.ui.ActionBar.d6 d6Var;
-        qn qnVar = this.f38031s;
+        qn qnVar = this.f38032s;
         boolean z10 = false;
         qnVar.Kc(0, 0, -1);
         if (e2Var != null) {
@@ -371,7 +371,7 @@ public final class in extends org.telegram.ui.ActionBar.g5 {
             }
             if (qnVar.f40865u3 == null) {
                 qnVar.f40865u3 = qnVar.f40852t3;
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(this.f38030r, 1.0f);
+                ValueAnimator ofFloat = ValueAnimator.ofFloat(this.f38031r, 1.0f);
                 ofFloat.addUpdateListener(new hn(this, 2));
                 ofFloat.setInterpolator(org.telegram.ui.Components.bs.h);
                 ofFloat.setDuration(320L);
@@ -431,7 +431,7 @@ public final class in extends org.telegram.ui.ActionBar.g5 {
     @Override
     public final void q(EditText editText) {
         boolean z10;
-        qn qnVar = this.f38031s;
+        qn qnVar = this.f38032s;
         ne.b bVar = qnVar.Bc;
         if (qnVar.f40865u3 == null) {
             qnVar.Qb(false);
@@ -467,7 +467,7 @@ public final class in extends org.telegram.ui.ActionBar.g5 {
 
     @Override
     public final boolean u() {
-        if (this.f38031s.f40865u3 == null) {
+        if (this.f38032s.f40865u3 == null) {
             return true;
         }
         return false;

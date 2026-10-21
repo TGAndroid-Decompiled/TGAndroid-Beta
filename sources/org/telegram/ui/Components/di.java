@@ -26,7 +26,7 @@ public final class di implements TextWatcher {
         int i10;
         boolean z12;
         ti tiVar = this.d;
-        q6 q6Var = tiVar.f30584s;
+        q6 q6Var = tiVar.f30585s;
         ci ciVar = tiVar.S0;
         int i11 = tiVar.M1;
         q6 q6Var2 = tiVar.v;
@@ -93,11 +93,11 @@ public final class di implements TextWatcher {
             tiVar.X0 = z11;
             tiVar.L0.invalidate();
         }
-        if (!tiVar.f30564l2 && !MessagesController.getInstance(i11).premiumFeaturesBlocked() && !UserConfig.getInstance(i11).isPremium() && tiVar.L > MessagesController.getInstance(i11).captionLengthLimitDefault && tiVar.L < MessagesController.getInstance(i11).captionLengthLimitPremium) {
-            tiVar.f30564l2 = true;
+        if (!tiVar.f30565l2 && !MessagesController.getInstance(i11).premiumFeaturesBlocked() && !UserConfig.getInstance(i11).isPremium() && tiVar.L > MessagesController.getInstance(i11).captionLengthLimitDefault && tiVar.L < MessagesController.getInstance(i11).captionLengthLimitPremium) {
+            tiVar.f30565l2 = true;
             tiVar.S1(this.f25504c);
         }
-        if (tiVar.f30535c0) {
+        if (tiVar.f30536c0) {
             if (ciVar.getEditText().getLineCount() > 2 && !TextUtils.isEmpty(ciVar.getText().toString().trim())) {
                 z13 = true;
             }

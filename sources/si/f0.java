@@ -100,11 +100,11 @@ public final class f0 implements Runnable {
                         float max = (float) Math.max(1L, j14);
                         float f7 = ((float) j15) / max;
                         float f10 = ((float) j16) / max;
-                        q60 q60Var = ((l60) fVar.f15843b).f29850b;
+                        q60 q60Var = ((l60) fVar.f15843b).f29851b;
                         if (q60Var != null && (fkVar = ((pe) q60Var).f40199b.Y) != null && (r81Var = fkVar.f23943f1) != null) {
                             float max2 = Math.max(0.0f, Math.min(1.0f, f7));
-                            r81Var.f29878b = max2;
-                            r81Var.f29879c = Math.max(max2, Math.min(1.0f, f10));
+                            r81Var.f29879b = max2;
+                            r81Var.f29880c = Math.max(max2, Math.min(1.0f, f10));
                             r81Var.invalidate();
                         }
                     }

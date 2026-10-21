@@ -870,10 +870,6 @@ public final class vm0 extends org.telegram.ui.ActionBar.n2 implements Notificat
         pf.d.r(parentActivity, "https://telegram.org/deactivate?phone=" + UserConfig.getInstance(vm0Var.currentAccount).getClientPhone());
     }
 
-    public static int e0(vm0 vm0Var) {
-        return vm0Var.currentAccount;
-    }
-
     public static String g1(byte[] bArr, byte[] bArr2, byte[] bArr3) {
         if (bArr != null && bArr2 != null && bArr2.length == 32 && bArr3 != null && bArr3.length == 32) {
             byte[] computeSHA512 = Utilities.computeSHA512(bArr2, bArr3);
@@ -1013,14 +1009,6 @@ public final class vm0 extends org.telegram.ui.ActionBar.n2 implements Notificat
         return vm0Var.currentAccount;
     }
 
-    public static int r0(vm0 vm0Var) {
-        return vm0Var.currentAccount;
-    }
-
-    public static int s0(vm0 vm0Var) {
-        return vm0Var.currentAccount;
-    }
-
     public static boolean s1(TLRPC.SecureValueType secureValueType) {
         if (!(secureValueType instanceof TLRPC.TL_secureValueTypeUtilityBill) && !(secureValueType instanceof TLRPC.TL_secureValueTypeBankStatement) && !(secureValueType instanceof TLRPC.TL_secureValueTypePassportRegistration) && !(secureValueType instanceof TLRPC.TL_secureValueTypeTemporaryRegistration) && !(secureValueType instanceof TLRPC.TL_secureValueTypeRentalAgreement)) {
             return false;
@@ -1142,13 +1130,13 @@ public final class vm0 extends org.telegram.ui.ActionBar.n2 implements Notificat
                 size = this.f42306k1.size();
             }
             tiVar.N1(i11, false);
-            this.R0.f30557j0.f0();
+            this.R0.f30558j0.f0();
             this.R0.t1();
             showDialog(this.R0);
         }
         i11 = 20 - size;
         tiVar.N1(i11, false);
-        this.R0.f30557j0.f0();
+        this.R0.f30558j0.f0();
         this.R0.t1();
         showDialog(this.R0);
     }
@@ -2303,7 +2291,7 @@ public final class vm0 extends org.telegram.ui.ActionBar.n2 implements Notificat
         if (getParentActivity() != null && this.R0 == null) {
             org.telegram.ui.Components.ti tiVar = new org.telegram.ui.Components.ti(getParentActivity(), this, false, false);
             this.R0 = tiVar;
-            tiVar.f30537c2 = new bm0(this);
+            tiVar.f30538c2 = new bm0(this);
         }
     }
 
@@ -2858,9 +2846,9 @@ public final class vm0 extends org.telegram.ui.ActionBar.n2 implements Notificat
     public final void dismissCurrentDialog() {
         org.telegram.ui.Components.ti tiVar = this.R0;
         if (tiVar != null && this.visibleDialog == tiVar) {
-            tiVar.f30557j0.a0(false);
+            tiVar.f30558j0.a0(false);
             this.R0.dismissInternal();
-            this.R0.f30557j0.d0(true);
+            this.R0.f30558j0.d0(true);
             return;
         }
         super.dismissCurrentDialog();
@@ -3452,7 +3440,7 @@ public final class vm0 extends org.telegram.ui.ActionBar.n2 implements Notificat
             b1();
             org.telegram.ui.Components.ti tiVar = this.R0;
             if (tiVar != null) {
-                tiVar.f30557j0.g0(i10, intent, this.Q0);
+                tiVar.f30558j0.g0(i10, intent, this.Q0);
             }
             this.Q0 = null;
         }
@@ -3555,7 +3543,7 @@ public final class vm0 extends org.telegram.ui.ActionBar.n2 implements Notificat
         int i11 = this.f42284b;
         if ((i11 == 1 || i11 == 2) && (tiVar = this.R0) != null) {
             if (i10 == 17) {
-                tiVar.f30557j0.U(false);
+                tiVar.f30558j0.U(false);
             } else if (i10 == 21) {
                 if (getParentActivity() != null && iArr != null && iArr.length != 0 && iArr[0] != 0) {
                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getParentActivity());

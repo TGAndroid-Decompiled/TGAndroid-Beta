@@ -282,7 +282,7 @@ public final class pb0 extends FrameLayout {
         accessibilityNodeInfo.setCheckable(true);
         accessibilityNodeInfo.setEnabled(true);
         if (xpVar.getVisibility() == 0) {
-            accessibilityNodeInfo.setChecked(xpVar.f32458a.f24151q);
+            accessibilityNodeInfo.setChecked(xpVar.f32459a.f24151q);
         } else {
             accessibilityNodeInfo.setChecked(this.f40178f.h);
         }

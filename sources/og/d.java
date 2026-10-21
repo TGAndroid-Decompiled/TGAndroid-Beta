@@ -126,7 +126,7 @@ public abstract class d {
         }
         f90Var.a(str2);
         zq zqVar = new zq(aVar, f90Var, 0, 0);
-        zqVar.f33023w = true;
+        zqVar.f33024w = true;
         return zqVar;
     }
 
@@ -259,10 +259,10 @@ public abstract class d {
                 spannableStringBuilder.append((CharSequence) " ");
                 zq e = e(tL_forumTopic);
                 if (drawableArr != null) {
-                    drawableArr[0] = e.f33016a;
+                    drawableArr[0] = e.f33017a;
                 }
                 e.setBounds(0, 0, (int) (e.getIntrinsicWidth() * 0.65f), (int) (e.getIntrinsicHeight() * 0.65f));
-                Drawable drawable = e.f33017b;
+                Drawable drawable = e.f33018b;
                 if (drawable instanceof f90) {
                     ((f90) drawable).f26154i = 0.7f;
                 }

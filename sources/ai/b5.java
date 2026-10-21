@@ -27,8 +27,8 @@ public final class b5 extends fr0 {
                 long j10 = hVar.j(0);
                 if (j10 == UserConfig.getInstance(this.currentAccount).clientUserId) {
                     org.telegram.ui.Components.qc G = bulletinFactory.G(R.raw.saved_messages, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.LinkSharedToSavedMessages, new Object[0])));
-                    G.f29538r = false;
-                    G.f29540t = true;
+                    G.f29539r = false;
+                    G.f29541t = true;
                     G.j();
                 } else if (j10 < 0) {
                     TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j10));
@@ -40,19 +40,19 @@ public final class b5 extends fr0 {
                         str = chat.title;
                     }
                     org.telegram.ui.Components.qc G2 = bulletinFactory.G(i11, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(i12, str)));
-                    G2.f29538r = false;
-                    G2.f29540t = true;
+                    G2.f29539r = false;
+                    G2.f29541t = true;
                     G2.j();
                 } else {
                     org.telegram.ui.Components.qc G3 = bulletinFactory.G(R.raw.forward, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.LinkSharedTo, MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j10)).first_name)));
-                    G3.f29538r = false;
-                    G3.f29540t = true;
+                    G3.f29539r = false;
+                    G3.f29541t = true;
                     G3.j();
                 }
             } else {
                 org.telegram.ui.Components.qc Q = bulletinFactory.Q(R.raw.forward, 36, AndroidUtilities.replaceTags(LocaleController.formatPluralString("LinkSharedToManyChats", hVar.m(), Integer.valueOf(hVar.m()))));
-                Q.f29538r = false;
-                Q.f29540t = true;
+                Q.f29539r = false;
+                Q.f29541t = true;
                 Q.j();
             }
             try {

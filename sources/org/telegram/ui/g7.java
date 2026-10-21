@@ -2,18 +2,18 @@ package org.telegram.ui;
 
 import android.view.View;
 public final class g7 implements org.telegram.ui.Components.xl0 {
-    public final org.telegram.ui.Components.jm0 f37207a;
-    public final h7 f37208b;
+    public final org.telegram.ui.Components.jm0 f37208a;
+    public final h7 f37209b;
 
     public g7(h7 h7Var, org.telegram.ui.Components.jm0 jm0Var) {
-        this.f37208b = h7Var;
-        this.f37207a = jm0Var;
+        this.f37209b = h7Var;
+        this.f37208a = jm0Var;
     }
 
     @Override
     public final void a(int i10, View view) {
-        v7 v7Var = this.f37208b.d;
-        org.telegram.ui.Components.jm0 jm0Var = this.f37207a;
+        v7 v7Var = this.f37209b.d;
+        org.telegram.ui.Components.jm0 jm0Var = this.f37208a;
         i7 i7Var = (i7) jm0Var.getAdapter();
         p7 p7Var = (p7) i7Var.e.get(i10);
         if (view instanceof org.telegram.ui.Cells.s7) {

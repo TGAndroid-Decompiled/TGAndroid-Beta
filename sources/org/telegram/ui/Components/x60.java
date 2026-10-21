@@ -9,15 +9,15 @@ import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class x60 extends FrameLayout {
-    public final RectF f32352a;
-    public boolean f32353b;
-    public Boolean f32354c;
+    public final RectF f32353a;
+    public boolean f32354b;
+    public Boolean f32355c;
     public final l70 d;
 
     public x60(l70 l70Var, Context context) {
         super(context);
         this.d = l70Var;
-        this.f32352a = new RectF();
+        this.f32353a = new RectF();
     }
 
     @Override
@@ -51,7 +51,7 @@ public final class x60 extends FrameLayout {
         int i26 = dp + i25;
         int i27 = i24 - i25;
         boolean z12 = false;
-        if (this.f32353b) {
+        if (this.f32354b) {
             i19 = ((org.telegram.ui.ActionBar.f3) l70Var).backgroundPaddingTop;
             int i28 = i19 + i26;
             int i29 = AndroidUtilities.statusBarHeight;
@@ -90,7 +90,7 @@ public final class x60 extends FrameLayout {
             i17 = ((org.telegram.ui.ActionBar.f3) l70Var).backgroundPaddingLeft;
             i18 = ((org.telegram.ui.ActionBar.f3) l70Var).backgroundPaddingTop;
             int i33 = i18 + i26;
-            RectF rectF = this.f32352a;
+            RectF rectF = this.f32353a;
             rectF.set(i15, i16 + i26, measuredWidth - i17, AndroidUtilities.dp(24.0f) + i33);
             canvas.drawRoundRect(rectF, AndroidUtilities.dp(12.0f) * f7, AndroidUtilities.dp(12.0f) * f7, org.telegram.ui.ActionBar.h6.f21280t0);
         }
@@ -108,7 +108,7 @@ public final class x60 extends FrameLayout {
         } else {
             z10 = false;
         }
-        Boolean bool = this.f32354c;
+        Boolean bool = this.f32355c;
         if (bool != null && bool.booleanValue() == z10) {
             return;
         }
@@ -120,7 +120,7 @@ public final class x60 extends FrameLayout {
         if (AndroidUtilities.computePerceivedBrightness(org.telegram.ui.ActionBar.h6.v(l70Var.getThemedColor(org.telegram.ui.ActionBar.h6.f21269s8), 855638016)) > 0.721f) {
             z12 = true;
         }
-        this.f32354c = Boolean.valueOf(z10);
+        this.f32355c = Boolean.valueOf(z10);
         if (!z10) {
             z11 = z12;
         }
@@ -158,7 +158,7 @@ public final class x60 extends FrameLayout {
         setPadding(i12, i14, i13, 0);
         l70Var.f28067a0 = false;
         super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(size, 1073741824));
-        this.f32353b = true;
+        this.f32354b = true;
     }
 
     @Override

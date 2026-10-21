@@ -12,8 +12,8 @@ public final class vs extends org.telegram.ui.ActionBar.m1 {
     @Override
     public final void dismiss() {
         d(true);
-        et etVar = this.f42364o.f35415a;
-        etVar.f36785k = null;
+        et etVar = this.f42364o.f35416a;
+        etVar.f36786k = null;
         etVar.K = false;
         if (etVar.R) {
             etVar.n();

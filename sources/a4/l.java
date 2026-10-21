@@ -671,7 +671,7 @@ public final class l implements z3.d, a0, androidx.activity.result.b, r, w9, OnS
         x9Var.f6174c = null;
         uy0 uy0Var = (uy0) this.f279b;
         oz0 oz0Var = uy0Var.h;
-        ArrayList arrayList = uy0Var.f33890w;
+        ArrayList arrayList = uy0Var.f33891w;
         if (uy0Var.N < 0.2f) {
             x9Var.f6173b = oz0Var.getImageReceiver();
             x9Var.f6174c = null;
@@ -679,7 +679,7 @@ public final class l implements z3.d, a0, androidx.activity.result.b, r, w9, OnS
             x9Var.h = 0.0f;
             x9Var.f6177i = AndroidUtilities.displaySize.y;
             x9Var.f6176g = (View) uy0Var.getParent();
-            x9Var.d = uy0Var.f33892y;
+            x9Var.d = uy0Var.f33893y;
             x9Var.f6182n = true;
             return true;
         }
@@ -795,7 +795,7 @@ public final class l implements z3.d, a0, androidx.activity.result.b, r, w9, OnS
 
     @Override
     public void X0(long j10, int i10, t3 t3Var) {
-        int i11 = ProfileStoriesView.f33865s0;
+        int i11 = ProfileStoriesView.f33866s0;
         ((uy0) this.f279b).f(true, false);
         t3Var.run();
     }
@@ -1135,10 +1135,10 @@ public final class l implements z3.d, a0, androidx.activity.result.b, r, w9, OnS
         d2 d2Var = (d2) this.f279b;
         if (aVar != null && (aVar.f15095b instanceof TL_iv.pageBlockMap) && AndroidUtilities.isMapsInstalled(d2Var)) {
             ti tiVar = new ti(d2Var.getParentActivity(), d2Var, false, false, false, d2Var.getResourceProvider());
-            tiVar.f30537c2 = new oa.d(12);
+            tiVar.f30538c2 = new oa.d(12);
             tiVar.P = true;
             tiVar.A1.setVisibility(8);
-            tiVar.f30600w2 = new u2(d2Var, aVar, tiVar, 12);
+            tiVar.f30601w2 = new u2(d2Var, aVar, tiVar, 12);
             tiVar.t1();
             tiVar.show();
         }

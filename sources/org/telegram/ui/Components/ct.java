@@ -32,7 +32,7 @@ public abstract class ct extends u61 {
         this.V = new ArrayList();
         ro0 ro0Var = (ro0) this;
         this.f25257c0 = new hq(ro0Var, 6);
-        this.f30861s = new d(ro0Var, 9);
+        this.f30862s = new d(ro0Var, 9);
         this.N = i10;
         this.O = i11;
         N(false);

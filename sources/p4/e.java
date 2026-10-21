@@ -219,9 +219,9 @@ public final class e {
         }
         ml0 ml0Var2 = new ml0(eVar, vVar, qVar, i10, vVar2, collection);
         this.f44101g = ml0Var2;
-        if (ml0Var2.f28543b == 3 && (qVar2 = this.f44100f) != null) {
+        if (ml0Var2.f28544b == 3 && (qVar2 = this.f44100f) != null) {
             final v vVar3 = this.d;
-            final v vVar4 = (v) ml0Var2.f28546g;
+            final v vVar4 = (v) ml0Var2.f28547g;
             com.google.android.gms.internal.cast.q.f6756c.b("Prepare transfer from Route(%s) to Route(%s)", vVar3, vVar4);
             c0.l a2 = v7.h0.a(new c0.j() {
                 @Override
@@ -232,10 +232,10 @@ public final class e {
                 }
             });
             ml0 ml0Var3 = this.f44101g;
-            e eVar2 = (e) ((WeakReference) ml0Var3.f28548j).get();
+            e eVar2 = (e) ((WeakReference) ml0Var3.f28549j).get();
             if (eVar2 != null && eVar2.f44101g == ml0Var3) {
-                if (((c0.l) ml0Var3.f28549k) == null) {
-                    ml0Var3.f28549k = a2;
+                if (((c0.l) ml0Var3.f28550k) == null) {
+                    ml0Var3.f28550k = a2;
                     z1 z1Var = new z1(ml0Var3, 3);
                     b bVar = eVar2.f44097a;
                     Objects.requireNonNull(bVar);

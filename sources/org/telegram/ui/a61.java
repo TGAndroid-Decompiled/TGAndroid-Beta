@@ -7,22 +7,22 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 public final class a61 implements TextWatcher {
-    public final qy0 f35288a = new qy0(this, 17);
-    public final h61 f35289b;
+    public final qy0 f35289a = new qy0(this, 17);
+    public final h61 f35290b;
 
     public a61(h61 h61Var) {
-        this.f35289b = h61Var;
+        this.f35290b = h61Var;
     }
 
     public final void a() {
         boolean z10;
         boolean z11;
         TLRPC.TL_channelParticipantsSearch tL_channelParticipantsSearch = new TLRPC.TL_channelParticipantsSearch();
-        h61 h61Var = this.f35289b;
-        String obj = h61Var.f37507c0.getText().toString();
+        h61 h61Var = this.f35290b;
+        String obj = h61Var.f37508c0.getText().toString();
         tL_channelParticipantsSearch.f20275q = obj;
-        g61 g61Var = h61Var.f37511g0;
-        TLRPC.ChannelParticipantsFilter channelParticipantsFilter = g61Var.f37202c;
+        g61 g61Var = h61Var.f37512g0;
+        TLRPC.ChannelParticipantsFilter channelParticipantsFilter = g61Var.f37203c;
         if (channelParticipantsFilter instanceof TLRPC.TL_channelParticipantsSearch) {
             z10 = !TextUtils.equals(channelParticipantsFilter.f20275q, obj);
             z11 = false;
@@ -30,24 +30,24 @@ public final class a61 implements TextWatcher {
             z10 = true;
             z11 = true;
         }
-        g61Var.f37202c = tL_channelParticipantsSearch;
+        g61Var.f37203c = tL_channelParticipantsSearch;
         if (z10) {
             if (z11) {
-                g61Var.f37205r = false;
-                if (g61Var.f37204n >= 0) {
-                    ConnectionsManager.getInstance(g61Var.f37200a).cancelRequest(g61Var.f37204n, true);
-                    g61Var.f37204n = -1;
+                g61Var.f37206r = false;
+                if (g61Var.f37205n >= 0) {
+                    ConnectionsManager.getInstance(g61Var.f37201a).cancelRequest(g61Var.f37205n, true);
+                    g61Var.f37205n = -1;
                 }
-                g61Var.f37203f = false;
+                g61Var.f37204f = false;
                 g61Var.d.clear();
                 g61Var.h = false;
             } else {
-                g61Var.f37205r = true;
+                g61Var.f37206r = true;
                 g61Var.h = false;
             }
             g61Var.b();
         }
-        org.telegram.ui.Components.u61 u61Var = h61Var.f37513i0;
+        org.telegram.ui.Components.u61 u61Var = h61Var.f37514i0;
         if (u61Var != null) {
             u61Var.N(true);
         }
@@ -56,7 +56,7 @@ public final class a61 implements TextWatcher {
     @Override
     public final void afterTextChanged(Editable editable) {
         int length = editable.length();
-        qy0 qy0Var = this.f35288a;
+        qy0 qy0Var = this.f35289a;
         if (length <= 0) {
             AndroidUtilities.cancelRunOnUIThread(qy0Var);
             a();

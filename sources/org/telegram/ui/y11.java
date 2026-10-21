@@ -44,7 +44,7 @@ public final class y11 extends FrameLayout {
     public final void b() {
         int width = getWidth();
         org.telegram.ui.Components.p5 p5Var = this.f43333a;
-        p5Var.setBounds((width - p5Var.f29213s) - AndroidUtilities.dp(21.0f), (getHeight() - p5Var.f29213s) / 2, getWidth() - AndroidUtilities.dp(21.0f), (getHeight() + p5Var.f29213s) / 2);
+        p5Var.setBounds((width - p5Var.f29214s) - AndroidUtilities.dp(21.0f), (getHeight() - p5Var.f29214s) / 2, getWidth() - AndroidUtilities.dp(21.0f), (getHeight() + p5Var.f29214s) / 2);
     }
 
     @Override

@@ -101,11 +101,11 @@ public final class i extends FrameLayout implements NotificationCenter.Notificat
                 if (O instanceof b) {
                     arrayList.addAll(((b) O).B());
                 }
-                ActionBarLayout actionBarLayout = ((LaunchActivity) getContext()).f33189s0;
+                ActionBarLayout actionBarLayout = ((LaunchActivity) getContext()).f33190s0;
                 if (actionBarLayout != null) {
                     arrayList.addAll(actionBarLayout.B());
                 }
-                ActionBarLayout actionBarLayout2 = ((LaunchActivity) getContext()).f33187r0;
+                ActionBarLayout actionBarLayout2 = ((LaunchActivity) getContext()).f33188r0;
                 if (actionBarLayout2 != null) {
                     arrayList.addAll(actionBarLayout2.B());
                 }
@@ -183,7 +183,7 @@ public final class i extends FrameLayout implements NotificationCenter.Notificat
         int dp = AndroidUtilities.dp(56.0f);
         int dp2 = AndroidUtilities.dp(56.0f);
         zqVar.e = dp;
-        zqVar.f33019f = dp2;
+        zqVar.f33020f = dp2;
         this.f17465b = zqVar;
         Drawable drawable = getResources().getDrawable(R.drawable.popup_fixed_alert3);
         drawable.setColorFilter(new PorterDuffColorFilter(h6.x0(null, h6.f21061h5, false), mode));

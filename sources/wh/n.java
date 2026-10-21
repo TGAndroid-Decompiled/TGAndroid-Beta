@@ -165,8 +165,8 @@ public class n extends TextView implements w9 {
                 this.H = y90Var;
                 u90Var.a(y90Var, null);
                 SpannableString spannableString = new SpannableString(layout.getText());
-                int spanStart = spannableString.getSpanStart(this.H.f32601i);
-                int spanEnd = spannableString.getSpanEnd(this.H.f32601i);
+                int spanStart = spannableString.getSpanStart(this.H.f32602i);
+                int spanEnd = spannableString.getSpanEnd(this.H.f32602i);
                 r90 b10 = this.H.b();
                 if (this.J) {
                     paddingTop = 0.0f;
@@ -181,7 +181,7 @@ public class n extends TextView implements w9 {
             if (motionEvent.getAction() == 1) {
                 u90Var.d(true);
                 y90 y90Var2 = this.H;
-                if (y90Var2 != null && (characterStyle = y90Var2.f32601i) == a2) {
+                if (y90Var2 != null && (characterStyle = y90Var2.f32602i) == a2) {
                     w90 w90Var = this.F;
                     if (w90Var != null) {
                         w90Var.a((ClickableSpan) characterStyle);

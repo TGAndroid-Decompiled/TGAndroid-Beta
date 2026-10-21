@@ -745,20 +745,20 @@ public class LocaleController {
         loadOtherLanguages();
         if (this.remoteLanguages.isEmpty()) {
             AndroidUtilities.runOnUIThread(new Runnable(this) {
-                public final LocaleController f19496b;
+                public final LocaleController f19493b;
 
                 {
-                    this.f19496b = this;
+                    this.f19493b = this;
                 }
 
                 @Override
                 public final void run() {
                     switch (r2) {
                         case 0:
-                            this.f19496b.lambda$new$0();
+                            this.f19493b.lambda$new$0();
                             return;
                         default:
-                            this.f19496b.lambda$new$1();
+                            this.f19493b.lambda$new$1();
                             return;
                     }
                 }
@@ -829,20 +829,20 @@ public class LocaleController {
             FileLog.e(e7);
         }
         AndroidUtilities.runOnUIThread(new Runnable(this) {
-            public final LocaleController f19496b;
+            public final LocaleController f19493b;
 
             {
-                this.f19496b = this;
+                this.f19493b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        this.f19496b.lambda$new$0();
+                        this.f19493b.lambda$new$0();
                         return;
                     default:
-                        this.f19496b.lambda$new$1();
+                        this.f19493b.lambda$new$1();
                         return;
                 }
             }
@@ -869,7 +869,7 @@ public class LocaleController {
             sb2.append(" currentAccount=");
             g0.o(i10, sb2);
             int[] iArr = {0};
-            final h0 h0Var = new h0(new int[]{0}, iArr, runnable, 25);
+            final h0 h0Var = new h0(new int[]{0}, iArr, runnable, 26);
             if (z10) {
                 patched(localeInfo2.shortName);
             }
@@ -883,26 +883,26 @@ public class LocaleController {
                         tL_langpack_getDifference.lang_pack = "";
                         iArr[0] = iArr[0] + 1;
                         ConnectionsManager.getInstance(i10).sendRequest(tL_langpack_getDifference, new RequestDelegate(this) {
-                            public final LocaleController f19418b;
+                            public final LocaleController f19415b;
 
                             {
-                                this.f19418b = this;
+                                this.f19415b = this;
                             }
 
                             @Override
                             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                                 switch (r5) {
                                     case 0:
-                                        this.f19418b.lambda$applyRemoteLanguage$15(localeInfo2, i10, h0Var, tLObject, tL_error);
+                                        this.f19415b.lambda$applyRemoteLanguage$15(localeInfo2, i10, h0Var, tLObject, tL_error);
                                         return;
                                     case 1:
-                                        this.f19418b.lambda$applyRemoteLanguage$17(localeInfo2, i10, h0Var, tLObject, tL_error);
+                                        this.f19415b.lambda$applyRemoteLanguage$17(localeInfo2, i10, h0Var, tLObject, tL_error);
                                         return;
                                     case 2:
-                                        this.f19418b.lambda$applyRemoteLanguage$19(localeInfo2, i10, h0Var, tLObject, tL_error);
+                                        this.f19415b.lambda$applyRemoteLanguage$19(localeInfo2, i10, h0Var, tLObject, tL_error);
                                         return;
                                     default:
-                                        this.f19418b.lambda$applyRemoteLanguage$21(localeInfo2, i10, h0Var, tLObject, tL_error);
+                                        this.f19415b.lambda$applyRemoteLanguage$21(localeInfo2, i10, h0Var, tLObject, tL_error);
                                         return;
                                 }
                             }
@@ -916,26 +916,26 @@ public class LocaleController {
                     iArr[0] = iArr[0] + 1;
                     localeInfo2 = localeInfo;
                     ConnectionsManager.getInstance(i10).sendRequest(tL_langpack_getLangPack, new RequestDelegate(this) {
-                        public final LocaleController f19418b;
+                        public final LocaleController f19415b;
 
                         {
-                            this.f19418b = this;
+                            this.f19415b = this;
                         }
 
                         @Override
                         public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                             switch (r5) {
                                 case 0:
-                                    this.f19418b.lambda$applyRemoteLanguage$15(localeInfo2, i10, h0Var, tLObject, tL_error);
+                                    this.f19415b.lambda$applyRemoteLanguage$15(localeInfo2, i10, h0Var, tLObject, tL_error);
                                     return;
                                 case 1:
-                                    this.f19418b.lambda$applyRemoteLanguage$17(localeInfo2, i10, h0Var, tLObject, tL_error);
+                                    this.f19415b.lambda$applyRemoteLanguage$17(localeInfo2, i10, h0Var, tLObject, tL_error);
                                     return;
                                 case 2:
-                                    this.f19418b.lambda$applyRemoteLanguage$19(localeInfo2, i10, h0Var, tLObject, tL_error);
+                                    this.f19415b.lambda$applyRemoteLanguage$19(localeInfo2, i10, h0Var, tLObject, tL_error);
                                     return;
                                 default:
-                                    this.f19418b.lambda$applyRemoteLanguage$21(localeInfo2, i10, h0Var, tLObject, tL_error);
+                                    this.f19415b.lambda$applyRemoteLanguage$21(localeInfo2, i10, h0Var, tLObject, tL_error);
                                     return;
                             }
                         }
@@ -951,26 +951,26 @@ public class LocaleController {
                     tL_langpack_getDifference2.lang_pack = "";
                     iArr[0] = iArr[0] + 1;
                     return ConnectionsManager.getInstance(i10).sendRequest(tL_langpack_getDifference2, new RequestDelegate(this) {
-                        public final LocaleController f19418b;
+                        public final LocaleController f19415b;
 
                         {
-                            this.f19418b = this;
+                            this.f19415b = this;
                         }
 
                         @Override
                         public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                             switch (r5) {
                                 case 0:
-                                    this.f19418b.lambda$applyRemoteLanguage$15(localeInfo2, i10, h0Var, tLObject, tL_error);
+                                    this.f19415b.lambda$applyRemoteLanguage$15(localeInfo2, i10, h0Var, tLObject, tL_error);
                                     return;
                                 case 1:
-                                    this.f19418b.lambda$applyRemoteLanguage$17(localeInfo2, i10, h0Var, tLObject, tL_error);
+                                    this.f19415b.lambda$applyRemoteLanguage$17(localeInfo2, i10, h0Var, tLObject, tL_error);
                                     return;
                                 case 2:
-                                    this.f19418b.lambda$applyRemoteLanguage$19(localeInfo2, i10, h0Var, tLObject, tL_error);
+                                    this.f19415b.lambda$applyRemoteLanguage$19(localeInfo2, i10, h0Var, tLObject, tL_error);
                                     return;
                                 default:
-                                    this.f19418b.lambda$applyRemoteLanguage$21(localeInfo2, i10, h0Var, tLObject, tL_error);
+                                    this.f19415b.lambda$applyRemoteLanguage$21(localeInfo2, i10, h0Var, tLObject, tL_error);
                                     return;
                             }
                         }
@@ -984,26 +984,26 @@ public class LocaleController {
                 tL_langpack_getLangPack2.lang_code = localeInfo.getLangCode();
                 iArr[0] = iArr[0] + 1;
                 return ConnectionsManager.getInstance(i10).sendRequest(tL_langpack_getLangPack2, new RequestDelegate(this) {
-                    public final LocaleController f19418b;
+                    public final LocaleController f19415b;
 
                     {
-                        this.f19418b = this;
+                        this.f19415b = this;
                     }
 
                     @Override
                     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                         switch (r5) {
                             case 0:
-                                this.f19418b.lambda$applyRemoteLanguage$15(localeInfo, i10, h0Var, tLObject, tL_error);
+                                this.f19415b.lambda$applyRemoteLanguage$15(localeInfo, i10, h0Var, tLObject, tL_error);
                                 return;
                             case 1:
-                                this.f19418b.lambda$applyRemoteLanguage$17(localeInfo, i10, h0Var, tLObject, tL_error);
+                                this.f19415b.lambda$applyRemoteLanguage$17(localeInfo, i10, h0Var, tLObject, tL_error);
                                 return;
                             case 2:
-                                this.f19418b.lambda$applyRemoteLanguage$19(localeInfo, i10, h0Var, tLObject, tL_error);
+                                this.f19415b.lambda$applyRemoteLanguage$19(localeInfo, i10, h0Var, tLObject, tL_error);
                                 return;
                             default:
-                                this.f19418b.lambda$applyRemoteLanguage$21(localeInfo, i10, h0Var, tLObject, tL_error);
+                                this.f19415b.lambda$applyRemoteLanguage$21(localeInfo, i10, h0Var, tLObject, tL_error);
                                 return;
                         }
                     }

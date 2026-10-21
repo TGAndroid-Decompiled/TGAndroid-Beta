@@ -604,7 +604,7 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
         p6Var.u(-1);
         p6Var.x(AndroidUtilities.bold());
         p6Var.setCallback(view2);
-        p6Var.f29225b = 1;
+        p6Var.f29226b = 1;
         view2.a(0L, false);
         this.J0 = view2;
         h0(false, false);
@@ -2388,7 +2388,7 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
                     int dp = AndroidUtilities.dp(64.0f);
                     int dp2 = AndroidUtilities.dp(64.0f);
                     zqVar.e = dp;
-                    zqVar.f33019f = dp2;
+                    zqVar.f33020f = dp2;
                     this.A0.setCameraThumb(zqVar);
                     if (activity.shouldShowRequestPermissionRationale("android.permission.CAMERA")) {
                         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(activity, 0, this.f9947a);
@@ -2689,14 +2689,14 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
             vj0Var2.N(i10, false, false);
         } else if (z10) {
             vj0 vj0Var3 = this.f9966f1;
-            if (vj0Var3.f31264a0 > 20) {
+            if (vj0Var3.f31265a0 > 20) {
                 vj0Var3.N(0, false, false);
             }
             this.f9966f1.P(20);
             this.f9966f1.start();
         } else {
             vj0 vj0Var4 = this.f9966f1;
-            int i11 = vj0Var4.f31264a0;
+            int i11 = vj0Var4.f31265a0;
             if (i11 != 0 && i11 < 43) {
                 vj0Var4.P(43);
                 this.f9966f1.start();

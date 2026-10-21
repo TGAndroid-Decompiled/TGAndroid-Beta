@@ -17,15 +17,15 @@ import org.telegram.messenger.TranslateController;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 public final class o41 implements View.OnClickListener {
-    public final int f28943a;
-    public final KeyEvent.Callback f28944b;
-    public final Object f28945c;
+    public final int f28944a;
+    public final KeyEvent.Callback f28945b;
+    public final Object f28946c;
     public final Object d;
 
     public o41(KeyEvent.Callback callback, Object obj, Object obj2, int i10) {
-        this.f28943a = i10;
-        this.f28944b = callback;
-        this.f28945c = obj;
+        this.f28944a = i10;
+        this.f28945b = callback;
+        this.f28946c = obj;
         this.d = obj2;
     }
 
@@ -33,15 +33,15 @@ public final class o41 implements View.OnClickListener {
     public final void onClick(View view) {
         View view2;
         String string;
-        int i10 = this.f28943a;
+        int i10 = this.f28944a;
         Object obj = this.d;
-        Object obj2 = this.f28945c;
-        KeyEvent.Callback callback = this.f28944b;
+        Object obj2 = this.f28946c;
+        KeyEvent.Callback callback = this.f28945b;
         switch (i10) {
             case 0:
                 r41 r41Var = (r41) callback;
                 LocaleController.LocaleInfo localeInfo = (LocaleController.LocaleInfo) obj;
-                t41 t41Var = r41Var.f29823n;
+                t41 t41Var = r41Var.f29824n;
                 Runnable runnable = ((Runnable[]) obj2)[0];
                 if (runnable != null) {
                     runnable.run();
@@ -50,17 +50,17 @@ public final class o41 implements View.OnClickListener {
                 s41 s41Var = t41Var.I;
                 if (!TextUtils.equals(str, localeInfo.pluralLangCode)) {
                     View view3 = s41Var.d;
-                    if (view3 == t41Var.E || view3 == t41Var.f30432r) {
-                        t41Var.f30434w = t41Var.v;
+                    if (view3 == t41Var.E || view3 == t41Var.f30433r) {
+                        t41Var.f30435w = t41Var.v;
                     }
                     p41 p41Var = r41Var.e;
                     String str2 = localeInfo.pluralLangCode;
                     t41Var.v = str2;
                     p41Var.setText(t41.A(t41.E(str2, null, null)));
                     if (t41Var.h != null) {
-                        view2 = t41Var.f30431n;
+                        view2 = t41Var.f30432n;
                     } else {
-                        view2 = t41Var.f30436y;
+                        view2 = t41Var.f30437y;
                     }
                     s41Var.D(view2);
                     t41.J(t41Var.v);

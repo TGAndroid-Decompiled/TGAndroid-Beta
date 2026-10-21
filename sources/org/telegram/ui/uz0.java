@@ -22,7 +22,7 @@ public final class uz0 extends ClickableSpan {
         ProfileActivity profileActivity = this.f42079c.e;
         TLRPC.TL_username tL_username = this.f42077a;
         if (!tL_username.editable) {
-            if (profileActivity.f33658k5 != this) {
+            if (profileActivity.f33659k5 != this) {
                 profileActivity.M4(this);
                 TL_fragment.TL_getCollectibleInfo tL_getCollectibleInfo = new TL_fragment.TL_getCollectibleInfo();
                 TL_fragment.TL_inputCollectibleUsername tL_inputCollectibleUsername = new TL_fragment.TL_inputCollectibleUsername();

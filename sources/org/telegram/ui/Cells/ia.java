@@ -75,7 +75,7 @@ public final class ia implements zl0, zf.m, ImageReceiver.ImageReceiverDelegate,
                             } catch (Exception unused) {
                             }
                             if (w0Var.getContext() instanceof LaunchActivity) {
-                                ((LaunchActivity) w0Var.getContext()).f33199x0.c(false);
+                                ((LaunchActivity) w0Var.getContext()).f33200x0.c(false);
                             }
                             TLRPC.VideoSize videoSize = w0Var.I1;
                             if (videoSize != null && (t0Var = w0Var.f23697f1) != null) {
@@ -85,7 +85,7 @@ public final class ia implements zl0, zf.m, ImageReceiver.ImageReceiverDelegate,
                             return;
                         }
                         return;
-                    } else if (lottieAnimation.f31264a0 < 1) {
+                    } else if (lottieAnimation.f31265a0 < 1) {
                         lottieAnimation.stop();
                         lottieAnimation.N(lottieAnimation.e[0] - 1, false, false);
                         return;

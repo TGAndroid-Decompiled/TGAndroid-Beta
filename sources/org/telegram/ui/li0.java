@@ -33,7 +33,7 @@ public final class li0 extends org.telegram.ui.Cells.u1 {
                 id2 = getMessageObject().getId();
             }
             if (i14 == id2) {
-                if (!this.Je.f39283w0) {
+                if (!this.Je.f39282v0) {
                     setTranslationY(-(i11 - this.Ge));
                     animate().translationY(0.0f).setDuration(320L).setInterpolator(org.telegram.ui.Components.bs.h).start();
                 }
@@ -49,6 +49,6 @@ public final class li0 extends org.telegram.ui.Cells.u1 {
 
     @Override
     public final wh.f w3() {
-        return wh.f.d(1, this, this.Je.F);
+        return wh.f.d(1, this, this.Je.E);
     }
 }

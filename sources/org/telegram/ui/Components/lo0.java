@@ -52,18 +52,18 @@ public final class lo0 extends s4.r0 {
         switch (this.f28236a) {
             case 0:
                 org.telegram.ui.lx lxVar = this.f28238c;
-                lxVar.f32190o0.V();
+                lxVar.f32191o0.V();
                 lxVar.S(i10, i11);
                 return;
             case 1:
                 org.telegram.ui.lx lxVar2 = this.f28238c;
-                lxVar2.f32197v0.W();
+                lxVar2.f32198v0.W();
                 lxVar2.S(i10, i11);
                 return;
             case 2:
                 org.telegram.ui.lx lxVar3 = this.f28238c;
-                po0 po0Var = lxVar3.f32178b0;
-                s4.b0 b0Var = lxVar3.f32179c0;
+                po0 po0Var = lxVar3.f32179b0;
+                s4.b0 b0Var = lxVar3.f32180c0;
                 int L0 = b0Var.L0();
                 int N0 = b0Var.N0();
                 int abs = Math.abs(b0Var.N0() - L0) + 1;
@@ -75,7 +75,7 @@ public final class lo0 extends s4.r0 {
                 return;
             default:
                 org.telegram.ui.lx lxVar4 = this.f28238c;
-                ro0 ro0Var = lxVar4.f32186j0;
+                ro0 ro0Var = lxVar4.f32187j0;
                 if (ro0Var.Y && !ro0Var.W && !TextUtils.isEmpty(ro0Var.f25256b0) && (jm0Var = ro0Var.d) != null) {
                     int i13 = 0;
                     while (true) {

@@ -9,29 +9,29 @@ import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.tgnet.TLRPC;
 public final class kt0 extends zt0 {
-    public final ImageReceiver.BitmapHolder f38666a;
-    public final hu0 f38667b;
-    public final MessageObject f38668c;
+    public final ImageReceiver.BitmapHolder f38667a;
+    public final hu0 f38668b;
+    public final MessageObject f38669c;
     public final MediaController.PhotoEntry d;
     public final boolean e;
-    public final boolean f38669f;
-    public final PhotoViewer f38670g;
+    public final boolean f38670f;
+    public final PhotoViewer f38671g;
 
     public kt0(PhotoViewer photoViewer, hu0 hu0Var, MessageObject messageObject, MediaController.PhotoEntry photoEntry, boolean z10, boolean z11) {
-        this.f38670g = photoViewer;
-        this.f38667b = hu0Var;
-        this.f38668c = messageObject;
+        this.f38671g = photoViewer;
+        this.f38668b = hu0Var;
+        this.f38669c = messageObject;
         this.d = photoEntry;
         this.e = z10;
-        this.f38669f = z11;
-        this.f38666a = photoViewer.C4.getBitmapSafe();
+        this.f38670f = z11;
+        this.f38667a = photoViewer.C4.getBitmapSafe();
     }
 
     @Override
     public final ju0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
-        hu0 hu0Var = this.f38667b;
+        hu0 hu0Var = this.f38668b;
         if (hu0Var != null) {
-            return hu0Var.E(this.f38668c, null, 0, z10, false);
+            return hu0Var.E(this.f38669c, null, 0, z10, false);
         }
         return null;
     }
@@ -47,15 +47,15 @@ public final class kt0 extends zt0 {
 
     @Override
     public final MessageObject V() {
-        return this.f38668c;
+        return this.f38669c;
     }
 
     public final void d0(VideoEditedInfo videoEditedInfo, boolean z10, int i10, boolean z11, boolean z12) {
         MessageObject messageObject;
-        PhotoViewer photoViewer = this.f38670g;
+        PhotoViewer photoViewer = this.f38671g;
         if (photoViewer.l4 != null) {
             gn gnVar = null;
-            MessageObject messageObject2 = this.f38668c;
+            MessageObject messageObject2 = this.f38669c;
             if (z11) {
                 messageObject = messageObject2;
             } else {
@@ -116,7 +116,7 @@ public final class kt0 extends zt0 {
 
     @Override
     public final ImageReceiver.BitmapHolder j(int i10) {
-        return this.f38666a;
+        return this.f38667a;
     }
 
     @Override
@@ -126,7 +126,7 @@ public final class kt0 extends zt0 {
 
     @Override
     public final boolean p() {
-        if (this.f38667b != null && this.e) {
+        if (this.f38668b != null && this.e) {
             return true;
         }
         return false;
@@ -134,7 +134,7 @@ public final class kt0 extends zt0 {
 
     @Override
     public final boolean r() {
-        if (this.f38667b != null && this.f38669f) {
+        if (this.f38668b != null && this.f38670f) {
             return true;
         }
         return false;

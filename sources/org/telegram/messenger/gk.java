@@ -11,40 +11,40 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.x51;
 public final class gk implements Utilities.Callback {
-    public final int f18488a = 0;
-    public final boolean f18489b;
-    public final NotificationCenter.NotificationCenterDelegate f18490c;
+    public final int f18481a = 0;
+    public final boolean f18482b;
+    public final NotificationCenter.NotificationCenterDelegate f18483c;
     public final Object d;
     public final Object e;
-    public final Object f18491f;
-    public final Object f18492g;
+    public final Object f18484f;
+    public final Object f18485g;
 
     public gk(SendMessagesHelper sendMessagesHelper, ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, SendMessagesHelper.DelayedMessage delayedMessage, boolean z10) {
-        this.f18490c = sendMessagesHelper;
+        this.f18483c = sendMessagesHelper;
         this.d = arrayList;
         this.e = arrayList2;
-        this.f18491f = arrayList3;
-        this.f18492g = delayedMessage;
-        this.f18489b = z10;
+        this.f18484f = arrayList3;
+        this.f18485g = delayedMessage;
+        this.f18482b = z10;
     }
 
     @Override
     public final void run(Object obj) {
         ArrayList<TLRPC.Document> arrayList;
         ArrayList<TLRPC.Document> arrayList2;
-        switch (this.f18488a) {
+        switch (this.f18481a) {
             case 0:
-                ((SendMessagesHelper) this.f18490c).lambda$performSendMessageRequestMulti$67((ArrayList) this.d, (ArrayList) this.e, (ArrayList) this.f18491f, (SendMessagesHelper.DelayedMessage) this.f18492g, this.f18489b, (TLObject) obj);
+                ((SendMessagesHelper) this.f18483c).lambda$performSendMessageRequestMulti$67((ArrayList) this.d, (ArrayList) this.e, (ArrayList) this.f18484f, (SendMessagesHelper.DelayedMessage) this.f18485g, this.f18482b, (TLObject) obj);
                 return;
             case 1:
-                ProfileActivity profileActivity = (ProfileActivity) this.f18490c;
+                ProfileActivity profileActivity = (ProfileActivity) this.f18483c;
                 TLRPC.ChannelParticipant channelParticipant = (TLRPC.ChannelParticipant) this.d;
                 TLRPC.User user = (TLRPC.User) this.e;
-                TLRPC.ChatParticipant chatParticipant = (TLRPC.ChatParticipant) this.f18491f;
-                String str = (String) this.f18492g;
+                TLRPC.ChatParticipant chatParticipant = (TLRPC.ChatParticipant) this.f18484f;
+                String str = (String) this.f18485g;
                 Integer num = (Integer) obj;
                 profileActivity.getClass();
-                boolean z10 = this.f18489b;
+                boolean z10 = this.f18482b;
                 if (channelParticipant != null) {
                     profileActivity.A4(num.intValue(), user, chatParticipant, channelParticipant.admin_rights, channelParticipant.banned_rights, channelParticipant.rank, z10);
                     return;
@@ -53,15 +53,15 @@ public final class gk implements Utilities.Callback {
                     return;
                 }
             default:
-                x51 x51Var = (x51) this.f18490c;
+                x51 x51Var = (x51) this.f18483c;
                 LinkedHashSet linkedHashSet = (LinkedHashSet) this.e;
-                String str2 = (String) this.f18491f;
-                HashMap hashMap = (HashMap) this.f18492g;
+                String str2 = (String) this.f18484f;
+                HashMap hashMap = (HashMap) this.f18485g;
                 ArrayList arrayList3 = (ArrayList) this.d;
                 Runnable runnable = (Runnable) obj;
                 int i10 = x51Var.V;
                 boolean z11 = false;
-                if (this.f18489b) {
+                if (this.f18482b) {
                     ArrayList<TLRPC.TL_messages_stickerSet> stickerSets = MediaDataController.getInstance(i10).getStickerSets(5);
                     for (int i11 = 0; i11 < stickerSets.size(); i11++) {
                         if (stickerSets.get(i11).documents != null && (arrayList2 = stickerSets.get(i11).documents) != null) {
@@ -101,20 +101,20 @@ public final class gk implements Utilities.Callback {
     }
 
     public gk(ProfileActivity profileActivity, TLRPC.ChannelParticipant channelParticipant, TLRPC.User user, TLRPC.ChatParticipant chatParticipant, boolean z10, String str) {
-        this.f18490c = profileActivity;
+        this.f18483c = profileActivity;
         this.d = channelParticipant;
         this.e = user;
-        this.f18491f = chatParticipant;
-        this.f18489b = z10;
-        this.f18492g = str;
+        this.f18484f = chatParticipant;
+        this.f18482b = z10;
+        this.f18485g = str;
     }
 
     public gk(x51 x51Var, boolean z10, LinkedHashSet linkedHashSet, String str, HashMap hashMap, ArrayList arrayList) {
-        this.f18490c = x51Var;
-        this.f18489b = z10;
+        this.f18483c = x51Var;
+        this.f18482b = z10;
         this.e = linkedHashSet;
-        this.f18491f = str;
-        this.f18492g = hashMap;
+        this.f18484f = str;
+        this.f18485g = hashMap;
         this.d = arrayList;
     }
 }

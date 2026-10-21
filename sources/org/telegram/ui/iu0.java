@@ -11,17 +11,17 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.CheckBox;
 import org.telegram.ui.Components.UndoView;
 public final class iu0 extends FrameLayout {
-    public final PhotoViewer f38114a;
+    public final PhotoViewer f38115a;
 
     public iu0(PhotoViewer photoViewer, Activity activity) {
         super(activity);
-        this.f38114a = photoViewer;
+        this.f38115a = photoViewer;
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        qn qnVar = this.f38114a.l4;
+        qn qnVar = this.f38115a.l4;
         if (qnVar != null) {
             qnVar.T7();
             UndoView undoView = qnVar.y3;
@@ -40,8 +40,8 @@ public final class iu0 extends FrameLayout {
     @Override
     public final boolean dispatchKeyEvent(KeyEvent keyEvent) {
         keyEvent.getKeyCode();
-        PhotoViewer photoViewer = this.f38114a;
-        if (!photoViewer.f33390r && photoViewer.f33262c2 != 1 && photoViewer.f33392r1 && photoViewer.F2 != null && keyEvent.getRepeatCount() == 0 && keyEvent.getAction() == 0 && (keyEvent.getKeyCode() == 24 || keyEvent.getKeyCode() == 25)) {
+        PhotoViewer photoViewer = this.f38115a;
+        if (!photoViewer.f33391r && photoViewer.f33263c2 != 1 && photoViewer.f33393r1 && photoViewer.F2 != null && keyEvent.getRepeatCount() == 0 && keyEvent.getAction() == 0 && (keyEvent.getKeyCode() == 24 || keyEvent.getKeyCode() == 25)) {
             photoViewer.F2.W(1.0f);
         }
         return super.dispatchKeyEvent(keyEvent);
@@ -50,7 +50,7 @@ public final class iu0 extends FrameLayout {
     @Override
     public final boolean dispatchKeyEventPreIme(KeyEvent keyEvent) {
         if (keyEvent != null && keyEvent.getKeyCode() == 4 && keyEvent.getAction() == 1) {
-            PhotoViewer photoViewer = this.f38114a;
+            PhotoViewer photoViewer = this.f38115a;
             if (photoViewer.Q.x()) {
                 photoViewer.Q.f(false);
             }
@@ -75,7 +75,7 @@ public final class iu0 extends FrameLayout {
 
     @Override
     public final void draw(Canvas canvas) {
-        if (this.f38114a.S8) {
+        if (this.f38115a.S8) {
             return;
         }
         super.draw(canvas);
@@ -93,7 +93,7 @@ public final class iu0 extends FrameLayout {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        PhotoViewer photoViewer = this.f38114a;
+        PhotoViewer photoViewer = this.f38115a;
         photoViewer.C4.onAttachedToWindow();
         photoViewer.B4.onAttachedToWindow();
         photoViewer.D4.onAttachedToWindow();
@@ -103,7 +103,7 @@ public final class iu0 extends FrameLayout {
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        PhotoViewer photoViewer = this.f38114a;
+        PhotoViewer photoViewer = this.f38115a;
         photoViewer.C4.onDetachedFromWindow();
         photoViewer.B4.onDetachedFromWindow();
         photoViewer.D4.onDetachedFromWindow();
@@ -118,7 +118,7 @@ public final class iu0 extends FrameLayout {
 
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (this.f38114a.e && super.onInterceptTouchEvent(motionEvent)) {
+        if (this.f38115a.e && super.onInterceptTouchEvent(motionEvent)) {
             return true;
         }
         return false;
@@ -126,15 +126,15 @@ public final class iu0 extends FrameLayout {
 
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        PhotoViewer photoViewer = this.f38114a;
-        photoViewer.f33304h0.layout(getPaddingLeft(), 0, photoViewer.f33304h0.getMeasuredWidth() + getPaddingLeft(), photoViewer.f33304h0.getMeasuredHeight());
-        photoViewer.f33278e0.layout(getPaddingLeft(), 0, photoViewer.f33278e0.getMeasuredWidth() + getPaddingLeft(), photoViewer.f33278e0.getMeasuredHeight());
-        photoViewer.f33322j0.layout(getPaddingLeft(), photoViewer.f33278e0.getMeasuredHeight(), photoViewer.f33322j0.getMeasuredWidth(), photoViewer.f33322j0.getMeasuredHeight() + photoViewer.f33278e0.getMeasuredHeight());
+        PhotoViewer photoViewer = this.f38115a;
+        photoViewer.f33305h0.layout(getPaddingLeft(), 0, photoViewer.f33305h0.getMeasuredWidth() + getPaddingLeft(), photoViewer.f33305h0.getMeasuredHeight());
+        photoViewer.f33279e0.layout(getPaddingLeft(), 0, photoViewer.f33279e0.getMeasuredWidth() + getPaddingLeft(), photoViewer.f33279e0.getMeasuredHeight());
+        photoViewer.f33323j0.layout(getPaddingLeft(), photoViewer.f33279e0.getMeasuredHeight(), photoViewer.f33323j0.getMeasuredWidth(), photoViewer.f33323j0.getMeasuredHeight() + photoViewer.f33279e0.getMeasuredHeight());
         photoViewer.T5 = true;
         if (z10) {
             if (!photoViewer.U5) {
                 float t22 = photoViewer.t2(true);
-                photoViewer.f33246a6 = t22;
+                photoViewer.f33247a6 = t22;
                 photoViewer.X5 = 0.0f;
                 photoViewer.Y5 = 0.0f;
                 photoViewer.y3(t22);
@@ -154,8 +154,8 @@ public final class iu0 extends FrameLayout {
     public final void onMeasure(int i10, int i11) {
         int size = View.MeasureSpec.getSize(i10);
         int size2 = View.MeasureSpec.getSize(i11);
-        PhotoViewer photoViewer = this.f38114a;
-        if (!photoViewer.f33400s && AndroidUtilities.incorrectDisplaySizeFix) {
+        PhotoViewer photoViewer = this.f38115a;
+        if (!photoViewer.f33401s && AndroidUtilities.incorrectDisplaySizeFix) {
             int i12 = AndroidUtilities.displaySize.y;
             if (size2 > i12) {
                 size2 = i12;
@@ -163,18 +163,18 @@ public final class iu0 extends FrameLayout {
             size2 += AndroidUtilities.statusBarHeight;
         }
         setMeasuredDimension(size, size2);
-        int i13 = size2 - photoViewer.f33403s2.bottom;
+        int i13 = size2 - photoViewer.f33404s2.bottom;
         int paddingRight = size - (getPaddingRight() + getPaddingLeft());
         int paddingBottom = i13 - getPaddingBottom();
-        ViewGroup.LayoutParams layoutParams = photoViewer.f33304h0.getLayoutParams();
-        photoViewer.f33304h0.measure(View.MeasureSpec.makeMeasureSpec(layoutParams.width, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(layoutParams.height, Integer.MIN_VALUE));
-        photoViewer.f33278e0.measure(View.MeasureSpec.makeMeasureSpec(paddingRight, 1073741824), View.MeasureSpec.makeMeasureSpec(paddingBottom, 1073741824));
-        photoViewer.f33322j0.measure(View.MeasureSpec.makeMeasureSpec(paddingRight, 1073741824), View.MeasureSpec.makeMeasureSpec(photoViewer.f33331k0, 1073741824));
+        ViewGroup.LayoutParams layoutParams = photoViewer.f33305h0.getLayoutParams();
+        photoViewer.f33305h0.measure(View.MeasureSpec.makeMeasureSpec(layoutParams.width, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(layoutParams.height, Integer.MIN_VALUE));
+        photoViewer.f33279e0.measure(View.MeasureSpec.makeMeasureSpec(paddingRight, 1073741824), View.MeasureSpec.makeMeasureSpec(paddingBottom, 1073741824));
+        photoViewer.f33323j0.measure(View.MeasureSpec.makeMeasureSpec(paddingRight, 1073741824), View.MeasureSpec.makeMeasureSpec(photoViewer.f33332k0, 1073741824));
     }
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        PhotoViewer photoViewer = this.f38114a;
+        PhotoViewer photoViewer = this.f38115a;
         if (photoViewer.e && PhotoViewer.k(photoViewer, motionEvent)) {
             return true;
         }

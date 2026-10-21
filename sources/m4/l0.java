@@ -63,7 +63,7 @@ public final class l0 implements o0, IMapsProvider.OnMarkerClickListener {
                 }
                 hc0 hc0Var = (hc0) arrayList.get(i14);
                 if (hc0Var != null && hc0Var.e == iMarker) {
-                    nc0Var.f39510i0 = hc0Var.f37569a;
+                    nc0Var.f39510i0 = hc0Var.f37570a;
                     if (nc0Var.f39511j0) {
                         nc0Var.f39511j0 = false;
                         nc0Var.B0();
@@ -74,8 +74,8 @@ public final class l0 implements o0, IMapsProvider.OnMarkerClickListener {
                 }
             }
             kc0 kc0Var = nc0Var.f39528x;
-            nc0 nc0Var2 = kc0Var.f38515b;
-            HashMap hashMap = kc0Var.f38514a;
+            nc0 nc0Var2 = kc0Var.f38516b;
+            HashMap hashMap = kc0Var.f38515a;
             mc0 mc0Var = (mc0) iMarker.getTag();
             if (mc0Var != null && nc0Var2.f39515n0 != mc0Var) {
                 nc0Var2.x0(false);
@@ -138,13 +138,13 @@ public final class l0 implements o0, IMapsProvider.OnMarkerClickListener {
                     i15 = 5;
                 }
                 frameLayout4.addView(j10, z5.d(-2, -2.0f, i15 | 48, 18.0f, 32.0f, 18.0f, 0.0f));
-                textView.setText(mc0Var.f39176c.title);
+                textView.setText(mc0Var.f39177c.title);
                 j10.setText(LocaleController.getString(R.string.TapToSendLocation));
                 FrameLayout frameLayout5 = new FrameLayout(context);
-                frameLayout5.setBackground(h6.K(AndroidUtilities.dp(36.0f), t4.a(mc0Var.f39174a)));
+                frameLayout5.setBackground(h6.K(AndroidUtilities.dp(36.0f), t4.a(mc0Var.f39175a)));
                 frameLayout.addView(frameLayout5, z5.d(36, 36.0f, 81, 0.0f, 0.0f, 0.0f, 4.0f));
                 w9 w9Var = new w9(context);
-                w9Var.f(a1.g.s(new StringBuilder("https://ss3.4sqi.net/img/categories_v2/"), mc0Var.f39176c.venue_type, "_64.png"), null, null);
+                w9Var.f(a1.g.s(new StringBuilder("https://ss3.4sqi.net/img/categories_v2/"), mc0Var.f39177c.venue_type, "_64.png"), null, null);
                 frameLayout5.addView(w9Var, z5.e(30, 30, 17));
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
                 ofFloat.addUpdateListener(new jc0(kc0Var, frameLayout5));

@@ -167,16 +167,16 @@ public final class h51 implements Runnable {
                 notificationsCustomSettingsActivity.getMessagesController().putUsers((ArrayList) this.f26762b, true);
                 notificationsCustomSettingsActivity.getMessagesController().putChats((ArrayList) this.f26763c, true);
                 notificationsCustomSettingsActivity.getMessagesController().putEncryptedChats((ArrayList) this.e, true);
-                int i15 = notificationsCustomSettingsActivity.f33211s;
+                int i15 = notificationsCustomSettingsActivity.f33212s;
                 if (i15 == 1) {
-                    notificationsCustomSettingsActivity.f33212w = arrayList3;
+                    notificationsCustomSettingsActivity.f33213w = arrayList3;
                 } else if (i15 == 0) {
-                    notificationsCustomSettingsActivity.f33212w = arrayList4;
+                    notificationsCustomSettingsActivity.f33213w = arrayList4;
                 } else if (i15 == 3) {
-                    notificationsCustomSettingsActivity.f33212w = arrayList5;
+                    notificationsCustomSettingsActivity.f33213w = arrayList5;
                     notificationsCustomSettingsActivity.v = arrayList6;
                 } else {
-                    notificationsCustomSettingsActivity.f33212w = arrayList7;
+                    notificationsCustomSettingsActivity.f33213w = arrayList7;
                 }
                 notificationsCustomSettingsActivity.l0(true);
                 return;
@@ -211,7 +211,7 @@ public final class h51 implements Runnable {
                 org.telegram.ui.Wallet.s1 s1Var = (org.telegram.ui.Wallet.s1) this.f26767s;
                 f2Var.getClass();
                 try {
-                    AndroidUtilities.runOnUIThread(new ai.g3(f2Var, str6, bArr, org.telegram.ui.Wallet.f2.q(j0Var, tonconnectsession, str6, bArr, jSONArray, tL_urlAuthResultRequest2.domain, null, tonconnectchallenge, f2Var.f34197f.getCurrentTime()), s1Var, tonconnectsession, 20));
+                    AndroidUtilities.runOnUIThread(new ai.g3(f2Var, str6, bArr, org.telegram.ui.Wallet.f2.q(j0Var, tonconnectsession, str6, bArr, jSONArray, tL_urlAuthResultRequest2.domain, null, tonconnectchallenge, f2Var.f34198f.getCurrentTime()), s1Var, tonconnectsession, 20));
                     return;
                 } catch (Exception e) {
                     s1Var.run(null, org.telegram.ui.Wallet.f2.h("prepare OAuth connect", e));
@@ -222,17 +222,17 @@ public final class h51 implements Runnable {
                 final String str7 = (String) this.f26764f;
                 final byte[] bArr2 = (byte[]) this.e;
                 final TL_wallet.tonConnectSession tonconnectsession2 = (TL_wallet.tonConnectSession) this.h;
-                String str8 = ((org.telegram.ui.Wallet.c2) this.f26765n).f34067a;
+                String str8 = ((org.telegram.ui.Wallet.c2) this.f26765n).f34068a;
                 final org.telegram.ui.Wallet.s1 s1Var2 = (org.telegram.ui.Wallet.s1) this.f26762b;
                 final org.telegram.ui.Wallet.j0 j0Var2 = (org.telegram.ui.Wallet.j0) this.f26763c;
                 final JSONArray jSONArray2 = (JSONArray) this.f26766r;
                 final TLRPC.TL_urlAuthResultRequest tL_urlAuthResultRequest3 = (TLRPC.TL_urlAuthResultRequest) this.f26767s;
-                org.telegram.ui.Wallet.m0 m0Var = f2Var2.f34195b;
+                org.telegram.ui.Wallet.m0 m0Var = f2Var2.f34196b;
                 if (TextUtils.equals(str7, m0Var.s()) && Arrays.equals(bArr2, m0Var.x()) && ((str = tonconnectsession2.client_id) == null || str8.equalsIgnoreCase(str))) {
                     TL_wallet.tonConnectRegisterKey tonconnectregisterkey = new TL_wallet.tonConnectRegisterKey();
                     tonconnectregisterkey.session_id = tonconnectsession2.f20534id;
                     tonconnectregisterkey.client_id = str8;
-                    f2Var2.f34197f.sendRequestTyped(tonconnectregisterkey, new Object(), new Utilities.Callback2() {
+                    f2Var2.f34198f.sendRequestTyped(tonconnectregisterkey, new Object(), new Utilities.Callback2() {
                         @Override
                         public final void run(Object obj, Object obj2) {
                             f2 f2Var3 = f2.this;

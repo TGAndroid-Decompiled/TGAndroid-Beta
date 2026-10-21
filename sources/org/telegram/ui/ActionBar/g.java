@@ -48,7 +48,7 @@ public final class g extends AnimatorListenerAdapter {
                 }
                 return;
             case 4:
-                ((ta0) this.d).f30483f2 = null;
+                ((ta0) this.d).f30484f2 = null;
                 return;
             case 5:
                 dg0 dg0Var = (dg0) this.d;
@@ -137,9 +137,9 @@ public final class g extends AnimatorListenerAdapter {
                 return;
             case 4:
                 ta0 ta0Var = (ta0) this.d;
-                wa0 wa0Var = ta0Var.f30486i2;
-                if (ta0Var.f30483f2 != null) {
-                    ta0Var.f30483f2 = null;
+                wa0 wa0Var = ta0Var.f30487i2;
+                if (ta0Var.f30484f2 != null) {
+                    ta0Var.f30484f2 = null;
                     if (!this.f20855b) {
                         wa0Var.F.setVisibility(4);
                         FrameLayout frameLayout = wa0Var.S;
@@ -156,7 +156,7 @@ public final class g extends AnimatorListenerAdapter {
                         }
                         return;
                     }
-                    wa0Var.f32048s.setVisibility(4);
+                    wa0Var.f32049s.setVisibility(4);
                     u0 u0Var3 = wa0Var.G;
                     if (u0Var3 != null) {
                         u0Var3.setVisibility(8);

@@ -26,7 +26,7 @@ public final class d0 extends d9 {
         int i11 = h6.f20952b7;
         d6 d6Var = this.v;
         zq zqVar = new zq(new ColorDrawable(h6.w0(h6.f20932a7, d6Var)), h6.V0(context, i10, h6.w0(i11, d6Var)), 0, 0);
-        zqVar.f33023w = true;
+        zqVar.f33024w = true;
         setBackground(zqVar);
     }
 }

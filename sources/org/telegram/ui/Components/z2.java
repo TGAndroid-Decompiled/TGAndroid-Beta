@@ -17,12 +17,12 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class z2 implements Utilities.Callback {
-    public final int f32805a;
-    public final Object f32806b;
+    public final int f32806a;
+    public final Object f32807b;
 
     public z2(Object obj, int i10) {
-        this.f32805a = i10;
-        this.f32806b = obj;
+        this.f32806a = i10;
+        this.f32807b = obj;
     }
 
     @Override
@@ -33,30 +33,30 @@ public final class z2 implements Utilities.Callback {
         float f10;
         float f11;
         TL_account.TL_birthday tL_birthday;
-        switch (this.f32805a) {
+        switch (this.f32806a) {
             case 0:
                 Object[] objArr = (Object[]) obj;
-                ((e2) this.f32806b).run();
+                ((e2) this.f32807b).run();
                 return;
             case 1:
                 CharSequence charSequence = (CharSequence) obj;
-                ei.g gVar = ((kd) this.f32806b).f9399f;
+                ei.g gVar = ((kd) this.f32807b).f9399f;
                 gVar.setText(charSequence);
                 gVar.w(charSequence.length(), charSequence.length());
                 return;
             case 2:
-                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ((sm) this.f32806b).v;
+                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ((sm) this.f32807b).v;
                 chatAttachAlertPhotoLayout.r0(null, null, ((Long) obj).longValue());
                 chatAttachAlertPhotoLayout.f28173b.dismiss();
                 return;
             case 3:
-                MessagesController.getInstance(((at) this.f32806b).N).openApp((TLRPC.User) obj, 0);
+                MessagesController.getInstance(((at) this.f32807b).N).openApp((TLRPC.User) obj, 0);
                 return;
             case 4:
-                ((iu) this.f32806b).performMenuAction(((Integer) obj).intValue());
+                ((iu) this.f32807b).performMenuAction(((Integer) obj).intValue());
                 return;
             case 5:
-                Runnable runnable = (Runnable) this.f32806b;
+                Runnable runnable = (Runnable) this.f32807b;
                 ArrayList arrayList = (ArrayList) obj;
                 if (runnable != null) {
                     runnable.run();
@@ -64,13 +64,13 @@ public final class z2 implements Utilities.Callback {
                 }
                 return;
             case 6:
-                ((wa0) this.f32806b).V.a1(((Integer) obj).intValue() + 8);
+                ((wa0) this.f32807b).V.a1(((Integer) obj).intValue() + 8);
                 return;
             case 7:
-                oc0 oc0Var = (oc0) this.f32806b;
+                oc0 oc0Var = (oc0) this.f32807b;
                 Integer num = (Integer) obj;
                 ArrayList arrayList2 = oc0Var.e.f28481a;
-                qb0 qb0Var = oc0Var.f28988f;
+                qb0 qb0Var = oc0Var.f28989f;
                 if (((lc0) arrayList2.get(qb0Var.getCurrentPosition())).f28135a != num.intValue()) {
                     int i10 = 0;
                     int i11 = 0;
@@ -91,11 +91,11 @@ public final class z2 implements Utilities.Callback {
                 }
                 return;
             case 8:
-                ic0 ic0Var = (ic0) this.f32806b;
+                ic0 ic0Var = (ic0) this.f32807b;
                 ic0Var.f27239n.y(ic0Var.f27238f.T((View) obj));
                 return;
             case 9:
-                me0 me0Var = (me0) this.f32806b;
+                me0 me0Var = (me0) this.f32807b;
                 Integer num2 = (Integer) obj;
                 FrameLayout frameLayout = me0Var.h;
                 if (me0Var.getContext() != null) {
@@ -133,12 +133,12 @@ public final class z2 implements Utilities.Callback {
                 }
                 return;
             case 10:
-                jf0 jf0Var = (jf0) this.f32806b;
+                jf0 jf0Var = (jf0) this.f32807b;
                 jf0Var.K.b(jf0Var.N, true, 0, ((Long) obj).longValue());
                 jf0Var.dismiss();
                 return;
             case 11:
-                Utilities.Callback2 callback2 = (Utilities.Callback2) this.f32806b;
+                Utilities.Callback2 callback2 = (Utilities.Callback2) this.f32807b;
                 Bitmap bitmap = (Bitmap) obj;
                 ColorMatrix colorMatrix = new ColorMatrix();
                 if (org.telegram.ui.ActionBar.h6.I.q()) {
@@ -175,7 +175,7 @@ public final class z2 implements Utilities.Callback {
                 callback2.run(applyColorMatrix, applyColorMatrix2);
                 return;
             case 12:
-                bz0 bz0Var = (bz0) this.f32806b;
+                bz0 bz0Var = (bz0) this.f32807b;
                 TL_account.TL_birthday tL_birthday2 = (TL_account.TL_birthday) obj;
                 TL_account.updateBirthday updatebirthday = new TL_account.updateBirthday();
                 updatebirthday.flags |= 1;
@@ -198,7 +198,7 @@ public final class z2 implements Utilities.Callback {
                 NotificationCenter.getInstance(i12).lambda$postNotificationNameOnUIThread$1(NotificationCenter.newSuggestionsAvailable, new Object[0]);
                 return;
             default:
-                c71 c71Var = (c71) this.f32806b;
+                c71 c71Var = (c71) this.f32807b;
                 c71Var.W2.Q(c71Var.T((View) obj), c71Var.f25118a3);
                 return;
         }

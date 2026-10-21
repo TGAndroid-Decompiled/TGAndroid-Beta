@@ -159,19 +159,19 @@ public final class ua implements Utilities.Callback {
                 MessageObject messageObject = (MessageObject) obj2;
                 String str2 = (String) obj;
                 if (i11 == photoViewer.Q4) {
-                    photoViewer.f33370o5 = str2;
-                    if (translateController.isContextTranslateEnabled() && translateController.canTranslatePhoto(messageObject, photoViewer.f33370o5)) {
-                        if (photoViewer.f33361n5) {
-                            photoViewer.f33365o0.K(20);
-                            photoViewer.f33365o0.r(19);
+                    photoViewer.f33371o5 = str2;
+                    if (translateController.isContextTranslateEnabled() && translateController.canTranslatePhoto(messageObject, photoViewer.f33371o5)) {
+                        if (photoViewer.f33362n5) {
+                            photoViewer.f33366o0.K(20);
+                            photoViewer.f33366o0.r(19);
                             return;
                         }
-                        photoViewer.f33365o0.K(19);
-                        photoViewer.f33365o0.r(20);
+                        photoViewer.f33366o0.K(19);
+                        photoViewer.f33366o0.r(20);
                         return;
                     }
-                    photoViewer.f33365o0.r(19);
-                    photoViewer.f33365o0.r(20);
+                    photoViewer.f33366o0.r(19);
+                    photoViewer.f33366o0.r(20);
                     return;
                 }
                 return;

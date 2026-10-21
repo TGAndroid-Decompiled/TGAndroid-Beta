@@ -24,9 +24,9 @@ public final class y2 extends VideoPlayerHolderBase {
             TL_iv.pageBlockVideo pageblockvideo = z2Var.L;
             if (pageblockvideo != null) {
                 b70 b70Var = z2Var.f43608a;
-                a0.h hVar = b70Var.f35530y;
+                a0.h hVar = b70Var.f35531y;
                 long j10 = pageblockvideo.video_id;
-                a3 a2 = a3.a(b70Var.f35528w, z2Var);
+                a3 a2 = a3.a(b70Var.f35529w, z2Var);
                 z2Var.c(a2);
                 hVar.k(a2, j10);
             }

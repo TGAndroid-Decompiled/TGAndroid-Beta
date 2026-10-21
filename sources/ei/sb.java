@@ -18,7 +18,7 @@ public final class sb extends u20 {
         vb vbVar = this.f9821a.E0;
         if (vbVar.f9965f0 == 0 && (yaVar = vbVar.B0) != null && !vbVar.S1 && yaVar.isInited() && !vbVar.P1 && !vbVar.O0.f10236x0) {
             j7 j7Var = vbVar.D0;
-            if ((j7Var == null || (!j7Var.f9265x.f32631i && !j7Var.L)) && !vbVar.I() && vbVar.f9996p2 == null) {
+            if ((j7Var == null || (!j7Var.f9265x.f32632i && !j7Var.L)) && !vbVar.I() && vbVar.f9996p2 == null) {
                 return true;
             }
             return false;
@@ -74,7 +74,7 @@ public final class sb extends u20 {
         ub ubVar = this.f9821a;
         vb vbVar = ubVar.E0;
         ValueAnimator valueAnimator = vbVar.E;
-        if ((valueAnimator != null && valueAnimator.isRunning()) || (((j7Var = vbVar.D0) != null && (j7Var.f9265x.f32631i || j7Var.L)) || vbVar.O0.f10236x0 || (((yaVar = vbVar.B0) != null && yaVar.f8813s) || ubVar.A0 || (((y91Var = vbVar.V0) != null && (y91Var.F || y91Var.G)) || vbVar.H())))) {
+        if ((valueAnimator != null && valueAnimator.isRunning()) || (((j7Var = vbVar.D0) != null && (j7Var.f9265x.f32632i || j7Var.L)) || vbVar.O0.f10236x0 || (((yaVar = vbVar.B0) != null && yaVar.f8813s) || ubVar.A0 || (((y91Var = vbVar.V0) != null && (y91Var.F || y91Var.G)) || vbVar.H())))) {
             return false;
         }
         boolean z12 = true;

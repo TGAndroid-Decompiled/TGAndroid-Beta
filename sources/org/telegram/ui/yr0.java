@@ -18,12 +18,12 @@ public final class yr0 extends org.telegram.ui.ActionBar.j {
         TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated;
         boolean z10;
         PhotoViewer photoViewer = this.f43544b;
-        if (photoViewer.T4 != null || photoViewer.f33255b5 != null) {
+        if (photoViewer.T4 != null || photoViewer.f33256b5 != null) {
             return true;
         }
-        if (photoViewer.f33245a5 != null) {
+        if (photoViewer.f33246a5 != null) {
             FileLoader fileLoader = FileLoader.getInstance(photoViewer.T);
-            ImageLocation imageLocation = photoViewer.f33245a5;
+            ImageLocation imageLocation = photoViewer.f33246a5;
             TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated2 = null;
             if (imageLocation == null) {
                 tL_fileLocationToBeDeprecated = null;
@@ -31,7 +31,7 @@ public final class yr0 extends org.telegram.ui.ActionBar.j {
                 tL_fileLocationToBeDeprecated = imageLocation.location;
             }
             String r12 = PhotoViewer.r1(imageLocation);
-            if (photoViewer.f33471z5 == 0 && !photoViewer.B5) {
+            if (photoViewer.f33472z5 == 0 && !photoViewer.B5) {
                 z10 = false;
             } else {
                 z10 = true;
@@ -39,7 +39,7 @@ public final class yr0 extends org.telegram.ui.ActionBar.j {
             File pathToAttach = fileLoader.getPathToAttach(tL_fileLocationToBeDeprecated, r12, z10);
             File file = new File(FileLoader.getDirectory(4), pathToAttach.getName());
             FileLoader fileLoader2 = FileLoader.getInstance(photoViewer.T);
-            ImageLocation imageLocation2 = photoViewer.f33245a5;
+            ImageLocation imageLocation2 = photoViewer.f33246a5;
             if (imageLocation2 != null) {
                 tL_fileLocationToBeDeprecated2 = imageLocation2.location;
             }
@@ -48,7 +48,7 @@ public final class yr0 extends org.telegram.ui.ActionBar.j {
                 return true;
             }
             return false;
-        } else if (photoViewer.f33329j7 != null) {
+        } else if (photoViewer.f33330j7 != null) {
             return true;
         } else {
             return false;

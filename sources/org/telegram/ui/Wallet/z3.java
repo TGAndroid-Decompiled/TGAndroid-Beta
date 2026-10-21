@@ -34,14 +34,14 @@ import org.telegram.ui.ph1;
 import org.telegram.ui.vh1;
 import org.telegram.ui.web.BotWebViewContainer$BotWebViewProxy;
 public final class z3 implements Runnable {
-    public final int f35178a;
-    public final Object f35179b;
-    public final Object f35180c;
+    public final int f35179a;
+    public final Object f35180b;
+    public final Object f35181c;
 
     public z3(int i10, Object obj, Object obj2) {
-        this.f35178a = i10;
-        this.f35179b = obj;
-        this.f35180c = obj2;
+        this.f35179a = i10;
+        this.f35180b = obj;
+        this.f35181c = obj2;
     }
 
     @Override
@@ -50,11 +50,11 @@ public final class z3 implements Runnable {
         org.telegram.ui.web.g0 g0Var;
         float f7;
         org.telegram.ui.web.z1 z1Var;
-        int i10 = this.f35178a;
+        int i10 = this.f35179a;
         boolean z10 = true;
         int i11 = 0;
-        Object obj = this.f35180c;
-        Object obj2 = this.f35179b;
+        Object obj = this.f35181c;
+        Object obj2 = this.f35180b;
         switch (i10) {
             case 0:
                 TextView[] textViewArr = (TextView[]) obj2;
@@ -105,7 +105,7 @@ public final class z3 implements Runnable {
             case 11:
                 t7 t7Var = (t7) obj2;
                 TLRPC.UserFull userFull = (TLRPC.UserFull) obj;
-                if (!t7Var.f34913a1 && userFull != null) {
+                if (!t7Var.f34914a1 && userFull != null) {
                     TL_wallet.card cardVar = userFull.wallet_card;
                     if (cardVar == null) {
                         cardVar = new TL_wallet.card();
@@ -124,7 +124,7 @@ public final class z3 implements Runnable {
                 return;
             case 13:
                 ((q0) obj).B();
-                ((h8) obj2).f32355a.W2.N(true);
+                ((h8) obj2).f32356a.W2.N(true);
                 return;
             case 14:
                 h8 h8Var = (h8) obj2;
@@ -153,7 +153,7 @@ public final class z3 implements Runnable {
                 iArr[0] = i12;
                 if (i12 == 0) {
                     WallpapersListActivity wallpapersListActivity = ph1Var.f40238a;
-                    int[][] iArr2 = WallpapersListActivity.f35206k0;
+                    int[][] iArr2 = WallpapersListActivity.f35207k0;
                     wallpapersListActivity.B0(true);
                     return;
                 }
@@ -182,9 +182,9 @@ public final class z3 implements Runnable {
                 return;
             case 20:
                 String str3 = (String) obj;
-                ci1 ci1Var = ((bi1) obj2).f35642a;
+                ci1 ci1Var = ((bi1) obj2).f35643a;
                 Activity parentActivity = ci1Var.getParentActivity();
-                MessageObject messageObject = ci1Var.f35995n;
+                MessageObject messageObject = ci1Var.f35996n;
                 if (parentActivity != null) {
                     if (BuildVars.LOGS_ENABLED) {
                         FileLog.d(str3);
@@ -243,7 +243,7 @@ public final class z3 implements Runnable {
                 arrayList4.clear();
                 arrayList4.addAll((ArrayList) obj);
                 f1Var.h = false;
-                w61 w61Var = f1Var.f32355a;
+                w61 w61Var = f1Var.f32356a;
                 if (w61Var != null) {
                     w61Var.W2.N(true);
                     return;
@@ -269,7 +269,7 @@ public final class z3 implements Runnable {
             case 27:
                 org.telegram.ui.web.x1 x1Var = (org.telegram.ui.web.x1) obj2;
                 x1Var.getMessagesController().removeWebBrowserException((String) obj);
-                x1Var.f32355a.W2.N(true);
+                x1Var.f32356a.W2.N(true);
                 return;
             case 28:
                 org.telegram.ui.web.f2 f2Var = (org.telegram.ui.web.f2) obj2;

@@ -130,8 +130,8 @@ public class ActionBarPopupWindow$ActionBarPopupWindowLayout extends FrameLayout
             View view = this.P;
             if (view != null) {
                 view.setTranslationX((1.0f - this.f20598f) * getMeasuredWidth());
-                this.P.setAlpha(1.0f - qh0Var.f29591b);
-                float f13 = (-(this.P.getMeasuredHeight() - AndroidUtilities.dp(16.0f))) * qh0Var.f29591b;
+                this.P.setAlpha(1.0f - qh0Var.f29592b);
+                float f13 = (-(this.P.getMeasuredHeight() - AndroidUtilities.dp(16.0f))) * qh0Var.f29592b;
                 this.P.setTranslationY(f13);
                 setTranslationY(f13);
             }
@@ -637,15 +637,15 @@ public class ActionBarPopupWindow$ActionBarPopupWindowLayout extends FrameLayout
         }
         if ((i11 & 1) > 0) {
             ?? frameLayout = new FrameLayout(context);
-            frameLayout.f29590a = new SparseIntArray();
-            frameLayout.f29592c = -1.0f;
+            frameLayout.f29591a = new SparseIntArray();
+            frameLayout.f29593c = -1.0f;
             Paint paint = new Paint(1);
-            frameLayout.f29594n = paint;
-            frameLayout.f29595r = new Paint();
-            frameLayout.f29596s = 0;
+            frameLayout.f29595n = paint;
+            frameLayout.f29596r = new Paint();
+            frameLayout.f29597s = 0;
             frameLayout.v = new Path();
-            frameLayout.f29597w = new RectF();
-            frameLayout.f29598x = new ArrayList();
+            frameLayout.f29598w = new RectF();
+            frameLayout.f29599x = new ArrayList();
             frameLayout.G = -1;
             frameLayout.H = new AnimationNotificationsLocker();
             frameLayout.J = -1;

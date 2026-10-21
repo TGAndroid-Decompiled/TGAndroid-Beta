@@ -273,7 +273,7 @@ public class nc0 extends org.telegram.ui.ActionBar.n2 implements NotificationCen
         int size = arrayList.size();
         int i12 = 0;
         for (int i13 = 0; i13 < size; i13++) {
-            TLRPC.Message message = ((hc0) arrayList.get(i13)).f37570b;
+            TLRPC.Message message = ((hc0) arrayList.get(i13)).f37571b;
             if (message != null && (messageMedia = message.media) != null && ((i11 = messageMedia.period) == Integer.MAX_VALUE || message.date + i11 > i10)) {
                 i12++;
             }
@@ -301,18 +301,18 @@ public class nc0 extends org.telegram.ui.ActionBar.n2 implements NotificationCen
         hc0 hc0Var2 = (hc0) hVar.f(fromChatId);
         if (hc0Var2 == null) {
             ?? obj = new Object();
-            obj.f37570b = message;
+            obj.f37571b = message;
             if (message.from_id instanceof TLRPC.TL_peerUser) {
-                obj.f37571c = getMessagesController().getUser(Long.valueOf(obj.f37570b.from_id.user_id));
-                obj.f37569a = obj.f37570b.from_id.user_id;
+                obj.f37572c = getMessagesController().getUser(Long.valueOf(obj.f37571b.from_id.user_id));
+                obj.f37570a = obj.f37571b.from_id.user_id;
             } else {
                 long dialogId = MessageObject.getDialogId(message);
                 if (DialogObject.isUserDialog(dialogId)) {
-                    obj.f37571c = getMessagesController().getUser(Long.valueOf(dialogId));
+                    obj.f37572c = getMessagesController().getUser(Long.valueOf(dialogId));
                 } else {
                     obj.d = getMessagesController().getChat(Long.valueOf(-dialogId));
                 }
-                obj.f37569a = dialogId;
+                obj.f37570a = dialogId;
             }
             u0(obj);
             try {
@@ -323,30 +323,30 @@ public class nc0 extends org.telegram.ui.ActionBar.n2 implements NotificationCen
                     position.icon(f02);
                     position.anchor(0.5f, 0.907f);
                     obj.e = this.I.addMarker(position);
-                    if (!UserObject.isUserSelf(obj.f37571c)) {
+                    if (!UserObject.isUserSelf(obj.f37572c)) {
                         IMapsProvider.IMarkerOptions flat = ApplicationLoader.getMapsProvider().onCreateMarkerOptions().position(latLng).flat(true);
                         flat.anchor(0.5f, 0.5f);
                         IMapsProvider.IMarker addMarker = this.I.addMarker(flat);
-                        obj.f37572f = addMarker;
+                        obj.f37573f = addMarker;
                         int i10 = message.media.heading;
                         if (i10 != 0) {
                             addMarker.setRotation(i10);
-                            obj.f37572f.setIcon(R.drawable.map_pin_cone2);
-                            obj.f37573g = true;
+                            obj.f37573f.setIcon(R.drawable.map_pin_cone2);
+                            obj.f37574g = true;
                         } else {
                             addMarker.setRotation(0);
-                            obj.f37572f.setIcon(R.drawable.map_pin_circle);
-                            obj.f37573g = false;
+                            obj.f37573f.setIcon(R.drawable.map_pin_circle);
+                            obj.f37574g = false;
                         }
                     }
                     this.f39508g0.add(obj);
-                    hVar.k(obj, obj.f37569a);
+                    hVar.k(obj, obj.f37570a);
                     LocationController.SharingLocationInfo sharingLocationInfo = getLocationController().getSharingLocationInfo(this.f39505e0);
-                    int i11 = (obj.f37569a > getUserConfig().getClientUserId() ? 1 : (obj.f37569a == getUserConfig().getClientUserId() ? 0 : -1));
+                    int i11 = (obj.f37570a > getUserConfig().getClientUserId() ? 1 : (obj.f37570a == getUserConfig().getClientUserId() ? 0 : -1));
                     hc0Var = obj;
                     hc0Var = obj;
                     if (i11 == 0 && sharingLocationInfo != null) {
-                        int i12 = obj.f37570b.f20297id;
+                        int i12 = obj.f37571b.f20297id;
                         hc0Var = obj;
                         if (i12 == sharingLocationInfo.mid) {
                             Location location = this.f39527w0;
@@ -363,9 +363,9 @@ public class nc0 extends org.telegram.ui.ActionBar.n2 implements NotificationCen
                 hc0Var = obj;
             }
         } else {
-            hc0Var2.f37570b = message;
+            hc0Var2.f37571b = message;
             hc0Var2.e.setPosition(latLng);
-            int i13 = (this.f39510i0 > hc0Var2.f37569a ? 1 : (this.f39510i0 == hc0Var2.f37569a ? 0 : -1));
+            int i13 = (this.f39510i0 > hc0Var2.f37570a ? 1 : (this.f39510i0 == hc0Var2.f37570a ? 0 : -1));
             hc0Var = hc0Var2;
             if (i13 == 0) {
                 this.I.animateCamera(ApplicationLoader.getMapsProvider().newCameraUpdateLatLng(hc0Var2.e.getPosition()));
@@ -614,7 +614,7 @@ public class nc0 extends org.telegram.ui.ActionBar.n2 implements NotificationCen
                                         nc0Var.X.setVisibility(0);
                                         kc0 kc0Var = nc0Var.f39528x;
                                         IMapsProvider.IMarker iMarker = nc0Var.m0;
-                                        HashMap hashMap = kc0Var.f38514a;
+                                        HashMap hashMap = kc0Var.f38515a;
                                         View view2 = (View) hashMap.get(iMarker);
                                         if (view2 != null) {
                                             kc0Var.removeView(view2);
@@ -886,7 +886,7 @@ public class nc0 extends org.telegram.ui.ActionBar.n2 implements NotificationCen
                                         nc0Var.X.setVisibility(0);
                                         kc0 kc0Var = nc0Var.f39528x;
                                         IMapsProvider.IMarker iMarker = nc0Var.m0;
-                                        HashMap hashMap = kc0Var.f38514a;
+                                        HashMap hashMap = kc0Var.f38515a;
                                         View view2 = (View) hashMap.get(iMarker);
                                         if (view2 != null) {
                                             kc0Var.removeView(view2);
@@ -1181,7 +1181,7 @@ public class nc0 extends org.telegram.ui.ActionBar.n2 implements NotificationCen
                                 nc0Var.X.setVisibility(0);
                                 kc0 kc0Var = nc0Var.f39528x;
                                 IMapsProvider.IMarker iMarker = nc0Var.m0;
-                                HashMap hashMap = kc0Var.f38514a;
+                                HashMap hashMap = kc0Var.f38515a;
                                 View view2 = (View) hashMap.get(iMarker);
                                 if (view2 != null) {
                                     kc0Var.removeView(view2);
@@ -1469,7 +1469,7 @@ public class nc0 extends org.telegram.ui.ActionBar.n2 implements NotificationCen
                                 nc0Var.X.setVisibility(0);
                                 kc0 kc0Var = nc0Var.f39528x;
                                 IMapsProvider.IMarker iMarker = nc0Var.m0;
-                                HashMap hashMap = kc0Var.f38514a;
+                                HashMap hashMap = kc0Var.f38515a;
                                 View view2 = (View) hashMap.get(iMarker);
                                 if (view2 != null) {
                                     kc0Var.removeView(view2);
@@ -1752,7 +1752,7 @@ public class nc0 extends org.telegram.ui.ActionBar.n2 implements NotificationCen
                                 nc0Var.X.setVisibility(0);
                                 kc0 kc0Var = nc0Var.f39528x;
                                 IMapsProvider.IMarker iMarker = nc0Var.m0;
-                                HashMap hashMap = kc0Var.f38514a;
+                                HashMap hashMap = kc0Var.f38515a;
                                 View view2 = (View) hashMap.get(iMarker);
                                 if (view2 != null) {
                                     kc0Var.removeView(view2);
@@ -2032,7 +2032,7 @@ public class nc0 extends org.telegram.ui.ActionBar.n2 implements NotificationCen
                                 nc0Var.X.setVisibility(0);
                                 kc0 kc0Var = nc0Var.f39528x;
                                 IMapsProvider.IMarker iMarker = nc0Var.m0;
-                                HashMap hashMap = kc0Var.f38514a;
+                                HashMap hashMap = kc0Var.f38515a;
                                 View view2 = (View) hashMap.get(iMarker);
                                 if (view2 != null) {
                                     kc0Var.removeView(view2);
@@ -2539,28 +2539,28 @@ public class nc0 extends org.telegram.ui.ActionBar.n2 implements NotificationCen
                             LocationController.SharingLocationInfo sharingLocationInfo = getLocationController().getSharingLocationInfo(longValue);
                             if (sharingLocationInfo == null || sharingLocationInfo.mid != messageObject2.getId()) {
                                 TLRPC.Message message2 = messageObject2.messageOwner;
-                                hc0Var.f37570b = message2;
+                                hc0Var.f37571b = message2;
                                 TLRPC.GeoPoint geoPoint = message2.media.geo;
                                 IMapsProvider.LatLng latLng = new IMapsProvider.LatLng(geoPoint.lat, geoPoint._long);
                                 hc0Var.e.setPosition(latLng);
-                                if (this.f39510i0 == hc0Var.f37569a) {
+                                if (this.f39510i0 == hc0Var.f37570a) {
                                     this.I.animateCamera(ApplicationLoader.getMapsProvider().newCameraUpdateLatLng(hc0Var.e.getPosition()));
                                 }
-                                IMapsProvider.IMarker iMarker = hc0Var.f37572f;
+                                IMapsProvider.IMarker iMarker = hc0Var.f37573f;
                                 if (iMarker != null) {
                                     iMarker.getPosition();
-                                    hc0Var.f37572f.setPosition(latLng);
+                                    hc0Var.f37573f.setPosition(latLng);
                                     int i14 = messageObject2.messageOwner.media.heading;
                                     if (i14 != 0) {
-                                        hc0Var.f37572f.setRotation(i14);
-                                        if (!hc0Var.f37573g) {
-                                            hc0Var.f37572f.setIcon(R.drawable.map_pin_cone2);
-                                            hc0Var.f37573g = true;
+                                        hc0Var.f37573f.setRotation(i14);
+                                        if (!hc0Var.f37574g) {
+                                            hc0Var.f37573f.setIcon(R.drawable.map_pin_cone2);
+                                            hc0Var.f37574g = true;
                                         }
-                                    } else if (hc0Var.f37573g) {
-                                        hc0Var.f37572f.setRotation(0);
-                                        hc0Var.f37572f.setIcon(R.drawable.map_pin_circle);
-                                        hc0Var.f37573g = false;
+                                    } else if (hc0Var.f37574g) {
+                                        hc0Var.f37573f.setRotation(0);
+                                        hc0Var.f37573f.setIcon(R.drawable.map_pin_circle);
+                                        hc0Var.f37574g = false;
                                     }
                                 }
                             }
@@ -2621,7 +2621,7 @@ public class nc0 extends org.telegram.ui.ActionBar.n2 implements NotificationCen
                 canvas.save();
                 canvas.save();
                 org.telegram.ui.Components.h9 h9Var = new org.telegram.ui.Components.h9((org.telegram.ui.ActionBar.d6) null);
-                TLRPC.User user = hc0Var.f37571c;
+                TLRPC.User user = hc0Var.f37572c;
                 if (user != null) {
                     h9Var.m(this.currentAccount, user);
                 } else {
@@ -2884,7 +2884,7 @@ public class nc0 extends org.telegram.ui.ActionBar.n2 implements NotificationCen
             for (int i12 = 0; i12 < size; i12++) {
                 hc0 hc0Var = (hc0) arrayList2.get(i12);
                 IMapsProvider.IMarker iMarker = hc0Var.e;
-                if (iMarker != null && (message = hc0Var.f37570b) != null && (messageMedia = message.media) != null && ((i11 = messageMedia.period) == Integer.MAX_VALUE || message.date + i11 > i10)) {
+                if (iMarker != null && (message = hc0Var.f37571b) != null && (messageMedia = message.media) != null && ((i11 = messageMedia.period) == Integer.MAX_VALUE || message.date + i11 > i10)) {
                     arrayList.add(iMarker.getPosition());
                 }
             }
@@ -3308,7 +3308,7 @@ public class nc0 extends org.telegram.ui.ActionBar.n2 implements NotificationCen
         double d10;
         String str;
         TLRPC.Message message;
-        if (hc0Var != null && (message = hc0Var.f37570b) != null) {
+        if (hc0Var != null && (message = hc0Var.f37571b) != null) {
             TLRPC.GeoPoint geoPoint = message.media.geo;
             d = geoPoint.lat;
             d10 = geoPoint._long;
@@ -3380,14 +3380,14 @@ public class nc0 extends org.telegram.ui.ActionBar.n2 implements NotificationCen
         this.f39527w0 = new Location(location);
         hc0 hc0Var = (hc0) this.f39509h0.f(getUserConfig().getClientUserId());
         LocationController.SharingLocationInfo sharingLocationInfo = getLocationController().getSharingLocationInfo(this.f39505e0);
-        if (hc0Var != null && sharingLocationInfo != null && hc0Var.f37570b.f20297id == sharingLocationInfo.mid) {
+        if (hc0Var != null && sharingLocationInfo != null && hc0Var.f37571b.f20297id == sharingLocationInfo.mid) {
             IMapsProvider.LatLng latLng = new IMapsProvider.LatLng(location.getLatitude(), location.getLongitude());
             hc0Var.e.setPosition(latLng);
-            IMapsProvider.IMarker iMarker = hc0Var.f37572f;
+            IMapsProvider.IMarker iMarker = hc0Var.f37573f;
             if (iMarker != null) {
                 iMarker.setPosition(latLng);
             }
-            if (this.f39510i0 == hc0Var.f37569a) {
+            if (this.f39510i0 == hc0Var.f37570a) {
                 this.I.animateCamera(ApplicationLoader.getMapsProvider().newCameraUpdateLatLng(hc0Var.e.getPosition()));
             }
         }
@@ -3430,7 +3430,7 @@ public class nc0 extends org.telegram.ui.ActionBar.n2 implements NotificationCen
 
     public final void u0(hc0 hc0Var) {
         if (hc0Var.h == null) {
-            TLRPC.User user = hc0Var.f37571c;
+            TLRPC.User user = hc0Var.f37572c;
             TLRPC.Chat chat = hc0Var.d;
             if (user == null && chat == 0) {
                 return;
@@ -3638,8 +3638,8 @@ public class nc0 extends org.telegram.ui.ActionBar.n2 implements NotificationCen
             }
             org.telegram.ui.Components.pl plVar = this.e;
             if (plVar != null) {
-                plVar.f29329c = min;
-                plVar.setTranslationY(min + plVar.f29328b);
+                plVar.f29330c = min;
+                plVar.setTranslationY(min + plVar.f29329b);
             }
             View view = this.X;
             if (view != null) {

@@ -361,12 +361,12 @@ public final class e50 implements NotificationCenter.NotificationCenterDelegate,
                 tiVar.U0 = ztVar;
                 tiVar.V0 = false;
                 li liVar = tiVar.B0;
-                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = tiVar.f30557j0;
+                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = tiVar.f30558j0;
                 if (liVar == null || liVar == chatAttachAlertPhotoLayout) {
                     tiVar.A1.setVisibility(8);
                 }
                 int i11 = tiVar.T0;
-                TextView textView = tiVar.f30565m1;
+                TextView textView = tiVar.f30566m1;
                 if (i11 == 2) {
                     textView.setText(LocaleController.getString(R.string.ChoosePhotoOrVideo));
                 } else {
@@ -382,14 +382,14 @@ public final class e50 implements NotificationCenter.NotificationCenterDelegate,
                     chatAttachAlertPhotoLayout.f24095g1 = z10;
                 }
                 ti tiVar3 = this.f25722c;
-                tiVar3.f30537c2 = new z40(this);
+                tiVar3.f30538c2 = new z40(this);
                 tiVar3.U = this;
             }
             int i12 = this.U;
             if (i12 == 1) {
-                this.f25722c.f30565m1.setText(LocaleController.formatString("SetPhotoFor", R.string.SetPhotoFor, this.L.first_name));
+                this.f25722c.f30566m1.setText(LocaleController.formatString("SetPhotoFor", R.string.SetPhotoFor, this.L.first_name));
             } else if (i12 == 2) {
-                this.f25722c.f30565m1.setText(LocaleController.formatString("SuggestPhotoFor", R.string.SuggestPhotoFor, this.L.first_name));
+                this.f25722c.f30566m1.setText(LocaleController.formatString("SuggestPhotoFor", R.string.SuggestPhotoFor, this.L.first_name));
             }
         }
     }
@@ -399,9 +399,9 @@ public final class e50 implements NotificationCenter.NotificationCenterDelegate,
         if (tiVar == null || dialog != tiVar) {
             return false;
         }
-        tiVar.f30557j0.a0(false);
+        tiVar.f30558j0.a0(false);
         this.f25722c.dismissInternal();
-        this.f25722c.f30557j0.d0(true);
+        this.f25722c.f30558j0.d0(true);
         return true;
     }
 
@@ -440,7 +440,7 @@ public final class e50 implements NotificationCenter.NotificationCenterDelegate,
             e();
             ti tiVar = this.f25722c;
             if (tiVar != null) {
-                tiVar.f30557j0.g0(i10, intent, this.f25723f);
+                tiVar.f30558j0.g0(i10, intent, this.f25723f);
             }
             this.f25723f = null;
         }
@@ -457,10 +457,10 @@ public final class e50 implements NotificationCenter.NotificationCenterDelegate,
         ti tiVar = this.f25722c;
         if (tiVar != null) {
             if (i10 == 17) {
-                tiVar.f30557j0.U(false);
-                this.f25722c.f30557j0.Y();
+                tiVar.f30558j0.U(false);
+                this.f25722c.f30558j0.Y();
             } else if (i10 == 4) {
-                tiVar.f30557j0.Y();
+                tiVar.f30558j0.Y();
             }
         }
     }
@@ -540,7 +540,7 @@ public final class e50 implements NotificationCenter.NotificationCenterDelegate,
                     ti tiVar = this.f25722c;
                     tiVar.X1 = this.H;
                     tiVar.N1(1, false);
-                    this.f25722c.f30557j0.f0();
+                    this.f25722c.f30558j0.f0();
                     this.f25722c.t1();
                     this.f25722c.setOnHideListener(onDismissListener);
                     int i11 = this.U;
@@ -679,9 +679,9 @@ public final class e50 implements NotificationCenter.NotificationCenterDelegate,
         HashMap hashMap = new HashMap();
         ArrayList arrayList = new ArrayList();
         org.telegram.ui.jq0 jq0Var = new org.telegram.ui.jq0(0, null, hashMap, arrayList, 1, false, null, this.R);
-        jq0Var.f38324s0 = new y40(this, hashMap, arrayList);
+        jq0Var.f38325s0 = new y40(this, hashMap, arrayList);
         jq0Var.f0(1, false);
-        jq0Var.f38319p0 = this.f25721b.getInitialSearchString();
+        jq0Var.f38320p0 = this.f25721b.getInitialSearchString();
         if (this.S) {
             this.f25720a.showAsSheet(jq0Var);
         } else {

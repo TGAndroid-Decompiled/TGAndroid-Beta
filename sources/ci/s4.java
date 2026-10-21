@@ -50,7 +50,7 @@ public final class s4 {
         imageReceiver.setRoundRadius(AndroidUtilities.dp(200.0f));
         imageReceiver.setParentView(profileStoriesView);
         this.f5966l = storyItem.media instanceof TLRPC.TL_messageMediaVideoStream;
-        if (profileStoriesView.f33891x) {
+        if (profileStoriesView.f33892x) {
             imageReceiver.onAttachedToWindow();
         }
         x20[] x20VarArr = d8.f5323a;

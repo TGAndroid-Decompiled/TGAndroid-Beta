@@ -771,7 +771,7 @@ public final class s7 extends org.telegram.ui.Components.bb implements Notificat
     public final im0 x(jm0 jm0Var) {
         u61 u61Var = new u61(jm0Var, getContext(), this.currentAccount, 0, false, new k7(this, 0), this.resourcesProvider);
         this.f9806q0 = u61Var;
-        u61Var.f30860r = false;
+        u61Var.f30861r = false;
         return u61Var;
     }
 

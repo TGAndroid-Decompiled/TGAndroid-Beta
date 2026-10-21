@@ -16,7 +16,7 @@ public final class kx extends aw {
     @Override
     public final void Y(boolean z10) {
         tz tzVar = this.X;
-        ArrayList arrayList = tzVar.f30761p1;
+        ArrayList arrayList = tzVar.f30762p1;
         TLRPC.StickerSet stickerSet = this.W;
         if (z10) {
             if (!arrayList.contains(Long.valueOf(stickerSet.f20303id))) {
@@ -30,7 +30,7 @@ public final class kx extends aw {
 
     @Override
     public final void dismiss() {
-        this.X.f30782v2 = false;
+        this.X.f30783v2 = false;
         super.dismiss();
     }
 }

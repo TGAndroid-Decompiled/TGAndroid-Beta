@@ -18,24 +18,24 @@ public final class vv0 implements ViewTreeObserver.OnPreDrawListener {
         switch (this.f42403a) {
             case 0:
                 PopupNotificationActivity popupNotificationActivity = this.f42404b;
-                FrameLayout frameLayout = popupNotificationActivity.f33490f;
+                FrameLayout frameLayout = popupNotificationActivity.f33491f;
                 if (frameLayout != null) {
                     frameLayout.getViewTreeObserver().removeOnPreDrawListener(this);
                 }
                 int A = org.telegram.messenger.mk.A(48.0f, org.telegram.ui.ActionBar.k.getCurrentActionBarHeight(), 2);
-                FrameLayout frameLayout2 = popupNotificationActivity.f33490f;
-                frameLayout2.setPadding(frameLayout2.getPaddingLeft(), A, popupNotificationActivity.f33490f.getPaddingRight(), A);
+                FrameLayout frameLayout2 = popupNotificationActivity.f33491f;
+                frameLayout2.setPadding(frameLayout2.getPaddingLeft(), A, popupNotificationActivity.f33491f.getPaddingRight(), A);
                 return true;
             default:
                 PopupNotificationActivity popupNotificationActivity2 = this.f42404b;
-                popupNotificationActivity2.f33491n.getViewTreeObserver().removeOnPreDrawListener(this);
+                popupNotificationActivity2.f33492n.getViewTreeObserver().removeOnPreDrawListener(this);
                 if (!popupNotificationActivity2.c() && !popupNotificationActivity2.X) {
-                    ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) popupNotificationActivity2.f33491n.getLayoutParams();
+                    ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) popupNotificationActivity2.f33492n.getLayoutParams();
                     marginLayoutParams.topMargin = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight();
                     marginLayoutParams.bottomMargin = AndroidUtilities.dp(48.0f);
                     marginLayoutParams.width = -1;
                     marginLayoutParams.height = -1;
-                    popupNotificationActivity2.f33491n.setLayoutParams(marginLayoutParams);
+                    popupNotificationActivity2.f33492n.setLayoutParams(marginLayoutParams);
                     popupNotificationActivity2.a(0);
                     return true;
                 }

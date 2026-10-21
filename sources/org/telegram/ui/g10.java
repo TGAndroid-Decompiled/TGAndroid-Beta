@@ -56,12 +56,12 @@ public final class g10 extends org.telegram.ui.Components.jm0 {
                 return;
             case 2:
                 hp0 hp0Var = (hp0) this.W2;
-                Paint paint = hp0Var.f37707w;
-                RectF rectF = hp0Var.f37706s;
-                RectF rectF2 = hp0Var.f37705r;
-                RectF rectF3 = hp0Var.f37704n;
-                s4.b0 b0Var = hp0Var.f37701b;
-                if (!hp0Var.f37703f.isEmpty()) {
+                Paint paint = hp0Var.f37708w;
+                RectF rectF = hp0Var.f37707s;
+                RectF rectF2 = hp0Var.f37706r;
+                RectF rectF3 = hp0Var.f37705n;
+                s4.b0 b0Var = hp0Var.f37702b;
+                if (!hp0Var.f37704f.isEmpty()) {
                     float d = hp0Var.e.d(hp0Var.d, false);
                     double d10 = d;
                     int clamp = Utilities.clamp((int) Math.floor(d10), arrayList.size() - 1, 0);
@@ -80,7 +80,7 @@ public final class g10 extends org.telegram.ui.Components.jm0 {
                         }
                         rectF2.set(m10.getLeft(), m10.getTop(), m10.getRight(), m10.getBottom());
                         AndroidUtilities.lerp(rectF3, rectF2, d - clamp, rectF);
-                        paint.setColor(hp0Var.f37708x);
+                        paint.setColor(hp0Var.f37709x);
                         float height = rectF.height() / 2.0f;
                         canvas.drawRoundRect(rectF, height, height, paint);
                         super.dispatchDraw(canvas);

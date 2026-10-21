@@ -44,9 +44,9 @@ public class n6 extends FrameLayout {
         int i11 = org.telegram.ui.ActionBar.h6.f21378y6;
         H = new uc0(i10, i11);
         uc0 uc0Var = new uc0(R.drawable.msg_reactions, i11);
-        uc0Var.f30892g = 16;
+        uc0Var.f30893g = 16;
         uc0Var.h = 16;
-        uc0Var.f30893i = 5.66f;
+        uc0Var.f30894i = 5.66f;
         I = uc0Var;
         int i12 = R.drawable.mini_repost_story;
         int i13 = org.telegram.ui.ActionBar.h6.hk;

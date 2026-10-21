@@ -8,31 +8,31 @@ import android.view.animation.OvershootInterpolator;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class nl implements ValueAnimator.AnimatorUpdateListener {
-    public boolean f28837a;
-    public final float[] f28838b = {0.0f, 1.0f};
-    public final FrameLayout f28839c;
+    public boolean f28838a;
+    public final float[] f28839b = {0.0f, 1.0f};
+    public final FrameLayout f28840c;
     public final ol d;
 
     public nl(ol olVar, FrameLayout frameLayout) {
         this.d = olVar;
-        this.f28839c = frameLayout;
+        this.f28840c = frameLayout;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
         float interpolation;
-        float lerp = AndroidUtilities.lerp(this.f28838b, valueAnimator.getAnimatedFraction());
-        if (lerp >= 0.7f && !this.f28837a) {
+        float lerp = AndroidUtilities.lerp(this.f28839b, valueAnimator.getAnimatedFraction());
+        if (lerp >= 0.7f && !this.f28838a) {
             ol olVar = this.d;
-            rl rlVar = olVar.f29063b;
-            rl rlVar2 = olVar.f29063b;
-            if (rlVar.f29954i0 != null) {
+            rl rlVar = olVar.f29064b;
+            rl rlVar2 = olVar.f29064b;
+            if (rlVar.f29955i0 != null) {
                 AnimatorSet animatorSet = new AnimatorSet();
-                animatorSet.playTogether(ObjectAnimator.ofFloat(rlVar2.f29954i0, View.SCALE_X, 0.0f, 1.0f), ObjectAnimator.ofFloat(rlVar2.f29954i0, View.SCALE_Y, 0.0f, 1.0f), ObjectAnimator.ofFloat(rlVar2.f29954i0, View.ALPHA, 0.0f, 1.0f));
+                animatorSet.playTogether(ObjectAnimator.ofFloat(rlVar2.f29955i0, View.SCALE_X, 0.0f, 1.0f), ObjectAnimator.ofFloat(rlVar2.f29955i0, View.SCALE_Y, 0.0f, 1.0f), ObjectAnimator.ofFloat(rlVar2.f29955i0, View.ALPHA, 0.0f, 1.0f));
                 animatorSet.setInterpolator(new OvershootInterpolator(1.02f));
                 animatorSet.setDuration(250L);
                 animatorSet.start();
-                this.f28837a = true;
+                this.f28838a = true;
             }
         }
         if (lerp <= 0.5f) {
@@ -42,7 +42,7 @@ public final class nl implements ValueAnimator.AnimatorUpdateListener {
         } else {
             interpolation = (bs.f25022g.getInterpolation((lerp - 0.75f) / 0.25f) * 0.1f) + 0.9f;
         }
-        FrameLayout frameLayout = this.f28839c;
+        FrameLayout frameLayout = this.f28840c;
         frameLayout.setScaleX(interpolation);
         frameLayout.setScaleY(interpolation);
     }

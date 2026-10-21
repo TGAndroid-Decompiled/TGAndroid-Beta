@@ -92,10 +92,10 @@ public final class e4 implements Utilities.Callback {
                 if (r71Var != null) {
                     int i14 = r6Var.U;
                     int i15 = r6Var.V;
-                    e00 e00Var = r71Var.f29860b;
+                    e00 e00Var = r71Var.f29861b;
                     if (e00Var == null) {
-                        r71Var.f29863n = i14;
-                        r71Var.f29864r = i15;
+                        r71Var.f29864n = i14;
+                        r71Var.f29865r = i15;
                     } else {
                         e00Var.i(i14, i15);
                     }
@@ -210,10 +210,10 @@ public final class e4 implements Utilities.Callback {
                 TLRPC.TL_messageMediaGeoLive tL_messageMediaGeoLive = new TLRPC.TL_messageMediaGeoLive();
                 TLRPC.TL_geoPoint tL_geoPoint = new TLRPC.TL_geoPoint();
                 tL_messageMediaGeoLive.geo = tL_geoPoint;
-                tL_geoPoint.lat = AndroidUtilities.fixLocationCoord(rlVar.f29962q0.getLatitude());
-                tL_messageMediaGeoLive.geo._long = AndroidUtilities.fixLocationCoord(rlVar.f29962q0.getLongitude());
+                tL_geoPoint.lat = AndroidUtilities.fixLocationCoord(rlVar.f29963q0.getLatitude());
+                tL_messageMediaGeoLive.geo._long = AndroidUtilities.fixLocationCoord(rlVar.f29963q0.getLongitude());
                 tL_messageMediaGeoLive.period = i11;
-                rlVar.f29973x0.b(tL_messageMediaGeoLive, rlVar.f29975y0, true, 0, ((Long) obj).longValue());
+                rlVar.f29974x0.b(tL_messageMediaGeoLive, rlVar.f29976y0, true, 0, ((Long) obj).longValue());
                 rlVar.f28173b.dismiss(true);
                 return;
             case 5:
@@ -230,13 +230,13 @@ public final class e4 implements Utilities.Callback {
             default:
                 org.telegram.ui.Wallet.r9 r9Var = (org.telegram.ui.Wallet.r9) obj2;
                 String str3 = (String) obj;
-                if (!r9Var.f34815n && i11 == r9Var.I) {
-                    r9Var.f34820y = 0;
+                if (!r9Var.f34816n && i11 == r9Var.I) {
+                    r9Var.f34821y = 0;
                     r9Var.K = false;
                     if (WalletEngine2.isValidRecipientAddress(str3)) {
                         str = WalletEngine2.toUserFriendlyAddress(str3);
                     }
-                    r9Var.f34818w = str;
+                    r9Var.f34819w = str;
                     d dVar2 = r9Var.V;
                     if (dVar2 != null) {
                         if (str != null) {
@@ -244,7 +244,7 @@ public final class e4 implements Utilities.Callback {
                         }
                         dVar2.setEnabled(z11);
                     }
-                    r9Var.f32355a.W2.N(true);
+                    r9Var.f32356a.W2.N(true);
                     return;
                 }
                 return;

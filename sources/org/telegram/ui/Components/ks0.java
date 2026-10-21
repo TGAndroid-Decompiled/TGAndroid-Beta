@@ -16,7 +16,7 @@ public final class ks0 extends yh.p2 {
         float f7;
         float f10;
         uv0 uv0Var = this.U;
-        TextView textView = uv0Var.f31057q0;
+        TextView textView = uv0Var.f31058q0;
         textView.setVisibility(0);
         ViewPropertyAnimator animate = textView.animate();
         float f11 = 1.0f;

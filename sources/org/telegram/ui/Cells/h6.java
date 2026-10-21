@@ -251,9 +251,9 @@ public final class h6 extends a0 implements NotificationCenter.NotificationCente
         }
         accessibilityNodeInfo.setText(sb2.toString());
         xp xpVar = this.A0;
-        if (xpVar.f32458a.f24151q) {
+        if (xpVar.f32459a.f24151q) {
             accessibilityNodeInfo.setCheckable(true);
-            accessibilityNodeInfo.setChecked(xpVar.f32458a.f24151q);
+            accessibilityNodeInfo.setChecked(xpVar.f32459a.f24151q);
             accessibilityNodeInfo.setClassName("android.widget.CheckBox");
         }
     }
@@ -535,7 +535,7 @@ public final class h6 extends a0 implements NotificationCenter.NotificationCente
         int i13 = paddingRight;
         org.telegram.ui.Components.p5 p5Var = this.f22358s0;
         boolean d = p5Var.d();
-        int i14 = p5Var.f29213s;
+        int i14 = p5Var.f29214s;
         if (!d) {
             if (LocaleController.isRTL) {
                 this.U -= i14;
@@ -545,7 +545,7 @@ public final class h6 extends a0 implements NotificationCenter.NotificationCente
         }
         org.telegram.ui.Components.p5 p5Var2 = this.f22359t0;
         if (!p5Var2.d() && !LocaleController.isRTL) {
-            this.U -= p5Var2.f29213s;
+            this.U -= p5Var2.f29214s;
         }
         if (this.U < 0) {
             this.U = 0;
@@ -871,7 +871,7 @@ public final class h6 extends a0 implements NotificationCenter.NotificationCente
         long j10;
         boolean z12 = LocaleController.isRTL;
         org.telegram.ui.Components.p5 p5Var = this.f22359t0;
-        p5Var.f29207a = z12;
+        p5Var.f29208a = z12;
         boolean z13 = this.H0;
         org.telegram.ui.ActionBar.d6 d6Var = this.f22362w;
         if (z13 && z10) {

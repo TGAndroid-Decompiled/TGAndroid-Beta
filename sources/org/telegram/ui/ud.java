@@ -27,7 +27,7 @@ public final class ud implements RequestDelegate {
                 } else if (tLObject instanceof TLRPC.Updates) {
                     ie ieVar = this.f41935b;
                     AndroidUtilities.runOnUIThread(new od(ieVar, 4));
-                    MessagesController.getInstance(ieVar.f37954y0).lambda$processUpdates$377((TLRPC.Updates) tLObject, false);
+                    MessagesController.getInstance(ieVar.f37955y0).lambda$processUpdates$377((TLRPC.Updates) tLObject, false);
                     return;
                 } else {
                     return;
@@ -44,19 +44,19 @@ public final class ud implements RequestDelegate {
                                     TLRPC.TL_payments_starsRevenueStats tL_payments_starsRevenueStats = (TLRPC.TL_payments_starsRevenueStats) tLObject2;
                                     b91 f02 = p91.f0(tL_payments_starsRevenueStats.top_hours_graph, LocaleController.getString(R.string.MonetizationGraphImpressions), 0, false);
                                     ie ieVar3 = ieVar2;
-                                    ieVar3.f37943o1 = f02;
+                                    ieVar3.f37944o1 = f02;
                                     TL_stats.StatsGraph statsGraph = tL_payments_starsRevenueStats.revenue_graph;
                                     if (statsGraph != null) {
                                         statsGraph.rate = (float) (1.0E7d / tL_payments_starsRevenueStats.usd_rate);
                                     }
-                                    ieVar3.f37944p1 = p91.f0(statsGraph, LocaleController.getString(R.string.MonetizationGraphRevenue), 2, false);
-                                    b91 b91Var = ieVar3.f37943o1;
+                                    ieVar3.f37945p1 = p91.f0(statsGraph, LocaleController.getString(R.string.MonetizationGraphRevenue), 2, false);
+                                    b91 b91Var = ieVar3.f37944o1;
                                     if (b91Var != null) {
-                                        b91Var.f35551n = true;
+                                        b91Var.f35552n = true;
                                     }
-                                    ieVar3.f37939j1 = tL_payments_starsRevenueStats.usd_rate;
+                                    ieVar3.f37940j1 = tL_payments_starsRevenueStats.usd_rate;
                                     ieVar3.g0(true, tL_payments_starsRevenueStats.status);
-                                    ieVar3.f37932c1.animate().alpha(0.0f).setDuration(380L).setInterpolator(org.telegram.ui.Components.bs.h).withEndAction(new od(ieVar3, 6)).start();
+                                    ieVar3.f37933c1.animate().alpha(0.0f).setDuration(380L).setInterpolator(org.telegram.ui.Components.bs.h).withEndAction(new od(ieVar3, 6)).start();
                                     ieVar3.a0();
                                     return;
                                 }
@@ -88,19 +88,19 @@ public final class ud implements RequestDelegate {
                                     TLRPC.TL_payments_starsRevenueStats tL_payments_starsRevenueStats = (TLRPC.TL_payments_starsRevenueStats) tLObject2;
                                     b91 f02 = p91.f0(tL_payments_starsRevenueStats.top_hours_graph, LocaleController.getString(R.string.MonetizationGraphImpressions), 0, false);
                                     ie ieVar32 = ieVar3;
-                                    ieVar32.f37943o1 = f02;
+                                    ieVar32.f37944o1 = f02;
                                     TL_stats.StatsGraph statsGraph = tL_payments_starsRevenueStats.revenue_graph;
                                     if (statsGraph != null) {
                                         statsGraph.rate = (float) (1.0E7d / tL_payments_starsRevenueStats.usd_rate);
                                     }
-                                    ieVar32.f37944p1 = p91.f0(statsGraph, LocaleController.getString(R.string.MonetizationGraphRevenue), 2, false);
-                                    b91 b91Var = ieVar32.f37943o1;
+                                    ieVar32.f37945p1 = p91.f0(statsGraph, LocaleController.getString(R.string.MonetizationGraphRevenue), 2, false);
+                                    b91 b91Var = ieVar32.f37944o1;
                                     if (b91Var != null) {
-                                        b91Var.f35551n = true;
+                                        b91Var.f35552n = true;
                                     }
-                                    ieVar32.f37939j1 = tL_payments_starsRevenueStats.usd_rate;
+                                    ieVar32.f37940j1 = tL_payments_starsRevenueStats.usd_rate;
                                     ieVar32.g0(true, tL_payments_starsRevenueStats.status);
-                                    ieVar32.f37932c1.animate().alpha(0.0f).setDuration(380L).setInterpolator(org.telegram.ui.Components.bs.h).withEndAction(new od(ieVar32, 6)).start();
+                                    ieVar32.f37933c1.animate().alpha(0.0f).setDuration(380L).setInterpolator(org.telegram.ui.Components.bs.h).withEndAction(new od(ieVar32, 6)).start();
                                     ieVar32.a0();
                                     return;
                                 }

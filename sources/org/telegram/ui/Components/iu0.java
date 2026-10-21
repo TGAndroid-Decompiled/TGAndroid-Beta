@@ -18,7 +18,7 @@ public final class iu0 extends im0 {
 
     @Override
     public final boolean D(s4.b1 b1Var) {
-        jv0[] jv0VarArr = this.d.f31066t1;
+        jv0[] jv0VarArr = this.d.f31067t1;
         if (jv0VarArr[5].f27641a.size() == 0 && !jv0VarArr[5].f27645g) {
             return false;
         }
@@ -27,7 +27,7 @@ public final class iu0 extends im0 {
 
     @Override
     public final int h() {
-        jv0[] jv0VarArr = this.d.f31066t1;
+        jv0[] jv0VarArr = this.d.f31067t1;
         if (jv0VarArr[5].f27641a.size() == 0 && !jv0VarArr[5].f27645g) {
             return 1;
         }
@@ -41,7 +41,7 @@ public final class iu0 extends im0 {
 
     @Override
     public final int j(int i10) {
-        jv0[] jv0VarArr = this.d.f31066t1;
+        jv0[] jv0VarArr = this.d.f31067t1;
         if (jv0VarArr[5].f27641a.size() == 0 && !jv0VarArr[5].f27645g) {
             return 11;
         }
@@ -53,7 +53,7 @@ public final class iu0 extends im0 {
         char c10;
         if (b1Var.f45920f == 12) {
             uv0 uv0Var = this.d;
-            MessageObject messageObject = (MessageObject) uv0Var.f31066t1[5].f27641a.get(i10);
+            MessageObject messageObject = (MessageObject) uv0Var.f31067t1[5].f27641a.get(i10);
             TLRPC.Document document = messageObject.getDocument();
             if (document != null) {
                 View view = b1Var.f45917a;
@@ -63,7 +63,7 @@ public final class iu0 extends im0 {
                     boolean z10 = false;
                     if (uv0Var.C1) {
                         SparseArray[] sparseArrayArr = uv0Var.Z0;
-                        if (messageObject.getDialogId() == uv0Var.f31045j1) {
+                        if (messageObject.getDialogId() == uv0Var.f31046j1) {
                             c10 = 0;
                         } else {
                             c10 = 1;
@@ -71,10 +71,10 @@ public final class iu0 extends im0 {
                         if (sparseArrayArr[c10].indexOfKey(messageObject.getId()) >= 0) {
                             z10 = true;
                         }
-                        f2Var.c(z10, !uv0Var.f31025b1);
+                        f2Var.c(z10, !uv0Var.f31026b1);
                         return;
                     }
-                    f2Var.c(false, !uv0Var.f31025b1);
+                    f2Var.c(false, !uv0Var.f31026b1);
                 }
             }
         }
@@ -86,7 +86,7 @@ public final class iu0 extends im0 {
         org.telegram.ui.ActionBar.d6 d6Var = uv0Var.F1;
         Context context = this.f27338c;
         if (i10 == 11) {
-            hu0 M = uv0.M(5, uv0Var.f31045j1, context, d6Var);
+            hu0 M = uv0.M(5, uv0Var.f31046j1, context, d6Var);
             M.setLayoutParams(new s4.o0(-1, -1));
             return new s4.b1(M);
         }
@@ -100,7 +100,7 @@ public final class iu0 extends im0 {
         View view = b1Var.f45917a;
         if (view instanceof org.telegram.ui.Cells.f2) {
             ImageReceiver photoImage = ((org.telegram.ui.Cells.f2) view).getPhotoImage();
-            if (this.d.f31046k0[0].F == 5) {
+            if (this.d.f31047k0[0].F == 5) {
                 photoImage.setAllowStartAnimation(true);
                 photoImage.startAnimation();
                 return;

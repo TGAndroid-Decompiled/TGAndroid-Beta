@@ -44,7 +44,7 @@ public final class x1 extends View {
         p6Var.s(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(3.5f), 0);
         p6Var.M = AndroidUtilities.displaySize.x;
         p6Var.u(-1);
-        p6Var.f29225b = 17;
+        p6Var.f29226b = 17;
         this.d = new v1(this, 0);
     }
 
@@ -99,7 +99,7 @@ public final class x1 extends View {
                 break;
             }
             vj0 vj0Var = (vj0) arrayList.get(i11);
-            if (vj0Var.f31264a0 >= vj0Var.e[0]) {
+            if (vj0Var.f31265a0 >= vj0Var.e[0]) {
                 arrayList.remove(i11);
                 i11--;
             } else {

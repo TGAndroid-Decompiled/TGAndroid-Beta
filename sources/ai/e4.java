@@ -116,7 +116,7 @@ public final class e4 implements hf1, Continuation, org.telegram.ui.ActionBar.a2
                 m9Var.k0(false);
                 return;
             case 4:
-                ((org.telegram.ui.ha) this.f1197c).f37561a.j0((TLRPC.TL_username) this.d, this.f1196b, true);
+                ((org.telegram.ui.ha) this.f1197c).f37562a.j0((TLRPC.TL_username) this.d, this.f1196b, true);
                 return;
             case 5:
                 boolean z14 = this.f1196b;
@@ -148,7 +148,7 @@ public final class e4 implements hf1, Continuation, org.telegram.ui.ActionBar.a2
                 n00 n00Var = (n00) this.f1197c;
                 e00 e00Var = (e00) this.d;
                 boolean z17 = this.f1196b;
-                int i11 = e00Var.f36476j;
+                int i11 = e00Var.f36477j;
                 if (i11 > 0) {
                     n00Var.f39384y &= ~i11;
                 } else {

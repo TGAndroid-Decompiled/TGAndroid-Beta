@@ -15,7 +15,7 @@ public class tj0 extends vj0 {
     public volatile boolean X0;
     public boolean Y0;
     public final int Z0;
-    public int f30615a1;
+    public int f30616a1;
 
     public tj0(String str, int i10, int i11) {
         super(i10, i11);
@@ -46,12 +46,12 @@ public class tj0 extends vj0 {
         } else if (i10 == 2) {
             rLottieNative = this.U0;
             if (this.X0) {
-                this.f31264a0 = this.f30615a1 - 1;
+                this.f31265a0 = this.f30616a1 - 1;
             }
         } else {
             rLottieNative = this.m0;
         }
-        if (rLottieNative.c(this.f31264a0, bitmap, z10) < 0) {
+        if (rLottieNative.c(this.f31265a0, bitmap, z10) < 0) {
             return 2;
         }
         return 1;
@@ -59,12 +59,12 @@ public class tj0 extends vj0 {
 
     @Override
     public void C(boolean z10) {
-        this.f31277k0 = false;
-        this.f31278l0 = true;
+        this.f31278k0 = false;
+        this.f31279l0 = true;
         n();
         l();
         if (!this.Y0 && !this.V0) {
-            if (this.P == null && !this.f31294x0) {
+            if (this.P == null && !this.f31295x0) {
                 D(z10);
                 zf.e eVar = this.B0;
                 if (eVar != null) {
@@ -110,28 +110,28 @@ public class tj0 extends vj0 {
     public void i() {
         int i10 = this.J;
         if (i10 == 1) {
-            int i11 = this.f31264a0 + 1;
+            int i11 = this.f31265a0 + 1;
             int i12 = this.Z0;
             if (i12 == -1) {
                 i12 = this.e[0];
             }
             if (i11 < i12) {
-                this.f31264a0 = i11;
+                this.f31265a0 = i11;
                 return;
             }
-            this.f31264a0 = 0;
+            this.f31265a0 = 0;
             this.N = false;
             if (this.U0 != null) {
                 this.J = 2;
             }
-            if (this.f31295y) {
-                this.f31293x = null;
-                this.f31295y = false;
+            if (this.f31296y) {
+                this.f31294x = null;
+                this.f31296y = false;
             }
         } else if (i10 == 2) {
-            int i13 = this.f31264a0 + 1;
-            if (i13 < this.f30615a1) {
-                this.f31264a0 = i13;
+            int i13 = this.f31265a0 + 1;
+            if (i13 < this.f30616a1) {
+                this.f31265a0 = i13;
                 return;
             }
             this.N = true;
@@ -141,7 +141,7 @@ public class tj0 extends vj0 {
 
     @Override
     public int j() {
-        if (this.f31278l0) {
+        if (this.f31279l0) {
             return 3;
         }
         if (this.m0 == null || (this.J == 2 && this.U0 == null)) {
@@ -166,7 +166,7 @@ public class tj0 extends vj0 {
         if (!v()) {
             stop();
         }
-        if (this.f31277k0) {
+        if (this.f31278k0) {
             I();
         }
     }

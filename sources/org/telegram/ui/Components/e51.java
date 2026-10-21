@@ -130,17 +130,17 @@ public final class e51 extends bb {
             final TranslateController.Language language = suggestedLanguages.get(i12);
             if (!TextUtils.equals(language.code, e51Var.f25735f0)) {
                 e51Var.U(F, linearLayout, false, language.displayName, new Runnable(e51Var) {
-                    public final e51 f30845b;
+                    public final e51 f30846b;
 
                     {
-                        this.f30845b = e51Var;
+                        this.f30846b = e51Var;
                     }
 
                     @Override
                     public final void run() {
                         switch (r3) {
                             case 0:
-                                e51 e51Var2 = this.f30845b;
+                                e51 e51Var2 = this.f30846b;
                                 e51Var2.V();
                                 String str = language.code;
                                 e51Var2.f25735f0 = str;
@@ -148,7 +148,7 @@ public final class e51 extends bb {
                                 e51Var2.W();
                                 return;
                             default:
-                                e51 e51Var3 = this.f30845b;
+                                e51 e51Var3 = this.f30846b;
                                 e51Var3.V();
                                 String str2 = language.code;
                                 e51Var3.f25735f0 = str2;
@@ -170,17 +170,17 @@ public final class e51 extends bb {
             i10++;
             final TranslateController.Language language3 = language2;
             e51Var.U(F, linearLayout, TextUtils.equals(language3.code, e51Var.f25735f0), language3.displayName, new Runnable(e51Var) {
-                public final e51 f30845b;
+                public final e51 f30846b;
 
                 {
-                    this.f30845b = e51Var;
+                    this.f30846b = e51Var;
                 }
 
                 @Override
                 public final void run() {
                     switch (r3) {
                         case 0:
-                            e51 e51Var2 = this.f30845b;
+                            e51 e51Var2 = this.f30846b;
                             e51Var2.V();
                             String str = language3.code;
                             e51Var2.f25735f0 = str;
@@ -188,7 +188,7 @@ public final class e51 extends bb {
                             e51Var2.W();
                             return;
                         default:
-                            e51 e51Var3 = this.f30845b;
+                            e51 e51Var3 = this.f30846b;
                             e51Var3.V();
                             String str2 = language3.code;
                             e51Var3.f25735f0 = str2;
@@ -349,7 +349,7 @@ public final class e51 extends bb {
     public final im0 x(jm0 jm0Var) {
         u61 u61Var = new u61(jm0Var, getContext(), this.currentAccount, 0, true, new w41(this, 0), this.resourcesProvider);
         this.f25739j0 = u61Var;
-        u61Var.f30860r = false;
+        u61Var.f30861r = false;
         return u61Var;
     }
 }

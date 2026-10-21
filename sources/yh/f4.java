@@ -279,7 +279,7 @@ public final class f4 extends bb {
         ArrayList arrayList = new ArrayList(s3Var.f50507f);
         Collections.sort(arrayList, new y3(e4Var, 2));
         c71 c71Var = new c71(context, f4Var.currentAccount, 0, false, new u3(strArr, e4Var, arrayList, 0), new v3(e4Var, i80Var, 0), null, f4Var.resourcesProvider);
-        c71Var.W2.f30860r = false;
+        c71Var.W2.f30861r = false;
         FrameLayout frameLayout = new FrameLayout(context);
         ImageView imageView = new ImageView(context);
         imageView.setScaleType(ImageView.ScaleType.CENTER);
@@ -325,7 +325,7 @@ public final class f4 extends bb {
         ArrayList arrayList = new ArrayList(s3Var.h);
         Collections.sort(arrayList, new y3(e4Var, 1));
         c71 c71Var = new c71(context, f4Var.currentAccount, 0, false, new u3(strArr, e4Var, arrayList, 2), new v3(e4Var, i80Var, 2), null, f4Var.resourcesProvider);
-        c71Var.W2.f30860r = false;
+        c71Var.W2.f30861r = false;
         FrameLayout frameLayout = new FrameLayout(context);
         ImageView imageView = new ImageView(context);
         imageView.setScaleType(ImageView.ScaleType.CENTER);
@@ -479,7 +479,7 @@ public final class f4 extends bb {
         ArrayList arrayList = new ArrayList(s3Var.f50508g);
         Collections.sort(arrayList, new y3(e4Var, 0));
         c71 c71Var = new c71(context, f4Var.currentAccount, 0, false, new u3(strArr, e4Var, arrayList, 1), new v3(e4Var, i80Var, 1), null, f4Var.resourcesProvider);
-        c71Var.W2.f30860r = false;
+        c71Var.W2.f30861r = false;
         FrameLayout frameLayout = new FrameLayout(context);
         ImageView imageView = new ImageView(context);
         imageView.setScaleType(ImageView.ScaleType.CENTER);

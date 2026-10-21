@@ -138,7 +138,7 @@ public final class y1 extends View implements org.telegram.ui.Cells.m9, g3 {
                 b70Var.getClass();
                 i12 = this.f43321c.d.getHeight() + AndroidUtilities.dp(16);
                 d3 d3Var = this.f43321c;
-                d3Var.f36241s = this.d;
+                d3Var.f36242s = this.d;
                 d3Var.v = this.e;
             } else {
                 i12 = 0;

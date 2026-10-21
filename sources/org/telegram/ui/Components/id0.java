@@ -26,7 +26,7 @@ public final class id0 extends ap0 {
     @Override
     public final CharSequence d() {
         od0 od0Var = this.d;
-        Utilities.CallbackReturn callbackReturn = od0Var.f29023s0;
+        Utilities.CallbackReturn callbackReturn = od0Var.f29024s0;
         if (callbackReturn != null) {
             return (CharSequence) callbackReturn.run(Integer.valueOf(od0Var.G));
         }

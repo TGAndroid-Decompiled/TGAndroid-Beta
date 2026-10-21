@@ -30,14 +30,14 @@ public final class yo0 extends x51 {
             if (cp0Var.m0 == 0) {
                 TLRPC.PeerColor peerColor = tL_starGiftUnique.peer_color;
                 if (peerColor instanceof TLRPC.TL_peerColorCollectible) {
-                    cp0Var.f36039s = (TLRPC.TL_peerColorCollectible) peerColor;
-                    cp0Var.f36038r = null;
+                    cp0Var.f36040s = (TLRPC.TL_peerColorCollectible) peerColor;
+                    cp0Var.f36039r = null;
                 } else {
                     return;
                 }
             } else {
-                cp0Var.f36039s = null;
-                cp0Var.f36038r = MessagesController.emojiStatusCollectibleFromGift(tL_starGiftUnique);
+                cp0Var.f36040s = null;
+                cp0Var.f36039r = MessagesController.emojiStatusCollectibleFromGift(tL_starGiftUnique);
             }
             cp0Var.I = null;
             cp0Var.h = -1;
@@ -47,9 +47,9 @@ public final class yo0 extends x51 {
             } else {
                 longValue = l4.longValue();
             }
-            cp0Var.f36034n = longValue;
-            cp0Var.f36038r = null;
-            cp0Var.f36039s = null;
+            cp0Var.f36035n = longValue;
+            cp0Var.f36039r = null;
+            cp0Var.f36040s = null;
             cp0Var.I = null;
         }
         bp0 bp0Var = this.f43533d2;
@@ -61,7 +61,7 @@ public final class yo0 extends x51 {
         cp0Var.f(true);
         o51 o51Var = this.f43534e2[0];
         if (o51Var != null) {
-            cp0Var.f36036o0 = null;
+            cp0Var.f36037o0 = null;
             o51Var.dismiss();
         }
     }

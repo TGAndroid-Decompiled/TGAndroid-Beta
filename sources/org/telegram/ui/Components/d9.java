@@ -82,7 +82,7 @@ public abstract class d9 extends FrameLayout {
         ImageReceiver imageReceiver = k4Var.getImageReceiver();
         r5 r5Var = k4Var.e;
         if (r5Var != null) {
-            imageReceiver = r5Var.f29837k;
+            imageReceiver = r5Var.f29838k;
         }
         if (imageReceiver != null && imageReceiver.getLottieAnimation() != null) {
             return imageReceiver.getLottieAnimation().r();
@@ -95,7 +95,7 @@ public abstract class d9 extends FrameLayout {
         ImageReceiver imageReceiver = k4Var.getImageReceiver();
         r5 r5Var = k4Var.e;
         if (r5Var != null) {
-            ci.g3 g3Var = r5Var.f29837k;
+            ci.g3 g3Var = r5Var.f29838k;
             r5Var.setColorFilter(this.f25382r);
             return g3Var;
         }
@@ -126,10 +126,10 @@ public abstract class d9 extends FrameLayout {
         if (z10) {
             ci.k4 k4Var = this.f25379c;
             r5 r5Var = k4Var.e;
-            if (r5Var != null && (g3Var = r5Var.f29837k) != null) {
+            if (r5Var != null && (g3Var = r5Var.f29838k) != null) {
                 g3Var.startAnimation();
             }
-            k4Var.f31992a.startAnimation();
+            k4Var.f31993a.startAnimation();
         }
         NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needCheckSystemBarColors, new Object[0]);
         invalidate();

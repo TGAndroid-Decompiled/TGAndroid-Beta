@@ -38,7 +38,7 @@ public final class na extends s4.v {
                 int b11 = b1Var2.b();
                 int i10 = b10 - 4;
                 int i11 = b11 - 4;
-                sa saVar = jaVar.f38219c;
+                sa saVar = jaVar.f38220c;
                 ArrayList arrayList = saVar.v;
                 if (i10 < arrayList.size() && i11 < arrayList.size()) {
                     if (b10 != b11) {

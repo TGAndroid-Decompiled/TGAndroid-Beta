@@ -62,7 +62,7 @@ public class AnimatedPhoneNumberEditText extends o40 {
     public final void i(int i10) {
         ArrayList arrayList = this.f23905w;
         if (i10 < arrayList.size()) {
-            this.f28941b.setAlpha((int) (((Float) arrayList.get(i10)).floatValue() * 255.0f));
+            this.f28942b.setAlpha((int) (((Float) arrayList.get(i10)).floatValue() * 255.0f));
         }
     }
 

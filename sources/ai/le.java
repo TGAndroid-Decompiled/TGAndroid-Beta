@@ -249,8 +249,8 @@ public final class le extends org.telegram.ui.ActionBar.f3 implements Notificati
                     default:
                         le leVar = this.f2092b;
                         xp xpVar = leVar.J;
-                        xpVar.a(!xpVar.f32458a.f24151q, true);
-                        if (xpVar.f32458a.f24151q) {
+                        xpVar.a(!xpVar.f32459a.f24151q, true);
+                        if (xpVar.f32459a.f24151q) {
                             j15 = leVar.F;
                         } else {
                             j15 = 2666000;
@@ -395,8 +395,8 @@ public final class le extends org.telegram.ui.ActionBar.f3 implements Notificati
                     default:
                         le leVar = this.f2092b;
                         xp xpVar2 = leVar.J;
-                        xpVar2.a(!xpVar2.f32458a.f24151q, true);
-                        if (xpVar2.f32458a.f24151q) {
+                        xpVar2.a(!xpVar2.f32459a.f24151q, true);
+                        if (xpVar2.f32459a.f24151q) {
                             j15 = leVar.F;
                         } else {
                             j15 = 2666000;

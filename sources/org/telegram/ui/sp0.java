@@ -85,11 +85,11 @@ public final class sp0 extends org.telegram.ui.ActionBar.n2 implements Notificat
             Editable text = sp0Var.M.getText();
             sp0Var.f41506a = text;
             jq0Var.d = text;
-            org.telegram.ui.Components.qu quVar = jq0Var.f38306d0;
+            org.telegram.ui.Components.qu quVar = jq0Var.f38307d0;
             if (quVar != null) {
                 quVar.setText(text);
             }
-            jq0Var.f38324s0 = new np0(sp0Var);
+            jq0Var.f38325s0 = new np0(sp0Var);
             jq0Var.f0(sp0Var.G, sp0Var.H);
             sp0Var.presentFragment(jq0Var);
             return;
@@ -103,18 +103,18 @@ public final class sp0 extends org.telegram.ui.ActionBar.n2 implements Notificat
             jq0 jq0Var2 = oq0Var.f39960a;
             if (jq0Var2 != null) {
                 jq0Var2.d = text2;
-                org.telegram.ui.Components.qu quVar2 = jq0Var2.f38306d0;
+                org.telegram.ui.Components.qu quVar2 = jq0Var2.f38307d0;
                 if (quVar2 != null) {
                     quVar2.setText(text2);
                 }
             }
             op0 op0Var = new op0(sp0Var, hashMap, arrayList);
             jq0 jq0Var3 = oq0Var.f39960a;
-            jq0Var3.f38324s0 = op0Var;
+            jq0Var3.f38325s0 = op0Var;
             jq0 jq0Var4 = oq0Var.f39961b;
-            jq0Var4.f38324s0 = op0Var;
-            jq0Var3.f38325t0 = new nq0(oq0Var, 0);
-            jq0Var4.f38325t0 = new nq0(oq0Var, 1);
+            jq0Var4.f38325s0 = op0Var;
+            jq0Var3.f38326t0 = new nq0(oq0Var, 0);
+            jq0Var4.f38326t0 = new nq0(oq0Var, 1);
             int i10 = sp0Var.G;
             boolean z10 = sp0Var.H;
             jq0Var3.f0(i10, z10);
@@ -126,11 +126,11 @@ public final class sp0 extends org.telegram.ui.ActionBar.n2 implements Notificat
         Editable text3 = sp0Var.M.getText();
         sp0Var.f41506a = text3;
         jq0Var5.d = text3;
-        org.telegram.ui.Components.qu quVar3 = jq0Var5.f38306d0;
+        org.telegram.ui.Components.qu quVar3 = jq0Var5.f38307d0;
         if (quVar3 != null) {
             quVar3.setText(text3);
         }
-        jq0Var5.f38324s0 = new kp0(sp0Var, hashMap, arrayList);
+        jq0Var5.f38325s0 = new kp0(sp0Var, hashMap, arrayList);
         jq0Var5.f0(sp0Var.G, sp0Var.H);
         sp0Var.presentFragment(jq0Var5);
     }

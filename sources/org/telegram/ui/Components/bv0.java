@@ -35,7 +35,7 @@ public final class bv0 extends im0 {
     public final void E() {
         ArrayList arrayList = this.f25043n;
         arrayList.clear();
-        ArrayList c10 = this.f25045s.f31066t1[8].c();
+        ArrayList c10 = this.f25045s.f31067t1[8].c();
         int i10 = 0;
         for (int i11 = 0; i11 < c10.size(); i11++) {
             MessageObject messageObject = (MessageObject) c10.get(i11);

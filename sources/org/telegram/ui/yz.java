@@ -28,12 +28,12 @@ public final class yz extends pg.b {
 
     @Override
     public final int h() {
-        return this.d.f35238d0.size();
+        return this.d.f35239d0.size();
     }
 
     @Override
     public final int j(int i10) {
-        return ((e00) this.d.f35238d0.get(i10)).f44296a;
+        return ((e00) this.d.f35239d0.get(i10)).f44296a;
     }
 
     @Override
@@ -77,7 +77,7 @@ public final class yz extends pg.b {
         int i11;
         int i12 = b1Var.f45920f;
         View view = b1Var.f45917a;
-        ArrayList arrayList = this.d.f35238d0;
+        ArrayList arrayList = this.d.f35239d0;
         e00 e00Var = (e00) arrayList.get(i10);
         int i13 = i10 + 1;
         if (i13 < arrayList.size() && (i11 = ((e00) arrayList.get(i13)).f44296a) != 3 && i11 != 6) {
@@ -86,7 +86,7 @@ public final class yz extends pg.b {
             z10 = false;
         }
         if (i12 == 7) {
-            ((g00) view).e(e00Var.f36479m, z10);
+            ((g00) view).e(e00Var.f36480m, z10);
         } else if (i12 != 6 && i12 != 3) {
             if (i12 != 0 && i12 == 8) {
                 vz vzVar = (vz) view;

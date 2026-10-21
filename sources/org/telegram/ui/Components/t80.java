@@ -13,7 +13,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public abstract class t80 extends org.telegram.ui.ActionBar.f3 {
-    public boolean f30475b;
+    public boolean f30476b;
 
     public t80(Context context, TLRPC.Chat chat) {
         super(context, true);
@@ -52,11 +52,11 @@ public abstract class t80 extends org.telegram.ui.ActionBar.f3 {
         }
         ?? frameLayout = new FrameLayout(context);
         View view = new View(context);
-        frameLayout.f30216a = view;
+        frameLayout.f30217a = view;
         view.setBackground(org.telegram.ui.ActionBar.x5.f(new float[]{4.0f}, org.telegram.ui.ActionBar.h6.Oh));
         frameLayout.addView(view, w7.z5.d(-1, -1.0f, 0, 16.0f, 16.0f, 16.0f, 16.0f));
         TextView textView2 = new TextView(context);
-        frameLayout.f30217b = textView2;
+        frameLayout.f30218b = textView2;
         textView2.setLines(1);
         textView2.setSingleLine(true);
         textView2.setGravity(1);
@@ -77,7 +77,7 @@ public abstract class t80 extends org.telegram.ui.ActionBar.f3 {
     @Override
     public final void dismissInternal() {
         super.dismissInternal();
-        if (this.f30475b) {
+        if (this.f30476b) {
             n();
         }
     }

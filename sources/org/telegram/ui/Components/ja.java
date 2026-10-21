@@ -68,12 +68,12 @@ public final class ja {
         if (paVar == null) {
             return this.f27484o;
         }
-        synchronized (paVar.f29280n) {
+        synchronized (paVar.f29281n) {
             try {
-                if (!paVar.f29283q) {
+                if (!paVar.f29284q) {
                     bitmap = null;
                 } else {
-                    bitmap = paVar.f29282p;
+                    bitmap = paVar.f29283p;
                 }
             } finally {
             }
@@ -99,7 +99,7 @@ public final class ja {
         while (i11 < size) {
             Object obj = arrayList.get(i11);
             i11++;
-            ((na) obj).f28733b.invalidate();
+            ((na) obj).f28734b.invalidate();
         }
         ArrayList arrayList2 = this.e;
         int size2 = arrayList2.size();
@@ -113,8 +113,8 @@ public final class ja {
     public final void e() {
         pa paVar = this.f27482m;
         if (paVar != null) {
-            synchronized (paVar.f29280n) {
-                paVar.f29283q = false;
+            synchronized (paVar.f29281n) {
+                paVar.f29284q = false;
             }
         }
     }

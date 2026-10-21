@@ -5,23 +5,23 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 public final class i4 implements Runnable {
-    public final int f37848a;
-    public final int f37849b;
-    public final Object f37850c;
+    public final int f37849a;
+    public final int f37850b;
+    public final Object f37851c;
     public final Object d;
 
     public i4(int i10, Object obj, Object obj2, int i11) {
-        this.f37848a = i11;
-        this.f37849b = i10;
-        this.f37850c = obj;
+        this.f37849a = i11;
+        this.f37850b = i10;
+        this.f37851c = obj;
         this.d = obj2;
     }
 
     private final void a() {
         int i10;
-        org.telegram.ui.Components.j21 j21Var = (org.telegram.ui.Components.j21) this.f37850c;
+        org.telegram.ui.Components.j21 j21Var = (org.telegram.ui.Components.j21) this.f37851c;
         String str = (String) this.d;
-        int i11 = this.f37849b;
+        int i11 = this.f37850b;
         org.telegram.ui.Components.i21 i21Var = j21Var.f27388r.f24400n;
         try {
             String lowerCase = str.trim().toLowerCase();
@@ -75,23 +75,23 @@ public final class i4 implements Runnable {
     }
 
     public i4(Object obj, int i10, Object obj2, int i11) {
-        this.f37848a = i11;
-        this.f37850c = obj;
-        this.f37849b = i10;
+        this.f37849a = i11;
+        this.f37851c = obj;
+        this.f37850b = i10;
         this.d = obj2;
     }
 
     public i4(Object obj, Object obj2, int i10, int i11) {
-        this.f37848a = i11;
-        this.f37850c = obj;
+        this.f37849a = i11;
+        this.f37851c = obj;
         this.d = obj2;
-        this.f37849b = i10;
+        this.f37850b = i10;
     }
 
     public i4(j4 j4Var, int i10, int[] iArr, int[] iArr2) {
-        this.f37848a = 0;
-        this.f37850c = j4Var;
-        this.f37849b = i10;
+        this.f37849a = 0;
+        this.f37851c = j4Var;
+        this.f37850b = i10;
         this.d = iArr2;
     }
 }

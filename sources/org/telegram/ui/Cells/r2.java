@@ -1182,7 +1182,7 @@ public class r2 extends a0 implements ci.o7, org.telegram.ui.ActionBar.y5 {
 
     public final boolean M() {
         rs rsVar = this.f22900t0;
-        if (rsVar != null && !rsVar.f30004c.isEmpty()) {
+        if (rsVar != null && !rsVar.f30005c.isEmpty()) {
             return true;
         }
         return false;
@@ -1875,7 +1875,7 @@ public class r2 extends a0 implements ci.o7, org.telegram.ui.ActionBar.y5 {
             }
         }
         ei.k3 k3Var = this.f22885q2;
-        if (k3Var != null && k3Var.f32458a.f24151q) {
+        if (k3Var != null && k3Var.f32459a.f24151q) {
             accessibilityNodeInfo.setClassName("android.widget.CheckBox");
             accessibilityNodeInfo.setCheckable(true);
             accessibilityNodeInfo.setChecked(true);
@@ -2356,7 +2356,7 @@ public class r2 extends a0 implements ci.o7, org.telegram.ui.ActionBar.y5 {
         boolean z10;
         float f7;
         ei.k3 k3Var;
-        if (this.f22860l0 > 0 && !this.f22912v2 && !R() && (((k3Var = this.f22885q2) == null || !k3Var.f32458a.f24151q) && !this.f22905u0.f6227w)) {
+        if (this.f22860l0 > 0 && !this.f22912v2 && !R() && (((k3Var = this.f22885q2) == null || !k3Var.f32459a.f24151q) && !this.f22905u0.f6227w)) {
             z10 = true;
         } else {
             z10 = false;

@@ -162,7 +162,7 @@ public final class g0 implements View.OnClickListener {
                 ((kf) this.f739b).run();
                 return;
             case 26:
-                ChatActivityEnterView.g(((zd) ((gi.n0) this.f739b).d).f32875a, (TL_keyboard.KeyboardButton) view.getTag());
+                ChatActivityEnterView.g(((zd) ((gi.n0) this.f739b).d).f32876a, (TL_keyboard.KeyboardButton) view.getTag());
                 return;
             case 27:
                 ((ai.y0) this.f739b).run();

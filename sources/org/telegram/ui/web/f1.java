@@ -164,8 +164,8 @@ public final class f1 extends x61 {
         this.f42637w.e(false, false);
         this.f42637w.setAnimateLayoutChange(true);
         ((FrameLayout) this.fragmentView).addView(this.f42637w, z5.c(-1.0f, -1));
-        this.f32355a.setEmptyView(this.f42637w);
-        this.f32355a.j(new kv(this, 18));
+        this.f32356a.setEmptyView(this.f42637w);
+        this.f32356a.j(new kv(this, 18));
         return this.fragmentView;
     }
 

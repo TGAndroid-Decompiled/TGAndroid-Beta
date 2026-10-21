@@ -14,12 +14,12 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 public final class ck0 implements Runnable {
-    public final int f36001a;
-    public final Object f36002b;
+    public final int f36002a;
+    public final Object f36003b;
 
     public ck0(Object obj, int i10) {
-        this.f36001a = i10;
-        this.f36002b = obj;
+        this.f36002a = i10;
+        this.f36003b = obj;
     }
 
     @Override
@@ -27,14 +27,14 @@ public final class ck0 implements Runnable {
         int i10;
         cp0 cp0Var;
         fk fkVar;
-        int i11 = this.f36001a;
-        Object obj = this.f36002b;
+        int i11 = this.f36002a;
+        Object obj = this.f36003b;
         switch (i11) {
             case 0:
                 NotificationsSettingsActivity.V((NotificationsSettingsActivity) obj);
                 return;
             case 1:
-                ((PasscodeActivity) ((id0) obj).f37925n).k0();
+                ((PasscodeActivity) ((id0) obj).f37926n).k0();
                 return;
             case 2:
                 PasskeysActivity.X((PasskeysActivity) obj);
@@ -49,7 +49,7 @@ public final class ck0 implements Runnable {
                 SharedConfig.getCountryLangs();
                 return;
             case 4:
-                ((em0) obj).f36686a.finishFragment();
+                ((em0) obj).f36687a.finishFragment();
                 return;
             case 5:
                 org.telegram.ui.Components.f5.w0(((im0) obj).e.getParentActivity(), LocaleController.getString(R.string.UpdateAppAlert), true);
@@ -147,9 +147,9 @@ public final class ck0 implements Runnable {
                 return;
             case 11:
                 ap0 ap0Var = (ap0) obj;
-                cp0 cp0Var2 = ap0Var.f35403c;
+                cp0 cp0Var2 = ap0Var.f35404c;
                 hp0 hp0Var = cp0Var2.E;
-                ip0 ip0Var = cp0Var2.f36037p0;
+                ip0 ip0Var = cp0Var2.f36038p0;
                 if (hp0Var != null && cp0Var2.L.size() > 1) {
                     hp0Var.a(1, true);
                     TL_stars.StarGift starGift = (TL_stars.StarGift) cp0Var2.M.get(1);
@@ -171,7 +171,7 @@ public final class ck0 implements Runnable {
                     }
                     cp0.a(cp0Var2);
                     if (ip0Var.I.getCurrentPosition() == 1) {
-                        cp0Var = ip0Var.f38094n;
+                        cp0Var = ip0Var.f38095n;
                     } else {
                         cp0Var = ip0Var.h;
                     }
@@ -180,11 +180,11 @@ public final class ck0 implements Runnable {
                 }
                 return;
             case 12:
-                jq0 jq0Var = ((aq0) obj).f35406s;
+                jq0 jq0Var = ((aq0) obj).f35407s;
                 jq0Var.b0(jq0Var.P.getSearchField());
                 return;
             case 13:
-                ((bq0) obj).f35724z0.L.l();
+                ((bq0) obj).f35725z0.L.l();
                 return;
             case 14:
                 ((bu0) obj).invalidate();
@@ -194,7 +194,7 @@ public final class ck0 implements Runnable {
                 PhotoViewer photoViewer = (PhotoViewer) uVar.d;
                 Drawable[] drawableArr = PhotoViewer.U8;
                 photoViewer.v2(uVar.f6495a);
-                if (photoViewer.f33262c2 == 1) {
+                if (photoViewer.f33263c2 == 1) {
                     long j10 = uVar.f6495a;
                     photoViewer.X7 = j10;
                     if (photoViewer.W7 != j10) {
@@ -204,7 +204,7 @@ public final class ck0 implements Runnable {
                 uVar.f6497c = null;
                 return;
             case 16:
-                PhotoViewer photoViewer2 = ((ks0) obj).f38662a;
+                PhotoViewer photoViewer2 = ((ks0) obj).f38663a;
                 ImageView imageView = photoViewer2.E3;
                 if (imageView != null && imageView.getParent() != null) {
                     ((ViewGroup) photoViewer2.E3.getParent()).removeView(photoViewer2.E3);
@@ -229,13 +229,13 @@ public final class ck0 implements Runnable {
                 return;
             case 18:
                 org.telegram.ui.Components.nl0 nl0Var = (org.telegram.ui.Components.nl0) ((zb0) obj).f43711b;
-                PhotoViewer photoViewer3 = (PhotoViewer) nl0Var.f28842c;
+                PhotoViewer photoViewer3 = (PhotoViewer) nl0Var.f28843c;
                 photoViewer3.H2 = false;
                 org.telegram.ui.Components.c81 c81Var = photoViewer3.F2;
                 if (c81Var != null) {
                     c81Var.C();
                 }
-                ((PhotoViewer) nl0Var.f28842c).I2 = null;
+                ((PhotoViewer) nl0Var.f28843c).I2 = null;
                 return;
             case 19:
                 PhotoViewer photoViewer4 = ((zr0) obj).f43798a;
@@ -248,21 +248,21 @@ public final class ck0 implements Runnable {
                 return;
             case 20:
                 lt0 lt0Var = (lt0) ((zb0) obj).f43711b;
-                lt0Var.f39018r.f33345l7.unlock();
-                PhotoViewer photoViewer5 = lt0Var.f39018r;
-                Runnable runnable = photoViewer5.f33378p4;
+                lt0Var.f39019r.f33346l7.unlock();
+                PhotoViewer photoViewer5 = lt0Var.f39019r;
+                Runnable runnable = photoViewer5.f33379p4;
                 if (runnable != null) {
                     runnable.run();
-                    photoViewer5.f33378p4 = null;
+                    photoViewer5.f33379p4 = null;
                 }
                 photoViewer5.A2(true);
                 return;
             case 21:
                 PhotoViewer photoViewer6 = ((os0) obj).f39973b;
-                Runnable runnable2 = photoViewer6.f33378p4;
+                Runnable runnable2 = photoViewer6.f33379p4;
                 if (runnable2 != null) {
                     runnable2.run();
-                    photoViewer6.f33378p4 = null;
+                    photoViewer6.f33379p4 = null;
                     return;
                 }
                 return;
@@ -273,7 +273,7 @@ public final class ck0 implements Runnable {
                 ((au0) obj).d = true;
                 return;
             case 24:
-                PremiumPreviewFragment premiumPreviewFragment = ((gw0) obj).f37428c;
+                PremiumPreviewFragment premiumPreviewFragment = ((gw0) obj).f37429c;
                 premiumPreviewFragment.showDialog(new t21(premiumPreviewFragment.getParentActivity(), false, premiumPreviewFragment.getResourceProvider(), null));
                 return;
             case 25:

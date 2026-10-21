@@ -9,42 +9,42 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 public final class i5 extends LinearLayout {
-    public final RectF f34328a;
-    public final RectF f34329b;
-    public final RectF f34330c;
+    public final RectF f34329a;
+    public final RectF f34330b;
+    public final RectF f34331c;
     public final Paint d;
     public final org.telegram.ui.ActionBar.d6 e;
-    public final j5 f34331f;
+    public final j5 f34332f;
 
     public i5(j5 j5Var, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
-        this.f34331f = j5Var;
+        this.f34332f = j5Var;
         this.e = d6Var;
-        this.f34328a = new RectF();
-        this.f34329b = new RectF();
-        this.f34330c = new RectF();
+        this.f34329a = new RectF();
+        this.f34330b = new RectF();
+        this.f34331c = new RectF();
         this.d = new Paint(1);
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        j5 j5Var = this.f34331f;
-        float d = j5Var.f34384f.d(j5Var.d, false);
+        j5 j5Var = this.f34332f;
+        float d = j5Var.f34385f.d(j5Var.d, false);
         double d10 = d;
-        TextView[] textViewArr = j5Var.f34383c;
+        TextView[] textViewArr = j5Var.f34384c;
         int clamp = Utilities.clamp((int) Math.floor(d10), textViewArr.length, 0);
         int clamp2 = Utilities.clamp((int) Math.ceil(d10), textViewArr.length, 0);
-        RectF rectF = this.f34328a;
+        RectF rectF = this.f34329a;
         if (clamp >= 0 && clamp < textViewArr.length) {
             TextView textView = textViewArr[clamp];
             rectF.set(textView.getX(), textView.getY(), textView.getX() + textView.getWidth(), textView.getY() + textView.getHeight());
         }
-        RectF rectF2 = this.f34329b;
+        RectF rectF2 = this.f34330b;
         if (clamp2 >= 0 && clamp2 < textViewArr.length) {
             TextView textView2 = textViewArr[clamp2];
             rectF2.set(textView2.getX(), textView2.getY(), textView2.getX() + textView2.getWidth(), textView2.getY() + textView2.getHeight());
         }
-        RectF rectF3 = this.f34330c;
+        RectF rectF3 = this.f34331c;
         AndroidUtilities.lerp(rectF, rectF2, d - clamp, rectF3);
         int m12 = org.telegram.ui.ActionBar.h6.m1(0.1f, org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Oh, this.e));
         Paint paint = this.d;

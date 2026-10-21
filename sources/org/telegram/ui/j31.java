@@ -9,27 +9,27 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageReceiver;
 public final class j31 implements Runnable {
-    public final int f38158a;
-    public final SecretMediaViewer f38159b;
+    public final int f38159a;
+    public final SecretMediaViewer f38160b;
 
     public j31(SecretMediaViewer secretMediaViewer, int i10) {
-        this.f38158a = i10;
-        this.f38159b = secretMediaViewer;
+        this.f38159a = i10;
+        this.f38160b = secretMediaViewer;
     }
 
     @Override
     public final void run() {
         String format;
         String format2;
-        int i10 = this.f38158a;
-        SecretMediaViewer secretMediaViewer = this.f38159b;
+        int i10 = this.f38159a;
+        SecretMediaViewer secretMediaViewer = this.f38160b;
         switch (i10) {
             case 0:
                 secretMediaViewer.K0 = null;
                 secretMediaViewer.m0 = 0;
                 secretMediaViewer.e.setLayerType(0, null);
                 secretMediaViewer.e.setVisibility(4);
-                secretMediaViewer.f33823s = false;
+                secretMediaViewer.f33824s = false;
                 secretMediaViewer.N = null;
                 secretMediaViewer.M = false;
                 secretMediaViewer.i();
@@ -42,7 +42,7 @@ public final class j31 implements Runnable {
                     vVar.setLayerType(0, null);
                     secretMediaViewer.e.setVisibility(4);
                     secretMediaViewer.m0 = 0;
-                    secretMediaViewer.f33823s = false;
+                    secretMediaViewer.f33824s = false;
                     secretMediaViewer.N = null;
                     secretMediaViewer.M = false;
                     secretMediaViewer.i();
@@ -54,10 +54,10 @@ public final class j31 implements Runnable {
                 }
                 return;
             case 2:
-                p31 p31Var = secretMediaViewer.f33837y;
+                p31 p31Var = secretMediaViewer.f33838y;
                 if (p31Var != null) {
                     long n10 = p31Var.n();
-                    long p5 = secretMediaViewer.f33837y.p();
+                    long p5 = secretMediaViewer.f33838y.p();
                     if (p5 == -9223372036854775807L) {
                         n10 = 0;
                         p5 = 0;
@@ -69,14 +69,14 @@ public final class j31 implements Runnable {
                             secretMediaViewer.R.invalidate();
                         }
                     }
-                    int[] iArr = secretMediaViewer.f33806j1;
+                    int[] iArr = secretMediaViewer.f33807j1;
                     Arrays.fill(iArr, 0);
-                    int[] iArr2 = secretMediaViewer.f33808k1;
+                    int[] iArr2 = secretMediaViewer.f33809k1;
                     Arrays.fill(iArr2, 0);
-                    p31 p31Var2 = secretMediaViewer.f33837y;
+                    p31 p31Var2 = secretMediaViewer.f33838y;
                     if (p31Var2 != null) {
                         long max = Math.max(0L, p31Var2.n()) / 1000;
-                        long max2 = Math.max(0L, secretMediaViewer.f33837y.p()) / 1000;
+                        long max2 = Math.max(0L, secretMediaViewer.f33838y.p()) / 1000;
                         iArr[0] = (int) (max / 60);
                         iArr[1] = (int) (max % 60);
                         iArr2[0] = (int) (max2 / 60);
@@ -97,8 +97,8 @@ public final class j31 implements Runnable {
                     org.telegram.ui.ActionBar.j5 j5Var = secretMediaViewer.S;
                     Locale locale = Locale.ROOT;
                     j5Var.l(format + " / " + format2, false);
-                    if (secretMediaViewer.f33837y.y()) {
-                        AndroidUtilities.runOnUIThread(secretMediaViewer.f33804i1, 17L);
+                    if (secretMediaViewer.f33838y.y()) {
+                        AndroidUtilities.runOnUIThread(secretMediaViewer.f33805i1, 17L);
                         return;
                     }
                     return;
@@ -108,26 +108,26 @@ public final class j31 implements Runnable {
                 secretMediaViewer.m(false, true);
                 return;
             default:
-                ImageReceiver.BitmapHolder bitmapHolder = secretMediaViewer.f33803i0;
+                ImageReceiver.BitmapHolder bitmapHolder = secretMediaViewer.f33804i0;
                 if (bitmapHolder != null) {
                     bitmapHolder.release();
-                    secretMediaViewer.f33803i0 = null;
+                    secretMediaViewer.f33804i0 = null;
                 }
                 secretMediaViewer.h.setImageBitmap((Bitmap) null);
                 try {
                     if (secretMediaViewer.d.getParent() != null) {
-                        ((WindowManager) secretMediaViewer.f33786b.getSystemService("window")).removeView(secretMediaViewer.d);
+                        ((WindowManager) secretMediaViewer.f33787b.getSystemService("window")).removeView(secretMediaViewer.d);
                     }
                 } catch (Exception e) {
                     FileLog.e(e);
                 }
-                secretMediaViewer.f33805j0 = false;
+                secretMediaViewer.f33806j0 = false;
                 return;
         }
     }
 
     public j31(SecretMediaViewer secretMediaViewer, ju0 ju0Var, int i10) {
-        this.f38158a = i10;
-        this.f38159b = secretMediaViewer;
+        this.f38159a = i10;
+        this.f38160b = secretMediaViewer;
     }
 }

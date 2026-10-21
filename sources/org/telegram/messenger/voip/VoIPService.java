@@ -2220,7 +2220,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
                         }
                     }
                 }
-                hh1 hh1Var = hh1.f37629n1;
+                hh1 hh1Var = hh1.f37630n1;
                 if (hh1Var != null) {
                     hh1Var.m();
                 }
@@ -2255,7 +2255,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
                     }
                 }
             }
-            hh1 hh1Var2 = hh1.f37629n1;
+            hh1 hh1Var2 = hh1.f37630n1;
             if (hh1Var2 != null) {
                 hh1Var2.m();
             }
@@ -2636,7 +2636,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         } else if ("GROUPCALL_INVALID".equals(tL_error.text)) {
             n2 U = LaunchActivity.U();
             if (U != null) {
-                xc.a0(U).Q(R.raw.linkbroken, 36, LocaleController.getString(R.string.ConferenceClosed)).j().f29538r = false;
+                xc.a0(U).Q(R.raw.linkbroken, 36, LocaleController.getString(R.string.ConferenceClosed)).j().f29539r = false;
             }
             hangUp(0);
         } else {
@@ -3608,7 +3608,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
                         this.groupCall.addInvitedUser(j10);
                     }
                 }
-                hh1 hh1Var = hh1.f37629n1;
+                hh1 hh1Var = hh1.f37630n1;
                 if (hh1Var != null) {
                     hh1Var.m();
                 }
@@ -4171,8 +4171,8 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
             }
             requestVideoCall(true);
             setVideoState(true, 2);
-            hh1 hh1Var = hh1.f37629n1;
-            if (hh1Var != null && (ah1Var = hh1Var.f37660o0) != null) {
+            hh1 hh1Var = hh1.f37630n1;
+            if (hh1Var != null && (ah1Var = hh1Var.f37661o0) != null) {
                 ah1Var.a(true, true);
                 return;
             }
@@ -5045,7 +5045,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
                 callConnection.destroy();
             }
         }
-        d2.f31378a = SystemClock.elapsedRealtime();
+        d2.f31379a = SystemClock.elapsedRealtime();
         setSinks(null, null);
         Runnable runnable3 = this.onDestroyRunnable;
         if (runnable3 != null) {

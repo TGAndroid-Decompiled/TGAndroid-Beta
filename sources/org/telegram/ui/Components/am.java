@@ -27,7 +27,7 @@ public final class am implements Utilities.Callback {
                 if (tiVar != null) {
                     tiVar.L1 = true;
                 }
-                tiVar.f30537c2.b0(7, true, this.f24668b, this.d, 0, 0L, tiVar.u1(), this.f24669c, l4.longValue());
+                tiVar.f30538c2.b0(7, true, this.f24668b, this.d, 0, 0L, tiVar.u1(), this.f24669c, l4.longValue());
                 HashMap hashMap = ChatAttachAlertPhotoLayout.f24079s1;
                 hashMap.clear();
                 ChatAttachAlertPhotoLayout.f24078r1.clear();
@@ -35,19 +35,19 @@ public final class am implements Utilities.Callback {
                 hashMap.clear();
                 PhotoViewer.u1();
                 PhotoViewer.u1().H0(PhotoViewer.u1().P, false);
-                PhotoViewer.u1().f33421u2 = true;
+                PhotoViewer.u1().f33422u2 = true;
                 return;
             default:
                 Long l10 = (Long) obj;
                 PhotoViewer.u1();
                 PhotoViewer.u1().O = false;
-                PhotoViewer.u1().f33421u2 = false;
+                PhotoViewer.u1().f33422u2 = false;
                 ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ((fm) this.e).f26276c;
                 ti tiVar2 = chatAttachAlertPhotoLayout.f28173b;
-                tiVar2.f30596v2 = true;
+                tiVar2.f30597v2 = true;
                 tiVar2.L1 = true;
                 chatAttachAlertPhotoLayout.a0(false);
-                ri riVar = tiVar2.f30537c2;
+                ri riVar = tiVar2.f30538c2;
                 boolean z10 = this.f24668b;
                 if (z10) {
                     i10 = 4;
@@ -63,7 +63,7 @@ public final class am implements Utilities.Callback {
                 tiVar2.dismiss(true);
                 PhotoViewer.u1();
                 PhotoViewer.u1().H0(PhotoViewer.u1().P, false);
-                PhotoViewer.u1().f33421u2 = true;
+                PhotoViewer.u1().f33422u2 = true;
                 return;
         }
     }

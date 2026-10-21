@@ -6,15 +6,15 @@ import android.text.TextWatcher;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class sq0 implements TextWatcher {
-    public final fr0 f30341a;
+    public final fr0 f30342a;
 
     public sq0(fr0 fr0Var) {
-        this.f30341a = fr0Var;
+        this.f30342a = fr0Var;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
-        fr0 fr0Var = this.f30341a;
+        fr0 fr0Var = this.f30342a;
         xq0 xq0Var = fr0Var.L;
         tx0 tx0Var = fr0Var.R;
         k20 k20Var = fr0Var.f26397z0;
