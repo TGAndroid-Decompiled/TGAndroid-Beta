@@ -1,12 +1,22 @@
 package org.telegram.messenger;
 
-import android.graphics.Canvas;
-import android.graphics.PostProcessor;
-public final class zg implements PostProcessor {
+import android.media.SoundPool;
+public final class zg implements SoundPool.OnLoadCompleteListener {
+    public final int f20256a;
+
+    public zg(int i10) {
+        this.f20256a = i10;
+    }
+
     @Override
-    public final int onPostProcess(Canvas canvas) {
-        int lambda$loadRoundAvatar$47;
-        lambda$loadRoundAvatar$47 = NotificationsController.lambda$loadRoundAvatar$47(canvas);
-        return lambda$loadRoundAvatar$47;
+    public final void onLoadComplete(SoundPool soundPool, int i10, int i11) {
+        switch (this.f20256a) {
+            case 0:
+                NotificationsController.lambda$playInChatSound$40(soundPool, i10, i11);
+                return;
+            default:
+                NotificationsController.lambda$playOutChatSound$49(soundPool, i10, i11);
+                return;
+        }
     }
 }

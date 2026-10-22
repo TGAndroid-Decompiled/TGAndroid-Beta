@@ -34,7 +34,7 @@ public final class j extends a {
         boolean z11;
         d1[] d1VarArr;
         long j10;
-        n2.e eVar = this.f47873x;
+        n2.e eVar = this.f47876x;
         eVar.getClass();
         if (this.H == 0) {
             long j11 = this.F;
@@ -52,18 +52,18 @@ public final class j extends a {
             } else {
                 j10 = j12 - this.F;
             }
-            long j14 = this.f47872w;
+            long j14 = this.f47875w;
             if (j14 != -9223372036854775807L) {
                 j13 = j14 - this.F;
             }
             eVar2.b(eVar, j10, j13);
         }
         try {
-            g2.m b10 = this.f47892b.b(this.H);
-            b0 b0Var = this.f47896r;
+            g2.m b10 = this.f47895b.b(this.H);
+            b0 b0Var = this.f47899r;
             c3.l lVar = new c3.l(b0Var, b10.e, b0Var.open(b10));
             while (!this.I) {
-                int f7 = this.G.f47884a.f(lVar, e.v);
+                int f7 = this.G.f47887a.f(lVar, e.v);
                 if (f7 != 1) {
                     z10 = true;
                 } else {
@@ -86,24 +86,24 @@ public final class j extends a {
             if (v0.k(str) && ((i10 > 1 || i11 > 1) && i10 != -1 && i11 != -1)) {
                 j0 r02 = eVar.r0(4);
                 int i12 = i10 * i11;
-                long j15 = (this.f47895n - this.h) / i12;
+                long j15 = (this.f47898n - this.h) / i12;
                 for (int i13 = 1; i13 < i12; i13++) {
                     r02.d(0, new x());
                     r02.c(i13 * j15, 0, 0, 0, null);
                 }
             }
-            this.H = lVar.d - this.f47892b.e;
-            k7.a(this.f47896r);
+            this.H = lVar.d - this.f47895b.e;
+            k7.a(this.f47899r);
             this.J = !this.I;
         } catch (Throwable th2) {
-            k7.a(this.f47896r);
+            k7.a(this.f47899r);
             throw th2;
         }
     }
 
     @Override
     public final long b() {
-        return this.f47913s + this.E;
+        return this.f47916s + this.E;
     }
 
     @Override

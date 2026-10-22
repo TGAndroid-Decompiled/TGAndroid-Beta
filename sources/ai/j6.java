@@ -105,7 +105,7 @@ public final class j6 implements org.telegram.ui.ActionBar.a2, md0, MediaDataCon
         int i10 = this.f1569b;
         wq0 wq0Var = (wq0) this.e;
         gi.g4 g4Var = (gi.g4) this.f1571f;
-        n2Var.f45549x = false;
+        n2Var.f45552x = false;
         FileLog.e(exc);
         if ((exc instanceof nb.a) && exc.getMessage() != null && exc.getMessage().contains("segmentation optional module to be downloaded") && n2Var.isAttachedToWindow()) {
             AndroidUtilities.runOnUIThread(new cz0(n2Var, bitmap, i10, wq0Var, 20), 2000L);
@@ -153,7 +153,7 @@ public final class j6 implements org.telegram.ui.ActionBar.a2, md0, MediaDataCon
             }
         }
         if (!arrayList2.isEmpty()) {
-            iz0Var.f27365x = false;
+            iz0Var.f27368x = false;
             iz0Var.v = false;
             iz0Var.c();
             ah.x xVar = iz0Var.d;
@@ -161,22 +161,22 @@ public final class j6 implements org.telegram.ui.ActionBar.a2, md0, MediaDataCon
                 xVar.setVisibility(0);
             }
             iz0Var.U = AndroidUtilities.dp(10.0f);
-            iz0Var.f27364w = arrayList;
+            iz0Var.f27367w = arrayList;
             iz0Var.V = 0;
             iz0Var.W = Integer.valueOf(str2.length());
             ah.x xVar2 = iz0Var.d;
             if (xVar2 != null) {
                 xVar2.invalidate();
             }
-            fz0 fz0Var = iz0Var.f27360f;
+            fz0 fz0Var = iz0Var.f27363f;
             if (fz0Var != null) {
                 fz0Var.l();
                 return;
             }
             return;
         }
-        iz0Var.f27364w = null;
-        iz0Var.f27365x = true;
+        iz0Var.f27367w = null;
+        iz0Var.f27368x = true;
         iz0Var.f();
     }
 
@@ -243,7 +243,7 @@ public final class j6 implements org.telegram.ui.ActionBar.a2, md0, MediaDataCon
             TL_stars.TL_starGiftCollection tL_starGiftCollection2 = tL_starGiftCollection;
             int i11 = i10;
             int i12 = this.f1569b;
-            String publicUsername = DialogObject.getPublicUsername(MessagesController.getInstance(i12).getUserOrChat(ks0Var.f50465c));
+            String publicUsername = DialogObject.getPublicUsername(MessagesController.getInstance(i12).getUserOrChat(ks0Var.f50468c));
             boolean h = v9Var.h();
             if (TextUtils.isEmpty(publicUsername) && !h) {
                 return Boolean.FALSE;

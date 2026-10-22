@@ -13,22 +13,22 @@ import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.Components.h61;
 import org.telegram.ui.Components.u61;
 public final class t3 implements Utilities.Callback2 {
-    public final int f50528a;
-    public final Object f50529b;
+    public final int f50531a;
+    public final Object f50532b;
 
     public t3(Object obj, int i10) {
-        this.f50528a = i10;
-        this.f50529b = obj;
+        this.f50531a = i10;
+        this.f50532b = obj;
     }
 
     @Override
     public final void run(Object obj, Object obj2) {
         int i10;
         long j10;
-        int i11 = this.f50528a;
+        int i11 = this.f50531a;
         int i12 = 0;
         boolean z10 = true;
-        Object obj3 = this.f50529b;
+        Object obj3 = this.f50532b;
         switch (i11) {
             case 0:
                 u61 u61Var = (u61) obj2;
@@ -44,31 +44,31 @@ public final class t3 implements Utilities.Callback2 {
                     arrayList.add(h61.C(AndroidUtilities.dp(16.0f)));
                     if (y9Var.f2501i && arrayList2.isEmpty()) {
                         h61 o10 = h61.o(1, 34);
-                        o10.f26791u = 1;
+                        o10.f26794u = 1;
                         arrayList.add(o10);
                         h61 o11 = h61.o(2, 34);
-                        o11.f26791u = 1;
+                        o11.f26794u = 1;
                         arrayList.add(o11);
                         h61 o12 = h61.o(3, 34);
-                        o12.f26791u = 1;
+                        o12.f26794u = 1;
                         arrayList.add(o12);
                         h61 o13 = h61.o(4, 34);
-                        o13.f26791u = 1;
+                        o13.f26794u = 1;
                         arrayList.add(o13);
                         h61 o14 = h61.o(5, 34);
-                        o14.f26791u = 1;
+                        o14.f26794u = 1;
                         arrayList.add(o14);
                         h61 o15 = h61.o(6, 34);
-                        o15.f26791u = 1;
+                        o15.f26794u = 1;
                         arrayList.add(o15);
                         h61 o16 = h61.o(7, 34);
-                        o16.f26791u = 1;
+                        o16.f26794u = 1;
                         arrayList.add(o16);
                         h61 o17 = h61.o(8, 34);
-                        o17.f26791u = 1;
+                        o17.f26794u = 1;
                         arrayList.add(o17);
                         h61 o18 = h61.o(9, 34);
-                        o18.f26791u = 1;
+                        o18.f26794u = 1;
                         arrayList.add(o18);
                     } else {
                         int size = arrayList2.size();
@@ -79,14 +79,14 @@ public final class t3 implements Utilities.Callback2 {
                             i13++;
                             TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) obj4;
                             if (!savedStarGift.collection_id.contains(Integer.valueOf(k4Var.X))) {
-                                int i15 = f1.f50236a;
+                                int i15 = f1.f50239a;
                                 h61 J = h61.J(f1.class);
-                                J.f26791u = 1;
-                                J.f26795z = 0;
+                                J.f26794u = 1;
+                                J.f26798z = 0;
                                 J.G = savedStarGift;
-                                J.f26787q = true;
-                                J.f26777f = true;
-                                J.f26788r = false;
+                                J.f26790q = true;
+                                J.f26780f = true;
+                                J.f26791r = false;
                                 HashSet hashSet = k4Var.Z;
                                 int i16 = savedStarGift.msg_id;
                                 if (i16 == 0) {
@@ -95,7 +95,7 @@ public final class t3 implements Utilities.Callback2 {
                                     j10 = i16;
                                 }
                                 J.K(hashSet.contains(Long.valueOf(j10)));
-                                J.f26791u = 1;
+                                J.f26794u = 1;
                                 arrayList.add(J);
                                 i14--;
                                 if (i14 == 0) {
@@ -113,7 +113,7 @@ public final class t3 implements Utilities.Callback2 {
                                 if (i12 < i10) {
                                     i12++;
                                     h61 o19 = h61.o(i12, 34);
-                                    o19.f26791u = 1;
+                                    o19.f26794u = 1;
                                     arrayList.add(o19);
                                 }
                             }
@@ -128,14 +128,14 @@ public final class t3 implements Utilities.Callback2 {
                 TLRPC.ShareThemeBackdrops shareThemeBackdrops = (TLRPC.ShareThemeBackdrops) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
                 ArrayList arrayList3 = dVar.e;
-                dVar.f51966c = false;
+                dVar.f51969c = false;
                 if (shareThemeBackdrops instanceof TLRPC.TL_shareThemeBackdrops) {
                     TLRPC.TL_shareThemeBackdrops tL_shareThemeBackdrops = (TLRPC.TL_shareThemeBackdrops) shareThemeBackdrops;
-                    dVar.f51965b = tL_shareThemeBackdrops;
+                    dVar.f51968b = tL_shareThemeBackdrops;
                     try {
                         SerializedData serializedData = new SerializedData(tL_shareThemeBackdrops.getObjectSize());
-                        dVar.f51965b.serializeToStream(serializedData);
-                        MessagesController.getMainSettings(dVar.f51964a).edit().putString("qrBackdrops", Utilities.bytesToHex(serializedData.toByteArray())).apply();
+                        dVar.f51968b.serializeToStream(serializedData);
+                        MessagesController.getMainSettings(dVar.f51967a).edit().putString("qrBackdrops", Utilities.bytesToHex(serializedData.toByteArray())).apply();
                         serializedData.cleanup();
                     } catch (Exception e) {
                         FileLog.e(e);

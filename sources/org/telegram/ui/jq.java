@@ -1,14 +1,14 @@
 package org.telegram.ui;
 public final class jq implements Runnable {
-    public final int f38298a;
-    public final Object f38299b;
-    public final Object f38300c;
+    public final int f38301a;
+    public final Object f38302b;
+    public final Object f38303c;
     public final Object d;
 
     public jq(Object obj, Object obj2, Object obj3, int i10) {
-        this.f38298a = i10;
-        this.f38299b = obj;
-        this.f38300c = obj2;
+        this.f38301a = i10;
+        this.f38302b = obj;
+        this.f38303c = obj2;
         this.d = obj3;
     }
 

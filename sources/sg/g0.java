@@ -15,12 +15,12 @@ import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.ActionBar.j5;
 import w7.z5;
 public final class g0 extends FrameLayout {
-    public final ImageView f46258a;
-    public final j5 f46259b;
-    public final o5 f46260c;
+    public final ImageView f46261a;
+    public final j5 f46262b;
+    public final o5 f46263c;
     public final j5 d;
     public f0 e;
-    public e0 f46261f;
+    public e0 f46264f;
 
     public g0(k0 k0Var, Context context, d6 d6Var) {
         super(context);
@@ -33,7 +33,7 @@ public final class g0 extends FrameLayout {
         i11 = ((f3) k0Var).backgroundPaddingLeft;
         setPadding(i10, 0, i11, 0);
         ImageView imageView = new ImageView(context);
-        this.f46258a = imageView;
+        this.f46261a = imageView;
         imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
         imageView.setColorFilter(new PorterDuffColorFilter(h6.w0(h6.Lj, d6Var), PorterDuff.Mode.SRC_IN));
         if (LocaleController.isRTL) {
@@ -43,9 +43,9 @@ public final class g0 extends FrameLayout {
         }
         addView(imageView, z5.d(24, 24.0f, i12 | 16, 24.0f, 0.0f, 24.0f, 0.0f));
         j5 j5Var = new j5(context);
-        this.f46259b = j5Var;
+        this.f46262b = j5Var;
         j5Var.setWidthWrapContent(true);
-        j5Var.setTextColor(h6.w0(h6.f21096j5, d6Var));
+        j5Var.setTextColor(h6.w0(h6.f21099j5, d6Var));
         j5Var.setTextSize(14);
         boolean z10 = LocaleController.isRTL;
         int i13 = (z10 ? 5 : 3) | 16;
@@ -67,7 +67,7 @@ public final class g0 extends FrameLayout {
         j5Var2.setTypeface(AndroidUtilities.bold());
         j5Var2.setTextSize(14);
         o5 o5Var = new o5(this, context, d6Var);
-        this.f46260c = o5Var;
+        this.f46263c = o5Var;
         o5Var.setWillNotDraw(false);
         o5Var.addView(j5Var2, z5.e(-2, -2, 17));
         addView(o5Var, z5.c(-1.0f, -1));
@@ -76,7 +76,7 @@ public final class g0 extends FrameLayout {
     @Override
     public final void onMeasure(int i10, int i11) {
         float f7;
-        if (this.f46261f != null) {
+        if (this.f46264f != null) {
             f7 = 49.0f;
         } else {
             f7 = 36.0f;

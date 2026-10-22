@@ -4,11 +4,11 @@ import android.graphics.RectF;
 import android.text.StaticLayout;
 import org.telegram.ui.Components.yc;
 public final class m1 {
-    public int f22560a;
-    public float f22561b;
-    public float f22562c;
+    public int f22563a;
+    public float f22564b;
+    public float f22565c;
     public StaticLayout d;
     public final RectF e = new RectF();
-    public yc f22563f;
-    public z f22564g;
+    public yc f22566f;
+    public z f22567g;
 }

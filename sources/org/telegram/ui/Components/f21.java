@@ -5,21 +5,21 @@ import android.animation.AnimatorListenerAdapter;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.ThemeEditorView;
 public final class f21 extends AnimatorListenerAdapter {
-    public final ThemeEditorView.EditorAlert f26058a;
+    public final ThemeEditorView.EditorAlert f26061a;
 
     public f21(ThemeEditorView.EditorAlert editorAlert) {
-        this.f26058a = editorAlert;
+        this.f26061a = editorAlert;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        ThemeEditorView.EditorAlert editorAlert = this.f26058a;
-        if (editorAlert.f24398c.getAdapter() == editorAlert.f24401r) {
-            l21 l21Var = editorAlert.f24399f.f28667b;
+        ThemeEditorView.EditorAlert editorAlert = this.f26061a;
+        if (editorAlert.f24401c.getAdapter() == editorAlert.f24404r) {
+            l21 l21Var = editorAlert.f24402f.f28670b;
             l21Var.requestFocus();
             AndroidUtilities.showKeyboard(l21Var);
         }
-        editorAlert.f24397b.setVisibility(8);
+        editorAlert.f24400b.setVisibility(8);
         editorAlert.v.setVisibility(8);
         editorAlert.H = false;
     }

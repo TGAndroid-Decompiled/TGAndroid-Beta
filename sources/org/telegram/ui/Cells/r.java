@@ -5,38 +5,38 @@ import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
 import org.telegram.messenger.AndroidUtilities;
 public final class r implements ValueAnimator.AnimatorUpdateListener {
-    public final int f22798a;
-    public final Object f22799b;
+    public final int f22801a;
+    public final Object f22802b;
 
     public r(Object obj, int i10) {
-        this.f22798a = i10;
-        this.f22799b = obj;
+        this.f22801a = i10;
+        this.f22802b = obj;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
         float f7;
-        switch (this.f22798a) {
+        switch (this.f22801a) {
             case 0:
-                s sVar = (s) this.f22799b;
+                s sVar = (s) this.f22802b;
                 sVar.getClass();
                 sVar.a(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 return;
             case 1:
-                e0 e0Var = (e0) this.f22799b;
+                e0 e0Var = (e0) this.f22802b;
                 e0Var.getClass();
-                e0Var.f22174w = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                e0Var.f22156a.run();
+                e0Var.f22177w = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                e0Var.f22159a.run();
                 return;
             case 2:
-                u1 u1Var = (u1) this.f22799b;
+                u1 u1Var = (u1) this.f22802b;
                 u1Var.getClass();
                 u1Var.Bb = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 u1Var.invalidate();
                 return;
             case 3:
-                f4 f4Var = (f4) this.f22799b;
-                org.telegram.ui.Components.w9 w9Var = f4Var.f22236a;
+                f4 f4Var = (f4) this.f22802b;
+                org.telegram.ui.Components.w9 w9Var = f4Var.f22239a;
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 if (f4Var.H) {
                     f7 = 1.0f - (0.18f * floatValue);
@@ -52,19 +52,19 @@ public final class r implements ValueAnimator.AnimatorUpdateListener {
                 f4Var.invalidate();
                 return;
             case 4:
-                n6 n6Var = (n6) this.f22799b;
+                n6 n6Var = (n6) this.f22802b;
                 n6Var.getClass();
                 n6Var.F = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 n6Var.invalidate();
                 return;
             case 5:
-                s7 s7Var = (s7) this.f22799b;
+                s7 s7Var = (s7) this.f22802b;
                 s7Var.getClass();
-                s7Var.f23035i0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                s7Var.f23038i0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 s7Var.invalidate();
                 return;
             case 6:
-                y7 y7Var = (y7) this.f22799b;
+                y7 y7Var = (y7) this.f22802b;
                 y7Var.getClass();
                 ColorMatrix colorMatrix = new ColorMatrix();
                 float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
@@ -76,15 +76,15 @@ public final class r implements ValueAnimator.AnimatorUpdateListener {
                 y7Var.d.setEmojiColorFilter(new ColorMatrixColorFilter(colorMatrix));
                 return;
             case 7:
-                aa aaVar = (aa) this.f22799b;
+                aa aaVar = (aa) this.f22802b;
                 aaVar.getClass();
                 aaVar.V = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 aaVar.C.invalidate();
                 return;
             default:
-                da daVar = (da) ((ca) this.f22799b).f22112b;
-                daVar.f22154a.getTransitionParams().K1 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                daVar.f22154a.invalidate();
+                da daVar = (da) ((ca) this.f22802b).f22115b;
+                daVar.f22157a.getTransitionParams().K1 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                daVar.f22157a.invalidate();
                 return;
         }
     }

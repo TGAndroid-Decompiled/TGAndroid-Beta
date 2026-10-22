@@ -6,20 +6,20 @@ import android.view.View;
 import androidx.core.widget.NestedScrollView;
 public final class bf0 extends NestedScrollView {
     public View W;
-    public final jf0 f24927a0;
+    public final jf0 f24930a0;
 
     public bf0(jf0 jf0Var, Activity activity) {
         super(activity);
-        this.f24927a0 = jf0Var;
+        this.f24930a0 = jf0Var;
     }
 
     @Override
     public final int f(Rect rect) {
-        if (this.W != null && this.f24927a0.d.getTop() == getPaddingTop()) {
+        if (this.W != null && this.f24930a0.d.getTop() == getPaddingTop()) {
             int f7 = super.f(rect);
             int currentActionBarHeight = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() - (((this.W.getTop() - getScrollY()) + rect.top) + f7);
             if (currentActionBarHeight > 0) {
-                return org.telegram.messenger.mk.y(10.0f, currentActionBarHeight, f7);
+                return org.telegram.messenger.ok.y(10.0f, currentActionBarHeight, f7);
             }
             return f7;
         }

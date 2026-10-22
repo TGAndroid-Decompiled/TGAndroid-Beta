@@ -84,7 +84,7 @@ public final class v0 implements e2.j, g1, n2.m, d9.k, a2, ow0, Utilities.Callba
     public Object apply(Object obj) {
         o2.q qVar = (o2.q) obj;
         qVar.f();
-        return e9.n0.u(e9.s.x(qVar.Y.f47431b, new sg.y(10)));
+        return e9.n0.u(e9.s.x(qVar.Y.f47434b, new sg.y(10)));
     }
 
     @Override
@@ -92,14 +92,14 @@ public final class v0 implements e2.j, g1, n2.m, d9.k, a2, ow0, Utilities.Callba
         tr trVar = (tr) obj;
         switch (this.f16761a) {
             case 27:
-                trVar.f41730b = f7;
+                trVar.f41733b = f7;
                 if (trVar.getParent() != null) {
                     ((View) trVar.getParent()).invalidate();
                     return;
                 }
                 return;
             default:
-                trVar.f41731c = f7;
+                trVar.f41734c = f7;
                 if (trVar.getParent() != null) {
                     ((View) trVar.getParent()).invalidate();
                     return;
@@ -150,9 +150,9 @@ public final class v0 implements e2.j, g1, n2.m, d9.k, a2, ow0, Utilities.Callba
         tr trVar = (tr) obj;
         switch (this.f16761a) {
             case 26:
-                return trVar.f41730b;
+                return trVar.f41733b;
             default:
-                return trVar.f41731c;
+                return trVar.f41734c;
         }
     }
 

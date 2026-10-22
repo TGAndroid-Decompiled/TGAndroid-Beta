@@ -7,7 +7,7 @@ public final class y1 extends kw {
     public final b2 f10126g0;
 
     public y1(b2 b2Var, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context, d6Var, false, false, false, true, 0, null, org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21323v6, d6Var), false);
+        super(context, d6Var, false, false, false, true, 0, null, org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21326v6, d6Var), false);
         this.f10126g0 = b2Var;
     }
 

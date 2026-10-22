@@ -23,63 +23,63 @@ public final class r0 implements NotificationCenter.NotificationCenterDelegate {
     public static final LongSparseArray[] I = new LongSparseArray[4];
     public boolean E;
     public TLRPC.ShareTheme H;
-    public final int f52093a;
-    public final c1 f52094b;
-    public final p0 f52095c;
+    public final int f52096a;
+    public final c1 f52097b;
+    public final p0 f52098c;
     public boolean e;
-    public TLRPC.TL_exportedNoPaidMessagesToken f52096f;
+    public TLRPC.TL_exportedNoPaidMessagesToken f52099f;
     public long h;
-    public int f52097n;
-    public TLRPC.TL_exportedContactToken f52098r;
-    public long f52099s;
+    public int f52100n;
+    public TLRPC.TL_exportedContactToken f52101r;
+    public long f52102s;
     public TLRPC.ShareTheme v;
-    public int f52100w;
-    public boolean f52101x;
-    public boolean f52102y;
+    public int f52103w;
+    public boolean f52104x;
+    public boolean f52105y;
     public int d = 0;
     public final o0 F = new Runnable(this) {
-        public final r0 f52068b;
+        public final r0 f52071b;
 
         {
-            this.f52068b = this;
+            this.f52071b = this;
         }
 
         @Override
         public final void run() {
             switch (r2) {
                 case 0:
-                    this.f52068b.n();
+                    this.f52071b.n();
                     return;
                 default:
-                    this.f52068b.m();
+                    this.f52071b.m();
                     return;
             }
         }
     };
     public final o0 G = new Runnable(this) {
-        public final r0 f52068b;
+        public final r0 f52071b;
 
         {
-            this.f52068b = this;
+            this.f52071b = this;
         }
 
         @Override
         public final void run() {
             switch (r2) {
                 case 0:
-                    this.f52068b.n();
+                    this.f52071b.n();
                     return;
                 default:
-                    this.f52068b.m();
+                    this.f52071b.m();
                     return;
             }
         }
     };
 
     public r0(int i10, c1 c1Var, p0 p0Var) {
-        this.f52093a = i10;
-        this.f52094b = c1Var;
-        this.f52095c = p0Var;
+        this.f52096a = i10;
+        this.f52097b = c1Var;
+        this.f52098c = p0Var;
     }
 
     public static LongSparseArray g(int i10) {
@@ -109,16 +109,16 @@ public final class r0 implements NotificationCenter.NotificationCenterDelegate {
         this.H = shareTheme;
         boolean z10 = shareTheme instanceof TLRPC.TL_shareThemeGift;
         boolean z11 = false;
-        c1 c1Var = this.f52094b;
+        c1 c1Var = this.f52097b;
         if (z10) {
             TL_stars.StarGift starGift = ((TLRPC.TL_shareThemeGift) shareTheme).stargift;
             if (starGift instanceof TL_stars.TL_starGiftUnique) {
                 TL_stars.TL_starGiftUnique tL_starGiftUnique = (TL_stars.TL_starGiftUnique) starGift;
-                ArrayList arrayList2 = c1Var.f51913v1;
+                ArrayList arrayList2 = c1Var.f51916v1;
                 int i10 = 0;
                 while (true) {
                     if (i10 < arrayList2.size()) {
-                        if (((TL_stars.TL_starGiftUnique) arrayList2.get(i10)).f20500id == tL_starGiftUnique.f20500id) {
+                        if (((TL_stars.TL_starGiftUnique) arrayList2.get(i10)).f20503id == tL_starGiftUnique.f20503id) {
                             break;
                         }
                         i10++;
@@ -132,17 +132,17 @@ public final class r0 implements NotificationCenter.NotificationCenterDelegate {
                     i10 = 0;
                 }
                 z0 z0Var = c1Var.F;
-                if (z0Var.f52156a == 2 && z0Var.f52169q == i10) {
+                if (z0Var.f52159a == 2 && z0Var.f52172q == i10) {
                     return;
                 }
-                c1Var.f51748e2 = true;
+                c1Var.f51751e2 = true;
                 c1Var.I.clear();
-                Runnable runnable = c1Var.f51738d2;
+                Runnable runnable = c1Var.f51741d2;
                 if (runnable != null) {
                     runnable.run();
                 }
                 c1Var.M7 = i10;
-                if (c1Var.f51758f2) {
+                if (c1Var.f51761f2) {
                     f7 = 1.0f;
                 } else {
                     f7 = 0.0f;
@@ -150,7 +150,7 @@ public final class r0 implements NotificationCenter.NotificationCenterDelegate {
                 c1Var.O7 = f7;
                 c1Var.P7 = 1.0f;
                 c1Var.I0(c1Var.getWidth() / 2.0f, (c1Var.l() / 2.0f) + c1Var.m(), i10);
-                c1Var.f51748e2 = false;
+                c1Var.f51751e2 = false;
                 return;
             }
         }
@@ -175,17 +175,17 @@ public final class r0 implements NotificationCenter.NotificationCenterDelegate {
     public final void b() {
         this.v = null;
         AndroidUtilities.cancelRunOnUIThread(this.G);
-        int i10 = this.f52093a;
+        int i10 = this.f52096a;
         LongSparseArray g10 = g(i10);
-        long j10 = this.f52095c.f52075f;
+        long j10 = this.f52098c.f52078f;
         q0 q0Var = (q0) g10.get(j10);
-        if (q0Var != null && q0Var.f52082b == 0) {
+        if (q0Var != null && q0Var.f52085b == 0) {
             g(i10).remove(j10);
         }
     }
 
     public final TLRPC.TL_exportedNoPaidMessagesToken c() {
-        int i10 = this.f52093a;
+        int i10 = this.f52096a;
         String string = MessagesController.getMainSettings(i10).getString("qrNoPaidToken", null);
         if (TextUtils.isEmpty(string)) {
             return null;
@@ -197,8 +197,8 @@ public final class r0 implements NotificationCenter.NotificationCenterDelegate {
     }
 
     public final String d(TLRPC.TL_exportedNoPaidMessagesToken tL_exportedNoPaidMessagesToken) {
-        p0 p0Var = this.f52095c;
-        String str = p0Var.f52072a;
+        p0 p0Var = this.f52098c;
+        String str = p0Var.f52075a;
         if (TextUtils.isEmpty(tL_exportedNoPaidMessagesToken.url) && str != null && !p0Var.d) {
             return str + "?free=" + tL_exportedNoPaidMessagesToken.token;
         } else if (TextUtils.isEmpty(tL_exportedNoPaidMessagesToken.url)) {
@@ -216,22 +216,22 @@ public final class r0 implements NotificationCenter.NotificationCenterDelegate {
             return;
         }
         int i12 = NotificationCenter.userInfoDidLoad;
-        p0 p0Var = this.f52095c;
+        p0 p0Var = this.f52098c;
         if (i10 == i12) {
-            if (((Long) objArr[0]).longValue() == p0Var.f52075f) {
+            if (((Long) objArr[0]).longValue() == p0Var.f52078f) {
                 h(((TLRPC.UserFull) objArr[1]).share_theme);
             }
-        } else if (i10 == NotificationCenter.chatInfoDidLoad && (chatFull = (TLRPC.ChatFull) objArr[0]) != null && (-chatFull.f20277id) == p0Var.f52075f) {
+        } else if (i10 == NotificationCenter.chatInfoDidLoad && (chatFull = (TLRPC.ChatFull) objArr[0]) != null && (-chatFull.f20280id) == p0Var.f52078f) {
             h(chatFull.share_theme);
         }
     }
 
     public final TLRPC.InputPeer e() {
-        p0 p0Var = this.f52095c;
+        p0 p0Var = this.f52098c;
         if (p0Var.e) {
             return new TLRPC.TL_inputPeerSelf();
         }
-        TLRPC.InputPeer inputPeer = MessagesController.getInstance(this.f52093a).getInputPeer(p0Var.f52075f);
+        TLRPC.InputPeer inputPeer = MessagesController.getInstance(this.f52096a).getInputPeer(p0Var.f52078f);
         if (inputPeer instanceof TLRPC.TL_inputPeerEmpty) {
             return null;
         }
@@ -239,9 +239,9 @@ public final class r0 implements NotificationCenter.NotificationCenterDelegate {
     }
 
     public final void f() {
-        int i10 = this.f52093a;
+        int i10 = this.f52096a;
         MessagesController messagesController = MessagesController.getInstance(i10);
-        long j10 = this.f52095c.f52075f;
+        long j10 = this.f52098c.f52078f;
         if (j10 > 0) {
             TLRPC.User user = messagesController.getUser(Long.valueOf(j10));
             if (user != null) {
@@ -256,34 +256,34 @@ public final class r0 implements NotificationCenter.NotificationCenterDelegate {
             return;
         }
         NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.chatInfoDidLoad);
-        MessagesStorage.getInstance(i10).loadChatInfo(chat.f20276id, ChatObject.isChannel(chat), null, true, false);
+        MessagesStorage.getInstance(i10).loadChatInfo(chat.f20279id, ChatObject.isChannel(chat), null, true, false);
     }
 
     public final void h(TLRPC.ShareTheme shareTheme) {
-        long j10 = this.f52095c.f52075f;
+        long j10 = this.f52098c.f52078f;
         if (!this.E) {
             if (shareTheme == null) {
                 shareTheme = new TLRPC.TL_shareThemeDefault();
             }
-            int i10 = this.f52093a;
+            int i10 = this.f52096a;
             q0 q0Var = (q0) g(i10).get(j10);
             if (q0Var != null) {
-                TLRPC.ShareTheme shareTheme2 = q0Var.f52081a;
+                TLRPC.ShareTheme shareTheme2 = q0Var.f52084a;
                 byte[] o10 = o(shareTheme);
                 byte[] o11 = o(shareTheme2);
                 if (o10 != null && Arrays.equals(o10, o11)) {
                     g(i10).remove(j10);
-                } else if (q0Var.f52082b != 0 && SystemClock.elapsedRealtime() - q0Var.f52082b >= 10000) {
+                } else if (q0Var.f52085b != 0 && SystemClock.elapsedRealtime() - q0Var.f52085b >= 10000) {
                     g(i10).remove(j10);
                 } else {
-                    j(q0Var.f52081a);
+                    j(q0Var.f52084a);
                     return;
                 }
             }
-            if (!this.f52101x) {
+            if (!this.f52104x) {
                 TLRPC.ShareTheme shareTheme3 = this.H;
                 if (shareTheme3 == null) {
-                    c1 c1Var = this.f52094b;
+                    c1 c1Var = this.f52097b;
                     c1Var.setInstantTheme(true);
                     a(shareTheme);
                     c1Var.setInstantTheme(false);
@@ -301,14 +301,14 @@ public final class r0 implements NotificationCenter.NotificationCenterDelegate {
 
     public final void i() {
         TLRPC.TL_shareThemeGift tL_shareThemeGift;
-        this.f52101x = true;
+        this.f52104x = true;
         boolean z10 = false;
-        this.f52102y = false;
-        p0 p0Var = this.f52095c;
-        if (!p0Var.f52076g) {
+        this.f52105y = false;
+        p0 p0Var = this.f52098c;
+        if (!p0Var.f52079g) {
             return;
         }
-        c1 c1Var = this.f52094b;
+        c1 c1Var = this.f52097b;
         TL_stars.TL_starGiftUnique themeGift = c1Var.getThemeGift();
         ArrayList<TLRPC.Reaction> pickedEmoji = c1Var.getPickedEmoji();
         TLRPC.TL_shareThemeGift tL_shareThemeGift2 = null;
@@ -349,7 +349,7 @@ public final class r0 implements NotificationCenter.NotificationCenterDelegate {
             }
             if (z10 && a.h == null) {
                 b();
-                this.f52102y = true;
+                this.f52105y = true;
                 return;
             } else if (!z10 && pickedEmoji.isEmpty()) {
                 tL_shareThemeGift = new TLRPC.TL_shareThemeDefault();
@@ -371,8 +371,8 @@ public final class r0 implements NotificationCenter.NotificationCenterDelegate {
         }
         this.H = tL_shareThemeGift2;
         ?? obj = new Object();
-        obj.f52081a = tL_shareThemeGift2;
-        g(this.f52093a).put(p0Var.f52075f, obj);
+        obj.f52084a = tL_shareThemeGift2;
+        g(this.f52096a).put(p0Var.f52078f, obj);
         j(this.H);
         this.v = tL_shareThemeGift;
         o0 o0Var = this.G;
@@ -381,9 +381,9 @@ public final class r0 implements NotificationCenter.NotificationCenterDelegate {
     }
 
     public final void j(TLRPC.ShareTheme shareTheme) {
-        int i10 = this.f52093a;
+        int i10 = this.f52096a;
         MessagesController messagesController = MessagesController.getInstance(i10);
-        long j10 = this.f52095c.f52075f;
+        long j10 = this.f52098c.f52078f;
         if (j10 > 0) {
             TLRPC.UserFull userFull = messagesController.getUserFull(j10);
             if (userFull != null) {
@@ -402,30 +402,30 @@ public final class r0 implements NotificationCenter.NotificationCenterDelegate {
 
     public final void k() {
         this.E = true;
-        int i10 = this.f52093a;
+        int i10 = this.f52096a;
         NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.privacyRulesUpdated);
         NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.userInfoDidLoad);
         NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.chatInfoDidLoad);
         AndroidUtilities.cancelRunOnUIThread(this.F);
         AndroidUtilities.cancelRunOnUIThread(this.G);
         m();
-        if (this.f52097n != 0) {
-            ConnectionsManager.getInstance(i10).cancelRequest(this.f52097n, true);
-            this.f52097n = 0;
+        if (this.f52100n != 0) {
+            ConnectionsManager.getInstance(i10).cancelRequest(this.f52100n, true);
+            this.f52100n = 0;
         }
     }
 
     public final void l(boolean z10, boolean z11) {
-        int i10 = this.f52097n;
-        int i11 = this.f52093a;
+        int i10 = this.f52100n;
+        int i11 = this.f52096a;
         if (i10 != 0) {
-            ConnectionsManager.getInstance(i11).cancelRequest(this.f52097n, true);
+            ConnectionsManager.getInstance(i11).cancelRequest(this.f52100n, true);
         }
         TLRPC.TL_contacts_exportNoPaidMessagesToken tL_contacts_exportNoPaidMessagesToken = new TLRPC.TL_contacts_exportNoPaidMessagesToken();
         tL_contacts_exportNoPaidMessagesToken.revoke = z10;
         tL_contacts_exportNoPaidMessagesToken.temporary = z11;
         int sendRequestTyped = ConnectionsManager.getInstance(i11).sendRequestTyped(tL_contacts_exportNoPaidMessagesToken, new Object(), new gq(this, r6, z11, 1));
-        this.f52097n = sendRequestTyped;
+        this.f52100n = sendRequestTyped;
         int[] iArr = {sendRequestTyped};
     }
 
@@ -439,18 +439,18 @@ public final class r0 implements NotificationCenter.NotificationCenterDelegate {
             if (e == null) {
                 return;
             }
-            int i10 = this.f52100w;
-            int i11 = this.f52093a;
+            int i10 = this.f52103w;
+            int i11 = this.f52096a;
             if (i10 != 0) {
-                ConnectionsManager.getInstance(i11).cancelRequest(this.f52100w, true);
+                ConnectionsManager.getInstance(i11).cancelRequest(this.f52103w, true);
             }
             LongSparseArray g10 = g(i11);
-            p0 p0Var = this.f52095c;
-            q0 q0Var = (q0) g10.get(p0Var.f52075f);
-            long j10 = p0Var.f52075f;
-            int i12 = this.f52093a;
+            p0 p0Var = this.f52098c;
+            q0 q0Var = (q0) g10.get(p0Var.f52078f);
+            long j10 = p0Var.f52078f;
+            int i12 = this.f52096a;
             int sendRequestTyped = ConnectionsManager.getInstance(i12).sendRequestTyped(tL_messages_setShareTheme, new Object(), new a3(this, r7, q0Var, i12, j10));
-            this.f52100w = sendRequestTyped;
+            this.f52103w = sendRequestTyped;
             int[] iArr = {sendRequestTyped};
         }
     }
@@ -463,12 +463,12 @@ public final class r0 implements NotificationCenter.NotificationCenterDelegate {
             return;
         }
         int i10 = this.d;
-        int i11 = this.f52093a;
-        if (i10 == 1 && this.f52097n == 0 && (this.f52096f == null || SystemClock.elapsedRealtime() - this.h >= 30000 || ((tL_exportedNoPaidMessagesToken = this.f52096f) != null && tL_exportedNoPaidMessagesToken.expires != 0 && ConnectionsManager.getInstance(i11).getCurrentTime() >= this.f52096f.expires - 5))) {
+        int i11 = this.f52096a;
+        if (i10 == 1 && this.f52100n == 0 && (this.f52099f == null || SystemClock.elapsedRealtime() - this.h >= 30000 || ((tL_exportedNoPaidMessagesToken = this.f52099f) != null && tL_exportedNoPaidMessagesToken.expires != 0 && ConnectionsManager.getInstance(i11).getCurrentTime() >= this.f52099f.expires - 5))) {
             l(false, true);
         }
-        if (this.f52095c.d && ((this.f52098r == null || System.currentTimeMillis() / 1000 >= this.f52098r.expires) && SystemClock.elapsedRealtime() - this.f52099s >= 5000)) {
-            this.f52099s = SystemClock.elapsedRealtime();
+        if (this.f52098c.d && ((this.f52101r == null || System.currentTimeMillis() / 1000 >= this.f52101r.expires) && SystemClock.elapsedRealtime() - this.f52102s >= 5000)) {
+            this.f52102s = SystemClock.elapsedRealtime();
             MessagesController.getInstance(i11).requestContactToken(new g(this, 2));
         }
         AndroidUtilities.runOnUIThread(o0Var, 1000L);
@@ -476,7 +476,7 @@ public final class r0 implements NotificationCenter.NotificationCenterDelegate {
 
     public final void p() {
         long j10;
-        int i10 = this.f52093a;
+        int i10 = this.f52096a;
         TLRPC.GlobalPrivacySettings globalPrivacySettings = ContactsController.getInstance(i10).getGlobalPrivacySettings();
         if (globalPrivacySettings == null) {
             ContactsController.getInstance(i10).loadGlobalPrivacySetting();
@@ -484,25 +484,25 @@ public final class r0 implements NotificationCenter.NotificationCenterDelegate {
         } else {
             j10 = globalPrivacySettings.noncontact_peers_paid_stars;
         }
-        c1 c1Var = this.f52094b;
+        c1 c1Var = this.f52097b;
         c1Var.setFeeStars(j10);
         if (j10 > 0 && !this.e) {
             this.e = true;
-            if (!this.f52095c.d && this.d == 0 && MessagesController.getMainSettings(i10).getBoolean("qrNoPaidPermanent", false)) {
+            if (!this.f52098c.d && this.d == 0 && MessagesController.getMainSettings(i10).getBoolean("qrNoPaidPermanent", false)) {
                 this.d = 2;
-                c1Var.f51912v0 = true;
-                c1Var.f51923w0 = false;
+                c1Var.f51915v0 = true;
+                c1Var.f51926w0 = false;
                 c1Var.B0 = 1.0f;
                 c1Var.D0 = 1.0f;
                 c1Var.C0 = 1.0f;
                 c1Var.F0 = true;
                 c1Var.G0 = 1.0f;
-                c1Var.f51955z2 = null;
+                c1Var.f51958z2 = null;
                 c1Var.A2 = -1;
                 c1Var.u1(false);
                 c1Var.invalidate();
                 TLRPC.TL_exportedNoPaidMessagesToken c10 = c();
-                this.f52096f = c10;
+                this.f52099f = c10;
                 if (c10 != null) {
                     c1Var.setFreeLink(d(c10));
                 }

@@ -9,18 +9,18 @@ import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.bs;
 public abstract class o1 extends Drawable {
-    public final int f22696a;
-    public final Path f22697b;
-    public final Paint f22698c;
+    public final int f22699a;
+    public final Path f22700b;
+    public final Paint f22701c;
     public final Object d;
 
     public o1(int i10) {
-        this.f22696a = i10;
+        this.f22699a = i10;
         switch (i10) {
             case 1:
-                this.f22697b = new Path();
+                this.f22700b = new Path();
                 Paint paint = new Paint(1);
-                this.f22698c = paint;
+                this.f22701c = paint;
                 paint.setStyle(Paint.Style.STROKE);
                 paint.setStrokeJoin(Paint.Join.ROUND);
                 paint.setStrokeCap(Paint.Cap.ROUND);
@@ -28,20 +28,20 @@ public abstract class o1 extends Drawable {
                 return;
             default:
                 Paint paint2 = new Paint(1);
-                this.f22698c = paint2;
+                this.f22701c = paint2;
                 paint2.setColor(-1);
                 this.d = new RectF();
-                this.f22697b = new Path();
+                this.f22700b = new Path();
                 return;
         }
     }
 
     @Override
     public final void draw(Canvas canvas) {
-        switch (this.f22696a) {
+        switch (this.f22699a) {
             case 0:
                 e();
-                canvas.drawPath(this.f22697b, this.f22698c);
+                canvas.drawPath(this.f22700b, this.f22701c);
                 return;
             default:
                 float e = ((org.telegram.ui.Components.f6) this.d).e(true);
@@ -49,7 +49,7 @@ public abstract class o1 extends Drawable {
                 float centerY = getBounds().centerY();
                 float width = getBounds().width();
                 float f7 = 0.57f * width;
-                Path path = this.f22697b;
+                Path path = this.f22700b;
                 path.rewind();
                 float f10 = f7 / 2.0f;
                 path.moveTo(centerX - AndroidUtilities.lerp(f10, (-f7) / 2.0f, e), centerY);
@@ -61,7 +61,7 @@ public abstract class o1 extends Drawable {
                 path.lineTo(f11, centerY);
                 path.lineTo(f12, f13 + centerY);
                 canvas.save();
-                Paint paint = this.f22698c;
+                Paint paint = this.f22701c;
                 paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
                 canvas.translate(0.0f, (-width) * 0.1f * e);
                 canvas.rotate(e * 90.0f, centerX, centerY);
@@ -75,7 +75,7 @@ public abstract class o1 extends Drawable {
 
     @Override
     public int getIntrinsicHeight() {
-        switch (this.f22696a) {
+        switch (this.f22699a) {
             case 1:
                 return AndroidUtilities.dp(24.0f);
             default:
@@ -85,7 +85,7 @@ public abstract class o1 extends Drawable {
 
     @Override
     public int getIntrinsicWidth() {
-        switch (this.f22696a) {
+        switch (this.f22699a) {
             case 1:
                 return AndroidUtilities.dp(24.0f);
             default:
@@ -95,7 +95,7 @@ public abstract class o1 extends Drawable {
 
     @Override
     public final int getOpacity() {
-        switch (this.f22696a) {
+        switch (this.f22699a) {
             case 0:
                 return -2;
             default:
@@ -105,12 +105,12 @@ public abstract class o1 extends Drawable {
 
     @Override
     public final void setAlpha(int i10) {
-        int i11 = this.f22696a;
+        int i11 = this.f22699a;
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        int i10 = this.f22696a;
+        int i10 = this.f22699a;
     }
 
     private final void a(int i10) {

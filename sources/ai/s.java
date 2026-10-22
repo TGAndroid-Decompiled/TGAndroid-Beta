@@ -24,7 +24,7 @@ public final class s extends sd0 {
                     xVar.Q.setFocusable(true);
                     xVar.Q.setFocusableInTouchMode(true);
                     int y12 = xVar.e.y1(1);
-                    if (y12 >= 0 && y12 < xVar.e.W2.f30864x.size()) {
+                    if (y12 >= 0 && y12 < xVar.e.W2.f30867x.size()) {
                         xVar.e.B0();
                         xVar.e.x0(y12);
                     }
@@ -33,13 +33,13 @@ public final class s extends sd0 {
                 return super.dispatchTouchEvent(motionEvent);
             default:
                 org.telegram.ui.ie ieVar = (org.telegram.ui.ie) this.M;
-                c71 c71Var = ieVar.f37931a1;
+                c71 c71Var = ieVar.f37934a1;
                 t tVar2 = ieVar.Y0;
                 if (tVar2 != null && !tVar2.isFocusable()) {
                     tVar2.setFocusable(true);
                     tVar2.setFocusableInTouchMode(true);
                     int y13 = c71Var.y1(3);
-                    if (y13 >= 0 && y13 < c71Var.W2.f30864x.size()) {
+                    if (y13 >= 0 && y13 < c71Var.W2.f30867x.size()) {
                         c71Var.B0();
                         c71Var.x0(y13);
                     }

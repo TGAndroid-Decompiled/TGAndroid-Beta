@@ -14,9 +14,9 @@ public class c71 extends jm0 {
     public s4.y X2;
     public boolean Y2;
     public boolean Z2;
-    public boolean f25118a3;
-    public s4.b1 f25119b3;
-    public boolean f25120c3;
+    public boolean f25121a3;
+    public s4.b1 f25122b3;
+    public boolean f25123c3;
 
     public c71(org.telegram.ui.ActionBar.n2 n2Var, Utilities.Callback2 callback2, Utilities.Callback5 callback5, Utilities.Callback5Return callback5Return) {
         this(n2Var.getContext(), n2Var.getCurrentAccount(), n2Var.getClassGuid(), false, callback2, callback5, callback5Return, n2Var.getResourceProvider());
@@ -26,7 +26,7 @@ public class c71 extends jm0 {
         int i10 = 0;
         while (true) {
             u61 u61Var = this.W2;
-            if (i10 < u61Var.f30864x.size()) {
+            if (i10 < u61Var.f30867x.size()) {
                 h61 G = u61Var.G(i10);
                 if (G != null && G.G == obj) {
                     break;
@@ -60,13 +60,13 @@ public class c71 extends jm0 {
             ArrayList arrayList = u61Var.F;
             for (int i11 = 0; i11 < arrayList.size(); i11++) {
                 s61 s61Var = (s61) arrayList.get(i11);
-                int i12 = s61Var.f30207b;
+                int i12 = s61Var.f30210b;
                 if (i12 >= 0) {
-                    int i13 = s61Var.f30206a;
-                    if (u61Var.f30860n) {
-                        i10 = org.telegram.ui.ActionBar.h6.f21061h5;
+                    int i13 = s61Var.f30209a;
+                    if (u61Var.f30863n) {
+                        i10 = org.telegram.ui.ActionBar.h6.f21064h5;
                     } else {
-                        i10 = org.telegram.ui.ActionBar.h6.f20990d6;
+                        i10 = org.telegram.ui.ActionBar.h6.f20993d6;
                     }
                     int w02 = org.telegram.ui.ActionBar.h6.w0(i10, u61Var.v);
                     if (i12 >= i13 && i13 >= 0 && i12 >= 0) {
@@ -84,11 +84,11 @@ public class c71 extends jm0 {
                             }
                         }
                         if (i14 < i15) {
-                            if (this.f27589s2 == null) {
-                                this.f27589s2 = new Paint(1);
+                            if (this.f27592s2 == null) {
+                                this.f27592s2 = new Paint(1);
                             }
-                            this.f27589s2.setColor(w02);
-                            canvas.drawRect(0.0f, i14, getWidth(), i15, this.f27589s2);
+                            this.f27592s2.setColor(w02);
+                            canvas.drawRect(0.0f, i14, getWidth(), i15, this.f27592s2);
                         }
                     }
                 }
@@ -116,7 +116,7 @@ public class c71 extends jm0 {
     }
 
     public void setReorderLongPressEnabled(boolean z10) {
-        this.f25120c3 = z10;
+        this.f25123c3 = z10;
     }
 
     @Override
@@ -138,10 +138,10 @@ public class c71 extends jm0 {
     }
 
     public final void x1(boolean z10) {
-        if (this.f25118a3 == z10) {
+        if (this.f25121a3 == z10) {
             return;
         }
-        this.f25118a3 = z10;
+        this.f25121a3 = z10;
         this.W2.M = z10;
         AndroidUtilities.forEachViews((RecyclerView) this, (Utilities.Callback<View>) new z2(this, 13));
     }
@@ -150,7 +150,7 @@ public class c71 extends jm0 {
         int i11 = 0;
         while (true) {
             u61 u61Var = this.W2;
-            if (i11 < u61Var.f30864x.size()) {
+            if (i11 < u61Var.f30867x.size()) {
                 h61 G = u61Var.G(i11);
                 if (G != null && G.d == i10) {
                     return i11;
@@ -166,7 +166,7 @@ public class c71 extends jm0 {
         int i11 = 0;
         while (true) {
             u61 u61Var = this.W2;
-            if (i11 < u61Var.f30864x.size()) {
+            if (i11 < u61Var.f30867x.size()) {
                 h61 G = u61Var.G(i11);
                 if (G != null && G.d == i10) {
                     break;
@@ -186,7 +186,7 @@ public class c71 extends jm0 {
 
     public c71(Context context, int i10, int i11, boolean z10, Utilities.Callback2 callback2, Utilities.Callback5 callback5, Utilities.Callback5Return callback5Return, org.telegram.ui.ActionBar.d6 d6Var, int i12, int i13) {
         super(context, d6Var);
-        this.f25120c3 = true;
+        this.f25123c3 = true;
         if (i12 == -1) {
             y61 y61Var = new y61(this, i13);
             this.V2 = y61Var;
@@ -207,7 +207,7 @@ public class c71 extends jm0 {
             setOnItemLongClickListener(new q2(23, this, callback5Return));
         }
         b71 b71Var = new b71(this);
-        b71Var.f45951m = false;
+        b71Var.f45954m = false;
         b71Var.C = false;
         b71Var.o(bs.h);
         b71Var.n(350L);

@@ -16,48 +16,48 @@ public final class xg extends View {
     public final float G;
     public float H;
     public final ChatActivityEnterView I;
-    public boolean f32409a;
-    public boolean f32410b;
-    public String f32411c;
+    public boolean f32412a;
+    public boolean f32413b;
+    public String f32414c;
     public long d;
     public long e;
-    public long f32412f;
+    public long f32415f;
     public long h;
-    public long f32413n;
-    public boolean f32414r;
-    public final SpannableStringBuilder f32415s;
+    public long f32416n;
+    public boolean f32417r;
+    public final SpannableStringBuilder f32418s;
     public final SpannableStringBuilder v;
-    public SpannableStringBuilder f32416w;
-    public StaticLayout f32417x;
-    public StaticLayout f32418y;
+    public SpannableStringBuilder f32419w;
+    public StaticLayout f32420x;
+    public StaticLayout f32421y;
 
     public xg(ChatActivityEnterView chatActivityEnterView, Context context) {
         super(context);
         this.I = chatActivityEnterView;
-        this.f32415s = new SpannableStringBuilder();
+        this.f32418s = new SpannableStringBuilder();
         this.v = new SpannableStringBuilder();
-        this.f32416w = new SpannableStringBuilder();
+        this.f32419w = new SpannableStringBuilder();
         this.G = AndroidUtilities.dp(15.0f);
     }
 
     public final void a(long j10) {
-        this.f32409a = true;
+        this.f32412a = true;
         long currentTimeMillis = System.currentTimeMillis() - j10;
         this.d = currentTimeMillis;
         this.h = j10;
-        this.f32412f = currentTimeMillis;
+        this.f32415f = currentTimeMillis;
         invalidate();
     }
 
     public final void b() {
-        if (this.f32409a) {
-            this.f32409a = false;
+        if (this.f32412a) {
+            this.f32412a = false;
             if (this.d > 0) {
                 this.e = System.currentTimeMillis();
             }
             invalidate();
         }
-        this.f32412f = 0L;
+        this.f32415f = 0L;
     }
 
     public float getLeftProperty() {
@@ -83,13 +83,13 @@ public final class xg extends View {
             textPaint2.setTextSize(AndroidUtilities.dp(15.0f));
             this.F.setTypeface(AndroidUtilities.bold());
             TextPaint textPaint3 = this.F;
-            int i12 = org.telegram.ui.ActionBar.h6.f21182nf;
-            int i13 = ChatActivityEnterView.f23908n5;
+            int i12 = org.telegram.ui.ActionBar.h6.f21185nf;
+            int i13 = ChatActivityEnterView.f23911n5;
             textPaint3.setColor(chatActivityEnterView.g0(i12));
         }
         long currentTimeMillis = System.currentTimeMillis();
-        if (this.f32409a) {
-            if (this.f32414r) {
+        if (this.f32412a) {
+            if (this.f32417r) {
                 j10 = this.h;
             } else {
                 j10 = currentTimeMillis - this.d;
@@ -100,7 +100,7 @@ public final class xg extends View {
         long j12 = j10 / 1000;
         int i14 = ((int) (j10 % 1000)) / 10;
         long j13 = 0;
-        if (chatActivityEnterView.f23924c1 && j10 >= 59500 && !this.f32410b) {
+        if (chatActivityEnterView.f23927c1 && j10 >= 59500 && !this.f32413b) {
             chatActivityEnterView.D2 = -1.0f;
             og ogVar = chatActivityEnterView.Z2;
             if (chatActivityEnterView.O) {
@@ -112,15 +112,15 @@ public final class xg extends View {
             xe xeVar = chatActivityEnterView.J0;
             chatActivityEnterView.S4 = 0L;
             xeVar.setEffect(0L);
-            this.f32410b = true;
+            this.f32413b = true;
         }
-        if (this.f32409a && currentTimeMillis > this.f32412f + 5000) {
-            this.f32412f = currentTimeMillis;
+        if (this.f32412a && currentTimeMillis > this.f32415f + 5000) {
+            this.f32415f = currentTimeMillis;
             MessagesController messagesController = MessagesController.getInstance(chatActivityEnterView.Q);
             long j14 = chatActivityEnterView.Q2;
             threadMessageId = chatActivityEnterView.getThreadMessageId();
             long j15 = threadMessageId;
-            if (chatActivityEnterView.f23924c1) {
+            if (chatActivityEnterView.f23927c1) {
                 i10 = 7;
             } else {
                 i10 = 1;
@@ -128,16 +128,16 @@ public final class xg extends View {
             messagesController.sendTyping(j14, j15, i10, 0);
         }
         String formatTimerDurationFast = AndroidUtilities.formatTimerDurationFast((int) j12, i14);
-        if (formatTimerDurationFast.length() >= 3 && (str = this.f32411c) != null && str.length() >= 3 && formatTimerDurationFast.length() == this.f32411c.length() && formatTimerDurationFast.charAt(formatTimerDurationFast.length() - 3) != this.f32411c.charAt(formatTimerDurationFast.length() - 3)) {
+        if (formatTimerDurationFast.length() >= 3 && (str = this.f32414c) != null && str.length() >= 3 && formatTimerDurationFast.length() == this.f32414c.length() && formatTimerDurationFast.charAt(formatTimerDurationFast.length() - 3) != this.f32414c.charAt(formatTimerDurationFast.length() - 3)) {
             int length = formatTimerDurationFast.length();
-            SpannableStringBuilder spannableStringBuilder2 = this.f32415s;
+            SpannableStringBuilder spannableStringBuilder2 = this.f32418s;
             spannableStringBuilder2.clear();
             SpannableStringBuilder spannableStringBuilder3 = this.v;
             spannableStringBuilder3.clear();
-            this.f32416w.clear();
+            this.f32419w.clear();
             spannableStringBuilder2.append((CharSequence) formatTimerDurationFast);
-            spannableStringBuilder3.append((CharSequence) this.f32411c);
-            this.f32416w.append((CharSequence) formatTimerDurationFast);
+            spannableStringBuilder3.append((CharSequence) this.f32414c);
+            this.f32419w.append((CharSequence) formatTimerDurationFast);
             int i15 = -1;
             int i16 = -1;
             int i17 = 0;
@@ -149,7 +149,7 @@ public final class xg extends View {
                 if (i17 >= length - 1) {
                     break;
                 }
-                if (this.f32411c.charAt(i17) != formatTimerDurationFast.charAt(i17)) {
+                if (this.f32414c.charAt(i17) != formatTimerDurationFast.charAt(i17)) {
                     if (i19 == 0) {
                         i16 = i17;
                     }
@@ -170,7 +170,7 @@ public final class xg extends View {
                     }
                     i18++;
                     if (i19 != 0) {
-                        this.f32416w.setSpan(new uz(false), i16, i19 + i16, 33);
+                        this.f32419w.setSpan(new uz(false), i16, i19 + i16, 33);
                         i19 = 0;
                     }
                 }
@@ -185,34 +185,34 @@ public final class xg extends View {
                 spannableStringBuilder3.setSpan(uzVar2, i15, i21, 33);
             }
             if (i19 != 0) {
-                this.f32416w.setSpan(new uz(false), i16, i19 + i16, 33);
+                this.f32419w.setSpan(new uz(false), i16, i19 + i16, 33);
             }
             TextPaint textPaint4 = this.F;
             int measuredWidth = getMeasuredWidth();
             Layout.Alignment alignment = Layout.Alignment.ALIGN_NORMAL;
-            this.f32417x = new StaticLayout(spannableStringBuilder2, textPaint4, measuredWidth, alignment, 1.0f, 0.0f, false);
-            this.f32418y = new StaticLayout(spannableStringBuilder3, this.F, getMeasuredWidth(), alignment, 1.0f, 0.0f, false);
+            this.f32420x = new StaticLayout(spannableStringBuilder2, textPaint4, measuredWidth, alignment, 1.0f, 0.0f, false);
+            this.f32421y = new StaticLayout(spannableStringBuilder3, this.F, getMeasuredWidth(), alignment, 1.0f, 0.0f, false);
             this.E = 1.0f;
         } else {
             j11 = 0;
-            if (this.f32416w == null) {
-                this.f32416w = new SpannableStringBuilder(formatTimerDurationFast);
+            if (this.f32419w == null) {
+                this.f32419w = new SpannableStringBuilder(formatTimerDurationFast);
             }
-            if (this.f32416w.length() != 0 && this.f32416w.length() == formatTimerDurationFast.length()) {
-                this.f32416w.replace(spannableStringBuilder.length() - 1, this.f32416w.length(), (CharSequence) formatTimerDurationFast, (formatTimerDurationFast.length() - 1) - (formatTimerDurationFast.length() - this.f32416w.length()), formatTimerDurationFast.length());
+            if (this.f32419w.length() != 0 && this.f32419w.length() == formatTimerDurationFast.length()) {
+                this.f32419w.replace(spannableStringBuilder.length() - 1, this.f32419w.length(), (CharSequence) formatTimerDurationFast, (formatTimerDurationFast.length() - 1) - (formatTimerDurationFast.length() - this.f32419w.length()), formatTimerDurationFast.length());
             } else {
-                this.f32416w.clear();
-                this.f32416w.append((CharSequence) formatTimerDurationFast);
+                this.f32419w.clear();
+                this.f32419w.append((CharSequence) formatTimerDurationFast);
             }
         }
         long elapsedRealtime = SystemClock.elapsedRealtime();
-        long j16 = this.f32413n;
+        long j16 = this.f32416n;
         if (j16 == j11) {
             min = 16;
         } else {
             min = Math.min(50L, elapsedRealtime - j16);
         }
-        this.f32413n = elapsedRealtime;
+        this.f32416n = elapsedRealtime;
         float f7 = this.E;
         if (f7 != 0.0f) {
             float f10 = f7 - (((float) min) / 116.0f);
@@ -223,47 +223,47 @@ public final class xg extends View {
         }
         float measuredHeight = getMeasuredHeight() / 2;
         if (this.E == 0.0f) {
-            this.f32416w.clearSpans();
-            StaticLayout staticLayout = new StaticLayout(this.f32416w, this.F, getMeasuredWidth(), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            this.f32419w.clearSpans();
+            StaticLayout staticLayout = new StaticLayout(this.f32419w, this.F, getMeasuredWidth(), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             canvas.save();
             canvas.translate(0.0f, measuredHeight - (staticLayout.getHeight() / 2.0f));
             staticLayout.draw(canvas);
             canvas.restore();
             this.H = staticLayout.getLineWidth(0) + 0.0f;
         } else {
-            StaticLayout staticLayout2 = this.f32417x;
+            StaticLayout staticLayout2 = this.f32420x;
             float f11 = this.G;
             if (staticLayout2 != null) {
                 canvas.save();
                 this.F.setAlpha((int) ((1.0f - this.E) * 255.0f));
-                canvas.translate(0.0f, (measuredHeight - (this.f32417x.getHeight() / 2.0f)) - (this.E * f11));
-                this.f32417x.draw(canvas);
+                canvas.translate(0.0f, (measuredHeight - (this.f32420x.getHeight() / 2.0f)) - (this.E * f11));
+                this.f32420x.draw(canvas);
                 canvas.restore();
             }
-            if (this.f32418y != null) {
+            if (this.f32421y != null) {
                 canvas.save();
                 this.F.setAlpha((int) (this.E * 255.0f));
-                canvas.translate(0.0f, com.google.android.gms.internal.play_billing.k3.y(1.0f, this.E, f11, measuredHeight - (this.f32418y.getHeight() / 2.0f)));
-                this.f32418y.draw(canvas);
+                canvas.translate(0.0f, com.google.android.gms.internal.play_billing.k3.y(1.0f, this.E, f11, measuredHeight - (this.f32421y.getHeight() / 2.0f)));
+                this.f32421y.draw(canvas);
                 canvas.restore();
             }
             canvas.save();
             this.F.setAlpha(255);
-            StaticLayout staticLayout3 = new StaticLayout(this.f32416w, this.F, getMeasuredWidth(), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            StaticLayout staticLayout3 = new StaticLayout(this.f32419w, this.F, getMeasuredWidth(), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             canvas.translate(0.0f, measuredHeight - (staticLayout3.getHeight() / 2.0f));
             staticLayout3.draw(canvas);
             canvas.restore();
             this.H = staticLayout3.getLineWidth(0) + 0.0f;
         }
-        this.f32411c = formatTimerDurationFast;
-        if ((this.f32409a || this.E != 0.0f) && !this.f32414r) {
+        this.f32414c = formatTimerDurationFast;
+        if ((this.f32412a || this.E != 0.0f) && !this.f32417r) {
             invalidate();
         }
     }
 
     public void setExternalFrameClock(boolean z10) {
-        this.f32414r = z10;
-        this.f32413n = SystemClock.elapsedRealtime();
+        this.f32417r = z10;
+        this.f32416n = SystemClock.elapsedRealtime();
         invalidate();
     }
 }

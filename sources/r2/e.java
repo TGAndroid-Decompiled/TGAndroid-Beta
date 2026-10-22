@@ -11,18 +11,18 @@ import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicReference;
 public final class e implements m {
     public static final ArrayDeque h = new ArrayDeque();
-    public static final Object f44915n = new Object();
-    public final MediaCodec f44916a;
-    public final HandlerThread f44917b;
-    public o0 f44918c;
+    public static final Object f44918n = new Object();
+    public final MediaCodec f44919a;
+    public final HandlerThread f44920b;
+    public o0 f44921c;
     public final AtomicReference d;
     public final e2.i e;
-    public boolean f44919f;
+    public boolean f44922f;
 
     public e(MediaCodec mediaCodec, HandlerThread handlerThread) {
         e2.i iVar = new e2.i();
-        this.f44916a = mediaCodec;
-        this.f44917b = handlerThread;
+        this.f44919a = mediaCodec;
+        this.f44920b = handlerThread;
         this.e = iVar;
         this.d = new AtomicReference();
     }
@@ -52,11 +52,11 @@ public final class e implements m {
     public final void a(long j10, int i10, int i11, int i12) {
         n();
         d c10 = c();
-        c10.f44912a = i10;
-        c10.f44913b = i11;
+        c10.f44915a = i10;
+        c10.f44916b = i11;
         c10.d = j10;
         c10.e = i12;
-        o0 o0Var = this.f44918c;
+        o0 o0Var = this.f44921c;
         String str = m0.f8252a;
         o0Var.obtainMessage(1, c10).sendToTarget();
     }
@@ -65,11 +65,11 @@ public final class e implements m {
     public final void b(int i10, h2.d dVar, long j10, int i11) {
         n();
         d c10 = c();
-        c10.f44912a = i10;
-        c10.f44913b = 0;
+        c10.f44915a = i10;
+        c10.f44916b = 0;
         c10.d = j10;
         c10.e = i11;
-        MediaCodec.CryptoInfo cryptoInfo = c10.f44914c;
+        MediaCodec.CryptoInfo cryptoInfo = c10.f44917c;
         cryptoInfo.numSubSamples = dVar.f11628f;
         int[] iArr = dVar.d;
         int[] iArr2 = cryptoInfo.numBytesOfClearData;
@@ -117,23 +117,23 @@ public final class e implements m {
         if (Build.VERSION.SDK_INT >= 24) {
             cryptoInfo.setPattern(new MediaCodec.CryptoInfo.Pattern(dVar.f11629g, dVar.h));
         }
-        o0 o0Var = this.f44918c;
+        o0 o0Var = this.f44921c;
         String str = m0.f8252a;
         o0Var.obtainMessage(2, c10).sendToTarget();
     }
 
     @Override
     public final void flush() {
-        if (this.f44919f) {
+        if (this.f44922f) {
             try {
-                o0 o0Var = this.f44918c;
+                o0 o0Var = this.f44921c;
                 o0Var.getClass();
                 o0Var.removeCallbacksAndMessages(null);
                 e2.i iVar = this.e;
                 synchronized (iVar) {
                     iVar.f8235b = false;
                 }
-                o0 o0Var2 = this.f44918c;
+                o0 o0Var2 = this.f44921c;
                 o0Var2.getClass();
                 o0Var2.obtainMessage(3).sendToTarget();
                 iVar.a();
@@ -156,27 +156,27 @@ public final class e implements m {
     @Override
     public final void setParameters(Bundle bundle) {
         n();
-        o0 o0Var = this.f44918c;
+        o0 o0Var = this.f44921c;
         String str = m0.f8252a;
         o0Var.obtainMessage(4, bundle).sendToTarget();
     }
 
     @Override
     public final void shutdown() {
-        if (this.f44919f) {
+        if (this.f44922f) {
             flush();
-            this.f44917b.quit();
+            this.f44920b.quit();
         }
-        this.f44919f = false;
+        this.f44922f = false;
     }
 
     @Override
     public final void start() {
-        if (!this.f44919f) {
-            HandlerThread handlerThread = this.f44917b;
+        if (!this.f44922f) {
+            HandlerThread handlerThread = this.f44920b;
             handlerThread.start();
-            this.f44918c = new o0(this, handlerThread.getLooper(), 12);
-            this.f44919f = true;
+            this.f44921c = new o0(this, handlerThread.getLooper(), 12);
+            this.f44922f = true;
         }
     }
 }

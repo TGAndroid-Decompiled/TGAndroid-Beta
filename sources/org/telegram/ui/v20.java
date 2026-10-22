@@ -9,11 +9,11 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.voip.VoIPService;
 public final class v20 extends org.telegram.ui.Components.yj0 {
-    public final q50 f42099r;
+    public final q50 f42102r;
 
     public v20(q50 q50Var, LaunchActivity launchActivity) {
         super(launchActivity);
-        this.f42099r = q50Var;
+        this.f42102r = q50Var;
     }
 
     @Override
@@ -21,7 +21,7 @@ public final class v20 extends org.telegram.ui.Components.yj0 {
         boolean z10;
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         accessibilityNodeInfo.setClassName(Button.class.getName());
-        q50 q50Var = this.f42099r;
+        q50 q50Var = this.f42102r;
         int i10 = q50Var.F1;
         if (i10 != 0 && i10 != 1) {
             z10 = false;
@@ -36,13 +36,13 @@ public final class v20 extends org.telegram.ui.Components.yj0 {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        q50 q50Var = this.f42099r;
-        c20 c20Var = q50Var.f40479y2;
+        q50 q50Var = this.f42102r;
+        c20 c20Var = q50Var.f40482y2;
         ArrayList arrayList = q50Var.Z1;
         if (q50Var.s1()) {
             return super.onTouchEvent(motionEvent);
         }
-        if (motionEvent.getAction() == 0 && q50Var.F1 == 0 && q50Var.f40376a1 != null) {
+        if (motionEvent.getAction() == 0 && q50Var.F1 == 0 && q50Var.f40379a1 != null) {
             AndroidUtilities.runOnUIThread(c20Var, 300L);
             q50Var.R1 = true;
         } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
@@ -50,12 +50,12 @@ public final class v20 extends org.telegram.ui.Components.yj0 {
                 AndroidUtilities.cancelRunOnUIThread(c20Var);
                 q50Var.R1 = false;
             } else if (q50Var.S1) {
-                AndroidUtilities.cancelRunOnUIThread(q50Var.f40474x2);
+                AndroidUtilities.cancelRunOnUIThread(q50Var.f40477x2);
                 q50Var.K1(0, true);
                 if (VoIPService.getSharedInstance() != null) {
                     VoIPService.getSharedInstance().setMicMute(true, true, false);
                     try {
-                        q50Var.f40466w.performHapticFeedback(3, 2);
+                        q50Var.f40469w.performHapticFeedback(3, 2);
                     } catch (Exception unused) {
                     }
                 }

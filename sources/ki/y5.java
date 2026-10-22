@@ -25,7 +25,7 @@ public final class y5 extends CharacterStyle {
             case 1:
                 textPaint.setTypeface(AndroidUtilities.bold());
                 int alpha = textPaint.getAlpha();
-                int i10 = h6.f21173n6;
+                int i10 = h6.f21176n6;
                 ((ob0) this.f15667b).getClass();
                 textPaint.setColor(h6.x0(null, i10, false));
                 textPaint.setAlpha(alpha);
@@ -34,10 +34,10 @@ public final class y5 extends CharacterStyle {
                 textPaint.setColor(h6.v(h6.m1(0.55f, textPaint.getColor()), h6.m1(0.4f, ((qj0) this.f15667b).I)));
                 return;
             case 3:
-                textPaint.setColor(((org.telegram.ui.Wallet.n3) this.f15667b).f34590t0);
+                textPaint.setColor(((org.telegram.ui.Wallet.n3) this.f15667b).f34593t0);
                 return;
             default:
-                float[] fArr = ((org.telegram.ui.Wallet.x5) this.f15667b).f35098a0;
+                float[] fArr = ((org.telegram.ui.Wallet.x5) this.f15667b).f35101a0;
                 int i11 = -9577217;
                 if (fArr != null) {
                     i11 = i0.a.f(fArr[8], h7.p(fArr, -9577217, 0), h7.p(fArr, -9577217, 3));

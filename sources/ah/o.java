@@ -245,7 +245,7 @@ public final class o implements Runnable {
                 r1 r1Var = f6Var.f9018k1;
                 int i22 = r1Var.d + 1;
                 r1Var.a(i22);
-                AndroidUtilities.updateImageViewImageAnimated(r1Var.f45622a[i22], i21);
+                AndroidUtilities.updateImageViewImageAnimated(r1Var.f45625a[i22], i21);
                 r1Var.e = true;
                 return;
             case 12:
@@ -359,8 +359,8 @@ public final class o implements Runnable {
                 l4 l4Var = (l4) this.f838c;
                 String str4 = (String) this.d;
                 int i30 = this.f837b;
-                HashMap hashMap = new HashMap(l4Var.f38779u0[0].f39754c.f38166w);
-                ArrayList arrayList2 = new ArrayList(l4Var.f38779u0[0].f39754c.f38167x);
+                HashMap hashMap = new HashMap(l4Var.f38782u0[0].f39757c.f38169w);
+                ArrayList arrayList2 = new ArrayList(l4Var.f38782u0[0].f39757c.f38170x);
                 l4Var.V0 = null;
                 Utilities.searchQueue.postRunnable(new ub(l4Var, arrayList2, hashMap, str4, i30, 15));
                 return;
@@ -381,7 +381,7 @@ public final class o implements Runnable {
                 int i32 = this.f837b;
                 TLRPC.TL_chatInviteJoinResultWebView tL_chatInviteJoinResultWebView = (TLRPC.TL_chatInviteJoinResultWebView) this.f838c;
                 MessagesController.getInstance(i32).putUsers(tL_chatInviteJoinResultWebView.users, false);
-                BotGuardHelper.getInstance(i32).openGuardBotWebApp(-((TLRPC.Chat) this.d).f20276id, tL_chatInviteJoinResultWebView.bot_id, tL_chatInviteJoinResultWebView.query_id);
+                BotGuardHelper.getInstance(i32).openGuardBotWebApp(-((TLRPC.Chat) this.d).f20279id, tL_chatInviteJoinResultWebView.bot_id, tL_chatInviteJoinResultWebView.query_id);
                 return;
         }
     }

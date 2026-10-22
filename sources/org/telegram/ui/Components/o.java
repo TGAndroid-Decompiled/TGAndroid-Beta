@@ -13,14 +13,14 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_aicompose;
 import org.telegram.tgnet.tl.TL_wallet;
 public final class o implements Utilities.Callback2 {
-    public final int f28900a;
-    public final int f28901b;
-    public final Object f28902c;
+    public final int f28903a;
+    public final int f28904b;
+    public final Object f28905c;
 
     public o(Object obj, int i10, int i11) {
-        this.f28900a = i11;
-        this.f28902c = obj;
-        this.f28901b = i10;
+        this.f28903a = i11;
+        this.f28905c = obj;
+        this.f28904b = i10;
     }
 
     @Override
@@ -29,17 +29,17 @@ public final class o implements Utilities.Callback2 {
         String str;
         boolean z10;
         String a2;
-        int i10 = this.f28900a;
-        int i11 = this.f28901b;
-        Object obj3 = this.f28902c;
+        int i10 = this.f28903a;
+        int i11 = this.f28904b;
+        Object obj3 = this.f28905c;
         switch (i10) {
             case 0:
                 q qVar = (q) obj3;
                 TL_aicompose.aiComposeToneExample aicomposetoneexample = (TL_aicompose.aiComposeToneExample) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
                 if (aicomposetoneexample != null) {
-                    qVar.f29425h0[i11] = aicomposetoneexample;
-                    qVar.f29423f0.N(true);
+                    qVar.f29428h0[i11] = aicomposetoneexample;
+                    qVar.f29426f0.N(true);
                     return;
                 }
                 qVar.getClass();
@@ -49,12 +49,12 @@ public final class o implements Utilities.Callback2 {
                 TL_wallet.walletTransactions wallettransactions = (TL_wallet.walletTransactions) obj;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
                 if (o0Var.d && o0Var.e == i11) {
-                    o0Var.f34630g = -1;
+                    o0Var.f34633g = -1;
                     AndroidUtilities.cancelRunOnUIThread(o0Var.h);
                     StringBuilder sb2 = new StringBuilder("[gram-wallet-polling] account=");
-                    sb2.append(o0Var.f34626a);
+                    sb2.append(o0Var.f34629a);
                     sb2.append(" msg_hash=");
-                    sb2.append(o0Var.f34627b);
+                    sb2.append(o0Var.f34630b);
                     sb2.append(" transactions=");
                     Object obj4 = "none";
                     if (wallettransactions == null) {
@@ -70,10 +70,10 @@ public final class o implements Utilities.Callback2 {
                     sb2.append(obj4);
                     FileLog.d(sb2.toString());
                     if (tL_error2 == null && wallettransactions != null) {
-                        org.telegram.ui.en0 en0Var = o0Var.f34628c;
-                        org.telegram.ui.Wallet.m0 m0Var = (org.telegram.ui.Wallet.m0) en0Var.f36692b;
-                        TL_wallet.walletTransaction wallettransaction = (TL_wallet.walletTransaction) en0Var.f36693c;
-                        int i12 = m0Var.f34477a;
+                        org.telegram.ui.en0 en0Var = o0Var.f34631c;
+                        org.telegram.ui.Wallet.m0 m0Var = (org.telegram.ui.Wallet.m0) en0Var.f36695b;
+                        TL_wallet.walletTransaction wallettransaction = (TL_wallet.walletTransaction) en0Var.f36696c;
+                        int i12 = m0Var.f34480a;
                         Iterator<TL_wallet.walletTransaction> it = wallettransactions.transactions.iterator();
                         if (it.hasNext()) {
                             MessagesController.getInstance(i12).putUsers(wallettransactions.users, false);
@@ -94,24 +94,24 @@ public final class o implements Utilities.Callback2 {
             default:
                 ArrayList arrayList = (ArrayList) obj;
                 u61 u61Var = (u61) obj2;
-                org.telegram.ui.Wallet.o5 o5Var = ((org.telegram.ui.Wallet.k4) obj3).f34423b;
+                org.telegram.ui.Wallet.o5 o5Var = ((org.telegram.ui.Wallet.k4) obj3).f34426b;
                 if (i11 == 0) {
                     u61Var.U();
                     org.telegram.ui.Wallet.l0 l0Var = o5Var.C0;
-                    if (l0Var != null && !l0Var.f34449c.isEmpty()) {
+                    if (l0Var != null && !l0Var.f34452c.isEmpty()) {
                         z10 = true;
                     } else {
                         z10 = false;
                     }
                     if (z10) {
-                        for (int i13 = 0; i13 < o5Var.C0.f34449c.size(); i13++) {
-                            TL_wallet.walletTransaction wallettransaction2 = (TL_wallet.walletTransaction) o5Var.C0.f34449c.get(i13);
-                            org.telegram.ui.Wallet.f3 f3Var = o5Var.C0.f34447a;
-                            int i14 = org.telegram.ui.Wallet.e3.f34149a;
+                        for (int i13 = 0; i13 < o5Var.C0.f34452c.size(); i13++) {
+                            TL_wallet.walletTransaction wallettransaction2 = (TL_wallet.walletTransaction) o5Var.C0.f34452c.get(i13);
+                            org.telegram.ui.Wallet.f3 f3Var = o5Var.C0.f34450a;
+                            int i14 = org.telegram.ui.Wallet.e3.f34152a;
                             h61 J = h61.J(org.telegram.ui.Wallet.e3.class);
                             org.telegram.ui.Wallet.d3 d3Var = new org.telegram.ui.Wallet.d3(wallettransaction2);
                             d3Var.set(wallettransaction2);
-                            d3Var.f20535id = wallettransaction2.f20535id;
+                            d3Var.f20538id = wallettransaction2.f20538id;
                             d3Var.random_id = wallettransaction2.random_id;
                             d3Var.gasless = wallettransaction2.gasless;
                             d3Var.gaslessMessageBodyHash = wallettransaction2.gaslessMessageBodyHash;
@@ -125,7 +125,7 @@ public final class o implements Utilities.Callback2 {
                             } else {
                                 a2 = f3Var.a(walletTransactionPeer.address);
                             }
-                            J.f26782l = a2;
+                            J.f26785l = a2;
                             arrayList.add(J);
                         }
                     }
@@ -148,46 +148,46 @@ public final class o implements Utilities.Callback2 {
                 }
                 org.telegram.ui.Wallet.e0 e0Var = o5Var.D0;
                 if (e0Var != null) {
-                    ArrayList arrayList2 = e0Var.f34133a;
+                    ArrayList arrayList2 = e0Var.f34136a;
                     int size = arrayList2.size();
                     int i15 = 0;
                     while (i15 < size) {
                         Object obj5 = arrayList2.get(i15);
                         i15++;
                         TL_wallet.nftItem nftitem = (TL_wallet.nftItem) obj5;
-                        if (o5Var.f34652j0.isEmpty() || ((str = nftitem.name) != null && str.toLowerCase(Locale.ROOT).contains(o5Var.f34652j0))) {
+                        if (o5Var.f34655j0.isEmpty() || ((str = nftitem.name) != null && str.toLowerCase(Locale.ROOT).contains(o5Var.f34655j0))) {
                             if (nftitem.gift != null) {
-                                org.telegram.ui.Wallet.t7 t7Var = o5Var.f34651i0;
-                                int i16 = org.telegram.ui.Wallet.f7.f34218a;
+                                org.telegram.ui.Wallet.t7 t7Var = o5Var.f34654i0;
+                                int i16 = org.telegram.ui.Wallet.f7.f34221a;
                                 h61 J2 = h61.J(org.telegram.ui.Wallet.f7.class);
-                                J2.f26791u = 1;
+                                J2.f26794u = 1;
                                 J2.G = nftitem;
                                 J2.H = t7Var;
                                 arrayList.add(J2);
                             } else {
-                                int i17 = org.telegram.ui.Wallet.b.f34010a;
+                                int i17 = org.telegram.ui.Wallet.b.f34013a;
                                 h61 J3 = h61.J(org.telegram.ui.Wallet.b.class);
                                 J3.G = nftitem;
-                                J3.f26791u = 1;
+                                J3.f26794u = 1;
                                 arrayList.add(J3);
                             }
                         }
                     }
-                    if (arrayList.isEmpty() && !o5Var.f34652j0.isEmpty()) {
+                    if (arrayList.isEmpty() && !o5Var.f34655j0.isEmpty()) {
                         org.telegram.ui.Wallet.e0 e0Var2 = o5Var.D0;
-                        if (!e0Var2.f34138i && e0Var2.f34137g) {
+                        if (!e0Var2.f34141i && e0Var2.f34140g) {
                             arrayList.add(h61.q(LocaleController.getString(R.string.NoResult)));
                         }
                     }
                     org.telegram.ui.Wallet.e0 e0Var3 = o5Var.D0;
-                    if (e0Var3.f34138i) {
+                    if (e0Var3.f34141i) {
                         for (int i18 = 0; i18 < 3; i18++) {
                             h61 o10 = h61.o((-1) - i18, 35);
-                            o10.f26791u = 1;
+                            o10.f26794u = 1;
                             arrayList.add(o10);
                         }
                         return;
-                    } else if (e0Var3.f34140k != null) {
+                    } else if (e0Var3.f34143k != null) {
                         arrayList.add(h61.e(-10001, LocaleController.getString(R.string.Retry)));
                         return;
                     } else {

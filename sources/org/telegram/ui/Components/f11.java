@@ -15,59 +15,59 @@ import android.text.TextPaint;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class f11 {
-    public final TextPaint f26019a;
-    public StaticLayout f26020b;
-    public float f26021c;
+    public final TextPaint f26022a;
+    public StaticLayout f26023b;
+    public float f26024c;
     public float d;
     public float e;
-    public int f26022f;
-    public Layout.Alignment f26023g;
+    public int f26025f;
+    public Layout.Alignment f26026g;
     public float h;
-    public boolean f26024i;
-    public View f26025j;
-    public w5 f26026k;
-    public int f26027l;
-    public PorterDuffColorFilter f26028m;
-    public int f26029n;
-    public boolean f26030o;
-    public float f26031p;
-    public LinearGradient f26032q;
-    public Matrix f26033r;
-    public Paint f26034s;
-    public int f26035t;
+    public boolean f26027i;
+    public View f26028j;
+    public w5 f26029k;
+    public int f26030l;
+    public PorterDuffColorFilter f26031m;
+    public int f26032n;
+    public boolean f26033o;
+    public float f26034p;
+    public LinearGradient f26035q;
+    public Matrix f26036r;
+    public Paint f26037s;
+    public int f26038t;
 
     public f11(CharSequence charSequence, TextPaint textPaint) {
         this.e = 9999.0f;
-        this.f26022f = 1;
-        this.f26023g = Layout.Alignment.ALIGN_NORMAL;
-        this.f26027l = 0;
-        this.f26031p = -1.0f;
-        this.f26019a = textPaint;
+        this.f26025f = 1;
+        this.f26026g = Layout.Alignment.ALIGN_NORMAL;
+        this.f26030l = 0;
+        this.f26034p = -1.0f;
+        this.f26022a = textPaint;
         r(charSequence);
     }
 
     public final void a() {
         Layout.Alignment alignment = Layout.Alignment.ALIGN_CENTER;
-        if (this.f26023g != alignment) {
-            this.f26023g = alignment;
-            r(this.f26020b.getText());
+        if (this.f26026g != alignment) {
+            this.f26026g = alignment;
+            r(this.f26023b.getText());
         }
     }
 
     public final float b() {
         float f7 = 0.0f;
-        for (int i10 = 0; i10 < this.f26020b.getLineCount(); i10++) {
-            f7 = Math.max(f7, this.f26020b.getLineWidth(i10));
+        for (int i10 = 0; i10 < this.f26023b.getLineCount(); i10++) {
+            f7 = Math.max(f7, this.f26023b.getLineWidth(i10));
         }
         return f7;
     }
 
     public final void c(float f7, float f10, float f11, int i10, Canvas canvas) {
         float height;
-        if (this.f26020b == null) {
+        if (this.f26023b == null) {
             return;
         }
-        TextPaint textPaint = this.f26019a;
+        TextPaint textPaint = this.f26022a;
         textPaint.setColor(i10);
         textPaint.linkColor = i10;
         int alpha = textPaint.getAlpha();
@@ -75,10 +75,10 @@ public final class f11 {
             textPaint.setAlpha((int) (alpha * f11));
         }
         canvas.save();
-        if (this.f26022f > 1) {
+        if (this.f26025f > 1) {
             height = 0.0f;
         } else {
-            height = this.f26020b.getHeight() / 2.0f;
+            height = this.f26023b.getHeight() / 2.0f;
         }
         canvas.translate(f7, f10 - height);
         d(canvas);
@@ -87,45 +87,45 @@ public final class f11 {
     }
 
     public final void d(Canvas canvas) {
-        StaticLayout staticLayout = this.f26020b;
+        StaticLayout staticLayout = this.f26023b;
         if (staticLayout != null) {
-            float f7 = this.f26031p;
-            if (f7 >= 0.0f && this.f26021c > f7) {
-                canvas.saveLayerAlpha(0.0f, -this.f26035t, f7 - 1.0f, staticLayout.getHeight() + this.f26035t, 255, 31);
+            float f7 = this.f26034p;
+            if (f7 >= 0.0f && this.f26024c > f7) {
+                canvas.saveLayerAlpha(0.0f, -this.f26038t, f7 - 1.0f, staticLayout.getHeight() + this.f26038t, 255, 31);
             }
             canvas.save();
             canvas.translate(-this.d, 0.0f);
-            boolean z10 = this.f26030o;
-            TextPaint textPaint = this.f26019a;
+            boolean z10 = this.f26033o;
+            TextPaint textPaint = this.f26022a;
             if (z10) {
-                canvas.drawText(this.f26020b.getText().toString(), 0.0f, -textPaint.getFontMetricsInt().ascent, textPaint);
+                canvas.drawText(this.f26023b.getText().toString(), 0.0f, -textPaint.getFontMetricsInt().ascent, textPaint);
             } else {
-                this.f26020b.draw(canvas);
+                this.f26023b.draw(canvas);
             }
-            if (this.f26024i) {
-                if (this.f26028m == null || textPaint.getColor() != this.f26029n) {
+            if (this.f26027i) {
+                if (this.f26031m == null || textPaint.getColor() != this.f26032n) {
                     int color = textPaint.getColor();
-                    this.f26029n = color;
-                    this.f26028m = new PorterDuffColorFilter(color, PorterDuff.Mode.SRC_IN);
+                    this.f26032n = color;
+                    this.f26031m = new PorterDuffColorFilter(color, PorterDuff.Mode.SRC_IN);
                 }
-                a6.drawAnimatedEmojis(canvas, this.f26020b, this.f26026k, 0.0f, null, 0.0f, 0.0f, 0.0f, 1.0f, this.f26028m);
+                a6.drawAnimatedEmojis(canvas, this.f26023b, this.f26029k, 0.0f, null, 0.0f, 0.0f, 0.0f, 1.0f, this.f26031m);
             }
             canvas.restore();
-            float f10 = this.f26031p;
-            if (f10 >= 0.0f && this.f26021c > f10) {
-                if (this.f26032q == null) {
-                    this.f26032q = new LinearGradient(0.0f, 0.0f, AndroidUtilities.dp(8.0f), 0.0f, new int[]{16777215, -1}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
-                    this.f26033r = new Matrix();
+            float f10 = this.f26034p;
+            if (f10 >= 0.0f && this.f26024c > f10) {
+                if (this.f26035q == null) {
+                    this.f26035q = new LinearGradient(0.0f, 0.0f, AndroidUtilities.dp(8.0f), 0.0f, new int[]{16777215, -1}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
+                    this.f26036r = new Matrix();
                     Paint paint = new Paint(1);
-                    this.f26034s = paint;
+                    this.f26037s = paint;
                     paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
-                    this.f26034s.setShader(this.f26032q);
+                    this.f26037s.setShader(this.f26035q);
                 }
                 canvas.save();
-                this.f26033r.reset();
-                this.f26033r.postTranslate(this.f26031p - AndroidUtilities.dp(8.0f), 0.0f);
-                this.f26032q.setLocalMatrix(this.f26033r);
-                canvas.drawRect(this.f26031p - AndroidUtilities.dp(8.0f), 0.0f, this.f26031p, this.f26020b.getHeight(), this.f26034s);
+                this.f26036r.reset();
+                this.f26036r.postTranslate(this.f26034p - AndroidUtilities.dp(8.0f), 0.0f);
+                this.f26035q.setLocalMatrix(this.f26036r);
+                canvas.drawRect(this.f26034p - AndroidUtilities.dp(8.0f), 0.0f, this.f26034p, this.f26023b.getHeight(), this.f26037s);
                 canvas.restore();
                 canvas.restore();
             }
@@ -138,17 +138,17 @@ public final class f11 {
 
     public final void f(Canvas canvas, float f7, float f10, float f11) {
         float height;
-        if (this.f26020b == null) {
+        if (this.f26023b == null) {
             return;
         }
         canvas.save();
-        if (this.f26022f > 1) {
+        if (this.f26025f > 1) {
             height = 0.0f;
         } else {
-            height = this.f26020b.getHeight() / 2.0f;
+            height = this.f26023b.getHeight() / 2.0f;
         }
         canvas.translate(f7, f10 - height);
-        TextPaint textPaint = this.f26019a;
+        TextPaint textPaint = this.f26022a;
         int alpha = textPaint.getAlpha();
         textPaint.setAlpha((int) (alpha * f11));
         d(canvas);
@@ -157,96 +157,96 @@ public final class f11 {
     }
 
     public final void g(float f7) {
-        this.f26031p = f7;
+        this.f26034p = f7;
     }
 
     public final float h() {
-        return this.f26021c;
+        return this.f26024c;
     }
 
     public final Paint.FontMetricsInt i() {
-        return this.f26019a.getFontMetricsInt();
+        return this.f26022a.getFontMetricsInt();
     }
 
     public final float j() {
-        return this.f26020b.getHeight();
+        return this.f26023b.getHeight();
     }
 
     public final CharSequence k() {
-        StaticLayout staticLayout = this.f26020b;
+        StaticLayout staticLayout = this.f26023b;
         if (staticLayout != null && staticLayout.getText() != null) {
-            return this.f26020b.getText();
+            return this.f26023b.getText();
         }
         return "";
     }
 
     public final float l() {
-        float f7 = this.f26031p;
+        float f7 = this.f26034p;
         if (f7 >= 0.0f) {
-            return Math.min(f7, this.f26021c);
+            return Math.min(f7, this.f26024c);
         }
-        return this.f26021c;
+        return this.f26024c;
     }
 
     public final void m(float f7) {
         if (this.h != f7) {
             this.h = f7;
-            r(this.f26020b.getText());
+            r(this.f26023b.getText());
         }
     }
 
     public final void n(int i10) {
-        this.f26022f = i10;
-        r(this.f26020b.getText());
+        this.f26025f = i10;
+        r(this.f26023b.getText());
     }
 
     public final void o(int i10) {
-        this.f26019a.setColor(i10);
+        this.f26022a.setColor(i10);
     }
 
     public final void p(int i10) {
-        if (this.f26027l != i10) {
-            this.f26027l = i10;
-            if (this.f26024i) {
-                a6.release(this.f26025j, this.f26026k);
-                this.f26026k = a6.update(this.f26027l, this.f26025j, this.f26026k, this.f26020b);
+        if (this.f26030l != i10) {
+            this.f26030l = i10;
+            if (this.f26027i) {
+                a6.release(this.f26028j, this.f26029k);
+                this.f26029k = a6.update(this.f26030l, this.f26028j, this.f26029k, this.f26023b);
             }
         }
     }
 
     public final void q(float f7) {
         this.e = f7;
-        r(this.f26020b.getText());
+        r(this.f26023b.getText());
     }
 
     public final void r(CharSequence charSequence) {
-        if (this.f26022f > 1) {
-            this.f26020b = StaticLayout.Builder.obtain(charSequence, 0, charSequence.length(), this.f26019a, (int) Math.max(this.e, 1.0f)).setAlignment(this.f26023g).setMaxLines(this.f26022f).setLineSpacing(this.h, 1.0f).build();
+        if (this.f26025f > 1) {
+            this.f26023b = StaticLayout.Builder.obtain(charSequence, 0, charSequence.length(), this.f26022a, (int) Math.max(this.e, 1.0f)).setAlignment(this.f26026g).setMaxLines(this.f26025f).setLineSpacing(this.h, 1.0f).build();
         } else {
-            this.f26020b = new StaticLayout(AndroidUtilities.replaceNewLines(charSequence), this.f26019a, (int) Math.max(this.e, 1.0f), this.f26023g, 1.0f, this.h, false);
+            this.f26023b = new StaticLayout(AndroidUtilities.replaceNewLines(charSequence), this.f26022a, (int) Math.max(this.e, 1.0f), this.f26026g, 1.0f, this.h, false);
         }
-        if (this.f26023g == Layout.Alignment.ALIGN_CENTER) {
-            this.f26021c = this.f26020b.getWidth();
+        if (this.f26026g == Layout.Alignment.ALIGN_CENTER) {
+            this.f26024c = this.f26023b.getWidth();
             this.d = 0.0f;
         } else {
-            this.f26021c = 0.0f;
-            this.d = this.f26020b.getWidth();
-            for (int i10 = 0; i10 < this.f26020b.getLineCount(); i10++) {
-                this.f26021c = Math.max(this.f26021c, this.f26020b.getLineWidth(i10));
-                this.d = Math.min(this.d, this.f26020b.getLineLeft(i10));
+            this.f26024c = 0.0f;
+            this.d = this.f26023b.getWidth();
+            for (int i10 = 0; i10 < this.f26023b.getLineCount(); i10++) {
+                this.f26024c = Math.max(this.f26024c, this.f26023b.getLineWidth(i10));
+                this.d = Math.min(this.d, this.f26023b.getLineLeft(i10));
             }
         }
-        View view = this.f26025j;
+        View view = this.f26028j;
         if (view != null && view.isAttachedToWindow()) {
-            this.f26026k = a6.update(this.f26027l, this.f26025j, this.f26026k, this.f26020b);
+            this.f26029k = a6.update(this.f26030l, this.f26028j, this.f26029k, this.f26023b);
         }
     }
 
     public final void s(View view) {
-        this.f26024i = true;
-        this.f26025j = view;
+        this.f26027i = true;
+        this.f26028j = view;
         if (view.isAttachedToWindow()) {
-            this.f26026k = a6.update(this.f26027l, view, this.f26026k, this.f26020b);
+            this.f26029k = a6.update(this.f26030l, view, this.f26029k, this.f26023b);
         }
         view.addOnAttachStateChangeListener(new la(1, this, view));
     }
@@ -257,12 +257,12 @@ public final class f11 {
 
     public f11(CharSequence charSequence, float f7, Typeface typeface) {
         this.e = 9999.0f;
-        this.f26022f = 1;
-        this.f26023g = Layout.Alignment.ALIGN_NORMAL;
-        this.f26027l = 0;
-        this.f26031p = -1.0f;
+        this.f26025f = 1;
+        this.f26026g = Layout.Alignment.ALIGN_NORMAL;
+        this.f26030l = 0;
+        this.f26034p = -1.0f;
         TextPaint textPaint = new TextPaint(1);
-        this.f26019a = textPaint;
+        this.f26022a = textPaint;
         textPaint.setTextSize(AndroidUtilities.dp(f7));
         textPaint.setTypeface(typeface);
         r(charSequence);

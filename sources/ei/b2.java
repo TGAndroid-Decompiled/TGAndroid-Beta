@@ -39,11 +39,11 @@ public final class b2 extends w1 {
         o1Var.setOnItemClickListener(new ai.wa(this, 8));
         o1Var.setOnScrollListener(new ah.d0(this, 7));
         s4.k kVar = new s4.k();
-        kVar.f45996c = 220L;
+        kVar.f45999c = 220L;
         kVar.e = 220L;
-        kVar.f45997f = 160L;
-        kVar.f45998g = 160L;
-        kVar.f45999i = bs.f25022g;
+        kVar.f46000f = 160L;
+        kVar.f46001g = 160L;
+        kVar.f46002i = bs.f25025g;
         o1Var.setItemAnimator(kVar);
         addView(o1Var, w7.z5.c(-1.0f, -1));
         d6Var = ((org.telegram.ui.ActionBar.f3) n2Var).resourcesProvider;
@@ -94,7 +94,7 @@ public final class b2 extends w1 {
                 g2Var.F1(n2Var.f9500c);
                 h2Var.f9147f.D1();
                 if (h2Var.f9147f.getSelectedCategory() != null) {
-                    a2Var.H = h2Var.f9147f.getSelectedCategory().f28893a;
+                    a2Var.H = h2Var.f9147f.getSelectedCategory().f28896a;
                     com.google.firebase.messaging.s sVar = a2Var.M;
                     AndroidUtilities.cancelRunOnUIThread(sVar);
                     AndroidUtilities.runOnUIThread(sVar);

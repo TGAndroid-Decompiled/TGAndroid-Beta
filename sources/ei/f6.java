@@ -53,7 +53,7 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.VideoEditedInfo;
-import org.telegram.messenger.mk;
+import org.telegram.messenger.ok;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.BubbleActivity;
@@ -225,15 +225,15 @@ public abstract class f6 extends mw0 implements rg.q1, rg.h, rg.m1, kw0, rb {
         this.N0 = context instanceof BubbleActivity;
         qg.v0 e = qg.v0.e(i10);
         e.i(0, true);
-        t1Var2.f44657a = e.c();
-        t1Var2.f44659c = e.f44682i;
+        t1Var2.f44660a = e.c();
+        t1Var2.f44662c = e.f44685i;
         DispatchQueue dispatchQueue2 = new DispatchQueue("Paint");
         this.E0 = dispatchQueue2;
         this.C0 = bitmap;
         this.f9008f1 = i11;
         qg.w1 w1Var = new qg.w1();
         this.D0 = w1Var;
-        w1Var.f44695a = new e1.c(xaVar, 6);
+        w1Var.f44698a = new e1.c(xaVar, 6);
         View view = new View(context);
         this.X0 = view;
         view.setVisibility(8);
@@ -298,7 +298,7 @@ public abstract class f6 extends mw0 implements rg.q1, rg.h, rg.m1, kw0, rb {
                         if (v5Var3 != null && (v5Var3.getCurrentBrush() instanceof qg.l)) {
                             v5Var3.b();
                             xaVar2.f9018k1.setSelectedIndex(1);
-                            xaVar2.o((qg.m) qg.m.f44561a.get(0));
+                            xaVar2.o((qg.m) qg.m.f44564a.get(0));
                             return;
                         }
                         xaVar2.D0.c();
@@ -311,13 +311,13 @@ public abstract class f6 extends mw0 implements rg.q1, rg.h, rg.m1, kw0, rb {
                             if (v5Var4 != null && (v5Var4.getCurrentBrush() instanceof qg.l)) {
                                 v5Var4.b();
                                 xaVar3.f9018k1.setSelectedIndex(1);
-                                xaVar3.o((qg.m) qg.m.f44561a.get(0));
+                                xaVar3.o((qg.m) qg.m.f44564a.get(0));
                             }
                             if (v5Var4 != null) {
                                 v5Var4.a();
                             }
-                            w1Var2.f44697c.clear();
-                            w1Var2.f44696b.clear();
+                            w1Var2.f44700c.clear();
+                            w1Var2.f44699b.clear();
                             AndroidUtilities.runOnUIThread(new org.telegram.ui.web.z1(w1Var2, 7));
                             xaVar3.R0.removeAllViews();
                             return;
@@ -369,7 +369,7 @@ public abstract class f6 extends mw0 implements rg.q1, rg.h, rg.m1, kw0, rb {
         linearLayout.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), 0);
         TextView textView = new TextView(context);
         textView.setTextColor(-1);
-        mk.k(16.0f, 1, textView);
+        ok.k(16.0f, 1, textView);
         textView.setText(LocaleController.getString(R.string.PhotoEditorZoomOut));
         ImageView imageView2 = new ImageView(context);
         imageView2.setImageResource(R.drawable.photo_zoomout);
@@ -397,7 +397,7 @@ public abstract class f6 extends mw0 implements rg.q1, rg.h, rg.m1, kw0, rb {
                         if (v5Var3 != null && (v5Var3.getCurrentBrush() instanceof qg.l)) {
                             v5Var3.b();
                             xaVar2.f9018k1.setSelectedIndex(1);
-                            xaVar2.o((qg.m) qg.m.f44561a.get(0));
+                            xaVar2.o((qg.m) qg.m.f44564a.get(0));
                             return;
                         }
                         xaVar2.D0.c();
@@ -410,13 +410,13 @@ public abstract class f6 extends mw0 implements rg.q1, rg.h, rg.m1, kw0, rb {
                             if (v5Var4 != null && (v5Var4.getCurrentBrush() instanceof qg.l)) {
                                 v5Var4.b();
                                 xaVar3.f9018k1.setSelectedIndex(1);
-                                xaVar3.o((qg.m) qg.m.f44561a.get(0));
+                                xaVar3.o((qg.m) qg.m.f44564a.get(0));
                             }
                             if (v5Var4 != null) {
                                 v5Var4.a();
                             }
-                            w1Var2.f44697c.clear();
-                            w1Var2.f44696b.clear();
+                            w1Var2.f44700c.clear();
+                            w1Var2.f44699b.clear();
                             AndroidUtilities.runOnUIThread(new org.telegram.ui.web.z1(w1Var2, 7));
                             xaVar3.R0.removeAllViews();
                             return;
@@ -478,7 +478,7 @@ public abstract class f6 extends mw0 implements rg.q1, rg.h, rg.m1, kw0, rb {
                         if (v5Var3 != null && (v5Var3.getCurrentBrush() instanceof qg.l)) {
                             v5Var3.b();
                             xaVar2.f9018k1.setSelectedIndex(1);
-                            xaVar2.o((qg.m) qg.m.f44561a.get(0));
+                            xaVar2.o((qg.m) qg.m.f44564a.get(0));
                             return;
                         }
                         xaVar2.D0.c();
@@ -491,13 +491,13 @@ public abstract class f6 extends mw0 implements rg.q1, rg.h, rg.m1, kw0, rb {
                             if (v5Var4 != null && (v5Var4.getCurrentBrush() instanceof qg.l)) {
                                 v5Var4.b();
                                 xaVar3.f9018k1.setSelectedIndex(1);
-                                xaVar3.o((qg.m) qg.m.f44561a.get(0));
+                                xaVar3.o((qg.m) qg.m.f44564a.get(0));
                             }
                             if (v5Var4 != null) {
                                 v5Var4.a();
                             }
-                            w1Var2.f44697c.clear();
-                            w1Var2.f44696b.clear();
+                            w1Var2.f44700c.clear();
+                            w1Var2.f44699b.clear();
                             AndroidUtilities.runOnUIThread(new org.telegram.ui.web.z1(w1Var2, 7));
                             xaVar3.R0.removeAllViews();
                             return;
@@ -560,7 +560,7 @@ public abstract class f6 extends mw0 implements rg.q1, rg.h, rg.m1, kw0, rb {
                         if (v5Var3 != null && (v5Var3.getCurrentBrush() instanceof qg.l)) {
                             v5Var3.b();
                             xaVar2.f9018k1.setSelectedIndex(1);
-                            xaVar2.o((qg.m) qg.m.f44561a.get(0));
+                            xaVar2.o((qg.m) qg.m.f44564a.get(0));
                             return;
                         }
                         xaVar2.D0.c();
@@ -573,13 +573,13 @@ public abstract class f6 extends mw0 implements rg.q1, rg.h, rg.m1, kw0, rb {
                             if (v5Var4 != null && (v5Var4.getCurrentBrush() instanceof qg.l)) {
                                 v5Var4.b();
                                 xaVar3.f9018k1.setSelectedIndex(1);
-                                xaVar3.o((qg.m) qg.m.f44561a.get(0));
+                                xaVar3.o((qg.m) qg.m.f44564a.get(0));
                             }
                             if (v5Var4 != null) {
                                 v5Var4.a();
                             }
-                            w1Var2.f44697c.clear();
-                            w1Var2.f44696b.clear();
+                            w1Var2.f44700c.clear();
+                            w1Var2.f44699b.clear();
                             AndroidUtilities.runOnUIThread(new org.telegram.ui.web.z1(w1Var2, 7));
                             xaVar3.R0.removeAllViews();
                             return;
@@ -650,15 +650,15 @@ public abstract class f6 extends mw0 implements rg.q1, rg.h, rg.m1, kw0, rb {
                         xa xaVar2 = xaVar;
                         qg.t1 t1Var3 = xaVar2.A1;
                         xaVar2.E0(t1Var3);
-                        qg.v0.e(i10).j(t1Var3.f44659c);
+                        qg.v0.e(i10).j(t1Var3.f44662c);
                         return;
                     default:
-                        xaVar.l1.setTypeface(qg.v0.e(i10).f44683j);
+                        xaVar.l1.setTypeface(qg.v0.e(i10).f44686j);
                         return;
                 }
             }
         });
-        o1Var.setAlignment(qg.v0.e(i10).f44681g);
+        o1Var.setAlignment(qg.v0.e(i10).f44684g);
         b6Var.addView(o1Var, w7.z5.c(48.0f, -1));
         f5 f5Var = new f5(xaVar, context);
         this.U0 = f5Var;
@@ -694,7 +694,7 @@ public abstract class f6 extends mw0 implements rg.q1, rg.h, rg.m1, kw0, rb {
                         if (v5Var3 != null && (v5Var3.getCurrentBrush() instanceof qg.l)) {
                             v5Var3.b();
                             xaVar2.f9018k1.setSelectedIndex(1);
-                            xaVar2.o((qg.m) qg.m.f44561a.get(0));
+                            xaVar2.o((qg.m) qg.m.f44564a.get(0));
                             return;
                         }
                         xaVar2.D0.c();
@@ -707,13 +707,13 @@ public abstract class f6 extends mw0 implements rg.q1, rg.h, rg.m1, kw0, rb {
                             if (v5Var4 != null && (v5Var4.getCurrentBrush() instanceof qg.l)) {
                                 v5Var4.b();
                                 xaVar3.f9018k1.setSelectedIndex(1);
-                                xaVar3.o((qg.m) qg.m.f44561a.get(0));
+                                xaVar3.o((qg.m) qg.m.f44564a.get(0));
                             }
                             if (v5Var4 != null) {
                                 v5Var4.a();
                             }
-                            w1Var2.f44697c.clear();
-                            w1Var2.f44696b.clear();
+                            w1Var2.f44700c.clear();
+                            w1Var2.f44699b.clear();
                             AndroidUtilities.runOnUIThread(new org.telegram.ui.web.z1(w1Var2, 7));
                             xaVar3.R0.removeAllViews();
                             return;
@@ -768,7 +768,7 @@ public abstract class f6 extends mw0 implements rg.q1, rg.h, rg.m1, kw0, rb {
         w1Var2.setColorSwatch(t1Var4);
         w1Var2.setRenderView(v5Var2);
         w1Var2.setValueOverride(cVar);
-        t1Var4.f44659c = cVar.get();
+        t1Var4.f44662c = cVar.get();
         w1Var2.setOnUpdate(new Runnable() {
             @Override
             public final void run() {
@@ -777,10 +777,10 @@ public abstract class f6 extends mw0 implements rg.q1, rg.h, rg.m1, kw0, rb {
                         xa xaVar2 = xaVar;
                         qg.t1 t1Var32 = xaVar2.A1;
                         xaVar2.E0(t1Var32);
-                        qg.v0.e(i10).j(t1Var32.f44659c);
+                        qg.v0.e(i10).j(t1Var32.f44662c);
                         return;
                     default:
-                        xaVar.l1.setTypeface(qg.v0.e(i10).f44683j);
+                        xaVar.l1.setTypeface(qg.v0.e(i10).f44686j);
                         return;
                 }
             }
@@ -793,7 +793,7 @@ public abstract class f6 extends mw0 implements rg.q1, rg.h, rg.m1, kw0, rb {
         paint6.setStyle(Paint.Style.STROKE);
         paint6.setStrokeWidth(AndroidUtilities.dp(2.0f));
         D0(t1Var4, null, false);
-        o((qg.m) qg.m.f44561a.get(0));
+        o((qg.m) qg.m.f44564a.get(0));
         d();
         if (Build.VERSION.SDK_INT >= 29) {
             i14 = 1;
@@ -880,7 +880,7 @@ public abstract class f6 extends mw0 implements rg.q1, rg.h, rg.m1, kw0, rb {
             if (i10 < z5Var.getChildCount()) {
                 View childAt = z5Var.getChildAt(i10);
                 if (childAt instanceof rg.o2) {
-                    ImageReceiver imageReceiver = ((rg.o2) childAt).f45596x0;
+                    ImageReceiver imageReceiver = ((rg.o2) childAt).f45599x0;
                     vj0 lottieAnimation = imageReceiver.getLottieAnimation();
                     org.telegram.ui.Components.e6 animation = imageReceiver.getAnimation();
                     boolean z11 = !z10;
@@ -893,7 +893,7 @@ public abstract class f6 extends mw0 implements rg.q1, rg.h, rg.m1, kw0, rb {
                             lottieAnimation.start();
                         }
                     } else if (animation != null) {
-                        animation.f25774y = z10;
+                        animation.f25777y = z10;
                         if (z10) {
                             animation.x(false);
                         }
@@ -913,8 +913,8 @@ public abstract class f6 extends mw0 implements rg.q1, rg.h, rg.m1, kw0, rb {
 
     public void setNewColor(int i10) {
         qg.t1 t1Var = this.A1;
-        int i11 = t1Var.f44657a;
-        t1Var.f44657a = i10;
+        int i11 = t1Var.f44660a;
+        t1Var.f44660a = i10;
         D0(t1Var, null, true);
         ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(150L);
         duration.addUpdateListener(new u4(this, i11, i10, 0));
@@ -929,7 +929,7 @@ public abstract class f6 extends mw0 implements rg.q1, rg.h, rg.m1, kw0, rb {
         }
         qg.v0 e = qg.v0.e(this.F1);
         e.h = i10;
-        e.f44677a.edit().putInt("text_type", i10).apply();
+        e.f44680a.edit().putInt("text_type", i10).apply();
         this.l1.e(i10, true);
     }
 
@@ -943,7 +943,7 @@ public abstract class f6 extends mw0 implements rg.q1, rg.h, rg.m1, kw0, rb {
         this.f9012h1 = textView;
         textView.setText(LocaleController.getString(R.string.PhotoEditorDraw).toUpperCase());
         TextView textView2 = this.f9012h1;
-        int i10 = org.telegram.ui.ActionBar.h6.f21079i6;
+        int i10 = org.telegram.ui.ActionBar.h6.f21082i6;
         t5 t5Var = this.G1;
         textView2.setBackground(org.telegram.ui.ActionBar.h6.g0(org.telegram.ui.ActionBar.h6.w0(i10, t5Var), 7, -1));
         this.f9012h1.setPadding(0, AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f));
@@ -1124,8 +1124,8 @@ public abstract class f6 extends mw0 implements rg.q1, rg.h, rg.m1, kw0, rb {
         if (jVar != null) {
             UUID uuid = jVar.getUUID();
             qg.w1 w1Var = this.D0;
-            w1Var.f44696b.remove(uuid);
-            w1Var.f44697c.remove(uuid);
+            w1Var.f44699b.remove(uuid);
+            w1Var.f44700c.remove(uuid);
             AndroidUtilities.runOnUIThread(new org.telegram.ui.web.z1(w1Var, 7));
         }
         rg.w1 w1Var2 = this.f9004d1;
@@ -1134,7 +1134,7 @@ public abstract class f6 extends mw0 implements rg.q1, rg.h, rg.m1, kw0, rb {
         w1Var2.setShowPreview(true);
         float f7 = cVar.get();
         qg.t1 t1Var = this.A1;
-        t1Var.f44659c = f7;
+        t1Var.f44662c = f7;
         D0(t1Var, null, false);
         if (!this.f9024n2 && (jVar instanceof rg.c2)) {
             vb vbVar = ((xa) this).A2;
@@ -1205,7 +1205,7 @@ public abstract class f6 extends mw0 implements rg.q1, rg.h, rg.m1, kw0, rb {
             o1Var.setAlignment(i11);
             qg.m0 typeface = v2Var.getTypeface();
             if (typeface != null) {
-                o1Var.setTypeface(typeface.f44565a);
+                o1Var.setTypeface(typeface.f44568a);
             }
             o1Var.e(v2Var.getType(), true);
             this.U0.invalidate();
@@ -1213,7 +1213,7 @@ public abstract class f6 extends mw0 implements rg.q1, rg.h, rg.m1, kw0, rb {
         rg.j jVar2 = this.J0;
         if (jVar2 != null) {
             if (jVar2 == jVar) {
-                if (!jVar.f45395d0) {
+                if (!jVar.f45398d0) {
                     if (jVar instanceof rg.t0) {
                         rg.t0 t0Var = (rg.t0) jVar;
                         t0Var.setType((t0Var.getType() + 1) % t0Var.getTypesCount());
@@ -1224,7 +1224,7 @@ public abstract class f6 extends mw0 implements rg.q1, rg.h, rg.m1, kw0, rb {
                         return true;
                     } else if (jVar instanceof rg.q0) {
                         rg.q0 q0Var = (rg.q0) jVar;
-                        rg.o0 o0Var = q0Var.f45608q0;
+                        rg.o0 o0Var = q0Var.f45611q0;
                         if (o0Var.e()) {
                             if (o0Var.getPreviewType() == 0) {
                                 i12 = 1;
@@ -1288,7 +1288,7 @@ public abstract class f6 extends mw0 implements rg.q1, rg.h, rg.m1, kw0, rb {
             rg.j jVar3 = this.J0;
             if (jVar3 instanceof rg.v2) {
                 rg.v2 v2Var2 = (rg.v2) jVar3;
-                rg.u2 u2Var = v2Var2.f45669q0;
+                rg.u2 u2Var = v2Var2.f45672q0;
                 u2Var.clearFocus();
                 u2Var.setEnabled(false);
                 u2Var.setClickable(false);
@@ -1325,15 +1325,15 @@ public abstract class f6 extends mw0 implements rg.q1, rg.h, rg.m1, kw0, rb {
             rg.j jVar7 = this.J0;
             if (jVar7 instanceof rg.v2) {
                 rg.v2 v2Var3 = (rg.v2) jVar7;
-                v2Var3.getSwatch().f44659c = t1Var.f44659c;
-                v2Var3.f45678z0 = false;
+                v2Var3.getSwatch().f44662c = t1Var.f44662c;
+                v2Var3.f45681z0 = false;
                 E0(v2Var3.getSwatch());
-                w1Var.setValueOverride(new j5(v2Var3, (int) (this.H0.f26428a / 9.0f), 0));
+                w1Var.setValueOverride(new j5(v2Var3, (int) (this.H0.f26431a / 9.0f), 0));
                 w1Var.setShowPreview(false);
             } else {
                 w1Var.setValueOverride(cVar);
                 w1Var.setShowPreview(true);
-                t1Var.f44659c = cVar.get();
+                t1Var.f44662c = cVar.get();
                 D0(t1Var, null, false);
             }
         } else {
@@ -1347,7 +1347,7 @@ public abstract class f6 extends mw0 implements rg.q1, rg.h, rg.m1, kw0, rb {
             Q0(0);
             w1Var.setValueOverride(cVar);
             w1Var.setShowPreview(true);
-            t1Var.f44659c = cVar.get();
+            t1Var.f44662c = cVar.get();
             D0(t1Var, null, false);
             z13 = z11;
         }
@@ -1363,18 +1363,18 @@ public abstract class f6 extends mw0 implements rg.q1, rg.h, rg.m1, kw0, rb {
     public final void D0(qg.t1 t1Var, Integer num, boolean z10) {
         qg.t1 t1Var2 = this.A1;
         if (t1Var2 != t1Var) {
-            t1Var2.f44657a = t1Var.f44657a;
-            t1Var2.f44658b = t1Var.f44658b;
-            t1Var2.f44659c = t1Var.f44659c;
+            t1Var2.f44660a = t1Var.f44660a;
+            t1Var2.f44661b = t1Var.f44661b;
+            t1Var2.f44662c = t1Var.f44662c;
             int i10 = this.F1;
-            qg.v0.e(i10).h(t1Var.f44657a, true);
-            qg.v0.e(i10).j(t1Var.f44659c);
+            qg.v0.e(i10).h(t1Var.f44660a, true);
+            qg.v0.e(i10).j(t1Var.f44662c);
         }
-        int i11 = t1Var.f44657a;
+        int i11 = t1Var.f44660a;
         v5 v5Var = this.O0;
         v5Var.setColor(i11);
-        v5Var.setBrushSize(t1Var.f44659c);
-        int i12 = t1Var2.f44657a;
+        v5Var.setBrushSize(t1Var.f44662c);
+        int i12 = t1Var2.f44660a;
         if (num != null && num.intValue() != i12) {
             ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(150L);
             duration.addUpdateListener(new o4(this, num, i12, 0));
@@ -1387,15 +1387,15 @@ public abstract class f6 extends mw0 implements rg.q1, rg.h, rg.m1, kw0, rb {
         }
         rg.j jVar = this.J0;
         if (jVar instanceof rg.v2) {
-            ((rg.v2) jVar).setSwatch(new qg.t1(t1Var.f44658b, t1Var.f44659c, t1Var.f44657a));
+            ((rg.v2) jVar).setSwatch(new qg.t1(t1Var.f44661b, t1Var.f44662c, t1Var.f44660a));
         } else if (z10 && (jVar instanceof rg.t0)) {
-            ((rg.t0) jVar).setColor(t1Var.f44657a);
+            ((rg.t0) jVar).setColor(t1Var.f44660a);
             ((rg.t0) this.J0).setType(3);
         } else if (z10 && (jVar instanceof rg.w2)) {
-            ((rg.w2) jVar).setColor(t1Var.f44657a);
+            ((rg.w2) jVar).setColor(t1Var.f44660a);
             ((rg.w2) this.J0).setType(3);
         } else if (z10 && (jVar instanceof rg.q0)) {
-            ((rg.q0) jVar).setColor(t1Var.f44657a);
+            ((rg.q0) jVar).setColor(t1Var.f44660a);
             ((rg.q0) this.J0).setType(0);
         }
     }
@@ -1523,7 +1523,7 @@ public abstract class f6 extends mw0 implements rg.q1, rg.h, rg.m1, kw0, rb {
                         n02.setText(replaceEmoji);
                         F0(n02, mediaEntity.textAlign);
                         qg.t1 swatch = n02.getSwatch();
-                        swatch.f44657a = mediaEntity.color;
+                        swatch.f44660a = mediaEntity.color;
                         n02.setSwatch(swatch);
                         jVar = n02;
                     } else {
@@ -1584,14 +1584,14 @@ public abstract class f6 extends mw0 implements rg.q1, rg.h, rg.m1, kw0, rb {
                             }
                         } else if (b10 == 7) {
                             rg.q0 h02 = h0(mediaEntity.linkSettings);
-                            rg.o0 o0Var = h02.f45608q0;
+                            rg.o0 o0Var = h02.f45611q0;
                             int i16 = mediaEntity.color;
                             if (i16 != 0) {
                                 h02.setColor(i16);
                             }
                             boolean e = o0Var.e();
                             int i17 = o0Var.h;
-                            int i18 = o0Var.f45561f;
+                            int i18 = o0Var.f45564f;
                             if (e) {
                                 o0Var.setPreviewType(mediaEntity.subType);
                             }
@@ -1599,8 +1599,8 @@ public abstract class f6 extends mw0 implements rg.q1, rg.h, rg.m1, kw0, rb {
                             if (b11 == -1) {
                                 h02.setType(3);
                                 o0Var.d();
-                                mediaEntity.viewWidth = ((int) Math.ceil(o0Var.f45554a0)) + i18 + i18;
-                                mediaEntity.viewHeight = ((int) Math.ceil(o0Var.f45556b0)) + i17 + i17;
+                                mediaEntity.viewWidth = ((int) Math.ceil(o0Var.f45557a0)) + i18 + i18;
+                                mediaEntity.viewHeight = ((int) Math.ceil(o0Var.f45559b0)) + i17 + i17;
                                 PointF position = h02.getPosition();
                                 position.y = (this.S1 * 0.3f) + position.y;
                                 h02.setPosition(position);
@@ -1630,7 +1630,7 @@ public abstract class f6 extends mw0 implements rg.q1, rg.h, rg.m1, kw0, rb {
                                     jbVar.f9733w = l02;
                                     c81 c81Var = jbVar.f9735x;
                                     if (c81Var != null) {
-                                        c81Var.V(l02.f45313u0);
+                                        c81Var.V(l02.f45316u0);
                                     }
                                 }
                                 lb lbVar = vbVar.f9956c1;
@@ -1639,9 +1639,9 @@ public abstract class f6 extends mw0 implements rg.q1, rg.h, rg.m1, kw0, rb {
                                 }
                                 jVar = l02;
                                 if ((2 & mediaEntity.subType) != 0) {
-                                    boolean z12 = !l02.f45310r0;
-                                    l02.f45310r0 = z12;
-                                    l02.f45311s0.f(z12, true);
+                                    boolean z12 = !l02.f45313r0;
+                                    l02.f45313r0 = z12;
+                                    l02.f45314s0.f(z12, true);
                                     l02.invalidate();
                                     jVar = l02;
                                 }
@@ -1783,14 +1783,14 @@ public abstract class f6 extends mw0 implements rg.q1, rg.h, rg.m1, kw0, rb {
             }
             tz tzVar2 = this.f9028p2;
             ub ubVar = this.M1;
-            if (tzVar2 != null && tzVar2.f30723c1 != UserConfig.selectedAccount) {
+            if (tzVar2 != null && tzVar2.f30726c1 != UserConfig.selectedAccount) {
                 ubVar.removeView(tzVar2);
                 this.f9028p2 = null;
             }
             if (this.f9028p2 == null) {
                 tz tzVar3 = new tz(null, true, false, false, getContext(), false, null, null, true, this.G1, false, false);
                 this.f9028p2 = tzVar3;
-                tzVar3.f30787w2 = false;
+                tzVar3.f30790w2 = false;
                 tzVar3.U0 = true;
                 tzVar3.setVisibility(8);
                 if (AndroidUtilities.isTablet()) {
@@ -1847,7 +1847,7 @@ public abstract class f6 extends mw0 implements rg.q1, rg.h, rg.m1, kw0, rb {
                     ofFloat.addUpdateListener(new r4(this, 1));
                     ofFloat.addListener(new l5(this, 1));
                     ofFloat.setDuration(250L);
-                    ofFloat.setInterpolator(org.telegram.ui.ActionBar.o1.f21632w);
+                    ofFloat.setInterpolator(org.telegram.ui.ActionBar.o1.f21635w);
                     ofFloat.start();
                 }
             }
@@ -1875,17 +1875,17 @@ public abstract class f6 extends mw0 implements rg.q1, rg.h, rg.m1, kw0, rb {
     public final void J0(rg.q0 q0Var) {
         j8 j8Var = new j8(getContext(), this.G1, this.f9011g2, new ai.o2(10, this, q0Var));
         if (q0Var != null) {
-            rg.n0 n0Var = q0Var.f45612u0;
+            rg.n0 n0Var = q0Var.f45615u0;
             j8Var.f9269c0 = true;
             org.telegram.ui.Cells.i3 i3Var = j8Var.Z;
             org.telegram.ui.Cells.i3 i3Var2 = j8Var.Y;
             if (n0Var != null) {
                 j8Var.f9273g0 = n0Var.d;
                 j8Var.f9274h0 = false;
-                i3Var2.setText(n0Var.f45519c);
-                i3Var.setText(n0Var.f45518b);
-                j8Var.m0 = !TextUtils.isEmpty(n0Var.f45518b);
-                j8Var.f9279n0 = n0Var.f45520f;
+                i3Var2.setText(n0Var.f45522c);
+                i3Var.setText(n0Var.f45521b);
+                j8Var.m0 = !TextUtils.isEmpty(n0Var.f45521b);
+                j8Var.f9279n0 = n0Var.f45523f;
                 j8Var.f9280o0 = n0Var.e;
             } else {
                 i3Var2.setText("");
@@ -1912,15 +1912,15 @@ public abstract class f6 extends mw0 implements rg.q1, rg.h, rg.m1, kw0, rb {
         TLRPC.MessageMedia messageMedia;
         TLRPC.GeoPoint geoPoint;
         ti tiVar = new ti(getContext(), new p5(this, callback2), false, true, false, this.G1);
-        tiVar.f30538c2 = new Object();
+        tiVar.f30541c2 = new Object();
         wh whVar = tiVar.A1;
-        if (t0Var != null && (messageMedia = t0Var.f45650u0) != null && (geoPoint = messageMedia.geo) != null) {
+        if (t0Var != null && (messageMedia = t0Var.f45653u0) != null && (geoPoint = messageMedia.geo) != null) {
             tiVar.A2 = new double[]{geoPoint.lat, geoPoint._long};
             tiVar.O = true;
             whVar.setVisibility(8);
         } else if (this.U1) {
-            tiVar.f30609y2 = this.W1;
-            tiVar.f30612z2 = this.V1;
+            tiVar.f30612y2 = this.W1;
+            tiVar.f30615z2 = this.V1;
             tiVar.O = true;
             whVar.setVisibility(8);
         } else {
@@ -1977,7 +1977,7 @@ public abstract class f6 extends mw0 implements rg.q1, rg.h, rg.m1, kw0, rb {
         if (this.H1 == null) {
             org.telegram.ui.ActionBar.m1 m1Var2 = new org.telegram.ui.ActionBar.m1(this.I1, -2, -2);
             this.H1 = m1Var2;
-            m1Var2.f21576b = true;
+            m1Var2.f21579b = true;
             m1Var2.setAnimationStyle(R.style.PopupAnimation);
             this.H1.setOutsideTouchable(true);
             this.H1.setClippingEnabled(true);
@@ -2027,7 +2027,7 @@ public abstract class f6 extends mw0 implements rg.q1, rg.h, rg.m1, kw0, rb {
                     ofFloat.addUpdateListener(new r4(this, 2));
                     ofFloat.addListener(new ah.p0(12, this, z10));
                     ofFloat.setDuration(200L);
-                    ofFloat.setInterpolator(bs.f25022g);
+                    ofFloat.setInterpolator(bs.f25025g);
                     ofFloat.start();
                     return;
                 }
@@ -2166,21 +2166,21 @@ public abstract class f6 extends mw0 implements rg.q1, rg.h, rg.m1, kw0, rb {
             } else {
                 z10 = false;
             }
-            if (e.f44685l != z10) {
-                e.f44685l = z10;
+            if (e.f44688l != z10) {
+                e.f44688l = z10;
                 if (z10) {
                     e.i(-1, false);
                 } else {
-                    e.i(e.f44677a.getInt("brush", 0), false);
+                    e.i(e.f44680a.getInt("brush", 0), false);
                 }
             }
             int c10 = qg.v0.e(i12).c();
             qg.t1 t1Var = this.A1;
-            t1Var.f44657a = c10;
+            t1Var.f44660a = c10;
             D0(t1Var, null, false);
             ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(300L);
             this.f9000b1 = duration;
-            duration.setInterpolator(bs.f25021f);
+            duration.setInterpolator(bs.f25024f);
             this.f9000b1.addUpdateListener(new ci.o3(this, viewGroup, viewGroup2, 1));
             this.f9000b1.addListener(new n5(this, viewGroup, viewGroup2, i10, 0));
             this.f9000b1.start();
@@ -2315,8 +2315,8 @@ public abstract class f6 extends mw0 implements rg.q1, rg.h, rg.m1, kw0, rb {
         if (jVar instanceof rg.v2) {
             F0((rg.v2) jVar, i10);
             qg.v0 e = qg.v0.e(this.F1);
-            e.f44681g = i10;
-            e.f44677a.edit().putInt("text_alignment", i10).apply();
+            e.f44684g = i10;
+            e.f44680a.edit().putInt("text_alignment", i10).apply();
         }
     }
 
@@ -2463,7 +2463,7 @@ public abstract class f6 extends mw0 implements rg.q1, rg.h, rg.m1, kw0, rb {
                     arrayList = new ArrayList();
                 }
                 TLRPC.TL_inputDocument tL_inputDocument = new TLRPC.TL_inputDocument();
-                tL_inputDocument.f20288id = sticker.f20282id;
+                tL_inputDocument.f20291id = sticker.f20285id;
                 tL_inputDocument.access_hash = sticker.access_hash;
                 byte[] bArr = sticker.file_reference;
                 tL_inputDocument.file_reference = bArr;
@@ -2485,7 +2485,7 @@ public abstract class f6 extends mw0 implements rg.q1, rg.h, rg.m1, kw0, rb {
                                     arrayList = new ArrayList();
                                 }
                                 TLRPC.TL_inputDocument tL_inputDocument2 = new TLRPC.TL_inputDocument();
-                                tL_inputDocument2.f20288id = document.f20282id;
+                                tL_inputDocument2.f20291id = document.f20285id;
                                 tL_inputDocument2.access_hash = document.access_hash;
                                 byte[] bArr2 = document.file_reference;
                                 tL_inputDocument2.file_reference = bArr2;
@@ -2566,7 +2566,7 @@ public abstract class f6 extends mw0 implements rg.q1, rg.h, rg.m1, kw0, rb {
             q0Var.setStickyY(2);
         }
         qg.t1 t1Var = this.A1;
-        if (t1Var != null && (i10 = t1Var.f44657a) != -47814) {
+        if (t1Var != null && (i10 = t1Var.f44660a) != -47814) {
             q0Var.setColor(i10);
         }
         q0Var.setDelegate(this);
@@ -2603,7 +2603,7 @@ public abstract class f6 extends mw0 implements rg.q1, rg.h, rg.m1, kw0, rb {
             t0Var.setStickyY(2);
         }
         qg.t1 t1Var = this.A1;
-        if (t1Var != null && (i10 = t1Var.f44657a) != -47814) {
+        if (t1Var != null && (i10 = t1Var.f44660a) != -47814) {
             t0Var.setColor(i10);
         }
         t0Var.setDelegate(this);
@@ -2643,9 +2643,9 @@ public abstract class f6 extends mw0 implements rg.q1, rg.h, rg.m1, kw0, rb {
         fw0 fw0Var2 = fw0Var;
         Pair<Integer, Integer> imageOrientation = AndroidUtilities.getImageOrientation(str);
         if ((((Integer) imageOrientation.first).intValue() / 90) % 2 == 1) {
-            float f10 = fw0Var2.f26428a;
-            fw0Var2.f26428a = fw0Var2.f26429b;
-            fw0Var2.f26429b = f10;
+            float f10 = fw0Var2.f26431a;
+            fw0Var2.f26431a = fw0Var2.f26432b;
+            fw0Var2.f26432b = f10;
         }
         Context context = getContext();
         PointF e02 = e0();
@@ -2678,20 +2678,20 @@ public abstract class f6 extends mw0 implements rg.q1, rg.h, rg.m1, kw0, rb {
             }
         }
         ?? jVar = new rg.j(getContext(), e02);
-        jVar.f45297r0 = new ci.g9(jVar);
-        jVar.f45298s0 = new ci.g9(jVar);
-        jVar.f45299t0 = new ah.y0(jVar);
-        jVar.f45300u0 = new ah.y0(jVar);
+        jVar.f45300r0 = new ci.g9(jVar);
+        jVar.f45301s0 = new ci.g9(jVar);
+        jVar.f45302t0 = new ah.y0(jVar);
+        jVar.f45303u0 = new ah.y0(jVar);
         org.telegram.ui.Components.f6 f6Var = new org.telegram.ui.Components.f6((View) jVar);
-        jVar.f45302w0 = f6Var;
+        jVar.f45305w0 = f6Var;
         org.telegram.ui.Components.f6 f6Var2 = new org.telegram.ui.Components.f6((View) jVar);
-        jVar.f45303x0 = f6Var2;
-        jVar.f45305z0 = 1.0f;
-        jVar.f45296q0 = fw0Var;
+        jVar.f45306x0 = f6Var2;
+        jVar.f45308z0 = 1.0f;
+        jVar.f45299q0 = fw0Var;
         f6Var2.d(1.0f, true);
         f6Var.d(1.0f, true);
         List<TLRPC.TL_availableReaction> reactionsList = MediaDataController.getInstance(UserConfig.selectedAccount).getReactionsList();
-        ah.y0 y0Var = jVar.f45299t0;
+        ah.y0 y0Var = jVar.f45302t0;
         int i11 = 0;
         while (true) {
             if (i11 < reactionsList.size()) {
@@ -2706,7 +2706,7 @@ public abstract class f6 extends mw0 implements rg.q1, rg.h, rg.m1, kw0, rb {
             }
         }
         ah.i1 b10 = ah.i1.b(str);
-        jVar.f45301v0 = b10;
+        jVar.f45304v0 = b10;
         y0Var.e(b10);
         jVar.k();
         jVar.setDelegate(this);
@@ -2749,7 +2749,7 @@ public abstract class f6 extends mw0 implements rg.q1, rg.h, rg.m1, kw0, rb {
         }
         float floor = (float) Math.floor(0.43f * f7);
         fw0 fw0Var = new fw0(floor, floor);
-        rg.c2 c2Var = new rg.c2(getContext(), new PointF((measuredWidth - (floor / 2.0f)) - AndroidUtilities.dp(16.0f), (fw0Var.f26429b / 2.0f) + AndroidUtilities.dp(72.0f)), fw0Var, str);
+        rg.c2 c2Var = new rg.c2(getContext(), new PointF((measuredWidth - (floor / 2.0f)) - AndroidUtilities.dp(16.0f), (fw0Var.f26432b / 2.0f) + AndroidUtilities.dp(72.0f)), fw0Var, str);
         c2Var.setDelegate(this);
         z5Var.addView(c2Var);
         f0();
@@ -2775,10 +2775,10 @@ public abstract class f6 extends mw0 implements rg.q1, rg.h, rg.m1, kw0, rb {
         }
         e6 e6Var = new e6(e0(), f10, f7);
         Context context = getContext();
-        float floor = (float) Math.floor(getPaintingSize().f26428a * 0.5d);
+        float floor = (float) Math.floor(getPaintingSize().f26431a * 0.5d);
         s5 s5Var = new s5(this, context, e6Var.f8958a, e6Var.f8960c, e6Var.f8959b, new fw0(floor, floor), document, obj);
         boolean isTextColorEmoji = MessageObject.isTextColorEmoji(document);
-        ImageReceiver imageReceiver = s5Var.f45596x0;
+        ImageReceiver imageReceiver = s5Var.f45599x0;
         if (isTextColorEmoji) {
             imageReceiver.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
         }
@@ -2792,12 +2792,12 @@ public abstract class f6 extends mw0 implements rg.q1, rg.h, rg.m1, kw0, rb {
     public final rg.v2 n0(boolean z10) {
         fw0 paintingSize = getPaintingSize();
         PointF P0 = P0(null);
-        rg.v2 v2Var = new rg.v2(getContext(), P0, (int) (paintingSize.f26428a / 9.0f), "", this.A1, this.L0);
-        float f7 = paintingSize.f26428a / 9.0f;
+        rg.v2 v2Var = new rg.v2(getContext(), P0, (int) (paintingSize.f26431a / 9.0f), "", this.A1, this.L0);
+        float f7 = paintingSize.f26431a / 9.0f;
         w4 w4Var = new w4(this, 0);
-        v2Var.f45675w0 = (int) (0.5f * f7);
-        v2Var.f45676x0 = (int) (f7 * 2.0f);
-        v2Var.f45677y0 = w4Var;
+        v2Var.f45678w0 = (int) (0.5f * f7);
+        v2Var.f45679x0 = (int) (f7 * 2.0f);
+        v2Var.f45680y0 = w4Var;
         float f10 = P0.x;
         z5 z5Var = this.R0;
         if (f10 == z5Var.getMeasuredWidth() / 2.0f) {
@@ -2809,7 +2809,7 @@ public abstract class f6 extends mw0 implements rg.q1, rg.h, rg.m1, kw0, rb {
         v2Var.setDelegate(this);
         v2Var.setMaxWidth(this.R1 - AndroidUtilities.dp(32.0f));
         int i10 = this.F1;
-        v2Var.setTypeface(qg.v0.e(i10).f44683j);
+        v2Var.setTypeface(qg.v0.e(i10).f44686j);
         v2Var.setType(qg.v0.e(i10).h);
         z5Var.addView(v2Var, w7.z5.c(-2.0f, -2));
         f0();
@@ -2825,7 +2825,7 @@ public abstract class f6 extends mw0 implements rg.q1, rg.h, rg.m1, kw0, rb {
             v2Var.getFocusedView().requestFocus();
             AndroidUtilities.showKeyboard(v2Var.getFocusedView());
             this.K0 = true;
-            int i11 = qg.v0.e(i10).f44681g;
+            int i11 = qg.v0.e(i10).f44684g;
             rg.o1 o1Var = this.l1;
             o1Var.d(i11, true);
             o1Var.setOutlineType(qg.v0.e(i10).h);
@@ -2849,9 +2849,9 @@ public abstract class f6 extends mw0 implements rg.q1, rg.h, rg.m1, kw0, rb {
         }
         v5Var.setBrush(mVar);
         qg.t1 t1Var = this.A1;
-        int i10 = t1Var.f44657a;
-        t1Var.f44657a = qg.v0.e(this.F1).c();
-        t1Var.f44659c = this.f9006e1.get();
+        int i10 = t1Var.f44660a;
+        t1Var.f44660a = qg.v0.e(this.F1).c();
+        t1Var.f44662c = this.f9006e1.get();
         D0(t1Var, Integer.valueOf(i10), false);
         this.P0.invalidate();
     }
@@ -2878,7 +2878,7 @@ public abstract class f6 extends mw0 implements rg.q1, rg.h, rg.m1, kw0, rb {
             w2Var.setStickyY(2);
         }
         qg.t1 t1Var = this.A1;
-        if (t1Var != null && (i10 = t1Var.f44657a) != -47814) {
+        if (t1Var != null && (i10 = t1Var.f44660a) != -47814) {
             w2Var.setColor(i10);
         }
         w2Var.setDelegate(this);
@@ -2929,7 +2929,7 @@ public abstract class f6 extends mw0 implements rg.q1, rg.h, rg.m1, kw0, rb {
         if (((float) Math.floor((size * currentActionBarHeight) / f7)) > currentActionBarHeight2) {
             Math.floor((f10 * f7) / currentActionBarHeight);
         }
-        float f11 = this.H0.f26428a;
+        float f11 = this.H0.f26431a;
         rg.j jVar = this.J0;
         if (jVar != null) {
             jVar.m();
@@ -3033,7 +3033,7 @@ public abstract class f6 extends mw0 implements rg.q1, rg.h, rg.m1, kw0, rb {
             if (i10 < z5Var.getChildCount()) {
                 View childAt = z5Var.getChildAt(i10);
                 if (childAt instanceof rg.o2) {
-                    ImageReceiver imageReceiver = ((rg.o2) childAt).f45596x0;
+                    ImageReceiver imageReceiver = ((rg.o2) childAt).f45599x0;
                     vj0 lottieAnimation = imageReceiver.getLottieAnimation();
                     imageReceiver.getAnimation();
                     if (lottieAnimation != null) {
@@ -3113,7 +3113,7 @@ public abstract class f6 extends mw0 implements rg.q1, rg.h, rg.m1, kw0, rb {
                 this.f9034s2 = true;
                 ofFloat.addListener(new l5(this, 2));
                 ofFloat.setDuration(250L);
-                ofFloat.setInterpolator(org.telegram.ui.ActionBar.o1.f21632w);
+                ofFloat.setInterpolator(org.telegram.ui.ActionBar.o1.f21635w);
                 ofFloat.start();
                 return;
             }

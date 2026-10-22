@@ -1,8 +1,8 @@
 package org.telegram.ui.Components;
 public final class b01 {
-    public int f24764a;
+    public int f24767a;
 
     public b01(int i10) {
-        this.f24764a = i10;
+        this.f24767a = i10;
     }
 }

@@ -13,12 +13,12 @@ import org.telegram.messenger.R;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.Switch;
 public final class dv0 extends org.telegram.ui.Components.im0 {
-    public final Context f36453c;
+    public final Context f36456c;
     public final fv0 d;
 
     public dv0(fv0 fv0Var, Context context) {
         this.d = fv0Var;
-        this.f36453c = context;
+        this.f36456c = context;
     }
 
     @Override
@@ -26,12 +26,12 @@ public final class dv0 extends org.telegram.ui.Components.im0 {
         int i10;
         int b10 = b1Var.b();
         fv0 fv0Var = this.d;
-        if (b10 != fv0Var.f37110i0 && b10 != fv0Var.f37124u0 && b10 != fv0Var.f37125v0) {
-            if (fv0Var.I && b10 >= (i10 = fv0Var.f37115n0) && b10 < fv0Var.f37130y + i10) {
-                if (b10 - i10 < fv0Var.f37128x) {
+        if (b10 != fv0Var.f37113i0 && b10 != fv0Var.f37127u0 && b10 != fv0Var.f37128v0) {
+            if (fv0Var.I && b10 >= (i10 = fv0Var.f37118n0) && b10 < fv0Var.f37133y + i10) {
+                if (b10 - i10 < fv0Var.f37131x) {
                     return false;
                 }
-            } else if (b10 != fv0Var.f37116o0 && b10 != fv0Var.f37120r0 && b10 != fv0Var.f37122s0 && (fv0Var.N != 0 || b10 != fv0Var.f37123t0)) {
+            } else if (b10 != fv0Var.f37119o0 && b10 != fv0Var.f37123r0 && b10 != fv0Var.f37125s0 && (fv0Var.N != 0 || b10 != fv0Var.f37126t0)) {
                 return false;
             }
             return true;
@@ -41,27 +41,27 @@ public final class dv0 extends org.telegram.ui.Components.im0 {
 
     @Override
     public final int h() {
-        return this.d.f37129x0;
+        return this.d.f37132x0;
     }
 
     @Override
     public final int j(int i10) {
         fv0 fv0Var = this.d;
-        if (i10 != fv0Var.f37109h0 && i10 != fv0Var.m0 && i10 != fv0Var.f37118q0) {
-            if (i10 == fv0Var.f37113l0) {
+        if (i10 != fv0Var.f37112h0 && i10 != fv0Var.m0 && i10 != fv0Var.f37121q0) {
+            if (i10 == fv0Var.f37116l0) {
                 return 1;
             }
-            if (i10 != fv0Var.f37117p0 && i10 != fv0Var.f37127w0 && i10 != fv0Var.f37112k0) {
-                if (i10 == fv0Var.f37116o0) {
+            if (i10 != fv0Var.f37120p0 && i10 != fv0Var.f37130w0 && i10 != fv0Var.f37115k0) {
+                if (i10 == fv0Var.f37119o0) {
                     return 3;
                 }
-                if (i10 == fv0Var.f37110i0) {
+                if (i10 == fv0Var.f37113i0) {
                     return 4;
                 }
-                if (i10 == fv0Var.f37111j0) {
+                if (i10 == fv0Var.f37114j0) {
                     return 7;
                 }
-                if (i10 != fv0Var.f37120r0 && i10 != fv0Var.f37122s0 && i10 != fv0Var.f37123t0 && i10 != fv0Var.f37124u0 && i10 != fv0Var.f37125v0) {
+                if (i10 != fv0Var.f37123r0 && i10 != fv0Var.f37125s0 && i10 != fv0Var.f37126t0 && i10 != fv0Var.f37127u0 && i10 != fv0Var.f37128v0) {
                     return 5;
                 }
                 return 6;
@@ -80,14 +80,14 @@ public final class dv0 extends org.telegram.ui.Components.im0 {
         int i14;
         fv0 fv0Var = this.d;
         int i15 = fv0Var.N;
-        boolean z10 = fv0Var.f37104d0;
-        int i16 = b1Var.f45920f;
-        View view = b1Var.f45917a;
+        boolean z10 = fv0Var.f37107d0;
+        int i16 = b1Var.f45923f;
+        View view = b1Var.f45920a;
         boolean z11 = true;
         if (i16 != 0) {
             boolean z12 = false;
             if (i16 != 6) {
-                Context context = this.f36453c;
+                Context context = this.f36456c;
                 if (i16 != 2) {
                     if (i16 == 3) {
                         org.telegram.ui.Cells.q8 q8Var = (org.telegram.ui.Cells.q8) view;
@@ -97,7 +97,7 @@ public final class dv0 extends org.telegram.ui.Components.im0 {
                         int x02 = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.N6, false);
                         PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
                         drawable.setColorFilter(new PorterDuffColorFilter(x02, mode));
-                        drawable2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21118k7, false), mode));
+                        drawable2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21121k7, false), mode));
                         org.telegram.ui.Components.zq zqVar = new org.telegram.ui.Components.zq(drawable, drawable2);
                         if (z10) {
                             i14 = R.string.TodoNewTask;
@@ -111,16 +111,16 @@ public final class dv0 extends org.telegram.ui.Components.im0 {
                 }
                 org.telegram.ui.Cells.d9 d9Var = (org.telegram.ui.Cells.d9) view;
                 d9Var.setFixedSize(0);
-                d9Var.setBackground(org.telegram.ui.ActionBar.h6.W0(context, R.drawable.greydivider_bottom, org.telegram.ui.ActionBar.h6.f20952b7));
-                if (i10 == fv0Var.f37112k0) {
+                d9Var.setBackground(org.telegram.ui.ActionBar.h6.W0(context, R.drawable.greydivider_bottom, org.telegram.ui.ActionBar.h6.f20955b7));
+                if (i10 == fv0Var.f37115k0) {
                     d9Var.setText(LocaleController.getString(R.string.AddAnExplanationInfo));
                     return;
-                } else if (i10 == fv0Var.f37127w0) {
+                } else if (i10 == fv0Var.f37130w0) {
                     d9Var.setFixedSize(12);
                     d9Var.setText(null);
                     return;
                 } else {
-                    int i17 = fv0Var.f37114n - fv0Var.f37130y;
+                    int i17 = fv0Var.f37117n - fv0Var.f37133y;
                     if (i17 <= 0) {
                         if (z10) {
                             i13 = R.string.TodoAddTaskInfoMax;
@@ -147,33 +147,33 @@ public final class dv0 extends org.telegram.ui.Components.im0 {
                 f7 = 0.6f;
             }
             checkBox.setAlpha(f7);
-            if (i10 == fv0Var.f37124u0) {
+            if (i10 == fv0Var.f37127u0) {
                 v8Var.f(LocaleController.getString(R.string.TodoAllowAddingTasks), fv0Var.H, true);
                 v8Var.e(null, true);
                 return;
-            } else if (i10 == fv0Var.f37125v0) {
+            } else if (i10 == fv0Var.f37128v0) {
                 v8Var.f(LocaleController.getString(R.string.TodoAllowMarkingDone), fv0Var.J, false);
                 v8Var.e(null, true);
                 return;
-            } else if (i10 == fv0Var.f37120r0) {
+            } else if (i10 == fv0Var.f37123r0) {
                 String string = LocaleController.getString(R.string.PollAnonymous);
                 boolean z13 = fv0Var.G;
-                if (fv0Var.f37122s0 != -1 || fv0Var.f37123t0 != -1) {
+                if (fv0Var.f37125s0 != -1 || fv0Var.f37126t0 != -1) {
                     z12 = true;
                 }
                 v8Var.f(string, z13, z12);
                 v8Var.e(null, true);
                 return;
-            } else if (i10 == fv0Var.f37122s0) {
+            } else if (i10 == fv0Var.f37125s0) {
                 String string2 = LocaleController.getString(R.string.PollMultiple);
                 boolean z14 = fv0Var.K;
-                if (fv0Var.f37123t0 != -1) {
+                if (fv0Var.f37126t0 != -1) {
                     z12 = true;
                 }
                 v8Var.f(string2, z14, z12);
                 v8Var.e(null, true);
                 return;
-            } else if (i10 == fv0Var.f37123t0) {
+            } else if (i10 == fv0Var.f37126t0) {
                 v8Var.f(LocaleController.getString(R.string.PollQuiz), fv0Var.L, false);
                 if (i15 != 0) {
                     z11 = false;
@@ -185,9 +185,9 @@ public final class dv0 extends org.telegram.ui.Components.im0 {
             }
         }
         org.telegram.ui.Cells.l4 l4Var = (org.telegram.ui.Cells.l4) view;
-        if (i10 == fv0Var.f37109h0) {
+        if (i10 == fv0Var.f37112h0) {
             if (z10) {
-                if (fv0Var.f37132z0 != null) {
+                if (fv0Var.f37135z0 != null) {
                     i12 = R.string.TodoEditTitle;
                 } else {
                     i12 = R.string.TodoTitle;
@@ -207,7 +207,7 @@ public final class dv0 extends org.telegram.ui.Components.im0 {
                 i11 = R.string.AnswerOptions2;
             }
             l4Var.setText(LocaleController.getString(i11));
-        } else if (i10 == fv0Var.f37118q0) {
+        } else if (i10 == fv0Var.f37121q0) {
             l4Var.setText(LocaleController.getString(R.string.Settings));
         }
     }
@@ -216,9 +216,9 @@ public final class dv0 extends org.telegram.ui.Components.im0 {
     public final s4.b1 x(ViewGroup viewGroup, int i10) {
         cv0 cv0Var;
         fv0 fv0Var = this.d;
-        boolean z10 = fv0Var.f37103c0;
+        boolean z10 = fv0Var.f37106c0;
         if (i10 != 0) {
-            Context context = this.f36453c;
+            Context context = this.f36456c;
             if (i10 != 1) {
                 if (i10 != 2) {
                     if (i10 != 3) {
@@ -226,7 +226,7 @@ public final class dv0 extends org.telegram.ui.Components.im0 {
                             if (i10 != 6) {
                                 if (i10 != 7) {
                                     cv0 cv0Var2 = new cv0(this, context, z10 ? 1 : 0, new s50(fv0Var, 21));
-                                    cv0Var2.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20990d6, false));
+                                    cv0Var2.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20993d6, false));
                                     cv0Var2.c(new org.telegram.ui.Components.ao(6, this, cv0Var2));
                                     cv0Var2.setShowNextButton(true);
                                     EditTextBoldCursor textView = cv0Var2.getTextView();
@@ -237,25 +237,25 @@ public final class dv0 extends org.telegram.ui.Components.im0 {
                                 } else {
                                     bv0 bv0Var = new bv0(this, context, z10 ? 1 : 0);
                                     bv0Var.d();
-                                    bv0Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20990d6, false));
+                                    bv0Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20993d6, false));
                                     bv0Var.c(new org.telegram.ui.Components.ao(5, this, bv0Var));
                                     cv0Var = bv0Var;
                                 }
                             } else {
                                 View v8Var = new org.telegram.ui.Cells.v8(context);
-                                v8Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20990d6, false));
+                                v8Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20993d6, false));
                                 cv0Var = v8Var;
                             }
                         } else {
                             av0 av0Var = new av0(this, context, z10 ? 1 : 0);
                             av0Var.d();
-                            av0Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20990d6, false));
+                            av0Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20993d6, false));
                             av0Var.c(new org.telegram.ui.Components.ao(4, this, av0Var));
                             cv0Var = av0Var;
                         }
                     } else {
                         View q8Var = new org.telegram.ui.Cells.q8(context);
-                        q8Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20990d6, false));
+                        q8Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20993d6, false));
                         cv0Var = q8Var;
                     }
                 } else {
@@ -265,8 +265,8 @@ public final class dv0 extends org.telegram.ui.Components.im0 {
                 cv0Var = new org.telegram.ui.Cells.z6(context, (org.telegram.ui.Cells.c1) null);
             }
         } else {
-            View l4Var = new org.telegram.ui.Cells.l4(this.f36453c, org.telegram.ui.ActionBar.h6.L6, 21, 15, false, null);
-            l4Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20990d6, false));
+            View l4Var = new org.telegram.ui.Cells.l4(this.f36456c, org.telegram.ui.ActionBar.h6.L6, 21, 15, false, null);
+            l4Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20993d6, false));
             cv0Var = l4Var;
         }
         return com.google.android.gms.internal.play_billing.k3.l(cv0Var, cv0Var, -1, -2);
@@ -279,9 +279,9 @@ public final class dv0 extends org.telegram.ui.Components.im0 {
         int i11;
         int i12;
         fv0 fv0Var = this.d;
-        boolean z11 = fv0Var.f37104d0;
-        int i13 = b1Var.f45920f;
-        View view = b1Var.f45917a;
+        boolean z11 = fv0Var.f37107d0;
+        int i13 = b1Var.f45923f;
+        View view = b1Var.f45920a;
         float f7 = 0.6f;
         CharSequence charSequence = "";
         float f10 = 1.0f;
@@ -313,8 +313,8 @@ public final class dv0 extends org.telegram.ui.Components.im0 {
             org.telegram.ui.Cells.c6 c6Var2 = (org.telegram.ui.Cells.c6) view;
             c6Var2.setTag(1);
             org.telegram.ui.Cells.b6 b6Var2 = c6Var2.d;
-            int i14 = b10 - fv0Var.f37115n0;
-            if (fv0Var.I && i14 < fv0Var.f37128x) {
+            int i14 = b10 - fv0Var.f37118n0;
+            if (fv0Var.I && i14 < fv0Var.f37131x) {
                 z10 = false;
             } else {
                 z10 = true;
@@ -333,7 +333,7 @@ public final class dv0 extends org.telegram.ui.Components.im0 {
             }
             c6Var2.n(charSequence3, LocaleController.getString(i10), true);
             c6Var2.setTag(null);
-            ImageView imageView = c6Var2.f22094f;
+            ImageView imageView = c6Var2.f22097f;
             if (imageView != null) {
                 if (z10) {
                     i11 = 0;
@@ -349,12 +349,12 @@ public final class dv0 extends org.telegram.ui.Components.im0 {
                 }
                 imageView2.setAlpha(f10);
             }
-            if (!fv0Var.f37107f0 && fv0Var.f37108g0 == b10) {
+            if (!fv0Var.f37110f0 && fv0Var.f37111g0 == b10) {
                 EditTextBoldCursor textView = c6Var2.getTextView();
                 textView.requestFocus();
                 AndroidUtilities.showKeyboard(textView);
-                fv0Var.f37107f0 = false;
-                fv0Var.f37108g0 = -1;
+                fv0Var.f37110f0 = false;
+                fv0Var.f37111g0 = -1;
             }
             fv0.c0(fv0Var, view, b10);
         } else if (i13 == 7) {
@@ -372,19 +372,19 @@ public final class dv0 extends org.telegram.ui.Components.im0 {
 
     @Override
     public final void z(s4.b1 b1Var) {
-        int i10 = b1Var.f45920f;
+        int i10 = b1Var.f45923f;
         if (i10 == 4 || i10 == 5) {
-            EditTextBoldCursor textView = ((org.telegram.ui.Cells.c6) b1Var.f45917a).getTextView();
+            EditTextBoldCursor textView = ((org.telegram.ui.Cells.c6) b1Var.f45920a).getTextView();
             if (textView.isFocused()) {
                 fv0 fv0Var = this.d;
-                if (fv0Var.f37103c0) {
+                if (fv0Var.f37106c0) {
                     org.telegram.ui.Components.iz0 iz0Var = fv0Var.Q;
                     if (iz0Var != null) {
                         iz0Var.f();
                     }
                     fv0Var.k0(true);
                 }
-                fv0Var.f37101b0 = null;
+                fv0Var.f37104b0 = null;
                 textView.clearFocus();
                 AndroidUtilities.hideKeyboard(textView);
             }

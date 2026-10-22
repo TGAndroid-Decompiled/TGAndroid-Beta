@@ -67,7 +67,7 @@ public final class zb implements Runnable {
                 ((LocationController) this.d).lambda$setProximityLocation$12(this.f2554c, this.f2553b);
                 return;
             case 3:
-                ((MediaController) this.d).lambda$prepareResumedRecording$24(this.f2554c, this.f2553b);
+                ((MediaController) this.d).lambda$prepareResumedRecording$25(this.f2554c, this.f2553b);
                 return;
             case 4:
                 ((MediaDataController) this.d).lambda$deletePeer$159(this.f2553b, this.f2554c);

@@ -5,22 +5,22 @@ import org.telegram.messenger.ChannelBoostsController;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.tl.TL_stories;
 public final class r5 implements Utilities.Callback {
-    public final int f41062a;
-    public final z5 f41063b;
+    public final int f41065a;
+    public final z5 f41066b;
 
     public r5(z5 z5Var, int i10) {
-        this.f41062a = i10;
-        this.f41063b = z5Var;
+        this.f41065a = i10;
+        this.f41066b = z5Var;
     }
 
     @Override
     public final void run(Object obj) {
-        switch (this.f41062a) {
+        switch (this.f41065a) {
             case 0:
-                this.f41063b.S = (ChannelBoostsController.CanApplyBoost) obj;
+                this.f41066b.S = (ChannelBoostsController.CanApplyBoost) obj;
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new i0(3, this.f41063b, (TL_stories.TL_premium_boostsStatus) obj));
+                AndroidUtilities.runOnUIThread(new i0(3, this.f41066b, (TL_stories.TL_premium_boostsStatus) obj));
                 return;
         }
     }

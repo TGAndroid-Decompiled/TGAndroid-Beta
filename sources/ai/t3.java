@@ -55,12 +55,12 @@ public final class t3 implements View.OnClickListener {
                             int i10;
                             TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = (TL_stories.TL_premium_boostsStatus) obj;
                             io ioVar2 = io.this;
-                            TLRPC.Chat chat = ioVar2.f38064x0;
+                            TLRPC.Chat chat = ioVar2.f38067x0;
                             int i11 = chat.level;
                             int i12 = tL_premium_boostsStatus.level;
                             if (i11 != i12) {
                                 chat.level = i12;
-                                ioVar2.getMessagesController().putChat(ioVar2.f38064x0, false);
+                                ioVar2.getMessagesController().putChat(ioVar2.f38067x0, false);
                             }
                             Switch checkBox = ioVar2.M.getCheckBox();
                             if (tL_premium_boostsStatus.level < ioVar2.getMessagesController().channelAutotranslationLevelMin) {
@@ -82,7 +82,7 @@ public final class t3 implements View.OnClickListener {
                             }
                             TLRPC.TL_channels_toggleAutotranslation tL_channels_toggleAutotranslation = new TLRPC.TL_channels_toggleAutotranslation();
                             ioVar2.getMessagesController();
-                            tL_channels_toggleAutotranslation.channel = MessagesController.getInputChannel(ioVar2.f38064x0);
+                            tL_channels_toggleAutotranslation.channel = MessagesController.getInputChannel(ioVar2.f38067x0);
                             tL_channels_toggleAutotranslation.enabled = z11;
                             ioVar2.M.setChecked(z11);
                             zArr2[0] = false;
@@ -122,14 +122,14 @@ public final class t3 implements View.OnClickListener {
                 Long l4 = eo0Var.H0;
                 if (l4 != null && longValue == l4.longValue()) {
                     eo0Var.m0 = true;
-                    eo0Var.f36712f[0].setText("");
+                    eo0Var.f36715f[0].setText("");
                     eo0Var.m0 = false;
                     eo0Var.H0 = 0L;
                     eo0Var.L0();
                 } else {
-                    eo0Var.f36712f[0].setText(LocaleController.getInstance().formatCurrencyString(this.f2186b, false, true, true, eo0Var.C0.invoice.currency));
+                    eo0Var.f36715f[0].setText(LocaleController.getInstance().formatCurrencyString(this.f2186b, false, true, true, eo0Var.C0.invoice.currency));
                 }
-                EditTextBoldCursor editTextBoldCursor = eo0Var.f36712f[0];
+                EditTextBoldCursor editTextBoldCursor = eo0Var.f36715f[0];
                 editTextBoldCursor.setSelection(editTextBoldCursor.length());
                 return;
         }

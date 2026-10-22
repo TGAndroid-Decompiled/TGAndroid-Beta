@@ -6,41 +6,41 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 public final class ma implements ja {
-    public final r9.n f48778a;
-    public final ia f48779b;
+    public final r9.n f48781a;
+    public final ia f48782b;
 
     public ma(Context context, ia iaVar) {
-        this.f48779b = iaVar;
+        this.f48782b = iaVar;
         j5.a aVar = j5.a.e;
         l5.t.b(context);
         l5.r c10 = l5.t.a().c(aVar);
         if (j5.a.d.contains(new i5.c("json"))) {
             new r9.n(new v7.a9(c10, 2));
         }
-        this.f48778a = new r9.n(new v7.a9(c10, 3));
+        this.f48781a = new r9.n(new v7.a9(c10, 3));
     }
 
     @Override
     public final void a(n2.e eVar) {
         f fVar;
         ja.d dVar;
-        ia iaVar = this.f48779b;
+        ia iaVar = this.f48782b;
         iaVar.getClass();
-        l5.s sVar = (l5.s) this.f48778a.get();
+        l5.s sVar = (l5.s) this.f48781a.get();
         iaVar.getClass();
-        pa paVar = pa.f48802c;
+        pa paVar = pa.f48805c;
         u2.c cVar = (u2.c) eVar.f17039b;
         ((v7.d8) eVar.f17040c).h = false;
         v7.d8 d8Var = (v7.d8) eVar.f17040c;
-        d8Var.f48001f = Boolean.FALSE;
-        cVar.f47269b = new l9(d8Var);
+        d8Var.f48004f = Boolean.FALSE;
+        cVar.f47272b = new l9(d8Var);
         try {
             pa.b();
             k7 k7Var = new k7(cVar);
             u2.c cVar2 = new u2.c(6);
             paVar.a(cVar2);
-            HashMap hashMap = new HashMap((HashMap) cVar2.f47269b);
-            HashMap hashMap2 = new HashMap((HashMap) cVar2.f47270c);
+            HashMap hashMap = new HashMap((HashMap) cVar2.f47272b);
+            HashMap hashMap2 = new HashMap((HashMap) cVar2.f47273c);
             e eVar2 = (e) cVar2.d;
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             try {

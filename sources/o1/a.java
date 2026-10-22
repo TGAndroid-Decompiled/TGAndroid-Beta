@@ -116,13 +116,13 @@ public final class a implements Choreographer.FrameCallback {
                 }
                 return;
             default:
-                t11 t11Var = ((v11) this.f17531b).f31115a;
+                t11 t11Var = ((v11) this.f17531b).f31118a;
                 if (t11Var != null) {
                     Handler handler = t11Var.getHandler();
-                    if (handler != null && t11Var.f30392b.get()) {
+                    if (handler != null && t11Var.f30395b.get()) {
                         handler.sendMessage(handler.obtainMessage(0));
                     }
-                    if (((v11) this.f17531b).f31115a.S) {
+                    if (((v11) this.f17531b).f31118a.S) {
                         Choreographer.getInstance().postFrameCallback(this);
                         return;
                     }

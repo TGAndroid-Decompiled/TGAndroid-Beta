@@ -20,28 +20,28 @@ import org.telegram.ui.Components.q6;
 import org.telegram.ui.Components.yq;
 import w7.z5;
 public final class d extends FrameLayout {
-    public final ei.d f50190a;
-    public final q6 f50191b;
-    public final q6 f50192c;
+    public final ei.d f50193a;
+    public final q6 f50194b;
+    public final q6 f50195c;
     public final GiftAuctionController.Auction d;
     public final Paint e;
-    public final zf.n f50193f;
+    public final zf.n f50196f;
     public final yq h;
-    public final yq[] f50194n;
+    public final yq[] f50197n;
 
     public d(Context context, GiftAuctionController.Auction auction) {
         super(context);
         Paint paint = new Paint(1);
         this.e = paint;
-        this.f50193f = new zf.n(new qg.h0(this, 27));
+        this.f50196f = new zf.n(new qg.h0(this, 27));
         this.h = new yq(R.drawable.filled_gift_sell_24, 0);
-        this.f50194n = new yq[1];
+        this.f50197n = new yq[1];
         this.d = auction;
         setPadding(AndroidUtilities.dp(14.0f), AndroidUtilities.dp(9.0f), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(9.0f));
         paint.setShadowLayer(AndroidUtilities.dp(1.0f), 0.0f, 0.0f, 536870912);
-        paint.setColor(h6.x0(null, h6.f20990d6, false));
+        paint.setColor(h6.x0(null, h6.f20993d6, false));
         ei.d dVar = new ei.d(context, null, true);
-        this.f50190a = dVar;
+        this.f50193a = dVar;
         p6 p6Var = dVar.d;
         p6Var.D = false;
         p6Var.E = true;
@@ -50,12 +50,12 @@ public final class d extends FrameLayout {
         p6Var.H = false;
         ?? imageView = new ImageView(context);
         q6 q6Var = new q6(context, false, false, false);
-        this.f50191b = q6Var;
+        this.f50194b = q6Var;
         q6Var.setTextSize(AndroidUtilities.dp(14.0f));
         q6Var.setTypeface(AndroidUtilities.bold());
         q6Var.setTextColor(h6.x0(null, h6.G6, false));
         q6 q6Var2 = new q6(context, false, false, false);
-        this.f50192c = q6Var2;
+        this.f50195c = q6Var2;
         q6Var2.setTextSize(AndroidUtilities.dp(12.0f));
         TLRPC.Document document = auction.gift.sticker;
         if (document != null) {
@@ -76,22 +76,22 @@ public final class d extends FrameLayout {
         spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.Gift2ActiveAuctionsActiveRaiseBid));
         spannableStringBuilder.append((CharSequence) "  ");
         spannableStringBuilder.append((CharSequence) formatDurationNoHours);
-        this.f50190a.g(spannableStringBuilder, z10, true);
+        this.f50193a.g(spannableStringBuilder, z10, true);
     }
 
     public final void b(boolean z10) {
         GiftAuctionController.Auction auction = this.d;
         TL_stars.TL_starGiftAuctionState tL_starGiftAuctionState = auction.auctionStateActive;
         if (tL_starGiftAuctionState != null) {
-            this.f50191b.c(LocaleController.formatString(R.string.Gift2ActiveAuctionsActiveRound, LocaleController.formatNumber(tL_starGiftAuctionState.current_round, ','), LocaleController.formatNumber(auction.auctionStateActive.total_rounds, ',')), z10, true);
+            this.f50194b.c(LocaleController.formatString(R.string.Gift2ActiveAuctionsActiveRound, LocaleController.formatNumber(tL_starGiftAuctionState.current_round, ','), LocaleController.formatNumber(auction.auctionStateActive.total_rounds, ',')), z10, true);
         }
         String h = org.telegram.messenger.g0.h(auction.auctionUserState.bid_amount, ',', new StringBuilder("⭐️"));
         boolean isOutbid = auction.getBidStatus().isOutbid();
-        yq[] yqVarArr = this.f50194n;
-        q6 q6Var = this.f50192c;
+        yq[] yqVarArr = this.f50197n;
+        q6 q6Var = this.f50195c;
         if (isOutbid) {
             q6Var.c(md.Y0(false, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2ActiveAuctionsActiveBidOutbid, h)), 0.66f, yqVarArr), z10, true);
-            q6Var.setTextColor(h6.x0(null, h6.f21228q7, false));
+            q6Var.setTextColor(h6.x0(null, h6.f21231q7, false));
             return;
         }
         q6Var.c(md.Y0(false, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2ActiveAuctionsActiveBidActive, h, Integer.valueOf(auction.getApproximatedMyPlace()))), 0.66f, yqVarArr), z10, true);
@@ -107,7 +107,7 @@ public final class d extends FrameLayout {
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f50193f.b();
+        this.f50196f.b();
     }
 
     @Override

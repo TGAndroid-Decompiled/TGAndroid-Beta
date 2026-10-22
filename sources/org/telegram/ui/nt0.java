@@ -8,23 +8,23 @@ import android.view.ViewPropertyAnimator;
 import android.view.ViewTreeObserver;
 import org.telegram.messenger.AndroidUtilities;
 public final class nt0 implements ViewTreeObserver.OnPreDrawListener {
-    public final hu0 f39685a;
-    public final Integer f39686b;
-    public final PhotoViewer f39687c;
+    public final hu0 f39688a;
+    public final Integer f39689b;
+    public final PhotoViewer f39690c;
 
     public nt0(PhotoViewer photoViewer, hu0 hu0Var, Integer num) {
-        this.f39687c = photoViewer;
-        this.f39685a = hu0Var;
-        this.f39686b = num;
+        this.f39690c = photoViewer;
+        this.f39688a = hu0Var;
+        this.f39689b = num;
     }
 
     @Override
     public final boolean onPreDraw() {
-        PhotoViewer photoViewer = this.f39687c;
-        photoViewer.f33296g0.getViewTreeObserver().removeOnPreDrawListener(this);
+        PhotoViewer photoViewer = this.f39690c;
+        photoViewer.f33299g0.getViewTreeObserver().removeOnPreDrawListener(this);
         photoViewer.F.setTranslationY(-AndroidUtilities.dp(32.0f));
         ViewPropertyAnimator duration = photoViewer.F.animate().alpha(1.0f).translationY(0.0f).setDuration(150L);
-        org.telegram.ui.Components.bs bsVar = org.telegram.ui.Components.bs.f25021f;
+        org.telegram.ui.Components.bs bsVar = org.telegram.ui.Components.bs.f25024f;
         duration.setInterpolator(bsVar).start();
         photoViewer.N0.setTranslationY(-AndroidUtilities.dp(32.0f));
         photoViewer.N0.animate().alpha(1.0f).translationY(0.0f).setDuration(150L).setInterpolator(bsVar).start();
@@ -35,12 +35,12 @@ public final class nt0 implements ViewTreeObserver.OnPreDrawListener {
         photoViewer.S0.setTranslationY(AndroidUtilities.dp(32.0f));
         photoViewer.S0.setAlpha(0.0f);
         photoViewer.S0.animate().alpha(1.0f).translationY(0.0f).setDuration(150L).setInterpolator(bsVar).start();
-        photoViewer.f33405s3.setTranslationY(AndroidUtilities.dp(32.0f));
-        photoViewer.f33405s3.animate().alpha(1.0f).translationY(0.0f).setDuration(150L).setInterpolator(bsVar).start();
-        photoViewer.f33279e0.setAlpha(0.0f);
+        photoViewer.f33408s3.setTranslationY(AndroidUtilities.dp(32.0f));
+        photoViewer.f33408s3.animate().alpha(1.0f).translationY(0.0f).setDuration(150L).setInterpolator(bsVar).start();
+        photoViewer.f33282e0.setAlpha(0.0f);
         photoViewer.L0.setAlpha(0);
-        photoViewer.f33361n4 = 4;
-        photoViewer.f33279e0.invalidate();
+        photoViewer.f33364n4 = 4;
+        photoViewer.f33282e0.invalidate();
         AnimatorSet animatorSet = new AnimatorSet();
         ai.o5 o5Var = photoViewer.P0;
         ObjectAnimator duration2 = ObjectAnimator.ofFloat(o5Var, View.TRANSLATION_Y, o5Var.getTranslationY(), 0.0f).setDuration(220L);
@@ -49,7 +49,7 @@ public final class nt0 implements ViewTreeObserver.OnPreDrawListener {
         Property property = View.ALPHA;
         ObjectAnimator duration3 = ObjectAnimator.ofFloat(o5Var2, property, 1.0f).setDuration(220L);
         duration3.setInterpolator(bsVar);
-        animatorSet.playTogether(ObjectAnimator.ofFloat(photoViewer.f33279e0, property, 0.0f, 1.0f).setDuration(220L), ObjectAnimator.ofFloat(photoViewer.f33323j0, property, 0.0f, 1.0f).setDuration(220L), duration2, duration3);
+        animatorSet.playTogether(ObjectAnimator.ofFloat(photoViewer.f33282e0, property, 0.0f, 1.0f).setDuration(220L), ObjectAnimator.ofFloat(photoViewer.f33326j0, property, 0.0f, 1.0f).setDuration(220L), duration2, duration3);
         animatorSet.addListener(new mt0(this));
         animatorSet.start();
         return true;

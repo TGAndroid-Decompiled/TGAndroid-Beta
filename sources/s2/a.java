@@ -5,7 +5,7 @@ import q3.h;
 import s3.c;
 import w7.m;
 public final class a {
-    public static final a f45878a = new Object();
+    public static final a f45881a = new Object();
 
     public final m a(w wVar) {
         String str = wVar.f4128s;

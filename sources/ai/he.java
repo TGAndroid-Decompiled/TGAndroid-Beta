@@ -38,7 +38,7 @@ public final class he extends AnimatorListenerAdapter {
                     f7 = -this.f1456c;
                 }
                 q00Var.b(f7, i10 + 1);
-                q00Var.f29450y = 0.0f;
+                q00Var.f29453y = 0.0f;
                 q00Var.invalidate();
                 return;
             default:

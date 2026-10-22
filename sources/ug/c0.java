@@ -6,43 +6,43 @@ import android.graphics.RectF;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.d6;
 public final class c0 extends ei.d {
-    public final RectF f47660h0;
-    public boolean f47661i0;
-    public float f47662j0;
-    public final org.telegram.ui.Components.voip.h f47663k0;
+    public final RectF f47663h0;
+    public boolean f47664i0;
+    public float f47665j0;
+    public final org.telegram.ui.Components.voip.h f47666k0;
 
     public c0(Context context, d6 d6Var) {
         super(context, d6Var, true);
-        this.f47660h0 = new RectF();
+        this.f47663h0 = new RectF();
         org.telegram.ui.Components.voip.h hVar = new org.telegram.ui.Components.voip.h();
-        this.f47663k0 = hVar;
-        hVar.f31435n = 1.2f;
-        hVar.f31432k = false;
-        hVar.f31434m = 4.0f;
+        this.f47666k0 = hVar;
+        hVar.f31438n = 1.2f;
+        hVar.f31435k = false;
+        hVar.f31437m = 4.0f;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        if (this.f47661i0) {
-            float f7 = this.f47662j0 + 0.016f;
-            this.f47662j0 = f7;
+        if (this.f47664i0) {
+            float f7 = this.f47665j0 + 0.016f;
+            this.f47665j0 = f7;
             if (f7 > 3.0f) {
-                this.f47661i0 = false;
+                this.f47664i0 = false;
             }
         } else {
-            float f10 = this.f47662j0 - 0.016f;
-            this.f47662j0 = f10;
+            float f10 = this.f47665j0 - 0.016f;
+            this.f47665j0 = f10;
             if (f10 < 1.0f) {
-                this.f47661i0 = true;
+                this.f47664i0 = true;
             }
         }
-        RectF rectF = this.f47660h0;
+        RectF rectF = this.f47663h0;
         rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-        sg.b1.d().f((-getMeasuredWidth()) * 0.1f * this.f47662j0, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+        sg.b1.d().f((-getMeasuredWidth()) * 0.1f * this.f47665j0, 0.0f, getMeasuredWidth(), getMeasuredHeight());
         canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), sg.b1.d().e());
         int measuredWidth = getMeasuredWidth();
-        org.telegram.ui.Components.voip.h hVar = this.f47663k0;
-        hVar.f31428f = measuredWidth;
+        org.telegram.ui.Components.voip.h hVar = this.f47666k0;
+        hVar.f31431f = measuredWidth;
         hVar.a(AndroidUtilities.dp(8.0f), canvas, rectF, null);
         super.onDraw(canvas);
         invalidate();

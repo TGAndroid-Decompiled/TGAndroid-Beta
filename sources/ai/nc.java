@@ -26,11 +26,11 @@ public final class nc implements ImageReceiver.ImageReceiverDelegate {
 
     @Override
     public final void didSetImageBitmap(int i10, String str, Drawable drawable) {
-        org.telegram.messenger.m5.a(this, i10, str, drawable);
+        org.telegram.messenger.n5.a(this, i10, str, drawable);
     }
 
     @Override
     public final void onAnimationReady(ImageReceiver imageReceiver) {
-        org.telegram.messenger.m5.b(this, imageReceiver);
+        org.telegram.messenger.n5.b(this, imageReceiver);
     }
 }

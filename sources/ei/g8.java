@@ -15,7 +15,7 @@ public final class g8 extends dq {
             case 0:
                 return AndroidUtilities.dp(26.0f);
             default:
-                return (int) ((this.f25603b * 2.0f) + this.f25602a);
+                return (int) ((this.f25606b * 2.0f) + this.f25605a);
         }
     }
 
@@ -25,7 +25,7 @@ public final class g8 extends dq {
             case 0:
                 return AndroidUtilities.dp(26.0f);
             default:
-                return (int) ((this.f25603b * 2.0f) + this.f25602a);
+                return (int) ((this.f25606b * 2.0f) + this.f25605a);
         }
     }
 

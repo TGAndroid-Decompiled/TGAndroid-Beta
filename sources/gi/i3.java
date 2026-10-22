@@ -69,7 +69,7 @@ public final class i3 implements Utilities.Callback {
                 int[] iArr = (int[]) obj3;
                 ArrayList arrayList = (ArrayList) obj2;
                 TLRPC.TL_messages_invitedUsers tL_messages_invitedUsers2 = (TLRPC.TL_messages_invitedUsers) obj;
-                re1 re1Var = ((be1) obj5).f35619b;
+                re1 re1Var = ((be1) obj5).f35622b;
                 if (tL_messages_invitedUsers2 != null) {
                     tL_messages_invitedUsers.missing_invitees.addAll(tL_messages_invitedUsers2.missing_invitees);
                 }

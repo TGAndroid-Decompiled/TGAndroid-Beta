@@ -3,18 +3,18 @@ package org.telegram.ui.Components;
 import android.animation.ValueAnimator;
 import android.text.StaticLayout;
 public final class az0 {
-    public final EditTextBoldCursor f24749a;
-    public StaticLayout f24750b;
-    public StaticLayout f24751c;
+    public final EditTextBoldCursor f24752a;
+    public StaticLayout f24753b;
+    public StaticLayout f24754c;
     public StaticLayout d;
     public boolean e;
-    public boolean f24752f;
-    public boolean f24753g;
+    public boolean f24755f;
+    public boolean f24756g;
     public float h;
-    public float f24754i;
-    public ValueAnimator f24755j;
+    public float f24757i;
+    public ValueAnimator f24758j;
 
     public az0(EditTextBoldCursor editTextBoldCursor) {
-        this.f24749a = editTextBoldCursor;
+        this.f24752a = editTextBoldCursor;
     }
 }

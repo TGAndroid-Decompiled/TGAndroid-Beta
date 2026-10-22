@@ -9,17 +9,17 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.LocationController;
 import org.telegram.messenger.R;
 public final class wv0 extends im0 {
-    public final Context f32255c;
+    public final Context f32258c;
     public final yv0 d;
 
     public wv0(yv0 yv0Var, Context context) {
         this.d = yv0Var;
-        this.f32255c = context;
+        this.f32258c = context;
     }
 
     @Override
     public final boolean D(s4.b1 b1Var) {
-        if (b1Var.f45920f == 0) {
+        if (b1Var.f45923f == 0) {
             return true;
         }
         return false;
@@ -41,7 +41,7 @@ public final class wv0 extends im0 {
     @Override
     public final void v(s4.b1 b1Var, int i10) {
         TextView textView;
-        int i11 = b1Var.f45920f;
+        int i11 = b1Var.f45923f;
         if (i11 != 0) {
             if (i11 == 1 && (textView = this.d.e) != null) {
                 textView.setText(LocaleController.formatString("SharingLiveLocationTitle", R.string.SharingLiveLocationTitle, LocaleController.formatPluralString("Chats", LocationController.getLocationsCount(), new Object[0])));
@@ -49,14 +49,14 @@ public final class wv0 extends im0 {
             }
             return;
         }
-        ((org.telegram.ui.Cells.v7) b1Var.f45917a).setDialog(yv0.q(i10 - 1));
+        ((org.telegram.ui.Cells.v7) b1Var.f45920a).setDialog(yv0.q(i10 - 1));
     }
 
     @Override
     public final s4.b1 x(ViewGroup viewGroup, int i10) {
         FrameLayout v7Var;
         org.telegram.ui.ActionBar.d6 d6Var;
-        Context context = this.f32255c;
+        Context context = this.f32258c;
         yv0 yv0Var = this.d;
         if (i10 == 0) {
             d6Var = ((org.telegram.ui.ActionBar.f3) yv0Var).resourcesProvider;

@@ -12,12 +12,12 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.R;
 public final class cu0 extends org.telegram.ui.Components.im0 {
-    public final Context f36056c;
+    public final Context f36059c;
     public final PhotoViewer d;
 
     public cu0(Context context, PhotoViewer photoViewer) {
         this.d = photoViewer;
-        this.f36056c = context;
+        this.f36059c = context;
     }
 
     @Override
@@ -43,19 +43,19 @@ public final class cu0 extends org.telegram.ui.Components.im0 {
     @Override
     public final void v(s4.b1 b1Var, int i10) {
         int i11;
-        org.telegram.ui.Cells.y5 y5Var = (org.telegram.ui.Cells.y5) b1Var.f45917a;
+        org.telegram.ui.Cells.y5 y5Var = (org.telegram.ui.Cells.y5) b1Var.f45920a;
         int dp = AndroidUtilities.dp(85.0f);
         if (i10 != 0) {
             i11 = AndroidUtilities.dp(6.0f);
         } else {
             i11 = 0;
         }
-        y5Var.f23840f = dp;
-        org.telegram.ui.Components.xp xpVar = y5Var.f23839c;
-        org.telegram.ui.Components.w9 w9Var = y5Var.f23837a;
+        y5Var.f23843f = dp;
+        org.telegram.ui.Components.xp xpVar = y5Var.f23842c;
+        org.telegram.ui.Components.w9 w9Var = y5Var.f23840a;
         ai.o5 o5Var = y5Var.e;
         y5Var.h = i11;
-        ((FrameLayout.LayoutParams) y5Var.f23838b.getLayoutParams()).rightMargin = i11;
+        ((FrameLayout.LayoutParams) y5Var.f23841b.getLayoutParams()).rightMargin = i11;
         ((FrameLayout.LayoutParams) w9Var.getLayoutParams()).rightMargin = i11;
         ((FrameLayout.LayoutParams) o5Var.getLayoutParams()).rightMargin = i11;
         w9Var.q(0, true);
@@ -66,7 +66,7 @@ public final class cu0 extends org.telegram.ui.Components.im0 {
             y5Var.setTag(photoEntry);
             o5Var.setVisibility(4);
             String str = photoEntry.thumbPath;
-            Context context = this.f36056c;
+            Context context = this.f36059c;
             if (str != null) {
                 w9Var.f(str, null, context.getResources().getDrawable(R.drawable.nophotos));
             } else if (photoEntry.path != null) {
@@ -81,30 +81,30 @@ public final class cu0 extends org.telegram.ui.Components.im0 {
             } else {
                 w9Var.setImageResource(R.drawable.nophotos);
             }
-            xpVar.f32459a.f(-1, true, false);
+            xpVar.f32462a.f(-1, true, false);
             xpVar.setVisibility(0);
         } else if (obj instanceof MediaController.SearchImage) {
             MediaController.SearchImage searchImage = (MediaController.SearchImage) obj;
             y5Var.setTag(searchImage);
             y5Var.setImage(searchImage);
             o5Var.setVisibility(4);
-            xpVar.f32459a.f(-1, true, false);
+            xpVar.f32462a.f(-1, true, false);
             xpVar.setVisibility(0);
         }
     }
 
     @Override
     public final s4.b1 x(ViewGroup viewGroup, int i10) {
-        Context context = this.f36056c;
+        Context context = this.f36059c;
         ?? frameLayout = new FrameLayout(context);
         new Paint();
         frameLayout.setWillNotDraw(false);
         org.telegram.ui.Components.w9 w9Var = new org.telegram.ui.Components.w9(context);
-        frameLayout.f23837a = w9Var;
+        frameLayout.f23840a = w9Var;
         w9Var.setRoundRadius(AndroidUtilities.dp(4.0f));
         frameLayout.addView(w9Var, w7.z5.c(-1.0f, -1));
         FrameLayout frameLayout2 = new FrameLayout(context);
-        frameLayout.f23838b = frameLayout2;
+        frameLayout.f23841b = frameLayout2;
         frameLayout.addView(frameLayout2, w7.z5.e(42, 42, 53));
         ai.o5 o5Var = new ai.o5(context);
         o5Var.d = new Path();
@@ -125,7 +125,7 @@ public final class cu0 extends org.telegram.ui.Components.im0 {
         textView.setImportantForAccessibility(2);
         o5Var.addView(textView, w7.z5.d(-2, -2.0f, 19, 18.0f, -0.7f, 0.0f, 0.0f));
         org.telegram.ui.Components.xp xpVar = new org.telegram.ui.Components.xp(context, 24, null);
-        frameLayout.f23839c = xpVar;
+        frameLayout.f23842c = xpVar;
         xpVar.setDrawBackgroundAsArc(11);
         xpVar.b(org.telegram.ui.ActionBar.h6.W9, org.telegram.ui.ActionBar.h6.X9, org.telegram.ui.ActionBar.h6.V9);
         frameLayout.addView(xpVar, w7.z5.d(26, 26.0f, 51, 55.0f, 4.0f, 0.0f, 0.0f));

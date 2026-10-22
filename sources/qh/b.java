@@ -1,18 +1,18 @@
 package qh;
 public final class b {
-    public static final b f44725a;
-    public static final b f44726b;
-    public static final b f44727c;
+    public static final b f44728a;
+    public static final b f44729b;
+    public static final b f44730c;
     public static final b d;
     public static final b[] e;
 
     static {
         ?? r02 = new Enum("STATE_FULLY_HIDDEN", 0);
-        f44725a = r02;
+        f44728a = r02;
         ?? r12 = new Enum("STATE_ANIMATING_TO_FULLY_HIDDEN", 1);
-        f44726b = r12;
+        f44729b = r12;
         ?? r32 = new Enum("STATE_ANIMATING_TO_FULLY_VISIBLE", 2);
-        f44727c = r32;
+        f44730c = r32;
         ?? r52 = new Enum("STATE_FULLY_VISIBLE", 3);
         d = r52;
         e = new b[]{r02, r12, r32, r52};

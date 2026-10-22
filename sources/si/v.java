@@ -1,8 +1,8 @@
 package si;
 public final class v {
-    public long f46835a = Long.MIN_VALUE;
-    public long f46836b = Long.MIN_VALUE;
-    public long f46837c = Long.MIN_VALUE;
+    public long f46838a = Long.MIN_VALUE;
+    public long f46839b = Long.MIN_VALUE;
+    public long f46840c = Long.MIN_VALUE;
     public long d;
 
     public v(long j10) {

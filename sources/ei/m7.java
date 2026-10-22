@@ -40,7 +40,7 @@ public final class m7 implements ch.a {
                     if (view instanceof yh.l2) {
                         yh.l2 l2Var = (yh.l2) view;
                         if (l2Var.h == null) {
-                            yh.g2 g2Var = l2Var.f50368f;
+                            yh.g2 g2Var = l2Var.f50371f;
                             ViewGroup viewGroup = p2Var.S;
                             Objects.requireNonNull(g2Var);
                             l2Var.h = new bh.l(g2Var, viewGroup, new org.telegram.ui.x8(g2Var, 0));

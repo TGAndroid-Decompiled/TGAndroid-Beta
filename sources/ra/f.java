@@ -2,26 +2,26 @@ package ra;
 
 import com.google.android.gms.tasks.TaskCompletionSource;
 public final class f implements i {
-    public final j f45175a;
-    public final TaskCompletionSource f45176b;
+    public final j f45178a;
+    public final TaskCompletionSource f45179b;
 
     public f(j jVar, TaskCompletionSource taskCompletionSource) {
-        this.f45175a = jVar;
-        this.f45176b = taskCompletionSource;
+        this.f45178a = jVar;
+        this.f45179b = taskCompletionSource;
     }
 
     @Override
     public final boolean a(Exception exc) {
-        this.f45176b.trySetException(exc);
+        this.f45179b.trySetException(exc);
         return true;
     }
 
     @Override
     public final boolean b(sa.a aVar) {
-        if (aVar.f46154b == 4 && !this.f45175a.a(aVar)) {
-            String str = aVar.f46155c;
+        if (aVar.f46157b == 4 && !this.f45178a.a(aVar)) {
+            String str = aVar.f46158c;
             if (str != null) {
-                this.f45176b.setResult(new a(aVar.e, aVar.f46156f, str));
+                this.f45179b.setResult(new a(aVar.e, aVar.f46159f, str));
                 return true;
             }
             throw new NullPointerException("Null token");

@@ -87,7 +87,7 @@ public class e extends FrameLayout {
     }
 
     public void b() {
-        int i10 = h6.f21096j5;
+        int i10 = h6.f21099j5;
         d6 d6Var = this.J;
         this.d.setTextColor(h6.w0(i10, d6Var));
         this.e.setTextColor(h6.w0(i10, d6Var));
@@ -96,9 +96,9 @@ public class e extends FrameLayout {
         this.h.setProgressColor(h6.w0(i11, d6Var));
         this.H = getContext().getResources().getDrawable(R.drawable.stats_tooltip).mutate();
         int dp = AndroidUtilities.dp(4.0f);
-        this.I = h6.j0(dp, dp, dp, dp, h6.w0(h6.f21061h5, d6Var), h6.w0(h6.f21079i6, d6Var), -16777216);
+        this.I = h6.j0(dp, dp, dp, dp, h6.w0(h6.f21064h5, d6Var), h6.w0(h6.f21082i6, d6Var), -16777216);
         zq zqVar = new zq(this.H, this.I, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f));
-        zqVar.f33024w = true;
+        zqVar.f33027w = true;
         setBackground(zqVar);
     }
 

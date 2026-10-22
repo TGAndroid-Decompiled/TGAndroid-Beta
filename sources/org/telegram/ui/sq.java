@@ -3,28 +3,28 @@ package org.telegram.ui;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class sq implements yp {
-    public final TLObject f41516a;
-    public final hr f41517b;
+    public final TLObject f41519a;
+    public final hr f41520b;
 
     public sq(hr hrVar, TLObject tLObject) {
-        this.f41517b = hrVar;
-        this.f41516a = tLObject;
+        this.f41520b = hrVar;
+        this.f41519a = tLObject;
     }
 
     @Override
     public final void a(TLRPC.User user) {
-        hr.c0(this.f41517b, user);
+        hr.c0(this.f41520b, user);
     }
 
     @Override
     public final void b(int i10, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str) {
-        TLObject tLObject = this.f41516a;
+        TLObject tLObject = this.f41519a;
         if (tLObject instanceof TLRPC.ChannelParticipant) {
             TLRPC.ChannelParticipant channelParticipant = (TLRPC.ChannelParticipant) tLObject;
             channelParticipant.admin_rights = tL_chatAdminRights;
             channelParticipant.banned_rights = tL_chatBannedRights;
             channelParticipant.rank = str;
-            hr.W(this.f41517b, channelParticipant, tL_chatAdminRights, tL_chatBannedRights);
+            hr.W(this.f41520b, channelParticipant, tL_chatAdminRights, tL_chatBannedRights);
         }
     }
 }

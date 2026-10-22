@@ -2,10 +2,10 @@ package org.telegram.ui.Components;
 
 import org.telegram.messenger.MessageObject;
 public final class xb0 extends g.o {
-    public final ic0 f32387c;
+    public final ic0 f32390c;
 
     public xb0(ic0 ic0Var) {
-        this.f32387c = ic0Var;
+        this.f32390c = ic0Var;
     }
 
     @Override
@@ -13,8 +13,8 @@ public final class xb0 extends g.o {
         MessageObject messageObject;
         MessageObject.GroupedMessages a2;
         if (i10 >= 0) {
-            ic0 ic0Var = this.f32387c;
-            if (i10 < ic0Var.f27240r.previewMessages.size() && (a2 = ic0.a(ic0Var, (messageObject = ic0Var.f27240r.previewMessages.get(i10)))) != null) {
+            ic0 ic0Var = this.f32390c;
+            if (i10 < ic0Var.f27243r.previewMessages.size() && (a2 = ic0.a(ic0Var, (messageObject = ic0Var.f27243r.previewMessages.get(i10)))) != null) {
                 return a2.getPosition(messageObject).spanSize;
             }
             return 1000;

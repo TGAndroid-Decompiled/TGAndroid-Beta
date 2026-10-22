@@ -5,21 +5,21 @@ import android.view.View;
 import java.util.ArrayList;
 import org.telegram.messenger.MessageObject;
 public final class lv implements org.telegram.ui.Components.xl0 {
-    public final int f39032a;
-    public final cy f39033b;
+    public final int f39035a;
+    public final cy f39036b;
 
     public lv(cy cyVar, int i10) {
-        this.f39032a = i10;
-        this.f39033b = cyVar;
+        this.f39035a = i10;
+        this.f39036b = cyVar;
     }
 
     @Override
     public final void a(int i10, View view) {
         hg.o0 o0Var;
-        switch (this.f39032a) {
+        switch (this.f39035a) {
             case 0:
-                cy cyVar = this.f39033b;
-                Object obj = cyVar.C0.f32198v0.G(i10).G;
+                cy cyVar = this.f39036b;
+                Object obj = cyVar.C0.f32201v0.G(i10).G;
                 if (obj instanceof MessageObject) {
                     MessageObject messageObject = (MessageObject) obj;
                     Bundle bundle = new Bundle();
@@ -44,9 +44,9 @@ public final class lv implements org.telegram.ui.Components.xl0 {
                     return;
                 }
             default:
-                cy cyVar2 = this.f39033b;
-                cyVar2.f36076b0.I0(true);
-                ArrayList arrayList = cyVar2.f36076b0.V2;
+                cy cyVar2 = this.f39036b;
+                cyVar2.f36079b0.I0(true);
+                ArrayList arrayList = cyVar2.f36079b0.V2;
                 if (arrayList.isEmpty()) {
                     o0Var = hg.q0.f12015a3[i10];
                 } else {

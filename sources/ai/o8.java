@@ -111,7 +111,7 @@ public final class o8 implements Runnable {
                 SharedPreferences.Editor putBoolean = edit2.putBoolean("show_gift_for_" + j11, true);
                 putBoolean.putBoolean(Calendar.getInstance().get(1) + "show_gift_for_" + j11, true).apply();
                 LaunchActivity launchActivity = LaunchActivity.H1;
-                if (launchActivity != null && (ja0Var = launchActivity.f33200x0) != null) {
+                if (launchActivity != null && (ja0Var = launchActivity.f33203x0) != null) {
                     ja0Var.c(true);
                     return;
                 }
@@ -171,7 +171,7 @@ public final class o8 implements Runnable {
                 SharedPreferences.Editor putBoolean2 = edit4.putBoolean("show_gift_for_" + j13, true);
                 putBoolean2.putBoolean(Calendar.getInstance().get(1) + "show_gift_for_" + j13, true).apply();
                 LaunchActivity launchActivity2 = LaunchActivity.H1;
-                if (launchActivity2 != null && (ja0Var2 = launchActivity2.f33200x0) != null) {
+                if (launchActivity2 != null && (ja0Var2 = launchActivity2.f33203x0) != null) {
                     ja0Var2.c(true);
                     return;
                 }

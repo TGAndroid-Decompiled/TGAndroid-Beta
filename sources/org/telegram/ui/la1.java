@@ -6,15 +6,15 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import org.telegram.messenger.ApplicationLoader;
 public final class la1 implements LocationListener {
-    public final ThemeActivity f38878a;
+    public final ThemeActivity f38881a;
 
     public la1(ThemeActivity themeActivity) {
-        this.f38878a = themeActivity;
+        this.f38881a = themeActivity;
     }
 
     @Override
     public final void onLocationChanged(Location location) {
-        ThemeActivity themeActivity = this.f38878a;
+        ThemeActivity themeActivity = this.f38881a;
         if (location == null) {
             return;
         }

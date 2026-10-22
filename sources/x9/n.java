@@ -4,20 +4,20 @@ import android.util.Log;
 import java.io.File;
 import java.util.concurrent.Callable;
 public final class n implements Callable {
-    public final int f49709a;
-    public final o f49710b;
+    public final int f49712a;
+    public final o f49713b;
 
     public n(o oVar, int i10) {
-        this.f49709a = i10;
-        this.f49710b = oVar;
+        this.f49712a = i10;
+        this.f49713b = oVar;
     }
 
     @Override
     public final Object call() {
-        switch (this.f49709a) {
+        switch (this.f49712a) {
             case 0:
                 try {
-                    mi.q qVar = this.f49710b.d;
+                    mi.q qVar = this.f49713b.d;
                     ca.c cVar = (ca.c) qVar.f16974c;
                     cVar.getClass();
                     boolean delete = new File(cVar.f5046b, (String) qVar.f16973b).delete();
@@ -30,15 +30,15 @@ public final class n implements Callable {
                     return Boolean.FALSE;
                 }
             default:
-                m mVar = this.f49710b.f49714f;
-                mi.q qVar2 = mVar.f49697c;
+                m mVar = this.f49713b.f49717f;
+                mi.q qVar2 = mVar.f49700c;
                 ca.c cVar2 = (ca.c) qVar2.f16974c;
                 String str = (String) qVar2.f16973b;
                 cVar2.getClass();
                 boolean z10 = true;
                 if (!new File(cVar2.f5046b, str).exists()) {
                     String e7 = mVar.e();
-                    if (e7 == null || !mVar.f49701j.c(e7)) {
+                    if (e7 == null || !mVar.f49704j.c(e7)) {
                         z10 = false;
                     }
                 } else {

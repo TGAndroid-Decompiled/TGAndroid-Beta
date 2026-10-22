@@ -67,10 +67,10 @@ public final class j5 extends w81 {
                 return;
             case 4:
                 og1 og1Var = (og1) obj;
-                SparseArray sparseArray = og1Var.f39886a;
+                SparseArray sparseArray = og1Var.f39889a;
                 mg1 mg1Var = (mg1) sparseArray.get(i10);
                 if (mg1Var != null) {
-                    n2Var = mg1Var.f39243a;
+                    n2Var = mg1Var.f39246a;
                 } else {
                     org.telegram.ui.ActionBar.n2 V = og1Var.V(i10);
                     mg1 mg1Var2 = new mg1(V);
@@ -78,28 +78,28 @@ public final class j5 extends w81 {
                     n2Var = V;
                     mg1Var = mg1Var2;
                 }
-                if (!mg1Var.f39244b) {
+                if (!mg1Var.f39247b) {
                     n2Var.onFragmentCreate();
-                    mg1Var.f39244b = true;
+                    mg1Var.f39247b = true;
                 }
                 n2Var.setParentLayout(og1Var.getParentLayout());
                 if (n2Var.getFragmentView() == null) {
                     n2Var.performCreateView((Context) this.f1566b);
-                    n2Var.setTitleOverlayText(og1Var.f39890n, og1Var.f39891r, og1Var.f39892s);
+                    n2Var.setTitleOverlayText(og1Var.f39893n, og1Var.f39894r, og1Var.f39895s);
                 }
                 FrameLayout frameLayout2 = (FrameLayout) view;
                 frameLayout2.removeAllViews();
                 View fragmentView = n2Var.getFragmentView();
                 AndroidUtilities.removeFromParent(fragmentView);
                 if (!n2Var.hasOwnBackground() && fragmentView.getBackground() == null) {
-                    fragmentView.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20990d6, false));
+                    fragmentView.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20993d6, false));
                 }
                 frameLayout2.addView(fragmentView, w7.z5.c(-1.0f, -1));
                 if (n2Var.getActionBar() != null && n2Var.getActionBar().K) {
                     AndroidUtilities.removeFromParent(n2Var.getActionBar());
                     frameLayout2.addView(n2Var.getActionBar());
                 }
-                WeakHashMap weakHashMap = r0.i0.f44826a;
+                WeakHashMap weakHashMap = r0.i0.f44829a;
                 r0.y.c(frameLayout2);
                 og1Var.checkSystemBarColors();
                 og1Var.U();

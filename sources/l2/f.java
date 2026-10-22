@@ -121,7 +121,7 @@ public class f implements l.i, i, cp0, ne.f, bh.h, c91, com.google.android.gms.c
 
     @Override
     public void F() {
-        ((m9) this.f15843b).f28450a.invalidate();
+        ((m9) this.f15843b).f28453a.invalidate();
     }
 
     public void G(int i10, long j10) {
@@ -139,27 +139,27 @@ public class f implements l.i, i, cp0, ne.f, bh.h, c91, com.google.android.gms.c
                                         if (i11 != 17) {
                                             if (i11 != 33) {
                                                 fVar.h(i10);
-                                                fVar.f47580y.e = -1;
+                                                fVar.f47583y.e = -1;
                                                 return;
                                             }
                                             fVar.h(i10);
-                                            fVar.f47580y.e = 5;
+                                            fVar.f47583y.e = 5;
                                             return;
                                         }
                                         fVar.h(i10);
-                                        fVar.f47580y.e = 3;
+                                        fVar.f47583y.e = 3;
                                         return;
                                     }
                                     fVar.h(i10);
-                                    fVar.f47580y.e = 1;
+                                    fVar.f47583y.e = 1;
                                     return;
                                 }
                                 fVar.h(i10);
-                                fVar.f47580y.e = 2;
+                                fVar.f47583y.e = 2;
                                 return;
                             case 136:
                                 fVar.h(i10);
-                                u3.e eVar = fVar.f47580y;
+                                u3.e eVar = fVar.f47583y;
                                 if (j10 == 1) {
                                     z10 = true;
                                 }
@@ -170,14 +170,14 @@ public class f implements l.i, i, cp0, ne.f, bh.h, c91, com.google.android.gms.c
                                 return;
                             case 159:
                                 fVar.h(i10);
-                                fVar.f47580y.Q = (int) j10;
+                                fVar.f47583y.Q = (int) j10;
                                 return;
                             case 176:
                                 fVar.h(i10);
-                                fVar.f47580y.f47533n = (int) j10;
+                                fVar.f47583y.f47536n = (int) j10;
                                 return;
                             case 179:
-                                if (!fVar.f47581z) {
+                                if (!fVar.f47584z) {
                                     fVar.g(i10);
                                     fVar.E = fVar.n(j10);
                                     return;
@@ -185,11 +185,11 @@ public class f implements l.i, i, cp0, ne.f, bh.h, c91, com.google.android.gms.c
                                 return;
                             case 186:
                                 fVar.h(i10);
-                                fVar.f47580y.f47534o = (int) j10;
+                                fVar.f47583y.f47537o = (int) j10;
                                 return;
                             case 215:
                                 fVar.h(i10);
-                                fVar.f47580y.d = (int) j10;
+                                fVar.f47583y.d = (int) j10;
                                 return;
                             case 231:
                                 fVar.M = fVar.n(j10);
@@ -198,7 +198,7 @@ public class f implements l.i, i, cp0, ne.f, bh.h, c91, com.google.android.gms.c
                                 fVar.X = (int) j10;
                                 return;
                             case 247:
-                                if (!fVar.f47581z) {
+                                if (!fVar.f47584z) {
                                     fVar.g(i10);
                                     fVar.F = (int) j10;
                                     return;
@@ -209,7 +209,7 @@ public class f implements l.i, i, cp0, ne.f, bh.h, c91, com.google.android.gms.c
                                 return;
                             case 16871:
                                 fVar.h(i10);
-                                fVar.f47580y.h = (int) j10;
+                                fVar.f47583y.h = (int) j10;
                                 return;
                             case 16980:
                                 if (j10 != 3) {
@@ -237,7 +237,7 @@ public class f implements l.i, i, cp0, ne.f, bh.h, c91, com.google.android.gms.c
                                 }
                                 return;
                             case 21420:
-                                fVar.B = j10 + fVar.f47575s;
+                                fVar.B = j10 + fVar.f47578s;
                                 return;
                             case 21432:
                                 int i12 = (int) j10;
@@ -246,34 +246,34 @@ public class f implements l.i, i, cp0, ne.f, bh.h, c91, com.google.android.gms.c
                                     if (i12 != 1) {
                                         if (i12 != 3) {
                                             if (i12 == 15) {
-                                                fVar.f47580y.f47543y = 3;
+                                                fVar.f47583y.f47546y = 3;
                                                 return;
                                             }
                                             return;
                                         }
-                                        fVar.f47580y.f47543y = 1;
+                                        fVar.f47583y.f47546y = 1;
                                         return;
                                     }
-                                    fVar.f47580y.f47543y = 2;
+                                    fVar.f47583y.f47546y = 2;
                                     return;
                                 }
-                                fVar.f47580y.f47543y = 0;
+                                fVar.f47583y.f47546y = 0;
                                 return;
                             case 21680:
                                 fVar.h(i10);
-                                fVar.f47580y.f47536q = (int) j10;
+                                fVar.f47583y.f47539q = (int) j10;
                                 return;
                             case 21682:
                                 fVar.h(i10);
-                                fVar.f47580y.f47538s = (int) j10;
+                                fVar.f47583y.f47541s = (int) j10;
                                 return;
                             case 21690:
                                 fVar.h(i10);
-                                fVar.f47580y.f47537r = (int) j10;
+                                fVar.f47583y.f47540r = (int) j10;
                                 return;
                             case 21930:
                                 fVar.h(i10);
-                                u3.e eVar2 = fVar.f47580y;
+                                u3.e eVar2 = fVar.f47583y;
                                 if (j10 == 1) {
                                     z10 = true;
                                 }
@@ -281,25 +281,25 @@ public class f implements l.i, i, cp0, ne.f, bh.h, c91, com.google.android.gms.c
                                 return;
                             case 21938:
                                 fVar.h(i10);
-                                u3.e eVar3 = fVar.f47580y;
-                                eVar3.f47544z = true;
-                                eVar3.f47535p = (int) j10;
+                                u3.e eVar3 = fVar.f47583y;
+                                eVar3.f47547z = true;
+                                eVar3.f47538p = (int) j10;
                                 return;
                             case 21998:
                                 fVar.h(i10);
-                                fVar.f47580y.f47527g = (int) j10;
+                                fVar.f47583y.f47530g = (int) j10;
                                 return;
                             case 22186:
                                 fVar.h(i10);
-                                fVar.f47580y.T = j10;
+                                fVar.f47583y.T = j10;
                                 return;
                             case 22203:
                                 fVar.h(i10);
-                                fVar.f47580y.U = j10;
+                                fVar.f47583y.U = j10;
                                 return;
                             case 25188:
                                 fVar.h(i10);
-                                fVar.f47580y.R = (int) j10;
+                                fVar.f47583y.R = (int) j10;
                                 return;
                             case 30114:
                                 fVar.Z = j10;
@@ -311,25 +311,25 @@ public class f implements l.i, i, cp0, ne.f, bh.h, c91, com.google.android.gms.c
                                     if (i13 != 1) {
                                         if (i13 != 2) {
                                             if (i13 == 3) {
-                                                fVar.f47580y.f47539t = 3;
+                                                fVar.f47583y.f47542t = 3;
                                                 return;
                                             }
                                             return;
                                         }
-                                        fVar.f47580y.f47539t = 2;
+                                        fVar.f47583y.f47542t = 2;
                                         return;
                                     }
-                                    fVar.f47580y.f47539t = 1;
+                                    fVar.f47583y.f47542t = 1;
                                     return;
                                 }
-                                fVar.f47580y.f47539t = 0;
+                                fVar.f47583y.f47542t = 0;
                                 return;
                             case 2352003:
                                 fVar.h(i10);
-                                fVar.f47580y.f47526f = (int) j10;
+                                fVar.f47583y.f47529f = (int) j10;
                                 return;
                             case 2807729:
-                                fVar.f47576t = j10;
+                                fVar.f47579t = j10;
                                 return;
                             default:
                                 switch (i10) {
@@ -338,37 +338,37 @@ public class f implements l.i, i, cp0, ne.f, bh.h, c91, com.google.android.gms.c
                                         int i14 = (int) j10;
                                         if (i14 != 1) {
                                             if (i14 == 2) {
-                                                fVar.f47580y.C = 1;
+                                                fVar.f47583y.C = 1;
                                                 return;
                                             }
                                             return;
                                         }
-                                        fVar.f47580y.C = 2;
+                                        fVar.f47583y.C = 2;
                                         return;
                                     case 21946:
                                         fVar.h(i10);
                                         int g10 = b2.n.g((int) j10);
                                         if (g10 != -1) {
-                                            fVar.f47580y.B = g10;
+                                            fVar.f47583y.B = g10;
                                             return;
                                         }
                                         return;
                                     case 21947:
                                         fVar.h(i10);
-                                        fVar.f47580y.f47544z = true;
+                                        fVar.f47583y.f47547z = true;
                                         int f7 = b2.n.f((int) j10);
                                         if (f7 != -1) {
-                                            fVar.f47580y.A = f7;
+                                            fVar.f47583y.A = f7;
                                             return;
                                         }
                                         return;
                                     case 21948:
                                         fVar.h(i10);
-                                        fVar.f47580y.D = (int) j10;
+                                        fVar.f47583y.D = (int) j10;
                                         return;
                                     case 21949:
                                         fVar.h(i10);
-                                        fVar.f47580y.E = (int) j10;
+                                        fVar.f47583y.E = (int) j10;
                                         return;
                                     default:
                                         return;
@@ -380,13 +380,13 @@ public class f implements l.i, i, cp0, ne.f, bh.h, c91, com.google.android.gms.c
                 } else if (j10 != 0) {
                     throw w0.a(null, "ContentEncodingOrder " + j10 + " not supported");
                 }
-            } else if (!fVar.f47581z) {
+            } else if (!fVar.f47584z) {
                 fVar.g(i10);
                 if (fVar.G == -1) {
                     fVar.G = j10;
                 }
             }
-        } else if (!fVar.f47581z) {
+        } else if (!fVar.f47584z) {
             fVar.g(i10);
             if (fVar.H == -1) {
                 fVar.H = j10;
@@ -399,10 +399,10 @@ public class f implements l.i, i, cp0, ne.f, bh.h, c91, com.google.android.gms.c
         TLRPC.TL_exportedNoPaidMessagesToken c10;
         r0 r0Var = ((zh.n0) this.f15843b).e;
         if (r0Var != null) {
-            int i11 = r0Var.f52093a;
+            int i11 = r0Var.f52096a;
             if (r0Var.d != i10) {
                 boolean z11 = true;
-                if (r0Var.f52095c.d && i10 == 2) {
+                if (r0Var.f52098c.d && i10 == 2) {
                     i10 = 1;
                 }
                 r0Var.d = i10;
@@ -415,16 +415,16 @@ public class f implements l.i, i, cp0, ne.f, bh.h, c91, com.google.android.gms.c
                 edit.putBoolean("qrNoPaidPermanent", z10).apply();
                 int i12 = r0Var.d;
                 if (i12 == 0) {
-                    if (r0Var.f52097n != 0) {
-                        ConnectionsManager.getInstance(i11).cancelRequest(r0Var.f52097n, true);
-                        r0Var.f52097n = 0;
+                    if (r0Var.f52100n != 0) {
+                        ConnectionsManager.getInstance(i11).cancelRequest(r0Var.f52100n, true);
+                        r0Var.f52100n = 0;
                         return;
                     }
                     return;
                 }
                 if (i12 == 2 && (c10 = r0Var.c()) != null) {
-                    r0Var.f52096f = c10;
-                    r0Var.f52094b.setFreeLink(r0Var.d(c10));
+                    r0Var.f52099f = c10;
+                    r0Var.f52097b.setFreeLink(r0Var.d(c10));
                 }
                 if (r0Var.d != 1) {
                     z11 = false;
@@ -441,12 +441,12 @@ public class f implements l.i, i, cp0, ne.f, bh.h, c91, com.google.android.gms.c
             View[] viewArr2 = e91Var.e;
             if (viewArr[1] != null) {
                 e91Var.F();
-                e91Var.h.put(e91Var.f25864f[1], viewArr2[1]);
+                e91Var.h.put(e91Var.f25867f[1], viewArr2[1]);
                 e91Var.removeView(viewArr2[1]);
                 e91Var.E(viewArr2[0], 0.0f);
                 viewArr2[1] = null;
             }
-            e91Var.z(e91Var.f25862b);
+            e91Var.z(e91Var.f25865b);
             return;
         }
         View[] viewArr3 = e91Var.e;
@@ -455,7 +455,7 @@ public class f implements l.i, i, cp0, ne.f, bh.h, c91, com.google.android.gms.c
         if (view == null) {
             return;
         }
-        if (e91Var.f25870y) {
+        if (e91Var.f25873y) {
             e91Var.E(view, (1.0f - f7) * viewArr3[0].getMeasuredWidth());
             View view2 = viewArr4[0];
             e91Var.E(view2, (-view2.getMeasuredWidth()) * f7);
@@ -469,7 +469,7 @@ public class f implements l.i, i, cp0, ne.f, bh.h, c91, com.google.android.gms.c
 
     @Override
     public void J(bh.a aVar) {
-        aVar.a(((fr0) this.f15843b).getThemedColor(h6.f20990d6));
+        aVar.a(((fr0) this.f15843b).getThemedColor(h6.f20993d6));
         aVar.b(SharedConfig.chatBlurEnabled());
     }
 
@@ -492,14 +492,14 @@ public class f implements l.i, i, cp0, ne.f, bh.h, c91, com.google.android.gms.c
                 return;
             default:
                 pa1 pa1Var = (pa1) ((k0) obj);
-                int i11 = (int) (h6.f21221q * 100.0f);
+                int i11 = (int) (h6.f21224q * 100.0f);
                 int i12 = (int) (f7 * 100.0f);
-                h6.f21221q = f7;
+                h6.f21224q = f7;
                 if (i11 != i12) {
                     ThemeActivity themeActivity = pa1Var.e.e;
-                    tl0 tl0Var = (tl0) themeActivity.f33899b.K(themeActivity.f33906f0);
+                    tl0 tl0Var = (tl0) themeActivity.f33902b.K(themeActivity.f33909f0);
                     if (tl0Var != null) {
-                        ((d9) tl0Var.f45917a).setText(LocaleController.formatString("AutoNightBrightnessInfo", R.string.AutoNightBrightnessInfo, Integer.valueOf((int) (h6.f21221q * 100.0f))));
+                        ((d9) tl0Var.f45920a).setText(LocaleController.formatString("AutoNightBrightnessInfo", R.string.AutoNightBrightnessInfo, Integer.valueOf((int) (h6.f21224q * 100.0f))));
                     }
                     h6.E(true);
                     return;
@@ -526,7 +526,7 @@ public class f implements l.i, i, cp0, ne.f, bh.h, c91, com.google.android.gms.c
         e1Var.getClass();
         int i13 = u0Var.f4053a;
         int i14 = u0Var.f4054b;
-        View view = b1Var.f45917a;
+        View view = b1Var.f45920a;
         if (u0Var2 == null) {
             i10 = view.getLeft();
         } else {
@@ -553,7 +553,7 @@ public class f implements l.i, i, cp0, ne.f, bh.h, c91, com.google.android.gms.c
                     }
                 }
             }
-            b1Var.f45922i = (b1Var.h - i18) + (i18 * 1000);
+            b1Var.f45925i = (b1Var.h - i18) + (i18 * 1000);
             e1Var.s(b1Var, u0Var);
             z10 = true;
         }
@@ -564,7 +564,7 @@ public class f implements l.i, i, cp0, ne.f, bh.h, c91, com.google.android.gms.c
 
     public void Q(int i10, long j10, long j11) {
         u3.f fVar = (u3.f) this.f15843b;
-        fVar.f47566j0.getClass();
+        fVar.f47569j0.getClass();
         if (i10 != 160) {
             if (i10 != 174) {
                 if (i10 != 183) {
@@ -574,50 +574,50 @@ public class f implements l.i, i, cp0, ne.f, bh.h, c91, com.google.android.gms.c
                                 if (i10 != 21968) {
                                     if (i10 != 408125543) {
                                         if (i10 != 475249515) {
-                                            if (i10 == 524531317 && !fVar.f47581z) {
+                                            if (i10 == 524531317 && !fVar.f47584z) {
                                                 if (fVar.d && fVar.K != -1) {
                                                     fVar.J = true;
                                                     return;
                                                 }
-                                                fVar.f47566j0.g0(new t(fVar.v));
-                                                fVar.f47581z = true;
+                                                fVar.f47569j0.g0(new t(fVar.v));
+                                                fVar.f47584z = true;
                                                 return;
                                             }
                                             return;
-                                        } else if (!fVar.f47581z) {
+                                        } else if (!fVar.f47584z) {
                                             fVar.D = true;
                                             return;
                                         } else {
                                             return;
                                         }
                                     }
-                                    long j12 = fVar.f47575s;
+                                    long j12 = fVar.f47578s;
                                     if (j12 != -1 && j12 != j10) {
                                         throw w0.a(null, "Multiple Segment elements not supported");
                                     }
-                                    fVar.f47575s = j10;
-                                    fVar.f47574r = j11;
+                                    fVar.f47578s = j10;
+                                    fVar.f47577r = j11;
                                     return;
                                 }
                                 fVar.h(i10);
-                                fVar.f47580y.f47544z = true;
+                                fVar.f47583y.f47547z = true;
                                 return;
                             }
                             fVar.h(i10);
-                            fVar.f47580y.f47528i = true;
+                            fVar.f47583y.f47531i = true;
                             return;
                         }
                         fVar.A = -1;
                         fVar.B = -1L;
                         return;
-                    } else if (!fVar.f47581z) {
+                    } else if (!fVar.f47584z) {
                         fVar.g(i10);
                         fVar.E = -9223372036854775807L;
                         return;
                     } else {
                         return;
                     }
-                } else if (!fVar.f47581z) {
+                } else if (!fVar.f47584z) {
                     fVar.g(i10);
                     fVar.F = -1;
                     fVar.G = -1L;
@@ -628,19 +628,19 @@ public class f implements l.i, i, cp0, ne.f, bh.h, c91, com.google.android.gms.c
                 }
             }
             ?? obj = new Object();
-            obj.f47533n = -1;
-            obj.f47534o = -1;
-            obj.f47535p = -1;
-            obj.f47536q = -1;
-            obj.f47537r = -1;
-            obj.f47538s = 0;
-            obj.f47539t = -1;
-            obj.f47540u = 0.0f;
+            obj.f47536n = -1;
+            obj.f47537o = -1;
+            obj.f47538p = -1;
+            obj.f47539q = -1;
+            obj.f47540r = -1;
+            obj.f47541s = 0;
+            obj.f47542t = -1;
+            obj.f47543u = 0.0f;
             obj.v = 0.0f;
-            obj.f47541w = 0.0f;
-            obj.f47542x = null;
-            obj.f47543y = -1;
-            obj.f47544z = false;
+            obj.f47544w = 0.0f;
+            obj.f47545x = null;
+            obj.f47546y = -1;
+            obj.f47547z = false;
             obj.A = -1;
             obj.B = -1;
             obj.C = -1;
@@ -664,8 +664,8 @@ public class f implements l.i, i, cp0, ne.f, bh.h, c91, com.google.android.gms.c
             obj.W = false;
             obj.Y = true;
             obj.Z = "eng";
-            fVar.f47580y = obj;
-            obj.f47520a = fVar.f47578w;
+            fVar.f47583y = obj;
+            obj.f47523a = fVar.f47581w;
             return;
         }
         fVar.Y = false;
@@ -681,29 +681,29 @@ public class f implements l.i, i, cp0, ne.f, bh.h, c91, com.google.android.gms.c
                         return;
                     }
                     fVar.h(i10);
-                    fVar.f47580y.Z = str;
+                    fVar.f47583y.Z = str;
                     return;
                 }
                 fVar.h(i10);
-                fVar.f47580y.f47522b = str;
+                fVar.f47583y.f47525b = str;
                 return;
             } else if (!"webm".equals(str) && !"matroska".equals(str)) {
                 throw w0.a(null, "DocType " + str + " not supported");
             } else {
-                fVar.f47578w = str.equals("webm");
+                fVar.f47581w = str.equals("webm");
                 return;
             }
         }
         fVar.h(i10);
-        fVar.f47580y.f47524c = str;
+        fVar.f47583y.f47527c = str;
     }
 
     public void S(b1 b1Var) {
         RecyclerView recyclerView = (RecyclerView) this.f15843b;
         n0 n0Var = recyclerView.f3631x;
-        View view = b1Var.f45917a;
+        View view = b1Var.f45920a;
         qf.e eVar = recyclerView.f3603b;
-        g3 g3Var = n0Var.f46009a;
+        g3 g3Var = n0Var.f46012a;
         t1 t1Var = (t1) g3Var.f16202b;
         int indexOfChild = ((RecyclerView) t1Var.f15525b).indexOfChild(view);
         if (indexOfChild >= 0) {
@@ -719,7 +719,7 @@ public class f implements l.i, i, cp0, ne.f, bh.h, c91, com.google.android.gms.c
         String str;
         List list = (List) treeMap.get("Sec-WebSocket-Protocol");
         if (list != null && (str = (String) list.get(0)) != null && str.length() != 0) {
-            synchronized (((u) this.f15843b).f46975c) {
+            synchronized (((u) this.f15843b).f46978c) {
             }
             throw new tc.n(19, "The protocol contained in the Sec-WebSocket-Protocol header is not supported: ".concat(str), aVar);
         }
@@ -728,9 +728,9 @@ public class f implements l.i, i, cp0, ne.f, bh.h, c91, com.google.android.gms.c
     @Override
     public void U(float f7) {
         gt0 gt0Var = (gt0) this.f15843b;
-        v0.e(gt0Var.P1).k(String.valueOf(qg.m.f44561a.indexOf(gt0Var.W0.getCurrentBrush())), f7);
+        v0.e(gt0Var.P1).k(String.valueOf(qg.m.f44564a.indexOf(gt0Var.W0.getCurrentBrush())), f7);
         qg.t1 t1Var = gt0Var.K1;
-        t1Var.f44659c = f7;
+        t1Var.f44662c = f7;
         gt0Var.t0(t1Var, null);
     }
 
@@ -771,7 +771,7 @@ public class f implements l.i, i, cp0, ne.f, bh.h, c91, com.google.android.gms.c
     @Override
     public void b(Canvas canvas) {
         fr0 fr0Var = (fr0) this.f15843b;
-        canvas.drawColor(fr0Var.getThemedColor(h6.f20990d6));
+        canvas.drawColor(fr0Var.getThemedColor(h6.f20993d6));
         if (SharedConfig.chatBlurEnabled()) {
             fr0Var.P0.b(canvas, -3);
         }
@@ -798,9 +798,9 @@ public class f implements l.i, i, cp0, ne.f, bh.h, c91, com.google.android.gms.c
         int i10 = gt0Var.P1;
         qg.m currentBrush = gt0Var.W0.getCurrentBrush();
         if (currentBrush == null) {
-            return v0.e(i10).f44682i;
+            return v0.e(i10).f44685i;
         }
-        return v0.e(i10).f(String.valueOf(qg.m.f44561a.indexOf(currentBrush)), currentBrush.d());
+        return v0.e(i10).f(String.valueOf(qg.m.f44564a.indexOf(currentBrush)), currentBrush.d());
     }
 
     @Override
@@ -882,7 +882,7 @@ public class f implements l.i, i, cp0, ne.f, bh.h, c91, com.google.android.gms.c
     @Override
     public int r() {
         n0 n0Var = (n0) this.f15843b;
-        return n0Var.f46018m - n0Var.E();
+        return n0Var.f46021m - n0Var.E();
     }
 
     @Override
@@ -904,10 +904,10 @@ public class f implements l.i, i, cp0, ne.f, bh.h, c91, com.google.android.gms.c
         byte[] bArr;
         int i21;
         u3.f fVar = (u3.f) this.f15843b;
-        u3.g gVar = fVar.f47552b;
-        SparseArray sparseArray = fVar.f47554c;
-        x xVar = fVar.f47567k;
-        x xVar2 = fVar.f47563i;
+        u3.g gVar = fVar.f47555b;
+        SparseArray sparseArray = fVar.f47557c;
+        x xVar = fVar.f47570k;
+        x xVar2 = fVar.f47566i;
         int i22 = 2;
         int i23 = 0;
         int i24 = 1;
@@ -921,7 +921,7 @@ public class f implements l.i, i, cp0, ne.f, bh.h, c91, com.google.android.gms.c
                                     if (i10 == 30322) {
                                         fVar.h(i10);
                                         byte[] bArr2 = new byte[i11];
-                                        fVar.f47580y.f47542x = bArr2;
+                                        fVar.f47583y.f47545x = bArr2;
                                         pVar.readFully(bArr2, 0, i11);
                                         return;
                                     }
@@ -929,7 +929,7 @@ public class f implements l.i, i, cp0, ne.f, bh.h, c91, com.google.android.gms.c
                                 }
                                 fVar.h(i10);
                                 byte[] bArr3 = new byte[i11];
-                                fVar.f47580y.f47531l = bArr3;
+                                fVar.f47583y.f47534l = bArr3;
                                 pVar.readFully(bArr3, 0, i11);
                                 return;
                             }
@@ -942,17 +942,17 @@ public class f implements l.i, i, cp0, ne.f, bh.h, c91, com.google.android.gms.c
                         byte[] bArr4 = new byte[i11];
                         pVar.readFully(bArr4, 0, i11);
                         fVar.h(i10);
-                        fVar.f47580y.f47530k = new i0(1, 0, 0, bArr4);
+                        fVar.f47583y.f47533k = new i0(1, 0, 0, bArr4);
                         return;
                     }
                     fVar.h(i10);
                     byte[] bArr5 = new byte[i11];
-                    fVar.f47580y.f47529j = bArr5;
+                    fVar.f47583y.f47532j = bArr5;
                     pVar.readFully(bArr5, 0, i11);
                     return;
                 }
                 fVar.h(i10);
-                u3.e eVar = fVar.f47580y;
+                u3.e eVar = fVar.f47583y;
                 int i25 = eVar.h;
                 if (i25 != 1685485123 && i25 != 1685480259) {
                     pVar.r(i11);
@@ -965,8 +965,8 @@ public class f implements l.i, i, cp0, ne.f, bh.h, c91, com.google.android.gms.c
             } else if (fVar.O == 2) {
                 u3.e eVar2 = (u3.e) sparseArray.get(fVar.U);
                 int i26 = fVar.X;
-                x xVar3 = fVar.f47572p;
-                if (i26 == 4 && "V_VP9".equals(eVar2.f47524c)) {
+                x xVar3 = fVar.f47575p;
+                if (i26 == 4 && "V_VP9".equals(eVar2.f47527c)) {
                     xVar3.K(i11);
                     pVar.readFully(xVar3.f8291a, 0, i11);
                     return;
@@ -979,7 +979,7 @@ public class f implements l.i, i, cp0, ne.f, bh.h, c91, com.google.android.gms.c
         }
         if (fVar.O == 0) {
             fVar.U = (int) gVar.b(pVar, false, true, 8);
-            fVar.V = gVar.f47584c;
+            fVar.V = gVar.f47587c;
             fVar.Q = -9223372036854775807L;
             fVar.O = 1;
             xVar2.K(0);
@@ -990,7 +990,7 @@ public class f implements l.i, i, cp0, ne.f, bh.h, c91, com.google.android.gms.c
             fVar.O = 0;
             return;
         }
-        eVar3.f47521a0.getClass();
+        eVar3.f47524a0.getClass();
         if (fVar.O == 1) {
             fVar.l(pVar, 3);
             int i27 = (xVar2.f8291a[2] & 6) >> 1;
@@ -1140,7 +1140,7 @@ public class f implements l.i, i, cp0, ne.f, bh.h, c91, com.google.android.gms.c
             while (true) {
                 int i44 = fVar.R;
                 if (i44 < fVar.S) {
-                    fVar.i(eVar3, ((fVar.R * eVar3.f47526f) / 1000) + fVar.P, fVar.W, fVar.o(pVar, eVar3, fVar.T[i44], false), 0);
+                    fVar.i(eVar3, ((fVar.R * eVar3.f47529f) / 1000) + fVar.P, fVar.W, fVar.o(pVar, eVar3, fVar.T[i44], false), 0);
                     fVar.R++;
                 } else {
                     fVar.O = 0;

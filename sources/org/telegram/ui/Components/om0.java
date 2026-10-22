@@ -10,26 +10,26 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import java.util.ArrayList;
 public final class om0 extends Drawable implements Animator.AnimatorListener {
-    public final Context f29073a;
-    public ColorFilter f29074b;
+    public final Context f29076a;
+    public ColorFilter f29077b;
     public Drawable d;
     public Drawable e;
-    public ValueAnimator f29076f;
-    public boolean f29078r;
-    public int f29075c = 0;
+    public ValueAnimator f29079f;
+    public boolean f29081r;
+    public int f29078c = 0;
     public float h = 1.0f;
-    public final ArrayList f29077n = new ArrayList();
+    public final ArrayList f29080n = new ArrayList();
 
     public om0(Context context) {
-        this.f29073a = context;
+        this.f29076a = context;
     }
 
     public final void a(int i10, boolean z10) {
-        if (this.f29075c == i10) {
+        if (this.f29078c == i10) {
             return;
         }
-        b(this.f29073a.getDrawable(i10).mutate(), z10);
-        this.f29075c = i10;
+        b(this.f29076a.getDrawable(i10).mutate(), z10);
+        this.f29078c = i10;
     }
 
     public final void b(Drawable drawable, boolean z10) {
@@ -44,19 +44,19 @@ public final class om0 extends Drawable implements Animator.AnimatorListener {
         }
         Drawable drawable2 = this.d;
         if (drawable == drawable2) {
-            drawable2.setColorFilter(this.f29074b);
+            drawable2.setColorFilter(this.f29077b);
             return;
         }
-        this.f29075c = 0;
+        this.f29078c = 0;
         this.e = drawable2;
         this.d = drawable;
-        drawable.setColorFilter(this.f29074b);
+        drawable.setColorFilter(this.f29077b);
         c(this.d, getBounds());
         c(this.e, getBounds());
-        ValueAnimator valueAnimator = this.f29076f;
+        ValueAnimator valueAnimator = this.f29079f;
         if (valueAnimator != null) {
             valueAnimator.removeAllListeners();
-            this.f29076f.cancel();
+            this.f29079f.cancel();
         }
         if (!z10) {
             this.h = 1.0f;
@@ -64,11 +64,11 @@ public final class om0 extends Drawable implements Animator.AnimatorListener {
             return;
         }
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-        this.f29076f = ofFloat;
+        this.f29079f = ofFloat;
         ofFloat.addUpdateListener(new b80(this, 11));
-        this.f29076f.addListener(this);
-        this.f29076f.setDuration(150L);
-        this.f29076f.start();
+        this.f29079f.addListener(this);
+        this.f29079f.setDuration(150L);
+        this.f29079f.start();
     }
 
     public final void c(Drawable drawable, Rect rect) {
@@ -79,7 +79,7 @@ public final class om0 extends Drawable implements Animator.AnimatorListener {
         if (drawable == null) {
             return;
         }
-        if (this.f29078r) {
+        if (this.f29081r) {
             drawable.setBounds(rect);
             return;
         }
@@ -143,7 +143,7 @@ public final class om0 extends Drawable implements Animator.AnimatorListener {
     @Override
     public final void invalidateSelf() {
         super.invalidateSelf();
-        ArrayList arrayList = this.f29077n;
+        ArrayList arrayList = this.f29080n;
         if (arrayList != null) {
             for (int i10 = 0; i10 < arrayList.size(); i10++) {
                 ((View) arrayList.get(i10)).invalidate();
@@ -166,7 +166,7 @@ public final class om0 extends Drawable implements Animator.AnimatorListener {
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        this.f29074b = colorFilter;
+        this.f29077b = colorFilter;
         Drawable drawable = this.d;
         if (drawable != null) {
             drawable.setColorFilter(colorFilter);

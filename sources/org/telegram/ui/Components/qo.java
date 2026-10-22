@@ -3,30 +3,30 @@ package org.telegram.ui.Components;
 import android.view.View;
 import org.telegram.tgnet.TLRPC;
 public final class qo implements View.OnClickListener {
-    public final int f29683a;
-    public final to f29684b;
-    public final TLRPC.Document f29685c;
+    public final int f29686a;
+    public final to f29687b;
+    public final TLRPC.Document f29688c;
 
     public qo(to toVar, TLRPC.Document document, int i10) {
-        this.f29683a = i10;
-        this.f29684b = toVar;
-        this.f29685c = document;
+        this.f29686a = i10;
+        this.f29687b = toVar;
+        this.f29688c = document;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f29683a) {
+        switch (this.f29686a) {
             case 0:
-                so soVar = this.f29684b.d;
+                so soVar = this.f29687b.d;
                 if (soVar != null) {
-                    soVar.d(this.f29685c);
+                    soVar.d(this.f29688c);
                     return;
                 }
                 return;
             default:
-                so soVar2 = this.f29684b.d;
+                so soVar2 = this.f29687b.d;
                 if (soVar2 != null) {
-                    soVar2.d(this.f29685c);
+                    soVar2.d(this.f29688c);
                     return;
                 }
                 return;

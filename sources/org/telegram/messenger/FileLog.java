@@ -297,7 +297,7 @@ public class FileLog {
 
     public static void dumpUnparsedMessage(TLObject tLObject, long j10, int i10) {
         if (BuildVars.DEBUG_PRIVATE_VERSION && BuildVars.LOGS_ENABLED && tLObject != null) {
-            postProtocolDump(new a5(tLObject, gsonDisabled, System.currentTimeMillis(), j10, i10));
+            postProtocolDump(new b5(tLObject, gsonDisabled, System.currentTimeMillis(), j10, i10));
         }
     }
 

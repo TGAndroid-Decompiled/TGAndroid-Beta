@@ -44,7 +44,7 @@ public final class z3 implements View.OnClickListener {
                 return;
             default:
                 final q qVar = this.f15691b.f15145a.f15368a;
-                org.telegram.ui.ActionBar.d6 d6Var = qVar.f28172a;
+                org.telegram.ui.ActionBar.d6 d6Var = qVar.f28175a;
                 w3 w3Var = qVar.f15448r;
                 a R2 = w3Var.R2();
                 int i10 = this.f15692c;

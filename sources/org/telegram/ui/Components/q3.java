@@ -12,7 +12,7 @@ public final class q3 extends l61 {
 
     @Override
     public final void onClick(View view) {
-        this.e.f20605a.L0.run();
+        this.e.f20608a.L0.run();
         super.onClick(view);
     }
 }

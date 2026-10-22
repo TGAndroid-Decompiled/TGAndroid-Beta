@@ -9,9 +9,9 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class oc extends mb {
-    public Runnable f28983a;
-    public Runnable f28984b;
-    public qc f28985c;
+    public Runnable f28986a;
+    public Runnable f28987b;
+    public qc f28988c;
     public final TextView d;
     public boolean e;
 
@@ -31,7 +31,7 @@ public final class oc extends mb {
             textView.setTextSize(1, 14.0f);
             textView.setTypeface(AndroidUtilities.bold());
             textView.setTextColor(x02);
-            org.telegram.messenger.mk.m(R.string.UndoNoCaps, textView, 16);
+            org.telegram.messenger.ok.m(R.string.UndoNoCaps, textView, 16);
             float f7 = z11 ? 34.0f : 12.0f;
             boolean z12 = LocaleController.isRTL;
             w7.f6.a(textView, z12 ? 12.0f : f7, 8.0f, z12 ? f7 : 12.0f, 8.0f);
@@ -52,13 +52,13 @@ public final class oc extends mb {
 
     @Override
     public final void a(qc qcVar) {
-        this.f28985c = qcVar;
+        this.f28988c = qcVar;
     }
 
     @Override
     public final void b() {
-        this.f28985c = null;
-        Runnable runnable = this.f28984b;
+        this.f28988c = null;
+        Runnable runnable = this.f28987b;
         if (runnable != null && !this.e) {
             runnable.run();
         }
@@ -72,13 +72,13 @@ public final class oc extends mb {
     }
 
     public final void f() {
-        if (this.f28985c != null) {
+        if (this.f28988c != null) {
             this.e = true;
-            Runnable runnable = this.f28983a;
+            Runnable runnable = this.f28986a;
             if (runnable != null) {
                 runnable.run();
             }
-            qc qcVar = this.f28985c;
+            qc qcVar = this.f28988c;
             if (qcVar != null) {
                 qcVar.b();
             }

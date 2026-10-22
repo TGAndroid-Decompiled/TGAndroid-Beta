@@ -8,38 +8,38 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 public final class d1 implements org.telegram.ui.ActionBar.a2, BillingController.ProductDetailsResponseListenerLegacy {
-    public final int f25301a;
-    public final Object f25302b;
-    public final Object f25303c;
+    public final int f25304a;
+    public final Object f25305b;
+    public final Object f25306c;
     public final Object d;
     public final Object e;
-    public final Object f25304f;
+    public final Object f25307f;
     public final Object h;
 
     public d1(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, Object obj6, int i10) {
-        this.f25301a = i10;
-        this.f25302b = obj;
-        this.f25303c = obj2;
+        this.f25304a = i10;
+        this.f25305b = obj;
+        this.f25306c = obj2;
         this.d = obj3;
         this.e = obj4;
-        this.f25304f = obj5;
+        this.f25307f = obj5;
         this.h = obj6;
     }
 
     @Override
     public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f25301a) {
+        switch (this.f25304a) {
             case 0:
-                TLRPC.User user = (TLRPC.User) this.f25302b;
-                AccountInstance accountInstance = (AccountInstance) this.f25303c;
+                TLRPC.User user = (TLRPC.User) this.f25305b;
+                AccountInstance accountInstance = (AccountInstance) this.f25306c;
                 org.telegram.ui.qn qnVar = (org.telegram.ui.qn) this.d;
                 TLRPC.Chat chat = (TLRPC.Chat) this.e;
-                MessageObject messageObject = (MessageObject) this.f25304f;
+                MessageObject messageObject = (MessageObject) this.f25307f;
                 org.telegram.ui.Cells.a2[] a2VarArr = (org.telegram.ui.Cells.a2[]) this.h;
                 if (user != null) {
-                    accountInstance.getMessagesStorage().deleteUserChatHistory(qnVar.a(), user.f20423id);
+                    accountInstance.getMessagesStorage().deleteUserChatHistory(qnVar.a(), user.f20426id);
                 } else {
-                    accountInstance.getMessagesStorage().deleteUserChatHistory(qnVar.a(), -chat.f20276id);
+                    accountInstance.getMessagesStorage().deleteUserChatHistory(qnVar.a(), -chat.f20279id);
                 }
                 TLRPC.TL_contacts_blockFromReplies tL_contacts_blockFromReplies = new TLRPC.TL_contacts_blockFromReplies();
                 tL_contacts_blockFromReplies.msg_id = messageObject.getId();
@@ -58,38 +58,38 @@ public final class d1 implements org.telegram.ui.ActionBar.a2, BillingController
                 accountInstance.getConnectionsManager().sendRequest(tL_contacts_blockFromReplies, new y1(accountInstance, 0));
                 return;
             default:
-                org.telegram.ui.em0 em0Var = (org.telegram.ui.em0) this.f25302b;
-                org.telegram.ui.vm0 vm0Var = em0Var.f36687a;
-                vm0Var.Y[0].setText((String) this.f25303c);
+                org.telegram.ui.em0 em0Var = (org.telegram.ui.em0) this.f25305b;
+                org.telegram.ui.vm0 vm0Var = em0Var.f36690a;
+                vm0Var.Y[0].setText((String) this.f25306c);
                 vm0Var.Y[1].setText((String) this.d);
                 vm0Var.Y[2].setText((String) this.e);
                 vm0Var.M1(true, true);
-                em0Var.c((org.telegram.ui.ck0) this.f25304f, (mi.q) this.h);
+                em0Var.c((org.telegram.ui.ck0) this.f25307f, (mi.q) this.h);
                 return;
         }
     }
 
     @Override
     public void onProductDetailsResponse(c5.i iVar, List list) {
-        switch (this.f25301a) {
+        switch (this.f25304a) {
             case 2:
-                TLRPC.TL_inputStorePaymentPremiumGiftCode tL_inputStorePaymentPremiumGiftCode = (TLRPC.TL_inputStorePaymentPremiumGiftCode) this.f25302b;
-                Utilities.Callback callback = (Utilities.Callback) this.f25304f;
+                TLRPC.TL_inputStorePaymentPremiumGiftCode tL_inputStorePaymentPremiumGiftCode = (TLRPC.TL_inputStorePaymentPremiumGiftCode) this.f25305b;
+                Utilities.Callback callback = (Utilities.Callback) this.f25307f;
                 org.telegram.ui.ActionBar.n2 n2Var = (org.telegram.ui.ActionBar.n2) this.h;
                 c5.l a2 = ((c5.p) list.get(0)).a();
                 tL_inputStorePaymentPremiumGiftCode.currency = a2.f4764c;
-                tL_inputStorePaymentPremiumGiftCode.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(((TLRPC.TL_premiumGiftCodeOption) this.f25303c).currency)) * (a2.f4763b / Math.pow(10.0d, 6.0d)));
+                tL_inputStorePaymentPremiumGiftCode.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(((TLRPC.TL_premiumGiftCodeOption) this.f25306c).currency)) * (a2.f4763b / Math.pow(10.0d, 6.0d)));
                 TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore = new TLRPC.TL_payments_canPurchaseStore();
                 tL_payments_canPurchaseStore.purpose = tL_inputStorePaymentPremiumGiftCode;
                 ((ConnectionsManager) this.d).sendRequest(tL_payments_canPurchaseStore, new ai.f8((Utilities.Callback) this.e, list, iVar, callback, n2Var, tL_inputStorePaymentPremiumGiftCode, 4));
                 return;
             default:
-                TLRPC.TL_inputStorePaymentPremiumGiveaway tL_inputStorePaymentPremiumGiveaway = (TLRPC.TL_inputStorePaymentPremiumGiveaway) this.f25302b;
-                ug.u uVar = (ug.u) this.f25304f;
+                TLRPC.TL_inputStorePaymentPremiumGiveaway tL_inputStorePaymentPremiumGiveaway = (TLRPC.TL_inputStorePaymentPremiumGiveaway) this.f25305b;
+                ug.u uVar = (ug.u) this.f25307f;
                 org.telegram.ui.ActionBar.n2 n2Var2 = (org.telegram.ui.ActionBar.n2) this.h;
                 c5.l a10 = ((c5.p) list.get(0)).a();
                 tL_inputStorePaymentPremiumGiveaway.currency = a10.f4764c;
-                tL_inputStorePaymentPremiumGiveaway.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(((TLRPC.TL_premiumGiftCodeOption) this.f25303c).currency)) * (a10.f4763b / Math.pow(10.0d, 6.0d)));
+                tL_inputStorePaymentPremiumGiveaway.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(((TLRPC.TL_premiumGiftCodeOption) this.f25306c).currency)) * (a10.f4763b / Math.pow(10.0d, 6.0d)));
                 TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore2 = new TLRPC.TL_payments_canPurchaseStore();
                 tL_payments_canPurchaseStore2.purpose = tL_inputStorePaymentPremiumGiveaway;
                 ((ConnectionsManager) this.d).sendRequest(tL_payments_canPurchaseStore2, new ai.f8((ug.u) this.e, list, iVar, uVar, n2Var2, tL_inputStorePaymentPremiumGiveaway, 3));
@@ -98,12 +98,12 @@ public final class d1 implements org.telegram.ui.ActionBar.a2, BillingController
     }
 
     public d1(TLRPC.User user, AccountInstance accountInstance, org.telegram.ui.qn qnVar, TLRPC.Chat chat, MessageObject messageObject, org.telegram.ui.Cells.a2[] a2VarArr, org.telegram.ui.ActionBar.d6 d6Var) {
-        this.f25301a = 0;
-        this.f25302b = user;
-        this.f25303c = accountInstance;
+        this.f25304a = 0;
+        this.f25305b = user;
+        this.f25306c = accountInstance;
         this.d = qnVar;
         this.e = chat;
-        this.f25304f = messageObject;
+        this.f25307f = messageObject;
         this.h = a2VarArr;
     }
 }

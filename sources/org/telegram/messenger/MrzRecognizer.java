@@ -439,15 +439,15 @@ public class MrzRecognizer {
             int i13 = mVar.d;
             int i14 = 6;
             int i15 = 4;
-            if (i13 == 12 && mVar.f45124y != null) {
+            if (i13 == 12 && mVar.f45127y != null) {
                 Result result = new Result();
-                if ("ID".equals(mVar.f45124y.f45087a)) {
+                if ("ID".equals(mVar.f45127y.f45090a)) {
                     i10 = 2;
                 } else {
                     i10 = 4;
                 }
                 result.type = i10;
-                String str = mVar.f45124y.f45096y;
+                String str = mVar.f45127y.f45099y;
                 str.getClass();
                 if (!str.equals("CAN")) {
                     if (str.equals("USA")) {
@@ -458,11 +458,11 @@ public class MrzRecognizer {
                     result.issuingCountry = "CA";
                     result.nationality = "CA";
                 }
-                result.firstName = capitalize(mVar.f45124y.f45088b);
-                result.lastName = capitalize(mVar.f45124y.d);
-                result.middleName = capitalize(mVar.f45124y.f45089c);
-                r8.e eVar = mVar.f45124y;
-                result.number = eVar.f45093s;
+                result.firstName = capitalize(mVar.f45127y.f45091b);
+                result.lastName = capitalize(mVar.f45127y.d);
+                result.middleName = capitalize(mVar.f45127y.f45092c);
+                r8.e eVar = mVar.f45127y;
+                result.number = eVar.f45096s;
                 String str2 = eVar.e;
                 if (str2 != null) {
                     if (!str2.equals("1")) {
@@ -479,25 +479,25 @@ public class MrzRecognizer {
                     i14 = 2;
                 }
                 try {
-                    String str3 = mVar.f45124y.f45095x;
+                    String str3 = mVar.f45127y.f45098x;
                     if (str3 != null && str3.length() == 8) {
-                        result.birthYear = Integer.parseInt(mVar.f45124y.f45095x.substring(i11, i11 + 4));
-                        result.birthMonth = Integer.parseInt(mVar.f45124y.f45095x.substring(i15, i15 + 2));
-                        result.birthDay = Integer.parseInt(mVar.f45124y.f45095x.substring(i14, i14 + 2));
+                        result.birthYear = Integer.parseInt(mVar.f45127y.f45098x.substring(i11, i11 + 4));
+                        result.birthMonth = Integer.parseInt(mVar.f45127y.f45098x.substring(i15, i15 + 2));
+                        result.birthDay = Integer.parseInt(mVar.f45127y.f45098x.substring(i14, i14 + 2));
                     }
-                    String str4 = mVar.f45124y.f45094w;
+                    String str4 = mVar.f45127y.f45097w;
                     if (str4 != null && str4.length() == 8) {
-                        result.expiryYear = Integer.parseInt(mVar.f45124y.f45094w.substring(i11, i11 + 4));
-                        result.expiryMonth = Integer.parseInt(mVar.f45124y.f45094w.substring(i15, i15 + 2));
-                        result.expiryDay = Integer.parseInt(mVar.f45124y.f45094w.substring(i14, i14 + 2));
+                        result.expiryYear = Integer.parseInt(mVar.f45127y.f45097w.substring(i11, i11 + 4));
+                        result.expiryMonth = Integer.parseInt(mVar.f45127y.f45097w.substring(i15, i15 + 2));
+                        result.expiryDay = Integer.parseInt(mVar.f45127y.f45097w.substring(i14, i14 + 2));
                     }
                 } catch (NumberFormatException unused) {
                 }
                 return result;
             }
-            if (i13 == 7 && mVar.f45115a == 2048 && mVar.f45116b.matches("^[A-Za-z0-9=]+$")) {
+            if (i13 == 7 && mVar.f45118a == 2048 && mVar.f45119b.matches("^[A-Za-z0-9=]+$")) {
                 try {
-                    String[] split = new String(Base64.decode(mVar.f45116b, 0), "windows-1251").split("\\|");
+                    String[] split = new String(Base64.decode(mVar.f45119b, 0), "windows-1251").split("\\|");
                     if (split.length >= 10) {
                         Result result2 = new Result();
                         result2.type = 4;

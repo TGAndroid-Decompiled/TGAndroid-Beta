@@ -24,7 +24,7 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.mk;
+import org.telegram.messenger.ok;
 import org.telegram.ui.Components.bs;
 import org.telegram.ui.Components.e61;
 import org.telegram.ui.Components.u90;
@@ -273,7 +273,7 @@ public class x3 extends View {
                 i12 = Math.max(max, spanEnd2);
                 if (i12 - max > 0) {
                     Typeface typeface = textPaint3.getTypeface();
-                    textPaint3.setTypeface(e61VarArr[i13].f25779a);
+                    textPaint3.setTypeface(e61VarArr[i13].f25782a);
                     textPaint3.setTypeface(typeface);
                     f7 = textPaint3.measureText(spanned, max, i12) + f7;
                 }
@@ -312,7 +312,7 @@ public class x3 extends View {
         if (this.A0) {
             int dp = AndroidUtilities.dp(64.0f);
             float currentTimeMillis = ((float) ((System.currentTimeMillis() - this.I0) % 4000)) / 4000.0f;
-            float b10 = mk.b(this.f10094w0 * 4.0f, dp * 2, currentTimeMillis, -dp);
+            float b10 = ok.b(this.f10094w0 * 4.0f, dp * 2, currentTimeMillis, -dp);
             this.G0.reset();
             this.G0.postTranslate(this.f10087r0.left + b10, 0.0f);
             this.F0.setLocalMatrix(this.G0);
@@ -662,7 +662,7 @@ public class x3 extends View {
         invalidate();
         Runnable runnable2 = this.f10080l0;
         if (runnable2 != null) {
-            AndroidUtilities.runOnUIThread(runnable2, f6Var.f26086c * ((float) f6Var.f26088g));
+            AndroidUtilities.runOnUIThread(runnable2, f6Var.f26089c * ((float) f6Var.f26091g));
         }
         this.Q.d(true);
     }
@@ -687,7 +687,7 @@ public class x3 extends View {
             return charSequence;
         }
         if (!this.I) {
-            return this.H.f29231i;
+            return this.H.f29234i;
         }
         StaticLayout staticLayout = this.L;
         if (staticLayout != null) {
@@ -700,7 +700,7 @@ public class x3 extends View {
         if (this.I) {
             return this.J;
         }
-        return this.H.f29224a;
+        return this.H.f29227a;
     }
 
     public final void h(int i10) {
@@ -736,8 +736,8 @@ public class x3 extends View {
             this.d = Math.max(this.d, vj0Var3.r());
         }
         vj0 vj0Var4 = this.f10070c0;
-        this.f10074f0 = vj0Var4.f31266b;
-        this.f10075g0 = vj0Var4.f31268c;
+        this.f10074f0 = vj0Var4.f31269b;
+        this.f10075g0 = vj0Var4.f31271c;
         this.f10076h0 = true;
     }
 
@@ -880,7 +880,7 @@ public class x3 extends View {
             this.f10082n0 = ofFloat;
             ofFloat.addUpdateListener(new ah.c0(this, 27));
             this.f10082n0.addListener(new ah.b(this, 19));
-            this.f10082n0.setInterpolator(bs.f25025k);
+            this.f10082n0.setInterpolator(bs.f25028k);
             this.f10082n0.setDuration(300L);
             this.f10082n0.start();
         }

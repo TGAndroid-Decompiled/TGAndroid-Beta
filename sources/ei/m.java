@@ -163,7 +163,7 @@ public abstract class m extends FrameLayout {
         this.S = new org.telegram.ui.Components.na(jaVar, this, 8, false);
         this.Q = new org.telegram.ui.Components.na(jaVar, this, 9, false);
         jVar.f4417j = true;
-        int i17 = org.telegram.ui.ActionBar.h6.f20990d6;
+        int i17 = org.telegram.ui.ActionBar.h6.f20993d6;
         jVar.a(new f(d6Var, i17, 0.0f, 0));
         jVar.f4415g.setColor(0);
         jVar.invalidateSelf();
@@ -220,12 +220,12 @@ public abstract class m extends FrameLayout {
         Drawable mutate = context.getResources().getDrawable(R.drawable.input_done).mutate();
         this.h = mutate;
         mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.U5, false), PorterDuff.Mode.SRC_IN));
-        zq zqVar = new zq(org.telegram.ui.ActionBar.h6.K(AndroidUtilities.dp(18.0f), org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21403zf, d6Var)), mutate, 0, AndroidUtilities.dp(1.0f));
+        zq zqVar = new zq(org.telegram.ui.ActionBar.h6.K(AndroidUtilities.dp(18.0f), org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21406zf, d6Var)), mutate, 0, AndroidUtilities.dp(1.0f));
         this.f9407n = zqVar;
         int dp = AndroidUtilities.dp(36.0f);
         int dp2 = AndroidUtilities.dp(36.0f);
         zqVar.h = dp;
-        zqVar.f33021n = dp2;
+        zqVar.f33024n = dp2;
         jVar3.setImageDrawable(zqVar);
         jVar3.setScaleType(ImageView.ScaleType.CENTER);
         jVar3.setContentDescription(LocaleController.getString(R.string.Done));
@@ -330,7 +330,7 @@ public abstract class m extends FrameLayout {
                             this.L.b(false);
                             gVar.getEditText().setForceCursorEnd(true);
                             gVar.getEditText().requestFocus();
-                            lu luVar = gVar.f29710a;
+                            lu luVar = gVar.f29713a;
                             luVar.requestFocus();
                             AndroidUtilities.showKeyboard(luVar);
                             gVar.getEditText().setScrollY(0);
@@ -427,7 +427,7 @@ public abstract class m extends FrameLayout {
     }
 
     public int getEditTextHeight() {
-        return (int) this.f9418v0.f26086c;
+        return (int) this.f9418v0.f26089c;
     }
 
     public int getEditTextHeightClosedKeyboard() {
@@ -443,7 +443,7 @@ public abstract class m extends FrameLayout {
     }
 
     public float getOver2Alpha() {
-        return this.M0.f26086c;
+        return this.M0.f26089c;
     }
 
     public int getSelectionLength() {
@@ -527,7 +527,7 @@ public abstract class m extends FrameLayout {
 
     public final boolean p() {
         g gVar = this.f9399f;
-        boolean z10 = gVar.f29718x;
+        boolean z10 = gVar.f29721x;
         b4 b4Var = this.L;
         if (z10 && gVar.getEmojiView() != null) {
             if (b4Var.c()) {
@@ -653,7 +653,7 @@ public abstract class m extends FrameLayout {
             }
             this.f9406l0 = ObjectAnimator.ofFloat(view, FrameLayout.TRANSLATION_Y, view.getTranslationY(), -max);
             if (max > AndroidUtilities.dp(20.0f)) {
-                this.f9406l0.setInterpolator(org.telegram.ui.ActionBar.o1.f21632w);
+                this.f9406l0.setInterpolator(org.telegram.ui.ActionBar.o1.f21635w);
                 this.f9406l0.setDuration(250L);
             } else {
                 this.f9406l0.setInterpolator(bs.h);
@@ -676,7 +676,7 @@ public abstract class m extends FrameLayout {
 
     public void y() {
         if (this.M != null) {
-            float translationY = ((View) getParent()).getTranslationY() - this.f9418v0.f26086c;
+            float translationY = ((View) getParent()).getTranslationY() - this.f9418v0.f26089c;
             if (this.M.getY() != translationY) {
                 this.M.setTranslationY(translationY);
                 this.M.invalidate();

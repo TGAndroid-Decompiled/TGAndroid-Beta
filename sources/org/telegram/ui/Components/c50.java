@@ -3,16 +3,16 @@ package org.telegram.ui.Components;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class c50 {
-    public final TLObject f25102a;
-    public TLRPC.User f25103b;
-    public final int f25104c;
+    public final TLObject f25105a;
+    public TLRPC.User f25106b;
+    public final int f25107c;
     public final boolean d;
     public boolean e;
 
     public c50(int i10, TLObject tLObject) {
         boolean z10;
-        this.f25102a = tLObject;
-        this.f25104c = i10;
+        this.f25105a = tLObject;
+        this.f25107c = i10;
         if ((tLObject instanceof TLRPC.User) && ((TLRPC.User) tLObject).self) {
             z10 = true;
         } else {

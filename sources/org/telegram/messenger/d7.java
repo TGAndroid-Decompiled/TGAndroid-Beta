@@ -1,34 +1,26 @@
 package org.telegram.messenger;
-
-import org.telegram.tgnet.TLRPC;
 public final class d7 implements Runnable {
-    public final int f18160a;
-    public final MediaDataController f18161b;
-    public final TLRPC.TL_messages_stickerSet f18162c;
+    public final int f18145a;
+    public final MediaDataController f18146b;
+    public final long f18147c;
 
-    public d7(MediaDataController mediaDataController, TLRPC.TL_messages_stickerSet tL_messages_stickerSet, int i10) {
-        this.f18160a = i10;
-        this.f18161b = mediaDataController;
-        this.f18162c = tL_messages_stickerSet;
+    public d7(MediaDataController mediaDataController, long j10, int i10) {
+        this.f18145a = i10;
+        this.f18146b = mediaDataController;
+        this.f18147c = j10;
     }
 
     @Override
     public final void run() {
-        switch (this.f18160a) {
+        switch (this.f18145a) {
             case 0:
-                this.f18161b.lambda$saveStickerSetIntoCache$40(this.f18162c);
+                MediaDataController.H0(this.f18146b, this.f18147c);
                 return;
             case 1:
-                this.f18161b.lambda$loadGroupStickerSet$45(this.f18162c);
-                return;
-            case 2:
-                this.f18161b.lambda$loadGroupStickerSet$43(this.f18162c);
-                return;
-            case 3:
-                this.f18161b.lambda$putSetToCache$47(this.f18162c);
+                MediaDataController.K2(this.f18146b, this.f18147c);
                 return;
             default:
-                this.f18161b.lambda$replaceStickerSet$28(this.f18162c);
+                MediaDataController.z2(this.f18146b, this.f18147c);
                 return;
         }
     }

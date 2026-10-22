@@ -66,17 +66,17 @@ public final class ua implements Utilities.Callback {
             case 1:
                 org.telegram.ui.ActionBar.n2 n2Var = (org.telegram.ui.ActionBar.n2) obj4;
                 TLRPC.Chat chat = (TLRPC.Chat) obj3;
-                long j10 = ((TLRPC.Chat) obj2).f20276id;
+                long j10 = ((TLRPC.Chat) obj2).f20279id;
                 boolean booleanValue = ((Boolean) obj).booleanValue();
                 boolean isChannel = ChatObject.isChannel(chat);
                 int i12 = this.f2270b;
                 if (!isChannel) {
                     org.telegram.ui.ActionBar.b2 b2Var = new org.telegram.ui.ActionBar.b2(n2Var.getContext(), 3, null);
                     b2Var.r(250L);
-                    MessagesController.getInstance(i12).convertToMegaGroup(n2Var.getParentActivity(), chat.f20276id, n2Var, new hi.m0(b2Var, n2Var, i12, j10, booleanValue));
+                    MessagesController.getInstance(i12).convertToMegaGroup(n2Var.getParentActivity(), chat.f20279id, n2Var, new hi.m0(b2Var, n2Var, i12, j10, booleanValue));
                     return;
                 }
-                long j11 = chat.f20276id;
+                long j11 = chat.f20279id;
                 MessagesController.getInstance(i12).linkCommunity(-j11, j10, booleanValue, new hi.n0(n2Var, j11, 0));
                 return;
             case 2:
@@ -109,7 +109,7 @@ public final class ua implements Utilities.Callback {
                 aw awVar = (aw) obj4;
                 int[] iArr = (int[]) obj3;
                 ArrayList arrayList = (ArrayList) obj2;
-                org.telegram.ui.ActionBar.n2 n2Var2 = awVar.f24726c;
+                org.telegram.ui.ActionBar.n2 n2Var2 = awVar.f24729c;
                 iArr[0] = iArr[0] + 1;
                 if (((Boolean) obj).booleanValue()) {
                     iArr[1] = iArr[1] + 1;
@@ -159,19 +159,19 @@ public final class ua implements Utilities.Callback {
                 MessageObject messageObject = (MessageObject) obj2;
                 String str2 = (String) obj;
                 if (i11 == photoViewer.Q4) {
-                    photoViewer.f33371o5 = str2;
-                    if (translateController.isContextTranslateEnabled() && translateController.canTranslatePhoto(messageObject, photoViewer.f33371o5)) {
-                        if (photoViewer.f33362n5) {
-                            photoViewer.f33366o0.K(20);
-                            photoViewer.f33366o0.r(19);
+                    photoViewer.f33374o5 = str2;
+                    if (translateController.isContextTranslateEnabled() && translateController.canTranslatePhoto(messageObject, photoViewer.f33374o5)) {
+                        if (photoViewer.f33365n5) {
+                            photoViewer.f33369o0.K(20);
+                            photoViewer.f33369o0.r(19);
                             return;
                         }
-                        photoViewer.f33366o0.K(19);
-                        photoViewer.f33366o0.r(20);
+                        photoViewer.f33369o0.K(19);
+                        photoViewer.f33369o0.r(20);
                         return;
                     }
-                    photoViewer.f33366o0.r(19);
-                    photoViewer.f33366o0.r(20);
+                    photoViewer.f33369o0.r(19);
+                    photoViewer.f33369o0.r(20);
                     return;
                 }
                 return;

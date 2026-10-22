@@ -1,30 +1,30 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
-public final class ii implements Runnable {
-    public final int f18636a;
-    public final SendMessagesHelper f18637b;
-    public final long f18638c;
-    public final ArrayList d;
+import org.telegram.messenger.SendMessagesHelper;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class ii implements RequestDelegate {
+    public final int f18624a;
+    public final SendMessagesHelper f18625b;
+    public final TLRPC.InputMedia f18626c;
+    public final SendMessagesHelper.DelayedMessage d;
 
-    public ii(SendMessagesHelper sendMessagesHelper, long j10, ArrayList arrayList, int i10) {
-        this.f18636a = i10;
-        this.f18637b = sendMessagesHelper;
-        this.f18638c = j10;
-        this.d = arrayList;
+    public ii(SendMessagesHelper sendMessagesHelper, TLRPC.InputMedia inputMedia, SendMessagesHelper.DelayedMessage delayedMessage, int i10) {
+        this.f18624a = i10;
+        this.f18625b = sendMessagesHelper;
+        this.f18626c = inputMedia;
+        this.d = delayedMessage;
     }
 
     @Override
-    public final void run() {
-        switch (this.f18636a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f18624a) {
             case 0:
-                this.f18637b.lambda$performSendMessageRequestMulti$72(this.f18638c, this.d);
-                return;
-            case 1:
-                this.f18637b.lambda$performSendMessageRequest$100(this.f18638c, this.d);
+                this.f18625b.lambda$performSendDelayedMessage$55(this.f18626c, this.d, tLObject, tL_error);
                 return;
             default:
-                this.f18637b.lambda$sendMessage$14(this.f18638c, this.d);
+                this.f18625b.lambda$uploadMultiMedia$63(this.f18626c, this.d, tLObject, tL_error);
                 return;
         }
     }

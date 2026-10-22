@@ -23,10 +23,10 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class lx implements org.telegram.ui.ct {
-    public final tz f28317a;
+    public final tz f28320a;
 
     public lx(tz tzVar) {
-        this.f28317a = tzVar;
+        this.f28320a = tzVar;
     }
 
     @Override
@@ -41,7 +41,7 @@ public final class lx implements org.telegram.ui.ct {
 
     @Override
     public final void C(TLRPC.Document document) {
-        org.telegram.ui.ActionBar.n2 n2Var = this.f28317a.Y1;
+        org.telegram.ui.ActionBar.n2 n2Var = this.f28320a.Y1;
         if (n2Var instanceof org.telegram.ui.qn) {
             ((org.telegram.ui.qn) n2Var).fb(document);
         }
@@ -61,17 +61,17 @@ public final class lx implements org.telegram.ui.ct {
     public final void F(TLRPC.Document document) {
         TLRPC.TL_stickers_removeStickerFromSet tL_stickers_removeStickerFromSet = new TLRPC.TL_stickers_removeStickerFromSet();
         tL_stickers_removeStickerFromSet.sticker = MediaDataController.getInputStickerSetItem(document, "").document;
-        ConnectionsManager.getInstance(this.f28317a.f30723c1).sendRequest(tL_stickers_removeStickerFromSet, new y1(this, 4));
+        ConnectionsManager.getInstance(this.f28320a.f30726c1).sendRequest(tL_stickers_removeStickerFromSet, new y1(this, 4));
     }
 
     @Override
     public final String G(boolean z10) {
-        tz tzVar = this.f28317a;
+        tz tzVar = this.f28320a;
         if (z10) {
-            s4.g0 adapter = tzVar.f30738h0.getAdapter();
-            yy yyVar = tzVar.f30744j0;
+            s4.g0 adapter = tzVar.f30741h0.getAdapter();
+            yy yyVar = tzVar.f30747j0;
             if (adapter == yyVar) {
-                return yyVar.f32764w;
+                return yyVar.f32767w;
             }
             return null;
         }
@@ -89,14 +89,14 @@ public final class lx implements org.telegram.ui.ct {
         SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(MessageObject.findAnimatedEmojiEmoticon(document));
         valueOf.setSpan(new a6(document, (Paint.FontMetricsInt) null), 0, valueOf.length(), 33);
         if (AndroidUtilities.addToClipboard(valueOf)) {
-            tz tzVar = this.f28317a;
+            tz tzVar = this.f28320a;
             org.telegram.ui.ActionBar.n2 n2Var = tzVar.Y1;
             if (n2Var != null) {
                 xcVar = xc.a0(n2Var);
             } else {
-                xcVar = new xc(tzVar.f30767r, tzVar.Z1);
+                xcVar = new xc(tzVar.f30770r, tzVar.Z1);
             }
-            org.telegram.messenger.mk.p(R.string.EmojiCopied, xcVar);
+            org.telegram.messenger.ok.p(R.string.EmojiCopied, xcVar);
         }
     }
 
@@ -112,7 +112,7 @@ public final class lx implements org.telegram.ui.ct {
 
     @Override
     public final void L() {
-        this.f28317a.W();
+        this.f28320a.W();
     }
 
     @Override
@@ -120,14 +120,14 @@ public final class lx implements org.telegram.ui.ct {
         if (inputStickerSet == null) {
             return;
         }
-        this.f28317a.f30776t1.d(null, inputStickerSet, false);
+        this.f28320a.f30779t1.d(null, inputStickerSet, false);
     }
 
     @Override
     public final boolean N(TLRPC.Document document) {
         if (document != null) {
             ArrayList<String> arrayList = Emoji.recentEmoji;
-            if (arrayList.contains("animated_" + document.f20282id)) {
+            if (arrayList.contains("animated_" + document.f20285id)) {
                 return true;
             }
             return false;
@@ -143,7 +143,7 @@ public final class lx implements org.telegram.ui.ct {
             return null;
         }
         Long emojiStatusDocumentId = UserObject.getEmojiStatusDocumentId(currentUser);
-        if (document != null && (emojiStatusDocumentId == null || emojiStatusDocumentId.longValue() != document.f20282id)) {
+        if (document != null && (emojiStatusDocumentId == null || emojiStatusDocumentId.longValue() != document.f20285id)) {
             z10 = true;
         } else {
             z10 = false;
@@ -158,17 +158,17 @@ public final class lx implements org.telegram.ui.ct {
 
     @Override
     public final long a() {
-        return this.f28317a.f30776t1.a();
+        return this.f28320a.f30779t1.a();
     }
 
     @Override
     public final boolean b() {
-        return this.f28317a.f30776t1.b();
+        return this.f28320a.f30779t1.b();
     }
 
     @Override
     public final boolean c() {
-        return this.f28317a.f30776t1.c();
+        return this.f28320a.f30779t1.c();
     }
 
     @Override
@@ -178,7 +178,7 @@ public final class lx implements org.telegram.ui.ct {
 
     @Override
     public final boolean e(TLRPC.Document document) {
-        return this.f28317a.f30776t1.j();
+        return this.f28320a.f30779t1.j();
     }
 
     @Override
@@ -193,8 +193,8 @@ public final class lx implements org.telegram.ui.ct {
 
     @Override
     public final boolean h() {
-        tz tzVar = this.f28317a;
-        if (tzVar.Y1 == null && tzVar.f30778u0) {
+        tz tzVar = this.f28320a;
+        if (tzVar.Y1 == null && tzVar.f30781u0) {
             return false;
         }
         return true;
@@ -210,7 +210,7 @@ public final class lx implements org.telegram.ui.ct {
         if (i10 != 2) {
             return true;
         }
-        tz tzVar = this.f28317a;
+        tz tzVar = this.f28320a;
         org.telegram.ui.ActionBar.n2 n2Var = tzVar.Y1;
         if ((n2Var instanceof org.telegram.ui.qn) && ((org.telegram.ui.qn) n2Var).H6()) {
             if (UserConfig.getInstance(UserConfig.selectedAccount).isPremium() || (((org.telegram.ui.qn) tzVar.Y1).i() != null && UserObject.isUserSelf(((org.telegram.ui.qn) tzVar.Y1).i()))) {
@@ -223,7 +223,7 @@ public final class lx implements org.telegram.ui.ct {
 
     @Override
     public final void l(TLRPC.Document document, String str, Object obj, boolean z10, int i10, int i11) {
-        this.f28317a.f30776t1.m(null, document, str, obj, null, z10, i10);
+        this.f28320a.f30779t1.m(null, document, str, obj, null, z10, i10);
     }
 
     @Override
@@ -242,8 +242,8 @@ public final class lx implements org.telegram.ui.ct {
                 break;
             }
         }
-        tz tzVar = this.f28317a;
-        qy0.p0(tzVar.Y1, MediaDataController.getInstance(tzVar.f30723c1).getStickerSet(inputStickerSet, true), document);
+        tz tzVar = this.f28320a;
+        qy0.p0(tzVar.Y1, MediaDataController.getInstance(tzVar.f30726c1).getStickerSet(inputStickerSet, true), document);
     }
 
     @Override
@@ -254,8 +254,8 @@ public final class lx implements org.telegram.ui.ct {
     @Override
     public final void p(TLRPC.Document document) {
         if (document != null) {
-            Emoji.removeRecentEmoji("animated_" + document.f20282id);
-            ay ayVar = this.f28317a.R;
+            Emoji.removeRecentEmoji("animated_" + document.f20285id);
+            ay ayVar = this.f28320a.R;
             if (ayVar != null) {
                 ayVar.F(false);
             }
@@ -264,22 +264,22 @@ public final class lx implements org.telegram.ui.ct {
 
     @Override
     public final void r(int i10, int i11, Object obj, TLObject tLObject, boolean z10) {
-        tz tzVar = this.f28317a;
-        uw uwVar = tzVar.f30738h0;
-        if (uwVar.getAdapter() == tzVar.f30755n0) {
-            tzVar.f30776t1.v(null, tLObject, null, obj, z10, i10, i11);
-        } else if (uwVar.getAdapter() == tzVar.f30744j0) {
-            tzVar.f30776t1.v(null, tLObject, null, obj, z10, i10, i11);
+        tz tzVar = this.f28320a;
+        uw uwVar = tzVar.f30741h0;
+        if (uwVar.getAdapter() == tzVar.f30758n0) {
+            tzVar.f30779t1.v(null, tLObject, null, obj, z10, i10, i11);
+        } else if (uwVar.getAdapter() == tzVar.f30747j0) {
+            tzVar.f30779t1.v(null, tLObject, null, obj, z10, i10, i11);
         }
     }
 
     @Override
     public final void s() {
-        ey eyVar = this.f28317a.P;
-        if (eyVar != null && eyVar.f25992c3 != null) {
-            while (eyVar.f25992c3.size() > 0) {
-                dy dyVar = (dy) eyVar.f25992c3.valueAt(0);
-                eyVar.f25992c3.removeAt(0);
+        ey eyVar = this.f28320a.P;
+        if (eyVar != null && eyVar.f25995c3 != null) {
+            while (eyVar.f25995c3.size() > 0) {
+                dy dyVar = (dy) eyVar.f25995c3.valueAt(0);
+                eyVar.f25995c3.removeAt(0);
                 if (dyVar != null) {
                     View view = dyVar.d;
                     if (view != null && (view.getBackground() instanceof RippleDrawable)) {
@@ -304,15 +304,15 @@ public final class lx implements org.telegram.ui.ct {
         TLRPC.EmojiStatus emojiStatus;
         Object obj;
         xc xcVar;
-        tz tzVar = this.f28317a;
-        FrameLayout frameLayout = tzVar.f30767r;
+        tz tzVar = this.f28320a;
+        FrameLayout frameLayout = tzVar.f30770r;
         org.telegram.ui.ActionBar.n2 n2Var = tzVar.Y1;
         org.telegram.ui.ActionBar.d6 d6Var = tzVar.Z1;
         if (document == null) {
             emojiStatus = new TLRPC.TL_emojiStatusEmpty();
         } else {
             TLRPC.TL_emojiStatus tL_emojiStatus = new TLRPC.TL_emojiStatus();
-            tL_emojiStatus.document_id = document.f20282id;
+            tL_emojiStatus.document_id = document.f20285id;
             emojiStatus = tL_emojiStatus;
         }
         TLRPC.User currentUser = UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser();
@@ -321,19 +321,19 @@ public final class lx implements org.telegram.ui.ct {
         } else {
             obj = currentUser.emoji_status;
         }
-        MessagesController.getInstance(tzVar.f30723c1).updateEmojiStatus(emojiStatus);
+        MessagesController.getInstance(tzVar.f30726c1).updateEmojiStatus(emojiStatus);
         yt ytVar = new yt(2, this, obj);
         if (document == null) {
             ic icVar = new ic(tzVar.getContext(), d6Var);
-            icVar.f27231b.setText(LocaleController.getString(R.string.RemoveStatusInfo));
+            icVar.f27234b.setText(LocaleController.getString(R.string.RemoveStatusInfo));
             int i10 = R.drawable.msg_settings_premium;
-            ImageView imageView = icVar.f27230a;
+            ImageView imageView = icVar.f27233a;
             imageView.setImageResource(i10);
             imageView.setScaleX(0.8f);
             imageView.setScaleY(0.8f);
-            imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21398z9, d6Var), PorterDuff.Mode.MULTIPLY));
+            imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21401z9, d6Var), PorterDuff.Mode.MULTIPLY));
             oc ocVar = new oc(tzVar.getContext(), d6Var, true);
-            ocVar.f28983a = ytVar;
+            ocVar.f28986a = ytVar;
             icVar.setButton(ocVar);
             if (n2Var != null) {
                 qc.g(n2Var, icVar, 1500).j();
@@ -353,12 +353,12 @@ public final class lx implements org.telegram.ui.ct {
 
     @Override
     public final void x(TLObject tLObject, Object obj) {
-        tz tzVar = this.f28317a;
-        uw uwVar = tzVar.f30738h0;
-        if (uwVar.getAdapter() != tzVar.f30755n0 && uwVar.getAdapter() != tzVar.f30744j0) {
+        tz tzVar = this.f28320a;
+        uw uwVar = tzVar.f30741h0;
+        if (uwVar.getAdapter() != tzVar.f30758n0 && uwVar.getAdapter() != tzVar.f30747j0) {
             return;
         }
-        tzVar.f30776t1.e(tLObject, obj);
+        tzVar.f30779t1.e(tLObject, obj);
     }
 
     @Override

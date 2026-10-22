@@ -198,12 +198,12 @@ public final class z0 {
         String str4 = this.v;
         if (str4 != null) {
             SpannableString spannableString = new SpannableString(str4);
-            if (org.telegram.ui.ActionBar.h6.f21189o2 == null) {
+            if (org.telegram.ui.ActionBar.h6.f21192o2 == null) {
                 org.telegram.ui.ActionBar.h6.P();
             }
-            CharSequence replaceEmoji = Emoji.replaceEmoji(spannableString, org.telegram.ui.ActionBar.h6.f21189o2.getFontMetricsInt(), true);
+            CharSequence replaceEmoji = Emoji.replaceEmoji(spannableString, org.telegram.ui.ActionBar.h6.f21192o2.getFontMetricsInt(), true);
             MessageObject.addEntitiesToText(replaceEmoji, this.f10189w, true, false, true, false);
-            a8Var.C0 = MessageObject.replaceAnimatedEmoji(replaceEmoji, this.f10189w, org.telegram.ui.ActionBar.h6.f21189o2.getFontMetricsInt());
+            a8Var.C0 = MessageObject.replaceAnimatedEmoji(replaceEmoji, this.f10189w, org.telegram.ui.ActionBar.h6.f21192o2.getFontMetricsInt());
         } else {
             a8Var.C0 = "";
         }

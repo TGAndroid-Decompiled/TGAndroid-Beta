@@ -31,7 +31,7 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.g0;
-import org.telegram.messenger.mk;
+import org.telegram.messenger.ok;
 import org.telegram.messenger.voip.GroupCallMessage;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
@@ -95,7 +95,7 @@ public final class c extends ViewGroup implements oe.a, NotificationCenter.Notif
         ImageReceiver imageReceiver = new ImageReceiver(this);
         this.d = imageReceiver;
         imageReceiver.setRoundRadius(AndroidUtilities.dp(11.0f));
-        hVar.f31427c.setStrokeWidth(AndroidUtilities.dp(1.0f));
+        hVar.f31430c.setStrokeWidth(AndroidUtilities.dp(1.0f));
         this.f16931n = new ImageReceiver(this);
         setWillNotDraw(false);
     }
@@ -289,7 +289,7 @@ public final class c extends ViewGroup implements oe.a, NotificationCenter.Notif
             int paddingLeft = getPaddingLeft();
             int paddingRight = getPaddingRight();
             i1 i1Var = this.f16933s;
-            int c10 = mk.c(44.0f, (size - paddingLeft) - paddingRight, Integer.MIN_VALUE);
+            int c10 = ok.c(44.0f, (size - paddingLeft) - paddingRight, Integer.MIN_VALUE);
             int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(0, 0);
             n nVar = this.v;
             nVar.measure(c10, makeMeasureSpec);
@@ -356,7 +356,7 @@ public final class c extends ViewGroup implements oe.a, NotificationCenter.Notif
             }
         }
         setMeasuredDimension(size, this.f16934w.f3830b);
-        this.h.f31428f = Math.round(((RectF) this.f16934w.f3831c).width() + AndroidUtilities.dp(48.0f));
+        this.h.f31431f = Math.round(((RectF) this.f16934w.f3831c).width() + AndroidUtilities.dp(48.0f));
     }
 
     @Override
@@ -369,8 +369,8 @@ public final class c extends ViewGroup implements oe.a, NotificationCenter.Notif
         this.f16930f.setAlpha(Math.round(this.f16928b.e * 100.0f));
         int round = Math.round(this.f16927a.e * 220.0f);
         org.telegram.ui.Components.voip.h hVar = this.h;
-        hVar.f31425a.setAlpha(round);
-        hVar.f31427c.setAlpha(round);
+        hVar.f31428a.setAlpha(round);
+        hVar.f31430c.setAlpha(round);
         invalidate();
     }
 

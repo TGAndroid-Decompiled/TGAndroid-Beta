@@ -1,30 +1,21 @@
 package org.telegram.messenger;
+public final class a6 implements Runnable {
+    public final int f17839a;
+    public final LocationSharingService f17840b;
 
-import android.content.DialogInterface;
-import org.telegram.messenger.MediaController;
-public final class a6 implements DialogInterface.OnCancelListener {
-    public final int f17842a;
-    public final Object f17843b;
-
-    public a6(Object obj, int i10) {
-        this.f17842a = i10;
-        this.f17843b = obj;
+    public a6(LocationSharingService locationSharingService, int i10) {
+        this.f17839a = i10;
+        this.f17840b = locationSharingService;
     }
 
     @Override
-    public final void onCancel(DialogInterface dialogInterface) {
-        switch (this.f17842a) {
+    public final void run() {
+        switch (this.f17839a) {
             case 0:
-                MediaController.d((boolean[]) this.f17843b, dialogInterface);
-                return;
-            case 1:
-                MediaController.E((boolean[]) this.f17843b, dialogInterface);
-                return;
-            case 2:
-                MessagesController.J5((boolean[]) this.f17843b, dialogInterface);
+                LocationSharingService.a(this.f17840b);
                 return;
             default:
-                MediaController.MediaLoader.c((MediaController.MediaLoader) this.f17843b, dialogInterface);
+                LocationSharingService.b(this.f17840b);
                 return;
         }
     }

@@ -8,31 +8,31 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 public final class n7 extends FrameLayout {
-    public final org.telegram.ui.Components.xp f39439a;
-    public final FrameLayout f39440b;
-    public final TextView f39441c;
+    public final org.telegram.ui.Components.xp f39442a;
+    public final FrameLayout f39443b;
+    public final TextView f39444c;
     public boolean d;
     public int e;
-    public final int f39442f;
+    public final int f39445f;
     public final j7 h;
 
     public n7(j7 j7Var, Context context, int i10) {
         super(context);
-        this.f39442f = i10;
+        this.f39445f = i10;
         this.h = j7Var;
         org.telegram.ui.Components.xp xpVar = new org.telegram.ui.Components.xp(context, 21, null);
-        this.f39439a = xpVar;
+        this.f39442a = xpVar;
         xpVar.setDrawBackgroundAsArc(14);
-        xpVar.b(org.telegram.ui.ActionBar.h6.f21080i7, org.telegram.ui.ActionBar.h6.f21044g7, org.telegram.ui.ActionBar.h6.f21118k7);
+        xpVar.b(org.telegram.ui.ActionBar.h6.f21083i7, org.telegram.ui.ActionBar.h6.f21047g7, org.telegram.ui.ActionBar.h6.f21121k7);
         View view = new View(getContext());
         view.setOnClickListener(new a(this, 8));
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f39440b = frameLayout;
+        this.f39443b = frameLayout;
         TextView textView = new TextView(context);
-        this.f39441c = textView;
+        this.f39444c = textView;
         textView.setTextSize(1, 16.0f);
         textView.setGravity(5);
-        textView.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21173n6, false));
+        textView.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21176n6, false));
         if (LocaleController.isRTL) {
             addView(xpVar, w7.z5.d(24, 24.0f, 21, 0.0f, 0.0f, 18.0f, 0.0f));
             addView(view, w7.z5.d(40, 40.0f, 21, 0.0f, 0.0f, 0.0f, 0.0f));
@@ -51,9 +51,9 @@ public final class n7 extends FrameLayout {
         super.dispatchDraw(canvas);
         if (this.d) {
             if (LocaleController.isRTL) {
-                canvas.drawLine(0.0f, getMeasuredHeight() - 1, getMeasuredWidth() - AndroidUtilities.dp(48.0f), getMeasuredHeight() - 1, org.telegram.ui.ActionBar.h6.f21111k0);
+                canvas.drawLine(0.0f, getMeasuredHeight() - 1, getMeasuredWidth() - AndroidUtilities.dp(48.0f), getMeasuredHeight() - 1, org.telegram.ui.ActionBar.h6.f21114k0);
             } else {
-                canvas.drawLine(getMeasuredWidth() - AndroidUtilities.dp(90.0f), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, org.telegram.ui.ActionBar.h6.f21111k0);
+                canvas.drawLine(getMeasuredWidth() - AndroidUtilities.dp(90.0f), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, org.telegram.ui.ActionBar.h6.f21114k0);
             }
         }
     }

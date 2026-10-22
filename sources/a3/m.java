@@ -21,7 +21,7 @@ public final class m implements Handler.Callback {
         Surface surface;
         n nVar = this.f146b;
         n4.s sVar = nVar.f148b1;
-        if (this == nVar.M1 && nVar.f44961d0 != null) {
+        if (this == nVar.M1 && nVar.f44964d0 != null) {
             if (j10 == Long.MAX_VALUE) {
                 nVar.M0 = true;
                 return;

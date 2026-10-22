@@ -7,13 +7,13 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class so extends org.telegram.ui.Components.e90 {
-    public final Context f41500w;
-    public final wo f41501x;
+    public final Context f41503w;
+    public final wo f41504x;
 
     public so(wo woVar, Context context, TLRPC.Chat chat, Context context2) {
         super(context, chat);
-        this.f41501x = woVar;
-        this.f41500w = context2;
+        this.f41504x = woVar;
+        this.f41503w = context2;
     }
 
     @Override
@@ -22,9 +22,9 @@ public final class so extends org.telegram.ui.Components.e90 {
         int i10;
         String str;
         org.telegram.ui.ActionBar.d6 d6Var;
-        wo woVar = this.f41501x;
+        wo woVar = this.f41504x;
         if (woVar.V && (chatFull = woVar.Y) != null && (i10 = chatFull.invitesCount) != 0) {
-            if (woVar.f42907a0) {
+            if (woVar.f42910a0) {
                 if (z10) {
                     str = "ApproveNewMembersEnableForLinksChannel";
                 } else {
@@ -35,16 +35,16 @@ public final class so extends org.telegram.ui.Components.e90 {
             } else {
                 str = "ApproveNewMembersDisableForLinks";
             }
-            Context context = this.f41500w;
+            Context context = this.f41503w;
             d6Var = ((org.telegram.ui.ActionBar.n2) woVar).resourceProvider;
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, d6Var);
-            alertDialog$Builder.f20605a.R = LocaleController.getString(R.string.ApproveNewMembersApplyToLinksTitle);
-            alertDialog$Builder.f20605a.T = AndroidUtilities.replaceTags(LocaleController.formatPluralString(str, i10, new Object[0]));
+            alertDialog$Builder.f20608a.R = LocaleController.getString(R.string.ApproveNewMembersApplyToLinksTitle);
+            alertDialog$Builder.f20608a.T = AndroidUtilities.replaceTags(LocaleController.formatPluralString(str, i10, new Object[0]));
             alertDialog$Builder.k(LocaleController.getString(R.string.ApproveNewMembersApplyToLinksApply), new org.telegram.ui.ActionBar.a2(this) {
-                public final so f41259b;
+                public final so f41262b;
 
                 {
-                    this.f41259b = this;
+                    this.f41262b = this;
                 }
 
                 @Override
@@ -52,24 +52,24 @@ public final class so extends org.telegram.ui.Components.e90 {
                     switch (r3) {
                         case 0:
                             boolean z11 = z10;
-                            so soVar = this.f41259b;
+                            so soVar = this.f41262b;
                             soVar.setJoinRequest(z11);
-                            soVar.f41501x.W = true;
+                            soVar.f41504x.W = true;
                             return;
                         default:
                             boolean z12 = z10;
-                            so soVar2 = this.f41259b;
+                            so soVar2 = this.f41262b;
                             soVar2.setJoinRequest(z12);
-                            soVar2.f41501x.W = false;
+                            soVar2.f41504x.W = false;
                             return;
                     }
                 }
             });
             alertDialog$Builder.h(LocaleController.getString(R.string.ApproveNewMembersApplyToLinksDontApply), new org.telegram.ui.ActionBar.a2(this) {
-                public final so f41259b;
+                public final so f41262b;
 
                 {
-                    this.f41259b = this;
+                    this.f41262b = this;
                 }
 
                 @Override
@@ -77,20 +77,20 @@ public final class so extends org.telegram.ui.Components.e90 {
                     switch (r3) {
                         case 0:
                             boolean z11 = z10;
-                            so soVar = this.f41259b;
+                            so soVar = this.f41262b;
                             soVar.setJoinRequest(z11);
-                            soVar.f41501x.W = true;
+                            soVar.f41504x.W = true;
                             return;
                         default:
                             boolean z12 = z10;
-                            so soVar2 = this.f41259b;
+                            so soVar2 = this.f41262b;
                             soVar2.setJoinRequest(z12);
-                            soVar2.f41501x.W = false;
+                            soVar2.f41504x.W = false;
                             return;
                     }
                 }
             });
-            woVar.showDialog(alertDialog$Builder.f20605a);
+            woVar.showDialog(alertDialog$Builder.f20608a);
             return false;
         }
         return true;

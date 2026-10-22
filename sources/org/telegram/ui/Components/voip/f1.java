@@ -7,14 +7,14 @@ import android.view.View;
 import android.view.WindowManager;
 import org.telegram.messenger.AndroidUtilities;
 public final class f1 extends GestureDetector.SimpleOnGestureListener {
-    public float f31406a;
-    public float f31407b;
-    public final int f31408c;
+    public float f31409a;
+    public float f31410b;
+    public final int f31411c;
     public final h1 d;
 
     public f1(h1 h1Var, int i10) {
         this.d = h1Var;
-        this.f31408c = i10;
+        this.f31411c = i10;
     }
 
     @Override
@@ -29,8 +29,8 @@ public final class f1 extends GestureDetector.SimpleOnGestureListener {
                 }
             }
         }
-        this.f31406a = h1Var.Q;
-        this.f31407b = h1Var.R;
+        this.f31409a = h1Var.Q;
+        this.f31410b = h1Var.R;
         return true;
     }
 
@@ -72,7 +72,7 @@ public final class f1 extends GestureDetector.SimpleOnGestureListener {
         h1 h1Var = this.d;
         if (!h1Var.H && h1Var.L == null && !h1Var.I) {
             float abs = Math.abs(f7);
-            float f11 = this.f31408c;
+            float f11 = this.f31411c;
             if (abs >= f11 || Math.abs(f10) >= f11) {
                 h1Var.H = true;
                 h1Var.S.c();
@@ -80,15 +80,15 @@ public final class f1 extends GestureDetector.SimpleOnGestureListener {
             }
         }
         if (h1Var.H) {
-            WindowManager.LayoutParams layoutParams = h1Var.f31445c;
-            float rawX = (motionEvent2.getRawX() + this.f31406a) - motionEvent.getRawX();
+            WindowManager.LayoutParams layoutParams = h1Var.f31448c;
+            float rawX = (motionEvent2.getRawX() + this.f31409a) - motionEvent.getRawX();
             h1Var.Q = rawX;
             layoutParams.x = (int) rawX;
-            WindowManager.LayoutParams layoutParams2 = h1Var.f31445c;
-            float rawY = (motionEvent2.getRawY() + this.f31407b) - motionEvent.getRawY();
+            WindowManager.LayoutParams layoutParams2 = h1Var.f31448c;
+            float rawY = (motionEvent2.getRawY() + this.f31410b) - motionEvent.getRawY();
             h1Var.R = rawY;
             layoutParams2.y = (int) rawY;
-            AndroidUtilities.updateViewLayout(h1Var.f31444b, h1Var.d, h1Var.f31445c);
+            AndroidUtilities.updateViewLayout(h1Var.f31447b, h1Var.d, h1Var.f31448c);
         }
         return true;
     }

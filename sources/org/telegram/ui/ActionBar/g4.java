@@ -2,37 +2,37 @@ package org.telegram.ui.ActionBar;
 
 import android.view.View;
 public final class g4 {
-    public final x4 f20871a;
-    public boolean f20872b;
-    public boolean f20873c;
+    public final x4 f20874a;
+    public boolean f20875b;
+    public boolean f20876c;
     public boolean d;
     public boolean e = true;
-    public boolean f20874f;
-    public long f20875g;
+    public boolean f20877f;
+    public long f20878g;
 
     public g4(x4 x4Var) {
-        this.f20871a = x4Var;
+        this.f20874a = x4Var;
     }
 
     public final void a() {
-        if (this.f20874f) {
-            boolean z10 = this.f20872b;
-            x4 x4Var = this.f20871a;
-            if (!z10 && !this.f20873c && !this.d && this.e) {
-                View view = x4Var.f21878a;
-                k4 k4Var = x4Var.f21886l;
+        if (this.f20877f) {
+            boolean z10 = this.f20875b;
+            x4 x4Var = this.f20874a;
+            if (!z10 && !this.f20876c && !this.d && this.e) {
+                View view = x4Var.f21881a;
+                k4 k4Var = x4Var.f21889l;
                 view.removeOnLayoutChangeListener(k4Var);
-                x4Var.f21878a.addOnLayoutChangeListener(k4Var);
+                x4Var.f21881a.addOnLayoutChangeListener(k4Var);
                 x4Var.c();
-                this.f20875g = System.currentTimeMillis();
+                this.f20878g = System.currentTimeMillis();
                 return;
             }
-            v4 v4Var = x4Var.f21879b;
+            v4 v4Var = x4Var.f21882b;
             if (!v4Var.f()) {
                 return;
             }
             v4Var.G = true;
-            v4Var.f21820x.start();
+            v4Var.f21823x.start();
             v4Var.D.setEmpty();
         }
     }

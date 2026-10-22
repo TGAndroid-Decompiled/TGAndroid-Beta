@@ -53,7 +53,7 @@ public final class q0 extends jm0 {
         setWillNotDraw(false);
         setHideIfEmpty(false);
         setSelectorRadius(AndroidUtilities.dp(28.0f));
-        setSelectorDrawableColor(h6.w0(h6.f21079i6, this.f27579n2));
+        setSelectorDrawableColor(h6.w0(h6.f21082i6, this.f27582n2));
     }
 
     public static int A1(String str) {
@@ -306,7 +306,7 @@ public final class q0 extends jm0 {
                 Object obj = arrayList.get(i10);
                 if (obj instanceof TLRPC.User) {
                     TLRPC.User user = (TLRPC.User) obj;
-                    if (UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser().f20423id == user.f20423id) {
+                    if (UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser().f20426id == user.f20426id) {
                         formatName = LocaleController.getString(R.string.SavedMessages);
                     } else {
                         formatName = ContactsController.formatName(user.first_name, user.last_name, 10);
@@ -369,7 +369,7 @@ public final class q0 extends jm0 {
                 ((n0) O).a();
             }
         }
-        setSelectorDrawableColor(h6.w0(h6.f21079i6, this.f27579n2));
+        setSelectorDrawableColor(h6.w0(h6.f21082i6, this.f27582n2));
     }
 
     public ArrayList<j6> getThemeDescriptions() {
@@ -383,7 +383,7 @@ public final class q0 extends jm0 {
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         if (this.Y2) {
-            canvas.drawRect(0.0f, getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight(), h6.f21111k0);
+            canvas.drawRect(0.0f, getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight(), h6.f21114k0);
         }
     }
 

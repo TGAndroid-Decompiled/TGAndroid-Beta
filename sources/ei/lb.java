@@ -30,7 +30,7 @@ public final class lb extends r {
     @Override
     public final boolean e() {
         org.telegram.ui.Components.qc qcVar;
-        if (MessagesController.getInstance(this.U).premiumFeaturesBlocked() || ((qcVar = org.telegram.ui.Components.qc.f29524w) != null && qcVar.f29525a == 2)) {
+        if (MessagesController.getInstance(this.U).premiumFeaturesBlocked() || ((qcVar = org.telegram.ui.Components.qc.f29527w) != null && qcVar.f29528a == 2)) {
             return false;
         }
         int i10 = MessagesController.getInstance(this.U).storyCaptionLengthLimitPremium;
@@ -41,13 +41,13 @@ public final class lb extends r {
             int indexOf2 = replaceTags.toString().indexOf("__");
             if (indexOf2 >= 0) {
                 replaceTags.replace(indexOf2, indexOf2 + 2, (CharSequence) "");
-                replaceTags.setSpan(new ForegroundColorSpan(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21049gc, this.f9391a)), indexOf, indexOf2, 33);
+                replaceTags.setSpan(new ForegroundColorSpan(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21052gc, this.f9391a)), indexOf, indexOf2, 33);
                 replaceTags.setSpan(new kb(this, 0), indexOf, indexOf2, 33);
             }
         }
         org.telegram.ui.Components.qc M = new xc(this.S1.f9983l0, this.f9391a).M(LocaleController.getString(R.string.CaptionPremiumTitle), replaceTags, R.raw.caption_limit);
-        M.f29525a = 2;
-        M.f29531j = 5000;
+        M.f29528a = 2;
+        M.f29534j = 5000;
         M.k(false);
         return true;
     }
@@ -106,9 +106,9 @@ public final class lb extends r {
                     if (childAt instanceof rg.j) {
                         fl0 selectionBounds = ((rg.j) childAt).getSelectionBounds();
                         RectF rectF = AndroidUtilities.rectTmp;
-                        float f11 = selectionBounds.f26272a;
-                        float f12 = selectionBounds.f26273b;
-                        rectF.set(f11, f12, selectionBounds.f26274c + f11, selectionBounds.d + f12);
+                        float f11 = selectionBounds.f26275a;
+                        float f12 = selectionBounds.f26276b;
+                        rectF.set(f11, f12, selectionBounds.f26277c + f11, selectionBounds.d + f12);
                         if (rectF.contains(x12, y11)) {
                             return true;
                         }

@@ -57,6 +57,7 @@ public final class v3 implements Runnable {
 
     @Override
     public final void run() {
+        org.telegram.ui.ActionBar.d6 d6Var;
         ei.qb qbVar;
         Context context;
         boolean z10;
@@ -66,7 +67,7 @@ public final class v3 implements Runnable {
         boolean z11;
         int i12;
         int i13 = this.f2293a;
-        org.telegram.ui.ActionBar.d6 d6Var = null;
+        org.telegram.ui.ActionBar.d6 d6Var2 = null;
         boolean z12 = false;
         r6 = 0;
         int i14 = 0;
@@ -99,7 +100,7 @@ public final class v3 implements Runnable {
                     ei.vb vbVar = ei.vb.F2;
                     if (vbVar != null && vbVar.d) {
                         ?? obj2 = new Object();
-                        obj2.f21556a = true;
+                        obj2.f21559a = true;
                         R.showAsSheet(d02, obj2);
                         return;
                     }
@@ -122,7 +123,9 @@ public final class v3 implements Runnable {
                 ei.k9 k9Var = (ei.k9) obj;
                 Context context2 = k9Var.getContext();
                 ei.r9 r9Var = k9Var.W;
-                org.telegram.ui.Components.f5.R(context2, r9Var.attachedFragment, ei.r9.Z(r9Var), new ci.d1(k9Var, j10, 1));
+                org.telegram.ui.ActionBar.n2 n2Var = r9Var.attachedFragment;
+                d6Var = ((org.telegram.ui.ActionBar.f3) r9Var).resourcesProvider;
+                org.telegram.ui.Components.f5.R(context2, n2Var, d6Var, new ci.d1(k9Var, j10, 1));
                 return;
             case 8:
                 ei.vb vbVar2 = (ei.vb) obj;
@@ -158,7 +161,7 @@ public final class v3 implements Runnable {
                 vbVar2.f10021x = null;
                 Activity activity = vbVar2.f9950b;
                 if (activity instanceof LaunchActivity) {
-                    ((LaunchActivity) activity).f33204z0.post(new ei.t9(vbVar2, 5));
+                    ((LaunchActivity) activity).f33207z0.post(new ei.t9(vbVar2, 5));
                     return;
                 } else {
                     vbVar2.p(true);
@@ -198,13 +201,13 @@ public final class v3 implements Runnable {
                 return;
             case 13:
                 String str = e2.m0.f8252a;
-                j2.f fVar = ((i2.c0) ((k2.u) ((qf.b) obj).f44448c)).f12325a.f12413s;
+                j2.f fVar = ((i2.c0) ((k2.u) ((qf.b) obj).f44451c)).f12325a.f12413s;
                 j2.a p5 = fVar.p();
                 fVar.q(p5, 1010, new j2.e(p5, j10));
                 return;
             case 14:
                 ki.q qVar = (ki.q) obj;
-                org.telegram.ui.Components.f5.L(qVar.f28173b.f30546f0.getParentActivity(), j10, new ya.d(qVar, 27), qVar.f28172a);
+                org.telegram.ui.Components.f5.L(qVar.f28176b.f30549f0.getParentActivity(), j10, new ya.d(qVar, 27), qVar.f28175a);
                 return;
             case 15:
                 ki.d2 d2Var = (ki.d2) obj;
@@ -238,7 +241,7 @@ public final class v3 implements Runnable {
                 return;
             case 22:
                 org.telegram.ui.Components.qc Q = org.telegram.ui.Components.xc.a0((org.telegram.ui.c7) obj).Q(R.raw.ic_delete, 36, LocaleController.formatString(R.string.CacheWasCleared, AndroidUtilities.formatFileSize(j10)));
-                Q.f29539r = false;
+                Q.f29542r = false;
                 Q.j();
                 return;
             case 23:
@@ -248,43 +251,43 @@ public final class v3 implements Runnable {
                 return;
             case 24:
                 al alVar = (al) obj;
-                ti tiVar = alVar.f28173b;
+                ti tiVar = alVar.f28176b;
                 if (!alVar.H && alVar.I0 && alVar.isShown()) {
-                    ji jiVar = tiVar.f30593u1;
-                    org.telegram.ui.ActionBar.n2 n2Var = tiVar.f30546f0;
-                    if ((jiVar.R() <= AndroidUtilities.dp(20.0f) || alVar.f24665y0 || alVar.H0) && SystemClock.uptimeMillis() < j10) {
+                    ji jiVar = tiVar.f30596u1;
+                    org.telegram.ui.ActionBar.n2 n2Var2 = tiVar.f30549f0;
+                    if ((jiVar.R() <= AndroidUtilities.dp(20.0f) || alVar.f24668y0 || alVar.H0) && SystemClock.uptimeMillis() < j10) {
                         alVar.postDelayed(alVar.L0, 32L);
                         return;
                     }
                     alVar.L0 = null;
-                    org.telegram.ui.ActionBar.d6 d6Var2 = alVar.f28172a;
-                    if (n2Var != null && n2Var.getParentActivity() != null) {
-                        context = n2Var.getParentActivity();
+                    org.telegram.ui.ActionBar.d6 d6Var3 = alVar.f28175a;
+                    if (n2Var2 != null && n2Var2.getParentActivity() != null) {
+                        context = n2Var2.getParentActivity();
                     } else {
                         context = alVar.getContext();
                     }
                     if (context != null) {
-                        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, d6Var2);
+                        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, d6Var3);
                         String string = LocaleController.getString(R.string.WalletAddComment);
-                        org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20605a;
+                        org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20608a;
                         b2Var.R = string;
                         ig.a1 a1Var = new ig.a1(alVar, context);
                         a1Var.setTextSize(1, 18.0f);
-                        a1Var.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21096j5, d6Var2));
-                        a1Var.setHintTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21285t5, d6Var2));
+                        a1Var.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21099j5, d6Var3));
+                        a1Var.setHintTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21288t5, d6Var3));
                         a1Var.setHint(LocaleController.getString(R.string.WalletCommentOptionalMessage));
-                        a1Var.setText(alVar.f24651p0);
+                        a1Var.setText(alVar.f24654p0);
                         a1Var.setSelection(a1Var.length());
                         a1Var.setInputType(147457);
                         a1Var.setMaxLines(5);
                         a1Var.setImeOptions(6);
-                        a1Var.setLineColors(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21117k6, d6Var2), org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21134l6, d6Var2), org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21211p7, d6Var2));
+                        a1Var.setLineColors(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21120k6, d6Var3), org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21137l6, d6Var3), org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21214p7, d6Var3));
                         a1Var.setBackground(null);
                         a1Var.setPadding(0, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(48.0f), AndroidUtilities.dp(10.0f));
-                        org.telegram.ui.Cells.a2 a2Var = new org.telegram.ui.Cells.a2(context, 1, d6Var2);
-                        a2Var.setBackground(org.telegram.ui.ActionBar.h6.g0(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21079i6, d6Var2), 7, AndroidUtilities.dp(12.0f)));
+                        org.telegram.ui.Cells.a2 a2Var = new org.telegram.ui.Cells.a2(context, 1, d6Var3);
+                        a2Var.setBackground(org.telegram.ui.ActionBar.h6.g0(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21082i6, d6Var3), 7, AndroidUtilities.dp(12.0f)));
                         String string2 = LocaleController.getString(R.string.WalletMakeCommentPublic);
-                        if (alVar.f24652q0 && alVar.getPublicKey() != null) {
+                        if (alVar.f24655q0 && alVar.getPublicKey() != null) {
                             z10 = false;
                         } else {
                             z10 = true;
@@ -325,11 +328,11 @@ public final class v3 implements Runnable {
                         linearLayout.addView(a2Var, w7.z5.t(-1, -2, 83, 8, 0, 8, 0));
                         b2Var.G = 6;
                         alertDialog$Builder.n(linearLayout);
-                        b2Var.f20653a = AndroidUtilities.dp(292.0f);
+                        b2Var.f20656a = AndroidUtilities.dp(292.0f);
                         alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), new org.telegram.ui.Components.k2(13));
                         alertDialog$Builder.k(LocaleController.getString(R.string.Add), new u2(alVar, a1Var, a2Var, 26));
                         alVar.Q0 = b2Var;
-                        b2Var.f20666h0 = false;
+                        b2Var.f20669h0 = false;
                         b2Var.setOnShowListener(new org.telegram.ui.Components.i2(1, a1Var));
                         b2Var.setOnDismissListener(new org.telegram.ui.Components.b1(alVar, 5));
                         b2Var.create();
@@ -355,7 +358,7 @@ public final class v3 implements Runnable {
                         }
                         b2Var.show();
                         View d = b2Var.d(-1);
-                        if ((d instanceof TextView) && !TextUtils.isEmpty(alVar.f24651p0)) {
+                        if ((d instanceof TextView) && !TextUtils.isEmpty(alVar.f24654p0)) {
                             a1Var.addTextChangedListener(new zk(a1Var, (TextView) d));
                             return;
                         }
@@ -376,12 +379,12 @@ public final class v3 implements Runnable {
                 org.telegram.ui.ActionBar.n2 U2 = LaunchActivity.U();
                 if (!PhotoViewer.u1().T1() && (U2 == null || !U2.hasShownSheet())) {
                     if (U2 != null) {
-                        d6Var = U2.getResourceProvider();
+                        d6Var2 = U2.getResourceProvider();
                     }
                 } else {
-                    d6Var = new ci.b();
+                    d6Var2 = new ci.b();
                 }
-                new cd(activity2, d6Var, this.f2294b, 15, "", new rh0(uh0Var, 0), 0L).show();
+                new cd(activity2, d6Var2, this.f2294b, 15, "", new rh0(uh0Var, 0), 0L).show();
                 return;
             case 27:
                 cy cyVar = (cy) obj;

@@ -3,16 +3,16 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import android.widget.LinearLayout;
 public final class jq extends LinearLayout {
-    public final mq f27615a;
+    public final mq f27618a;
 
     public jq(mq mqVar, Context context) {
         super(context);
-        this.f27615a = mqVar;
+        this.f27618a = mqVar;
     }
 
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
-        mq.n(this.f27615a);
+        mq.n(this.f27618a);
     }
 }

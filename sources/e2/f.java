@@ -459,12 +459,12 @@ public final class f {
                     int h = recyclerView.f3629w.h();
                     s4.b0 b0Var = (s4.b0) n0Var;
                     s4.a0 a0Var = b0Var.B;
-                    if (a0Var != null && (i10 = a0Var.f45892a) >= 0) {
-                        z11 = a0Var.f45894c;
+                    if (a0Var != null && (i10 = a0Var.f45895a) >= 0) {
+                        z11 = a0Var.f45897c;
                     } else {
                         b0Var.f1();
                         z11 = b0Var.v;
-                        i10 = b0Var.f45914y;
+                        i10 = b0Var.f45917y;
                         if (i10 == -1) {
                             i10 = z11 ? h - 1 : 0;
                         }
@@ -482,7 +482,7 @@ public final class f {
                 int i14 = this.f8222b;
                 y0 y0Var = recyclerView.f3627u0;
                 s4.b0 b0Var2 = (s4.b0) n0Var;
-                if (b0Var2.f45905o != 0) {
+                if (b0Var2.f45908o != 0) {
                     i13 = i14;
                 }
                 if (b0Var2.r() != 0 && i13 != 0) {
@@ -491,13 +491,13 @@ public final class f {
                         i11 = 1;
                     }
                     b0Var2.m1(i11, Math.abs(i13), true, y0Var);
-                    b0Var2.A0(y0Var, b0Var2.f45906p, this);
+                    b0Var2.A0(y0Var, b0Var2.f45909p, this);
                 }
             }
             int i15 = this.d;
-            if (i15 > n0Var.f46014i) {
-                n0Var.f46014i = i15;
-                n0Var.f46015j = z10;
+            if (i15 > n0Var.f46017i) {
+                n0Var.f46017i = i15;
+                n0Var.f46018j = z10;
                 recyclerView.f3603b.l();
             }
         }

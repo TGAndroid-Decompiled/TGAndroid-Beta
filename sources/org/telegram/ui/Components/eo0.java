@@ -3,16 +3,16 @@ package org.telegram.ui.Components;
 import android.view.View;
 import org.telegram.tgnet.TLRPC;
 public final class eo0 extends ah.g1 {
-    public final fo0 f25936h0;
+    public final fo0 f25939h0;
 
     public eo0(fo0 fo0Var, int i10, View view, TLRPC.TL_reactionCount tL_reactionCount, org.telegram.ui.ActionBar.d6 d6Var) {
         super(null, i10, view, tL_reactionCount, false, true, d6Var);
-        this.f25936h0 = fo0Var;
+        this.f25939h0 = fo0Var;
     }
 
     @Override
     public final boolean e() {
-        if (this.f765w <= 0 && !this.f764u && this.F.f26348l == 1.0f) {
+        if (this.f765w <= 0 && !this.f764u && this.F.f26351l == 1.0f) {
             return false;
         }
         return true;
@@ -34,16 +34,16 @@ public final class eo0 extends ah.g1 {
         int i11;
         int w02;
         int i12 = this.f752i;
-        fo0 fo0Var = this.f25936h0;
+        fo0 fo0Var = this.f25939h0;
         if (fo0Var.e) {
             i10 = org.telegram.ui.ActionBar.h6.Fj;
         } else {
-            i10 = org.telegram.ui.ActionBar.h6.f21327va;
+            i10 = org.telegram.ui.ActionBar.h6.f21330va;
         }
-        this.N = i0.a.f(f7, i12, org.telegram.ui.ActionBar.h6.w0(i10, fo0Var.f26331s.f26616c));
+        this.N = i0.a.f(f7, i12, org.telegram.ui.ActionBar.h6.w0(i10, fo0Var.f26334s.f26619c));
         int i13 = this.f750g;
         if (fo0Var.e) {
-            i11 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Cj, fo0Var.f26331s.f26616c);
+            i11 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Cj, fo0Var.f26334s.f26619c);
         } else {
             i11 = 0;
         }
@@ -54,7 +54,7 @@ public final class eo0 extends ah.g1 {
         if (fo0Var.e) {
             w02 = 1526726655;
         } else {
-            w02 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21345wa, fo0Var.f26331s.f26616c);
+            w02 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21348wa, fo0Var.f26334s.f26619c);
         }
         this.P = i0.a.f(f7, i14, w02);
     }

@@ -21,7 +21,7 @@ public final class b2 extends Drawable {
 
     public b2(Context context, int i10) {
         Drawable mutate = context.getResources().getDrawable(i10).mutate();
-        this.d = h6.f20990d6;
+        this.d = h6.f20993d6;
         this.f15143g = true;
         this.f15139a = context;
         this.f15140b = mutate;

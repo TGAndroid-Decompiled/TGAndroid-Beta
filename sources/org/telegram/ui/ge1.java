@@ -14,7 +14,7 @@ public final class ge1 extends pg.b {
 
     @Override
     public final boolean D(s4.b1 b1Var) {
-        int i10 = b1Var.f45920f;
+        int i10 = b1Var.f45923f;
         if (i10 != 0 && i10 != 3) {
             return false;
         }
@@ -24,7 +24,7 @@ public final class ge1 extends pg.b {
     public final ArrayList F() {
         re1 re1Var = this.d;
         re1Var.getClass();
-        return re1Var.f41151b;
+        return re1Var.f41154b;
     }
 
     @Override
@@ -37,12 +37,12 @@ public final class ge1 extends pg.b {
         if (i10 == h() - 1) {
             return 2;
         }
-        return ((ie1) this.d.f41151b.get(i10)).f44296a;
+        return ((ie1) this.d.f41154b.get(i10)).f44299a;
     }
 
     @Override
     public final void l() {
-        this.d.f41154c = h();
+        this.d.f41157c = h();
         super.l();
     }
 
@@ -67,13 +67,13 @@ public final class ge1 extends pg.b {
             org.telegram.ui.Components.b10 b10Var = new org.telegram.ui.Components.b10(viewGroup.getContext(), null);
             b10Var.setViewType(24);
             b10Var.setIsSingleCell(true);
-            b10Var.f24774w = true;
+            b10Var.f24777w = true;
             return new s4.b1(b10Var);
         }
         oe1 oe1Var = new oe1(re1Var, viewGroup.getContext(), false);
         if (i10 == 3) {
             i11 = ((org.telegram.ui.ActionBar.n2) re1Var).currentAccount;
-            boolean isBotForumWithEditableTopics = UserObject.isBotForumWithEditableTopics(i11, -re1Var.f41148a);
+            boolean isBotForumWithEditableTopics = UserObject.isBotForumWithEditableTopics(i11, -re1Var.f41151a);
             oe1Var.setForumIcon(og.d.d(og.a.f17730k[0], ""));
             if (!isBotForumWithEditableTopics) {
                 i12 = R.string.BotForumAskForStartOffNewChatTitle;
@@ -89,8 +89,8 @@ public final class ge1 extends pg.b {
             oe1Var.setCustomMessage(LocaleController.getString(i13));
         }
         z10 = ((org.telegram.ui.ActionBar.n2) re1Var).inPreviewMode;
-        oe1Var.f22855k0 = z10;
-        oe1Var.setArchivedPullAnimation(re1Var.f41188w);
+        oe1Var.f22858k0 = z10;
+        oe1Var.setArchivedPullAnimation(re1Var.f41191w);
         return new s4.b1(oe1Var);
     }
 }

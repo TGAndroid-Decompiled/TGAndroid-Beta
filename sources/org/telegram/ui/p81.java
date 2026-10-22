@@ -3,27 +3,27 @@ package org.telegram.ui;
 import android.view.View;
 import android.widget.FrameLayout;
 public final class p81 extends org.telegram.ui.Components.w81 {
-    public final boolean f40119a;
-    public final boolean f40120b;
-    public final boolean f40121c;
+    public final boolean f40122a;
+    public final boolean f40123b;
+    public final boolean f40124c;
     public final FrameLayout d;
     public final p91 e;
 
     public p81(p91 p91Var, boolean z10, boolean z11, boolean z12, FrameLayout frameLayout) {
         this.e = p91Var;
-        this.f40119a = z10;
-        this.f40120b = z11;
-        this.f40121c = z12;
+        this.f40122a = z10;
+        this.f40123b = z11;
+        this.f40124c = z12;
         this.d = frameLayout;
     }
 
     @Override
     public final View d(int i10) {
         p91 p91Var = this.e;
-        if (p91Var.f40142l0) {
-            return p91Var.f40140j0;
+        if (p91Var.f40145l0) {
+            return p91Var.f40143j0;
         }
-        boolean z10 = this.f40119a;
+        boolean z10 = this.f40122a;
         FrameLayout frameLayout = this.d;
         if (z10) {
             if (i10 == 0) {
@@ -31,24 +31,24 @@ public final class p81 extends org.telegram.ui.Components.w81 {
             }
             i10--;
         }
-        if (this.f40120b) {
+        if (this.f40123b) {
             if (i10 == 0) {
-                return p91Var.f40140j0;
+                return p91Var.f40143j0;
             }
             i10--;
         }
-        if (this.f40121c && i10 == 0) {
-            return p91Var.f40141k0;
+        if (this.f40124c && i10 == 0) {
+            return p91Var.f40144k0;
         }
         return frameLayout;
     }
 
     @Override
     public final int e() {
-        if (this.e.f40142l0) {
+        if (this.e.f40145l0) {
             return 1;
         }
-        return (this.f40119a ? 1 : 0) + (this.f40120b ? 1 : 0) + (this.f40121c ? 1 : 0);
+        return (this.f40122a ? 1 : 0) + (this.f40123b ? 1 : 0) + (this.f40124c ? 1 : 0);
     }
 
     @Override

@@ -9,16 +9,16 @@ import org.telegram.messenger.support.SparseLongArray;
 public final class bc extends yb implements NotificationCenter.NotificationCenterDelegate {
     public final zb d;
     public SparseLongArray e;
-    public final org.telegram.ui.ActionBar.n2 f24888f;
+    public final org.telegram.ui.ActionBar.n2 f24891f;
     public final int h;
-    public qc f24889n;
+    public qc f24892n;
 
     public bc(int i10, org.telegram.ui.ActionBar.n2 n2Var) {
         super(n2Var.getContext(), n2Var.getResourceProvider());
-        this.f24888f = n2Var;
+        this.f24891f = n2Var;
         this.h = i10;
-        this.f32625b.setLayoutParams(w7.z5.i(-2.0f, -2.0f, 8388659, 56.0f, 6.0f, 8.0f, 0.0f));
-        this.f32624a.setLayoutParams(w7.z5.h(56.0f, 48.0f, 8388659));
+        this.f32628b.setLayoutParams(w7.z5.i(-2.0f, -2.0f, 8388659, 56.0f, 6.0f, 8.0f, 0.0f));
+        this.f32627a.setLayoutParams(w7.z5.h(56.0f, 48.0f, 8388659));
         zb zbVar = new zb(this, n2Var, getContext(), n2Var.getCurrentAccount(), n2Var.getResourceProvider());
         this.d = zbVar;
         zbVar.setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(24.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(0.0f));
@@ -51,7 +51,7 @@ public final class bc extends yb implements NotificationCenter.NotificationCente
 
     @Override
     public int getMeasuredBackgroundHeight() {
-        return AndroidUtilities.dp(30.0f) + this.f32625b.getMeasuredHeight();
+        return AndroidUtilities.dp(30.0f) + this.f32628b.getMeasuredHeight();
     }
 
     @Override
@@ -67,6 +67,6 @@ public final class bc extends yb implements NotificationCenter.NotificationCente
     }
 
     public void setBulletin(qc qcVar) {
-        this.f24889n = qcVar;
+        this.f24892n = qcVar;
     }
 }

@@ -23,7 +23,7 @@ public final class z1 extends ImageView implements org.telegram.ui.ActionBar.y5 
     public z1(Context context, int i10, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
         this.e = 20;
-        this.f15683f = h6.f20990d6;
+        this.f15683f = h6.f20993d6;
         this.f15684n = true;
         this.f15686s = true;
         this.f15681b = i10;
@@ -73,7 +73,7 @@ public final class z1 extends ImageView implements org.telegram.ui.ActionBar.y5 
             setColorFilter(new PorterDuffColorFilter(x02, PorterDuff.Mode.SRC_IN));
             return;
         }
-        setBackground(h6.a0(h6.w0(this.f15683f, d6Var), h6.w0(h6.f21079i6, d6Var), AndroidUtilities.dp(this.e), AndroidUtilities.dp(this.e)));
+        setBackground(h6.a0(h6.w0(this.f15683f, d6Var), h6.w0(h6.f21082i6, d6Var), AndroidUtilities.dp(this.e), AndroidUtilities.dp(this.e)));
         setColorFilter(new PorterDuffColorFilter(h6.w0(h6.G6, d6Var), PorterDuff.Mode.SRC_IN));
     }
 

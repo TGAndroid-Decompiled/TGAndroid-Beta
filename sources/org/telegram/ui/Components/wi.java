@@ -9,15 +9,15 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class wi implements Utilities.Callback2 {
-    public final int f32127a;
-    public final fj f32128b;
-    public final MessagesController f32129c;
+    public final int f32130a;
+    public final fj f32131b;
+    public final MessagesController f32132c;
     public final int d;
 
     public wi(fj fjVar, MessagesController messagesController, int i10, int i11) {
-        this.f32127a = i11;
-        this.f32128b = fjVar;
-        this.f32129c = messagesController;
+        this.f32130a = i11;
+        this.f32131b = fjVar;
+        this.f32132c = messagesController;
         this.d = i10;
     }
 
@@ -26,15 +26,15 @@ public final class wi implements Utilities.Callback2 {
         String str;
         TLRPC.TL_documentAttributeAudio tL_documentAttributeAudio;
         TLRPC.TL_documentAttributeAudio tL_documentAttributeAudio2;
-        switch (this.f32127a) {
+        switch (this.f32130a) {
             case 0:
                 TLRPC.messages_BotResults messages_botresults = (TLRPC.messages_BotResults) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                fj fjVar = this.f32128b;
-                fjVar.f26227d0 = -1;
+                fj fjVar = this.f32131b;
+                fjVar.f26230d0 = -1;
                 fjVar.m0 = false;
                 if (messages_botresults != null) {
-                    this.f32129c.putUsers(messages_botresults.users, false);
+                    this.f32132c.putUsers(messages_botresults.users, false);
                     ArrayList<TLRPC.BotInlineResult> arrayList = messages_botresults.results;
                     int size = arrayList.size();
                     int i10 = 0;
@@ -47,9 +47,9 @@ public final class wi implements Utilities.Callback2 {
                             if (tL_botInlineMediaResult.document != null) {
                                 TLRPC.TL_message tL_message = new TLRPC.TL_message();
                                 tL_message.out = true;
-                                int i11 = fjVar.f26235l0;
-                                fjVar.f26235l0 = i11 - 1;
-                                tL_message.f20297id = i11;
+                                int i11 = fjVar.f26238l0;
+                                fjVar.f26238l0 = i11 - 1;
+                                tL_message.f20300id = i11;
                                 tL_message.peer_id = new TLRPC.TL_peerUser();
                                 TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
                                 tL_message.from_id = tL_peerUser;
@@ -92,8 +92,8 @@ public final class wi implements Utilities.Callback2 {
                             }
                         }
                     }
-                    fjVar.f26234k0 = messages_botresults.next_offset;
-                    fjVar.f26230g0 = !TextUtils.isEmpty(str);
+                    fjVar.f26237k0 = messages_botresults.next_offset;
+                    fjVar.f26233g0 = !TextUtils.isEmpty(str);
                     fjVar.S();
                     return;
                 }
@@ -101,14 +101,14 @@ public final class wi implements Utilities.Callback2 {
             default:
                 TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) obj;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
-                fj fjVar2 = this.f32128b;
+                fj fjVar2 = this.f32131b;
                 ArrayList arrayList2 = fjVar2.L;
                 fjVar2.U = -1;
                 boolean z10 = false;
                 fjVar2.W = false;
                 if (messages_messages != null) {
                     ArrayList<TLRPC.User> arrayList3 = messages_messages.users;
-                    MessagesController messagesController = this.f32129c;
+                    MessagesController messagesController = this.f32132c;
                     messagesController.putUsers(arrayList3, false);
                     messagesController.putChats(messages_messages.chats, false);
                     ArrayList<TLRPC.Message> arrayList4 = messages_messages.messages;
@@ -143,11 +143,11 @@ public final class wi implements Utilities.Callback2 {
                         }
                     }
                     int i16 = messages_messages.next_rate;
-                    fjVar2.f26225b0 = i16;
+                    fjVar2.f26228b0 = i16;
                     if (i16 != 0 || (messages_messages.count > 0 && arrayList2.size() < messages_messages.count)) {
                         z10 = true;
                     }
-                    fjVar2.f26226c0 = z10;
+                    fjVar2.f26229c0 = z10;
                     fjVar2.S();
                     return;
                 }

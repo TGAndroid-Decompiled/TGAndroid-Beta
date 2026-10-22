@@ -4,19 +4,19 @@ import android.graphics.Point;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class s5 extends w7.w5 {
-    public final boolean f21712a;
-    public final View f21713b;
+    public final boolean f21715a;
+    public final View f21716b;
 
     public s5(View view, boolean z10) {
-        this.f21712a = z10;
-        this.f21713b = view;
+        this.f21715a = z10;
+        this.f21716b = view;
     }
 
     @Override
     public final void b(int i10, int i11) {
         boolean z10;
-        boolean z11 = this.f21712a;
-        View view = this.f21713b;
+        boolean z11 = this.f21715a;
+        View view = this.f21716b;
         if (!z11) {
             Point point = AndroidUtilities.displaySize;
             boolean z12 = false;

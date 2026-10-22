@@ -7,22 +7,22 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class rg0 implements RequestDelegate {
-    public final int f41215a;
-    public final ih0 f41216b;
-    public final TLRPC.TL_chatInviteExported f41217c;
+    public final int f41218a;
+    public final ih0 f41219b;
+    public final TLRPC.TL_chatInviteExported f41220c;
 
     public rg0(ih0 ih0Var, TLRPC.TL_chatInviteExported tL_chatInviteExported, int i10) {
-        this.f41215a = i10;
-        this.f41216b = ih0Var;
-        this.f41217c = tL_chatInviteExported;
+        this.f41218a = i10;
+        this.f41219b = ih0Var;
+        this.f41220c = tL_chatInviteExported;
     }
 
     @Override
     public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f41215a) {
+        switch (this.f41218a) {
             case 0:
-                final ih0 ih0Var = this.f41216b;
-                final TLRPC.TL_chatInviteExported tL_chatInviteExported = this.f41217c;
+                final ih0 ih0Var = this.f41219b;
+                final TLRPC.TL_chatInviteExported tL_chatInviteExported = this.f41220c;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -40,7 +40,7 @@ public final class rg0 implements RequestDelegate {
                                         TLRPC.TL_chatInviteExported tL_chatInviteExported3 = tL_chatInviteExported;
                                         tL_chatInviteExported3.revoked = true;
                                         zg0 f02 = ih0Var2.f0();
-                                        ih0Var2.f37990j0.add(0, tL_chatInviteExported3);
+                                        ih0Var2.f37993j0.add(0, tL_chatInviteExported3);
                                         ih0Var2.h0(f02);
                                         org.telegram.messenger.g0.q(R.string.InviteRevokedHint, org.telegram.ui.Components.xc.a0(ih0Var2), R.raw.linkbroken, 36);
                                         return;
@@ -50,28 +50,28 @@ public final class rg0 implements RequestDelegate {
                                 return;
                             default:
                                 ih0 ih0Var3 = ih0Var;
-                                ArrayList arrayList = ih0Var3.f37989i0;
+                                ArrayList arrayList = ih0Var3.f37992i0;
                                 if (tL_error == null) {
                                     TLObject tLObject2 = tLObject;
                                     boolean z10 = tLObject2 instanceof TLRPC.TL_messages_exportedChatInviteReplaced;
                                     TLRPC.TL_chatInviteExported tL_chatInviteExported4 = tL_chatInviteExported;
                                     if (z10) {
                                         TLRPC.TL_messages_exportedChatInviteReplaced tL_messages_exportedChatInviteReplaced = (TLRPC.TL_messages_exportedChatInviteReplaced) tLObject2;
-                                        if (!ih0Var3.f37995o0) {
+                                        if (!ih0Var3.f37998o0) {
                                             ih0Var3.e = (TLRPC.TL_chatInviteExported) tL_messages_exportedChatInviteReplaced.new_invite;
                                         }
                                         tL_chatInviteExported4.revoked = true;
                                         zg0 f03 = ih0Var3.f0();
-                                        if (ih0Var3.f37995o0 && ih0Var3.f37985f == ih0Var3.getAccountInstance().getUserConfig().getClientUserId()) {
+                                        if (ih0Var3.f37998o0 && ih0Var3.f37988f == ih0Var3.getAccountInstance().getUserConfig().getClientUserId()) {
                                             arrayList.remove(tL_chatInviteExported4);
                                             arrayList.add(0, (TLRPC.TL_chatInviteExported) tL_messages_exportedChatInviteReplaced.new_invite);
                                         } else if (ih0Var3.e != null) {
                                             ih0Var3.e = (TLRPC.TL_chatInviteExported) tL_messages_exportedChatInviteReplaced.new_invite;
                                         }
-                                        ih0Var3.f37990j0.add(0, tL_chatInviteExported4);
+                                        ih0Var3.f37993j0.add(0, tL_chatInviteExported4);
                                         ih0Var3.h0(f03);
                                     } else {
-                                        ih0Var3.f38001s0.b(tL_chatInviteExported4, tLObject2);
+                                        ih0Var3.f38004s0.b(tL_chatInviteExported4, tLObject2);
                                         TLRPC.ChatFull chatFull2 = ih0Var3.d;
                                         if (chatFull2 != null) {
                                             int i10 = chatFull2.invitesCount - 1;
@@ -79,7 +79,7 @@ public final class rg0 implements RequestDelegate {
                                             if (i10 < 0) {
                                                 chatFull2.invitesCount = 0;
                                             }
-                                            ih0Var3.getMessagesStorage().saveChatLinksCount(ih0Var3.f37993n, ih0Var3.d.invitesCount);
+                                            ih0Var3.getMessagesStorage().saveChatLinksCount(ih0Var3.f37996n, ih0Var3.d.invitesCount);
                                         }
                                     }
                                     if (ih0Var3.getParentActivity() != null) {
@@ -94,13 +94,13 @@ public final class rg0 implements RequestDelegate {
                 });
                 return;
             case 1:
-                ih0 ih0Var2 = this.f41216b;
+                ih0 ih0Var2 = this.f41219b;
                 ih0Var2.getClass();
-                AndroidUtilities.runOnUIThread(new ve0(ih0Var2, tL_error, this.f41217c, 6));
+                AndroidUtilities.runOnUIThread(new ve0(ih0Var2, tL_error, this.f41220c, 6));
                 return;
             default:
-                final ih0 ih0Var3 = this.f41216b;
-                final TLRPC.TL_chatInviteExported tL_chatInviteExported2 = this.f41217c;
+                final ih0 ih0Var3 = this.f41219b;
+                final TLRPC.TL_chatInviteExported tL_chatInviteExported2 = this.f41220c;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -118,7 +118,7 @@ public final class rg0 implements RequestDelegate {
                                         TLRPC.TL_chatInviteExported tL_chatInviteExported3 = tL_chatInviteExported2;
                                         tL_chatInviteExported3.revoked = true;
                                         zg0 f02 = ih0Var22.f0();
-                                        ih0Var22.f37990j0.add(0, tL_chatInviteExported3);
+                                        ih0Var22.f37993j0.add(0, tL_chatInviteExported3);
                                         ih0Var22.h0(f02);
                                         org.telegram.messenger.g0.q(R.string.InviteRevokedHint, org.telegram.ui.Components.xc.a0(ih0Var22), R.raw.linkbroken, 36);
                                         return;
@@ -128,28 +128,28 @@ public final class rg0 implements RequestDelegate {
                                 return;
                             default:
                                 ih0 ih0Var32 = ih0Var3;
-                                ArrayList arrayList = ih0Var32.f37989i0;
+                                ArrayList arrayList = ih0Var32.f37992i0;
                                 if (tL_error == null) {
                                     TLObject tLObject2 = tLObject;
                                     boolean z10 = tLObject2 instanceof TLRPC.TL_messages_exportedChatInviteReplaced;
                                     TLRPC.TL_chatInviteExported tL_chatInviteExported4 = tL_chatInviteExported2;
                                     if (z10) {
                                         TLRPC.TL_messages_exportedChatInviteReplaced tL_messages_exportedChatInviteReplaced = (TLRPC.TL_messages_exportedChatInviteReplaced) tLObject2;
-                                        if (!ih0Var32.f37995o0) {
+                                        if (!ih0Var32.f37998o0) {
                                             ih0Var32.e = (TLRPC.TL_chatInviteExported) tL_messages_exportedChatInviteReplaced.new_invite;
                                         }
                                         tL_chatInviteExported4.revoked = true;
                                         zg0 f03 = ih0Var32.f0();
-                                        if (ih0Var32.f37995o0 && ih0Var32.f37985f == ih0Var32.getAccountInstance().getUserConfig().getClientUserId()) {
+                                        if (ih0Var32.f37998o0 && ih0Var32.f37988f == ih0Var32.getAccountInstance().getUserConfig().getClientUserId()) {
                                             arrayList.remove(tL_chatInviteExported4);
                                             arrayList.add(0, (TLRPC.TL_chatInviteExported) tL_messages_exportedChatInviteReplaced.new_invite);
                                         } else if (ih0Var32.e != null) {
                                             ih0Var32.e = (TLRPC.TL_chatInviteExported) tL_messages_exportedChatInviteReplaced.new_invite;
                                         }
-                                        ih0Var32.f37990j0.add(0, tL_chatInviteExported4);
+                                        ih0Var32.f37993j0.add(0, tL_chatInviteExported4);
                                         ih0Var32.h0(f03);
                                     } else {
-                                        ih0Var32.f38001s0.b(tL_chatInviteExported4, tLObject2);
+                                        ih0Var32.f38004s0.b(tL_chatInviteExported4, tLObject2);
                                         TLRPC.ChatFull chatFull2 = ih0Var32.d;
                                         if (chatFull2 != null) {
                                             int i10 = chatFull2.invitesCount - 1;
@@ -157,7 +157,7 @@ public final class rg0 implements RequestDelegate {
                                             if (i10 < 0) {
                                                 chatFull2.invitesCount = 0;
                                             }
-                                            ih0Var32.getMessagesStorage().saveChatLinksCount(ih0Var32.f37993n, ih0Var32.d.invitesCount);
+                                            ih0Var32.getMessagesStorage().saveChatLinksCount(ih0Var32.f37996n, ih0Var32.d.invitesCount);
                                         }
                                     }
                                     if (ih0Var32.getParentActivity() != null) {

@@ -4,25 +4,25 @@ import java.util.concurrent.CountDownLatch;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
 public final class q5 implements Runnable {
-    public final int f40373a;
-    public final z5 f40374b;
+    public final int f40376a;
+    public final z5 f40377b;
 
     public q5(z5 z5Var, int i10) {
-        this.f40373a = i10;
-        this.f40374b = z5Var;
+        this.f40376a = i10;
+        this.f40377b = z5Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f40373a) {
+        switch (this.f40376a) {
             case 0:
-                z5 z5Var = this.f40374b;
-                z5Var.f43635e0 = false;
+                z5 z5Var = this.f40377b;
+                z5Var.f43638e0 = false;
                 z5Var.H0(true);
                 return;
             case 1:
                 CountDownLatch countDownLatch = new CountDownLatch(2);
-                z5 z5Var2 = this.f40374b;
+                z5 z5Var2 = this.f40377b;
                 z5Var2.D0(countDownLatch, null);
                 z5Var2.E0(countDownLatch, null);
                 try {
@@ -32,17 +32,17 @@ public final class q5 implements Runnable {
                 NotificationCenter.getInstance(z5Var2.Q).doOnIdle(new q5(z5Var2, 4));
                 return;
             case 2:
-                z5 z5Var3 = this.f40374b;
-                z5Var3.f43635e0 = false;
+                z5 z5Var3 = this.f40377b;
+                z5Var3.f43638e0 = false;
                 z5Var3.H0(true);
                 return;
             case 3:
-                z5 z5Var4 = this.f40374b;
-                z5Var4.f43635e0 = false;
+                z5 z5Var4 = this.f40377b;
+                z5Var4.f43638e0 = false;
                 z5Var4.H0(true);
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new q5(this.f40374b, 0));
+                AndroidUtilities.runOnUIThread(new q5(this.f40377b, 0));
                 return;
         }
     }

@@ -4,10 +4,10 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class fd1 extends org.telegram.ui.Components.im0 {
-    public final ArrayList f36975c = new ArrayList();
+    public final ArrayList f36978c = new ArrayList();
     public final ArrayList d = new ArrayList();
     public ed1 e;
-    public int f36976f;
+    public int f36979f;
     public final gd1 h;
 
     public fd1(gd1 gd1Var) {
@@ -21,22 +21,22 @@ public final class fd1 extends org.telegram.ui.Components.im0 {
 
     @Override
     public final int h() {
-        return this.f36975c.size();
+        return this.f36978c.size();
     }
 
     @Override
     public final void v(s4.b1 b1Var, int i10) {
-        ArrayList arrayList = this.f36975c;
+        ArrayList arrayList = this.f36978c;
         TLRPC.Chat chat = (TLRPC.Chat) arrayList.get(i10);
         String str = (String) this.d.get(i10);
-        org.telegram.ui.Cells.f4 f4Var = (org.telegram.ui.Cells.f4) b1Var.f45917a;
+        org.telegram.ui.Cells.f4 f4Var = (org.telegram.ui.Cells.f4) b1Var.f45920a;
         String str2 = chat.title;
         boolean z10 = true;
         if (i10 == arrayList.size() - 1) {
             z10 = false;
         }
         f4Var.e(chat, str2, str, z10);
-        f4Var.c(this.h.f37292w.contains(Long.valueOf(chat.f20276id)), false);
+        f4Var.c(this.h.f37295w.contains(Long.valueOf(chat.f20279id)), false);
     }
 
     @Override

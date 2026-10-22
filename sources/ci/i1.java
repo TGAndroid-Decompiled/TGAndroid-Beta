@@ -80,7 +80,7 @@ public final class i1 implements cw0, dw0, org.telegram.ui.ActionBar.a2, Continu
                 } else {
                     f7 = 0.76f;
                 }
-                return fh.c.m(f7, org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20990d6, d6Var), org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Sd, d6Var));
+                return fh.c.m(f7, org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20993d6, d6Var), org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Sd, d6Var));
             case 18:
                 if (!LiteMode.isEnabled(256)) {
                     return org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.G8, false);
@@ -98,7 +98,7 @@ public final class i1 implements cw0, dw0, org.telegram.ui.ActionBar.a2, Continu
                 } else {
                     f11 = 0.76f;
                 }
-                return fh.c.m(f11, org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20990d6, d6Var), org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Zk, d6Var));
+                return fh.c.m(f11, org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20993d6, d6Var), org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Zk, d6Var));
             case 20:
                 if (LiteMode.isEnabled(262144)) {
                     f12 = 0.85f;
@@ -113,7 +113,7 @@ public final class i1 implements cw0, dw0, org.telegram.ui.ActionBar.a2, Continu
             case 23:
                 return org.telegram.ui.ActionBar.h6.m1(0.075f, -16777216);
             case 24:
-                return org.telegram.ui.ActionBar.h6.m1(0.88f, org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20990d6, d6Var));
+                return org.telegram.ui.ActionBar.h6.m1(0.88f, org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20993d6, d6Var));
             case 25:
                 int x03 = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.G8, false);
                 if (z10) {
@@ -128,18 +128,18 @@ public final class i1 implements cw0, dw0, org.telegram.ui.ActionBar.a2, Continu
                 } else {
                     f14 = 0.76f;
                 }
-                return fh.c.m(f14, org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20990d6, d6Var), org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Yk, d6Var));
+                return fh.c.m(f14, org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20993d6, d6Var), org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Yk, d6Var));
             case 27:
                 if (LiteMode.isEnabled(262144)) {
                     f15 = 0.85f;
                 } else {
                     f15 = 0.76f;
                 }
-                return org.telegram.ui.ActionBar.h6.m1(f15, org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20990d6, d6Var));
+                return org.telegram.ui.ActionBar.h6.m1(f15, org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20993d6, d6Var));
             case 28:
-                return org.telegram.ui.ActionBar.h6.m1(0.78f, org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21061h5, d6Var));
+                return org.telegram.ui.ActionBar.h6.m1(0.78f, org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21064h5, d6Var));
             default:
-                return org.telegram.ui.ActionBar.h6.m1(0.7f, org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20990d6, d6Var));
+                return org.telegram.ui.ActionBar.h6.m1(0.7f, org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20993d6, d6Var));
         }
     }
 

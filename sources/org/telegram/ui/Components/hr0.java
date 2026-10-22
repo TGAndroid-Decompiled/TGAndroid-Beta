@@ -18,12 +18,12 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.PremiumPreviewFragment;
 public final class hr0 implements Runnable {
-    public final int f26990a;
-    public final Object f26991b;
+    public final int f26993a;
+    public final Object f26994b;
 
     public hr0(Object obj, int i10) {
-        this.f26990a = i10;
-        this.f26991b = obj;
+        this.f26993a = i10;
+        this.f26994b = obj;
     }
 
     @Override
@@ -33,8 +33,8 @@ public final class hr0 implements Runnable {
         String[] currentKeyboardLanguage;
         ArrayList arrayList;
         ArrayList arrayList2;
-        int i10 = this.f26990a;
-        Object obj = this.f26991b;
+        int i10 = this.f26993a;
+        Object obj = this.f26994b;
         switch (i10) {
             case 0:
                 ((ir0) obj).setVisibility(8);
@@ -47,10 +47,10 @@ public final class hr0 implements Runnable {
                 }
                 return;
             case 2:
-                ((st0) obj).f30357r.o1(false);
+                ((st0) obj).f30360r.o1(false);
                 return;
             case 3:
-                org.telegram.ui.ActionBar.n2 n2Var = ((du0) obj).f25631f.f31071v1;
+                org.telegram.ui.ActionBar.n2 n2Var = ((du0) obj).f25634f.f31074v1;
                 if (n2Var != null) {
                     n2Var.presentFragment(new PremiumPreviewFragment(0, "similar_channels"));
                     return;
@@ -61,7 +61,7 @@ public final class hr0 implements Runnable {
                 return;
             case 5:
                 ev0 ev0Var = (ev0) obj;
-                ArrayList arrayList3 = ev0Var.f25977f;
+                ArrayList arrayList3 = ev0Var.f25980f;
                 if (ev0Var.h) {
                     ev0Var.h = false;
                     ArrayList<Long> arrayList4 = new ArrayList<>();
@@ -70,7 +70,7 @@ public final class hr0 implements Runnable {
                             arrayList4.add(Long.valueOf(((SavedMessagesController.SavedDialog) arrayList3.get(i11)).dialogId));
                         }
                     }
-                    ev0Var.f25982x.f31071v1.getMessagesController().getSavedMessagesController().updatePinnedOrder(arrayList4);
+                    ev0Var.f25985x.f31074v1.getMessagesController().getSavedMessagesController().updatePinnedOrder(arrayList4);
                     return;
                 }
                 return;
@@ -85,8 +85,8 @@ public final class hr0 implements Runnable {
                 return;
             case 9:
                 mx0 mx0Var = (mx0) obj;
-                if (!mx0Var.f28622w) {
-                    mx0Var.f28624y = 0.0f;
+                if (!mx0Var.f28625w) {
+                    mx0Var.f28627y = 0.0f;
                     return;
                 }
                 return;
@@ -95,14 +95,14 @@ public final class hr0 implements Runnable {
                 return;
             case 11:
                 iz0 iz0Var = (iz0) obj;
-                int i12 = iz0Var.f27353a;
+                int i12 = iz0Var.f27356a;
                 iz0Var.F = null;
-                gz0 gz0Var = iz0Var.f27357c;
-                if (gz0Var != null && gz0Var.getEditField() != null && iz0Var.f27357c.getFieldText() != null) {
-                    int selectionStart = iz0Var.f27357c.getEditField().getSelectionStart();
-                    int selectionEnd = iz0Var.f27357c.getEditField().getSelectionEnd();
+                gz0 gz0Var = iz0Var.f27360c;
+                if (gz0Var != null && gz0Var.getEditField() != null && iz0Var.f27360c.getFieldText() != null) {
+                    int selectionStart = iz0Var.f27360c.getEditField().getSelectionStart();
+                    int selectionEnd = iz0Var.f27360c.getEditField().getSelectionEnd();
                     if (selectionStart != selectionEnd) {
-                        iz0Var.f27363s = false;
+                        iz0Var.f27366s = false;
                         ah.x xVar = iz0Var.d;
                         if (xVar != null) {
                             xVar.invalidate();
@@ -110,7 +110,7 @@ public final class hr0 implements Runnable {
                         }
                         return;
                     }
-                    CharSequence fieldText = iz0Var.f27357c.getFieldText();
+                    CharSequence fieldText = iz0Var.f27360c.getFieldText();
                     boolean z10 = fieldText instanceof Spanned;
                     if (z10) {
                         emojiSpanArr = (Emoji.EmojiSpan[]) ((Spanned) fieldText).getSpans(Math.max(0, selectionEnd - 24), selectionEnd, Emoji.EmojiSpan.class);
@@ -125,14 +125,14 @@ public final class hr0 implements Runnable {
                             int spanEnd = spanned.getSpanEnd(emojiSpan);
                             if (selectionStart == spanEnd) {
                                 String substring = fieldText.toString().substring(spanStart, spanEnd);
-                                iz0Var.f27363s = true;
+                                iz0Var.f27366s = true;
                                 iz0Var.c();
                                 iz0Var.T = emojiSpan;
                                 iz0Var.W = null;
                                 iz0Var.V = null;
                                 if (substring != null) {
                                     String str = iz0Var.H;
-                                    if (str != null && iz0Var.G == 2 && str.equals(substring) && !iz0Var.f27365x && (arrayList2 = iz0Var.f27364w) != null && !arrayList2.isEmpty()) {
+                                    if (str != null && iz0Var.G == 2 && str.equals(substring) && !iz0Var.f27368x && (arrayList2 = iz0Var.f27367w) != null && !arrayList2.isEmpty()) {
                                         iz0Var.v = false;
                                         iz0Var.c();
                                         ah.x xVar2 = iz0Var.d;
@@ -148,7 +148,7 @@ public final class hr0 implements Runnable {
                                             AndroidUtilities.cancelRunOnUIThread(runnable);
                                         }
                                         iz0Var.K = new org.telegram.ui.i4(iz0Var, substring, i13, 27);
-                                        ArrayList arrayList5 = iz0Var.f27364w;
+                                        ArrayList arrayList5 = iz0Var.f27367w;
                                         if (arrayList5 != null && !arrayList5.isEmpty()) {
                                             iz0Var.K.run();
                                         } else {
@@ -171,13 +171,13 @@ public final class hr0 implements Runnable {
                             a6VarArr = null;
                         }
                         if ((a6VarArr == null || a6VarArr.length == 0) && selectionEnd < 52) {
-                            iz0Var.f27363s = true;
+                            iz0Var.f27366s = true;
                             iz0Var.c();
                             iz0Var.T = null;
                             String substring2 = fieldText.toString().substring(0, selectionEnd);
                             if (substring2 != null) {
                                 String str2 = iz0Var.H;
-                                if (str2 != null && iz0Var.G == 1 && str2.equals(substring2) && !iz0Var.f27365x && (arrayList = iz0Var.f27364w) != null && !arrayList.isEmpty()) {
+                                if (str2 != null && iz0Var.G == 1 && str2.equals(substring2) && !iz0Var.f27368x && (arrayList = iz0Var.f27367w) != null && !arrayList.isEmpty()) {
                                     iz0Var.v = false;
                                     iz0Var.c();
                                     iz0Var.d.setVisibility(0);
@@ -205,7 +205,7 @@ public final class hr0 implements Runnable {
                                         iz0Var.K = null;
                                     }
                                     iz0Var.K = new ai.cb(iz0Var, currentKeyboardLanguage, substring2, i14, 29);
-                                    ArrayList arrayList6 = iz0Var.f27364w;
+                                    ArrayList arrayList6 = iz0Var.f27367w;
                                     if (arrayList6 != null && !arrayList6.isEmpty()) {
                                         iz0Var.K.run();
                                     } else {
@@ -226,7 +226,7 @@ public final class hr0 implements Runnable {
                         AndroidUtilities.cancelRunOnUIThread(runnable3);
                         iz0Var.K = null;
                     }
-                    iz0Var.f27363s = false;
+                    iz0Var.f27366s = false;
                     ah.x xVar5 = iz0Var.d;
                     if (xVar5 != null) {
                         xVar5.invalidate();
@@ -234,7 +234,7 @@ public final class hr0 implements Runnable {
                     }
                     return;
                 }
-                iz0Var.f27363s = false;
+                iz0Var.f27366s = false;
                 iz0Var.v = true;
                 ah.x xVar6 = iz0Var.d;
                 if (xVar6 != null) {
@@ -260,7 +260,7 @@ public final class hr0 implements Runnable {
                 ((m11) obj).a();
                 return;
             case 15:
-                ArrayList arrayList7 = ((s11) obj).f30115a;
+                ArrayList arrayList7 = ((s11) obj).f30118a;
                 for (int i15 = 0; i15 < arrayList7.size(); i15++) {
                     ((View) arrayList7.get(i15)).setVisibility(8);
                     if (arrayList7.get(i15) instanceof org.telegram.ui.Cells.u1) {
@@ -272,24 +272,24 @@ public final class hr0 implements Runnable {
             case 16:
                 r21 r21Var = (r21) obj;
                 r21Var.J = null;
-                r21Var.H.animate().scaleX(1.0f).scaleY(1.0f).setDuration(150L).setInterpolator(bs.f25021f).start();
+                r21Var.H.animate().scaleX(1.0f).scaleY(1.0f).setDuration(150L).setInterpolator(bs.f25024f).start();
                 return;
             case 17:
                 v21 v21Var = (v21) obj;
                 ViewPropertyAnimator duration = v21Var.animate().alpha(0.0f).setListener(new c80(v21Var, 28)).setDuration(300L);
-                v21Var.f31125b = duration;
+                v21Var.f31128b = duration;
                 duration.start();
                 return;
             case 18:
                 x21 x21Var = (x21) obj;
-                Utilities.Callback callback = x21Var.f32323b;
+                Utilities.Callback callback = x21Var.f32326b;
                 if (callback != null) {
-                    callback.run(Long.valueOf(x21Var.f32322a.f32565s));
+                    callback.run(Long.valueOf(x21Var.f32325a.f32568s));
                     return;
                 }
                 return;
             case 19:
-                s31 s31Var = ((i31) obj).f27115b;
+                s31 s31Var = ((i31) obj).f27118b;
                 if (s31Var.k()) {
                     s31Var.l();
                     return;
@@ -306,10 +306,10 @@ public final class hr0 implements Runnable {
                 ((org.telegram.ui.ActionBar.m1) obj).dismiss();
                 return;
             case 23:
-                ((d51) obj).f25338c.setVisibility(8);
+                ((d51) obj).f25341c.setVisibility(8);
                 return;
             case 24:
-                ((org.telegram.ui.rk) obj).f27757c.presentFragment(new org.telegram.ui.r21());
+                ((org.telegram.ui.rk) obj).f27760c.presentFragment(new org.telegram.ui.r21());
                 return;
             case 25:
                 ((o51) obj).requestLayout();
@@ -319,10 +319,10 @@ public final class hr0 implements Runnable {
                 return;
             case 27:
                 UndoView undoView = (UndoView) obj;
-                int i16 = UndoView.f24406e0;
+                int i16 = UndoView.f24409e0;
                 undoView.getClass();
                 try {
-                    undoView.f24414f.performHapticFeedback(3, 2);
+                    undoView.f24417f.performHapticFeedback(3, 2);
                     return;
                 } catch (Exception unused) {
                     return;
@@ -331,7 +331,7 @@ public final class hr0 implements Runnable {
                 ((e71) obj).invalidateSelf();
                 return;
             default:
-                e00 e00Var = ((r71) obj).f29861b;
+                e00 e00Var = ((r71) obj).f29864b;
                 if (e00Var != null) {
                     e00Var.d(false, true, false);
                     return;

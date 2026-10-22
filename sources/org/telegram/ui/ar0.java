@@ -10,20 +10,20 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessageObject;
 public final class ar0 implements Runnable {
-    public final int f35408a = 0;
-    public final boolean f35409b;
-    public final boolean f35410c;
+    public final int f35411a = 0;
+    public final boolean f35412b;
+    public final boolean f35413c;
     public final boolean d;
     public final Object e;
-    public final Serializable f35411f;
+    public final Serializable f35414f;
     public final Object h;
 
     public ar0(yr0 yr0Var, int[] iArr, int[] iArr2, boolean z10, boolean z11, boolean z12) {
         this.e = yr0Var;
-        this.f35411f = iArr;
+        this.f35414f = iArr;
         this.h = iArr2;
-        this.f35409b = z10;
-        this.f35410c = z11;
+        this.f35412b = z10;
+        this.f35413c = z11;
         this.d = z12;
     }
 
@@ -34,9 +34,9 @@ public final class ar0 implements Runnable {
         float f10;
         org.telegram.ui.Components.z7 z7Var;
         org.telegram.ui.Components.wc wcVar;
-        int i10 = this.f35408a;
+        int i10 = this.f35411a;
         Object obj = this.h;
-        Serializable serializable = this.f35411f;
+        Serializable serializable = this.f35414f;
         Object obj2 = this.e;
         switch (i10) {
             case 0:
@@ -48,17 +48,17 @@ public final class ar0 implements Runnable {
                 int i11 = photoViewer.V3;
                 photoViewer.V3 = i11 - 1;
                 String absolutePath = file.getAbsolutePath();
-                boolean z10 = this.f35409b;
+                boolean z10 = this.f35412b;
                 if (z10) {
                     intValue = 0;
                 } else {
                     intValue = ((Integer) imageOrientation.first).intValue();
                 }
                 MediaController.PhotoEntry orientation = new MediaController.PhotoEntry(0, i11, 0L, absolutePath, intValue, z10, 0, 0, 0L).setOrientation(imageOrientation);
-                photoViewer.f33263c2 = 2;
-                photoViewer.f33422u2 = false;
-                photoViewer.d = new kt0(photoViewer, photoViewer.d, messageObject, orientation, this.f35410c, this.d);
-                photoViewer.f33376p1.l();
+                photoViewer.f33266c2 = 2;
+                photoViewer.f33425u2 = false;
+                photoViewer.d = new kt0(photoViewer, photoViewer.d, messageObject, orientation, this.f35413c, this.d);
+                photoViewer.f33379p1.l();
                 if (photoViewer.U6 == null) {
                     photoViewer.U6 = VelocityTracker.obtain();
                 }
@@ -72,18 +72,18 @@ public final class ar0 implements Runnable {
                     photoViewer.U1();
                 }
                 photoViewer.L0.setAlpha(255);
-                photoViewer.f33279e0.setAlpha(1.0f);
+                photoViewer.f33282e0.setAlpha(1.0f);
                 photoViewer.b2(null, null, null, null, null, null, Collections.singletonList(orientation), 0, null);
                 ai.o5 o5Var = photoViewer.P0;
                 float f11 = 96.0f;
-                if (photoViewer.f33393r1) {
+                if (photoViewer.f33396r1) {
                     f7 = 154.0f;
                 } else {
                     f7 = 96.0f;
                 }
                 o5Var.setTranslationY(AndroidUtilities.dp(f7));
                 ki.y1 y1Var = photoViewer.S0;
-                if (photoViewer.f33393r1) {
+                if (photoViewer.f33396r1) {
                     f10 = 154.0f;
                 } else {
                     f10 = 96.0f;
@@ -91,7 +91,7 @@ public final class ar0 implements Runnable {
                 y1Var.setTranslationY(AndroidUtilities.dp(f10));
                 photoViewer.F.setTranslationY(-z7Var.getHeight());
                 xt0 xt0Var = photoViewer.Q1;
-                if (photoViewer.f33393r1) {
+                if (photoViewer.f33396r1) {
                     f11 = 154.0f;
                 }
                 xt0Var.setTranslationY(AndroidUtilities.dp(f11));
@@ -106,27 +106,27 @@ public final class ar0 implements Runnable {
                 iArr[0] = i12;
                 int i13 = ((int[]) obj)[0];
                 if (i12 == i13) {
-                    bu0 bu0Var = yr0Var.f43544b.f33279e0;
-                    boolean z11 = this.f35409b;
-                    boolean z12 = this.f35410c;
+                    bu0 bu0Var = yr0Var.f43547b.f33282e0;
+                    boolean z11 = this.f35412b;
+                    boolean z12 = this.f35413c;
                     int i14 = z11 ? 1 : 0;
                     boolean z13 = this.d;
                     if ((z12 ? 1 : 0) + i14 + (z13 ? 1 : 0) > 1) {
                         wcVar = org.telegram.ui.Components.wc.v;
                     } else if (z13) {
                         if (i13 > 1) {
-                            wcVar = org.telegram.ui.Components.wc.f32056s;
+                            wcVar = org.telegram.ui.Components.wc.f32059s;
                         } else {
-                            wcVar = org.telegram.ui.Components.wc.f32055r;
+                            wcVar = org.telegram.ui.Components.wc.f32058r;
                         }
                     } else if (z11) {
                         if (i13 > 1) {
-                            wcVar = org.telegram.ui.Components.wc.f32054n;
+                            wcVar = org.telegram.ui.Components.wc.f32057n;
                         } else {
                             wcVar = org.telegram.ui.Components.wc.h;
                         }
                     } else if (i13 > 1) {
-                        wcVar = org.telegram.ui.Components.wc.f32053f;
+                        wcVar = org.telegram.ui.Components.wc.f32056f;
                     } else {
                         wcVar = org.telegram.ui.Components.wc.e;
                     }
@@ -139,10 +139,10 @@ public final class ar0 implements Runnable {
 
     public ar0(PhotoViewer photoViewer, File file, boolean z10, MessageObject messageObject, boolean z11, boolean z12) {
         this.e = photoViewer;
-        this.f35411f = file;
-        this.f35409b = z10;
+        this.f35414f = file;
+        this.f35412b = z10;
         this.h = messageObject;
-        this.f35410c = z11;
+        this.f35413c = z11;
         this.d = z12;
     }
 }

@@ -23,14 +23,14 @@ public final class u implements Utilities.Callback5, r0.n, Utilities.Callback5Re
 
     @Override
     public k1 B0(View view, k1 k1Var) {
-        h1 h1Var = k1Var.f44835a;
+        h1 h1Var = k1Var.f44838a;
         i0.b f7 = h1Var.f(527);
         k0 k0Var = this.f12237b;
         k0Var.T = f7;
         k0Var.U = h1Var.f(519);
         k0Var.F.j(AndroidUtilities.dp(56.0f) + k0Var.T.f12284b, k0Var.T.d, false);
         k0Var.H.invalidate();
-        return k1.f44834b;
+        return k1.f44837b;
     }
 
     @Override
@@ -52,13 +52,13 @@ public final class u implements Utilities.Callback5, r0.n, Utilities.Callback5Re
             TLRPC.Chat chat = (TLRPC.Chat) obj6;
             boolean isChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(chat);
             canRemoveBotFromCommunity = ChatObject.canRemoveChatFromCommunity(chat, k0Var.f12170f);
-            j10 = -chat.f20276id;
+            j10 = -chat.f20279id;
             z11 = isChannelAndNotMegaGroup;
             z10 = false;
         } else {
             if (obj6 instanceof TLRPC.User) {
                 TLRPC.User user = (TLRPC.User) obj6;
-                long j11 = user.f20423id;
+                long j11 = user.f20426id;
                 boolean isBot = UserObject.isBot(user);
                 canRemoveBotFromCommunity = ChatObject.canRemoveBotFromCommunity(user, k0Var.f12170f);
                 j10 = j11;

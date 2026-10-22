@@ -59,10 +59,10 @@ import y6.e;
 import zf.j;
 import zf.k;
 public class a implements s0, q, cg.a, dg.a, b, n, eh.a, d, cp0, l1, u, r, g, Continuation, u5.a, m, x3.g, c, i {
-    public final int f44286a;
+    public final int f44289a;
 
     public a(int i10) {
-        this.f44286a = i10;
+        this.f44289a = i10;
     }
 
     public static k b0(Editable editable, int i10) {
@@ -72,7 +72,7 @@ public class a implements s0, q, cg.a, dg.a, b, n, eh.a, d, cp0, l1, u, r, g, Co
                 int i11 = length - 1;
                 if (editable.getSpanFlags(objArr[i11]) == 17) {
                     k kVar = objArr[i11];
-                    if (kVar.f51584a == i10) {
+                    if (kVar.f51587a == i10) {
                         return kVar;
                     }
                 }
@@ -177,7 +177,7 @@ public class a implements s0, q, cg.a, dg.a, b, n, eh.a, d, cp0, l1, u, r, g, Co
                 k[] kVarArr = (k[]) editable.getSpans(0, editable.length(), k.class);
                 for (int length2 = kVarArr.length - 1; length2 >= 0; length2--) {
                     k kVar = kVarArr[length2];
-                    if (editable.getSpanFlags(kVar) == 17 && ((i10 = kVar.f51584a) == 2 || i10 == 3)) {
+                    if (editable.getSpanFlags(kVar) == 17 && ((i10 = kVar.f51587a) == 2 || i10 == 3)) {
                         obj = kVar;
                         break;
                     }
@@ -261,7 +261,7 @@ public class a implements s0, q, cg.a, dg.a, b, n, eh.a, d, cp0, l1, u, r, g, Co
 
     @Override
     public y2.n J() {
-        return new t(p2.q.f44027n, null);
+        return new t(p2.q.f44030n, null);
     }
 
     @Override
@@ -380,17 +380,17 @@ public class a implements s0, q, cg.a, dg.a, b, n, eh.a, d, cp0, l1, u, r, g, Co
 
     @Override
     public void a() {
-        synchronized (z2.c.f50634a) {
-            Object obj = z2.c.f50635b;
+        synchronized (z2.c.f50637a) {
+            Object obj = z2.c.f50638b;
             synchronized (obj) {
-                if (z2.c.f50636c) {
+                if (z2.c.f50639c) {
                     return;
                 }
                 long a2 = z2.c.a();
                 synchronized (obj) {
                     SystemClock.elapsedRealtime();
                     z2.c.d = a2;
-                    z2.c.f50636c = true;
+                    z2.c.f50639c = true;
                 }
             }
         }
@@ -448,7 +448,7 @@ public class a implements s0, q, cg.a, dg.a, b, n, eh.a, d, cp0, l1, u, r, g, Co
 
     @Override
     public Object f2() {
-        switch (this.f44286a) {
+        switch (this.f44289a) {
             case 9:
                 return new LinkedHashSet();
             default:
@@ -483,7 +483,7 @@ public class a implements s0, q, cg.a, dg.a, b, n, eh.a, d, cp0, l1, u, r, g, Co
 
     @Override
     public Object j2(z5 z5Var) {
-        switch (this.f44286a) {
+        switch (this.f44289a) {
             case 15:
                 return new h();
             default:
@@ -601,7 +601,7 @@ public class a implements s0, q, cg.a, dg.a, b, n, eh.a, d, cp0, l1, u, r, g, Co
     }
 
     public a() {
-        this.f44286a = 11;
+        this.f44289a = 11;
         if (Build.VERSION.SDK_INT >= 35) {
         }
     }

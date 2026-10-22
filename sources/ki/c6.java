@@ -733,7 +733,7 @@ public final class c6 extends FrameLayout implements org.telegram.ui.ActionBar.y
             LinearLayout linearLayout3 = new LinearLayout(getContext());
             this.f15185s = linearLayout3;
             linearLayout3.setOrientation(0);
-            this.f15185s.setBackground(h6.Z(h6.w0(h6.f21079i6, this.f15179a), AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f)));
+            this.f15185s.setBackground(h6.Z(h6.w0(h6.f21082i6, this.f15179a), AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f)));
             this.f15185s.setPadding(AndroidUtilities.dp(6.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f));
             addView(this.f15185s, w7.z5.d(-2, -2.0f, 53, 0.0f, -15.0f, -5.0f, 0.0f));
             TextView textView = new TextView(getContext());
@@ -1202,7 +1202,7 @@ public final class c6 extends FrameLayout implements org.telegram.ui.ActionBar.y
                 float lineBottom = layout.getLineBottom(lineCount) + h1Var.getPaddingTop() + measuredHeight;
                 int dp2 = AndroidUtilities.dp(3.333f);
                 this.L.getClass();
-                float B = org.telegram.messenger.g0.B(16.0f, i10, dp2) - org.telegram.messenger.g0.D(3.333f, 2, AndroidUtilities.dp(23.66f) + hj0Var.f26904c);
+                float B = org.telegram.messenger.g0.B(16.0f, i10, dp2) - org.telegram.messenger.g0.D(3.333f, 2, AndroidUtilities.dp(23.66f) + hj0Var.f26907c);
                 this.L.getClass();
                 int i12 = i11 - dp2;
                 float dp3 = i12 - AndroidUtilities.dp(17.66f);
@@ -1317,7 +1317,7 @@ public final class c6 extends FrameLayout implements org.telegram.ui.ActionBar.y
         if (!super.verifyDrawable(drawable)) {
             hj0 hj0Var = this.L;
             if (hj0Var != null) {
-                if (drawable != hj0Var.f26903b && drawable != hj0Var.e) {
+                if (drawable != hj0Var.f26906b && drawable != hj0Var.e) {
                     return false;
                 }
                 return true;

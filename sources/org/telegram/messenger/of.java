@@ -1,40 +1,36 @@
 package org.telegram.messenger;
-public final class of implements Runnable {
-    public final int f19159a;
-    public final MessagesStorage f19160b;
-    public final int f19161c;
-    public final long d;
 
-    public of(MessagesStorage messagesStorage, int i10, long j10, int i11) {
-        this.f19159a = i11;
-        this.f19160b = messagesStorage;
-        this.f19161c = i10;
-        this.d = j10;
+import java.util.ArrayList;
+public final class of implements Runnable {
+    public final int f19133a;
+    public final MessagesStorage f19134b;
+    public final ArrayList f19135c;
+    public final Runnable d;
+
+    public of(MessagesStorage messagesStorage, ArrayList arrayList, Runnable runnable, int i10) {
+        this.f19133a = i10;
+        this.f19134b = messagesStorage;
+        this.f19135c = arrayList;
+        this.d = runnable;
     }
 
     @Override
     public final void run() {
-        switch (this.f19159a) {
+        switch (this.f19133a) {
             case 0:
-                this.f19160b.lambda$saveChannelPts$34(this.f19161c, this.d);
+                this.f19134b.lambda$loadMessageAttachPaths$235(this.f19135c, this.d);
                 return;
             case 1:
-                this.f19160b.lambda$markMessageAsMention$113(this.f19161c, this.d);
+                this.f19134b.lambda$processAnchoredEphemeralMessages$203(this.f19135c, this.d);
                 return;
             case 2:
-                this.f19160b.lambda$setDialogPinned$251(this.f19161c, this.d);
+                this.f19134b.lambda$processEphemeralMessages$201(this.f19135c, this.d);
                 return;
             case 3:
-                this.f19160b.lambda$setDialogTtl$60(this.f19161c, this.d);
-                return;
-            case 4:
-                this.f19160b.lambda$deleteDialog$90(this.f19161c, this.d);
-                return;
-            case 5:
-                this.f19160b.lambda$updateChatOnlineCount$135(this.f19161c, this.d);
+                this.f19134b.lambda$checkLoadedRemoteFilters$69(this.f19135c, this.d);
                 return;
             default:
-                this.f19160b.lambda$saveChatLinksCount$133(this.f19161c, this.d);
+                this.f19134b.lambda$processEphemeralEditedMessages$202(this.f19135c, this.d);
                 return;
         }
     }

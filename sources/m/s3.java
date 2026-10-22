@@ -68,7 +68,7 @@ public final class s3 implements n5.b {
                 ki.n0 n0Var = (ki.n0) obj;
                 ki.m0 m0Var = new ki.m0(c6Var.getContext(), n0Var, d6Var);
                 m0Var.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(12.0f), 0);
-                m0Var.setBackground(h6.Z(h6.w0(h6.f21079i6, d6Var), 0, 0));
+                m0Var.setBackground(h6.Z(h6.w0(h6.f21082i6, d6Var), 0, 0));
                 m0Var.setOnClickListener(new ai.v0(this, c6Var, n0Var, 13));
                 ((LinearLayout) this.d).addView(m0Var, z5.n(-1, 48));
             }
@@ -169,14 +169,14 @@ public final class s3 implements n5.b {
         b(c6Var, a2);
         i80 h = ((ki.o0) this.f16334a).h(c6Var.getEditText());
         h.Q = true;
-        h.f27185s = 0;
-        h.f27186t = false;
+        h.f27188s = 0;
+        h.f27189t = false;
         h.r((LinearLayout) this.d, z5.n(220, -2));
         h.X = AndroidUtilities.dp(240.0f);
-        h.f27167i = 3;
+        h.f27170i = 3;
         h.a0(-AndroidUtilities.dp(12.0f), 0.0f);
-        h.f27180p = new ki.u(this, 2);
-        h.f27160d0 = true;
+        h.f27183p = new ki.u(this, 2);
+        h.f27163d0 = true;
         if (h.D()) {
             h.C();
         }

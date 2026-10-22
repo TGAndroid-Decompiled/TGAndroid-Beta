@@ -28,7 +28,7 @@ import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.mk;
+import org.telegram.messenger.ok;
 import org.telegram.ui.Components.CheckBoxBase;
 import org.telegram.ui.Components.bs;
 public final class m3 extends FrameLayout {
@@ -110,8 +110,8 @@ public final class m3 extends FrameLayout {
         k3Var.b(org.telegram.ui.ActionBar.h6.W9, org.telegram.ui.ActionBar.h6.X9, org.telegram.ui.ActionBar.h6.V9);
         CheckBoxBase checkBoxBase = k3Var.getCheckBoxBase();
         int i10 = org.telegram.ui.ActionBar.h6.G6;
-        if (checkBoxBase.f24155u != i10) {
-            checkBoxBase.f24155u = i10;
+        if (checkBoxBase.f24158u != i10) {
+            checkBoxBase.f24158u = i10;
             checkBoxBase.b();
         }
         FrameLayout frameLayout = new FrameLayout(context);
@@ -376,7 +376,7 @@ public final class m3 extends FrameLayout {
             if (!z10) {
                 f11 = 0.7f;
             }
-            mk.t(scaleX.scaleY(f11).withEndAction(new ah.t(5, this, z10)), bs.h, 320L);
+            ok.t(scaleX.scaleY(f11).withEndAction(new ah.t(5, this, z10)), bs.h, 320L);
         }
         if (i10 >= 0) {
             k3Var.a(true, z11);
@@ -464,7 +464,7 @@ public final class m3 extends FrameLayout {
             accessibilityNodeInfo.setClassName("android.widget.CheckBox");
             accessibilityNodeInfo.setCheckable(true);
             k3 k3Var = this.J;
-            if (k3Var != null && k3Var.f32459a.f24151q) {
+            if (k3Var != null && k3Var.f32462a.f24154q) {
                 z10 = true;
             } else {
                 z10 = false;

@@ -6,12 +6,12 @@ public abstract class c {
         if (System.getProperty("java.vm.name").equalsIgnoreCase("Dalvik")) {
             String simpleName = cls.getSimpleName();
             a aVar = new a(0);
-            aVar.f45223b = simpleName;
+            aVar.f45226b = simpleName;
             return aVar;
         }
         String simpleName2 = cls.getSimpleName();
         a aVar2 = new a(1);
-        aVar2.f45223b = Logger.getLogger(simpleName2);
+        aVar2.f45226b = Logger.getLogger(simpleName2);
         return aVar2;
     }
 

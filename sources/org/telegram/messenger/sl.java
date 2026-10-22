@@ -1,28 +1,32 @@
 package org.telegram.messenger;
 
-import java.io.Serializable;
+import org.telegram.messenger.UnconfirmedAuthController;
 import org.telegram.messenger.Utilities;
-public final class sl implements Runnable {
-    public final int f19550a;
-    public final Serializable f19551b;
-    public final Serializable f19552c;
-    public final Object d;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class sl implements RequestDelegate {
+    public final int f19546a;
+    public final UnconfirmedAuthController.UnconfirmedAuth f19547b;
+    public final Utilities.Callback f19548c;
 
-    public sl(Serializable serializable, Serializable serializable2, Object obj, int i10) {
-        this.f19550a = i10;
-        this.f19551b = serializable;
-        this.f19552c = serializable2;
-        this.d = obj;
+    public sl(UnconfirmedAuthController.UnconfirmedAuth unconfirmedAuth, Utilities.Callback callback, int i10) {
+        this.f19546a = i10;
+        this.f19547b = unconfirmedAuth;
+        this.f19548c = callback;
     }
 
     @Override
-    public final void run() {
-        switch (this.f19550a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f19546a) {
             case 0:
-                Utilities.a((int[]) this.f19551b, (Utilities.Callback[]) this.f19552c, (Runnable) this.d);
+                this.f19547b.lambda$deny$4(this.f19548c, tLObject, tL_error);
+                return;
+            case 1:
+                this.f19547b.lambda$deny$6(this.f19548c, tLObject, tL_error);
                 return;
             default:
-                WearAuthListenerService.a((String) this.f19551b, (String) this.f19552c, (byte[]) this.d);
+                this.f19547b.lambda$confirm$2(this.f19548c, tLObject, tL_error);
                 return;
         }
     }

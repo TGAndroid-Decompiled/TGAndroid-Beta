@@ -4,13 +4,13 @@ import android.view.View;
 import org.telegram.messenger.Utilities;
 import yg.k;
 public final class f implements Utilities.Callback {
-    public final boolean f48367a;
+    public final boolean f48370a;
 
     @Override
     public final void run(Object obj) {
         View view = (View) obj;
         if (view instanceof k) {
-            ((k) view).g(this.f48367a, true);
+            ((k) view).g(this.f48370a, true);
         }
     }
 }

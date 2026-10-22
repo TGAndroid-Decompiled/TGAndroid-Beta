@@ -1,25 +1,25 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.TLRPC;
+import org.telegram.messenger.MessagesStorage;
 public final class gf implements Runnable {
-    public final int f18464a;
-    public final MessagesStorage f18465b;
-    public final TLRPC.TL_chatFull f18466c;
+    public final int f18442a;
+    public final MessagesStorage.IntCallback f18443b;
+    public final int[] f18444c;
 
-    public gf(MessagesStorage messagesStorage, TLRPC.TL_chatFull tL_chatFull, int i10) {
-        this.f18464a = i10;
-        this.f18465b = messagesStorage;
-        this.f18466c = tL_chatFull;
+    public gf(MessagesStorage.IntCallback intCallback, int[] iArr, int i10) {
+        this.f18442a = i10;
+        this.f18443b = intCallback;
+        this.f18444c = iArr;
     }
 
     @Override
     public final void run() {
-        switch (this.f18464a) {
+        switch (this.f18442a) {
             case 0:
-                this.f18465b.lambda$updateChatParticipants$121(this.f18466c);
+                MessagesStorage.lambda$getDialogMaxMessageId$254(this.f18443b, this.f18444c);
                 return;
             default:
-                this.f18465b.lambda$updateChatInfo$139(this.f18466c);
+                MessagesStorage.lambda$getSavedDialogMaxMessageId$52(this.f18443b, this.f18444c);
                 return;
         }
     }

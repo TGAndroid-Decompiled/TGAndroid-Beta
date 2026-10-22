@@ -1,30 +1,30 @@
 package z7;
 public final class v4 implements ja.d {
-    public static final v4 f51200a = new Object();
-    public static final ja.c f51201b = new ja.c("durationMs", i2.e.o(r4.c.n(w.class, new s(1))));
-    public static final ja.c f51202c = new ja.c("errorCode", i2.e.o(r4.c.n(w.class, new s(2))));
+    public static final v4 f51203a = new Object();
+    public static final ja.c f51204b = new ja.c("durationMs", i2.e.o(r4.c.n(w.class, new s(1))));
+    public static final ja.c f51205c = new ja.c("errorCode", i2.e.o(r4.c.n(w.class, new s(2))));
     public static final ja.c d = new ja.c("isColdCall", i2.e.o(r4.c.n(w.class, new s(3))));
     public static final ja.c e = new ja.c("autoManageModelOnBackground", i2.e.o(r4.c.n(w.class, new s(4))));
-    public static final ja.c f51203f = new ja.c("autoManageModelOnLowMemory", i2.e.o(r4.c.n(w.class, new s(5))));
-    public static final ja.c f51204g = new ja.c("isNnApiEnabled", i2.e.o(r4.c.n(w.class, new s(6))));
+    public static final ja.c f51206f = new ja.c("autoManageModelOnLowMemory", i2.e.o(r4.c.n(w.class, new s(5))));
+    public static final ja.c f51207g = new ja.c("isNnApiEnabled", i2.e.o(r4.c.n(w.class, new s(6))));
     public static final ja.c h = new ja.c("eventsCount", i2.e.o(r4.c.n(w.class, new s(7))));
-    public static final ja.c f51205i = new ja.c("otherErrors", i2.e.o(r4.c.n(w.class, new s(8))));
-    public static final ja.c f51206j = new ja.c("remoteConfigValueForAcceleration", i2.e.o(r4.c.n(w.class, new s(9))));
-    public static final ja.c f51207k = new ja.c("isAccelerated", i2.e.o(r4.c.n(w.class, new s(10))));
+    public static final ja.c f51208i = new ja.c("otherErrors", i2.e.o(r4.c.n(w.class, new s(8))));
+    public static final ja.c f51209j = new ja.c("remoteConfigValueForAcceleration", i2.e.o(r4.c.n(w.class, new s(9))));
+    public static final ja.c f51210k = new ja.c("isAccelerated", i2.e.o(r4.c.n(w.class, new s(10))));
 
     @Override
     public final void a(Object obj, Object obj2) {
         wa waVar = (wa) obj;
         ja.e eVar = (ja.e) obj2;
-        eVar.d(f51201b, waVar.f51223a);
-        eVar.d(f51202c, waVar.f51224b);
-        eVar.d(d, waVar.f51225c);
+        eVar.d(f51204b, waVar.f51226a);
+        eVar.d(f51205c, waVar.f51227b);
+        eVar.d(d, waVar.f51228c);
         eVar.d(e, null);
-        eVar.d(f51203f, null);
-        eVar.d(f51204g, null);
+        eVar.d(f51206f, null);
+        eVar.d(f51207g, null);
         eVar.d(h, null);
-        eVar.d(f51205i, null);
-        eVar.d(f51206j, null);
-        eVar.d(f51207k, null);
+        eVar.d(f51208i, null);
+        eVar.d(f51209j, null);
+        eVar.d(f51210k, null);
     }
 }

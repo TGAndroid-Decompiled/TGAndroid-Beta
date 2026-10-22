@@ -7,21 +7,21 @@ import java.util.concurrent.Executor;
 import k2.w0;
 import qg.f0;
 public final class g {
-    public static final Object f45192b = new Object();
-    public static g f45193c;
-    public r9.g f45194a;
+    public static final Object f45195b = new Object();
+    public static g f45196c;
+    public r9.g f45197a;
 
     public static g c() {
         boolean z10;
         g gVar;
-        synchronized (f45192b) {
-            if (f45193c != null) {
+        synchronized (f45195b) {
+            if (f45196c != null) {
                 z10 = true;
             } else {
                 z10 = false;
             }
             n6.l.j("MlKitContext has not been initialized", z10);
-            gVar = f45193c;
+            gVar = f45196c;
             n6.l.h(gVar);
         }
         return gVar;
@@ -30,15 +30,15 @@ public final class g {
     public static g d(Context context, Executor executor) {
         boolean z10;
         g gVar;
-        synchronized (f45192b) {
-            if (f45193c == null) {
+        synchronized (f45195b) {
+            if (f45196c == null) {
                 z10 = true;
             } else {
                 z10 = false;
             }
             n6.l.j("MlKitContext is already initialized", z10);
             ?? obj = new Object();
-            f45193c = obj;
+            f45196c = obj;
             Context applicationContext = context.getApplicationContext();
             if (applicationContext != null) {
                 context = applicationContext;
@@ -51,23 +51,23 @@ public final class g {
             arrayList2.add(r9.a.c(context, Context.class, new Class[0]));
             arrayList2.add(r9.a.c(obj, g.class, new Class[0]));
             r9.g gVar2 = new r9.g(executor, arrayList, arrayList2, f0Var);
-            obj.f45194a = gVar2;
+            obj.f45197a = gVar2;
             gVar2.h(true);
-            gVar = f45193c;
+            gVar = f45196c;
         }
         return gVar;
     }
 
     public final Object a(Class cls) {
         boolean z10;
-        if (f45193c == this) {
+        if (f45196c == this) {
             z10 = true;
         } else {
             z10 = false;
         }
         n6.l.j("MlKitContext has been deleted", z10);
-        n6.l.h(this.f45194a);
-        return this.f45194a.a(cls);
+        n6.l.h(this.f45197a);
+        return this.f45197a.a(cls);
     }
 
     public final Context b() {

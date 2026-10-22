@@ -8,21 +8,21 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.bs;
 public final class r4 extends EditTextBoldCursor {
-    public int f34803b;
-    public final org.telegram.ui.Components.i5 f34804c;
+    public int f34806b;
+    public final org.telegram.ui.Components.i5 f34807c;
     public final org.telegram.ui.Components.p6 d;
     public final org.telegram.ui.ActionBar.d6 e;
 
     public r4(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
         this.e = d6Var;
-        this.f34803b = 960;
-        this.f34804c = new org.telegram.ui.Components.i5(this);
+        this.f34806b = 960;
+        this.f34807c = new org.telegram.ui.Components.i5(this);
         org.telegram.ui.Components.p6 p6Var = new org.telegram.ui.Components.p6(false, true, true);
         this.d = p6Var;
         p6Var.n(0.2f, 160L, bs.h);
         p6Var.w(AndroidUtilities.dp(15.33f));
-        p6Var.f29226b = 5;
+        p6Var.f29229b = 5;
         p6Var.setCallback(this);
     }
 
@@ -30,12 +30,12 @@ public final class r4 extends EditTextBoldCursor {
     public final void dispatchDraw(Canvas canvas) {
         int i10;
         super.dispatchDraw(canvas);
-        if (this.f34803b <= 0) {
-            i10 = org.telegram.ui.ActionBar.h6.f21211p7;
+        if (this.f34806b <= 0) {
+            i10 = org.telegram.ui.ActionBar.h6.f21214p7;
         } else {
             i10 = org.telegram.ui.ActionBar.h6.P5;
         }
-        int a2 = this.f34804c.a(org.telegram.ui.ActionBar.h6.w0(i10, this.e), false);
+        int a2 = this.f34807c.a(org.telegram.ui.ActionBar.h6.w0(i10, this.e), false);
         org.telegram.ui.Components.p6 p6Var = this.d;
         p6Var.u(a2);
         int scrollX = getScrollX();
@@ -61,9 +61,9 @@ public final class r4 extends EditTextBoldCursor {
         if (p6Var == null) {
             return;
         }
-        this.f34803b = 960 - charSequence.toString().getBytes(StandardCharsets.UTF_8).length;
+        this.f34806b = 960 - charSequence.toString().getBytes(StandardCharsets.UTF_8).length;
         p6Var.a();
-        int i13 = this.f34803b;
+        int i13 = this.f34806b;
         if (i13 <= 100) {
             str = Integer.toString(i13);
         } else {

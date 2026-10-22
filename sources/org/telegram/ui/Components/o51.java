@@ -17,20 +17,20 @@ public final class o51 extends lw0 {
     public final float[] C0;
     public boolean D0;
     public final p51 E0;
-    public final Paint f28949w0;
-    public boolean f28950x0;
-    public boolean f28951y0;
-    public boolean f28952z0;
+    public final Paint f28952w0;
+    public boolean f28953x0;
+    public boolean f28954y0;
+    public boolean f28955z0;
 
     public o51(p51 p51Var, Context context) {
         super(context, null);
         int i10;
         int i11;
         this.E0 = p51Var;
-        this.f28949w0 = new Paint(1);
-        this.f28950x0 = false;
-        this.f28951y0 = false;
-        this.f28952z0 = false;
+        this.f28952w0 = new Paint(1);
+        this.f28953x0 = false;
+        this.f28954y0 = false;
+        this.f28955z0 = false;
         this.B0 = 0.0f;
         this.C0 = new float[8];
         setWillNotDraw(false);
@@ -42,7 +42,7 @@ public final class o51 extends lw0 {
 
     public final float Z() {
         p51 p51Var = this.E0;
-        return Math.min(1.0f, Math.max(0.0f, p51Var.f29222f / (p51Var.f29220b * 2.0f)));
+        return Math.min(1.0f, Math.max(0.0f, p51Var.f29225f / (p51Var.f29223b * 2.0f)));
     }
 
     @Override
@@ -58,8 +58,8 @@ public final class o51 extends lw0 {
         float f10;
         p51 p51Var = this.E0;
         d61 d61Var = p51Var.e;
-        int i12 = p51Var.f29220b;
-        GradientDrawable gradientDrawable = p51Var.f29221c;
+        int i12 = p51Var.f29223b;
+        GradientDrawable gradientDrawable = p51Var.f29224c;
         float Z = Z();
         boolean z13 = false;
         if (Z == 0.0f && !p51Var.isDismissed()) {
@@ -67,12 +67,12 @@ public final class o51 extends lw0 {
         } else {
             z10 = false;
         }
-        if (this.f28952z0 != z10) {
+        if (this.f28955z0 != z10) {
             ValueAnimator valueAnimator = this.A0;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
             }
-            this.f28952z0 = z10;
+            this.f28955z0 = z10;
             ValueAnimator valueAnimator2 = this.A0;
             if (valueAnimator2 == null) {
                 float f11 = this.B0;
@@ -103,12 +103,12 @@ public final class o51 extends lw0 {
         }
         if (this.D0 != z11) {
             this.D0 = z11;
-            if (AndroidUtilities.computePerceivedBrightness(p51Var.getThemedColor(org.telegram.ui.ActionBar.h6.f21061h5)) > 0.721f) {
+            if (AndroidUtilities.computePerceivedBrightness(p51Var.getThemedColor(org.telegram.ui.ActionBar.h6.f21064h5)) > 0.721f) {
                 z12 = true;
             } else {
                 z12 = false;
             }
-            if (AndroidUtilities.computePerceivedBrightness(org.telegram.ui.ActionBar.h6.v(p51Var.getThemedColor(org.telegram.ui.ActionBar.h6.f21269s8), 855638016)) > 0.721f) {
+            if (AndroidUtilities.computePerceivedBrightness(org.telegram.ui.ActionBar.h6.v(p51Var.getThemedColor(org.telegram.ui.ActionBar.h6.f21272s8), 855638016)) > 0.721f) {
                 z13 = true;
             }
             if (!z11) {
@@ -117,10 +117,10 @@ public final class o51 extends lw0 {
             AndroidUtilities.setLightStatusBar(p51Var.getWindow(), z12);
         }
         if (this.B0 > 0.0f) {
-            int themedColor2 = p51Var.getThemedColor(org.telegram.ui.ActionBar.h6.f21061h5);
-            Paint paint = this.f28949w0;
+            int themedColor2 = p51Var.getThemedColor(org.telegram.ui.ActionBar.h6.f21064h5);
+            Paint paint = this.f28952w0;
             paint.setColor(themedColor2);
-            int max = (int) Math.max(0.0f, d61Var.getTranslationY() + (AndroidUtilities.statusBarHeight - i12) + ((1.0f - Z()) * i12) + p51Var.f29222f + AndroidUtilities.dp(24.0f));
+            int max = (int) Math.max(0.0f, d61Var.getTranslationY() + (AndroidUtilities.statusBarHeight - i12) + ((1.0f - Z()) * i12) + p51Var.f29225f + AndroidUtilities.dp(24.0f));
             i10 = ((org.telegram.ui.ActionBar.f3) p51Var).backgroundPaddingLeft;
             int measuredWidth = getMeasuredWidth();
             i11 = ((org.telegram.ui.ActionBar.f3) p51Var).backgroundPaddingLeft;
@@ -138,7 +138,7 @@ public final class o51 extends lw0 {
         int i13 = (int) ((1.0f - Z) * dp2 * 2.0f);
         gradientDrawable.setCornerRadius(AndroidUtilities.dp(2.0f));
         gradientDrawable.setColor(i0.a.o(p51Var.getThemedColor(org.telegram.ui.ActionBar.h6.Ii), (int) (Color.alpha(themedColor) * Z)));
-        gradientDrawable.setBounds((getWidth() - dp) / 2, org.telegram.messenger.g0.C(10.0f, p51Var.f29222f, i13), (getWidth() + dp) / 2, AndroidUtilities.dp(10.0f) + p51Var.f29222f + i13 + dp2);
+        gradientDrawable.setBounds((getWidth() - dp) / 2, org.telegram.messenger.g0.C(10.0f, p51Var.f29225f, i13), (getWidth() + dp) / 2, AndroidUtilities.dp(10.0f) + p51Var.f29225f + i13 + dp2);
         gradientDrawable.draw(canvas2);
         canvas2.restore();
     }
@@ -163,17 +163,17 @@ public final class o51 extends lw0 {
         int i12;
         int i13;
         p51 p51Var = this.E0;
-        GradientDrawable gradientDrawable = p51Var.f29221c;
+        GradientDrawable gradientDrawable = p51Var.f29224c;
         p51.n(p51Var);
         super.onDraw(canvas);
         float Z = Z();
-        int i14 = p51Var.f29220b;
+        int i14 = p51Var.f29223b;
         int i15 = (int) ((1.0f - Z) * i14);
         int i16 = AndroidUtilities.statusBarHeight - i14;
         canvas.save();
         canvas.translate(0.0f, p51Var.e.getTranslationY() + i16);
         drawable = ((org.telegram.ui.ActionBar.f3) p51Var).shadowDrawable;
-        int i17 = p51Var.f29222f;
+        int i17 = p51Var.f29225f;
         i10 = ((org.telegram.ui.ActionBar.f3) p51Var).backgroundPaddingTop;
         int i18 = (i17 - i10) + i15;
         int measuredWidth = getMeasuredWidth();
@@ -188,7 +188,7 @@ public final class o51 extends lw0 {
         drawable2.draw(canvas);
         if (Z > 0.0f && Z < 1.0f) {
             float dp = AndroidUtilities.dp(12.0f) * Z;
-            gradientDrawable.setColor(p51Var.getThemedColor(org.telegram.ui.ActionBar.h6.f21061h5));
+            gradientDrawable.setColor(p51Var.getThemedColor(org.telegram.ui.ActionBar.h6.f21064h5));
             float[] fArr = this.C0;
             fArr[3] = dp;
             fArr[2] = dp;
@@ -198,7 +198,7 @@ public final class o51 extends lw0 {
             i12 = ((org.telegram.ui.ActionBar.f3) p51Var).backgroundPaddingLeft;
             int width = getWidth();
             i13 = ((org.telegram.ui.ActionBar.f3) p51Var).backgroundPaddingLeft;
-            gradientDrawable.setBounds(i12, p51Var.f29222f + i15, width - i13, AndroidUtilities.dp(24.0f) + p51Var.f29222f + i15);
+            gradientDrawable.setBounds(i12, p51Var.f29225f + i15, width - i13, AndroidUtilities.dp(24.0f) + p51Var.f29225f + i15);
             gradientDrawable.draw(canvas);
         }
         canvas.restore();
@@ -208,7 +208,7 @@ public final class o51 extends lw0 {
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         if (motionEvent.getAction() == 0) {
             p51 p51Var = this.E0;
-            if (p51Var.f29222f != 0 && motionEvent.getY() < p51Var.f29222f) {
+            if (p51Var.f29225f != 0 && motionEvent.getY() < p51Var.f29225f) {
                 p51Var.dismiss();
                 return true;
             }
@@ -225,15 +225,15 @@ public final class o51 extends lw0 {
         int i16 = AndroidUtilities.statusBarHeight;
         int R = R();
         int size = (int) (((View.MeasureSpec.getSize(getMeasuredHeight()) - i16) + R) * 0.2f);
-        this.f28951y0 = true;
+        this.f28954y0 = true;
         if (R > AndroidUtilities.dp(20.0f)) {
             d61Var.a(true);
             p51Var.setAllowNestedScroll(false);
-            this.f28950x0 = true;
+            this.f28953x0 = true;
         } else {
             d61Var.a(false);
             p51Var.setAllowNestedScroll(true);
-            this.f28950x0 = false;
+            this.f28953x0 = false;
         }
         d61Var.setContentViewPaddingTop(size);
         if (getPaddingTop() != i16) {
@@ -241,7 +241,7 @@ public final class o51 extends lw0 {
             i15 = ((org.telegram.ui.ActionBar.f3) p51Var).backgroundPaddingLeft;
             setPadding(i14, i16, i15, 0);
         }
-        this.f28951y0 = false;
+        this.f28954y0 = false;
         super.onLayout(z10, i10, i11, i12, i13);
     }
 
@@ -260,7 +260,7 @@ public final class o51 extends lw0 {
 
     @Override
     public final void requestLayout() {
-        if (!this.f28951y0) {
+        if (!this.f28954y0) {
             super.requestLayout();
         }
     }

@@ -10,7 +10,7 @@ import android.widget.ScrollView;
 import java.util.ArrayList;
 import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.mk;
+import org.telegram.messenger.ok;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
@@ -133,7 +133,7 @@ public abstract class n0 extends LinearLayout implements qh.a, ne.k {
             if (!this.f11349f) {
                 max = 44;
             } else {
-                max = (int) Math.max(44.0f, (mk.B(4.0f, this.f11348c.rows.size() - 1, this.e - AndroidUtilities.dp(16.0f)) / this.f11348c.rows.size()) / AndroidUtilities.density);
+                max = (int) Math.max(44.0f, (ok.B(4.0f, this.f11348c.rows.size() - 1, this.e - AndroidUtilities.dp(16.0f)) / this.f11348c.rows.size()) / AndroidUtilities.density);
             }
             this.h = max;
             int dp = AndroidUtilities.dp(max);

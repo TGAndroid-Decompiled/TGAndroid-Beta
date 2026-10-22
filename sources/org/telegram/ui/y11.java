@@ -11,23 +11,23 @@ import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class y11 extends FrameLayout {
-    public final org.telegram.ui.Components.p5 f43333a;
-    public final z11 f43334b;
+    public final org.telegram.ui.Components.p5 f43336a;
+    public final z11 f43337b;
 
     public y11(z11 z11Var, Context context) {
         super(context);
-        this.f43334b = z11Var;
+        this.f43337b = z11Var;
         TextView f7 = org.telegram.messenger.g0.f(context, 1, 16.0f);
         f7.setTextColor(z11Var.getThemedColor(org.telegram.ui.ActionBar.h6.G6));
         f7.setText(LocaleController.getString(R.string.DoubleTapSetting));
         addView(f7, w7.z5.d(-1, -2.0f, 23, 20.0f, 0.0f, 48.0f, 0.0f));
-        this.f43333a = new org.telegram.ui.Components.p5(AndroidUtilities.dp(24.0f), this);
+        this.f43336a = new org.telegram.ui.Components.p5(AndroidUtilities.dp(24.0f), this);
     }
 
     public final void a(boolean z10) {
-        z11 z11Var = this.f43334b;
+        z11 z11Var = this.f43337b;
         String doubleTapReaction = MediaDataController.getInstance(z11.Y(z11Var)).getDoubleTapReaction();
-        org.telegram.ui.Components.p5 p5Var = this.f43333a;
+        org.telegram.ui.Components.p5 p5Var = this.f43336a;
         if (doubleTapReaction != null && doubleTapReaction.startsWith("animated_")) {
             try {
                 p5Var.j(Long.parseLong(doubleTapReaction.substring(9)), z10);
@@ -43,27 +43,27 @@ public final class y11 extends FrameLayout {
 
     public final void b() {
         int width = getWidth();
-        org.telegram.ui.Components.p5 p5Var = this.f43333a;
-        p5Var.setBounds((width - p5Var.f29214s) - AndroidUtilities.dp(21.0f), (getHeight() - p5Var.f29214s) / 2, getWidth() - AndroidUtilities.dp(21.0f), (getHeight() + p5Var.f29214s) / 2);
+        org.telegram.ui.Components.p5 p5Var = this.f43336a;
+        p5Var.setBounds((width - p5Var.f29217s) - AndroidUtilities.dp(21.0f), (getHeight() - p5Var.f29217s) / 2, getWidth() - AndroidUtilities.dp(21.0f), (getHeight() + p5Var.f29217s) / 2);
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
         b();
-        this.f43333a.draw(canvas);
+        this.f43336a.draw(canvas);
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f43333a.a();
+        this.f43336a.a();
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f43333a.b();
+        this.f43336a.b();
     }
 
     @Override

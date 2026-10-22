@@ -1,48 +1,77 @@
 package org.telegram.messenger;
 
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.ui.Components.ChatActivityEnterView;
-public final class va implements Runnable {
-    public final int f19731a;
-    public final NotificationCenter.NotificationCenterDelegate f19732b;
-    public final long f19733c;
-    public final int d;
-    public final int e;
-    public final boolean f19734f;
+import java.util.HashSet;
+import java.util.Set;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.TranslateController;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class va implements RequestDelegate {
+    public final int f19747a;
+    public final boolean f19748b;
+    public final long f19749c;
+    public final BaseController d;
+    public final Object e;
+    public final Object f19750f;
 
-    public va(int i10, int i11, int i12, long j10, MessagesController messagesController, boolean z10) {
-        this.f19731a = i12;
-        this.f19732b = messagesController;
-        this.f19733c = j10;
-        this.d = i10;
-        this.e = i11;
-        this.f19734f = z10;
+    public va(BaseController baseController, Object obj, boolean z10, long j10, Object obj2, int i10) {
+        this.f19747a = i10;
+        this.d = baseController;
+        this.e = obj;
+        this.f19748b = z10;
+        this.f19749c = j10;
+        this.f19750f = obj2;
     }
 
     @Override
-    public final void run() {
-        int i10 = this.f19731a;
-        NotificationCenter.NotificationCenterDelegate notificationCenterDelegate = this.f19732b;
-        switch (i10) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f19747a) {
             case 0:
-                ((MessagesController) notificationCenterDelegate).lambda$markDialogAsRead$240(this.f19733c, this.d, this.e, this.f19734f);
+                boolean z10 = this.f19748b;
+                ((MessagesController) this.d).lambda$getSendAsPeers$446((a0.h) this.e, this.f19749c, (MessagesController.SendAsPeersInfo) this.f19750f, z10, tLObject, tL_error);
                 return;
             case 1:
-                ((MessagesController) notificationCenterDelegate).lambda$markDialogAsRead$241(this.f19733c, this.d, this.e, this.f19734f);
+                long j10 = this.f19749c;
+                ((TranslateController) this.d).lambda$pushToTranslate$23((TranslateController.PendingTranslation) this.e, this.f19748b, j10, (Set) this.f19750f, tLObject, tL_error);
+                return;
+            case 2:
+                ((ChatThemeController) this.d).lambda$setWallpaperToPeer$17(this.f19749c, this.f19748b, (String) this.e, (Runnable) this.f19750f, tLObject, tL_error);
+                return;
+            case 3:
+                long j11 = this.f19749c;
+                ((MemberRequestsController) this.d).lambda$getImporters$1((TLRPC.TL_chatInviteImporter) this.e, this.f19748b, j11, (RequestDelegate) this.f19750f, tLObject, tL_error);
                 return;
             default:
-                int i11 = ChatActivityEnterView.f23908n5;
-                ((ChatActivityEnterView) notificationCenterDelegate).R0(this.d, this.f19734f, this.e, false, this.f19733c);
+                ((TopicsController) this.d).lambda$reloadTopics$16(this.f19748b, this.f19749c, (HashSet) this.e, (Runnable) this.f19750f, tLObject, tL_error);
                 return;
         }
     }
 
-    public va(ChatActivityEnterView chatActivityEnterView, boolean z10, int i10, int i11, long j10) {
-        this.f19731a = 2;
-        this.f19732b = chatActivityEnterView;
-        this.f19734f = z10;
-        this.d = i10;
-        this.e = i11;
-        this.f19733c = j10;
+    public va(ChatThemeController chatThemeController, long j10, boolean z10, String str, Runnable runnable) {
+        this.f19747a = 2;
+        this.d = chatThemeController;
+        this.f19749c = j10;
+        this.f19748b = z10;
+        this.e = str;
+        this.f19750f = runnable;
+    }
+
+    public va(MessagesController messagesController, a0.h hVar, long j10, MessagesController.SendAsPeersInfo sendAsPeersInfo, boolean z10) {
+        this.f19747a = 0;
+        this.d = messagesController;
+        this.e = hVar;
+        this.f19749c = j10;
+        this.f19750f = sendAsPeersInfo;
+        this.f19748b = z10;
+    }
+
+    public va(TopicsController topicsController, boolean z10, long j10, HashSet hashSet, Runnable runnable) {
+        this.f19747a = 4;
+        this.d = topicsController;
+        this.f19748b = z10;
+        this.f19749c = j10;
+        this.e = hashSet;
+        this.f19750f = runnable;
     }
 }

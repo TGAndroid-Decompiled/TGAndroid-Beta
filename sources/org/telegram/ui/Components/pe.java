@@ -3,11 +3,11 @@ package org.telegram.ui.Components;
 import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
 public final class pe extends View.AccessibilityDelegate {
-    public final int f29301a;
+    public final int f29304a;
 
     @Override
     public final void onInitializeAccessibilityNodeInfo(View view, AccessibilityNodeInfo accessibilityNodeInfo) {
-        switch (this.f29301a) {
+        switch (this.f29304a) {
             case 0:
                 super.onInitializeAccessibilityNodeInfo(view, accessibilityNodeInfo);
                 accessibilityNodeInfo.setClassName("android.widget.ImageButton");

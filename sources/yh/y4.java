@@ -23,17 +23,17 @@ import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Components.a6;
 import org.telegram.ui.Components.p5;
 public final class y4 extends View {
-    public final n7 f50614a;
-    public final d6 f50615b;
-    public float f50616c;
+    public final n7 f50617a;
+    public final d6 f50618b;
+    public float f50619c;
     public float d;
     public Drawable e;
 
     public y4(Context context, int i10, d6 d6Var) {
         super(context);
-        this.f50615b = d6Var;
+        this.f50618b = d6Var;
         n7 n7Var = new n7(i10, this, d6Var);
-        this.f50614a = n7Var;
+        this.f50617a = n7Var;
         n7Var.f1898y.setCallback(this);
         NotificationCenter.listenEmojiLoading(this);
     }
@@ -41,7 +41,7 @@ public final class y4 extends View {
     public final void a(TL_stars.TL_starGiftUnique tL_starGiftUnique, long j10, TLRPC.TL_textWithEntities tL_textWithEntities, String str, boolean z10) {
         float dp;
         float f7;
-        n7 n7Var = this.f50614a;
+        n7 n7Var = this.f50617a;
         p5 p5Var = n7Var.e;
         j1 j1Var = n7Var.f1884j;
         ImageReceiver imageReceiver = n7Var.d;
@@ -63,7 +63,7 @@ public final class y4 extends View {
             p5Var.g(null, false);
         }
         TL_stars.starGiftAttributeModel stargiftattributemodel2 = n7Var.f1887m;
-        if (stargiftattributemodel2 != null && (stargiftattributemodel == null || stargiftattributemodel.document.f20282id != stargiftattributemodel2.document.f20282id)) {
+        if (stargiftattributemodel2 != null && (stargiftattributemodel == null || stargiftattributemodel.document.f20285id != stargiftattributemodel2.document.f20285id)) {
             imageReceiver.setAutoRepeatCount(0);
             imageReceiver.clearDecorators();
             imageReceiver.setAutoRepeat(0);
@@ -72,8 +72,8 @@ public final class y4 extends View {
         boolean z11 = tL_starGiftUnique.burned;
         n7Var.L = z11;
         if (z11) {
-            int w02 = h6.w0(h6.f21228q7, n7Var.f1880c);
-            Paint paint2 = (Paint) j1Var.f25012b;
+            int w02 = h6.w0(h6.f21231q7, n7Var.f1880c);
+            Paint paint2 = (Paint) j1Var.f25015b;
             paint2.setShader(null);
             paint2.setColor(w02);
             j1Var.f(11, LocaleController.getString(R.string.Gift2UniqueRibbonBurned), true);
@@ -117,26 +117,26 @@ public final class y4 extends View {
     }
 
     public n7 getLayout() {
-        return this.f50614a;
+        return this.f50617a;
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f50614a.a();
+        this.f50617a.a();
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        n7 n7Var = this.f50614a;
+        n7 n7Var = this.f50617a;
         n7Var.R = false;
         n7Var.d.onDetachedFromWindow();
         n7Var.e.b();
         j0 j0Var = n7Var.f1898y;
         j0Var.d.onDetachedFromWindow();
-        a6.release((View) null, j0Var.f50320q);
-        j0Var.f50320q = null;
+        a6.release((View) null, j0Var.f50323q);
+        j0Var.f50323q = null;
     }
 
     @Override
@@ -147,14 +147,14 @@ public final class y4 extends View {
         } else {
             i10 = 0;
         }
-        d6 d6Var = this.f50615b;
+        d6 d6Var = this.f50618b;
         if (d6Var != null) {
             d6Var.d(0.0f, getY(), getMeasuredWidth(), i10);
         } else {
             h6.q(0.0f, getY(), getMeasuredWidth(), i10);
         }
-        n7 n7Var = this.f50614a;
-        this.f50616c = (getWidth() - ((int) n7Var.S.e)) / 2.0f;
+        n7 n7Var = this.f50617a;
+        this.f50619c = (getWidth() - ((int) n7Var.S.e)) / 2.0f;
         float dp = n7Var.S.e + AndroidUtilities.dp(8.0f);
         float width = (getWidth() - dp) / 2.0f;
         float dp2 = this.d - AndroidUtilities.dp(4.0f);
@@ -165,7 +165,7 @@ public final class y4 extends View {
         this.e.setBounds(rect);
         this.e.draw(canvas);
         canvas.save();
-        canvas.translate(this.f50616c, this.d);
+        canvas.translate(this.f50619c, this.d);
         n7Var.b(canvas);
         n7Var.c(canvas);
         canvas.restore();
@@ -174,8 +174,8 @@ public final class y4 extends View {
     @Override
     public final void onMeasure(int i10, int i11) {
         int size = View.MeasureSpec.getSize(i10);
-        n7 n7Var = this.f50614a;
-        this.f50616c = (size - ((int) n7Var.S.e)) / 2.0f;
+        n7 n7Var = this.f50617a;
+        this.f50619c = (size - ((int) n7Var.S.e)) / 2.0f;
         float paddingTop = getPaddingTop();
         this.d = paddingTop;
         setMeasuredDimension(size, getPaddingBottom() + ((int) paddingTop) + n7Var.O);
@@ -183,7 +183,7 @@ public final class y4 extends View {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        return this.f50614a.e(this.f50616c, this.d, motionEvent);
+        return this.f50617a.e(this.f50619c, this.d, motionEvent);
     }
 
     public void setLayoutBackground(Drawable drawable) {
@@ -193,7 +193,7 @@ public final class y4 extends View {
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (!super.verifyDrawable(drawable) && drawable != this.f50614a.f1898y) {
+        if (!super.verifyDrawable(drawable) && drawable != this.f50617a.f1898y) {
             return false;
         }
         return true;

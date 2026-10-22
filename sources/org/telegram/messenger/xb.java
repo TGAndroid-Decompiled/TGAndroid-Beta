@@ -1,45 +1,45 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
+import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.jq0;
 public final class xb implements RequestDelegate {
-    public final int f20071a;
-    public final MessagesController f20072b;
-    public final long f20073c;
-    public final long d;
-    public final ArrayList e;
+    public final int f20070a = 0;
+    public final int f20071b;
+    public final boolean f20072c;
+    public final TLRPC.User d;
+    public final NotificationCenter.NotificationCenterDelegate e;
+    public final Object f20073f;
 
-    public xb(int i10, long j10, long j11, ArrayList arrayList, MessagesController messagesController) {
-        this.f20071a = i10;
-        this.f20072b = messagesController;
-        this.f20073c = j10;
-        this.d = j11;
-        this.e = arrayList;
+    public xb(MessagesController messagesController, int i10, TLRPC.Chat chat, TLRPC.User user, boolean z10) {
+        this.e = messagesController;
+        this.f20071b = i10;
+        this.f20073f = chat;
+        this.d = user;
+        this.f20072c = z10;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f20071a) {
+        switch (this.f20070a) {
             case 0:
-                this.f20072b.lambda$checkUnreadPollVotesInternal2$433(this.f20073c, this.d, this.e, tLObject, tL_error);
-                return;
-            case 1:
-                this.f20072b.lambda$checkUnreadPollVotesInternal2$435(this.f20073c, this.d, this.e, tLObject, tL_error);
-                return;
-            case 2:
-                this.f20072b.lambda$checkUnreadPollVotesInternal2$437(this.f20073c, this.d, this.e, tLObject, tL_error);
-                return;
-            case 3:
-                this.f20072b.lambda$checkUnreadReactionsInternal2$426(this.f20073c, this.d, this.e, tLObject, tL_error);
-                return;
-            case 4:
-                this.f20072b.lambda$checkUnreadReactionsInternal2$428(this.f20073c, this.d, this.e, tLObject, tL_error);
+                TLRPC.User user = this.d;
+                boolean z10 = this.f20072c;
+                ((MessagesController) this.e).lambda$pinMessage$129(this.f20071b, (TLRPC.Chat) this.f20073f, user, z10, tLObject, tL_error);
                 return;
             default:
-                this.f20072b.lambda$checkUnreadReactionsInternal2$430(this.f20073c, this.d, this.e, tLObject, tL_error);
+                AndroidUtilities.runOnUIThread(new ki.r2((jq0) this.e, (String) this.f20073f, this.f20071b, tLObject, this.f20072c, this.d));
                 return;
         }
+    }
+
+    public xb(jq0 jq0Var, String str, int i10, boolean z10, TLRPC.User user) {
+        this.e = jq0Var;
+        this.f20073f = str;
+        this.f20071b = i10;
+        this.f20072c = z10;
+        this.d = user;
     }
 }

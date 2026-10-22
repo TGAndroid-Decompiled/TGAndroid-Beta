@@ -5,23 +5,23 @@ import java.util.regex.Pattern;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.ui.LaunchActivity;
 public final class z1 implements DialogInterface.OnCancelListener {
-    public final int f32800a = 1;
-    public final int f32801b;
-    public final int[] f32802c;
+    public final int f32803a = 1;
+    public final int f32804b;
+    public final int[] f32805c;
     public final Runnable d;
 
     public z1(int i10, int[] iArr, org.telegram.ui.z70 z70Var) {
-        this.f32801b = i10;
-        this.f32802c = iArr;
+        this.f32804b = i10;
+        this.f32805c = iArr;
         this.d = z70Var;
     }
 
     @Override
     public final void onCancel(DialogInterface dialogInterface) {
-        int i10 = this.f32800a;
+        int i10 = this.f32803a;
         Runnable runnable = this.d;
-        int[] iArr = this.f32802c;
-        int i11 = this.f32801b;
+        int[] iArr = this.f32805c;
+        int i11 = this.f32804b;
         switch (i10) {
             case 0:
                 for (int i12 : iArr) {
@@ -46,8 +46,8 @@ public final class z1 implements DialogInterface.OnCancelListener {
     }
 
     public z1(int[] iArr, Runnable runnable, int i10) {
-        this.f32802c = iArr;
-        this.f32801b = i10;
+        this.f32805c = iArr;
+        this.f32804b = i10;
         this.d = runnable;
     }
 }

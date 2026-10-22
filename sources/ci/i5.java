@@ -180,7 +180,7 @@ public final class i5 extends hs {
         b bVar = u5Var.f6052s;
         TextView textView = new TextView(actionBarPopupWindow$ActionBarPopupWindowLayout.getContext());
         textView.setTextSize(1, 13.0f);
-        textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21096j5, bVar));
+        textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21099j5, bVar));
         textView.setPadding(AndroidUtilities.dp(13.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(13.0f), AndroidUtilities.dp(8.0f));
         textView.setText(string);
         textView.setTag(R.id.fit_width_tag, 1);

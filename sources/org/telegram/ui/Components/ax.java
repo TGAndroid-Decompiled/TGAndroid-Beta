@@ -18,7 +18,7 @@ public final class ax extends pg.d {
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        this.X2.f30753m2.h++;
+        this.X2.f30756m2.h++;
     }
 
     @Override
@@ -26,8 +26,8 @@ public final class ax extends pg.d {
         int i12;
         bh.f fVar;
         tz tzVar = this.X2;
-        oz ozVar = tzVar.f30796z0;
-        if (Build.VERSION.SDK_INT >= 31 && (fVar = tzVar.f30746j2) != null) {
+        oz ozVar = tzVar.f30799z0;
+        if (Build.VERSION.SDK_INT >= 31 && (fVar = tzVar.f30749j2) != null) {
             fVar.f(i10, i11);
         }
         if (tzVar.C0 != null) {
@@ -39,7 +39,7 @@ public final class ax extends pg.d {
             }
             exVar.setUnderlineHeight(i12);
         }
-        if (ozVar != null && getAdapter() == ozVar && ozVar.d == 0 && !ozVar.O.a() && !ozVar.O.f28636w.f29162y) {
+        if (ozVar != null && getAdapter() == ozVar && ozVar.d == 0 && !ozVar.O.a() && !ozVar.O.f28639w.f29165y) {
             if (tzVar.E0.N0() + 50 > ozVar.h()) {
                 mz mzVar = ozVar.O;
                 Objects.requireNonNull(mzVar);
@@ -51,11 +51,11 @@ public final class ax extends pg.d {
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         tz tzVar = this.X2;
-        if (!tzVar.f30731f) {
+        if (!tzVar.f30734f) {
             org.telegram.ui.et q6 = org.telegram.ui.et.q();
             ax axVar = tzVar.D0;
             tzVar.getMeasuredHeight();
-            boolean r10 = q6.r(motionEvent, axVar, tzVar.f30737g2, this.f27579n2);
+            boolean r10 = q6.r(motionEvent, axVar, tzVar.f30740g2, this.f27582n2);
             if (!super.onInterceptTouchEvent(motionEvent) && !r10) {
                 return false;
             }
@@ -67,7 +67,7 @@ public final class ax extends pg.d {
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         tz tzVar = this.X2;
-        if (tzVar.I0 && tzVar.f30793y0.h() > 0) {
+        if (tzVar.I0 && tzVar.f30796y0.h() > 0) {
             this.W2 = true;
             tzVar.E0.h1(0, 0);
             tzVar.I0 = false;

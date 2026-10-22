@@ -2,12 +2,12 @@ package org.telegram.ui.Components;
 
 import org.telegram.tgnet.tl.TL_iv;
 public final class ia0 extends v7.x6 {
-    public int f27207a;
-    public final TL_iv.PageBlock f27208b;
-    public TL_iv.textConcat f27209c = new TL_iv.textConcat();
+    public int f27210a;
+    public final TL_iv.PageBlock f27211b;
+    public TL_iv.textConcat f27212c = new TL_iv.textConcat();
 
     public ia0(TL_iv.PageBlock pageBlock) {
-        this.f27208b = pageBlock;
+        this.f27211b = pageBlock;
     }
 
     public static TL_iv.RichText x(TL_iv.textConcat textconcat) {
@@ -22,29 +22,29 @@ public final class ia0 extends v7.x6 {
 
     @Override
     public final void a(df.b bVar) {
-        int i10 = this.f27207a;
+        int i10 = this.f27210a;
         if (i10 >= 64) {
             return;
         }
-        this.f27207a = i10 + 1;
+        this.f27210a = i10 + 1;
         try {
             v(bVar);
         } finally {
-            this.f27207a--;
+            this.f27210a--;
         }
     }
 
     @Override
     public final void b(df.c cVar) {
-        int i10 = this.f27207a;
+        int i10 = this.f27210a;
         if (i10 >= 64) {
             return;
         }
-        this.f27207a = i10 + 1;
+        this.f27210a = i10 + 1;
         try {
             v(cVar);
         } finally {
-            this.f27207a--;
+            this.f27210a--;
         }
     }
 
@@ -83,7 +83,7 @@ public final class ia0 extends v7.x6 {
     @Override
     public final void k(df.n nVar) {
         if (nVar instanceof bd.a) {
-            if (!this.f27209c.texts.isEmpty()) {
+            if (!this.f27212c.texts.isEmpty()) {
                 w(la0.j("\n"));
             }
             w(la0.c(((bd.a) nVar).f4252g));
@@ -95,35 +95,35 @@ public final class ia0 extends v7.x6 {
 
     @Override
     public final void l(df.o oVar) {
-        int i10 = this.f27207a;
+        int i10 = this.f27210a;
         if (i10 >= 64) {
             return;
         }
-        this.f27207a = i10 + 1;
+        this.f27210a = i10 + 1;
         try {
             v(oVar);
         } finally {
-            this.f27207a--;
+            this.f27210a--;
         }
     }
 
     @Override
     public final void m(df.q qVar) {
-        int i10 = this.f27207a;
+        int i10 = this.f27210a;
         if (i10 >= 64) {
             return;
         }
-        this.f27207a = i10 + 1;
+        this.f27210a = i10 + 1;
         try {
             v(qVar);
         } finally {
-            this.f27207a--;
+            this.f27210a--;
         }
     }
 
     @Override
     public final void n(df.r rVar) {
-        if (!this.f27209c.texts.isEmpty()) {
+        if (!this.f27212c.texts.isEmpty()) {
             w(la0.j("\n\n"));
         }
         v(rVar);
@@ -172,7 +172,7 @@ public final class ia0 extends v7.x6 {
     @Override
     public final void t(df.g gVar) {
         String str;
-        if (this.f27208b instanceof TL_iv.pageBlockBlockquote) {
+        if (this.f27211b instanceof TL_iv.pageBlockBlockquote) {
             str = "\n";
         } else {
             str = " ";
@@ -188,15 +188,15 @@ public final class ia0 extends v7.x6 {
     }
 
     public final void w(TL_iv.RichText richText) {
-        this.f27209c.texts.add(richText);
+        this.f27212c.texts.add(richText);
     }
 
     public final TL_iv.RichText y(df.p pVar) {
-        TL_iv.textConcat textconcat = this.f27209c;
-        this.f27209c = new TL_iv.textConcat();
+        TL_iv.textConcat textconcat = this.f27212c;
+        this.f27212c = new TL_iv.textConcat();
         v(pVar);
-        TL_iv.RichText x10 = x(this.f27209c);
-        this.f27209c = textconcat;
+        TL_iv.RichText x10 = x(this.f27212c);
+        this.f27212c = textconcat;
         return x10;
     }
 }

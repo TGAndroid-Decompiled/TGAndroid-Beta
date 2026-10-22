@@ -1,49 +1,26 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class uc implements RequestDelegate {
-    public final int f19661a;
-    public final MessagesController f19662b;
-    public final int f19663c;
-    public final long d;
-    public final long e;
+import org.telegram.tgnet.tl.TL_update;
+public final class uc implements Runnable {
+    public final int f19687a;
+    public final MessagesController f19688b;
+    public final TL_update.TL_updatePeerBlocked f19689c;
 
-    public uc(int i10, long j10, long j11, MessagesController messagesController) {
-        this.f19661a = 0;
-        this.f19662b = messagesController;
-        this.d = j10;
-        this.f19663c = i10;
-        this.e = j11;
+    public uc(MessagesController messagesController, TL_update.TL_updatePeerBlocked tL_updatePeerBlocked, int i10) {
+        this.f19687a = i10;
+        this.f19688b = messagesController;
+        this.f19689c = tL_updatePeerBlocked;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f19661a) {
+    public final void run() {
+        switch (this.f19687a) {
             case 0:
-                int i10 = this.f19663c;
-                long j10 = this.e;
-                this.f19662b.lambda$getChannelDifference$348(this.d, i10, j10, tLObject, tL_error);
-                return;
-            case 1:
-                long j11 = this.d;
-                long j12 = this.e;
-                this.f19662b.lambda$sendTyping$171(this.f19663c, j11, j12, tLObject, tL_error);
+                this.f19688b.lambda$processUpdateArray$394(this.f19689c);
                 return;
             default:
-                long j13 = this.d;
-                long j14 = this.e;
-                this.f19662b.lambda$sendTyping$173(this.f19663c, j13, j14, tLObject, tL_error);
+                this.f19688b.lambda$processUpdateArray$393(this.f19689c);
                 return;
         }
-    }
-
-    public uc(MessagesController messagesController, int i10, long j10, long j11, int i11) {
-        this.f19661a = i11;
-        this.f19662b = messagesController;
-        this.f19663c = i10;
-        this.d = j10;
-        this.e = j11;
     }
 }

@@ -141,7 +141,7 @@ public final class l0 {
             this.f14733b.getClass();
             long currentTimeMillis = System.currentTimeMillis() - e2.m0.h0(F);
             this.f14738j = -9223372036854775807L;
-            e2.r rVar = ((i0) this.f14732a.f50121b).f14700j;
+            e2.r rVar = ((i0) this.f14732a.f50124b).f14700j;
             rVar.getClass();
             if (Thread.currentThread() == rVar.f8272a) {
                 rVar.e(-1, new e0(currentTimeMillis));

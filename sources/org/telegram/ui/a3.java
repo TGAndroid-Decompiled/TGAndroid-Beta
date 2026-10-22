@@ -7,25 +7,25 @@ import android.view.TextureView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.video.VideoPlayerHolderBase;
 public final class a3 {
-    public long f35261a;
-    public Bitmap f35262b;
+    public long f35264a;
+    public Bitmap f35265b;
 
     public static a3 a(VideoPlayerHolderBase videoPlayerHolderBase, z2 z2Var) {
         ?? obj = new Object();
-        obj.f35261a = videoPlayerHolderBase.getCurrentPosition();
+        obj.f35264a = videoPlayerHolderBase.getCurrentPosition();
         if (videoPlayerHolderBase.firstFrameRendered) {
-            TextureView textureView = z2Var.f43612n;
-            TextureView textureView2 = z2Var.f43612n;
+            TextureView textureView = z2Var.f43615n;
+            TextureView textureView2 = z2Var.f43615n;
             if (textureView != null && textureView.getSurfaceTexture() != null) {
                 if (Build.VERSION.SDK_INT >= 24) {
                     Surface surface = new Surface(textureView2.getSurfaceTexture());
                     Bitmap createBitmap = Bitmap.createBitmap(textureView2.getMeasuredWidth(), textureView2.getMeasuredHeight(), Bitmap.Config.ARGB_8888);
                     AndroidUtilities.getBitmapFromSurface(surface, createBitmap);
                     surface.release();
-                    obj.f35262b = createBitmap;
+                    obj.f35265b = createBitmap;
                     return obj;
                 }
-                obj.f35262b = textureView2.getBitmap();
+                obj.f35265b = textureView2.getBitmap();
             }
         }
         return obj;

@@ -5,14 +5,14 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
 import org.telegram.tgnet.TLRPC;
 public final class er implements Runnable {
-    public final int f36760a;
-    public final gr f36761b;
-    public final String f36762c;
+    public final int f36763a;
+    public final gr f36764b;
+    public final String f36765c;
 
     public er(gr grVar, String str, int i10) {
-        this.f36760a = i10;
-        this.f36761b = grVar;
-        this.f36762c = str;
+        this.f36763a = i10;
+        this.f36764b = grVar;
+        this.f36765c = str;
     }
 
     @Override
@@ -22,20 +22,20 @@ public final class er implements Runnable {
         org.telegram.messenger.camera.i iVar;
         boolean z10;
         long j10;
-        switch (this.f36760a) {
+        switch (this.f36763a) {
             case 0:
-                gr grVar = this.f36761b;
+                gr grVar = this.f36764b;
                 grVar.getClass();
-                AndroidUtilities.runOnUIThread(new er(grVar, this.f36762c, 1));
+                AndroidUtilities.runOnUIThread(new er(grVar, this.f36765c, 1));
                 return;
             default:
-                gr grVar2 = this.f36761b;
-                grVar2.f37397n = null;
-                hr hrVar = grVar2.f37402y;
-                TLRPC.Chat chat = hrVar.f37753r;
-                int i10 = hrVar.f37728e1;
-                if (!ChatObject.isChannel(chat) && hrVar.f37756s != null) {
-                    arrayList = new ArrayList(hrVar.f37756s.participants.participants);
+                gr grVar2 = this.f36764b;
+                grVar2.f37400n = null;
+                hr hrVar = grVar2.f37405y;
+                TLRPC.Chat chat = hrVar.f37756r;
+                int i10 = hrVar.f37731e1;
+                if (!ChatObject.isChannel(chat) && hrVar.f37759s != null) {
+                    arrayList = new ArrayList(hrVar.f37759s.participants.participants);
                 } else {
                     arrayList = null;
                 }
@@ -44,9 +44,9 @@ public final class er implements Runnable {
                 } else {
                     arrayList2 = null;
                 }
-                String str = this.f36762c;
+                String str = this.f36765c;
                 if (arrayList == null && arrayList2 == null) {
-                    grVar2.f37399s = false;
+                    grVar2.f37402s = false;
                     iVar = null;
                 } else {
                     iVar = new org.telegram.messenger.camera.i(grVar2, str, arrayList, arrayList2, 18);
@@ -57,7 +57,7 @@ public final class er implements Runnable {
                 } else {
                     z10 = false;
                 }
-                if (ChatObject.isChannel(hrVar.f37753r)) {
+                if (ChatObject.isChannel(hrVar.f37756r)) {
                     j10 = hrVar.N;
                 } else {
                     j10 = 0;

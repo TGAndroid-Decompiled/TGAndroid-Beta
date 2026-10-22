@@ -61,9 +61,9 @@ public final class j implements v0.h {
             obj3.f16337f = a2;
             obj3.h = a2;
             ?? obj4 = new Object();
-            obj4.f44760a = aVar;
-            obj4.f44761b = a2;
-            obj4.f44762c = g3Var;
+            obj4.f44763a = aVar;
+            obj4.f44764b = a2;
+            obj4.f44765c = g3Var;
             obj4.d = a2;
             obj.f15927f = n5.a.a(new androidx.biometric.e(obj2, obj3, obj4, 29));
             return obj;

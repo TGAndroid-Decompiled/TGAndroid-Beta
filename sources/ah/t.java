@@ -105,7 +105,7 @@ public final class t implements Runnable {
                     }
                 }
                 l7Var2.U0 = -1;
-                qc qcVar = qc.f29524w;
+                qc qcVar = qc.f29527w;
                 if (qcVar != null) {
                     qcVar.c(0L, false);
                     return;
@@ -189,7 +189,7 @@ public final class t implements Runnable {
                 return;
             case 12:
                 String str = e2.m0.f8252a;
-                i2.i0 i0Var = ((i2.c0) ((k2.u) ((qf.b) obj).f44448c)).f12325a;
+                i2.i0 i0Var = ((i2.c0) ((k2.u) ((qf.b) obj).f44451c)).f12325a;
                 if (i0Var.f12387d0 != z10) {
                     i0Var.f12387d0 = z10;
                     i0Var.f12402m.e(23, new i2.y(1, z10));
@@ -236,7 +236,7 @@ public final class t implements Runnable {
                 pf.d.r(context, LocaleController.getString(i11));
                 return;
             case 24:
-                iz0 iz0Var = ((hm) obj).f37688c.f40653d1;
+                iz0 iz0Var = ((hm) obj).f37691c.f40656d1;
                 if (iz0Var != null && z10) {
                     iz0Var.setVisibility(8);
                     return;
@@ -244,8 +244,8 @@ public final class t implements Runnable {
                 return;
             case 25:
                 io ioVar = (io) obj;
-                ioVar.f38064x0.autotranslation = z10;
-                ioVar.getMessagesController().putChat(ioVar.f38064x0, false);
+                ioVar.f38067x0.autotranslation = z10;
+                ioVar.getMessagesController().putChat(ioVar.f38067x0, false);
                 return;
             case 26:
                 wp wpVar = (wp) obj;
@@ -255,19 +255,19 @@ public final class t implements Runnable {
                     if (wpVar.M != null) {
                         wpVar.P = true;
                         if (!wpVar.x()) {
-                            wallPaper = wpVar.f32215n.h;
+                            wallPaper = wpVar.f32218n.h;
                         }
                         TLRPC.WallPaper wallPaper2 = wallPaper;
-                        org.telegram.ui.ActionBar.c4 c4Var2 = wpVar.M.f31850a;
-                        if (c4Var2.f20723a) {
-                            wpVar.f32215n.k(null, wallPaper2, false, Boolean.valueOf(z10), false);
+                        org.telegram.ui.ActionBar.c4 c4Var2 = wpVar.M.f31853a;
+                        if (c4Var2.f20726a) {
+                            wpVar.f32218n.k(null, wallPaper2, false, Boolean.valueOf(z10), false);
                         } else {
-                            wpVar.f32215n.k(c4Var2, wallPaper2, false, Boolean.valueOf(z10), false);
+                            wpVar.f32218n.k(c4Var2, wallPaper2, false, Boolean.valueOf(z10), false);
                         }
                     }
                     if (upVar.d != null) {
                         while (i13 < upVar.d.size()) {
-                            ((vp) upVar.d.get(i13)).f31852c = z10 ? 1 : 0;
+                            ((vp) upVar.d.get(i13)).f31855c = z10 ? 1 : 0;
                             i13++;
                         }
                         upVar.l();
@@ -285,12 +285,12 @@ public final class t implements Runnable {
                 return;
             case 28:
                 k10 k10Var = (k10) obj;
-                k10Var.S(k10Var.f27718y0, z10);
+                k10Var.S(k10Var.f27721y0, z10);
                 return;
             default:
                 k40 k40Var = (k40) obj;
                 if (!z10) {
-                    k40Var.f27743r.setVisibility(8);
+                    k40Var.f27746r.setVisibility(8);
                     return;
                 } else {
                     k40Var.getClass();

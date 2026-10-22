@@ -5,74 +5,74 @@ import java.util.ArrayList;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class me1 extends org.telegram.ui.Components.w81 {
-    public final ArrayList f39227a;
-    public final ne1 f39228b;
+    public final ArrayList f39230a;
+    public final ne1 f39231b;
 
     public me1(ne1 ne1Var) {
-        this.f39228b = ne1Var;
+        this.f39231b = ne1Var;
         ArrayList arrayList = new ArrayList();
-        this.f39227a = arrayList;
+        this.f39230a = arrayList;
         arrayList.add(new je1(0));
         je1 je1Var = new je1(2);
-        je1Var.f38243b = 0;
+        je1Var.f38246b = 0;
         arrayList.add(je1Var);
         je1 je1Var2 = new je1(2);
-        je1Var2.f38243b = 1;
+        je1Var2.f38246b = 1;
         arrayList.add(je1Var2);
         je1 je1Var3 = new je1(2);
-        je1Var3.f38243b = 2;
+        je1Var3.f38246b = 2;
         arrayList.add(je1Var3);
         je1 je1Var4 = new je1(2);
-        je1Var4.f38243b = 3;
+        je1Var4.f38246b = 3;
         arrayList.add(je1Var4);
         je1 je1Var5 = new je1(2);
-        je1Var5.f38243b = 4;
+        je1Var5.f38246b = 4;
         arrayList.add(je1Var5);
     }
 
     @Override
     public final void b(View view, int i10, int i11) {
-        ne1 ne1Var = this.f39228b;
-        ne1Var.K(view, i10, ne1Var.f39564b0, true);
+        ne1 ne1Var = this.f39231b;
+        ne1Var.K(view, i10, ne1Var.f39567b0, true);
     }
 
     @Override
     public final View d(int i10) {
         int i11;
-        ne1 ne1Var = this.f39228b;
-        re1 re1Var = ne1Var.f39581t0;
+        ne1 ne1Var = this.f39231b;
+        re1 re1Var = ne1Var.f39584t0;
         if (i10 == 1) {
             return ne1Var.T;
         }
         if (i10 == 2) {
             i11 = ((org.telegram.ui.ActionBar.n2) re1Var).currentAccount;
             org.telegram.ui.Components.un0 un0Var = new org.telegram.ui.Components.un0(i11, re1Var);
-            un0Var.f30977b.j(new le1(0));
+            un0Var.f30980b.j(new le1(0));
             un0Var.setUiCallback(ne1Var);
             return un0Var;
         }
         e10 e10Var = new e10(re1Var);
-        e10Var.setChatPreviewDelegate(ne1Var.f39579r0);
+        e10Var.setChatPreviewDelegate(ne1Var.f39582r0);
         e10Var.setUiCallback(ne1Var);
-        e10Var.f36494b.j(new le1(1));
+        e10Var.f36497b.j(new le1(1));
         return e10Var;
     }
 
     @Override
     public final int e() {
-        return this.f39227a.size();
+        return this.f39230a.size();
     }
 
     @Override
     public final CharSequence g(int i10) {
-        ArrayList arrayList = this.f39227a;
-        if (((je1) arrayList.get(i10)).f38242a == 0) {
+        ArrayList arrayList = this.f39230a;
+        if (((je1) arrayList.get(i10)).f38245a == 0) {
             return LocaleController.getString(R.string.SearchMessages);
         }
-        if (((je1) arrayList.get(i10)).f38242a == 1) {
+        if (((je1) arrayList.get(i10)).f38245a == 1) {
             return LocaleController.getString(R.string.DownloadsTabs);
         }
-        hg.o0 o0Var = hg.q0.f12015a3[((je1) arrayList.get(i10)).f38243b];
+        hg.o0 o0Var = hg.q0.f12015a3[((je1) arrayList.get(i10)).f38246b];
         String str = o0Var.f12003c;
         if (str != null) {
             return str;
@@ -82,13 +82,13 @@ public final class me1 extends org.telegram.ui.Components.w81 {
 
     @Override
     public final int h(int i10) {
-        ArrayList arrayList = this.f39227a;
-        if (((je1) arrayList.get(i10)).f38242a == 0) {
+        ArrayList arrayList = this.f39230a;
+        if (((je1) arrayList.get(i10)).f38245a == 0) {
             return 1;
         }
-        if (((je1) arrayList.get(i10)).f38242a == 1) {
+        if (((je1) arrayList.get(i10)).f38245a == 1) {
             return 2;
         }
-        return ((je1) arrayList.get(i10)).f38242a + i10;
+        return ((je1) arrayList.get(i10)).f38245a + i10;
     }
 }

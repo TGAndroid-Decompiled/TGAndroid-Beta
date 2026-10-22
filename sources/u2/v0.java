@@ -2,30 +2,30 @@ package u2;
 
 import java.io.IOException;
 public final class v0 implements e1 {
-    public final int f47456a;
-    public final x0 f47457b;
+    public final int f47459a;
+    public final x0 f47460b;
 
     public v0(x0 x0Var, int i10) {
-        this.f47457b = x0Var;
-        this.f47456a = i10;
+        this.f47460b = x0Var;
+        this.f47459a = i10;
     }
 
     @Override
     public final void a() {
-        int i10 = this.f47456a;
-        x0 x0Var = this.f47457b;
+        int i10 = this.f47459a;
+        x0 x0Var = this.f47460b;
         x0Var.L[i10].C();
-        y2.l lVar = x0Var.f47484x;
+        y2.l lVar = x0Var.f47487x;
         int y3 = x0Var.d.y3(x0Var.V);
-        IOException iOException = lVar.f49933c;
+        IOException iOException = lVar.f49936c;
         if (iOException == null) {
-            y2.h hVar = lVar.f49932b;
+            y2.h hVar = lVar.f49935b;
             if (hVar != null) {
                 if (y3 == Integer.MIN_VALUE) {
-                    y3 = hVar.f49923a;
+                    y3 = hVar.f49926a;
                 }
                 IOException iOException2 = hVar.e;
-                if (iOException2 != null && hVar.f49926f > y3) {
+                if (iOException2 != null && hVar.f49929f > y3) {
                     throw iOException2;
                 }
                 return;
@@ -37,8 +37,8 @@ public final class v0 implements e1 {
 
     @Override
     public final boolean f() {
-        x0 x0Var = this.f47457b;
-        if (!x0Var.C() && x0Var.L[this.f47456a].A(x0Var.f47478g0)) {
+        x0 x0Var = this.f47460b;
+        if (!x0Var.C() && x0Var.L[this.f47459a].A(x0Var.f47481g0)) {
             return true;
         }
         return false;
@@ -46,13 +46,13 @@ public final class v0 implements e1 {
 
     @Override
     public final int g(qf.b bVar, h2.h hVar, int i10) {
-        x0 x0Var = this.f47457b;
+        x0 x0Var = this.f47460b;
         if (x0Var.C()) {
             return -3;
         }
-        int i11 = this.f47456a;
+        int i11 = this.f47459a;
         x0Var.x(i11);
-        int F = x0Var.L[i11].F(bVar, hVar, i10, x0Var.f47478g0);
+        int F = x0Var.L[i11].F(bVar, hVar, i10, x0Var.f47481g0);
         if (F == -3) {
             x0Var.y(i11);
         }
@@ -61,14 +61,14 @@ public final class v0 implements e1 {
 
     @Override
     public final int m(long j10) {
-        x0 x0Var = this.f47457b;
+        x0 x0Var = this.f47460b;
         if (x0Var.C()) {
             return 0;
         }
-        int i10 = this.f47456a;
+        int i10 = this.f47459a;
         x0Var.x(i10);
         d1 d1Var = x0Var.L[i10];
-        int x10 = d1Var.x(j10, x0Var.f47478g0);
+        int x10 = d1Var.x(j10, x0Var.f47481g0);
         d1Var.L(x10);
         if (x10 == 0) {
             x0Var.y(i10);

@@ -120,14 +120,14 @@ public final class m implements e1 {
                     j jVar = (j) arrayList.get(0);
                     w wVar2 = jVar.d;
                     if (!wVar2.equals(qVar.W)) {
-                        qVar.v.m(qVar.f17640b, wVar2, jVar.e, jVar.f47894f, jVar.h);
+                        qVar.v.m(qVar.f17640b, wVar2, jVar.e, jVar.f47897f, jVar.h);
                     }
                     qVar.W = wVar2;
                 }
                 if (arrayList.isEmpty() || ((j) arrayList.get(0)).g()) {
                     int F = qVar.L[i11].F(bVar, hVar, i10, qVar.f17651j0);
                     if (F == -5) {
-                        w wVar3 = (w) bVar.f44448c;
+                        w wVar3 = (w) bVar.f44451c;
                         wVar3.getClass();
                         if (i11 == qVar.R) {
                             int b10 = b8.b(qVar.L[i11].E());
@@ -142,7 +142,7 @@ public final class m implements e1 {
                             }
                             wVar3 = wVar3.d(wVar);
                         }
-                        bVar.f44448c = wVar3;
+                        bVar.f44451c = wVar3;
                     }
                     return F;
                 }

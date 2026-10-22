@@ -58,14 +58,14 @@ public final class r2 implements Runnable {
                 String str2 = (String) this.f2101n;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) this.h;
                 TLObject tLObject = (TLObject) this.e;
-                kVar.f49881w = false;
-                kVar.f49884z = true;
+                kVar.f49884w = false;
+                kVar.f49887z = true;
                 if (this.f2098b) {
                     AndroidUtilities.cancelRunOnUIThread(runnable);
                 }
-                xh.k.k(kVar.f49876q, false, false);
-                if (TextUtils.equals(str2, kVar.f49879t) && tL_error == null) {
-                    kVar.f49884z = true;
+                xh.k.k(kVar.f49879q, false, false);
+                if (TextUtils.equals(str2, kVar.f49882t) && tL_error == null) {
+                    kVar.f49887z = true;
                     kVar.g((TLRPC.TL_messages_chatInviteImporters) tLObject, str2, this.f2099c, false);
                     return;
                 }

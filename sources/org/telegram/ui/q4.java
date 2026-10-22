@@ -5,17 +5,17 @@ import android.view.ViewGroup;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class q4 extends org.telegram.ui.Components.im0 {
-    public final Context f40368c;
+    public final Context f40371c;
 
     public q4(Context context) {
-        this.f40368c = context;
+        this.f40371c = context;
     }
 
     @Override
     public final boolean D(s4.b1 b1Var) {
         int b10 = b1Var.b();
         if (b10 != 1) {
-            ti.a aVar = ti.e.f47220b;
+            ti.a aVar = ti.e.f47223b;
             aVar.a();
             if (!aVar.d || b10 != 2) {
                 return false;
@@ -46,33 +46,33 @@ public final class q4 extends org.telegram.ui.Components.im0 {
     @Override
     public final void v(s4.b1 b1Var, int i10) {
         int i11;
-        ti.a aVar = ti.e.f47220b;
+        ti.a aVar = ti.e.f47223b;
         aVar.a();
         boolean z10 = aVar.d;
-        int i12 = b1Var.f45920f;
+        int i12 = b1Var.f45923f;
         if (i12 == 0) {
-            ((org.telegram.ui.Cells.l4) b1Var.f45917a).setText(LocaleController.getString(R.string.AudioRecorderGeneral));
+            ((org.telegram.ui.Cells.l4) b1Var.f45920a).setText(LocaleController.getString(R.string.AudioRecorderGeneral));
         } else if (i12 == 1) {
-            ((org.telegram.ui.Cells.v8) b1Var.f45917a).f(LocaleController.getString(R.string.AudioRecorderUseNewRecorder), z10, false);
+            ((org.telegram.ui.Cells.v8) b1Var.f45920a).f(LocaleController.getString(R.string.AudioRecorderUseNewRecorder), z10, false);
         } else if (i12 == 2) {
-            org.telegram.ui.Cells.ba baVar = (org.telegram.ui.Cells.ba) b1Var.f45917a;
+            org.telegram.ui.Cells.ba baVar = (org.telegram.ui.Cells.ba) b1Var.f45920a;
             baVar.setEnabled(z10);
             String string = LocaleController.getString(R.string.AudioRecorderNoiseSuppression);
-            if (((ri.h) ti.e.f47221c.a()) == ri.h.f45813b) {
+            if (((ri.h) ti.e.f47224c.a()) == ri.h.f45816b) {
                 i11 = R.string.AudioRecorderNoiseSuppressionRNNoise;
             } else {
                 i11 = R.string.AudioRecorderNoiseSuppressionOff;
             }
             baVar.c(string, LocaleController.getString(i11), false, false);
         } else {
-            ((org.telegram.ui.Cells.d9) b1Var.f45917a).setText(LocaleController.getString(R.string.AudioRecorderGeneralInfo));
+            ((org.telegram.ui.Cells.d9) b1Var.f45920a).setText(LocaleController.getString(R.string.AudioRecorderGeneralInfo));
         }
     }
 
     @Override
     public final s4.b1 x(ViewGroup viewGroup, int i10) {
         org.telegram.ui.Cells.ba baVar;
-        Context context = this.f40368c;
+        Context context = this.f40371c;
         if (i10 == 0) {
             baVar = new org.telegram.ui.Cells.l4(context);
         } else if (i10 == 1) {

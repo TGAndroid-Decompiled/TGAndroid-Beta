@@ -1,18 +1,18 @@
 package org.telegram.ui;
 public final class kz0 implements Runnable {
-    public final int f38700a;
-    public final lz0 f38701b;
+    public final int f38703a;
+    public final lz0 f38704b;
 
     public kz0(lz0 lz0Var, int i10) {
-        this.f38700a = i10;
-        this.f38701b = lz0Var;
+        this.f38703a = i10;
+        this.f38704b = lz0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f38700a) {
+        switch (this.f38703a) {
             case 0:
-                ProfileActivity profileActivity = this.f38701b.D0;
+                ProfileActivity profileActivity = this.f38704b.D0;
                 yy0 yy0Var = profileActivity.D5;
                 if (yy0Var != null) {
                     yy0Var.dismiss();
@@ -22,7 +22,7 @@ public final class kz0 implements Runnable {
                 return;
             default:
                 try {
-                    org.telegram.ui.Components.jm0 currentListView = this.f38701b.f39066x0.O.getCurrentListView();
+                    org.telegram.ui.Components.jm0 currentListView = this.f38704b.f39069x0.O.getCurrentListView();
                     if (currentListView != null && currentListView.getAdapter() != null) {
                         currentListView.getAdapter().l();
                         return;

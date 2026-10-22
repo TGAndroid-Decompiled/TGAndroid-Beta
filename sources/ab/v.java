@@ -86,11 +86,11 @@ public final class v extends md.i implements td.p {
                     if (Log.isLoggable("FirebaseCrashlytics", 3)) {
                         Log.d("FirebaseCrashlytics", str2, null);
                     }
-                    x9.i iVar = jVar.f49688b;
+                    x9.i iVar = jVar.f49691b;
                     synchronized (iVar) {
-                        if (!Objects.equals(iVar.f49686c, str)) {
-                            x9.i.a(iVar.f49684a, iVar.f49685b, str);
-                            iVar.f49686c = str;
+                        if (!Objects.equals(iVar.f49689c, str)) {
+                            x9.i.a(iVar.f49687a, iVar.f49688b, str);
+                            iVar.f49689c = str;
                         }
                     }
                     Log.d("SessionLifecycleClient", "Notified " + bb.d.f4238a + " of new session " + str);

@@ -38,7 +38,7 @@ public class n2 extends org.telegram.ui.ActionBar.f3 implements NotificationCent
         this.f9503r = z10;
         this.f9504s = z11;
         this.useSmoothKeyboard = true;
-        fixNavigationBar(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21061h5, d6Var));
+        fixNavigationBar(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21064h5, d6Var));
         this.occupyNavigationBar = true;
         setUseLightStatusBar(false);
         this.containerView = new j1(this, context);
@@ -49,7 +49,7 @@ public class n2 extends org.telegram.ui.ActionBar.f3 implements NotificationCent
         } else {
             i10 = G;
         }
-        h1Var.f25862b = i10;
+        h1Var.f25865b = i10;
         h1Var.setAdapter(new i1(this, z10, context));
         this.containerView.addView(h1Var, w7.z5.e(-1, -1, 87));
         new b4(this.containerView, false, new d1(this, 0));
@@ -57,7 +57,7 @@ public class n2 extends org.telegram.ui.ActionBar.f3 implements NotificationCent
             m2 m2Var = new m2(context);
             this.h = m2Var;
             m2Var.G = new d1(this, 1);
-            m2Var.F = h1Var.f25862b;
+            m2Var.F = h1Var.f25865b;
             m2Var.invalidate();
             this.containerView.addView(m2Var, w7.z5.e(-1, -2, 87));
         }
@@ -119,7 +119,7 @@ public class n2 extends org.telegram.ui.ActionBar.f3 implements NotificationCent
                 int i11 = n2Var.keyboardHeight;
                 f7 = Math.min(0.0f, Math.max(((i10 - i11) * 0.3f) - n2Var.f9506x, (-i11) / 3.0f));
             }
-            n2Var.container.animate().translationY(f7).setDuration(250L).setInterpolator(org.telegram.ui.ActionBar.o1.f21632w).start();
+            n2Var.container.animate().translationY(f7).setDuration(250L).setInterpolator(org.telegram.ui.ActionBar.o1.f21635w).start();
         }
     }
 
@@ -182,7 +182,7 @@ public class n2 extends org.telegram.ui.ActionBar.f3 implements NotificationCent
         View[] viewPages;
         h2 h2Var;
         this.keyboardVisible = false;
-        this.container.animate().translationY(0.0f).setDuration(250L).setInterpolator(org.telegram.ui.ActionBar.o1.f21632w).start();
+        this.container.animate().translationY(0.0f).setDuration(250L).setInterpolator(org.telegram.ui.ActionBar.o1.f21635w).start();
         for (View view : this.f9501f.getViewPages()) {
             if (view instanceof b2) {
                 h2 h2Var2 = ((b2) view).f8771f;

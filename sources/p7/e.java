@@ -7,22 +7,22 @@ import java.util.Arrays;
 import w7.f0;
 public final class e extends o6.a {
     public static final Parcelable.Creator<e> CREATOR = new m8.h(24);
-    public final g[] f44240a;
-    public final String f44241b;
-    public final boolean f44242c;
+    public final g[] f44243a;
+    public final String f44244b;
+    public final boolean f44245c;
     public final Account d;
 
     public e(g[] gVarArr, String str, boolean z10, Account account) {
-        this.f44240a = gVarArr;
-        this.f44241b = str;
-        this.f44242c = z10;
+        this.f44243a = gVarArr;
+        this.f44244b = str;
+        this.f44245c = z10;
         this.d = account;
     }
 
     public final boolean equals(Object obj) {
         if (obj instanceof e) {
             e eVar = (e) obj;
-            if (n6.l.l(this.f44241b, eVar.f44241b) && n6.l.l(Boolean.valueOf(this.f44242c), Boolean.valueOf(eVar.f44242c)) && n6.l.l(this.d, eVar.d) && Arrays.equals(this.f44240a, eVar.f44240a)) {
+            if (n6.l.l(this.f44244b, eVar.f44244b) && n6.l.l(Boolean.valueOf(this.f44245c), Boolean.valueOf(eVar.f44245c)) && n6.l.l(this.d, eVar.d) && Arrays.equals(this.f44243a, eVar.f44243a)) {
                 return true;
             }
         }
@@ -30,16 +30,16 @@ public final class e extends o6.a {
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f44241b, Boolean.valueOf(this.f44242c), this.d, Integer.valueOf(Arrays.hashCode(this.f44240a))});
+        return Arrays.hashCode(new Object[]{this.f44244b, Boolean.valueOf(this.f44245c), this.d, Integer.valueOf(Arrays.hashCode(this.f44243a))});
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         int q6 = f0.q(parcel, 20293);
-        f0.o(parcel, 1, this.f44240a, i10);
-        f0.l(parcel, 2, this.f44241b);
+        f0.o(parcel, 1, this.f44243a, i10);
+        f0.l(parcel, 2, this.f44244b);
         f0.s(parcel, 3, 4);
-        parcel.writeInt(this.f44242c ? 1 : 0);
+        parcel.writeInt(this.f44245c ? 1 : 0);
         f0.k(parcel, 4, this.d, i10);
         f0.r(parcel, q6);
     }

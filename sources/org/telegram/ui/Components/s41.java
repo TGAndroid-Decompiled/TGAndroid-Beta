@@ -4,7 +4,7 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 public final class s41 extends s4.g0 {
-    public Context f30202c;
+    public Context f30205c;
     public View d;
     public int e;
 
@@ -33,7 +33,7 @@ public final class s41 extends s4.g0 {
     @Override
     public final s4.b1 x(ViewGroup viewGroup, int i10) {
         if (i10 == 0) {
-            return new s4.b1(new un(this.f30202c, 13));
+            return new s4.b1(new un(this.f30205c, 13));
         }
         return new s4.b1(this.d);
     }

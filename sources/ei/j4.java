@@ -17,9 +17,9 @@ public final class j4 extends g61 {
     @Override
     public final void bindView(View view, h61 h61Var, boolean z10, u61 u61Var, c71 c71Var) {
         k4 k4Var = (k4) view;
-        k4Var.a(h61Var.d, h61Var.f26795z, (a8) h61Var.G);
+        k4Var.a(h61Var.d, h61Var.f26798z, (a8) h61Var.G);
         k4Var.b(h61Var.e, false);
-        boolean z11 = h61Var.f26777f;
+        boolean z11 = h61Var.f26780f;
         if (k4Var.f9305f != z11) {
             k4Var.f9305f = z11;
             k4Var.E.a(z11);

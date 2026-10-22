@@ -6,26 +6,26 @@ import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
 import org.telegram.messenger.AndroidUtilities;
 public final class b91 extends View {
-    public a91 f24833a;
-    public int f24834b;
-    public final RectF f24835c;
+    public a91 f24836a;
+    public int f24837b;
+    public final RectF f24838c;
     public CharSequence d;
     public f11 e;
-    public boolean f24836f;
+    public boolean f24839f;
     public vp0 h;
-    public final f6 f24837n;
-    public final d91 f24838r;
+    public final f6 f24840n;
+    public final d91 f24841r;
 
     public b91(d91 d91Var, Context context) {
         super(context);
-        this.f24838r = d91Var;
-        this.f24835c = new RectF();
-        this.f24837n = new f6(this, 360L, bs.h);
+        this.f24841r = d91Var;
+        this.f24838c = new RectF();
+        this.f24840n = new f6(this, 360L, bs.h);
     }
 
     @Override
     public int getId() {
-        return this.f24833a.f24555a;
+        return this.f24836a.f24558a;
     }
 
     @Override
@@ -38,8 +38,8 @@ public final class b91 extends View {
         boolean z10;
         int i10;
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        a91 a91Var = this.f24833a;
-        if (a91Var != null && (i10 = this.f24838r.G) != -1 && a91Var.f24555a == i10) {
+        a91 a91Var = this.f24836a;
+        if (a91Var != null && (i10 = this.f24841r.G) != -1 && a91Var.f24558a == i10) {
             z10 = true;
         } else {
             z10 = false;
@@ -49,16 +49,16 @@ public final class b91 extends View {
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        a91 a91Var = this.f24833a;
-        d91 d91Var = this.f24838r;
-        setMeasuredDimension(AndroidUtilities.dp(d91Var.f25412r * 2) + a91Var.a(d91Var.f25395c) + d91Var.I, View.MeasureSpec.getSize(i11));
+        a91 a91Var = this.f24836a;
+        d91 d91Var = this.f24841r;
+        setMeasuredDimension(AndroidUtilities.dp(d91Var.f25415r * 2) + a91Var.a(d91Var.f25398c) + d91Var.I, View.MeasureSpec.getSize(i11));
     }
 
     public void setReordering(boolean z10) {
-        if (this.f24836f == z10) {
+        if (this.f24839f == z10) {
             return;
         }
-        this.f24836f = z10;
+        this.f24839f = z10;
         invalidate();
     }
 }

@@ -5,21 +5,21 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class zf1 implements Utilities.Callback {
-    public final int f43739a;
-    public final UserInfoActivity f43740b;
+    public final int f43742a;
+    public final UserInfoActivity f43743b;
 
     public zf1(UserInfoActivity userInfoActivity, int i10) {
-        this.f43739a = i10;
-        this.f43740b = userInfoActivity;
+        this.f43742a = i10;
+        this.f43743b = userInfoActivity;
     }
 
     @Override
     public final void run(Object obj) {
-        switch (this.f43739a) {
+        switch (this.f43742a) {
             case 0:
-                UserInfoActivity userInfoActivity = this.f43740b;
+                UserInfoActivity userInfoActivity = this.f43743b;
                 userInfoActivity.J = (TL_account.TL_birthday) obj;
-                org.telegram.ui.Components.w61 w61Var = userInfoActivity.f33954x;
+                org.telegram.ui.Components.w61 w61Var = userInfoActivity.f33957x;
                 if (w61Var != null) {
                     w61Var.W2.N(true);
                 }
@@ -27,14 +27,14 @@ public final class zf1 implements Utilities.Callback {
                 return;
             default:
                 TLRPC.Chat chat = (TLRPC.Chat) obj;
-                UserInfoActivity userInfoActivity2 = this.f43740b;
+                UserInfoActivity userInfoActivity2 = this.f43743b;
                 if (userInfoActivity2.K != chat) {
                     userInfoActivity2.K = chat;
                     if (chat != null) {
                         org.telegram.messenger.g0.q(R.string.EditProfileChannelSet, org.telegram.ui.Components.xc.a0(userInfoActivity2), R.raw.contact_check, 36);
                     }
                     userInfoActivity2.b0(true);
-                    org.telegram.ui.Components.w61 w61Var2 = userInfoActivity2.f33954x;
+                    org.telegram.ui.Components.w61 w61Var2 = userInfoActivity2.f33957x;
                     if (w61Var2 != null) {
                         w61Var2.W2.N(true);
                         return;

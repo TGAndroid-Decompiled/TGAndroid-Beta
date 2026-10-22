@@ -5,33 +5,33 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Stories.ProfileStoriesView;
 public final class uy0 extends ProfileStoriesView {
-    public final Context f42074t0;
-    public final ProfileActivity f42075u0;
+    public final Context f42077t0;
+    public final ProfileActivity f42078u0;
 
     public uy0(ProfileActivity profileActivity, Context context, int i10, long j10, boolean z10, m0 m0Var, ry0 ry0Var, org.telegram.ui.ActionBar.d6 d6Var, Context context2) {
         super(context, i10, j10, z10, m0Var, ry0Var, d6Var);
-        this.f42075u0 = profileActivity;
-        this.f42074t0 = context2;
+        this.f42078u0 = profileActivity;
+        this.f42077t0 = context2;
     }
 
     @Override
     public final void e(a4.l lVar) {
         TL_stories.PeerStories peerStories;
         TL_stories.PeerStories peerStories2;
-        ProfileActivity profileActivity = this.f42075u0;
+        ProfileActivity profileActivity = this.f42078u0;
         long a2 = profileActivity.a();
         ci.i7 storiesController = profileActivity.getMessagesController().getStoriesController();
         boolean I = storiesController.I(a2);
-        Context context = this.f42074t0;
+        Context context = this.f42077t0;
         if (!I && !storiesController.K(a2) && !storiesController.N(a2)) {
-            TLRPC.UserFull userFull = profileActivity.f33739w2;
-            if (userFull != null && (peerStories2 = userFull.stories) != null && !peerStories2.stories.isEmpty() && profileActivity.f33620f1 != profileActivity.getUserConfig().clientUserId) {
-                profileActivity.getOrCreateStoryViewer().E(context, profileActivity.f33739w2.stories, lVar);
+            TLRPC.UserFull userFull = profileActivity.f33742w2;
+            if (userFull != null && (peerStories2 = userFull.stories) != null && !peerStories2.stories.isEmpty() && profileActivity.f33623f1 != profileActivity.getUserConfig().clientUserId) {
+                profileActivity.getOrCreateStoryViewer().E(context, profileActivity.f33742w2.stories, lVar);
                 return;
             }
-            TLRPC.ChatFull chatFull = profileActivity.f33731v2;
+            TLRPC.ChatFull chatFull = profileActivity.f33734v2;
             if (chatFull != null && (peerStories = chatFull.stories) != null && !peerStories.stories.isEmpty()) {
-                profileActivity.getOrCreateStoryViewer().E(context, profileActivity.f33731v2.stories, lVar);
+                profileActivity.getOrCreateStoryViewer().E(context, profileActivity.f33734v2.stories, lVar);
                 return;
             } else {
                 profileActivity.K3();

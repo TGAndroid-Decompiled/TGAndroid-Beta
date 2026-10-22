@@ -41,12 +41,12 @@ public final class y1 extends vg {
     public final boolean f() {
         switch (this.f15658l0) {
             case 0:
-                if (!((d2) this.m0).L0 && this.f31247r <= 0) {
+                if (!((d2) this.m0).L0 && this.f31250r <= 0) {
                     return false;
                 }
                 return true;
             case 1:
-                if (!((b4) this.m0).W && this.f31247r <= 0) {
+                if (!((b4) this.m0).W && this.f31250r <= 0) {
                     return false;
                 }
                 return true;
@@ -70,7 +70,7 @@ public final class y1 extends vg {
             default:
                 return super.getFillColor();
             case 4:
-                int i11 = h6.f21403zf;
+                int i11 = h6.f21406zf;
                 Drawable[] drawableArr = PhotoViewer.U8;
                 return ((PhotoViewer) obj).A1(i11);
         }

@@ -9,28 +9,28 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.ui.Components.CheckBoxSquare;
 public final class r8 extends FrameLayout {
-    public TextView f22955a;
-    public CheckBoxSquare f22956b;
-    public boolean f22957c;
+    public TextView f22958a;
+    public CheckBoxSquare f22959b;
+    public boolean f22960c;
 
     public final void a(String str, boolean z10, boolean z11) {
-        this.f22955a.setText(str);
-        this.f22956b.a(z10, false);
-        this.f22957c = z11;
+        this.f22958a.setText(str);
+        this.f22959b.a(z10, false);
+        this.f22960c = z11;
         setWillNotDraw(!z11);
     }
 
     @Override
     public final void invalidate() {
         super.invalidate();
-        this.f22956b.invalidate();
+        this.f22959b.invalidate();
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         float dp;
         int i10;
-        if (this.f22957c) {
+        if (this.f22960c) {
             if (LocaleController.isRTL) {
                 dp = 0.0f;
             } else {
@@ -44,7 +44,7 @@ public final class r8 extends FrameLayout {
             } else {
                 i10 = 0;
             }
-            canvas.drawLine(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.h6.f21111k0);
+            canvas.drawLine(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.h6.f21114k0);
         }
     }
 
@@ -53,15 +53,15 @@ public final class r8 extends FrameLayout {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         accessibilityNodeInfo.setClassName("android.widget.CheckBox");
         accessibilityNodeInfo.setCheckable(true);
-        accessibilityNodeInfo.setChecked(this.f22956b.h);
+        accessibilityNodeInfo.setChecked(this.f22959b.h);
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f) + (this.f22957c ? 1 : 0), 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f) + (this.f22960c ? 1 : 0), 1073741824));
     }
 
     public void setChecked(boolean z10) {
-        this.f22956b.a(z10, true);
+        this.f22959b.a(z10, true);
     }
 }

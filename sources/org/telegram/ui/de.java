@@ -6,25 +6,25 @@ import java.util.ArrayList;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class de extends org.telegram.ui.Components.w81 {
-    public final Context f36340a;
-    public final int f36341b;
-    public final int f36342c;
+    public final Context f36343a;
+    public final int f36344b;
+    public final int f36345c;
     public final org.telegram.ui.ActionBar.d6 d;
     public final ArrayList e = new ArrayList();
-    public final ee f36343f;
+    public final ee f36346f;
 
     public de(ee eeVar, Context context, int i10, long j10, int i11, org.telegram.ui.ActionBar.d6 d6Var) {
-        this.f36343f = eeVar;
-        this.f36340a = context;
-        this.f36341b = i10;
-        this.f36342c = i11;
+        this.f36346f = eeVar;
+        this.f36343a = context;
+        this.f36344b = i10;
+        this.f36345c = i11;
         this.d = d6Var;
         i();
     }
 
     @Override
     public final View d(int i10) {
-        return new ce(this.f36343f, this.f36340a, i10, this.f36341b, this.f36342c, new ah.g(this, i10, 21), this.d);
+        return new ce(this.f36346f, this.f36343a, i10, this.f36344b, this.f36345c, new ah.g(this, i10, 21), this.d);
     }
 
     @Override
@@ -49,7 +49,7 @@ public final class de extends org.telegram.ui.Components.w81 {
         if (i10 >= 0) {
             ArrayList arrayList = this.e;
             if (i10 < arrayList.size()) {
-                return ((org.telegram.ui.Components.h61) arrayList.get(i10)).f26795z;
+                return ((org.telegram.ui.Components.h61) arrayList.get(i10)).f26798z;
             }
             return 1;
         }
@@ -59,11 +59,11 @@ public final class de extends org.telegram.ui.Components.w81 {
     public final void i() {
         ArrayList arrayList = this.e;
         arrayList.clear();
-        ee eeVar = this.f36343f;
+        ee eeVar = this.f36346f;
         if (!eeVar.h.isEmpty()) {
             arrayList.add(org.telegram.ui.Components.h61.C(1));
         }
-        if (!eeVar.f36644n.isEmpty()) {
+        if (!eeVar.f36647n.isEmpty()) {
             arrayList.add(org.telegram.ui.Components.h61.C(0));
         }
     }

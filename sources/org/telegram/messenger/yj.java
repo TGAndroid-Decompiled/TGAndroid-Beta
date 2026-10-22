@@ -1,104 +1,140 @@
 package org.telegram.messenger;
 
-import android.content.SharedPreferences;
-import android.util.Pair;
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.tgnet.ResultCallback;
+import java.util.HashMap;
+import org.telegram.tgnet.TLMethod;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_phone;
 public final class yj implements Runnable {
-    public final int f20186a;
-    public final boolean f20187b;
-    public final Object f20188c;
+    public final int f20175a;
+    public final Object f20176b;
+    public final Object f20177c;
     public final Object d;
     public final Object e;
+    public final Object f20178f;
+    public final Object h;
+    public final Object f20179n;
+    public final boolean f20180r;
+    public final Object f20181s;
 
-    public yj(Object obj, Object obj2, Object obj3, boolean z10, int i10) {
-        this.f20186a = i10;
-        this.f20188c = obj;
-        this.d = obj2;
-        this.e = obj3;
-        this.f20187b = z10;
+    public yj(Object obj, Object obj2, org.telegram.ui.ActionBar.e1 e1Var, org.telegram.ui.ActionBar.e1 e1Var2, org.telegram.ui.ActionBar.e1 e1Var3, org.telegram.ui.ActionBar.e1 e1Var4, boolean z10, org.telegram.ui.ActionBar.e1 e1Var5, org.telegram.ui.ActionBar.e1 e1Var6, int i10) {
+        this.f20175a = i10;
+        this.f20176b = obj;
+        this.f20177c = obj2;
+        this.d = e1Var;
+        this.e = e1Var2;
+        this.f20178f = e1Var3;
+        this.h = e1Var4;
+        this.f20180r = z10;
+        this.f20179n = e1Var5;
+        this.f20181s = e1Var6;
     }
 
     @Override
     public final void run() {
-        switch (this.f20186a) {
+        int i10;
+        int i11;
+        int i12;
+        int i13;
+        switch (this.f20175a) {
             case 0:
-                SendMessagesHelper.lambda$prepareSendingMedia$130((SendMessagesHelper.MediaSendPrepareWorker) this.f20188c, (AccountInstance) this.d, (SendMessagesHelper.SendingMediaInfo) this.e, this.f20187b);
+                ((SendMessagesHelper) this.f20176b).lambda$performSendMessageRequest$89((TLRPC.TL_error) this.f20177c, (TLRPC.Message) this.d, (TLObject) this.e, (MessageObject) this.f20178f, (String) this.h, (HashMap) this.f20179n, this.f20180r, (TLRPC.TL_messages_addPollAnswer) this.f20181s);
                 return;
             case 1:
-                CacheFetcher.c((CacheFetcher) this.f20188c, (Pair) this.d, this.e, this.f20187b);
+                ((SendMessagesHelper) this.f20176b).lambda$performSendMessageRequest$92((TLRPC.TL_error) this.f20177c, (TLRPC.Message) this.d, (TLObject) this.e, (MessageObject) this.f20178f, (String) this.h, (HashMap) this.f20179n, this.f20180r, (TLRPC.TL_messages_editMessage) this.f20181s);
                 return;
             case 2:
-                ((ChatObject.Call) this.f20188c).lambda$loadMembers$2(this.f20187b, (TLObject) this.d, (TL_phone.getGroupParticipants) this.e);
+                ((SendMessagesHelper) this.f20176b).lambda$performSendMessageRequest$103(this.f20180r, (TLRPC.TL_error) this.f20177c, (TLRPC.Message) this.d, (TLObject) this.e, (MessageObject) this.f20178f, (HashMap) this.f20179n, (String) this.h, (TLObject) this.f20181s);
                 return;
             case 3:
-                ((ChatThemeController) this.f20188c).lambda$requestAllChatThemes$2((List) this.d, (ResultCallback) this.e, this.f20187b);
-                return;
-            case 4:
-                ((ContactsController) this.f20188c).lambda$deleteContact$56((ArrayList) this.d, this.f20187b, (String) this.e);
-                return;
-            case 5:
-                ((MediaController) this.f20188c).lambda$toggleRecordingPause$28((File) this.d, this.f20187b, (TLRPC.TL_document) this.e);
-                return;
-            case 6:
-                ((MediaController) this.f20188c).lambda$playEmojiSound$19((MessagesController.EmojiSound) this.e, (AccountInstance) this.d, this.f20187b);
-                return;
-            case 7:
-                ((MediaDataController) this.f20188c).lambda$saveReplyMessages$178(this.f20187b, (ArrayList) this.d, (a0.h) this.e);
-                return;
-            case 8:
-                ((MediaDataController) this.f20188c).lambda$loadAvatarConstructor$242((TLObject) this.d, (SharedPreferences) this.e, this.f20187b);
-                return;
-            case 9:
-                ((MediaDataController) this.f20188c).lambda$broadcastPinnedMessage$167((ArrayList) this.d, this.f20187b, (ArrayList) this.e);
-                return;
-            case 10:
-                ((MessagesController) this.f20188c).lambda$getBlockedPeers$111((TLObject) this.d, this.f20187b, (TLRPC.TL_contacts_getBlocked) this.e);
-                return;
-            case 11:
-                ((MessagesController) this.f20188c).lambda$processUpdates$380(this.f20187b, (TLRPC.Updates) this.d, (ArrayList) this.e);
-                return;
-            case 12:
-                ((MessagesController.CommonChatsList) this.f20188c).lambda$load$0((int[]) this.d, (TLObject) this.e, this.f20187b);
-                return;
-            case 13:
-                ((MessagesStorage) this.f20188c).lambda$putUsersAndChats$181((List) this.d, (List) this.e, this.f20187b);
+                org.telegram.ui.ActionBar.e1 e1Var = (org.telegram.ui.ActionBar.e1) this.f20176b;
+                ai.y9 y9Var = (ai.y9) this.f20177c;
+                org.telegram.ui.ActionBar.e1 e1Var2 = (org.telegram.ui.ActionBar.e1) this.d;
+                org.telegram.ui.ActionBar.e1 e1Var3 = (org.telegram.ui.ActionBar.e1) this.e;
+                org.telegram.ui.ActionBar.e1 e1Var4 = (org.telegram.ui.ActionBar.e1) this.f20178f;
+                org.telegram.ui.ActionBar.e1 e1Var5 = (org.telegram.ui.ActionBar.e1) this.h;
+                org.telegram.ui.ActionBar.e1 e1Var6 = (org.telegram.ui.ActionBar.e1) this.f20179n;
+                org.telegram.ui.ActionBar.e1 e1Var7 = (org.telegram.ui.ActionBar.e1) this.f20181s;
+                if (e1Var != null) {
+                    if (y9Var.e) {
+                        i10 = R.string.Gift2FilterSortByValue;
+                    } else {
+                        i10 = R.string.Gift2FilterSortByDate;
+                    }
+                    String string = LocaleController.getString(i10);
+                    if (y9Var.e) {
+                        i11 = R.drawable.menu_sort_value;
+                    } else {
+                        i11 = R.drawable.menu_sort_date;
+                    }
+                    e1Var.g(string, i11, null);
+                }
+                e1Var2.setChecked(TLObject.hasFlag(y9Var.f2500g, 1));
+                e1Var3.setChecked(TLObject.hasFlag(y9Var.f2500g, 2));
+                e1Var4.setChecked(TLObject.hasFlag(y9Var.f2500g, 4));
+                e1Var5.setChecked(TLObject.hasFlag(y9Var.f2500g, 8));
+                if (this.f20180r) {
+                    e1Var6.setChecked(TLObject.hasFlag(y9Var.f2500g, 256));
+                    e1Var7.setChecked(TLObject.hasFlag(y9Var.f2500g, 512));
+                    return;
+                }
                 return;
             default:
-                ((NotificationsController) this.f20188c).lambda$removeDeletedMessagesFromNotifications$11((a0.h) this.d, this.f20187b, (ArrayList) this.e);
+                org.telegram.ui.ActionBar.e1 e1Var8 = (org.telegram.ui.ActionBar.e1) this.f20177c;
+                org.telegram.ui.ActionBar.e1 e1Var9 = (org.telegram.ui.ActionBar.e1) this.d;
+                org.telegram.ui.ActionBar.e1 e1Var10 = (org.telegram.ui.ActionBar.e1) this.e;
+                org.telegram.ui.ActionBar.e1 e1Var11 = (org.telegram.ui.ActionBar.e1) this.f20178f;
+                org.telegram.ui.ActionBar.e1 e1Var12 = (org.telegram.ui.ActionBar.e1) this.h;
+                org.telegram.ui.ActionBar.e1 e1Var13 = (org.telegram.ui.ActionBar.e1) this.f20179n;
+                org.telegram.ui.ActionBar.e1 e1Var14 = (org.telegram.ui.ActionBar.e1) this.f20181s;
+                ai.y9 y9Var2 = ((yh.h4) this.f20176b).f50295c.Y;
+                if (y9Var2.e) {
+                    i12 = R.string.Gift2FilterSortByValue;
+                } else {
+                    i12 = R.string.Gift2FilterSortByDate;
+                }
+                String string2 = LocaleController.getString(i12);
+                if (y9Var2.e) {
+                    i13 = R.drawable.menu_sort_value;
+                } else {
+                    i13 = R.drawable.menu_sort_date;
+                }
+                e1Var8.g(string2, i13, null);
+                e1Var9.setChecked(TLObject.hasFlag(y9Var2.f2500g, 1));
+                e1Var10.setChecked(TLObject.hasFlag(y9Var2.f2500g, 2));
+                e1Var11.setChecked(TLObject.hasFlag(y9Var2.f2500g, 4));
+                e1Var12.setChecked(TLObject.hasFlag(y9Var2.f2500g, 8));
+                if (this.f20180r) {
+                    e1Var13.setChecked(TLObject.hasFlag(y9Var2.f2500g, 256));
+                    e1Var14.setChecked(TLObject.hasFlag(y9Var2.f2500g, 512));
+                    return;
+                }
                 return;
         }
     }
 
-    public yj(Object obj, Object obj2, boolean z10, Object obj3, int i10) {
-        this.f20186a = i10;
-        this.f20188c = obj;
-        this.d = obj2;
-        this.f20187b = z10;
-        this.e = obj3;
+    public yj(SendMessagesHelper sendMessagesHelper, TLRPC.TL_error tL_error, TLRPC.Message message, TLObject tLObject, MessageObject messageObject, String str, HashMap hashMap, boolean z10, TLMethod tLMethod, int i10) {
+        this.f20175a = i10;
+        this.f20176b = sendMessagesHelper;
+        this.f20177c = tL_error;
+        this.d = message;
+        this.e = tLObject;
+        this.f20178f = messageObject;
+        this.h = str;
+        this.f20179n = hashMap;
+        this.f20180r = z10;
+        this.f20181s = tLMethod;
     }
 
-    public yj(Object obj, boolean z10, Object obj2, Object obj3, int i10) {
-        this.f20186a = i10;
-        this.f20188c = obj;
-        this.f20187b = z10;
-        this.d = obj2;
-        this.e = obj3;
-    }
-
-    public yj(MediaController mediaController, MessagesController.EmojiSound emojiSound, AccountInstance accountInstance, boolean z10) {
-        this.f20186a = 6;
-        this.f20188c = mediaController;
-        this.e = emojiSound;
-        this.d = accountInstance;
-        this.f20187b = z10;
+    public yj(SendMessagesHelper sendMessagesHelper, boolean z10, TLRPC.TL_error tL_error, TLRPC.Message message, TLObject tLObject, MessageObject messageObject, HashMap hashMap, String str, TLObject tLObject2) {
+        this.f20175a = 2;
+        this.f20176b = sendMessagesHelper;
+        this.f20180r = z10;
+        this.f20177c = tL_error;
+        this.d = message;
+        this.e = tLObject;
+        this.f20178f = messageObject;
+        this.f20179n = hashMap;
+        this.h = str;
+        this.f20181s = tLObject2;
     }
 }

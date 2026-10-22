@@ -1,50 +1,29 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
+import java.util.ArrayList;
+import java.util.Comparator;
+import org.telegram.messenger.MediaDataController;
 import org.telegram.tgnet.TLRPC;
-public final class m7 implements RequestDelegate {
-    public final int f18935a;
-    public final MediaDataController f18936b;
+public final class m7 implements Comparator {
+    public final int f18946a;
+    public final ArrayList f18947b;
 
-    public m7(MediaDataController mediaDataController, int i10) {
-        this.f18935a = i10;
-        this.f18936b = mediaDataController;
+    public m7(ArrayList arrayList, int i10) {
+        this.f18946a = i10;
+        this.f18947b = arrayList;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f18935a) {
+    public final int compare(Object obj, Object obj2) {
+        int lambda$getEmojiSuggestions$221;
+        int lambda$reorderStickers$54;
+        switch (this.f18946a) {
             case 0:
-                this.f18936b.lambda$checkGenericAnimations$80(tLObject, tL_error);
-                return;
-            case 1:
-                this.f18936b.lambda$preloadPremiumPreviewStickers$207(tLObject, tL_error);
-                return;
-            case 2:
-                this.f18936b.lambda$clearRecentStickers$19(tLObject, tL_error);
-                return;
-            case 3:
-                this.f18936b.lambda$loadPremiumPromo$8(tLObject, tL_error);
-                return;
-            case 4:
-                this.f18936b.lambda$loadReactions$14(tLObject, tL_error);
-                return;
-            case 5:
-                this.f18936b.lambda$checkPremiumGiftStickers$76(tLObject, tL_error);
-                return;
-            case 6:
-                this.f18936b.lambda$loadDraftsIfNeed$188(tLObject, tL_error);
-                return;
-            case 7:
-                this.f18936b.lambda$checkDefaultTopicIcons$82(tLObject, tL_error);
-                return;
-            case 8:
-                this.f18936b.lambda$loadGroupStickerSet$46(tLObject, tL_error);
-                return;
+                lambda$getEmojiSuggestions$221 = MediaDataController.lambda$getEmojiSuggestions$221(this.f18947b, (MediaDataController.KeywordResult) obj, (MediaDataController.KeywordResult) obj2);
+                return lambda$getEmojiSuggestions$221;
             default:
-                this.f18936b.lambda$checkTonGiftStickers$78(tLObject, tL_error);
-                return;
+                lambda$reorderStickers$54 = MediaDataController.lambda$reorderStickers$54(this.f18947b, (TLRPC.TL_messages_stickerSet) obj, (TLRPC.TL_messages_stickerSet) obj2);
+                return lambda$reorderStickers$54;
         }
     }
 }

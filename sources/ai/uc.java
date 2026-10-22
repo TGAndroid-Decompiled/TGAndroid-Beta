@@ -86,7 +86,7 @@ public final class uc extends LinearLayout {
                 RectF rectF = (RectF) this.f2277b;
                 Paint paint = (Paint) this.f2278c;
                 wq wqVar = (wq) this.d;
-                paint.setColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21078i5, wqVar.f32231d0));
+                paint.setColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21081i5, wqVar.f32234d0));
                 int left = wqVar.E[0].getLeft() - AndroidUtilities.dp(13.0f);
                 float dp = AndroidUtilities.dp(91.0f);
                 org.telegram.ui.ActionBar.j0 j0Var = wqVar.F;
@@ -140,7 +140,7 @@ public final class uc extends LinearLayout {
                 TextView textView = new TextView(context);
                 this.f2278c = textView;
                 com.google.android.gms.internal.play_billing.k3.m(20.0f, 1, textView);
-                int i11 = org.telegram.ui.ActionBar.h6.f21096j5;
+                int i11 = org.telegram.ui.ActionBar.h6.f21099j5;
                 org.telegram.ui.Cells.c1.q(i11, d6Var, textView, 17);
                 addView(textView, w7.z5.t(-2, -2, 1, 0, 2, 0, 0));
                 TextView textView2 = new TextView(context);
@@ -164,12 +164,12 @@ public final class uc extends LinearLayout {
                 TextView textView3 = new TextView(context);
                 this.f2278c = textView3;
                 com.google.android.gms.internal.play_billing.k3.m(20.0f, 1, textView3);
-                int i12 = org.telegram.ui.ActionBar.h6.f21096j5;
+                int i12 = org.telegram.ui.ActionBar.h6.f21099j5;
                 org.telegram.ui.Cells.c1.q(i12, d6Var, textView3, 17);
                 addView(textView3, w7.z5.t(-2, -2, 1, 0, 2, 0, 0));
                 x90 x90Var = new x90(context, d6Var);
                 this.d = x90Var;
-                x90Var.setLinkTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21049gc, d6Var));
+                x90Var.setLinkTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21052gc, d6Var));
                 x90Var.setTextSize(1, 14.0f);
                 x90Var.setTextColor(org.telegram.ui.ActionBar.h6.w0(i12, d6Var));
                 x90Var.setGravity(17);

@@ -8,28 +8,28 @@ import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.bs;
 public abstract class m extends FrameLayout implements ne.k {
-    public final d6 f21567a;
-    public final c2.b f21568b;
-    public final ne.l f21569c;
+    public final d6 f21570a;
+    public final c2.b f21571b;
+    public final ne.l f21572c;
 
     public m(Context context, d6 d6Var, c2.b bVar) {
         super(context);
-        this.f21569c = new ne.l(this, bs.h, 350L);
-        this.f21567a = d6Var;
-        this.f21568b = bVar;
+        this.f21572c = new ne.l(this, bs.h, 350L);
+        this.f21570a = d6Var;
+        this.f21571b = bVar;
     }
 
     public final void a(CharSequence charSequence) {
         boolean z10;
         SpannableString spannableString;
         boolean isEmpty = TextUtils.isEmpty(charSequence);
-        ne.l lVar = this.f21569c;
+        ne.l lVar = this.f21572c;
         if (isEmpty) {
             lVar.f17406a.q(null, true);
             return;
         }
         int indexOf = TextUtils.indexOf(charSequence, "...");
-        c2.b bVar = this.f21568b;
+        c2.b bVar = this.f21571b;
         if (indexOf >= 0) {
             SpannableString valueOf = SpannableString.valueOf(charSequence);
             bVar.A(valueOf, indexOf);
@@ -41,7 +41,7 @@ public abstract class m extends FrameLayout implements ne.k {
         }
         l lVar2 = new l(this, getContext());
         int i10 = h6.gl;
-        d6 d6Var = this.f21567a;
+        d6 d6Var = this.f21570a;
         lVar2.setTextColor(h6.w0(i10, d6Var));
         lVar2.setLinkTextColor(h6.w0(i10, d6Var));
         lVar2.setTextSize(1, 14.0f);
@@ -55,11 +55,11 @@ public abstract class m extends FrameLayout implements ne.k {
     }
 
     public final void b() {
-        Iterator it = this.f21569c.iterator();
+        Iterator it = this.f21572c.iterator();
         while (it.hasNext()) {
             ne.g gVar = (ne.g) it.next();
             int i10 = h6.gl;
-            d6 d6Var = this.f21567a;
+            d6 d6Var = this.f21570a;
             ((l) gVar.f17393a).setTextColor(h6.w0(i10, d6Var));
             ((l) gVar.f17393a).setLinkTextColor(h6.w0(i10, d6Var));
         }
@@ -67,7 +67,7 @@ public abstract class m extends FrameLayout implements ne.k {
 
     public void e(ne.l lVar) {
         float f7;
-        Iterator it = this.f21569c.iterator();
+        Iterator it = this.f21572c.iterator();
         while (it.hasNext()) {
             ne.g gVar = (ne.g) it.next();
             float c10 = gVar.c();
@@ -87,7 +87,7 @@ public abstract class m extends FrameLayout implements ne.k {
     }
 
     public float getTotalVisibility() {
-        return this.f21569c.f17406a.d.f17399c.f17407a;
+        return this.f21572c.f17406a.d.f17399c.f17407a;
     }
 
     @Override

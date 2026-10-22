@@ -8,23 +8,23 @@ import android.os.AsyncTask;
 import java.util.ArrayList;
 import org.telegram.messenger.FileLog;
 public final class k81 extends AsyncTask {
-    public int f27812a = 0;
-    public final Paint f27813b = new Paint(3);
-    public final n81 f27814c;
+    public int f27815a = 0;
+    public final Paint f27816b = new Paint(3);
+    public final n81 f27817c;
 
     public k81(n81 n81Var) {
-        this.f27814c = n81Var;
+        this.f27817c = n81Var;
     }
 
     @Override
     public final Object doInBackground(Object[] objArr) {
         Bitmap frameAtTime;
-        n81 n81Var = this.f27814c;
-        this.f27812a = ((Integer[]) objArr)[0].intValue();
+        n81 n81Var = this.f27817c;
+        this.f27815a = ((Integer[]) objArr)[0].intValue();
         Bitmap bitmap = null;
         if (!isCancelled()) {
             try {
-                frameAtTime = n81Var.f28724y.getFrameAtTime(n81Var.H * this.f27812a * 1000, 2);
+                frameAtTime = n81Var.f28727y.getFrameAtTime(n81Var.H * this.f27815a * 1000, 2);
             } catch (Exception e) {
                 e = e;
             }
@@ -39,7 +39,7 @@ public final class k81 extends AsyncTask {
                         Rect rect = new Rect(0, 0, frameAtTime.getWidth(), frameAtTime.getHeight());
                         int i10 = n81Var.I;
                         int i11 = n81Var.J;
-                        canvas.drawBitmap(frameAtTime, rect, new Rect((i10 - width) / 2, (i11 - height) / 2, (i10 + width) / 2, (i11 + height) / 2), this.f27813b);
+                        canvas.drawBitmap(frameAtTime, rect, new Rect((i10 - width) / 2, (i11 - height) / 2, (i10 + width) / 2, (i11 + height) / 2), this.f27816b);
                         frameAtTime.recycle();
                         return createBitmap;
                     }
@@ -59,13 +59,13 @@ public final class k81 extends AsyncTask {
     public final void onPostExecute(Object obj) {
         Bitmap bitmap = (Bitmap) obj;
         if (!isCancelled()) {
-            n81 n81Var = this.f27814c;
+            n81 n81Var = this.f27817c;
             ArrayList arrayList = n81Var.F;
             ?? obj2 = new Object();
-            obj2.f28114a = bitmap;
+            obj2.f28117a = bitmap;
             arrayList.add(obj2);
             n81Var.invalidate();
-            int i10 = this.f27812a;
+            int i10 = this.f27815a;
             if (i10 < n81Var.K) {
                 n81Var.d(i10 + 1);
             }

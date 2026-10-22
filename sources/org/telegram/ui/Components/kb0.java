@@ -5,19 +5,19 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 public final class kb0 extends Drawable {
-    public Paint f27833a;
-    public Paint f27834b;
-    public long f27835c;
+    public Paint f27836a;
+    public Paint f27837b;
+    public long f27838c;
     public float d;
     public boolean e;
-    public boolean f27836f;
-    public float f27837g;
+    public boolean f27839f;
+    public float f27840g;
     public float h;
-    public float f27838i;
-    public float f27839j;
-    public float f27840k;
-    public long f27841l;
-    public org.telegram.ui.Cells.u1 f27842m;
+    public float f27841i;
+    public float f27842j;
+    public float f27843k;
+    public long f27844l;
+    public org.telegram.ui.Cells.u1 f27845m;
 
     public final void a() {
         int i10;
@@ -27,7 +27,7 @@ public final class kb0 extends Drawable {
         float centerY = bounds.centerY();
         float f7 = bounds.left - centerX;
         float f10 = bounds.top - centerY;
-        this.f27837g = (float) Math.ceil(Math.sqrt(com.google.android.gms.internal.play_billing.k3.y(i11, centerY, f10, f7 * (i10 - centerX))));
+        this.f27840g = (float) Math.ceil(Math.sqrt(com.google.android.gms.internal.play_billing.k3.y(i11, centerY, f10, f7 * (i10 - centerX))));
     }
 
     @Override
@@ -42,7 +42,7 @@ public final class kb0 extends Drawable {
 
     @Override
     public final void setAlpha(int i10) {
-        this.f27833a.setAlpha(i10);
+        this.f27836a.setAlpha(i10);
     }
 
     @Override
@@ -53,7 +53,7 @@ public final class kb0 extends Drawable {
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        this.f27833a.setColorFilter(colorFilter);
+        this.f27836a.setColorFilter(colorFilter);
     }
 
     @Override

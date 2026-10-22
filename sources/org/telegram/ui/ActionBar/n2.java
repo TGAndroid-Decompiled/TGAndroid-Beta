@@ -219,11 +219,11 @@ public abstract class n2 {
     public k createActionBar(Context context) {
         d5 d5Var;
         k kVar = new k(context, getResourceProvider());
-        kVar.setBackgroundColor(getThemedColor(h6.f21269s8));
-        kVar.B(getThemedColor(h6.f21288t8), false);
-        kVar.B(getThemedColor(h6.f21397z8), true);
-        kVar.C(getThemedColor(h6.f21325v8), false);
-        kVar.C(getThemedColor(h6.f21380y8), true);
+        kVar.setBackgroundColor(getThemedColor(h6.f21272s8));
+        kVar.B(getThemedColor(h6.f21291t8), false);
+        kVar.B(getThemedColor(h6.f21400z8), true);
+        kVar.C(getThemedColor(h6.f21328v8), false);
+        kVar.C(getThemedColor(h6.f21383y8), true);
         if (!this.inPreviewMode && !this.inBubbleMode && ((d5Var = this.parentLayout) == null || !((ActionBarLayout) d5Var).M0)) {
             return kVar;
         }
@@ -260,7 +260,7 @@ public abstract class n2 {
         }
         aa aaVar = new aa(this);
         d5 d5Var = this.parentLayout;
-        if (d5Var != null && ((ActionBarLayout) d5Var).f20549b) {
+        if (d5Var != null && ((ActionBarLayout) d5Var).f20552b) {
             aaVar.f5213r1 = true;
         }
         this.sheetsStack.add(aaVar);
@@ -318,7 +318,7 @@ public abstract class n2 {
         if (dialog != null) {
             dialog.dismiss();
         } else if (this.inPreviewMode && (m2Var = this.previewDelegate) != null) {
-            ((x21) ((pp0) m2Var).f40278b).a();
+            ((x21) ((pp0) m2Var).f40281b).a();
         } else {
             finishFragment(true);
         }
@@ -328,7 +328,7 @@ public abstract class n2 {
         d5 d5Var = this.parentLayout;
         if (d5Var != null) {
             ActionBarLayout actionBarLayout = (ActionBarLayout) d5Var;
-            if (actionBarLayout.h || actionBarLayout.f20547a0) {
+            if (actionBarLayout.h || actionBarLayout.f20550a0) {
                 Runnable runnable = actionBarLayout.e;
                 if (runnable != null) {
                     AndroidUtilities.cancelRunOnUIThread(runnable);
@@ -416,9 +416,9 @@ public abstract class n2 {
 
     public z3 getEdgeToEdgeSupportMode() {
         if (isSupportEdgeToEdge()) {
-            return z3.f21914b;
+            return z3.f21917b;
         }
-        return z3.f21913a;
+        return z3.f21916a;
     }
 
     public FileLoader getFileLoader() {
@@ -449,7 +449,7 @@ public abstract class n2 {
         d5 d5Var = this.parentLayout;
         if (d5Var != null) {
             ActionBarLayout actionBarLayout = (ActionBarLayout) d5Var;
-            if ((actionBarLayout.h && actionBarLayout.J == null) || actionBarLayout.f20547a0) {
+            if ((actionBarLayout.h && actionBarLayout.J == null) || actionBarLayout.f20550a0) {
                 return true;
             }
             return false;
@@ -516,7 +516,7 @@ public abstract class n2 {
     }
 
     public int getNavigationBarColor() {
-        int w02 = h6.w0(h6.f20932a7, getResourceProvider());
+        int w02 = h6.w0(h6.f20935a7, getResourceProvider());
         if (this.sheetsStack != null) {
             for (int i10 = 0; i10 < this.sheetsStack.size(); i10++) {
                 j2 j2Var = this.sheetsStack.get(i10);
@@ -548,7 +548,7 @@ public abstract class n2 {
         if (aaVar == null) {
             aaVar = new aa(this);
             d5 d5Var = this.parentLayout;
-            if (d5Var != null && ((ActionBarLayout) d5Var).f20549b) {
+            if (d5Var != null && ((ActionBarLayout) d5Var).f20552b) {
                 aaVar.f5213r1 = true;
             }
             this.sheetsStack.add(aaVar);
@@ -714,10 +714,10 @@ public abstract class n2 {
         if (getLastStoryViewer() == null || getLastStoryViewer().H0) {
             if (!hasForceLightStatusBar() || h6.B0().q()) {
                 d6 resourceProvider = getResourceProvider();
-                int i10 = h6.f21269s8;
+                int i10 = h6.f21272s8;
                 k kVar = this.actionBar;
                 if (kVar != null && kVar.t()) {
-                    i10 = h6.f21344w8;
+                    i10 = h6.f21347w8;
                 }
                 if (resourceProvider != null) {
                     x02 = resourceProvider.r(i10);
@@ -850,7 +850,7 @@ public abstract class n2 {
         }
         if (hasForceLightStatusBar() && !AndroidUtilities.isTablet() && getParentLayout().getLastFragment() == this && getParentActivity() != null && !this.finishing) {
             Activity parentActivity = getParentActivity();
-            if (h6.x0(null, h6.f21269s8, false) == -1) {
+            if (h6.x0(null, h6.f21272s8, false) == -1) {
                 z10 = true;
             } else {
                 z10 = false;
@@ -869,14 +869,14 @@ public abstract class n2 {
     }
 
     public r0.k1 onInsetsInternal(View view, r0.k1 k1Var) {
-        i0.b f7 = k1Var.f44835a.f(3);
+        i0.b f7 = k1Var.f44838a.f(3);
         int i10 = f7.f12283a;
         int i11 = f7.f12284b;
         int i12 = f7.f12285c;
         int i13 = f7.d;
         this.bottomInset = i13;
         onInsets(i10, i11, i12, i13);
-        return r0.k1.f44834b;
+        return r0.k1.f44837b;
     }
 
     public void onPause() {
@@ -1015,7 +1015,7 @@ public abstract class n2 {
             actionBarLayout.getClass();
             b5 b5Var = new b5(n2Var);
             b5Var.e = true;
-            b5Var.f20707f = actionBarPopupWindow$ActionBarPopupWindowLayout;
+            b5Var.f20710f = actionBarPopupWindow$ActionBarPopupWindowLayout;
             if (actionBarLayout.R(b5Var)) {
                 return true;
             }
@@ -1160,7 +1160,7 @@ public abstract class n2 {
         if (this.parentLayout != d5Var) {
             this.parentLayout = d5Var;
             boolean z11 = false;
-            if (d5Var != null && ((ActionBarLayout) d5Var).f20559f) {
+            if (d5Var != null && ((ActionBarLayout) d5Var).f20562f) {
                 z10 = true;
             } else {
                 z10 = false;
@@ -1205,7 +1205,7 @@ public abstract class n2 {
                 k createActionBar = createActionBar(d5Var4.getView().getContext());
                 this.actionBar = createActionBar;
                 if (createActionBar != null) {
-                    createActionBar.f21511t0 = this;
+                    createActionBar.f21514t0 = this;
                 }
             }
         }
@@ -1275,12 +1275,12 @@ public abstract class n2 {
                     animatorSet.cancel();
                     actionBarLayout.K = null;
                 }
-                if (actionBarLayout.f20593y0 != null) {
+                if (actionBarLayout.f20596y0 != null) {
                     actionBarLayout.H();
-                } else if (actionBarLayout.f20594z0 != null) {
+                } else if (actionBarLayout.f20597z0 != null) {
                     actionBarLayout.K();
                 }
-                actionBarLayout.f20583s.invalidate();
+                actionBarLayout.f20586s.invalidate();
             }
             if (intent != null) {
                 activity.startActivityForResult(intent, i10);
@@ -1335,7 +1335,7 @@ public abstract class n2 {
         f3[] f3VarArr = {i2Var};
         if (l2Var != null) {
             i2Var.setAllowNestedScroll(false);
-            f3VarArr[0].transitionFromRight(l2Var.f21556a);
+            f3VarArr[0].transitionFromRight(l2Var.f21559a);
         }
         f3 f3Var = f3VarArr[0];
         n2Var.parentDialog = f3Var;
@@ -1354,11 +1354,11 @@ public abstract class n2 {
             ActionBarLayout actionBarLayout = (ActionBarLayout) d5Var;
             actionBarLayout.getClass();
             b5 b5Var = new b5(n2Var);
-            b5Var.f20705b = z10;
-            b5Var.f20706c = z11;
+            b5Var.f20708b = z10;
+            b5Var.f20709c = z11;
             b5Var.d = true;
             b5Var.e = false;
-            b5Var.f20707f = null;
+            b5Var.f20710f = null;
             if (actionBarLayout.R(b5Var)) {
                 return true;
             }
@@ -1432,7 +1432,7 @@ public abstract class n2 {
         if (aaVar == null) {
             aa aaVar3 = new aa(this);
             d5 d5Var = this.parentLayout;
-            if (d5Var != null && ((ActionBarLayout) d5Var).f20549b) {
+            if (d5Var != null && ((ActionBarLayout) d5Var).f20552b) {
                 aaVar3.f5213r1 = true;
             }
             this.sheetsStack.add(aaVar3);

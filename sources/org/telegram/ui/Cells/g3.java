@@ -13,15 +13,15 @@ import org.telegram.ui.Components.e61;
 import org.telegram.ui.Components.iu;
 import org.telegram.ui.Components.o11;
 public final class g3 extends iu {
-    public final int f22287c;
+    public final int f22290c;
     public final org.telegram.ui.ActionBar.d6 d;
     public final boolean e;
-    public final i3 f22288f;
+    public final i3 f22291f;
 
     public g3(i3 i3Var, Context context, org.telegram.ui.ActionBar.d6 d6Var, int i10, org.telegram.ui.ActionBar.d6 d6Var2, boolean z10) {
         super(context, d6Var);
-        this.f22288f = i3Var;
-        this.f22287c = i10;
+        this.f22291f = i3Var;
+        this.f22290c = i10;
         this.d = d6Var2;
         this.e = z10;
     }
@@ -30,11 +30,11 @@ public final class g3 extends iu {
     public final void dispatchDraw(Canvas canvas) {
         int i10;
         super.dispatchDraw(canvas);
-        i3 i3Var = this.f22288f;
+        i3 i3Var = this.f22291f;
         org.telegram.ui.Components.p6 p6Var = i3Var.v;
-        org.telegram.ui.Components.i5 i5Var = i3Var.f22406r;
-        if (i3Var.f22407s <= 0) {
-            i10 = org.telegram.ui.ActionBar.h6.f21211p7;
+        org.telegram.ui.Components.i5 i5Var = i3Var.f22409r;
+        if (i3Var.f22410s <= 0) {
+            i10 = org.telegram.ui.ActionBar.h6.f21214p7;
         } else {
             i10 = org.telegram.ui.ActionBar.h6.P5;
         }
@@ -58,7 +58,7 @@ public final class g3 extends iu {
         menu.add(R.id.menu_groupbolditalic, R.id.menu_italic, 7, spannableStringBuilder2);
         SpannableStringBuilder spannableStringBuilder3 = new SpannableStringBuilder(LocaleController.getString(R.string.Strike));
         ?? obj = new Object();
-        obj.f28650a |= 8;
+        obj.f28653a |= 8;
         spannableStringBuilder3.setSpan(new o11(obj, 0), 0, spannableStringBuilder3.length(), 33);
         menu.add(R.id.menu_groupbolditalic, R.id.menu_strike, 8, spannableStringBuilder3);
         menu.add(R.id.menu_groupbolditalic, R.id.menu_regular, 9, LocaleController.getString(R.string.Regular));
@@ -75,9 +75,9 @@ public final class g3 extends iu {
     @Override
     public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
         super.onTextChanged(charSequence, i10, i11, i12);
-        i3 i3Var = this.f22288f;
+        i3 i3Var = this.f22291f;
         org.telegram.ui.Components.p6 p6Var = i3Var.v;
-        if (p6Var != null && this.f22287c > 0) {
+        if (p6Var != null && this.f22290c > 0) {
             p6Var.a();
             i3Var.c();
         }
@@ -85,7 +85,7 @@ public final class g3 extends iu {
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f22288f.v && !super.verifyDrawable(drawable)) {
+        if (drawable != this.f22291f.v && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

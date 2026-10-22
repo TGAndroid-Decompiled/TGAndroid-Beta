@@ -9,17 +9,17 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.w61;
 public final class o9 implements hg.f0, org.telegram.ui.ActionBar.a2 {
-    public final r9 f34679a;
+    public final r9 f34682a;
 
     public o9(r9 r9Var) {
-        this.f34679a = r9Var;
+        this.f34682a = r9Var;
     }
 
     @Override
     public void b(a0.h hVar, ArrayList arrayList) {
-        r9 r9Var = this.f34679a;
-        ArrayList arrayList2 = r9Var.f34817r;
-        if (!r9Var.f34816n) {
+        r9 r9Var = this.f34682a;
+        ArrayList arrayList2 = r9Var.f34820r;
+        if (!r9Var.f34819n) {
             arrayList2.clear();
             int size = arrayList.size();
             int i10 = 0;
@@ -32,7 +32,7 @@ public final class o9 implements hg.f0, org.telegram.ui.ActionBar.a2 {
                     arrayList2.add((TLRPC.User) g0Var.f11866a);
                 }
             }
-            w61 w61Var = r9Var.f32356a;
+            w61 w61Var = r9Var.f32359a;
             if (w61Var != null) {
                 w61Var.W2.N(true);
             }
@@ -41,7 +41,7 @@ public final class o9 implements hg.f0, org.telegram.ui.ActionBar.a2 {
 
     @Override
     public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        r9 r9Var = this.f34679a;
+        r9 r9Var = this.f34682a;
         r9Var.getClass();
         try {
             Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");

@@ -2,17 +2,17 @@ package vc;
 
 import java.io.IOException;
 public abstract class g extends Exception {
-    public final String f48339a;
+    public final String f48342a;
 
     public g(String str, String str2) {
         super(str, null);
-        this.f48339a = str2;
+        this.f48342a = str2;
     }
 
     @Override
     public final String toString() {
         String str;
-        String str2 = this.f48339a;
+        String str2 = this.f48342a;
         if (str2 != null) {
             str = r4.c.h("; request-id: ", str2);
         } else {
@@ -23,6 +23,6 @@ public abstract class g extends Exception {
 
     public g(String str, String str2, IOException iOException) {
         super(str, iOException);
-        this.f48339a = str2;
+        this.f48342a = str2;
     }
 }

@@ -12,9 +12,9 @@ public final class fg extends p51 {
     @Override
     public final void dismiss() {
         super.dismiss();
-        ChatActivityEnterView chatActivityEnterView = this.h.f26582a;
-        if (chatActivityEnterView.f23912a3 == this) {
-            chatActivityEnterView.f23912a3 = null;
+        ChatActivityEnterView chatActivityEnterView = this.h.f26585a;
+        if (chatActivityEnterView.f23915a3 == this) {
+            chatActivityEnterView.f23915a3 = null;
         }
         og ogVar = chatActivityEnterView.Z2;
         if (ogVar != null) {

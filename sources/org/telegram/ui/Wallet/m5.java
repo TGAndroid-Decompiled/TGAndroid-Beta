@@ -21,14 +21,14 @@ import org.telegram.messenger.SharedConfig;
 import org.telegram.ui.Components.bs;
 import org.telegram.ui.tf1;
 public final class m5 extends FrameLayout {
-    public final TextView f34511a;
-    public final FrameLayout f34512b;
-    public final FrameLayout f34513c;
+    public final TextView f34514a;
+    public final FrameLayout f34515b;
+    public final FrameLayout f34516c;
     public final FrameLayout d;
     public r0 e;
-    public boolean f34514f;
+    public boolean f34517f;
     public boolean h;
-    public ValueAnimator f34515n;
+    public ValueAnimator f34518n;
 
     public m5(Context context, String str) {
         super(context);
@@ -37,12 +37,12 @@ public final class m5 extends FrameLayout {
         ActivityManager activityManager;
         addView(new d5(context, str), w7.z5.e(-1, -1, 17));
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f34512b = frameLayout;
+        this.f34515b = frameLayout;
         frameLayout.setBackground(org.telegram.ui.ActionBar.h6.c0(AndroidUtilities.dp(20.0f), -1));
         frameLayout.setCameraDistance(AndroidUtilities.dp(8000.0f));
         addView(frameLayout, w7.z5.d(212, 244.0f, 49, 0.0f, 22.0f, 0.0f, 0.0f));
         FrameLayout frameLayout2 = new FrameLayout(context);
-        this.f34513c = frameLayout2;
+        this.f34516c = frameLayout2;
         frameLayout.addView(frameLayout2, w7.z5.c(-1.0f, -1));
         FrameLayout frameLayout3 = new FrameLayout(context);
         frameLayout2.addView(frameLayout3, w7.z5.d(164, 164.0f, 49, 0.0f, 24.0f, 0.0f, 0.0f));
@@ -51,7 +51,7 @@ public final class m5 extends FrameLayout {
         if (c11 == null) {
             f7 = 0.0f;
         } else {
-            f7 = c11.f51980l / c11.f51973b;
+            f7 = c11.f51983l / c11.f51976b;
         }
         if (f7 > 0.0f) {
             if (SharedConfig.getDevicePerformanceClass() != 0 && !LiteMode.isPowerSaverApplied() && (activityManager = (ActivityManager) context.getSystemService("activity")) != null && activityManager.getDeviceConfigurationInfo().reqGlEsVersion >= 196608) {
@@ -66,7 +66,7 @@ public final class m5 extends FrameLayout {
             }
         }
         TextView textView = new TextView(context);
-        this.f34511a = textView;
+        this.f34514a = textView;
         textView.setText(LocaleController.getString(R.string.WalletCopyAddress));
         textView.setTextColor(-15556886);
         textView.setTextSize(1, 14.0f);
@@ -141,18 +141,18 @@ public final class m5 extends FrameLayout {
         w7.b6.a(j11);
         this.d.addView(j11, w7.z5.d(-2, 28.0f, 49, 0.0f, 202.0f, 0.0f, 0.0f));
         View.OnClickListener onClickListener = new View.OnClickListener(this) {
-            public final m5 f34467b;
+            public final m5 f34470b;
 
             {
-                this.f34467b = this;
+                this.f34470b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        m5 m5Var = this.f34467b;
-                        if (!m5Var.f34514f && !m5Var.h) {
+                        m5 m5Var = this.f34470b;
+                        if (!m5Var.f34517f && !m5Var.h) {
                             r0 r0Var = m5Var.e;
                             if (r0Var != null) {
                                 r0Var.run();
@@ -162,26 +162,26 @@ public final class m5 extends FrameLayout {
                         }
                         return;
                     default:
-                        this.f34467b.a(false);
+                        this.f34470b.a(false);
                         return;
                 }
             }
         };
         frameLayout3.setOnClickListener(onClickListener);
-        this.f34511a.setOnClickListener(onClickListener);
+        this.f34514a.setOnClickListener(onClickListener);
         j11.setOnClickListener(new View.OnClickListener(this) {
-            public final m5 f34467b;
+            public final m5 f34470b;
 
             {
-                this.f34467b = this;
+                this.f34470b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        m5 m5Var = this.f34467b;
-                        if (!m5Var.f34514f && !m5Var.h) {
+                        m5 m5Var = this.f34470b;
+                        if (!m5Var.f34517f && !m5Var.h) {
                             r0 r0Var = m5Var.e;
                             if (r0Var != null) {
                                 r0Var.run();
@@ -191,7 +191,7 @@ public final class m5 extends FrameLayout {
                         }
                         return;
                     default:
-                        this.f34467b.a(false);
+                        this.f34470b.a(false);
                         return;
                 }
             }
@@ -200,10 +200,10 @@ public final class m5 extends FrameLayout {
 
     public final void a(boolean z10) {
         float f7;
-        if (this.f34514f != z10 && !this.h) {
+        if (this.f34517f != z10 && !this.h) {
             this.h = true;
-            this.f34514f = z10;
-            FrameLayout frameLayout = this.f34512b;
+            this.f34517f = z10;
+            FrameLayout frameLayout = this.f34515b;
             frameLayout.setLayerType(2, null);
             float rotationY = frameLayout.getRotationY();
             if (z10) {
@@ -212,12 +212,12 @@ public final class m5 extends FrameLayout {
                 f7 = 0.0f;
             }
             ValueAnimator ofFloat = ValueAnimator.ofFloat(rotationY, f7);
-            this.f34515n = ofFloat;
+            this.f34518n = ofFloat;
             ofFloat.setDuration(420L);
-            this.f34515n.setInterpolator(bs.h);
-            this.f34515n.addUpdateListener(new b3(this, 2));
-            this.f34515n.addListener(new tf1(this, 5));
-            this.f34515n.start();
+            this.f34518n.setInterpolator(bs.h);
+            this.f34518n.addUpdateListener(new b3(this, 2));
+            this.f34518n.addListener(new tf1(this, 5));
+            this.f34518n.start();
         }
     }
 }

@@ -29,7 +29,7 @@ public final class x1 extends View {
     public x1(Context context, int i10) {
         super(context);
         this.f6147b = new RectF();
-        bs bsVar = bs.f25021f;
+        bs bsVar = bs.f25024f;
         org.telegram.ui.Components.p6 p6Var = new org.telegram.ui.Components.p6(false, false, false);
         this.f6148c = p6Var;
         this.e = new ArrayList();
@@ -44,7 +44,7 @@ public final class x1 extends View {
         p6Var.s(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(3.5f), 0);
         p6Var.M = AndroidUtilities.displaySize.x;
         p6Var.u(-1);
-        p6Var.f29226b = 17;
+        p6Var.f29229b = 17;
         this.d = new v1(this, 0);
     }
 
@@ -99,7 +99,7 @@ public final class x1 extends View {
                 break;
             }
             vj0 vj0Var = (vj0) arrayList.get(i11);
-            if (vj0Var.f31265a0 >= vj0Var.e[0]) {
+            if (vj0Var.f31268a0 >= vj0Var.e[0]) {
                 arrayList.remove(i11);
                 i11--;
             } else {
@@ -123,7 +123,7 @@ public final class x1 extends View {
                 float d = w1Var.f6106i.d(f11, z10);
                 float e = w1Var.f6107j.e(w1Var.h);
                 float f16 = f12;
-                float dp2 = AndroidUtilities.dp(23.0f) + w1Var.f6105g.f26021c;
+                float dp2 = AndroidUtilities.dp(23.0f) + w1Var.f6105g.f26024c;
                 float dp3 = AndroidUtilities.dp(18.0f);
                 float f17 = f7;
                 float f18 = f10;

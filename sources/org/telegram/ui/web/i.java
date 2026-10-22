@@ -8,25 +8,25 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.ConnectionsManager;
 public final class i implements NotificationCenter.NotificationCenterDelegate {
-    public final int f42672b;
-    public final Runnable f42673c;
+    public final int f42675b;
+    public final Runnable f42676c;
     public final String d;
-    public boolean f42674f;
+    public boolean f42677f;
     public boolean h;
-    public boolean f42675n;
-    public final ArrayList f42671a = new ArrayList();
+    public boolean f42678n;
+    public final ArrayList f42674a = new ArrayList();
     public final int e = ConnectionsManager.generateClassGuid();
 
     public i(String str, int i10, Runnable runnable) {
-        this.f42672b = i10;
+        this.f42675b = i10;
         this.d = str;
-        this.f42673c = runnable;
+        this.f42676c = runnable;
     }
 
     public final void a() {
         if (!this.h) {
             this.h = true;
-            int i10 = this.f42672b;
+            int i10 = this.f42675b;
             NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.mediaDidLoad);
             NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.bookmarkAdded);
             if (TextUtils.isEmpty(this.d)) {
@@ -38,7 +38,7 @@ public final class i implements NotificationCenter.NotificationCenterDelegate {
     public final void b(ArrayList arrayList) {
         int i10 = 0;
         while (true) {
-            ArrayList arrayList2 = this.f42671a;
+            ArrayList arrayList2 = this.f42674a;
             if (i10 < arrayList2.size()) {
                 if (arrayList.contains(Integer.valueOf(((MessageObject) arrayList2.get(i10)).getId()))) {
                     arrayList2.remove(i10);
@@ -56,24 +56,24 @@ public final class i implements NotificationCenter.NotificationCenterDelegate {
             return;
         }
         this.h = false;
-        int i10 = this.f42672b;
+        int i10 = this.f42675b;
         NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.mediaDidLoad);
         NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.bookmarkAdded);
         ConnectionsManager.getInstance(i10).cancelRequestsForGuid(this.e);
-        this.f42675n = false;
+        this.f42678n = false;
     }
 
     public final void d() {
         ArrayList arrayList;
         int i10;
-        if (!this.f42675n && !this.f42674f) {
-            this.f42675n = true;
-            int i11 = this.f42672b;
+        if (!this.f42678n && !this.f42677f) {
+            this.f42678n = true;
+            int i11 = this.f42675b;
             long clientUserId = UserConfig.getInstance(i11).getClientUserId();
             int i12 = 0;
             int i13 = Integer.MAX_VALUE;
             while (true) {
-                arrayList = this.f42671a;
+                arrayList = this.f42674a;
                 if (i12 >= arrayList.size()) {
                     break;
                 }
@@ -96,13 +96,13 @@ public final class i implements NotificationCenter.NotificationCenterDelegate {
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         int i12 = NotificationCenter.mediaDidLoad;
-        ArrayList arrayList = this.f42671a;
+        ArrayList arrayList = this.f42674a;
         if (i10 == i12) {
             if (((Integer) objArr[3]).intValue() == this.e) {
-                this.f42675n = false;
-                this.f42674f = ((Boolean) objArr[5]).booleanValue();
+                this.f42678n = false;
+                this.f42677f = ((Boolean) objArr[5]).booleanValue();
                 arrayList.addAll((ArrayList) objArr[2]);
-                this.f42673c.run();
+                this.f42676c.run();
             }
         } else if (i10 == NotificationCenter.bookmarkAdded) {
             arrayList.add(0, (MessageObject) objArr[0]);

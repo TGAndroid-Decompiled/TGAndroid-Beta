@@ -5,24 +5,24 @@ import android.os.Parcelable;
 import w7.f0;
 public final class l extends o6.a {
     public static final Parcelable.Creator<l> CREATOR = new m(0);
-    public final boolean f44262a;
+    public final boolean f44265a;
 
     public l(boolean z10) {
-        this.f44262a = z10;
+        this.f44265a = z10;
     }
 
     public final boolean equals(Object obj) {
         if (this == obj) {
             return true;
         }
-        if ((obj instanceof l) && this.f44262a == ((l) obj).f44262a) {
+        if ((obj instanceof l) && this.f44265a == ((l) obj).f44265a) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        if (this.f44262a) {
+        if (this.f44265a) {
             return 1;
         }
         return 0;
@@ -32,7 +32,7 @@ public final class l extends o6.a {
     public final void writeToParcel(Parcel parcel, int i10) {
         int q6 = f0.q(parcel, 20293);
         f0.s(parcel, 1, 4);
-        parcel.writeInt(this.f44262a ? 1 : 0);
+        parcel.writeInt(this.f44265a ? 1 : 0);
         f0.r(parcel, q6);
     }
 }

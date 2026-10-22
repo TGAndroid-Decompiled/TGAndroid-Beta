@@ -23,7 +23,7 @@ public abstract class qb {
         int[] iArr = new int[2];
         imageView.getLocationOnScreen(iArr);
         obVar.f9665c.set(iArr[0], iArr[1], imageView.getWidth() + i10, imageView.getHeight() + iArr[1]);
-        obVar.d = new org.telegram.ui.Cells.d7(imageView.getContext(), null, false, e7Var.f22196y);
+        obVar.d = new org.telegram.ui.Cells.d7(imageView.getContext(), null, false, e7Var.f22199y);
         obVar.f9664b = Math.max(obVar.f9665c.width(), obVar.f9665c.height()) / 2.0f;
         return obVar;
     }

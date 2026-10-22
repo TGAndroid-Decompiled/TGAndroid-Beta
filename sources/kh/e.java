@@ -76,7 +76,7 @@ public class e extends FrameLayout implements ne.d {
         FrameLayout frameLayout = new FrameLayout(context);
         this.e = frameLayout;
         frameLayout.setClipToOutline(true);
-        o1 o1Var = j0.f51581a;
+        o1 o1Var = j0.f51584a;
         frameLayout.setOutlineProvider(new i0(0, AndroidUtilities.dp(22.0f)));
         addView(frameLayout, z5.e(-1, 44, 16));
     }
@@ -97,8 +97,8 @@ public class e extends FrameLayout implements ne.d {
                 if (peVar != null) {
                     final jh.a aVar = (jh.a) oVar.f2668b;
                     boolean z10 = oVar.f2667a;
-                    int i13 = peVar.f40198a;
-                    final qn qnVar = peVar.f40199b;
+                    int i13 = peVar.f40201a;
+                    final qn qnVar = peVar.f40202b;
                     switch (i13) {
                         case 26:
                             if (qnVar.J0 == null && !z10 && (((x3Var = qnVar.L0) == null || !x3Var.V) && s40.h.c())) {
@@ -148,7 +148,7 @@ public class e extends FrameLayout implements ne.d {
                                                     ei.x3 x3Var6 = qnVar3.L0;
                                                     x3Var6.f10080l0 = new kg(qnVar3, 12);
                                                     x3Var6.u();
-                                                    org.telegram.ui.Components.s40.f30193f.b();
+                                                    org.telegram.ui.Components.s40.f30196f.b();
                                                     return;
                                                 }
                                                 return;
@@ -159,7 +159,7 @@ public class e extends FrameLayout implements ne.d {
                             }
                             break;
                         default:
-                            if (qnVar.L0 == null && !z10 && s40.f30193f.c()) {
+                            if (qnVar.L0 == null && !z10 && s40.f30196f.c()) {
                                 AndroidUtilities.runOnUIThread(new Runnable() {
                                     @Override
                                     public final void run() {
@@ -206,7 +206,7 @@ public class e extends FrameLayout implements ne.d {
                                                     ei.x3 x3Var6 = qnVar3.L0;
                                                     x3Var6.f10080l0 = new kg(qnVar3, 12);
                                                     x3Var6.u();
-                                                    org.telegram.ui.Components.s40.f30193f.b();
+                                                    org.telegram.ui.Components.s40.f30196f.b();
                                                     return;
                                                 }
                                                 return;
@@ -306,7 +306,7 @@ public class e extends FrameLayout implements ne.d {
         if (dVar != null) {
             float f14 = this.f15078y;
             float f15 = this.E;
-            ih.f fVar = ((pe) dVar).f40199b.S;
+            ih.f fVar = ((pe) dVar).f40202b.S;
             fVar.f13137x = f14;
             fVar.f13138y = f15;
             fVar.invalidate();

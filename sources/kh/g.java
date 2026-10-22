@@ -43,7 +43,7 @@ public final class g implements View.OnLongClickListener {
             case 0:
                 b bVar = ((h) this.f15085c).f15091n;
                 if (bVar != null) {
-                    qn qnVar = ((pe) bVar).f40199b;
+                    qn qnVar = ((pe) bVar).f40202b;
                     int i10 = this.f15084b;
                     if (i10 == 2) {
                         kfVar = new kf(qnVar, 8);
@@ -75,7 +75,7 @@ public final class g implements View.OnLongClickListener {
                     actionBarPopupWindow$ActionBarPopupWindowLayout.addView(e1Var);
                     m1 m1Var = new m1(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
                     m1Var.e = true;
-                    m1Var.f21577c = 220;
+                    m1Var.f21580c = 220;
                     m1Var.setOutsideTouchable(true);
                     m1Var.setClippingEnabled(true);
                     m1Var.setAnimationStyle(R.style.PopupContextAnimation);
@@ -95,7 +95,7 @@ public final class g implements View.OnLongClickListener {
                     }
                     m1Var.showAtLocation(jmVar, 51, (int) width, (int) measuredHeight);
                     qnVar.Q8 = m1Var;
-                    qnVar.i8(qnVar.f40725j1, false);
+                    qnVar.i8(qnVar.f40728j1, false);
                     qnVar.Q8.setOnDismissListener(new f0(qnVar, 1));
                     try {
                         view.performHapticFeedback(0, 2);
@@ -106,7 +106,7 @@ public final class g implements View.OnLongClickListener {
                 return false;
             default:
                 ScrollSlidingTextTabStrip scrollSlidingTextTabStrip = (ScrollSlidingTextTabStrip) this.f15085c;
-                if (!scrollSlidingTextTabStrip.f24362n0 && (kn0Var = scrollSlidingTextTabStrip.f24347b) != null && kn0Var.b1(this.f15084b, view)) {
+                if (!scrollSlidingTextTabStrip.f24365n0 && (kn0Var = scrollSlidingTextTabStrip.f24350b) != null && kn0Var.b1(this.f15084b, view)) {
                     return true;
                 }
                 return false;

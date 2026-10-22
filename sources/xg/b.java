@@ -8,27 +8,27 @@ import org.telegram.ui.Cells.u1;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.qn;
 public final class b implements Runnable {
-    public final int f49807a;
-    public final c f49808b;
-    public final MessageObject f49809c;
+    public final int f49810a;
+    public final c f49811b;
+    public final MessageObject f49812c;
     public final TLRPC.TL_messageMediaGiveawayResults d;
 
     public b(c cVar, MessageObject messageObject, TLRPC.TL_messageMediaGiveawayResults tL_messageMediaGiveawayResults, int i10) {
-        this.f49807a = i10;
-        this.f49808b = cVar;
-        this.f49809c = messageObject;
+        this.f49810a = i10;
+        this.f49811b = cVar;
+        this.f49812c = messageObject;
         this.d = tL_messageMediaGiveawayResults;
     }
 
     @Override
     public final void run() {
-        switch (this.f49807a) {
+        switch (this.f49810a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new b(this.f49808b, this.f49809c, this.d, 1));
+                AndroidUtilities.runOnUIThread(new b(this.f49811b, this.f49812c, this.d, 1));
                 return;
             default:
-                u1 u1Var = this.f49808b.f49812c;
-                long dialogId = this.f49809c.getDialogId();
+                u1 u1Var = this.f49811b.f49815c;
+                long dialogId = this.f49812c.getDialogId();
                 TLRPC.TL_messageMediaGiveawayResults tL_messageMediaGiveawayResults = this.d;
                 if (dialogId == (-tL_messageMediaGiveawayResults.channel_id)) {
                     u1Var.getDelegate().R1(u1Var, tL_messageMediaGiveawayResults.launch_msg_id, 0.0f, 0.0f, false);

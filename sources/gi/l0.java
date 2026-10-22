@@ -29,7 +29,7 @@ public final class l0 extends FrameLayout {
         this.f11311c = keyboardButton;
         wh.n nVar = new wh.n(context);
         this.f11309a = nVar;
-        nVar.f49105r = false;
+        nVar.f49108r = false;
         nVar.setTextSize(1, 14.0f);
         nVar.setTypeface(AndroidUtilities.bold());
         NotificationCenter.listenEmojiLoading(nVar);
@@ -78,13 +78,13 @@ public final class l0 extends FrameLayout {
         if (keyboardButtonStyle != null) {
             if (keyboardButtonStyle.bg_primary) {
                 m12 = h6.m1(0.8f, h6.w0(h6.dl, d6Var));
-                k10 = i0.a.k(h6.w0(h6.f21079i6, d6Var), m12);
+                k10 = i0.a.k(h6.w0(h6.f21082i6, d6Var), m12);
             } else if (keyboardButtonStyle.bg_danger) {
                 m12 = h6.m1(0.8f, h6.w0(h6.el, d6Var));
-                k10 = i0.a.k(h6.w0(h6.f21079i6, d6Var), m12);
+                k10 = i0.a.k(h6.w0(h6.f21082i6, d6Var), m12);
             } else if (keyboardButtonStyle.bg_success) {
                 m12 = h6.m1(0.8f, h6.w0(h6.fl, d6Var));
-                k10 = i0.a.k(h6.w0(h6.f21079i6, d6Var), m12);
+                k10 = i0.a.k(h6.w0(h6.f21082i6, d6Var), m12);
             }
             i10 = m12;
             i11 = k10;

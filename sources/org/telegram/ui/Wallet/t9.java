@@ -4,22 +4,22 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.widget.FrameLayout;
 public final class t9 extends FrameLayout {
-    public final v9 f34974a;
+    public final v9 f34977a;
 
     public t9(v9 v9Var, Context context) {
         super(context);
-        this.f34974a = v9Var;
+        this.f34977a = v9Var;
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         canvas.save();
         canvas.translate(-getLeft(), -getTop());
-        v9 v9Var = this.f34974a;
-        v9Var.f35036j.c(canvas);
+        v9 v9Var = this.f34977a;
+        v9Var.f35039j.c(canvas);
         canvas.restore();
         super.dispatchDraw(canvas);
-        if (v9Var.f35036j.d()) {
+        if (v9Var.f35039j.d()) {
             postInvalidateOnAnimation();
         }
     }

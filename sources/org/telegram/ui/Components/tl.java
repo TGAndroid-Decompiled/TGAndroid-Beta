@@ -2,42 +2,42 @@ package org.telegram.ui.Components;
 
 import android.view.View;
 public final class tl implements x91, e5, zl0 {
-    public final int f30619a;
-    public final ChatAttachAlertPhotoLayout f30620b;
+    public final int f30622a;
+    public final ChatAttachAlertPhotoLayout f30623b;
 
     public tl(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout, int i10) {
-        this.f30619a = i10;
-        this.f30620b = chatAttachAlertPhotoLayout;
+        this.f30622a = i10;
+        this.f30623b = chatAttachAlertPhotoLayout;
     }
 
     @Override
     public void C(int i10, int i11, boolean z10) {
-        int i12 = this.f30619a;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f30620b;
+        int i12 = this.f30622a;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f30623b;
         switch (i12) {
             case 1:
-                boolean z11 = ChatAttachAlertPhotoLayout.f24077q1;
-                ti tiVar = chatAttachAlertPhotoLayout.f28173b;
+                boolean z11 = ChatAttachAlertPhotoLayout.f24080q1;
+                ti tiVar = chatAttachAlertPhotoLayout.f28176b;
                 tiVar.a1();
-                tiVar.f30538c2.b0(7, false, z10, i10, 0, 0L, tiVar.u1(), false, 0L);
+                tiVar.f30541c2.b0(7, false, z10, i10, 0, 0L, tiVar.u1(), false, 0L);
                 return;
             default:
-                boolean z12 = ChatAttachAlertPhotoLayout.f24077q1;
-                ti tiVar2 = chatAttachAlertPhotoLayout.f28173b;
+                boolean z12 = ChatAttachAlertPhotoLayout.f24080q1;
+                ti tiVar2 = chatAttachAlertPhotoLayout.f28176b;
                 tiVar2.a1();
-                tiVar2.f30538c2.b0(4, true, z10, i10, 0, 0L, tiVar2.u1(), false, 0L);
+                tiVar2.f30541c2.b0(4, true, z10, i10, 0, 0L, tiVar2.u1(), false, 0L);
                 return;
         }
     }
 
     @Override
     public boolean a(int i10, View view) {
-        boolean z10 = ChatAttachAlertPhotoLayout.f24077q1;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f30620b;
-        ti tiVar = chatAttachAlertPhotoLayout.f28173b;
+        boolean z10 = ChatAttachAlertPhotoLayout.f24080q1;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f30623b;
+        ti tiVar = chatAttachAlertPhotoLayout.f28176b;
         if (!tiVar.W0) {
             if (i10 == 0 && chatAttachAlertPhotoLayout.T0 == chatAttachAlertPhotoLayout.U0) {
-                ri riVar = tiVar.f30538c2;
+                ri riVar = tiVar.f30541c2;
                 if (riVar != null) {
                     riVar.b0(0, false, true, 0, 0, 0L, tiVar.u1(), false, 0L);
                 }
@@ -54,7 +54,7 @@ public final class tl implements x91, e5, zl0 {
 
     @Override
     public void b(float f7) {
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f30620b;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f30623b;
         om omVar = chatAttachAlertPhotoLayout.P;
         if (omVar != null) {
             chatAttachAlertPhotoLayout.B0 = f7;

@@ -13,7 +13,7 @@ public final class vq0 extends org.telegram.ui.Cells.e7 {
 
     @Override
     public final String a() {
-        if (this.N.f32465f.f26366b0) {
+        if (this.N.f32468f.f26369b0) {
             return LocaleController.getString(R.string.RepostToStory);
         }
         return LocaleController.getString(R.string.FwdMyStory);

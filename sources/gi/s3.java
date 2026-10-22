@@ -18,8 +18,8 @@ public final class s3 extends g61 {
     @Override
     public final void bindView(View view, h61 h61Var, boolean z10, u61 u61Var, c71 c71Var) {
         t3 t3Var = (t3) view;
-        CharSequence charSequence = h61Var.f26782l;
-        CharSequence charSequence2 = h61Var.f26783m;
+        CharSequence charSequence = h61Var.f26785l;
+        CharSequence charSequence2 = h61Var.f26786m;
         t3Var.setText(charSequence);
         t3Var.f11464r.setText(charSequence2);
     }

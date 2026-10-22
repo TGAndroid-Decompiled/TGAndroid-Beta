@@ -1,21 +1,21 @@
 package org.telegram.ui.Wallet;
 public final class h6 implements o1.f {
-    public final int f34288a;
-    public final Object f34289b;
+    public final int f34291a;
+    public final Object f34292b;
 
     public h6(Object obj, int i10) {
-        this.f34288a = i10;
-        this.f34289b = obj;
+        this.f34291a = i10;
+        this.f34292b = obj;
     }
 
     @Override
     public final void a(o1.h hVar, boolean z10, float f7, float f10) {
-        switch (this.f34288a) {
+        switch (this.f34291a) {
             case 0:
-                m6.b((m6) this.f34289b, z10, f7);
+                m6.b((m6) this.f34292b, z10, f7);
                 return;
             default:
-                i9 i9Var = (i9) this.f34289b;
+                i9 i9Var = (i9) this.f34292b;
                 i9Var.X = null;
                 i9Var.Y = 1.0f;
                 i9Var.A0();

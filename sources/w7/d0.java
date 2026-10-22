@@ -17,11 +17,11 @@ import org.telegram.messenger.SharedConfig;
 import org.telegram.ui.Components.jm0;
 import org.telegram.ui.LaunchActivity;
 public abstract class d0 {
-    public static ng.i f48617a;
+    public static ng.i f48620a;
 
     public static void a(LaunchActivity launchActivity, boolean z10, boolean z11) {
         boolean z12;
-        ng.i iVar = f48617a;
+        ng.i iVar = f48620a;
         if (iVar != null) {
             z12 = true;
         } else {
@@ -66,9 +66,9 @@ public abstract class d0 {
                 frameLayout.d();
                 frameLayout.setFitsSystemWindows(true);
                 frameLayout.setWillNotDraw(false);
-                f48617a = frameLayout;
-                launchActivity.f33198w0.addView((View) frameLayout, new FrameLayout.LayoutParams(-1, -1));
-                ng.i iVar2 = f48617a;
+                f48620a = frameLayout;
+                launchActivity.f33201w0.addView((View) frameLayout, new FrameLayout.LayoutParams(-1, -1));
+                ng.i iVar2 = f48620a;
                 iVar2.f17464a.setVisibility(0);
                 o1.k kVar = new o1.k(new o1.j(0.0f));
                 kVar.f17559u = org.telegram.ui.Cells.c1.l(1000.0f, 750.0f, 0.75f);
@@ -76,8 +76,8 @@ public abstract class d0 {
                 kVar.h();
             } else {
                 iVar.getClass();
-                launchActivity.f33198w0.removeView(f48617a);
-                f48617a = null;
+                launchActivity.f33201w0.removeView(f48620a);
+                f48620a = null;
             }
             if (z11) {
                 SharedConfig.isFloatingDebugActive = z10;

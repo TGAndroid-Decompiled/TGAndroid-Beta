@@ -24,7 +24,7 @@ import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.hi;
+import org.telegram.messenger.ji;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
@@ -169,7 +169,7 @@ public final class vb implements Runnable {
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f2331f;
                 TLObject tLObject2 = (TLObject) this.f2329b;
                 org.telegram.ui.f1 f1Var = (org.telegram.ui.f1) this.h;
-                b70Var.f35527r = false;
+                b70Var.f35530r = false;
                 if (!((org.telegram.ui.j4) this.e).e.isEmpty()) {
                     if (tL_error == null) {
                         TLRPC.TL_contacts_resolvedPeer tL_contacts_resolvedPeer = (TLRPC.TL_contacts_resolvedPeer) tLObject2;
@@ -179,7 +179,7 @@ public final class vb implements Runnable {
                             MessagesController.getInstance(i13).putChats(tL_contacts_resolvedPeer.chats, false);
                             MessagesStorage.getInstance(i13).putUsersAndChats(tL_contacts_resolvedPeer.users, tL_contacts_resolvedPeer.chats, false, true);
                             TLRPC.Chat chat = tL_contacts_resolvedPeer.chats.get(0);
-                            b70Var.f35526n = chat;
+                            b70Var.f35529n = chat;
                             if (chat.left && !chat.kicked) {
                                 f1Var.a(0, false);
                                 return;
@@ -219,7 +219,7 @@ public final class vb implements Runnable {
                     b2Var.dismiss();
                     if (groupCall != null) {
                         TLRPC.TL_inputGroupCall tL_inputGroupCall = new TLRPC.TL_inputGroupCall();
-                        tL_inputGroupCall.f20293id = groupCall.f20286id;
+                        tL_inputGroupCall.f20296id = groupCall.f20289id;
                         tL_inputGroupCall.access_hash = groupCall.access_hash;
                         org.telegram.ui.m9.o0(context, i14, tL_inputGroupCall, groupCall.invite_link, d6Var2, true, true);
                         AndroidUtilities.runOnUIThread(b60Var);
@@ -234,9 +234,9 @@ public final class vb implements Runnable {
                     TLRPC.TL_inputGroupCall tL_inputGroupCall2 = new TLRPC.TL_inputGroupCall();
                     exportgroupcallinvite.call = tL_inputGroupCall2;
                     TLRPC.GroupCall groupCall2 = groupcall.call;
-                    tL_inputGroupCall2.f20293id = groupCall2.f20286id;
+                    tL_inputGroupCall2.f20296id = groupCall2.f20289id;
                     tL_inputGroupCall2.access_hash = groupCall2.access_hash;
-                    ConnectionsManager.getInstance(i14).sendRequest(exportgroupcallinvite, new hi(b2Var, context, i14, exportgroupcallinvite, d6Var2, b60Var));
+                    ConnectionsManager.getInstance(i14).sendRequest(exportgroupcallinvite, new ji(b2Var, context, i14, exportgroupcallinvite, d6Var2, b60Var));
                     return;
                 } else {
                     b2Var.dismiss();
@@ -300,7 +300,7 @@ public final class vb implements Runnable {
                         tL_inputStorePaymentPremiumSubscription2.upgrade = true;
                     }
                     tL_payments_canPurchaseStore.purpose = tL_inputStorePaymentPremiumSubscription2;
-                    ConnectionsManager.getInstance(i16).sendRequest(tL_payments_canPurchaseStore, new hi(i16, 5, n2Var2, pw0Var, gVar, tL_payments_canPurchaseStore, tL_inputStorePaymentPremiumSubscription2));
+                    ConnectionsManager.getInstance(i16).sendRequest(tL_payments_canPurchaseStore, new ji(i16, 5, n2Var2, pw0Var, gVar, tL_payments_canPurchaseStore, tL_inputStorePaymentPremiumSubscription2));
                     return;
                 }
                 return;
@@ -327,11 +327,11 @@ public final class vb implements Runnable {
                 } else {
                     String[] strArr2 = {"cancelled"};
                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(a1Var.getContext());
-                    alertDialog$Builder.f20605a.R = LocaleController.getString(R.string.BotWebViewRequestWriteTitle);
-                    alertDialog$Builder.f20605a.T = LocaleController.getString(R.string.BotWebViewRequestWriteMessage);
+                    alertDialog$Builder.f20608a.R = LocaleController.getString(R.string.BotWebViewRequestWriteTitle);
+                    alertDialog$Builder.f20608a.T = LocaleController.getString(R.string.BotWebViewRequestWriteMessage);
                     alertDialog$Builder.k(LocaleController.getString(R.string.BotWebViewRequestAllow), new org.telegram.ui.web.m(1, a1Var, strArr2));
                     alertDialog$Builder.h(LocaleController.getString(R.string.BotWebViewRequestDontAllow), new fk0(18));
-                    a1Var.X(3, alertDialog$Builder.f20605a, new org.telegram.ui.web.x(strArr2, i17, x0Var, z7Var, 1));
+                    a1Var.X(3, alertDialog$Builder.f20608a, new org.telegram.ui.web.x(strArr2, i17, x0Var, z7Var, 1));
                     return;
                 }
             default:

@@ -6,12 +6,12 @@ import org.telegram.ui.jg0;
 public final class i {
     public static final ca.a d = new ca.a(2);
     public static final jg0 e = new jg0(25);
-    public final ca.c f49684a;
-    public String f49685b = null;
-    public String f49686c = null;
+    public final ca.c f49687a;
+    public String f49688b = null;
+    public String f49689c = null;
 
     public i(ca.c cVar) {
-        this.f49684a = cVar;
+        this.f49687a = cVar;
     }
 
     public static void a(ca.c cVar, String str, String str2) {

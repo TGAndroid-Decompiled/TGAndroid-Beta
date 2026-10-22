@@ -126,14 +126,14 @@ public final class q5 extends ViewGroup {
     }
 
     public final void b() {
-        int i10 = h6.f21238qh;
+        int i10 = h6.f21241qh;
         org.telegram.ui.ActionBar.d6 d6Var = this.f15467b;
         this.f15470n.setColor(h6.w0(i10, d6Var));
         int w02 = h6.w0(h6.M6, d6Var);
         int red = Color.red(w02);
         int green = Color.green(w02);
         int blue = Color.blue(w02);
-        this.f15471r.setColor(h6.w0(h6.f21219ph, d6Var));
+        this.f15471r.setColor(h6.w0(h6.f21222ph, d6Var));
         this.f15472s.setColor(Color.argb(20, red, green, blue));
         this.H = 255;
         int i11 = h6.Oh;

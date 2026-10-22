@@ -77,9 +77,9 @@ public final class z implements d1 {
                 return;
             case 2:
                 ri.o oVar = (ri.o) this.f8298b;
-                ri.f fVar = oVar.f45835f;
+                ri.f fVar = oVar.f45838f;
                 ri.d dVar = oVar.F;
-                Handler handler = oVar.f45837i;
+                Handler handler = oVar.f45840i;
                 if (oVar.v != z10) {
                     oVar.v = z10;
                     handler.removeCallbacks(dVar);
@@ -141,15 +141,15 @@ public final class z implements d1 {
                 return;
             case 2:
                 ri.o oVar = (ri.o) this.f8298b;
-                if (i10 == 4 && oVar.f45842n == ri.m.e && (i0Var = oVar.B) != null) {
-                    i0Var.Z0(5, oVar.f45847s);
+                if (i10 == 4 && oVar.f45845n == ri.m.e && (i0Var = oVar.B) != null) {
+                    i0Var.Z0(5, oVar.f45850s);
                     oVar.B.e();
                     return;
                 }
                 return;
             default:
                 s0 s0Var = (s0) this.f8298b;
-                si.n nVar = s0Var.f46771m;
+                si.n nVar = s0Var.f46774m;
                 nVar.b("preview playback state=" + i10);
                 if (s0Var.W == 5 && i10 == 4 && (i0Var2 = s0Var.S) != null) {
                     i0Var2.Z0(5, s0Var.G);
@@ -176,7 +176,7 @@ public final class z implements d1 {
                 return;
             default:
                 s0 s0Var = (s0) this.f8298b;
-                si.n nVar = s0Var.f46771m;
+                si.n nVar = s0Var.f46774m;
                 nVar.b("preview player error: code=" + y0Var.f4147a);
                 s0Var.h(y0Var);
                 return;

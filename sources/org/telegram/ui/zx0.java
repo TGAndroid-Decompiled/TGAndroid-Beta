@@ -4,37 +4,37 @@ import android.animation.ValueAnimator;
 import android.view.View;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public final class zx0 implements org.telegram.ui.ActionBar.i6 {
-    public final int f43821a;
-    public final org.telegram.ui.ActionBar.n2 f43822b;
+    public final int f43824a;
+    public final org.telegram.ui.ActionBar.n2 f43825b;
 
     public zx0(int i10, org.telegram.ui.ActionBar.n2 n2Var) {
-        this.f43821a = i10;
-        this.f43822b = n2Var;
+        this.f43824a = i10;
+        this.f43825b = n2Var;
     }
 
     @Override
     public final void a(float f7) {
-        int i10 = this.f43821a;
+        int i10 = this.f43824a;
     }
 
     @Override
     public final void b() {
         ValueAnimator valueAnimator;
         int i10;
-        int i11 = this.f43821a;
+        int i11 = this.f43824a;
         int i12 = 0;
-        org.telegram.ui.ActionBar.n2 n2Var = this.f43822b;
+        org.telegram.ui.ActionBar.n2 n2Var = this.f43825b;
         switch (i11) {
             case 0:
                 ProfileActivity.n0((ProfileActivity) n2Var);
                 return;
             case 1:
                 z01 z01Var = (z01) n2Var;
-                org.telegram.ui.Components.jm0 jm0Var = z01Var.f43586a;
+                org.telegram.ui.Components.jm0 jm0Var = z01Var.f43589a;
                 if (jm0Var != null) {
                     int childCount = jm0Var.getChildCount();
                     while (i12 < childCount) {
-                        View childAt = z01Var.f43586a.getChildAt(i12);
+                        View childAt = z01Var.f43589a.getChildAt(i12);
                         if (childAt instanceof org.telegram.ui.Cells.ua) {
                             ((org.telegram.ui.Cells.ua) childAt).b();
                         }
@@ -50,16 +50,16 @@ public final class zx0 implements org.telegram.ui.ActionBar.i6 {
                     if (s11Var.F) {
                         i10 = org.telegram.ui.ActionBar.h6.q6;
                     } else {
-                        i10 = org.telegram.ui.ActionBar.h6.f21395z6;
+                        i10 = org.telegram.ui.ActionBar.h6.f21398z6;
                     }
                     baVar.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, i10, false));
                 }
-                if (s11Var.f41315a != null) {
+                if (s11Var.f41318a != null) {
                     int i13 = 0;
                     while (true) {
-                        EditTextBoldCursor[] editTextBoldCursorArr = s11Var.f41315a;
+                        EditTextBoldCursor[] editTextBoldCursorArr = s11Var.f41318a;
                         if (i13 < editTextBoldCursorArr.length) {
-                            editTextBoldCursorArr[i13].setLineColors(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21117k6, false), org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21134l6, false), org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21211p7, false));
+                            editTextBoldCursorArr[i13].setLineColors(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21120k6, false), org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21137l6, false), org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21214p7, false));
                             i13++;
                         } else {
                             return;
@@ -71,8 +71,8 @@ public final class zx0 implements org.telegram.ui.ActionBar.i6 {
                 break;
             case 3:
                 z11 z11Var = (z11) n2Var;
-                z11Var.f43603a.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20932a7, false));
-                z11Var.f43605c.l();
+                z11Var.f43606a.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20935a7, false));
+                z11Var.f43608c.l();
                 return;
             case 4:
                 p91 p91Var = (p91) n2Var;
@@ -97,7 +97,7 @@ public final class zx0 implements org.telegram.ui.ActionBar.i6 {
                     }
                     p91Var.S.getRecycledViewPool().a();
                 }
-                jg.f fVar = p91Var.f40128a0;
+                jg.f fVar = p91Var.f40131a0;
                 if (fVar != null) {
                     fVar.f14425a = true;
                     return;
@@ -105,32 +105,32 @@ public final class zx0 implements org.telegram.ui.ActionBar.i6 {
                 return;
             case 5:
                 ThemeActivity themeActivity = (ThemeActivity) n2Var;
-                for (int i17 = 0; i17 < themeActivity.f33899b.getChildCount(); i17++) {
-                    View childAt2 = themeActivity.f33899b.getChildAt(i17);
+                for (int i17 = 0; i17 < themeActivity.f33902b.getChildCount(); i17++) {
+                    View childAt2 = themeActivity.f33902b.getChildAt(i17);
                     if (childAt2 instanceof org.telegram.ui.Cells.t) {
                         ((org.telegram.ui.Cells.t) childAt2).getAdapter().l();
                     } else if (childAt2 instanceof no0) {
                         ((no0) childAt2).a();
                     }
                 }
-                for (int i18 = 0; i18 < themeActivity.f33899b.getCachedChildCount(); i18++) {
-                    View P = themeActivity.f33899b.P(i18);
+                for (int i18 = 0; i18 < themeActivity.f33902b.getCachedChildCount(); i18++) {
+                    View P = themeActivity.f33902b.P(i18);
                     if (P instanceof org.telegram.ui.Cells.t) {
                         ((org.telegram.ui.Cells.t) P).getAdapter().l();
                     } else if (P instanceof no0) {
                         ((no0) P).a();
                     }
                 }
-                for (int i19 = 0; i19 < themeActivity.f33899b.getHiddenChildCount(); i19++) {
-                    View V = themeActivity.f33899b.V(i19);
+                for (int i19 = 0; i19 < themeActivity.f33902b.getHiddenChildCount(); i19++) {
+                    View V = themeActivity.f33902b.V(i19);
                     if (V instanceof org.telegram.ui.Cells.t) {
                         ((org.telegram.ui.Cells.t) V).getAdapter().l();
                     } else if (V instanceof no0) {
                         ((no0) V).a();
                     }
                 }
-                while (i12 < themeActivity.f33899b.getAttachedScrapChildCount()) {
-                    View O = themeActivity.f33899b.O(i12);
+                while (i12 < themeActivity.f33902b.getAttachedScrapChildCount()) {
+                    View O = themeActivity.f33902b.O(i12);
                     if (O instanceof org.telegram.ui.Cells.t) {
                         ((org.telegram.ui.Cells.t) O).getAdapter().l();
                     } else if (O instanceof no0) {
@@ -144,28 +144,28 @@ public final class zx0 implements org.telegram.ui.ActionBar.i6 {
                 return;
             case 7:
                 gd1 gd1Var = (gd1) n2Var;
-                org.telegram.ui.Components.jm0 jm0Var2 = gd1Var.f37285a;
+                org.telegram.ui.Components.jm0 jm0Var2 = gd1Var.f37288a;
                 if (jm0Var2 != null) {
                     int childCount3 = jm0Var2.getChildCount();
                     for (int i20 = 0; i20 < childCount3; i20++) {
-                        View childAt3 = gd1Var.f37285a.getChildAt(i20);
+                        View childAt3 = gd1Var.f37288a.getChildAt(i20);
                         if (childAt3 instanceof org.telegram.ui.Cells.f4) {
                             ((org.telegram.ui.Cells.f4) childAt3).f(0);
                         }
                     }
                 }
-                org.telegram.ui.Components.jm0 jm0Var3 = gd1Var.f37286b;
+                org.telegram.ui.Components.jm0 jm0Var3 = gd1Var.f37289b;
                 if (jm0Var3 != null) {
                     int childCount4 = jm0Var3.getChildCount();
                     for (int i21 = 0; i21 < childCount4; i21++) {
-                        View childAt4 = gd1Var.f37286b.getChildAt(i21);
+                        View childAt4 = gd1Var.f37289b.getChildAt(i21);
                         if (childAt4 instanceof org.telegram.ui.Cells.f4) {
                             ((org.telegram.ui.Cells.f4) childAt4).f(0);
                         }
                     }
                 }
-                gd1Var.f37287c.setBackground(org.telegram.ui.ActionBar.x5.f(new float[]{4.0f}, org.telegram.ui.ActionBar.h6.Oh));
-                gd1Var.F.setProgressColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21062h6, false));
+                gd1Var.f37290c.setBackground(org.telegram.ui.ActionBar.x5.f(new float[]{4.0f}, org.telegram.ui.ActionBar.h6.Oh));
+                gd1Var.F.setProgressColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21065h6, false));
                 return;
             case 8:
                 re1.X((re1) n2Var);

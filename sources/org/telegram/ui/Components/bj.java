@@ -3,25 +3,25 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import org.telegram.messenger.AndroidUtilities;
 public final class bj extends c71 {
-    public final fj f24952d3;
+    public final fj f24955d3;
 
     public bj(fj fjVar, Context context, int i10, d dVar, xi xiVar, xi xiVar2, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context, i10, 0, false, dVar, xiVar, xiVar2, d6Var);
-        this.f24952d3 = fjVar;
+        this.f24955d3 = fjVar;
     }
 
     @Override
     public final void D1() {
-        fj fjVar = this.f24952d3;
-        fjVar.f28173b.b2(fjVar, 0);
+        fj fjVar = this.f24955d3;
+        fjVar.f28176b.b2(fjVar, 0);
     }
 
     @Override
     public final boolean E0(float f7) {
         int i10;
-        ti tiVar = this.f24952d3.f28173b;
-        int dp = AndroidUtilities.dp(30.0f) + tiVar.f30544e2[0];
-        if (!tiVar.f30549g0) {
+        ti tiVar = this.f24955d3.f28176b;
+        int dp = AndroidUtilities.dp(30.0f) + tiVar.f30547e2[0];
+        if (!tiVar.f30552g0) {
             i10 = AndroidUtilities.statusBarHeight;
         } else {
             i10 = 0;
@@ -35,7 +35,7 @@ public final class bj extends c71 {
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
-        fj fjVar = this.f24952d3;
-        fjVar.f28173b.b2(fjVar, 0);
+        fj fjVar = this.f24955d3;
+        fjVar.f28176b.b2(fjVar, 0);
     }
 }

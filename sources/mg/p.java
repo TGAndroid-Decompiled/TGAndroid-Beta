@@ -86,30 +86,30 @@ public class p extends FrameLayout implements a {
         ?? viewGroup = new ViewGroup(context);
         viewGroup.d = new RectF();
         viewGroup.e = new RectF();
-        viewGroup.f24190f = new RectF();
+        viewGroup.f24193f = new RectF();
         viewGroup.h = new RectF();
-        viewGroup.f24198n = new RectF();
-        viewGroup.f24203r = new RectF();
-        viewGroup.f24205s = new RectF();
+        viewGroup.f24201n = new RectF();
+        viewGroup.f24206r = new RectF();
+        viewGroup.f24208s = new RectF();
         viewGroup.v = new RectF();
-        viewGroup.f24209x = new RectF();
-        viewGroup.f24210y = new RectF();
+        viewGroup.f24212x = new RectF();
+        viewGroup.f24213y = new RectF();
         viewGroup.K = -1.0f;
         viewGroup.L = 1.0f;
         viewGroup.M = -1.0f;
         viewGroup.U = new AccelerateDecelerateInterpolator();
-        viewGroup.f24191f0 = true;
-        viewGroup.f24197l0 = new RectF();
-        viewGroup.f24199n0 = 0.0f;
-        viewGroup.f24200o0 = 1.0f;
-        viewGroup.f24201p0 = 0.0f;
-        viewGroup.f24202q0 = 0.0f;
-        viewGroup.f24183a0 = z10;
+        viewGroup.f24194f0 = true;
+        viewGroup.f24200l0 = new RectF();
+        viewGroup.f24202n0 = 0.0f;
+        viewGroup.f24203o0 = 1.0f;
+        viewGroup.f24204p0 = 0.0f;
+        viewGroup.f24205q0 = 0.0f;
+        viewGroup.f24186a0 = z10;
         viewGroup.J = true;
         viewGroup.I = true;
         viewGroup.V = AndroidUtilities.dp(16.0f);
         viewGroup.W = AndroidUtilities.dp(32.0f);
-        viewGroup.f24207t0 = 1;
+        viewGroup.f24210t0 = 1;
         Paint paint = new Paint();
         viewGroup.O = paint;
         paint.setColor(2130706432);
@@ -133,7 +133,7 @@ public class p extends FrameLayout implements a {
         paint5.setStyle(style);
         paint5.setColor(-1291845633);
         Paint paint6 = new Paint(1);
-        viewGroup.f24193h0 = paint6;
+        viewGroup.f24196h0 = paint6;
         paint6.setColor(0);
         paint6.setStyle(style);
         paint6.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
@@ -353,13 +353,13 @@ public class p extends FrameLayout implements a {
         ofFloat.addUpdateListener(new h(this, f10, fArr, a2, b10, 0));
         ofFloat.addListener(new p0(18, this, z10));
         AccelerateDecelerateInterpolator accelerateDecelerateInterpolator = cropAreaView.U;
-        AnimatorSet animatorSet = cropAreaView.f24196k0;
+        AnimatorSet animatorSet = cropAreaView.f24199k0;
         if (animatorSet != null) {
             animatorSet.cancel();
-            cropAreaView.f24196k0 = null;
+            cropAreaView.f24199k0 = null;
         }
         AnimatorSet animatorSet2 = new AnimatorSet();
-        cropAreaView.f24196k0 = animatorSet2;
+        cropAreaView.f24199k0 = animatorSet2;
         animatorSet2.setDuration(300L);
         ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(cropAreaView, "cropLeft", rectF.left);
         ofFloat2.setInterpolator(accelerateDecelerateInterpolator);
@@ -559,10 +559,10 @@ public class p extends FrameLayout implements a {
         }
         final float f7 = nVar.f16911f;
         CropAreaView cropAreaView = this.f16917a;
-        AnimatorSet animatorSet = cropAreaView.f24196k0;
+        AnimatorSet animatorSet = cropAreaView.f24199k0;
         if (animatorSet != null) {
             animatorSet.cancel();
-            cropAreaView.f24196k0 = null;
+            cropAreaView.f24199k0 = null;
         }
         n nVar2 = this.L;
         if ((nVar2.h + nVar2.f16912g) % 180.0f != 0.0f) {
@@ -586,7 +586,7 @@ public class p extends FrameLayout implements a {
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
         final RectF rectF = new RectF();
         final RectF rectF2 = new RectF();
-        rectF.set(cropAreaView.f24209x);
+        rectF.set(cropAreaView.f24212x);
         n nVar3 = this.L;
         final float f12 = nVar3.f16910c;
         final float f13 = nVar3.d;
@@ -656,10 +656,10 @@ public class p extends FrameLayout implements a {
         boolean z11;
         float f7;
         CropAreaView cropAreaView = this.f16917a;
-        AnimatorSet animatorSet = cropAreaView.f24196k0;
+        AnimatorSet animatorSet = cropAreaView.f24199k0;
         if (animatorSet != null) {
             animatorSet.cancel();
-            cropAreaView.f24196k0 = null;
+            cropAreaView.f24199k0 = null;
         }
         int currentWidth = getCurrentWidth();
         int currentHeight = getCurrentHeight();
@@ -696,10 +696,10 @@ public class p extends FrameLayout implements a {
         boolean z11;
         if (this.L != null) {
             CropAreaView cropAreaView = this.f16917a;
-            AnimatorSet animatorSet = cropAreaView.f24196k0;
+            AnimatorSet animatorSet = cropAreaView.f24199k0;
             if (animatorSet != null) {
                 animatorSet.cancel();
-                cropAreaView.f24196k0 = null;
+                cropAreaView.f24199k0 = null;
             }
             this.f16921n = 0.0f;
             n nVar = this.L;
@@ -759,7 +759,7 @@ public class p extends FrameLayout implements a {
         }
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getContext());
         alertDialog$Builder.f(strArr, new j(0, this, numArr));
-        b2 b2Var = alertDialog$Builder.f20605a;
+        b2 b2Var = alertDialog$Builder.f20608a;
         b2Var.setCanceledOnTouchOutside(true);
         b2Var.setOnCancelListener(new pc(this, 4));
         b2Var.show();
@@ -858,7 +858,7 @@ public class p extends FrameLayout implements a {
             }
             float f14 = ceil4;
             float f15 = ceil3;
-            RectF rectF2 = cropAreaView.f24197l0;
+            RectF rectF2 = cropAreaView.f24200l0;
             cropAreaView.a(rectF2, f12 / f13);
             if (this.f16925x) {
                 max = rectF2.width() / f12;

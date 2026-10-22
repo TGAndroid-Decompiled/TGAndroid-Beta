@@ -4,22 +4,22 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.voip.VoIPService;
 public final class sg1 implements View.OnClickListener {
-    public final int f41464a;
-    public final hh1 f41465b;
+    public final int f41467a;
+    public final hh1 f41468b;
 
     public sg1(hh1 hh1Var, int i10) {
-        this.f41464a = i10;
-        this.f41465b = hh1Var;
+        this.f41467a = i10;
+        this.f41468b = hh1Var;
     }
 
     @Override
     public final void onClick(View view) {
         VoIPService sharedInstance;
         int i10;
-        switch (this.f41464a) {
+        switch (this.f41467a) {
             case 0:
                 if (VoIPService.getSharedInstance() != null) {
-                    hh1 hh1Var = this.f41465b;
+                    hh1 hh1Var = this.f41468b;
                     AndroidUtilities.cancelRunOnUIThread(hh1Var.S0);
                     hh1Var.R0 = false;
                     VoIPService.getSharedInstance().hangUp();
@@ -27,36 +27,36 @@ public final class sg1 implements View.OnClickListener {
                 }
                 return;
             case 1:
-                hh1 hh1Var2 = this.f41465b;
-                if (hh1Var2.f37660n0 && hh1Var2.m0 && System.currentTimeMillis() - hh1Var2.K0 > 500) {
+                hh1 hh1Var2 = this.f41468b;
+                if (hh1Var2.f37663n0 && hh1Var2.m0 && System.currentTimeMillis() - hh1Var2.K0 > 500) {
                     AndroidUtilities.cancelRunOnUIThread(hh1Var2.S0);
                     hh1Var2.R0 = false;
                     hh1Var2.K0 = System.currentTimeMillis();
                     hh1Var2.Z.setRelativePosition(hh1Var2.Y);
-                    hh1Var2.f37632a0 = true;
+                    hh1Var2.f37635a0 = true;
                     hh1Var2.H0 = true;
-                    hh1Var2.f37663q0 = hh1Var2.f37662p0;
+                    hh1Var2.f37666q0 = hh1Var2.f37665p0;
                     hh1Var2.G();
                     return;
                 }
                 return;
             case 2:
-                hh1 hh1Var3 = this.f41465b;
+                hh1 hh1Var3 = this.f41468b;
                 if (hh1Var3.H0 && System.currentTimeMillis() - hh1Var3.K0 > 500) {
                     AndroidUtilities.cancelRunOnUIThread(hh1Var3.S0);
                     hh1Var3.R0 = false;
                     hh1Var3.K0 = System.currentTimeMillis();
                     hh1Var3.Y.setRelativePosition(hh1Var3.Z);
-                    hh1Var3.f37632a0 = false;
+                    hh1Var3.f37635a0 = false;
                     hh1Var3.H0 = false;
-                    hh1Var3.f37663q0 = hh1Var3.f37662p0;
+                    hh1Var3.f37666q0 = hh1Var3.f37665p0;
                     hh1Var3.G();
                     return;
                 }
                 return;
             case 3:
                 long currentTimeMillis = System.currentTimeMillis();
-                hh1 hh1Var4 = this.f41465b;
+                hh1 hh1Var4 = this.f41468b;
                 if (currentTimeMillis - hh1Var4.K0 >= 500) {
                     hh1Var4.K0 = System.currentTimeMillis();
                     boolean z10 = hh1Var4.C0;
@@ -69,7 +69,7 @@ public final class sg1 implements View.OnClickListener {
                 return;
             case 4:
                 long currentTimeMillis2 = System.currentTimeMillis();
-                hh1 hh1Var5 = this.f41465b;
+                hh1 hh1Var5 = this.f41468b;
                 if (currentTimeMillis2 - hh1Var5.K0 >= 500) {
                     hh1Var5.K0 = System.currentTimeMillis();
                     if (hh1Var5.B0) {
@@ -80,7 +80,7 @@ public final class sg1 implements View.OnClickListener {
                 }
                 return;
             case 5:
-                hh1 hh1Var6 = this.f41465b;
+                hh1 hh1Var6 = this.f41468b;
                 if (hh1Var6.K.getTag() != null && (sharedInstance = VoIPService.getSharedInstance()) != null) {
                     hh1Var6.A();
                     if (sharedInstance.isBluetoothOn()) {
@@ -90,12 +90,12 @@ public final class sg1 implements View.OnClickListener {
                     } else {
                         i10 = 1;
                     }
-                    sharedInstance.toggleSpeakerphoneOrShowRouteSheet(hh1Var6.f37634b, false, Integer.valueOf(i10));
+                    sharedInstance.toggleSpeakerphoneOrShowRouteSheet(hh1Var6.f37637b, false, Integer.valueOf(i10));
                     return;
                 }
                 return;
             default:
-                this.f41465b.o();
+                this.f41468b.o();
                 return;
         }
     }

@@ -131,7 +131,7 @@ public final class x {
                             i22 = i33;
                         } else if (A3 == 39 && i29 == 0 && (j10 = f2.q.j(i31, i31 + H4, bArr)) != null && eVar3 != null) {
                             i13 = 0;
-                            if (j10.f6563a == ((f2.i) ((n0) eVar3.f44760a).get(0)).f10294b) {
+                            if (j10.f6563a == ((f2.i) ((n0) eVar3.f44763a).get(0)).f10294b) {
                                 i25 = 4;
                             } else {
                                 i25 = 5;

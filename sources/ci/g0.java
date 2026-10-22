@@ -65,10 +65,10 @@ public final class g0 implements xl0 {
                     return;
                 } else if (!w7.g6.a(oa0Var)) {
                     s4.c0 c0Var = new s4.c0(context);
-                    c0Var.f46058a = i10;
+                    c0Var.f46061a = i10;
                     tVar.W2.w0(c0Var);
                     w7.g6.b(oa0Var);
-                    int i12 = org.telegram.ui.Cells.s.f22962f;
+                    int i12 = org.telegram.ui.Cells.s.f22965f;
                     sVar.b(true, true);
                     for (int i13 = 0; i13 < tVar.getChildCount(); i13++) {
                         org.telegram.ui.Cells.s sVar2 = (org.telegram.ui.Cells.s) tVar.getChildAt(i13);

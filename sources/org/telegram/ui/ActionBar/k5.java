@@ -7,21 +7,21 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.bs;
 import org.telegram.ui.Components.dq;
 public abstract class k5 extends TextView {
-    public boolean f21549a;
-    public final org.telegram.ui.Components.f6 f21550b;
-    public final dq f21551c;
+    public boolean f21552a;
+    public final org.telegram.ui.Components.f6 f21553b;
+    public final dq f21554c;
 
     public k5(Context context) {
         super(context);
-        this.f21549a = false;
-        this.f21550b = new org.telegram.ui.Components.f6(this, 320L, bs.h);
-        this.f21551c = new dq(-1);
+        this.f21552a = false;
+        this.f21553b = new org.telegram.ui.Components.f6(this, 320L, bs.h);
+        this.f21554c = new dq(-1);
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         Canvas canvas2;
-        float e = this.f21550b.e(this.f21549a);
+        float e = this.f21553b.e(this.f21552a);
         if (e < 1.0f) {
             if (e <= 0.0f) {
                 canvas.save();
@@ -39,7 +39,7 @@ public abstract class k5 extends TextView {
         if (e > 0.0f) {
             int height = getHeight() / 2;
             int width = (getWidth() / 2) - ((int) ((1.0f - e) * AndroidUtilities.dp(6.0f)));
-            dq dqVar = this.f21551c;
+            dq dqVar = this.f21554c;
             dqVar.setAlpha((int) (e * 255.0f));
             dqVar.setBounds(width - (dqVar.getIntrinsicWidth() / 2), height - (dqVar.getIntrinsicWidth() / 2), (dqVar.getIntrinsicWidth() / 2) + width, (dqVar.getIntrinsicHeight() / 2) + height);
             dqVar.draw(canvas2);
@@ -50,6 +50,6 @@ public abstract class k5 extends TextView {
     @Override
     public void setTextColor(int i10) {
         super.setTextColor(i10);
-        this.f21551c.b(i10);
+        this.f21554c.b(i10);
     }
 }

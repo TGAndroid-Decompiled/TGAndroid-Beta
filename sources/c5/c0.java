@@ -223,7 +223,7 @@ public final class c0 implements e2.d, r2.u, c3.g0 {
                     if (i11 >= 0) {
                         String scheme = create.getScheme();
                         String userInfo = create.getUserInfo();
-                        SecureRandom secureRandom = tc.k.f46952a;
+                        SecureRandom secureRandom = tc.k.f46955a;
                         String host = create.getHost();
                         if (host == null) {
                             String rawAuthority = create.getRawAuthority();
@@ -275,7 +275,7 @@ public final class c0 implements e2.d, r2.u, c3.g0 {
                                             tc.s sVar = new tc.s(socketFactory, new tc.a(str2, i10), i11, null, null);
                                             sVar.d = 1;
                                             sVar.e = 250;
-                                            sVar.f46967f = true;
+                                            sVar.f46970f = true;
                                             if (port >= 0) {
                                                 str2 = str2 + ":" + port;
                                             }

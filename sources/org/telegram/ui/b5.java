@@ -6,19 +6,19 @@ import org.telegram.tgnet.TLRPC;
 public final class b5 extends e5 {
     @Override
     public final void a() {
-        MessagesController.getInstance(UserConfig.selectedAccount).loadFullChat(((TLRPC.Chat) this.f36548c).f20276id, this.d, false);
+        MessagesController.getInstance(UserConfig.selectedAccount).loadFullChat(((TLRPC.Chat) this.f36551c).f20279id, this.d, false);
     }
 
     @Override
     public final void b(Object... objArr) {
         boolean z10;
         TLRPC.ChatFull chatFull = (TLRPC.ChatFull) objArr[0];
-        if (chatFull != null && chatFull.f20277id == ((TLRPC.Chat) this.f36548c).f20276id && (z10 = this.f36550g)) {
+        if (chatFull != null && chatFull.f20280id == ((TLRPC.Chat) this.f36551c).f20279id && (z10 = this.f36553g)) {
             if (z10) {
-                this.f36550g = false;
-                this.f36547b.removeObserver(this.f36546a, this.e);
+                this.f36553g = false;
+                this.f36550b.removeObserver(this.f36549a, this.e);
             }
-            this.f36549f.accept(chatFull);
+            this.f36552f.accept(chatFull);
         }
     }
 }

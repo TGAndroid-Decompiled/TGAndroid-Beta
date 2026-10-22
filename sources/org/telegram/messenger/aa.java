@@ -1,75 +1,33 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
+import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-public final class aa implements RequestDelegate {
-    public final int f17859a;
-    public final MessagesController f17860b;
-    public final long f17861c;
+import org.telegram.tgnet.tl.TL_communities;
+public final class aa implements Utilities.Callback2 {
+    public final int f17854a;
+    public final MessagesController f17855b;
+    public final Utilities.Callback2 f17856c;
 
-    public aa(MessagesController messagesController, long j10, int i10) {
-        this.f17859a = i10;
-        this.f17860b = messagesController;
-        this.f17861c = j10;
+    public aa(MessagesController messagesController, Utilities.Callback2 callback2, int i10) {
+        this.f17854a = i10;
+        this.f17855b = messagesController;
+        this.f17856c = callback2;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f17859a) {
+    public final void run(Object obj, Object obj2) {
+        switch (this.f17854a) {
             case 0:
-                this.f17860b.lambda$markMessageAsRead2$234(this.f17861c, tLObject, tL_error);
+                this.f17855b.lambda$toggleChatNoForwards$277(this.f17856c, (TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
                 return;
             case 1:
-                this.f17860b.lambda$markMessageAsRead2$235(this.f17861c, tLObject, tL_error);
+                this.f17855b.lambda$fetchCommunityPendingJoinRequests$245(this.f17856c, (TL_communities.PeerLinkRequests) obj, (TLRPC.TL_error) obj2);
                 return;
             case 2:
-                this.f17860b.lambda$pinDialog$363(this.f17861c, tLObject, tL_error);
-                return;
-            case 3:
-                this.f17860b.lambda$saveWallpaperToServer$120(this.f17861c, tLObject, tL_error);
-                return;
-            case 4:
-                this.f17860b.lambda$updateTimerProc$159(this.f17861c, tLObject, tL_error);
-                return;
-            case 5:
-                this.f17860b.lambda$deleteUserPhoto$114(this.f17861c, tLObject, tL_error);
-                return;
-            case 6:
-                this.f17860b.lambda$reorderPinnedDialogs$362(this.f17861c, tLObject, tL_error);
-                return;
-            case 7:
-                this.f17860b.lambda$loadPeerSettings$79(this.f17861c, tLObject, tL_error);
-                return;
-            case 8:
-                this.f17860b.lambda$setChannelSlowMode$93(this.f17861c, tLObject, tL_error);
-                return;
-            case 9:
-                this.f17860b.lambda$loadChannelAdmins$64(this.f17861c, tLObject, tL_error);
-                return;
-            case 10:
-                this.f17860b.lambda$deleteDialog$140(this.f17861c, tLObject, tL_error);
-                return;
-            case 11:
-                this.f17860b.lambda$addDialogToFolder$197(this.f17861c, tLObject, tL_error);
-                return;
-            case 12:
-                this.f17860b.lambda$setDefaultSendAs$274(this.f17861c, tLObject, tL_error);
-                return;
-            case 13:
-                this.f17860b.lambda$deleteMessages$121(this.f17861c, tLObject, tL_error);
-                return;
-            case 14:
-                this.f17860b.lambda$deleteMessages$122(this.f17861c, tLObject, tL_error);
-                return;
-            case 15:
-                this.f17860b.lambda$deleteMessages$124(this.f17861c, tLObject, tL_error);
-                return;
-            case 16:
-                this.f17860b.lambda$setBoostsToUnblockRestrictions$95(this.f17861c, tLObject, tL_error);
+                this.f17855b.lambda$fetchCommunityJoinedChats$246(this.f17856c, (TL_communities.ParticipantJoinedChats) obj, (TLRPC.TL_error) obj2);
                 return;
             default:
-                this.f17860b.lambda$markDialogAsUnread$359(this.f17861c, tLObject, tL_error);
+                this.f17855b.lambda$fetchChatsToAddToCommunity$251(this.f17856c, (TLRPC.messages_Chats) obj, (TLRPC.TL_error) obj2);
                 return;
         }
     }

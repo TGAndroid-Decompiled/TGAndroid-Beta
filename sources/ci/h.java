@@ -26,7 +26,7 @@ public final class h extends zq {
         tw twVar = this.G;
         int i12 = twVar.f5868b;
         if (i12 == 0) {
-            i10 = org.telegram.ui.ActionBar.h6.f21269s8;
+            i10 = org.telegram.ui.ActionBar.h6.f21272s8;
         } else {
             i10 = org.telegram.ui.ActionBar.h6.M8;
         }

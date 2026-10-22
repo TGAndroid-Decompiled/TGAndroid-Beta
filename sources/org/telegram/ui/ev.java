@@ -2,27 +2,27 @@ package org.telegram.ui;
 
 import android.animation.ValueAnimator;
 public final class ev implements ValueAnimator.AnimatorUpdateListener {
-    public final int f36813a;
-    public final cy f36814b;
+    public final int f36816a;
+    public final cy f36817b;
 
     public ev(cy cyVar, int i10) {
-        this.f36813a = i10;
-        this.f36814b = cyVar;
+        this.f36816a = i10;
+        this.f36817b = cyVar;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f36813a) {
+        switch (this.f36816a) {
             case 0:
-                cy cyVar = this.f36814b;
+                cy cyVar = this.f36817b;
                 cyVar.getClass();
                 cyVar.x4(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 return;
             case 1:
-                this.f36814b.B4(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                this.f36817b.B4(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 return;
             default:
-                cy cyVar2 = this.f36814b;
+                cy cyVar2 = this.f36817b;
                 cyVar2.getClass();
                 cyVar2.D4(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 return;

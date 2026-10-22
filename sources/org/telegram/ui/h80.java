@@ -9,20 +9,20 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 public final class h80 implements Runnable {
-    public final int f37539a = 1;
-    public final LaunchActivity f37540b;
-    public final TLObject f37541c;
+    public final int f37542a = 1;
+    public final LaunchActivity f37543b;
+    public final TLObject f37544c;
     public final int d;
     public final String e;
-    public final TLRPC.TL_error f37542f;
+    public final TLRPC.TL_error f37545f;
     public final z70 h;
 
     public h80(LaunchActivity launchActivity, TLObject tLObject, int i10, String str, TLRPC.TL_error tL_error, z70 z70Var) {
-        this.f37540b = launchActivity;
-        this.f37541c = tLObject;
+        this.f37543b = launchActivity;
+        this.f37544c = tLObject;
         this.d = i10;
         this.e = str;
-        this.f37542f = tL_error;
+        this.f37545f = tL_error;
         this.h = z70Var;
     }
 
@@ -32,11 +32,11 @@ public final class h80 implements Runnable {
         int i10;
         int i11;
         String str;
-        int i12 = this.f37539a;
+        int i12 = this.f37542a;
         z70 z70Var = this.h;
-        TLRPC.TL_error tL_error = this.f37542f;
+        TLRPC.TL_error tL_error = this.f37545f;
         String str2 = this.e;
-        TLObject tLObject = this.f37541c;
+        TLObject tLObject = this.f37544c;
         switch (i12) {
             case 0:
                 Pattern pattern = LaunchActivity.C1;
@@ -58,7 +58,7 @@ public final class h80 implements Runnable {
                     }
                 } else if (tLObject instanceof TL_stars.TL_payments_uniqueStarGift) {
                     TL_stars.TL_payments_uniqueStarGift tL_payments_uniqueStarGift = (TL_stars.TL_payments_uniqueStarGift) tLObject;
-                    LaunchActivity launchActivity = this.f37540b;
+                    LaunchActivity launchActivity = this.f37543b;
                     MessagesController.getInstance(launchActivity.O).putUsers(tL_payments_uniqueStarGift.users, false);
                     MessagesController.getInstance(launchActivity.O).putChats(tL_payments_uniqueStarGift.chats, false);
                     org.telegram.ui.ActionBar.n2 U2 = LaunchActivity.U();
@@ -87,12 +87,12 @@ public final class h80 implements Runnable {
             default:
                 Pattern pattern2 = LaunchActivity.C1;
                 boolean z10 = tLObject instanceof TLRPC.User;
-                LaunchActivity launchActivity2 = this.f37540b;
+                LaunchActivity launchActivity2 = this.f37543b;
                 if (z10) {
                     TLRPC.User user = (TLRPC.User) tLObject;
                     MessagesController.getInstance(this.d).putUser(user, false);
                     Bundle bundle = new Bundle();
-                    bundle.putLong("user_id", user.f20423id);
+                    bundle.putLong("user_id", user.f20426id);
                     launchActivity2.t0(new qn(bundle));
                 } else {
                     StringBuilder v = a1.g.v("cant import contact token. token=", str2, " err=");
@@ -103,7 +103,7 @@ public final class h80 implements Runnable {
                     }
                     v.append(str);
                     FileLog.e(v.toString());
-                    org.telegram.messenger.mk.q(R.string.NoUsernameFound, org.telegram.ui.Components.xc.a0((org.telegram.ui.ActionBar.n2) i2.e.h(1, launchActivity2.f33162d0)), null);
+                    org.telegram.messenger.ok.q(R.string.NoUsernameFound, org.telegram.ui.Components.xc.a0((org.telegram.ui.ActionBar.n2) i2.e.h(1, launchActivity2.f33165d0)), null);
                 }
                 try {
                     z70Var.run();
@@ -116,9 +116,9 @@ public final class h80 implements Runnable {
     }
 
     public h80(LaunchActivity launchActivity, TLRPC.TL_error tL_error, TLObject tLObject, int i10, String str, z70 z70Var) {
-        this.f37540b = launchActivity;
-        this.f37542f = tL_error;
-        this.f37541c = tLObject;
+        this.f37543b = launchActivity;
+        this.f37545f = tL_error;
+        this.f37544c = tLObject;
         this.d = i10;
         this.e = str;
         this.h = z70Var;

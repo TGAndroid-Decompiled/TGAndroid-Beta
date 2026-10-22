@@ -51,12 +51,12 @@ public final class vc extends org.telegram.ui.Components.bb implements Notificat
         jm0Var.setPadding(i10, 0, i10, 0);
         this.d.setOnItemClickListener(new wa(this, 1));
         s4.k kVar = new s4.k();
-        kVar.f45951m = false;
+        kVar.f45954m = false;
         kVar.C = false;
         kVar.o(bs.h);
         kVar.n(350L);
         this.d.setItemAnimator(kVar);
-        setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21078i5, d6Var));
+        setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21081i5, d6Var));
         uc ucVar = new uc(context, 0, d6Var);
         this.X = ucVar;
         ((TextView) ucVar.f2278c).setText(LocaleController.getString(R.string.GiftStarsTitle));
@@ -97,7 +97,7 @@ public final class vc extends org.telegram.ui.Components.bb implements Notificat
         frameLayout.setPadding(0, AndroidUtilities.dp(11.0f), 0, AndroidUtilities.dp(11.0f));
         x90Var2.setTextSize(1, 12.0f);
         x90Var2.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.B6, d6Var));
-        x90Var2.setLinkTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21049gc, d6Var));
+        x90Var2.setLinkTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21052gc, d6Var));
         x90Var2.setText(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.StarsTOS), new Runnable(this) {
             public final vc f2173b;
 
@@ -126,7 +126,7 @@ public final class vc extends org.telegram.ui.Components.bb implements Notificat
         x90Var2.setGravity(17);
         x90Var2.setMaxWidth(ei.x3.a(x90Var2.getText(), x90Var2.getPaint()));
         frameLayout.addView(x90Var2, w7.z5.e(-2, -1, 17));
-        frameLayout.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21061h5, d6Var));
+        frameLayout.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21064h5, d6Var));
         this.containerView.addView(new z00(getContext()), w7.z5.c(-1.0f, -1));
         u61 u61Var = this.f2333b0;
         if (u61Var != null) {
@@ -142,7 +142,7 @@ public final class vc extends org.telegram.ui.Components.bb implements Notificat
             if (G.d == -1) {
                 vcVar.f2334c0 = !vcVar.f2334c0;
                 u61Var2.N(true);
-                vcVar.d.v0(0, AndroidUtilities.dp(200.0f), bs.f25022g);
+                vcVar.d.v0(0, AndroidUtilities.dp(200.0f), bs.f25025g);
             } else if (G.G(xc.class) && (G.G instanceof TL_stars.TL_starsGiftOption)) {
                 Context findActivity = AndroidUtilities.findActivity(vcVar.getContext());
                 if (findActivity == null) {
@@ -150,7 +150,7 @@ public final class vc extends org.telegram.ui.Components.bb implements Notificat
                 }
                 Context context = findActivity;
                 if (context != null) {
-                    long j10 = vcVar.Z.f20423id;
+                    long j10 = vcVar.Z.f20426id;
                     ga y3 = ga.y(vcVar.currentAccount, false);
                     TL_stars.TL_starsGiftOption tL_starsGiftOption = (TL_stars.TL_starsGiftOption) G.G;
                     tc tcVar = new tc(vcVar, G, j10, 0);
@@ -204,11 +204,11 @@ public final class vc extends org.telegram.ui.Components.bb implements Notificat
             }
             super.dismiss();
             org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
-            ja0 ja0Var = LaunchActivity.H1.f33200x0;
+            ja0 ja0Var = LaunchActivity.H1.f33203x0;
             if (U != null) {
                 if (bool.booleanValue()) {
                     org.telegram.ui.Components.qc K = org.telegram.ui.Components.xc.a0(U).K(R.raw.stars_send, LocaleController.getString(R.string.StarsGiftSentPopup), AndroidUtilities.replaceTags(LocaleController.formatPluralString("StarsGiftSentPopupInfo", (int) h61Var.B, UserObject.getForcedFirstName(vcVar.Z))), LocaleController.getString(R.string.ViewInChat), new o4(j10, 1));
-                    K.f29531j = 5000;
+                    K.f29534j = 5000;
                     K.k(true);
                     if (ja0Var != null) {
                         ja0Var.c(true);
@@ -248,16 +248,16 @@ public final class vc extends org.telegram.ui.Components.bb implements Notificat
                     int i15 = xc.f2460a;
                     h61 J = h61.J(xc.class);
                     J.d = i13;
-                    J.f26795z = i12;
+                    J.f26798z = i12;
                     long j10 = tL_starsGiftOption.stars;
                     J.B = j10;
-                    J.f26782l = LocaleController.formatPluralStringSpaced("StarsCount", (int) j10);
+                    J.f26785l = LocaleController.formatPluralStringSpaced("StarsCount", (int) j10);
                     if (tL_starsGiftOption.loadingStorePrice) {
                         formatCurrency = null;
                     } else {
                         formatCurrency = BillingController.getInstance().formatCurrency(tL_starsGiftOption.amount, tL_starsGiftOption.currency);
                     }
-                    J.f26783m = formatCurrency;
+                    J.f26786m = formatCurrency;
                     J.G = tL_starsGiftOption;
                     arrayList.add(J);
                     i12 = i14;
@@ -274,9 +274,9 @@ public final class vc extends org.telegram.ui.Components.bb implements Notificat
                 int i16 = qc.f2090a;
                 h61 J2 = h61.J(qc.class);
                 J2.d = -1;
-                J2.f26782l = string;
-                J2.f26777f = !this.f2334c0;
-                J2.f26787q = true;
+                J2.f26785l = string;
+                J2.f26780f = !this.f2334c0;
+                J2.f26790q = true;
                 arrayList.add(J2);
             }
         } else {

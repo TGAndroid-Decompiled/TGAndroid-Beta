@@ -27,14 +27,14 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.PremiumPreviewFragment;
 public final class ho0 implements Runnable {
-    public final int f26953a;
-    public final Object f26954b;
-    public final Object f26955c;
+    public final int f26956a;
+    public final Object f26957b;
+    public final Object f26958c;
 
     public ho0(int i10, Object obj, Object obj2) {
-        this.f26953a = i10;
-        this.f26954b = obj;
-        this.f26955c = obj2;
+        this.f26956a = i10;
+        this.f26957b = obj;
+        this.f26958c = obj2;
     }
 
     @Override
@@ -48,10 +48,10 @@ public final class ho0 implements Runnable {
         ArrayList arrayList;
         int i12 = 2;
         ArrayList arrayList2 = null;
-        switch (this.f26953a) {
+        switch (this.f26956a) {
             case 0:
-                po0 po0Var = (po0) this.f26954b;
-                TLRPC.TL_sponsoredPeer tL_sponsoredPeer = (TLRPC.TL_sponsoredPeer) this.f26955c;
+                po0 po0Var = (po0) this.f26957b;
+                TLRPC.TL_sponsoredPeer tL_sponsoredPeer = (TLRPC.TL_sponsoredPeer) this.f26958c;
                 ArrayList arrayList3 = po0Var.K;
                 if (!arrayList3.isEmpty() && (indexOf = arrayList3.indexOf(tL_sponsoredPeer)) >= 0 && (L = po0Var.L()) < po0Var.h()) {
                     arrayList3.remove(indexOf);
@@ -69,15 +69,15 @@ public final class ho0 implements Runnable {
                 }
                 return;
             case 1:
-                ((po0) this.f26954b).T();
-                xc.a0((org.telegram.ui.cy) this.f26955c).c(LocaleController.getString(R.string.AdHidden)).j();
+                ((po0) this.f26957b).T();
+                xc.a0((org.telegram.ui.cy) this.f26958c).c(LocaleController.getString(R.string.AdHidden)).j();
                 return;
             case 2:
-                ((ap0) this.f26954b).sendAccessibilityEvent((View) this.f26955c, 4);
+                ((ap0) this.f26957b).sendAccessibilityEvent((View) this.f26958c, 4);
                 return;
             case 3:
-                ef efVar = (ef) this.f26954b;
-                org.telegram.ui.qn qnVar = (org.telegram.ui.qn) this.f26955c;
+                ef efVar = (ef) this.f26957b;
+                org.telegram.ui.qn qnVar = (org.telegram.ui.qn) this.f26958c;
                 if (qnVar != null) {
                     qnVar.presentFragment(new PremiumPreviewFragment(0, "select_sender"));
                     efVar.dismiss();
@@ -85,86 +85,86 @@ public final class ho0 implements Runnable {
                 }
                 return;
             case 4:
-                ((WindowManager) this.f26955c).removeView(((ef) this.f26954b).B);
+                ((WindowManager) this.f26958c).removeView(((ef) this.f26957b).B);
                 return;
             case 5:
-                fr0 fr0Var = (fr0) this.f26954b;
-                TLObject tLObject = (TLObject) this.f26955c;
+                fr0 fr0Var = (fr0) this.f26957b;
+                TLObject tLObject = (TLObject) this.f26958c;
                 if (tLObject != null) {
-                    fr0Var.f26378l0 = (TLRPC.TL_exportedMessageLink) tLObject;
+                    fr0Var.f26381l0 = (TLRPC.TL_exportedMessageLink) tLObject;
                     fr0Var.b1();
-                    if (fr0Var.f26380n0) {
+                    if (fr0Var.f26383n0) {
                         fr0Var.O0();
                     }
                 }
                 fr0Var.m0 = false;
                 return;
             case 6:
-                nu0 nu0Var = (nu0) this.f26954b;
-                mr0 mr0Var = (mr0) this.f26955c;
+                nu0 nu0Var = (nu0) this.f26957b;
+                mr0 mr0Var = (mr0) this.f26958c;
                 nu0Var.G = null;
                 nu0Var.H = null;
                 mr0Var.animate().alpha(0.0f).scaleX(0.5f).scaleY(0.5f).setDuration(220L).setListener(new c80(mr0Var, 19)).start();
                 return;
             case 7:
-                ci.b7 b7Var = (ci.b7) this.f26955c;
-                ps0 ps0Var = ((uv0) this.f26954b).W;
+                ci.b7 b7Var = (ci.b7) this.f26958c;
+                ps0 ps0Var = ((uv0) this.f26957b).W;
                 if (ps0Var != null) {
                     int i13 = b7Var.f5251a;
-                    ps0Var.f36519n.d(i13, ps0Var.f36521s.i(i13));
+                    ps0Var.f36522n.d(i13, ps0Var.f36524s.i(i13));
                     return;
                 }
                 return;
             case 8:
-                xc.a0(((du0) this.f26954b).f25631f.f31071v1).Q(R.raw.contact_check, 36, LocaleController.formatString(R.string.YouJoinedChannel, ((TLRPC.Chat) this.f26955c).title)).k(true);
+                xc.a0(((du0) this.f26957b).f25634f.f31074v1).Q(R.raw.contact_check, 36, LocaleController.formatString(R.string.YouJoinedChannel, ((TLRPC.Chat) this.f26958c).title)).k(true);
                 return;
             case 9:
-                qu0 qu0Var = (qu0) this.f26954b;
-                String str2 = (String) this.f26955c;
-                if (!qu0Var.v.f31067t1[qu0Var.f29723r].f27641a.isEmpty() && ((i10 = qu0Var.f29723r) == 1 || i10 == 4)) {
-                    MessageObject messageObject = (MessageObject) i2.e.h(1, qu0Var.v.f31067t1[i10].f27641a);
+                qu0 qu0Var = (qu0) this.f26957b;
+                String str2 = (String) this.f26958c;
+                if (!qu0Var.v.f31070t1[qu0Var.f29726r].f27644a.isEmpty() && ((i10 = qu0Var.f29726r) == 1 || i10 == 4)) {
+                    MessageObject messageObject = (MessageObject) i2.e.h(1, qu0Var.v.f31070t1[i10].f27644a);
                     int id2 = messageObject.getId();
                     long dialogId = messageObject.getDialogId();
                     uv0 uv0Var = qu0Var.v;
-                    if (uv0Var.f31046j1 == uv0Var.f31071v1.getUserConfig().getClientUserId()) {
+                    if (uv0Var.f31049j1 == uv0Var.f31074v1.getUserConfig().getClientUserId()) {
                         j10 = messageObject.getSavedDialogId();
                     } else {
                         j10 = 0;
                     }
                     qu0Var.F(id2, str2, dialogId, j10);
-                } else if (qu0Var.f29723r == 3) {
+                } else if (qu0Var.f29726r == 3) {
                     uv0 uv0Var2 = qu0Var.v;
-                    qu0Var.F(0, str2, uv0Var2.f31046j1, uv0Var2.F);
+                    qu0Var.F(0, str2, uv0Var2.f31049j1, uv0Var2.F);
                 }
-                int i14 = qu0Var.f29723r;
+                int i14 = qu0Var.f29726r;
                 if (i14 == 1 || i14 == 4) {
-                    ArrayList arrayList4 = new ArrayList(qu0Var.v.f31067t1[qu0Var.f29723r].f27641a);
-                    qu0Var.f29724s++;
+                    ArrayList arrayList4 = new ArrayList(qu0Var.v.f31070t1[qu0Var.f29726r].f27644a);
+                    qu0Var.f29727s++;
                     Utilities.searchQueue.postRunnable(new lg((Object) qu0Var, (Object) str2, arrayList4, 26));
                     return;
                 }
                 return;
             case 10:
-                qu0 qu0Var2 = (qu0) this.f26954b;
-                ArrayList arrayList5 = (ArrayList) this.f26955c;
+                qu0 qu0Var2 = (qu0) this.f26957b;
+                ArrayList arrayList5 = (ArrayList) this.f26958c;
                 uv0 uv0Var3 = qu0Var2.v;
                 boolean z10 = uv0Var3.V0;
-                nu0[] nu0VarArr = uv0Var3.f31047k0;
+                nu0[] nu0VarArr = uv0Var3.f31050k0;
                 if (z10) {
-                    qu0Var2.f29724s--;
+                    qu0Var2.f29727s--;
                     int h = qu0Var2.h();
                     qu0Var2.d = arrayList5;
                     int h10 = qu0Var2.h();
-                    if (qu0Var2.f29724s == 0 || h10 != 0) {
+                    if (qu0Var2.f29727s == 0 || h10 != 0) {
                         uv0Var3.o1(false);
                     }
                     for (int i15 = 0; i15 < nu0VarArr.length; i15++) {
                         nu0 nu0Var2 = nu0VarArr[i15];
-                        if (nu0Var2.F == qu0Var2.f29723r) {
-                            if (qu0Var2.f29724s == 0 && h10 == 0) {
-                                nu0Var2.f28883w.d.setText(LocaleController.getString("NoResult", R.string.NoResult));
-                                nu0VarArr[i15].f28883w.f30699f.setVisibility(8);
-                                nu0VarArr[i15].f28883w.e(false, true);
+                        if (nu0Var2.F == qu0Var2.f29726r) {
+                            if (qu0Var2.f29727s == 0 && h10 == 0) {
+                                nu0Var2.f28886w.d.setText(LocaleController.getString("NoResult", R.string.NoResult));
+                                nu0VarArr[i15].f28886w.f30702f.setVisibility(8);
+                                nu0VarArr[i15].f28886w.e(false, true);
                             } else if (h == 0) {
                                 uv0Var3.z(nu0Var2.h, 0, null);
                             }
@@ -178,24 +178,24 @@ public final class ho0 implements Runnable {
                 NotificationCenter notificationCenter = NotificationCenter.getInstance(UserConfig.selectedAccount);
                 int i16 = NotificationCenter.customStickerCreated;
                 Boolean bool = Boolean.FALSE;
-                notificationCenter.postNotificationNameOnUIThread(i16, bool, (TLObject) this.f26954b, (TLRPC.Document) this.f26955c, null, bool);
+                notificationCenter.postNotificationNameOnUIThread(i16, bool, (TLObject) this.f26957b, (TLRPC.Document) this.f26958c, null, bool);
                 return;
             case 12:
-                MessagesController.getInstance(((dz0) this.f26954b).f25649a.f27353a).updateEmojiStatus((TLRPC.EmojiStatus) this.f26955c);
+                MessagesController.getInstance(((dz0) this.f26957b).f25652a.f27356a).updateEmojiStatus((TLRPC.EmojiStatus) this.f26958c);
                 return;
             case 13:
-                s31 s31Var = (s31) this.f26954b;
-                MessagesController.getInstance(s31Var.f30180b).getTopicsController().deleteTopics(-s31Var.f30182c, (ArrayList) this.f26955c);
-                int i17 = s31.f30177f0;
+                s31 s31Var = (s31) this.f26957b;
+                MessagesController.getInstance(s31Var.f30183b).getTopicsController().deleteTopics(-s31Var.f30185c, (ArrayList) this.f26958c);
+                int i17 = s31.f30180f0;
                 return;
             case 14:
-                s31 s31Var2 = (s31) this.f26954b;
+                s31 s31Var2 = (s31) this.f26957b;
                 s31Var2.getClass();
-                MessagesController.getInstance(s31Var2.f30180b).loadFullChat(((TLRPC.Updates) this.f26955c).chats.get(0).f20276id, 0, true);
+                MessagesController.getInstance(s31Var2.f30183b).loadFullChat(((TLRPC.Updates) this.f26958c).chats.get(0).f20279id, 0, true);
                 return;
             case 15:
-                org.telegram.ui.Cells.l1 l1Var = (org.telegram.ui.Cells.l1) this.f26954b;
-                TLRPC.TL_messages_transcribedAudio tL_messages_transcribedAudio = (TLRPC.TL_messages_transcribedAudio) this.f26955c;
+                org.telegram.ui.Cells.l1 l1Var = (org.telegram.ui.Cells.l1) this.f26957b;
+                TLRPC.TL_messages_transcribedAudio tL_messages_transcribedAudio = (TLRPC.TL_messages_transcribedAudio) this.f26958c;
                 if (l1Var != null) {
                     if (tL_messages_transcribedAudio.trial_remains_num > 0) {
                         i12 = 1;
@@ -205,38 +205,38 @@ public final class ho0 implements Runnable {
                 }
                 return;
             case 16:
-                t41.p((t41) this.f26954b, (TLObject) this.f26955c);
+                t41.p((t41) this.f26957b, (TLObject) this.f26958c);
                 return;
             case 17:
-                org.telegram.ui.rk rkVar = (org.telegram.ui.rk) this.f26954b;
-                ((org.telegram.ui.ActionBar.m1) this.f26955c).d(true);
+                org.telegram.ui.rk rkVar = (org.telegram.ui.rk) this.f26957b;
+                ((org.telegram.ui.ActionBar.m1) this.f26958c).d(true);
                 k51.a(rkVar.getContext(), rkVar.d);
                 return;
             case 18:
-                ((TranslateController) this.f26955c).setHideTranslateDialog(((org.telegram.ui.rk) this.f26954b).f27756b, false);
+                ((TranslateController) this.f26958c).setHideTranslateDialog(((org.telegram.ui.rk) this.f26957b).f27759b, false);
                 return;
             case 19:
-                UndoView undoView = (UndoView) this.f26954b;
-                TLObject tLObject2 = (TLObject) this.f26955c;
+                UndoView undoView = (UndoView) this.f26957b;
+                TLObject tLObject2 = (TLObject) this.f26958c;
                 if (tLObject2 instanceof TLRPC.PaymentReceipt) {
-                    undoView.f24417s.presentFragment(new org.telegram.ui.eo0((TLRPC.PaymentReceipt) tLObject2));
+                    undoView.f24420s.presentFragment(new org.telegram.ui.eo0((TLRPC.PaymentReceipt) tLObject2));
                     return;
                 }
-                int i18 = UndoView.f24406e0;
+                int i18 = UndoView.f24409e0;
                 undoView.getClass();
                 return;
             case 20:
-                ((h61) this.f26954b).D.onClick((org.telegram.ui.Cells.u8) this.f26955c);
+                ((h61) this.f26957b).D.onClick((org.telegram.ui.Cells.u8) this.f26958c);
                 return;
             case 21:
-                c81 c81Var = (c81) this.f26954b;
-                b2.y0 y0Var = (b2.y0) this.f26955c;
+                c81 c81Var = (c81) this.f26957b;
+                b2.y0 y0Var = (b2.y0) this.f26958c;
                 Throwable cause = y0Var.getCause();
                 if ((cause instanceof r2.n) && (cause.toString().contains("av1") || cause.toString().contains("av01"))) {
                     FileLog.e(y0Var);
                     FileLog.e("av1 codec failed, we think this codec is not supported");
                     MessagesController.getGlobalMainSettings().edit().putBoolean("unsupport_video/av01", true).commit();
-                    HashMap hashMap = c81.f25126l0;
+                    HashMap hashMap = c81.f25129l0;
                     if (hashMap != null) {
                         hashMap.clear();
                     }
@@ -250,7 +250,7 @@ public final class ho0 implements Runnable {
                                 ArrayList arrayList7 = y71Var.d;
                                 if (i20 < arrayList7.size()) {
                                     a81 a81Var = (a81) arrayList7.get(i20);
-                                    if (!TextUtils.isEmpty(a81Var.f24545m) && !c81.Y(a81Var.f24545m)) {
+                                    if (!TextUtils.isEmpty(a81Var.f24548m) && !c81.Y(a81Var.f24548m)) {
                                         arrayList7.remove(i20);
                                         i20--;
                                     }
@@ -273,23 +273,23 @@ public final class ho0 implements Runnable {
                     }
                     return;
                 }
-                TextureView textureView = c81Var.f25140n;
+                TextureView textureView = c81Var.f25143n;
                 if (textureView != null && ((!c81Var.E && (cause instanceof r2.p)) || (cause instanceof a3.x))) {
                     c81Var.E = true;
                     if (c81Var.d != null) {
                         ViewGroup viewGroup = (ViewGroup) textureView.getParent();
                         if (viewGroup != null) {
-                            int indexOfChild = viewGroup.indexOfChild(c81Var.f25140n);
-                            viewGroup.removeView(c81Var.f25140n);
-                            viewGroup.addView(c81Var.f25140n, indexOfChild);
+                            int indexOfChild = viewGroup.indexOfChild(c81Var.f25143n);
+                            viewGroup.removeView(c81Var.f25143n);
+                            viewGroup.addView(c81Var.f25143n, indexOfChild);
                         }
-                        DispatchQueue dispatchQueue = c81Var.f25129b;
+                        DispatchQueue dispatchQueue = c81Var.f25132b;
                         if (dispatchQueue != null) {
                             dispatchQueue.postRunnable(new u71(c81Var, 0));
                             return;
                         }
                         i2.i0 i0Var = c81Var.d;
-                        TextureView textureView2 = c81Var.f25140n;
+                        TextureView textureView2 = c81Var.f25143n;
                         i0Var.F1();
                         if (textureView2 != null && textureView2 == i0Var.X) {
                             i0Var.F1();
@@ -297,7 +297,7 @@ public final class ho0 implements Runnable {
                             i0Var.x1(null);
                             i0Var.q1(0, 0);
                         }
-                        c81Var.d.z1(c81Var.f25140n);
+                        c81Var.d.z1(c81Var.f25143n);
                         ArrayList arrayList8 = c81Var.N;
                         if (arrayList8 != null) {
                             c81Var.F(arrayList8, c81Var.O);
@@ -314,21 +314,21 @@ public final class ho0 implements Runnable {
                 c81Var.J.onError(c81Var, y0Var);
                 return;
             case 22:
-                ((b81) this.f26954b).f24829f.K.onVisualizerUpdate(true, true, (float[]) this.f26955c);
+                ((b81) this.f26957b).f24832f.K.onVisualizerUpdate(true, true, (float[]) this.f26958c);
                 return;
             case 23:
-                j81 j81Var = (j81) this.f26954b;
-                Bitmap bitmap = (Bitmap) this.f26955c;
+                j81 j81Var = (j81) this.f26957b;
+                Bitmap bitmap = (Bitmap) this.f26958c;
                 if (bitmap != null) {
-                    if (j81Var.f27445w != null) {
+                    if (j81Var.f27448w != null) {
                         Bitmap bitmap2 = j81Var.v;
                         if (bitmap2 != null) {
                             bitmap2.recycle();
                         }
-                        j81Var.v = j81Var.f27445w;
+                        j81Var.v = j81Var.f27448w;
                     }
-                    j81Var.f27445w = bitmap;
-                    Bitmap bitmap3 = j81Var.f27445w;
+                    j81Var.f27448w = bitmap;
+                    Bitmap bitmap3 = j81Var.f27448w;
                     Shader.TileMode tileMode = Shader.TileMode.CLAMP;
                     BitmapShader bitmapShader = new BitmapShader(bitmap3, tileMode, tileMode);
                     j81Var.G = bitmapShader;
@@ -351,31 +351,31 @@ public final class ho0 implements Runnable {
                         j81Var.requestLayout();
                     }
                 }
-                j81Var.f27439f = null;
+                j81Var.f27442f = null;
                 return;
             case 24:
-                final v91 v91Var = (v91) this.f26954b;
-                v91Var.e.f32019b.evaluateJavascript((String) this.f26955c, new ValueCallback() {
+                final v91 v91Var = (v91) this.f26957b;
+                v91Var.e.f32022b.evaluateJavascript((String) this.f26958c, new ValueCallback() {
                     @Override
                     public final void onReceiveValue(Object obj) {
                         String str3 = (String) obj;
                         v91 v91Var2 = v91.this;
-                        String[] strArr = v91Var2.f31208c;
+                        String[] strArr = v91Var2.f31211c;
                         String str4 = strArr[0];
                         String str5 = v91Var2.d;
                         strArr[0] = str4.replace(str5, "/signature/" + str3.substring(1, str3.length() - 1));
-                        v91Var2.f31207b.countDown();
+                        v91Var2.f31210b.countDown();
                     }
                 });
                 return;
             case 25:
-                ((org.telegram.ui.Components.voip.k) this.f26954b).f31492a.setOnClickListener((View.OnClickListener) this.f26955c);
+                ((org.telegram.ui.Components.voip.k) this.f26957b).f31495a.setOnClickListener((View.OnClickListener) this.f26958c);
                 return;
             case 26:
-                org.telegram.ui.Components.voip.t tVar = (org.telegram.ui.Components.voip.t) this.f26954b;
-                Bitmap bitmap4 = (Bitmap) this.f26955c;
+                org.telegram.ui.Components.voip.t tVar = (org.telegram.ui.Components.voip.t) this.f26957b;
+                Bitmap bitmap4 = (Bitmap) this.f26958c;
                 HashMap<String, Bitmap> hashMap2 = tVar.F.thumbs;
-                ChatObject.VideoParticipant videoParticipant = tVar.f31736w;
+                ChatObject.VideoParticipant videoParticipant = tVar.f31739w;
                 boolean z11 = videoParticipant.presentation;
                 TLRPC.GroupCallParticipant groupCallParticipant = videoParticipant.participant;
                 if (z11) {
@@ -386,48 +386,48 @@ public final class ho0 implements Runnable {
                 hashMap2.put(str, bitmap4);
                 return;
             case 27:
-                org.telegram.ui.Components.voip.t tVar2 = (org.telegram.ui.Components.voip.t) this.f26955c;
-                ((org.telegram.ui.Components.voip.l0) this.f26954b).getClass();
+                org.telegram.ui.Components.voip.t tVar2 = (org.telegram.ui.Components.voip.t) this.f26958c;
+                ((org.telegram.ui.Components.voip.l0) this.f26957b).getClass();
                 tVar2.animate().alpha(1.0f).scaleY(1.0f).scaleX(1.0f).setListener(new org.telegram.ui.Components.voip.y(tVar2)).setDuration(150L).start();
                 return;
             case 28:
-                jm0 jm0Var = (jm0) this.f26954b;
-                Object obj = this.f26955c;
+                jm0 jm0Var = (jm0) this.f26957b;
+                Object obj = this.f26958c;
                 if (jm0Var != null) {
                     jm0Var.setOnItemClickListener((xl0) obj);
                     return;
                 }
                 return;
             default:
-                org.telegram.ui.mt mtVar = (org.telegram.ui.mt) this.f26954b;
-                String lowerCase = ((String) this.f26955c).trim().toLowerCase();
+                org.telegram.ui.mt mtVar = (org.telegram.ui.mt) this.f26957b;
+                String lowerCase = ((String) this.f26958c).trim().toLowerCase();
                 if (lowerCase.length() == 0) {
                     AndroidUtilities.runOnUIThread(new org.telegram.ui.lt(0, mtVar, new ArrayList()));
                     return;
                 }
                 String translitSafe = AndroidUtilities.translitSafe(lowerCase);
                 ArrayList arrayList9 = new ArrayList();
-                ArrayList arrayList10 = mtVar.f39348f;
+                ArrayList arrayList10 = mtVar.f39351f;
                 int size3 = arrayList10.size();
                 int i21 = 0;
                 while (i21 < size3) {
                     Object obj2 = arrayList10.get(i21);
                     i21++;
                     org.telegram.ui.ht htVar = (org.telegram.ui.ht) obj2;
-                    String str3 = htVar.f37784a;
+                    String str3 = htVar.f37787a;
                     String str4 = "";
                     if (str3 == null) {
                         str3 = "";
                     }
                     String lowerCase2 = str3.toLowerCase();
-                    String lowerCase3 = AndroidUtilities.translitSafe(htVar.f37784a).toLowerCase();
-                    String str5 = htVar.f37785b;
+                    String lowerCase3 = AndroidUtilities.translitSafe(htVar.f37787a).toLowerCase();
+                    String str5 = htVar.f37788b;
                     if (str5 == null) {
                         str5 = "";
                     }
                     String lowerCase4 = str5.toLowerCase();
-                    String lowerCase5 = AndroidUtilities.translitSafe(htVar.f37785b).toLowerCase();
-                    String str6 = htVar.f37786c;
+                    String lowerCase5 = AndroidUtilities.translitSafe(htVar.f37788b).toLowerCase();
+                    String str6 = htVar.f37789c;
                     if (str6 == null) {
                         str6 = "";
                     }
@@ -451,8 +451,8 @@ public final class ho0 implements Runnable {
     }
 
     public ho0(Object obj, Object obj2, Object obj3, int i10) {
-        this.f26953a = i10;
-        this.f26954b = obj;
-        this.f26955c = obj2;
+        this.f26956a = i10;
+        this.f26957b = obj;
+        this.f26958c = obj2;
     }
 }

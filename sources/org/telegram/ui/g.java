@@ -33,22 +33,22 @@ import org.telegram.tgnet.tl.TL_keyboard;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.Components.UndoView;
 public final class g implements v9, ru0, org.telegram.ui.web.z0, org.telegram.ui.Components.cp0, org.telegram.ui.Components.e5, org.telegram.ui.Components.kn0, l7, ci.w9, org.telegram.ui.Components.yl0, org.telegram.ui.Cells.l1, bc1, em, oe.a, org.telegram.ui.Components.am0, org.telegram.ui.Cells.q7, org.telegram.ui.Components.vq, org.telegram.ui.Components.uq0, s4.d0, org.telegram.ui.Components.o8, org.telegram.ui.Components.r20, r0.n, nt, y01 {
-    public final int f37149a;
-    public final Object f37150b;
+    public final int f37152a;
+    public final Object f37153b;
 
     public g(Object obj, int i10) {
-        this.f37149a = i10;
-        this.f37150b = obj;
+        this.f37152a = i10;
+        this.f37153b = obj;
     }
 
     @Override
     public r0.k1 B0(View view, r0.k1 k1Var) {
-        mi0 mi0Var = (mi0) this.f37150b;
+        mi0 mi0Var = (mi0) this.f37153b;
         i0.b defaultWindowInsets = AndroidUtilities.getDefaultWindowInsets(k1Var, false);
         mi0Var.d = defaultWindowInsets;
         mi0Var.F.setPadding(defaultWindowInsets.f12283a, defaultWindowInsets.f12284b, defaultWindowInsets.f12285c, defaultWindowInsets.d);
         mi0Var.E.requestLayout();
-        return r0.k1.f44834b;
+        return r0.k1.f44837b;
     }
 
     @Override
@@ -63,18 +63,18 @@ public final class g implements v9, ru0, org.telegram.ui.web.z0, org.telegram.ui
 
     @Override
     public void E(String str) {
-        h hVar = (h) this.f37150b;
+        h hVar = (h) this.f37153b;
         hVar.finishFragment(false);
-        xu xuVar = hVar.f37446x;
-        LaunchActivity launchActivity = (LaunchActivity) xuVar.f43274c;
+        xu xuVar = hVar.f37449x;
+        LaunchActivity launchActivity = (LaunchActivity) xuVar.f43277c;
         Pattern pattern = LaunchActivity.C1;
         org.telegram.ui.ActionBar.b2 b2Var = new org.telegram.ui.ActionBar.b2(launchActivity, 3, null);
-        b2Var.f20665g0 = false;
+        b2Var.f20668g0 = false;
         b2Var.show();
         byte[] decode = Base64.decode(str.substring(17), 8);
         TLRPC.TL_auth_acceptLoginToken tL_auth_acceptLoginToken = new TLRPC.TL_auth_acceptLoginToken();
         tL_auth_acceptLoginToken.token = decode;
-        ConnectionsManager.getInstance(launchActivity.O).sendRequest(tL_auth_acceptLoginToken, new x40(4, b2Var, (h) xuVar.f43273b));
+        ConnectionsManager.getInstance(launchActivity.O).sendRequest(tL_auth_acceptLoginToken, new x40(4, b2Var, (h) xuVar.f43276b));
     }
 
     @Override
@@ -84,9 +84,9 @@ public final class g implements v9, ru0, org.telegram.ui.web.z0, org.telegram.ui
 
     @Override
     public void H0(int i10, int i11) {
-        s60 s60Var = (s60) this.f37150b;
+        s60 s60Var = (s60) this.f37153b;
         s60Var.W = i10;
-        AndroidUtilities.updateVisibleRows(s60Var.f41375b);
+        AndroidUtilities.updateVisibleRows(s60Var.f41378b);
     }
 
     @Override
@@ -113,20 +113,20 @@ public final class g implements v9, ru0, org.telegram.ui.web.z0, org.telegram.ui
     public void L(float f7, boolean z10) {
         int i10;
         String formatString;
-        switch (this.f37149a) {
+        switch (this.f37152a) {
             case 3:
-                g4 g4Var = (g4) this.f37150b;
-                int round = Math.round(((g4Var.f37180c - i10) * f7) + g4Var.f37179b);
+                g4 g4Var = (g4) this.f37153b;
+                int round = Math.round(((g4Var.f37183c - i10) * f7) + g4Var.f37182b);
                 if (round != SharedConfig.ivFontSize) {
                     SharedConfig.ivFontSize = round;
                     SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
                     edit.putInt("iv_font_size", SharedConfig.ivFontSize);
                     edit.commit();
-                    g4Var.f37181f.f38779u0[0].getAdapter().f38168y.clear();
-                    l4 l4Var = g4Var.f37181f;
+                    g4Var.f37184f.f38782u0[0].getAdapter().f38171y.clear();
+                    l4 l4Var = g4Var.f37184f;
                     for (int i11 = 0; i11 < 2; i11++) {
-                        l4Var.f38779u0[i11].f39754c.l();
-                        j4 j4Var = l4Var.f38779u0[i11].f39754c;
+                        l4Var.f38782u0[i11].f39757c.l();
+                        j4 j4Var = l4Var.f38782u0[i11].f39757c;
                         ArrayList arrayList = j4Var.d;
                         for (int i12 = 0; i12 < arrayList.size(); i12++) {
                             TL_iv.PageBlock pageBlock = (TL_iv.PageBlock) arrayList.get(i12);
@@ -144,13 +144,13 @@ public final class g implements v9, ru0, org.telegram.ui.web.z0, org.telegram.ui
                 return;
             case 4:
             default:
-                ob0 ob0Var = (ob0) this.f37150b;
-                qb0 qb0Var = ob0Var.f39826y;
+                ob0 ob0Var = (ob0) this.f37153b;
+                qb0 qb0Var = ob0Var.f39829y;
                 int round2 = Math.round(f7 * 100.0f);
                 if (round2 != LiteMode.getPowerSaverLevel()) {
                     LiteMode.setPowerSaverLevel(round2);
                     qb0Var.Y();
-                    ArrayList arrayList2 = qb0Var.f40529s;
+                    ArrayList arrayList2 = qb0Var.f40532s;
                     if (arrayList2.isEmpty()) {
                         qb0Var.X();
                     } else if (arrayList2.size() >= 2) {
@@ -177,7 +177,7 @@ public final class g implements v9, ru0, org.telegram.ui.web.z0, org.telegram.ui
                 return;
             case 5:
                 n5.d = f7;
-                org.telegram.ui.Components.lw0 lw0Var = ((n5) this.f37150b).f39413b;
+                org.telegram.ui.Components.lw0 lw0Var = ((n5) this.f37153b).f39416b;
                 lw0Var.M();
                 lw0Var.N();
                 return;
@@ -186,9 +186,9 @@ public final class g implements v9, ru0, org.telegram.ui.web.z0, org.telegram.ui
 
     @Override
     public void L0(ht htVar) {
-        mj0 mj0Var = (mj0) this.f37150b;
+        mj0 mj0Var = (mj0) this.f37153b;
         mj0Var.E = true;
-        String str = htVar.f37786c;
+        String str = htVar.f37789c;
         mj0Var.O.setText(str);
         mj0Var.w(str, htVar);
         mj0Var.E = false;
@@ -205,13 +205,13 @@ public final class g implements v9, ru0, org.telegram.ui.web.z0, org.telegram.ui
 
     @Override
     public void N0() {
-        gj gjVar = (gj) this.f37150b;
-        View view = gjVar.f37338a;
+        gj gjVar = (gj) this.f37153b;
+        View view = gjVar.f37341a;
         if (view != null) {
             view.setPressed(false);
-            gjVar.f37338a.setSelected(false);
+            gjVar.f37341a.setSelected(false);
         }
-        View view2 = gjVar.f37342n;
+        View view2 = gjVar.f37345n;
         if (view2 != null && !gjVar.d) {
             view2.callOnClick();
             gjVar.d = true;
@@ -220,7 +220,7 @@ public final class g implements v9, ru0, org.telegram.ui.web.z0, org.telegram.ui
 
     @Override
     public void O() {
-        ((uj0) this.f37150b).a();
+        ((uj0) this.f37153b).a();
     }
 
     @Override
@@ -250,31 +250,31 @@ public final class g implements v9, ru0, org.telegram.ui.web.z0, org.telegram.ui
 
     @Override
     public boolean Q0(long j10, int i10, int i11, int i12, ci.x9 x9Var) {
-        k8 k8Var = (k8) this.f37150b;
-        if (k8Var.f38442b != null) {
+        k8 k8Var = (k8) this.f37153b;
+        if (k8Var.f38445b != null) {
             int i13 = 0;
             while (true) {
-                if (i13 >= k8Var.f38442b.getChildCount()) {
+                if (i13 >= k8Var.f38445b.getChildCount()) {
                     break;
                 }
-                View childAt = k8Var.f38442b.getChildAt(i13);
+                View childAt = k8Var.f38445b.getChildAt(i13);
                 if (childAt instanceof h8) {
                     h8 h8Var = (h8) childAt;
-                    if (h8Var.f37534n == null) {
+                    if (h8Var.f37537n == null) {
                         continue;
                     } else {
-                        for (int i14 = 0; i14 < h8Var.f37534n.size(); i14++) {
-                            ArrayList arrayList = ((i8) h8Var.f37534n.valueAt(i14)).f37875b;
+                        for (int i14 = 0; i14 < h8Var.f37537n.size(); i14++) {
+                            ArrayList arrayList = ((i8) h8Var.f37537n.valueAt(i14)).f37878b;
                             if (arrayList != null && arrayList.contains(Integer.valueOf(i11))) {
-                                int keyAt = h8Var.f37534n.keyAt(i14);
-                                k8Var.f38451h0 = keyAt;
-                                ImageReceiver imageReceiver = (ImageReceiver) h8Var.f37535r.get(keyAt);
+                                int keyAt = h8Var.f37537n.keyAt(i14);
+                                k8Var.f38454h0 = keyAt;
+                                ImageReceiver imageReceiver = (ImageReceiver) h8Var.f37538r.get(keyAt);
                                 if (imageReceiver != null) {
                                     x9Var.f6174c = imageReceiver;
-                                    if (k8Var.f38452i0 == null) {
-                                        k8Var.f38452i0 = new b1(this, 10);
+                                    if (k8Var.f38455i0 == null) {
+                                        k8Var.f38455i0 = new b1(this, 10);
                                     }
-                                    x9Var.e = k8Var.f38452i0;
+                                    x9Var.e = k8Var.f38455i0;
                                     x9Var.f6172a = h8Var;
                                     x9Var.f6176g = k8Var.fragmentView;
                                     x9Var.h = AndroidUtilities.dp(36.0f);
@@ -335,7 +335,7 @@ public final class g implements v9, ru0, org.telegram.ui.web.z0, org.telegram.ui
 
     @Override
     public void W0() {
-        c7 c7Var = ((a7) this.f37150b).e;
+        c7 c7Var = ((a7) this.f37153b).e;
         bi.c cVar = c7Var.Y;
         if (cVar != null && cVar.f4435j.size() > 0) {
             c7Var.Y.d();
@@ -349,24 +349,24 @@ public final class g implements v9, ru0, org.telegram.ui.web.z0, org.telegram.ui
 
     @Override
     public void X(int i10, int i11) {
-        ((s4.g0) this.f37150b).s(i10, i11);
+        ((s4.g0) this.f37153b).s(i10, i11);
     }
 
     @Override
     public void X0(long j10, int i10, ci.t3 t3Var) {
-        k8 k8Var = (k8) this.f37150b;
-        if (k8Var.f38442b == null) {
+        k8 k8Var = (k8) this.f37153b;
+        if (k8Var.f38445b == null) {
             t3Var.run();
         }
-        k8Var.f38442b.post(t3Var);
+        k8Var.f38445b.post(t3Var);
     }
 
     @Override
     public int Y() {
-        switch (this.f37149a) {
+        switch (this.f37152a) {
             case 3:
-                g4 g4Var = (g4) this.f37150b;
-                return g4Var.f37180c - g4Var.f37179b;
+                g4 g4Var = (g4) this.f37153b;
+                return g4Var.f37183c - g4Var.f37182b;
             case 4:
             default:
                 return 0;
@@ -389,7 +389,7 @@ public final class g implements v9, ru0, org.telegram.ui.web.z0, org.telegram.ui
     public boolean a() {
         org.telegram.ui.ActionBar.d6 d6Var;
         org.telegram.ui.ActionBar.d6 d6Var2;
-        bd bdVar = (bd) this.f37150b;
+        bd bdVar = (bd) this.f37153b;
         d6Var = ((org.telegram.ui.ActionBar.n2) bdVar).resourceProvider;
         if (d6Var != null) {
             d6Var2 = ((org.telegram.ui.ActionBar.n2) bdVar).resourceProvider;
@@ -400,17 +400,17 @@ public final class g implements v9, ru0, org.telegram.ui.web.z0, org.telegram.ui
 
     @Override
     public void a1(int i10, int i11) {
-        ((s4.g0) this.f37150b).r(i10, i11, null);
+        ((s4.g0) this.f37153b).r(i10, i11, null);
     }
 
     @Override
     public void b0(String str) {
-        ((bk) this.f37150b).f35667b.ia(str, false);
+        ((bk) this.f37153b).f35670b.ia(str, false);
     }
 
     @Override
     public boolean b1(int i10, View view) {
-        switch (this.f37149a) {
+        switch (this.f37152a) {
             case 6:
                 return false;
             case 11:
@@ -439,11 +439,11 @@ public final class g implements v9, ru0, org.telegram.ui.web.z0, org.telegram.ui
     public void c1(boolean z10) {
         org.telegram.ui.ActionBar.d6 d6Var;
         org.telegram.ui.ActionBar.d6 d6Var2;
-        bd bdVar = (bd) this.f37150b;
+        bd bdVar = (bd) this.f37153b;
         d6Var = ((org.telegram.ui.ActionBar.n2) bdVar).resourceProvider;
         if (d6Var instanceof ad) {
             d6Var2 = ((org.telegram.ui.ActionBar.n2) bdVar).resourceProvider;
-            bd bdVar2 = ((ad) d6Var2).f35348a;
+            bd bdVar2 = ((ad) d6Var2).f35351a;
             bdVar2.J = !bdVar2.J;
             bdVar2.d1();
             bdVar2.Z0(false);
@@ -454,12 +454,12 @@ public final class g implements v9, ru0, org.telegram.ui.web.z0, org.telegram.ui
 
     @Override
     public void clear() {
-        ((a7) this.f37150b).e.m0();
+        ((a7) this.f37153b).e.m0();
     }
 
     @Override
     public boolean mo17d(float f7, float f10, int i10, View view) {
-        e10 e10Var = (e10) this.f37150b;
+        e10 e10Var = (e10) this.f37153b;
         if (view instanceof org.telegram.ui.Cells.i7) {
             e10.a(e10Var, ((org.telegram.ui.Cells.i7) view).getMessage(), view, 0);
             return true;
@@ -474,10 +474,10 @@ public final class g implements v9, ru0, org.telegram.ui.web.z0, org.telegram.ui
             return true;
         } else {
             if (view instanceof org.telegram.ui.Cells.r2) {
-                if (!e10Var.f36510o0.g()) {
+                if (!e10Var.f36513o0.g()) {
                     org.telegram.ui.Cells.r2 r2Var = (org.telegram.ui.Cells.r2) view;
                     if (r2Var.S(f7)) {
-                        e10Var.f36504i0.f(r2Var);
+                        e10Var.f36507i0.f(r2Var);
                         return true;
                     }
                 }
@@ -494,11 +494,11 @@ public final class g implements v9, ru0, org.telegram.ui.web.z0, org.telegram.ui
 
     @Override
     public void dismiss() {
-        switch (this.f37149a) {
+        switch (this.f37152a) {
             case 7:
                 return;
             default:
-                ((s60) this.f37150b).f41381w.d(true);
+                ((s60) this.f37153b).f41384w.d(true);
                 return;
         }
     }
@@ -516,31 +516,31 @@ public final class g implements v9, ru0, org.telegram.ui.web.z0, org.telegram.ui
     @Override
     public void f(int i10, boolean z10) {
         boolean z11;
-        switch (this.f37149a) {
+        switch (this.f37152a) {
             case 6:
-                z5 z5Var = ((t5) this.f37150b).d;
-                z5Var.f43632b0 = i10;
+                z5 z5Var = ((t5) this.f37153b).d;
+                z5Var.f43635b0 = i10;
                 z5Var.H0(true);
                 return;
             case 11:
-                cc ccVar = ((ac) this.f37150b).f35340f;
-                ccVar.f35936y = i10;
+                cc ccVar = ((ac) this.f37153b).f35343f;
+                ccVar.f35939y = i10;
                 ccVar.d(true);
                 return;
             default:
-                av avVar = (av) this.f37150b;
-                if (avVar.f35431f[0].f43807f != i10) {
+                av avVar = (av) this.f37153b;
+                if (avVar.f35434f[0].f43810f != i10) {
                     if (i10 == avVar.e.getFirstTabId()) {
                         z11 = true;
                     } else {
                         z11 = false;
                     }
-                    avVar.f35435w = z11;
-                    zu zuVar = avVar.f35431f[1];
-                    zuVar.f43807f = i10;
+                    avVar.f35438w = z11;
+                    zu zuVar = avVar.f35434f[1];
+                    zuVar.f43810f = i10;
                     zuVar.setVisibility(0);
                     avVar.m0(true);
-                    avVar.f35433r = z10;
+                    avVar.f35436r = z10;
                     return;
                 }
                 return;
@@ -549,7 +549,7 @@ public final class g implements v9, ru0, org.telegram.ui.web.z0, org.telegram.ui
 
     @Override
     public boolean forceEnableVibration() {
-        switch (this.f37149a) {
+        switch (this.f37152a) {
             case 15:
                 return false;
             default:
@@ -565,17 +565,17 @@ public final class g implements v9, ru0, org.telegram.ui.web.z0, org.telegram.ui
     @Override
     public void g0() {
         if (AndroidUtilities.shouldShowClipboardToast()) {
-            ((q50) this.f37150b).l1().k(0L, 33, null, null, null, null);
+            ((q50) this.f37153b).l1().k(0L, 33, null, null, null, null);
         }
     }
 
     @Override
     public CharSequence getContentDescription() {
-        switch (this.f37149a) {
+        switch (this.f37152a) {
             case 3:
-                g4 g4Var = (g4) this.f37150b;
-                int i10 = g4Var.f37179b;
-                return String.valueOf(Math.round((g4Var.f37178a.getProgress() * (g4Var.f37180c - i10)) + i10));
+                g4 g4Var = (g4) this.f37153b;
+                int i10 = g4Var.f37182b;
+                return String.valueOf(Math.round((g4Var.f37181a.getProgress() * (g4Var.f37183c - i10)) + i10));
             case 4:
             default:
                 return " ";
@@ -586,7 +586,7 @@ public final class g implements v9, ru0, org.telegram.ui.web.z0, org.telegram.ui
 
     @Override
     public long getLongPressDuration() {
-        switch (this.f37149a) {
+        switch (this.f37152a) {
             case 15:
                 return ViewConfiguration.getLongPressTimeout();
             default:
@@ -596,7 +596,7 @@ public final class g implements v9, ru0, org.telegram.ui.web.z0, org.telegram.ui
 
     @Override
     public void h() {
-        ((e10) this.f37150b).f36504i0.finish();
+        ((e10) this.f37153b).f36507i0.finish();
     }
 
     @Override
@@ -606,7 +606,7 @@ public final class g implements v9, ru0, org.telegram.ui.web.z0, org.telegram.ui
 
     @Override
     public boolean ignoreHapticFeedbackSettings(float f7, float f10) {
-        switch (this.f37149a) {
+        switch (this.f37152a) {
             case 15:
                 return false;
             default:
@@ -616,7 +616,7 @@ public final class g implements v9, ru0, org.telegram.ui.web.z0, org.telegram.ui
 
     @Override
     public void j() {
-        vb vbVar = ((rb) this.f37150b).f41111n;
+        vb vbVar = ((rb) this.f37153b).f41114n;
         if (ApplicationLoader.isStandaloneBuild()) {
             LaunchActivity launchActivity = LaunchActivity.H1;
             if (launchActivity != null) {
@@ -632,16 +632,16 @@ public final class g implements v9, ru0, org.telegram.ui.web.z0, org.telegram.ui
     @Override
     public void j0(int i10, int i11, boolean z10) {
         tg.o oVar;
-        switch (this.f37149a) {
+        switch (this.f37152a) {
             case 18:
-                tg.o oVar2 = ((r10) this.f37150b).f41032c.f47073c;
+                tg.o oVar2 = ((r10) this.f37153b).f41035c.f47076c;
                 if (oVar2 != null) {
                     oVar2.I = i10;
                     return;
                 }
                 return;
             default:
-                if (i11 == 0 && (oVar = ((r10) this.f37150b).f41032c.f47073c) != null) {
+                if (i11 == 0 && (oVar = ((r10) this.f37153b).f41035c.f47076c) != null) {
                     oVar.H = i10;
                     return;
                 }
@@ -651,32 +651,32 @@ public final class g implements v9, ru0, org.telegram.ui.web.z0, org.telegram.ui
 
     @Override
     public void k(boolean z10) {
-        int i10 = this.f37149a;
+        int i10 = this.f37152a;
     }
 
     @Override
     public void k0(float f7) {
-        switch (this.f37149a) {
+        switch (this.f37152a) {
             case 6:
             case 11:
                 return;
             default:
-                av avVar = (av) this.f37150b;
+                av avVar = (av) this.f37153b;
                 int i10 = (f7 > 1.0f ? 1 : (f7 == 1.0f ? 0 : -1));
-                if (i10 != 0 || avVar.f35431f[1].getVisibility() == 0) {
-                    if (avVar.f35433r) {
-                        zu zuVar = avVar.f35431f[0];
+                if (i10 != 0 || avVar.f35434f[1].getVisibility() == 0) {
+                    if (avVar.f35436r) {
+                        zu zuVar = avVar.f35434f[0];
                         zuVar.setTranslationX((-f7) * zuVar.getMeasuredWidth());
-                        zu[] zuVarArr = avVar.f35431f;
-                        zuVarArr[1].setTranslationX(zuVarArr[0].getMeasuredWidth() - (f7 * avVar.f35431f[0].getMeasuredWidth()));
+                        zu[] zuVarArr = avVar.f35434f;
+                        zuVarArr[1].setTranslationX(zuVarArr[0].getMeasuredWidth() - (f7 * avVar.f35434f[0].getMeasuredWidth()));
                     } else {
-                        zu zuVar2 = avVar.f35431f[0];
+                        zu zuVar2 = avVar.f35434f[0];
                         zuVar2.setTranslationX(zuVar2.getMeasuredWidth() * f7);
-                        zu[] zuVarArr2 = avVar.f35431f;
-                        zuVarArr2[1].setTranslationX((f7 * zuVarArr2[0].getMeasuredWidth()) - avVar.f35431f[0].getMeasuredWidth());
+                        zu[] zuVarArr2 = avVar.f35434f;
+                        zuVarArr2[1].setTranslationX((f7 * zuVarArr2[0].getMeasuredWidth()) - avVar.f35434f[0].getMeasuredWidth());
                     }
                     if (i10 == 0) {
-                        zu[] zuVarArr3 = avVar.f35431f;
+                        zu[] zuVarArr3 = avVar.f35434f;
                         zu zuVar3 = zuVarArr3[0];
                         zuVarArr3[0] = zuVarArr3[1];
                         zuVarArr3[1] = zuVar3;
@@ -701,15 +701,15 @@ public final class g implements v9, ru0, org.telegram.ui.web.z0, org.telegram.ui
 
     @Override
     public void m0(MessageObject messageObject) {
-        o3 o3Var = ((l4) this.f37150b).f38779u0[0];
+        o3 o3Var = ((l4) this.f37153b).f38782u0[0];
         if (o3Var != null) {
-            o3Var.f39753b.I0(true);
+            o3Var.f39756b.I0(true);
         }
     }
 
     @Override
     public boolean needCancelTouchBySlopMove() {
-        switch (this.f37149a) {
+        switch (this.f37152a) {
             case 15:
                 return true;
             default:
@@ -719,11 +719,11 @@ public final class g implements v9, ru0, org.telegram.ui.web.z0, org.telegram.ui
 
     @Override
     public boolean needClickAt(View view, float f7, float f10) {
-        switch (this.f37149a) {
+        switch (this.f37152a) {
             case 15:
-                return ((ux) this.f37150b).E0.isInPreviewMode();
+                return ((ux) this.f37153b).E0.isInPreviewMode();
             default:
-                pg0 pg0Var = (pg0) this.f37150b;
+                pg0 pg0Var = (pg0) this.f37153b;
                 View view2 = null;
                 pg0Var.O = null;
                 int childCount = pg0Var.getChildCount() - 1;
@@ -746,7 +746,7 @@ public final class g implements v9, ru0, org.telegram.ui.web.z0, org.telegram.ui
 
     @Override
     public boolean needLongPress(float f7, float f10) {
-        switch (this.f37149a) {
+        switch (this.f37152a) {
             case 15:
                 return false;
             default:
@@ -756,7 +756,7 @@ public final class g implements v9, ru0, org.telegram.ui.web.z0, org.telegram.ui
 
     @Override
     public void o(float f7) {
-        ((e10) this.f37150b).f36504i0.e(f7);
+        ((e10) this.f37153b).f36507i0.e(f7);
     }
 
     @Override
@@ -767,9 +767,9 @@ public final class g implements v9, ru0, org.telegram.ui.web.z0, org.telegram.ui
     @Override
     public void onClickAt(View view, float f7, float f10) {
         org.telegram.ui.ActionBar.d5 d5Var;
-        switch (this.f37149a) {
+        switch (this.f37152a) {
             case 15:
-                d5Var = ((org.telegram.ui.ActionBar.n2) ((ux) this.f37150b).E0).parentLayout;
+                d5Var = ((org.telegram.ui.ActionBar.n2) ((ux) this.f37153b).E0).parentLayout;
                 ((ActionBarLayout) d5Var).r();
                 return;
             default:
@@ -779,27 +779,27 @@ public final class g implements v9, ru0, org.telegram.ui.web.z0, org.telegram.ui
 
     @Override
     public void onClickTouchDown(View view, float f7, float f10) {
-        int i10 = this.f37149a;
+        int i10 = this.f37152a;
     }
 
     @Override
     public void onClickTouchMove(View view, float f7, float f10) {
-        int i10 = this.f37149a;
+        int i10 = this.f37152a;
     }
 
     @Override
     public void onClickTouchUp(View view, float f7, float f10) {
-        int i10 = this.f37149a;
+        int i10 = this.f37152a;
     }
 
     @Override
     public boolean onDown(MotionEvent motionEvent) {
-        gj gjVar = (gj) this.f37150b;
-        View view = gjVar.f37338a;
+        gj gjVar = (gj) this.f37153b;
+        View view = gjVar.f37341a;
         if (view != null) {
             view.setPressed(true);
-            gjVar.f37338a.setSelected(true);
-            gjVar.f37338a.drawableHotspotChanged(motionEvent.getX(), motionEvent.getY());
+            gjVar.f37341a.setSelected(true);
+            gjVar.f37341a.drawableHotspotChanged(motionEvent.getX(), motionEvent.getY());
         }
         return true;
     }
@@ -812,26 +812,26 @@ public final class g implements v9, ru0, org.telegram.ui.web.z0, org.telegram.ui
     @Override
     public void onLongPress(MotionEvent motionEvent) {
         boolean z10;
-        gj gjVar = (gj) this.f37150b;
-        qn qnVar = gjVar.f37345w;
-        if (gjVar.f37338a != null) {
-            qnVar.Q8 = org.telegram.ui.Components.o9.b(qnVar, gjVar.v, qnVar.T5, qnVar.d(), qnVar.f40673ea);
+        gj gjVar = (gj) this.f37153b;
+        qn qnVar = gjVar.f37348w;
+        if (gjVar.f37341a != null) {
+            qnVar.Q8 = org.telegram.ui.Components.o9.b(qnVar, gjVar.v, qnVar.T5, qnVar.d(), qnVar.f40676ea);
             org.telegram.ui.ActionBar.m1 m1Var = qnVar.Q8;
             if (m1Var != null) {
-                gjVar.f37339b = m1Var;
+                gjVar.f37342b = m1Var;
                 m1Var.setOnDismissListener(new f0(gjVar, 2));
-                qnVar.f40901x0.B0();
-                qnVar.f40926z0.R = false;
+                qnVar.f40904x0.B0();
+                qnVar.f40929z0.R = false;
                 View view = gjVar.v;
                 qnVar.tb(view);
-                if (view != qnVar.f40725j1) {
+                if (view != qnVar.f40728j1) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
                 qnVar.j8(false, z10, 0.3f);
                 qnVar.m9(false);
-                bl blVar = qnVar.f40929z3;
+                bl blVar = qnVar.f40932z3;
                 if (blVar != null) {
                     blVar.e(1, true);
                 }
@@ -849,11 +849,11 @@ public final class g implements v9, ru0, org.telegram.ui.web.z0, org.telegram.ui
 
     @Override
     public void onLongPressCancelled(View view, float f7, float f10) {
-        switch (this.f37149a) {
+        switch (this.f37152a) {
             case 15:
                 return;
             default:
-                pg0 pg0Var = (pg0) this.f37150b;
+                pg0 pg0Var = (pg0) this.f37153b;
                 pg0.k(pg0Var, view, f7, f10);
                 pg0.m(pg0Var, f7, false, true);
                 AndroidUtilities.runOnUIThread(pg0Var.H, 450L);
@@ -866,11 +866,11 @@ public final class g implements v9, ru0, org.telegram.ui.web.z0, org.telegram.ui
 
     @Override
     public void onLongPressFinish(View view, float f7, float f10) {
-        switch (this.f37149a) {
+        switch (this.f37152a) {
             case 15:
                 return;
             default:
-                pg0 pg0Var = (pg0) this.f37150b;
+                pg0 pg0Var = (pg0) this.f37153b;
                 pg0.k(pg0Var, view, f7, f10);
                 pg0.m(pg0Var, f7, false, true);
                 AndroidUtilities.runOnUIThread(pg0Var.H, 450L);
@@ -887,11 +887,11 @@ public final class g implements v9, ru0, org.telegram.ui.web.z0, org.telegram.ui
 
     @Override
     public void onLongPressMove(View view, MotionEvent motionEvent, float f7, float f10, float f11, float f12) {
-        switch (this.f37149a) {
+        switch (this.f37152a) {
             case 15:
                 return;
             default:
-                pg0 pg0Var = (pg0) this.f37150b;
+                pg0 pg0Var = (pg0) this.f37153b;
                 pg0.k(pg0Var, view, f7, f10);
                 pg0.m(pg0Var, f7, false, false);
                 pg0Var.invalidate();
@@ -901,11 +901,11 @@ public final class g implements v9, ru0, org.telegram.ui.web.z0, org.telegram.ui
 
     @Override
     public boolean onLongPressRequestedAt(View view, float f7, float f10) {
-        switch (this.f37149a) {
+        switch (this.f37152a) {
             case 15:
                 return false;
             default:
-                pg0 pg0Var = (pg0) this.f37150b;
+                pg0 pg0Var = (pg0) this.f37153b;
                 pg0.k(pg0Var, view, f7, f10);
                 AndroidUtilities.cancelRunOnUIThread(pg0Var.H);
                 pg0.l(pg0Var);
@@ -924,8 +924,8 @@ public final class g implements v9, ru0, org.telegram.ui.web.z0, org.telegram.ui
     @Override
     public boolean onSingleTapUp(MotionEvent motionEvent) {
         View view;
-        gj gjVar = (gj) this.f37150b;
-        if (!gjVar.e && (view = gjVar.f37338a) != null) {
+        gj gjVar = (gj) this.f37153b;
+        if (!gjVar.e && (view = gjVar.f37341a) != null) {
             view.callOnClick();
             gjVar.e = true;
             return true;
@@ -945,7 +945,7 @@ public final class g implements v9, ru0, org.telegram.ui.web.z0, org.telegram.ui
 
     @Override
     public int r0(int i10) {
-        switch (this.f37149a) {
+        switch (this.f37152a) {
             case 18:
                 return 0;
             default:
@@ -956,7 +956,7 @@ public final class g implements v9, ru0, org.telegram.ui.web.z0, org.telegram.ui
     @Override
     public void s0(v6 v6Var, bi.b bVar, boolean z10) {
         HashSet hashSet;
-        c7 c7Var = ((a7) this.f37150b).e;
+        c7 c7Var = ((a7) this.f37153b).e;
         if (v6Var != null) {
             if (c7Var.Y.f4435j.size() <= 0 && !z10) {
                 if (c7Var.H > 0 && c7Var.getParentActivity() != null) {
@@ -967,25 +967,25 @@ public final class g implements v9, ru0, org.telegram.ui.web.z0, org.telegram.ui
                     Object obj = sparseArray.get(0);
                     ArrayList arrayList = cVar.d;
                     if (obj != null) {
-                        arrayList.addAll(((w6) sparseArray.get(0)).f42478b);
+                        arrayList.addAll(((w6) sparseArray.get(0)).f42481b);
                     }
                     if (sparseArray.get(1) != null) {
-                        arrayList.addAll(((w6) sparseArray.get(1)).f42478b);
+                        arrayList.addAll(((w6) sparseArray.get(1)).f42481b);
                     }
                     Object obj2 = sparseArray.get(2);
                     ArrayList arrayList2 = cVar.e;
                     if (obj2 != null) {
-                        arrayList2.addAll(((w6) sparseArray.get(2)).f42478b);
+                        arrayList2.addAll(((w6) sparseArray.get(2)).f42481b);
                     }
                     Object obj3 = sparseArray.get(3);
                     ArrayList arrayList3 = cVar.f4432f;
                     if (obj3 != null) {
-                        arrayList3.addAll(((w6) sparseArray.get(3)).f42478b);
+                        arrayList3.addAll(((w6) sparseArray.get(3)).f42481b);
                     }
                     Object obj4 = sparseArray.get(4);
                     ArrayList arrayList4 = cVar.f4433g;
                     if (obj4 != null) {
-                        arrayList4.addAll(((w6) sparseArray.get(4)).f42478b);
+                        arrayList4.addAll(((w6) sparseArray.get(4)).f42481b);
                     }
                     int i10 = 0;
                     while (true) {
@@ -1037,11 +1037,11 @@ public final class g implements v9, ru0, org.telegram.ui.web.z0, org.telegram.ui
             bi.c cVar2 = c7Var.Y;
             HashSet hashSet2 = cVar2.f4435j;
             HashSet hashSet3 = cVar2.f4437l;
-            long j10 = v6Var.f42114a;
+            long j10 = v6Var.f42117a;
             SparseArray sparseArray2 = v6Var.d;
             if (!hashSet3.contains(Long.valueOf(j10))) {
                 for (int i14 = 0; i14 < sparseArray2.size(); i14++) {
-                    ArrayList arrayList5 = ((w6) sparseArray2.valueAt(i14)).f42478b;
+                    ArrayList arrayList5 = ((w6) sparseArray2.valueAt(i14)).f42481b;
                     int size2 = arrayList5.size();
                     int i15 = 0;
                     while (i15 < size2) {
@@ -1055,7 +1055,7 @@ public final class g implements v9, ru0, org.telegram.ui.web.z0, org.telegram.ui
                 }
             } else {
                 for (int i16 = 0; i16 < sparseArray2.size(); i16++) {
-                    ArrayList arrayList6 = ((w6) sparseArray2.valueAt(i16)).f42478b;
+                    ArrayList arrayList6 = ((w6) sparseArray2.valueAt(i16)).f42481b;
                     int size3 = arrayList6.size();
                     int i17 = 0;
                     while (i17 < size3) {
@@ -1080,24 +1080,24 @@ public final class g implements v9, ru0, org.telegram.ui.web.z0, org.telegram.ui
 
     @Override
     public void t0(int i10, int i11) {
-        ((s4.g0) this.f37150b).t(i10, i11);
+        ((s4.g0) this.f37153b).t(i10, i11);
     }
 
     @Override
     public void u() {
-        int i10 = this.f37149a;
+        int i10 = this.f37152a;
     }
 
     @Override
     public void v() {
-        switch (this.f37149a) {
+        switch (this.f37152a) {
             case 3:
                 return;
             case 4:
             default:
                 return;
             case 5:
-                ((n5) this.f37150b).f39413b.N();
+                ((n5) this.f37153b).f39416b.N();
                 return;
         }
     }
@@ -1119,12 +1119,12 @@ public final class g implements v9, ru0, org.telegram.ui.web.z0, org.telegram.ui
 
     @Override
     public void x() {
-        int i10 = this.f37149a;
+        int i10 = this.f37152a;
     }
 
     @Override
     public void y(int i10, int i11) {
-        ((s4.g0) this.f37150b).p(i10, i11);
+        ((s4.g0) this.f37153b).p(i10, i11);
     }
 
     @Override
@@ -1135,14 +1135,14 @@ public final class g implements v9, ru0, org.telegram.ui.web.z0, org.telegram.ui
     @Override
     public void d(float f7, float f10, int i10, View view) {
         MessageObject messageObject;
-        vb vbVar = (vb) this.f37150b;
+        vb vbVar = (vb) this.f37153b;
         if ((view instanceof org.telegram.ui.Cells.w0) && (messageObject = ((org.telegram.ui.Cells.w0) view).getMessageObject()) != null) {
             long j10 = messageObject.actionDeleteGroupEventId;
             if (j10 != -1) {
-                if (vbVar.f42179p0.contains(Long.valueOf(j10))) {
-                    vbVar.f42179p0.remove(Long.valueOf(messageObject.actionDeleteGroupEventId));
+                if (vbVar.f42182p0.contains(Long.valueOf(j10))) {
+                    vbVar.f42182p0.remove(Long.valueOf(messageObject.actionDeleteGroupEventId));
                 } else {
-                    vbVar.f42179p0.add(Long.valueOf(messageObject.actionDeleteGroupEventId));
+                    vbVar.f42182p0.add(Long.valueOf(messageObject.actionDeleteGroupEventId));
                 }
                 vbVar.W0(true);
                 vbVar.R0();

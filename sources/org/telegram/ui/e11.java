@@ -18,18 +18,18 @@ public abstract class e11 extends org.telegram.ui.Components.ga implements Notif
     public final Rect F;
     public final qy0 G;
     public final di.a h;
-    public final org.telegram.ui.Components.d91 f36519n;
-    public final ci.w6 f36520r;
-    public final d11 f36521s;
+    public final org.telegram.ui.Components.d91 f36522n;
+    public final ci.w6 f36523r;
+    public final d11 f36524s;
     public int v;
-    public boolean f36522w;
-    public ValueAnimator f36523x;
-    public float f36524y;
+    public boolean f36525w;
+    public ValueAnimator f36526x;
+    public float f36527y;
 
     public e11(Context context, org.telegram.ui.Components.lw0 lw0Var, ci.w6 w6Var, final org.telegram.ui.Components.os0 os0Var) {
         super(context, lw0Var);
         this.F = new Rect();
-        this.f36520r = w6Var;
+        this.f36523r = w6Var;
         Objects.requireNonNull(w6Var);
         this.G = new qy0(w6Var, 7);
         final org.telegram.ui.Components.ps0 ps0Var = (org.telegram.ui.Components.ps0) this;
@@ -37,14 +37,14 @@ public abstract class e11 extends org.telegram.ui.Components.ga implements Notif
         this.h = aVar;
         aVar.setAllowDisallowInterceptTouch(true);
         d11 d11Var = new d11(ps0Var);
-        this.f36521s = d11Var;
-        d11Var.f36220a = w6Var.a();
+        this.f36524s = d11Var;
+        d11Var.f36223a = w6Var.a();
         aVar.setAdapter(d11Var);
         aVar.setTranslationY(AndroidUtilities.dp(42.0f));
         org.telegram.ui.Components.d91 n10 = aVar.n(10, true);
-        this.f36519n = n10;
-        n10.g(org.telegram.ui.ActionBar.h6.Gh, org.telegram.ui.ActionBar.h6.G6, org.telegram.ui.ActionBar.h6.Eh, org.telegram.ui.ActionBar.h6.Hh, org.telegram.ui.ActionBar.h6.f21269s8);
-        n10.f25412r = 12;
+        this.f36522n = n10;
+        n10.g(org.telegram.ui.ActionBar.h6.Gh, org.telegram.ui.ActionBar.h6.G6, org.telegram.ui.ActionBar.h6.Eh, org.telegram.ui.ActionBar.h6.Hh, org.telegram.ui.ActionBar.h6.f21272s8);
+        n10.f25415r = 12;
         n10.setPreTabClick(new Utilities.Callback2Return() {
             @Override
             public final Object run(Object obj, Object obj2) {
@@ -53,24 +53,24 @@ public abstract class e11 extends org.telegram.ui.Components.ga implements Notif
                 switch (r3) {
                     case 0:
                         Integer num2 = (Integer) obj2;
-                        if (ps0Var.f36522w) {
+                        if (ps0Var.f36525w) {
                             return Boolean.TRUE;
                         }
                         if (num.intValue() == -1) {
                             org.telegram.ui.Components.os0 os0Var2 = os0Var;
-                            org.telegram.ui.Components.f5.R(os0Var2.f29135a, os0Var2.f29136b, os0Var2.f29137c, new org.telegram.ui.Components.tv(os0Var2, 20));
+                            org.telegram.ui.Components.f5.R(os0Var2.f29138a, os0Var2.f29139b, os0Var2.f29140c, new org.telegram.ui.Components.tv(os0Var2, 20));
                             return Boolean.TRUE;
                         }
                         return Boolean.FALSE;
                     default:
                         View view = (View) obj2;
-                        if (num.intValue() != -1 && num.intValue() != 0 && !ps0Var.f36522w) {
+                        if (num.intValue() != -1 && num.intValue() != 0 && !ps0Var.f36525w) {
                             final int intValue = num.intValue();
                             final org.telegram.ui.Components.os0 os0Var3 = os0Var;
                             org.telegram.ui.Components.uv0 uv0Var = os0Var3.d;
-                            org.telegram.ui.ActionBar.n2 n2Var = uv0Var.f31071v1;
+                            org.telegram.ui.ActionBar.n2 n2Var = uv0Var.f31074v1;
                             storiesController = uv0Var.getStoriesController();
-                            if (storiesController.i(uv0Var.f31046j1)) {
+                            if (storiesController.i(uv0Var.f31049j1)) {
                                 org.telegram.ui.Components.i80 H = org.telegram.ui.Components.i80.H(n2Var, view);
                                 H.W(new org.telegram.ui.Components.ns0(os0Var3));
                                 H.c(R.drawable.menu_add_stories, LocaleController.getString(R.string.StoriesAlbumMenuAddStories), new Runnable() {
@@ -79,41 +79,41 @@ public abstract class e11 extends org.telegram.ui.Components.ga implements Notif
                                         switch (r3) {
                                             case 0:
                                                 uv0 uv0Var2 = os0Var3.d;
-                                                uv0Var2.Q0(uv0Var2.f31071v1, uv0Var2.f31046j1, intValue);
+                                                uv0Var2.Q0(uv0Var2.f31074v1, uv0Var2.f31049j1, intValue);
                                                 return;
                                             case 1:
                                                 uv0 uv0Var3 = os0Var3.d;
-                                                uv0Var3.S0(uv0Var3.f31071v1, uv0Var3.f31046j1, intValue);
+                                                uv0Var3.S0(uv0Var3.f31074v1, uv0Var3.f31049j1, intValue);
                                                 return;
                                             case 2:
                                                 os0Var3.d.f1(intValue);
                                                 return;
                                             default:
                                                 uv0 uv0Var4 = os0Var3.d;
-                                                uv0Var4.R0(uv0Var4.f31071v1, uv0Var4.f31046j1, intValue);
+                                                uv0Var4.R0(uv0Var4.f31074v1, uv0Var4.f31049j1, intValue);
                                                 return;
                                         }
                                     }
                                 }, false);
-                                uv0Var.x(H, n2Var, uv0Var.f31046j1, intValue);
+                                uv0Var.x(H, n2Var, uv0Var.f31049j1, intValue);
                                 H.c(R.drawable.msg_edit, LocaleController.getString(R.string.StoriesAlbumMenuEditName), new Runnable() {
                                     @Override
                                     public final void run() {
                                         switch (r3) {
                                             case 0:
                                                 uv0 uv0Var2 = os0Var3.d;
-                                                uv0Var2.Q0(uv0Var2.f31071v1, uv0Var2.f31046j1, intValue);
+                                                uv0Var2.Q0(uv0Var2.f31074v1, uv0Var2.f31049j1, intValue);
                                                 return;
                                             case 1:
                                                 uv0 uv0Var3 = os0Var3.d;
-                                                uv0Var3.S0(uv0Var3.f31071v1, uv0Var3.f31046j1, intValue);
+                                                uv0Var3.S0(uv0Var3.f31074v1, uv0Var3.f31049j1, intValue);
                                                 return;
                                             case 2:
                                                 os0Var3.d.f1(intValue);
                                                 return;
                                             default:
                                                 uv0 uv0Var4 = os0Var3.d;
-                                                uv0Var4.R0(uv0Var4.f31071v1, uv0Var4.f31046j1, intValue);
+                                                uv0Var4.R0(uv0Var4.f31074v1, uv0Var4.f31049j1, intValue);
                                                 return;
                                         }
                                     }
@@ -124,18 +124,18 @@ public abstract class e11 extends org.telegram.ui.Components.ga implements Notif
                                         switch (r3) {
                                             case 0:
                                                 uv0 uv0Var2 = os0Var3.d;
-                                                uv0Var2.Q0(uv0Var2.f31071v1, uv0Var2.f31046j1, intValue);
+                                                uv0Var2.Q0(uv0Var2.f31074v1, uv0Var2.f31049j1, intValue);
                                                 return;
                                             case 1:
                                                 uv0 uv0Var3 = os0Var3.d;
-                                                uv0Var3.S0(uv0Var3.f31071v1, uv0Var3.f31046j1, intValue);
+                                                uv0Var3.S0(uv0Var3.f31074v1, uv0Var3.f31049j1, intValue);
                                                 return;
                                             case 2:
                                                 os0Var3.d.f1(intValue);
                                                 return;
                                             default:
                                                 uv0 uv0Var4 = os0Var3.d;
-                                                uv0Var4.R0(uv0Var4.f31071v1, uv0Var4.f31046j1, intValue);
+                                                uv0Var4.R0(uv0Var4.f31074v1, uv0Var4.f31049j1, intValue);
                                                 return;
                                         }
                                     }
@@ -146,18 +146,18 @@ public abstract class e11 extends org.telegram.ui.Components.ga implements Notif
                                         switch (r3) {
                                             case 0:
                                                 uv0 uv0Var2 = os0Var3.d;
-                                                uv0Var2.Q0(uv0Var2.f31071v1, uv0Var2.f31046j1, intValue);
+                                                uv0Var2.Q0(uv0Var2.f31074v1, uv0Var2.f31049j1, intValue);
                                                 return;
                                             case 1:
                                                 uv0 uv0Var3 = os0Var3.d;
-                                                uv0Var3.S0(uv0Var3.f31071v1, uv0Var3.f31046j1, intValue);
+                                                uv0Var3.S0(uv0Var3.f31074v1, uv0Var3.f31049j1, intValue);
                                                 return;
                                             case 2:
                                                 os0Var3.d.f1(intValue);
                                                 return;
                                             default:
                                                 uv0 uv0Var4 = os0Var3.d;
-                                                uv0Var4.R0(uv0Var4.f31071v1, uv0Var4.f31046j1, intValue);
+                                                uv0Var4.R0(uv0Var4.f31074v1, uv0Var4.f31049j1, intValue);
                                                 return;
                                         }
                                     }
@@ -178,24 +178,24 @@ public abstract class e11 extends org.telegram.ui.Components.ga implements Notif
                 switch (r3) {
                     case 0:
                         Integer num2 = (Integer) obj2;
-                        if (ps0Var.f36522w) {
+                        if (ps0Var.f36525w) {
                             return Boolean.TRUE;
                         }
                         if (num.intValue() == -1) {
                             org.telegram.ui.Components.os0 os0Var2 = os0Var;
-                            org.telegram.ui.Components.f5.R(os0Var2.f29135a, os0Var2.f29136b, os0Var2.f29137c, new org.telegram.ui.Components.tv(os0Var2, 20));
+                            org.telegram.ui.Components.f5.R(os0Var2.f29138a, os0Var2.f29139b, os0Var2.f29140c, new org.telegram.ui.Components.tv(os0Var2, 20));
                             return Boolean.TRUE;
                         }
                         return Boolean.FALSE;
                     default:
                         View view = (View) obj2;
-                        if (num.intValue() != -1 && num.intValue() != 0 && !ps0Var.f36522w) {
+                        if (num.intValue() != -1 && num.intValue() != 0 && !ps0Var.f36525w) {
                             final int intValue = num.intValue();
                             final org.telegram.ui.Components.os0 os0Var3 = os0Var;
                             org.telegram.ui.Components.uv0 uv0Var = os0Var3.d;
-                            org.telegram.ui.ActionBar.n2 n2Var = uv0Var.f31071v1;
+                            org.telegram.ui.ActionBar.n2 n2Var = uv0Var.f31074v1;
                             storiesController = uv0Var.getStoriesController();
-                            if (storiesController.i(uv0Var.f31046j1)) {
+                            if (storiesController.i(uv0Var.f31049j1)) {
                                 org.telegram.ui.Components.i80 H = org.telegram.ui.Components.i80.H(n2Var, view);
                                 H.W(new org.telegram.ui.Components.ns0(os0Var3));
                                 H.c(R.drawable.menu_add_stories, LocaleController.getString(R.string.StoriesAlbumMenuAddStories), new Runnable() {
@@ -204,41 +204,41 @@ public abstract class e11 extends org.telegram.ui.Components.ga implements Notif
                                         switch (r3) {
                                             case 0:
                                                 uv0 uv0Var2 = os0Var3.d;
-                                                uv0Var2.Q0(uv0Var2.f31071v1, uv0Var2.f31046j1, intValue);
+                                                uv0Var2.Q0(uv0Var2.f31074v1, uv0Var2.f31049j1, intValue);
                                                 return;
                                             case 1:
                                                 uv0 uv0Var3 = os0Var3.d;
-                                                uv0Var3.S0(uv0Var3.f31071v1, uv0Var3.f31046j1, intValue);
+                                                uv0Var3.S0(uv0Var3.f31074v1, uv0Var3.f31049j1, intValue);
                                                 return;
                                             case 2:
                                                 os0Var3.d.f1(intValue);
                                                 return;
                                             default:
                                                 uv0 uv0Var4 = os0Var3.d;
-                                                uv0Var4.R0(uv0Var4.f31071v1, uv0Var4.f31046j1, intValue);
+                                                uv0Var4.R0(uv0Var4.f31074v1, uv0Var4.f31049j1, intValue);
                                                 return;
                                         }
                                     }
                                 }, false);
-                                uv0Var.x(H, n2Var, uv0Var.f31046j1, intValue);
+                                uv0Var.x(H, n2Var, uv0Var.f31049j1, intValue);
                                 H.c(R.drawable.msg_edit, LocaleController.getString(R.string.StoriesAlbumMenuEditName), new Runnable() {
                                     @Override
                                     public final void run() {
                                         switch (r3) {
                                             case 0:
                                                 uv0 uv0Var2 = os0Var3.d;
-                                                uv0Var2.Q0(uv0Var2.f31071v1, uv0Var2.f31046j1, intValue);
+                                                uv0Var2.Q0(uv0Var2.f31074v1, uv0Var2.f31049j1, intValue);
                                                 return;
                                             case 1:
                                                 uv0 uv0Var3 = os0Var3.d;
-                                                uv0Var3.S0(uv0Var3.f31071v1, uv0Var3.f31046j1, intValue);
+                                                uv0Var3.S0(uv0Var3.f31074v1, uv0Var3.f31049j1, intValue);
                                                 return;
                                             case 2:
                                                 os0Var3.d.f1(intValue);
                                                 return;
                                             default:
                                                 uv0 uv0Var4 = os0Var3.d;
-                                                uv0Var4.R0(uv0Var4.f31071v1, uv0Var4.f31046j1, intValue);
+                                                uv0Var4.R0(uv0Var4.f31074v1, uv0Var4.f31049j1, intValue);
                                                 return;
                                         }
                                     }
@@ -249,18 +249,18 @@ public abstract class e11 extends org.telegram.ui.Components.ga implements Notif
                                         switch (r3) {
                                             case 0:
                                                 uv0 uv0Var2 = os0Var3.d;
-                                                uv0Var2.Q0(uv0Var2.f31071v1, uv0Var2.f31046j1, intValue);
+                                                uv0Var2.Q0(uv0Var2.f31074v1, uv0Var2.f31049j1, intValue);
                                                 return;
                                             case 1:
                                                 uv0 uv0Var3 = os0Var3.d;
-                                                uv0Var3.S0(uv0Var3.f31071v1, uv0Var3.f31046j1, intValue);
+                                                uv0Var3.S0(uv0Var3.f31074v1, uv0Var3.f31049j1, intValue);
                                                 return;
                                             case 2:
                                                 os0Var3.d.f1(intValue);
                                                 return;
                                             default:
                                                 uv0 uv0Var4 = os0Var3.d;
-                                                uv0Var4.R0(uv0Var4.f31071v1, uv0Var4.f31046j1, intValue);
+                                                uv0Var4.R0(uv0Var4.f31074v1, uv0Var4.f31049j1, intValue);
                                                 return;
                                         }
                                     }
@@ -271,18 +271,18 @@ public abstract class e11 extends org.telegram.ui.Components.ga implements Notif
                                         switch (r3) {
                                             case 0:
                                                 uv0 uv0Var2 = os0Var3.d;
-                                                uv0Var2.Q0(uv0Var2.f31071v1, uv0Var2.f31046j1, intValue);
+                                                uv0Var2.Q0(uv0Var2.f31074v1, uv0Var2.f31049j1, intValue);
                                                 return;
                                             case 1:
                                                 uv0 uv0Var3 = os0Var3.d;
-                                                uv0Var3.S0(uv0Var3.f31071v1, uv0Var3.f31046j1, intValue);
+                                                uv0Var3.S0(uv0Var3.f31074v1, uv0Var3.f31049j1, intValue);
                                                 return;
                                             case 2:
                                                 os0Var3.d.f1(intValue);
                                                 return;
                                             default:
                                                 uv0 uv0Var4 = os0Var3.d;
-                                                uv0Var4.R0(uv0Var4.f31071v1, uv0Var4.f31046j1, intValue);
+                                                uv0Var4.R0(uv0Var4.f31074v1, uv0Var4.f31049j1, intValue);
                                                 return;
                                         }
                                     }
@@ -301,16 +301,16 @@ public abstract class e11 extends org.telegram.ui.Components.ga implements Notif
 
     public final void a() {
         int i10;
-        org.telegram.ui.Components.d91 d91Var = this.f36519n;
+        org.telegram.ui.Components.d91 d91Var = this.f36522n;
         if (d91Var != null) {
             i10 = d91Var.getCurrentTabId();
         } else {
             i10 = 0;
         }
-        ci.w6 w6Var = this.f36520r;
+        ci.w6 w6Var = this.f36523r;
         boolean a2 = w6Var.a();
-        d11 d11Var = this.f36521s;
-        d11Var.f36220a = a2;
+        d11 d11Var = this.f36524s;
+        d11Var.f36223a = a2;
         this.h.o(true);
         c(!w6Var.h.isEmpty(), true, false);
         int i11 = this.v;
@@ -332,35 +332,35 @@ public abstract class e11 extends org.telegram.ui.Components.ga implements Notif
         }
         this.E = z10;
         setEnabled(z10);
-        ValueAnimator valueAnimator = this.f36523x;
+        ValueAnimator valueAnimator = this.f36526x;
         if (valueAnimator != null) {
             valueAnimator.cancel();
-            this.f36523x = null;
+            this.f36526x = null;
         }
         float f7 = 0.0f;
         if (!z11) {
             if (z10) {
                 f7 = 1.0f;
             }
-            this.f36524y = f7;
+            this.f36527y = f7;
             b();
             return;
         }
-        float f10 = this.f36524y;
+        float f10 = this.f36527y;
         if (z10) {
             f7 = 1.0f;
         }
         ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, f7);
-        this.f36523x = ofFloat;
+        this.f36526x = ofFloat;
         ofFloat.setDuration(480L);
-        this.f36523x.setInterpolator(org.telegram.ui.Components.bs.h);
-        this.f36523x.addUpdateListener(new c11(this, 0));
-        this.f36523x.start();
+        this.f36526x.setInterpolator(org.telegram.ui.Components.bs.h);
+        this.f36526x.addUpdateListener(new c11(this, 0));
+        this.f36526x.start();
     }
 
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        if (i10 == NotificationCenter.storyAlbumsCollectionsUpdate && ((Long) objArr[0]).longValue() == this.f36520r.f6119b) {
+        if (i10 == NotificationCenter.storyAlbumsCollectionsUpdate && ((Long) objArr[0]).longValue() == this.f36523r.f6119b) {
             a();
         }
     }
@@ -374,23 +374,23 @@ public abstract class e11 extends org.telegram.ui.Components.ga implements Notif
     }
 
     public int getCurrentAlbumId() {
-        return this.f36521s.f(this.f36519n.getCurrentPosition());
+        return this.f36524s.f(this.f36522n.getCurrentPosition());
     }
 
     public float getVisibilityFactor() {
-        return this.f36524y;
+        return this.f36527y;
     }
 
     public float getVisualHeight() {
-        return getMeasuredHeight() * this.f36524y;
+        return getMeasuredHeight() * this.f36527y;
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        ci.w6 w6Var = this.f36520r;
+        ci.w6 w6Var = this.f36523r;
         NotificationCenter.getInstance(w6Var.f6118a).addObserver(this, NotificationCenter.storyAlbumsCollectionsUpdate);
-        if (this.E != w6Var.h.isEmpty() && this.f36521s.f36220a == w6Var.a()) {
+        if (this.E != w6Var.h.isEmpty() && this.f36524s.f36223a == w6Var.a()) {
             return;
         }
         a();
@@ -399,7 +399,7 @@ public abstract class e11 extends org.telegram.ui.Components.ga implements Notif
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        NotificationCenter.getInstance(this.f36520r.f6118a).removeObserver(this, NotificationCenter.storyAlbumsCollectionsUpdate);
+        NotificationCenter.getInstance(this.f36523r.f6118a).removeObserver(this, NotificationCenter.storyAlbumsCollectionsUpdate);
     }
 
     @Override
@@ -411,7 +411,7 @@ public abstract class e11 extends org.telegram.ui.Components.ga implements Notif
     }
 
     public void setInitialTabId(int i10) {
-        if (this.f36521s.i(i10) != -1) {
+        if (this.f36524s.i(i10) != -1) {
             AndroidUtilities.runOnUIThread(new a11(this, i10, 0), 500L);
         } else {
             this.v = i10;
@@ -421,14 +421,14 @@ public abstract class e11 extends org.telegram.ui.Components.ga implements Notif
     public void setReorderingAlbums(boolean z10) {
         float f7;
         float f10;
-        if (this.f36522w != z10) {
-            this.f36522w = z10;
-            org.telegram.ui.Components.d91 d91Var = this.f36519n;
+        if (this.f36525w != z10) {
+            this.f36525w = z10;
+            org.telegram.ui.Components.d91 d91Var = this.f36522n;
             d91Var.setReordering(z10);
-            boolean z11 = this.f36522w;
+            boolean z11 = this.f36525w;
             org.telegram.ui.Components.ps0 ps0Var = (org.telegram.ui.Components.ps0) this;
             org.telegram.ui.Components.uv0 uv0Var = ps0Var.H;
-            TextView textView = uv0Var.f31058q0;
+            TextView textView = uv0Var.f31061q0;
             textView.setVisibility(0);
             ViewPropertyAnimator animate = textView.animate();
             float f11 = 1.0f;
@@ -459,11 +459,11 @@ public abstract class e11 extends org.telegram.ui.Components.ga implements Notif
             }
             if (!z10) {
                 AndroidUtilities.cancelRunOnUIThread(this.G);
-                ci.w6 w6Var = this.f36520r;
+                ci.w6 w6Var = this.f36523r;
                 w6Var.e();
                 w6Var.f(false);
                 int currentPosition = d91Var.getCurrentPosition();
-                d11 d11Var = this.f36521s;
+                d11 d11Var = this.f36524s;
                 int f12 = d11Var.f(currentPosition);
                 this.h.o(true);
                 int i10 = d11Var.i(f12);

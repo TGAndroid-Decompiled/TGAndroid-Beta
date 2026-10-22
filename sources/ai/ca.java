@@ -65,12 +65,12 @@ public final class ca {
         kcVar.c(R.raw.stars_topup, new String[0]);
         org.telegram.ui.Components.jc jcVar = new org.telegram.ui.Components.jc(t10, n2Var.getResourceProvider());
         this.f1094f = jcVar;
-        jcVar.f27492b = 3000L;
+        jcVar.f27495b = 3000L;
         jcVar.setColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Gi, n2Var.getResourceProvider()));
         org.telegram.ui.Components.oc ocVar = new org.telegram.ui.Components.oc(t10, n2Var.getResourceProvider(), true, false);
         this.e = ocVar;
         ocVar.e(LocaleController.getString(R.string.StarsSentUndo));
-        ocVar.f28983a = new Runnable(this) {
+        ocVar.f28986a = new Runnable(this) {
             public final ca f1050b;
 
             {
@@ -106,7 +106,7 @@ public final class ca {
         kcVar.setButton(ocVar);
         org.telegram.ui.Components.qc b10 = org.telegram.ui.Components.xc.a0(n2Var).b(kcVar, -1);
         this.f1093c = b10;
-        b10.f29539r = false;
+        b10.f29542r = false;
         b10.k(true);
         b10.v = new Runnable(this) {
             public final ca f1050b;

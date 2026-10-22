@@ -1,25 +1,25 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.tl.TL_account;
+import android.util.SparseArray;
 public final class hb implements Runnable {
-    public final int f18525a;
-    public final MessagesController f18526b;
-    public final TL_account.TL_webBrowserSettings f18527c;
+    public final int f18512a;
+    public final MessagesController f18513b;
+    public final SparseArray f18514c;
 
-    public hb(MessagesController messagesController, TL_account.TL_webBrowserSettings tL_webBrowserSettings, int i10) {
-        this.f18525a = i10;
-        this.f18526b = messagesController;
-        this.f18527c = tL_webBrowserSettings;
+    public hb(MessagesController messagesController, SparseArray sparseArray, int i10) {
+        this.f18512a = i10;
+        this.f18513b = messagesController;
+        this.f18514c = sparseArray;
     }
 
     @Override
     public final void run() {
-        switch (this.f18525a) {
+        switch (this.f18512a) {
             case 0:
-                this.f18526b.lambda$loadWebBrowserConfig$513(this.f18527c);
+                this.f18513b.lambda$getDifference$351(this.f18514c);
                 return;
             default:
-                this.f18526b.lambda$loadWebBrowserConfig$511(this.f18527c);
+                this.f18513b.lambda$getChannelDifference$338(this.f18514c);
                 return;
         }
     }

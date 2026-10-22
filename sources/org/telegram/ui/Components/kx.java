@@ -16,21 +16,21 @@ public final class kx extends aw {
     @Override
     public final void Y(boolean z10) {
         tz tzVar = this.X;
-        ArrayList arrayList = tzVar.f30762p1;
+        ArrayList arrayList = tzVar.f30765p1;
         TLRPC.StickerSet stickerSet = this.W;
         if (z10) {
-            if (!arrayList.contains(Long.valueOf(stickerSet.f20303id))) {
-                arrayList.add(Long.valueOf(stickerSet.f20303id));
+            if (!arrayList.contains(Long.valueOf(stickerSet.f20306id))) {
+                arrayList.add(Long.valueOf(stickerSet.f20306id));
             }
         } else {
-            arrayList.remove(Long.valueOf(stickerSet.f20303id));
+            arrayList.remove(Long.valueOf(stickerSet.f20306id));
         }
         tzVar.T();
     }
 
     @Override
     public final void dismiss() {
-        this.X.f30783v2 = false;
+        this.X.f30786v2 = false;
         super.dismiss();
     }
 }

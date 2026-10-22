@@ -54,7 +54,7 @@ public final class o0 implements RequestDelegate {
                 TLRPC.User user = (TLRPC.User) this.f12983f;
                 TLRPC.TL_messages_hideChatJoinRequest tL_messages_hideChatJoinRequest = (TLRPC.TL_messages_hideChatJoinRequest) this.f12981b;
                 if (tL_error == null) {
-                    MessagesController.getInstance(kVar.f49870k).lambda$processUpdates$377((TLRPC.TL_updates) tLObject, false);
+                    MessagesController.getInstance(kVar.f49873k).lambda$processUpdates$377((TLRPC.TL_updates) tLObject, false);
                 }
                 AndroidUtilities.runOnUIThread(new r0(kVar, tL_error, tLObject, tL_chatInviteImporter, this.f12982c, user, tL_messages_hideChatJoinRequest));
                 return;

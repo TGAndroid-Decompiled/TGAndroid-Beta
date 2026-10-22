@@ -37,7 +37,7 @@ public final class d implements Runnable {
             case 2:
                 q qVar3 = this.f15190b;
                 if (!UserConfig.getInstance(qVar3.f15447n).isPremium()) {
-                    new sg.y0(qVar3.f28173b.f30546f0, qVar3.getContext(), qVar3.f15447n, 43, true).show();
+                    new sg.y0(qVar3.f28176b.f30549f0, qVar3.getContext(), qVar3.f15447n, 43, true).show();
                     return;
                 }
                 return;

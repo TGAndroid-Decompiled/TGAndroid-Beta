@@ -15,21 +15,21 @@ public final class v70 extends ActionBarPopupWindow$ActionBarPopupWindowLayout {
     public final org.telegram.ui.ActionBar.e1 U;
     public final org.telegram.ui.ActionBar.e1 V;
     public final org.telegram.ui.ActionBar.e1 W;
-    public final ArrayList f42130a0;
-    public final org.telegram.ui.Components.t00 f42131b0;
-    public int f42132c0;
-    public final CacheByChatsController f42133d0;
-    public t70 f42134e0;
-    public ArrayList f42135f0;
-    public final org.telegram.ui.ActionBar.n2 f42136g0;
-    public final FrameLayout f42137h0;
+    public final ArrayList f42133a0;
+    public final org.telegram.ui.Components.t00 f42134b0;
+    public int f42135c0;
+    public final CacheByChatsController f42136d0;
+    public t70 f42137e0;
+    public ArrayList f42138f0;
+    public final org.telegram.ui.ActionBar.n2 f42139g0;
+    public final FrameLayout f42140h0;
 
     public v70(Context context, org.telegram.ui.ActionBar.n2 n2Var) {
         super(context, null);
         ArrayList arrayList = new ArrayList();
-        this.f42130a0 = arrayList;
-        this.f42136g0 = n2Var;
-        this.f42133d0 = n2Var.getMessagesController().getCacheByChatsController();
+        this.f42133a0 = arrayList;
+        this.f42139g0 = n2Var;
+        this.f42136d0 = n2Var.getMessagesController().getCacheByChatsController();
         setFitItems(true);
         org.telegram.ui.ActionBar.e1 c10 = org.telegram.ui.ActionBar.u0.c(false, false, this, R.drawable.msg_autodelete_1d, LocaleController.formatPluralString("Days", 1, new Object[0]), false, null);
         org.telegram.ui.ActionBar.e1 c11 = org.telegram.ui.ActionBar.u0.c(false, false, this, R.drawable.msg_autodelete_2d, LocaleController.formatPluralString("Days", 2, new Object[0]), false, null);
@@ -40,7 +40,7 @@ public final class v70 extends ActionBarPopupWindow$ActionBarPopupWindowLayout {
         org.telegram.ui.ActionBar.e1 c14 = org.telegram.ui.ActionBar.u0.c(false, false, this, R.drawable.msg_cancel, LocaleController.getString(R.string.AutoDeleteMediaNever), false, null);
         org.telegram.ui.ActionBar.e1 c15 = org.telegram.ui.ActionBar.u0.c(false, false, this, R.drawable.msg_delete, LocaleController.getString(R.string.DeleteException), false, null);
         this.U = c15;
-        int i10 = org.telegram.ui.ActionBar.h6.f21211p7;
+        int i10 = org.telegram.ui.ActionBar.h6.f21214p7;
         c15.c(org.telegram.ui.ActionBar.h6.x0(null, i10, false), org.telegram.ui.ActionBar.h6.x0(null, i10, false));
         arrayList.add(new u70(c10, CacheByChatsController.KEEP_MEDIA_ONE_DAY));
         arrayList.add(new u70(c11, CacheByChatsController.KEEP_MEDIA_TWO_DAY));
@@ -49,19 +49,19 @@ public final class v70 extends ActionBarPopupWindow$ActionBarPopupWindowLayout {
         arrayList.add(new u70(c14, CacheByChatsController.KEEP_MEDIA_FOREVER));
         arrayList.add(new u70(c15, CacheByChatsController.KEEP_MEDIA_DELETE));
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f42137h0 = frameLayout;
+        this.f42140h0 = frameLayout;
         frameLayout.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.H8, false));
         View view = new View(context);
-        view.setBackground(org.telegram.ui.ActionBar.h6.V0(context, R.drawable.greydivider, org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20952b7, null)));
+        view.setBackground(org.telegram.ui.ActionBar.h6.V0(context, R.drawable.greydivider, org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20955b7, null)));
         frameLayout.addView(view, w7.z5.c(-1.0f, -1));
         frameLayout.setTag(R.id.fit_width_tag, 1);
         a(frameLayout, w7.z5.n(-1, 8));
         org.telegram.ui.Components.t00 t00Var = new org.telegram.ui.Components.t00(this, context);
-        this.f42131b0 = t00Var;
+        this.f42134b0 = t00Var;
         a(t00Var, w7.z5.n(-1, 48));
         t00Var.setOnClickListener(new org.telegram.ui.Components.i51(22, this, n2Var));
-        for (int i11 = 0; i11 < this.f42130a0.size(); i11++) {
-            ((u70) this.f42130a0.get(i11)).f41823a.setOnClickListener(new ai.n1(this, ((u70) this.f42130a0.get(i11)).f41824b, 20));
+        for (int i11 = 0; i11 < this.f42133a0.size(); i11++) {
+            ((u70) this.f42133a0.get(i11)).f41826a.setOnClickListener(new ai.n1(this, ((u70) this.f42133a0.get(i11)).f41827b, 20));
         }
         org.telegram.ui.Components.x90 x90Var = new org.telegram.ui.Components.x90(context, null);
         this.T = x90Var;
@@ -76,15 +76,15 @@ public final class v70 extends ActionBarPopupWindow$ActionBarPopupWindowLayout {
     }
 
     public final void f() {
-        if (this.f42135f0 != null) {
-            ((org.telegram.ui.Components.k9) this.f42131b0.d).setTranslationX((3 - Math.min(3, this.f42135f0.size())) * AndroidUtilities.dp(12.0f));
+        if (this.f42138f0 != null) {
+            ((org.telegram.ui.Components.k9) this.f42134b0.d).setTranslationX((3 - Math.min(3, this.f42138f0.size())) * AndroidUtilities.dp(12.0f));
         }
     }
 
     public final void g(boolean z10) {
         int i10;
-        this.f42132c0 = -1;
-        this.f42137h0.setVisibility(0);
+        this.f42135c0 = -1;
+        this.f42140h0.setVisibility(0);
         if (z10) {
             i10 = 8;
         } else {
@@ -92,10 +92,10 @@ public final class v70 extends ActionBarPopupWindow$ActionBarPopupWindowLayout {
         }
         this.U.setVisibility(i10);
         this.T.setVisibility(0);
-        this.f42131b0.setVisibility(8);
+        this.f42134b0.setVisibility(8);
     }
 
     public void setCallback(t70 t70Var) {
-        this.f42134e0 = t70Var;
+        this.f42137e0 = t70Var;
     }
 }

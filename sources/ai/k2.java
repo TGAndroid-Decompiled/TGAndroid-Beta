@@ -97,15 +97,15 @@ public final class k2 implements RequestDelegate {
                 TLRPC.TL_chatInviteExported tL_chatInviteExported = (TLRPC.TL_chatInviteExported) obj;
                 boolean[] zArr = (boolean[]) obj3;
                 org.telegram.ui.ActionBar.b2 b2Var = (org.telegram.ui.ActionBar.b2) obj2;
-                org.telegram.ui.vb vbVar = pbVar.f40174a.f41111n;
+                org.telegram.ui.vb vbVar = pbVar.f40177a.f41114n;
                 if (tL_error == null) {
                     tL_messages_exportedChatInvite = (TLRPC.TL_messages_exportedChatInvite) tLObject;
                     for (int i11 = 0; i11 < tL_messages_exportedChatInvite.users.size(); i11++) {
                         TLRPC.User user = tL_messages_exportedChatInvite.users.get(i11);
-                        if (vbVar.f42194z0 == null) {
-                            vbVar.f42194z0 = new HashMap();
+                        if (vbVar.f42197z0 == null) {
+                            vbVar.f42197z0 = new HashMap();
                         }
-                        vbVar.f42194z0.put(Long.valueOf(user.f20423id), user);
+                        vbVar.f42197z0.put(Long.valueOf(user.f20426id), user);
                     }
                 } else {
                     tL_messages_exportedChatInvite = null;

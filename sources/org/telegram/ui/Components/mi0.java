@@ -11,20 +11,20 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotchInfoUtils;
 import org.telegram.messenger.Utilities;
 public final class mi0 implements oi0 {
-    public Bitmap f28526a;
-    public Canvas f28527b;
-    public final Paint f28528c;
+    public Bitmap f28529a;
+    public Canvas f28530b;
+    public final Paint f28531c;
     public final Paint d;
     public int e;
-    public int f28529f;
-    public int f28530g;
+    public int f28532f;
+    public int f28533g;
     public int h;
-    public final pi0 f28531i;
+    public final pi0 f28534i;
 
     public mi0(pi0 pi0Var) {
-        this.f28531i = pi0Var;
+        this.f28534i = pi0Var;
         Paint paint = new Paint();
-        this.f28528c = paint;
+        this.f28531c = paint;
         Paint paint2 = new Paint();
         this.d = paint2;
         paint.setFlags(7);
@@ -40,54 +40,54 @@ public final class mi0 implements oi0 {
         Canvas canvas2;
         int i10;
         int i11;
-        pi0 pi0Var = (pi0) tvVar.f30680b;
-        pi0 pi0Var2 = this.f28531i;
-        Paint paint = pi0Var2.f29316a;
-        Bitmap bitmap = this.f28526a;
+        pi0 pi0Var = (pi0) tvVar.f30683b;
+        pi0 pi0Var2 = this.f28534i;
+        Paint paint = pi0Var2.f29319a;
+        Bitmap bitmap = this.f28529a;
         if (bitmap != null && !bitmap.isRecycled()) {
-            int a2 = (int) ((1.0f - ((w7.r.a(pi0Var2.f29319f, 0.2f, 0.3f) - 0.2f) / 0.10000001f)) * 255.0f);
-            float width = (pi0Var2.getWidth() - this.f28529f) / 2.0f;
+            int a2 = (int) ((1.0f - ((w7.r.a(pi0Var2.f29322f, 0.2f, 0.3f) - 0.2f) / 0.10000001f)) * 255.0f);
+            float width = (pi0Var2.getWidth() - this.f28532f) / 2.0f;
             canvas.save();
             canvas.translate(0.0f, -AndroidUtilities.dp(32.0f));
             if (a2 != 255) {
-                this.f28526a.eraseColor(0);
-                this.f28527b.save();
-                this.f28527b.scale(this.f28526a.getWidth() / this.f28530g, this.f28526a.getHeight() / this.h);
+                this.f28529a.eraseColor(0);
+                this.f28530b.save();
+                this.f28530b.scale(this.f28529a.getWidth() / this.f28533g, this.f28529a.getHeight() / this.h);
                 float f7 = -width;
-                this.f28527b.translate(f7, 0.0f);
-                pi0.a(pi0Var, this.f28527b);
-                this.f28527b.restore();
-                this.f28527b.save();
-                this.f28527b.scale(this.f28526a.getWidth() / this.f28530g, this.f28526a.getHeight() / this.h);
-                if (pi0Var2.f29320n != null) {
-                    this.f28527b.save();
-                    this.f28527b.translate(f7, AndroidUtilities.dp(32.0f));
-                    NotchInfoUtils.NotchInfo notchInfo = pi0Var2.f29320n;
+                this.f28530b.translate(f7, 0.0f);
+                pi0.a(pi0Var, this.f28530b);
+                this.f28530b.restore();
+                this.f28530b.save();
+                this.f28530b.scale(this.f28529a.getWidth() / this.f28533g, this.f28529a.getHeight() / this.h);
+                if (pi0Var2.f29323n != null) {
+                    this.f28530b.save();
+                    this.f28530b.translate(f7, AndroidUtilities.dp(32.0f));
+                    NotchInfoUtils.NotchInfo notchInfo = pi0Var2.f29323n;
                     if (notchInfo.isLikelyCircle) {
-                        Canvas canvas3 = this.f28527b;
-                        float centerX = pi0Var2.f29320n.bounds.centerX();
-                        RectF rectF = pi0Var2.f29320n.bounds;
-                        canvas3.drawCircle(centerX, rectF.bottom - (rectF.width() / 2.0f), Math.min(notchInfo.bounds.width(), pi0Var2.f29320n.bounds.height()) / 2.0f, paint);
+                        Canvas canvas3 = this.f28530b;
+                        float centerX = pi0Var2.f29323n.bounds.centerX();
+                        RectF rectF = pi0Var2.f29323n.bounds;
+                        canvas3.drawCircle(centerX, rectF.bottom - (rectF.width() / 2.0f), Math.min(notchInfo.bounds.width(), pi0Var2.f29323n.bounds.height()) / 2.0f, paint);
                     } else if (notchInfo.isAccurate) {
-                        this.f28527b.drawPath(notchInfo.path, paint);
+                        this.f28530b.drawPath(notchInfo.path, paint);
                     } else {
-                        float max = Math.max(notchInfo.bounds.width(), pi0Var2.f29320n.bounds.height()) / 2.0f;
-                        this.f28527b.drawRoundRect(pi0Var2.f29320n.bounds, max, max, paint);
+                        float max = Math.max(notchInfo.bounds.width(), pi0Var2.f29323n.bounds.height()) / 2.0f;
+                        this.f28530b.drawRoundRect(pi0Var2.f29323n.bounds, max, max, paint);
                     }
-                    this.f28527b.restore();
+                    this.f28530b.restore();
                 } else {
-                    this.f28527b.drawRect(0.0f, 0.0f, this.f28529f, AndroidUtilities.dp(32.0f), paint);
+                    this.f28530b.drawRect(0.0f, 0.0f, this.f28532f, AndroidUtilities.dp(32.0f), paint);
                 }
-                this.f28527b.restore();
-                Utilities.stackBlurBitmap(this.f28526a, (int) ((pi0Var2.d * 2.0f) / 6.0f));
+                this.f28530b.restore();
+                Utilities.stackBlurBitmap(this.f28529a, (int) ((pi0Var2.d * 2.0f) / 6.0f));
                 canvas.save();
                 canvas.translate(width, 0.0f);
                 i10 = 255;
                 canvas2 = canvas;
-                canvas2.saveLayer(0.0f, 0.0f, this.f28530g, this.h, null);
-                canvas2.scale(this.f28530g / this.f28526a.getWidth(), this.h / this.f28526a.getHeight());
-                canvas2.drawBitmap(this.f28526a, 0.0f, 0.0f, this.f28528c);
-                canvas2.drawBitmap(this.f28526a, 0.0f, 0.0f, this.d);
+                canvas2.saveLayer(0.0f, 0.0f, this.f28533g, this.h, null);
+                canvas2.scale(this.f28533g / this.f28529a.getWidth(), this.h / this.f28529a.getHeight());
+                canvas2.drawBitmap(this.f28529a, 0.0f, 0.0f, this.f28531c);
+                canvas2.drawBitmap(this.f28529a, 0.0f, 0.0f, this.d);
                 canvas2.restore();
                 canvas2.restore();
             } else {
@@ -97,7 +97,7 @@ public final class mi0 implements oi0 {
             if (a2 != 0) {
                 if (a2 != i10) {
                     i11 = a2;
-                    canvas2.saveLayerAlpha(width, 0.0f, width + this.f28529f, this.e, i11);
+                    canvas2.saveLayerAlpha(width, 0.0f, width + this.f28532f, this.e, i11);
                 } else {
                     i11 = a2;
                 }
@@ -112,19 +112,19 @@ public final class mi0 implements oi0 {
 
     @Override
     public final void d(int i10, int i11) {
-        Bitmap bitmap = this.f28526a;
+        Bitmap bitmap = this.f28529a;
         if (bitmap != null) {
             bitmap.recycle();
-            this.f28526a = null;
+            this.f28529a = null;
         }
-        this.f28529f = Math.min(AndroidUtilities.dp(120.0f), i10);
+        this.f28532f = Math.min(AndroidUtilities.dp(120.0f), i10);
         int min = Math.min(AndroidUtilities.dp(220.0f), i11);
         this.e = min;
-        this.f28530g = this.f28529f;
+        this.f28533g = this.f28532f;
         int dp = AndroidUtilities.dp(32.0f) + min;
         this.h = dp;
-        this.f28526a = Bitmap.createBitmap((int) (this.f28530g / 6.0f), (int) (dp / 6.0f), Bitmap.Config.ARGB_8888);
-        this.f28527b = new Canvas(this.f28526a);
+        this.f28529a = Bitmap.createBitmap((int) (this.f28533g / 6.0f), (int) (dp / 6.0f), Bitmap.Config.ARGB_8888);
+        this.f28530b = new Canvas(this.f28529a);
     }
 
     @Override

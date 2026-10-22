@@ -7,23 +7,23 @@ import org.telegram.messenger.MessageSuggestionParams;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.tl.TL_stories;
 public final class xe implements Utilities.Callback {
-    public final int f43197a;
-    public final qn f43198b;
+    public final int f43200a;
+    public final qn f43201b;
 
     public xe(qn qnVar, int i10) {
-        this.f43197a = i10;
-        this.f43198b = qnVar;
+        this.f43200a = i10;
+        this.f43201b = qnVar;
     }
 
     @Override
     public final void run(Object obj) {
-        int i10 = this.f43197a;
-        qn qnVar = this.f43198b;
+        int i10 = this.f43200a;
+        qn qnVar = this.f43201b;
         switch (i10) {
             case 0:
                 MessageSuggestionParams messageSuggestionParams = (MessageSuggestionParams) obj;
-                qn qnVar2 = this.f43198b;
-                qnVar2.f40693g5 = messageSuggestionParams;
+                qn qnVar2 = this.f43201b;
+                qnVar2.f40696g5 = messageSuggestionParams;
                 qnVar2.p5.messageOwner.suggested_post = messageSuggestionParams.toTl();
                 qnVar2.Db(true, null, qnVar2.p5, null, null, true, 0, null, false, 0L, null, true);
                 return;
@@ -60,9 +60,9 @@ public final class xe implements Utilities.Callback {
                     boolean G9 = qnVar.G9();
                     if (u1Var.G8 != G9) {
                         u1Var.G8 = G9;
-                        qnVar.f40901x0.getClass();
+                        qnVar.f40904x0.getClass();
                         int R = RecyclerView.R(view);
-                        u1Var.f23409n8 = true;
+                        u1Var.f23412n8 = true;
                         u1Var.forceLayout();
                         if (R >= 0) {
                             qnVar.A0.m(R);
@@ -79,13 +79,13 @@ public final class xe implements Utilities.Callback {
                     return;
                 } else if (view instanceof org.telegram.ui.Cells.w0) {
                     org.telegram.ui.Cells.w0 w0Var = (org.telegram.ui.Cells.w0) view;
-                    w0Var.f23692e0 = qnVar.y9();
-                    w0Var.f23705i0 = qnVar.H9();
+                    w0Var.f23695e0 = qnVar.y9();
+                    w0Var.f23708i0 = qnVar.H9();
                     qnVar.G9();
                     qnVar.V8();
                     int W82 = qnVar.W8();
-                    if (w0Var.f23708j0 != W82) {
-                        w0Var.f23708j0 = W82;
+                    if (w0Var.f23711j0 != W82) {
+                        w0Var.f23711j0 = W82;
                         w0Var.invalidate();
                         return;
                     }
@@ -111,8 +111,8 @@ public final class xe implements Utilities.Callback {
                 }
                 return;
             case 8:
-                ur urVar = qnVar.f40652d0;
-                urVar.f42031c.add(((org.telegram.ui.ActionBar.u0) obj).getIconView());
+                ur urVar = qnVar.f40655d0;
+                urVar.f42034c.add(((org.telegram.ui.ActionBar.u0) obj).getIconView());
                 return;
             case 9:
                 int intValue = ((Integer) obj).intValue();

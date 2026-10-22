@@ -138,7 +138,7 @@ public class VideoEncodingService extends Service implements NotificationCenter.
         } else if (i10 == NotificationCenter.fileUploaded || i10 == NotificationCenter.fileUploadFailed) {
             String str4 = (String) objArr[0];
             if (i11 == this.currentAccount && (str = this.currentPath) != null && str.equals(str4)) {
-                AndroidUtilities.runOnUIThread(new tl(this, 0));
+                AndroidUtilities.runOnUIThread(new vl(this, 0));
             }
         }
     }
@@ -189,7 +189,7 @@ public class VideoEncodingService extends Service implements NotificationCenter.
         } catch (Throwable th2) {
             FileLog.e(th2);
         }
-        AndroidUtilities.runOnUIThread(new tl(this, 1));
+        AndroidUtilities.runOnUIThread(new vl(this, 1));
         return 2;
     }
 }

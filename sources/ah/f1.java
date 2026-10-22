@@ -11,6 +11,10 @@ public final class f1 implements Drawable.Callback {
     public final int f733a;
     public Object f734b;
 
+    public f1() {
+        this.f733a = 2;
+    }
+
     @Override
     public final void invalidateDrawable(Drawable drawable) {
         switch (this.f733a) {
@@ -38,7 +42,7 @@ public final class f1 implements Drawable.Callback {
                 ((oq) this.f734b).invalidateSelf();
                 return;
             case 5:
-                ((hp0) this.f734b).f26959b.run();
+                ((hp0) this.f734b).f26962b.run();
                 return;
             case 6:
                 ((ed) this.f734b).invalidateSelf();
@@ -50,10 +54,10 @@ public final class f1 implements Drawable.Callback {
                 ((x4.d) this.f734b).invalidateSelf();
                 return;
             case 9:
-                ((xg.a) this.f734b).f49787c.invalidate();
+                ((xg.a) this.f734b).f49790c.invalidate();
                 return;
             default:
-                ((xg.c) this.f734b).f49812c.invalidate();
+                ((xg.c) this.f734b).f49815c.invalidate();
                 return;
         }
     }
@@ -93,10 +97,10 @@ public final class f1 implements Drawable.Callback {
                 ((x4.d) this.f734b).scheduleSelf(runnable, j10);
                 return;
             case 9:
-                ((xg.a) this.f734b).f49787c.invalidate();
+                ((xg.a) this.f734b).f49790c.invalidate();
                 return;
             default:
-                ((xg.c) this.f734b).f49812c.invalidate();
+                ((xg.c) this.f734b).f49815c.invalidate();
                 return;
         }
     }
@@ -136,10 +140,10 @@ public final class f1 implements Drawable.Callback {
                 ((x4.d) this.f734b).unscheduleSelf(runnable);
                 return;
             case 9:
-                ((xg.a) this.f734b).f49787c.invalidate();
+                ((xg.a) this.f734b).f49790c.invalidate();
                 return;
             default:
-                ((xg.c) this.f734b).f49812c.invalidate();
+                ((xg.c) this.f734b).f49815c.invalidate();
                 return;
         }
     }

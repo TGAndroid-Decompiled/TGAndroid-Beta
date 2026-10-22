@@ -9,19 +9,19 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 public final class q3 implements du0 {
-    public final TLRPC.WebPage f40355a;
-    public final List f40356b;
-    public final l4 f40357c;
+    public final TLRPC.WebPage f40358a;
+    public final List f40359b;
+    public final l4 f40360c;
 
     public q3(l4 l4Var, TLRPC.WebPage webPage, List list) {
-        this.f40357c = l4Var;
-        this.f40355a = webPage;
-        this.f40356b = list;
+        this.f40360c = l4Var;
+        this.f40358a = webPage;
+        this.f40359b = list;
     }
 
     @Override
     public final boolean a(int i10) {
-        if (i10 < this.f40356b.size() && i10 >= 0 && h4.g(this.f40355a, get(i10))) {
+        if (i10 < this.f40359b.size() && i10 >= 0 && h4.g(this.f40358a, get(i10))) {
             return true;
         }
         return false;
@@ -31,10 +31,10 @@ public final class q3 implements du0 {
     public final File b(int i10) {
         TLRPC.Document a2;
         TLRPC.PhotoSize closestPhotoSizeWithSize;
-        if (i10 < this.f40356b.size() && i10 >= 0) {
+        if (i10 < this.f40359b.size() && i10 >= 0) {
             TL_iv.PageBlock pageBlock = get(i10);
             boolean z10 = pageBlock instanceof TL_iv.pageBlockPhoto;
-            TLRPC.WebPage webPage = this.f40355a;
+            TLRPC.WebPage webPage = this.f40358a;
             if (z10) {
                 TLRPC.Photo e = h4.e(webPage, ((TL_iv.pageBlockPhoto) pageBlock).photo_id);
                 if (e != null && (closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(e.sizes, AndroidUtilities.getPhotoSize())) != null) {
@@ -58,10 +58,10 @@ public final class q3 implements du0 {
 
     @Override
     public final TLObject d(int i10) {
-        if (i10 < this.f40356b.size() && i10 >= 0) {
+        if (i10 < this.f40359b.size() && i10 >= 0) {
             TL_iv.PageBlock pageBlock = get(i10);
             boolean z10 = pageBlock instanceof TL_iv.pageBlockPhoto;
-            TLRPC.WebPage webPage = this.f40355a;
+            TLRPC.WebPage webPage = this.f40358a;
             if (z10) {
                 return h4.e(webPage, ((TL_iv.pageBlockPhoto) pageBlock).photo_id);
             }
@@ -74,8 +74,8 @@ public final class q3 implements du0 {
 
     @Override
     public final boolean e(int i10) {
-        if (i10 < this.f40356b.size() && i10 >= 0 && !h4.g(this.f40355a, get(i10))) {
-            j4 j4Var = this.f40357c.f38779u0[0].f39754c;
+        if (i10 < this.f40359b.size() && i10 >= 0 && !h4.g(this.f40358a, get(i10))) {
+            j4 j4Var = this.f40360c.f38782u0[0].f39757c;
             TL_iv.PageBlock pageBlock = get(i10);
             j4Var.getClass();
             if (j4.I(pageBlock) == 5) {
@@ -114,30 +114,30 @@ public final class q3 implements du0 {
 
     @Override
     public final Object g() {
-        return this.f40355a;
+        return this.f40358a;
     }
 
     @Override
     public final TL_iv.PageBlock get(int i10) {
-        return (TL_iv.PageBlock) this.f40356b.get(i10);
+        return (TL_iv.PageBlock) this.f40359b.get(i10);
     }
 
     @Override
     public final List getAll() {
-        return this.f40356b;
+        return this.f40359b;
     }
 
     @Override
     public final void h(TL_iv.PageBlock pageBlock) {
-        l4 l4Var = this.f40357c;
-        int childCount = l4Var.f38779u0[0].f39753b.getChildCount();
+        l4 l4Var = this.f40360c;
+        int childCount = l4Var.f38782u0[0].f39756b.getChildCount();
         for (int i10 = 0; i10 < childCount; i10++) {
-            View childAt = l4Var.f38779u0[0].f39753b.getChildAt(i10);
+            View childAt = l4Var.f38782u0[0].f39756b.getChildAt(i10);
             if (childAt instanceof s2) {
                 s2 s2Var = (s2) childAt;
                 int indexOf = s2Var.d.items.indexOf(pageBlock);
                 if (indexOf != -1) {
-                    s2Var.f41325a.x(indexOf, false);
+                    s2Var.f41328a.x(indexOf, false);
                     return;
                 }
             }
@@ -151,6 +151,6 @@ public final class q3 implements du0 {
 
     @Override
     public final int j() {
-        return this.f40356b.size();
+        return this.f40359b.size();
     }
 }

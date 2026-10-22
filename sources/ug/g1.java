@@ -18,15 +18,15 @@ public final class g1 extends yg.h {
         super.onLayout(z10, i10, i11, i12, i13);
         int dp = AndroidUtilities.dp(64.0f) + getMeasuredHeight();
         m1 m1Var = this.K;
-        m1Var.f47725q0 = dp;
-        m1Var.f47724p0.G();
+        m1Var.f47728q0 = dp;
+        m1Var.f47727p0.G();
         if (this.J != m1Var.isKeyboardVisible()) {
             boolean isKeyboardVisible = m1Var.isKeyboardVisible();
             this.J = isKeyboardVisible;
             if (isKeyboardVisible) {
                 jm0 jm0Var = m1Var.d;
                 li.n nVar = new li.n(m1Var.getContext(), 2, 0.6f);
-                nVar.f46058a = 1;
+                nVar.f46061a = 1;
                 nVar.f16144p = AndroidUtilities.dp(36.0f);
                 jm0Var.getLayoutManager().w0(nVar);
             }

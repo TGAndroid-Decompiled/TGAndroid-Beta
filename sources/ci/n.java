@@ -32,7 +32,7 @@ public final class n extends pg.b {
 
     @Override
     public final void v(s4.b1 b1Var, int i10) {
-        q qVar = (q) b1Var.f45917a;
+        q qVar = (q) b1Var.f45920a;
         qVar.f5738b = i10;
         boolean z10 = this.d;
         tw twVar = this.e;

@@ -13,10 +13,10 @@ import org.telegram.messenger.SharedConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_update;
 public final class p implements Comparator {
-    public final int f19185a;
+    public final int f19165a;
 
     public p(int i10) {
-        this.f19185a = i10;
+        this.f19165a = i10;
     }
 
     @Override
@@ -26,7 +26,7 @@ public final class p implements Comparator {
         int lambda$getContactsHash$26;
         int lambda$sortEmoji$3;
         int lambda$removePart$2;
-        int lambda$loadGalleryPhotosAlbums$57;
+        int lambda$loadGalleryPhotosAlbums$59;
         int lambda$sortPlaylist$13;
         int lambda$getTextStyleRunsLegacy$181;
         int lambda$static$160;
@@ -49,7 +49,7 @@ public final class p implements Comparator {
         int lambda$localSearch$260;
         int lambda$quotesFor$0;
         int lambda$updatePinnedOrder$4;
-        switch (this.f19185a) {
+        switch (this.f19165a) {
             case 0:
                 lambda$pruneOverlaps$10 = AndroidUtilities.lambda$pruneOverlaps$10((AndroidUtilities.LinkSpec) obj, (AndroidUtilities.LinkSpec) obj2);
                 return lambda$pruneOverlaps$10;
@@ -68,8 +68,8 @@ public final class p implements Comparator {
                 lambda$removePart$2 = FileLoadOperation.lambda$removePart$2((FileLoadOperation.Range) obj, (FileLoadOperation.Range) obj2);
                 return lambda$removePart$2;
             case 6:
-                lambda$loadGalleryPhotosAlbums$57 = MediaController.lambda$loadGalleryPhotosAlbums$57((MediaController.PhotoEntry) obj, (MediaController.PhotoEntry) obj2);
-                return lambda$loadGalleryPhotosAlbums$57;
+                lambda$loadGalleryPhotosAlbums$59 = MediaController.lambda$loadGalleryPhotosAlbums$59((MediaController.PhotoEntry) obj, (MediaController.PhotoEntry) obj2);
+                return lambda$loadGalleryPhotosAlbums$59;
             case 7:
                 lambda$sortPlaylist$13 = MediaController.lambda$sortPlaylist$13((MessageObject) obj, (MessageObject) obj2);
                 return lambda$sortPlaylist$13;

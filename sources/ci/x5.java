@@ -57,11 +57,11 @@ public final class x5 implements z4.e {
             case 2:
                 xd0 xd0Var = (xd0) this.f6167b;
                 xd0Var.h = i10;
-                xd0Var.f32398n = f7;
+                xd0Var.f32401n = f7;
                 if (xd0Var.d.getChildAt(i10) != null) {
                     xd0.a(xd0Var, i10, (int) (xd0Var.d.getChildAt(i10).getWidth() * f7));
                     xd0Var.invalidate();
-                    z4.e eVar = xd0Var.f32396c;
+                    z4.e eVar = xd0Var.f32399c;
                     if (eVar != null) {
                         eVar.a(f7, i10, i11);
                         return;
@@ -71,8 +71,8 @@ public final class x5 implements z4.e {
                 return;
             default:
                 ci0 ci0Var = (ci0) this.f6167b;
-                if (!ci0Var.f25195a && Math.abs(i10 - ci0Var.f25202w) == 1) {
-                    int i15 = ci0Var.f25202w;
+                if (!ci0Var.f25198a && Math.abs(i10 - ci0Var.f25205w) == 1) {
+                    int i15 = ci0Var.f25205w;
                     if (i10 > i15) {
                         ci0.a(ci0Var, 0, 1, 1);
                     } else if (i10 < i15) {
@@ -80,10 +80,10 @@ public final class x5 implements z4.e {
                         ci0.a(ci0Var, 2, 0, -1);
                     }
                 }
-                int i16 = ci0Var.f25202w;
-                int i17 = ci0Var.f25203x;
-                ci0Var.f25202w = i10;
-                ci0Var.f25203x = i11;
+                int i16 = ci0Var.f25205w;
+                int i17 = ci0Var.f25206x;
+                ci0Var.f25205w = i10;
+                ci0Var.f25206x = i11;
                 if (i16 != i10 || i17 != i11) {
                     ci0Var.H = true;
                     ci0Var.postInvalidateOnAnimation();
@@ -102,7 +102,7 @@ public final class x5 implements z4.e {
                 return;
             case 2:
                 xd0 xd0Var = (xd0) this.f6167b;
-                z4.e eVar = xd0Var.f32396c;
+                z4.e eVar = xd0Var.f32399c;
                 if (eVar != null) {
                     eVar.b(i10);
                 }
@@ -138,7 +138,7 @@ public final class x5 implements z4.e {
                 if (i10 == 0) {
                     xd0.a(xd0Var, xd0Var.e.getCurrentItem(), 0);
                 }
-                z4.e eVar = xd0Var.f32396c;
+                z4.e eVar = xd0Var.f32399c;
                 if (eVar != null) {
                     eVar.c(i10);
                     return;

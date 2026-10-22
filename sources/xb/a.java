@@ -6,9 +6,9 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.mlkit.vision.common.internal.MobileVisionBase;
 import m2.t;
 public final class a implements OnFailureListener, r9.d {
-    public static final a f49764a = new Object();
-    public static final a f49765b = new Object();
-    public static final a f49766c = new Object();
+    public static final a f49767a = new Object();
+    public static final a f49768b = new Object();
+    public static final a f49769c = new Object();
 
     @Override
     public Object j2(z5 z5Var) {

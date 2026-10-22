@@ -9,18 +9,18 @@ import android.view.View;
 import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
 public final class uf0 extends View {
-    public int f30915a;
-    public boolean f30916b;
-    public boolean f30917c;
+    public int f30918a;
+    public boolean f30919b;
+    public boolean f30920c;
     public float d;
     public fl0 e;
-    public Paint f30918f;
+    public Paint f30921f;
     public Paint h;
-    public Paint f30919n;
-    public TextPaint f30920r;
-    public Path f30921s;
+    public Paint f30922n;
+    public TextPaint f30923r;
+    public Path f30924s;
     public tf0 v;
-    public zf0 f30922w;
+    public zf0 f30925w;
 
     public final void a(int i10, MotionEvent motionEvent) {
         ag0 ag0Var;
@@ -28,15 +28,15 @@ public final class uf0 extends View {
         float y3 = motionEvent.getY();
         if (i10 != 1) {
             if (i10 != 2) {
-                if ((i10 == 3 || i10 == 4 || i10 == 5) && this.f30915a != 0) {
-                    this.f30915a = 0;
+                if ((i10 == 3 || i10 == 4 || i10 == 5) && this.f30918a != 0) {
+                    this.f30918a = 0;
                     return;
                 }
                 return;
             }
             float min = Math.min(2.0f, (this.d - y3) / 8.0f);
-            zf0 zf0Var = this.f30922w;
-            int i11 = zf0Var.f32892f;
+            zf0 zf0Var = this.f30925w;
+            int i11 = zf0Var.f32895f;
             if (i11 != 0) {
                 if (i11 != 1) {
                     if (i11 != 2) {
@@ -46,15 +46,15 @@ public final class uf0 extends View {
                             ag0Var = zf0Var.d;
                         }
                     } else {
-                        ag0Var = zf0Var.f32891c;
+                        ag0Var = zf0Var.f32894c;
                     }
                 } else {
-                    ag0Var = zf0Var.f32890b;
+                    ag0Var = zf0Var.f32893b;
                 }
             } else {
-                ag0Var = zf0Var.f32889a;
+                ag0Var = zf0Var.f32892a;
             }
-            int i12 = this.f30915a;
+            int i12 = this.f30918a;
             if (i12 != 1) {
                 if (i12 != 2) {
                     if (i12 != 3) {
@@ -66,29 +66,29 @@ public final class uf0 extends View {
                             ag0Var.d = Math.max(0.0f, Math.min(100.0f, ag0Var.d + min));
                         }
                     } else {
-                        ag0Var.f24591c = Math.max(0.0f, Math.min(100.0f, ag0Var.f24591c + min));
+                        ag0Var.f24594c = Math.max(0.0f, Math.min(100.0f, ag0Var.f24594c + min));
                     }
                 } else {
-                    ag0Var.f24590b = Math.max(0.0f, Math.min(100.0f, ag0Var.f24590b + min));
+                    ag0Var.f24593b = Math.max(0.0f, Math.min(100.0f, ag0Var.f24593b + min));
                 }
             } else {
-                ag0Var.f24589a = Math.max(0.0f, Math.min(100.0f, ag0Var.f24589a + min));
+                ag0Var.f24592a = Math.max(0.0f, Math.min(100.0f, ag0Var.f24592a + min));
             }
             invalidate();
             tf0 tf0Var = this.v;
             if (tf0Var != null) {
-                dg0 dg0Var = ((vf0) tf0Var).f31230a;
+                dg0 dg0Var = ((vf0) tf0Var).f31233a;
                 dg0Var.g();
-                e00 e00Var = dg0Var.f25479l0;
+                e00 e00Var = dg0Var.f25482l0;
                 if (e00Var != null) {
                     e00Var.d(false, false, false);
                 }
             }
             this.d = y3;
-        } else if (this.f30915a != 0) {
+        } else if (this.f30918a != 0) {
         } else {
             fl0 fl0Var = this.e;
-            this.f30915a = (int) Math.floor(com.google.android.gms.internal.play_billing.k3.z(x10, fl0Var.f26272a, fl0Var.f26274c / 5.0f, 1.0f));
+            this.f30918a = (int) Math.floor(com.google.android.gms.internal.play_billing.k3.z(x10, fl0Var.f26275a, fl0Var.f26277c / 5.0f, 1.0f));
         }
     }
 
@@ -97,23 +97,23 @@ public final class uf0 extends View {
         ag0 ag0Var;
         int i10;
         String format;
-        TextPaint textPaint = this.f30920r;
-        Path path = this.f30921s;
-        Paint paint = this.f30919n;
-        zf0 zf0Var = this.f30922w;
+        TextPaint textPaint = this.f30923r;
+        Path path = this.f30924s;
+        Paint paint = this.f30922n;
+        zf0 zf0Var = this.f30925w;
         fl0 fl0Var = this.e;
-        float f7 = fl0Var.f26274c / 5.0f;
+        float f7 = fl0Var.f26277c / 5.0f;
         for (int i11 = 0; i11 < 4; i11++) {
-            float f10 = fl0Var.f26272a;
+            float f10 = fl0Var.f26275a;
             float f11 = i11 * f7;
             float f12 = f10 + f7 + f11;
-            float f13 = fl0Var.f26273b;
-            canvas.drawLine(f12, f13, f11 + f10 + f7, f13 + fl0Var.d, this.f30918f);
+            float f13 = fl0Var.f26276b;
+            canvas.drawLine(f12, f13, f11 + f10 + f7, f13 + fl0Var.d, this.f30921f);
         }
-        float f14 = fl0Var.f26272a;
-        float f15 = fl0Var.f26273b;
-        canvas.drawLine(f14, f15 + fl0Var.d, f14 + fl0Var.f26274c, f15, this.h);
-        int i12 = zf0Var.f32892f;
+        float f14 = fl0Var.f26275a;
+        float f15 = fl0Var.f26276b;
+        canvas.drawLine(f14, f15 + fl0Var.d, f14 + fl0Var.f26277c, f15, this.h);
+        int i12 = zf0Var.f32895f;
         int i13 = 3;
         int i14 = 2;
         if (i12 != 0) {
@@ -127,15 +127,15 @@ public final class uf0 extends View {
                     }
                 } else {
                     paint.setColor(-15667555);
-                    ag0Var = zf0Var.f32891c;
+                    ag0Var = zf0Var.f32894c;
                 }
             } else {
                 paint.setColor(-1229492);
-                ag0Var = zf0Var.f32890b;
+                ag0Var = zf0Var.f32893b;
             }
         } else {
             paint.setColor(-1);
-            ag0Var = zf0Var.f32889a;
+            ag0Var = zf0Var.f32892a;
         }
         int i15 = 0;
         while (i15 < 5) {
@@ -156,17 +156,17 @@ public final class uf0 extends View {
                         }
                     } else {
                         i10 = i14;
-                        format = String.format(Locale.US, "%.2f", Float.valueOf(ag0Var.f24591c / 100.0f));
+                        format = String.format(Locale.US, "%.2f", Float.valueOf(ag0Var.f24594c / 100.0f));
                     }
                 } else {
                     i10 = i14;
-                    format = String.format(Locale.US, "%.2f", Float.valueOf(ag0Var.f24590b / 100.0f));
+                    format = String.format(Locale.US, "%.2f", Float.valueOf(ag0Var.f24593b / 100.0f));
                 }
             } else {
                 i10 = i14;
-                format = String.format(Locale.US, "%.2f", Float.valueOf(ag0Var.f24589a / 100.0f));
+                format = String.format(Locale.US, "%.2f", Float.valueOf(ag0Var.f24592a / 100.0f));
             }
-            canvas.drawText(format, (i15 * f7) + com.google.android.gms.internal.play_billing.k3.z(f7, textPaint.measureText(format), 2.0f, fl0Var.f26272a), (fl0Var.f26273b + fl0Var.d) - AndroidUtilities.dp(4.0f), textPaint);
+            canvas.drawText(format, (i15 * f7) + com.google.android.gms.internal.play_billing.k3.z(f7, textPaint.measureText(format), 2.0f, fl0Var.f26275a), (fl0Var.f26276b + fl0Var.d) - AndroidUtilities.dp(4.0f), textPaint);
             i15++;
             i14 = i10;
             i13 = 3;
@@ -177,10 +177,10 @@ public final class uf0 extends View {
         for (int i16 = 0; i16 < a2.length / 2; i16++) {
             if (i16 == 0) {
                 int i17 = i16 * 2;
-                path.moveTo((a2[i17] * fl0Var.f26274c) + fl0Var.f26272a, ((1.0f - a2[i17 + 1]) * fl0Var.d) + fl0Var.f26273b);
+                path.moveTo((a2[i17] * fl0Var.f26277c) + fl0Var.f26275a, ((1.0f - a2[i17 + 1]) * fl0Var.d) + fl0Var.f26276b);
             } else {
                 int i18 = i16 * 2;
-                path.lineTo((a2[i18] * fl0Var.f26274c) + fl0Var.f26272a, ((1.0f - a2[i18 + 1]) * fl0Var.d) + fl0Var.f26273b);
+                path.lineTo((a2[i18] * fl0Var.f26277c) + fl0Var.f26275a, ((1.0f - a2[i18 + 1]) * fl0Var.d) + fl0Var.f26276b);
             }
         }
         canvas.drawPath(path, paint);

@@ -6,27 +6,27 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import v7.u6;
 public abstract class m extends a {
     public final HashMap h = new HashMap();
-    public Handler f47362i;
-    public g2.c0 f47363j;
+    public Handler f47365i;
+    public g2.c0 f47366j;
 
     @Override
     public final void e() {
         for (l lVar : this.h.values()) {
-            lVar.f47356a.d(lVar.f47357b);
+            lVar.f47359a.d(lVar.f47360b);
         }
     }
 
     @Override
     public final void g() {
         for (l lVar : this.h.values()) {
-            lVar.f47356a.f(lVar.f47357b);
+            lVar.f47359a.f(lVar.f47360b);
         }
     }
 
     @Override
     public void k() {
         for (l lVar : this.h.values()) {
-            lVar.f47356a.k();
+            lVar.f47359a.k();
         }
     }
 
@@ -34,9 +34,9 @@ public abstract class m extends a {
     public void q() {
         HashMap hashMap = this.h;
         for (l lVar : hashMap.values()) {
-            a aVar = lVar.f47356a;
-            k kVar = lVar.f47358c;
-            aVar.p(lVar.f47357b);
+            a aVar = lVar.f47359a;
+            k kVar = lVar.f47361c;
+            aVar.p(lVar.f47360b);
             aVar.s(kVar);
             aVar.r(kVar);
         }
@@ -58,16 +58,16 @@ public abstract class m extends a {
         };
         k kVar = new k(this, num);
         hashMap.put(num, new l(aVar, r12, kVar));
-        Handler handler = this.f47362i;
+        Handler handler = this.f47365i;
         handler.getClass();
         aVar.getClass();
-        a5.a aVar2 = aVar.f47252c;
+        a5.a aVar2 = aVar.f47255c;
         aVar2.getClass();
         ?? obj = new Object();
-        obj.f47343a = handler;
-        obj.f47344b = kVar;
+        obj.f47346a = handler;
+        obj.f47347b = kVar;
         ((CopyOnWriteArrayList) aVar2.d).add(obj);
-        Handler handler2 = this.f47362i;
+        Handler handler2 = this.f47365i;
         handler2.getClass();
         n2.k kVar2 = aVar.d;
         kVar2.getClass();
@@ -76,11 +76,11 @@ public abstract class m extends a {
         obj2.f17055a = handler2;
         obj2.f17056b = kVar;
         copyOnWriteArrayList.add(obj2);
-        g2.c0 c0Var = this.f47363j;
-        j2.k kVar3 = this.f47254g;
+        g2.c0 c0Var = this.f47366j;
+        j2.k kVar3 = this.f47257g;
         kVar3.getClass();
         aVar.l(r12, c0Var, kVar3);
-        if (this.f47251b.isEmpty()) {
+        if (this.f47254b.isEmpty()) {
             aVar.d(r12);
         }
     }

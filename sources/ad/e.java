@@ -36,13 +36,13 @@ public final class e implements w2.a {
         if (arrayList.isEmpty()) {
             return Long.MIN_VALUE;
         }
-        if (j10 < ((z3.a) arrayList.get(0)).f50642b) {
-            return ((z3.a) arrayList.get(0)).f50642b;
+        if (j10 < ((z3.a) arrayList.get(0)).f50645b) {
+            return ((z3.a) arrayList.get(0)).f50645b;
         }
         for (int i10 = 1; i10 < arrayList.size(); i10++) {
             z3.a aVar = (z3.a) arrayList.get(i10);
-            long j11 = aVar.f50642b;
-            long j12 = aVar.f50642b;
+            long j11 = aVar.f50645b;
+            long j12 = aVar.f50645b;
             if (j10 < j11) {
                 long j13 = ((z3.a) arrayList.get(i10 - 1)).d;
                 if (j13 != -9223372036854775807L && j13 > j10 && j13 < j12) {
@@ -71,7 +71,7 @@ public final class e implements w2.a {
             l0 l0Var2 = n0.f8474b;
             return x1.e;
         }
-        return aVar.f50641a;
+        return aVar.f50644a;
     }
 
     @Override
@@ -111,11 +111,11 @@ public final class e implements w2.a {
     @Override
     public long d(long j10) {
         ArrayList arrayList = this.f507b;
-        if (arrayList.isEmpty() || j10 < ((z3.a) arrayList.get(0)).f50642b) {
+        if (arrayList.isEmpty() || j10 < ((z3.a) arrayList.get(0)).f50645b) {
             return -9223372036854775807L;
         }
         for (int i10 = 1; i10 < arrayList.size(); i10++) {
-            long j11 = ((z3.a) arrayList.get(i10)).f50642b;
+            long j11 = ((z3.a) arrayList.get(i10)).f50645b;
             int i11 = (j10 > j11 ? 1 : (j10 == j11 ? 0 : -1));
             if (i11 == 0) {
                 return j11;
@@ -126,7 +126,7 @@ public final class e implements w2.a {
                 if (j12 != -9223372036854775807L && j12 <= j10) {
                     return j12;
                 }
-                return aVar.f50642b;
+                return aVar.f50645b;
             }
         }
         z3.a aVar2 = (z3.a) s.m(arrayList);
@@ -134,7 +134,7 @@ public final class e implements w2.a {
         if (j13 != -9223372036854775807L && j10 >= j13) {
             return j13;
         }
-        return aVar2.f50642b;
+        return aVar2.f50645b;
     }
 
     @Override
@@ -172,7 +172,7 @@ public final class e implements w2.a {
         while (true) {
             ArrayList arrayList = this.f507b;
             if (i10 < arrayList.size()) {
-                if (j10 < ((z3.a) arrayList.get(i10)).f50642b) {
+                if (j10 < ((z3.a) arrayList.get(i10)).f50645b) {
                     return i10;
                 }
                 i10++;

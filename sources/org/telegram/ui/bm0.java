@@ -7,21 +7,21 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.TLRPC;
 public final class bm0 implements org.telegram.ui.Components.ri {
-    public final vm0 f35672a;
+    public final vm0 f35675a;
 
     public bm0(vm0 vm0Var) {
-        this.f35672a = vm0Var;
+        this.f35675a = vm0Var;
     }
 
     @Override
     public final void J() {
-        AndroidUtilities.hideKeyboard(this.f35672a.fragmentView.findFocus());
+        AndroidUtilities.hideKeyboard(this.f35675a.fragmentView.findFocus());
     }
 
     @Override
     public final void b0(int i10, boolean z10, boolean z11, int i11, int i12, long j10, boolean z12, boolean z13, long j11) {
         org.telegram.ui.Components.ti tiVar;
-        vm0 vm0Var = this.f35672a;
+        vm0 vm0Var = this.f35675a;
         if (vm0Var.getParentActivity() != null && (tiVar = vm0Var.R0) != null) {
             if (i10 != 8 && i10 != 7) {
                 tiVar.dismissWithButtonClick(i10);
@@ -31,8 +31,8 @@ public final class bm0 implements org.telegram.ui.Components.ri {
             if (i10 != 8) {
                 tiVar.dismiss(true);
             }
-            HashMap<Object, Object> selectedPhotos = vm0Var.R0.f30558j0.getSelectedPhotos();
-            ArrayList<Object> selectedPhotosOrder = vm0Var.R0.f30558j0.getSelectedPhotosOrder();
+            HashMap<Object, Object> selectedPhotos = vm0Var.R0.f30561j0.getSelectedPhotos();
+            ArrayList<Object> selectedPhotosOrder = vm0Var.R0.f30561j0.getSelectedPhotosOrder();
             if (!selectedPhotos.isEmpty()) {
                 ArrayList arrayList = new ArrayList();
                 for (int i13 = 0; i13 < selectedPhotosOrder.size(); i13++) {

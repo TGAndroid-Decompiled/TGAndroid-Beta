@@ -72,13 +72,13 @@ public final class d implements wf {
                 l0Var.c(j10);
             }
             Interpolator interpolator = (Interpolator) this.d;
-            if (interpolator != null && (view = (View) l0Var.f44836a.get()) != null) {
+            if (interpolator != null && (view = (View) l0Var.f44839a.get()) != null) {
                 view.animate().setInterpolator(interpolator);
             }
             if (((m0) this.e) != null) {
                 l0Var.d((i) this.f5090f);
             }
-            View view2 = (View) l0Var.f44836a.get();
+            View view2 = (View) l0Var.f44839a.get();
             if (view2 != null) {
                 view2.animate().start();
             }
@@ -97,15 +97,15 @@ public final class d implements wf {
         jg jgVar = (jg) this.f5090f;
         ?? obj = new Object();
         u2.c cVar = new u2.c(18, false);
-        cVar.f47269b = Long.valueOf(j10 & Long.MAX_VALUE);
-        cVar.f47270c = (hb) this.d;
+        cVar.f47272b = Long.valueOf(j10 & Long.MAX_VALUE);
+        cVar.f47273c = (hb) this.d;
         cVar.d = Boolean.valueOf(z10);
         obj.f6881b = new wa(cVar);
         int i11 = aVar.e;
         f.f5095l.getClass();
         int i12 = aVar.e;
         if (i12 == -1) {
-            Bitmap bitmap = aVar.f48903a;
+            Bitmap bitmap = aVar.f48906a;
             l.h(bitmap);
             i10 = bitmap.getAllocationByteCount();
         } else if (i12 != 17 && i12 != 842094169) {
@@ -141,27 +141,27 @@ public final class d implements wf {
         } else {
             raVar = ra.BITMAP;
         }
-        obj2.f51147a = raVar;
-        obj2.f51148b = Integer.valueOf(i10 & Integer.MAX_VALUE);
+        obj2.f51150a = raVar;
+        obj2.f51151b = Integer.valueOf(i10 & Integer.MAX_VALUE);
         obj.f6882c = new sa(obj2);
         obj.f6880a = fVar.e.a();
         if (jgVar != null) {
             List list = jgVar.d;
-            g gVar = z7.i.f50907b;
+            g gVar = z7.i.f50910b;
             Object[] array = list.toArray();
             int length = array.length;
             e9.a(length, array);
             obj.e = z7.i.q(length, array);
-            List<ig> list2 = jgVar.f51073a;
+            List<ig> list2 = jgVar.f51076a;
             if (!list2.isEmpty()) {
                 Object[] objArr = new Object[4];
                 int i13 = 0;
                 for (ig igVar : list2) {
                     ?? obj3 = new Object();
-                    obj3.f44760a = Integer.valueOf(igVar.f51055c & Integer.MAX_VALUE);
-                    obj3.f44761b = Integer.valueOf(igVar.d & Integer.MAX_VALUE);
-                    obj3.f44762c = Integer.valueOf(igVar.e & Integer.MAX_VALUE);
-                    obj3.d = Integer.valueOf(igVar.f51056f & Integer.MAX_VALUE);
+                    obj3.f44763a = Integer.valueOf(igVar.f51058c & Integer.MAX_VALUE);
+                    obj3.f44764b = Integer.valueOf(igVar.d & Integer.MAX_VALUE);
+                    obj3.f44765c = Integer.valueOf(igVar.e & Integer.MAX_VALUE);
+                    obj3.d = Integer.valueOf(igVar.f51059f & Integer.MAX_VALUE);
                     ue ueVar = new ue(obj3);
                     int i14 = i13 + 1;
                     int length2 = objArr.length;

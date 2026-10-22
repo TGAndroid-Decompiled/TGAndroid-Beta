@@ -1,32 +1,27 @@
 package org.telegram.messenger;
+public final class ql implements Runnable {
+    public final int f19337a;
+    public final UnconfirmedAuthController f19338b;
 
-import org.telegram.messenger.UnconfirmedAuthController;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class ql implements RequestDelegate {
-    public final int f19394a;
-    public final UnconfirmedAuthController.UnconfirmedAuth f19395b;
-    public final Utilities.Callback f19396c;
-
-    public ql(UnconfirmedAuthController.UnconfirmedAuth unconfirmedAuth, Utilities.Callback callback, int i10) {
-        this.f19394a = i10;
-        this.f19395b = unconfirmedAuth;
-        this.f19396c = callback;
+    public ql(UnconfirmedAuthController unconfirmedAuthController, int i10) {
+        this.f19337a = i10;
+        this.f19338b = unconfirmedAuthController;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f19394a) {
+    public final void run() {
+        switch (this.f19337a) {
             case 0:
-                this.f19395b.lambda$deny$4(this.f19396c, tLObject, tL_error);
+                UnconfirmedAuthController.h(this.f19338b);
                 return;
             case 1:
-                this.f19395b.lambda$deny$6(this.f19396c, tLObject, tL_error);
+                UnconfirmedAuthController.a(this.f19338b);
+                return;
+            case 2:
+                UnconfirmedAuthController.d(this.f19338b);
                 return;
             default:
-                this.f19395b.lambda$confirm$2(this.f19396c, tLObject, tL_error);
+                UnconfirmedAuthController.f(this.f19338b);
                 return;
         }
     }

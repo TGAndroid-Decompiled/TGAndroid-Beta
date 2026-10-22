@@ -51,9 +51,9 @@ import t7.u;
 import u2.f0;
 import y2.n;
 public class c81 implements b2.d1, b2.z1, j2.b, NotificationCenter.NotificationCenterDelegate {
-    public static int f25124j0;
-    public static final HashSet f25125k0 = new HashSet();
-    public static HashMap f25126l0;
+    public static int f25127j0;
+    public static final HashSet f25128k0 = new HashSet();
+    public static HashMap f25129l0;
     public boolean E;
     public Uri F;
     public boolean G;
@@ -76,29 +76,29 @@ public class c81 implements b2.d1, b2.z1, j2.b, NotificationCenter.NotificationC
     public DashMediaSource$Factory X;
     public HlsMediaSource$Factory Y;
     public u2.y0 Z;
-    public final int f25127a;
-    public final Handler f25128a0;
-    public DispatchQueue f25129b;
-    public final boolean f25130b0;
-    public boolean f25131c;
-    public boolean f25132c0;
+    public final int f25130a;
+    public final Handler f25131a0;
+    public DispatchQueue f25132b;
+    public final boolean f25133b0;
+    public boolean f25134c;
+    public boolean f25135c0;
     public i2.i0 d;
-    public int f25133d0;
+    public int f25136d0;
     public i2.i0 e;
-    public boolean f25134e0;
-    public final x2.n f25135f;
-    public long f25136f0;
-    public long f25137g0;
+    public boolean f25137e0;
+    public final x2.n f25138f;
+    public long f25139f0;
+    public long f25140g0;
     public final ExtendedDefaultDataSourceFactory h;
-    public org.telegram.ui.qq0 f25138h0;
-    public final ArrayList f25139i0;
-    public TextureView f25140n;
-    public SurfaceView f25141r;
-    public Surface f25142s;
+    public org.telegram.ui.qq0 f25141h0;
+    public final ArrayList f25142i0;
+    public TextureView f25143n;
+    public SurfaceView f25144r;
+    public Surface f25145s;
     public boolean v;
-    public boolean f25143w;
-    public boolean f25144x;
-    public boolean f25145y;
+    public boolean f25146w;
+    public boolean f25147x;
+    public boolean f25148y;
 
     public c81() {
         this(true, false);
@@ -125,10 +125,10 @@ public class c81 implements b2.d1, b2.z1, j2.b, NotificationCenter.NotificationC
         } else {
             String str2 = dialogId + "_" + id2 + "q2";
             StringBuilder sb2 = new StringBuilder();
-            sb2.append(y71Var.f32583b);
+            sb2.append(y71Var.f32586b);
             sb2.append("x");
-            sb2.append(y71Var.f32584c);
-            if (y71Var.f32582a) {
+            sb2.append(y71Var.f32587c);
+            if (y71Var.f32585a) {
                 str = "s";
             } else {
                 str = "";
@@ -225,10 +225,10 @@ public class c81 implements b2.d1, b2.z1, j2.b, NotificationCenter.NotificationC
             }
         }
         if (concat != null) {
-            if (f25126l0 == null) {
-                f25126l0 = new HashMap();
+            if (f25129l0 == null) {
+                f25129l0 = new HashMap();
             }
-            Boolean bool = (Boolean) f25126l0.get(concat);
+            Boolean bool = (Boolean) f25129l0.get(concat);
             if (bool != null) {
                 return bool.booleanValue();
             }
@@ -239,14 +239,14 @@ public class c81 implements b2.d1, b2.z1, j2.b, NotificationCenter.NotificationC
                     if (!codecInfoAt.isEncoder() && r2.w.i(codecInfoAt, concat)) {
                         for (String str2 : codecInfoAt.getSupportedTypes()) {
                             if (str2.equalsIgnoreCase(concat)) {
-                                f25126l0.put(concat, Boolean.TRUE);
+                                f25129l0.put(concat, Boolean.TRUE);
                                 return true;
                             }
                         }
                         continue;
                     }
                 }
-                f25126l0.put(concat, Boolean.FALSE);
+                f25129l0.put(concat, Boolean.FALSE);
                 return false;
             }
         }
@@ -307,10 +307,10 @@ public class c81 implements b2.d1, b2.z1, j2.b, NotificationCenter.NotificationC
             try {
                 TLRPC.Document document3 = (TLRPC.Document) arrayList2.get(i13);
                 if (!"application/x-mpegurl".equalsIgnoreCase(document3.mime_type) && !"application/x-tgstoryboard".equalsIgnoreCase(document3.mime_type) && !"application/x-tgstoryboardmap".equalsIgnoreCase(document3.mime_type)) {
-                    a81 d = a81.d(i10, document3, (TLRPC.Document) longSparseArray.get(document3.f20282id), i11, z10);
-                    if (d.f24541i > 0 && d.f24542j > 0) {
+                    a81 d = a81.d(i10, document3, (TLRPC.Document) longSparseArray.get(document3.f20285id), i11, z10);
+                    if (d.f24544i > 0 && d.f24545j > 0) {
                         if (document3 == document) {
-                            d.f24537b = true;
+                            d.f24540b = true;
                         }
                         arrayList3.add(d);
                     }
@@ -322,8 +322,8 @@ public class c81 implements b2.d1, b2.z1, j2.b, NotificationCenter.NotificationC
         ArrayList arrayList4 = new ArrayList();
         for (int i14 = 0; i14 < arrayList3.size(); i14++) {
             a81 a81Var = (a81) arrayList3.get(i14);
-            String str2 = a81Var.f24545m;
-            if (str2 == null || ((!"av1".equals(str2) && !"av01".equals(a81Var.f24545m) && !"hevc".equals(a81Var.f24545m) && !"h265".equals(a81Var.f24545m) && !"vp9".equals(a81Var.f24545m)) || Y(a81Var.f24545m))) {
+            String str2 = a81Var.f24548m;
+            if (str2 == null || ((!"av1".equals(str2) && !"av01".equals(a81Var.f24548m) && !"hevc".equals(a81Var.f24548m) && !"h265".equals(a81Var.f24548m) && !"vp9".equals(a81Var.f24548m)) || Y(a81Var.f24548m))) {
                 arrayList4.add(a81Var);
             }
         }
@@ -340,7 +340,7 @@ public class c81 implements b2.d1, b2.z1, j2.b, NotificationCenter.NotificationC
             Object obj = arrayList5.get(i15);
             i15++;
             a81 a81Var2 = (a81) obj;
-            if (a81Var2.f24537b) {
+            if (a81Var2.f24540b) {
                 arrayList6.add(new y71(a81Var2));
             } else {
                 int size2 = arrayList6.size();
@@ -350,7 +350,7 @@ public class c81 implements b2.d1, b2.z1, j2.b, NotificationCenter.NotificationC
                         Object obj2 = arrayList6.get(i16);
                         i16++;
                         y71Var = (y71) obj2;
-                        if (!y71Var.f32582a && y71Var.f32583b == a81Var2.f24541i && y71Var.f32584c == a81Var2.f24542j) {
+                        if (!y71Var.f32585a && y71Var.f32586b == a81Var2.f24544i && y71Var.f32587c == a81Var2.f24545j) {
                             break;
                         }
                     } else {
@@ -383,7 +383,7 @@ public class c81 implements b2.d1, b2.z1, j2.b, NotificationCenter.NotificationC
                 Object obj2 = arrayList2.get(i13);
                 i13++;
                 a81 a81Var = (a81) obj2;
-                if (a81Var.f24537b && a81Var.b()) {
+                if (a81Var.f24540b && a81Var.b()) {
                     return a81Var;
                 }
             }
@@ -401,7 +401,7 @@ public class c81 implements b2.d1, b2.z1, j2.b, NotificationCenter.NotificationC
                 Object obj4 = arrayList3.get(i15);
                 i15++;
                 a81 a81Var3 = (a81) obj4;
-                if (!a81Var3.f24537b && Y(a81Var3.f24545m) && (a81Var2 == null || (i10 = a81Var3.f24541i * a81Var3.f24542j) > (i11 = a81Var2.f24541i * a81Var2.f24542j) || (i10 == i11 && a81Var3.f24544l < a81Var2.f24544l))) {
+                if (!a81Var3.f24540b && Y(a81Var3.f24548m) && (a81Var2 == null || (i10 = a81Var3.f24544i * a81Var3.f24545j) > (i11 = a81Var2.f24544i * a81Var2.f24545j) || (i10 == i11 && a81Var3.f24547l < a81Var2.f24547l))) {
                     a81Var2 = a81Var3;
                 }
             }
@@ -419,7 +419,7 @@ public class c81 implements b2.d1, b2.z1, j2.b, NotificationCenter.NotificationC
                     Object obj6 = arrayList4.get(i17);
                     i17++;
                     a81 a81Var4 = (a81) obj6;
-                    if (a81Var2 == null || a81Var2.f24541i * a81Var2.f24542j > a81Var4.f24541i * a81Var4.f24542j || a81Var4.f24544l < a81Var2.f24544l) {
+                    if (a81Var2 == null || a81Var2.f24544i * a81Var2.f24545j > a81Var4.f24544i * a81Var4.f24545j || a81Var4.f24547l < a81Var2.f24547l) {
                         a81Var2 = a81Var4;
                     }
                 }
@@ -459,8 +459,8 @@ public class c81 implements b2.d1, b2.z1, j2.b, NotificationCenter.NotificationC
                 Object obj4 = arrayList3.get(i13);
                 i13++;
                 a81 a81Var3 = (a81) obj4;
-                if (!a81Var3.f24537b && (a81Var2 == null || a81Var2.f24541i * a81Var2.f24542j > a81Var3.f24541i * a81Var3.f24542j || a81Var3.f24544l < a81Var2.f24544l)) {
-                    if (a81Var3.f24541i <= 900 && a81Var3.f24542j <= 900) {
+                if (!a81Var3.f24540b && (a81Var2 == null || a81Var2.f24544i * a81Var2.f24545j > a81Var3.f24544i * a81Var3.f24545j || a81Var3.f24547l < a81Var2.f24547l)) {
+                    if (a81Var3.f24544i <= 900 && a81Var3.f24545j <= 900) {
                         a81Var2 = a81Var3;
                     }
                 }
@@ -479,7 +479,7 @@ public class c81 implements b2.d1, b2.z1, j2.b, NotificationCenter.NotificationC
                     Object obj6 = arrayList4.get(i15);
                     i15++;
                     a81 a81Var4 = (a81) obj6;
-                    if (a81Var2 == null || a81Var2.f24541i * a81Var2.f24542j > a81Var4.f24541i * a81Var4.f24542j || a81Var4.f24544l < a81Var2.f24544l) {
+                    if (a81Var2 == null || a81Var2.f24544i * a81Var2.f24545j > a81Var4.f24544i * a81Var4.f24545j || a81Var4.f24547l < a81Var2.f24547l) {
                         a81Var2 = a81Var4;
                     }
                 }
@@ -697,14 +697,14 @@ public class c81 implements b2.d1, b2.z1, j2.b, NotificationCenter.NotificationC
             i0Var2.X(false);
         }
         if (this.K != null) {
-            this.f25128a0.removeCallbacksAndMessages(null);
+            this.f25131a0.removeCallbacksAndMessages(null);
             this.K.onVisualizerUpdate(false, true, null);
         }
     }
 
     public void C() {
         this.I = true;
-        if (this.f25144x && (!this.H || !this.G)) {
+        if (this.f25147x && (!this.H || !this.G)) {
             i2.i0 i0Var = this.d;
             if (i0Var != null) {
                 i0Var.X(false);
@@ -740,10 +740,10 @@ public class c81 implements b2.d1, b2.z1, j2.b, NotificationCenter.NotificationC
         this.T = null;
         boolean z10 = false;
         this.U = false;
-        this.f25132c0 = false;
-        this.f25134e0 = false;
+        this.f25135c0 = false;
+        this.f25137e0 = false;
         this.G = false;
-        this.f25144x = false;
+        this.f25147x = false;
         this.F = uri;
         if (uri != null) {
             str2 = uri.getScheme();
@@ -767,22 +767,22 @@ public class c81 implements b2.d1, b2.z1, j2.b, NotificationCenter.NotificationC
         this.R = null;
         this.T = null;
         this.U = false;
-        this.f25132c0 = false;
+        this.f25135c0 = false;
         this.G = false;
-        this.f25144x = false;
+        this.f25147x = false;
         this.F = null;
         this.v = true;
         i();
-        this.f25134e0 = false;
+        this.f25137e0 = false;
         if (y71Var != null && (arrayList2 = this.N) != null) {
             i10 = arrayList2.indexOf(y71Var);
         } else {
             i10 = -1;
         }
-        this.f25133d0 = i10;
+        this.f25136d0 = i10;
         R(true, y71Var);
-        if (this.f25132c0) {
-            this.f25133d0 = -1;
+        if (this.f25135c0) {
+            this.f25136d0 = -1;
         }
     }
 
@@ -797,8 +797,8 @@ public class c81 implements b2.d1, b2.z1, j2.b, NotificationCenter.NotificationC
         this.S = str;
         this.T = str2;
         this.U = true;
-        this.f25134e0 = false;
-        this.f25144x = true;
+        this.f25137e0 = false;
+        this.f25147x = true;
         this.H = false;
         this.G = false;
         i();
@@ -822,11 +822,11 @@ public class c81 implements b2.d1, b2.z1, j2.b, NotificationCenter.NotificationC
         this.d.b();
         this.e.u1(xVar2, true);
         this.e.b();
-        f25125k0.add(Integer.valueOf(this.f25127a));
+        f25128k0.add(Integer.valueOf(this.f25130a));
     }
 
     public final void H() {
-        f25125k0.remove(Integer.valueOf(this.f25127a));
+        f25128k0.remove(Integer.valueOf(this.f25130a));
         i2.i0 i0Var = this.d;
         if (i0Var != null) {
             i0Var.X0();
@@ -864,7 +864,7 @@ public class c81 implements b2.d1, b2.z1, j2.b, NotificationCenter.NotificationC
         i2.s1 s1Var;
         if (this.d != null) {
             if (runnable != null) {
-                this.f25139i0.add(runnable);
+                this.f25142i0.add(runnable);
             }
             i2.i0 i0Var = this.d;
             if (z10) {
@@ -916,7 +916,7 @@ public class c81 implements b2.d1, b2.z1, j2.b, NotificationCenter.NotificationC
 
     public void P(boolean z10) {
         this.I = z10;
-        if (z10 && this.f25144x && (!this.H || !this.G)) {
+        if (z10 && this.f25147x && (!this.H || !this.G)) {
             i2.i0 i0Var = this.d;
             if (i0Var != null) {
                 i0Var.X(false);
@@ -928,7 +928,7 @@ public class c81 implements b2.d1, b2.z1, j2.b, NotificationCenter.NotificationC
             }
             return;
         }
-        this.f25143w = z10;
+        this.f25146w = z10;
         i2.i0 i0Var3 = this.d;
         if (i0Var3 != null) {
             i0Var3.X(z10);
@@ -981,8 +981,8 @@ public class c81 implements b2.d1, b2.z1, j2.b, NotificationCenter.NotificationC
     }
 
     public final void T(Surface surface) {
-        if (this.f25142s != surface) {
-            this.f25142s = surface;
+        if (this.f25145s != surface) {
+            this.f25145s = surface;
             i2.i0 i0Var = this.d;
             if (i0Var == null) {
                 return;
@@ -993,8 +993,8 @@ public class c81 implements b2.d1, b2.z1, j2.b, NotificationCenter.NotificationC
 
     public final void U(SurfaceView surfaceView) {
         SurfaceHolder holder;
-        if (this.f25141r != surfaceView) {
-            this.f25141r = surfaceView;
+        if (this.f25144r != surfaceView) {
+            this.f25144r = surfaceView;
             i2.i0 i0Var = this.d;
             if (i0Var == null) {
                 return;
@@ -1010,8 +1010,8 @@ public class c81 implements b2.d1, b2.z1, j2.b, NotificationCenter.NotificationC
     }
 
     public final void V(TextureView textureView) {
-        if (this.f25140n != textureView) {
-            this.f25140n = textureView;
+        if (this.f25143n != textureView) {
+            this.f25143n = textureView;
             i2.i0 i0Var = this.d;
             if (i0Var == null) {
                 return;
@@ -1032,7 +1032,7 @@ public class c81 implements b2.d1, b2.z1, j2.b, NotificationCenter.NotificationC
     }
 
     public final void X(DispatchQueue dispatchQueue) {
-        this.f25129b = dispatchQueue;
+        this.f25132b = dispatchQueue;
         if (dispatchQueue != null) {
             this.d.f12414s0 = new org.telegram.messenger.g1(dispatchQueue);
             return;
@@ -1042,7 +1042,7 @@ public class c81 implements b2.d1, b2.z1, j2.b, NotificationCenter.NotificationC
 
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        if (i10 == NotificationCenter.playerDidStartPlaying && ((c81) objArr[0]) != this && y() && !this.f25145y) {
+        if (i10 == NotificationCenter.playerDidStartPlaying && ((c81) objArr[0]) != this && y() && !this.f25148y) {
             B();
         }
     }
@@ -1054,7 +1054,7 @@ public class c81 implements b2.d1, b2.z1, j2.b, NotificationCenter.NotificationC
             if (z71Var != null) {
                 z71Var.onSeekFinished(aVar);
             }
-            ArrayList arrayList = this.f25139i0;
+            ArrayList arrayList = this.f25142i0;
             int size = arrayList.size();
             int i11 = 0;
             while (i11 < size) {
@@ -1072,7 +1072,7 @@ public class c81 implements b2.d1, b2.z1, j2.b, NotificationCenter.NotificationC
         HashMap hashMap = new HashMap();
         hashMap.put(j2.k.f13968c.f13969a, 144179200);
         y2.d dVar = new y2.d();
-        boolean z10 = this.f25131c;
+        boolean z10 = this.f25134c;
         int i11 = 1000;
         if (z10) {
             i10 = 1000;
@@ -1101,7 +1101,7 @@ public class c81 implements b2.d1, b2.z1, j2.b, NotificationCenter.NotificationC
             i2.p pVar = new i2.p(ApplicationLoader.applicationContext);
             v7.u6.p(!pVar.f12523z);
             pVar.f12504c = new i2.o(lVar, 2);
-            x2.n nVar = this.f25135f;
+            x2.n nVar = this.f25138f;
             v7.u6.p(!pVar.f12523z);
             nVar.getClass();
             pVar.e = new i2.o(nVar, 1);
@@ -1114,15 +1114,15 @@ public class c81 implements b2.d1, b2.z1, j2.b, NotificationCenter.NotificationC
             fVar.f13942f.a(this);
             this.d.f12402m.a(this);
             this.d.f12416t0.add(this);
-            TextureView textureView = this.f25140n;
+            TextureView textureView = this.f25143n;
             if (textureView != null) {
                 this.d.z1(textureView);
             } else {
-                Surface surface = this.f25142s;
+                Surface surface = this.f25145s;
                 if (surface != null) {
                     this.d.y1(surface);
                 } else {
-                    SurfaceView surfaceView = this.f25141r;
+                    SurfaceView surfaceView = this.f25144r;
                     if (surfaceView != null) {
                         i2.i0 i0Var = this.d;
                         i0Var.F1();
@@ -1130,16 +1130,16 @@ public class c81 implements b2.d1, b2.z1, j2.b, NotificationCenter.NotificationC
                     }
                 }
             }
-            this.d.X(this.f25143w);
+            this.d.X(this.f25146w);
             i2.i0 i0Var2 = this.d;
             if (this.V) {
                 i13 = 2;
             }
             i0Var2.j(i13);
         }
-        if (this.f25144x && this.e == null) {
+        if (this.f25147x && this.e == null) {
             i2.p pVar2 = new i2.p(ApplicationLoader.applicationContext);
-            x2.n nVar2 = this.f25135f;
+            x2.n nVar2 = this.f25138f;
             v7.u6.p(!pVar2.f12523z);
             nVar2.getClass();
             pVar2.e = new i2.o(nVar2, 1);
@@ -1148,7 +1148,7 @@ public class c81 implements b2.d1, b2.z1, j2.b, NotificationCenter.NotificationC
             i2.i0 a10 = pVar2.a();
             this.e = a10;
             a10.f12402m.a(new e2.z(this, 1));
-            this.e.X(this.f25143w);
+            this.e.X(this.f25146w);
         }
     }
 
@@ -1177,7 +1177,7 @@ public class c81 implements b2.d1, b2.z1, j2.b, NotificationCenter.NotificationC
             }
             qf.e eVar = new qf.e(this.Q, str5, h);
             eVar.e = str2;
-            eVar.f44462f = str3;
+            eVar.f44465f = str3;
             return new qf.g(new qf.f(eVar));
         }
         ArrayList arrayList = new ArrayList();
@@ -1196,9 +1196,9 @@ public class c81 implements b2.d1, b2.z1, j2.b, NotificationCenter.NotificationC
                 a81 a81Var = (a81) obj2;
                 StringBuilder sb2 = new StringBuilder("/mtproto_");
                 ArrayList arrayList4 = arrayList2;
-                sb2.append(a81Var.f24538c);
+                sb2.append(a81Var.f24541c);
                 String sb3 = sb2.toString();
-                TLRPC.Document document = a81Var.f24540g;
+                TLRPC.Document document = a81Var.f24543g;
                 if (document != null) {
                     str4 = document.mime_type;
                 } else {
@@ -1209,11 +1209,11 @@ public class c81 implements b2.d1, b2.z1, j2.b, NotificationCenter.NotificationC
                 }
                 qf.e eVar2 = new qf.e(a81Var.d, str4, sb3);
                 eVar2.e = str2;
-                eVar2.f44462f = str3;
-                int i12 = a81Var.f24541i;
-                int i13 = a81Var.f24542j;
-                eVar2.f44459a = i12;
-                eVar2.f44460b = i13;
+                eVar2.f44465f = str3;
+                int i12 = a81Var.f24544i;
+                int i13 = a81Var.f24545j;
+                eVar2.f44462a = i12;
+                eVar2.f44463b = i13;
                 arrayList.add(new qf.f(eVar2));
                 arrayList2 = arrayList4;
             }
@@ -1240,8 +1240,8 @@ public class c81 implements b2.d1, b2.z1, j2.b, NotificationCenter.NotificationC
                         Object obj2 = arrayList2.get(i11);
                         i11++;
                         a81 a81Var = (a81) obj2;
-                        if (a81Var.f24538c == wVar.f4124o) {
-                            return a81Var.f24540g;
+                        if (a81Var.f24541c == wVar.f4124o) {
+                            return a81Var.f24543g;
                         }
                     }
                 }
@@ -1253,7 +1253,7 @@ public class c81 implements b2.d1, b2.z1, j2.b, NotificationCenter.NotificationC
     }
 
     public final long n() {
-        long j10 = this.f25137g0;
+        long j10 = this.f25140g0;
         if (j10 != -9223372036854775807L) {
             return j10;
         }
@@ -1265,11 +1265,11 @@ public class c81 implements b2.d1, b2.z1, j2.b, NotificationCenter.NotificationC
     }
 
     public final int o() {
-        if (this.f25133d0 == -1) {
+        if (this.f25136d0 == -1) {
             try {
-                if (this.f25132c0) {
+                if (this.f25135c0) {
                     for (int i10 = 0; i10 < t(); i10++) {
-                        if (u(i10).f32582a) {
+                        if (u(i10).f32585a) {
                             return i10;
                         }
                     }
@@ -1281,7 +1281,7 @@ public class c81 implements b2.d1, b2.z1, j2.b, NotificationCenter.NotificationC
                     if (wVar != null) {
                         for (int i11 = 0; i11 < t(); i11++) {
                             y71 u10 = u(i11);
-                            if (!u10.f32582a && wVar.f4134z == u10.f32583b && wVar.A == u10.f32584c && wVar.f4119j == ((int) Math.floor(((a81) u10.d.get(0)).f24544l * 8.0d))) {
+                            if (!u10.f32585a && wVar.f4134z == u10.f32586b && wVar.A == u10.f32587c && wVar.f4119j == ((int) Math.floor(((a81) u10.d.get(0)).f24547l * 8.0d))) {
                                 return i11;
                             }
                         }
@@ -1293,7 +1293,7 @@ public class c81 implements b2.d1, b2.z1, j2.b, NotificationCenter.NotificationC
                 return -1;
             }
         }
-        return this.f25133d0;
+        return this.f25136d0;
     }
 
     @Override
@@ -1327,7 +1327,7 @@ public class c81 implements b2.d1, b2.z1, j2.b, NotificationCenter.NotificationC
             }
         }
         if (i10 != 3) {
-            this.f25128a0.removeCallbacksAndMessages(null);
+            this.f25131a0.removeCallbacksAndMessages(null);
             v71 v71Var = this.K;
             if (v71Var != null) {
                 v71Var.onVisualizerUpdate(false, true, null);
@@ -1341,8 +1341,8 @@ public class c81 implements b2.d1, b2.z1, j2.b, NotificationCenter.NotificationC
 
     @Override
     public final void onRenderedFirstFrame(j2.a aVar) {
-        this.f25137g0 = -9223372036854775807L;
-        this.f25136f0 = -9223372036854775807L;
+        this.f25140g0 = -9223372036854775807L;
+        this.f25139f0 = -9223372036854775807L;
         z71 z71Var = this.J;
         if (z71Var != null) {
             z71Var.onRenderedFirstFrame(aVar);
@@ -1359,7 +1359,7 @@ public class c81 implements b2.d1, b2.z1, j2.b, NotificationCenter.NotificationC
 
     @Override
     public final void onTrackSelectionParametersChanged(b2.t1 t1Var) {
-        org.telegram.ui.qq0 qq0Var = this.f25138h0;
+        org.telegram.ui.qq0 qq0Var = this.f25141h0;
         if (qq0Var != null) {
             AndroidUtilities.runOnUIThread(qq0Var);
         }
@@ -1367,7 +1367,7 @@ public class c81 implements b2.d1, b2.z1, j2.b, NotificationCenter.NotificationC
 
     @Override
     public final void onTracksChanged(b2.v1 v1Var) {
-        org.telegram.ui.qq0 qq0Var = this.f25138h0;
+        org.telegram.ui.qq0 qq0Var = this.f25141h0;
         if (qq0Var != null) {
             AndroidUtilities.runOnUIThread(qq0Var);
         }
@@ -1381,7 +1381,7 @@ public class c81 implements b2.d1, b2.z1, j2.b, NotificationCenter.NotificationC
     }
 
     public final long p() {
-        long j10 = this.f25136f0;
+        long j10 = this.f25139f0;
         if (j10 != -9223372036854775807L) {
             return j10;
         }
@@ -1400,7 +1400,7 @@ public class c81 implements b2.d1, b2.z1, j2.b, NotificationCenter.NotificationC
         try {
             i2.i0 i0Var = this.d;
             i0Var.F1();
-            MediaFormat mediaFormat = ((r2.r) i0Var.f12391g[0]).f44963f0;
+            MediaFormat mediaFormat = ((r2.r) i0Var.f12391g[0]).f44966f0;
             ByteBuffer byteBuffer = mediaFormat.getByteBuffer("hdr-static-info");
             byteBuffer.order(ByteOrder.LITTLE_ENDIAN);
             if (byteBuffer.get() == 0) {
@@ -1427,7 +1427,7 @@ public class c81 implements b2.d1, b2.z1, j2.b, NotificationCenter.NotificationC
         y71 y71Var = null;
         for (int i10 = 0; i10 < t(); i10++) {
             y71 u10 = u(i10);
-            if (u10.f32582a == bool.booleanValue() && (y71Var == null || y71Var.f32583b * y71Var.f32584c < u10.f32583b * u10.f32584c)) {
+            if (u10.f32585a == bool.booleanValue() && (y71Var == null || y71Var.f32586b * y71Var.f32587c < u10.f32586b * u10.f32587c)) {
                 y71Var = u10;
             }
         }
@@ -1466,7 +1466,7 @@ public class c81 implements b2.d1, b2.z1, j2.b, NotificationCenter.NotificationC
     }
 
     public final boolean y() {
-        if (!this.f25144x || !this.I) {
+        if (!this.f25147x || !this.I) {
             i2.i0 i0Var = this.d;
             if (i0Var != null && i0Var.t()) {
                 return true;
@@ -1494,20 +1494,20 @@ public class c81 implements b2.d1, b2.z1, j2.b, NotificationCenter.NotificationC
                 Object obj2 = arrayList3.get(i11);
                 i11++;
                 a81 a81Var = (a81) obj2;
-                long j10 = a81Var.f24538c;
+                long j10 = a81Var.f24541c;
                 Uri uri = a81Var.d;
                 ExtendedDefaultDataSourceFactory extendedDefaultDataSourceFactory = this.h;
                 extendedDefaultDataSourceFactory.putDocumentUri(j10, uri);
-                extendedDefaultDataSourceFactory.putDocumentUri(a81Var.e, a81Var.f24539f);
-                if (a81Var.f24539f != null) {
+                extendedDefaultDataSourceFactory.putDocumentUri(a81Var.e, a81Var.f24542f);
+                if (a81Var.f24542f != null) {
                     this.P.add(a81Var);
                     StringBuilder sb3 = new StringBuilder("#EXT-X-STREAM-INF:BANDWIDTH=");
-                    sb3.append((int) Math.floor(a81Var.f24544l * 8.0d));
+                    sb3.append((int) Math.floor(a81Var.f24547l * 8.0d));
                     sb3.append(",RESOLUTION=");
-                    sb3.append(a81Var.f24541i);
+                    sb3.append(a81Var.f24544i);
                     sb3.append("x");
-                    sb3.append(a81Var.f24542j);
-                    String str2 = a81Var.f24545m;
+                    sb3.append(a81Var.f24545j);
+                    String str2 = a81Var.f24548m;
                     if (str2 == null) {
                         str = null;
                     } else {
@@ -1595,12 +1595,12 @@ public class c81 implements b2.d1, b2.z1, j2.b, NotificationCenter.NotificationC
                         sb3.append(",CACHED=\"true\"");
                     }
                     sb3.append(",DOCID=\"");
-                    sb3.append(a81Var.f24538c);
+                    sb3.append(a81Var.f24541c);
                     sb3.append("\",ACCOUNT=\"");
-                    sb3.append(a81Var.f24536a);
+                    sb3.append(a81Var.f24539a);
                     sb3.append("\"\n");
                     if (a81Var.c()) {
-                        sb3.append(a81Var.f24539f);
+                        sb3.append(a81Var.f24542f);
                         sb3.append("\n\n");
                     } else {
                         sb3.append("mtproto:");
@@ -1621,19 +1621,19 @@ public class c81 implements b2.d1, b2.z1, j2.b, NotificationCenter.NotificationC
     }
 
     public c81(boolean z10, boolean z11) {
-        int i10 = f25124j0;
-        f25124j0 = i10 + 1;
-        this.f25127a = i10;
-        this.f25128a0 = new Handler(Looper.getMainLooper());
-        this.f25132c0 = false;
-        this.f25133d0 = -1;
-        this.f25136f0 = -9223372036854775807L;
-        this.f25137g0 = -9223372036854775807L;
-        this.f25139i0 = new ArrayList();
-        this.f25130b0 = z11;
+        int i10 = f25127j0;
+        f25127j0 = i10 + 1;
+        this.f25130a = i10;
+        this.f25131a0 = new Handler(Looper.getMainLooper());
+        this.f25135c0 = false;
+        this.f25136d0 = -1;
+        this.f25139f0 = -9223372036854775807L;
+        this.f25140g0 = -9223372036854775807L;
+        this.f25142i0 = new ArrayList();
+        this.f25133b0 = z11;
         this.h = new ExtendedDefaultDataSourceFactory(ApplicationLoader.applicationContext, "Mozilla/5.0 (X11; Linux x86_64; rv:10.0) Gecko/20150101 Firefox/47.0 (Chrome)");
         x2.n nVar = new x2.n(ApplicationLoader.applicationContext, new oa.d(26));
-        this.f25135f = nVar;
+        this.f25138f = nVar;
         if (z11) {
             x2.i j10 = nVar.j();
             j10.getClass();

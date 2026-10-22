@@ -5,10 +5,10 @@ import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class yj implements ct {
-    public final qn f43505a;
+    public final qn f43508a;
 
     public yj(qn qnVar) {
-        this.f43505a = qnVar;
+        this.f43508a = qnVar;
     }
 
     @Override
@@ -49,14 +49,14 @@ public final class yj implements ct {
     @Override
     public final void M(TLRPC.InputStickerSet inputStickerSet, boolean z10) {
         if (inputStickerSet != null) {
-            qn qnVar = this.f43505a;
+            qn qnVar = this.f43508a;
             if (qnVar.getParentActivity() != null) {
                 TLRPC.TL_inputStickerSetID tL_inputStickerSetID = new TLRPC.TL_inputStickerSetID();
                 tL_inputStickerSetID.access_hash = inputStickerSet.access_hash;
-                tL_inputStickerSetID.f20296id = inputStickerSet.f20296id;
-                org.telegram.ui.Components.qy0 qy0Var = new org.telegram.ui.Components.qy0(qnVar.getParentActivity(), qnVar, tL_inputStickerSetID, null, qnVar.Y, qnVar.f40673ea);
+                tL_inputStickerSetID.f20299id = inputStickerSet.f20299id;
+                org.telegram.ui.Components.qy0 qy0Var = new org.telegram.ui.Components.qy0(qnVar.getParentActivity(), qnVar, tL_inputStickerSetID, null, qnVar.Y, qnVar.f40676ea);
                 qy0Var.setCalcMandatoryInsets(qnVar.C9());
-                qy0Var.f29755i0 = z10;
+                qy0Var.f29758i0 = z10;
                 qnVar.showDialog(qy0Var);
             }
         }
@@ -79,17 +79,17 @@ public final class yj implements ct {
 
     @Override
     public final long a() {
-        return this.f43505a.T5;
+        return this.f43508a.T5;
     }
 
     @Override
     public final boolean b() {
-        return this.f43505a.G6();
+        return this.f43508a.G6();
     }
 
     @Override
     public final boolean c() {
-        if (this.f43505a.R3 == 1) {
+        if (this.f43508a.R3 == 1) {
             return true;
         }
         return false;
@@ -132,7 +132,7 @@ public final class yj implements ct {
 
     @Override
     public final void l(TLRPC.Document document, String str, Object obj, boolean z10, int i10, int i11) {
-        this.f43505a.Y.e(document, str, obj, null, true, z10, i10, i11);
+        this.f43508a.Y.e(document, str, obj, null, true, z10, i10, i11);
     }
 
     @Override

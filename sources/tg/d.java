@@ -7,9 +7,9 @@ import javax.microedition.khronos.opengles.GL10;
 import org.telegram.messenger.FileLog;
 import org.telegram.ui.web.z1;
 public final class d implements GLSurfaceView.Renderer {
-    public long f47056a;
-    public boolean f47057b;
-    public int f47058c;
+    public long f47059a;
+    public boolean f47060b;
+    public int f47061c;
     public final f d;
 
     public d(f fVar) {
@@ -19,37 +19,37 @@ public final class d implements GLSurfaceView.Renderer {
     @Override
     public final void onDrawFrame(GL10 gl10) {
         float min;
-        if (this.d.f47066r) {
+        if (this.d.f47069r) {
             GLES20.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
             GLES20.glClear(16384);
-        } else if (!this.d.f47069x) {
+        } else if (!this.d.f47072x) {
             GLES20.glBindFramebuffer(36160, 0);
             GLES20.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
             GLES20.glClear(16384);
-            if (!this.d.f47070y) {
-                this.d.f47070y = true;
+            if (!this.d.f47073y) {
+                this.d.f47073y = true;
                 final int i10 = this.d.E;
                 this.d.post(new Runnable(this) {
-                    public final d f47054b;
+                    public final d f47057b;
 
                     {
-                        this.f47054b = this;
+                        this.f47057b = this;
                     }
 
                     @Override
                     public final void run() {
                         switch (r3) {
                             case 0:
-                                d dVar = this.f47054b;
+                                d dVar = this.f47057b;
                                 f.a(dVar.d, i10);
                                 return;
                             default:
-                                d dVar2 = this.f47054b;
+                                d dVar2 = this.f47057b;
                                 int i11 = i10;
                                 f fVar = dVar2.d;
-                                if (fVar.e && !fVar.f47066r && i11 == dVar2.d.G) {
+                                if (fVar.e && !fVar.f47069r && i11 == dVar2.d.G) {
                                     f fVar2 = dVar2.d;
-                                    fVar2.f47067s = true;
+                                    fVar2.f47070s = true;
                                     Runnable runnable = fVar2.v;
                                     fVar2.v = null;
                                     if (runnable != null) {
@@ -66,44 +66,44 @@ public final class d implements GLSurfaceView.Renderer {
         } else {
             try {
                 long nanoTime = System.nanoTime();
-                g gVar = this.d.f47061a;
-                long j10 = this.f47056a;
+                g gVar = this.d.f47064a;
+                long j10 = this.f47059a;
                 if (j10 == 0) {
                     min = 0.016666668f;
                 } else {
                     min = Math.min(0.1f, ((float) (nanoTime - j10)) / 1.0E9f);
                 }
                 gVar.G = min;
-                this.f47056a = nanoTime;
+                this.f47059a = nanoTime;
                 f fVar = this.d;
-                fVar.f47061a.f47073c.A = fVar.f47068w;
-                this.d.f47061a.onDrawFrame(gl10);
+                fVar.f47064a.f47076c.A = fVar.f47071w;
+                this.d.f47064a.onDrawFrame(gl10);
                 int glGetError = GLES20.glGetError();
                 if (glGetError == 0) {
-                    if (!this.f47057b) {
-                        this.f47057b = true;
-                        final int i11 = this.f47058c;
+                    if (!this.f47060b) {
+                        this.f47060b = true;
+                        final int i11 = this.f47061c;
                         this.d.post(new Runnable(this) {
-                            public final d f47054b;
+                            public final d f47057b;
 
                             {
-                                this.f47054b = this;
+                                this.f47057b = this;
                             }
 
                             @Override
                             public final void run() {
                                 switch (r3) {
                                     case 0:
-                                        d dVar = this.f47054b;
+                                        d dVar = this.f47057b;
                                         f.a(dVar.d, i11);
                                         return;
                                     default:
-                                        d dVar2 = this.f47054b;
+                                        d dVar2 = this.f47057b;
                                         int i112 = i11;
                                         f fVar2 = dVar2.d;
-                                        if (fVar2.e && !fVar2.f47066r && i112 == dVar2.d.G) {
+                                        if (fVar2.e && !fVar2.f47069r && i112 == dVar2.d.G) {
                                             f fVar22 = dVar2.d;
-                                            fVar22.f47067s = true;
+                                            fVar22.f47070s = true;
                                             Runnable runnable = fVar22.v;
                                             fVar22.v = null;
                                             if (runnable != null) {
@@ -123,7 +123,7 @@ public final class d implements GLSurfaceView.Renderer {
                 throw new IllegalStateException("Diamond GL error: " + glGetError);
             } catch (RuntimeException e) {
                 FileLog.e(e);
-                this.d.f47066r = true;
+                this.d.f47069r = true;
                 this.d.post(new z1(this, 29));
             }
         }
@@ -131,10 +131,10 @@ public final class d implements GLSurfaceView.Renderer {
 
     @Override
     public final void onSurfaceChanged(GL10 gl10, int i10, int i11) {
-        this.f47057b = false;
-        this.f47058c = this.d.G;
-        if (!this.d.f47066r) {
-            this.d.f47061a.onSurfaceChanged(gl10, i10, i11);
+        this.f47060b = false;
+        this.f47061c = this.d.G;
+        if (!this.d.f47069r) {
+            this.d.f47064a.onSurfaceChanged(gl10, i10, i11);
         }
     }
 
@@ -143,17 +143,17 @@ public final class d implements GLSurfaceView.Renderer {
         f fVar = this.d;
         int i10 = fVar.G + 1;
         fVar.G = i10;
-        this.f47058c = i10;
-        this.f47057b = false;
-        this.f47056a = 0L;
-        this.d.f47066r = false;
-        g gVar = this.d.f47061a;
-        gVar.f47073c = null;
+        this.f47061c = i10;
+        this.f47060b = false;
+        this.f47059a = 0L;
+        this.d.f47069r = false;
+        g gVar = this.d.f47064a;
+        gVar.f47076c = null;
         try {
             gVar.onSurfaceCreated(gl10, eGLConfig);
         } catch (RuntimeException e) {
             FileLog.e(e);
-            this.d.f47066r = true;
+            this.d.f47069r = true;
             this.d.post(new z1(this, 29));
         }
     }

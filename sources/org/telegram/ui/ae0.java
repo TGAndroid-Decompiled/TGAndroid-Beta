@@ -3,20 +3,20 @@ package org.telegram.ui;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 public final class ae0 implements Runnable {
-    public final int f35356a;
-    public final de0 f35357b;
+    public final int f35359a;
+    public final de0 f35360b;
 
     public ae0(de0 de0Var, int i10) {
-        this.f35356a = i10;
-        this.f35357b = de0Var;
+        this.f35359a = i10;
+        this.f35360b = de0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f35356a) {
+        switch (this.f35359a) {
             case 0:
-                de0 de0Var = this.f35357b;
-                ei.e2 e2Var = de0Var.f36347c;
+                de0 de0Var = this.f35360b;
+                ei.e2 e2Var = de0Var.f36350c;
                 e2Var.requestFocus();
                 String str = de0Var.K;
                 if (str != null) {
@@ -39,13 +39,13 @@ public final class ae0 implements Runnable {
                 e2Var.setSelection(0, e2Var.getText().length());
                 return;
             case 1:
-                this.f35357b.q(true);
+                this.f35360b.q(true);
                 return;
             case 2:
-                this.f35357b.o(false);
+                this.f35360b.o(false);
                 return;
             default:
-                ei.e2 e2Var2 = this.f35357b.f36347c;
+                ei.e2 e2Var2 = this.f35360b.f36350c;
                 if (e2Var2 != null) {
                     e2Var2.requestFocus();
                     e2Var2.setSelection(e2Var2.length());

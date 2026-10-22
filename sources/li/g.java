@@ -28,7 +28,7 @@ public final class g implements ValueAnimator.AnimatorUpdateListener {
                 m mVar = this.f16111c;
                 qn qnVar = mVar.F;
                 h0 h0Var = (h0) this.d;
-                float measuredHeight = ((((mVar.G.getMeasuredHeight() - qnVar.f40845s9) - qnVar.Ba) / 2.0f) - (h0Var.getMeasuredHeight() / 2.0f)) + mVar.F.f40845s9;
+                float measuredHeight = ((((mVar.G.getMeasuredHeight() - qnVar.f40848s9) - qnVar.Ba) / 2.0f) - (h0Var.getMeasuredHeight() / 2.0f)) + mVar.F.f40848s9;
                 if (h0Var.getTop() > measuredHeight) {
                     f7 = measuredHeight - h0Var.getTop();
                 } else {
@@ -41,7 +41,7 @@ public final class g implements ValueAnimator.AnimatorUpdateListener {
                 m mVar2 = this.f16111c;
                 qn qnVar2 = mVar2.F;
                 xa xaVar = (xa) this.d;
-                float measuredHeight2 = ((((mVar2.G.getMeasuredHeight() - qnVar2.f40845s9) - qnVar2.Ba) / 2.0f) - (xaVar.getMeasuredHeight() / 2.0f)) + mVar2.F.f40845s9;
+                float measuredHeight2 = ((((mVar2.G.getMeasuredHeight() - qnVar2.f40848s9) - qnVar2.Ba) / 2.0f) - (xaVar.getMeasuredHeight() / 2.0f)) + mVar2.F.f40848s9;
                 if (xaVar.getTop() > measuredHeight2) {
                     f10 = measuredHeight2 - xaVar.getTop();
                 } else {

@@ -80,16 +80,16 @@ public final class h7 extends org.telegram.ui.Components.ua {
         }
         float f15 = f14 + f7;
         this.X.addView(l01Var, w7.z5.r(-1, -2, 7, f15, 16.0f, f15, 15.0f));
-        TextView b12 = w7.d6.b(context, 12.0f, org.telegram.ui.ActionBar.h6.f21378y6, false, null);
+        TextView b12 = w7.d6.b(context, 12.0f, org.telegram.ui.ActionBar.h6.f21381y6, false, null);
         b12.setGravity(17);
         b12.setText(LocaleController.getString(R.string.Gift2UpgradeCostsFooter));
         this.X.addView(b12, w7.z5.t(-1, -2, 17, 32, 0, 32, 15));
         float f16 = this.backgroundPaddingLeft / AndroidUtilities.density;
         FrameLayout frameLayout = new FrameLayout(getContext());
         this.Y = frameLayout;
-        frameLayout.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21061h5, this.resourcesProvider));
+        frameLayout.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21064h5, this.resourcesProvider));
         View view = new View(getContext());
-        view.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20991d7, this.resourcesProvider));
+        view.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20994d7, this.resourcesProvider));
         this.Y.addView(view, w7.z5.a(-1.0f, 1.0f / AndroidUtilities.density, 55));
         ei.d dVar = new ei.d(getContext(), this.resourcesProvider, true);
         this.Z = dVar;
@@ -114,14 +114,14 @@ public final class h7 extends org.telegram.ui.Components.ua {
             int i10 = org.telegram.ui.ActionBar.h6.Oh;
             org.telegram.ui.ActionBar.d6 d6Var = limitPreviewView.S;
             paint.setColor(org.telegram.ui.ActionBar.h6.w0(i10, d6Var));
-            limitPreviewView.f24280a = AndroidUtilities.ilerp((float) j10, (float) starGiftUpgradePrice.upgrade_stars, (float) starGiftUpgradePrice2.upgrade_stars);
+            limitPreviewView.f24283a = AndroidUtilities.ilerp((float) j10, (float) starGiftUpgradePrice.upgrade_stars, (float) starGiftUpgradePrice2.upgrade_stars);
             org.telegram.ui.Components.q6 q6Var = limitPreviewView.N;
             q6Var.setText(LocaleController.formatPluralStringComma("Stars", (int) starGiftUpgradePrice.upgrade_stars));
             org.telegram.ui.Components.q6 q6Var2 = limitPreviewView.v;
             q6Var2.setText(LocaleController.formatPluralStringComma("Stars", (int) starGiftUpgradePrice2.upgrade_stars));
             ((FrameLayout.LayoutParams) q6Var2.getLayoutParams()).gravity = 5;
             limitPreviewView.setType(17);
-            limitPreviewView.f24298w.setVisibility(8);
+            limitPreviewView.f24301w.setVisibility(8);
             limitPreviewView.O.setVisibility(8);
             if (limitPreviewView.L) {
                 w02 = -1;

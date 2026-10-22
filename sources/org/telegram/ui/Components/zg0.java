@@ -10,21 +10,21 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MediaController;
 import org.telegram.ui.PhotoViewer;
 public final class zg0 extends FrameLayout {
-    public final int f32897a;
-    public final ah0 f32898b;
+    public final int f32900a;
+    public final ah0 f32901b;
 
     public zg0(ah0 ah0Var, Context context, int i10) {
         super(context);
-        this.f32897a = i10;
-        this.f32898b = ah0Var;
+        this.f32900a = i10;
+        this.f32901b = ah0Var;
     }
 
     @Override
     public void dispatchDraw(Canvas canvas) {
-        switch (this.f32897a) {
+        switch (this.f32900a) {
             case 1:
                 super.dispatchDraw(canvas);
-                ah0 ah0Var = this.f32898b;
+                ah0 ah0Var = this.f32901b;
                 hp0 hp0Var = ah0Var.R;
                 if (hp0Var != null && hp0Var.a()) {
                     ah0Var.R.setBounds(getLeft(), getTop(), getRight(), getBottom());
@@ -45,37 +45,37 @@ public final class zg0 extends FrameLayout {
         int dp;
         PhotoViewer photoViewer;
         org.telegram.ui.qs0 qs0Var;
-        switch (this.f32897a) {
+        switch (this.f32900a) {
             case 0:
                 int actionMasked = motionEvent.getActionMasked();
-                ah0 ah0Var = this.f32898b;
+                ah0 ah0Var = this.f32901b;
                 if (actionMasked == 0 || actionMasked == 5) {
                     if (motionEvent.getPointerCount() == 1) {
-                        ah0Var.f24608f0 = true;
-                        ah0Var.f24609g0 = new float[]{motionEvent.getX(), motionEvent.getY()};
-                        AndroidUtilities.runOnUIThread(ah0Var.f24610h0, 500L);
+                        ah0Var.f24611f0 = true;
+                        ah0Var.f24612g0 = new float[]{motionEvent.getX(), motionEvent.getY()};
+                        AndroidUtilities.runOnUIThread(ah0Var.f24613h0, 500L);
                     } else {
-                        ah0Var.f24608f0 = false;
+                        ah0Var.f24611f0 = false;
                         ah0Var.i();
-                        AndroidUtilities.cancelRunOnUIThread(ah0Var.f24610h0);
+                        AndroidUtilities.cancelRunOnUIThread(ah0Var.f24613h0);
                     }
                 }
                 if (actionMasked != 1 && actionMasked != 3 && actionMasked != 6) {
-                    if (actionMasked == 2 && (photoViewer = ah0Var.V) != null && (qs0Var = photoViewer.f33265c4) != null && qs0Var.rewinding) {
+                    if (actionMasked == 2 && (photoViewer = ah0Var.V) != null && (qs0Var = photoViewer.f33268c4) != null && qs0Var.rewinding) {
                         qs0Var.setX(motionEvent.getX());
                     }
                 } else {
-                    ah0Var.f24608f0 = false;
+                    ah0Var.f24611f0 = false;
                     ah0Var.i();
-                    AndroidUtilities.cancelRunOnUIThread(ah0Var.f24610h0);
+                    AndroidUtilities.cancelRunOnUIThread(ah0Var.f24613h0);
                 }
-                if (ah0Var.f24620y != null) {
+                if (ah0Var.f24623y != null) {
                     MotionEvent obtain = MotionEvent.obtain(motionEvent);
-                    obtain.offsetLocation(ah0Var.f24620y.getX(), ah0Var.f24620y.getY());
-                    boolean dispatchTouchEvent = ah0Var.f24620y.dispatchTouchEvent(motionEvent);
+                    obtain.offsetLocation(ah0Var.f24623y.getX(), ah0Var.f24623y.getY());
+                    boolean dispatchTouchEvent = ah0Var.f24623y.dispatchTouchEvent(motionEvent);
                     obtain.recycle();
                     if (actionMasked == 1 || actionMasked == 3 || actionMasked == 6) {
-                        ah0Var.f24620y = null;
+                        ah0Var.f24623y = null;
                     }
                     if (dispatchTouchEvent) {
                         return true;
@@ -83,19 +83,19 @@ public final class zg0 extends FrameLayout {
                 }
                 MotionEvent obtain2 = MotionEvent.obtain(motionEvent);
                 obtain2.offsetLocation(motionEvent.getRawX() - motionEvent.getX(), motionEvent.getRawY() - motionEvent.getY());
-                boolean onTouchEvent = ah0Var.f24617s.onTouchEvent(obtain2);
+                boolean onTouchEvent = ah0Var.f24620s.onTouchEvent(obtain2);
                 obtain2.recycle();
-                if (!ah0Var.f24617s.isInProgress() && ah0Var.v.k(motionEvent)) {
+                if (!ah0Var.f24620s.isInProgress() && ah0Var.v.k(motionEvent)) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
                 if (actionMasked == 1 || actionMasked == 3 || actionMasked == 6) {
-                    ah0Var.f24618w = false;
-                    ah0Var.f24619x = false;
-                    if (ah0Var.f24605d0) {
-                        ah0Var.f24605d0 = false;
-                        ah0 ah0Var2 = ah0.f24598p0;
+                    ah0Var.f24621w = false;
+                    ah0Var.f24622x = false;
+                    if (ah0Var.f24608d0) {
+                        ah0Var.f24608d0 = false;
+                        ah0 ah0Var2 = ah0.f24601p0;
                         cv cvVar = ah0Var2.U;
                         if (cvVar != null) {
                             cvVar.G();
@@ -147,22 +147,22 @@ public final class zg0 extends FrameLayout {
     public void onConfigurationChanged(Configuration configuration) {
         float dp;
         float f7;
-        switch (this.f32897a) {
+        switch (this.f32900a) {
             case 0:
                 AndroidUtilities.checkDisplaySize(getContext(), configuration);
-                ah0 ah0Var = this.f32898b;
+                ah0 ah0Var = this.f32901b;
                 ah0Var.G = null;
-                AndroidUtilities.setPreferredMaxRefreshRate(ah0Var.f24601b, ah0Var.d, ah0Var.f24603c);
+                AndroidUtilities.setPreferredMaxRefreshRate(ah0Var.f24604b, ah0Var.d, ah0Var.f24606c);
                 if (ah0Var.H != ah0Var.t() * ah0Var.J || ah0Var.I != ah0Var.r() * ah0Var.J) {
-                    WindowManager.LayoutParams layoutParams = ah0Var.f24603c;
+                    WindowManager.LayoutParams layoutParams = ah0Var.f24606c;
                     int t10 = (int) (ah0Var.t() * ah0Var.J);
                     ah0Var.H = t10;
                     layoutParams.width = t10;
-                    WindowManager.LayoutParams layoutParams2 = ah0Var.f24603c;
+                    WindowManager.LayoutParams layoutParams2 = ah0Var.f24606c;
                     int r10 = (int) (ah0Var.r() * ah0Var.J);
                     ah0Var.I = r10;
                     layoutParams2.height = r10;
-                    AndroidUtilities.updateViewLayout(ah0Var.f24601b, ah0Var.d, ah0Var.f24603c);
+                    AndroidUtilities.updateViewLayout(ah0Var.f24604b, ah0Var.d, ah0Var.f24606c);
                     o1.k kVar = ah0Var.M;
                     float f10 = ah0Var.K;
                     kVar.f17550b = f10;
@@ -193,19 +193,19 @@ public final class zg0 extends FrameLayout {
 
     @Override
     public void onDraw(Canvas canvas) {
-        switch (this.f32897a) {
+        switch (this.f32900a) {
             case 1:
-                ah0 ah0Var = this.f32898b;
+                ah0 ah0Var = this.f32901b;
                 t71 t71Var = ah0Var.Q;
-                if (t71Var.f30466j) {
+                if (t71Var.f30469j) {
                     t71Var.setBounds(getLeft(), getTop(), getRight(), getBottom());
                     ah0Var.Q.draw(canvas);
                 }
                 PhotoViewer photoViewer = ah0Var.V;
-                if (photoViewer != null && photoViewer.f33255b4 != null) {
+                if (photoViewer != null && photoViewer.f33258b4 != null) {
                     canvas.save();
                     canvas.translate(getLeft(), getTop());
-                    ah0Var.V.f33255b4.draw(canvas, getRight() - getLeft(), getBottom() - getTop());
+                    ah0Var.V.f33258b4.draw(canvas, getRight() - getLeft(), getBottom() - getTop());
                     canvas.restore();
                     return;
                 }

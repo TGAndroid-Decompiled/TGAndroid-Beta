@@ -31,7 +31,7 @@ public final class c implements b {
         String str;
         this.f482a = context;
         Locale.getDefault().getLanguage().equals(Locale.ENGLISH.getLanguage());
-        this.f483b = new n6(1, -1, aVar.f50125a, 1);
+        this.f483b = new n6(1, -1, aVar.f50128a, 1);
         k6.e.f14973b.getClass();
         if (k6.e.a(context) >= 200400000) {
             str = "com.google.android.gms.vision.ica";
@@ -64,11 +64,11 @@ public final class c implements b {
                 l.h(null);
                 throw null;
             }
-            Bitmap bitmap = aVar.f48903a;
+            Bitmap bitmap = aVar.f48906a;
             l.h(bitmap);
             int i11 = aVar.d;
-            int i12 = aVar.f48904b;
-            int i13 = aVar.f48905c;
+            int i12 = aVar.f48907b;
+            int i13 = aVar.f48908c;
             if (i11 == 0) {
                 createBitmap = Bitmap.createBitmap(bitmap, 0, 0, i12, i13);
             } else {
@@ -81,7 +81,7 @@ public final class c implements b {
                 l.h(m0Var);
                 x6.b bVar = new x6.b(createBitmap);
                 Parcel N0 = m0Var.N0();
-                int i14 = y.f49634a;
+                int i14 = y.f49637a;
                 N0.writeStrongBinder(bVar);
                 N0.writeInt(1);
                 int q6 = f0.q(N0, 20293);
@@ -93,7 +93,7 @@ public final class c implements b {
                 P0.recycle();
                 ArrayList arrayList = new ArrayList();
                 for (m4 m4Var : m4VarArr) {
-                    arrayList.add(new yb.a(m4Var.f49464c, m4Var.d, m4Var.f49463b, m4Var.f49462a));
+                    arrayList.add(new yb.a(m4Var.f49467c, m4Var.d, m4Var.f49466b, m4Var.f49465a));
                 }
                 return arrayList;
             } catch (RemoteException e) {
@@ -111,8 +111,8 @@ public final class c implements b {
         Log.d("LegacyLabelDelegate", "Try to load legacy label module.");
         if (this.e == null) {
             try {
-                IBinder b10 = y6.e.c(context, y6.e.f49955b, str).b("com.google.android.gms.vision.label.ChimeraNativeImageLabelerCreator");
-                int i10 = k2.f49444b;
+                IBinder b10 = y6.e.c(context, y6.e.f49958b, str).b("com.google.android.gms.vision.label.ChimeraNativeImageLabelerCreator");
+                int i10 = k2.f49447b;
                 if (b10 == null) {
                     aVar = null;
                 } else {

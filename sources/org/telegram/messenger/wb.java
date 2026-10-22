@@ -1,46 +1,29 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
 public final class wb implements Runnable {
-    public final int f19973a = 0;
-    public final MessagesController f19974b;
-    public final long f19975c;
-    public final ArrayList d;
-    public final long e;
+    public final int f19986a;
+    public final MessagesController f19987b;
+    public final TLRPC.Dialog f19988c;
 
-    public wb(MessagesController messagesController, long j10, long j11, ArrayList arrayList) {
-        this.f19974b = messagesController;
-        this.f19975c = j10;
-        this.e = j11;
-        this.d = arrayList;
+    public wb(MessagesController messagesController, TLRPC.Dialog dialog, int i10) {
+        this.f19986a = i10;
+        this.f19987b = messagesController;
+        this.f19988c = dialog;
     }
 
     @Override
     public final void run() {
-        switch (this.f19973a) {
+        switch (this.f19986a) {
             case 0:
-                this.f19974b.lambda$checkUnreadPollVotesInternal2$434(this.f19975c, this.e, 0, this.d);
+                this.f19987b.lambda$checkLastDialogMessage$224(this.f19988c);
                 return;
             case 1:
-                this.f19974b.lambda$processUpdateArray$422(this.f19975c, this.d, this.e);
+                this.f19987b.lambda$checkLastDialogMessage$225(this.f19988c);
                 return;
             default:
-                this.f19974b.lambda$deleteMessagesByPush$369(this.d, this.f19975c, this.e);
+                this.f19987b.lambda$checkLastDialogMessage$223(this.f19988c);
                 return;
         }
-    }
-
-    public wb(MessagesController messagesController, long j10, ArrayList arrayList, long j11) {
-        this.f19974b = messagesController;
-        this.f19975c = j10;
-        this.d = arrayList;
-        this.e = j11;
-    }
-
-    public wb(MessagesController messagesController, ArrayList arrayList, long j10, long j11) {
-        this.f19974b = messagesController;
-        this.d = arrayList;
-        this.f19975c = j10;
-        this.e = j11;
     }
 }

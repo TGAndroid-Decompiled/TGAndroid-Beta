@@ -80,12 +80,12 @@ public final class k3 implements View.OnClickListener {
                     int i13 = i12 + 1;
                     TLObject tLObject = (TLObject) arrayList.get(i12);
                     if (tLObject instanceof TLRPC.User) {
-                        j10 = ((TLRPC.User) tLObject).f20423id;
+                        j10 = ((TLRPC.User) tLObject).f20426id;
                     } else {
                         if (tLObject instanceof TLRPC.Chat) {
                             TLRPC.Chat chat = (TLRPC.Chat) tLObject;
                             if (ChatObject.isChannelAndNotMegaGroup(chat)) {
-                                j10 = -chat.f20276id;
+                                j10 = -chat.f20279id;
                             }
                         }
                         i12 = i13;
@@ -98,8 +98,8 @@ public final class k3 implements View.OnClickListener {
                     F.g(tLObject, z10, new f9(i11, j10, this.f11300f, this.h, f3Var, d6Var));
                     i12 = i13;
                 }
-                F.f27186t = false;
-                F.f27185s = 0;
+                F.f27189t = false;
+                F.f27188s = 0;
                 F.V(5);
                 F.a0(AndroidUtilities.dp(24.0f), 0.0f);
                 F.Z();

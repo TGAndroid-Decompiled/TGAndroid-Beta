@@ -1,28 +1,26 @@
 package org.telegram.messenger;
+public final class rh implements Runnable {
+    public final int f19409a;
+    public final String f19410b;
+    public final String f19411c;
+    public final long d;
 
-import android.text.Spanned;
-import java.util.Comparator;
-import org.telegram.messenger.RichMessageLayout;
-public final class rh implements Comparator {
-    public final int f19460a;
-    public final Spanned f19461b;
-
-    public rh(Spanned spanned, int i10) {
-        this.f19460a = i10;
-        this.f19461b = spanned;
+    public rh(int i10, long j10, String str, String str2) {
+        this.f19409a = i10;
+        this.f19410b = str;
+        this.f19411c = str2;
+        this.d = j10;
     }
 
     @Override
-    public final int compare(Object obj, Object obj2) {
-        int lambda$withReplacements$0;
-        int lambda$new$0;
-        switch (this.f19460a) {
+    public final void run() {
+        switch (this.f19409a) {
             case 0:
-                lambda$withReplacements$0 = RichMessageLayout.RichBlock.lambda$withReplacements$0(this.f19461b, (org.telegram.ui.Cells.t9) obj, (org.telegram.ui.Cells.t9) obj2);
-                return lambda$withReplacements$0;
+                PushListenerController.c(this.d, this.f19410b, this.f19411c);
+                return;
             default:
-                lambda$new$0 = RichMessageLayout.Text.lambda$new$0(this.f19461b, (RichMessageLayout.RichButtonSpan) obj, (RichMessageLayout.RichButtonSpan) obj2);
-                return lambda$new$0;
+                PushListenerController.h(this.d, this.f19410b, this.f19411c);
+                return;
         }
     }
 }

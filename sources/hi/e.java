@@ -45,7 +45,7 @@ public final class e extends FrameLayout implements y5 {
         int i10 = h6.G6;
         d6 d6Var = this.f12139b;
         this.f12140c.setTextColor(h6.w0(i10, d6Var));
-        this.d.setTextColor(h6.w0(h6.f21395z6, d6Var));
+        this.d.setTextColor(h6.w0(h6.f21398z6, d6Var));
     }
 
     @Override

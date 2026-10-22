@@ -15,35 +15,35 @@ import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.bs;
 import org.telegram.ui.tf1;
 public final class n8 extends FrameLayout {
-    public final View f34610a;
-    public final EditTextBoldCursor f34611b;
-    public final View f34612c;
+    public final View f34613a;
+    public final EditTextBoldCursor f34614b;
+    public final View f34615c;
     public final org.telegram.ui.ActionBar.d6 d;
     public final w3 e;
-    public final w3 f34613f;
+    public final w3 f34616f;
     public final Paint h;
-    public final TextPaint f34614n;
-    public final RectF f34615r;
-    public ValueAnimator f34616s;
+    public final TextPaint f34617n;
+    public final RectF f34618r;
+    public ValueAnimator f34619s;
     public float v;
-    public float f34617w;
-    public boolean f34618x;
-    public boolean f34619y;
+    public float f34620w;
+    public boolean f34621x;
+    public boolean f34622y;
 
     public n8(Context context, View view, org.telegram.ui.ActionBar.d6 d6Var, w3 w3Var, w3 w3Var2, w3 w3Var3) {
         super(context);
         this.h = new Paint(1);
-        this.f34614n = new TextPaint(1);
-        this.f34615r = new RectF();
-        this.f34617w = 1.0f;
-        this.f34610a = view;
+        this.f34617n = new TextPaint(1);
+        this.f34618r = new RectF();
+        this.f34620w = 1.0f;
+        this.f34613a = view;
         this.d = d6Var;
         this.e = w3Var;
-        this.f34613f = w3Var3;
+        this.f34616f = w3Var3;
         setWillNotDraw(false);
         addView(view, w7.z5.e(-2, 40, 51));
         EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context);
-        this.f34611b = editTextBoldCursor;
+        this.f34614b = editTextBoldCursor;
         editTextBoldCursor.setSingleLine(true);
         editTextBoldCursor.setTextSize(15.0f);
         int i10 = org.telegram.ui.ActionBar.h6.G6;
@@ -61,9 +61,9 @@ public final class n8 extends FrameLayout {
         editTextBoldCursor.addTextChangedListener(new m8(w3Var2));
         addView(editTextBoldCursor, w7.z5.d(-1, 40.0f, 48, 40.0f, 0.0f, 44.0f, 0.0f));
         View view2 = new View(context);
-        this.f34612c = view2;
+        this.f34615c = view2;
         view2.setContentDescription(LocaleController.getString(R.string.Search));
-        view2.setBackground(org.telegram.ui.ActionBar.h6.g0(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21079i6, d6Var), 1, -1));
+        view2.setBackground(org.telegram.ui.ActionBar.h6.g0(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21082i6, d6Var), 1, -1));
         view2.setOnClickListener(new t2(this, 5));
         addView(view2, w7.z5.e(40, 40, 53));
     }
@@ -74,11 +74,11 @@ public final class n8 extends FrameLayout {
     }
 
     public final void a() {
-        if (!this.f34618x) {
+        if (!this.f34621x) {
             return;
         }
-        this.f34619y = true;
-        EditTextBoldCursor editTextBoldCursor = this.f34611b;
+        this.f34622y = true;
+        EditTextBoldCursor editTextBoldCursor = this.f34614b;
         AndroidUtilities.hideKeyboard(editTextBoldCursor);
         editTextBoldCursor.clearFocus();
     }
@@ -87,17 +87,17 @@ public final class n8 extends FrameLayout {
         int i10;
         float f7;
         long j10;
-        if (this.f34618x == z10) {
+        if (this.f34621x == z10) {
             return;
         }
-        this.f34618x = z10;
-        this.f34619y = false;
-        ValueAnimator valueAnimator = this.f34616s;
+        this.f34621x = z10;
+        this.f34622y = false;
+        ValueAnimator valueAnimator = this.f34619s;
         if (valueAnimator != null) {
-            this.f34616s = null;
+            this.f34619s = null;
             valueAnimator.cancel();
         }
-        EditTextBoldCursor editTextBoldCursor = this.f34611b;
+        EditTextBoldCursor editTextBoldCursor = this.f34614b;
         editTextBoldCursor.setEnabled(z10);
         editTextBoldCursor.setVisibility(0);
         if (z10) {
@@ -105,7 +105,7 @@ public final class n8 extends FrameLayout {
         } else {
             i10 = R.string.Search;
         }
-        this.f34612c.setContentDescription(LocaleController.getString(i10));
+        this.f34615c.setContentDescription(LocaleController.getString(i10));
         if (!z10) {
             AndroidUtilities.hideKeyboard(editTextBoldCursor);
             editTextBoldCursor.clearFocus();
@@ -119,18 +119,18 @@ public final class n8 extends FrameLayout {
             f7 = 0.0f;
         }
         ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, f7);
-        this.f34616s = ofFloat;
+        this.f34619s = ofFloat;
         if (z10) {
             j10 = 380;
         } else {
             j10 = 300;
         }
         ofFloat.setDuration(j10);
-        this.f34616s.setInterpolator(bs.h);
-        this.f34610a.setVisibility(0);
-        this.f34616s.addUpdateListener(new b3(this, 7));
-        this.f34616s.addListener(new tf1(this, 8));
-        this.f34616s.start();
+        this.f34619s.setInterpolator(bs.h);
+        this.f34613a.setVisibility(0);
+        this.f34619s.addUpdateListener(new b3(this, 7));
+        this.f34619s.addListener(new tf1(this, 8));
+        this.f34619s.start();
     }
 
     @Override
@@ -139,46 +139,46 @@ public final class n8 extends FrameLayout {
         float f10;
         float f11;
         int i10;
-        ValueAnimator valueAnimator = this.f34616s;
+        ValueAnimator valueAnimator = this.f34619s;
         if (valueAnimator != null) {
-            this.f34616s = null;
+            this.f34619s = null;
             valueAnimator.cancel();
         }
         float f12 = 1.0f;
-        if (this.f34618x) {
+        if (this.f34621x) {
             f7 = 1.0f;
         } else {
             f7 = 0.0f;
         }
         this.v = f7;
-        this.f34613f.run(Float.valueOf(f7));
-        if (this.f34618x) {
+        this.f34616f.run(Float.valueOf(f7));
+        if (this.f34621x) {
             f10 = 0.0f;
         } else {
             f10 = 1.0f;
         }
-        View view = this.f34610a;
+        View view = this.f34613a;
         view.setAlpha(f10);
-        if (this.f34618x) {
+        if (this.f34621x) {
             f11 = 0.94f;
         } else {
             f11 = 1.0f;
         }
         view.setScaleX(f11);
         int i11 = 0;
-        if (this.f34618x) {
+        if (this.f34621x) {
             i10 = 4;
         } else {
             i10 = 0;
         }
         view.setVisibility(i10);
-        if (!this.f34618x) {
+        if (!this.f34621x) {
             f12 = 0.0f;
         }
-        EditTextBoldCursor editTextBoldCursor = this.f34611b;
+        EditTextBoldCursor editTextBoldCursor = this.f34614b;
         editTextBoldCursor.setAlpha(f12);
         editTextBoldCursor.setTranslationX(0.0f);
-        if (!this.f34618x) {
+        if (!this.f34621x) {
             i11 = 4;
         }
         editTextBoldCursor.setVisibility(i11);
@@ -190,7 +190,7 @@ public final class n8 extends FrameLayout {
         Canvas canvas2;
         Canvas canvas3;
         super.onDraw(canvas);
-        float max = Math.max(this.f34617w, this.v);
+        float max = Math.max(this.f34620w, this.v);
         if (max > 0.0f) {
             int i10 = (max > 1.0f ? 1 : (max == 1.0f ? 0 : -1));
             if (i10 < 0) {
@@ -208,11 +208,11 @@ public final class n8 extends FrameLayout {
             Paint.Style style = Paint.Style.FILL;
             Paint paint = this.h;
             paint.setStyle(style);
-            int i11 = org.telegram.ui.ActionBar.h6.f20990d6;
+            int i11 = org.telegram.ui.ActionBar.h6.f20993d6;
             org.telegram.ui.ActionBar.d6 d6Var = this.d;
             paint.setColor(org.telegram.ui.ActionBar.h6.w0(i11, d6Var));
             float f11 = 1.0f - this.v;
-            RectF rectF = this.f34615r;
+            RectF rectF = this.f34618r;
             rectF.set(f11 * (getWidth() - dp2), 0.0f, getWidth(), dp2);
             canvas2.drawRoundRect(rectF, f10, f10, paint);
             paint.setColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.G6, d6Var));
@@ -252,13 +252,13 @@ public final class n8 extends FrameLayout {
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        TextPaint textPaint = this.f34614n;
+        TextPaint textPaint = this.f34617n;
         textPaint.setTextSize(AndroidUtilities.dp(14.0f));
         textPaint.setTypeface(AndroidUtilities.bold());
         int dp = AndroidUtilities.dp(62.0f) + ((int) Math.ceil(textPaint.measureText(LocaleController.getString(R.string.WalletTransactions)))) + ((int) Math.ceil(textPaint.measureText(LocaleController.getString(R.string.WalletCollectibles))));
         int size = View.MeasureSpec.getSize(i10);
         int min = Math.min(dp, Math.max(0, size - AndroidUtilities.dp(48.0f)));
-        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.f34610a.getLayoutParams();
+        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.f34613a.getLayoutParams();
         layoutParams.width = min;
         layoutParams.leftMargin = Math.max(0, Math.min((size - min) / 2, (size - AndroidUtilities.dp(48.0f)) - min));
         super.onMeasure(i10, i11);

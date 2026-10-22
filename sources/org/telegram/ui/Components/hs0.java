@@ -15,7 +15,7 @@ public final class hs0 extends s4.v {
     @Override
     public final void a(RecyclerView recyclerView, s4.b1 b1Var) {
         super.a(recyclerView, b1Var);
-        b1Var.f45917a.setPressed(false);
+        b1Var.f45920a.setPressed(false);
     }
 
     @Override
@@ -29,7 +29,7 @@ public final class hs0 extends s4.v {
             rv0Var = null;
         }
         if (k() && rv0Var != null && rv0Var.M(b1Var.b())) {
-            nu0 nu0Var = this.e.f31047k0[0];
+            nu0 nu0Var = this.e.f31050k0[0];
             if (nu0Var != null) {
                 ts0Var = nu0Var.h;
             }
@@ -47,7 +47,7 @@ public final class hs0 extends s4.v {
         uv0 uv0Var = this.e;
         if (!uv0Var.C1) {
             ps0 ps0Var = uv0Var.W;
-            if (ps0Var == null || !ps0Var.f36522w) {
+            if (ps0Var == null || !ps0Var.f36525w) {
                 return false;
             }
             return true;
@@ -71,14 +71,14 @@ public final class hs0 extends s4.v {
         }
         int b10 = b1Var.b();
         int b11 = b1Var2.b();
-        ArrayList arrayList2 = rv0Var.f30029y;
-        if (!rv0Var.h && (a7Var = rv0Var.f30026s) != null && b10 >= 0 && b10 < a7Var.f5149i.size() && b11 >= 0 && b11 < rv0Var.f30026s.f5149i.size()) {
-            if (!(rv0Var.f30026s instanceof ci.t6) && rv0Var.f30024n <= 0) {
-                arrayList = new ArrayList(rv0Var.f30026s.f5148g);
+        ArrayList arrayList2 = rv0Var.f30032y;
+        if (!rv0Var.h && (a7Var = rv0Var.f30029s) != null && b10 >= 0 && b10 < a7Var.f5149i.size() && b11 >= 0 && b11 < rv0Var.f30029s.f5149i.size()) {
+            if (!(rv0Var.f30029s instanceof ci.t6) && rv0Var.f30027n <= 0) {
+                arrayList = new ArrayList(rv0Var.f30029s.f5148g);
             } else {
                 arrayList = new ArrayList();
-                for (int i10 = 0; i10 < rv0Var.f30026s.f5149i.size(); i10++) {
-                    arrayList.add(Integer.valueOf(((MessageObject) rv0Var.f30026s.f5149i.get(i10)).getId()));
+                for (int i10 = 0; i10 < rv0Var.f30029s.f5149i.size(); i10++) {
+                    arrayList.add(Integer.valueOf(((MessageObject) rv0Var.f30029s.f5149i.get(i10)).getId()));
                 }
             }
             if (!rv0Var.E) {
@@ -86,11 +86,11 @@ public final class hs0 extends s4.v {
                 arrayList2.addAll(arrayList);
                 rv0Var.E = true;
             }
-            MessageObject messageObject = (MessageObject) rv0Var.f30026s.f5149i.get(b10);
-            MessageObject messageObject2 = (MessageObject) rv0Var.f30026s.f5149i.get(b11);
+            MessageObject messageObject = (MessageObject) rv0Var.f30029s.f5149i.get(b10);
+            MessageObject messageObject2 = (MessageObject) rv0Var.f30029s.f5149i.get(b11);
             arrayList.remove(Integer.valueOf(messageObject.getId()));
             arrayList.add(Utilities.clamp(b11, arrayList.size(), 0), Integer.valueOf(messageObject.getId()));
-            rv0Var.f30026s.C(arrayList, false);
+            rv0Var.f30029s.C(arrayList, false);
             rv0Var.p(b10, b11);
         }
         return true;
@@ -109,14 +109,14 @@ public final class hs0 extends s4.v {
             mu0 mu0Var2 = this.d;
             if (mu0Var2 != null && (mu0Var2.getAdapter() instanceof rv0)) {
                 rv0 rv0Var = (rv0) this.d.getAdapter();
-                ArrayList arrayList2 = rv0Var.f30029y;
-                if (!rv0Var.h && (a7Var = rv0Var.f30026s) != null && rv0Var.E) {
-                    if (!(a7Var instanceof ci.t6) && rv0Var.f30024n <= 0) {
+                ArrayList arrayList2 = rv0Var.f30032y;
+                if (!rv0Var.h && (a7Var = rv0Var.f30029s) != null && rv0Var.E) {
+                    if (!(a7Var instanceof ci.t6) && rv0Var.f30027n <= 0) {
                         arrayList = a7Var.f5148g;
                     } else {
                         arrayList = new ArrayList();
-                        for (int i11 = 0; i11 < rv0Var.f30026s.f5149i.size(); i11++) {
-                            arrayList.add(Integer.valueOf(((MessageObject) rv0Var.f30026s.f5149i.get(i11)).getId()));
+                        for (int i11 = 0; i11 < rv0Var.f30029s.f5149i.size(); i11++) {
+                            arrayList.add(Integer.valueOf(((MessageObject) rv0Var.f30029s.f5149i.get(i11)).getId()));
                         }
                     }
                     if (arrayList2.size() != arrayList.size()) {
@@ -138,7 +138,7 @@ public final class hs0 extends s4.v {
                         }
                     }
                     if (z10) {
-                        rv0Var.f30026s.C(arrayList, true);
+                        rv0Var.f30029s.C(arrayList, true);
                     }
                     rv0Var.E = false;
                 }
@@ -155,7 +155,7 @@ public final class hs0 extends s4.v {
             mu0Var4.I0(false);
         }
         if (b1Var != null) {
-            b1Var.f45917a.setPressed(true);
+            b1Var.f45920a.setPressed(true);
         }
     }
 

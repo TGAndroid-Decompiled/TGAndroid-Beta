@@ -20,7 +20,7 @@ import org.telegram.messenger.ImageLoader;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.SharedConfig;
-import org.telegram.messenger.mk;
+import org.telegram.messenger.ok;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.n2;
 import org.telegram.ui.Components.bs;
@@ -113,16 +113,16 @@ public final class t0 {
         this.f877m = n0Var;
         n0Var.setOutlineProvider(new o0(this));
         n0Var.setClipToOutline(true);
-        boolean z14 = dl0Var.f25537f1;
-        boolean z15 = dl0Var.f25539g1;
+        boolean z14 = dl0Var.f25540f1;
+        boolean z15 = dl0Var.f25542g1;
         if (n0Var.K1 != z14) {
             n0Var.K1 = z14;
             n0Var.L1 = z15;
-            u41 u41Var = n0Var.f43061h0;
+            u41 u41Var = n0Var.f43064h0;
             if (u41Var != null) {
                 u41Var.invalidate();
             }
-            k41 k41Var = n0Var.f43063i0;
+            k41 k41Var = n0Var.f43066i0;
             if (k41Var != null) {
                 k41Var.invalidate();
             }
@@ -164,7 +164,7 @@ public final class t0 {
         }
         this.f878n = dl0Var;
         dl0Var.setOnSwitchedToLoopView(new i0(this, 0));
-        dl0Var.f25527b1 = true;
+        dl0Var.f25530b1 = true;
         dl0Var.invalidate();
         AndroidUtilities.runOnUIThread(new a1.f(10, this, dl0Var), 50L);
         if (i10 != 5) {
@@ -181,13 +181,13 @@ public final class t0 {
             x0.a();
             t0Var.B.unlock();
             n0Var.setEnterAnimationInProgress(false);
-            u41 u41Var = n0Var.f43061h0;
+            u41 u41Var = n0Var.f43064h0;
             if (z10) {
-                n0Var.f43052d0.m(false);
+                n0Var.f43055d0.m(false);
                 u41Var.invalidate();
                 ArrayList arrayList = u41Var.Y2;
                 u41Var.f1();
-                n0Var.f43057f0.b();
+                n0Var.f43060f0.b();
                 n0Var.sendAccessibilityEvent(32);
                 dl0Var.setImportantForAccessibility(4);
                 int i10 = 0;
@@ -210,7 +210,7 @@ public final class t0 {
                 }
                 if (dl0Var.getPullingLeftProgress() > 0.0f) {
                     dl0Var.O0 = false;
-                    ValueAnimator valueAnimator = dl0Var.f25565y0;
+                    ValueAnimator valueAnimator = dl0Var.f25568y0;
                     if (valueAnimator != null) {
                         valueAnimator.cancel();
                     }
@@ -222,7 +222,7 @@ public final class t0 {
                     dl0Var.invalidate();
                 } else {
                     dl0Var.O0 = true;
-                    ValueAnimator valueAnimator2 = dl0Var.f25565y0;
+                    ValueAnimator valueAnimator2 = dl0Var.f25568y0;
                     if (valueAnimator2 != null) {
                         valueAnimator2.cancel();
                     }
@@ -233,12 +233,12 @@ public final class t0 {
                     }
                     dl0Var.invalidate();
                 }
-                k41 k41Var = n0Var.f43063i0;
+                k41 k41Var = n0Var.f43066i0;
                 for (int i11 = 0; i11 < arrayList.size(); i11++) {
                     y41 y41Var = (y41) arrayList.get(i11);
                     for (int i12 = 0; i12 < y41Var.O.size(); i12++) {
-                        if (((g51) y41Var.O.get(i12)).f37190b) {
-                            ((g51) y41Var.O.get(i12)).f37190b = false;
+                        if (((g51) y41Var.O.get(i12)).f37193b) {
+                            ((g51) y41Var.O.get(i12)).f37193b = false;
                             ((g51) y41Var.O.get(i12)).invalidate();
                             y41Var.k();
                         }
@@ -248,8 +248,8 @@ public final class t0 {
                 for (int i13 = 0; i13 < k41Var.Y2.size(); i13++) {
                     y41 y41Var2 = (y41) k41Var.Y2.get(i13);
                     for (int i14 = 0; i14 < y41Var2.O.size(); i14++) {
-                        if (((g51) y41Var2.O.get(i14)).f37190b) {
-                            ((g51) y41Var2.O.get(i14)).f37190b = false;
+                        if (((g51) y41Var2.O.get(i14)).f37193b) {
+                            ((g51) y41Var2.O.get(i14)).f37193b = false;
                             ((g51) y41Var2.O.get(i14)).invalidate();
                             y41Var2.k();
                         }
@@ -308,8 +308,8 @@ public final class t0 {
         s0 s0Var = this.f868a;
         RectF rectF = this.f871f;
         dl0 dl0Var = this.f878n;
-        rectF.set(dl0Var.f25560w);
-        this.e = dl0Var.f25564y;
+        rectF.set(dl0Var.f25563w);
+        this.e = dl0Var.f25567y;
         int[] iArr2 = new int[2];
         if (z10) {
             dl0Var.getLocationOnScreen(iArr);
@@ -379,7 +379,7 @@ public final class t0 {
         }
         k();
         n0Var.setEnterAnimationInProgress(z11);
-        kw kwVar = n0Var.f43052d0;
+        kw kwVar = n0Var.f43055d0;
         if (z10 && this.f886w) {
             z12 = true;
         } else {
@@ -403,8 +403,8 @@ public final class t0 {
                 f7 = 1.0f;
             }
             ?? timeAnimator = new TimeAnimator();
-            timeAnimator.f33049a = 0;
-            timeAnimator.f33050b = 0;
+            timeAnimator.f33052a = 0;
+            timeAnimator.f33053b = 0;
             timeAnimator.setFloatValues(new float[]{f10, f7});
             valueAnimator = timeAnimator;
         }
@@ -419,10 +419,10 @@ public final class t0 {
             this.f887x.setInterpolator(bs.h);
         } else if (this.f886w) {
             this.f887x.setDuration(450L);
-            mk.l(0.5f, this.f887x);
+            ok.l(0.5f, this.f887x);
         } else {
             this.f887x.setDuration(350L);
-            this.f887x.setInterpolator(bs.f25021f);
+            this.f887x.setInterpolator(bs.f25024f);
         }
         s0Var.invalidate();
         h(true);
@@ -461,7 +461,7 @@ public final class t0 {
         if (!this.f881q) {
             dl0 dl0Var = this.f878n;
             if (dl0Var != null) {
-                ValueAnimator valueAnimator = dl0Var.f25565y0;
+                ValueAnimator valueAnimator = dl0Var.f25568y0;
                 if (valueAnimator != null) {
                     valueAnimator.cancel();
                 }
@@ -516,29 +516,29 @@ public final class t0 {
             i10 = 0;
         }
         n0 n0Var = this.f877m;
-        n0Var.f43061h0.setLayerType(i10, null);
-        n0Var.f43057f0.setLayerType(i10, null);
+        n0Var.f43064h0.setLayerType(i10, null);
+        n0Var.f43060f0.setLayerType(i10, null);
         if (this.f886w) {
-            for (int i11 = 0; i11 < Math.min(n0Var.f43052d0.f28231b.getChildCount(), 16); i11++) {
-                n0Var.f43052d0.f28231b.getChildAt(i11).setLayerType(i10, null);
+            for (int i11 = 0; i11 < Math.min(n0Var.f43055d0.f28234b.getChildCount(), 16); i11++) {
+                n0Var.f43055d0.f28234b.getChildAt(i11).setLayerType(i10, null);
             }
             return;
         }
-        n0Var.f43054e0.setLayerType(i10, null);
-        n0Var.f43052d0.setLayerType(i10, null);
+        n0Var.f43057e0.setLayerType(i10, null);
+        n0Var.f43055d0.setLayerType(i10, null);
     }
 
     public final void i() {
         int i10 = 0;
         while (true) {
             n0 n0Var = this.f877m;
-            u41 u41Var = n0Var.f43061h0;
-            u41 u41Var2 = n0Var.f43061h0;
+            u41 u41Var = n0Var.f43064h0;
+            u41 u41Var2 = n0Var.f43064h0;
             if (i10 < u41Var.getChildCount()) {
                 if (u41Var2.getChildAt(i10) instanceof g51) {
                     g51 g51Var = (g51) u41Var2.getChildAt(i10);
-                    if (g51Var.f37197x != null) {
-                        g51Var.f37190b = false;
+                    if (g51Var.f37200x != null) {
+                        g51Var.f37193b = false;
                         g51Var.invalidate();
                     }
                 }
@@ -554,9 +554,9 @@ public final class t0 {
         HashSet hashSet;
         n0 n0Var = this.f877m;
         float y3 = n0Var.getY();
-        r41 r41Var = n0Var.f43044a0;
+        r41 r41Var = n0Var.f43047a0;
         float y10 = r41Var.getY() + y3;
-        u41 u41Var = n0Var.f43061h0;
+        u41 u41Var = n0Var.f43064h0;
         int y11 = (int) (u41Var.getY() + y10);
         ArrayList arrayList = null;
         int i10 = 0;
@@ -584,9 +584,9 @@ public final class t0 {
             }
             i10++;
         }
-        int y12 = (int) (n0Var.f43052d0.getY() + r41Var.getY() + n0Var.getY());
-        for (int i11 = 0; i11 < n0Var.f43052d0.f28231b.getChildCount(); i11++) {
-            View childAt2 = n0Var.f43052d0.f28231b.getChildAt(i11);
+        int y12 = (int) (n0Var.f43055d0.getY() + r41Var.getY() + n0Var.getY());
+        for (int i11 = 0; i11 < n0Var.f43055d0.f28234b.getChildCount(); i11++) {
+            View childAt2 = n0Var.f43055d0.f28234b.getChildAt(i11);
             if (!hashSet.contains(childAt2)) {
                 float measuredHeight2 = (childAt2.getMeasuredHeight() / 2.0f) + childAt2.getTop() + y12;
                 if (measuredHeight2 < rectF.bottom && measuredHeight2 > rectF.top && f7 != 0.0f) {
@@ -602,7 +602,7 @@ public final class t0 {
             }
         }
         if (z11) {
-            n0Var.f43067k0.invalidate();
+            n0Var.f43070k0.invalidate();
         }
         if (arrayList != null) {
             ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
@@ -623,19 +623,19 @@ public final class t0 {
     public final void k() {
         if (!this.f886w) {
             n0 n0Var = this.f877m;
-            n0Var.f43057f0.setAlpha(this.f874j);
-            n0Var.f43061h0.setAlpha(this.f874j);
-            n0Var.f43063i0.setAlpha(this.f874j);
-            n0Var.f43052d0.setAlpha(this.f874j);
-            n0Var.f43054e0.setAlpha(this.f874j);
+            n0Var.f43060f0.setAlpha(this.f874j);
+            n0Var.f43064h0.setAlpha(this.f874j);
+            n0Var.f43066i0.setAlpha(this.f874j);
+            n0Var.f43055d0.setAlpha(this.f874j);
+            n0Var.f43057e0.setAlpha(this.f874j);
         }
     }
 
     public final void l() {
         float f7;
         n0 n0Var = this.f877m;
-        r41 r41Var = n0Var.f43044a0;
-        r41 r41Var2 = n0Var.f43044a0;
+        r41 r41Var = n0Var.f43047a0;
+        r41 r41Var2 = n0Var.f43047a0;
         boolean z10 = this.f886w;
         s0 s0Var = this.f868a;
         if (z10) {

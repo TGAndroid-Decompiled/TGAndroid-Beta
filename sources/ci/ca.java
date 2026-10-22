@@ -37,7 +37,7 @@ public final class ca extends ba {
         ah.y0 y0Var = this.f5304c;
         org.telegram.ui.Components.r5 r5Var = y0Var.f908b;
         if (r5Var != null) {
-            imageReceiver = r5Var.f29838k;
+            imageReceiver = r5Var.f29841k;
         } else {
             imageReceiver = y0Var.f907a;
         }
@@ -50,11 +50,11 @@ public final class ca extends ba {
             double d = faVar.d;
             TL_stories.TL_mediaAreaSuggestedReaction tL_mediaAreaSuggestedReaction = this.f5303b;
             TL_stories.MediaAreaCoordinates mediaAreaCoordinates = tL_mediaAreaSuggestedReaction.coordinates;
-            float f10 = (float) (((mediaAreaCoordinates.f20507x * d) / 100.0d) + faVar.f5405b);
+            float f10 = (float) (((mediaAreaCoordinates.f20510x * d) / 100.0d) + faVar.f5405b);
             double d10 = faVar.f5406c;
             double d11 = faVar.e;
-            float f11 = (float) (((mediaAreaCoordinates.f20508y * d11) / 100.0d) + d10);
-            float f12 = ((float) ((d * mediaAreaCoordinates.f20506w) / 100.0d)) / 2.0f;
+            float f11 = (float) (((mediaAreaCoordinates.f20511y * d11) / 100.0d) + d10);
+            float f12 = ((float) ((d * mediaAreaCoordinates.f20509w) / 100.0d)) / 2.0f;
             float f13 = ((float) ((d11 * mediaAreaCoordinates.h) / 100.0d)) / 2.0f;
             g9 g9Var = this.f5302a;
             g9Var.setBounds((int) (f10 - f12), (int) (f11 - f13), (int) (f12 + f10), (int) (f13 + f11));

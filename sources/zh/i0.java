@@ -9,12 +9,12 @@ import org.telegram.ui.df0;
 import org.telegram.ui.n9;
 import org.telegram.ui.v9;
 public final class i0 implements v9 {
-    public final int f52021a;
-    public final n2 f52022b;
+    public final int f52024a;
+    public final n2 f52025b;
 
     public i0(int i10, n2 n2Var) {
-        this.f52021a = i10;
-        this.f52022b = n2Var;
+        this.f52024a = i10;
+        this.f52025b = n2Var;
     }
 
     @Override
@@ -23,7 +23,7 @@ public final class i0 implements v9 {
         if (TextUtils.isEmpty(b10)) {
             AndroidUtilities.runOnUIThread(new df0(25));
         } else {
-            MessagesController.getInstance(this.f52021a).getUserNameResolver().resolve(b10, new g(this.f52022b, 1));
+            MessagesController.getInstance(this.f52024a).getUserNameResolver().resolve(b10, new g(this.f52025b, 1));
         }
     }
 

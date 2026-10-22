@@ -13,12 +13,12 @@ import org.telegram.ui.Components.q6;
 import org.telegram.ui.gn;
 import org.telegram.ui.tf1;
 public final class g0 implements og {
-    public final TL_stars.TL_starGiftUnique f50252a;
-    public final i0 f50253b;
+    public final TL_stars.TL_starGiftUnique f50255a;
+    public final i0 f50256b;
 
     public g0(i0 i0Var, TL_stars.TL_starGiftUnique tL_starGiftUnique) {
-        this.f50253b = i0Var;
-        this.f50252a = tL_starGiftUnique;
+        this.f50256b = i0Var;
+        this.f50255a = tL_starGiftUnique;
     }
 
     @Override
@@ -40,11 +40,11 @@ public final class g0 implements og {
         int i10;
         int i11;
         boolean z10;
-        i0 i0Var = this.f50253b;
-        q6 q6Var = i0Var.f50299w;
-        y4 y4Var = i0Var.f50293b;
+        i0 i0Var = this.f50256b;
+        q6 q6Var = i0Var.f50302w;
+        y4 y4Var = i0Var.f50296b;
         i10 = ((org.telegram.ui.ActionBar.f3) i0Var).currentAccount;
-        y4Var.a(this.f50252a, UserConfig.getInstance(i10).getClientUserId(), i0Var.f50296n.getTextWithEntities(), LocaleController.getString(R.string.GiftMessageSendNow), true);
+        y4Var.a(this.f50255a, UserConfig.getInstance(i10).getClientUserId(), i0Var.f50299n.getTextWithEntities(), LocaleController.getString(R.string.GiftMessageSendNow), true);
         int codePointCount = Character.codePointCount(charSequence, 0, charSequence.length());
         i0Var.F = codePointCount;
         int i12 = i0Var.E;
@@ -68,10 +68,10 @@ public final class g0 implements og {
             q6Var.animate().setListener(null).cancel();
             q6Var.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(100L).start();
             if (i11 < 0) {
-                q6Var.setTextColor(i0Var.getThemedColor(h6.f21211p7));
+                q6Var.setTextColor(i0Var.getThemedColor(h6.f21214p7));
                 return;
             } else {
-                q6Var.setTextColor(i0Var.getThemedColor(h6.f21378y6));
+                q6Var.setTextColor(i0Var.getThemedColor(h6.f21381y6));
                 return;
             }
         }

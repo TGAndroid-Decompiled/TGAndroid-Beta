@@ -14,16 +14,16 @@ public final class m0 extends g61 {
 
     public static h61 a(String str, CharSequence charSequence, int i10) {
         h61 J = h61.J(m0.class);
-        J.f44297b = false;
-        J.f26795z = i10;
-        J.f26782l = str;
-        J.f26783m = charSequence;
+        J.f44300b = false;
+        J.f26798z = i10;
+        J.f26785l = str;
+        J.f26786m = charSequence;
         return J;
     }
 
     @Override
     public final void bindView(View view, h61 h61Var, boolean z10, u61 u61Var, c71 c71Var) {
-        ((n0) view).a(h61Var.f26782l, h61Var.f26783m, h61Var.f26795z);
+        ((n0) view).a(h61Var.f26785l, h61Var.f26786m, h61Var.f26798z);
     }
 
     @Override

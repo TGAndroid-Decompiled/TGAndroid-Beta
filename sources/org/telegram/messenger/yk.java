@@ -1,33 +1,33 @@
 package org.telegram.messenger;
-public final class yk implements Runnable {
-    public final int f20189a;
-    public final TranslateController f20190b;
-    public final String f20191c;
-    public final MessageObject d;
-    public final long e;
-    public final int f20192f;
 
-    public yk(TranslateController translateController, String str, MessageObject messageObject, long j10, int i10, int i11) {
-        this.f20189a = i11;
-        this.f20190b = translateController;
-        this.f20191c = str;
-        this.d = messageObject;
-        this.e = j10;
-        this.f20192f = i10;
+import org.telegram.messenger.Utilities;
+public final class yk implements Utilities.Callback2 {
+    public final int f20182a;
+    public final TranslateController f20183b;
+    public final Utilities.Callback4 f20184c;
+    public final boolean d;
+    public final int e;
+    public final String f20185f;
+    public final long f20186g;
+
+    public yk(TranslateController translateController, Utilities.Callback4 callback4, boolean z10, int i10, String str, long j10, int i11) {
+        this.f20182a = i11;
+        this.f20183b = translateController;
+        this.f20184c = callback4;
+        this.d = z10;
+        this.e = i10;
+        this.f20185f = str;
+        this.f20186g = j10;
     }
 
     @Override
-    public final void run() {
-        switch (this.f20189a) {
+    public final void run(Object obj, Object obj2) {
+        switch (this.f20182a) {
             case 0:
-                long j10 = this.e;
-                int i10 = this.f20192f;
-                this.f20190b.lambda$checkLanguage$16(this.f20191c, this.d, j10, i10);
+                this.f20183b.lambda$pushToTranslate$21(this.f20184c, this.d, this.e, this.f20185f, this.f20186g, (String) obj, (Boolean) obj2);
                 return;
             default:
-                long j11 = this.e;
-                int i11 = this.f20192f;
-                this.f20190b.lambda$checkLanguage$12(this.f20191c, this.d, j11, i11);
+                this.f20183b.lambda$pushToTranslate$20(this.f20184c, this.d, this.e, this.f20185f, this.f20186g, (String) obj, (Boolean) obj2);
                 return;
         }
     }

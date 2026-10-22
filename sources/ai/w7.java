@@ -66,7 +66,7 @@ public final class w7 implements DialogInterface.OnDismissListener {
                     f3Var.dismiss();
                     f3VarArr[0] = null;
                 }
-                uk0.f42010a = null;
+                uk0.f42013a = null;
                 org.telegram.ui.ActionBar.f3 f3Var2 = f3VarArr2[0];
                 if (f3Var2 != null) {
                     f3Var2.dismiss();

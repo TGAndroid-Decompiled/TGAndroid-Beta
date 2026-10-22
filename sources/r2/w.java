@@ -15,16 +15,16 @@ import java.util.HashMap;
 import java.util.List;
 import v7.s6;
 public abstract class w {
-    public static final HashMap f44986a = new HashMap();
+    public static final HashMap f44989a = new HashMap();
 
     public static void a(String str, ArrayList arrayList) {
         if ("audio/raw".equals(str)) {
-            if (Build.VERSION.SDK_INT < 26 && Build.DEVICE.equals("R9") && arrayList.size() == 1 && ((o) arrayList.get(0)).f44941a.equals("OMX.MTK.AUDIO.DECODER.RAW")) {
+            if (Build.VERSION.SDK_INT < 26 && Build.DEVICE.equals("R9") && arrayList.size() == 1 && ((o) arrayList.get(0)).f44944a.equals("OMX.MTK.AUDIO.DECODER.RAW")) {
                 arrayList.add(o.i("OMX.google.raw.decoder", "audio/raw", "audio/raw", null, false, true, false, false));
             }
             Collections.sort(arrayList, new u5(new Object(), 4));
         }
-        if (Build.VERSION.SDK_INT < 32 && arrayList.size() > 1 && "OMX.qti.audio.decoder.flac".equals(((o) arrayList.get(0)).f44941a)) {
+        if (Build.VERSION.SDK_INT < 32 && arrayList.size() > 1 && "OMX.qti.audio.decoder.flac".equals(((o) arrayList.get(0)).f44944a)) {
             arrayList.add((o) arrayList.remove(0));
         }
     }
@@ -102,7 +102,7 @@ public abstract class w {
         synchronized (w.class) {
             try {
                 s sVar = new s(str, z10, z11);
-                HashMap hashMap = f44986a;
+                HashMap hashMap = f44989a;
                 List list = (List) hashMap.get(sVar);
                 if (list != null) {
                     return list;
@@ -111,7 +111,7 @@ public abstract class w {
                 if (z10 && f7.isEmpty() && Build.VERSION.SDK_INT == 23) {
                     f7 = f(sVar, new rb.b(20));
                     if (!f7.isEmpty()) {
-                        e2.a.l("MediaCodecUtil", "MediaCodecList API didn't list secure decoder for: " + str + ". Assuming: " + ((o) f7.get(0)).f44941a);
+                        e2.a.l("MediaCodecUtil", "MediaCodecList API didn't list secure decoder for: " + str + ". Assuming: " + ((o) f7.get(0)).f44944a);
                     }
                 }
                 a(str, f7);

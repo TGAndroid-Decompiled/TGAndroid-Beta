@@ -6,24 +6,24 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.WallpapersListActivity;
 public final class fp implements View.OnClickListener {
-    public final int f26332a;
-    public final wp f26333b;
+    public final int f26335a;
+    public final wp f26336b;
 
     public fp(wp wpVar, int i10) {
-        this.f26332a = i10;
-        this.f26333b = wpVar;
+        this.f26335a = i10;
+        this.f26336b = wpVar;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f26332a) {
+        switch (this.f26335a) {
             case 0:
-                wp wpVar = this.f26333b;
+                wp wpVar = this.f26336b;
                 ti tiVar = wpVar.Y;
-                if (tiVar.B0 == tiVar.f30558j0) {
-                    wpVar.f32204a0.setText(LocaleController.getString(R.string.ChooseBackgroundFromGallery));
+                if (tiVar.B0 == tiVar.f30561j0) {
+                    wpVar.f32207a0.setText(LocaleController.getString(R.string.ChooseBackgroundFromGallery));
                     wpVar.Y.F1();
-                    ij ijVar = wpVar.Y.f30582r0;
+                    ij ijVar = wpVar.Y.f30585r0;
                     boolean z10 = wpVar.N;
                     za zaVar = ijVar.v;
                     ((ArrayList) zaVar.e).clear();
@@ -31,12 +31,12 @@ public final class fp implements View.OnClickListener {
                     zaVar.l();
                     return;
                 }
-                wpVar.f32204a0.setText(LocaleController.getString(R.string.SetColorAsBackground));
+                wpVar.f32207a0.setText(LocaleController.getString(R.string.SetColorAsBackground));
                 ti tiVar2 = wpVar.Y;
-                tiVar2.U1(tiVar2.f30558j0);
+                tiVar2.U1(tiVar2.f30561j0);
                 return;
             case 1:
-                wp wpVar2 = this.f26333b;
+                wp wpVar2 = this.f26336b;
                 if (wpVar2.x()) {
                     wpVar2.B(true);
                     wpVar2.F(true);
@@ -45,14 +45,14 @@ public final class fp implements View.OnClickListener {
                 wpVar2.dismiss();
                 return;
             case 2:
-                wp wpVar3 = this.f26333b;
+                wp wpVar3 = this.f26336b;
                 if (wpVar3.T == null) {
                     wpVar3.D(!wpVar3.N);
                     return;
                 }
                 return;
             default:
-                this.f26333b.u(false);
+                this.f26336b.u(false);
                 return;
         }
     }

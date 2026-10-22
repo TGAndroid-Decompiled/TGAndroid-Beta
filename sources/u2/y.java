@@ -1,22 +1,22 @@
 package u2;
 public final class y implements e0, d0 {
-    public final g0 f47486a;
-    public final long f47487b;
-    public final androidx.biometric.e f47488c;
+    public final g0 f47489a;
+    public final long f47490b;
+    public final androidx.biometric.e f47491c;
     public a d;
     public e0 e;
-    public d0 f47489f;
+    public d0 f47492f;
     public long h = -9223372036854775807L;
 
     public y(g0 g0Var, androidx.biometric.e eVar, long j10) {
-        this.f47486a = g0Var;
-        this.f47488c = eVar;
-        this.f47487b = j10;
+        this.f47489a = g0Var;
+        this.f47491c = eVar;
+        this.f47490b = j10;
     }
 
     @Override
     public final void a(e0 e0Var) {
-        d0 d0Var = this.f47489f;
+        d0 d0Var = this.f47492f;
         String str = e2.m0.f8252a;
         d0Var.a(this);
     }
@@ -24,13 +24,13 @@ public final class y implements e0, d0 {
     public final void b(g0 g0Var) {
         long j10 = this.h;
         if (j10 == -9223372036854775807L) {
-            j10 = this.f47487b;
+            j10 = this.f47490b;
         }
         a aVar = this.d;
         aVar.getClass();
-        e0 c10 = aVar.c(g0Var, this.f47488c, j10);
+        e0 c10 = aVar.c(g0Var, this.f47491c, j10);
         this.e = c10;
-        if (this.f47489f != null) {
+        if (this.f47492f != null) {
             c10.n(this, j10);
         }
     }
@@ -54,7 +54,7 @@ public final class y implements e0, d0 {
     @Override
     public final void h(g1 g1Var) {
         e0 e0Var = (e0) g1Var;
-        d0 d0Var = this.f47489f;
+        d0 d0Var = this.f47492f;
         String str = e2.m0.f8252a;
         d0Var.h(this);
     }
@@ -88,12 +88,12 @@ public final class y implements e0, d0 {
 
     @Override
     public final void n(d0 d0Var, long j10) {
-        this.f47489f = d0Var;
+        this.f47492f = d0Var;
         e0 e0Var = this.e;
         if (e0Var != null) {
             long j11 = this.h;
             if (j11 == -9223372036854775807L) {
-                j11 = this.f47487b;
+                j11 = this.f47490b;
             }
             e0Var.n(this, j11);
         }
@@ -119,7 +119,7 @@ public final class y implements e0, d0 {
     public final long q(x2.p[] pVarArr, boolean[] zArr, e1[] e1VarArr, boolean[] zArr2, long j10) {
         long j11;
         long j12 = this.h;
-        if (j12 != -9223372036854775807L && j10 == this.f47487b) {
+        if (j12 != -9223372036854775807L && j10 == this.f47490b) {
             j11 = j12;
         } else {
             j11 = j10;

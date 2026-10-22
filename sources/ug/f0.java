@@ -9,7 +9,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.mk;
+import org.telegram.messenger.ok;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
@@ -36,10 +36,10 @@ public final class f0 extends sg.m1 {
             aVar.setOnClickListener(new hg.r0(this, 22));
             wg.a aVar2 = this.Q0;
             aVar2.e = true;
-            ei.d dVar = aVar2.f48947a;
+            ei.d dVar = aVar2.f48950a;
             dVar.setEnabled(true);
             dVar.g(LocaleController.getString(R.string.GiftPremiumActivateForFree), false, true);
-            aVar2.f48948b.setBackgroundColor(h6.w0(h6.f21061h5, aVar2.f48949c));
+            aVar2.f48951b.setBackgroundColor(h6.w0(h6.f21064h5, aVar2.f48952c));
             this.containerView.addView(this.Q0, z5.d(-1, 68.0f, 80, 0.0f, 0.0f, 0.0f, 0.0f));
         }
         fixNavigationBar();
@@ -51,17 +51,17 @@ public final class f0 extends sg.m1 {
     }
 
     public static void e0(f0 f0Var) {
-        sg.m1 m1Var = new sg.m1(f0Var.f24882n, UserConfig.selectedAccount, null, null, null, f0Var.resourcesProvider);
+        sg.m1 m1Var = new sg.m1(f0Var.f24885n, UserConfig.selectedAccount, null, null, null, f0Var.resourcesProvider);
         m1Var.J0 = true;
         m1Var.K0 = true;
-        m1Var.f46329c0 = true;
-        f0Var.f24882n.showDialog(m1Var);
+        m1Var.f46332c0 = true;
+        f0Var.f24885n.showDialog(m1Var);
     }
 
     public static void f0(f0 f0Var) {
-        cy cyVar = new cy(mk.d(3, "onlySelect", "dialogsType", true));
+        cy cyVar = new cy(ok.d(3, "onlySelect", "dialogsType", true));
         cyVar.C2 = new org.telegram.ui.web.m(17, f0Var, "https://t.me/giftcode/" + f0Var.R0);
-        f0Var.f24882n.presentFragment(cyVar);
+        f0Var.f24885n.presentFragment(cyVar);
         f0Var.dismiss();
     }
 
@@ -91,22 +91,22 @@ public final class f0 extends sg.m1 {
         this.P0.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
         ((ViewGroup.MarginLayoutParams) this.P0.getLayoutParams()).bottomMargin = AndroidUtilities.dp(14.0f);
         ((ViewGroup.MarginLayoutParams) this.P0.getLayoutParams()).topMargin = AndroidUtilities.dp(12.0f);
-        this.P0.setText(AndroidUtilities.replaceCharSequence("%1$s", AndroidUtilities.replaceSingleTag(LocaleController.getString("GiftPremiumAboutThisLink", R.string.GiftPremiumAboutThisLink), h6.f21049gc, 0, new d0(this, 0)), AndroidUtilities.replaceTags(LocaleController.getString("GiftPremiumAboutThisLinkEnd", R.string.GiftPremiumAboutThisLinkEnd))));
+        this.P0.setText(AndroidUtilities.replaceCharSequence("%1$s", AndroidUtilities.replaceSingleTag(LocaleController.getString("GiftPremiumAboutThisLink", R.string.GiftPremiumAboutThisLink), h6.f21052gc, 0, new d0(this, 0)), AndroidUtilities.replaceTags(LocaleController.getString("GiftPremiumAboutThisLinkEnd", R.string.GiftPremiumAboutThisLinkEnd))));
     }
 
     @Override
     public final void c0() {
-        int i10 = this.f46332f0;
-        this.f46333g0 = i10;
-        this.f46334h0 = i10 + 1;
+        int i10 = this.f46335f0;
+        this.f46336g0 = i10;
+        this.f46337h0 = i10 + 1;
         int i11 = i10 + 2;
-        this.f46332f0 = i11;
-        this.f46335i0 = i11;
-        this.f46336j0 = i11;
+        this.f46335f0 = i11;
+        this.f46338i0 = i11;
+        this.f46339j0 = i11;
         int size = this.X.size() + i11;
-        this.f46337k0 = size;
-        this.f46332f0 = size + 1;
-        this.f46338l0 = size;
+        this.f46340k0 = size;
+        this.f46335f0 = size + 1;
+        this.f46341l0 = size;
     }
 
     @Override

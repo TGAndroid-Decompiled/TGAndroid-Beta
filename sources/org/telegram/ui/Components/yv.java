@@ -7,11 +7,11 @@ import android.view.MotionEvent;
 import android.widget.TextView;
 import org.telegram.messenger.FileLog;
 public final class yv extends LinkMovementMethod {
-    public final int f32735a;
+    public final int f32738a;
 
     @Override
     public final boolean onTouchEvent(TextView textView, Spannable spannable, MotionEvent motionEvent) {
-        switch (this.f32735a) {
+        switch (this.f32738a) {
             case 0:
                 try {
                     boolean onTouchEvent = super.onTouchEvent(textView, spannable, motionEvent);

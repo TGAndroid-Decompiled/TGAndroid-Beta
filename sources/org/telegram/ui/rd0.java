@@ -7,29 +7,29 @@ import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 public final class rd0 implements TextWatcher {
-    public final int f41128a = 0;
-    public boolean f41129b;
-    public final ViewGroup f41130c;
+    public final int f41131a = 0;
+    public boolean f41132b;
+    public final ViewGroup f41133c;
 
     public rd0(rg.v2 v2Var) {
-        this.f41130c = v2Var;
+        this.f41133c = v2Var;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
         int clamp;
-        switch (this.f41128a) {
+        switch (this.f41131a) {
             case 0:
-                sd0 sd0Var = (sd0) this.f41130c;
-                if (this.f41129b) {
-                    if (sd0Var.f41439f.getVisibility() != 0 && !TextUtils.isEmpty(editable)) {
-                        if (sd0Var.f41445y) {
-                            sd0Var.f41439f.callOnClick();
+                sd0 sd0Var = (sd0) this.f41133c;
+                if (this.f41132b) {
+                    if (sd0Var.f41442f.getVisibility() != 0 && !TextUtils.isEmpty(editable)) {
+                        if (sd0Var.f41448y) {
+                            sd0Var.f41442f.callOnClick();
                         }
-                        AndroidUtilities.updateViewVisibilityAnimated(sd0Var.f41439f, true, 0.1f, true);
+                        AndroidUtilities.updateViewVisibilityAnimated(sd0Var.f41442f, true, 0.1f, true);
                         return;
-                    } else if (sd0Var.f41439f.getVisibility() != 8 && TextUtils.isEmpty(editable)) {
-                        AndroidUtilities.updateViewVisibilityAnimated(sd0Var.f41439f, false, 0.1f, true);
+                    } else if (sd0Var.f41442f.getVisibility() != 8 && TextUtils.isEmpty(editable)) {
+                        AndroidUtilities.updateViewVisibilityAnimated(sd0Var.f41442f, false, 0.1f, true);
                         return;
                     } else {
                         return;
@@ -37,14 +37,14 @@ public final class rd0 implements TextWatcher {
                 }
                 return;
             default:
-                rg.v2 v2Var = (rg.v2) this.f41130c;
-                rg.u2 u2Var = v2Var.f45669q0;
-                if (this.f41129b && v2Var.f45675w0 > 0 && v2Var.f45676x0 > 0 && !v2Var.f45678z0 && u2Var.getLayout() != null) {
+                rg.v2 v2Var = (rg.v2) this.f41133c;
+                rg.u2 u2Var = v2Var.f45672q0;
+                if (this.f41132b && v2Var.f45678w0 > 0 && v2Var.f45679x0 > 0 && !v2Var.f45681z0 && u2Var.getLayout() != null) {
                     float f7 = AndroidUtilities.displaySize.y / 3.0f;
                     float height = u2Var.getLayout().getHeight();
-                    if (height > f7 && (clamp = Utilities.clamp((int) ((f7 / height) * v2Var.getBaseFontSize()), v2Var.f45676x0, v2Var.f45675w0)) != v2Var.getBaseFontSize()) {
+                    if (height > f7 && (clamp = Utilities.clamp((int) ((f7 / height) * v2Var.getBaseFontSize()), v2Var.f45679x0, v2Var.f45678w0)) != v2Var.getBaseFontSize()) {
                         v2Var.setBaseFontSize(clamp);
-                        Runnable runnable = v2Var.f45677y0;
+                        Runnable runnable = v2Var.f45680y0;
                         if (runnable != null) {
                             runnable.run();
                         }
@@ -58,7 +58,7 @@ public final class rd0 implements TextWatcher {
     @Override
     public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
         boolean z10;
-        switch (this.f41128a) {
+        switch (this.f41131a) {
             case 0:
                 return;
             default:
@@ -67,19 +67,19 @@ public final class rd0 implements TextWatcher {
                 } else {
                     z10 = false;
                 }
-                this.f41129b = z10;
+                this.f41132b = z10;
                 return;
         }
     }
 
     @Override
     public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        int i13 = this.f41128a;
+        int i13 = this.f41131a;
     }
 
     public rd0(sd0 sd0Var, boolean z10) {
-        this.f41130c = sd0Var;
-        this.f41129b = z10;
+        this.f41133c = sd0Var;
+        this.f41132b = z10;
     }
 
     private final void a(int i10, int i11, int i12, CharSequence charSequence) {

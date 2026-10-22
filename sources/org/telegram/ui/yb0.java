@@ -7,25 +7,25 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class yb0 implements Runnable {
-    public final int f43440a;
-    public final long f43441b;
-    public final Object f43442c;
+    public final int f43443a;
+    public final long f43444b;
+    public final Object f43445c;
     public final Object d;
 
     public yb0(Object obj, long j10, Object obj2, int i10) {
-        this.f43440a = i10;
-        this.f43442c = obj;
-        this.f43441b = j10;
+        this.f43443a = i10;
+        this.f43445c = obj;
+        this.f43444b = j10;
         this.d = obj2;
     }
 
     @Override
     public final void run() {
-        switch (this.f43440a) {
+        switch (this.f43443a) {
             case 0:
-                nc0 nc0Var = (nc0) this.f43442c;
+                nc0 nc0Var = (nc0) this.f43445c;
                 TLObject tLObject = (TLObject) this.d;
-                long j10 = this.f43441b;
+                long j10 = this.f43444b;
                 if (nc0Var.I != null) {
                     TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject;
                     int i10 = 0;
@@ -42,7 +42,7 @@ public final class yb0 implements Runnable {
                     nc0Var.getLocationController().locationsCache.k(messages_messages.messages, j10);
                     nc0Var.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.liveLocationsCacheChanged, Long.valueOf(j10));
                     nc0Var.h0(messages_messages.messages);
-                    nc0Var.getLocationController().markLiveLoactionsAsRead(nc0Var.f39505e0);
+                    nc0Var.getLocationController().markLiveLoactionsAsRead(nc0Var.f39508e0);
                     if (nc0Var.J0 == null) {
                         vb0 vb0Var = new vb0(nc0Var, 4);
                         nc0Var.J0 = vb0Var;
@@ -53,8 +53,8 @@ public final class yb0 implements Runnable {
                 }
                 return;
             case 1:
-                qv0 qv0Var = (qv0) this.f43442c;
-                long j11 = this.f43441b;
+                qv0 qv0Var = (qv0) this.f43445c;
+                long j11 = this.f43444b;
                 org.telegram.ui.ActionBar.n2 n2Var = (org.telegram.ui.ActionBar.n2) this.d;
                 qv0Var.getClass();
                 Bundle bundle = new Bundle();
@@ -67,16 +67,16 @@ public final class yb0 implements Runnable {
                 qv0Var.c(false);
                 return;
             case 2:
-                qi.e eVar = (qi.e) this.f43442c;
+                qi.e eVar = (qi.e) this.f43445c;
                 qi.d dVar = (qi.d) this.d;
-                long j12 = this.f43441b;
-                if (((qi.d) eVar.f44761b) == dVar) {
+                long j12 = this.f43444b;
+                if (((qi.d) eVar.f44764b) == dVar) {
                     qi.b bVar = (qi.b) eVar.d;
                     if (bVar != null) {
                         AndroidUtilities.cancelRunOnUIThread(bVar);
                         eVar.d = null;
                     }
-                    synchronized (qi.i.f44768y) {
+                    synchronized (qi.i.f44771y) {
                         try {
                             qi.i iVar = qi.i.A;
                             if (iVar != null) {
@@ -87,20 +87,20 @@ public final class yb0 implements Runnable {
                             throw th2;
                         }
                     }
-                    eVar.f44761b = null;
-                    dVar.f44759c.run(j12);
+                    eVar.f44764b = null;
+                    dVar.f44762c.run(j12);
                     eVar.D();
                     return;
                 }
                 return;
             case 3:
-                long j13 = this.f43441b;
+                long j13 = this.f43444b;
                 Exception exc = (Exception) this.d;
-                ri.o oVar = (ri.o) ((cc.e) this.f43442c).f5093c;
-                if (j13 == oVar.f45844p) {
-                    oVar.f45843o = null;
-                    ri.m mVar = oVar.f45842n;
-                    if (mVar != ri.m.f45830s && mVar != ri.m.f45829r) {
+                ri.o oVar = (ri.o) ((cc.e) this.f43445c).f5093c;
+                if (j13 == oVar.f45847p) {
+                    oVar.f45846o = null;
+                    ri.m mVar = oVar.f45845n;
+                    if (mVar != ri.m.f45833s && mVar != ri.m.f45832r) {
                         oVar.g(exc);
                         return;
                     }
@@ -111,9 +111,9 @@ public final class yb0 implements Runnable {
                 }
                 return;
             default:
-                yh.o1 o1Var = (yh.o1) this.f43442c;
+                yh.o1 o1Var = (yh.o1) this.f43445c;
                 Utilities.Callback callback = (Utilities.Callback) this.d;
-                long j14 = this.f43441b;
+                long j14 = this.f43444b;
                 o1Var.getClass();
                 org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
                 if (U != null) {
@@ -132,9 +132,9 @@ public final class yb0 implements Runnable {
     }
 
     public yb0(Object obj, Object obj2, long j10, int i10) {
-        this.f43440a = i10;
-        this.f43442c = obj;
+        this.f43443a = i10;
+        this.f43445c = obj;
         this.d = obj2;
-        this.f43441b = j10;
+        this.f43444b = j10;
     }
 }

@@ -12,20 +12,20 @@ public final class ay extends FrameLayout {
     public final ew I;
     public final ew J;
     public final cy K;
-    public xx f35443a;
-    public a5.a f35444b;
-    public fw f35445c;
+    public xx f35446a;
+    public a5.a f35447b;
+    public fw f35448c;
     public jw d;
     public s4.y e;
-    public zx f35446f;
+    public zx f35449f;
     public int h;
-    public iw f35447n;
-    public org.telegram.ui.Components.ml0 f35448r;
-    public int f35449s;
+    public iw f35450n;
+    public org.telegram.ui.Components.ml0 f35451r;
+    public int f35452s;
     public int v;
-    public org.telegram.ui.Components.b10 f35450w;
-    public dw f35451x;
-    public org.telegram.ui.Components.ol0 f35452y;
+    public org.telegram.ui.Components.b10 f35453w;
+    public dw f35454x;
+    public org.telegram.ui.Components.ol0 f35455y;
 
     public ay(Context context, cy cyVar) {
         super(context);
@@ -35,7 +35,7 @@ public final class ay extends FrameLayout {
     }
 
     public static void a(ay ayVar, fw fwVar) {
-        ayVar.f35445c = fwVar;
+        ayVar.f35448c = fwVar;
     }
 
     public static s4.y b(ay ayVar) {
@@ -55,31 +55,31 @@ public final class ay extends FrameLayout {
     }
 
     public static void f(ay ayVar, org.telegram.ui.Components.b10 b10Var) {
-        ayVar.f35450w = b10Var;
+        ayVar.f35453w = b10Var;
     }
 
     public static zx g(ay ayVar) {
-        return ayVar.f35446f;
+        return ayVar.f35449f;
     }
 
     public static void h(ay ayVar, zx zxVar) {
-        ayVar.f35446f = zxVar;
+        ayVar.f35449f = zxVar;
     }
 
     public static void i(ay ayVar, dw dwVar) {
-        ayVar.f35451x = dwVar;
+        ayVar.f35454x = dwVar;
     }
 
     public static void j(ay ayVar, org.telegram.ui.Components.ol0 ol0Var) {
-        ayVar.f35452y = ol0Var;
+        ayVar.f35455y = ol0Var;
     }
 
     public static void k(ay ayVar, org.telegram.ui.Components.ml0 ml0Var) {
-        ayVar.f35448r = ml0Var;
+        ayVar.f35451r = ml0Var;
     }
 
     public static void l(ay ayVar, int i10) {
-        ayVar.f35449s = i10;
+        ayVar.f35452s = i10;
     }
 
     public static hg.m m(ay ayVar) {
@@ -91,17 +91,17 @@ public final class ay extends FrameLayout {
     }
 
     public static void o(ay ayVar, iw iwVar) {
-        ayVar.f35447n = iwVar;
+        ayVar.f35450n = iwVar;
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        ((FrameLayout.LayoutParams) this.f35443a.getLayoutParams()).bottomMargin = 0;
+        ((FrameLayout.LayoutParams) this.f35446a.getLayoutParams()).bottomMargin = 0;
         super.onMeasure(i10, i11);
     }
 
     public final boolean p() {
-        int i10 = this.f35449s;
+        int i10 = this.f35452s;
         if (i10 != 0 && i10 != 7 && i10 != 8) {
             return false;
         }
@@ -115,13 +115,13 @@ public final class ay extends FrameLayout {
             ew ewVar = this.J;
             if (z10) {
                 AndroidUtilities.cancelRunOnUIThread(ewVar);
-                this.f35443a.setItemAnimator(this.f35451x);
+                this.f35446a.setItemAnimator(this.f35454x);
                 ewVar.run();
             } else if (this.H) {
             } else {
                 this.H = true;
-                if (!this.f35451x.k()) {
-                    this.f35443a.setItemAnimator(null);
+                if (!this.f35454x.k()) {
+                    this.f35446a.setItemAnimator(null);
                 }
                 AndroidUtilities.runOnUIThread(ewVar, 36L);
             }
@@ -134,8 +134,8 @@ public final class ay extends FrameLayout {
         if (getTranslationX() != f7) {
             super.setTranslationX(f7);
             cy cyVar = this.K;
-            if (cyVar.f36111h3 && (ayVar = cyVar.f36092e0[0]) == this) {
-                cyVar.f36198z0.g(Math.abs(ayVar.getTranslationX()) / cyVar.f36092e0[0].getMeasuredWidth(), cyVar.f36092e0[1].h);
+            if (cyVar.f36114h3 && (ayVar = cyVar.f36095e0[0]) == this) {
+                cyVar.f36201z0.g(Math.abs(ayVar.getTranslationX()) / cyVar.f36095e0[0].getMeasuredWidth(), cyVar.f36095e0[1].h);
             }
             cyVar.j3();
         }

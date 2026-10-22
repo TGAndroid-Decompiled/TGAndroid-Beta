@@ -1,159 +1,89 @@
 package org.telegram.messenger;
 
-import android.content.Context;
-import android.text.TextUtils;
-import android.widget.Toast;
-import java.io.File;
-import java.util.ArrayList;
-import java.util.regex.Pattern;
+import java.util.HashMap;
+import java.util.List;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_phone;
-import org.telegram.ui.Components.ho0;
-import org.telegram.ui.Components.y31;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.b60;
-import org.telegram.ui.c21;
-import org.telegram.ui.cy;
-import org.telegram.ui.pw0;
+import org.telegram.tgnet.tl.TL_keyboard;
+import org.telegram.ui.TwoStepVerificationActivity;
+import org.telegram.ui.qn;
 public final class hi implements RequestDelegate {
-    public final int f18551a;
-    public final int f18552b;
-    public final Object f18553c;
-    public final Object d;
-    public final Object e;
-    public final Object f18554f;
-    public final Object f18555g;
+    public final int f18543a = 0;
+    public final SendMessagesHelper f18544b;
+    public final MessageObject f18545c;
+    public final String d;
+    public final boolean e;
+    public final boolean f18546f;
+    public final Object f18547g;
+    public final Object h;
+    public final Object f18548i;
+    public final Object f18549j;
+    public final Object f18550k;
+    public final Object f18551l;
 
-    public hi(int i10, int i11, Object obj, Object obj2, Object obj3, Object obj4, TLObject tLObject) {
-        this.f18551a = i11;
-        this.d = obj;
-        this.e = tLObject;
-        this.f18554f = obj2;
-        this.f18555g = obj3;
-        this.f18552b = i10;
-        this.f18553c = obj4;
+    public hi(SendMessagesHelper sendMessagesHelper, String str, List list, boolean z10, MessageObject messageObject, TL_keyboard.KeyboardButtonProto keyboardButtonProto, qn qnVar, TwoStepVerificationActivity twoStepVerificationActivity, TLObject[] tLObjectArr, TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP, boolean z11) {
+        this.f18544b = sendMessagesHelper;
+        this.d = str;
+        this.f18547g = list;
+        this.e = z10;
+        this.f18545c = messageObject;
+        this.h = keyboardButtonProto;
+        this.f18548i = qnVar;
+        this.f18549j = twoStepVerificationActivity;
+        this.f18550k = tLObjectArr;
+        this.f18551l = inputCheckPasswordSRP;
+        this.f18546f = z11;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        int i10 = this.f18551a;
-        int i11 = this.f18552b;
-        Object obj = this.f18553c;
-        Object obj2 = this.f18555g;
-        Object obj3 = this.f18554f;
-        Object obj4 = this.e;
-        Object obj5 = this.d;
-        switch (i10) {
+        switch (this.f18543a) {
             case 0:
-                ((SendMessagesHelper) obj5).lambda$performSendDelayedMessage$57((TLRPC.InputFile) obj4, (TLRPC.InputMedia) obj3, (SendMessagesHelper.DelayedMessage) obj2, this.f18552b, (String) obj, tLObject, tL_error);
+                List list = (List) this.f18547g;
+                TL_keyboard.KeyboardButtonProto keyboardButtonProto = (TL_keyboard.KeyboardButtonProto) this.h;
+                qn qnVar = (qn) this.f18548i;
+                TwoStepVerificationActivity twoStepVerificationActivity = (TwoStepVerificationActivity) this.f18549j;
+                TLObject[] tLObjectArr = (TLObject[]) this.f18550k;
+                TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP = (TLRPC.InputCheckPasswordSRP) this.f18551l;
+                boolean z10 = this.f18546f;
+                this.f18544b.lambda$sendCallback$49(this.d, list, this.e, this.f18545c, keyboardButtonProto, qnVar, twoStepVerificationActivity, tLObjectArr, inputCheckPasswordSRP, z10, tLObject, tL_error);
                 return;
             case 1:
-                AndroidUtilities.runOnUIThread(new hg.d1((org.telegram.ui.l4) obj5, this.f18552b, (pf.c) obj4, tLObject, (String) obj, (org.telegram.ui.g0) obj3, (TLRPC.TL_messages_getWebPage) obj2));
-                return;
-            case 2:
-                AndroidUtilities.runOnUIThread(new hg.d1(tLObject, (org.telegram.ui.ActionBar.b2) obj5, (Context) obj4, this.f18552b, (TL_phone.exportGroupCallInvite) obj3, (org.telegram.ui.ActionBar.d6) obj2, (b60) obj));
-                return;
-            case 3:
-                boolean[] zArr = (boolean[]) obj5;
-                File file = (File) obj4;
-                TL_phone.setCallRating setcallrating = (TL_phone.setCallRating) obj3;
-                ArrayList arrayList = (ArrayList) obj2;
-                Context context = (Context) obj;
-                if (tLObject instanceof TLRPC.TL_updates) {
-                    MessagesController.getInstance(i11).lambda$processUpdates$377((TLRPC.TL_updates) tLObject, false);
-                }
-                if (zArr[0] && file.exists() && setcallrating.rating < 4) {
-                    SendMessagesHelper.prepareSendingDocument(AccountInstance.getInstance(UserConfig.selectedAccount), file.getAbsolutePath(), file.getAbsolutePath(), null, TextUtils.join(" ", arrayList), "text/plain", 4244000L, null, null, null, null, null, true, 0, null, null, false);
-                    Toast.makeText(context, LocaleController.getString(R.string.CallReportSent), 1).show();
-                    return;
-                }
-                return;
-            case 4:
-                String str = (String) obj;
-                Pattern pattern = LaunchActivity.C1;
-                AndroidUtilities.runOnUIThread(new hg.d1((LaunchActivity) obj5, tLObject, this.f18552b, (cy) obj4, (org.telegram.ui.ActionBar.n2) obj3, (TLRPC.User) obj2, str));
-                return;
-            case 5:
-                AndroidUtilities.runOnUIThread(new c6(tLObject, (org.telegram.ui.ActionBar.n2) obj5, (TLRPC.TL_inputStorePaymentPremiumSubscription) obj4, (pw0) obj3, (c5.g) obj2, this.f18552b, tL_error, (TLRPC.TL_payments_canPurchaseStore) obj));
+                this.f18544b.lambda$performSendMessageRequest$79((TLRPC.TL_messages_addPollAnswer) this.f18547g, (TLRPC.TL_messages_addPollAnswer) this.h, this.f18545c, this.d, (SendMessagesHelper.DelayedMessage) this.f18548i, this.e, (SendMessagesHelper.DelayedMessage) this.f18549j, this.f18550k, (HashMap) this.f18551l, this.f18546f, tLObject, tL_error);
                 return;
             default:
-                Context context2 = (Context) obj5;
-                org.telegram.ui.ActionBar.d6 d6Var = (org.telegram.ui.ActionBar.d6) obj4;
-                byte[] bArr = (byte[]) obj3;
-                org.telegram.ui.ActionBar.n2 n2Var = (org.telegram.ui.ActionBar.n2) obj2;
-                ho0 ho0Var = (ho0) obj;
-                if (tLObject != null) {
-                    if (tLObject instanceof TLRPC.TL_channels_sponsoredMessageReportResultChooseOption) {
-                        AndroidUtilities.runOnUIThread(new ai.g3(tLObject, (Object) context2, (Object) d6Var, (Object) bArr, (Object) n2Var, (Object) ho0Var, 18));
-                        return;
-                    } else if (tLObject instanceof TLRPC.TL_channels_sponsoredMessageReportResultReported) {
-                        AndroidUtilities.runOnUIThread(new c21(n2Var, context2, d6Var, ho0Var, 0), 200L);
-                        return;
-                    } else if (tLObject instanceof TLRPC.TL_channels_sponsoredMessageReportResultAdsHidden) {
-                        AndroidUtilities.runOnUIThread(new y31(n2Var, i11, ho0Var, 13), 200L);
-                        return;
-                    } else {
-                        return;
-                    }
-                } else if (tL_error != null && "AD_EXPIRED".equalsIgnoreCase(tL_error.text)) {
-                    AndroidUtilities.runOnUIThread(new c21(n2Var, context2, d6Var, ho0Var, 1), 200L);
-                    return;
-                } else {
-                    return;
-                }
+                this.f18544b.lambda$performSendMessageRequest$104((TLObject) this.f18547g, this.f18545c, this.d, (SendMessagesHelper.DelayedMessage) this.h, this.e, (SendMessagesHelper.DelayedMessage) this.f18548i, this.f18549j, (HashMap) this.f18550k, this.f18546f, (TLRPC.Message) this.f18551l, tLObject, tL_error);
+                return;
         }
     }
 
-    public hi(int i10, boolean[] zArr, File file, TL_phone.setCallRating setcallrating, ArrayList arrayList, Context context) {
-        this.f18551a = 3;
-        this.f18552b = i10;
-        this.d = zArr;
-        this.e = file;
-        this.f18554f = setcallrating;
-        this.f18555g = arrayList;
-        this.f18553c = context;
+    public hi(SendMessagesHelper sendMessagesHelper, TLObject tLObject, MessageObject messageObject, String str, SendMessagesHelper.DelayedMessage delayedMessage, boolean z10, SendMessagesHelper.DelayedMessage delayedMessage2, Object obj, HashMap hashMap, boolean z11, TLRPC.Message message) {
+        this.f18544b = sendMessagesHelper;
+        this.f18547g = tLObject;
+        this.f18545c = messageObject;
+        this.d = str;
+        this.h = delayedMessage;
+        this.e = z10;
+        this.f18548i = delayedMessage2;
+        this.f18549j = obj;
+        this.f18550k = hashMap;
+        this.f18546f = z11;
+        this.f18551l = message;
     }
 
-    public hi(Context context, org.telegram.ui.ActionBar.d6 d6Var, byte[] bArr, org.telegram.ui.ActionBar.n2 n2Var, ho0 ho0Var, int i10) {
-        this.f18551a = 6;
-        this.d = context;
-        this.e = d6Var;
-        this.f18554f = bArr;
-        this.f18555g = n2Var;
-        this.f18553c = ho0Var;
-        this.f18552b = i10;
-    }
-
-    public hi(org.telegram.ui.ActionBar.b2 b2Var, Context context, int i10, TL_phone.exportGroupCallInvite exportgroupcallinvite, org.telegram.ui.ActionBar.d6 d6Var, b60 b60Var) {
-        this.f18551a = 2;
-        this.d = b2Var;
-        this.e = context;
-        this.f18552b = i10;
-        this.f18554f = exportgroupcallinvite;
-        this.f18555g = d6Var;
-        this.f18553c = b60Var;
-    }
-
-    public hi(org.telegram.ui.l4 l4Var, int i10, pf.c cVar, String str, org.telegram.ui.g0 g0Var, TLRPC.TL_messages_getWebPage tL_messages_getWebPage) {
-        this.f18551a = 1;
-        this.d = l4Var;
-        this.f18552b = i10;
-        this.e = cVar;
-        this.f18553c = str;
-        this.f18554f = g0Var;
-        this.f18555g = tL_messages_getWebPage;
-    }
-
-    public hi(LaunchActivity launchActivity, int i10, cy cyVar, org.telegram.ui.ActionBar.n2 n2Var, TLRPC.User user, String str) {
-        this.f18551a = 4;
-        this.d = launchActivity;
-        this.f18552b = i10;
-        this.e = cyVar;
-        this.f18554f = n2Var;
-        this.f18555g = user;
-        this.f18553c = str;
+    public hi(SendMessagesHelper sendMessagesHelper, TLRPC.TL_messages_addPollAnswer tL_messages_addPollAnswer, TLRPC.TL_messages_addPollAnswer tL_messages_addPollAnswer2, MessageObject messageObject, String str, SendMessagesHelper.DelayedMessage delayedMessage, boolean z10, SendMessagesHelper.DelayedMessage delayedMessage2, Object obj, HashMap hashMap, boolean z11) {
+        this.f18544b = sendMessagesHelper;
+        this.f18547g = tL_messages_addPollAnswer;
+        this.h = tL_messages_addPollAnswer2;
+        this.f18545c = messageObject;
+        this.d = str;
+        this.f18548i = delayedMessage;
+        this.e = z10;
+        this.f18549j = delayedMessage2;
+        this.f18550k = obj;
+        this.f18551l = hashMap;
+        this.f18546f = z11;
     }
 }

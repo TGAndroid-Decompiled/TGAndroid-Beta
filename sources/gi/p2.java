@@ -73,16 +73,16 @@ public final class p2 extends AnimatorListenerAdapter {
                 if (!d4Var.c()) {
                     d4Var.b(this.f11382b);
                 }
-                d4Var.f22127d0 = null;
+                d4Var.f22130d0 = null;
                 return;
             case 4:
                 ((p6) this.f11383c).u(this.f11382b);
                 return;
             case 5:
-                ((e8) this.f11383c).f25807a[this.f11382b].setVisibility(8);
+                ((e8) this.f11383c).f25810a[this.f11382b].setVisibility(8);
                 return;
             case 6:
-                ((aq) this.f11383c).f24695a[this.f11382b].animate().scaleX(1.0f).scaleY(1.0f).setInterpolator(bs.f25022g).setStartDelay(0L).setDuration(100L).start();
+                ((aq) this.f11383c).f24698a[this.f11382b].animate().scaleX(1.0f).scaleY(1.0f).setInterpolator(bs.f25025g).setStartDelay(0L).setDuration(100L).start();
                 return;
             case 7:
                 jy jyVar = (jy) this.f11383c;
@@ -102,7 +102,7 @@ public final class p2 extends AnimatorListenerAdapter {
                     i11 = 8;
                 }
                 textView.setVisibility(i11);
-                TextView textView2 = jyVar.f27671f;
+                TextView textView2 = jyVar.f27674f;
                 if (i13 == 3) {
                     i12 = 0;
                 }
@@ -110,10 +110,10 @@ public final class p2 extends AnimatorListenerAdapter {
                 return;
             case 8:
                 l60 l60Var = (l60) this.f11383c;
-                if (this.f11382b == l60Var.f28051s0) {
-                    l60Var.f28057x.setRotationY(0.0f);
-                    l60Var.f28047q0 = true;
-                    l60Var.f28031b0 = null;
+                if (this.f11382b == l60Var.f28054s0) {
+                    l60Var.f28060x.setRotationY(0.0f);
+                    l60Var.f28050q0 = true;
+                    l60Var.f28034b0 = null;
                     FileLog.d("RoundVideo camera flip visual animation completed: elapsedMs=" + l60.k(l60Var));
                     l60.l(l60Var);
                     return;
@@ -122,25 +122,25 @@ public final class p2 extends AnimatorListenerAdapter {
             case 9:
                 fi0 fi0Var = (fi0) this.f11383c;
                 fi0Var.H = null;
-                fi0Var.P.f28179d1.delete(this.f11382b);
+                fi0Var.P.f28182d1.delete(this.f11382b);
                 return;
             case 10:
                 oq oqVar = (oq) this.f11383c;
-                ((ol0) oqVar.d).f29066b.remove(this.f11382b);
+                ((ol0) oqVar.d).f29069b.remove(this.f11382b);
                 ol0 ol0Var = (ol0) oqVar.d;
                 ol0Var.d = true;
-                ol0Var.f29065a.invalidate();
+                ol0Var.f29068a.invalidate();
                 return;
             case 11:
                 pt0 pt0Var = (pt0) this.f11383c;
                 pt0Var.e.O1.remove(this.f11382b);
-                pt0Var.f29392a.invalidate();
+                pt0Var.f29395a.invalidate();
                 return;
             default:
                 org.telegram.ui.Components.voip.b1 b1Var = (org.telegram.ui.Components.voip.b1) this.f11383c;
-                b1Var.f31355x = -1;
+                b1Var.f31358x = -1;
                 b1Var.v = this.f11382b;
-                b1Var.f31353s = 0.0f;
+                b1Var.f31356s = 0.0f;
                 b1Var.U = null;
                 b1Var.e();
                 return;
@@ -154,7 +154,7 @@ public final class p2 extends AnimatorListenerAdapter {
                 jy jyVar = (jy) this.f11383c;
                 jyVar.h.setVisibility(0);
                 jyVar.e.setVisibility(0);
-                jyVar.f27671f.setVisibility(0);
+                jyVar.f27674f.setVisibility(0);
                 return;
             default:
                 super.onAnimationStart(animator);

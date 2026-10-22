@@ -7,19 +7,19 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageLoader;
 import org.telegram.messenger.NotificationCenter;
 public final class z31 implements Runnable {
-    public final int f43620a;
-    public final x51 f43621b;
+    public final int f43623a;
+    public final x51 f43624b;
 
     public z31(x51 x51Var, int i10) {
-        this.f43620a = i10;
-        this.f43621b = x51Var;
+        this.f43623a = i10;
+        this.f43624b = x51Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f43620a) {
+        switch (this.f43623a) {
             case 0:
-                x51 x51Var = this.f43621b;
+                x51 x51Var = this.f43624b;
                 x51Var.getClass();
                 HashSet hashSet = ah.x0.f900a;
                 hf.c cacheOutQueue = ImageLoader.getInstance().getCacheOutQueue();
@@ -32,7 +32,7 @@ public final class z31 implements Runnable {
                 AndroidUtilities.runOnUIThread(new z31(x51Var, 2), 0L);
                 return;
             case 1:
-                x51 x51Var2 = this.f43621b;
+                x51 x51Var2 = this.f43624b;
                 ArrayList arrayList = x51Var2.A1;
                 if (arrayList != null) {
                     arrayList.clear();
@@ -45,16 +45,16 @@ public final class z31 implements Runnable {
                 if (arrayList3 != null) {
                     arrayList3.clear();
                 }
-                x51Var2.f43078q0.E(true);
+                x51Var2.f43081q0.E(true);
                 return;
             case 2:
-                this.f43621b.U1.start();
+                this.f43624b.U1.start();
                 return;
             case 3:
-                this.f43621b.B(true, true, true);
+                this.f43624b.B(true, true, true);
                 return;
             default:
-                x51 x51Var3 = this.f43621b;
+                x51 x51Var3 = this.f43624b;
                 NotificationCenter globalInstance = NotificationCenter.getGlobalInstance();
                 z31 z31Var = x51Var3.R1;
                 globalInstance.removeDelayed(z31Var);

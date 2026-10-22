@@ -14,7 +14,7 @@ public final class zt0 extends ov0 {
         super.l();
         uv0 uv0Var = this.h;
         nu0 W = uv0Var.W(0);
-        if (W != null && W.f28881r.getVisibility() == 0) {
+        if (W != null && W.f28884r.getVisibility() == 0) {
             uv0Var.I.l();
         }
     }

@@ -17,18 +17,18 @@ public final class ai0 extends si0 {
     public final Drawable U;
     public final f11 V;
     public f11 W;
-    public final Paint f24624a0;
-    public final Path f24625b0;
-    public float f24626c0;
-    public final DecimalFormat f24627d0;
+    public final Paint f24627a0;
+    public final Path f24628b0;
+    public float f24629c0;
+    public final DecimalFormat f24630d0;
 
     public ai0(Context context) {
         super(context);
         Paint paint = new Paint(1);
-        this.f24624a0 = paint;
+        this.f24627a0 = paint;
         Path path = new Path();
-        this.f24625b0 = path;
-        this.f24627d0 = new DecimalFormat("#,##0.#########", new DecimalFormatSymbols(Locale.US));
+        this.f24628b0 = path;
+        this.f24630d0 = new DecimalFormat("#,##0.#########", new DecimalFormatSymbols(Locale.US));
         this.T = context.getResources().getDrawable(R.drawable.profile_balance_gram).mutate();
         this.U = context.getResources().getDrawable(R.drawable.profile_balance_gram_color).mutate();
         this.V = new f11(LocaleController.getString(R.string.StarsBalance) + ":", 11.0f, null);
@@ -46,7 +46,7 @@ public final class ai0 extends si0 {
     public final void b(Canvas canvas, float f7) {
         Drawable drawable;
         float height = getHeight() / 2.0f;
-        canvas.translate(0.0f, (-AndroidUtilities.dp(20.0f)) * this.f24626c0);
+        canvas.translate(0.0f, (-AndroidUtilities.dp(20.0f)) * this.f24629c0);
         float f10 = f7 * 0.85f;
         this.V.c(0.0f, height, f10, this.F, canvas);
         canvas.translate(this.V.l() + AndroidUtilities.dp(4.0f), 0.0f);
@@ -64,34 +64,34 @@ public final class ai0 extends si0 {
         this.W.c(0.0f, height, f7, this.F, canvas);
         canvas.translate(AndroidUtilities.dpf2(4.8f) + this.W.l(), height);
         int m12 = org.telegram.ui.ActionBar.h6.m1(f10, this.F);
-        Paint paint = this.f24624a0;
+        Paint paint = this.f24627a0;
         paint.setColor(m12);
-        canvas.drawPath(this.f24625b0, paint);
+        canvas.drawPath(this.f24628b0, paint);
     }
 
     @Override
     public final float e(float f7) {
         f11 f11Var = this.V;
-        f11Var.f26031p = -1.0f;
-        this.W.f26031p = -1.0f;
+        f11Var.f26034p = -1.0f;
+        this.W.f26034p = -1.0f;
         float max = Math.max(0.0f, f7 - AndroidUtilities.dp(43.0f));
-        f11Var.f26031p = Math.max(0.0f, max - this.W.l());
-        this.W.f26031p = Math.max(0.0f, max - f11Var.l());
+        f11Var.f26034p = Math.max(0.0f, max - this.W.l());
+        this.W.f26034p = Math.max(0.0f, max - f11Var.l());
         return this.W.l() + f11Var.l() + AndroidUtilities.dp(27.0f);
     }
 
     public void setBalance(long j10) {
-        String format = this.f24627d0.format(new BigDecimal(org.telegram.ui.Wallet.m0.o(j10, false)));
+        String format = this.f24630d0.format(new BigDecimal(org.telegram.ui.Wallet.m0.o(j10, false)));
         this.W = new f11(format, 11.0f, AndroidUtilities.bold());
         setContentDescription(LocaleController.getString(R.string.StarsBalance) + ": " + format);
         invalidate();
     }
 
     public void setEjectProgress(float f7) {
-        if (this.f24626c0 == f7) {
+        if (this.f24629c0 == f7) {
             return;
         }
-        this.f24626c0 = f7;
+        this.f24629c0 = f7;
         invalidate();
     }
 }

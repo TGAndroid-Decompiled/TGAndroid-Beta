@@ -1,41 +1,35 @@
 package org.telegram.messenger;
-public final class hf implements Runnable {
-    public final int f18541a;
-    public final MessagesStorage f18542b;
-    public final int f18543c;
 
-    public hf(MessagesStorage messagesStorage, int i10, int i11) {
-        this.f18541a = i11;
-        this.f18542b = messagesStorage;
-        this.f18543c = i10;
+import org.telegram.ui.qn;
+import org.webrtc.TextureViewRenderer;
+public final class hf implements Runnable {
+    public final int f18531a;
+    public final int f18532b;
+    public final int f18533c;
+    public final int d;
+    public final int e;
+    public final Object f18534f;
+
+    public hf(Object obj, int i10, int i11, int i12, int i13, int i14) {
+        this.f18531a = i14;
+        this.f18534f = obj;
+        this.f18532b = i10;
+        this.f18533c = i11;
+        this.d = i12;
+        this.e = i13;
     }
 
     @Override
     public final void run() {
-        switch (this.f18541a) {
+        switch (this.f18531a) {
             case 0:
-                this.f18542b.lambda$readAllDialogs$65(this.f18543c);
+                ((MessagesStorage) this.f18534f).lambda$saveDiffParams$35(this.f18532b, this.f18533c, this.d, this.e);
                 return;
             case 1:
-                this.f18542b.lambda$checkIfFolderEmptyInternal$245(this.f18543c);
-                return;
-            case 2:
-                this.f18542b.lambda$clearDownloadQueue$184(this.f18543c);
-                return;
-            case 3:
-                this.f18542b.lambda$putMessagesInternal$196(this.f18543c);
-                return;
-            case 4:
-                this.f18542b.lambda$getDownloadQueue$186(this.f18543c);
-                return;
-            case 5:
-                this.f18542b.lambda$getUnsentMessages$152(this.f18543c);
-                return;
-            case 6:
-                this.f18542b.lambda$checkIfFolderEmpty$246(this.f18543c);
+                qn.w1((qn) this.f18534f, this.f18532b, this.f18533c, this.d, this.e);
                 return;
             default:
-                this.f18542b.lambda$clearWidgetDialogs$167(this.f18543c);
+                TextureViewRenderer.a((TextureViewRenderer) this.f18534f, this.f18532b, this.f18533c, this.d, this.e);
                 return;
         }
     }

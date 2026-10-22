@@ -27,25 +27,25 @@ import v7.j8;
 import v7.x7;
 public final class o extends br {
     public static final PorterDuff.Mode v = PorterDuff.Mode.SRC_IN;
-    public m f49284c;
+    public m f49287c;
     public PorterDuffColorFilter d;
     public ColorFilter e;
-    public boolean f49285f;
+    public boolean f49288f;
     public boolean h;
-    public final float[] f49286n;
-    public final Matrix f49287r;
-    public final Rect f49288s;
+    public final float[] f49289n;
+    public final Matrix f49290r;
+    public final Rect f49291s;
 
     public o() {
         this.h = true;
-        this.f49286n = new float[9];
-        this.f49287r = new Matrix();
-        this.f49288s = new Rect();
+        this.f49289n = new float[9];
+        this.f49290r = new Matrix();
+        this.f49291s = new Rect();
         ?? constantState = new Drawable.ConstantState();
-        constantState.f49276c = null;
+        constantState.f49279c = null;
         constantState.d = v;
-        constantState.f49275b = new l();
-        this.f49284c = constantState;
+        constantState.f49278b = new l();
+        this.f49287c = constantState;
     }
 
     public static o c(Resources resources, int i10, Resources.Theme theme) {
@@ -53,8 +53,8 @@ public final class o extends br {
         if (Build.VERSION.SDK_INT >= 24) {
             o oVar = new o();
             ThreadLocal threadLocal = h0.j.f11605a;
-            oVar.f25012b = resources.getDrawable(i10, theme);
-            new n(((Drawable) oVar.f25012b).getConstantState());
+            oVar.f25015b = resources.getDrawable(i10, theme);
+            new n(((Drawable) oVar.f25015b).getConstantState());
             return oVar;
         }
         try {
@@ -83,7 +83,7 @@ public final class o extends br {
 
     @Override
     public final boolean canApplyTheme() {
-        Drawable drawable = (Drawable) this.f25012b;
+        Drawable drawable = (Drawable) this.f25015b;
         if (drawable != null) {
             drawable.canApplyTheme();
             return false;
@@ -101,21 +101,21 @@ public final class o extends br {
     @Override
     public final void draw(Canvas canvas) {
         Paint paint;
-        Drawable drawable = (Drawable) this.f25012b;
+        Drawable drawable = (Drawable) this.f25015b;
         if (drawable != null) {
             drawable.draw(canvas);
             return;
         }
-        Rect rect = this.f49288s;
+        Rect rect = this.f49291s;
         copyBounds(rect);
         if (rect.width() > 0 && rect.height() > 0) {
             ColorFilter colorFilter = this.e;
             if (colorFilter == null) {
                 colorFilter = this.d;
             }
-            Matrix matrix = this.f49287r;
+            Matrix matrix = this.f49290r;
             canvas.getMatrix(matrix);
-            float[] fArr = this.f49286n;
+            float[] fArr = this.f49289n;
             matrix.getValues(fArr);
             float abs = Math.abs(fArr[0]);
             float abs2 = Math.abs(fArr[4]);
@@ -135,48 +135,48 @@ public final class o extends br {
                     canvas.scale(-1.0f, 1.0f);
                 }
                 rect.offsetTo(0, 0);
-                m mVar = this.f49284c;
-                Bitmap bitmap = mVar.f49277f;
-                if (bitmap == null || min != bitmap.getWidth() || min2 != mVar.f49277f.getHeight()) {
-                    mVar.f49277f = Bitmap.createBitmap(min, min2, Bitmap.Config.ARGB_8888);
-                    mVar.f49281k = true;
+                m mVar = this.f49287c;
+                Bitmap bitmap = mVar.f49280f;
+                if (bitmap == null || min != bitmap.getWidth() || min2 != mVar.f49280f.getHeight()) {
+                    mVar.f49280f = Bitmap.createBitmap(min, min2, Bitmap.Config.ARGB_8888);
+                    mVar.f49284k = true;
                 }
                 if (!this.h) {
-                    m mVar2 = this.f49284c;
-                    mVar2.f49277f.eraseColor(0);
-                    Canvas canvas2 = new Canvas(mVar2.f49277f);
-                    l lVar = mVar2.f49275b;
-                    lVar.a(lVar.f49266g, l.f49261p, canvas2, min, min2);
+                    m mVar2 = this.f49287c;
+                    mVar2.f49280f.eraseColor(0);
+                    Canvas canvas2 = new Canvas(mVar2.f49280f);
+                    l lVar = mVar2.f49278b;
+                    lVar.a(lVar.f49269g, l.f49264p, canvas2, min, min2);
                 } else {
-                    m mVar3 = this.f49284c;
-                    if (mVar3.f49281k || mVar3.f49278g != mVar3.f49276c || mVar3.h != mVar3.d || mVar3.f49280j != mVar3.e || mVar3.f49279i != mVar3.f49275b.getRootAlpha()) {
-                        m mVar4 = this.f49284c;
-                        mVar4.f49277f.eraseColor(0);
-                        Canvas canvas3 = new Canvas(mVar4.f49277f);
-                        l lVar2 = mVar4.f49275b;
-                        lVar2.a(lVar2.f49266g, l.f49261p, canvas3, min, min2);
-                        m mVar5 = this.f49284c;
-                        mVar5.f49278g = mVar5.f49276c;
+                    m mVar3 = this.f49287c;
+                    if (mVar3.f49284k || mVar3.f49281g != mVar3.f49279c || mVar3.h != mVar3.d || mVar3.f49283j != mVar3.e || mVar3.f49282i != mVar3.f49278b.getRootAlpha()) {
+                        m mVar4 = this.f49287c;
+                        mVar4.f49280f.eraseColor(0);
+                        Canvas canvas3 = new Canvas(mVar4.f49280f);
+                        l lVar2 = mVar4.f49278b;
+                        lVar2.a(lVar2.f49269g, l.f49264p, canvas3, min, min2);
+                        m mVar5 = this.f49287c;
+                        mVar5.f49281g = mVar5.f49279c;
                         mVar5.h = mVar5.d;
-                        mVar5.f49279i = mVar5.f49275b.getRootAlpha();
-                        mVar5.f49280j = mVar5.e;
-                        mVar5.f49281k = false;
+                        mVar5.f49282i = mVar5.f49278b.getRootAlpha();
+                        mVar5.f49283j = mVar5.e;
+                        mVar5.f49284k = false;
                     }
                 }
-                m mVar6 = this.f49284c;
-                if (mVar6.f49275b.getRootAlpha() >= 255 && colorFilter == null) {
+                m mVar6 = this.f49287c;
+                if (mVar6.f49278b.getRootAlpha() >= 255 && colorFilter == null) {
                     paint = null;
                 } else {
-                    if (mVar6.f49282l == null) {
+                    if (mVar6.f49285l == null) {
                         Paint paint2 = new Paint();
-                        mVar6.f49282l = paint2;
+                        mVar6.f49285l = paint2;
                         paint2.setFilterBitmap(true);
                     }
-                    mVar6.f49282l.setAlpha(mVar6.f49275b.getRootAlpha());
-                    mVar6.f49282l.setColorFilter(colorFilter);
-                    paint = mVar6.f49282l;
+                    mVar6.f49285l.setAlpha(mVar6.f49278b.getRootAlpha());
+                    mVar6.f49285l.setColorFilter(colorFilter);
+                    paint = mVar6.f49285l;
                 }
-                canvas.drawBitmap(mVar6.f49277f, (Rect) null, rect, paint);
+                canvas.drawBitmap(mVar6.f49280f, (Rect) null, rect, paint);
                 canvas.restoreToCount(save);
             }
         }
@@ -184,25 +184,25 @@ public final class o extends br {
 
     @Override
     public final int getAlpha() {
-        Drawable drawable = (Drawable) this.f25012b;
+        Drawable drawable = (Drawable) this.f25015b;
         if (drawable != null) {
             return drawable.getAlpha();
         }
-        return this.f49284c.f49275b.getRootAlpha();
+        return this.f49287c.f49278b.getRootAlpha();
     }
 
     @Override
     public final int getChangingConfigurations() {
-        Drawable drawable = (Drawable) this.f25012b;
+        Drawable drawable = (Drawable) this.f25015b;
         if (drawable != null) {
             return drawable.getChangingConfigurations();
         }
-        return super.getChangingConfigurations() | this.f49284c.getChangingConfigurations();
+        return super.getChangingConfigurations() | this.f49287c.getChangingConfigurations();
     }
 
     @Override
     public final ColorFilter getColorFilter() {
-        Drawable drawable = (Drawable) this.f25012b;
+        Drawable drawable = (Drawable) this.f25015b;
         if (drawable != null) {
             return drawable.getColorFilter();
         }
@@ -211,34 +211,34 @@ public final class o extends br {
 
     @Override
     public final Drawable.ConstantState getConstantState() {
-        if (((Drawable) this.f25012b) != null && Build.VERSION.SDK_INT >= 24) {
-            return new n(((Drawable) this.f25012b).getConstantState());
+        if (((Drawable) this.f25015b) != null && Build.VERSION.SDK_INT >= 24) {
+            return new n(((Drawable) this.f25015b).getConstantState());
         }
-        this.f49284c.f49274a = getChangingConfigurations();
-        return this.f49284c;
+        this.f49287c.f49277a = getChangingConfigurations();
+        return this.f49287c;
     }
 
     @Override
     public final int getIntrinsicHeight() {
-        Drawable drawable = (Drawable) this.f25012b;
+        Drawable drawable = (Drawable) this.f25015b;
         if (drawable != null) {
             return drawable.getIntrinsicHeight();
         }
-        return (int) this.f49284c.f49275b.f49267i;
+        return (int) this.f49287c.f49278b.f49270i;
     }
 
     @Override
     public final int getIntrinsicWidth() {
-        Drawable drawable = (Drawable) this.f25012b;
+        Drawable drawable = (Drawable) this.f25015b;
         if (drawable != null) {
             return drawable.getIntrinsicWidth();
         }
-        return (int) this.f49284c.f49275b.h;
+        return (int) this.f49287c.f49278b.h;
     }
 
     @Override
     public final int getOpacity() {
-        Drawable drawable = (Drawable) this.f25012b;
+        Drawable drawable = (Drawable) this.f25015b;
         if (drawable != null) {
             return drawable.getOpacity();
         }
@@ -247,7 +247,7 @@ public final class o extends br {
 
     @Override
     public final void inflate(Resources resources, XmlPullParser xmlPullParser, AttributeSet attributeSet) {
-        Drawable drawable = (Drawable) this.f25012b;
+        Drawable drawable = (Drawable) this.f25015b;
         if (drawable != null) {
             drawable.inflate(resources, xmlPullParser, attributeSet);
         } else {
@@ -257,7 +257,7 @@ public final class o extends br {
 
     @Override
     public final void invalidateSelf() {
-        Drawable drawable = (Drawable) this.f25012b;
+        Drawable drawable = (Drawable) this.f25015b;
         if (drawable != null) {
             drawable.invalidateSelf();
         } else {
@@ -267,28 +267,28 @@ public final class o extends br {
 
     @Override
     public final boolean isAutoMirrored() {
-        Drawable drawable = (Drawable) this.f25012b;
+        Drawable drawable = (Drawable) this.f25015b;
         if (drawable != null) {
             return drawable.isAutoMirrored();
         }
-        return this.f49284c.e;
+        return this.f49287c.e;
     }
 
     @Override
     public final boolean isStateful() {
-        Drawable drawable = (Drawable) this.f25012b;
+        Drawable drawable = (Drawable) this.f25015b;
         if (drawable != null) {
             return drawable.isStateful();
         }
         if (!super.isStateful()) {
-            m mVar = this.f49284c;
+            m mVar = this.f49287c;
             if (mVar != null) {
-                l lVar = mVar.f49275b;
-                if (lVar.f49272n == null) {
-                    lVar.f49272n = Boolean.valueOf(lVar.f49266g.a());
+                l lVar = mVar.f49278b;
+                if (lVar.f49275n == null) {
+                    lVar.f49275n = Boolean.valueOf(lVar.f49269g.a());
                 }
-                if (!lVar.f49272n.booleanValue()) {
-                    ColorStateList colorStateList = this.f49284c.f49276c;
+                if (!lVar.f49275n.booleanValue()) {
+                    ColorStateList colorStateList = this.f49287c.f49279c;
                     if (colorStateList == null || !colorStateList.isStateful()) {
                         return false;
                     }
@@ -303,39 +303,39 @@ public final class o extends br {
 
     @Override
     public final Drawable mutate() {
-        Drawable drawable = (Drawable) this.f25012b;
+        Drawable drawable = (Drawable) this.f25015b;
         if (drawable != null) {
             drawable.mutate();
             return this;
         }
-        if (!this.f49285f && super.mutate() == this) {
-            m mVar = this.f49284c;
+        if (!this.f49288f && super.mutate() == this) {
+            m mVar = this.f49287c;
             ?? constantState = new Drawable.ConstantState();
-            constantState.f49276c = null;
+            constantState.f49279c = null;
             constantState.d = v;
             if (mVar != null) {
-                constantState.f49274a = mVar.f49274a;
-                l lVar = new l(mVar.f49275b);
-                constantState.f49275b = lVar;
-                if (mVar.f49275b.e != null) {
-                    lVar.e = new Paint(mVar.f49275b.e);
+                constantState.f49277a = mVar.f49277a;
+                l lVar = new l(mVar.f49278b);
+                constantState.f49278b = lVar;
+                if (mVar.f49278b.e != null) {
+                    lVar.e = new Paint(mVar.f49278b.e);
                 }
-                if (mVar.f49275b.d != null) {
-                    constantState.f49275b.d = new Paint(mVar.f49275b.d);
+                if (mVar.f49278b.d != null) {
+                    constantState.f49278b.d = new Paint(mVar.f49278b.d);
                 }
-                constantState.f49276c = mVar.f49276c;
+                constantState.f49279c = mVar.f49279c;
                 constantState.d = mVar.d;
                 constantState.e = mVar.e;
             }
-            this.f49284c = constantState;
-            this.f49285f = true;
+            this.f49287c = constantState;
+            this.f49288f = true;
         }
         return this;
     }
 
     @Override
     public final void onBoundsChange(Rect rect) {
-        Drawable drawable = (Drawable) this.f25012b;
+        Drawable drawable = (Drawable) this.f25015b;
         if (drawable != null) {
             drawable.setBounds(rect);
         }
@@ -345,12 +345,12 @@ public final class o extends br {
     public final boolean onStateChange(int[] iArr) {
         boolean z10;
         PorterDuff.Mode mode;
-        Drawable drawable = (Drawable) this.f25012b;
+        Drawable drawable = (Drawable) this.f25015b;
         if (drawable != null) {
             return drawable.setState(iArr);
         }
-        m mVar = this.f49284c;
-        ColorStateList colorStateList = mVar.f49276c;
+        m mVar = this.f49287c;
+        ColorStateList colorStateList = mVar.f49279c;
         if (colorStateList != null && (mode = mVar.d) != null) {
             this.d = d(colorStateList, mode);
             invalidateSelf();
@@ -358,13 +358,13 @@ public final class o extends br {
         } else {
             z10 = false;
         }
-        l lVar = mVar.f49275b;
-        if (lVar.f49272n == null) {
-            lVar.f49272n = Boolean.valueOf(lVar.f49266g.a());
+        l lVar = mVar.f49278b;
+        if (lVar.f49275n == null) {
+            lVar.f49275n = Boolean.valueOf(lVar.f49269g.a());
         }
-        if (lVar.f49272n.booleanValue()) {
-            boolean b10 = mVar.f49275b.f49266g.b(iArr);
-            mVar.f49281k |= b10;
+        if (lVar.f49275n.booleanValue()) {
+            boolean b10 = mVar.f49278b.f49269g.b(iArr);
+            mVar.f49284k |= b10;
             if (b10) {
                 invalidateSelf();
                 return true;
@@ -375,7 +375,7 @@ public final class o extends br {
 
     @Override
     public final void scheduleSelf(Runnable runnable, long j10) {
-        Drawable drawable = (Drawable) this.f25012b;
+        Drawable drawable = (Drawable) this.f25015b;
         if (drawable != null) {
             drawable.scheduleSelf(runnable, j10);
         } else {
@@ -385,28 +385,28 @@ public final class o extends br {
 
     @Override
     public final void setAlpha(int i10) {
-        Drawable drawable = (Drawable) this.f25012b;
+        Drawable drawable = (Drawable) this.f25015b;
         if (drawable != null) {
             drawable.setAlpha(i10);
-        } else if (this.f49284c.f49275b.getRootAlpha() != i10) {
-            this.f49284c.f49275b.setRootAlpha(i10);
+        } else if (this.f49287c.f49278b.getRootAlpha() != i10) {
+            this.f49287c.f49278b.setRootAlpha(i10);
             invalidateSelf();
         }
     }
 
     @Override
     public final void setAutoMirrored(boolean z10) {
-        Drawable drawable = (Drawable) this.f25012b;
+        Drawable drawable = (Drawable) this.f25015b;
         if (drawable != null) {
             drawable.setAutoMirrored(z10);
         } else {
-            this.f49284c.e = z10;
+            this.f49287c.e = z10;
         }
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        Drawable drawable = (Drawable) this.f25012b;
+        Drawable drawable = (Drawable) this.f25015b;
         if (drawable != null) {
             drawable.setColorFilter(colorFilter);
             return;
@@ -417,7 +417,7 @@ public final class o extends br {
 
     @Override
     public final void setTint(int i10) {
-        Drawable drawable = (Drawable) this.f25012b;
+        Drawable drawable = (Drawable) this.f25015b;
         if (drawable != null) {
             j8.a(i10, drawable);
         } else {
@@ -427,14 +427,14 @@ public final class o extends br {
 
     @Override
     public final void setTintList(ColorStateList colorStateList) {
-        Drawable drawable = (Drawable) this.f25012b;
+        Drawable drawable = (Drawable) this.f25015b;
         if (drawable != null) {
             drawable.setTintList(colorStateList);
             return;
         }
-        m mVar = this.f49284c;
-        if (mVar.f49276c != colorStateList) {
-            mVar.f49276c = colorStateList;
+        m mVar = this.f49287c;
+        if (mVar.f49279c != colorStateList) {
+            mVar.f49279c = colorStateList;
             this.d = d(colorStateList, mVar.d);
             invalidateSelf();
         }
@@ -442,22 +442,22 @@ public final class o extends br {
 
     @Override
     public final void setTintMode(PorterDuff.Mode mode) {
-        Drawable drawable = (Drawable) this.f25012b;
+        Drawable drawable = (Drawable) this.f25015b;
         if (drawable != null) {
             drawable.setTintMode(mode);
             return;
         }
-        m mVar = this.f49284c;
+        m mVar = this.f49287c;
         if (mVar.d != mode) {
             mVar.d = mode;
-            this.d = d(mVar.f49276c, mode);
+            this.d = d(mVar.f49279c, mode);
             invalidateSelf();
         }
     }
 
     @Override
     public final boolean setVisible(boolean z10, boolean z11) {
-        Drawable drawable = (Drawable) this.f25012b;
+        Drawable drawable = (Drawable) this.f25015b;
         if (drawable != null) {
             return drawable.setVisible(z10, z11);
         }
@@ -466,7 +466,7 @@ public final class o extends br {
 
     @Override
     public final void unscheduleSelf(Runnable runnable) {
-        Drawable drawable = (Drawable) this.f25012b;
+        Drawable drawable = (Drawable) this.f25015b;
         if (drawable != null) {
             drawable.unscheduleSelf(runnable);
         } else {
@@ -481,16 +481,16 @@ public final class o extends br {
         int i11;
         Paint.Cap cap;
         Paint.Join join;
-        Drawable drawable = (Drawable) this.f25012b;
+        Drawable drawable = (Drawable) this.f25015b;
         if (drawable != null) {
             drawable.inflate(resources, xmlPullParser, attributeSet, theme);
             return;
         }
-        m mVar = this.f49284c;
-        mVar.f49275b = new l();
-        TypedArray f7 = h0.b.f(resources, theme, attributeSet, a.f49227a);
-        m mVar2 = this.f49284c;
-        l lVar = mVar2.f49275b;
+        m mVar = this.f49287c;
+        mVar.f49278b = new l();
+        TypedArray f7 = h0.b.f(resources, theme, attributeSet, a.f49230a);
+        m mVar2 = this.f49287c;
+        l lVar = mVar2.f49278b;
         int i12 = !h0.b.c(xmlPullParser, "tintMode") ? -1 : f7.getInt(6, -1);
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
         if (i12 == 3) {
@@ -536,29 +536,29 @@ public final class o extends br {
         }
         ColorStateList colorStateList2 = colorStateList;
         if (colorStateList2 != null) {
-            mVar2.f49276c = colorStateList2;
+            mVar2.f49279c = colorStateList2;
         }
         boolean z10 = mVar2.e;
         if (xmlPullParser.getAttributeValue("http://schemas.android.com/apk/res/android", "autoMirrored") != null) {
             z10 = f7.getBoolean(5, z10);
         }
         mVar2.e = z10;
-        float f10 = lVar.f49268j;
+        float f10 = lVar.f49271j;
         if (xmlPullParser.getAttributeValue("http://schemas.android.com/apk/res/android", "viewportWidth") != null) {
             f10 = f7.getFloat(7, f10);
         }
-        lVar.f49268j = f10;
-        float f11 = lVar.f49269k;
+        lVar.f49271j = f10;
+        float f11 = lVar.f49272k;
         if (xmlPullParser.getAttributeValue("http://schemas.android.com/apk/res/android", "viewportHeight") != null) {
             f11 = f7.getFloat(8, f11);
         }
-        lVar.f49269k = f11;
-        if (lVar.f49268j <= 0.0f) {
+        lVar.f49272k = f11;
+        if (lVar.f49271j <= 0.0f) {
             throw new XmlPullParserException(f7.getPositionDescription() + "<vector> tag requires viewportWidth > 0");
         } else if (f11 > 0.0f) {
             lVar.h = f7.getDimension(3, lVar.h);
-            float dimension = f7.getDimension(2, lVar.f49267i);
-            lVar.f49267i = dimension;
+            float dimension = f7.getDimension(2, lVar.f49270i);
+            lVar.f49270i = dimension;
             if (lVar.h <= 0.0f) {
                 throw new XmlPullParserException(f7.getPositionDescription() + "<vector> tag requires width > 0");
             } else if (dimension > 0.0f) {
@@ -569,17 +569,17 @@ public final class o extends br {
                 lVar.setAlpha(alpha);
                 String string = f7.getString(0);
                 if (string != null) {
-                    lVar.f49271m = string;
-                    lVar.f49273o.put(string, lVar);
+                    lVar.f49274m = string;
+                    lVar.f49276o.put(string, lVar);
                 }
                 f7.recycle();
-                mVar.f49274a = getChangingConfigurations();
-                mVar.f49281k = true;
-                m mVar3 = this.f49284c;
-                l lVar2 = mVar3.f49275b;
+                mVar.f49277a = getChangingConfigurations();
+                mVar.f49284k = true;
+                m mVar3 = this.f49287c;
+                l lVar2 = mVar3.f49278b;
                 ArrayDeque arrayDeque = new ArrayDeque();
-                i iVar = lVar2.f49266g;
-                a0.f fVar = lVar2.f49273o;
+                i iVar = lVar2.f49269g;
+                a0.f fVar = lVar2.f49276o;
                 arrayDeque.push(iVar);
                 int eventType = xmlPullParser.getEventType();
                 int depth = xmlPullParser.getDepth() + 1;
@@ -592,34 +592,34 @@ public final class o extends br {
                         if ("path".equals(name)) {
                             ?? kVar = new k();
                             kVar.e = 0.0f;
-                            kVar.f49243g = 1.0f;
+                            kVar.f49246g = 1.0f;
                             kVar.h = 1.0f;
-                            kVar.f49244i = 0.0f;
-                            kVar.f49245j = 1.0f;
-                            kVar.f49246k = 0.0f;
+                            kVar.f49247i = 0.0f;
+                            kVar.f49248j = 1.0f;
+                            kVar.f49249k = 0.0f;
                             Paint.Cap cap2 = Paint.Cap.BUTT;
-                            kVar.f49247l = cap2;
+                            kVar.f49250l = cap2;
                             Paint.Join join2 = Paint.Join.MITER;
-                            kVar.f49248m = join2;
-                            kVar.f49249n = 4.0f;
-                            TypedArray f12 = h0.b.f(resources, theme, attributeSet, a.f49229c);
+                            kVar.f49251m = join2;
+                            kVar.f49252n = 4.0f;
+                            TypedArray f12 = h0.b.f(resources, theme, attributeSet, a.f49232c);
                             if (xmlPullParser.getAttributeValue("http://schemas.android.com/apk/res/android", "pathData") != null) {
                                 String string2 = f12.getString(0);
                                 if (string2 != null) {
-                                    kVar.f49259b = string2;
+                                    kVar.f49262b = string2;
                                 }
                                 String string3 = f12.getString(2);
                                 if (string3 != null) {
-                                    kVar.f49258a = x7.c(string3);
+                                    kVar.f49261a = x7.c(string3);
                                 }
-                                kVar.f49242f = h0.b.a(f12, xmlPullParser, theme, "fillColor", 1);
+                                kVar.f49245f = h0.b.a(f12, xmlPullParser, theme, "fillColor", 1);
                                 float f13 = kVar.h;
                                 if (xmlPullParser.getAttributeValue("http://schemas.android.com/apk/res/android", "fillAlpha") != null) {
                                     f13 = f12.getFloat(12, f13);
                                 }
                                 kVar.h = f13;
                                 int i15 = xmlPullParser.getAttributeValue("http://schemas.android.com/apk/res/android", "strokeLineCap") != null ? f12.getInt(8, -1) : -1;
-                                Paint.Cap cap3 = kVar.f49247l;
+                                Paint.Cap cap3 = kVar.f49250l;
                                 if (i15 == 0) {
                                     cap = cap2;
                                 } else if (i15 != 1) {
@@ -627,9 +627,9 @@ public final class o extends br {
                                 } else {
                                     cap = Paint.Cap.ROUND;
                                 }
-                                kVar.f49247l = cap;
+                                kVar.f49250l = cap;
                                 int i16 = xmlPullParser.getAttributeValue("http://schemas.android.com/apk/res/android", "strokeLineJoin") != null ? f12.getInt(9, -1) : -1;
-                                Paint.Join join3 = kVar.f49248m;
+                                Paint.Join join3 = kVar.f49251m;
                                 if (i16 == 0) {
                                     join = join2;
                                 } else if (i16 != 1) {
@@ -637,50 +637,50 @@ public final class o extends br {
                                 } else {
                                     join = Paint.Join.ROUND;
                                 }
-                                kVar.f49248m = join;
-                                float f14 = kVar.f49249n;
+                                kVar.f49251m = join;
+                                float f14 = kVar.f49252n;
                                 if (xmlPullParser.getAttributeValue("http://schemas.android.com/apk/res/android", "strokeMiterLimit") != null) {
                                     f14 = f12.getFloat(10, f14);
                                 }
-                                kVar.f49249n = f14;
+                                kVar.f49252n = f14;
                                 kVar.d = h0.b.a(f12, xmlPullParser, theme, "strokeColor", 3);
-                                float f15 = kVar.f49243g;
+                                float f15 = kVar.f49246g;
                                 if (xmlPullParser.getAttributeValue("http://schemas.android.com/apk/res/android", "strokeAlpha") != null) {
                                     f15 = f12.getFloat(11, f15);
                                 }
-                                kVar.f49243g = f15;
+                                kVar.f49246g = f15;
                                 float f16 = kVar.e;
                                 if (xmlPullParser.getAttributeValue("http://schemas.android.com/apk/res/android", "strokeWidth") != null) {
                                     f16 = f12.getFloat(4, f16);
                                 }
                                 kVar.e = f16;
-                                float f17 = kVar.f49245j;
+                                float f17 = kVar.f49248j;
                                 if (xmlPullParser.getAttributeValue("http://schemas.android.com/apk/res/android", "trimPathEnd") != null) {
                                     f17 = f12.getFloat(6, f17);
                                 }
-                                kVar.f49245j = f17;
-                                float f18 = kVar.f49246k;
+                                kVar.f49248j = f17;
+                                float f18 = kVar.f49249k;
                                 if (xmlPullParser.getAttributeValue("http://schemas.android.com/apk/res/android", "trimPathOffset") != null) {
                                     f18 = f12.getFloat(7, f18);
                                 }
-                                kVar.f49246k = f18;
-                                float f19 = kVar.f49244i;
+                                kVar.f49249k = f18;
+                                float f19 = kVar.f49247i;
                                 if (xmlPullParser.getAttributeValue("http://schemas.android.com/apk/res/android", "trimPathStart") != null) {
                                     f19 = f12.getFloat(5, f19);
                                 }
-                                kVar.f49244i = f19;
-                                int i17 = kVar.f49260c;
+                                kVar.f49247i = f19;
+                                int i17 = kVar.f49263c;
                                 if (xmlPullParser.getAttributeValue("http://schemas.android.com/apk/res/android", "fillType") != null) {
                                     i17 = f12.getInt(13, i17);
                                 }
-                                kVar.f49260c = i17;
+                                kVar.f49263c = i17;
                             }
                             f12.recycle();
-                            iVar2.f49251b.add(kVar);
+                            iVar2.f49254b.add(kVar);
                             if (kVar.getPathName() != null) {
                                 fVar.put(kVar.getPathName(), kVar);
                             }
-                            mVar3.f49274a = mVar3.f49274a;
+                            mVar3.f49277a = mVar3.f49277a;
                             z11 = false;
                             c10 = '\b';
                         } else {
@@ -691,62 +691,62 @@ public final class o extends br {
                                     TypedArray f20 = h0.b.f(resources, theme, attributeSet, a.d);
                                     String string4 = f20.getString(0);
                                     if (string4 != null) {
-                                        kVar2.f49259b = string4;
+                                        kVar2.f49262b = string4;
                                     }
                                     String string5 = f20.getString(1);
                                     if (string5 != null) {
-                                        kVar2.f49258a = x7.c(string5);
+                                        kVar2.f49261a = x7.c(string5);
                                     }
-                                    kVar2.f49260c = !h0.b.c(xmlPullParser, "fillType") ? 0 : f20.getInt(2, 0);
+                                    kVar2.f49263c = !h0.b.c(xmlPullParser, "fillType") ? 0 : f20.getInt(2, 0);
                                     f20.recycle();
                                 }
-                                iVar2.f49251b.add(kVar2);
+                                iVar2.f49254b.add(kVar2);
                                 if (kVar2.getPathName() != null) {
                                     fVar.put(kVar2.getPathName(), kVar2);
                                 }
-                                mVar3.f49274a = mVar3.f49274a;
+                                mVar3.f49277a = mVar3.f49277a;
                             } else if ("group".equals(name)) {
                                 i iVar3 = new i();
-                                TypedArray f21 = h0.b.f(resources, theme, attributeSet, a.f49228b);
-                                float f22 = iVar3.f49252c;
+                                TypedArray f21 = h0.b.f(resources, theme, attributeSet, a.f49231b);
+                                float f22 = iVar3.f49255c;
                                 if (h0.b.c(xmlPullParser, "rotation")) {
                                     f22 = f21.getFloat(5, f22);
                                 }
-                                iVar3.f49252c = f22;
+                                iVar3.f49255c = f22;
                                 iVar3.d = f21.getFloat(1, iVar3.d);
                                 iVar3.e = f21.getFloat(2, iVar3.e);
-                                float f23 = iVar3.f49253f;
+                                float f23 = iVar3.f49256f;
                                 if (xmlPullParser.getAttributeValue("http://schemas.android.com/apk/res/android", "scaleX") != null) {
                                     f23 = f21.getFloat(3, f23);
                                 }
-                                iVar3.f49253f = f23;
-                                float f24 = iVar3.f49254g;
+                                iVar3.f49256f = f23;
+                                float f24 = iVar3.f49257g;
                                 if (xmlPullParser.getAttributeValue("http://schemas.android.com/apk/res/android", "scaleY") != null) {
                                     f24 = f21.getFloat(4, f24);
                                 }
-                                iVar3.f49254g = f24;
+                                iVar3.f49257g = f24;
                                 float f25 = iVar3.h;
                                 if (xmlPullParser.getAttributeValue("http://schemas.android.com/apk/res/android", "translateX") != null) {
                                     f25 = f21.getFloat(6, f25);
                                 }
                                 iVar3.h = f25;
-                                float f26 = iVar3.f49255i;
+                                float f26 = iVar3.f49258i;
                                 if (xmlPullParser.getAttributeValue("http://schemas.android.com/apk/res/android", "translateY") != null) {
                                     f26 = f21.getFloat(7, f26);
                                 }
-                                iVar3.f49255i = f26;
+                                iVar3.f49258i = f26;
                                 String string6 = f21.getString(0);
                                 if (string6 != null) {
-                                    iVar3.f49257k = string6;
+                                    iVar3.f49260k = string6;
                                 }
                                 iVar3.c();
                                 f21.recycle();
-                                iVar2.f49251b.add(iVar3);
+                                iVar2.f49254b.add(iVar3);
                                 arrayDeque.push(iVar3);
                                 if (iVar3.getGroupName() != null) {
                                     fVar.put(iVar3.getGroupName(), iVar3);
                                 }
-                                mVar3.f49274a = mVar3.f49274a;
+                                mVar3.f49277a = mVar3.f49277a;
                             }
                         }
                         i11 = 1;
@@ -763,7 +763,7 @@ public final class o extends br {
                     depth = i10;
                 }
                 if (!z11) {
-                    this.d = d(mVar.f49276c, mVar.d);
+                    this.d = d(mVar.f49279c, mVar.d);
                     return;
                 }
                 throw new XmlPullParserException("no path defined");
@@ -777,10 +777,10 @@ public final class o extends br {
 
     public o(m mVar) {
         this.h = true;
-        this.f49286n = new float[9];
-        this.f49287r = new Matrix();
-        this.f49288s = new Rect();
-        this.f49284c = mVar;
-        this.d = d(mVar.f49276c, mVar.d);
+        this.f49289n = new float[9];
+        this.f49290r = new Matrix();
+        this.f49291s = new Rect();
+        this.f49287c = mVar;
+        this.d = d(mVar.f49279c, mVar.d);
     }
 }

@@ -1,30 +1,25 @@
 package org.telegram.messenger;
 
-import org.telegram.messenger.PasskeysController;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_payments;
-public final class lh implements Utilities.Callback2 {
-    public final int f18894a;
-    public final long f18895b;
-    public final Object f18896c;
-    public final Object d;
+public final class lh implements Runnable {
+    public final int f18891a;
+    public final Utilities.Callback2 f18892b;
+    public final Exception f18893c;
 
-    public lh(Object obj, Object obj2, long j10, int i10) {
-        this.f18894a = i10;
-        this.f18896c = obj;
-        this.d = obj2;
-        this.f18895b = j10;
+    public lh(Utilities.Callback2 callback2, Exception exc, int i10) {
+        this.f18891a = i10;
+        this.f18892b = callback2;
+        this.f18893c = exc;
     }
 
     @Override
-    public final void run(Object obj, Object obj2) {
-        switch (this.f18894a) {
+    public final void run() {
+        switch (this.f18891a) {
             case 0:
-                PasskeysController.AnonymousClass1.lambda$onResult$0((org.telegram.ui.ActionBar.b2) this.f18896c, (Utilities.Callback3) this.d, this.f18895b, (TLRPC.auth_Authorization) obj, (TLRPC.TL_error) obj2);
+                PasskeysController.lambda$create$3(this.f18892b, this.f18893c);
                 return;
             default:
-                ((GiftAuctionController) this.f18896c).lambda$getOrRequestAuction$12((Utilities.Callback2) this.d, this.f18895b, (TL_payments.TL_StarGiftAuctionState) obj, (TLRPC.TL_error) obj2);
+                PasskeysController.lambda$create$8(this.f18892b, this.f18893c);
                 return;
         }
     }

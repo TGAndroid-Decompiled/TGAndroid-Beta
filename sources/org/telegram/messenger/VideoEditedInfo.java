@@ -174,17 +174,17 @@ public class VideoEditedInfo {
                 serializedData.writeFloat(this.filterState.blurAngle);
                 for (int i11 = 0; i11 < 4; i11++) {
                     if (i11 == 0) {
-                        ag0Var = this.filterState.curvesToolValue.f32889a;
+                        ag0Var = this.filterState.curvesToolValue.f32892a;
                     } else if (i11 == 1) {
-                        ag0Var = this.filterState.curvesToolValue.f32890b;
+                        ag0Var = this.filterState.curvesToolValue.f32893b;
                     } else if (i11 == 2) {
-                        ag0Var = this.filterState.curvesToolValue.f32891c;
+                        ag0Var = this.filterState.curvesToolValue.f32894c;
                     } else {
                         ag0Var = this.filterState.curvesToolValue.d;
                     }
-                    serializedData.writeFloat(ag0Var.f24589a);
-                    serializedData.writeFloat(ag0Var.f24590b);
-                    serializedData.writeFloat(ag0Var.f24591c);
+                    serializedData.writeFloat(ag0Var.f24592a);
+                    serializedData.writeFloat(ag0Var.f24593b);
+                    serializedData.writeFloat(ag0Var.f24594c);
                     serializedData.writeFloat(ag0Var.d);
                     serializedData.writeFloat(ag0Var.e);
                 }
@@ -369,17 +369,17 @@ public class VideoEditedInfo {
                             this.filterState.blurAngle = serializedData.readFloat(false);
                             for (int i11 = 0; i11 < 4; i11++) {
                                 if (i11 == 0) {
-                                    ag0Var = this.filterState.curvesToolValue.f32889a;
+                                    ag0Var = this.filterState.curvesToolValue.f32892a;
                                 } else if (i11 == 1) {
-                                    ag0Var = this.filterState.curvesToolValue.f32890b;
+                                    ag0Var = this.filterState.curvesToolValue.f32893b;
                                 } else if (i11 == 2) {
-                                    ag0Var = this.filterState.curvesToolValue.f32891c;
+                                    ag0Var = this.filterState.curvesToolValue.f32894c;
                                 } else {
                                     ag0Var = this.filterState.curvesToolValue.d;
                                 }
-                                ag0Var.f24589a = serializedData.readFloat(false);
-                                ag0Var.f24590b = serializedData.readFloat(false);
-                                ag0Var.f24591c = serializedData.readFloat(false);
+                                ag0Var.f24592a = serializedData.readFloat(false);
+                                ag0Var.f24593b = serializedData.readFloat(false);
+                                ag0Var.f24594c = serializedData.readFloat(false);
                                 ag0Var.d = serializedData.readFloat(false);
                                 ag0Var.e = serializedData.readFloat(false);
                             }
@@ -768,7 +768,7 @@ public class VideoEditedInfo {
                     str = "";
                 }
             } else {
-                str = m0Var.f44565a;
+                str = m0Var.f44568a;
             }
             abstractSerializedData.writeString(str);
             abstractSerializedData.writeFloat(this.scale);
@@ -873,7 +873,7 @@ public class VideoEditedInfo {
                 List c10 = qg.m0.c();
                 for (int i11 = 0; i11 < c10.size(); i11++) {
                     m0Var = (qg.m0) c10.get(i11);
-                    if (m0Var != null && TextUtils.equals(readString, m0Var.f44565a)) {
+                    if (m0Var != null && TextUtils.equals(readString, m0Var.f44568a)) {
                         break;
                     }
                 }
@@ -911,7 +911,7 @@ public class VideoEditedInfo {
                 this.mediaArea = TL_stories.MediaArea.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z11), z11);
                 int readInt323 = abstractSerializedData.readInt32(z11);
                 if (-625858389 != readInt323) {
-                    int i12 = rg.n0.f45516j;
+                    int i12 = rg.n0.f45519j;
                 } else {
                     n0Var = new rg.n0();
                 }

@@ -18,7 +18,7 @@ public final class qk extends org.telegram.ui.Components.go0 {
         qn qnVar = this.I;
         qnVar.w7();
         qnVar.u7();
-        vk vkVar = qnVar.f40636bb;
+        vk vkVar = qnVar.f40639bb;
         if (vkVar != null) {
             vkVar.setTranslationY(qnVar.w9 + getCurrentHeight());
         }
@@ -34,13 +34,13 @@ public final class qk extends org.telegram.ui.Components.go0 {
         int i10;
         boolean z11;
         qn qnVar = this.I;
-        qnVar.f40812q3 = i1Var;
+        qnVar.f40815q3 = i1Var;
         if (i1Var != null) {
             z10 = true;
         } else {
             z10 = false;
         }
-        qnVar.f40825r3 = z10;
+        qnVar.f40828r3 = z10;
         if (i1Var == null) {
             qnVar.getMediaDataController().clearFoundMessageObjects();
             qnVar.pb(false);
@@ -48,22 +48,22 @@ public final class qk extends org.telegram.ui.Components.go0 {
         }
         qnVar.Nc();
         qnVar.Ac();
-        qnVar.f40852t3 = qnVar.f40724j0.getSearchField().getText().toString();
+        qnVar.f40855t3 = qnVar.f40727j0.getSearchField().getText().toString();
         MediaDataController mediaDataController = qnVar.getMediaDataController();
-        String str = qnVar.f40852t3;
+        String str = qnVar.f40855t3;
         long j10 = qnVar.T5;
         long j11 = qnVar.L6;
         i10 = ((org.telegram.ui.ActionBar.n2) qnVar).classGuid;
-        long j12 = qnVar.f40656d4;
-        TLRPC.User user = qnVar.f40790o3;
-        TLRPC.Chat chat = qnVar.f40801p3;
-        if (TextUtils.isEmpty(qnVar.f40852t3) && qnVar.f40812q3 == null) {
+        long j12 = qnVar.f40659d4;
+        TLRPC.User user = qnVar.f40793o3;
+        TLRPC.Chat chat = qnVar.f40804p3;
+        if (TextUtils.isEmpty(qnVar.f40855t3) && qnVar.f40815q3 == null) {
             z11 = false;
         } else {
             z11 = true;
         }
-        mediaDataController.searchMessagesInChat(str, j10, j11, i10, 0, j12, false, user, chat, z11, qnVar.f40812q3);
-        AndroidUtilities.hideKeyboard(qnVar.f40724j0.getSearchField());
+        mediaDataController.searchMessagesInChat(str, j10, j11, i10, 0, j12, false, user, chat, z11, qnVar.f40815q3);
+        AndroidUtilities.hideKeyboard(qnVar.f40727j0.getSearchField());
         return true;
     }
 
@@ -72,8 +72,8 @@ public final class qk extends org.telegram.ui.Components.go0 {
         boolean z11;
         super.h(z10);
         qn qnVar = this.I;
-        org.telegram.ui.ActionBar.u0 u0Var = qnVar.f40724j0;
-        if (u0Var != null && u0Var.s() && a() && qnVar.f40865u3 == null) {
+        org.telegram.ui.ActionBar.u0 u0Var = qnVar.f40727j0;
+        if (u0Var != null && u0Var.s() && a() && qnVar.f40868u3 == null) {
             z11 = true;
         } else {
             z11 = false;

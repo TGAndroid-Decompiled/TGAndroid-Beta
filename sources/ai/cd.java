@@ -142,9 +142,9 @@ public final class cd extends org.telegram.ui.Components.bb implements Notificat
                             int i19 = qc.f2090a;
                             h61 J = h61.J(qc.class);
                             J.d = -1;
-                            J.f26782l = string;
-                            J.f26777f = !this.f1113f0;
-                            J.f26787q = true;
+                            J.f26785l = string;
+                            J.f26780f = !this.f1113f0;
+                            J.f26790q = true;
                             arrayList.add(J);
                         }
                     } else {
@@ -162,9 +162,9 @@ public final class cd extends org.telegram.ui.Components.bb implements Notificat
                         int i20 = qc.f2090a;
                         h61 J2 = h61.J(qc.class);
                         J2.d = -1;
-                        J2.f26782l = string2;
-                        J2.f26777f = !this.f1113f0;
-                        J2.f26787q = true;
+                        J2.f26785l = string2;
+                        J2.f26780f = !this.f1113f0;
+                        J2.f26790q = true;
                         arrayList.add(J2);
                     }
                 } else {

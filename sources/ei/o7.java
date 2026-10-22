@@ -11,13 +11,13 @@ public final class o7 implements bh.h {
 
     @Override
     public final void J(bh.a aVar) {
-        aVar.a(this.f9556a.getThemedColor(org.telegram.ui.ActionBar.h6.f20990d6));
+        aVar.a(this.f9556a.getThemedColor(org.telegram.ui.ActionBar.h6.f20993d6));
         aVar.b(SharedConfig.chatBlurEnabled());
     }
 
     @Override
     public final void b(Canvas canvas) {
-        int i10 = org.telegram.ui.ActionBar.h6.f20990d6;
+        int i10 = org.telegram.ui.ActionBar.h6.f20993d6;
         s7 s7Var = this.f9556a;
         canvas.drawColor(s7Var.getThemedColor(i10));
         if (SharedConfig.chatBlurEnabled()) {

@@ -4,21 +4,21 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.view.View;
 public final class gr extends View {
-    public final fr f26651a;
+    public final fr f26654a;
 
     public gr(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
         setVisibility(8);
         fr frVar = new fr(this, true, d6Var);
-        this.f26651a = frVar;
+        this.f26654a = frVar;
         frVar.G = true;
     }
 
     public float getEnterProgress() {
         int i10;
-        fr frVar = this.f26651a;
-        float f7 = frVar.f26348l;
-        if (f7 != 1.0f && ((i10 = frVar.f26342c) == 0 || i10 == 1)) {
+        fr frVar = this.f26654a;
+        float f7 = frVar.f26351l;
+        if (f7 != 1.0f && ((i10 = frVar.f26345c) == 0 || i10 == 1)) {
             if (i10 == 0) {
                 return f7;
             }
@@ -32,20 +32,20 @@ public final class gr extends View {
 
     @Override
     public final void onDraw(Canvas canvas) {
-        this.f26651a.a(canvas);
+        this.f26654a.a(canvas);
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
         super.onMeasure(i10, i11);
-        this.f26651a.d(getMeasuredHeight(), getMeasuredWidth());
+        this.f26654a.d(getMeasuredHeight(), getMeasuredWidth());
     }
 
     public void setGravity(int i10) {
-        this.f26651a.f26361z = i10;
+        this.f26654a.f26364z = i10;
     }
 
     public void setReverse(boolean z10) {
-        this.f26651a.D = z10;
+        this.f26654a.D = z10;
     }
 }

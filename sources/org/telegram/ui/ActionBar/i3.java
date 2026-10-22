@@ -15,9 +15,9 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.R;
 import org.telegram.ui.LaunchActivity;
 public final class i3 extends Dialog {
-    public final t3 f21411a;
-    public final h3 f21412b;
-    public final ic f21413c;
+    public final t3 f21414a;
+    public final h3 f21415b;
+    public final ic f21416c;
     public final Paint d;
     public boolean e;
 
@@ -25,13 +25,13 @@ public final class i3 extends Dialog {
         super(t3Var.mo36getWindowView().getContext(), R.style.TransparentDialog);
         Paint paint = new Paint(1);
         this.d = paint;
-        this.f21411a = t3Var;
+        this.f21414a = t3Var;
         u3 mo36getWindowView = t3Var.mo36getWindowView();
         ic icVar = new ic(this, getContext(), 9);
-        this.f21413c = icVar;
-        paint.setColor(h6.x0(null, h6.f20932a7, false));
+        this.f21416c = icVar;
+        paint.setColor(h6.x0(null, h6.f20935a7, false));
         h3 h3Var = new h3(mo36getWindowView);
-        this.f21412b = h3Var;
+        this.f21415b = h3Var;
         setContentView(h3Var, new ViewGroup.LayoutParams(-1, -1));
         h3Var.addView(icVar, w7.z5.e(-1, -2, 80));
         h3Var.setClipToPadding(false);
@@ -51,8 +51,8 @@ public final class i3 extends Dialog {
             if (AndroidUtilities.isTablet() || t3Var.b() || AndroidUtilities.hasDialogOnTop(U)) {
                 i3 i3Var = new i3(t3Var);
                 if (t3Var.c(i3Var)) {
-                    h3 h3Var = i3Var.f21412b;
-                    View view = (View) h3Var.f20906a;
+                    h3 h3Var = i3Var.f21415b;
+                    View view = (View) h3Var.f20909a;
                     AndroidUtilities.removeFromParent(view);
                     h3Var.addView(view, w7.z5.e(-1, -1, 119));
                 }
@@ -61,7 +61,7 @@ public final class i3 extends Dialog {
     }
 
     public final void c() {
-        this.f21411a.c(null);
+        this.f21414a.c(null);
         if (!this.e) {
             return;
         }
@@ -75,7 +75,7 @@ public final class i3 extends Dialog {
 
     @Override
     public final void dismiss() {
-        this.f21411a.dismiss(false);
+        this.f21414a.dismiss(false);
     }
 
     @Override
@@ -98,7 +98,7 @@ public final class i3 extends Dialog {
         AndroidUtilities.applyEdgeToEdgeLayoutParams(attributes);
         window.setAttributes(attributes);
         window.setStatusBarColor(0);
-        h3 h3Var = this.f21412b;
+        h3 h3Var = this.f21415b;
         h3Var.setFitsSystemWindows(true);
         h3Var.setSystemUiVisibility(1792);
         h3Var.setPadding(0, 0, 0, 0);

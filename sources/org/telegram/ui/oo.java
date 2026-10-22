@@ -6,16 +6,16 @@ import android.view.MotionEvent;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class oo extends org.telegram.ui.Components.xo0 {
-    public final wo f39941r;
+    public final wo f39944r;
 
     public oo(wo woVar, Context context, ai.r rVar, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context, rVar, d6Var, false);
-        this.f39941r = woVar;
+        this.f39944r = woVar;
     }
 
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (!this.f39941r.L && super.onInterceptTouchEvent(motionEvent)) {
+        if (!this.f39944r.L && super.onInterceptTouchEvent(motionEvent)) {
             return true;
         }
         return false;
@@ -26,7 +26,7 @@ public final class oo extends org.telegram.ui.Components.xo0 {
         if (motionEvent.getAction() != 0) {
             return super.onTouchEvent(motionEvent);
         }
-        if (!this.f39941r.L && super.onTouchEvent(motionEvent)) {
+        if (!this.f39944r.L && super.onTouchEvent(motionEvent)) {
             return true;
         }
         return false;

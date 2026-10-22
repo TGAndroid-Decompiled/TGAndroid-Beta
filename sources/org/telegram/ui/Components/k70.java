@@ -4,12 +4,12 @@ import android.content.Context;
 import org.telegram.messenger.AndroidUtilities;
 public final class k70 extends org.telegram.ui.Cells.d9 {
     public final org.telegram.ui.Cells.k7 v;
-    public boolean f27773w;
-    public final l70 f27774x;
+    public boolean f27776w;
+    public final l70 f27777x;
 
     public k70(l70 l70Var, Context context) {
         super(context);
-        this.f27774x = l70Var;
+        this.f27777x = l70Var;
         this.v = new org.telegram.ui.Cells.k7(this, 14);
     }
 
@@ -18,7 +18,7 @@ public final class k70 extends org.telegram.ui.Cells.d9 {
         super.onAttachedToWindow();
         org.telegram.ui.Cells.k7 k7Var = this.v;
         AndroidUtilities.cancelRunOnUIThread(k7Var);
-        if (this.f27773w) {
+        if (this.f27776w) {
             AndroidUtilities.runOnUIThread(k7Var, 500L);
         }
     }

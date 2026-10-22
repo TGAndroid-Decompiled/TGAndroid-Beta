@@ -19,22 +19,22 @@ public final class n4 extends e91 {
     public final m4 U;
     public final l0 V;
     public final ArrayList W;
-    public final int f34600a0;
-    public final Rect f34601b0;
-    public final View[] f34602c0;
+    public final int f34603a0;
+    public final Rect f34604b0;
+    public final View[] f34605c0;
 
     public n4(Context context, org.telegram.ui.ActionBar.d6 d6Var, final l0 l0Var, final ArrayList arrayList, int i10, Rect rect, View[] viewArr) {
         super(context, d6Var);
         this.V = l0Var;
         this.W = arrayList;
-        this.f34600a0 = i10;
-        this.f34601b0 = rect;
-        this.f34602c0 = viewArr;
+        this.f34603a0 = i10;
+        this.f34604b0 = rect;
+        this.f34605c0 = viewArr;
         this.U = new NotificationCenter.NotificationCenterDelegate() {
             @Override
             public final void didReceivedNotification(int i11, int i12, Object[] objArr) {
                 ArrayList arrayList2;
-                ArrayList arrayList3 = l0.this.f34449c;
+                ArrayList arrayList3 = l0.this.f34452c;
                 int size = arrayList3.size();
                 int i13 = 0;
                 while (i13 < size) {
@@ -66,7 +66,7 @@ public final class n4 extends e91 {
         view.setTranslationX(f7);
         if (getMeasuredWidth() > 0) {
             float clamp = Utilities.clamp(f7 / getMeasuredWidth(), 1.0f, -1.0f);
-            view.setTranslationX(f7 - ((2.0f * clamp) * this.f34601b0.left));
+            view.setTranslationX(f7 - ((2.0f * clamp) * this.f34604b0.left));
             if (clamp > 0.0f) {
                 measuredWidth = 0.0f;
             } else {
@@ -114,10 +114,10 @@ public final class n4 extends e91 {
                 }
                 if (f10 != 0.0f) {
                     m6Var.U = Math.max(-720.0f, Math.min(720.0f, m6Var.U - (f10 * 300.0f)));
-                    if (!m6Var.W && m6Var.f34532n) {
+                    if (!m6Var.W && m6Var.f34535n) {
                         m6Var.W = true;
                         m6Var.V = 0L;
-                        Choreographer.getInstance().postFrameCallback(m6Var.f34517a0);
+                        Choreographer.getInstance().postFrameCallback(m6Var.f34520a0);
                     }
                 }
             }
@@ -125,7 +125,7 @@ public final class n4 extends e91 {
     }
 
     public final void J() {
-        if (this.f25862b >= this.W.size() - 2) {
+        if (this.f25865b >= this.W.size() - 2) {
             l0 l0Var = this.V;
             if (!l0Var.h) {
                 l0Var.h();
@@ -136,7 +136,7 @@ public final class n4 extends e91 {
     @Override
     public final void dispatchDraw(Canvas canvas) {
         canvas.save();
-        Rect rect = this.f34601b0;
+        Rect rect = this.f34604b0;
         canvas.clipRect(rect.left, -getHeight(), getWidth() - rect.right, getHeight() * 2);
         super.dispatchDraw(canvas);
         canvas.restore();
@@ -156,21 +156,21 @@ public final class n4 extends e91 {
     @Override
     public final float getAvailableTranslationX() {
         int measuredWidth = getMeasuredWidth();
-        Rect rect = this.f34601b0;
+        Rect rect = this.f34604b0;
         return Math.max(1, (measuredWidth - rect.left) - rect.right);
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        NotificationCenter.getInstance(this.f34600a0).addObserver(this.U, NotificationCenter.walletTransactionsUpdate);
+        NotificationCenter.getInstance(this.f34603a0).addObserver(this.U, NotificationCenter.walletTransactionsUpdate);
         J();
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        NotificationCenter.getInstance(this.f34600a0).removeObserver(this.U, NotificationCenter.walletTransactionsUpdate);
+        NotificationCenter.getInstance(this.f34603a0).removeObserver(this.U, NotificationCenter.walletTransactionsUpdate);
     }
 
     @Override
@@ -197,7 +197,7 @@ public final class n4 extends e91 {
             ((Runnable) childAt.getTag()).run();
         }
         J();
-        qc qcVar = qc.f29524w;
+        qc qcVar = qc.f29527w;
         if (qcVar != null) {
             qcVar.c(0L, false);
         }
@@ -206,7 +206,7 @@ public final class n4 extends e91 {
     @Override
     public final void w(boolean z10) {
         requestLayout();
-        View view = this.f34602c0[0];
+        View view = this.f34605c0[0];
         if (view != null) {
             view.invalidate();
         }

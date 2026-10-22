@@ -9,24 +9,24 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 public final class l extends fr0 {
-    public final e0 f27992c1;
+    public final e0 f27995c1;
 
     public l(e0 e0Var, Context context, String str, String str2, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context, null, str, false, str2, false, d6Var);
-        this.f27992c1 = e0Var;
+        this.f27995c1 = e0Var;
     }
 
     @Override
     public final void T0(a0.h hVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
         String str;
-        FrameLayout frameLayout = this.f27992c1.G0;
+        FrameLayout frameLayout = this.f27995c1.G0;
         if (z10) {
             xc xcVar = new xc(frameLayout, this.resourcesProvider);
             if (hVar.m() == 1) {
                 long j10 = hVar.j(0);
                 if (j10 == UserConfig.getInstance(this.currentAccount).clientUserId) {
                     qc G = xcVar.G(R.raw.saved_messages, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.AIEditorStyleSharedToSavedMessages, new Object[0])));
-                    G.f29539r = false;
+                    G.f29542r = false;
                     G.j();
                 } else if (j10 < 0) {
                     TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j10));
@@ -38,16 +38,16 @@ public final class l extends fr0 {
                         str = chat.title;
                     }
                     qc G2 = xcVar.G(i11, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(i12, str)));
-                    G2.f29539r = false;
+                    G2.f29542r = false;
                     G2.j();
                 } else {
                     qc G3 = xcVar.G(R.raw.forward, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.AIEditorStyleSharedTo, MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j10)).first_name)));
-                    G3.f29539r = false;
+                    G3.f29542r = false;
                     G3.j();
                 }
             } else {
                 qc Q = xcVar.Q(R.raw.forward, 36, AndroidUtilities.replaceTags(LocaleController.formatPluralString("AIEditorStyleSharedToManyChats", hVar.m(), Integer.valueOf(hVar.m()))));
-                Q.f29539r = false;
+                Q.f29542r = false;
                 Q.j();
             }
             try {

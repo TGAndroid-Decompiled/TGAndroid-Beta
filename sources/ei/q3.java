@@ -29,7 +29,7 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.mk;
+import org.telegram.messenger.ok;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
 import org.telegram.ui.Components.b10;
 import org.telegram.ui.Components.bs;
@@ -295,7 +295,7 @@ public abstract class q3 extends FrameLayout implements NotificationCenter.Notif
         this.f9636s = tx0Var;
         wh.n nVar = tx0Var.d;
         nVar.setTextSize(1, 16.0f);
-        nVar.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21378y6, d6Var));
+        nVar.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21381y6, d6Var));
         nVar.setTypeface(null);
         nVar.setText(LocaleController.getString(R.string.SearchImagesType));
         this.v = new b4(this, false, new ai.r0(this, 15));
@@ -406,13 +406,13 @@ public abstract class q3 extends FrameLayout implements NotificationCenter.Notif
             LinearLayout linearLayout = new LinearLayout(context);
             this.I = linearLayout;
             linearLayout.setOrientation(1);
-            linearLayout.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21061h5, d6Var));
+            linearLayout.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21064h5, d6Var));
             linearLayout.setPadding(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(AndroidUtilities.navigationBarHeight > 0 ? 0.0f : f11) + AndroidUtilities.navigationBarHeight);
             addView(linearLayout, w7.z5.d(-1, -2.0f, 87, 0.0f, 0.0f, 0.0f, 0.0f));
             linearLayout.setAlpha(0.0f);
             linearLayout.setTranslationY(AndroidUtilities.dp(32.0f));
             linearLayout.setVisibility(8);
-            d f12 = mk.f(24, context, d6Var, true);
+            d f12 = ok.f(24, context, d6Var, true);
             this.J = f12;
             f12.g(LocaleController.formatPluralStringComma("StoriesCreate", 1), false, true);
             if (!z12) {
@@ -451,7 +451,7 @@ public abstract class q3 extends FrameLayout implements NotificationCenter.Notif
                     }
                 });
             }
-            d f13 = mk.f(24, context, d6Var, z12);
+            d f13 = ok.f(24, context, d6Var, z12);
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("v");
             yq yqVar = new yq(R.drawable.mini_collage, 0);
             yqVar.translate(-AndroidUtilities.dp(1.33f), AndroidUtilities.dp(0.66f));
@@ -709,7 +709,7 @@ public abstract class q3 extends FrameLayout implements NotificationCenter.Notif
         a3 a3Var = this.e;
         if (z10) {
             li.n nVar = new li.n(getContext(), 2);
-            nVar.f46058a = 1;
+            nVar.f46061a = 1;
             nVar.f16144p = AndroidUtilities.dp(16.0f) + (-org.telegram.ui.ActionBar.k.getCurrentActionBarHeight());
             a3Var.w0(nVar);
             return;
@@ -812,7 +812,7 @@ public abstract class q3 extends FrameLayout implements NotificationCenter.Notif
     public final void h() {
         a aVar;
         f3 f3Var = this.F;
-        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = f3Var.f21732b;
+        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = f3Var.f21735b;
         if (actionBarPopupWindow$ActionBarPopupWindowLayout != null) {
             actionBarPopupWindow$ActionBarPopupWindowLayout.d();
         }
@@ -901,7 +901,7 @@ public abstract class q3 extends FrameLayout implements NotificationCenter.Notif
             } else {
                 dp = AndroidUtilities.dp(8.0f);
             }
-            mk.t(scaleY.translationY(dp), bs.h, 320L);
+            ok.t(scaleY.translationY(dp), bs.h, 320L);
         }
         LinearLayout linearLayout = this.I;
         if (linearLayout != null) {

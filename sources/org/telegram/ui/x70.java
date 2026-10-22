@@ -2,16 +2,16 @@ package org.telegram.ui;
 
 import android.app.Activity;
 public final class x70 implements Runnable {
-    public final int f43117a;
-    public final boolean f43118b;
-    public final Object f43119c;
+    public final int f43120a;
+    public final boolean f43121b;
+    public final Object f43122c;
     public final Object d;
 
     public x70(Object obj, Object obj2, boolean z10, int i10) {
-        this.f43117a = i10;
-        this.f43119c = obj;
+        this.f43120a = i10;
+        this.f43122c = obj;
         this.d = obj2;
-        this.f43118b = z10;
+        this.f43121b = z10;
     }
 
     @Override
@@ -20,16 +20,16 @@ public final class x70 implements Runnable {
     }
 
     public x70(Object obj, boolean z10, Object obj2, int i10) {
-        this.f43117a = i10;
-        this.f43119c = obj;
-        this.f43118b = z10;
+        this.f43120a = i10;
+        this.f43122c = obj;
+        this.f43121b = z10;
         this.d = obj2;
     }
 
     public x70(org.telegram.ui.ActionBar.b2 b2Var, boolean z10, Activity activity) {
-        this.f43117a = 9;
+        this.f43120a = 9;
         this.d = b2Var;
-        this.f43118b = z10;
-        this.f43119c = activity;
+        this.f43121b = z10;
+        this.f43122c = activity;
     }
 }

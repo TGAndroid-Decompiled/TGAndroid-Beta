@@ -5,10 +5,10 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class ju0 implements hg.z1, org.telegram.ui.Cells.z4 {
-    public final lu0 f27640a;
+    public final lu0 f27643a;
 
     public ju0(lu0 lu0Var) {
-        this.f27640a = lu0Var;
+        this.f27643a = lu0Var;
     }
 
     @Override
@@ -24,7 +24,7 @@ public final class ju0 implements hg.z1, org.telegram.ui.Cells.z4 {
     @Override
     public boolean d(org.telegram.ui.Cells.a5 a5Var, boolean z10) {
         int intValue = ((Integer) a5Var.getTag()).intValue();
-        lu0 lu0Var = this.f27640a;
+        lu0 lu0Var = this.f27643a;
         TLObject E = lu0Var.E(intValue);
         if (E instanceof TLRPC.ChannelParticipant) {
             TLRPC.ChannelParticipant channelParticipant = (TLRPC.ChannelParticipant) E;
@@ -33,28 +33,28 @@ public final class ju0 implements hg.z1, org.telegram.ui.Cells.z4 {
             tL_chatChannelParticipant.user_id = MessageObject.getPeerId(channelParticipant.peer);
             tL_chatChannelParticipant.inviter_id = channelParticipant.inviter_id;
             tL_chatChannelParticipant.date = channelParticipant.date;
-            return lu0Var.f28281s.D1.h(tL_chatChannelParticipant, true, !z10, a5Var);
+            return lu0Var.f28284s.D1.h(tL_chatChannelParticipant, true, !z10, a5Var);
         }
         return false;
     }
 
     @Override
     public void f(int i10) {
-        lu0 lu0Var = this.f27640a;
+        lu0 lu0Var = this.f27643a;
         lu0Var.l();
         if (i10 == 1) {
-            int i11 = lu0Var.f28280r - 1;
-            lu0Var.f28280r = i11;
+            int i11 = lu0Var.f28283r - 1;
+            lu0Var.f28283r = i11;
             if (i11 == 0) {
                 int i12 = 0;
                 while (true) {
-                    uv0 uv0Var = lu0Var.f28281s;
-                    nu0[] nu0VarArr = uv0Var.f31047k0;
+                    uv0 uv0Var = lu0Var.f28284s;
+                    nu0[] nu0VarArr = uv0Var.f31050k0;
                     if (i12 < nu0VarArr.length) {
                         nu0 nu0Var = nu0VarArr[i12];
                         if (nu0Var.F == 7) {
                             if (lu0Var.h == 0) {
-                                nu0Var.f28883w.e(false, true);
+                                nu0Var.f28886w.e(false, true);
                             } else {
                                 uv0Var.z(nu0Var.h, 0, null);
                             }

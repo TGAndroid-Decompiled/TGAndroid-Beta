@@ -129,7 +129,7 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
 
     @Override
     public boolean isCustomUpdate() {
-        return !TextUtils.isEmpty("https://telegram.org/dl/android/apk-public-beta.json");
+        return !TextUtils.isEmpty("null");
     }
 
     @Override

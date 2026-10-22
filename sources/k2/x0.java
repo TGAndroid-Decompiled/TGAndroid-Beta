@@ -82,7 +82,7 @@ public final class x0 extends r2.r implements i2.w0 {
     }
 
     public final int E0(r2.o oVar, b2.w wVar) {
-        if ("OMX.google.raw.decoder".equals(oVar.f44941a) && Build.VERSION.SDK_INT == 23 && !e2.m0.P(this.Z0)) {
+        if ("OMX.google.raw.decoder".equals(oVar.f44944a) && Build.VERSION.SDK_INT == 23 && !e2.m0.P(this.Z0)) {
             return -1;
         }
         return wVar.f4129t;
@@ -112,7 +112,7 @@ public final class x0 extends r2.r implements i2.w0 {
             i11 |= 64;
         }
         int i12 = i11;
-        String str = oVar.f44941a;
+        String str = oVar.f44944a;
         if (i12 != 0) {
             i10 = 0;
         } else {
@@ -156,7 +156,7 @@ public final class x0 extends r2.r implements i2.w0 {
             }
             g10 = r2.w.g(iVar, wVar, z10, false);
         }
-        HashMap hashMap = r2.w.f44986a;
+        HashMap hashMap = r2.w.f44989a;
         ArrayList arrayList = new ArrayList(g10);
         Collections.sort(arrayList, new u5(new org.telegram.ui.web.m(3, this.Z0, wVar), 4));
         return arrayList;
@@ -200,7 +200,7 @@ public final class x0 extends r2.r implements i2.w0 {
     public final void U(h2.h hVar) {
         b2.w wVar;
         q0 q0Var;
-        if (Build.VERSION.SDK_INT >= 29 && (wVar = hVar.f11632a) != null && Objects.equals(wVar.f4128s, "audio/opus") && this.f44981y0) {
+        if (Build.VERSION.SDK_INT >= 29 && (wVar = hVar.f11632a) != null && Objects.equals(wVar.f4128s, "audio/opus") && this.f44984y0) {
             ByteBuffer byteBuffer = hVar.f11635f;
             byteBuffer.getClass();
             b2.w wVar2 = hVar.f11632a;
@@ -229,7 +229,7 @@ public final class x0 extends r2.r implements i2.w0 {
     public final void a0(Exception exc) {
         e2.a.d("MediaCodecAudioRenderer", "Audio codec error", exc);
         qf.b bVar = this.f14831a1;
-        Handler handler = (Handler) bVar.f44447b;
+        Handler handler = (Handler) bVar.f44450b;
         if (handler != null) {
             handler.post(new q(bVar, exc, 0));
         }
@@ -245,7 +245,7 @@ public final class x0 extends r2.r implements i2.w0 {
     @Override
     public final void b0(long j10, long j11, String str) {
         qf.b bVar = this.f14831a1;
-        Handler handler = (Handler) bVar.f44447b;
+        Handler handler = (Handler) bVar.f44450b;
         if (handler != null) {
             handler.post(new a3.h0(bVar, str, j10, j11, 3));
         }
@@ -314,7 +314,7 @@ public final class x0 extends r2.r implements i2.w0 {
                         }
                         obj.getClass();
                         this.f14843n1 = ((Integer) obj).intValue();
-                        r2.l lVar = this.f44961d0;
+                        r2.l lVar = this.f44964d0;
                         if (lVar != null && Build.VERSION.SDK_INT >= 35) {
                             Bundle bundle = new Bundle();
                             bundle.putInt("importance", Math.max(0, -this.f14843n1));
@@ -365,7 +365,7 @@ public final class x0 extends r2.r implements i2.w0 {
     @Override
     public final void c0(i2.d dVar) {
         qf.b bVar = this.f14831a1;
-        Handler handler = (Handler) bVar.f44447b;
+        Handler handler = (Handler) bVar.f44450b;
         if (handler != null) {
             handler.post(new hi.t(16, bVar, dVar));
         }
@@ -374,7 +374,7 @@ public final class x0 extends r2.r implements i2.w0 {
     @Override
     public final void d0(String str) {
         qf.b bVar = this.f14831a1;
-        Handler handler = (Handler) bVar.f44447b;
+        Handler handler = (Handler) bVar.f44450b;
         if (handler != null) {
             handler.post(new hi.t(15, bVar, str));
         }
@@ -382,12 +382,12 @@ public final class x0 extends r2.r implements i2.w0 {
 
     @Override
     public final i2.g e0(qf.b bVar) {
-        b2.w wVar = (b2.w) bVar.f44448c;
+        b2.w wVar = (b2.w) bVar.f44451c;
         wVar.getClass();
         this.f14837g1 = wVar;
         i2.g e02 = super.e0(bVar);
         qf.b bVar2 = this.f14831a1;
-        Handler handler = (Handler) bVar2.f44447b;
+        Handler handler = (Handler) bVar2.f44450b;
         if (handler != null) {
             handler.post(new e2(bVar2, wVar, e02, 1));
         }
@@ -407,7 +407,7 @@ public final class x0 extends r2.r implements i2.w0 {
         int[] iArr = null;
         if (wVar2 != null) {
             wVar = wVar2;
-        } else if (this.f44961d0 != null) {
+        } else if (this.f44964d0 != null) {
             mediaFormat.getClass();
             String str = wVar.f4128s;
             int i11 = wVar.K;
@@ -468,7 +468,7 @@ public final class x0 extends r2.r implements i2.w0 {
             int i14 = Build.VERSION.SDK_INT;
             z zVar = this.f14832b1;
             if (i14 >= 29) {
-                if (this.f44981y0) {
+                if (this.f44984y0) {
                     p1 p1Var = this.d;
                     p1Var.getClass();
                     if (p1Var.f12531a != 0) {
@@ -565,7 +565,7 @@ public final class x0 extends r2.r implements i2.w0 {
             return false;
         } catch (w e) {
             b2.w wVar2 = this.f14837g1;
-            if (this.f44981y0) {
+            if (this.f44984y0) {
                 p1 p1Var = this.d;
                 p1Var.getClass();
                 if (p1Var.f12531a != 0) {
@@ -576,7 +576,7 @@ public final class x0 extends r2.r implements i2.w0 {
             i14 = 5001;
             throw d(e, wVar2, e.f14827a, i14);
         } catch (y e7) {
-            if (this.f44981y0) {
+            if (this.f44984y0) {
                 p1 p1Var2 = this.d;
                 p1Var2.getClass();
                 if (p1Var2.f12531a != 0) {
@@ -621,7 +621,7 @@ public final class x0 extends r2.r implements i2.w0 {
         ?? obj = new Object();
         this.O0 = obj;
         qf.b bVar = this.f14831a1;
-        Handler handler = (Handler) bVar.f44447b;
+        Handler handler = (Handler) bVar.f44450b;
         if (handler != null) {
             handler.post(new r(bVar, obj, 1));
         }
@@ -658,12 +658,12 @@ public final class x0 extends r2.r implements i2.w0 {
         int i10;
         try {
             ((t0) this.f14832b1).t();
-            long j10 = this.P0.f44957f;
+            long j10 = this.P0.f44960f;
             if (j10 != -9223372036854775807L) {
                 this.f14845p1 = j10;
             }
         } catch (y e) {
-            if (this.f44981y0) {
+            if (this.f44984y0) {
                 i10 = 5003;
             } else {
                 i10 = 5002;
@@ -699,7 +699,7 @@ public final class x0 extends r2.r implements i2.w0 {
         this.f14842m1 = false;
         this.f14845p1 = -9223372036854775807L;
         try {
-            this.f44981y0 = false;
+            this.f44984y0 = false;
             p0();
             n0();
             i2.e.D(this.X, null);

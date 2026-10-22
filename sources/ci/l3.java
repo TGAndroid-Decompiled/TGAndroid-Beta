@@ -95,7 +95,7 @@ public final class l3 implements Utilities.Callback {
                 }
                 if (l4.longValue() <= 0) {
                     qc r10 = new xc(q4Var.f5769c1, q4Var.B0).r(f7, LocaleController.getString(R.string.ReactionSent), LocaleController.getString(R.string.ViewInChat), new androidx.fragment.app.d(m3Var, 10));
-                    r10.f29531j = 5000;
+                    r10.f29534j = 5000;
                     r10.j();
                 }
                 if (q4Var.f5781f2.getReactionsWindow() != null) {
@@ -141,9 +141,9 @@ public final class l3 implements Utilities.Callback {
                 return;
             default:
                 ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) obj4;
-                int i16 = ChatActivityEnterView.f23908n5;
+                int i16 = ChatActivityEnterView.f23911n5;
                 ((org.telegram.ui.ActionBar.b2) obj3).dismiss();
-                yh.o1 o1Var = new yh.o1(chatActivityEnterView.getContext(), chatActivityEnterView.Q, ((TLRPC.User) obj2).f20423id, ug.r.c(ug.r.b(1, (List) obj)), null);
+                yh.o1 o1Var = new yh.o1(chatActivityEnterView.getContext(), chatActivityEnterView.Q, ((TLRPC.User) obj2).f20426id, ug.r.c(ug.r.b(1, (List) obj)), null);
                 o1Var.W(z10);
                 o1Var.show();
                 return;

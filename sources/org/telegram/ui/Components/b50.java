@@ -6,17 +6,17 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.tgnet.TLRPC;
 public final class b50 extends org.telegram.ui.zt0 {
-    public final ArrayList f24806a;
-    public final e50 f24807b;
+    public final ArrayList f24809a;
+    public final e50 f24810b;
 
     public b50(e50 e50Var, ArrayList arrayList) {
-        this.f24807b = e50Var;
-        this.f24806a = arrayList;
+        this.f24810b = e50Var;
+        this.f24809a = arrayList;
     }
 
     @Override
     public final org.telegram.ui.ju0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
-        d50 d50Var = this.f24807b.f25721b;
+        d50 d50Var = this.f24810b.f25724b;
         if (d50Var == null) {
             return null;
         }
@@ -30,7 +30,7 @@ public final class b50 extends org.telegram.ui.zt0 {
 
     @Override
     public final void o(int i10, VideoEditedInfo videoEditedInfo, boolean z10, int i11, int i12, boolean z11) {
-        this.f24807b.s((MediaController.PhotoEntry) this.f24806a.get(0));
+        this.f24810b.s((MediaController.PhotoEntry) this.f24809a.get(0));
     }
 
     @Override

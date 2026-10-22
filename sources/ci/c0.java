@@ -227,7 +227,7 @@ public final class c0 implements Utilities.Callback3 {
                     TL_wallet.fetchEncryptedSecretPhrasePart fetchencryptedsecretphrasepart = new TL_wallet.fetchEncryptedSecretPhrasePart();
                     fetchencryptedsecretphrasepart.token = secretphraseparts.token;
                     fetchencryptedsecretphrasepart.public_key = key_to_public_key;
-                    ConnectionsManager.getInstance(m0Var2.f34477a).sendRequestTyped(fetchencryptedsecretphrasepart, new Object(), new Utilities.Callback2() {
+                    ConnectionsManager.getInstance(m0Var2.f34480a).sendRequestTyped(fetchencryptedsecretphrasepart, new Object(), new Utilities.Callback2() {
                         @Override
                         public final void run(Object obj4, Object obj5) {
                             m0 m0Var3 = m0.this;

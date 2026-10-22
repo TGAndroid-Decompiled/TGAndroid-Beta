@@ -1,26 +1,48 @@
 package org.telegram.messenger;
 
+import java.util.Comparator;
+import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.TLRPC;
-public final class wa implements Runnable {
-    public final int f19970a;
-    public final MessagesController f19971b;
-    public final TLRPC.TL_help_peerColors f19972c;
+public final class wa implements Comparator {
+    public final int f19984a;
+    public final MessagesController f19985b;
 
-    public wa(MessagesController messagesController, TLRPC.TL_help_peerColors tL_help_peerColors, int i10) {
-        this.f19970a = i10;
-        this.f19971b = messagesController;
-        this.f19972c = tL_help_peerColors;
+    public wa(MessagesController messagesController, int i10) {
+        this.f19984a = i10;
+        this.f19985b = messagesController;
     }
 
     @Override
-    public final void run() {
-        switch (this.f19970a) {
+    public final int compare(Object obj, Object obj2) {
+        int lambda$processUpdatesQueue$326;
+        int lambda$renameSavedReactionTag$487;
+        int lambda$updateSavedReactionTags$486;
+        int lambda$new$9;
+        int lambda$new$10;
+        int lambda$new$11;
+        int lambda$new$12;
+        switch (this.f19984a) {
             case 0:
-                this.f19971b.lambda$checkPeerColors$493(this.f19972c);
-                return;
+                lambda$processUpdatesQueue$326 = this.f19985b.lambda$processUpdatesQueue$326((TLRPC.Updates) obj, (TLRPC.Updates) obj2);
+                return lambda$processUpdatesQueue$326;
+            case 1:
+                lambda$renameSavedReactionTag$487 = this.f19985b.lambda$renameSavedReactionTag$487((TLRPC.TL_savedReactionTag) obj, (TLRPC.TL_savedReactionTag) obj2);
+                return lambda$renameSavedReactionTag$487;
+            case 2:
+                lambda$updateSavedReactionTags$486 = this.f19985b.lambda$updateSavedReactionTags$486((TLRPC.TL_savedReactionTag) obj, (TLRPC.TL_savedReactionTag) obj2);
+                return lambda$updateSavedReactionTags$486;
+            case 3:
+                lambda$new$9 = this.f19985b.lambda$new$9((TLRPC.Dialog) obj, (TLRPC.Dialog) obj2);
+                return lambda$new$9;
+            case 4:
+                lambda$new$10 = this.f19985b.lambda$new$10((TLRPC.Dialog) obj, (TLRPC.Dialog) obj2);
+                return lambda$new$10;
+            case 5:
+                lambda$new$11 = this.f19985b.lambda$new$11((MessagesController.CommunityPeerDialog) obj, (MessagesController.CommunityPeerDialog) obj2);
+                return lambda$new$11;
             default:
-                this.f19971b.lambda$checkPeerColors$495(this.f19972c);
-                return;
+                lambda$new$12 = this.f19985b.lambda$new$12((TLRPC.Update) obj, (TLRPC.Update) obj2);
+                return lambda$new$12;
         }
     }
 }

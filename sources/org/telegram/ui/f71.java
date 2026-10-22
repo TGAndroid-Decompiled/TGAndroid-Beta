@@ -12,15 +12,15 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class f71 implements Runnable {
-    public final int f36909a;
-    public final Object f36910b;
-    public final Object f36911c;
+    public final int f36912a;
+    public final Object f36913b;
+    public final Object f36914c;
     public final Object d;
 
     public f71(Object obj, Object obj2, Object obj3, int i10) {
-        this.f36909a = i10;
-        this.f36911c = obj;
-        this.f36910b = obj2;
+        this.f36912a = i10;
+        this.f36914c = obj;
+        this.f36913b = obj2;
         this.d = obj3;
     }
 
@@ -28,14 +28,14 @@ public final class f71 implements Runnable {
     public final void run() {
         TLRPC.Message message;
         int i10;
-        int i11 = this.f36909a;
+        int i11 = this.f36912a;
         gn gnVar = null;
         gnVar = null;
         gnVar = null;
         boolean z10 = false;
         Object obj = this.d;
-        Object obj2 = this.f36910b;
-        Object obj3 = this.f36911c;
+        Object obj2 = this.f36913b;
+        Object obj3 = this.f36914c;
         switch (i11) {
             case 0:
                 g71 g71Var = (g71) obj3;
@@ -44,7 +44,7 @@ public final class f71 implements Runnable {
                     byte[] decode = Base64.decode(((String) obj2).substring(17).replaceAll("\\/", "_").replaceAll("\\+", "-"), 8);
                     TLRPC.TL_auth_acceptLoginToken tL_auth_acceptLoginToken = new TLRPC.TL_auth_acceptLoginToken();
                     tL_auth_acceptLoginToken.token = decode;
-                    g71Var.f37214c.getConnectionsManager().sendRequest(tL_auth_acceptLoginToken, new x40(28, g71Var, n9Var));
+                    g71Var.f37217c.getConnectionsManager().sendRequest(tL_auth_acceptLoginToken, new x40(28, g71Var, n9Var));
                     return;
                 } catch (Exception e) {
                     FileLog.e("Failed to pass qr code auth", e);
@@ -56,14 +56,14 @@ public final class f71 implements Runnable {
                 oc1 oc1Var = (oc1) obj3;
                 String str = (String) obj2;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj;
-                oc1Var.f39844y = 0;
+                oc1Var.f39847y = 0;
                 String str2 = oc1Var.E;
                 if (str2 != null && str2.equals(str)) {
                     if (tL_error != null && ("THEME_SLUG_INVALID".equals(tL_error.text) || "THEME_SLUG_OCCUPIED".equals(tL_error.text))) {
-                        oc1Var.a0(org.telegram.ui.ActionBar.h6.f21211p7, LocaleController.getString(R.string.SetUrlInUse));
+                        oc1Var.a0(org.telegram.ui.ActionBar.h6.f21214p7, LocaleController.getString(R.string.SetUrlInUse));
                         return;
                     } else {
-                        oc1Var.a0(org.telegram.ui.ActionBar.h6.f21342w6, LocaleController.formatString("SetUrlAvailable", R.string.SetUrlAvailable, str));
+                        oc1Var.a0(org.telegram.ui.ActionBar.h6.f21345w6, LocaleController.formatString("SetUrlAvailable", R.string.SetUrlAvailable, str));
                         return;
                     }
                 }
@@ -75,14 +75,14 @@ public final class f71 implements Runnable {
                 yc1 yc1Var = (yc1) obj3;
                 qn qnVar = (qn) obj2;
                 MessageObject messageObject = yc1Var.G;
-                int i12 = ((TLRPC.TodoItem) obj).f20421id;
+                int i12 = ((TLRPC.TodoItem) obj).f20424id;
                 if (messageObject != null && (message = messageObject.messageOwner) != null && (message.media instanceof TLRPC.TL_messageMediaToDo)) {
                     messageObject.getDialogId();
                     ?? obj4 = new Object();
-                    obj4.f37358a = messageObject;
-                    obj4.f37359b = -1;
-                    obj4.f37360c = -1;
-                    obj4.f37362g = true;
+                    obj4.f37361a = messageObject;
+                    obj4.f37362b = -1;
+                    obj4.f37363c = -1;
+                    obj4.f37365g = true;
                     obj4.d = i12;
                     obj4.f();
                     gnVar = obj4;
@@ -94,17 +94,17 @@ public final class f71 implements Runnable {
                 gd1 gd1Var = (gd1) obj3;
                 ArrayList arrayList = gd1Var.h;
                 arrayList.clear();
-                ArrayList arrayList2 = gd1Var.f37288f;
+                ArrayList arrayList2 = gd1Var.f37291f;
                 arrayList2.clear();
                 arrayList.addAll((ArrayList) obj2);
                 arrayList2.addAll(((TLRPC.TL_messages_inactiveChats) obj).chats);
                 gd1Var.d.l();
-                if (gd1Var.f37285a.getMeasuredHeight() > 0) {
+                if (gd1Var.f37288a.getMeasuredHeight() > 0) {
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                    gd1Var.f37294y = ofFloat;
+                    gd1Var.f37297y = ofFloat;
                     ofFloat.addUpdateListener(new c11(gd1Var, 13));
-                    gd1Var.f37294y.setDuration(100L);
-                    gd1Var.f37294y.start();
+                    gd1Var.f37297y.setDuration(100L);
+                    gd1Var.f37297y.start();
                 } else {
                     gd1Var.E = 1.0f;
                 }
@@ -116,22 +116,22 @@ public final class f71 implements Runnable {
                 return;
             case 5:
                 re1 re1Var = (re1) obj3;
-                re1Var.f41183s.deleteTopics(re1Var.f41148a, (ArrayList) obj2);
+                re1Var.f41186s.deleteTopics(re1Var.f41151a, (ArrayList) obj2);
                 ((Runnable) obj).run();
                 return;
             case 6:
                 ne1 ne1Var = (ne1) obj3;
                 String str3 = (String) obj2;
                 TLObject tLObject = (TLObject) obj;
-                ArrayList arrayList3 = ne1Var.f39566d0;
-                if (str3.equals(ne1Var.f39564b0)) {
-                    int i13 = ne1Var.f39573k0;
-                    ne1Var.f39577p0 = false;
-                    ne1Var.f39574l0 = false;
+                ArrayList arrayList3 = ne1Var.f39569d0;
+                if (str3.equals(ne1Var.f39567b0)) {
+                    int i13 = ne1Var.f39576k0;
+                    ne1Var.f39580p0 = false;
+                    ne1Var.f39577l0 = false;
                     if (tLObject instanceof TLRPC.messages_Messages) {
                         TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject;
                         for (int i14 = 0; i14 < messages_messages.messages.size(); i14++) {
-                            i10 = ((org.telegram.ui.ActionBar.n2) ne1Var.f39581t0).currentAccount;
+                            i10 = ((org.telegram.ui.ActionBar.n2) ne1Var.f39584t0).currentAccount;
                             MessageObject messageObject2 = new MessageObject(i10, messages_messages.messages.get(i14), false, false);
                             messageObject2.setQuery(str3);
                             arrayList3.add(messageObject2);
@@ -144,10 +144,10 @@ public final class f71 implements Runnable {
                     } else {
                         ne1Var.m0 = false;
                     }
-                    if (ne1Var.f39573k0 == 0) {
-                        ne1Var.f39575n0.e(ne1Var.f39574l0, true);
+                    if (ne1Var.f39576k0 == 0) {
+                        ne1Var.f39578n0.e(ne1Var.f39577l0, true);
                     }
-                    ne1Var.f39576o0.b(i13);
+                    ne1Var.f39579o0.b(i13);
                     return;
                 }
                 return;
@@ -155,14 +155,14 @@ public final class f71 implements Runnable {
                 kg1 kg1Var = (kg1) obj3;
                 ArrayList arrayList4 = (ArrayList) obj2;
                 ArrayList arrayList5 = (ArrayList) obj;
-                hg.a2 a2Var = kg1Var.f38604f;
-                if (kg1Var.f38605n) {
+                hg.a2 a2Var = kg1Var.f38607f;
+                if (kg1Var.f38608n) {
                     kg1Var.h = null;
                     kg1Var.d = arrayList4;
                     kg1Var.e = arrayList5;
                     a2Var.f(arrayList4, null);
-                    if (kg1Var.f38605n && !a2Var.e()) {
-                        kg1Var.v.f33959f.e(false, true);
+                    if (kg1Var.f38608n && !a2Var.e()) {
+                        kg1Var.v.f33962f.e(false, true);
                     }
                     kg1Var.l();
                     return;

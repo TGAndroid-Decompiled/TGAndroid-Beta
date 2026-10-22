@@ -4,15 +4,15 @@ import java.util.ArrayList;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class lg implements Runnable {
-    public final int f28148a;
-    public final Object f28149b;
-    public final Object f28150c;
+    public final int f28151a;
+    public final Object f28152b;
+    public final Object f28153c;
     public final Object d;
 
     public lg(Object obj, Object obj2, Object obj3, int i10) {
-        this.f28148a = i10;
-        this.f28149b = obj;
-        this.f28150c = obj2;
+        this.f28151a = i10;
+        this.f28152b = obj;
+        this.f28153c = obj2;
         this.d = obj3;
     }
 
@@ -22,16 +22,16 @@ public final class lg implements Runnable {
     }
 
     public lg(Object obj, Object obj2, ArrayList arrayList, int i10) {
-        this.f28148a = i10;
-        this.f28149b = obj;
+        this.f28151a = i10;
+        this.f28152b = obj;
         this.d = obj2;
-        this.f28150c = arrayList;
+        this.f28153c = arrayList;
     }
 
     public lg(ue0 ue0Var, TLRPC.TL_error tL_error, TLObject tLObject, boolean z10) {
-        this.f28148a = 15;
-        this.f28149b = ue0Var;
-        this.f28150c = tL_error;
+        this.f28151a = 15;
+        this.f28152b = ue0Var;
+        this.f28153c = tL_error;
         this.d = tLObject;
     }
 }

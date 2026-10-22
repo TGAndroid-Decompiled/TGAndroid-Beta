@@ -6,21 +6,21 @@ import java.util.ArrayList;
 import java.util.WeakHashMap;
 import org.telegram.messenger.NotificationCenter;
 public final class la implements View.OnAttachStateChangeListener {
-    public final int f28123a;
-    public final Object f28124b;
-    public final Object f28125c;
+    public final int f28126a;
+    public final Object f28127b;
+    public final Object f28128c;
 
     public la(int i10, Object obj, Object obj2) {
-        this.f28123a = i10;
-        this.f28125c = obj;
-        this.f28124b = obj2;
+        this.f28126a = i10;
+        this.f28128c = obj;
+        this.f28127b = obj2;
     }
 
     @Override
     public final void onViewAttachedToWindow(View view) {
-        int i10 = this.f28123a;
-        Object obj = this.f28124b;
-        Object obj2 = this.f28125c;
+        int i10 = this.f28126a;
+        Object obj = this.f28127b;
+        Object obj2 = this.f28128c;
         switch (i10) {
             case 0:
                 ja jaVar = (ja) obj;
@@ -31,21 +31,21 @@ public final class la implements View.OnAttachStateChangeListener {
                 return;
             case 1:
                 f11 f11Var = (f11) obj2;
-                f11Var.f26026k = a6.update(f11Var.f26027l, (View) obj, f11Var.f26026k, f11Var.f26020b);
+                f11Var.f26029k = a6.update(f11Var.f26030l, (View) obj, f11Var.f26029k, f11Var.f26023b);
                 return;
             default:
                 org.telegram.ui.Wallet.n3 n3Var = (org.telegram.ui.Wallet.n3) obj2;
-                org.telegram.ui.Wallet.m3 m3Var = n3Var.f34576m;
+                org.telegram.ui.Wallet.m3 m3Var = n3Var.f34579m;
                 if (m3Var != null) {
-                    m3Var.setPaused(!n3Var.f34577n);
+                    m3Var.setPaused(!n3Var.f34580n);
                 }
-                n3Var.f34555a.isAttachedToWindow();
-                int i11 = n3Var.f34593v0;
+                n3Var.f34558a.isAttachedToWindow();
+                int i11 = n3Var.f34596v0;
                 if (-1 != i11) {
                     if (i11 >= 0) {
-                        NotificationCenter.getInstance(i11).removeObserver(n3Var.f34597x0, NotificationCenter.userInfoDidLoad);
+                        NotificationCenter.getInstance(i11).removeObserver(n3Var.f34600x0, NotificationCenter.userInfoDidLoad);
                     }
-                    n3Var.f34593v0 = -1;
+                    n3Var.f34596v0 = -1;
                     return;
                 }
                 return;
@@ -54,28 +54,28 @@ public final class la implements View.OnAttachStateChangeListener {
 
     @Override
     public final void onViewDetachedFromWindow(View view) {
-        switch (this.f28123a) {
+        switch (this.f28126a) {
             case 0:
-                na naVar = (na) this.f28125c;
-                ja jaVar = (ja) this.f28124b;
+                na naVar = (na) this.f28128c;
+                ja jaVar = (ja) this.f28127b;
                 if (jaVar != null) {
                     ArrayList arrayList = jaVar.d;
                     arrayList.remove(naVar);
                     if (jaVar.e.isEmpty() && arrayList.isEmpty()) {
-                        jaVar.f27483n.a();
+                        jaVar.f27486n.a();
                     }
                 }
-                naVar.f28743n = null;
+                naVar.f28746n = null;
                 Paint paint = naVar.h;
-                naVar.f28744o = null;
+                naVar.f28747o = null;
                 paint.setShader(null);
                 return;
             case 1:
-                a6.release((View) this.f28124b, ((f11) this.f28125c).f26026k);
+                a6.release((View) this.f28127b, ((f11) this.f28128c).f26029k);
                 return;
             default:
-                org.telegram.ui.Wallet.n3 n3Var = (org.telegram.ui.Wallet.n3) this.f28125c;
-                org.telegram.ui.Cells.w0 w0Var = n3Var.f34555a;
+                org.telegram.ui.Wallet.n3 n3Var = (org.telegram.ui.Wallet.n3) this.f28128c;
+                org.telegram.ui.Cells.w0 w0Var = n3Var.f34558a;
                 n3Var.f();
                 n3Var.M = false;
                 n3Var.N = 0L;
@@ -85,31 +85,31 @@ public final class la implements View.OnAttachStateChangeListener {
                     kVar.c();
                     n3Var.Z = null;
                 }
-                n3Var.f34556a0 = 1.0f;
+                n3Var.f34559a0 = 1.0f;
                 w0Var.invalidate();
                 if (w0Var.getParent() instanceof View) {
                     ((View) w0Var.getParent()).invalidate();
                 }
                 n3Var.l();
-                org.telegram.ui.Wallet.y5 y5Var = n3Var.f34572k;
+                org.telegram.ui.Wallet.y5 y5Var = n3Var.f34575k;
                 WeakHashMap weakHashMap = y5Var.e;
-                weakHashMap.remove((org.telegram.ui.Cells.w0) this.f28124b);
+                weakHashMap.remove((org.telegram.ui.Cells.w0) this.f28127b);
                 if (weakHashMap.isEmpty()) {
                     y5Var.a();
                 }
                 w0Var.isAttachedToWindow();
-                int i10 = n3Var.f34593v0;
+                int i10 = n3Var.f34596v0;
                 if (-1 != i10) {
                     if (i10 >= 0) {
-                        NotificationCenter.getInstance(i10).removeObserver(n3Var.f34597x0, NotificationCenter.userInfoDidLoad);
+                        NotificationCenter.getInstance(i10).removeObserver(n3Var.f34600x0, NotificationCenter.userInfoDidLoad);
                     }
-                    n3Var.f34593v0 = -1;
+                    n3Var.f34596v0 = -1;
                 }
-                org.telegram.ui.Wallet.m3 m3Var = n3Var.f34576m;
+                org.telegram.ui.Wallet.m3 m3Var = n3Var.f34579m;
                 if (m3Var != null) {
                     m3Var.setPaused(true);
                 }
-                n3Var.f34574l.stop();
+                n3Var.f34577l.stop();
                 n3Var.H = false;
                 return;
         }

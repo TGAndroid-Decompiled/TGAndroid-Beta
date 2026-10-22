@@ -5,23 +5,23 @@ import android.content.pm.PackageInfo;
 import android.os.Build;
 import java.util.ArrayList;
 public final class a {
-    public final String f49665a;
-    public final String f49666b;
-    public final ArrayList f49667c;
+    public final String f49668a;
+    public final String f49669b;
+    public final ArrayList f49670c;
     public final String d;
     public final String e;
-    public final String f49668f;
-    public final String f49669g;
+    public final String f49671f;
+    public final String f49672g;
     public final mi.q h;
 
     public a(String str, String str2, ArrayList arrayList, String str3, String str4, String str5, String str6, mi.q qVar) {
-        this.f49665a = str;
-        this.f49666b = str2;
-        this.f49667c = arrayList;
+        this.f49668a = str;
+        this.f49669b = str2;
+        this.f49670c = arrayList;
         this.d = str3;
         this.e = str4;
-        this.f49668f = str5;
-        this.f49669g = str6;
+        this.f49671f = str5;
+        this.f49672g = str6;
         this.h = qVar;
     }
 

@@ -74,23 +74,23 @@ public final class d implements ServiceConnection {
                     return;
                 }
             default:
-                int i12 = xf.e.f49784a;
+                int i12 = xf.e.f49787a;
                 if (iBinder != null) {
                     IInterface queryLocalInterface2 = iBinder.queryLocalInterface("android.support.customtabs.ICustomTabsService");
                     if (queryLocalInterface2 != null && (queryLocalInterface2 instanceof xf.f)) {
                         fVar = (xf.f) queryLocalInterface2;
                     } else {
                         ?? obj = new Object();
-                        obj.f49783a = iBinder;
+                        obj.f49786a = iBinder;
                         fVar = obj;
                     }
                 }
                 xf.c cVar2 = new xf.c(fVar, componentName);
                 if (((pf.b) ((WeakReference) this.f322b).get()) != null) {
-                    pf.d.f44293b = cVar2;
-                    if (MessagesController.getInstance(UserConfig.selectedAccount).isWebBrowserUseCustomTabs() && (cVar = pf.d.f44293b) != null) {
+                    pf.d.f44296b = cVar2;
+                    if (MessagesController.getInstance(UserConfig.selectedAccount).isWebBrowserUseCustomTabs() && (cVar = pf.d.f44296b) != null) {
                         try {
-                            ((xf.d) ((xf.f) cVar.f49781a)).G0();
+                            ((xf.d) ((xf.f) cVar.f49784a)).G0();
                             return;
                         } catch (RemoteException unused) {
                             return;
@@ -127,7 +127,7 @@ public final class d implements ServiceConnection {
                 return;
             default:
                 if (((pf.b) ((WeakReference) this.f322b).get()) != null) {
-                    pf.d.f44293b = null;
+                    pf.d.f44296b = null;
                     return;
                 }
                 return;

@@ -77,7 +77,7 @@ public final class s0 implements ii.d {
     }
 
     public final void b(c71 c71Var) {
-        if (!this.f12227m && !this.f12228n && c71Var.V2.N0() + 10 > c71Var.W2.f30864x.size()) {
+        if (!this.f12227m && !this.f12228n && c71Var.V2.N0() + 10 > c71Var.W2.f30867x.size()) {
             d();
         }
     }
@@ -105,7 +105,7 @@ public final class s0 implements ii.d {
                         h61 J = h61.J(ii.f.class);
                         J.G = new ii.e(peerDialogId, user, z11);
                         J.H = this;
-                        J.f26780j = !z10;
+                        J.f26783j = !z10;
                         arrayList.add(J);
                     }
                 }
@@ -158,7 +158,7 @@ public final class s0 implements ii.d {
                 b2 O = f5.O(this.f12218a, this.f12219b, string, replaceTags, LocaleController.getString(i11), new ah.t(11, this, z10));
                 O.show();
                 if (!z10 && (textView = (TextView) O.d(-1)) != null) {
-                    textView.setTextColor(h6.x0(null, h6.f21228q7, false));
+                    textView.setTextColor(h6.x0(null, h6.f21231q7, false));
                     return;
                 }
                 return;
@@ -202,7 +202,7 @@ public final class s0 implements ii.d {
         d6 d6Var = this.f12219b;
         org.telegram.ui.Components.pc pcVar = new org.telegram.ui.Components.pc(context, d6Var, false);
         TLObject userOrChat = MessagesController.getInstance(i12).getUserOrChat(j10);
-        k9 k9Var = pcVar.f29292a;
+        k9 k9Var = pcVar.f29295a;
         if (userOrChat != null) {
             k9Var.setCount(1);
             k9Var.b(0, userOrChat, UserConfig.selectedAccount);
@@ -214,7 +214,7 @@ public final class s0 implements ii.d {
         k9Var.setScaleX(1.333f);
         k9Var.setScaleY(1.333f);
         k9Var.a(false);
-        x90 x90Var = pcVar.f29293b;
+        x90 x90Var = pcVar.f29296b;
         x90Var.setSingleLine(false);
         x90Var.setMaxLines(2);
         x90Var.setTextSize(1, 14.0f);
@@ -232,8 +232,8 @@ public final class s0 implements ii.d {
         }
         oc ocVar = new oc(context, d6Var, true, true);
         ocVar.e(LocaleController.getString(R.string.UndoNoCaps));
-        ocVar.f28983a = new v3(this, j10, 12);
-        ocVar.f28984b = this.f12223i;
+        ocVar.f28986a = new v3(this, j10, 12);
+        ocVar.f28987b = this.f12223i;
         pcVar.setButton(ocVar);
         this.f12220c.b(pcVar, 5000).j();
     }

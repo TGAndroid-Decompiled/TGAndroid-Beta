@@ -1,56 +1,35 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
-import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
 public final class q8 implements Runnable {
-    public final int f19329a;
-    public final Object f19330b;
-    public final long f19331c;
-    public final boolean d;
-    public final Object e;
+    public final int f19273a;
+    public final MediaDataController f19274b;
+    public final TLRPC.TL_messages_stickerSet f19275c;
+    public final String d;
+    public final Utilities.Callback e;
+    public final boolean f19276f;
+    public final TLRPC.InputStickerSet h;
 
-    public q8(Object obj, long j10, boolean z10, Object obj2, int i10) {
-        this.f19329a = i10;
-        this.f19330b = obj;
-        this.f19331c = j10;
-        this.d = z10;
-        this.e = obj2;
+    public q8(MediaDataController mediaDataController, TLRPC.TL_messages_stickerSet tL_messages_stickerSet, String str, Utilities.Callback callback, boolean z10, TLRPC.InputStickerSet inputStickerSet, int i10) {
+        this.f19273a = i10;
+        this.f19274b = mediaDataController;
+        this.f19275c = tL_messages_stickerSet;
+        this.d = str;
+        this.e = callback;
+        this.f19276f = z10;
+        this.h = inputStickerSet;
     }
 
     @Override
     public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.q8.run():void");
-    }
-
-    public q8(Object obj, boolean z10, long j10, Object obj2, int i10) {
-        this.f19329a = i10;
-        this.f19330b = obj;
-        this.d = z10;
-        this.f19331c = j10;
-        this.e = obj2;
-    }
-
-    public q8(BaseController baseController, Object obj, boolean z10, long j10, int i10) {
-        this.f19329a = i10;
-        this.f19330b = baseController;
-        this.e = obj;
-        this.d = z10;
-        this.f19331c = j10;
-    }
-
-    public q8(MediaDataController mediaDataController, ArrayList arrayList, long j10, boolean z10) {
-        this.f19329a = 1;
-        this.f19330b = mediaDataController;
-        this.e = arrayList;
-        this.f19331c = j10;
-        this.d = z10;
-    }
-
-    public q8(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, long j10, Cloneable cloneable, boolean z10, int i10) {
-        this.f19329a = i10;
-        this.f19330b = notificationCenterDelegate;
-        this.f19331c = j10;
-        this.e = cloneable;
-        this.d = z10;
+        switch (this.f19273a) {
+            case 0:
+                this.f19274b.lambda$getStickerSet$33(this.f19275c, this.d, this.e, this.f19276f, this.h);
+                return;
+            default:
+                this.f19274b.lambda$getStickerSet$36(this.f19275c, this.d, this.e, this.f19276f, this.h);
+                return;
+        }
     }
 }

@@ -10,16 +10,16 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import w7.z5;
 public final class n extends FrameLayout {
-    public final TextView f52034a;
-    public final TextView f52035b;
-    public final k0 f52036c;
+    public final TextView f52037a;
+    public final TextView f52038b;
+    public final k0 f52039c;
 
     public n(k0 k0Var, Context context) {
         super(context);
-        this.f52036c = k0Var;
+        this.f52039c = k0Var;
         TextView textView = new TextView(context);
-        this.f52034a = textView;
-        textView.setTextColor(k0Var.f52091x);
+        this.f52037a = textView;
+        textView.setTextColor(k0Var.f52094x);
         textView.setTextSize(1, 15.0f);
         textView.setTypeface(AndroidUtilities.bold());
         textView.setSingleLine();
@@ -27,7 +27,7 @@ public final class n extends FrameLayout {
         textView.setGravity(16);
         addView(textView, z5.d(-1, -1.0f, 51, 15.0f, 8.0f, 15.0f, 0.0f));
         TextView textView2 = new TextView(context);
-        this.f52035b = textView2;
+        this.f52038b = textView2;
         textView2.setTextColor(-1);
         textView2.setTextSize(1, 13.0f);
         textView2.setTypeface(AndroidUtilities.bold());

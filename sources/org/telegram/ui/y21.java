@@ -3,44 +3,44 @@ package org.telegram.ui;
 import android.app.Activity;
 import android.os.Bundle;
 public final class y21 extends org.telegram.ui.ActionBar.j {
-    public final int f43337a;
-    public final Object f43338b;
+    public final int f43340a;
+    public final Object f43341b;
 
     public y21(Object obj, int i10) {
-        this.f43337a = i10;
-        this.f43338b = obj;
+        this.f43340a = i10;
+        this.f43341b = obj;
     }
 
     @Override
     public final void b(int i10) {
         int i11;
-        switch (this.f43337a) {
+        switch (this.f43340a) {
             case 0:
                 if (i10 == -1) {
-                    ((a31) this.f43338b).finishFragment();
+                    ((a31) this.f43341b).finishFragment();
                     return;
                 }
                 return;
             case 1:
                 if (i10 == -1) {
-                    ((SaveToGallerySettingsActivity) this.f43338b).finishFragment();
+                    ((SaveToGallerySettingsActivity) this.f43341b).finishFragment();
                     return;
                 }
                 return;
             case 2:
                 if (i10 == -1) {
-                    ((SecretMediaViewer) this.f43338b).e(true, false);
+                    ((SecretMediaViewer) this.f43341b).e(true, false);
                     return;
                 }
                 return;
             case 3:
                 if (i10 == -1) {
-                    ((SessionsActivity) this.f43338b).finishFragment();
+                    ((SessionsActivity) this.f43341b).finishFragment();
                     return;
                 }
                 return;
             case 4:
-                x71 x71Var = (x71) this.f43338b;
+                x71 x71Var = (x71) this.f43341b;
                 if (i10 == -1) {
                     if (x71Var.M) {
                         Bundle bundle = new Bundle();
@@ -59,12 +59,12 @@ public final class y21 extends org.telegram.ui.ActionBar.j {
                 }
             case 5:
                 if (i10 == -1) {
-                    ((p91) this.f43338b).finishFragment();
+                    ((p91) this.f43341b).finishFragment();
                     return;
                 }
                 return;
             case 6:
-                StickersActivity stickersActivity = (StickersActivity) this.f43338b;
+                StickersActivity stickersActivity = (StickersActivity) this.f43341b;
                 if (i10 == -1) {
                     if (stickersActivity.onBackPressed(true)) {
                         stickersActivity.finishFragment();
@@ -75,7 +75,7 @@ public final class y21 extends org.telegram.ui.ActionBar.j {
                 StickersActivity.d0(stickersActivity, i10);
                 return;
             case 7:
-                oc1 oc1Var = (oc1) this.f43338b;
+                oc1 oc1Var = (oc1) this.f43341b;
                 if (i10 == -1) {
                     oc1Var.finishFragment();
                     return;
@@ -87,19 +87,19 @@ public final class y21 extends org.telegram.ui.ActionBar.j {
                 }
             case 8:
                 if (i10 == -1) {
-                    ((gd1) this.f43338b).finishFragment();
+                    ((gd1) this.f43341b).finishFragment();
                     return;
                 }
                 return;
             case 9:
                 if (i10 == -1) {
-                    ((xe1) this.f43338b).finishFragment();
+                    ((xe1) this.f43341b).finishFragment();
                     return;
                 }
                 return;
             case 10:
                 if (i10 == -1) {
-                    TwoStepVerificationActivity twoStepVerificationActivity = (TwoStepVerificationActivity) this.f43338b;
+                    TwoStepVerificationActivity twoStepVerificationActivity = (TwoStepVerificationActivity) this.f43341b;
                     if (twoStepVerificationActivity.X >= 0) {
                         twoStepVerificationActivity.x0();
                         return;
@@ -110,7 +110,7 @@ public final class y21 extends org.telegram.ui.ActionBar.j {
                 }
                 return;
             case 11:
-                UserInfoActivity userInfoActivity = (UserInfoActivity) this.f43338b;
+                UserInfoActivity userInfoActivity = (UserInfoActivity) this.f43341b;
                 if (i10 == -1) {
                     if (userInfoActivity.onBackPressed(true)) {
                         userInfoActivity.finishFragment();
@@ -124,7 +124,7 @@ public final class y21 extends org.telegram.ui.ActionBar.j {
                     return;
                 }
             case 12:
-                UsersSelectActivity usersSelectActivity = (UsersSelectActivity) this.f43338b;
+                UsersSelectActivity usersSelectActivity = (UsersSelectActivity) this.f43341b;
                 if (i10 == -1) {
                     usersSelectActivity.finishFragment();
                     return;
@@ -135,7 +135,7 @@ public final class y21 extends org.telegram.ui.ActionBar.j {
                     return;
                 }
             case 13:
-                org.telegram.ui.Wallet.i9 i9Var = (org.telegram.ui.Wallet.i9) this.f43338b;
+                org.telegram.ui.Wallet.i9 i9Var = (org.telegram.ui.Wallet.i9) this.f43341b;
                 if (i10 == -1) {
                     i9Var.finishFragment();
                     return;
@@ -152,13 +152,13 @@ public final class y21 extends org.telegram.ui.ActionBar.j {
                 }
             case 14:
                 if (i10 == -1) {
-                    ((sg.y0) this.f43338b).dismiss();
+                    ((sg.y0) this.f43341b).dismiss();
                     return;
                 }
                 return;
             default:
                 if (i10 == -1) {
-                    ((yh.g4) this.f43338b).finishFragment();
+                    ((yh.g4) this.f43341b).finishFragment();
                     return;
                 }
                 return;

@@ -1,29 +1,28 @@
 package org.telegram.messenger;
-public final class ea implements Runnable {
-    public final int f18261a;
-    public final MessagesController f18262b;
-    public final int f18263c;
 
-    public ea(MessagesController messagesController, int i10, int i11) {
-        this.f18261a = i11;
-        this.f18262b = messagesController;
-        this.f18263c = i10;
+import android.content.Context;
+public final class ea implements Runnable {
+    public final int f18256a;
+    public final Context f18257b;
+    public final org.telegram.ui.ActionBar.b2 f18258c;
+
+    public ea(int i10, Context context, org.telegram.ui.ActionBar.b2 b2Var) {
+        this.f18256a = i10;
+        this.f18257b = context;
+        this.f18258c = b2Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f18261a) {
+        switch (this.f18256a) {
             case 0:
-                this.f18262b.lambda$updateTimerProc$156(this.f18263c);
+                MessagesController.lambda$convertToMegaGroup$261(this.f18257b, this.f18258c);
                 return;
             case 1:
-                this.f18262b.lambda$onFolderEmpty$196(this.f18263c);
-                return;
-            case 2:
-                this.f18262b.lambda$ensureMessagesLoaded$465(this.f18263c);
+                MessagesController.lambda$convertToGigaGroup$266(this.f18257b, this.f18258c);
                 return;
             default:
-                this.f18262b.lambda$didAddedNewTask$80(this.f18263c);
+                SecretChatHelper.lambda$startSecretChat$24(this.f18257b, this.f18258c);
                 return;
         }
     }

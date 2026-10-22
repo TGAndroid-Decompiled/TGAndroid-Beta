@@ -8,25 +8,25 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 public final class g61 implements NotificationCenter.NotificationCenterDelegate {
-    public final int f37201a;
-    public final TLRPC.Chat f37202b;
-    public TLRPC.ChannelParticipantsFilter f37203c;
-    public boolean f37204f;
+    public final int f37204a;
+    public final TLRPC.Chat f37205b;
+    public TLRPC.ChannelParticipantsFilter f37206c;
+    public boolean f37207f;
     public boolean h;
-    public boolean f37206r;
-    public boolean f37207s;
+    public boolean f37209r;
+    public boolean f37210s;
     public final ArrayList d = new ArrayList();
     public final ArrayList e = new ArrayList();
-    public int f37205n = -1;
+    public int f37208n = -1;
 
     public g61(int i10, long j10, TLRPC.ChannelParticipantsFilter channelParticipantsFilter) {
-        this.f37201a = i10;
-        this.f37202b = MessagesController.getInstance(i10).getChat(Long.valueOf(j10));
+        this.f37204a = i10;
+        this.f37205b = MessagesController.getInstance(i10).getChat(Long.valueOf(j10));
         TLRPC.ChatFull chatFull = MessagesController.getInstance(i10).getChatFull(j10);
-        this.f37203c = channelParticipantsFilter;
+        this.f37206c = channelParticipantsFilter;
         if (chatFull == null) {
-            if (!this.f37207s) {
-                this.f37207s = true;
+            if (!this.f37210s) {
+                this.f37210s = true;
                 NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.chatInfoDidLoad);
             }
             MessagesController.getInstance(i10).loadFullChat(j10, 0, false);
@@ -34,38 +34,38 @@ public final class g61 implements NotificationCenter.NotificationCenterDelegate 
     }
 
     public final void a() {
-        if (this.f37207s) {
+        if (this.f37210s) {
             return;
         }
-        this.f37207s = false;
-        int i10 = this.f37201a;
+        this.f37210s = false;
+        int i10 = this.f37204a;
         NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.chatInfoDidLoad);
-        if (this.f37205n >= 0) {
-            ConnectionsManager.getInstance(i10).cancelRequest(this.f37205n, true);
-            this.f37205n = -1;
+        if (this.f37208n >= 0) {
+            ConnectionsManager.getInstance(i10).cancelRequest(this.f37208n, true);
+            this.f37208n = -1;
         }
-        this.f37204f = false;
+        this.f37207f = false;
     }
 
     public final void b() {
         int size;
-        if (!this.f37204f && !this.h) {
-            TLRPC.ChannelParticipantsFilter channelParticipantsFilter = this.f37203c;
-            if (!(channelParticipantsFilter instanceof TLRPC.TL_channelParticipantsSearch) || !TextUtils.isEmpty(channelParticipantsFilter.f20275q)) {
-                this.f37204f = true;
-                TLRPC.Chat chat = this.f37202b;
+        if (!this.f37207f && !this.h) {
+            TLRPC.ChannelParticipantsFilter channelParticipantsFilter = this.f37206c;
+            if (!(channelParticipantsFilter instanceof TLRPC.TL_channelParticipantsSearch) || !TextUtils.isEmpty(channelParticipantsFilter.f20278q)) {
+                this.f37207f = true;
+                TLRPC.Chat chat = this.f37205b;
                 if (ChatObject.isChannel(chat)) {
                     TLRPC.TL_channels_getParticipants tL_channels_getParticipants = new TLRPC.TL_channels_getParticipants();
                     tL_channels_getParticipants.channel = MessagesController.getInputChannel(chat);
-                    tL_channels_getParticipants.filter = this.f37203c;
+                    tL_channels_getParticipants.filter = this.f37206c;
                     tL_channels_getParticipants.limit = 30;
-                    if (this.f37206r) {
+                    if (this.f37209r) {
                         size = 0;
                     } else {
                         size = this.d.size();
                     }
                     tL_channels_getParticipants.offset = size;
-                    ConnectionsManager.getInstance(this.f37201a).sendRequestTyped(tL_channels_getParticipants, new Object(), new g5(this, 24));
+                    ConnectionsManager.getInstance(this.f37204a).sendRequestTyped(tL_channels_getParticipants, new Object(), new g5(this, 24));
                 }
             }
         }
@@ -74,10 +74,10 @@ public final class g61 implements NotificationCenter.NotificationCenterDelegate 
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         if (i10 == NotificationCenter.chatInfoDidLoad) {
-            long j10 = ((TLRPC.ChatFull) objArr[0]).f20277id;
-            TLRPC.Chat chat = this.f37202b;
-            if (j10 == chat.f20276id && !ChatObject.isChannel(chat) && this.f37204f) {
-                this.f37204f = false;
+            long j10 = ((TLRPC.ChatFull) objArr[0]).f20280id;
+            TLRPC.Chat chat = this.f37205b;
+            if (j10 == chat.f20279id && !ChatObject.isChannel(chat) && this.f37207f) {
+                this.f37207f = false;
                 b();
             }
         }

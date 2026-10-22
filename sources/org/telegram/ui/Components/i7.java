@@ -14,38 +14,38 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class i7 implements RequestDelegate {
-    public final int f27140a = 0;
-    public final boolean f27141b;
-    public final boolean f27142c;
+    public final int f27143a = 0;
+    public final boolean f27144b;
+    public final boolean f27145c;
     public final long d;
     public final KeyEvent.Callback e;
-    public final Object f27143f;
-    public final Object f27144g;
+    public final Object f27146f;
+    public final Object f27147g;
     public final Object h;
 
     public i7(k8 k8Var, boolean z10, MessageObject messageObject, boolean z11, Runnable runnable, long j10, TLRPC.Document document) {
         this.e = k8Var;
-        this.f27141b = z10;
-        this.f27143f = messageObject;
-        this.f27142c = z11;
-        this.f27144g = runnable;
+        this.f27144b = z10;
+        this.f27146f = messageObject;
+        this.f27145c = z11;
+        this.f27147g = runnable;
         this.d = j10;
         this.h = document;
     }
 
     @Override
     public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f27140a) {
+        switch (this.f27143a) {
             case 0:
-                k8.A((k8) this.e, this.f27141b, (MessageObject) this.f27143f, this.f27142c, (Runnable) this.f27144g, this.d, (TLRPC.Document) this.h, tL_error);
+                k8.A((k8) this.e, this.f27144b, (MessageObject) this.f27146f, this.f27145c, (Runnable) this.f27147g, this.d, (TLRPC.Document) this.h, tL_error);
                 return;
             default:
                 final uh0 uh0Var = (uh0) this.e;
-                final MessagesController messagesController = (MessagesController) this.f27143f;
-                final TLRPC.TL_channels_searchPosts tL_channels_searchPosts = (TLRPC.TL_channels_searchPosts) this.f27144g;
+                final MessagesController messagesController = (MessagesController) this.f27146f;
+                final TLRPC.TL_channels_searchPosts tL_channels_searchPosts = (TLRPC.TL_channels_searchPosts) this.f27147g;
                 final ConnectionsManager connectionsManager = (ConnectionsManager) this.h;
-                final boolean z10 = this.f27141b;
-                final boolean z11 = this.f27142c;
+                final boolean z10 = this.f27144b;
+                final boolean z11 = this.f27145c;
                 final long j10 = this.d;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
@@ -55,8 +55,8 @@ public final class i7 implements RequestDelegate {
                         boolean z13;
                         boolean z14;
                         uh0 uh0Var2 = uh0.this;
-                        int i10 = uh0Var2.f30935b;
-                        c71 c71Var = uh0Var2.f30936c;
+                        int i10 = uh0Var2.f30938b;
+                        c71 c71Var = uh0Var2.f30939c;
                         uh0Var2.K = -1;
                         uh0Var2.v = false;
                         uh0Var2.H.setLoading(false);
@@ -77,7 +77,7 @@ public final class i7 implements RequestDelegate {
                             if (z16) {
                                 arrayList = uh0Var2.e;
                             } else {
-                                arrayList = uh0Var2.f30938n;
+                                arrayList = uh0Var2.f30941n;
                             }
                             boolean isEmpty = arrayList.isEmpty();
                             ArrayList<TLRPC.Message> arrayList3 = messages_messages.messages;
@@ -94,29 +94,29 @@ public final class i7 implements RequestDelegate {
                             }
                             if (!z16) {
                                 if (messages_messages instanceof TLRPC.TL_messages_messagesSlice) {
-                                    uh0Var2.f30939r = messages_messages.next_rate;
+                                    uh0Var2.f30942r = messages_messages.next_rate;
                                     if ((messages_messages.flags & 1) == 0) {
                                         z14 = true;
                                     } else {
                                         z14 = false;
                                     }
-                                    uh0Var2.f30940s = z14;
+                                    uh0Var2.f30943s = z14;
                                     z12 = true;
                                 } else if (messages_messages instanceof TLRPC.TL_messages_messages) {
-                                    uh0Var2.f30939r = 0;
+                                    uh0Var2.f30942r = 0;
                                     z12 = true;
-                                    uh0Var2.f30940s = true;
+                                    uh0Var2.f30943s = true;
                                 } else {
                                     z12 = true;
                                     if (messages_messages instanceof TLRPC.TL_messages_channelMessages) {
-                                        uh0Var2.f30939r = 0;
-                                        uh0Var2.f30940s = true;
+                                        uh0Var2.f30942r = 0;
+                                        uh0Var2.f30943s = true;
                                     }
                                 }
                             } else {
                                 z12 = true;
                                 if (messages_messages instanceof TLRPC.TL_messages_messagesSlice) {
-                                    uh0Var2.f30937f = messages_messages.next_rate;
+                                    uh0Var2.f30940f = messages_messages.next_rate;
                                     if ((messages_messages.flags & 1) == 0) {
                                         z13 = true;
                                     } else {
@@ -124,10 +124,10 @@ public final class i7 implements RequestDelegate {
                                     }
                                     uh0Var2.h = z13;
                                 } else if (messages_messages instanceof TLRPC.TL_messages_messages) {
-                                    uh0Var2.f30937f = 0;
+                                    uh0Var2.f30940f = 0;
                                     uh0Var2.h = true;
                                 } else if (messages_messages instanceof TLRPC.TL_messages_channelMessages) {
-                                    uh0Var2.f30937f = 0;
+                                    uh0Var2.f30940f = 0;
                                     uh0Var2.h = true;
                                 }
                             }
@@ -136,11 +136,11 @@ public final class i7 implements RequestDelegate {
                                 c71Var.u0(0);
                             }
                             c71Var.W2.N(z12);
-                            if (!arrayList.isEmpty() && (!z16 ? !uh0Var2.f30940s : !uh0Var2.h)) {
+                            if (!arrayList.isEmpty() && (!z16 ? !uh0Var2.f30943s : !uh0Var2.h)) {
                                 AndroidUtilities.runOnUIThread(new ai.y7(uh0Var2, z16, arrayList, 25));
                             }
                             if (z11 && j11 > 0 && !z16) {
-                                xc.a0(uh0Var2.f30934a).Q(R.raw.stars_topup, 36, AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("SearchPaidStars", (int) j11))).j();
+                                xc.a0(uh0Var2.f30937a).Q(R.raw.stars_topup, 36, AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("SearchPaidStars", (int) j11))).j();
                                 return;
                             }
                             return;
@@ -176,10 +176,10 @@ public final class i7 implements RequestDelegate {
 
     public i7(uh0 uh0Var, MessagesController messagesController, boolean z10, TLRPC.TL_channels_searchPosts tL_channels_searchPosts, boolean z11, long j10, ConnectionsManager connectionsManager) {
         this.e = uh0Var;
-        this.f27143f = messagesController;
-        this.f27141b = z10;
-        this.f27144g = tL_channels_searchPosts;
-        this.f27142c = z11;
+        this.f27146f = messagesController;
+        this.f27144b = z10;
+        this.f27147g = tL_channels_searchPosts;
+        this.f27145c = z11;
         this.d = j10;
         this.h = connectionsManager;
     }

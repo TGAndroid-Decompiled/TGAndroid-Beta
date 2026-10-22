@@ -1,25 +1,27 @@
 package org.telegram.messenger;
-public final class eg implements Runnable {
-    public final int f18287a;
-    public final MessagesStorage f18288b;
-    public final long f18289c;
-    public final boolean d;
 
-    public eg(MessagesStorage messagesStorage, int i10, boolean z10, long j10) {
-        this.f18287a = i10;
-        this.f18288b = messagesStorage;
-        this.f18289c = j10;
-        this.d = z10;
+import java.util.ArrayList;
+public final class eg implements Runnable {
+    public final int f18281a;
+    public final MessagesStorage f18282b;
+    public final ArrayList f18283c;
+    public final ArrayList d;
+
+    public eg(MessagesStorage messagesStorage, ArrayList arrayList, ArrayList arrayList2, int i10) {
+        this.f18281a = i10;
+        this.f18282b = messagesStorage;
+        this.f18283c = arrayList;
+        this.d = arrayList2;
     }
 
     @Override
     public final void run() {
-        switch (this.f18287a) {
+        switch (this.f18281a) {
             case 0:
-                this.f18288b.lambda$setDialogUnread$248(this.f18289c, this.d);
+                this.f18282b.lambda$setDialogsPinned$252(this.f18283c, this.d);
                 return;
             default:
-                this.f18288b.lambda$setDialogViewThreadAsMessages$249(this.f18289c, this.d);
+                this.f18282b.lambda$loadTopics$50(this.f18283c, this.d);
                 return;
         }
     }

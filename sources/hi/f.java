@@ -78,14 +78,14 @@ public final class f extends n2 implements NotificationCenter.NotificationCenter
         this.actionBar.setAllowOverlayTitle(true);
         this.actionBar.setActionBarMenuOnItemClick(new ah.s(this, 5));
         gh.c cVar = new gh.c();
-        cVar.a(getThemedColor(h6.f20990d6));
+        cVar.a(getThemedColor(h6.f20993d6));
         bh.b bVar = new bh.b(cVar);
         this.actionBar.setBackground(null);
         this.actionBar.M(bVar, fh.c.o(this.resourceProvider), false);
         this.actionBar.P0 = true;
         FrameLayout frameLayout = new FrameLayout(context);
         this.d = frameLayout;
-        frameLayout.setBackgroundColor(h6.x0(null, h6.f20932a7, false));
+        frameLayout.setBackgroundColor(h6.x0(null, h6.f20935a7, false));
         e eVar = new e(context, this.resourceProvider);
         this.f12144f = eVar;
         eVar.setTitle(LocaleController.getString(R.string.CommunityTitle));
@@ -112,7 +112,7 @@ public final class f extends n2 implements NotificationCenter.NotificationCenter
         this.e = c71Var;
         c71Var.setClipToPadding(false);
         c71 c71Var2 = this.e;
-        c71Var2.W2.f30861r = false;
+        c71Var2.W2.f30864r = false;
         c71Var2.p1();
         this.d.addView(this.e, z5.c(-1.0f, -1));
         this.d.addView(this.actionBar, z5.e(-1, -2, 48));
@@ -126,7 +126,7 @@ public final class f extends n2 implements NotificationCenter.NotificationCenter
         int i12;
         if (i10 == NotificationCenter.chatInfoDidLoad) {
             TLRPC.ChatFull chatFull = (TLRPC.ChatFull) objArr[0];
-            long j10 = chatFull.f20277id;
+            long j10 = chatFull.f20280id;
             View z12 = this.e.z1((int) (j10 ^ (j10 >>> 32)));
             if (z12 instanceof org.telegram.ui.Cells.h6) {
                 org.telegram.ui.Cells.h6 h6Var = (org.telegram.ui.Cells.h6) z12;

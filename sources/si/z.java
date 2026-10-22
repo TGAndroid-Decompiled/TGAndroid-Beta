@@ -2,40 +2,40 @@ package si;
 
 import android.opengl.GLES20;
 public class z {
-    public final int f46857a;
-    public final int f46858b;
-    public final int f46859c;
+    public final int f46860a;
+    public final int f46861b;
+    public final int f46862c;
     public final int d;
 
     public z(int i10, int i11, int i12, int i13) {
-        this.f46857a = i10;
-        this.f46858b = i11;
-        this.f46859c = i12;
+        this.f46860a = i10;
+        this.f46861b = i11;
+        this.f46862c = i12;
         this.d = i13;
     }
 
     public boolean a(int i10) {
         if (i10 == 1) {
-            if (this.f46857a - this.f46858b <= 1) {
+            if (this.f46860a - this.f46861b <= 1) {
                 return false;
             }
-        } else if (this.f46859c - this.d <= 1) {
+        } else if (this.f46862c - this.d <= 1) {
             return false;
         }
         return true;
     }
 
     public void b() {
-        GLES20.glDeleteProgram(this.f46857a);
-        GLES20.glDeleteShader(this.f46858b);
-        GLES20.glDeleteShader(this.f46859c);
+        GLES20.glDeleteProgram(this.f46860a);
+        GLES20.glDeleteShader(this.f46861b);
+        GLES20.glDeleteShader(this.f46862c);
     }
 
     public z(String str, String str2) {
         int a2 = d0.a(35633, str);
-        this.f46858b = a2;
+        this.f46861b = a2;
         int a10 = d0.a(35632, str2);
-        this.f46859c = a10;
+        this.f46862c = a10;
         int glCreateProgram = GLES20.glCreateProgram();
         GLES20.glAttachShader(glCreateProgram, a2);
         GLES20.glAttachShader(glCreateProgram, a10);
@@ -45,7 +45,7 @@ public class z {
         int[] iArr = new int[1];
         GLES20.glGetProgramiv(glCreateProgram, 35714, iArr, 0);
         if (iArr[0] != 0) {
-            this.f46857a = glCreateProgram;
+            this.f46860a = glCreateProgram;
             this.d = 1;
             int glGetUniformLocation = GLES20.glGetUniformLocation(glCreateProgram, "sTexture");
             GLES20.glUseProgram(glCreateProgram);

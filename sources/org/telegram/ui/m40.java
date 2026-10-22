@@ -4,13 +4,13 @@ import android.graphics.Canvas;
 import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
 public final class m40 extends org.telegram.ui.ActionBar.k {
-    public final org.telegram.ui.Components.bq f39109u1;
-    public final q50 f39110v1;
+    public final org.telegram.ui.Components.bq f39112u1;
+    public final q50 f39113v1;
 
     public m40(q50 q50Var, LaunchActivity launchActivity, org.telegram.ui.Components.bq bqVar) {
         super(launchActivity, null);
-        this.f39110v1 = q50Var;
-        this.f39109u1 = bqVar;
+        this.f39113v1 = q50Var;
+        this.f39112u1 = bqVar;
     }
 
     @Override
@@ -19,8 +19,8 @@ public final class m40 extends org.telegram.ui.ActionBar.k {
         if (getAdditionalSubtitleTextView().getVisibility() == 0) {
             canvas.save();
             canvas.translate(getSubtitleTextView().getLeft(), getSubtitleTextView().getY() - AndroidUtilities.dp(1.0f));
-            org.telegram.ui.Components.bq bqVar = this.f39109u1;
-            bqVar.f25007f = (int) (getAdditionalSubtitleTextView().getAlpha() * 255.0f);
+            org.telegram.ui.Components.bq bqVar = this.f39112u1;
+            bqVar.f25010f = (int) (getAdditionalSubtitleTextView().getAlpha() * 255.0f);
             bqVar.draw(canvas);
             canvas.restore();
             invalidate();
@@ -32,7 +32,7 @@ public final class m40 extends org.telegram.ui.ActionBar.k {
         ViewGroup viewGroup;
         if (getAlpha() != f7) {
             super.setAlpha(f7);
-            viewGroup = ((org.telegram.ui.ActionBar.f3) this.f39110v1).containerView;
+            viewGroup = ((org.telegram.ui.ActionBar.f3) this.f39113v1).containerView;
             viewGroup.invalidate();
         }
     }

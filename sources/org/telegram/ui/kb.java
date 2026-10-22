@@ -21,15 +21,15 @@ public final class kb extends tb {
         int i14;
         MessageObject messageObject;
         vb vbVar = this.V2;
-        if (vbVar.v != null && vbVar.f42190x != null && (i14 = vbVar.N0) >= 0) {
+        if (vbVar.v != null && vbVar.f42193x != null && (i14 = vbVar.N0) >= 0) {
             if (vbVar.M0 != 0) {
                 int i15 = 0;
                 while (true) {
                     rb rbVar = vbVar.E;
                     if (i15 < rbVar.d) {
-                        if (i15 >= rbVar.f41110f && i15 < rbVar.h) {
-                            ArrayList arrayList = rbVar.f41111n.f42178o0;
-                            messageObject = (MessageObject) arrayList.get((arrayList.size() - (i15 - rbVar.f41110f)) - 1);
+                        if (i15 >= rbVar.f41113f && i15 < rbVar.h) {
+                            ArrayList arrayList = rbVar.f41114n.f42181o0;
+                            messageObject = (MessageObject) arrayList.get((arrayList.size() - (i15 - rbVar.f41113f)) - 1);
                         } else {
                             messageObject = null;
                         }
@@ -43,7 +43,7 @@ public final class kb extends tb {
                     }
                 }
             }
-            vbVar.f42190x.i1(i14, vbVar.O0, true);
+            vbVar.f42193x.i1(i14, vbVar.O0, true);
             vbVar.N0 = -1;
             vbVar.M0 = 0L;
         }

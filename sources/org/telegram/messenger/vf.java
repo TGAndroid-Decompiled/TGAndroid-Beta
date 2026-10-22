@@ -1,41 +1,29 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
 public final class vf implements Runnable {
-    public final int f19748a;
-    public final MessagesStorage f19749b;
-    public final ArrayList f19750c;
-    public final int d;
+    public final int f19775a;
+    public final MessagesStorage f19776b;
+    public final TLRPC.EncryptedChat f19777c;
 
-    public vf(int i10, ArrayList arrayList, MessagesStorage messagesStorage) {
-        this.f19748a = 1;
-        this.f19749b = messagesStorage;
-        this.f19750c = arrayList;
-        this.d = i10;
+    public vf(MessagesStorage messagesStorage, TLRPC.EncryptedChat encryptedChat, int i10) {
+        this.f19775a = i10;
+        this.f19776b = messagesStorage;
+        this.f19777c = encryptedChat;
     }
 
     @Override
     public final void run() {
-        switch (this.f19748a) {
+        switch (this.f19775a) {
             case 0:
-                this.f19749b.lambda$putWallpapers$78(this.d, this.f19750c);
+                this.f19776b.lambda$updateEncryptedChat$174(this.f19777c);
                 return;
             case 1:
-                this.f19749b.lambda$unpinAllDialogsExceptNew$247(this.f19750c, this.d);
-                return;
-            case 2:
-                this.f19749b.lambda$getDownloadQueue$185(this.d, this.f19750c);
+                this.f19776b.lambda$updateEncryptedChatLayer$173(this.f19777c);
                 return;
             default:
-                this.f19749b.lambda$putWidgetDialogs$166(this.d, this.f19750c);
+                this.f19776b.lambda$updateEncryptedChatTTL$172(this.f19777c);
                 return;
         }
-    }
-
-    public vf(MessagesStorage messagesStorage, int i10, ArrayList arrayList, int i11) {
-        this.f19748a = i11;
-        this.f19749b = messagesStorage;
-        this.d = i10;
-        this.f19750c = arrayList;
     }
 }

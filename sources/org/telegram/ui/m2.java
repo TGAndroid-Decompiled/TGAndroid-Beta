@@ -6,15 +6,15 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 public final class m2 extends View {
-    public final b70 f39098a;
-    public final org.telegram.ui.Components.zq f39099b;
+    public final b70 f39101a;
+    public final org.telegram.ui.Components.zq f39102b;
 
     public m2(Context context, b70 b70Var) {
         super(context);
-        this.f39098a = b70Var;
+        this.f39101a = b70Var;
         org.telegram.ui.Components.zq zqVar = new org.telegram.ui.Components.zq(new ColorDrawable(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.Qk, false)), org.telegram.ui.ActionBar.h6.V0(context, R.drawable.greydivider_bottom, -16777216));
-        this.f39099b = zqVar;
-        zqVar.f33024w = true;
+        this.f39102b = zqVar;
+        zqVar.f33027w = true;
         setBackgroundDrawable(zqVar);
         setImportantForAccessibility(2);
     }
@@ -23,7 +23,7 @@ public final class m2 extends View {
     public final void onMeasure(int i10, int i11) {
         setMeasuredDimension(View.MeasureSpec.getSize(i10), AndroidUtilities.dp(12.0f));
         int i12 = org.telegram.ui.ActionBar.h6.Qk;
-        ((l4) this.f39098a).getClass();
-        org.telegram.ui.ActionBar.h6.w1(this.f39099b, org.telegram.ui.ActionBar.h6.x0(null, i12, false), false);
+        ((l4) this.f39101a).getClass();
+        org.telegram.ui.ActionBar.h6.w1(this.f39102b, org.telegram.ui.ActionBar.h6.x0(null, i12, false), false);
     }
 }

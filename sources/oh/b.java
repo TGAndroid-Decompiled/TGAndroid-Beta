@@ -17,7 +17,7 @@ public final class b extends ei.d implements ne.d {
         this.f17744h0 = new ne.b(0, this, bs.h, 320L, true);
         this.f17745i0 = d6Var;
         e();
-        setOutlineProvider(j0.f51582b);
+        setOutlineProvider(j0.f51585b);
     }
 
     public final int m(int i10) {
@@ -39,8 +39,8 @@ public final class b extends ei.d implements ne.d {
         }
         float f11 = this.f17744h0.e;
         setElevation((1.0f - f11) * AndroidUtilities.dp(1.0f));
-        setColor(i0.a.f(f11, m(h6.f20990d6), m(h6.Oh)));
-        setTextColor(i0.a.f(f11, m(h6.f21228q7), m(h6.Sh)));
+        setColor(i0.a.f(f11, m(h6.f20993d6), m(h6.Oh)));
+        setTextColor(i0.a.f(f11, m(h6.f21231q7), m(h6.Sh)));
         if (Build.VERSION.SDK_INT >= 28) {
             if (q6) {
                 setOutlineAmbientShadowColor(553648127);

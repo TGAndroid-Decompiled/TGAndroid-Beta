@@ -25,7 +25,7 @@ public final class h7 extends i7 {
 
     @Override
     public final void c(org.telegram.ui.ActionBar.n2 n2Var) {
-        n2Var.presentFragment(qn.W9(-this.f9160b.f20276id));
+        n2Var.presentFragment(qn.W9(-this.f9160b.f20279id));
     }
 
     @Override

@@ -68,7 +68,7 @@ public final class i0 extends s4.b0 {
         switch (this.I) {
             case 3:
                 super.k1(z10);
-                hb0 hb0Var = ((ib0) this.J).f27221b;
+                hb0 hb0Var = ((ib0) this.J).f27224b;
                 if (z10) {
                     i10 = -1;
                 } else {
@@ -90,7 +90,7 @@ public final class i0 extends s4.b0 {
         boolean z12;
         switch (this.I) {
             case 2:
-                i80 i80Var = ((bw) ((s00) this.J).J).f35748b.L0;
+                i80 i80Var = ((bw) ((s00) this.J).J).f35751b.L0;
                 if (i80Var != null && i80Var.D()) {
                     i10 = 0;
                 }
@@ -100,7 +100,7 @@ public final class i0 extends s4.b0 {
                 return super.m0(i10, eVar, y0Var);
             case 4:
                 dl0 dl0Var = (dl0) this.J;
-                ai.u1 u1Var = dl0Var.f25525b;
+                ai.u1 u1Var = dl0Var.f25528b;
                 boolean z13 = false;
                 if (i10 < 0 && dl0Var.B0 != 0.0f) {
                     float pullingLeftProgress = dl0Var.getPullingLeftProgress();
@@ -137,10 +137,10 @@ public final class i0 extends s4.b0 {
                 }
                 int m0 = super.m0(i10, eVar, y0Var);
                 if (i10 > 0 && m0 == 0 && u1Var.getScrollState() == 1 && dl0Var.q()) {
-                    ValueAnimator valueAnimator = dl0Var.f25565y0;
+                    ValueAnimator valueAnimator = dl0Var.f25568y0;
                     if (valueAnimator != null) {
                         valueAnimator.removeAllListeners();
-                        dl0Var.f25565y0.cancel();
+                        dl0Var.f25568y0.cancel();
                     }
                     int i11 = (dl0Var.getPullingLeftProgress() > 1.0f ? 1 : (dl0Var.getPullingLeftProgress() == 1.0f ? 0 : -1));
                     if (i11 > 0) {
@@ -193,12 +193,12 @@ public final class i0 extends s4.b0 {
         switch (this.I) {
             case 2:
                 m00 m00Var = new m00(this, recyclerView.getContext());
-                m00Var.f46058a = i10;
+                m00Var.f46061a = i10;
                 w0(m00Var);
                 return;
             case 6:
                 y81 y81Var = new y81(this, recyclerView.getContext());
-                y81Var.f46058a = i10;
+                y81Var.f46061a = i10;
                 w0(y81Var);
                 return;
             default:
@@ -227,7 +227,7 @@ public final class i0 extends s4.b0 {
     public void z0(s4.y0 y0Var, int[] iArr) {
         switch (this.I) {
             case 7:
-                iArr[1] = ((StickersActivity) this.J).f33856a.getHeight();
+                iArr[1] = ((StickersActivity) this.J).f33859a.getHeight();
                 return;
             default:
                 super.z0(y0Var, iArr);

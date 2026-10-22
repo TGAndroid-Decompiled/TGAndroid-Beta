@@ -275,7 +275,7 @@ public class ConferenceCall {
         VoIPService sharedInstance;
         ChatObject.Call call;
         TLRPC.GroupCall groupCall;
-        if (this.groupCall != null && (sharedInstance = VoIPService.getSharedInstance()) != null && (call = sharedInstance.groupCall) != null && (groupCall = call.call) != null && groupCall.f20286id == this.groupCall.f20286id) {
+        if (this.groupCall != null && (sharedInstance = VoIPService.getSharedInstance()) != null && (call = sharedInstance.groupCall) != null && (groupCall = call.call) != null && groupCall.f20289id == this.groupCall.f20289id) {
             updateParticipants(call.sortedParticipants, false);
             sharedInstance.groupCall.shadyLeftParticipants.clear();
             ChatObject.Call call2 = sharedInstance.groupCall;
@@ -283,7 +283,7 @@ public class ConferenceCall {
             sharedInstance.groupCall.shadyJoinParticipants.clear();
             ChatObject.Call call3 = sharedInstance.groupCall;
             call3.shadyJoinParticipants.addAll(sharedInstance.conference.getShadyJoiningParticipants(call3.sortedParticipants));
-            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.groupCallUpdated, 0L, Long.valueOf(this.groupCall.f20286id), Boolean.FALSE);
+            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.groupCallUpdated, 0L, Long.valueOf(this.groupCall.f20289id), Boolean.FALSE);
         }
     }
 
@@ -482,11 +482,11 @@ public class ConferenceCall {
             if (groupCall == null) {
                 FileLog.d("[tde2e] received updateGroupCallChainBlocks but we dont have groupcall yet!");
                 return false;
-            } else if (tL_updateGroupCallChainBlocks.call.f20293id != groupCall.f20286id) {
+            } else if (tL_updateGroupCallChainBlocks.call.f20296id != groupCall.f20289id) {
                 StringBuilder sb2 = new StringBuilder("[tde2e] received updateGroupCallChainBlocks for ");
-                sb2.append(tL_updateGroupCallChainBlocks.call.f20293id);
+                sb2.append(tL_updateGroupCallChainBlocks.call.f20296id);
                 sb2.append(" but we have ");
-                i2.e.x(sb2, this.groupCall.f20286id);
+                i2.e.x(sb2, this.groupCall.f20289id);
                 return false;
             } else {
                 StringBuilder sb3 = new StringBuilder("[tde2e] received update with ");

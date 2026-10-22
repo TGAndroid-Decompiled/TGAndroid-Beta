@@ -9,10 +9,10 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.SharedConfig;
 public final class uj extends s4.r0 {
-    public boolean f42001b;
+    public boolean f42004b;
     public final qn d;
-    public float f42000a = 0.0f;
-    public final int f42002c = AndroidUtilities.dp(100.0f);
+    public float f42003a = 0.0f;
+    public final int f42005c = AndroidUtilities.dp(100.0f);
 
     public uj(qn qnVar) {
         this.d = qnVar;
@@ -22,15 +22,15 @@ public final class uj extends s4.r0 {
     public final void a(RecyclerView recyclerView, int i10) {
         qn qnVar = this.d;
         if (i10 == 0) {
-            org.telegram.ui.Cells.u1 u1Var = qnVar.f40800p2;
+            org.telegram.ui.Cells.u1 u1Var = qnVar.f40803p2;
             if (u1Var != null) {
-                qnVar.f40776n2.e(u1Var, -1, qnVar.f40811q2, qnVar.f40824r2, true);
-                qnVar.f40800p2 = null;
+                qnVar.f40779n2.e(u1Var, -1, qnVar.f40814q2, qnVar.f40827r2, true);
+                qnVar.f40803p2 = null;
             }
-            qnVar.f40727j3 = false;
-            qnVar.f40740k3 = false;
-            qnVar.f40752l3 = false;
-            qnVar.f40763m3 = false;
+            qnVar.f40730j3 = false;
+            qnVar.f40743k3 = false;
+            qnVar.f40755l3 = false;
+            qnVar.f40766m3 = false;
             qnVar.k9(true);
             qnVar.l9(true);
             if (SharedConfig.getDevicePerformanceClass() == 0) {
@@ -38,14 +38,14 @@ public final class uj extends s4.r0 {
                 NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 512);
             }
             NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startSpoilers, new Object[0]);
-            qnVar.f40901x0.setOverScrollMode(0);
-            qnVar.f40648c9.V();
+            qnVar.f40904x0.setOverScrollMode(0);
+            qnVar.f40651c9.V();
             qnVar.bd(false);
             qnVar.v9(1);
-            qnVar.f40846sa = false;
+            qnVar.f40849sa = false;
             return;
         }
-        ei.x3 x3Var = qnVar.f40916y1;
+        ei.x3 x3Var = qnVar.f40919y1;
         if (x3Var != null && x3Var.V) {
             x3Var.e(true);
         }
@@ -55,14 +55,14 @@ public final class uj extends s4.r0 {
         }
         if (i10 == 2) {
             qnVar.D4 = true;
-            qnVar.f40752l3 = true;
+            qnVar.f40755l3 = true;
         } else if (i10 == 1) {
-            qnVar.f40800p2 = null;
+            qnVar.f40803p2 = null;
             qnVar.D4 = true;
-            qnVar.f40727j3 = true;
-            qnVar.f40740k3 = true;
-            qnVar.f40763m3 = true;
-            qnVar.f40752l3 = true;
+            qnVar.f40730j3 = true;
+            qnVar.f40743k3 = true;
+            qnVar.f40766m3 = true;
+            qnVar.f40755l3 = true;
         }
         if (SharedConfig.getDevicePerformanceClass() == 0) {
             int i12 = qn.Ic;
@@ -83,28 +83,28 @@ public final class uj extends s4.r0 {
         boolean z12;
         boolean z13;
         qn qnVar = this.d;
-        qn qnVar2 = qnVar.f40662da;
+        qn qnVar2 = qnVar.f40665da;
         if (qnVar2 == null) {
             qnVar2 = qnVar;
         }
-        qnVar.f40901x0.invalidate();
+        qnVar.f40904x0.invalidate();
         boolean z14 = true;
         if (i11 < 0) {
             z10 = true;
         } else {
             z10 = false;
         }
-        this.f42001b = z10;
-        int L0 = qnVar.f40926z0.L0();
+        this.f42004b = z10;
+        int L0 = qnVar.f40929z0.L0();
         androidx.biometric.e eVar = null;
-        if (((i11 != 0 && qnVar.f40846sa && recyclerView.getScrollState() == 2) || recyclerView.getScrollState() == 1) && qnVar.N4 != 0) {
-            if (this.f42001b && !qnVar.O4) {
-                if (!qnVar.f40901x0.V1 && L0 != -1) {
-                    int N0 = qnVar.f40926z0.N0();
+        if (((i11 != 0 && qnVar.f40849sa && recyclerView.getScrollState() == 2) || recyclerView.getScrollState() == 1) && qnVar.N4 != 0) {
+            if (this.f42004b && !qnVar.O4) {
+                if (!qnVar.f40904x0.V1 && L0 != -1) {
+                    int N0 = qnVar.f40929z0.N0();
                     MessageObject messageObject = null;
                     while (true) {
                         if (N0 >= L0) {
-                            View m10 = qnVar.f40926z0.m(N0);
+                            View m10 = qnVar.f40929z0.m(N0);
                             if (m10 instanceof org.telegram.ui.Cells.u1) {
                                 messageObject = ((org.telegram.ui.Cells.u1) m10).getMessageObject();
                             } else if (m10 instanceof org.telegram.ui.Cells.w0) {
@@ -139,14 +139,14 @@ public final class uj extends s4.r0 {
             qnVar.X0.getClass();
             qnVar.m9(true);
         }
-        if (i11 != 0 && qnVar.f40727j3 && !qnVar.f40680f3) {
+        if (i11 != 0 && qnVar.f40730j3 && !qnVar.f40683f3) {
             if (qnVar.L7 != Integer.MAX_VALUE) {
                 qnVar.Ma();
                 qnVar.bd(false);
             }
             qnVar.Kb(true);
         }
-        if (qnVar.y9() && i11 != 0 && qnVar.f40740k3 && !qnVar.f40680f3) {
+        if (qnVar.y9() && i11 != 0 && qnVar.f40743k3 && !qnVar.f40683f3) {
             if (qnVar.L7 != Integer.MAX_VALUE) {
                 qnVar.Ma();
                 qnVar.bd(false);
@@ -158,11 +158,11 @@ public final class uj extends s4.r0 {
             qnVar.A0.h();
             if (L0 == 0 && qnVar.E6[0]) {
                 if (i11 >= 0) {
-                    qnVar.f40697g9 = false;
+                    qnVar.f40700g9 = false;
                     qnVar.Ac();
                 }
             } else {
-                androidx.biometric.e[] eVarArr = qnVar.f40725j1.e;
+                androidx.biometric.e[] eVarArr = qnVar.f40728j1.e;
                 if (1 < eVarArr.length) {
                     eVar = eVarArr[1];
                 }
@@ -171,35 +171,35 @@ public final class uj extends s4.r0 {
                 } else {
                     z12 = false;
                 }
-                int i12 = this.f42002c;
+                int i12 = this.f42005c;
                 if (i11 > 0) {
                     if (!z12) {
-                        float f7 = this.f42000a + i11;
-                        this.f42000a = f7;
+                        float f7 = this.f42003a + i11;
+                        this.f42003a = f7;
                         if (f7 > i12) {
-                            this.f42000a = 0.0f;
-                            qnVar.f40697g9 = true;
+                            this.f42003a = 0.0f;
+                            qnVar.f40700g9 = true;
                             qnVar.Ac();
-                            qnVar.f40738k1 = true;
+                            qnVar.f40741k1 = true;
                         }
                     }
-                } else if (qnVar.f40738k1 && z12) {
-                    float f10 = this.f42000a + i11;
-                    this.f42000a = f10;
+                } else if (qnVar.f40741k1 && z12) {
+                    float f10 = this.f42003a + i11;
+                    this.f42003a = f10;
                     if (f10 < (-i12)) {
-                        qnVar.f40697g9 = false;
+                        qnVar.f40700g9 = false;
                         qnVar.Ac();
-                        this.f42000a = 0.0f;
+                        this.f42003a = 0.0f;
                     }
                 }
             }
         }
         qnVar.w9();
-        qnVar.f40648c9.G();
-        ArrayList arrayList = qnVar.f40911xa.F;
+        qnVar.f40651c9.G();
+        ArrayList arrayList = qnVar.f40914xa.F;
         for (int i13 = 0; i13 < arrayList.size(); i13++) {
-            if (!((ny) arrayList.get(i13)).f39706c) {
-                ((ny) arrayList.get(i13)).f39705b -= i11;
+            if (!((ny) arrayList.get(i13)).f39709c) {
+                ((ny) arrayList.get(i13)).f39708b -= i11;
             }
         }
         ah.d1 d1Var = ah.d1.B;
@@ -213,7 +213,7 @@ public final class uj extends s4.r0 {
             fVar.f(i10, i11);
         }
         qnVar.l7(false);
-        ei.x3 x3Var = qnVar.f40902x1;
+        ei.x3 x3Var = qnVar.f40905x1;
         if (x3Var != null) {
             if (x3Var.V) {
                 x3Var.e(true);
@@ -227,7 +227,7 @@ public final class uj extends s4.r0 {
         if (plVar != null && plVar.V) {
             plVar.e(true);
         }
-        ei.x3 x3Var2 = qnVar.f40927z1;
+        ei.x3 x3Var2 = qnVar.f40930z1;
         if (x3Var2 != null && x3Var2.V) {
             x3Var2.e(true);
         } else {
@@ -242,7 +242,7 @@ public final class uj extends s4.r0 {
         if (fkVar != null) {
             fkVar.j0();
         }
-        ai.q7 q7Var = qnVar.f40820qc;
+        ai.q7 q7Var = qnVar.f40823qc;
         if (q7Var != null) {
             q7Var.invalidate();
         }

@@ -4,22 +4,22 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.UndoView;
 public final class py0 implements yp {
-    public final TLRPC.Chat f40316a;
-    public final bq f40317b;
-    public final ProfileActivity f40318c;
+    public final TLRPC.Chat f40319a;
+    public final bq f40320b;
+    public final ProfileActivity f40321c;
 
     public py0(ProfileActivity profileActivity, TLRPC.Chat chat, bq bqVar) {
-        this.f40318c = profileActivity;
-        this.f40316a = chat;
-        this.f40317b = bqVar;
+        this.f40321c = profileActivity;
+        this.f40319a = chat;
+        this.f40320b = bqVar;
     }
 
     @Override
     public final void a(TLRPC.User user) {
         int i10;
-        ProfileActivity profileActivity = this.f40318c;
+        ProfileActivity profileActivity = this.f40321c;
         UndoView undoView = profileActivity.M;
-        long j10 = -profileActivity.f33627g1;
+        long j10 = -profileActivity.f33630g1;
         if (profileActivity.F2.megagroup) {
             i10 = 10;
         } else {
@@ -31,11 +31,11 @@ public final class py0 implements yp {
     @Override
     public final void b(int i10, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str) {
         TLRPC.Chat chat;
-        ProfileActivity profileActivity = this.f40318c;
+        ProfileActivity profileActivity = this.f40321c;
         profileActivity.removeSelfFromStack();
-        TLRPC.User user = profileActivity.getMessagesController().getUser(Long.valueOf(profileActivity.f33620f1));
-        if (user != null && (chat = this.f40316a) != null && profileActivity.f33620f1 != 0) {
-            bq bqVar = this.f40317b;
+        TLRPC.User user = profileActivity.getMessagesController().getUser(Long.valueOf(profileActivity.f33623f1));
+        if (user != null && (chat = this.f40319a) != null && profileActivity.f33623f1 != 0) {
+            bq bqVar = this.f40320b;
             if (bqVar.Q && bqVar.getParentLayout() != null) {
                 for (org.telegram.ui.ActionBar.n2 n2Var : bqVar.getParentLayout().getFragmentStack()) {
                     if (n2Var instanceof vb) {

@@ -15,13 +15,13 @@ public final class h3 extends g61 {
 
     public static h61 a(String str) {
         h61 J = h61.J(h3.class);
-        J.f26782l = str;
+        J.f26785l = str;
         return J;
     }
 
     @Override
     public final void bindView(View view, h61 h61Var, boolean z10, u61 u61Var, c71 c71Var) {
-        ((i3) view).set(h61Var.f26782l);
+        ((i3) view).set(h61Var.f26785l);
     }
 
     @Override

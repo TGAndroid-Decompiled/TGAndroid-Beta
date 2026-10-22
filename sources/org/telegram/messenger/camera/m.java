@@ -1,36 +1,36 @@
 package org.telegram.messenger.camera;
 public final class m implements Runnable {
-    public final int f18064a;
-    public final CameraView f18065b;
+    public final int f18060a;
+    public final CameraView f18061b;
 
     public m(CameraView cameraView, int i10) {
-        this.f18064a = i10;
-        this.f18065b = cameraView;
+        this.f18060a = i10;
+        this.f18061b = cameraView;
     }
 
     @Override
     public final void run() {
-        switch (this.f18064a) {
+        switch (this.f18060a) {
             case 0:
-                this.f18065b.lambda$resetCamera$4();
+                CameraView.k(this.f18061b);
                 return;
             case 1:
-                this.f18065b.lambda$new$7();
+                CameraView.b(this.f18061b);
                 return;
             case 2:
-                this.f18065b.lambda$toggleDual$2();
+                CameraView.a(this.f18061b);
                 return;
             case 3:
-                this.f18065b.lambda$switchCamera$3();
+                CameraView.m(this.f18061b);
                 return;
             case 4:
-                this.f18065b.lambda$onSurfaceTextureDestroyed$5();
+                CameraView.e(this.f18061b);
                 return;
             case 5:
-                this.f18065b.onSurfaceTextureUpdatedInternal();
+                CameraView.o(this.f18061b);
                 return;
             default:
-                this.f18065b.lambda$enableDualInternal$0();
+                CameraView.g(this.f18061b);
                 return;
         }
     }

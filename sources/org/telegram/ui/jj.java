@@ -10,15 +10,15 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessageObject;
 public final class jj implements org.telegram.ui.ActionBar.r0, org.telegram.ui.ActionBar.d6, ru0, org.telegram.ui.Components.p60, em {
-    public final qn f38271a;
+    public final qn f38274a;
 
     public jj(qn qnVar) {
-        this.f38271a = qnVar;
+        this.f38274a = qnVar;
     }
 
     @Override
     public void D0(int i10) {
-        this.f38271a.j(i10, 0, true, 0, true, 0);
+        this.f38274a.j(i10, 0, true, 0, true, 0);
     }
 
     @Override
@@ -28,7 +28,7 @@ public final class jj implements org.telegram.ui.ActionBar.r0, org.telegram.ui.A
 
     @Override
     public TextureView U() {
-        return this.f38271a.f40896w8;
+        return this.f38274a.f40899w8;
     }
 
     @Override
@@ -38,7 +38,7 @@ public final class jj implements org.telegram.ui.ActionBar.r0, org.telegram.ui.A
 
     @Override
     public void b0(String str) {
-        this.f38271a.ia(str, false);
+        this.f38274a.ia(str, false);
     }
 
     @Override
@@ -48,7 +48,7 @@ public final class jj implements org.telegram.ui.ActionBar.r0, org.telegram.ui.A
 
     @Override
     public void f() {
-        org.telegram.ui.Components.zm0.d(new we(this.f38271a, 2));
+        org.telegram.ui.Components.zm0.d(new we(this.f38274a, 2));
     }
 
     @Override
@@ -58,23 +58,23 @@ public final class jj implements org.telegram.ui.ActionBar.r0, org.telegram.ui.A
 
     @Override
     public ColorFilter j() {
-        return org.telegram.ui.ActionBar.h6.f21320v3;
+        return org.telegram.ui.ActionBar.h6.f21323v3;
     }
 
     @Override
     public void m0(MessageObject messageObject) {
-        qn qnVar = this.f38271a;
-        qnVar.f40901x0.I0(true);
-        qnVar.f40901x0.B0();
+        qn qnVar = this.f38274a;
+        qnVar.f40904x0.I0(true);
+        qnVar.f40904x0.B0();
         if (MediaController.getInstance().isPlayingMessage(messageObject)) {
-            qnVar.X0.removeView(qnVar.f40857t8);
-            qnVar.f40857t8 = null;
-            qnVar.f40896w8 = null;
-            qnVar.f40882v8 = null;
+            qnVar.X0.removeView(qnVar.f40860t8);
+            qnVar.f40860t8 = null;
+            qnVar.f40899w8 = null;
+            qnVar.f40885v8 = null;
         }
-        for (int i10 = 0; i10 < qnVar.f40901x0.getChildCount(); i10++) {
-            if (qnVar.f40901x0.getChildAt(i10) instanceof org.telegram.ui.Cells.u1) {
-                org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) qnVar.f40901x0.getChildAt(i10);
+        for (int i10 = 0; i10 < qnVar.f40904x0.getChildCount(); i10++) {
+            if (qnVar.f40904x0.getChildAt(i10) instanceof org.telegram.ui.Cells.u1) {
+                org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) qnVar.f40904x0.getChildAt(i10);
                 if (u1Var.getMessageObject() != null && u1Var.getMessageObject().getId() == messageObject.getId()) {
                     u1Var.getPhotoImage().setVisible(false, true);
                 }
@@ -99,7 +99,7 @@ public final class jj implements org.telegram.ui.ActionBar.r0, org.telegram.ui.A
 
     @Override
     public int w(int i10) {
-        return this.f38271a.getThemedColor(i10);
+        return this.f38274a.getThemedColor(i10);
     }
 
     @Override
@@ -109,25 +109,25 @@ public final class jj implements org.telegram.ui.ActionBar.r0, org.telegram.ui.A
             return;
         }
         if (MediaController.getInstance().isPlayingMessage(messageObject)) {
-            for (int i10 = 0; i10 < this.f38271a.f40901x0.getChildCount(); i10++) {
-                if (this.f38271a.f40901x0.getChildAt(i10) instanceof org.telegram.ui.Cells.u1) {
-                    org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) this.f38271a.f40901x0.getChildAt(i10);
+            for (int i10 = 0; i10 < this.f38274a.f40904x0.getChildCount(); i10++) {
+                if (this.f38274a.f40904x0.getChildAt(i10) instanceof org.telegram.ui.Cells.u1) {
+                    org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) this.f38274a.f40904x0.getChildAt(i10);
                     if (u1Var.getMessageObject() != null && u1Var.getMessageObject().getId() == messageObject.getId()) {
                         org.telegram.ui.Components.e6 animation = u1Var.getPhotoImage().getAnimation();
-                        if (animation.f25745b0) {
+                        if (animation.f25748b0) {
                             animation.stop();
                         }
                         Bitmap m10 = animation.m();
                         if (m10 != null) {
                             try {
-                                ok okVar = this.f38271a.f40897wa;
+                                ok okVar = this.f38274a.f40900wa;
                                 int width = m10.getWidth();
                                 int height = m10.getHeight();
                                 uu0 uu0Var = okVar.d;
                                 if (uu0Var == null) {
                                     bitmap = null;
                                 } else {
-                                    bitmap = uu0Var.f42055b.getBitmap(width, height);
+                                    bitmap = uu0Var.f42058b.getBitmap(width, height);
                                 }
                                 new Canvas(m10).drawBitmap(bitmap, 0.0f, 0.0f, (Paint) null);
                                 bitmap.recycle();
@@ -138,12 +138,12 @@ public final class jj implements org.telegram.ui.ActionBar.r0, org.telegram.ui.A
                     }
                 }
             }
-            this.f38271a.Q7(true);
+            this.f38274a.Q7(true);
             MediaController mediaController = MediaController.getInstance();
-            qn qnVar = this.f38271a;
-            mediaController.setTextureView(qnVar.f40896w8, qnVar.f40882v8, qnVar.f40857t8, true);
+            qn qnVar = this.f38274a;
+            mediaController.setTextureView(qnVar.f40899w8, qnVar.f40885v8, qnVar.f40860t8, true);
         }
-        this.f38271a.f40901x0.invalidate();
+        this.f38274a.f40904x0.invalidate();
     }
 
     @Override

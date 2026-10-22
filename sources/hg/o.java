@@ -39,9 +39,9 @@ public final class o implements Utilities.Callback2 {
         final org.telegram.ui.web.k kVar = (org.telegram.ui.web.k) this.f12000b;
         ArrayList arrayList = (ArrayList) obj;
         u61 u61Var = (u61) obj2;
-        org.telegram.ui.web.i iVar = kVar.f42703y;
-        ArrayList arrayList2 = kVar.f42702x;
-        if (!kVar.f42695b && arrayList2.isEmpty()) {
+        org.telegram.ui.web.i iVar = kVar.f42706y;
+        ArrayList arrayList2 = kVar.f42705x;
+        if (!kVar.f42698b && arrayList2.isEmpty()) {
             arrayList.add(h61.k(kVar.d));
         }
         SharedPreferences sharedPreferences = kVar.getContext().getSharedPreferences("webhistory", 0);
@@ -54,7 +54,7 @@ public final class o implements Utilities.Callback2 {
                 for (int i10 = 0; i10 < jSONArray.length(); i10++) {
                     JSONObject jSONObject = jSONArray.getJSONObject(i10);
                     org.telegram.ui.web.j jVar = new org.telegram.ui.web.j(jSONObject.optString("name"), jSONObject.optLong("usage", System.currentTimeMillis()));
-                    jVar.f42684c = jSONObject.optDouble("rank", 0.0d);
+                    jVar.f42687c = jSONObject.optDouble("rank", 0.0d);
                     arrayList4.add(jVar);
                 }
                 Collections.sort(arrayList4, new jg0(12));
@@ -67,7 +67,7 @@ public final class o implements Utilities.Callback2 {
                     if (arrayList3.size() >= 20) {
                         break;
                     }
-                    arrayList3.add(jVar2.f42682a);
+                    arrayList3.add(jVar2.f42685a);
                 }
             } catch (Exception unused) {
             }
@@ -110,13 +110,13 @@ public final class o implements Utilities.Callback2 {
                     }
                 }
             };
-            int i13 = org.telegram.ui.web.d.f42619a;
+            int i13 = org.telegram.ui.web.d.f42622a;
             h61 J = h61.J(org.telegram.ui.web.d.class);
-            J.f26795z = 1;
-            J.f26782l = str;
+            J.f26798z = 1;
+            J.f26785l = str;
             J.D = onClickListener;
-            J.f26787q = z12;
-            J.f26788r = z13;
+            J.f26790q = z12;
+            J.f26791r = z13;
             J.G = Boolean.TRUE;
             J.H = kVar;
             arrayList.add(J);
@@ -156,34 +156,34 @@ public final class o implements Utilities.Callback2 {
                         }
                     }
                 };
-                int i15 = org.telegram.ui.web.d.f42619a;
+                int i15 = org.telegram.ui.web.d.f42622a;
                 h61 J2 = h61.J(org.telegram.ui.web.d.class);
-                J2.f26795z = 0;
-                J2.f26782l = str2;
+                J2.f26798z = 0;
+                J2.f26785l = str2;
                 J2.D = onClickListener2;
-                J2.f26787q = z10;
-                J2.f26788r = z11;
+                J2.f26790q = z10;
+                J2.f26791r = z11;
                 J2.G = Boolean.TRUE;
                 J2.H = kVar;
                 arrayList.add(J2);
             }
         }
         if (iVar != null) {
-            ArrayList arrayList5 = iVar.f42671a;
+            ArrayList arrayList5 = iVar.f42674a;
             if (!arrayList5.isEmpty()) {
                 arrayList.add(h61.q(LocaleController.getString(R.string.WebSectionBookmarks)));
                 for (int i16 = 0; i16 < arrayList5.size(); i16++) {
                     MessageObject messageObject = (MessageObject) arrayList5.get(i16);
                     if (!TextUtils.isEmpty(org.telegram.ui.web.k.a(messageObject))) {
-                        int i17 = org.telegram.ui.web.g.f42648a;
+                        int i17 = org.telegram.ui.web.g.f42651a;
                         h61 J3 = h61.J(org.telegram.ui.web.g.class);
-                        J3.f26795z = 3;
-                        J3.f26787q = true;
+                        J3.f26798z = 3;
+                        J3.f26790q = true;
                         J3.H = messageObject;
                         arrayList.add(J3);
                     }
                 }
-                if (!iVar.f42674f) {
+                if (!iVar.f42677f) {
                     arrayList.add(h61.o(arrayList.size(), 32));
                     arrayList.add(h61.o(arrayList.size(), 32));
                     arrayList.add(h61.o(arrayList.size(), 32));
@@ -211,7 +211,7 @@ public final class o implements Utilities.Callback2 {
         l2 l2Var = (l2) this.f12000b;
         ArrayList arrayList = (ArrayList) obj;
         u61 u61Var = (u61) obj2;
-        ks0 ks0Var = l2Var.f50365a;
+        ks0 ks0Var = l2Var.f50368a;
         y9 y9Var = l2Var.e;
         if (y9Var != null) {
             if ((!y9Var.e || y9Var.f2500g != 783) && y9Var.f2504l.size() <= 0) {
@@ -238,15 +238,15 @@ public final class o implements Utilities.Callback2 {
                     i14++;
                     TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) obj3;
                     boolean z11 = l2Var.d;
-                    int i15 = yh.f1.f50236a;
+                    int i15 = yh.f1.f50239a;
                     h61 J = h61.J(yh.f1.class);
-                    J.f26791u = 1;
-                    J.f26795z = 0;
+                    J.f26794u = 1;
+                    J.f26798z = 0;
                     J.G = savedStarGift;
-                    J.f26787q = true;
-                    J.f26777f = false;
-                    J.f26788r = z11;
-                    if (l2Var.f50369n && (l2Var.e != ks0Var.d || savedStarGift.pinned_to_top)) {
+                    J.f26790q = true;
+                    J.f26780f = false;
+                    J.f26791r = z11;
+                    if (l2Var.f50372n && (l2Var.e != ks0Var.d || savedStarGift.pinned_to_top)) {
                         z10 = true;
                     } else {
                         z10 = false;
@@ -272,26 +272,26 @@ public final class o implements Utilities.Callback2 {
                         }
                         i16++;
                         h61 o10 = h61.o(i16, 34);
-                        o10.f26791u = 1;
+                        o10.f26794u = 1;
                         arrayList.add(o10);
                     }
                 }
             }
             if (ks0Var.d == l2Var.e) {
                 arrayList.add(h61.C(AndroidUtilities.dp(20.0f)));
-                if (ks0Var.f50465c == UserConfig.getInstance(l2Var.f50366b).getClientUserId()) {
-                    int w02 = h6.w0(h6.f21395z6, l2Var.f50367c);
+                if (ks0Var.f50468c == UserConfig.getInstance(l2Var.f50369b).getClientUserId()) {
+                    int w02 = h6.w0(h6.f21398z6, l2Var.f50370c);
                     String string = LocaleController.getString(R.string.ProfileGiftsInfo);
                     int dp = AndroidUtilities.dp(24.0f);
-                    int i17 = m2.f50403a;
+                    int i17 = m2.f50406a;
                     h61 J2 = h61.J(m2.class);
-                    J2.f26782l = string;
-                    J2.f26795z = 17;
+                    J2.f26785l = string;
+                    J2.f26798z = 17;
                     J2.B = w02;
                     J2.A = 14.0f;
-                    J2.f26779i = dp;
-                    J2.f26781k = 0;
-                    J2.f26787q = false;
+                    J2.f26782i = dp;
+                    J2.f26784k = 0;
+                    J2.f26790q = false;
                     arrayList.add(J2);
                 }
                 arrayList.add(h61.C(AndroidUtilities.dp(82.0f)));
@@ -306,7 +306,7 @@ public final class o implements Utilities.Callback2 {
                 }
                 arrayList.add(0, h61.C(AndroidUtilities.dp(f7)));
             }
-            if (l2Var.f50368f.getSpanCount() != max) {
+            if (l2Var.f50371f.getSpanCount() != max) {
                 AndroidUtilities.runOnUIThread(new yh.r1(l2Var, max, 1));
             }
             ks0Var.o();

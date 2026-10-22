@@ -1,24 +1,34 @@
 package org.telegram.messenger;
-public final class qk implements Runnable {
-    public final int f19391a;
-    public final TopicsController f19392b;
-    public final long f19393c;
 
-    public qk(TopicsController topicsController, long j10, int i10) {
-        this.f19391a = i10;
-        this.f19392b = topicsController;
-        this.f19393c = j10;
+import android.icu.text.Collator;
+import java.util.Comparator;
+import java.util.HashMap;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.TranslateController;
+public final class qk implements Comparator {
+    public final int f19335a;
+    public final Object f19336b;
+
+    public qk(Object obj, int i10) {
+        this.f19335a = i10;
+        this.f19336b = obj;
     }
 
     @Override
-    public final void run() {
-        switch (this.f19391a) {
+    public final int compare(Object obj, Object obj2) {
+        int lambda$getMusicDialogsSortedByVisibleOrder$1;
+        int lambda$getLocales$3;
+        int lambda$getLanguages$1;
+        switch (this.f19335a) {
             case 0:
-                this.f19392b.lambda$loadTopics$6(this.f19393c);
-                return;
+                lambda$getMusicDialogsSortedByVisibleOrder$1 = TelegramMediaSession.lambda$getMusicDialogsSortedByVisibleOrder$1((HashMap) this.f19336b, (Long) obj, (Long) obj2);
+                return lambda$getMusicDialogsSortedByVisibleOrder$1;
+            case 1:
+                lambda$getLocales$3 = TranslateController.lambda$getLocales$3((LocaleController.LocaleInfo) this.f19336b, (LocaleController.LocaleInfo) obj, (LocaleController.LocaleInfo) obj2);
+                return lambda$getLocales$3;
             default:
-                this.f19392b.lambda$processTopics$8(this.f19393c);
-                return;
+                lambda$getLanguages$1 = TranslateController.lambda$getLanguages$1((Collator) this.f19336b, (TranslateController.Language) obj, (TranslateController.Language) obj2);
+                return lambda$getLanguages$1;
         }
     }
 }

@@ -4,7 +4,7 @@ import android.text.SpannableStringBuilder;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.mk;
+import org.telegram.messenger.ok;
 import org.telegram.ui.Components.yq;
 public final class d implements Runnable {
     public final int f1121a;
@@ -47,7 +47,7 @@ public final class d implements Runnable {
                     if (qcVar != null) {
                         org.telegram.ui.Components.ub ubVar = qcVar.e;
                         if ((ubVar instanceof org.telegram.ui.Components.yb) && ubVar.isAttachedToWindow()) {
-                            mk.r(R.string.BotStarsWithdrawalToast, new Object[]{x.j0(xVar.G - currentTime)}, ((org.telegram.ui.Components.yb) xVar.f2398a0.e).f32625b);
+                            ok.r(R.string.BotStarsWithdrawalToast, new Object[]{x.j0(xVar.G - currentTime)}, ((org.telegram.ui.Components.yb) xVar.f2398a0.e).f32628b);
                         }
                     }
                     AndroidUtilities.cancelRunOnUIThread(dVar);

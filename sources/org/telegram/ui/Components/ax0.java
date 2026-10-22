@@ -12,7 +12,7 @@ public final class ax0 extends bb {
         super(context, null, true, false, null);
         fixNavigationBar();
         this.E = true;
-        this.f24887y = true;
+        this.f24890y = true;
         L();
         jm0 jm0Var = this.d;
         int i10 = this.backgroundPaddingLeft;
@@ -43,7 +43,7 @@ public final class ax0 extends bb {
     public final im0 x(jm0 jm0Var) {
         at atVar = new at(jm0Var, getContext(), this.currentAccount, 0, true, this.resourcesProvider);
         this.X = atVar;
-        atVar.f30861r = false;
+        atVar.f30864r = false;
         return atVar;
     }
 }

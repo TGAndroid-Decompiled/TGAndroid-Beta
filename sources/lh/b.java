@@ -8,7 +8,7 @@ import java.util.Map;
 import ki.u;
 import ne.e;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.mk;
+import org.telegram.messenger.ok;
 import org.telegram.ui.Components.voip.t2;
 public abstract class b extends ViewGroup {
     public int f16081a;
@@ -52,12 +52,12 @@ public abstract class b extends ViewGroup {
                 i12 = 1;
             }
             if (!z12) {
-                int min2 = Math.min(AndroidUtilities.dp(50.0f) + Math.max((int) (mk.B(50.0f, i12, measuredWidth2) / (i12 + 0.333f)), 0), measuredWidth2 / i12);
+                int min2 = Math.min(AndroidUtilities.dp(50.0f) + Math.max((int) (ok.B(50.0f, i12, measuredWidth2) / (i12 + 0.333f)), 0), measuredWidth2 / i12);
                 min = AndroidUtilities.dp(76.0f);
                 i10 = (measuredWidth2 - (i12 * min2)) / 2;
                 measuredWidth2 = min2;
             } else {
-                min = Math.min(AndroidUtilities.dp(50.0f) + Math.max((int) (mk.B(50.0f, i12, measuredHeight) / (i12 + 0.333f)), 0), measuredHeight / i12);
+                min = Math.min(AndroidUtilities.dp(50.0f) + Math.max((int) (ok.B(50.0f, i12, measuredHeight) / (i12 + 0.333f)), 0), measuredHeight / i12);
                 i10 = (measuredHeight - (i12 * min)) / 2;
             }
             int i13 = 0;

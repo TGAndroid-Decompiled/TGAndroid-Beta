@@ -2,25 +2,25 @@ package org.telegram.ui;
 
 import android.view.View;
 public final class ed implements View.OnClickListener {
-    public final int f36633a;
-    public final md f36634b;
+    public final int f36636a;
+    public final md f36637b;
 
     public ed(md mdVar, int i10) {
-        this.f36633a = i10;
-        this.f36634b = mdVar;
+        this.f36636a = i10;
+        this.f36637b = mdVar;
     }
 
     @Override
     public final void onClick(View view) {
         boolean z10;
-        switch (this.f36633a) {
+        switch (this.f36636a) {
             case 0:
-                md.X(this.f36634b, view);
+                md.X(this.f36637b, view);
                 return;
             case 1:
-                md mdVar = this.f36634b;
+                md mdVar = this.f36637b;
                 org.telegram.ui.Components.e50 e50Var = mdVar.v;
-                if (mdVar.f39208x != null) {
+                if (mdVar.f39211x != null) {
                     z10 = true;
                 } else {
                     z10 = false;
@@ -31,21 +31,21 @@ public final class ed implements View.OnClickListener {
                 mdVar.h.d();
                 return;
             case 2:
-                md mdVar2 = this.f36634b;
-                if (!mdVar2.f39191j0) {
+                md mdVar2 = this.f36637b;
+                if (!mdVar2.f39194j0) {
                     mdVar2.f0();
                     return;
-                } else if (mdVar2.f39179a0) {
-                    mdVar2.f39179a0 = false;
+                } else if (mdVar2.f39182a0) {
+                    mdVar2.f39182a0 = false;
                     mdVar2.h0();
                     return;
                 } else {
                     return;
                 }
             default:
-                md mdVar3 = this.f36634b;
-                if (!mdVar3.f39179a0) {
-                    mdVar3.f39179a0 = true;
+                md mdVar3 = this.f36637b;
+                if (!mdVar3.f39182a0) {
+                    mdVar3.f39182a0 = true;
                     mdVar3.h0();
                     return;
                 }

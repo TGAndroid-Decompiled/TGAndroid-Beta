@@ -76,7 +76,7 @@ public final class db implements Runnable {
                                 long longValue = tL_stickerPack.documents.get(0).longValue();
                                 for (int i12 = 0; i12 < tL_messages_stickerSet.documents.size(); i12++) {
                                     document = tL_messages_stickerSet.documents.get(i12);
-                                    if (document == null || document.f20282id != longValue) {
+                                    if (document == null || document.f20285id != longValue) {
                                     }
                                 }
                             } else {
@@ -95,7 +95,7 @@ public final class db implements Runnable {
                 if (document != null) {
                     imageReceiver.setAllowStartLottieAnimation(true);
                     imageReceiver.setDelegate(new nc(zArr));
-                    SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(document, org.telegram.ui.ActionBar.h6.f20932a7, 0.3f);
+                    SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(document, org.telegram.ui.ActionBar.h6.f20935a7, 0.3f);
                     TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 160, true, null, true);
                     imageReceiver.setAutoRepeat(0);
                     imageReceiver.setImage(ImageLocation.getForDocument(document), "160_160_nr", ImageLocation.getForDocument(closestPhotoSizeWithSize, document), "160_160", svgThumb, document.size, "tgs", tL_messages_stickerSet, 1);
@@ -154,7 +154,7 @@ public final class db implements Runnable {
                 TLObject tLObject = (TLObject) this.f1163f;
                 ArrayList arrayList = atVar.T;
                 int i14 = atVar.N;
-                if (this.f1161b == atVar.f24714d0 && TextUtils.equals(tL_messages_searchGlobal.f20387q, atVar.f24715e0)) {
+                if (this.f1161b == atVar.f24717d0 && TextUtils.equals(tL_messages_searchGlobal.f20390q, atVar.f24718e0)) {
                     atVar.Z = false;
                     if (!this.f1162c) {
                         arrayList.clear();
@@ -171,12 +171,12 @@ public final class db implements Runnable {
                             TLRPC.Message message = arrayList2.get(i15);
                             i15++;
                             MessageObject messageObject = new MessageObject(i14, message, false, true);
-                            messageObject.setQuery(atVar.f24715e0);
+                            messageObject.setQuery(atVar.f24718e0);
                             arrayList.add(messageObject);
                         }
-                        atVar.f24712b0 = messages_messages instanceof TLRPC.TL_messages_messagesSlice;
+                        atVar.f24715b0 = messages_messages instanceof TLRPC.TL_messages_messagesSlice;
                         Math.max(arrayList.size(), messages_messages.count);
-                        atVar.f24713c0 = messages_messages.next_rate;
+                        atVar.f24716c0 = messages_messages.next_rate;
                     }
                     atVar.N(true);
                     return;
@@ -188,7 +188,7 @@ public final class db implements Runnable {
                 TLObject tLObject2 = (TLObject) this.f1163f;
                 ArrayList arrayList3 = ctVar.P;
                 int i16 = ctVar.N;
-                if (this.f1161b == ctVar.f25255a0 && TextUtils.equals(tL_messages_searchGlobal2.f20387q, ctVar.f25256b0)) {
+                if (this.f1161b == ctVar.f25258a0 && TextUtils.equals(tL_messages_searchGlobal2.f20390q, ctVar.f25259b0)) {
                     ctVar.W = false;
                     if (!this.f1162c) {
                         arrayList3.clear();
@@ -205,7 +205,7 @@ public final class db implements Runnable {
                             TLRPC.Message message2 = arrayList4.get(i17);
                             i17++;
                             MessageObject messageObject2 = new MessageObject(i16, message2, false, true);
-                            messageObject2.setQuery(ctVar.f25256b0);
+                            messageObject2.setQuery(ctVar.f25259b0);
                             arrayList3.add(messageObject2);
                         }
                         ctVar.Y = messages_messages2 instanceof TLRPC.TL_messages_messagesSlice;

@@ -16,21 +16,21 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.tgnet.TLRPC;
 public final class ta0 extends uv0 {
-    public AnimatorSet f30484f2;
-    public final FrameLayout f30485g2;
-    public final qa0 f30486h2;
-    public final wa0 f30487i2;
+    public AnimatorSet f30487f2;
+    public final FrameLayout f30488g2;
+    public final qa0 f30489h2;
+    public final wa0 f30490i2;
 
     public ta0(wa0 wa0Var, Context context, long j10, mv0 mv0Var, TLRPC.ChatFull chatFull, TLRPC.UserFull userFull, int i10, wa0 wa0Var2, sa0 sa0Var, org.telegram.ui.ActionBar.d6 d6Var, FrameLayout frameLayout, qa0 qa0Var) {
         super(context, j10, mv0Var, 0, null, chatFull, userFull, i10, 0, wa0Var2, sa0Var, 0, d6Var, null);
-        this.f30487i2 = wa0Var;
-        this.f30485g2 = frameLayout;
-        this.f30486h2 = qa0Var;
+        this.f30490i2 = wa0Var;
+        this.f30488g2 = frameLayout;
+        this.f30489h2 = qa0Var;
     }
 
     @Override
     public final boolean D() {
-        int i10 = this.f30487i2.f32041a;
+        int i10 = this.f30490i2.f32044a;
         if (i10 != 1 && i10 != 2) {
             return true;
         }
@@ -41,9 +41,9 @@ public final class ta0 extends uv0 {
     public final void F0(SparseArray sparseArray) {
         boolean z10;
         int size = sparseArray.size();
-        wa0 wa0Var = this.f30487i2;
+        wa0 wa0Var = this.f30490i2;
         wa0Var.I = sparseArray;
-        int i10 = wa0Var.f32041a;
+        int i10 = wa0Var.f32044a;
         if (i10 == 1 || i10 == 2) {
             wa0Var.F.a();
             wa0Var.F.c(LocaleController.formatPluralString("StoriesSelected", size, new Object[0]), !LocaleController.isRTL, true);
@@ -66,16 +66,16 @@ public final class ta0 extends uv0 {
     @Override
     public final void M0(boolean z10) {
         int i10;
-        wa0 wa0Var = this.f30487i2;
+        wa0 wa0Var = this.f30490i2;
         Activity parentActivity = wa0Var.getParentActivity();
         i10 = ((org.telegram.ui.ActionBar.n2) wa0Var).classGuid;
         AndroidUtilities.removeAdjustResize(parentActivity, i10);
-        AndroidUtilities.updateViewVisibilityAnimated(this.f30485g2, !z10, 0.95f, true);
+        AndroidUtilities.updateViewVisibilityAnimated(this.f30488g2, !z10, 0.95f, true);
     }
 
     @Override
     public final boolean N() {
-        int i10 = this.f30487i2.f32041a;
+        int i10 = this.f30490i2.f32044a;
         if (i10 == 1 || i10 == 2 || i10 == 3) {
             return true;
         }
@@ -85,13 +85,13 @@ public final class ta0 extends uv0 {
     @Override
     public final void N0() {
         super.N0();
-        this.f30487i2.a0();
+        this.f30490i2.a0();
     }
 
     @Override
     public final void O0(float f7) {
-        wa0 wa0Var = this.f30487i2;
-        if (wa0Var.f32041a != 1) {
+        wa0 wa0Var = this.f30490i2;
+        if (wa0Var.f32044a != 1) {
             return;
         }
         float f10 = f7 - 8.0f;
@@ -108,12 +108,12 @@ public final class ta0 extends uv0 {
 
     @Override
     public final void P(Canvas canvas, float f7, Rect rect, Paint paint) {
-        this.f30486h2.J(canvas, getY() + f7, rect, paint, true);
+        this.f30489h2.J(canvas, getY() + f7, rect, paint, true);
     }
 
     @Override
     public final void P0(boolean z10) {
-        va0 va0Var = this.f30487i2.R;
+        va0 va0Var = this.f30490i2.R;
         if (va0Var != null) {
             va0Var.setScrolling(z10);
         }
@@ -128,17 +128,17 @@ public final class ta0 extends uv0 {
         float f12;
         float f13;
         float measuredHeight;
-        wa0 wa0Var = this.f30487i2;
-        if (wa0Var.f32041a == 0) {
+        wa0 wa0Var = this.f30490i2;
+        if (wa0Var.f32044a == 0) {
             super.d1(z10);
         } else if (this.C1 == z10) {
         } else {
             this.C1 = z10;
-            AnimatorSet animatorSet = this.f30484f2;
+            AnimatorSet animatorSet = this.f30487f2;
             if (animatorSet != null) {
                 animatorSet.cancel();
             }
-            int i10 = wa0Var.f32041a;
+            int i10 = wa0Var.f32044a;
             if (i10 == 1 || i10 == 2) {
                 if (z10) {
                     i1(null);
@@ -152,7 +152,7 @@ public final class ta0 extends uv0 {
                     frameLayout.setVisibility(0);
                 }
             } else {
-                wa0Var.f32049s.setVisibility(0);
+                wa0Var.f32052s.setVisibility(0);
             }
             org.telegram.ui.ActionBar.g2 g2Var = wa0Var.E;
             float f14 = 0.0f;
@@ -163,7 +163,7 @@ public final class ta0 extends uv0 {
                 f7 = 0.0f;
             }
             g2Var.c(f7, true);
-            this.f30484f2 = new AnimatorSet();
+            this.f30487f2 = new AnimatorSet();
             ArrayList arrayList = new ArrayList();
             q6 q6Var = wa0Var.F;
             if (z10) {
@@ -174,7 +174,7 @@ public final class ta0 extends uv0 {
             float[] fArr = {f10};
             Property property = View.ALPHA;
             arrayList.add(ObjectAnimator.ofFloat(q6Var, property, fArr));
-            FrameLayout frameLayout2 = wa0Var.f32049s;
+            FrameLayout frameLayout2 = wa0Var.f32052s;
             if (z10) {
                 f11 = 0.0f;
             } else {
@@ -229,33 +229,33 @@ public final class ta0 extends uv0 {
                 }
                 arrayList.add(ObjectAnimator.ofFloat(va0Var, property, f15));
             }
-            this.f30484f2.playTogether(arrayList);
-            this.f30484f2.setDuration(300L);
-            this.f30484f2.setInterpolator(bs.h);
-            this.f30484f2.addListener(new org.telegram.ui.ActionBar.g(this, z10, z11, 4));
-            this.f30484f2.start();
+            this.f30487f2.playTogether(arrayList);
+            this.f30487f2.setDuration(300L);
+            this.f30487f2.setInterpolator(bs.h);
+            this.f30487f2.addListener(new org.telegram.ui.ActionBar.g(this, z10, z11, 4));
+            this.f30487f2.start();
         }
     }
 
     @Override
     public final int getInitialTab() {
-        return this.f30487i2.W;
+        return this.f30490i2.W;
     }
 
     @Override
     public final String getStoriesHashtag() {
-        return this.f30487i2.h;
+        return this.f30490i2.h;
     }
 
     @Override
     public final String getStoriesHashtagUsername() {
-        return this.f30487i2.f32047n;
+        return this.f30490i2.f32050n;
     }
 
     @Override
     public final boolean m0() {
-        wa0 wa0Var = this.f30487i2;
-        if (wa0Var.f32041a == 0 && wa0Var.e == wa0Var.getUserConfig().getClientUserId() && wa0Var.f32046f == 0) {
+        wa0 wa0Var = this.f30490i2;
+        if (wa0Var.f32044a == 0 && wa0Var.e == wa0Var.getUserConfig().getClientUserId() && wa0Var.f32049f == 0) {
             return true;
         }
         return false;
@@ -263,7 +263,7 @@ public final class ta0 extends uv0 {
 
     @Override
     public final boolean n0() {
-        int i10 = this.f30487i2.f32041a;
+        int i10 = this.f30490i2.f32044a;
         if (i10 == 1 || i10 == 2) {
             return true;
         }
@@ -272,12 +272,12 @@ public final class ta0 extends uv0 {
 
     @Override
     public final void p0() {
-        this.f30486h2.M();
+        this.f30489h2.M();
     }
 
     @Override
     public final boolean r0() {
-        if (this.f30487i2.f32041a == 2) {
+        if (this.f30490i2.f32044a == 2) {
             return true;
         }
         return false;
@@ -285,7 +285,7 @@ public final class ta0 extends uv0 {
 
     @Override
     public final boolean x0() {
-        int i10 = this.f30487i2.f32041a;
+        int i10 = this.f30490i2.f32044a;
         if (i10 == 1 || i10 == 2) {
             return true;
         }

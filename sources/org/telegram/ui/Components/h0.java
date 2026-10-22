@@ -1,22 +1,22 @@
 package org.telegram.ui.Components;
 public final class h0 implements Runnable {
-    public final int f26701a;
-    public final i0 f26702b;
+    public final int f26704a;
+    public final i0 f26705b;
 
     public h0(i0 i0Var, int i10) {
-        this.f26701a = i10;
-        this.f26702b = i0Var;
+        this.f26704a = i10;
+        this.f26705b = i0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f26701a) {
+        switch (this.f26704a) {
             case 0:
-                this.f26702b.invalidateSelf();
+                this.f26705b.invalidateSelf();
                 return;
             default:
-                i0 i0Var = this.f26702b;
-                i0Var.f27022c.d(0.0f, true);
+                i0 i0Var = this.f26705b;
+                i0Var.f27025c.d(0.0f, true);
                 i0Var.invalidateSelf();
                 return;
         }

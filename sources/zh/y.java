@@ -6,14 +6,14 @@ import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.n2;
 import org.telegram.ui.rp0;
 public final class y implements rp0 {
-    public final Utilities.CallbackReturn f52142a;
-    public final n2 f52143b;
-    public final Utilities.Callback f52144c;
+    public final Utilities.CallbackReturn f52145a;
+    public final n2 f52146b;
+    public final Utilities.Callback f52147c;
 
     public y(Utilities.CallbackReturn callbackReturn, n2 n2Var, Utilities.Callback callback) {
-        this.f52142a = callbackReturn;
-        this.f52143b = n2Var;
-        this.f52144c = callback;
+        this.f52145a = callbackReturn;
+        this.f52146b = n2Var;
+        this.f52147c = callback;
     }
 
     @Override
@@ -28,7 +28,7 @@ public final class y implements rp0 {
         if (str2 == null) {
             return;
         }
-        Utilities.globalQueue.postRunnable(new si.o(str2, this.f52142a, this.f52143b, this.f52144c, 4));
+        Utilities.globalQueue.postRunnable(new si.o(str2, this.f52145a, this.f52146b, this.f52147c, 4));
     }
 
     @Override

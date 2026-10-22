@@ -4,28 +4,28 @@ import android.view.View;
 import java.util.ArrayList;
 import org.telegram.messenger.MediaController;
 public final class xl implements q0.a {
-    public final int f32446a;
-    public final Object f32447b;
-    public final boolean f32448c;
+    public final int f32449a;
+    public final Object f32450b;
+    public final boolean f32451c;
 
     public xl(int i10, Object obj, boolean z10) {
-        this.f32446a = i10;
-        this.f32447b = obj;
-        this.f32448c = z10;
+        this.f32449a = i10;
+        this.f32450b = obj;
+        this.f32451c = z10;
     }
 
     @Override
     public final void accept(Object obj) {
         qc qcVar;
-        int i10 = this.f32446a;
+        int i10 = this.f32449a;
         boolean z10 = false;
-        boolean z11 = this.f32448c;
-        Object obj2 = this.f32447b;
+        boolean z11 = this.f32451c;
+        Object obj2 = this.f32450b;
         switch (i10) {
             case 0:
                 ArrayList arrayList = (ArrayList) obj2;
                 View view = (View) obj;
-                boolean z12 = ChatAttachAlertPhotoLayout.f24077q1;
+                boolean z12 = ChatAttachAlertPhotoLayout.f24080q1;
                 if (view instanceof org.telegram.ui.Cells.s5) {
                     org.telegram.ui.Cells.s5 s5Var = (org.telegram.ui.Cells.s5) view;
                     MediaController.PhotoEntry photoEntry = s5Var.getPhotoEntry();
@@ -39,7 +39,7 @@ public final class xl implements q0.a {
             case 1:
                 ArrayList arrayList2 = (ArrayList) obj2;
                 View view2 = (View) obj;
-                boolean z13 = ChatAttachAlertPhotoLayout.f24077q1;
+                boolean z13 = ChatAttachAlertPhotoLayout.f24080q1;
                 if (view2 instanceof org.telegram.ui.Cells.s5) {
                     org.telegram.ui.Cells.s5 s5Var2 = (org.telegram.ui.Cells.s5) view2;
                     MediaController.PhotoEntry photoEntry2 = s5Var2.getPhotoEntry();
@@ -52,7 +52,7 @@ public final class xl implements q0.a {
                 return;
             default:
                 Float f7 = (Float) obj;
-                ob obVar = ((jb) obj2).f27487b.f29537p;
+                ob obVar = ((jb) obj2).f27490b.f29540p;
                 if (obVar != null && !z11) {
                     obVar.c(qcVar.e.getHeight() - f7.floatValue());
                     return;

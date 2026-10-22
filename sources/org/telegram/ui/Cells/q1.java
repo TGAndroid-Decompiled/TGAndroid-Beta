@@ -4,20 +4,20 @@ import android.text.style.ClickableSpan;
 import android.view.View;
 import org.telegram.tgnet.TLRPC;
 public final class q1 extends ClickableSpan {
-    public final TLRPC.User f22770a;
-    public final r1 f22771b;
+    public final TLRPC.User f22773a;
+    public final r1 f22774b;
 
     public q1(r1 r1Var, TLRPC.User user) {
-        this.f22771b = r1Var;
-        this.f22770a = user;
+        this.f22774b = r1Var;
+        this.f22773a = user;
     }
 
     @Override
     public final void onClick(View view) {
-        u1 u1Var = this.f22771b.d;
+        u1 u1Var = this.f22774b.d;
         l1 l1Var = u1Var.Jc;
         if (l1Var != null) {
-            l1Var.u0(u1Var, this.f22770a, 0.0f, 0.0f);
+            l1Var.u0(u1Var, this.f22773a, 0.0f, 0.0f);
         }
     }
 }

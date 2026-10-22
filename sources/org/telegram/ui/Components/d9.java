@@ -15,32 +15,32 @@ import org.telegram.tgnet.TLRPC;
 public abstract class d9 extends FrameLayout {
     public float E;
     public final e9 F;
-    public long f25377a;
-    public TLRPC.Document f25378b;
-    public final ci.k4 f25379c;
+    public long f25380a;
+    public TLRPC.Document f25381b;
+    public final ci.k4 f25382c;
     public final x20 d;
     public final x20 e;
-    public float f25380f;
+    public float f25383f;
     public a9 h;
-    public boolean f25381n;
-    public final PorterDuffColorFilter f25382r;
-    public final f6 f25383s;
+    public boolean f25384n;
+    public final PorterDuffColorFilter f25385r;
+    public final f6 f25386s;
     public boolean v;
-    public float f25384w;
-    public float f25385x;
-    public float f25386y;
+    public float f25387w;
+    public float f25388x;
+    public float f25389y;
 
     public d9(e9 e9Var, Context context) {
         super(context);
         this.F = e9Var;
         this.d = new x20();
         this.e = new x20();
-        this.f25380f = 1.0f;
-        this.f25382r = new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN);
-        this.f25383s = new f6(this, 200L, bs.f25022g);
-        this.f25384w = -1.0f;
+        this.f25383f = 1.0f;
+        this.f25385r = new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN);
+        this.f25386s = new f6(this, 200L, bs.f25025g);
+        this.f25387w = -1.0f;
         ci.k4 k4Var = new ci.k4(this, context, 7);
-        this.f25379c = k4Var;
+        this.f25382c = k4Var;
         k4Var.getImageReceiver().setAutoRepeatCount(1);
         k4Var.getImageReceiver().setAspectFit(true);
         setClipChildren(false);
@@ -48,7 +48,7 @@ public abstract class d9 extends FrameLayout {
     }
 
     public final void a(Canvas canvas, float f7, float f10, float f11, float f12, Paint paint) {
-        float f13 = this.f25383s.f26086c;
+        float f13 = this.f25386s.f26089c;
         if (f13 == 0.0f) {
             canvas.drawCircle(f7, f10, f12, paint);
             return;
@@ -62,12 +62,12 @@ public abstract class d9 extends FrameLayout {
     public final void b(a9 a9Var, boolean z10) {
         a9 a9Var2 = this.h;
         if (a9Var2 != null) {
-            this.e.d(a9Var2.f24548c, a9Var2.d, a9Var2.e, a9Var2.f24549f);
-            this.f25380f = 0.0f;
-            this.F.f25848n = true;
+            this.e.d(a9Var2.f24551c, a9Var2.d, a9Var2.e, a9Var2.f24552f);
+            this.f25383f = 0.0f;
+            this.F.f25851n = true;
         }
         this.h = a9Var;
-        this.f25381n = z10;
+        this.f25384n = z10;
         NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needCheckSystemBarColors, new Object[0]);
         invalidate();
     }
@@ -78,11 +78,11 @@ public abstract class d9 extends FrameLayout {
     }
 
     public long getDuration() {
-        ci.k4 k4Var = this.f25379c;
+        ci.k4 k4Var = this.f25382c;
         ImageReceiver imageReceiver = k4Var.getImageReceiver();
         r5 r5Var = k4Var.e;
         if (r5Var != null) {
-            imageReceiver = r5Var.f29838k;
+            imageReceiver = r5Var.f29841k;
         }
         if (imageReceiver != null && imageReceiver.getLottieAnimation() != null) {
             return imageReceiver.getLottieAnimation().r();
@@ -91,12 +91,12 @@ public abstract class d9 extends FrameLayout {
     }
 
     public ImageReceiver getImageReceiver() {
-        ci.k4 k4Var = this.f25379c;
+        ci.k4 k4Var = this.f25382c;
         ImageReceiver imageReceiver = k4Var.getImageReceiver();
         r5 r5Var = k4Var.e;
         if (r5Var != null) {
-            ci.g3 g3Var = r5Var.f29838k;
-            r5Var.setColorFilter(this.f25382r);
+            ci.g3 g3Var = r5Var.f29841k;
+            r5Var.setColorFilter(this.f25385r);
             return g3Var;
         }
         return imageReceiver;
@@ -124,12 +124,12 @@ public abstract class d9 extends FrameLayout {
         }
         this.v = z10;
         if (z10) {
-            ci.k4 k4Var = this.f25379c;
+            ci.k4 k4Var = this.f25382c;
             r5 r5Var = k4Var.e;
-            if (r5Var != null && (g3Var = r5Var.f29838k) != null) {
+            if (r5Var != null && (g3Var = r5Var.f29841k) != null) {
                 g3Var.startAnimation();
             }
-            k4Var.f31993a.startAnimation();
+            k4Var.f31996a.startAnimation();
         }
         NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needCheckSystemBarColors, new Object[0]);
         invalidate();

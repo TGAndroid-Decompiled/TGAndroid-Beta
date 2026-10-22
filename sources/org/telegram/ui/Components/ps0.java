@@ -19,7 +19,7 @@ public final class ps0 extends org.telegram.ui.e11 {
         setClipBounds(rect);
         invalidate();
         uv0 uv0Var = this.H;
-        nu0[] nu0VarArr = uv0Var.f31047k0;
+        nu0[] nu0VarArr = uv0Var.f31050k0;
         if (nu0VarArr != null) {
             for (nu0 nu0Var : nu0VarArr) {
                 if (nu0Var != null && (ts0Var = nu0Var.h) != null) {
@@ -30,7 +30,7 @@ public final class ps0 extends org.telegram.ui.e11 {
                     int paddingRight = nu0Var.h.getPaddingRight();
                     ts0 ts0Var3 = nu0Var.h;
                     int Y = uv0Var.Y(uv0Var.x0());
-                    ts0Var3.f28601c3 = Y;
+                    ts0Var3.f28604c3 = Y;
                     ts0Var2.setPadding(paddingLeft, Z, paddingRight, Y);
                     int paddingTop2 = paddingTop - nu0Var.h.getPaddingTop();
                     if (paddingTop2 != 0) {

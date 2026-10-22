@@ -99,7 +99,7 @@ public final class n7 extends View {
             } else {
                 TLRPC.TL_availableReaction tL_availableReaction = MediaDataController.getInstance(UserConfig.selectedAccount).getReactionsMap().get(i1Var.f783f);
                 if (tL_availableReaction != null) {
-                    this.d.setImage(ImageLocation.getForDocument(tL_availableReaction.center_icon), "40_40_lastreactframe", DocumentObject.getSvgThumb(tL_availableReaction.static_icon, org.telegram.ui.ActionBar.h6.f20932a7, 1.0f), "webp", tL_availableReaction, 1);
+                    this.d.setImage(ImageLocation.getForDocument(tL_availableReaction.center_icon), "40_40_lastreactframe", DocumentObject.getSvgThumb(tL_availableReaction.static_icon, org.telegram.ui.ActionBar.h6.f20935a7, 1.0f), "webp", tL_availableReaction, 1);
                 }
             }
         }

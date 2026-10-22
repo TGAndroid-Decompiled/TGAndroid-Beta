@@ -4,19 +4,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
 public final class hi extends s6 {
-    public final int f26895b;
-    public final ti f26896c;
+    public final int f26898b;
+    public final ti f26899c;
 
     public hi(ti tiVar, int i10) {
         super("translation", 0);
-        this.f26895b = i10;
+        this.f26898b = i10;
         switch (i10) {
             case 1:
-                this.f26896c = tiVar;
+                this.f26899c = tiVar;
                 super("openProgress", 0);
                 return;
             default:
-                this.f26896c = tiVar;
+                this.f26899c = tiVar;
                 return;
         }
     }
@@ -26,11 +26,11 @@ public final class hi extends s6 {
         ViewGroup viewGroup;
         int i10;
         float f10;
-        switch (this.f26895b) {
+        switch (this.f26898b) {
             case 0:
                 li liVar = (li) obj;
-                ti tiVar = this.f26896c;
-                tiVar.f30539d0 = f7;
+                ti tiVar = this.f26899c;
+                tiVar.f30542d0 = f7;
                 li liVar2 = tiVar.C0;
                 if (liVar2 != null) {
                     if (!(liVar2 instanceof bn) && !(tiVar.B0 instanceof bn)) {
@@ -48,7 +48,7 @@ public final class hi extends s6 {
                             tiVar.e2(i10);
                         }
                         li liVar4 = tiVar.C0;
-                        fo foVar2 = tiVar.f30569n0;
+                        fo foVar2 = tiVar.f30572n0;
                         if (liVar4 == foVar2 || tiVar.B0 == foVar2) {
                             if (liVar4 == foVar2) {
                                 i11 = 1;
@@ -57,7 +57,7 @@ public final class hi extends s6 {
                         }
                         tiVar.C0.setTranslationY(AndroidUtilities.dp(78.0f) * f7);
                         tiVar.B0.v(1.0f - Math.min(1.0f, f7 / 0.7f));
-                        tiVar.B0.l(tiVar.f30574o2);
+                        tiVar.B0.l(tiVar.f30577o2);
                     } else {
                         int max = Math.max(liVar2.getWidth(), tiVar.B0.getWidth());
                         if (tiVar.C0 instanceof bn) {
@@ -68,7 +68,7 @@ public final class hi extends s6 {
                             tiVar.C0.setTranslationX((1.0f - f7) * (-max));
                         }
                     }
-                    if (tiVar.f30600w1 != null) {
+                    if (tiVar.f30603w1 != null) {
                         tiVar.e2(1);
                     }
                     tiVar.b1();
@@ -79,7 +79,7 @@ public final class hi extends s6 {
                 return;
             default:
                 ti tiVar2 = (ti) obj;
-                xh xhVar = this.f26896c.B1;
+                xh xhVar = this.f26899c.B1;
                 int childCount = xhVar.getChildCount();
                 for (int i12 = 0; i12 < childCount; i12++) {
                     float f11 = (3 - i12) * 32.0f;
@@ -88,13 +88,13 @@ public final class hi extends s6 {
                         float f12 = f7 - f11;
                         if (f12 <= 200.0f) {
                             float f13 = f12 / 200.0f;
-                            f10 = bs.f25022g.getInterpolation(f13) * 1.1f;
-                            childAt.setAlpha(bs.f25024j.getInterpolation(f13));
+                            f10 = bs.f25025g.getInterpolation(f13) * 1.1f;
+                            childAt.setAlpha(bs.f25027j.getInterpolation(f13));
                         } else {
                             childAt.setAlpha(1.0f);
                             float f14 = f12 - 200.0f;
                             if (f14 <= 100.0f) {
-                                f10 = 1.1f - (bs.f25023i.getInterpolation(f14 / 100.0f) * 0.1f);
+                                f10 = 1.1f - (bs.f25026i.getInterpolation(f14 / 100.0f) * 0.1f);
                             } else {
                                 f10 = 1.0f;
                             }
@@ -103,7 +103,7 @@ public final class hi extends s6 {
                         f10 = 0.0f;
                     }
                     if (childAt instanceof oi) {
-                        ((oi) childAt).f29051a.setAttachScale(f10);
+                        ((oi) childAt).f29054a.setAttachScale(f10);
                     }
                 }
                 return;
@@ -112,10 +112,10 @@ public final class hi extends s6 {
 
     @Override
     public final Object get(Object obj) {
-        switch (this.f26895b) {
+        switch (this.f26898b) {
             case 0:
                 li liVar = (li) obj;
-                return Float.valueOf(this.f26896c.f30539d0);
+                return Float.valueOf(this.f26899c.f30542d0);
             default:
                 ti tiVar = (ti) obj;
                 return Float.valueOf(0.0f);

@@ -1,7 +1,7 @@
 package ai;
 
 import android.view.animation.Interpolator;
-import org.telegram.messenger.mk;
+import org.telegram.messenger.ok;
 public final class be implements Interpolator {
     public final int f1059a;
 
@@ -20,7 +20,7 @@ public final class be implements Interpolator {
                 }
                 float f10 = f7 - 0.33f;
                 if (f10 < 0.33f) {
-                    return mk.x(f10, 0.34f, 0.15f, 0.1f);
+                    return ok.x(f10, 0.34f, 0.15f, 0.1f);
                 }
                 return (((f10 - 0.34f) / 0.33f) * 0.05f) - 0.05f;
             case 2:

@@ -3,17 +3,17 @@ package org.telegram.ui.Components;
 import android.content.Context;
 public final class mf extends org.telegram.ui.mi0 {
     public final Object A0;
-    public final int f28509z0;
+    public final int f28512z0;
 
     public mf(Object obj, Context context, org.telegram.ui.ActionBar.d6 d6Var, int i10) {
         super(context, d6Var);
-        this.f28509z0 = i10;
+        this.f28512z0 = i10;
         this.A0 = obj;
     }
 
     @Override
     public final void l(long j10) {
-        switch (this.f28509z0) {
+        switch (this.f28512z0) {
             case 0:
                 ((ChatActivityEnterView) this.A0).setEffectId(j10);
                 return;

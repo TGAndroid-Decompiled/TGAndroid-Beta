@@ -14,7 +14,7 @@ import com.google.android.gms.internal.play_billing.k3;
 import java.util.HashMap;
 import java.util.Random;
 import org.telegram.messenger.TelegramQRCodeWriter;
-import org.telegram.messenger.mk;
+import org.telegram.messenger.ok;
 public final class f {
     public static final float S;
     public static final float T;
@@ -34,32 +34,32 @@ public final class f {
     public int[] P;
     public int[] Q;
     public short[] R;
-    public int f51997l;
-    public e f51998m;
-    public e f51999n;
-    public long f52001p;
-    public boolean[] f52004s;
-    public PorterDuffColorFilter f52010z;
-    public final float[] f51989a = new float[2400];
-    public final float[] f51990b = new float[2400];
-    public final float[] f51991c = new float[2400];
+    public int f52000l;
+    public e f52001m;
+    public e f52002n;
+    public long f52004p;
+    public boolean[] f52007s;
+    public PorterDuffColorFilter f52013z;
+    public final float[] f51992a = new float[2400];
+    public final float[] f51993b = new float[2400];
+    public final float[] f51994c = new float[2400];
     public final float[] d = new float[2400];
     public final float[] e = new float[2400];
-    public final float[] f51992f = new float[2400];
-    public final float[] f51993g = new float[2400];
+    public final float[] f51995f = new float[2400];
+    public final float[] f51996g = new float[2400];
     public final float[] h = new float[2400];
-    public final float[] f51994i = new float[2400];
-    public final float[] f51995j = new float[2400];
-    public final byte[] f51996k = new byte[2400];
-    public float f52000o = 1.0f;
-    public int f52002q = 0;
-    public final RectF f52003r = new RectF();
-    public final Paint f52005t = new Paint(3);
-    public final Paint f52006u = new Paint(1);
+    public final float[] f51997i = new float[2400];
+    public final float[] f51998j = new float[2400];
+    public final byte[] f51999k = new byte[2400];
+    public float f52003o = 1.0f;
+    public int f52005q = 0;
+    public final RectF f52006r = new RectF();
+    public final Paint f52008t = new Paint(3);
+    public final Paint f52009u = new Paint(1);
     public final Rect v = new Rect();
-    public final RectF f52007w = new RectF();
-    public final Random f52008x = new Random();
-    public int f52009y = -16777216;
+    public final RectF f52010w = new RectF();
+    public final Random f52011x = new Random();
+    public int f52012y = -16777216;
     public float D = -1.0f;
     public final Paint I = new Paint(3);
     public final Paint K = new Paint(3);
@@ -133,24 +133,24 @@ public final class f {
             }
             e eVar = new e();
             Bitmap encode = telegramQRCodeWriter.encode(str, i10, i10, hashMap, null, f7, 0, -1);
-            eVar.f51973b = encode.getWidth();
+            eVar.f51976b = encode.getWidth();
             int i11 = ((kc.b) kc.c.b(str, cVar, hashMap).f8097f).f15011b;
             eVar.e = i11;
-            eVar.f51975f = (eVar.f51973b - (eVar.f51976g * 2.0f)) / i11;
+            eVar.f51978f = (eVar.f51976b - (eVar.f51979g * 2.0f)) / i11;
             int i12 = i11 * i11;
             eVar.h = new boolean[i12];
-            eVar.f51977i = new float[i12];
+            eVar.f51980i = new float[i12];
             Random random = new Random(str.hashCode());
             for (int i13 = 0; i13 < eVar.e; i13++) {
                 for (int i14 = 0; i14 < eVar.e; i14++) {
-                    float f10 = eVar.f51976g;
+                    float f10 = eVar.f51979g;
                     float f11 = i14 + 0.5f;
-                    float f12 = eVar.f51975f;
+                    float f12 = eVar.f51978f;
                     int i15 = (int) ((f11 * f12) + f10);
-                    int b10 = (int) mk.b(i13, 0.5f, f12, f10);
+                    int b10 = (int) ok.b(i13, 0.5f, f12, f10);
                     boolean z10 = false;
                     for (int i16 = -1; i16 <= 1 && !z10; i16++) {
-                        if (Color.alpha(encode.getPixel(Math.max(0, Math.min(eVar.f51973b - 1, ((int) (i16 * eVar.f51975f * 0.3f)) + i15)), b10)) > 40) {
+                        if (Color.alpha(encode.getPixel(Math.max(0, Math.min(eVar.f51976b - 1, ((int) (i16 * eVar.f51978f * 0.3f)) + i15)), b10)) > 40) {
                             z10 = true;
                         } else {
                             z10 = false;
@@ -159,26 +159,26 @@ public final class f {
                     boolean[] zArr = eVar.h;
                     int i17 = (eVar.e * i13) + i14;
                     zArr[i17] = z10;
-                    eVar.f51977i[i17] = random.nextFloat();
+                    eVar.f51980i[i17] = random.nextFloat();
                 }
             }
             Bitmap b11 = b();
-            int i18 = eVar.f51973b;
+            int i18 = eVar.f51976b;
             eVar.d = i18 + 2;
-            eVar.f51972a = Bitmap.createBitmap(Math.max(i18, b11.getWidth()), eVar.d + b11.getHeight(), Bitmap.Config.ARGB_8888);
-            Canvas canvas = new Canvas(eVar.f51972a);
+            eVar.f51975a = Bitmap.createBitmap(Math.max(i18, b11.getWidth()), eVar.d + b11.getHeight(), Bitmap.Config.ARGB_8888);
+            Canvas canvas = new Canvas(eVar.f51975a);
             canvas.drawBitmap(encode, 0.0f, 0.0f, (Paint) null);
             canvas.drawBitmap(b11, 0.0f, eVar.d, (Paint) null);
             encode.recycle();
-            eVar.f51972a.prepareToDraw();
-            Rect rect = eVar.f51974c;
-            int i19 = eVar.f51973b;
+            eVar.f51975a.prepareToDraw();
+            Rect rect = eVar.f51977c;
+            int i19 = eVar.f51976b;
             rect.set(0, 0, i19, i19);
-            eVar.f51980l = telegramQRCodeWriter.getImageSize();
-            int round = Math.round(telegramQRCodeWriter.getImageSize() / eVar.f51975f) + 2;
+            eVar.f51983l = telegramQRCodeWriter.getImageSize();
+            int round = Math.round(telegramQRCodeWriter.getImageSize() / eVar.f51978f) + 2;
             int i20 = (eVar.e - round) / 2;
-            eVar.f51978j = i20;
-            eVar.f51979k = i20 + round;
+            eVar.f51981j = i20;
+            eVar.f51982k = i20 + round;
             return eVar;
         } catch (Exception unused) {
             return null;
@@ -192,7 +192,7 @@ public final class f {
     public static float h(e eVar, float f7) {
         float f10 = 1.0f - f7;
         float f11 = f10 * f10;
-        return mk.b(eVar.e, 6.0f, 1.0f - (((f10 * 0.45f) + 0.55f) * f11), -1.5f);
+        return ok.b(eVar.e, 6.0f, 1.0f - (((f10 * 0.45f) + 0.55f) * f11), -1.5f);
     }
 
     public static boolean i(e eVar, int i10, int i11) {
@@ -274,7 +274,7 @@ public final class f {
         float f12;
         int i11;
         int i12;
-        if (eVar.f51982n == null) {
+        if (eVar.f51985n == null) {
             int i13 = 0;
             int i14 = 0;
             while (true) {
@@ -282,19 +282,19 @@ public final class f {
                     break;
                 }
                 for (int i15 = 0; i15 < eVar.e; i15++) {
-                    int i16 = eVar.f51978j;
-                    if (i15 < i16 || i15 >= (i12 = eVar.f51979k) || i13 < i16 || i13 >= i12) {
+                    int i16 = eVar.f51981j;
+                    if (i15 < i16 || i15 >= (i12 = eVar.f51982k) || i13 < i16 || i13 >= i12) {
                         i14++;
                     }
                 }
                 i13++;
             }
-            eVar.f51981m = i14;
-            eVar.f51982n = new float[i14];
-            eVar.f51983o = new float[i14];
-            eVar.f51984p = new float[i14];
-            eVar.f51985q = new boolean[i14];
-            eVar.f51986r = new int[i14 * 4];
+            eVar.f51984m = i14;
+            eVar.f51985n = new float[i14];
+            eVar.f51986o = new float[i14];
+            eVar.f51987p = new float[i14];
+            eVar.f51988q = new boolean[i14];
+            eVar.f51989r = new int[i14 * 4];
             float f13 = 1.4142f * ((i10 - 1) / 2.0f);
             int i17 = 0;
             for (int i18 = 0; i18 < eVar.e; i18++) {
@@ -302,18 +302,18 @@ public final class f {
                 while (true) {
                     int i20 = eVar.e;
                     if (i19 < i20) {
-                        int i21 = eVar.f51978j;
-                        if (i19 < i21 || i19 >= (i11 = eVar.f51979k) || i18 < i21 || i18 >= i11) {
+                        int i21 = eVar.f51981j;
+                        if (i19 < i21 || i19 >= (i11 = eVar.f51982k) || i18 < i21 || i18 >= i11) {
                             int i22 = (i20 * i18) + i19;
-                            float f14 = eVar.f51977i[i22] * 3.17f;
+                            float f14 = eVar.f51980i[i22] * 3.17f;
                             float floor = f14 - ((float) Math.floor(f14));
                             boolean i23 = i(eVar, i19, i18);
-                            float[] fArr = eVar.f51982n;
-                            float f15 = eVar.f51976g;
-                            float f16 = eVar.f51975f;
+                            float[] fArr = eVar.f51985n;
+                            float f15 = eVar.f51979g;
+                            float f16 = eVar.f51978f;
                             fArr[i17] = ((i19 + 0.5f) * f16) + f15;
-                            eVar.f51983o[i17] = mk.b(i18, 0.5f, f16, f15);
-                            float[] fArr2 = eVar.f51984p;
+                            eVar.f51986o[i17] = ok.b(i18, 0.5f, f16, f15);
+                            float[] fArr2 = eVar.f51987p;
                             float hypot = (((float) Math.hypot(f10 - f7, f11 - f7)) / f13) * 0.5f;
                             if (i23) {
                                 f12 = hypot * 0.85f;
@@ -321,8 +321,8 @@ public final class f {
                                 f12 = hypot + (floor * 0.06f);
                             }
                             fArr2[i17] = f12;
-                            eVar.f51985q[i17] = eVar.h[i22];
-                            int[] iArr = eVar.f51986r;
+                            eVar.f51988q[i17] = eVar.h[i22];
+                            int[] iArr = eVar.f51989r;
                             int i24 = i17 * 4;
                             iArr[i24] = i19;
                             iArr[i24 + 1] = i18;
@@ -382,11 +382,11 @@ public final class f {
     }
 
     public final void a(e eVar) {
-        this.f51998m = eVar;
-        this.f51999n = null;
-        this.f52002q = 2;
-        this.f52000o = 0.0f;
-        this.f52001p = 0L;
+        this.f52001m = eVar;
+        this.f52002n = null;
+        this.f52005q = 2;
+        this.f52003o = 0.0f;
+        this.f52004p = 0L;
         this.E = 0L;
         this.F = false;
     }
@@ -419,34 +419,34 @@ public final class f {
         float f22 = f7;
         float f23 = f10;
         float f24 = f12;
-        int i16 = this.f52002q;
-        Paint paint2 = this.f52005t;
-        RectF rectF = this.f52007w;
+        int i16 = this.f52005q;
+        Paint paint2 = this.f52008t;
+        RectF rectF = this.f52010w;
         int i17 = 1;
         if (i16 == 2) {
             m(eVar);
-            int i18 = eVar.f51976g;
+            int i18 = eVar.f51979g;
             int i19 = eVar.e;
-            g((i19 * i19) + (eVar.f51981m * 2));
+            g((i19 * i19) + (eVar.f51984m * 2));
             Bitmap bitmap = this.J;
-            Bitmap bitmap2 = eVar.f51972a;
+            Bitmap bitmap2 = eVar.f51975a;
             Paint paint3 = this.K;
             if (bitmap != bitmap2) {
-                Bitmap bitmap3 = eVar.f51972a;
+                Bitmap bitmap3 = eVar.f51975a;
                 Shader.TileMode tileMode = Shader.TileMode.CLAMP;
                 paint3.setShader(new BitmapShader(bitmap3, tileMode, tileMode));
-                this.J = eVar.f51972a;
+                this.J = eVar.f51975a;
             }
-            float f25 = f11 / eVar.f51973b;
+            float f25 = f11 / eVar.f51976b;
             float min = Math.min(1.0f, Math.max(0.0f, f24) / 0.1f);
-            float f26 = eVar.f51975f * 0.5f;
+            float f26 = eVar.f51978f * 0.5f;
             float f27 = 1.0f;
             boolean z12 = true;
             int i20 = 0;
             int i21 = 0;
             int i22 = 0;
-            while (i20 < eVar.f51981m) {
-                float f28 = (f24 - eVar.f51984p[i20]) / 0.434f;
+            while (i20 < eVar.f51984m) {
+                float f28 = (f24 - eVar.f51987p[i20]) / 0.434f;
                 if (f28 < 0.0f) {
                     f28 = 0.0f;
                 } else if (f28 > f27) {
@@ -458,9 +458,9 @@ public final class f {
                     float f29 = (f28 * (-2.0f)) + 2.0f;
                     f19 = f27 - (((f29 * f29) * f29) * 0.5f);
                 }
-                float f30 = (eVar.f51982n[i20] * f25) + f22;
-                float f31 = (eVar.f51983o[i20] * f25) + f23;
-                if (eVar.f51985q[i20]) {
+                float f30 = (eVar.f51985n[i20] * f25) + f22;
+                float f31 = (eVar.f51986o[i20] * f25) + f23;
+                if (eVar.f51988q[i20]) {
                     if (f19 > 0.75f) {
                         f21 = 4.0f * (f19 - 0.75f);
                     } else {
@@ -480,8 +480,8 @@ public final class f {
                     if (f21 > 0.0f) {
                         int i23 = i20 * 4;
                         float f33 = i18;
-                        int[] iArr = eVar.f51986r;
-                        float f34 = eVar.f51975f;
+                        int[] iArr = eVar.f51989r;
+                        float f34 = eVar.f51978f;
                         float f35 = (iArr[i23] * f34) + f33;
                         float f36 = (iArr[i23 + 1] * f34) + f33;
                         float f37 = f35 + f34;
@@ -524,16 +524,16 @@ public final class f {
             float max = 1.0f - Math.max(0.0f, Math.min(1.0f, (f12 - 0.05f) / 0.45f));
             float z14 = org.telegram.ui.Cells.c1.z(max, max, max, 1.0f);
             if (z14 > 0.0f) {
-                int i24 = eVar.f51978j;
-                while (i24 < eVar.f51979k) {
-                    int i25 = eVar.f51978j;
+                int i24 = eVar.f51981j;
+                while (i24 < eVar.f51982k) {
+                    int i25 = eVar.f51981j;
                     int i26 = i22;
-                    while (i25 < eVar.f51979k) {
+                    while (i25 < eVar.f51982k) {
                         if (!eVar.h[(eVar.e * i24) + i25]) {
                             f18 = z14;
                         } else {
                             float f42 = i18;
-                            float f43 = eVar.f51975f;
+                            float f43 = eVar.f51978f;
                             float f44 = (i25 * f43) + f42;
                             float f45 = (i24 * f43) + f42;
                             f18 = z14;
@@ -551,7 +551,7 @@ public final class f {
             }
             if (z12 && min >= 1.0f) {
                 rectF.set(f22, f23, f22 + f11, f23 + f11);
-                canvas.drawBitmap(eVar.f51972a, eVar.f51974c, rectF, paint2);
+                canvas.drawBitmap(eVar.f51975a, eVar.f51977c, rectF, paint2);
                 return;
             }
             if (i21 > 0) {
@@ -571,8 +571,8 @@ public final class f {
         int i30 = 0;
         float f48 = 2.0f;
         float f49 = 0.05f;
-        int i31 = eVar.f51973b;
-        int i32 = eVar.f51976g;
+        int i31 = eVar.f51976b;
+        int i32 = eVar.f51979g;
         float f50 = f11 / i31;
         float f51 = (eVar.e - 1) / 2.0f;
         float f52 = 1.4142f * f51;
@@ -592,7 +592,7 @@ public final class f {
                     } else {
                         float f53 = i34;
                         float f54 = i33;
-                        float d = (f12 - ((eVar.f51977i[i36] * 0.06f) + a1.g.d((float) Math.hypot(f53 - f51, f54 - f51), f52, 0.52f, f49))) / 0.367f;
+                        float d = (f12 - ((eVar.f51980i[i36] * 0.06f) + a1.g.d((float) Math.hypot(f53 - f51, f54 - f51), f52, 0.52f, f49))) / 0.367f;
                         if (d > 0.0f) {
                             if (d >= 1.0f) {
                                 z10 = 1.0f;
@@ -600,25 +600,25 @@ public final class f {
                                 float f55 = 1.0f - d;
                                 z10 = org.telegram.ui.Cells.c1.z(f55, f55, f55, 1.0f);
                             }
-                            if (this.f52002q == 2) {
+                            if (this.f52005q == 2) {
                                 l4 = (0.6f * z10) + 0.4f;
                             } else {
                                 l4 = l(d);
                             }
-                            if (this.f52002q != 2) {
+                            if (this.f52005q != 2) {
                                 z10 = Math.min(1.0f, d * 6.0f);
                             }
-                            int i37 = eVar.f51978j;
-                            if (i34 < i37 || i34 >= (i12 = eVar.f51979k) || i33 < i37 || i33 >= i12) {
+                            int i37 = eVar.f51981j;
+                            if (i34 < i37 || i34 >= (i12 = eVar.f51982k) || i33 < i37 || i33 >= i12) {
                                 float f56 = i32;
-                                float f57 = eVar.f51975f;
+                                float f57 = eVar.f51978f;
                                 int i38 = (int) ((f53 * f57) + f56);
                                 int i39 = (int) ((f54 * f57) + f56);
                                 float f58 = l4;
                                 float f59 = f51;
                                 f15 = f52;
                                 int ceil = (int) Math.ceil(((i34 + 1) * f57) + f56);
-                                int ceil2 = (int) Math.ceil(((i33 + 1) * eVar.f51975f) + f56);
+                                int ceil2 = (int) Math.ceil(((i33 + 1) * eVar.f51978f) + f56);
                                 Rect rect = this.v;
                                 rect.set(i38, i39, ceil, ceil2);
                                 f14 = f59;
@@ -632,8 +632,8 @@ public final class f {
                                 f13 = f50;
                                 rectF.set(d10 - f61, d11 - f62, d10 + f61, d11 + f62);
                                 paint2.setAlpha((int) (z10 * 255.0f));
-                                e eVar2 = this.f51999n;
-                                canvas.drawBitmap(eVar.f51972a, rect, rectF, paint2);
+                                e eVar2 = this.f52002n;
+                                canvas.drawBitmap(eVar.f51975a, rect, rectF, paint2);
                                 paint2.setAlpha(255);
                             }
                         }
@@ -662,7 +662,7 @@ public final class f {
         }
         float f63 = f23;
         float f64 = f22;
-        float f65 = f11 / eVar.f51973b;
+        float f65 = f11 / eVar.f51976b;
         int i40 = 0;
         while (i40 < 3) {
             if (i40 == i17) {
@@ -678,7 +678,7 @@ public final class f {
             float f66 = f12 / 0.32f;
             if (f66 > 0.0f) {
                 float f67 = i32;
-                float f68 = eVar.f51975f;
+                float f68 = eVar.f51978f;
                 float f69 = (((i10 * f68) + f67) * f65) + f64;
                 float f70 = (((i11 * f68) + f67) * f65) + f63;
                 float f71 = ((((i10 + 7) * f68) + f67) * f65) + f64;
@@ -689,7 +689,7 @@ public final class f {
                 canvas.clipRect(f69 - 1.0f, f70 - 1.0f, f71 + 1.0f, f72 + 1.0f);
                 rectF.set(f64, f63, f64 + f11, f63 + f11);
                 paint2.setAlpha(255);
-                canvas.drawBitmap(eVar.f51972a, eVar.f51974c, rectF, paint2);
+                canvas.drawBitmap(eVar.f51975a, eVar.f51977c, rectF, paint2);
                 canvas.restore();
             }
             i40++;
@@ -727,6 +727,6 @@ public final class f {
     }
 
     public final int o() {
-        return this.f52009y & 16777215;
+        return this.f52012y & 16777215;
     }
 }

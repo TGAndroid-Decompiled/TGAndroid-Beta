@@ -1,6 +1,6 @@
 package org.telegram.ui;
 public final class fn {
-    public int f37040a;
-    public int f37041b;
-    public int f37042c;
+    public int f37043a;
+    public int f37044b;
+    public int f37045c;
 }

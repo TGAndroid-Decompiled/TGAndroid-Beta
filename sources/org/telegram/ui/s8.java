@@ -8,21 +8,21 @@ import org.telegram.messenger.ChatObject;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class s8 implements Predicate {
-    public final int f41394a;
-    public final long f41395b;
+    public final int f41397a;
+    public final long f41398b;
 
     public s8(long j10, int i10) {
-        this.f41394a = i10;
-        this.f41395b = j10;
+        this.f41397a = i10;
+        this.f41398b = j10;
     }
 
     public Predicate and(Predicate predicate) {
-        int i10 = this.f41394a;
+        int i10 = this.f41397a;
         return Predicate$CC.$default$and(this, predicate);
     }
 
     public Predicate negate() {
-        switch (this.f41394a) {
+        switch (this.f41397a) {
             case 0:
                 return Predicate$CC.$default$negate(this);
             case 1:
@@ -35,27 +35,27 @@ public final class s8 implements Predicate {
     }
 
     public Predicate or(Predicate predicate) {
-        int i10 = this.f41394a;
+        int i10 = this.f41397a;
         return Predicate$CC.$default$or(this, predicate);
     }
 
     @Override
     public final boolean test(Object obj) {
-        switch (this.f41394a) {
+        switch (this.f41397a) {
             case 0:
-                if (((TLRPC.User) obj).f20423id == this.f41395b) {
+                if (((TLRPC.User) obj).f20426id == this.f41398b) {
                     return true;
                 }
                 return false;
             case 1:
-                if (((TLRPC.User) obj).f20423id == this.f41395b) {
+                if (((TLRPC.User) obj).f20426id == this.f41398b) {
                     return true;
                 }
                 return false;
             case 2:
                 TLObject tLObject = (TLObject) obj;
                 if (tLObject instanceof TLRPC.User) {
-                    if (((TLRPC.User) tLObject).f20423id != this.f41395b) {
+                    if (((TLRPC.User) tLObject).f20426id != this.f41398b) {
                         return true;
                     }
                 } else if (tLObject instanceof TLRPC.Chat) {
@@ -65,7 +65,7 @@ public final class s8 implements Predicate {
             default:
                 Map.Entry entry = (Map.Entry) obj;
                 if (((View) entry.getKey()).isAttachedToWindow() && ((View) entry.getKey()).isShown() && ((View) entry.getKey()).getWindowVisibility() == 0) {
-                    if (this.f41395b - ((Long) entry.getValue()).longValue() <= 300) {
+                    if (this.f41398b - ((Long) entry.getValue()).longValue() <= 300) {
                         return false;
                     }
                 }

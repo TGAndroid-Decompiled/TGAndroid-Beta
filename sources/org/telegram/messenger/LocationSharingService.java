@@ -87,7 +87,7 @@ public class LocationSharingService extends Service implements NotificationCente
     public void didReceivedNotification(int i10, int i11, Object... objArr) {
         Handler handler;
         if (i10 == NotificationCenter.liveLocationsChanged && (handler = this.handler) != null) {
-            handler.post(new z5(this, 1));
+            handler.post(new a6(this, 1));
         }
     }
 
@@ -101,9 +101,9 @@ public class LocationSharingService extends Service implements NotificationCente
         super.onCreate();
         Handler handler = new Handler();
         this.handler = handler;
-        z5 z5Var = new z5(this, 0);
-        this.runnable = z5Var;
-        handler.postDelayed(z5Var, 1000L);
+        a6 a6Var = new a6(this, 0);
+        this.runnable = a6Var;
+        handler.postDelayed(a6Var, 1000L);
     }
 
     @Override

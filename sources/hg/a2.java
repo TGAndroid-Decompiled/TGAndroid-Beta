@@ -122,37 +122,37 @@ public class a2 {
                         obj = ((g0) obj).f11866a;
                     }
                     if (obj instanceof tq0) {
-                        obj = ((tq0) obj).f30653b;
+                        obj = ((tq0) obj).f30656b;
                     }
                     boolean z10 = obj instanceof TLRPC.User;
                     ArrayList arrayList3 = this.d;
                     ArrayList arrayList4 = this.e;
                     if (z10) {
                         TLRPC.User user = (TLRPC.User) obj;
-                        TLRPC.User user2 = (TLRPC.User) hVar.f(user.f20423id);
+                        TLRPC.User user2 = (TLRPC.User) hVar.f(user.f20426id);
                         if (user2 != null) {
                             arrayList4.remove(user2);
                             arrayList3.remove(user2);
-                            hVar.l(user2.f20423id);
+                            hVar.l(user2.f20426id);
                         }
-                        long j10 = user.f20423id;
+                        long j10 = user.f20426id;
                         a0.h hVar2 = this.h;
                         TLObject tLObject = (TLObject) hVar2.f(j10);
                         if (tLObject != null) {
                             this.f11796g.remove(tLObject);
-                            hVar2.l(user.f20423id);
+                            hVar2.l(user.f20426id);
                         }
-                        long j11 = user.f20423id;
+                        long j11 = user.f20426id;
                         a0.h hVar3 = this.f11797i;
                         Object f7 = hVar3.f(j11);
                         if (f7 != null) {
                             this.f11798j.remove(f7);
-                            hVar3.l(user.f20423id);
+                            hVar3.l(user.f20426id);
                         }
-                    } else if ((obj instanceof TLRPC.Chat) && (chat = (TLRPC.Chat) hVar.f(-((TLRPC.Chat) obj).f20276id)) != null) {
+                    } else if ((obj instanceof TLRPC.Chat) && (chat = (TLRPC.Chat) hVar.f(-((TLRPC.Chat) obj).f20279id)) != null) {
                         arrayList4.remove(chat);
                         arrayList3.remove(chat);
-                        hVar.l(-chat.f20276id);
+                        hVar.l(-chat.f20279id);
                     }
                 }
             }
@@ -177,7 +177,7 @@ public class a2 {
                 if (user != null) {
                     this.e.remove(user);
                     this.d.remove(user);
-                    hVar.l(user.f20423id);
+                    hVar.l(user.f20426id);
                 }
             }
         }

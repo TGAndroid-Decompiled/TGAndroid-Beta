@@ -12,7 +12,7 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.mk;
+import org.telegram.messenger.ok;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.jm0;
 import org.telegram.ui.Components.xl0;
@@ -70,9 +70,9 @@ public final class t8 extends org.telegram.ui.ActionBar.f3 implements Notificati
         jm0Var.setOnScrollListener(new r8(this));
         TextView textView = new TextView(getContext());
         this.f9860n = textView;
-        mk.o(org.telegram.ui.ActionBar.h6.G6, d6Var, textView, 1, 20.0f);
+        ok.o(org.telegram.ui.ActionBar.h6.G6, d6Var, textView, 1, 20.0f);
         textView.setPadding(AndroidUtilities.dp(22.0f) + this.backgroundPaddingLeft, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(22.0f) + this.backgroundPaddingLeft, AndroidUtilities.dp(14.0f));
-        textView.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21061h5, d6Var));
+        textView.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21064h5, d6Var));
         textView.setTypeface(AndroidUtilities.bold());
         if (z10) {
             i11 = R.string.StoryPrivacyPublishLiveAs;

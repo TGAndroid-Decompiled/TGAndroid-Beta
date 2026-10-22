@@ -61,7 +61,7 @@ public final class f implements q7, ig1, m4.g1, e2.j, org.telegram.ui.ActionBar.
             default:
                 n00 n00Var = (n00) this.f5375c;
                 LongSparseIntArray longSparseIntArray = n00Var.H;
-                n00Var.f39384y = i10;
+                n00Var.f39387y = i10;
                 if (this.f5374b) {
                     n00Var.o0(n00Var.F, arrayList, true);
                     n00Var.F = arrayList;
@@ -171,8 +171,8 @@ public final class f implements q7, ig1, m4.g1, e2.j, org.telegram.ui.ActionBar.
                 return;
             case 6:
             default:
-                q50 q50Var = ((t40) this.f5375c).f41592b;
-                q50Var.f40376a1.toggleRecord(null, 0);
+                q50 q50Var = ((t40) this.f5375c).f41595b;
+                q50Var.f40379a1.toggleRecord(null, 0);
                 UndoView l1 = q50Var.l1();
                 if (this.f5374b) {
                     i11 = 101;
@@ -219,7 +219,7 @@ public final class f implements q7, ig1, m4.g1, e2.j, org.telegram.ui.ActionBar.
 
     @Override
     public void i(long j10) {
-        org.telegram.ui.Components.p6 p6Var = ((org.telegram.ui.Cells.u1) this.f5375c).f23535w4;
+        org.telegram.ui.Components.p6 p6Var = ((org.telegram.ui.Cells.u1) this.f5375c).f23538w4;
         if (p6Var != null) {
             p6Var.t(LocaleController.formatPollEndTime((int) j10, this.f5374b), true, true);
         }
@@ -228,7 +228,7 @@ public final class f implements q7, ig1, m4.g1, e2.j, org.telegram.ui.ActionBar.
     @Override
     public void o(wh.g gVar, float f7, float f10) {
         wh.n nVar = (wh.n) this.f5375c;
-        if (!nVar.d && !nVar.e && !nVar.f49103f && this.f5374b) {
+        if (!nVar.d && !nVar.e && !nVar.f49106f && this.f5374b) {
             nVar.c(f7, f10);
         }
     }

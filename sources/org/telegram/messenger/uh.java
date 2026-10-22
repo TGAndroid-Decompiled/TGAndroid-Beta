@@ -1,34 +1,34 @@
 package org.telegram.messenger;
 
+import android.animation.ValueAnimator;
 import android.view.View;
+import android.view.Window;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.RichMessageLayout;
-public final class uh implements Runnable {
-    public final int f19674a = 0;
-    public final RichMessageLayout.Text f19675b;
-    public final RichMessageLayout f19676c;
-    public final View d;
+import org.telegram.ui.Components.c81;
+public final class uh implements ValueAnimator.AnimatorUpdateListener {
+    public final int f19702a;
+    public final Object f19703b;
+    public final Object f19704c;
 
-    public uh(RichMessageLayout.Text text, View view, RichMessageLayout richMessageLayout) {
-        this.f19675b = text;
-        this.d = view;
-        this.f19676c = richMessageLayout;
+    public uh(int i10, Object obj, Object obj2) {
+        this.f19702a = i10;
+        this.f19703b = obj;
+        this.f19704c = obj2;
     }
 
     @Override
-    public final void run() {
-        switch (this.f19674a) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f19702a) {
             case 0:
-                this.f19675b.lambda$revealSpoilers$4(this.d, this.f19676c);
+                ((RichMessageLayout.SpoilerReveal) this.f19703b).lambda$start$0((View) this.f19704c, valueAnimator);
+                return;
+            case 1:
+                AndroidUtilities.lambda$setNavigationBarColor$23((AndroidUtilities.IntColorCallback) this.f19703b, (Window) this.f19704c, valueAnimator);
                 return;
             default:
-                this.f19675b.lambda$revealSpoilers$3(this.f19676c, this.d);
+                ((MediaController) this.f19703b).lambda$cleanupPlayer$10((c81) this.f19704c, valueAnimator);
                 return;
         }
-    }
-
-    public uh(RichMessageLayout.Text text, RichMessageLayout richMessageLayout, View view) {
-        this.f19675b = text;
-        this.f19676c = richMessageLayout;
-        this.d = view;
     }
 }

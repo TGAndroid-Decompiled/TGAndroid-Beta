@@ -330,7 +330,7 @@ public class m extends AbstractCollection implements List {
                     mVar.o();
                     return;
                 } else {
-                    ((x7.f) this.f8470f).f49370c.put(this.f8468b, this.f8469c);
+                    ((x7.f) this.f8470f).f49373c.put(this.f8468b, this.f8469c);
                     return;
                 }
             default:
@@ -339,7 +339,7 @@ public class m extends AbstractCollection implements List {
                     mVar2.o();
                     return;
                 }
-                ((mg) this.f8470f).f51112c.put(this.f8468b, this.f8469c);
+                ((mg) this.f8470f).f51115c.put(this.f8468b, this.f8469c);
                 return;
         }
     }
@@ -352,7 +352,7 @@ public class m extends AbstractCollection implements List {
                     mVar.p();
                     return;
                 } else if (this.f8469c.isEmpty()) {
-                    ((x7.f) this.f8470f).f49370c.remove(this.f8468b);
+                    ((x7.f) this.f8470f).f49373c.remove(this.f8468b);
                     return;
                 } else {
                     return;
@@ -363,7 +363,7 @@ public class m extends AbstractCollection implements List {
                     mVar2.p();
                     return;
                 } else if (this.f8469c.isEmpty()) {
-                    ((mg) this.f8470f).f51112c.remove(this.f8468b);
+                    ((mg) this.f8470f).f51115c.remove(this.f8468b);
                     return;
                 } else {
                     return;
@@ -579,7 +579,7 @@ public class m extends AbstractCollection implements List {
                         throw new ConcurrentModificationException();
                     }
                     return;
-                } else if (this.f8469c.isEmpty() && (collection = (Collection) ((x7.f) this.f8470f).f49370c.get(this.f8468b)) != null) {
+                } else if (this.f8469c.isEmpty() && (collection = (Collection) ((x7.f) this.f8470f).f49373c.get(this.f8468b)) != null) {
                     this.f8469c = collection;
                     return;
                 } else {
@@ -594,7 +594,7 @@ public class m extends AbstractCollection implements List {
                     }
                     return;
                 } else if (this.f8469c.isEmpty()) {
-                    Collection collection2 = (Collection) ((mg) this.f8470f).f51112c.get(this.f8468b);
+                    Collection collection2 = (Collection) ((mg) this.f8470f).f51115c.get(this.f8468b);
                     if (collection2 != null) {
                         this.f8469c = collection2;
                         return;

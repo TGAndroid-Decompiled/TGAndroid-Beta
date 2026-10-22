@@ -98,8 +98,8 @@ public final class j7 extends View {
         float e = this.d.e(this.f9266y);
         f11 f11Var = this.f9262r;
         if (f11Var != null && this.f9263s != null && e > 0.0f) {
-            f11Var.f26031p = getWidth() * 0.7f;
-            this.f9263s.f26031p = getWidth() * 0.7f;
+            f11Var.f26034p = getWidth() * 0.7f;
+            this.f9263s.f26034p = getWidth() * 0.7f;
             float dp = AndroidUtilities.dp(5.0f);
             float dp2 = AndroidUtilities.dp(10.0f);
             float dp3 = AndroidUtilities.dp(32.0f);
@@ -111,7 +111,7 @@ public final class j7 extends View {
             } else {
                 f7 = 0.0f;
             }
-            float max = Math.max(min, Math.max(this.f9262r.f26021c, this.f9263s.f26021c) + f7 + dp + AndroidUtilities.dp(15.0f) + dp);
+            float max = Math.max(min, Math.max(this.f9262r.f26024c, this.f9263s.f26024c) + f7 + dp + AndroidUtilities.dp(15.0f) + dp);
             if (this.f9261n) {
                 f10 = dp3;
             } else {
@@ -197,11 +197,11 @@ public final class j7 extends View {
                     ycVar.c(true);
                 }
             } else if (motionEvent.getAction() == 2) {
-                if (ycVar.f32632i && !rectF.contains(motionEvent.getX(), motionEvent.getY())) {
+                if (ycVar.f32635i && !rectF.contains(motionEvent.getX(), motionEvent.getY())) {
                     ycVar.c(false);
                 }
             } else if (motionEvent.getAction() == 1) {
-                if (ycVar.f32632i && (u9Var = this.f9259c) != null && this.E != null) {
+                if (ycVar.f32635i && (u9Var = this.f9259c) != null && this.E != null) {
                     u9Var.run(new f7(this, 1));
                 }
                 ycVar.c(false);
@@ -210,7 +210,7 @@ public final class j7 extends View {
                 ycVar.c(false);
                 this.L = false;
             }
-            if (!this.L && !ycVar.f32632i) {
+            if (!this.L && !ycVar.f32635i) {
                 return false;
             }
             return true;

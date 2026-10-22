@@ -10,21 +10,21 @@ import rb.i;
 public final class e extends i {
     public ThickLanguageIdentifier d;
     public final Context e;
-    public final ub.a f48337f;
-    public final boolean f48338g;
+    public final ub.a f48340f;
+    public final boolean f48341g;
 
     public e(Context context, ub.a aVar) {
         this.e = context;
-        this.f48337f = aVar;
+        this.f48340f = aVar;
         aVar.getClass();
-        this.f48338g = true;
+        this.f48341g = true;
     }
 
     @Override
     public final void b() {
-        l.k(Thread.currentThread().equals(((AtomicReference) this.f45197a.d).get()));
+        l.k(Thread.currentThread().equals(((AtomicReference) this.f45200a.d).get()));
         if (this.d == null) {
-            this.f48337f.getClass();
+            this.f48340f.getClass();
             ThickLanguageIdentifier thickLanguageIdentifier = new ThickLanguageIdentifier(this.e);
             this.d = thickLanguageIdentifier;
             thickLanguageIdentifier.b();
@@ -33,7 +33,7 @@ public final class e extends i {
 
     @Override
     public final void c() {
-        l.k(Thread.currentThread().equals(((AtomicReference) this.f45197a.d).get()));
+        l.k(Thread.currentThread().equals(((AtomicReference) this.f45200a.d).get()));
         ThickLanguageIdentifier thickLanguageIdentifier = this.d;
         if (thickLanguageIdentifier != null) {
             thickLanguageIdentifier.c();

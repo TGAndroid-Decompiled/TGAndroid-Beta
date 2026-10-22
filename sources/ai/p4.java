@@ -116,7 +116,7 @@ public final class p4 implements Runnable {
                 if (tL_error != null) {
                     if (!"PASSWORD_MISSING".equals(tL_error.text) && !tL_error.text.startsWith("PASSWORD_TOO_FRESH_") && !tL_error.text.startsWith("SESSION_TOO_FRESH_")) {
                         if ("SRP_ID_INVALID".equals(tL_error.text)) {
-                            ConnectionsManager.getInstance(ieVar.f37955y0).sendRequest(new TL_account.getPassword(), new w9(ieVar, twoStepVerificationActivity, z10, 3), 8);
+                            ConnectionsManager.getInstance(ieVar.f37958y0).sendRequest(new TL_account.getPassword(), new w9(ieVar, twoStepVerificationActivity, z10, 3), 8);
                             return;
                         }
                         if (twoStepVerificationActivity != null) {
@@ -131,14 +131,14 @@ public final class p4 implements Runnable {
                     }
                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(activity);
                     String string = LocaleController.getString(R.string.EditAdminTransferAlertTitle);
-                    org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20605a;
+                    org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20608a;
                     b2Var.R = string;
                     LinearLayout linearLayout = new LinearLayout(activity);
                     linearLayout.setPadding(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(24.0f), 0);
                     linearLayout.setOrientation(1);
                     alertDialog$Builder.n(linearLayout);
                     TextView textView = new TextView(activity);
-                    int i19 = org.telegram.ui.ActionBar.h6.f21096j5;
+                    int i19 = org.telegram.ui.ActionBar.h6.f21099j5;
                     textView.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, i19, false));
                     textView.setTextSize(1, 16.0f);
                     if (LocaleController.isRTL) {
@@ -243,7 +243,7 @@ public final class p4 implements Runnable {
                         twoStepVerificationActivity.showDialog(b2Var);
                         return;
                     } else {
-                        ieVar.f37952w0.showDialog(b2Var);
+                        ieVar.f37955w0.showDialog(b2Var);
                         return;
                     }
                 }
@@ -275,7 +275,7 @@ public final class p4 implements Runnable {
                         return;
                     }
                     try {
-                        AndroidUtilities.openForView(messageObject, qnVar.getParentActivity(), qnVar.f40673ea, false);
+                        AndroidUtilities.openForView(messageObject, qnVar.getParentActivity(), qnVar.f40676ea, false);
                         return;
                     } catch (Exception e7) {
                         FileLog.e(e7);
@@ -288,7 +288,7 @@ public final class p4 implements Runnable {
                 to toVar = (to) obj5;
                 TLRPC.TL_username tL_username = (TLRPC.TL_username) obj3;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj;
-                vo voVar = toVar.f41712a;
+                vo voVar = toVar.f41715a;
                 wo woVar = voVar.Y2;
                 woVar.P.remove(((TLRPC.TL_channels_toggleUsername) obj4).username);
                 if (((TLObject) obj2) instanceof TLRPC.TL_boolTrue) {
@@ -313,7 +313,7 @@ public final class p4 implements Runnable {
                 int[] iArr2 = (int[]) obj4;
                 int[] iArr3 = (int[]) obj3;
                 int[] iArr4 = (int[]) obj2;
-                DispatchQueue dispatchQueue = org.telegram.ui.Wallet.w9.f35080a;
+                DispatchQueue dispatchQueue = org.telegram.ui.Wallet.w9.f35083a;
                 int i20 = 0;
                 while (true) {
                     int i21 = 287;
@@ -363,7 +363,7 @@ public final class p4 implements Runnable {
                                         }
                                     }
                                 }
-                                iArr3[(i30 * 288) + i28] = org.telegram.ui.Wallet.w9.f35081b[i31];
+                                iArr3[(i30 * 288) + i28] = org.telegram.ui.Wallet.w9.f35084b[i31];
                                 i30++;
                                 i18 = 0;
                                 i21 = 287;

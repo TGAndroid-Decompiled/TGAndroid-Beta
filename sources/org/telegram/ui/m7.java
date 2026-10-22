@@ -11,13 +11,13 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class m7 extends i7 {
-    public final ArrayList f39130f;
+    public final ArrayList f39133f;
     public final v7 h;
 
     public m7(v7 v7Var) {
         super(0);
         this.h = v7Var;
-        this.f39130f = new ArrayList();
+        this.f39133f = new ArrayList();
     }
 
     @Override
@@ -27,16 +27,16 @@ public final class m7 extends i7 {
 
     @Override
     public final void F() {
-        ArrayList arrayList = this.f39130f;
+        ArrayList arrayList = this.f39133f;
         arrayList.clear();
         ArrayList arrayList2 = this.e;
         arrayList.addAll(arrayList2);
         arrayList2.clear();
         v7 v7Var = this.h;
-        if (v7Var.f42126f != null) {
-            for (int i10 = 0; i10 < v7Var.f42126f.f4430b.size(); i10++) {
+        if (v7Var.f42129f != null) {
+            for (int i10 = 0; i10 < v7Var.f42129f.f4430b.size(); i10++) {
                 ?? aVar = new pg.a(1, true);
-                aVar.f40082c = (v6) v7Var.f42126f.f4430b.get(i10);
+                aVar.f40085c = (v6) v7Var.f42129f.f4430b.get(i10);
                 arrayList2.add(aVar);
             }
         }
@@ -49,26 +49,26 @@ public final class m7 extends i7 {
         String dialogPhotoTitle;
         float f7;
         boolean z11;
-        if (b1Var.f45920f == 1) {
-            b7 b7Var = (b7) b1Var.f45917a;
+        if (b1Var.f45923f == 1) {
+            b7 b7Var = (b7) b1Var.f45920a;
             ArrayList arrayList = this.e;
-            v6 v6Var = ((p7) arrayList.get(i10)).f40082c;
+            v6 v6Var = ((p7) arrayList.get(i10)).f40085c;
             v7 v7Var = this.h;
-            TLObject userOrChat = v7Var.d.getMessagesController().getUserOrChat(v6Var.f42114a);
-            v6 v6Var2 = b7Var.f35517a;
-            if (v6Var2 != null && v6Var2.f42114a == v6Var.f42114a) {
+            TLObject userOrChat = v7Var.d.getMessagesController().getUserOrChat(v6Var.f42117a);
+            v6 v6Var2 = b7Var.f35520a;
+            if (v6Var2 != null && v6Var2.f42117a == v6Var.f42117a) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            if (v6Var.f42114a == Long.MAX_VALUE) {
+            if (v6Var.f42117a == Long.MAX_VALUE) {
                 dialogPhotoTitle = LocaleController.getString(R.string.CacheOtherChats);
                 b7Var.getImageView().getAvatarDrawable().g(14);
                 b7Var.getImageView().e(null, b7Var.getImageView().getAvatarDrawable());
             } else {
                 dialogPhotoTitle = DialogObject.setDialogPhotoTitle(b7Var.getImageView(), userOrChat);
             }
-            b7Var.f35517a = v6Var;
+            b7Var.f35520a = v6Var;
             org.telegram.ui.Components.w9 imageView = b7Var.getImageView();
             if ((userOrChat instanceof TLRPC.Chat) && ((TLRPC.Chat) userOrChat).forum) {
                 f7 = 12.0f;
@@ -76,14 +76,14 @@ public final class m7 extends i7 {
                 f7 = 19.0f;
             }
             imageView.setRoundRadius(AndroidUtilities.dp(f7));
-            String formatFileSize = AndroidUtilities.formatFileSize(v6Var.f42116c);
+            String formatFileSize = AndroidUtilities.formatFileSize(v6Var.f42119c);
             if (i10 < arrayList.size() - 1) {
                 z11 = true;
             } else {
                 z11 = false;
             }
             org.telegram.ui.Components.q6 q6Var = b7Var.d;
-            TextView textView = b7Var.f35519c;
+            TextView textView = b7Var.f35522c;
             textView.setText(Emoji.replaceEmoji(dialogPhotoTitle, textView.getPaint().getFontMetricsInt(), false));
             if (formatFileSize != null) {
                 q6Var.c(formatFileSize, false, true);
@@ -91,28 +91,28 @@ public final class m7 extends i7 {
             } else {
                 q6Var.setVisibility(4);
             }
-            b7Var.f35520f = z11;
+            b7Var.f35523f = z11;
             b7Var.setWillNotDraw(!z11);
             b7Var.requestLayout();
-            boolean contains = v7Var.f42126f.f4437l.contains(Long.valueOf(v6Var.f42114a));
-            org.telegram.ui.Components.xp xpVar = b7Var.f35521n;
+            boolean contains = v7Var.f42129f.f4437l.contains(Long.valueOf(v6Var.f42117a));
+            org.telegram.ui.Components.xp xpVar = b7Var.f35524n;
             if (xpVar == null && !contains) {
                 return;
             }
             if (xpVar == null) {
-                org.telegram.ui.Components.xp xpVar2 = new org.telegram.ui.Components.xp(b7Var.getContext(), 21, b7Var.f35518b);
-                b7Var.f35521n = xpVar2;
-                xpVar2.b(-1, org.telegram.ui.ActionBar.h6.f20990d6, org.telegram.ui.ActionBar.h6.f21118k7);
-                b7Var.f35521n.setDrawUnchecked(false);
+                org.telegram.ui.Components.xp xpVar2 = new org.telegram.ui.Components.xp(b7Var.getContext(), 21, b7Var.f35521b);
+                b7Var.f35524n = xpVar2;
+                xpVar2.b(-1, org.telegram.ui.ActionBar.h6.f20993d6, org.telegram.ui.ActionBar.h6.f21121k7);
+                b7Var.f35524n.setDrawUnchecked(false);
                 int i11 = 3;
-                b7Var.f35521n.setDrawBackgroundAsArc(3);
-                org.telegram.ui.Components.xp xpVar3 = b7Var.f35521n;
+                b7Var.f35524n.setDrawBackgroundAsArc(3);
+                org.telegram.ui.Components.xp xpVar3 = b7Var.f35524n;
                 if (LocaleController.isRTL) {
                     i11 = 5;
                 }
                 b7Var.addView(xpVar3, w7.z5.d(24, 24.0f, i11 | 48, 38.0f, 25.0f, 38.0f, 0.0f));
             }
-            b7Var.f35521n.a(contains, z10);
+            b7Var.f35524n.a(contains, z10);
         }
     }
 
@@ -121,7 +121,7 @@ public final class m7 extends i7 {
         b7 b7Var = null;
         if (i10 == 1) {
             b7 b7Var2 = new b7(this.h.getContext(), null);
-            b7Var2.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20990d6, false));
+            b7Var2.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20993d6, false));
             b7Var = b7Var2;
         }
         return new s4.b1(b7Var);

@@ -6,12 +6,12 @@ import android.os.Bundle;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 public final class o60 extends org.telegram.ui.ActionBar.j {
-    public final int f39784a;
-    public final Object f39785b;
+    public final int f39787a;
+    public final Object f39788b;
 
     public o60(Object obj, int i10) {
-        this.f39784a = i10;
-        this.f39785b = obj;
+        this.f39787a = i10;
+        this.f39788b = obj;
     }
 
     @Override
@@ -19,8 +19,8 @@ public final class o60 extends org.telegram.ui.ActionBar.j {
         int i11;
         int i12;
         Bitmap bitmap;
-        int i13 = this.f39784a;
-        Object obj = this.f39785b;
+        int i13 = this.f39787a;
+        Object obj = this.f39788b;
         switch (i13) {
             case 0:
                 if (i10 == -1) {
@@ -108,7 +108,7 @@ public final class o60 extends org.telegram.ui.ActionBar.j {
                     return;
                 } else if (i10 == 1) {
                     Bundle bundle = new Bundle();
-                    bundle.putLong("chat_id", ui0Var.f41987b);
+                    bundle.putLong("chat_id", ui0Var.f41990b);
                     ui0Var.presentFragment(new p91(bundle));
                     return;
                 } else {
@@ -144,18 +144,18 @@ public final class o60 extends org.telegram.ui.ActionBar.j {
                     vp0Var.finishFragment();
                     return;
                 } else if (i10 == 1) {
-                    if (vp0Var.f42350c != null && !vp0Var.f42351f) {
+                    if (vp0Var.f42353c != null && !vp0Var.f42354f) {
                         tp0 tp0Var = vp0Var.d;
-                        float f7 = tp0Var.f41718f - tp0Var.f41723x;
+                        float f7 = tp0Var.f41721f - tp0Var.f41726x;
                         float f10 = tp0Var.v;
-                        float f11 = (tp0Var.h - tp0Var.f41724y) / tp0Var.f41722w;
+                        float f11 = (tp0Var.h - tp0Var.f41727y) / tp0Var.f41725w;
                         float f12 = tp0Var.d / f10;
                         float f13 = tp0Var.e / f10;
                         vp0 vp0Var2 = tp0Var.H;
-                        int width = (int) ((f7 / f10) * vp0Var2.f42348a.getWidth());
-                        int height = (int) (f11 * vp0Var2.f42348a.getHeight());
-                        int width2 = (int) (f12 * vp0Var2.f42348a.getWidth());
-                        int width3 = (int) (f13 * vp0Var2.f42348a.getWidth());
+                        int width = (int) ((f7 / f10) * vp0Var2.f42351a.getWidth());
+                        int height = (int) (f11 * vp0Var2.f42351a.getHeight());
+                        int width2 = (int) (f12 * vp0Var2.f42351a.getWidth());
+                        int width3 = (int) (f13 * vp0Var2.f42351a.getWidth());
                         if (width < 0) {
                             i11 = 0;
                         } else {
@@ -166,31 +166,31 @@ public final class o60 extends org.telegram.ui.ActionBar.j {
                         } else {
                             i12 = height;
                         }
-                        if (i11 + width2 > vp0Var2.f42348a.getWidth()) {
-                            width2 = vp0Var2.f42348a.getWidth() - i11;
+                        if (i11 + width2 > vp0Var2.f42351a.getWidth()) {
+                            width2 = vp0Var2.f42351a.getWidth() - i11;
                         }
                         int i14 = width2;
-                        if (i12 + width3 > vp0Var2.f42348a.getHeight()) {
-                            width3 = vp0Var2.f42348a.getHeight() - i12;
+                        if (i12 + width3 > vp0Var2.f42351a.getHeight()) {
+                            width3 = vp0Var2.f42351a.getHeight() - i12;
                         }
                         int i15 = width3;
                         try {
-                            bitmap = Bitmap.createBitmap(vp0Var2.f42348a, i11, i12, i14, i15, (Matrix) null, false);
+                            bitmap = Bitmap.createBitmap(vp0Var2.f42351a, i11, i12, i14, i15, (Matrix) null, false);
                         } catch (Throwable th2) {
                             FileLog.e(th2);
                             System.gc();
                             try {
-                                bitmap = Bitmap.createBitmap(vp0Var2.f42348a, i11, i12, i14, i15, (Matrix) null, false);
+                                bitmap = Bitmap.createBitmap(vp0Var2.f42351a, i11, i12, i14, i15, (Matrix) null, false);
                             } catch (Throwable th3) {
                                 FileLog.e(th3);
                                 bitmap = null;
                             }
                         }
-                        if (bitmap == vp0Var.f42348a) {
+                        if (bitmap == vp0Var.f42351a) {
                             vp0Var.e = true;
                         }
-                        ((org.telegram.ui.Components.e50) vp0Var.f42350c).r(false, bitmap, null);
-                        vp0Var.f42351f = true;
+                        ((org.telegram.ui.Components.e50) vp0Var.f42353c).r(false, bitmap, null);
+                        vp0Var.f42354f = true;
                     }
                     vp0Var.finishFragment();
                     return;
@@ -215,7 +215,7 @@ public final class o60 extends org.telegram.ui.ActionBar.j {
                     jq0Var.L.l();
                     return;
                 } else if (i10 == 2) {
-                    iq0 iq0Var = jq0Var.f38325s0;
+                    iq0 iq0Var = jq0Var.f38328s0;
                     if (iq0Var != null) {
                         iq0Var.g();
                     }
@@ -237,11 +237,11 @@ public final class o60 extends org.telegram.ui.ActionBar.j {
                     popupNotificationActivity.finish();
                     return;
                 } else if (i10 == 1) {
-                    int i16 = PopupNotificationActivity.f33486b0;
+                    int i16 = PopupNotificationActivity.f33489b0;
                     popupNotificationActivity.k();
                     return;
                 } else if (i10 == 2) {
-                    int i17 = PopupNotificationActivity.f33486b0;
+                    int i17 = PopupNotificationActivity.f33489b0;
                     popupNotificationActivity.p();
                     return;
                 } else {

@@ -17,7 +17,7 @@ public final class pi extends k20 {
 
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        this.J.w1(this.f27726r, true);
+        this.J.w1(this.f27729r, true);
         return super.onInterceptTouchEvent(motionEvent);
     }
 }

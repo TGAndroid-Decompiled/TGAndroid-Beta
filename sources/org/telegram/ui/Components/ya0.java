@@ -20,7 +20,7 @@ public abstract class ya0 extends l71 {
     public ya0(org.telegram.ui.ActionBar.n2 n2Var, long j10) {
         super(n2Var.getParentActivity(), n2Var.getCurrentAccount(), n2Var.getResourceProvider());
         this.T = ViewConfiguration.get(getContext()).getScaledTouchSlop();
-        int i10 = org.telegram.ui.ActionBar.h6.f20932a7;
+        int i10 = org.telegram.ui.ActionBar.h6.f20935a7;
         setBackgroundColor(getThemedColor(i10));
         this.L = i10;
         this.K = i10;
@@ -32,14 +32,14 @@ public abstract class ya0 extends l71 {
         this.U = xa0Var;
         xa0Var.B = false;
         setDimBehindAlpha(75);
-        this.f28094w.J.setHint(LocaleController.getString(R.string.SearchMemberRequests));
-        xh.f fVar = xa0Var.f49866f;
-        this.f28090f = fVar;
+        this.f28097w.J.setHint(LocaleController.getString(R.string.SearchMemberRequests));
+        xh.f fVar = xa0Var.f49869f;
+        this.f28093f = fVar;
         this.e = fVar;
         this.d.setAdapter(fVar);
         this.d.p1();
         ai.u1 u1Var = this.d;
-        xa0Var.f49875p = u1Var;
+        xa0Var.f49878p = u1Var;
         u1Var.setOnItemClickListener(new ai.wa(xa0Var, 22));
         s4.r0 onScrollListener = u1Var.getOnScrollListener();
         if (onScrollListener == null) {
@@ -67,9 +67,9 @@ public abstract class ya0 extends l71 {
         int action = motionEvent.getAction();
         xa0 xa0Var = this.U;
         if (action == 0) {
-            this.Y = this.f28096y;
+            this.Y = this.f28099y;
             xa0Var.i(false);
-        } else if (motionEvent.getAction() == 1 && Math.abs(this.f28096y - this.Y) < this.T && !this.Z) {
+        } else if (motionEvent.getAction() == 1 && Math.abs(this.f28099y - this.Y) < this.T && !this.Z) {
             Activity findActivity = AndroidUtilities.findActivity(getContext());
             if (findActivity instanceof LaunchActivity) {
                 LaunchActivity launchActivity = (LaunchActivity) findActivity;
@@ -108,7 +108,7 @@ public abstract class ya0 extends l71 {
     @Override
     public final void J(int i10) {
         super.J(i10);
-        this.V.setTranslationY(this.f28089c.getMeasuredHeight() + i10);
+        this.V.setTranslationY(this.f28092c.getMeasuredHeight() + i10);
         float f7 = i10;
         this.W.setTranslationY(f7);
         this.X.setTranslationY(f7);
@@ -124,8 +124,8 @@ public abstract class ya0 extends l71 {
             } else {
                 i10 = 0;
             }
-            if (this.f28096y != i10) {
-                this.f28096y = i10;
+            if (this.f28099y != i10) {
+                this.f28099y = i10;
                 J(i10);
                 return;
             }
@@ -136,7 +136,7 @@ public abstract class ya0 extends l71 {
 
     @Override
     public final void onBackPressed() {
-        xh.j jVar = this.U.f49878s;
+        xh.j jVar = this.U.f49881s;
         if (jVar != null) {
             jVar.e(false);
         } else {
@@ -147,10 +147,10 @@ public abstract class ya0 extends l71 {
     @Override
     public final void show() {
         xa0 xa0Var = this.U;
-        if (xa0Var.f49864b && this.f28096y == 0) {
-            this.f28096y = AndroidUtilities.dp(8.0f);
+        if (xa0Var.f49867b && this.f28099y == 0) {
+            this.f28099y = AndroidUtilities.dp(8.0f);
         }
         super.show();
-        xa0Var.f49864b = false;
+        xa0Var.f49867b = false;
     }
 }

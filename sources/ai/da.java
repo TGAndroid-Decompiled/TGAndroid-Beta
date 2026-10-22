@@ -40,13 +40,13 @@ public final class da implements Runnable {
                 }
                 if (!faVar.f1314m) {
                     faVar.f1314m = true;
-                    faVar.f1308f.f27492b = 5000L;
+                    faVar.f1308f.f27495b = 5000L;
                     AndroidUtilities.cancelRunOnUIThread(daVar);
                     AndroidUtilities.runOnUIThread(daVar, 5000L);
                     qcVar.k(true);
                     qcVar.v = daVar;
                 }
-                faVar.e.f27844b.setText(faVar.d());
+                faVar.e.f27847b.setText(faVar.d());
                 return;
         }
     }

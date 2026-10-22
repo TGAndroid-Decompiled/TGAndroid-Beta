@@ -43,13 +43,13 @@ public final class n0 extends LinearLayout {
         x90Var.setTypeface(AndroidUtilities.bold());
         x90Var.setTextSize(1, 14.0f);
         x90Var.setTextColor(org.telegram.ui.ActionBar.h6.w0(i11, d6Var));
-        int i12 = org.telegram.ui.ActionBar.h6.f21049gc;
+        int i12 = org.telegram.ui.ActionBar.h6.f21052gc;
         x90Var.setLinkTextColor(org.telegram.ui.ActionBar.h6.w0(i12, d6Var));
         linearLayout.addView(x90Var, w7.z5.t(-1, -2, 7, 0, 0, 0, 3));
         x90 x90Var2 = new x90(context, null);
         this.f1863c = x90Var2;
         x90Var2.setTextSize(1, 14.0f);
-        x90Var2.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21395z6, d6Var));
+        x90Var2.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21398z6, d6Var));
         x90Var2.setLinkTextColor(org.telegram.ui.ActionBar.h6.w0(i12, d6Var));
         linearLayout.addView(x90Var2, w7.z5.q(-1, -2, 7));
         addView(linearLayout, w7.z5.p(-1, -2, 1.0f, 55, 0, 0, 0, 0));

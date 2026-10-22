@@ -1,10 +1,10 @@
 package zf;
 public final class d {
-    public final int f51536a;
-    public int f51537b;
-    public int f51538c;
+    public final int f51539a;
+    public int f51540b;
+    public int f51541c;
 
     public d(int i10) {
-        this.f51536a = i10;
+        this.f51539a = i10;
     }
 }

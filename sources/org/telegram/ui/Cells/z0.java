@@ -6,29 +6,29 @@ import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.RadialProgressView;
 public final class z0 extends FrameLayout {
-    public final ah.v f23860a;
-    public final org.telegram.ui.ActionBar.d6 f23861b;
-    public float f23862c;
+    public final ah.v f23863a;
+    public final org.telegram.ui.ActionBar.d6 f23864b;
+    public float f23865c;
     public int d;
 
     public z0(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
-        this.f23861b = d6Var;
+        this.f23864b = d6Var;
         ah.v vVar = new ah.v(this, context);
-        this.f23860a = vVar;
+        this.f23863a = vVar;
         vVar.setWillNotDraw(false);
         addView(vVar, w7.z5.e(36, 36, 17));
         RadialProgressView radialProgressView = new RadialProgressView(context, d6Var);
         radialProgressView.setSize(AndroidUtilities.dp(28.0f));
-        radialProgressView.setProgressColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21084ic, d6Var));
+        radialProgressView.setProgressColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21087ic, d6Var));
         vVar.addView(radialProgressView, w7.z5.e(32, 32, 17));
     }
 
     public final void a(float f7, int i10) {
-        if (this.f23862c != f7) {
+        if (this.f23865c != f7) {
             invalidate();
         }
-        this.f23862c = f7;
+        this.f23865c = f7;
         this.d = i10;
     }
 
@@ -44,6 +44,6 @@ public final class z0 extends FrameLayout {
         } else {
             i10 = 4;
         }
-        this.f23860a.setVisibility(i10);
+        this.f23863a.setVisibility(i10);
     }
 }

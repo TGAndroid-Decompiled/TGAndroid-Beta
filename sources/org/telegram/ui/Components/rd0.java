@@ -17,7 +17,7 @@ public final class rd0 extends sd0 {
         e2Var.setSingleLine(true);
         e2Var.setInputType(1);
         e2Var.setTypeface(Typeface.DEFAULT);
-        e2Var.setCursorColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21134l6, false));
+        e2Var.setCursorColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21137l6, false));
         e2Var.setCursorWidth(1.5f);
         e2Var.setPadding(AndroidUtilities.dp(15.0f), 0, AndroidUtilities.dp(15.0f), 0);
         e(e2Var);

@@ -3,10 +3,10 @@ package org.telegram.ui;
 import android.webkit.JavascriptInterface;
 import org.telegram.messenger.AndroidUtilities;
 public final class bi1 {
-    public final ci1 f35643a;
+    public final ci1 f35646a;
 
     public bi1(ci1 ci1Var) {
-        this.f35643a = ci1Var;
+        this.f35646a = ci1Var;
     }
 
     @JavascriptInterface

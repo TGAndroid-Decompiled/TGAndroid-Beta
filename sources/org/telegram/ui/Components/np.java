@@ -15,17 +15,17 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.th1;
 public final class np implements ri {
-    public final wp f28859a;
+    public final wp f28862a;
 
     public np(wp wpVar) {
-        this.f28859a = wpVar;
+        this.f28862a = wpVar;
     }
 
     @Override
     public final void O(Object obj) {
         kp kpVar = new kp(obj, null, true, 3);
-        wp wpVar = this.f28859a;
-        kpVar.V1 = wpVar.f32212f0;
+        wp wpVar = this.f28862a;
+        kpVar.V1 = wpVar.f32215f0;
         kpVar.c1(wpVar.v.a());
         kpVar.I1 = new mp(this, 1);
         wp.s(wpVar, kpVar);
@@ -33,9 +33,9 @@ public final class np implements ri {
 
     @Override
     public final void b0(int i10, boolean z10, boolean z11, int i11, int i12, long j10, boolean z12, boolean z13, long j11) {
-        wp wpVar = this.f28859a;
+        wp wpVar = this.f28862a;
         try {
-            HashMap<Object, Object> selectedPhotos = wpVar.Y.f30558j0.getSelectedPhotos();
+            HashMap<Object, Object> selectedPhotos = wpVar.Y.f30561j0.getSelectedPhotos();
             if (!selectedPhotos.isEmpty()) {
                 MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) selectedPhotos.values().iterator().next();
                 String str = photoEntry.imagePath;
@@ -49,10 +49,10 @@ public final class np implements ri {
                     Bitmap loadBitmap = ImageLoader.loadBitmap(str, null, (float) realScreenSize.x, (float) realScreenSize.y, true);
                     loadBitmap.compress(Bitmap.CompressFormat.JPEG, 87, new FileOutputStream(file));
                     kp kpVar = new kp(new th1(file, file, ""), loadBitmap, false, 2);
-                    kpVar.V1 = wpVar.f32212f0;
+                    kpVar.V1 = wpVar.f32215f0;
                     kpVar.F1 = false;
                     kpVar.E1 = false;
-                    kpVar.f38556n1 = 0.2f;
+                    kpVar.f38559n1 = 0.2f;
                     kpVar.c1(wpVar.v.a());
                     kpVar.I1 = new mp(this, 0);
                     wp.s(wpVar, kpVar);

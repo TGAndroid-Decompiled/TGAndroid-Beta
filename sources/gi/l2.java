@@ -37,7 +37,7 @@ public final class l2 implements Runnable {
                     return;
                 }
             case 2:
-                MediaController.lambda$loadGalleryPhotosAlbums$58(this.f11319b);
+                MediaController.lambda$loadGalleryPhotosAlbums$60(this.f11319b);
                 return;
             case 3:
                 MediaController.lambda$checkGallery$1(this.f11319b);

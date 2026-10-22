@@ -22,20 +22,20 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_fragment;
 public final class jv0 implements Runnable {
-    public final int f38370a;
-    public final Object f38371b;
-    public final Object f38372c;
+    public final int f38373a;
+    public final Object f38374b;
+    public final Object f38375c;
 
     public jv0(int i10, Object obj, Object obj2) {
-        this.f38370a = i10;
-        this.f38371b = obj;
-        this.f38372c = obj2;
+        this.f38373a = i10;
+        this.f38374b = obj;
+        this.f38375c = obj2;
     }
 
     @Override
     public final void run() {
         int i10;
-        org.telegram.messenger.q8 q8Var;
+        org.telegram.messenger.t8 t8Var;
         int i11;
         ArrayList arrayList;
         String str;
@@ -45,11 +45,11 @@ public final class jv0 implements Runnable {
         String str3;
         SpannableStringBuilder spannableStringBuilder;
         String str4;
-        int i13 = this.f38370a;
+        int i13 = this.f38373a;
         long j10 = 0;
         boolean z10 = true;
-        Object obj = this.f38372c;
-        Object obj2 = this.f38371b;
+        Object obj = this.f38375c;
+        Object obj2 = this.f38374b;
         switch (i13) {
             case 0:
                 qv0 qv0Var = (qv0) obj2;
@@ -96,7 +96,7 @@ public final class jv0 implements Runnable {
                 notificationCenter.removeObserver(profileActivity, i14);
                 profileActivity.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(i14, new Object[0]);
                 Bundle bundle = new Bundle();
-                bundle.putInt("enc_id", ((TLRPC.EncryptedChat) ((Object[]) obj)[0]).f20284id);
+                bundle.putInt("enc_id", ((TLRPC.EncryptedChat) ((Object[]) obj)[0]).f20287id);
                 profileActivity.presentFragment(new qn(bundle), true);
                 return;
             case 8:
@@ -105,11 +105,11 @@ public final class jv0 implements Runnable {
                 long j11 = profileActivity2.B2;
                 if (j11 != 0) {
                     TLRPC.User user = profileActivity2.getMessagesController().getUser(Long.valueOf(j11));
-                    profileActivity2.getMessagesController().deleteParticipantFromChat(profileActivity2.f33627g1, user);
+                    profileActivity2.getMessagesController().deleteParticipantFromChat(profileActivity2.f33630g1, user);
                     if (profileActivity2.F2 != null && user != null && org.telegram.ui.Components.xc.a(profileActivity2)) {
                         org.telegram.ui.Components.xc.D(profileActivity2, user, profileActivity2.F2.title).j();
                     }
-                    if (profileActivity2.f33731v2.participants.participants.remove(chatParticipant)) {
+                    if (profileActivity2.f33734v2.participants.participants.remove(chatParticipant)) {
                         profileActivity2.e5(true, false);
                         return;
                     }
@@ -120,12 +120,12 @@ public final class jv0 implements Runnable {
                 notificationCenter2.removeObserver(profileActivity2, i15);
                 if (AndroidUtilities.isTablet()) {
                     i10 = 0;
-                    profileActivity2.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(i15, Long.valueOf(-profileActivity2.f33627g1));
+                    profileActivity2.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(i15, Long.valueOf(-profileActivity2.f33630g1));
                 } else {
                     i10 = 0;
                     profileActivity2.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(i15, new Object[0]);
                 }
-                profileActivity2.getMessagesController().deleteParticipantFromChat(profileActivity2.f33627g1, profileActivity2.getMessagesController().getUser(Long.valueOf(profileActivity2.getUserConfig().getClientUserId())));
+                profileActivity2.getMessagesController().deleteParticipantFromChat(profileActivity2.f33630g1, profileActivity2.getMessagesController().getUser(Long.valueOf(profileActivity2.getUserConfig().getClientUserId())));
                 profileActivity2.K1 = i10;
                 profileActivity2.finishFragment();
                 return;
@@ -140,13 +140,13 @@ public final class jv0 implements Runnable {
                 return;
             case 11:
                 ProfileActivity profileActivity4 = (ProfileActivity) obj2;
-                profileActivity4.F2 = profileActivity4.getMessagesStorage().getChat(profileActivity4.f33627g1);
+                profileActivity4.F2 = profileActivity4.getMessagesStorage().getChat(profileActivity4.f33630g1);
                 ((CountDownLatch) obj).countDown();
                 return;
             case 12:
                 ProfileActivity profileActivity5 = (ProfileActivity) obj2;
                 profileActivity5.getClass();
-                ((org.telegram.ui.Cells.q8) ((View) obj)).setChecked(profileActivity5.f33717t2.g());
+                ((org.telegram.ui.Cells.q8) ((View) obj)).setChecked(profileActivity5.f33720t2.g());
                 return;
             case 13:
                 ProfileActivity profileActivity6 = (ProfileActivity) obj2;
@@ -155,32 +155,32 @@ public final class jv0 implements Runnable {
                 return;
             case 14:
                 ProfileActivity profileActivity7 = (ProfileActivity) obj2;
-                if (!((boolean[]) obj)[0] && (q8Var = profileActivity7.f33764z5) != null) {
-                    q8Var.run();
+                if (!((boolean[]) obj)[0] && (t8Var = profileActivity7.f33767z5) != null) {
+                    t8Var.run();
                 }
-                profileActivity7.f33764z5 = null;
+                profileActivity7.f33767z5 = null;
                 return;
             case 15:
                 my0 my0Var = (my0) obj2;
                 a0.h hVar = (a0.h) obj;
-                ProfileActivity profileActivity8 = my0Var.f39368c1.f39722c;
+                ProfileActivity profileActivity8 = my0Var.f39371c1.f39725c;
                 Activity parentActivity = profileActivity8.getParentActivity();
-                lz0 lz0Var = profileActivity8.f33685o5;
+                lz0 lz0Var = profileActivity8.f33688o5;
                 int m10 = hVar.m();
                 if (hVar.m() == 1) {
-                    j10 = ((TLRPC.Dialog) hVar.n(0)).f20280id;
+                    j10 = ((TLRPC.Dialog) hVar.n(0)).f20283id;
                 }
                 org.telegram.ui.Components.xc.x(parentActivity, lz0Var, m10, j10, my0Var.getThemedColor(org.telegram.ui.ActionBar.h6.Fi), my0Var.getThemedColor(org.telegram.ui.ActionBar.h6.Hi)).j();
                 return;
             case 16:
                 bz0 bz0Var = (bz0) obj2;
                 a0.h hVar2 = (a0.h) obj;
-                ProfileActivity profileActivity9 = bz0Var.f35759c1;
+                ProfileActivity profileActivity9 = bz0Var.f35762c1;
                 Activity parentActivity2 = profileActivity9.getParentActivity();
-                lz0 lz0Var2 = profileActivity9.f33685o5;
+                lz0 lz0Var2 = profileActivity9.f33688o5;
                 int m11 = hVar2.m();
                 if (hVar2.m() == 1) {
-                    j10 = ((TLRPC.Dialog) hVar2.n(0)).f20280id;
+                    j10 = ((TLRPC.Dialog) hVar2.n(0)).f20283id;
                 }
                 org.telegram.ui.Components.xc.x(parentActivity2, lz0Var2, m11, j10, bz0Var.getThemedColor(org.telegram.ui.ActionBar.h6.Fi), bz0Var.getThemedColor(org.telegram.ui.ActionBar.h6.Hi)).j();
                 return;
@@ -211,12 +211,12 @@ public final class jv0 implements Runnable {
                 }
                 int i17 = 0;
                 while (true) {
-                    l01[] l01VarArr = m01Var.f39076c;
+                    l01[] l01VarArr = m01Var.f39079c;
                     boolean z12 = z10;
                     if (i17 < l01VarArr.length) {
                         l01 l01Var = l01VarArr[i17];
                         if (l01Var != null) {
-                            String str6 = l01Var.f38713a;
+                            String str6 = l01Var.f38716a;
                             String str7 = " " + str6.toLowerCase();
                             int i18 = 0;
                             SpannableStringBuilder spannableStringBuilder2 = null;
@@ -255,7 +255,7 @@ public final class jv0 implements Runnable {
                                     spannableStringBuilder = spannableStringBuilder2;
                                 }
                                 if (spannableStringBuilder != null && i18 == split.length - 1) {
-                                    if (l01Var.f38716f == 502) {
+                                    if (l01Var.f38719f == 502) {
                                         int i19 = 0;
                                         while (true) {
                                             if (i19 < 4) {
@@ -342,35 +342,35 @@ public final class jv0 implements Runnable {
                 m01 m01Var2 = (m01) obj2;
                 ArrayList<MessagesController.FaqSearchResult> arrayList6 = (ArrayList) obj;
                 m01Var2.d.addAll(arrayList6);
-                int i22 = m01Var2.f39077f;
+                int i22 = m01Var2.f39080f;
                 MessagesController.getInstance(i22).faqSearchArray = arrayList6;
                 MessagesController.getInstance(i22).faqWebPage = m01Var2.E;
-                if (!m01Var2.f39081w) {
+                if (!m01Var2.f39084w) {
                     m01Var2.l();
                     return;
                 }
                 return;
             case 21:
                 q01 q01Var = (q01) obj2;
-                q01Var.f40343f.add((s01) obj);
+                q01Var.f40346f.add((s01) obj);
                 q01Var.a();
                 return;
             case 22:
                 n21 n21Var = (n21) ((View[]) obj2)[0];
-                n21Var.f39395b = (TLRPC.TL_channels_sponsoredMessageReportResultChooseOption) obj;
-                n21Var.f39396c = null;
+                n21Var.f39398b = (TLRPC.TL_channels_sponsoredMessageReportResultChooseOption) obj;
+                n21Var.f39399c = null;
                 n21Var.d = null;
-                n21Var.f39397f.W2.N(false);
+                n21Var.f39400f.W2.N(false);
                 return;
             case 23:
                 ((n21) ((View[]) obj2)[0]).b((TLRPC.TL_reportResultAddComment) obj);
                 return;
             case 24:
                 n21 n21Var2 = (n21) ((View[]) obj2)[0];
-                n21Var2.f39395b = null;
-                n21Var2.f39396c = (TLRPC.TL_reportResultChooseOption) obj;
+                n21Var2.f39398b = null;
+                n21Var2.f39399c = (TLRPC.TL_reportResultChooseOption) obj;
                 n21Var2.d = null;
-                n21Var2.f39397f.W2.N(false);
+                n21Var2.f39400f.W2.N(false);
                 return;
             case 25:
                 ((org.telegram.messenger.video.a) obj2).run();
@@ -382,7 +382,7 @@ public final class jv0 implements Runnable {
                 return;
             case 27:
                 ((SecretMediaViewer) obj2).M = false;
-                ((ju0) obj).f38351a.setVisible(false, true);
+                ((ju0) obj).f38354a.setVisible(false, true);
                 return;
             case 28:
                 ((SecretMediaViewer) ((mi.q) obj2).f16974c).h((File) obj);
@@ -401,8 +401,8 @@ public final class jv0 implements Runnable {
     }
 
     public jv0(org.telegram.ui.Components.fr0 fr0Var, a0.h hVar, int i10, int i11) {
-        this.f38370a = i11;
-        this.f38371b = fr0Var;
-        this.f38372c = hVar;
+        this.f38373a = i11;
+        this.f38374b = fr0Var;
+        this.f38375c = hVar;
     }
 }

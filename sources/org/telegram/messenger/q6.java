@@ -1,54 +1,57 @@
 package org.telegram.messenger;
 
-import java.io.File;
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashMap;
-import org.telegram.tgnet.TLRPC;
+import org.telegram.messenger.MediaDataController;
+import org.telegram.tgnet.tl.TL_stories;
 public final class q6 implements Runnable {
-    public final int f19320a = 0;
-    public final boolean f19321b;
-    public final int f19322c;
-    public final long d;
-    public final int e;
-    public final boolean f19323f;
-    public final Object h;
-    public final Serializable f19324n;
-    public final Object f19325r;
+    public final int f19263a = 1;
+    public final MediaController f19264b;
+    public final int f19265c;
+    public final int d;
+    public final long e;
+    public final long f19266f;
+    public final MessageSuggestionParams h;
+    public final MessageObject f19267n;
+    public final MessageObject f19268r;
+    public final TL_stories.StoryItem f19269s;
+    public final Object v;
 
-    public q6(MediaController mediaController, File file, TLRPC.TL_document tL_document, int i10, boolean z10, int i11, boolean z11, long j10) {
-        this.h = mediaController;
-        this.f19324n = file;
-        this.f19325r = tL_document;
-        this.f19322c = i10;
-        this.f19321b = z10;
-        this.e = i11;
-        this.f19323f = z11;
-        this.d = j10;
+    public q6(MediaController mediaController, int i10, int i11, long j10, long j11, MessageSuggestionParams messageSuggestionParams, MessageObject messageObject, MessageObject messageObject2, TL_stories.StoryItem storyItem, SendMessageChatArguments sendMessageChatArguments) {
+        this.f19264b = mediaController;
+        this.f19265c = i10;
+        this.d = i11;
+        this.e = j10;
+        this.f19266f = j11;
+        this.h = messageSuggestionParams;
+        this.f19267n = messageObject;
+        this.f19268r = messageObject2;
+        this.f19269s = storyItem;
+        this.v = sendMessageChatArguments;
     }
 
     @Override
     public final void run() {
-        switch (this.f19320a) {
+        switch (this.f19263a) {
             case 0:
-                ((MediaController) this.h).lambda$stopRecordingInternal$41((File) this.f19324n, (TLRPC.TL_document) this.f19325r, this.f19322c, this.f19321b, this.e, this.f19323f, this.d);
+                MessageObject messageObject = this.f19268r;
+                TL_stories.StoryItem storyItem = this.f19269s;
+                this.f19264b.lambda$prepareResumedRecording$27(this.f19265c, (MediaDataController.DraftVoice) this.v, this.d, this.e, this.f19266f, this.h, this.f19267n, messageObject, storyItem);
                 return;
             default:
-                int i10 = this.e;
-                boolean z10 = this.f19323f;
-                ((MessagesStorage) this.h).lambda$updatePinnedMessages$138(this.f19321b, (HashMap) this.f19324n, this.f19322c, this.d, (ArrayList) this.f19325r, i10, z10);
+                this.f19264b.lambda$startRecording$40(this.f19265c, this.d, this.e, this.f19266f, this.h, this.f19267n, this.f19268r, this.f19269s, (SendMessageChatArguments) this.v);
                 return;
         }
     }
 
-    public q6(MessagesStorage messagesStorage, boolean z10, HashMap hashMap, int i10, long j10, ArrayList arrayList, int i11, boolean z11) {
-        this.h = messagesStorage;
-        this.f19321b = z10;
-        this.f19324n = hashMap;
-        this.f19322c = i10;
-        this.d = j10;
-        this.f19325r = arrayList;
-        this.e = i11;
-        this.f19323f = z11;
+    public q6(MediaController mediaController, int i10, MediaDataController.DraftVoice draftVoice, int i11, long j10, long j11, MessageSuggestionParams messageSuggestionParams, MessageObject messageObject, MessageObject messageObject2, TL_stories.StoryItem storyItem) {
+        this.f19264b = mediaController;
+        this.f19265c = i10;
+        this.v = draftVoice;
+        this.d = i11;
+        this.e = j10;
+        this.f19266f = j11;
+        this.h = messageSuggestionParams;
+        this.f19267n = messageObject;
+        this.f19268r = messageObject2;
+        this.f19269s = storyItem;
     }
 }

@@ -943,7 +943,7 @@ public class NotificationCenter {
                 }
             }
             if (j10 != Long.MAX_VALUE) {
-                AndroidUtilities.runOnUIThread(new sg(this, 0), Math.max(17L, 5017 - (elapsedRealtime - j10)));
+                AndroidUtilities.runOnUIThread(new vg(this, 0), Math.max(17L, 5017 - (elapsedRealtime - j10)));
             }
         }
     }
@@ -1035,7 +1035,7 @@ public class NotificationCenter {
     }
 
     public void lambda$checkForExpiredNotifications$0() {
-        this.checkForExpiredNotifications = new sg(this, 1);
+        this.checkForExpiredNotifications = new vg(this, 1);
     }
 
     public static void lambda$listen$4(int i10, Utilities.Callback callback, int i11, int i12, Object[] objArr) {
@@ -1063,9 +1063,9 @@ public class NotificationCenter {
         if (this.alreadyPostedRunnubles.indexOfKey(hashCode) >= 0) {
             return;
         }
-        c5 c5Var = new c5(this, i10, objArr, hashCode);
-        this.alreadyPostedRunnubles.put(hashCode, c5Var);
-        AndroidUtilities.runOnUIThread(c5Var, 250L);
+        d5 d5Var = new d5(this, i10, objArr, hashCode);
+        this.alreadyPostedRunnubles.put(hashCode, d5Var);
+        AndroidUtilities.runOnUIThread(d5Var, 250L);
     }
 
     public static void sanitize() {
@@ -1353,7 +1353,7 @@ public class NotificationCenter {
     }
 
     public void postNotificationNameOnUIThread(int i10, Object... objArr) {
-        AndroidUtilities.runOnUIThread(new v4(this, i10, objArr, 19));
+        AndroidUtilities.runOnUIThread(new w4(this, i10, objArr, 19));
     }
 
     public void removeDelayed(Runnable runnable) {
@@ -1517,9 +1517,9 @@ public class NotificationCenter {
         allowedNotifications.allowedIds = iArr;
         this.allowedNotifications.put(this.animationInProgressPointer, allowedNotifications);
         if (this.checkForExpiredNotifications == null) {
-            sg sgVar = new sg(this, 1);
-            this.checkForExpiredNotifications = sgVar;
-            AndroidUtilities.runOnUIThread(sgVar, 5017L);
+            vg vgVar = new vg(this, 1);
+            this.checkForExpiredNotifications = vgVar;
+            AndroidUtilities.runOnUIThread(vgVar, 5017L);
         }
         return this.animationInProgressPointer;
     }

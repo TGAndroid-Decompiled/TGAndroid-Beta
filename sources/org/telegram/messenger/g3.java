@@ -4,41 +4,41 @@ import java.util.ArrayList;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.MessagesController;
 public final class g3 implements Runnable {
-    public final int f18405a;
-    public final boolean f18406b;
-    public final boolean f18407c;
+    public final int f18400a;
+    public final boolean f18401b;
+    public final boolean f18402c;
     public final Object d;
     public final Object e;
 
     public g3(FileLoader.AnonymousClass1 anonymousClass1, boolean z10, String str, boolean z11) {
-        this.f18405a = 0;
+        this.f18400a = 0;
         this.d = anonymousClass1;
-        this.f18406b = z10;
+        this.f18401b = z10;
         this.e = str;
-        this.f18407c = z11;
+        this.f18402c = z11;
     }
 
     @Override
     public final void run() {
-        switch (this.f18405a) {
+        switch (this.f18400a) {
             case 0:
-                boolean z10 = this.f18407c;
-                ((FileLoader.AnonymousClass1) this.d).lambda$didFailedUploadingFile$1(this.f18406b, (String) this.e, z10);
+                boolean z10 = this.f18402c;
+                ((FileLoader.AnonymousClass1) this.d).lambda$didFailedUploadingFile$1(this.f18401b, (String) this.e, z10);
                 return;
             case 1:
-                ((MessagesStorage) this.d).lambda$saveDialogFilter$74((MessagesController.DialogFilter) this.e, this.f18406b, this.f18407c);
+                ((MessagesStorage) this.d).lambda$saveDialogFilter$74((MessagesController.DialogFilter) this.e, this.f18401b, this.f18402c);
                 return;
             default:
-                ((MessagesStorage) this.d).lambda$updateUsers$215((ArrayList) this.e, this.f18406b, this.f18407c);
+                ((MessagesStorage) this.d).lambda$updateUsers$215((ArrayList) this.e, this.f18401b, this.f18402c);
                 return;
         }
     }
 
     public g3(MessagesStorage messagesStorage, Object obj, boolean z10, boolean z11, int i10) {
-        this.f18405a = i10;
+        this.f18400a = i10;
         this.d = messagesStorage;
         this.e = obj;
-        this.f18406b = z10;
-        this.f18407c = z11;
+        this.f18401b = z10;
+        this.f18402c = z11;
     }
 }

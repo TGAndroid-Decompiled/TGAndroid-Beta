@@ -1,10 +1,10 @@
 package org.telegram.ui.Components;
 public final class uk0 extends pg.a {
-    public final ah.i1 f30956c;
+    public final ah.i1 f30959c;
 
     public uk0(int i10, ah.i1 i1Var) {
         super(i10, false);
-        this.f30956c = i1Var;
+        this.f30959c = i1Var;
     }
 
     public final boolean equals(Object obj) {
@@ -13,11 +13,11 @@ public final class uk0 extends pg.a {
         }
         if (obj != null && uk0.class == obj.getClass()) {
             uk0 uk0Var = (uk0) obj;
-            int i10 = this.f44296a;
-            int i11 = uk0Var.f44296a;
+            int i10 = this.f44299a;
+            int i11 = uk0Var.f44299a;
             if (i10 == i11 && (i10 == 0 || i10 == 3)) {
-                ah.i1 i1Var = this.f30956c;
-                if (i1Var != null && i1Var.equals(uk0Var.f30956c)) {
+                ah.i1 i1Var = this.f30959c;
+                if (i1Var != null && i1Var.equals(uk0Var.f30959c)) {
                     return true;
                 }
                 return false;

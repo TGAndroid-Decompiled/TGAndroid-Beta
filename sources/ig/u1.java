@@ -11,7 +11,7 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.mk;
+import org.telegram.messenger.ok;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Components.h9;
@@ -66,7 +66,7 @@ public final class u1 extends FrameLayout {
         this.d = textView2;
         textView2.setLines(2);
         textView2.setEllipsize(truncateAt);
-        mk.o(h6.f21395z6, d6Var, textView2, 1, 15.0f);
+        ok.o(h6.f21398z6, d6Var, textView2, 1, 15.0f);
         boolean z11 = LocaleController.isRTL;
         if (z11) {
             f11 = 40.0f;
@@ -81,7 +81,7 @@ public final class u1 extends FrameLayout {
         addView(textView2, z5.d(-1, -2.0f, 7, f11, 32.0f, f12, 0.0f));
         xp xpVar = new xp(getContext(), 21, d6Var);
         this.e = xpVar;
-        xpVar.b(-1, h6.f20990d6, h6.f21118k7);
+        xpVar.b(-1, h6.f20993d6, h6.f21121k7);
         xpVar.setDrawUnchecked(false);
         xpVar.setDrawBackgroundAsArc(3);
         addView(xpVar, z5.i(24.0f, 24.0f, 8388659, 33.0f, 25.0f, 0.0f, 0.0f));
@@ -105,7 +105,7 @@ public final class u1 extends FrameLayout {
         if (this.f13054s) {
             Paint U0 = h6.U0("paintDivider", this.f13052n);
             if (U0 == null) {
-                U0 = h6.f21111k0;
+                U0 = h6.f21114k0;
             }
             Paint paint = U0;
             float f11 = 78.0f;
@@ -135,7 +135,7 @@ public final class u1 extends FrameLayout {
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setStrokeJoin(Paint.Join.ROUND);
         paint.setStrokeWidth(AndroidUtilities.dpf2(1.66f));
-        paint.setColor(h6.m1(0.85f, h6.w0(h6.f21395z6, this.f13052n)));
+        paint.setColor(h6.m1(0.85f, h6.w0(h6.f21398z6, this.f13052n)));
         Path path = this.f13051f;
         path.rewind();
         float measuredHeight = getMeasuredHeight() / 2.0f;

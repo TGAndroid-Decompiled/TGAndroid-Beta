@@ -1,23 +1,25 @@
 package org.telegram.messenger;
-public final class d8 implements Runnable {
-    public final int f18163a;
-    public final MediaDataController f18164b;
-    public final int f18165c;
 
-    public d8(MediaDataController mediaDataController, int i10, int i11) {
-        this.f18163a = i11;
-        this.f18164b = mediaDataController;
-        this.f18165c = i10;
+import org.telegram.tgnet.TLRPC;
+public final class d8 implements Runnable {
+    public final int f18148a;
+    public final MediaDataController f18149b;
+    public final TLRPC.Document f18150c;
+
+    public d8(int i10, MediaDataController mediaDataController, TLRPC.Document document) {
+        this.f18148a = i10;
+        this.f18149b = mediaDataController;
+        this.f18150c = document;
     }
 
     @Override
     public final void run() {
-        switch (this.f18163a) {
+        switch (this.f18148a) {
             case 0:
-                this.f18164b.lambda$fetchEmojiStatuses$232(this.f18165c);
+                this.f18149b.lambda$removeRecentGif$25(this.f18150c);
                 return;
             default:
-                this.f18164b.lambda$processLoadedStickers$103(this.f18165c);
+                this.f18149b.lambda$addRecentGif$26(this.f18150c);
                 return;
         }
     }

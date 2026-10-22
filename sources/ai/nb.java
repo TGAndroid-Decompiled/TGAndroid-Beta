@@ -71,7 +71,7 @@ public final class nb implements View.OnClickListener {
                     TL_stars.TL_changeStarsSubscription tL_changeStarsSubscription = new TL_stars.TL_changeStarsSubscription();
                     tL_changeStarsSubscription.canceled = Boolean.FALSE;
                     tL_changeStarsSubscription.peer = new TLRPC.TL_inputPeerSelf();
-                    tL_changeStarsSubscription.subscription_id = starsSubscription.f20501id;
+                    tL_changeStarsSubscription.subscription_id = starsSubscription.f20504id;
                     int i12 = this.f1914b;
                     ConnectionsManager.getInstance(i12).sendRequest(tL_changeStarsSubscription, new sb(dVar, f3VarArr, i12, tLObject, str, 0));
                     return;
@@ -104,11 +104,11 @@ public final class nb implements View.OnClickListener {
                     i13++;
                     TLObject tLObject2 = (TLObject) obj6;
                     if (tLObject2 instanceof TLRPC.User) {
-                        j10 = ((TLRPC.User) tLObject2).f20423id;
+                        j10 = ((TLRPC.User) tLObject2).f20426id;
                     } else if (tLObject2 instanceof TLRPC.Chat) {
                         TLRPC.Chat chat = (TLRPC.Chat) tLObject2;
                         if (ChatObject.isChannelAndNotMegaGroup(chat)) {
-                            j10 = -chat.f20276id;
+                            j10 = -chat.f20279id;
                         }
                     }
                     long j11 = j10;
@@ -119,8 +119,8 @@ public final class nb implements View.OnClickListener {
                     }
                     F.g(tLObject2, z10, new a3.i0(jArr, j11, ubVar, 11));
                 }
-                F.f27186t = false;
-                F.f27185s = 0;
+                F.f27189t = false;
+                F.f27188s = 0;
                 F.V(5);
                 F.a0(AndroidUtilities.dp(24.0f), 0.0f);
                 F.Z();
@@ -139,7 +139,7 @@ public final class nb implements View.OnClickListener {
                     float scrollX = horizontalScrollView.getScrollX();
                     float x10 = ok0Var.getX() - ((horizontalScrollView.getWidth() - ok0Var.getWidth()) / 2.0f);
                     ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(150L);
-                    duration.setInterpolator(bs.f25021f);
+                    duration.setInterpolator(bs.f25024f);
                     duration.addUpdateListener(new org.telegram.ui.Cells.b(horizontalScrollView, scrollX, x10, ok0Var2, ok0Var));
                     duration.start();
                     return;
@@ -156,14 +156,14 @@ public final class nb implements View.OnClickListener {
                     tL_birthday.flags |= 1;
                     tL_birthday.year = od0Var.getValue();
                 }
-                runnable = a3Var.f20613a.dismissRunnable;
+                runnable = a3Var.f20616a.dismissRunnable;
                 runnable.run();
                 callback.run(tL_birthday);
                 return;
             case 4:
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder((Context) obj3, 0, (ci.b) obj2);
                 String string = LocaleController.getString(R.string.LiveStoryRTMPRevokeTitle);
-                org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20605a;
+                org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20608a;
                 b2Var.R = string;
                 b2Var.T = LocaleController.getString(R.string.LiveStoryRTMPRevokeText);
                 alertDialog$Builder.k(LocaleController.getString(R.string.RevokeButton), new org.telegram.ui.fa((xr) obj4, (ei.d) obj5, (TL_phone.getGroupCallStreamRtmpUrl) obj, this.f1914b, 2));

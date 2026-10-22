@@ -19,9 +19,9 @@ public abstract class ct extends u61 {
     public boolean X;
     public boolean Y;
     public int Z;
-    public int f25255a0;
-    public String f25256b0;
-    public final hq f25257c0;
+    public int f25258a0;
+    public String f25259b0;
+    public final hq f25260c0;
 
     public ct(jm0 jm0Var, Context context, int i10, int i11) {
         super(jm0Var, context, i10, 0, false, null, null);
@@ -31,8 +31,8 @@ public abstract class ct extends u61 {
         this.S = new ArrayList();
         this.V = new ArrayList();
         ro0 ro0Var = (ro0) this;
-        this.f25257c0 = new hq(ro0Var, 6);
-        this.f30862s = new d(ro0Var, 9);
+        this.f25260c0 = new hq(ro0Var, 6);
+        this.f30865s = new d(ro0Var, 9);
         this.N = i10;
         this.O = i11;
         N(false);
@@ -51,7 +51,7 @@ public abstract class ct extends u61 {
         while (i11 < size) {
             TLRPC.Dialog dialog = allDialogs.get(i11);
             i11++;
-            TLRPC.Chat chat = MessagesController.getInstance(i10).getChat(Long.valueOf(-dialog.f20280id));
+            TLRPC.Chat chat = MessagesController.getInstance(i10).getChat(Long.valueOf(-dialog.f20283id));
             if (chat != null && ChatObject.isChannelAndNotMegaGroup(chat) && ChatObject.isPublic(chat) && !ChatObject.isNotInChat(chat)) {
                 arrayList.add(chat);
                 if (arrayList.size() >= 100) {

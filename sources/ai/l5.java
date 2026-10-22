@@ -62,7 +62,7 @@ public final class l5 extends View {
         int i11 = this.h;
         int i12 = this.f1699n;
         r90Var.e = i11;
-        r90Var.f25953f = i12;
+        r90Var.f25956f = i12;
         if (this.f1698f) {
             r90Var.e(null, 0, 0.0f, 0.0f);
             float f7 = Float.MAX_VALUE;

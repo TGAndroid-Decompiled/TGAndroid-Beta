@@ -101,13 +101,13 @@ public final class e implements cp0, l1, am0, gh.a, p2.u, ne.d, com.google.andro
     public void E(sa.a aVar) {
         try {
             JSONObject jSONObject = new JSONObject();
-            jSONObject.put("Fid", aVar.f46153a);
-            jSONObject.put("Status", m1.j.c(aVar.f46154b));
-            jSONObject.put("AuthToken", aVar.f46155c);
+            jSONObject.put("Fid", aVar.f46156a);
+            jSONObject.put("Status", m1.j.c(aVar.f46157b));
+            jSONObject.put("AuthToken", aVar.f46158c);
             jSONObject.put("RefreshToken", aVar.d);
-            jSONObject.put("TokenCreationEpochInSecs", aVar.f46156f);
+            jSONObject.put("TokenCreationEpochInSecs", aVar.f46159f);
             jSONObject.put("ExpiresInSecs", aVar.e);
-            jSONObject.put("FisError", aVar.f46157g);
+            jSONObject.put("FisError", aVar.f46160g);
             l9.h hVar = (l9.h) this.f17040c;
             hVar.a();
             File createTempFile = File.createTempFile("PersistedInstallation", "tmp", hVar.f15967a.getFilesDir());
@@ -153,9 +153,9 @@ public final class e implements cp0, l1, am0, gh.a, p2.u, ne.d, com.google.andro
 
     @Override
     public void L(float f7, boolean z10) {
-        n5.f39412c = f7;
+        n5.f39415c = f7;
         ((TextView) this.f17039b).setText("Saturation " + (f7 * 5.0f));
-        lw0 lw0Var = ((n5) this.f17040c).f39413b;
+        lw0 lw0Var = ((n5) this.f17040c).f39416b;
         lw0Var.N();
         lw0Var.M();
     }
@@ -195,7 +195,7 @@ public final class e implements cp0, l1, am0, gh.a, p2.u, ne.d, com.google.andro
 
     @Override
     public boolean Q1(long j10) {
-        return ((x01) this.f17040c).f32295s;
+        return ((x01) this.f17040c).f32298s;
     }
 
     @Override
@@ -284,22 +284,22 @@ public final class e implements cp0, l1, am0, gh.a, p2.u, ne.d, com.google.andro
         a0.f fVar = (a0.f) this.f17039b;
         int c10 = fVar.c(b1Var);
         if (c10 >= 0 && (i1Var = (i1) fVar.h(c10)) != null) {
-            int i11 = i1Var.f45974a;
+            int i11 = i1Var.f45977a;
             if ((i11 & i10) != 0) {
                 int i12 = i11 & (~i10);
-                i1Var.f45974a = i12;
+                i1Var.f45977a = i12;
                 if (i10 == 4) {
-                    u0Var = i1Var.f45975b;
+                    u0Var = i1Var.f45978b;
                 } else if (i10 == 8) {
-                    u0Var = i1Var.f45976c;
+                    u0Var = i1Var.f45979c;
                 } else {
                     throw new IllegalArgumentException("Must provide flag PRE or POST");
                 }
                 if ((i12 & 12) == 0) {
                     fVar.f(c10);
-                    i1Var.f45974a = 0;
-                    i1Var.f45975b = null;
-                    i1Var.f45976c = null;
+                    i1Var.f45977a = 0;
+                    i1Var.f45978b = null;
+                    i1Var.f45979c = null;
                     i1.d.w(i1Var);
                 }
                 return u0Var;
@@ -328,13 +328,13 @@ public final class e implements cp0, l1, am0, gh.a, p2.u, ne.d, com.google.andro
         cy cyVar = (cy) this.f17040c;
         if (view instanceof r2) {
             r2 r2Var = (r2) view;
-            if (r2Var.f22870n2) {
+            if (r2Var.f22873n2) {
                 cyVar.L4(r2Var.getDialogId(), view);
                 return true;
             }
         }
-        aw awVar = cyVar.f36198z0;
-        if (awVar != null && awVar.getVisibility() == 0 && cyVar.f36198z0.f30081n) {
+        aw awVar = cyVar.f36201z0;
+        if (awVar != null && awVar.getVisibility() == 0 && cyVar.f36201z0.f30084n) {
             return false;
         }
         return cyVar.m4(view, i10, f7, ((ay) this.f17039b).d);
@@ -377,7 +377,7 @@ public final class e implements cp0, l1, am0, gh.a, p2.u, ne.d, com.google.andro
         String str = m0.f8252a;
         o10.getClass();
         fVar.getClass();
-        fVar.obtainMessage(1, new a(u2.u.f47440g.getAndIncrement(), true, SystemClock.elapsedRealtime(), o10)).sendToTarget();
+        fVar.obtainMessage(1, new a(u2.u.f47443g.getAndIncrement(), true, SystemClock.elapsedRealtime(), o10)).sendToTarget();
     }
 
     @Override
@@ -446,8 +446,8 @@ public final class e implements cp0, l1, am0, gh.a, p2.u, ne.d, com.google.andro
             i1Var = i1.a();
             fVar.put(b1Var, i1Var);
         }
-        i1Var.f45976c = u0Var;
-        i1Var.f45974a |= 8;
+        i1Var.f45979c = u0Var;
+        i1Var.f45977a |= 8;
     }
 
     public void k0() {
@@ -474,7 +474,7 @@ public final class e implements cp0, l1, am0, gh.a, p2.u, ne.d, com.google.andro
         if (i1Var == null) {
             return;
         }
-        i1Var.f45974a &= -2;
+        i1Var.f45977a &= -2;
     }
 
     @Override
@@ -512,9 +512,9 @@ public final class e implements cp0, l1, am0, gh.a, p2.u, ne.d, com.google.andro
         i1 i1Var = (i1) fVar.get(b1Var);
         if (i1Var != null) {
             fVar.remove(b1Var);
-            i1Var.f45974a = 0;
-            i1Var.f45975b = null;
-            i1Var.f45976c = null;
+            i1Var.f45977a = 0;
+            i1Var.f45978b = null;
+            i1Var.f45979c = null;
             i1.d.w(i1Var);
         }
     }
@@ -527,9 +527,9 @@ public final class e implements cp0, l1, am0, gh.a, p2.u, ne.d, com.google.andro
     @Override
     public void r(int i10, float f7, float f10, ne.e eVar) {
         qh.i iVar = (qh.i) this.f17040c;
-        iVar.f44738c.a(f7);
+        iVar.f44741c.a(f7);
         iVar.d.a(f7);
-        iVar.f44737b.a(f7);
+        iVar.f44740b.a(f7);
         ((Runnable) this.f17039b).run();
     }
 
@@ -559,7 +559,7 @@ public final class e implements cp0, l1, am0, gh.a, p2.u, ne.d, com.google.andro
                     Log.w("FirebaseCrashlytics", "Received null app settings, cannot send reports at crash time.", null);
                     return Tasks.forResult(null);
                 }
-                return Tasks.whenAll(x9.m.b(mVar), mVar.f49704m.D((Executor) this.f17039b, null));
+                return Tasks.whenAll(x9.m.b(mVar), mVar.f49707m.D((Executor) this.f17039b, null));
             default:
                 return ((x9.m) this.f17040c).e.w(new u4.f(1, this, (Boolean) obj));
         }
@@ -608,8 +608,8 @@ public final class e implements cp0, l1, am0, gh.a, p2.u, ne.d, com.google.andro
                     printWriter.println((Object) null);
                     printWriter.print(str2);
                     printWriter.print("mLoader=");
-                    printWriter.println(aVar.f48460l);
-                    a6.d dVar = aVar.f48460l;
+                    printWriter.println(aVar.f48463l);
+                    a6.d dVar = aVar.f48463l;
                     String str3 = str2 + "  ";
                     dVar.getClass();
                     printWriter.print(str3);
@@ -649,11 +649,11 @@ public final class e implements cp0, l1, am0, gh.a, p2.u, ne.d, com.google.andro
                         dVar.h.getClass();
                         printWriter.println(false);
                     }
-                    if (aVar.f48462n != null) {
+                    if (aVar.f48465n != null) {
                         printWriter.print(str2);
                         printWriter.print("mCallbacks=");
-                        printWriter.println(aVar.f48462n);
-                        b2.t tVar = aVar.f48462n;
+                        printWriter.println(aVar.f48465n);
+                        b2.t tVar = aVar.f48465n;
                         tVar.getClass();
                         printWriter.print(str2 + "  ");
                         printWriter.print("mDeliveredData=");
@@ -661,7 +661,7 @@ public final class e implements cp0, l1, am0, gh.a, p2.u, ne.d, com.google.andro
                     }
                     printWriter.print(str2);
                     printWriter.print("mData=");
-                    a6.d dVar2 = aVar.f48460l;
+                    a6.d dVar2 = aVar.f48463l;
                     Object obj2 = aVar.e;
                     if (obj2 != z.f3379k) {
                         obj = obj2;
@@ -705,7 +705,7 @@ public final class e implements cp0, l1, am0, gh.a, p2.u, ne.d, com.google.andro
         if (trim.length() > 16) {
             trim = trim.substring(0, 16);
         }
-        if (!((x01) this.f17040c).f32295s && TextUtils.isEmpty(trim)) {
+        if (!((x01) this.f17040c).f32298s && TextUtils.isEmpty(trim)) {
             return null;
         }
         return trim;
@@ -740,13 +740,13 @@ public final class e implements cp0, l1, am0, gh.a, p2.u, ne.d, com.google.andro
         Paint paint = (Paint) this.f17039b;
         PremiumPreviewFragment premiumPreviewFragment = (PremiumPreviewFragment) this.f17040c;
         a1 a1Var = premiumPreviewFragment.m0;
-        if (premiumPreviewFragment.f33509h0) {
-            paint.setColor(premiumPreviewFragment.getThemedColor(h6.f20932a7));
+        if (premiumPreviewFragment.f33512h0) {
+            paint.setColor(premiumPreviewFragment.getThemedColor(h6.f20935a7));
             canvas.drawRect(f7, f10, f11, f12, paint);
             return;
         }
-        a1Var.d(0, (-premiumPreviewFragment.f33504d0.getMeasuredWidth()) * 0.1f * premiumPreviewFragment.f33501b0, 0, premiumPreviewFragment.f33504d0.getMeasuredWidth(), 0.0f, premiumPreviewFragment.f33504d0.getMeasuredHeight());
-        canvas.drawRect(f7, f10, f11, f12, a1Var.f46191f);
+        a1Var.d(0, (-premiumPreviewFragment.f33507d0.getMeasuredWidth()) * 0.1f * premiumPreviewFragment.f33504b0, 0, premiumPreviewFragment.f33507d0.getMeasuredWidth(), 0.0f, premiumPreviewFragment.f33507d0.getMeasuredHeight());
+        canvas.drawRect(f7, f10, f11, f12, a1Var.f46194f);
     }
 
     public File z() {
@@ -799,7 +799,7 @@ public final class e implements cp0, l1, am0, gh.a, p2.u, ne.d, com.google.andro
     public e(androidx.lifecycle.t tVar, t0 t0Var) {
         this.f17038a = 22;
         this.f17039b = tVar;
-        this.f17040c = (w1.b) new androidx.biometric.e(t0Var, w1.b.f48463f).j(w1.b.class);
+        this.f17040c = (w1.b) new androidx.biometric.e(t0Var, w1.b.f48466f).j(w1.b.class);
     }
 
     public e(k0 k0Var) {

@@ -1,9 +1,34 @@
 package org.telegram.messenger;
 
-import android.graphics.ImageDecoder;
-public final class xg implements ImageDecoder.OnHeaderDecodedListener {
+import android.app.NotificationChannel;
+import org.telegram.tgnet.InputSerializedData;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.Vector;
+import org.telegram.tgnet.tl.TL_iv;
+public final class xg implements Vector.TLDeserializer, org.telegram.ui.ActionBar.a2 {
+    public final int f20086a;
+
+    public xg(int i10) {
+        this.f20086a = i10;
+    }
+
+    public static NotificationChannel a(Object obj) {
+        return (NotificationChannel) obj;
+    }
+
     @Override
-    public final void onHeaderDecoded(ImageDecoder imageDecoder, ImageDecoder.ImageInfo imageInfo, ImageDecoder.Source source) {
-        NotificationsController.lambda$loadRoundAvatar$48(imageDecoder, imageInfo, source);
+    public TLObject deserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+        switch (this.f20086a) {
+            case 2:
+                return TL_iv.RichText.TLdeserialize(inputSerializedData, i10, z10);
+            default:
+                return TLRPC.PollAnswer.TLdeserialize(inputSerializedData, i10, z10);
+        }
+    }
+
+    @Override
+    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        SharedConfig.lambda$checkSdCard$1(b2Var, i10);
     }
 }

@@ -1,23 +1,28 @@
 package org.telegram.messenger;
-public final class u5 implements Runnable {
-    public final int f19640a;
-    public final LocationController f19641b;
-    public final Integer f19642c;
 
-    public u5(LocationController locationController, Integer num, int i10) {
-        this.f19640a = i10;
-        this.f19641b = locationController;
-        this.f19642c = num;
+import org.telegram.messenger.LocationController;
+public final class u5 implements Runnable {
+    public final int f19656a;
+    public final LocationController f19657b;
+    public final LocationController.SharingLocationInfo f19658c;
+
+    public u5(int i10, LocationController.SharingLocationInfo sharingLocationInfo, LocationController locationController) {
+        this.f19656a = i10;
+        this.f19657b = locationController;
+        this.f19658c = sharingLocationInfo;
     }
 
     @Override
     public final void run() {
-        switch (this.f19640a) {
+        switch (this.f19656a) {
             case 0:
-                this.f19641b.lambda$onConnected$2(this.f19642c);
+                LocationController.j(this.f19657b, this.f19658c);
+                return;
+            case 1:
+                LocationController.g(this.f19657b, this.f19658c);
                 return;
             default:
-                this.f19641b.lambda$onConnected$1(this.f19642c);
+                LocationController.x(this.f19657b, this.f19658c);
                 return;
         }
     }

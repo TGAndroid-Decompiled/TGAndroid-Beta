@@ -12,15 +12,15 @@ public final class dw extends org.telegram.ui.Components.kt {
     @Override
     public final void y() {
         ay ayVar = this.E;
-        if (ayVar.f35445c.L0() == 0) {
-            View m10 = ayVar.f35445c.m(0);
+        if (ayVar.f35448c.L0() == 0) {
+            View m10 = ayVar.f35448c.m(0);
             if (m10 != null) {
                 m10.invalidate();
             }
             if (ayVar.v == 2) {
                 ayVar.v = 1;
             }
-            iw iwVar = ayVar.f35447n;
+            iw iwVar = ayVar.f35450n;
             if (iwVar != null) {
                 iwVar.b();
             }

@@ -7,18 +7,18 @@ import android.view.View;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 public final class ur extends Drawable {
-    public final Drawable f42029a;
-    public final Drawable f42030b;
+    public final Drawable f42032a;
+    public final Drawable f42033b;
     public int d;
     public int e;
-    public final ArrayList f42031c = new ArrayList();
-    public boolean f42032f = false;
-    public final org.telegram.ui.Components.f6 f42033g = new org.telegram.ui.Components.f6(new ti(this, 14), 420, org.telegram.ui.Components.bs.h);
+    public final ArrayList f42034c = new ArrayList();
+    public boolean f42035f = false;
+    public final org.telegram.ui.Components.f6 f42036g = new org.telegram.ui.Components.f6(new ti(this, 14), 420, org.telegram.ui.Components.bs.h);
     public int h = 255;
 
     public ur(Drawable drawable, Drawable drawable2) {
-        this.f42029a = drawable;
-        this.f42030b = drawable2;
+        this.f42032a = drawable;
+        this.f42033b = drawable2;
     }
 
     public final void a(int i10, int i11) {
@@ -27,11 +27,11 @@ public final class ur extends Drawable {
     }
 
     public final void b(boolean z10) {
-        if (this.f42032f == z10) {
+        if (this.f42035f == z10) {
             return;
         }
-        this.f42032f = z10;
-        ArrayList arrayList = this.f42031c;
+        this.f42035f = z10;
+        ArrayList arrayList = this.f42034c;
         int size = arrayList.size();
         int i10 = 0;
         while (i10 < size) {
@@ -44,14 +44,14 @@ public final class ur extends Drawable {
 
     @Override
     public final void draw(Canvas canvas) {
-        float e = this.f42033g.e(this.f42032f);
+        float e = this.f42036g.e(this.f42035f);
         int i10 = this.h;
-        Drawable drawable = this.f42029a;
+        Drawable drawable = this.f42032a;
         drawable.setAlpha(i10);
         drawable.setBounds(getBounds());
         drawable.draw(canvas);
         if (e > 0.0f) {
-            Drawable drawable2 = this.f42030b;
+            Drawable drawable2 = this.f42033b;
             drawable2.setAlpha((int) (this.h * e));
             drawable2.setBounds(getBounds().left + this.d, getBounds().top + this.e, drawable2.getIntrinsicWidth() + getBounds().left + this.d, drawable2.getIntrinsicHeight() + getBounds().top + this.e);
             float lerp = AndroidUtilities.lerp(0.5f, 1.0f, e);
@@ -64,12 +64,12 @@ public final class ur extends Drawable {
 
     @Override
     public final int getIntrinsicHeight() {
-        return this.f42029a.getIntrinsicHeight();
+        return this.f42032a.getIntrinsicHeight();
     }
 
     @Override
     public final int getIntrinsicWidth() {
-        return this.f42029a.getIntrinsicWidth();
+        return this.f42032a.getIntrinsicWidth();
     }
 
     @Override
@@ -84,7 +84,7 @@ public final class ur extends Drawable {
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        this.f42029a.setColorFilter(colorFilter);
-        this.f42030b.setColorFilter(colorFilter);
+        this.f42032a.setColorFilter(colorFilter);
+        this.f42033b.setColorFilter(colorFilter);
     }
 }

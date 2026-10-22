@@ -16,20 +16,20 @@ public final class uq extends s4.k {
 
     @Override
     public final void O() {
-        this.G.f37722c.invalidate();
+        this.G.f37725c.invalidate();
     }
 
     @Override
     public final void P(s4.b1 b1Var) {
-        this.G.f37722c.invalidate();
+        this.G.f37725c.invalidate();
     }
 
     @Override
     public final void m() {
-        boolean isEmpty = this.f45981p.isEmpty();
-        boolean isEmpty2 = this.f45983r.isEmpty();
-        boolean isEmpty3 = this.f45984s.isEmpty();
-        boolean isEmpty4 = this.f45982q.isEmpty();
+        boolean isEmpty = this.f45984p.isEmpty();
+        boolean isEmpty2 = this.f45986r.isEmpty();
+        boolean isEmpty3 = this.f45987s.isEmpty();
+        boolean isEmpty4 = this.f45985q.isEmpty();
         if (!isEmpty || !isEmpty2 || !isEmpty4 || !isEmpty3) {
             this.F.lock();
         }

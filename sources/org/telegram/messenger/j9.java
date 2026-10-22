@@ -1,28 +1,36 @@
 package org.telegram.messenger;
 
 import java.util.ArrayList;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-public final class j9 implements Utilities.Callback {
-    public final int f18676a;
-    public final MediaDataController f18677b;
-    public final TLRPC.StickerSet f18678c;
+public final class j9 implements Runnable {
+    public final int f18674a = 1;
+    public final MediaDataController f18675b;
+    public final boolean f18676c;
+    public final int d;
+    public final ArrayList e;
 
-    public j9(MediaDataController mediaDataController, TLRPC.StickerSet stickerSet, int i10) {
-        this.f18676a = i10;
-        this.f18677b = mediaDataController;
-        this.f18678c = stickerSet;
+    public j9(MediaDataController mediaDataController, boolean z10, int i10, ArrayList arrayList) {
+        this.f18675b = mediaDataController;
+        this.f18676c = z10;
+        this.d = i10;
+        this.e = arrayList;
     }
 
     @Override
-    public final void run(Object obj) {
-        switch (this.f18676a) {
+    public final void run() {
+        switch (this.f18674a) {
             case 0:
-                this.f18677b.lambda$toggleStickerSetInternal$115(this.f18678c, (ArrayList) obj);
+                this.f18675b.lambda$loadRecents$48(this.f18676c, this.e, this.d);
                 return;
             default:
-                this.f18677b.lambda$toggleStickerSetInternal$112(this.f18678c, (ArrayList) obj);
+                this.f18675b.lambda$processLoadedRecentDocuments$53(this.f18676c, this.d, this.e);
                 return;
         }
+    }
+
+    public j9(MediaDataController mediaDataController, boolean z10, ArrayList arrayList, int i10) {
+        this.f18675b = mediaDataController;
+        this.f18676c = z10;
+        this.e = arrayList;
+        this.d = i10;
     }
 }
