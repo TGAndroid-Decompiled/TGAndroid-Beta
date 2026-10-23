@@ -3,7 +3,7 @@ package ad;
 import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.ah;
-import org.telegram.ui.Components.vj0;
+import org.telegram.ui.Components.yj0;
 import org.telegram.ui.Components.zg;
 public final class g extends HashMap {
     public final int f518a;
@@ -19,14 +19,14 @@ public final class g extends HashMap {
         switch (this.f518a) {
             case 1:
                 int i10 = ((ah) this.f519b).v;
-                vj0 vj0Var = (vj0) super.get(obj);
-                if (vj0Var == null) {
+                yj0 yj0Var = (yj0) super.get(obj);
+                if (yj0Var == null) {
                     zg zgVar = (zg) obj;
-                    vj0 vj0Var2 = new vj0(zgVar.f32900c, AndroidUtilities.dp(i10), AndroidUtilities.dp(i10));
-                    put(zgVar, vj0Var2);
-                    return vj0Var2;
+                    yj0 yj0Var2 = new yj0(zgVar.f33219c, AndroidUtilities.dp(i10), AndroidUtilities.dp(i10));
+                    put(zgVar, yj0Var2);
+                    return yj0Var2;
                 }
-                return vj0Var;
+                return yj0Var;
             default:
                 return super.get(obj);
         }

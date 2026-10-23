@@ -1,72 +1,42 @@
 package ci;
 
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.fd;
+import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-public final class o6 implements Runnable {
-    public final int f5696a = 0;
-    public final boolean f5697b;
-    public final long f5698c;
-    public final long d;
+import org.telegram.ui.TwoStepVerificationActivity;
+public final class o6 implements RequestDelegate {
+    public final int f5637a = 0;
+    public final boolean f5638b;
+    public final boolean f5639c;
+    public final Object d;
     public final Object e;
-    public final Object f5699f;
-    public final Object h;
 
-    public o6(i7 i7Var, long j10, boolean z10, TL_stories.PeerStories peerStories, long j11, TLObject tLObject) {
-        this.e = i7Var;
-        this.f5698c = j10;
-        this.f5697b = z10;
-        this.f5699f = peerStories;
-        this.d = j11;
-        this.h = tLObject;
+    public o6(h7 h7Var, boolean z10, TL_stories.TL_stories_getAllStories tL_stories_getAllStories, boolean z11) {
+        this.d = h7Var;
+        this.f5638b = z10;
+        this.e = tL_stories_getAllStories;
+        this.f5639c = z11;
     }
 
     @Override
-    public final void run() {
-        switch (this.f5696a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f5637a) {
             case 0:
-                i7 i7Var = (i7) this.e;
-                TL_stories.PeerStories peerStories = (TL_stories.PeerStories) this.f5699f;
-                TLObject tLObject = (TLObject) this.h;
-                i7Var.D.remove(Long.valueOf(this.f5698c));
-                boolean z10 = this.f5697b;
-                long j10 = this.d;
-                if (!z10) {
-                    peerStories = i7Var.y(j10);
-                }
-                if (peerStories != null) {
-                    if (tLObject instanceof TL_stories.TL_stories_stories) {
-                        TL_stories.TL_stories_stories tL_stories_stories = (TL_stories.TL_stories_stories) tLObject;
-                        for (int i10 = 0; i10 < tL_stories_stories.stories.size(); i10++) {
-                            for (int i11 = 0; i11 < peerStories.stories.size(); i11++) {
-                                if (peerStories.stories.get(i11).f20514id == tL_stories_stories.stories.get(i10).f20514id) {
-                                    peerStories.stories.set(i11, tL_stories_stories.stories.get(i10));
-                                    i7Var.W(j10, tL_stories_stories.stories.get(i10));
-                                }
-                            }
-                        }
-                        if (!z10) {
-                            w7 w7Var = i7Var.f5498k;
-                            w7Var.f6126b.getStorageQueue().postRunnable(new t7(w7Var, peerStories, 1));
-                        }
-                    }
-                    NotificationCenter.getInstance(i7Var.f5491a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesUpdated, new Object[0]);
-                    return;
-                }
+                AndroidUtilities.runOnUIThread(new i6((h7) this.d, this.f5638b, (TL_stories.TL_stories_getAllStories) this.e, tLObject, this.f5639c));
                 return;
             default:
-                ((FileLoader) this.e).lambda$checkUploadNewDataAvailable$3(this.f5697b, (String) this.f5699f, this.f5698c, this.d, (Float) this.h);
+                AndroidUtilities.runOnUIThread(new fd((TwoStepVerificationActivity) this.d, tL_error, tLObject, this.f5638b, this.f5639c, (Runnable) this.e, 3));
                 return;
         }
     }
 
-    public o6(FileLoader fileLoader, boolean z10, String str, long j10, long j11, Float f7) {
-        this.e = fileLoader;
-        this.f5697b = z10;
-        this.f5699f = str;
-        this.f5698c = j10;
-        this.d = j11;
-        this.h = f7;
+    public o6(TwoStepVerificationActivity twoStepVerificationActivity, boolean z10, boolean z11, Runnable runnable) {
+        this.d = twoStepVerificationActivity;
+        this.f5638b = z10;
+        this.f5639c = z11;
+        this.e = runnable;
     }
 }

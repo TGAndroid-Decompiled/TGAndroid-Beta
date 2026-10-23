@@ -2,19 +2,19 @@ package org.telegram.ui.Components;
 
 import android.graphics.drawable.Drawable;
 public final class vp {
-    public final org.telegram.ui.ActionBar.c4 f31854a;
-    public Drawable f31855b;
-    public int f31856c;
+    public final org.telegram.ui.ActionBar.f4 f32035a;
+    public Drawable f32036b;
+    public int f32037c;
     public boolean d;
 
-    public vp(org.telegram.ui.ActionBar.c4 c4Var) {
-        this.f31854a = c4Var;
+    public vp(org.telegram.ui.ActionBar.f4 f4Var) {
+        this.f32035a = f4Var;
     }
 
     public final String a() {
-        org.telegram.ui.ActionBar.c4 c4Var = this.f31854a;
-        if (c4Var != null && !c4Var.f20727a) {
-            return c4Var.e;
+        org.telegram.ui.ActionBar.f4 f4Var = this.f32035a;
+        if (f4Var != null && !f4Var.f20884a) {
+            return f4Var.e;
         }
         return null;
     }

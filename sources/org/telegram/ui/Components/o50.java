@@ -3,37 +3,37 @@ package org.telegram.ui.Components;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 public final class o50 extends AnimatorListenerAdapter {
-    public final int f28951a;
-    public final m60 f28952b;
+    public final int f29096a;
+    public final n60 f29097b;
 
-    public o50(m60 m60Var, int i10) {
-        this.f28951a = i10;
-        this.f28952b = m60Var;
+    public o50(n60 n60Var, int i10) {
+        this.f29096a = i10;
+        this.f29097b = n60Var;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f28951a) {
+        switch (this.f29096a) {
             case 0:
-                m60 m60Var = this.f28952b;
-                if (animator.equals(m60Var.L)) {
-                    m60Var.L = null;
+                n60 n60Var = this.f29097b;
+                if (animator.equals(n60Var.L)) {
+                    n60Var.L = null;
                     return;
                 }
                 return;
             case 1:
-                m60 m60Var2 = this.f28952b;
-                if (m60Var2.l1 != null) {
-                    m60Var2.l1 = null;
+                n60 n60Var2 = this.f29097b;
+                if (n60Var2.l1 != null) {
+                    n60Var2.l1 = null;
                     return;
                 }
                 return;
             default:
-                m60 m60Var3 = this.f28952b;
-                if (animator.equals(m60Var3.f28409e0)) {
-                    m60Var3.c(true);
-                    m60Var3.f28415g1 = false;
-                    m60Var3.setVisibility(4);
+                n60 n60Var3 = this.f29097b;
+                if (animator.equals(n60Var3.f28852e0)) {
+                    n60Var3.c(true);
+                    n60Var3.f28858g1 = false;
+                    n60Var3.setVisibility(4);
                     return;
                 }
                 return;

@@ -24,8 +24,8 @@ public abstract class h {
     }
 
     public static void b(Context context) {
-        i.F(context).L();
-        Set<m> set = m.f6534a;
+        i.Q(context).T();
+        Set<m> set = m.f6546a;
         synchronized (set) {
         }
         for (m mVar : set) {

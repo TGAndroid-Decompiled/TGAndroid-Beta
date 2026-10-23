@@ -1,40 +1,72 @@
 package org.telegram.ui;
 
-import android.content.Intent;
-public final class da1 implements org.telegram.ui.Components.ul0, org.telegram.ui.ActionBar.a2 {
-    public final int f36324a;
-    public final ThemeActivity f36325b;
-
-    public da1(ThemeActivity themeActivity, int i10) {
-        this.f36324a = i10;
-        this.f36325b = themeActivity;
-    }
+import android.graphics.Canvas;
+import android.graphics.Path;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.ui.Components.Crop.CropAreaView;
+public final class da1 extends View {
+    public ImageReceiver f36582a;
+    public ImageReceiver f36583b;
+    public View f36584c;
+    public org.telegram.ui.Components.rf0 d;
+    public Path e;
+    public Drawable f36585f;
 
     @Override
-    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f36324a) {
-            case 1:
-                ThemeActivity themeActivity = this.f36325b;
-                themeActivity.getClass();
-                org.telegram.ui.Components.f5.V(themeActivity, 0, null, null);
-                return;
-            default:
-                ThemeActivity themeActivity2 = this.f36325b;
-                if (themeActivity2.getParentActivity() != null) {
-                    try {
-                        themeActivity2.getParentActivity().startActivity(new Intent("android.settings.LOCATION_SOURCE_SETTINGS"));
-                    } catch (Exception unused) {
-                        return;
-                    }
-                }
-                return;
+    public final void draw(Canvas canvas) {
+        int measuredWidth = getMeasuredWidth() >> 1;
+        int measuredHeight = getMeasuredHeight() - AndroidUtilities.dp(30.0f);
+        int dp = AndroidUtilities.dp(46.0f) + measuredWidth;
+        ImageReceiver imageReceiver = this.f36582a;
+        imageReceiver.setImageCoords((measuredWidth - AndroidUtilities.dp(46.0f)) - AndroidUtilities.dp(30.0f), measuredHeight - AndroidUtilities.dp(30.0f), AndroidUtilities.dp(60.0f), AndroidUtilities.dp(60.0f));
+        this.f36583b.setImageCoords(dp - AndroidUtilities.dp(30.0f), measuredHeight - AndroidUtilities.dp(30.0f), AndroidUtilities.dp(60.0f), AndroidUtilities.dp(60.0f));
+        Drawable drawable = this.f36585f;
+        drawable.setBounds(org.telegram.ui.Cells.b1.f(2, measuredWidth, drawable), org.telegram.messenger.sl.d(2, measuredHeight, drawable), org.telegram.ui.Cells.b1.y(2, measuredWidth, drawable), org.telegram.ui.Cells.b1.u(2, measuredHeight, drawable));
+        drawable.draw(canvas);
+        Path path = this.e;
+        path.reset();
+        path.addCircle(dp, measuredHeight, AndroidUtilities.dp(30.0f), Path.Direction.CW);
+        imageReceiver.draw(canvas);
+        if (this.f36584c != null) {
+            CropAreaView cropAreaView = this.d.f30163b.f16980a;
+            float dp2 = AndroidUtilities.dp(60.0f) / cropAreaView.f24327a;
+            float left = (0.0f - this.d.getLeft()) - cropAreaView.f24329b;
+            canvas.save();
+            canvas.clipPath(path);
+            canvas.scale(dp2, dp2, 0.0f, 0.0f);
+            canvas.translate(left, (0.0f - this.d.getTop()) - cropAreaView.f24331c);
+            canvas.translate((dp - AndroidUtilities.dp(30.0f)) / dp2, (measuredHeight - AndroidUtilities.dp(30.0f)) / dp2);
+            PhotoViewer.u1().f33601g4 = true;
+            this.f36584c.draw(canvas);
+            PhotoViewer.u1().f33601g4 = false;
+            canvas.restore();
         }
+        super.draw(canvas);
+        this.f36584c.invalidate();
+        invalidate();
     }
 
     @Override
-    public int run() {
-        int i10;
-        i10 = this.f36325b.sensitiveContentRow;
-        return i10;
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.f36582a.onAttachedToWindow();
+        this.f36583b.onAttachedToWindow();
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.f36582a.onDetachedFromWindow();
+        this.f36583b.onDetachedFromWindow();
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        this.f36582a.setRoundRadius(AndroidUtilities.dp(30.0f));
+        this.f36583b.setRoundRadius(AndroidUtilities.dp(30.0f));
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(86.0f), 1073741824));
     }
 }

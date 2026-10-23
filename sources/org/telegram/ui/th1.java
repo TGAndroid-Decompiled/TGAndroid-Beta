@@ -1,16 +1,21 @@
 package org.telegram.ui;
 
-import java.io.File;
-public final class th1 {
-    public String f41685a;
-    public int f41686b;
-    public int f41687c;
-    public File d;
-    public final File e;
+import org.telegram.tgnet.TLRPC;
+public final class th1 implements org.telegram.ui.ActionBar.z1, pc1 {
+    public final WallpapersListActivity f42017a;
 
-    public th1(File file, File file2, String str) {
-        this.f41685a = str;
-        this.d = file;
-        this.e = file2;
+    public th1(WallpapersListActivity wallpapersListActivity) {
+        this.f42017a = wallpapersListActivity;
+    }
+
+    @Override
+    public void a(TLRPC.TL_wallPaper tL_wallPaper) {
+        int[][] iArr = WallpapersListActivity.f35515k0;
+        this.f42017a.removeSelfFromStack();
+    }
+
+    @Override
+    public void g(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
+        WallpapersListActivity.U(this.f42017a);
     }
 }

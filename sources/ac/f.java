@@ -38,7 +38,7 @@ public final class f extends rb.e {
         this.f489f = bVar;
         this.f490g = faVar;
         le.b bVar2 = new le.b(28);
-        bVar2.f16009b = Float.valueOf(aVar.f50129a);
+        bVar2.f16072b = Float.valueOf(aVar.f50568a);
         this.e = new h8(bVar2);
         this.h = new z8(rb.g.c().b(), 1);
     }
@@ -48,15 +48,15 @@ public final class f extends rb.e {
         this.f489f.zzb();
         fa faVar = this.f490g;
         ?? obj = new Object();
-        obj.f7647c = m7.TYPE_THIN;
-        n2.e eVar = new n2.e(25, false);
-        eVar.f17039b = this.e;
-        m mVar = o.f49498b;
+        obj.f7659c = m7.TYPE_THIN;
+        n2.e eVar = new n2.e(24, false);
+        eVar.f17102b = this.e;
+        m mVar = o.f49940b;
         Object[] objArr = {n7.NO_ERROR};
         k8.a(1, objArr);
-        eVar.f17040c = new s(1, objArr);
+        eVar.f17103c = new s(1, objArr);
         obj.d = new g8(eVar);
-        rb.m.f45211a.execute(new p(faVar, new a5.a((com.google.firebase.messaging.l) obj, 0), o7.ON_DEVICE_IMAGE_LABEL_LOAD, faVar.b(), 7));
+        rb.m.f45623a.execute(new p(faVar, new a5.a((com.google.firebase.messaging.l) obj, 0), o7.ON_DEVICE_IMAGE_LABEL_LOAD, faVar.b(), 7));
     }
 
     @Override
@@ -65,8 +65,8 @@ public final class f extends rb.e {
         this.d = true;
         fa faVar = this.f490g;
         ?? obj = new Object();
-        obj.f7647c = m7.TYPE_THIN;
-        rb.m.f45211a.execute(new p(faVar, new a5.a((com.google.firebase.messaging.l) obj, 0), o7.ON_DEVICE_IMAGE_LABEL_CLOSE, faVar.b(), 7));
+        obj.f7659c = m7.TYPE_THIN;
+        rb.m.f45623a.execute(new p(faVar, new a5.a((com.google.firebase.messaging.l) obj, 0), o7.ON_DEVICE_IMAGE_LABEL_CLOSE, faVar.b(), 7));
     }
 
     @Override
@@ -80,7 +80,7 @@ public final class f extends rb.e {
                 f(n7.NO_ERROR, aVar, elapsedRealtime);
                 this.d = false;
             } catch (nb.a e) {
-                if (e.f17334a == 14) {
+                if (e.f17397a == 14) {
                     n7Var = n7.MODEL_NOT_DOWNLOADED;
                 } else {
                     n7Var = n7.UNKNOWN_ERROR;
@@ -101,21 +101,21 @@ public final class f extends rb.e {
         faVar.getClass();
         long elapsedRealtime2 = SystemClock.elapsedRealtime();
         if (faVar.c(o7Var, elapsedRealtime2)) {
-            faVar.f49393i.put(o7Var, Long.valueOf(elapsedRealtime2));
+            faVar.f49835i.put(o7Var, Long.valueOf(elapsedRealtime2));
             ?? obj = new Object();
-            obj.f7647c = m7.TYPE_THIN;
+            obj.f7659c = m7.TYPE_THIN;
             u2.c cVar = new u2.c(12, false);
             ?? obj2 = new Object();
-            obj2.f6881b = Long.valueOf(Long.MAX_VALUE & elapsedRealtime);
-            obj2.f6882c = n7Var;
-            obj2.f6880a = Boolean.valueOf(this.d);
+            obj2.f6893b = Long.valueOf(Long.MAX_VALUE & elapsedRealtime);
+            obj2.f6894c = n7Var;
+            obj2.f6892a = Boolean.valueOf(this.d);
             Boolean bool = Boolean.TRUE;
             obj2.d = bool;
             obj2.e = bool;
-            cVar.f47273b = new g7(obj2);
+            cVar.f47712b = new g7(obj2);
             int i11 = aVar.e;
             if (i11 == -1) {
-                Bitmap bitmap = aVar.f48907a;
+                Bitmap bitmap = aVar.f49345a;
                 l.h(bitmap);
                 i10 = bitmap.getAllocationByteCount();
             } else if (i11 != 17 && i11 != 842094169) {
@@ -129,7 +129,7 @@ public final class f extends rb.e {
                 l.h(null);
                 throw null;
             }
-            q qVar = new q(27, (byte) 0);
+            q qVar = new q(26, (byte) 0);
             if (i11 != -1) {
                 if (i11 != 35) {
                     if (i11 != 842094169) {
@@ -151,28 +151,28 @@ public final class f extends rb.e {
             } else {
                 d7Var = d7.BITMAP;
             }
-            qVar.f16973b = d7Var;
-            qVar.f16974c = Integer.valueOf(i10 & Integer.MAX_VALUE);
+            qVar.f17036b = d7Var;
+            qVar.f17037c = Integer.valueOf(i10 & Integer.MAX_VALUE);
             cVar.d = new e7(qVar);
-            cVar.f47274c = this.e;
+            cVar.f47713c = this.e;
             obj.e = new f8(cVar);
-            rb.m.f45211a.execute(new p(faVar, new a5.a((com.google.firebase.messaging.l) obj, 0), o7Var, faVar.b(), 7));
+            rb.m.f45623a.execute(new p(faVar, new a5.a((com.google.firebase.messaging.l) obj, 0), o7Var, faVar.b(), 7));
         }
         u2.c cVar2 = new u2.c(11, false);
         cVar2.d = this.e;
-        cVar2.f47273b = n7Var;
-        cVar2.f47274c = Boolean.valueOf(this.d);
-        rb.m.f45211a.execute(new da(this.f490g, new r0(cVar2), elapsedRealtime));
+        cVar2.f47712b = n7Var;
+        cVar2.f47713c = Boolean.valueOf(this.d);
+        rb.m.f45623a.execute(new da(this.f490g, new r0(cVar2), elapsedRealtime));
         long currentTimeMillis = System.currentTimeMillis();
         z8 z8Var = this.h;
-        int i12 = n7Var.f49494a;
+        int i12 = n7Var.f49936a;
         long j11 = currentTimeMillis - elapsedRealtime;
         synchronized (z8Var) {
             long elapsedRealtime3 = SystemClock.elapsedRealtime();
-            if (z8Var.f48255b.get() != -1 && elapsedRealtime3 - z8Var.f48255b.get() <= TimeUnit.MINUTES.toMillis(30L)) {
+            if (z8Var.f48693b.get() != -1 && elapsedRealtime3 - z8Var.f48693b.get() <= TimeUnit.MINUTES.toMillis(30L)) {
                 return;
             }
-            z8Var.f48254a.f(new n6.o(0, Arrays.asList(new j(24305, i12, 0, j11, currentTimeMillis, null, null, 0, -1)))).addOnFailureListener(new ad.d(z8Var, elapsedRealtime3, 9));
+            z8Var.f48692a.f(new n6.o(0, Arrays.asList(new j(24305, i12, 0, j11, currentTimeMillis, null, null, 0, -1)))).addOnFailureListener(new ad.d(z8Var, elapsedRealtime3, 9));
         }
     }
 }

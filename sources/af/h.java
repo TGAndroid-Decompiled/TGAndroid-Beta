@@ -1,6 +1,7 @@
 package af;
 
 import df.t;
+import i2.o1;
 import j$.util.DesugarCollections;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -78,16 +79,16 @@ public final class h {
             df.p pVar = (df.p) rVar2.e;
             mVar.e = pVar;
             if (pVar != null) {
-                pVar.f7986f = mVar;
+                pVar.f7998f = mVar;
             }
-            mVar.f7986f = rVar2;
+            mVar.f7998f = rVar2;
             rVar2.e = mVar;
-            df.p pVar2 = (df.p) rVar2.f7984b;
-            mVar.f7984b = pVar2;
+            df.p pVar2 = (df.p) rVar2.f7996b;
+            mVar.f7996b = pVar2;
             if (((df.p) mVar.e) == null) {
-                pVar2.f7985c = mVar;
+                pVar2.f7997c = mVar;
             }
-            String str = mVar.f7981g;
+            String str = mVar.f7993g;
             LinkedHashMap linkedHashMap = this.f580m;
             if (!linkedHashMap.containsKey(str)) {
                 linkedHashMap.put(str, mVar);
@@ -170,7 +171,7 @@ public final class h {
     }
 
     public final ff.a h() {
-        return (ff.a) i2.e.h(1, this.f581n);
+        return (ff.a) o1.i(1, this.f581n);
     }
 
     public final void i(java.lang.String r23) {

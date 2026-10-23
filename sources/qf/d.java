@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.net.wifi.WifiManager;
 import android.util.Log;
 import android.util.Pair;
+import i2.o1;
 import java.io.File;
 import java.io.IOException;
 import java.net.InetAddress;
@@ -21,25 +22,25 @@ import java.util.logging.Level;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.secretmedia.ExtendedDefaultDataSourceFactory;
-import org.telegram.ui.fk0;
+import org.telegram.ui.web.d0;
 import t7.u;
 public final class d extends m {
-    public static final f f44456l;
-    public static final HashMap f44457m;
+    public static final f f44869l;
+    public static final HashMap f44870m;
     public final ExtendedDefaultDataSourceFactory e;
-    public final fk0 f44458f;
-    public final u f44459g;
+    public final d0 f44871f;
+    public final u f44872g;
     public final HashMap h;
-    public Pair f44460i;
-    public boolean f44461j;
-    public final AtomicInteger f44462k;
+    public Pair f44873i;
+    public boolean f44874j;
+    public final AtomicInteger f44875k;
 
     static {
         f fVar = new f(new e(Uri.parse("file:///android_asset/cast/default.png"), "image/png", "/assets/default"));
-        f44456l = fVar;
+        f44869l = fVar;
         f[] fVarArr = {fVar};
         HashMap hashMap = new HashMap();
-        f44457m = hashMap;
+        f44870m = hashMap;
         f fVar2 = fVarArr[0];
         hashMap.put(fVar2.d, fVar2);
     }
@@ -47,11 +48,11 @@ public final class d extends m {
     public d() {
         this.f539c = new ad.d(0);
         this.h = new HashMap();
-        this.f44460i = null;
-        this.f44461j = false;
-        this.f44462k = new AtomicInteger();
-        this.f44458f = new fk0(24);
-        this.f44459g = new u(8);
+        this.f44873i = null;
+        this.f44874j = false;
+        this.f44875k = new AtomicInteger();
+        this.f44871f = new d0(6);
+        this.f44872g = new u(8);
         this.e = new ExtendedDefaultDataSourceFactory(ApplicationLoader.applicationContext, "Mozilla/5.0 (X11; Linux x86_64; rv:10.0) Gecko/20150101 Firefox/47.0 (Chrome)");
     }
 
@@ -87,8 +88,8 @@ public final class d extends m {
     @Override
     public final j e(ad.f fVar) {
         String str;
-        int incrementAndGet = this.f44462k.incrementAndGet();
-        StringBuilder l4 = i2.e.l(incrementAndGet, "Request ", " ");
+        int incrementAndGet = this.f44875k.incrementAndGet();
+        StringBuilder n10 = o1.n(incrementAndGet, "Request ", " ");
         switch (fVar.f512g) {
             case 1:
                 str = "GET";
@@ -142,12 +143,12 @@ public final class d extends m {
                 str = "null";
                 break;
         }
-        l4.append(str);
-        l4.append(" ");
-        l4.append(fVar.f511f);
-        l4.append(" ");
-        l4.append((String) fVar.f513i.get("range"));
-        Log.d("CAST_SERVER", l4.toString());
+        n10.append(str);
+        n10.append(" ");
+        n10.append(fVar.f511f);
+        n10.append(" ");
+        n10.append((String) fVar.f513i.get("range"));
+        Log.d("CAST_SERVER", n10.toString());
         try {
             j k10 = k(fVar);
             ad.g gVar = k10.e;
@@ -170,7 +171,7 @@ public final class d extends m {
 
     public final void h() {
         if (this.h.isEmpty()) {
-            if (this.f44461j) {
+            if (this.f44874j) {
                 try {
                     m.d(this.f537a);
                     ad.d dVar = this.f539c;
@@ -192,12 +193,12 @@ public final class d extends m {
                 } catch (Exception e) {
                     m.d.log(Level.SEVERE, "Could not stop all connections", (Throwable) e);
                 }
-                this.f44461j = false;
+                this.f44874j = false;
             }
-        } else if (!this.f44461j) {
+        } else if (!this.f44874j) {
             try {
                 f();
-                this.f44461j = true;
+                this.f44874j = true;
             } catch (IOException e7) {
                 throw new RuntimeException(e7);
             }
@@ -210,16 +211,16 @@ public final class d extends m {
 
     public final void l(File file, String str) {
         if (str != null && file != null) {
-            this.f44460i = new Pair(str, file);
+            this.f44873i = new Pair(str, file);
         } else {
-            Pair pair = this.f44460i;
+            Pair pair = this.f44873i;
             if (pair != null && ((File) pair.second).exists()) {
                 try {
-                    ((File) this.f44460i.second).delete();
+                    ((File) this.f44873i.second).delete();
                 } catch (Exception unused) {
                 }
             }
-            this.f44460i = null;
+            this.f44873i = null;
         }
         h();
     }

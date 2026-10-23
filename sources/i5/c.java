@@ -1,10 +1,10 @@
 package i5;
 public final class c {
-    public final String f12707a;
+    public final String f12739a;
 
     public c(String str) {
         if (str != null) {
-            this.f12707a = str;
+            this.f12739a = str;
             return;
         }
         throw new NullPointerException("name is null");
@@ -17,14 +17,14 @@ public final class c {
         if (!(obj instanceof c)) {
             return false;
         }
-        return this.f12707a.equals(((c) obj).f12707a);
+        return this.f12739a.equals(((c) obj).f12739a);
     }
 
     public final int hashCode() {
-        return this.f12707a.hashCode() ^ 1000003;
+        return this.f12739a.hashCode() ^ 1000003;
     }
 
     public final String toString() {
-        return a1.g.s(new StringBuilder("Encoding{name=\""), this.f12707a, "\"}");
+        return a1.g.s(new StringBuilder("Encoding{name=\""), this.f12739a, "\"}");
     }
 }

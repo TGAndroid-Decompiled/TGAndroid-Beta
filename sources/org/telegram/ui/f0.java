@@ -1,64 +1,37 @@
 package org.telegram.ui;
 
-import android.view.View;
-import android.widget.PopupWindow;
-public final class f0 implements PopupWindow.OnDismissListener {
-    public final int f36849a;
-    public final Object f36850b;
+import android.net.Uri;
+import org.telegram.messenger.Utilities;
+public final class f0 implements Utilities.Callback0Return {
+    public final k4 f37181a;
+    public final String f37182b;
+    public final boolean[] f37183c;
+    public final pf.c d;
 
-    public f0(Object obj, int i10) {
-        this.f36849a = i10;
-        this.f36850b = obj;
+    public f0(k4 k4Var, String str, boolean[] zArr, pf.c cVar) {
+        this.f37181a = k4Var;
+        this.f37182b = str;
+        this.f37183c = zArr;
+        this.d = cVar;
     }
 
     @Override
-    public final void onDismiss() {
-        switch (this.f36849a) {
-            case 0:
-                l4 l4Var = (l4) this.f36850b;
-                View view = l4Var.f35529f;
-                if (view != null) {
-                    l4Var.d = null;
-                    view.invalidate();
-                    l4Var.f35529f = null;
-                    return;
-                }
-                return;
-            case 1:
-                qn qnVar = (qn) this.f36850b;
-                qnVar.Q8 = null;
-                qnVar.T8 = null;
-                qnVar.S8 = null;
-                qnVar.f40930z0.R = true;
-                qnVar.j8(false, true, 0.0f);
-                fk fkVar = qnVar.Y;
-                if (fkVar != null && fkVar.getEditField() != null) {
-                    qnVar.Y.getEditField().setAllowDrawCursor(true);
-                    return;
-                }
-                return;
-            case 2:
-                gj gjVar = (gj) this.f36850b;
-                gjVar.f37343b = null;
-                qn qnVar2 = gjVar.f37349w;
-                qnVar2.Q8 = null;
-                qnVar2.T8 = null;
-                qnVar2.S8 = null;
-                qnVar2.f40930z0.R = true;
-                if (qnVar2.R8) {
-                    qnVar2.j8(false, true, 0.0f);
-                } else {
-                    qnVar2.R8 = true;
-                }
-                fk fkVar2 = qnVar2.Y;
-                if (fkVar2 != null && fkVar2.getEditField() != null) {
-                    qnVar2.Y.getEditField().setAllowDrawCursor(true);
-                    return;
-                }
-                return;
-            default:
-                ((ProfileActivity) this.f36850b).H3(0.0f);
-                return;
+    public final Object run() {
+        String str = this.f37182b;
+        if (!pf.d.e(Uri.parse(str), false, this.f37183c)) {
+            return Boolean.FALSE;
         }
+        k4 k4Var = this.f37181a;
+        pf.c cVar = this.d;
+        if (cVar != null) {
+            cVar.f44708c = new h0(0, k4Var, cVar);
+        } else {
+            w3 w3Var = k4Var.K;
+            if (w3Var != null) {
+                w3Var.dismiss(true);
+            }
+        }
+        pf.d.q(k4Var.L, Uri.parse(str), true, true, false, cVar, null, true, true, false);
+        return Boolean.TRUE;
     }
 }

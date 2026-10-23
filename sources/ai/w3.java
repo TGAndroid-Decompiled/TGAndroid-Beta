@@ -4,35 +4,35 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.qn;
+import org.telegram.ui.sn;
 public final class w3 implements Runnable {
-    public final int f2346a;
-    public final l7 f2347b;
-    public final qn f2348c;
+    public final int f2349a;
+    public final l7 f2350b;
+    public final sn f2351c;
     public final long d;
 
-    public w3(l7 l7Var, qn qnVar, long j10, int i10) {
-        this.f2346a = i10;
-        this.f2347b = l7Var;
-        this.f2348c = qnVar;
+    public w3(l7 l7Var, sn snVar, long j10, int i10) {
+        this.f2349a = i10;
+        this.f2350b = l7Var;
+        this.f2351c = snVar;
         this.d = j10;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f2346a;
+        int i10 = this.f2349a;
         long j10 = this.d;
-        qn qnVar = this.f2348c;
-        l7 l7Var = this.f2347b;
+        sn snVar = this.f2351c;
+        l7 l7Var = this.f2350b;
         switch (i10) {
             case 0:
-                org.telegram.ui.Components.qc M = org.telegram.ui.Components.xc.a0(qnVar).M(LocaleController.getString(R.string.Gift2TransferredTitle), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2TransferredText, l7Var.X1(), DialogObject.getShortName(j10))), R.raw.forward);
-                M.f29545t = true;
+                org.telegram.ui.Components.qc M = org.telegram.ui.Components.xc.a0(snVar).M(LocaleController.getString(R.string.Gift2TransferredTitle), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2TransferredText, l7Var.W1(), DialogObject.getShortName(j10))), R.raw.forward);
+                M.f29842t = true;
                 M.j();
                 return;
             default:
-                org.telegram.ui.Components.qc M2 = org.telegram.ui.Components.xc.a0(qnVar).M(LocaleController.getString(R.string.Gift2TransferredTitle), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2TransferredText, l7Var.X1(), DialogObject.getShortName(j10))), R.raw.forward);
-                M2.f29545t = true;
+                org.telegram.ui.Components.qc M2 = org.telegram.ui.Components.xc.a0(snVar).M(LocaleController.getString(R.string.Gift2TransferredTitle), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2TransferredText, l7Var.W1(), DialogObject.getShortName(j10))), R.raw.forward);
+                M2.f29842t = true;
                 M2.j();
                 return;
         }

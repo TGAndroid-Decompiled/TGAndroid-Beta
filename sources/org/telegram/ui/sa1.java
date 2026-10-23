@@ -1,158 +1,102 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.graphics.Rect;
-import android.view.MotionEvent;
+import android.text.TextUtils;
 import android.view.View;
-import android.view.ViewParent;
 import org.telegram.messenger.AndroidUtilities;
-public final class sa1 extends org.telegram.ui.Components.jm0 {
-    public final int V2;
+import org.telegram.ui.ThemeActivity;
+public final class sa1 implements org.telegram.ui.Components.am0 {
+    public final int f41342a;
+    public final Object f41343b;
+    public final Object f41344c;
+    public final Object d;
 
-    public sa1(Context context, int i10, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context, d6Var);
-        this.V2 = i10;
+    public sa1(Object obj, Object obj2, Object obj3, int i10) {
+        this.f41342a = i10;
+        this.f41343b = obj;
+        this.f41344c = obj2;
+        this.d = obj3;
     }
 
     @Override
-    public Integer W0(int i10) {
-        switch (this.V2) {
-            case 1:
-                return 0;
-            case 3:
-                return 0;
-            case 4:
-                return 0;
-            case 8:
-                return 0;
-            default:
-                return super.W0(i10);
-        }
-    }
-
-    @Override
-    public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        switch (this.V2) {
+    public final void d(int i10, View view) {
+        org.telegram.ui.ActionBar.j6 C0;
+        boolean z10;
+        boolean z11;
+        boolean z12;
+        boolean z13;
+        switch (this.f41342a) {
             case 0:
-                if (getParent() != null && getParent().getParent() != null) {
-                    getParent().getParent().requestDisallowInterceptTouchEvent(canScrollHorizontally(-1));
+                bb1 bb1Var = (bb1) this.f41344c;
+                xa1 xa1Var = (xa1) this.d;
+                ThemeActivity themeActivity = ((za1) this.f41343b).e;
+                int i11 = themeActivity.f34206f;
+                if (i11 == 1) {
+                    C0 = org.telegram.ui.ActionBar.k6.J;
+                } else {
+                    C0 = org.telegram.ui.ActionBar.k6.C0();
                 }
-                return super.onInterceptTouchEvent(motionEvent);
-            case 2:
-                if (getParent() != null && getParent().getParent() != null) {
-                    ViewParent parent = getParent().getParent();
-                    boolean z10 = true;
-                    if (!canScrollHorizontally(-1) && !canScrollHorizontally(1)) {
-                        z10 = false;
+                org.telegram.ui.ActionBar.j6 j6Var = C0;
+                if (i10 == bb1Var.h() - 1) {
+                    if (i11 == 1) {
+                        z13 = true;
+                    } else {
+                        z13 = false;
                     }
-                    parent.requestDisallowInterceptTouchEvent(z10);
-                }
-                return super.onInterceptTouchEvent(motionEvent);
-            case 6:
-                if (getParent() != null && getParent().getParent() != null) {
-                    ViewParent parent2 = getParent().getParent();
-                    boolean z11 = true;
-                    if (!canScrollHorizontally(-1) && !canScrollHorizontally(1)) {
-                        z11 = false;
+                    themeActivity.presentFragment(new qc1(j6Var, false, 1, false, z13));
+                } else {
+                    org.telegram.ui.ActionBar.i6 i6Var = (org.telegram.ui.ActionBar.i6) bb1Var.e.get(i10);
+                    if (!TextUtils.isEmpty(i6Var.f20975o) && i6Var.f20964a != org.telegram.ui.ActionBar.k6.f21359n) {
+                        org.telegram.ui.ActionBar.f6.a(false);
                     }
-                    parent2.requestDisallowInterceptTouchEvent(z11);
+                    int i12 = j6Var.Y;
+                    int i13 = i6Var.f20964a;
+                    if (i12 != i13) {
+                        if (i11 == 1) {
+                            z12 = true;
+                        } else {
+                            z12 = false;
+                        }
+                        org.telegram.ui.ActionBar.k6.H1(j6Var, z12, i13, view);
+                        org.telegram.ui.ActionBar.f4.p(j6Var, i6Var.f20964a);
+                        org.telegram.ui.ActionBar.k6.J1(themeActivity);
+                    } else {
+                        if (i13 >= 100) {
+                            z10 = true;
+                        } else {
+                            z10 = false;
+                        }
+                        if (i11 == 1) {
+                            z11 = true;
+                        } else {
+                            z11 = false;
+                        }
+                        themeActivity.presentFragment(new qc1(j6Var, false, 1, z10, z11));
+                    }
                 }
-                return super.onInterceptTouchEvent(motionEvent);
-            case 13:
-                if (getParent() != null && getParent().getParent() != null) {
-                    getParent().getParent().requestDisallowInterceptTouchEvent(canScrollHorizontally(-1));
+                int left = view.getLeft();
+                int right = view.getRight();
+                int dp = AndroidUtilities.dp(52.0f);
+                int i14 = left - dp;
+                if (i14 < 0) {
+                    xa1Var.v0(i14, 0, null);
+                } else {
+                    int i15 = right + dp;
+                    if (i15 > xa1Var.getMeasuredWidth()) {
+                        xa1Var.v0(i15 - xa1Var.getMeasuredWidth(), 0, null);
+                    }
                 }
-                return super.onInterceptTouchEvent(motionEvent);
-            default:
-                return super.onInterceptTouchEvent(motionEvent);
-        }
-    }
-
-    @Override
-    public void onMeasure(int i10, int i11) {
-        switch (this.V2) {
-            case 7:
-                int size = View.MeasureSpec.getSize(i11);
-                int h = (getAdapter().h() * AndroidUtilities.dp(50.0f)) + AndroidUtilities.dp(4.0f);
-                if (h <= size) {
-                    size = h;
-                }
-                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(size, 1073741824));
-                return;
-            case 10:
-                int size2 = View.MeasureSpec.getSize(i11);
-                int h10 = (getAdapter().h() * AndroidUtilities.dp(50.0f)) + AndroidUtilities.dp(4.0f);
-                if (h10 <= size2) {
-                    size2 = h10;
-                }
-                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
-                return;
-            default:
-                super.onMeasure(i10, i11);
-                return;
-        }
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.V2) {
-            case 12:
-                if (motionEvent.getAction() == 0) {
-                    getParent().requestDisallowInterceptTouchEvent(true);
-                }
-                return super.onTouchEvent(motionEvent);
-            default:
-                return super.onTouchEvent(motionEvent);
-        }
-    }
-
-    @Override
-    public void q0(View view, View view2) {
-        switch (this.V2) {
-            case 5:
-                if (view instanceof org.telegram.ui.Cells.c6) {
-                    super.q0(view, view2);
-                    return;
-                }
-                return;
-            case 11:
-                if (view instanceof org.telegram.ui.Cells.c6) {
-                    super.q0(view, view2);
-                    return;
+                int childCount = xa1Var.getChildCount();
+                for (int i16 = 0; i16 < childCount; i16++) {
+                    View childAt = xa1Var.getChildAt(i16);
+                    if (childAt instanceof ThemeActivity.InnerAccentView) {
+                        ((ThemeActivity.InnerAccentView) childAt).a(true);
+                    }
                 }
                 return;
             default:
-                super.q0(view, view2);
+                d11.V((d11) this.f41343b, (Context) this.f41344c, (String) this.d, view, i10);
                 return;
         }
-    }
-
-    @Override
-    public boolean requestChildRectangleOnScreen(View view, Rect rect, boolean z10) {
-        switch (this.V2) {
-            case 5:
-                rect.bottom = AndroidUtilities.dp(60.0f) + rect.bottom;
-                return super.requestChildRectangleOnScreen(view, rect, z10);
-            case 11:
-                rect.bottom = AndroidUtilities.dp(60.0f) + rect.bottom;
-                return super.requestChildRectangleOnScreen(view, rect, z10);
-            default:
-                return super.requestChildRectangleOnScreen(view, rect, z10);
-        }
-    }
-
-    @Override
-    public boolean requestFocus(int i10, Rect rect) {
-        switch (this.V2) {
-            case 9:
-                return false;
-            default:
-                return super.requestFocus(i10, rect);
-        }
-    }
-
-    public sa1(Context context) {
-        super(context, null);
-        this.V2 = 12;
     }
 }

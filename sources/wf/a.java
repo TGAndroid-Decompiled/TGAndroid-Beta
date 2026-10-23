@@ -2,22 +2,22 @@ package wf;
 
 import org.telegram.messenger.NotificationCenter;
 public final class a implements Runnable {
-    public final int f48937a;
-    public final c f48938b;
+    public final int f49375a;
+    public final c f49376b;
 
     public a(c cVar, int i10) {
-        this.f48937a = i10;
-        this.f48938b = cVar;
+        this.f49375a = i10;
+        this.f49376b = cVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f48937a) {
+        switch (this.f49375a) {
             case 0:
-                this.f48938b.g(false);
+                this.f49376b.g(false);
                 return;
             default:
-                NotificationCenter.getInstance(this.f48938b.f48946c).lambda$postNotificationNameOnUIThread$1(NotificationCenter.onUserRingtonesUpdated, new Object[0]);
+                NotificationCenter.getInstance(this.f49376b.f49384c).lambda$postNotificationNameOnUIThread$1(NotificationCenter.onUserRingtonesUpdated, new Object[0]);
                 return;
         }
     }

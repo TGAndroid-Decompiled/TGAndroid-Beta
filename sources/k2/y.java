@@ -1,13 +1,26 @@
 package k2;
-public final class y extends Exception {
-    public final int f14846a;
-    public final boolean f14847b;
-    public final b2.w f14848c;
+public interface y {
+    void B();
 
-    public y(int i10, b2.w wVar, boolean z10) {
-        super(i2.e.j(i10, "AudioTrack write failed: "));
-        this.f14847b = z10;
-        this.f14846a = i10;
-        this.f14848c = wVar;
-    }
+    void I(Exception exc);
+
+    void L();
+
+    void Q(u0 u0Var);
+
+    void T(u0 u0Var);
+
+    void U();
+
+    void a(long j10);
+
+    void j();
+
+    void l();
+
+    void onAudioSessionIdChanged(int i10);
+
+    void onSkipSilenceEnabledChanged(boolean z10);
+
+    void t(int i10, long j10, long j11);
 }

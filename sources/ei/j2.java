@@ -13,82 +13,82 @@ import android.text.TextUtils;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
 public final class j2 extends i2 {
-    public Drawable f9236i;
-    public Drawable f9237j;
-    public StaticLayout f9238k;
-    public float f9239l;
-    public float f9240m;
-    public Paint f9241n;
-    public final l2 f9242o;
+    public Drawable f9247i;
+    public Drawable f9248j;
+    public StaticLayout f9249k;
+    public float f9250l;
+    public float f9251m;
+    public Paint f9252n;
+    public final l2 f9253o;
 
     public j2(l2 l2Var, int i10, int i11, String str) {
         super(l2Var);
-        this.f9242o = l2Var;
-        this.f9185a = i10;
+        this.f9253o = l2Var;
+        this.f9196a = i10;
         Drawable mutate = l2Var.getContext().getResources().getDrawable(i11).mutate();
-        this.f9236i = mutate;
+        this.f9247i = mutate;
         mutate.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
         String upperCase = str.toUpperCase();
-        TextPaint textPaint = l2Var.f9361b;
+        TextPaint textPaint = l2Var.f9372b;
         StaticLayout staticLayout = new StaticLayout(TextUtils.ellipsize(upperCase, textPaint, AndroidUtilities.displaySize.x * 0.8f, TextUtils.TruncateAt.END), textPaint, 99999, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-        this.f9238k = staticLayout;
-        this.f9239l = staticLayout.getLineCount() > 0 ? this.f9238k.getLineWidth(0) : 0.0f;
-        this.f9240m = this.f9238k.getLineCount() > 0 ? this.f9238k.getLineLeft(0) : 0.0f;
-        this.f9186b = AndroidUtilities.dpf2(45.6f) + this.f9239l;
-        this.f9187c = AndroidUtilities.dpf2(36.0f);
+        this.f9249k = staticLayout;
+        this.f9250l = staticLayout.getLineCount() > 0 ? this.f9249k.getLineWidth(0) : 0.0f;
+        this.f9251m = this.f9249k.getLineCount() > 0 ? this.f9249k.getLineLeft(0) : 0.0f;
+        this.f9197b = AndroidUtilities.dpf2(45.6f) + this.f9250l;
+        this.f9198c = AndroidUtilities.dpf2(36.0f);
     }
 
     @Override
     public final void a(Canvas canvas, float f7, float f10) {
-        RectF rectF = this.f9188f;
-        rectF.set(f7, f10, this.f9186b + f7, this.f9187c + f10);
-        float a2 = this.f9189g.a(0.05f);
+        RectF rectF = this.f9199f;
+        rectF.set(f7, f10, this.f9197b + f7, this.f9198c + f10);
+        float a2 = this.f9200g.a(0.05f);
         canvas.save();
         canvas.scale(a2, a2, rectF.centerX(), rectF.centerY());
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), this.f9242o.f9360a);
-        if (this.f9237j != null) {
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), this.f9253o.f9371a);
+        if (this.f9248j != null) {
             canvas.saveLayerAlpha(rectF, 255, 31);
         }
         int i10 = 0;
-        if (this.f9236i == null) {
+        if (this.f9247i == null) {
             Drawable emojiBigDrawable = Emoji.getEmojiBigDrawable(null);
-            this.f9236i = emojiBigDrawable;
+            this.f9247i = emojiBigDrawable;
             if (emojiBigDrawable instanceof Emoji.EmojiDrawable) {
                 ((Emoji.EmojiDrawable) emojiBigDrawable).fullSize = false;
             }
         }
-        if (this.f9236i != null) {
+        if (this.f9247i != null) {
             float dp = AndroidUtilities.dp(24.0f) / 2;
-            this.f9236i.setBounds((int) ((rectF.left + AndroidUtilities.dp(18.0f)) - dp), (int) (((this.f9187c / 2.0f) + rectF.top) - dp), (int) (rectF.left + AndroidUtilities.dp(18.0f) + dp), (int) ((this.f9187c / 2.0f) + rectF.top + dp));
-            this.f9236i.draw(canvas);
+            this.f9247i.setBounds((int) ((rectF.left + AndroidUtilities.dp(18.0f)) - dp), (int) (((this.f9198c / 2.0f) + rectF.top) - dp), (int) (rectF.left + AndroidUtilities.dp(18.0f) + dp), (int) ((this.f9198c / 2.0f) + rectF.top + dp));
+            this.f9247i.draw(canvas);
         }
-        if (this.f9237j != null) {
+        if (this.f9248j != null) {
             RectF rectF2 = AndroidUtilities.rectTmp;
-            rectF2.set(rectF.left + AndroidUtilities.dp(18.55f), ((rectF.top + this.f9187c) - AndroidUtilities.dp(5.0f)) - AndroidUtilities.dp(12.55f), rectF.left + AndroidUtilities.dp(29.45f), rectF.left + AndroidUtilities.dp(31.0f));
-            canvas.drawRoundRect(rectF2, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), this.f9241n);
-            this.f9237j.setBounds((int) (rectF.left + AndroidUtilities.dp(18.0f)), (int) (((rectF.top + this.f9187c) - AndroidUtilities.dp(5.0f)) - AndroidUtilities.dp(12.0f)), (int) (rectF.left + AndroidUtilities.dp(30.0f)), (int) ((rectF.top + this.f9187c) - AndroidUtilities.dp(5.0f)));
-            this.f9237j.draw(canvas);
+            rectF2.set(rectF.left + AndroidUtilities.dp(18.55f), ((rectF.top + this.f9198c) - AndroidUtilities.dp(5.0f)) - AndroidUtilities.dp(12.55f), rectF.left + AndroidUtilities.dp(29.45f), rectF.left + AndroidUtilities.dp(31.0f));
+            canvas.drawRoundRect(rectF2, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), this.f9252n);
+            this.f9248j.setBounds((int) (rectF.left + AndroidUtilities.dp(18.0f)), (int) (((rectF.top + this.f9198c) - AndroidUtilities.dp(5.0f)) - AndroidUtilities.dp(12.0f)), (int) (rectF.left + AndroidUtilities.dp(30.0f)), (int) ((rectF.top + this.f9198c) - AndroidUtilities.dp(5.0f)));
+            this.f9248j.draw(canvas);
             canvas.restore();
         }
         float f11 = rectF.left;
-        if (this.f9236i != null) {
+        if (this.f9247i != null) {
             i10 = 28;
         }
-        canvas.translate((f11 + AndroidUtilities.dp(i10 + 6)) - this.f9240m, ((this.f9187c / 2.0f) + rectF.top) - (this.f9238k.getHeight() / 2.0f));
-        this.f9238k.draw(canvas);
+        canvas.translate((f11 + AndroidUtilities.dp(i10 + 6)) - this.f9251m, ((this.f9198c / 2.0f) + rectF.top) - (this.f9249k.getHeight() / 2.0f));
+        this.f9249k.draw(canvas);
         canvas.restore();
     }
 
     public j2(l2 l2Var, CharSequence charSequence) {
         super(l2Var);
-        this.f9242o = l2Var;
-        this.f9185a = 5;
-        TextPaint textPaint = l2Var.f9361b;
+        this.f9253o = l2Var;
+        this.f9196a = 5;
+        TextPaint textPaint = l2Var.f9372b;
         StaticLayout staticLayout = new StaticLayout(TextUtils.ellipsize(charSequence, textPaint, AndroidUtilities.displaySize.x * 0.8f, TextUtils.TruncateAt.END), textPaint, 99999, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-        this.f9238k = staticLayout;
-        this.f9239l = staticLayout.getLineCount() > 0 ? this.f9238k.getLineWidth(0) : 0.0f;
-        this.f9240m = this.f9238k.getLineCount() > 0 ? this.f9238k.getLineLeft(0) : 0.0f;
-        this.f9186b = AndroidUtilities.dpf2(12.0f) + this.f9239l;
-        this.f9187c = AndroidUtilities.dpf2(36.0f);
+        this.f9249k = staticLayout;
+        this.f9250l = staticLayout.getLineCount() > 0 ? this.f9249k.getLineWidth(0) : 0.0f;
+        this.f9251m = this.f9249k.getLineCount() > 0 ? this.f9249k.getLineLeft(0) : 0.0f;
+        this.f9197b = AndroidUtilities.dpf2(12.0f) + this.f9250l;
+        this.f9198c = AndroidUtilities.dpf2(36.0f);
     }
 }

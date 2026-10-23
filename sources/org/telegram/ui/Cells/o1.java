@@ -1,127 +1,33 @@
 package org.telegram.ui.Cells;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.bs;
-public abstract class o1 extends Drawable {
-    public final int f22700a;
-    public final Path f22701b;
-    public final Paint f22702c;
-    public final Object d;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
+import java.util.Comparator;
+public final class o1 implements Comparator {
+    public final int f22835a;
+    public final Spanned f22836b;
 
-    public o1(int i10) {
-        this.f22700a = i10;
-        switch (i10) {
-            case 1:
-                this.f22701b = new Path();
-                Paint paint = new Paint(1);
-                this.f22702c = paint;
-                paint.setStyle(Paint.Style.STROKE);
-                paint.setStrokeJoin(Paint.Join.ROUND);
-                paint.setStrokeCap(Paint.Cap.ROUND);
-                this.d = new org.telegram.ui.Components.f6(new ki.u(this, 28), 350L, bs.h, 0);
-                return;
-            default:
-                Paint paint2 = new Paint(1);
-                this.f22702c = paint2;
-                paint2.setColor(-1);
-                this.d = new RectF();
-                this.f22701b = new Path();
-                return;
-        }
+    public o1(Spanned spanned, int i10) {
+        this.f22835a = i10;
+        this.f22836b = spanned;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        switch (this.f22700a) {
+    public final int compare(Object obj, Object obj2) {
+        int spanStart;
+        int spanStart2;
+        switch (this.f22835a) {
             case 0:
-                e();
-                canvas.drawPath(this.f22701b, this.f22702c);
-                return;
+                Spanned spanned = this.f22836b;
+                spanStart = spanned.getSpanStart((mi.h) obj2);
+                spanStart2 = spanned.getSpanStart((mi.h) obj);
+                break;
             default:
-                float e = ((org.telegram.ui.Components.f6) this.d).e(true);
-                float centerX = getBounds().centerX();
-                float centerY = getBounds().centerY();
-                float width = getBounds().width();
-                float f7 = 0.57f * width;
-                Path path = this.f22701b;
-                path.rewind();
-                float f10 = f7 / 2.0f;
-                path.moveTo(centerX - AndroidUtilities.lerp(f10, (-f7) / 2.0f, e), centerY);
-                float f11 = f10 + centerX;
-                path.lineTo(f11, centerY);
-                float f12 = f11 - (0.27f * width);
-                float f13 = (0.54f * width) / 2.0f;
-                path.moveTo(f12, centerY - f13);
-                path.lineTo(f11, centerY);
-                path.lineTo(f12, f13 + centerY);
-                canvas.save();
-                Paint paint = this.f22702c;
-                paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
-                canvas.translate(0.0f, (-width) * 0.1f * e);
-                canvas.rotate(e * 90.0f, centerX, centerY);
-                canvas.drawPath(path, paint);
-                canvas.restore();
-                return;
+                SpannableStringBuilder spannableStringBuilder = (SpannableStringBuilder) this.f22836b;
+                spanStart = spannableStringBuilder.getSpanStart((u9) obj2);
+                spanStart2 = spannableStringBuilder.getSpanStart((u9) obj);
+                break;
         }
-    }
-
-    public abstract void e();
-
-    @Override
-    public int getIntrinsicHeight() {
-        switch (this.f22700a) {
-            case 1:
-                return AndroidUtilities.dp(24.0f);
-            default:
-                return super.getIntrinsicHeight();
-        }
-    }
-
-    @Override
-    public int getIntrinsicWidth() {
-        switch (this.f22700a) {
-            case 1:
-                return AndroidUtilities.dp(24.0f);
-            default:
-                return super.getIntrinsicWidth();
-        }
-    }
-
-    @Override
-    public final int getOpacity() {
-        switch (this.f22700a) {
-            case 0:
-                return -2;
-            default:
-                return -2;
-        }
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-        int i11 = this.f22700a;
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        int i10 = this.f22700a;
-    }
-
-    private final void a(int i10) {
-    }
-
-    private final void b(int i10) {
-    }
-
-    private final void c(ColorFilter colorFilter) {
-    }
-
-    private final void d(ColorFilter colorFilter) {
+        return spanStart - spanStart2;
     }
 }

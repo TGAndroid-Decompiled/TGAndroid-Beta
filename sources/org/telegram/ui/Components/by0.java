@@ -1,33 +1,160 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.MessagesController;
-public final class by0 implements Runnable {
-    public final int f25059a;
-    public final qy0 f25060b;
+import android.animation.ValueAnimator;
+import android.content.Context;
+import android.text.TextUtils;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.SvgHelper;
+public final class by0 extends FrameLayout {
+    public static int G;
+    public boolean E;
+    public float F;
+    public final int f25165a;
+    public float f25166b;
+    public boolean f25167c;
+    public boolean d;
+    public final w9 e;
+    public final ImageView f25168f;
+    public final ai.wd h;
+    public final View f25169n;
+    public boolean f25170r;
+    public final int f25171s;
+    public SvgHelper.SvgDrawable v;
+    public boolean f25172w;
+    public ValueAnimator f25173x;
+    public float f25174y;
 
-    public by0(qy0 qy0Var, int i10) {
-        this.f25059a = i10;
-        this.f25060b = qy0Var;
+    public by0(Context context, int i10) {
+        super(context);
+        this.f25165a = i10;
+        int i11 = G;
+        G = i11 + 1;
+        this.f25171s = i11;
+        if (i10 == 2) {
+            w9 w9Var = new w9(getContext());
+            this.e = w9Var;
+            w9Var.setLayerNum(1);
+            w9Var.setAspectFit(false);
+            w9Var.setRoundRadius(AndroidUtilities.dp(6.0f));
+            addView(w9Var, w7.z5.e(26, 26, 17));
+            this.f25169n = w9Var;
+        } else if (i10 == 1) {
+            ImageView imageView = new ImageView(context);
+            this.f25168f = imageView;
+            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            addView(imageView, w7.z5.e(24, 24, 17));
+            this.f25169n = imageView;
+        } else {
+            w9 w9Var2 = new w9(getContext());
+            this.e = w9Var2;
+            w9Var2.setLayerNum(1);
+            w9Var2.setAspectFit(true);
+            w9Var2.setRoundRadius(AndroidUtilities.dp(6.0f));
+            addView(w9Var2, w7.z5.e(26, 26, 17));
+            this.f25169n = w9Var2;
+        }
+        ai.wd wdVar = new ai.wd(context, 24);
+        this.h = wdVar;
+        wdVar.addOnLayoutChangeListener(new a80(this, 1));
+        wdVar.setLines(1);
+        wdVar.setEllipsize(TextUtils.TruncateAt.END);
+        wdVar.setTextSize(1, 11.0f);
+        wdVar.setGravity(1);
+        org.telegram.ui.ActionBar.r6.W(wdVar, org.telegram.ui.ActionBar.k6.G6, null);
+        addView(wdVar, w7.z5.d(-1, -2.0f, 81, 8.0f, 0.0f, 8.0f, 10.0f));
+        wdVar.setVisibility(8);
     }
 
-    @Override
-    public final void run() {
-        switch (this.f25059a) {
-            case 0:
-                this.f25060b.d.l();
-                return;
-            case 1:
-                this.f25060b.d.l();
-                return;
-            case 2:
-                qy0.v(this.f25060b);
-                return;
-            case 3:
-                MessagesController.getInstance(r0.currentAccount).openByUserName("stickers", this.f25060b.L, 1);
-                return;
-            default:
-                qy0.u(this.f25060b);
-                return;
+    public final void a(float f7) {
+        float f10;
+        float f11;
+        int i10 = this.f25165a;
+        if (i10 == 2) {
+            return;
+        }
+        boolean z10 = this.f25170r;
+        View view = this.f25169n;
+        if (z10) {
+            if (i10 == 1) {
+                f10 = 24.0f;
+            } else {
+                f10 = 26.0f;
+            }
+            if (i10 == 1) {
+                f11 = 38.0f;
+            } else {
+                f11 = 44.0f;
+            }
+            int i11 = kn0.f28067t0;
+            float f12 = 1.0f - f7;
+            view.setTranslationY((((AndroidUtilities.dp(36.0f - f10) / 2.0f) - (AndroidUtilities.dp(86.0f - f11) / 2.0f)) * f12) - (AndroidUtilities.dp(8.0f) * f7));
+            view.setTranslationX(((AndroidUtilities.dp(33.0f - f10) / 2.0f) - (AndroidUtilities.dp(64.0f - f11) / 2.0f)) * f12);
+            float max = Math.max(0.0f, (f7 - 0.5f) / 0.5f);
+            ai.wd wdVar = this.h;
+            wdVar.setAlpha(max);
+            wdVar.setTranslationY((-AndroidUtilities.dp(40.0f)) * f12);
+            wdVar.setTranslationX((-AndroidUtilities.dp(12.0f)) * f12);
+            view.setPivotX(0.0f);
+            view.setPivotY(0.0f);
+            float f13 = ((f10 / f11) * f12) + f7;
+            view.setScaleX(f13);
+            view.setScaleY(f13);
+            return;
+        }
+        view.setTranslationX(0.0f);
+        view.setTranslationY(0.0f);
+        view.setScaleX(1.0f);
+        view.setScaleY(1.0f);
+    }
+
+    public float getTextWidth() {
+        return this.F;
+    }
+
+    public void setExpanded(boolean z10) {
+        float f7;
+        float f10;
+        float f11;
+        int i10;
+        int i11 = this.f25165a;
+        if (i11 != 2) {
+            this.f25170r = z10;
+            if (i11 == 1) {
+                f7 = 24.0f;
+            } else {
+                f7 = 26.0f;
+            }
+            if (i11 == 1) {
+                f10 = 38.0f;
+            } else {
+                f10 = 44.0f;
+            }
+            View view = this.f25169n;
+            ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
+            if (z10) {
+                f11 = f10;
+            } else {
+                f11 = f7;
+            }
+            layoutParams.width = AndroidUtilities.dp(f11);
+            ViewGroup.LayoutParams layoutParams2 = view.getLayoutParams();
+            if (z10) {
+                f7 = f10;
+            }
+            layoutParams2.height = AndroidUtilities.dp(f7);
+            if (z10) {
+                i10 = 0;
+            } else {
+                i10 = 8;
+            }
+            this.h.setVisibility(i10);
+            if (i11 != 1 && this.f25172w) {
+                this.e.setRoundRadius(AndroidUtilities.dp(view.getLayoutParams().width / 2.0f));
+            }
         }
     }
 }

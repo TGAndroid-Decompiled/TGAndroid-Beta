@@ -1,42 +1,68 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-public final class z51 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f32850a;
-    public int f32851b;
-    public final int f32852c;
-    public final Object d;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+public final class z51 extends xz {
+    public final i61 Y;
 
-    public z51(org.telegram.ui.pu puVar, int i10, int i11) {
-        this.f32850a = 1;
-        this.d = puVar;
-        this.f32851b = i10;
-        this.f32852c = i11;
+    public z51(i61 i61Var, int i10, y51 y51Var) {
+        super(5, i10, y51Var);
+        this.Y = i61Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f32850a) {
-            case 0:
-                int floatValue = (int) (((Float) valueAnimator.getAnimatedValue()).floatValue() * this.f32852c);
-                d61 d61Var = (d61) this.d;
-                d61Var.N = true;
-                d61Var.f25355n.scrollBy(0, floatValue - this.f32851b);
-                d61Var.N = false;
-                this.f32851b = floatValue;
-                return;
-            default:
-                ((org.telegram.ui.pu) this.d).f40304c.d.setColorFilter(new PorterDuffColorFilter(i0.a.f(((Float) valueAnimator.getAnimatedValue()).floatValue(), this.f32851b, this.f32852c), PorterDuff.Mode.SRC_IN));
-                return;
+    public final boolean D1() {
+        i61 i61Var = this.Y;
+        if (i61Var.f27223n.getAdapter() == i61Var.v) {
+            return true;
         }
+        return false;
     }
 
-    public z51(d61 d61Var, int i10) {
-        this.f32850a = 0;
-        this.d = d61Var;
-        this.f32852c = i10;
-        this.f32851b = 0;
+    @Override
+    public final boolean Y0() {
+        return LocaleController.isRTL;
+    }
+
+    @Override
+    public final int o0(int i10, qf.e eVar, s4.y0 y0Var) {
+        int i11;
+        View m10;
+        i61 i61Var = this.Y;
+        if (i61Var.N) {
+            return super.o0(i10, eVar, y0Var);
+        }
+        int i12 = 0;
+        if (i61Var.L != null) {
+            return 0;
+        }
+        if (i61Var.M) {
+            while (true) {
+                i11 = 1;
+                if (i12 >= r()) {
+                    break;
+                }
+                y51 y51Var = i61Var.f27223n;
+                View q6 = q(i12);
+                y51Var.getClass();
+                int R = RecyclerView.R(q6);
+                if (R < 1) {
+                    i11 = R;
+                    break;
+                }
+                i12++;
+            }
+            if (i11 == 0 && (m10 = i61Var.f27224r.m(i11)) != null && m10.getTop() - i10 > AndroidUtilities.dp(58.0f)) {
+                i10 = m10.getTop() - AndroidUtilities.dp(58.0f);
+            }
+        }
+        return super.o0(i10, eVar, y0Var);
+    }
+
+    @Override
+    public final boolean y0() {
+        return false;
     }
 }

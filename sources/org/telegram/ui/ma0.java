@@ -1,32 +1,16 @@
 package org.telegram.ui;
 
-import android.window.OnBackInvokedCallback;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.ActionBarLayout;
-public final class ma0 implements OnBackInvokedCallback {
-    public final LaunchActivity f39171a;
-
-    public ma0(LaunchActivity launchActivity) {
-        this.f39171a = launchActivity;
+import j$.util.function.Consumer$CC;
+import java.util.function.Consumer;
+import java.util.regex.Pattern;
+public final class ma0 implements Consumer {
+    @Override
+    public final void accept(Object obj) {
+        ((Boolean) obj).getClass();
+        Pattern pattern = LaunchActivity.E1;
     }
 
-    public final void onBackInvoked() {
-        if (AndroidUtilities.isTablet()) {
-            this.f39171a.onBackPressed();
-        } else if (!this.f39171a.d0(true)) {
-        } else {
-            LaunchActivity launchActivity = this.f39171a;
-            ActionBarLayout actionBarLayout = launchActivity.f33190q0;
-            if (actionBarLayout != null) {
-                if (!actionBarLayout.f20558c1) {
-                    actionBarLayout.G();
-                    return;
-                }
-                actionBarLayout.f20558c1 = false;
-                actionBarLayout.e(false);
-                return;
-            }
-            launchActivity.onBackPressed();
-        }
+    public Consumer andThen(Consumer consumer) {
+        return Consumer$CC.$default$andThen(this, consumer);
     }
 }

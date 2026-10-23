@@ -2,9 +2,9 @@ package k1;
 
 import java.io.FileInputStream;
 public final class v extends md.c {
-    public z f14614a;
-    public FileInputStream f14615b;
-    public Object f14616c;
+    public z f14660a;
+    public FileInputStream f14661b;
+    public Object f14662c;
     public final z d;
     public int e;
 
@@ -15,8 +15,8 @@ public final class v extends md.c {
 
     @Override
     public final Object invokeSuspend(Object obj) {
-        this.f14616c = obj;
+        this.f14662c = obj;
         this.e |= Integer.MIN_VALUE;
-        return this.d.f(this);
+        return this.d.g(this);
     }
 }

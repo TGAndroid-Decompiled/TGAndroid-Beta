@@ -7,30 +7,30 @@ import android.view.KeyEvent;
 import android.view.View;
 import t7.u;
 public final class e implements KeyListener {
-    public final KeyListener f44341a;
-    public final u f44342b;
+    public final KeyListener f44754a;
+    public final u f44755b;
 
     public e(KeyListener keyListener) {
         u uVar = new u(19);
-        this.f44341a = keyListener;
-        this.f44342b = uVar;
+        this.f44754a = keyListener;
+        this.f44755b = uVar;
     }
 
     @Override
     public final void clearMetaKeyState(View view, Editable editable, int i10) {
-        this.f44341a.clearMetaKeyState(view, editable, i10);
+        this.f44754a.clearMetaKeyState(view, editable, i10);
     }
 
     @Override
     public final int getInputType() {
-        return this.f44341a.getInputType();
+        return this.f44754a.getInputType();
     }
 
     @Override
     public final boolean onKeyDown(View view, Editable editable, int i10, KeyEvent keyEvent) {
         boolean C;
         boolean z10;
-        this.f44342b.getClass();
+        this.f44755b.getClass();
         if (i10 != 67) {
             if (i10 != 112) {
                 C = false;
@@ -46,7 +46,7 @@ public final class e implements KeyListener {
         } else {
             z10 = false;
         }
-        if (z10 || this.f44341a.onKeyDown(view, editable, i10, keyEvent)) {
+        if (z10 || this.f44754a.onKeyDown(view, editable, i10, keyEvent)) {
             return true;
         }
         return false;
@@ -54,11 +54,11 @@ public final class e implements KeyListener {
 
     @Override
     public final boolean onKeyOther(View view, Editable editable, KeyEvent keyEvent) {
-        return this.f44341a.onKeyOther(view, editable, keyEvent);
+        return this.f44754a.onKeyOther(view, editable, keyEvent);
     }
 
     @Override
     public final boolean onKeyUp(View view, Editable editable, int i10, KeyEvent keyEvent) {
-        return this.f44341a.onKeyUp(view, editable, i10, keyEvent);
+        return this.f44754a.onKeyUp(view, editable, i10, keyEvent);
     }
 }

@@ -3,15 +3,15 @@ package hh;
 import android.graphics.Bitmap;
 import java.lang.ref.WeakReference;
 public final class a {
-    public WeakReference f12113a;
-    public long f12114b;
-    public boolean f12115c = true;
+    public WeakReference f12143a;
+    public long f12144b;
+    public boolean f12145c = true;
 
     public final boolean a(Bitmap bitmap) {
         Bitmap bitmap2;
         long j10;
-        if (!this.f12115c) {
-            WeakReference weakReference = this.f12113a;
+        if (!this.f12145c) {
+            WeakReference weakReference = this.f12143a;
             if (weakReference != null) {
                 bitmap2 = (Bitmap) weakReference.get();
             } else {
@@ -23,7 +23,7 @@ public final class a {
                 } else {
                     j10 = 0;
                 }
-                if (j10 != this.f12114b) {
+                if (j10 != this.f12144b) {
                     return true;
                 }
                 return false;
@@ -41,13 +41,13 @@ public final class a {
         } else {
             weakReference = null;
         }
-        this.f12113a = weakReference;
+        this.f12143a = weakReference;
         if (bitmap != null && !bitmap.isRecycled()) {
             j10 = bitmap.getGenerationId();
         } else {
             j10 = 0;
         }
-        this.f12114b = j10;
-        this.f12115c = false;
+        this.f12144b = j10;
+        this.f12145c = false;
     }
 }

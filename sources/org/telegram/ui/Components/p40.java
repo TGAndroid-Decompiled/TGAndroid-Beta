@@ -4,50 +4,50 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import org.telegram.messenger.AndroidUtilities;
 public final class p40 extends AnimatorListenerAdapter {
-    public final int f29208a;
-    public final r40 f29209b;
+    public final int f29411a;
+    public final r40 f29412b;
 
     public p40(r40 r40Var, int i10) {
-        this.f29208a = i10;
-        this.f29209b = r40Var;
+        this.f29411a = i10;
+        this.f29412b = r40Var;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
         long j10;
-        switch (this.f29208a) {
+        switch (this.f29411a) {
             case 0:
-                r40 r40Var = this.f29209b;
-                r40Var.f29817f = null;
+                r40 r40Var = this.f29412b;
+                r40Var.f30075f = null;
                 if (!r40Var.H) {
-                    hq hqVar = new hq(this, 21);
-                    r40Var.h = hqVar;
-                    if (r40Var.f29818n == 0) {
+                    zp zpVar = new zp(this, 22);
+                    r40Var.h = zpVar;
+                    if (r40Var.f30076n == 0) {
                         j10 = 10000;
                     } else {
                         j10 = 2000;
                     }
-                    AndroidUtilities.runOnUIThread(hqVar, j10);
+                    AndroidUtilities.runOnUIThread(zpVar, j10);
                     return;
                 }
                 return;
             case 1:
-                r40 r40Var2 = this.f29209b;
-                r40Var2.f29817f = null;
+                r40 r40Var2 = this.f29412b;
+                r40Var2.f30075f = null;
                 if (!r40Var2.H) {
-                    hq hqVar2 = new hq(this, 22);
-                    r40Var2.h = hqVar2;
-                    AndroidUtilities.runOnUIThread(hqVar2, r40Var2.E);
+                    zp zpVar2 = new zp(this, 23);
+                    r40Var2.h = zpVar2;
+                    AndroidUtilities.runOnUIThread(zpVar2, r40Var2.E);
                     return;
                 }
                 return;
             default:
-                r40 r40Var3 = this.f29209b;
+                r40 r40Var3 = this.f29412b;
                 r40Var3.setVisibility(4);
                 r40Var3.getClass();
                 r40Var3.e = null;
                 r40Var3.d = null;
-                r40Var3.f29817f = null;
+                r40Var3.f30075f = null;
                 return;
         }
     }

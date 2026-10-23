@@ -1,24 +1,25 @@
 package org.telegram.ui.Components;
 
-import android.view.ViewGroup;
-public final class g41 extends s4.k {
-    public final t41 F;
+import org.telegram.messenger.LanguageDetector;
+import org.telegram.messenger.Utilities;
+public final class g41 implements LanguageDetector.StringCallback, LanguageDetector.ExceptionCallback {
+    public final String f26537a;
+    public final String f26538b;
+    public final Utilities.Callback2 f26539c;
 
-    public g41(t41 t41Var) {
-        this.F = t41Var;
+    public g41(String str, String str2, Utilities.Callback2 callback2) {
+        this.f26537a = str;
+        this.f26538b = str2;
+        this.f26539c = callback2;
     }
 
     @Override
-    public final void O() {
-        ViewGroup viewGroup;
-        viewGroup = ((org.telegram.ui.ActionBar.f3) this.F).containerView;
-        viewGroup.invalidate();
+    public void run(String str) {
+        y41.I(this.f26537a, str, this.f26538b, this.f26539c);
     }
 
     @Override
-    public final void P(s4.b1 b1Var) {
-        ViewGroup viewGroup;
-        viewGroup = ((org.telegram.ui.ActionBar.f3) this.F).containerView;
-        viewGroup.invalidate();
+    public void run(Exception exc) {
+        y41.I(this.f26537a, "en", this.f26538b, this.f26539c);
     }
 }

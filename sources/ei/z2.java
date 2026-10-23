@@ -2,18 +2,18 @@ package ei;
 
 import android.content.Context;
 import android.view.MotionEvent;
-import org.telegram.ui.Components.jm0;
-public final class z2 extends jm0 {
-    public final q3 V2;
+import org.telegram.ui.Components.mm0;
+public final class z2 extends mm0 {
+    public final q3 Y2;
 
-    public z2(q3 q3Var, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context, d6Var);
-        this.V2 = q3Var;
+    public z2(q3 q3Var, Context context, org.telegram.ui.ActionBar.g6 g6Var) {
+        super(context, g6Var);
+        this.Y2 = q3Var;
     }
 
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (this.V2.K) {
+        if (this.Y2.K) {
             return false;
         }
         return super.dispatchTouchEvent(motionEvent);
@@ -21,7 +21,7 @@ public final class z2 extends jm0 {
 
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (this.V2.K) {
+        if (this.Y2.K) {
             return false;
         }
         return super.onInterceptTouchEvent(motionEvent);

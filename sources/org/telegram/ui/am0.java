@@ -1,70 +1,8 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
-public final class am0 extends AnimatorListenerAdapter {
-    public final int f35392a;
-    public final boolean f35393b;
-    public final vm0 f35394c;
-
-    public am0(vm0 vm0Var, boolean z10, int i10) {
-        this.f35392a = i10;
-        this.f35394c = vm0Var;
-        this.f35393b = z10;
-    }
-
-    @Override
-    public final void onAnimationCancel(Animator animator) {
-        switch (this.f35392a) {
-            case 0:
-                vm0 vm0Var = this.f35394c;
-                AnimatorSet animatorSet = vm0Var.M;
-                if (animatorSet != null && animatorSet.equals(animator)) {
-                    vm0Var.M = null;
-                    return;
-                }
-                return;
-            default:
-                vm0 vm0Var2 = this.f35394c;
-                AnimatorSet animatorSet2 = vm0Var2.M;
-                if (animatorSet2 != null && animatorSet2.equals(animator)) {
-                    vm0Var2.M = null;
-                    return;
-                }
-                return;
-        }
-    }
-
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f35392a) {
-            case 0:
-                vm0 vm0Var = this.f35394c;
-                AnimatorSet animatorSet = vm0Var.M;
-                if (animatorSet != null && animatorSet.equals(animator)) {
-                    if (!this.f35393b) {
-                        vm0Var.N.setVisibility(4);
-                        return;
-                    } else {
-                        vm0Var.L.getContentView().setVisibility(4);
-                        return;
-                    }
-                }
-                return;
-            default:
-                vm0 vm0Var2 = this.f35394c;
-                AnimatorSet animatorSet2 = vm0Var2.M;
-                if (animatorSet2 != null && animatorSet2.equals(animator)) {
-                    if (!this.f35393b) {
-                        vm0Var2.P.setVisibility(4);
-                        return;
-                    } else {
-                        vm0Var2.O.setVisibility(4);
-                        return;
-                    }
-                }
-                return;
-        }
-    }
+import org.telegram.tgnet.TLRPC;
+public final class am0 {
+    public TLRPC.TL_secureValue f35698a;
+    public boolean f35699b;
+    public boolean f35700c;
 }

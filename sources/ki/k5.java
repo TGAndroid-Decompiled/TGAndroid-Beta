@@ -3,25 +3,25 @@ package ki;
 import android.graphics.Rect;
 import android.text.Layout;
 import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.Cells.y9;
-public final class k5 implements y9 {
-    public final Layout f15365a;
-    public final int f15366b;
-    public final int f15367c;
+import org.telegram.ui.Cells.z9;
+public final class k5 implements z9 {
+    public final Layout f15425a;
+    public final int f15426b;
+    public final int f15427c;
     public final int d;
     public final TL_iv.pageTableCell e;
 
     public k5(Layout layout, int i10, int i11, int i12, TL_iv.pageTableCell pagetablecell) {
-        this.f15365a = layout;
-        this.f15366b = i10;
-        this.f15367c = i11;
+        this.f15425a = layout;
+        this.f15426b = i10;
+        this.f15427c = i11;
         this.d = i12;
         this.e = pagetablecell;
     }
 
     @Override
     public final Layout getLayout() {
-        return this.f15365a;
+        return this.f15425a;
     }
 
     @Override
@@ -46,11 +46,11 @@ public final class k5 implements y9 {
 
     @Override
     public final int getX() {
-        return this.f15366b;
+        return this.f15426b;
     }
 
     @Override
     public final int getY() {
-        return this.f15367c;
+        return this.f15427c;
     }
 }

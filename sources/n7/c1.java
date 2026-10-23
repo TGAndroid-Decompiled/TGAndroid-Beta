@@ -30,7 +30,7 @@ public abstract class c1 implements Comparable {
         if (cls.isInstance(this)) {
             return (c1) cls.cast(this);
         }
-        throw new Exception(k3.k("Expected a ", cls.getName(), " value, but got ", getClass().getName()));
+        throw new Exception(k3.j("Expected a ", cls.getName(), " value, but got ", getClass().getName()));
     }
 
     public abstract int zza();

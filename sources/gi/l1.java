@@ -19,50 +19,51 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.nk;
+import org.telegram.messenger.sl;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.Components.b71;
 import org.telegram.ui.Components.bb;
-import org.telegram.ui.Components.im0;
-import org.telegram.ui.Components.jm0;
-import org.telegram.ui.Components.lw0;
-import org.telegram.ui.Components.u61;
+import org.telegram.ui.Components.lm0;
+import org.telegram.ui.Components.mm0;
+import org.telegram.ui.Components.ow0;
 import w7.z5;
 public final class l1 extends bb {
     public final int X;
     public final String Y;
-    public u61 Z;
-    public final i1 f11314a0;
-    public boolean f11315b0;
-    public boolean f11316c0;
-    public final ai.s0 f11317d0;
+    public b71 Z;
+    public final i1 f11338a0;
+    public boolean f11339b0;
+    public boolean f11340c0;
+    public final ai.s0 f11341d0;
+    public int f11342e0;
 
-    public l1(Context context, int i10, long j10, TLRPC.TL_messages_preparedInlineMessage tL_messages_preparedInlineMessage, File file, TLRPC.WebPage webPage, d6 d6Var, org.telegram.ui.web.t tVar, ai.s0 s0Var) {
-        super(context, null, false, false, d6Var);
+    public l1(Context context, int i10, long j10, TLRPC.TL_messages_preparedInlineMessage tL_messages_preparedInlineMessage, File file, TLRPC.WebPage webPage, g6 g6Var, org.telegram.ui.web.t tVar, ai.s0 s0Var) {
+        super(context, null, false, false, g6Var);
         ?? r11;
         int i11;
-        k1 Q;
+        k1 P;
         char c10;
         char c11;
         TLRPC.TL_document tL_document;
         TLRPC.TL_photo tL_photo;
         int lastIndexOf;
         TLRPC.TL_photo tL_photo2;
-        this.f11315b0 = false;
-        this.f11316c0 = false;
+        this.f11339b0 = false;
+        this.f11340c0 = false;
         this.X = i10;
         this.Y = UserObject.getUserName(MessagesController.getInstance(i10).getUser(Long.valueOf(j10)));
-        this.f11317d0 = s0Var;
-        L();
+        this.f11341d0 = s0Var;
+        K();
         this.I = AndroidUtilities.dp(4.0f);
         this.J = AndroidUtilities.dp(-10.0f);
         TLRPC.BotInlineResult botInlineResult = tL_messages_preparedInlineMessage.result;
         if (file == null || !file.exists() || webPage != null) {
             r11 = 1;
             i11 = i10;
-            Q = Q(i11, j10, botInlineResult, null, null, webPage);
+            P = P(i11, j10, botInlineResult, null, null, webPage);
         } else {
             String str = botInlineResult.type;
             String absolutePath = file.getAbsolutePath();
@@ -130,7 +131,7 @@ public final class l1 extends bb {
                 case 5:
                 case 6:
                     TLRPC.TL_document tL_document2 = new TLRPC.TL_document();
-                    tL_document2.f20286id = 0L;
+                    tL_document2.f20349id = 0L;
                     tL_document2.size = 0L;
                     tL_document2.dc_id = 0;
                     tL_document2.mime_type = botInlineResult.content.mime_type;
@@ -193,7 +194,7 @@ public final class l1 extends bb {
                             tL_document2.attributes.add(tL_documentAttributeSticker);
                             TLRPC.TL_documentAttributeImageSize tL_documentAttributeImageSize = new TLRPC.TL_documentAttributeImageSize();
                             int[] inlineResultWidthAndHeight = MessageObject.getInlineResultWidthAndHeight(botInlineResult);
-                            tL_documentAttributeImageSize.f20287w = inlineResultWidthAndHeight[0];
+                            tL_documentAttributeImageSize.f20350w = inlineResultWidthAndHeight[0];
                             tL_documentAttributeImageSize.h = inlineResultWidthAndHeight[1];
                             tL_document2.attributes.add(tL_documentAttributeImageSize);
                             tL_documentAttributeFilename.file_name = "sticker.webp";
@@ -251,7 +252,7 @@ public final class l1 extends bb {
                             tL_documentAttributeFilename.file_name = "video.mp4";
                             TLRPC.TL_documentAttributeVideo tL_documentAttributeVideo = new TLRPC.TL_documentAttributeVideo();
                             int[] inlineResultWidthAndHeight2 = MessageObject.getInlineResultWidthAndHeight(botInlineResult);
-                            tL_documentAttributeVideo.f20287w = inlineResultWidthAndHeight2[0];
+                            tL_documentAttributeVideo.f20350w = inlineResultWidthAndHeight2[0];
                             tL_documentAttributeVideo.h = inlineResultWidthAndHeight2[1];
                             tL_documentAttributeVideo.duration = MessageObject.getInlineResultDuration(botInlineResult);
                             tL_documentAttributeVideo.supports_streaming = true;
@@ -291,7 +292,7 @@ public final class l1 extends bb {
                     if (tL_document2.thumbs.isEmpty()) {
                         TLRPC.TL_photoSize tL_photoSize = new TLRPC.TL_photoSize();
                         int[] inlineResultWidthAndHeight3 = MessageObject.getInlineResultWidthAndHeight(botInlineResult);
-                        tL_photoSize.f20305w = inlineResultWidthAndHeight3[0];
+                        tL_photoSize.f20368w = inlineResultWidthAndHeight3[0];
                         z10 = true;
                         tL_photoSize.h = inlineResultWidthAndHeight3[1];
                         tL_photoSize.size = 0;
@@ -317,7 +318,7 @@ public final class l1 extends bb {
                         tL_photo2.file_reference = new byte[0];
                         TLRPC.TL_photoSize tL_photoSize2 = new TLRPC.TL_photoSize();
                         int[] inlineResultWidthAndHeight4 = MessageObject.getInlineResultWidthAndHeight(botInlineResult);
-                        tL_photoSize2.f20305w = inlineResultWidthAndHeight4[0];
+                        tL_photoSize2.f20368w = inlineResultWidthAndHeight4[0];
                         tL_photoSize2.h = inlineResultWidthAndHeight4[1];
                         tL_photoSize2.size = 1;
                         tL_photoSize2.location = new TLRPC.TL_fileLocationUnavailable();
@@ -335,64 +336,59 @@ public final class l1 extends bb {
             }
             i11 = i10;
             r11 = z10;
-            Q = Q(i11, j10, botInlineResult, tL_photo, tL_document, null);
+            P = P(i11, j10, botInlineResult, tL_photo, tL_document, null);
         }
-        k1 k1Var = Q;
-        org.telegram.ui.Cells.w0 w0Var = new org.telegram.ui.Cells.w0(context, d6Var, false);
-        w0Var.setDelegate(new Object());
-        w0Var.setCustomText(LocaleController.getString(R.string.BotShareMessagePreview));
-        org.telegram.ui.Cells.u1 u1Var = new org.telegram.ui.Cells.u1(context, i11);
-        u1Var.setDelegate(new Object());
-        u1Var.X3(k1Var, null, false, false, false, false);
-        LinearLayout e = nk.e(context, r11);
-        e.addView(w0Var, z5.n(-1, -2));
-        e.addView(u1Var, z5.n(-1, -2));
-        ?? lw0Var = new lw0(context, null);
-        this.f11314a0 = lw0Var;
-        lw0Var.V(r6.e(null, i11, j10, h6.I.q()));
-        lw0Var.addView(e, z5.d(-1, -1.0f, 119, 4.0f, 8.0f, 4.0f, 8.0f));
+        k1 k1Var = P;
+        org.telegram.ui.Cells.v0 v0Var = new org.telegram.ui.Cells.v0(context, g6Var, false);
+        v0Var.setDelegate(new Object());
+        v0Var.setCustomText(LocaleController.getString(R.string.BotShareMessagePreview));
+        org.telegram.ui.Cells.t1 t1Var = new org.telegram.ui.Cells.t1(context, i11);
+        t1Var.setDelegate(new Object());
+        t1Var.W3(k1Var, null, false, false, false, false);
+        LinearLayout e = sl.e(context, r11);
+        e.addView(v0Var, z5.n(-1, -2));
+        e.addView(t1Var, z5.n(-1, -2));
+        ?? ow0Var = new ow0(context, null);
+        this.f11338a0 = ow0Var;
+        ow0Var.U(r6.e(null, i11, j10, k6.I.q()));
+        ow0Var.addView(e, z5.d(-1, -1.0f, 119, 4.0f, 8.0f, 4.0f, 8.0f));
         FrameLayout frameLayout = new FrameLayout(context);
-        ei.d f7 = nk.f(24, context, d6Var, r11);
-        f7.g(LocaleController.getString(R.string.BotShareMessageShare), false, r11);
-        f7.setOnClickListener(new ai.e1(this, tL_messages_preparedInlineMessage, s0Var, i11, j10, tVar));
-        frameLayout.addView(f7, z5.d(-1, 48.0f, 119, 10.0f, 10.0f, 10.0f, 10.0f));
+        ei.d g10 = sl.g(24, context, g6Var, r11);
+        g10.i(LocaleController.getString(R.string.BotShareMessageShare), false, r11);
+        g10.setOnClickListener(new ai.e1(this, tL_messages_preparedInlineMessage, s0Var, i11, j10, tVar));
+        frameLayout.addView(g10, z5.d(-1, 48.0f, 119, 10.0f, 10.0f, 10.0f, 10.0f));
         ViewGroup viewGroup = this.containerView;
         int i13 = this.backgroundPaddingLeft;
         viewGroup.addView(frameLayout, z5.f(-2.0f, 87, i13, 0, i13, 0));
-        jm0 jm0Var = this.d;
+        mm0 mm0Var = this.d;
         int i14 = this.backgroundPaddingLeft;
-        jm0Var.setPadding(i14, 0, i14, AndroidUtilities.dp(68.0f) + r11);
-        this.d.p1();
-        int i15 = h6.f20936a7;
+        mm0Var.setPadding(i14, 0, i14, AndroidUtilities.dp(68.0f) + r11);
+        this.d.t1();
+        int i15 = k6.f21125a7;
         setBackgroundColor(getThemedColor(i15));
-        fixNavigationBar(getThemedColor(i15));
+        fixNavigationBarKey(i15);
         this.Z.N(false);
     }
 
-    public static gi.k1 Q(int r4, long r5, org.telegram.tgnet.TLRPC.BotInlineResult r7, org.telegram.tgnet.TLRPC.TL_photo r8, org.telegram.tgnet.TLRPC.TL_document r9, org.telegram.tgnet.TLRPC.WebPage r10) {
-        throw new UnsupportedOperationException("Method not decompiled: gi.l1.Q(int, long, org.telegram.tgnet.TLRPC$BotInlineResult, org.telegram.tgnet.TLRPC$TL_photo, org.telegram.tgnet.TLRPC$TL_document, org.telegram.tgnet.TLRPC$WebPage):gi.k1");
+    public static gi.k1 P(int r4, long r5, org.telegram.tgnet.TLRPC.BotInlineResult r7, org.telegram.tgnet.TLRPC.TL_photo r8, org.telegram.tgnet.TLRPC.TL_document r9, org.telegram.tgnet.TLRPC.WebPage r10) {
+        throw new UnsupportedOperationException("Method not decompiled: gi.l1.P(int, long, org.telegram.tgnet.TLRPC$BotInlineResult, org.telegram.tgnet.TLRPC$TL_photo, org.telegram.tgnet.TLRPC$TL_document, org.telegram.tgnet.TLRPC$WebPage):gi.k1");
     }
 
-    public static void R(Context context, int i10, long j10, String str, d6 d6Var, org.telegram.ui.web.t tVar, ai.s0 s0Var) {
-        org.telegram.ui.ActionBar.b2 b2Var = new org.telegram.ui.ActionBar.b2(context, 3, null);
-        b2Var.r(500L);
+    public static void Q(Context context, int i10, long j10, String str, g6 g6Var, org.telegram.ui.web.t tVar, ai.s0 s0Var) {
+        org.telegram.ui.ActionBar.c2 c2Var = new org.telegram.ui.ActionBar.c2(context, 3, null);
+        c2Var.r(500L);
         TLRPC.TL_messages_getPreparedInlineMessage tL_messages_getPreparedInlineMessage = new TLRPC.TL_messages_getPreparedInlineMessage();
         tL_messages_getPreparedInlineMessage.bot = MessagesController.getInstance(i10).getInputUser(j10);
-        tL_messages_getPreparedInlineMessage.f20378id = str;
-        ConnectionsManager.getInstance(i10).sendRequest(tL_messages_getPreparedInlineMessage, new z0(i10, b2Var, context, j10, d6Var, tVar, s0Var));
-    }
-
-    @Override
-    public final CharSequence A() {
-        return LocaleController.getString(R.string.BotShareMessage);
+        tL_messages_getPreparedInlineMessage.f20441id = str;
+        ConnectionsManager.getInstance(i10).sendRequest(tL_messages_getPreparedInlineMessage, new z0(i10, c2Var, context, j10, g6Var, tVar, s0Var));
     }
 
     @Override
     public final void dismiss() {
         super.dismiss();
-        if (!this.f11315b0 && !this.f11316c0) {
-            this.f11316c0 = true;
-            ai.s0 s0Var = this.f11317d0;
+        if (!this.f11339b0 && !this.f11340c0) {
+            this.f11340c0 = true;
+            ai.s0 s0Var = this.f11341d0;
             if (s0Var != null) {
                 s0Var.run("USER_DECLINED", null);
             }
@@ -403,19 +399,38 @@ public final class l1 extends bb {
     public final void onCreate(Bundle bundle) {
         int h;
         super.onCreate(bundle);
-        jm0 jm0Var = this.d;
-        if (jm0Var.getAdapter() == null) {
+        mm0 mm0Var = this.d;
+        if (mm0Var.getAdapter() == null) {
             h = 0;
         } else {
-            h = jm0Var.getAdapter().h();
+            h = mm0Var.getAdapter().h();
         }
-        jm0Var.u0(Math.max(h - 1, 0));
+        mm0Var.u0(Math.max(h - 1, 0));
     }
 
     @Override
-    public final im0 x(jm0 jm0Var) {
-        u61 u61Var = new u61(jm0Var, getContext(), this.X, 0, true, new ai.q(this, 26), this.resourcesProvider);
-        this.Z = u61Var;
-        return u61Var;
+    public final void onThemeColorsChanged() {
+        try {
+            super.onThemeColorsChanged();
+            int themedColor = getThemedColor(k6.f21125a7);
+            if (themedColor != this.f11342e0) {
+                this.f11342e0 = themedColor;
+                setBackgroundColor(themedColor);
+            }
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
+    }
+
+    @Override
+    public final lm0 w(mm0 mm0Var) {
+        b71 b71Var = new b71(mm0Var, getContext(), this.X, 0, true, new ai.q(this, 26), this.resourcesProvider);
+        this.Z = b71Var;
+        return b71Var;
+    }
+
+    @Override
+    public final CharSequence z() {
+        return LocaleController.getString(R.string.BotShareMessage);
     }
 }

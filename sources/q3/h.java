@@ -13,14 +13,14 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Locale;
-import org.telegram.ui.fk0;
+import org.telegram.ui.web.d0;
 import v7.s6;
 public final class h extends w7.m {
-    public static final fk0 f44377b = new fk0(22);
-    public final g f44378a;
+    public static final d0 f44790b = new d0(4);
+    public final g f44791a;
 
     public h(g gVar) {
-        this.f44378a = gVar;
+        this.f44791a = gVar;
     }
 
     public static a d(x xVar, int i10, int i11) {
@@ -53,7 +53,7 @@ public final class h extends w7.m {
         String str2 = new String(bArr, i14, u10 - i14, s10);
         int r10 = r(A) + u10;
         if (i12 <= r10) {
-            copyOfRange = m0.f8253b;
+            copyOfRange = m0.f8260b;
         } else {
             copyOfRange = Arrays.copyOfRange(bArr, r10, i12);
         }
@@ -62,9 +62,9 @@ public final class h extends w7.m {
 
     public static c e(x xVar, int i10, int i11, boolean z10, int i12, g gVar) {
         long j10;
-        int i13 = xVar.f8292b;
-        int v = v(i13, xVar.f8291a);
-        String str = new String(xVar.f8291a, i13, v - i13, StandardCharsets.ISO_8859_1);
+        int i13 = xVar.f8299b;
+        int v = v(i13, xVar.f8298a);
+        String str = new String(xVar.f8298a, i13, v - i13, StandardCharsets.ISO_8859_1);
         xVar.N(v + 1);
         int m10 = xVar.m();
         int m11 = xVar.m();
@@ -80,7 +80,7 @@ public final class h extends w7.m {
         }
         ArrayList arrayList = new ArrayList();
         int i14 = i13 + i10;
-        while (xVar.f8292b < i14) {
+        while (xVar.f8299b < i14) {
             i h = h(i11, xVar, z10, i12, gVar);
             if (h != null) {
                 arrayList.add(h);
@@ -92,9 +92,9 @@ public final class h extends w7.m {
     public static d f(x xVar, int i10, int i11, boolean z10, int i12, g gVar) {
         boolean z11;
         boolean z12;
-        int i13 = xVar.f8292b;
-        int v = v(i13, xVar.f8291a);
-        String str = new String(xVar.f8291a, i13, v - i13, StandardCharsets.ISO_8859_1);
+        int i13 = xVar.f8299b;
+        int v = v(i13, xVar.f8298a);
+        String str = new String(xVar.f8298a, i13, v - i13, StandardCharsets.ISO_8859_1);
         xVar.N(v + 1);
         int A = xVar.A();
         if ((A & 2) != 0) {
@@ -110,14 +110,14 @@ public final class h extends w7.m {
         int A2 = xVar.A();
         String[] strArr = new String[A2];
         for (int i14 = 0; i14 < A2; i14++) {
-            int i15 = xVar.f8292b;
-            int v10 = v(i15, xVar.f8291a);
-            strArr[i14] = new String(xVar.f8291a, i15, v10 - i15, StandardCharsets.ISO_8859_1);
+            int i15 = xVar.f8299b;
+            int v10 = v(i15, xVar.f8298a);
+            strArr[i14] = new String(xVar.f8298a, i15, v10 - i15, StandardCharsets.ISO_8859_1);
             xVar.N(v10 + 1);
         }
         ArrayList arrayList = new ArrayList();
         int i16 = i13 + i10;
-        while (xVar.f8292b < i16) {
+        while (xVar.f8299b < i16) {
             i h = h(i11, xVar, z10, i12, gVar);
             if (h != null) {
                 arrayList.add(h);
@@ -165,7 +165,7 @@ public final class h extends w7.m {
         String l10 = l(bArr, r10, u11, s10);
         int r11 = r(A) + u11;
         if (i11 <= r11) {
-            copyOfRange = m0.f8253b;
+            copyOfRange = m0.f8260b;
         } else {
             copyOfRange = Arrays.copyOfRange(bArr, r11, i11);
         }
@@ -200,7 +200,7 @@ public final class h extends w7.m {
         String str = new String(bArr, 0, v, StandardCharsets.ISO_8859_1);
         int i11 = v + 1;
         if (i10 <= i11) {
-            copyOfRange = m0.f8253b;
+            copyOfRange = m0.f8260b;
         } else {
             copyOfRange = Arrays.copyOfRange(bArr, i11, i10);
         }
@@ -327,8 +327,8 @@ public final class h extends w7.m {
     }
 
     public static int w(int i10, x xVar) {
-        byte[] bArr = xVar.f8291a;
-        int i11 = xVar.f8292b;
+        byte[] bArr = xVar.f8298a;
+        int i11 = xVar.f8299b;
         int i12 = i11;
         while (true) {
             int i13 = i12 + 1;

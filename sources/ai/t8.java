@@ -1,33 +1,33 @@
 package ai;
 
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.nz0;
+import org.telegram.ui.rz0;
 public final class t8 implements Runnable {
-    public final int f2217a;
-    public final ProfileActivity f2218b;
+    public final int f2220a;
+    public final ProfileActivity f2221b;
 
     public t8(ProfileActivity profileActivity, int i10) {
-        this.f2217a = i10;
-        this.f2218b = profileActivity;
+        this.f2220a = i10;
+        this.f2221b = profileActivity;
     }
 
     @Override
     public final void run() {
-        switch (this.f2217a) {
+        switch (this.f2220a) {
             case 0:
-                ProfileActivity profileActivity = this.f2218b;
-                nz0 nz0Var = profileActivity.O;
-                if (nz0Var != null) {
-                    nz0Var.a1(14);
-                    profileActivity.G4(false);
+                ProfileActivity profileActivity = this.f2221b;
+                rz0 rz0Var = profileActivity.O;
+                if (rz0Var != null) {
+                    rz0Var.b1(14);
+                    profileActivity.I4(false);
                     return;
                 }
                 return;
             case 1:
-                this.f2218b.G4(true);
+                this.f2221b.I4(true);
                 return;
             default:
-                this.f2218b.G4(true);
+                this.f2221b.I4(true);
                 return;
         }
     }

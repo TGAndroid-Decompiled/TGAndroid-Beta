@@ -2,30 +2,30 @@ package yh;
 
 import android.content.Context;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.g6;
 public final class p implements Runnable {
-    public final int f50459a;
-    public final Context f50460b;
-    public final d6 f50461c;
+    public final int f50916a;
+    public final Context f50917b;
+    public final g6 f50918c;
     public final TL_stars.StarGift d;
 
-    public p(Context context, d6 d6Var, TL_stars.StarGift starGift, int i10) {
-        this.f50459a = i10;
-        this.f50460b = context;
-        this.f50461c = d6Var;
+    public p(Context context, g6 g6Var, TL_stars.StarGift starGift, int i10) {
+        this.f50916a = i10;
+        this.f50917b = context;
+        this.f50918c = g6Var;
         this.d = starGift;
     }
 
     @Override
     public final void run() {
-        switch (this.f50459a) {
+        switch (this.f50916a) {
             case 0:
-                d6 d6Var = this.f50461c;
-                v.V(this.f50460b, this.d, d6Var);
+                g6 g6Var = this.f50918c;
+                v.U(this.f50917b, this.d, g6Var);
                 return;
             default:
-                d6 d6Var2 = this.f50461c;
-                v.V(this.f50460b, this.d, d6Var2);
+                g6 g6Var2 = this.f50918c;
+                v.U(this.f50917b, this.d, g6Var2);
                 return;
         }
     }

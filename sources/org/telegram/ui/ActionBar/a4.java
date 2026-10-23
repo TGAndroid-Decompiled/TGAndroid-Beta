@@ -1,45 +1,13 @@
 package org.telegram.ui.ActionBar;
-
-import android.graphics.Point;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ImageLoader;
-import org.telegram.messenger.ImageLocation;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-public final class a4 implements Utilities.Callback {
-    public final Utilities.Callback f20618a;
-    public final TLRPC.WallPaper f20619b;
-    public final int f20620c;
-    public final int d;
-    public final long e;
-
-    public a4(Utilities.Callback callback, TLRPC.WallPaper wallPaper, int i10, int i11, long j10) {
-        this.f20618a = callback;
-        this.f20619b = wallPaper;
-        this.f20620c = i10;
-        this.d = i11;
-        this.e = j10;
-    }
-
+public final class a4 extends c2 {
     @Override
-    public final void run(Object obj) {
-        eg.a aVar = (eg.a) obj;
-        Utilities.Callback callback = this.f20618a;
-        if (aVar != null) {
-            callback.run(aVar);
-            return;
+    public final int f(int i10) {
+        if (i10 == k6.f21254h5) {
+            return -14277082;
         }
-        TLRPC.WallPaper wallPaper = this.f20619b;
-        ImageLocation forDocument = ImageLocation.getForDocument(wallPaper.document);
-        ImageReceiver imageReceiver = new ImageReceiver();
-        imageReceiver.setAllowLoadingOnAttachedOnly(false);
-        Point point = AndroidUtilities.displaySize;
-        int min = Math.min(point.x, point.y);
-        Point point2 = AndroidUtilities.displaySize;
-        int max = Math.max(point2.x, point2.y);
-        imageReceiver.setImage(forDocument, (min / AndroidUtilities.density) + "_" + (max / AndroidUtilities.density) + "_f", null, ".jpg", wallPaper, 1);
-        imageReceiver.setDelegate(new org.telegram.tgnet.f(this.f20620c, this.d, this.e, callback));
-        ImageLoader.getInstance().loadImageForImageReceiver(imageReceiver);
+        if (i10 != k6.f21289j5 && i10 != k6.H5 && i10 != k6.A5) {
+            return k6.w0(i10, this.T0);
+        }
+        return -1;
     }
 }

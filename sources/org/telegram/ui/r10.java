@@ -1,57 +1,95 @@
 package org.telegram.ui;
 
-import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
 import android.view.View;
-public final class r10 implements View.OnClickListener {
-    public final int f41034a;
-    public final Context f41035b;
-    public final tg.g f41036c;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import java.util.HashSet;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.LocaleController;
+public final class r10 extends FrameLayout implements org.telegram.ui.ActionBar.b6 {
+    public org.telegram.ui.ActionBar.n5 f40964a;
+    public ImageView f40965b;
+    public org.telegram.ui.Components.yq f40966c;
+    public int d;
+    public int e;
 
-    public r10(Context context, tg.g gVar, int i10) {
-        this.f41034a = i10;
-        this.f41035b = context;
-        this.f41036c = gVar;
+    @Override
+    public final void addColorKeys(HashSet hashSet) {
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.k6.N6));
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.k6.f21311k7));
     }
 
     @Override
-    public final void onClick(View view) {
-        int i10;
-        int i11;
-        switch (this.f41034a) {
-            case 0:
-                g gVar = new g(this, 18);
-                Context context = this.f41035b;
-                org.telegram.ui.Components.u8 u8Var = new org.telegram.ui.Components.u8(context, false, gVar, 1);
-                tg.o oVar = this.f41036c.f47077c;
-                if (oVar != null) {
-                    i10 = oVar.I;
-                } else {
-                    i10 = 0;
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        int dp;
+        int measuredWidth;
+        ImageView imageView = this.f40965b;
+        int i14 = i12 - i10;
+        org.telegram.ui.ActionBar.n5 n5Var = this.f40964a;
+        int textHeight = ((i13 - i11) - n5Var.getTextHeight()) / 2;
+        float f7 = 23.0f;
+        if (LocaleController.isRTL) {
+            int measuredWidth2 = getMeasuredWidth() - n5Var.getMeasuredWidth();
+            if (imageView.getVisibility() == 0) {
+                f7 = 64.0f;
+            }
+            dp = measuredWidth2 - AndroidUtilities.dp(f7);
+        } else {
+            if (imageView.getVisibility() == 0) {
+                f7 = 64.0f;
+            }
+            dp = AndroidUtilities.dp(f7);
+        }
+        n5Var.layout(dp, textHeight, n5Var.getMeasuredWidth() + dp, n5Var.getMeasuredHeight() + textHeight);
+        if (!LocaleController.isRTL) {
+            measuredWidth = AndroidUtilities.dp(20.0f);
+        } else {
+            measuredWidth = (i14 - imageView.getMeasuredWidth()) - AndroidUtilities.dp(20.0f);
+        }
+        imageView.layout(measuredWidth, 0, imageView.getMeasuredWidth() + measuredWidth, imageView.getMeasuredHeight());
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        int size = View.MeasureSpec.getSize(i10);
+        AndroidUtilities.dp(48.0f);
+        this.f40964a.measure(org.telegram.messenger.sl.c(94.0f, size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(20.0f), 1073741824));
+        this.f40965b.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f), 1073741824));
+        setMeasuredDimension(size, AndroidUtilities.dp(50.0f));
+    }
+
+    @Override
+    public final void updateColors() {
+        ImageView imageView = this.f40965b;
+        if (imageView != null) {
+            try {
+                if (imageView.getDrawable() instanceof org.telegram.ui.Components.yq) {
+                    org.telegram.ui.Components.yq yqVar = (org.telegram.ui.Components.yq) imageView.getDrawable();
+                    int x02 = org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.N6, false);
+                    int x03 = org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f21311k7, false);
+                    if (yqVar == this.f40966c && x02 == this.d && x03 == this.e) {
+                        return;
+                    }
+                    this.f40966c = yqVar;
+                    this.d = x02;
+                    this.e = x03;
+                    Drawable drawable = yqVar.f33012a;
+                    if (drawable != null) {
+                        drawable.setColorFilter(new PorterDuffColorFilter(x02, PorterDuff.Mode.MULTIPLY));
+                    }
+                    Drawable drawable2 = yqVar.f33013b;
+                    if (drawable2 != null) {
+                        drawable2.setColorFilter(new PorterDuffColorFilter(x03, PorterDuff.Mode.MULTIPLY));
+                    }
+                    imageView.invalidate();
                 }
-                u8Var.e(i10, 0);
-                u8Var.f(-1, 1, 1, false);
-                org.telegram.ui.ActionBar.f3 f3Var = new org.telegram.ui.ActionBar.f3(context, false);
-                f3Var.setCustomView(u8Var);
-                f3Var.setDimBehind(false);
-                f3Var.show();
-                return;
-            default:
-                g gVar2 = new g(this, 19);
-                Context context2 = this.f41035b;
-                org.telegram.ui.Components.u8 u8Var2 = new org.telegram.ui.Components.u8(context2, false, gVar2, 2);
-                tg.o oVar2 = this.f41036c.f47077c;
-                if (oVar2 == null) {
-                    i11 = 0;
-                } else {
-                    i11 = oVar2.H;
-                }
-                u8Var2.e(i11, 0);
-                u8Var2.f(-1, 1, 1, false);
-                org.telegram.ui.ActionBar.f3 f3Var2 = new org.telegram.ui.ActionBar.f3(context2, false);
-                f3Var2.setCustomView(u8Var2);
-                f3Var2.setDimBehind(false);
-                f3Var2.show();
-                return;
+            } catch (Exception e) {
+                FileLog.e(e);
+            }
         }
     }
 }

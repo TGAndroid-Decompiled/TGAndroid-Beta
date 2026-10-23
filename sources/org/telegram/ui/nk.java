@@ -1,36 +1,20 @@
 package org.telegram.ui;
+public final class nk extends org.telegram.ui.Components.pl0 {
+    public final sn f39911l;
 
-import android.animation.AnimatorSet;
-import android.widget.FrameLayout;
-public final class nk implements Runnable {
-    public final int f39638a;
-    public final qn f39639b;
-
-    public nk(qn qnVar, int i10) {
-        this.f39638a = i10;
-        this.f39639b = qnVar;
+    public nk(sn snVar, nj njVar, qj qjVar) {
+        super(njVar, qjVar);
+        this.f39911l = snVar;
     }
 
-    @Override
-    public final void run() {
-        org.telegram.ui.Components.ch chVar;
-        FrameLayout frameLayout;
-        switch (this.f39638a) {
-            case 0:
-                qn qnVar = this.f39639b;
-                AnimatorSet animatorSet = qnVar.V9;
-                if (animatorSet != null && !animatorSet.isRunning()) {
-                    qnVar.V9.start();
-                    return;
-                }
-                return;
-            default:
-                qn qnVar2 = this.f39639b;
-                if (qnVar2.O2 == this && (chVar = qnVar2.M0) != null && (frameLayout = qnVar2.N2) != null) {
-                    chVar.i(frameLayout, false, true);
-                    return;
-                }
-                return;
+    public final void e(int i10) {
+        if (this.f39911l.f41486cb) {
+            if (i10 == 0) {
+                i10 = 1;
+            } else if (i10 == 1) {
+                i10 = 0;
+            }
         }
+        this.f29589b = i10;
     }
 }

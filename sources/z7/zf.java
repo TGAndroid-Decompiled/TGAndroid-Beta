@@ -1,24 +1,24 @@
 package z7;
 public abstract class zf {
-    public static t7.r f51303a;
+    public static t7.r f51764a;
 
-    public static synchronized xf a(tf tfVar) {
-        xf xfVar;
+    public static synchronized wf a(sf sfVar) {
+        wf wfVar;
         synchronized (zf.class) {
             try {
-                if (f51303a == null) {
-                    f51303a = new t7.r(4);
+                if (f51764a == null) {
+                    f51764a = new t7.r(4);
                 }
-                xfVar = (xf) f51303a.R0(tfVar);
+                wfVar = (wf) f51764a.R0(sfVar);
             } catch (Throwable th2) {
                 throw th2;
             }
         }
-        return xfVar;
+        return wfVar;
     }
 
-    public static synchronized xf b() {
-        xf a2;
+    public static synchronized wf b() {
+        wf a2;
         synchronized (zf.class) {
             byte b10 = (byte) (((byte) 1) | 2);
             if (b10 == 3) {

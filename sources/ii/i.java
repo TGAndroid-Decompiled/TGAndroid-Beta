@@ -1,209 +1,28 @@
 package ii;
 
 import android.content.Context;
-import android.graphics.Typeface;
-import android.graphics.drawable.ShapeDrawable;
-import android.text.TextUtils;
 import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import com.google.android.gms.internal.play_billing.k3;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.nk;
-import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.ActionBar.y5;
-import org.telegram.ui.Components.jc0;
-import w7.z5;
-public final class i extends LinearLayout implements y5 {
-    public final d6 f13174a;
-    public final jc0 f13175b;
-    public final FrameLayout f13176c;
-    public final ImageView d;
-    public final TextView e;
-    public final TextView f13177f;
-    public final boolean h;
-    public boolean f13178n;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.Components.b71;
+import org.telegram.ui.Components.j71;
+import org.telegram.ui.Components.l61;
+import org.telegram.ui.Components.m61;
+import org.telegram.ui.Components.mm0;
+public final class i extends l61 {
+    public static final int f13219a = 0;
 
-    public i(Context context, d6 d6Var, boolean z10) {
-        super(context);
-        int i10;
-        int i11;
-        int i12;
-        int i13;
-        this.f13174a = d6Var;
-        this.h = z10;
-        setOrientation(0);
-        FrameLayout frameLayout = new FrameLayout(context);
-        this.f13176c = frameLayout;
-        jc0 jc0Var = new jc0(1);
-        this.f13175b = jc0Var;
-        frameLayout.setBackground(jc0Var);
-        ImageView imageView = new ImageView(context);
-        this.d = imageView;
-        imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
-        frameLayout.addView(imageView, z5.e(24, 24, 17));
-        LinearLayout e = nk.e(context, 1);
-        TextView textView = new TextView(context);
-        this.e = textView;
-        textView.setTextSize(1, 16.0f);
-        TextView i14 = k3.i(e, textView, z5.k(0.0f, 0.0f, 0.0f, 0.0f, -1, -2), context);
-        this.f13177f = i14;
-        i14.setGravity(17);
-        i14.setMinWidth(AndroidUtilities.dp(20.66f));
-        i14.setPadding(AndroidUtilities.dp(6.33f), 0, AndroidUtilities.dp(6.33f), 0);
-        i14.setTextSize(1, 16.0f);
-        if (LocaleController.isRTL) {
-            addView(i14, z5.j(13.33f, 0.0f));
-            if (z10) {
-                i12 = 12;
-            } else {
-                i12 = 16;
-            }
-            addView(e, z5.p(0, -2, 1.0f, 23, 20, 0, i12, 0));
-            if (z10) {
-                i13 = 9;
-            } else {
-                i13 = 14;
-            }
-            addView(frameLayout, z5.t(28, 28, 21, 0, 0, i13, 0));
-        } else {
-            if (z10) {
-                i10 = 9;
-            } else {
-                i10 = 14;
-            }
-            addView(frameLayout, z5.t(28, 28, 19, i10, 0, 0, 0));
-            if (z10) {
-                i11 = 12;
-            } else {
-                i11 = 16;
-            }
-            addView(e, z5.p(0, -2, 1.0f, 23, i11, 0, 20, 0));
-            addView(i14, z5.j(0.0f, 13.33f));
-        }
-        d();
-        setUnreadMode(true);
-    }
-
-    public final void a(int i10, int i11, int i12, CharSequence charSequence, CharSequence charSequence2, boolean z10) {
-        int i13;
-        float f7;
-        if (i12 != 0) {
-            i13 = 0;
-        } else {
-            i13 = 8;
-        }
-        this.f13176c.setVisibility(i13);
-        if (i12 == 0) {
-            f7 = AndroidUtilities.dp(2.0f);
-        } else {
-            f7 = 0.0f;
-        }
-        this.e.setTranslationX(f7);
-        this.f13175b.b(i10, i11);
-        this.d.setImageResource(i12);
-        setTitle(charSequence);
-        setValue(charSequence2);
-        setUnreadMode(z10);
+    static {
+        l61.setup(new l61());
     }
 
     @Override
-    public final void d() {
-        int i10;
-        ShapeDrawable shapeDrawable;
-        boolean q6;
-        int i11 = h6.G6;
-        d6 d6Var = this.f13174a;
-        this.e.setTextColor(h6.w0(i11, d6Var));
-        if (this.f13178n) {
-            i10 = h6.W8;
-        } else {
-            i10 = h6.f21177n6;
-        }
-        int w02 = h6.w0(i10, d6Var);
-        TextView textView = this.f13177f;
-        textView.setTextColor(w02);
-        if (this.f13178n) {
-            shapeDrawable = h6.c0(AndroidUtilities.dp(10.33f), h6.w0(h6.U8, d6Var));
-        } else {
-            shapeDrawable = null;
-        }
-        textView.setBackground(shapeDrawable);
-        if (d6Var != null) {
-            q6 = d6Var.a();
-        } else {
-            q6 = h6.I.q();
-        }
-        this.f13175b.f27504b = q6;
-    }
-
-    public int[] getColorKeys() {
-        return null;
+    public final void bindView(View view, m61 m61Var, boolean z10, b71 b71Var, j71 j71Var) {
+        long j10 = m61Var.B;
+        ((j) view).a((int) j10, (int) (j10 >>> 32), m61Var.f28558k, m61Var.f28559l, m61Var.f28561n, m61Var.f28564q);
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        float f7;
-        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824);
-        if (this.h) {
-            f7 = 44.0f;
-        } else {
-            f7 = 50.0f;
-        }
-        super.onMeasure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(f7), 1073741824));
-    }
-
-    public void setTitle(CharSequence charSequence) {
-        this.e.setText(charSequence);
-    }
-
-    public void setUnreadMode(boolean z10) {
-        float f7;
-        Typeface typeface;
-        int i10;
-        if (this.f13178n != z10) {
-            this.f13178n = z10;
-            if (z10) {
-                f7 = 13.0f;
-            } else {
-                f7 = 16.0f;
-            }
-            TextView textView = this.f13177f;
-            textView.setTextSize(1, f7);
-            ShapeDrawable shapeDrawable = null;
-            if (z10) {
-                typeface = AndroidUtilities.bold();
-            } else {
-                typeface = null;
-            }
-            textView.setTypeface(typeface);
-            if (z10) {
-                i10 = h6.W8;
-            } else {
-                i10 = h6.f21177n6;
-            }
-            d6 d6Var = this.f13174a;
-            textView.setTextColor(h6.w0(i10, d6Var));
-            if (z10) {
-                shapeDrawable = h6.c0(AndroidUtilities.dp(10.33f), h6.w0(h6.U8, d6Var));
-            }
-            textView.setBackground(shapeDrawable);
-        }
-    }
-
-    public void setValue(CharSequence charSequence) {
-        int i10;
-        if (!TextUtils.isEmpty(charSequence)) {
-            i10 = 0;
-        } else {
-            i10 = 8;
-        }
-        TextView textView = this.f13177f;
-        textView.setVisibility(i10);
-        textView.setText(charSequence);
+    public final View createView(Context context, mm0 mm0Var, int i10, int i11, g6 g6Var) {
+        return new j(context, g6Var, false);
     }
 }

@@ -5,24 +5,24 @@ import android.os.Handler;
 import android.os.SystemClock;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
-import org.telegram.ui.kh0;
+import org.telegram.ui.oh0;
 public final class a implements Runnable {
-    public final int f45803a;
-    public final org.telegram.utils.recorder.audio.d f45804b;
+    public final int f46224a;
+    public final org.telegram.utils.recorder.audio.d f46225b;
 
     public a(org.telegram.utils.recorder.audio.d dVar, int i10) {
-        this.f45803a = i10;
-        this.f45804b = dVar;
+        this.f46224a = i10;
+        this.f46225b = dVar;
     }
 
     @Override
     public final void run() {
         double sqrt;
-        switch (this.f45803a) {
+        switch (this.f46224a) {
             case 0:
-                org.telegram.utils.recorder.audio.d dVar = this.f45804b;
+                org.telegram.utils.recorder.audio.d dVar = this.f46225b;
                 try {
-                    if (dVar.f43857n) {
+                    if (dVar.f44272n) {
                         dVar.e(null);
                         return;
                     }
@@ -32,15 +32,15 @@ public final class a implements Runnable {
                     }
                     int max = Math.max(minBufferSize * 2, 7680);
                     AudioRecord audioRecord = new AudioRecord(0, 48000, 16, 2, max);
-                    dVar.f43859p = audioRecord;
+                    dVar.f44274p = audioRecord;
                     if (audioRecord.getState() == 1) {
-                        dVar.f43859p.startRecording();
-                        if (dVar.f43859p.getRecordingState() == 3) {
-                            dVar.f43850f.b("AudioRecord started: minBufferBytes=" + minBufferSize + ", bufferBytes=" + max + ", sessionId=" + dVar.f43859p.getAudioSessionId());
-                            dVar.f43861r = SystemClock.elapsedRealtime();
-                            cc.e eVar = dVar.f43851g;
-                            ((o) eVar.f5093c).f45841i.post(new kh0(eVar, eVar.f5091a, 3));
-                            dVar.f43852i.post(new a(dVar, 2));
+                        dVar.f44274p.startRecording();
+                        if (dVar.f44274p.getRecordingState() == 3) {
+                            dVar.f44265f.b("AudioRecord started: minBufferBytes=" + minBufferSize + ", bufferBytes=" + max + ", sessionId=" + dVar.f44274p.getAudioSessionId());
+                            dVar.f44276r = SystemClock.elapsedRealtime();
+                            cc.e eVar = dVar.f44266g;
+                            ((o) eVar.f5098c).f46262i.post(new oh0(eVar, eVar.f5096a, 3));
+                            dVar.f44267i.post(new a(dVar, 2));
                             return;
                         }
                         throw new IllegalStateException("Unable to start AudioRecord");
@@ -51,23 +51,23 @@ public final class a implements Runnable {
                     return;
                 }
             case 1:
-                this.f45804b.e(null);
+                this.f46225b.e(null);
                 return;
             default:
-                org.telegram.utils.recorder.audio.d dVar2 = this.f45804b;
-                if (!dVar2.f43858o) {
+                org.telegram.utils.recorder.audio.d dVar2 = this.f46225b;
+                if (!dVar2.f44273o) {
                     Exception exc = null;
-                    if (dVar2.f43857n) {
+                    if (dVar2.f44272n) {
                         dVar2.e(null);
                         return;
                     }
-                    ByteBuffer byteBuffer = (ByteBuffer) dVar2.f43855l.poll();
+                    ByteBuffer byteBuffer = (ByteBuffer) dVar2.f44270l.poll();
                     if (byteBuffer == null) {
                         byteBuffer = ByteBuffer.allocateDirect(1920).order(ByteOrder.nativeOrder());
                     }
                     byteBuffer.clear();
                     try {
-                        int read = dVar2.f43859p.read(byteBuffer, byteBuffer.capacity());
+                        int read = dVar2.f44274p.read(byteBuffer, byteBuffer.capacity());
                         if (read > 0) {
                             byteBuffer.limit(read);
                             int i10 = read / 2;
@@ -76,38 +76,38 @@ public final class a implements Runnable {
                                 long j11 = byteBuffer.getShort(i11);
                                 j10 += j11 * j11;
                             }
-                            dVar2.f43860q += i10;
-                            dVar2.f43856m.incrementAndGet();
-                            dVar2.f43854k.post(new org.telegram.utils.recorder.audio.c(0, dVar2, byteBuffer));
+                            dVar2.f44275q += i10;
+                            dVar2.f44271m.incrementAndGet();
+                            dVar2.f44269k.post(new org.telegram.utils.recorder.audio.c(0, dVar2, byteBuffer));
                             long elapsedRealtime = SystemClock.elapsedRealtime();
-                            if (elapsedRealtime - dVar2.f43861r >= 32) {
+                            if (elapsedRealtime - dVar2.f44276r >= 32) {
                                 if (i10 == 0) {
                                     sqrt = 0.0d;
                                 } else {
                                     sqrt = Math.sqrt(j10 / i10);
                                 }
                                 final double d = sqrt;
-                                final cc.e eVar2 = dVar2.f43851g;
-                                final long j12 = dVar2.f43860q;
-                                Handler handler = ((o) eVar2.f5093c).f45841i;
-                                final long j13 = eVar2.f5091a;
+                                final cc.e eVar2 = dVar2.f44266g;
+                                final long j12 = dVar2.f44275q;
+                                Handler handler = ((o) eVar2.f5098c).f46262i;
+                                final long j13 = eVar2.f5096a;
                                 handler.post(new Runnable() {
                                     @Override
                                     public final void run() {
-                                        o oVar = (o) cc.e.this.f5093c;
-                                        if (j13 == oVar.f45848p && oVar.f45846n == m.f45830c) {
-                                            oVar.f45850r = j12;
+                                        o oVar = (o) cc.e.this.f5098c;
+                                        if (j13 == oVar.f46269p && oVar.f46267n == m.f46251c) {
+                                            oVar.f46271r = j12;
                                             long j14 = oVar.j();
                                             double d10 = d;
                                             if (d10 >= 0.0d) {
-                                                oVar.f45839f.onRecordingProgress(j14, d10);
+                                                oVar.f46260f.onRecordingProgress(j14, d10);
                                             }
                                         }
                                     }
                                 });
-                                dVar2.f43861r = elapsedRealtime;
+                                dVar2.f44276r = elapsedRealtime;
                             }
-                            dVar2.f43852i.post(new a(dVar2, 2));
+                            dVar2.f44267i.post(new a(dVar2, 2));
                             return;
                         }
                         throw new IllegalStateException("AudioRecord read failed: " + read);
@@ -115,7 +115,7 @@ public final class a implements Runnable {
                         if (0 == 0) {
                             dVar2.c(byteBuffer);
                         }
-                        if (!dVar2.f43857n) {
+                        if (!dVar2.f44272n) {
                             exc = org.telegram.utils.recorder.audio.d.a(th3);
                         }
                         dVar2.e(exc);

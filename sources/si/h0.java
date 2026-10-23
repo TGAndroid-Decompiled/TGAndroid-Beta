@@ -1,46 +1,46 @@
 package si;
 
-import org.telegram.ui.Components.a11;
+import org.telegram.ui.Components.d11;
 public final class h0 implements Runnable {
-    public final int f46616a;
-    public final s0 f46617b;
-    public final o0 f46618c;
+    public final int f47048a;
+    public final u0 f47049b;
+    public final q0 f47050c;
 
-    public h0(s0 s0Var, o0 o0Var, int i10, int i11) {
-        this.f46616a = i11;
-        this.f46617b = s0Var;
-        this.f46618c = o0Var;
+    public h0(u0 u0Var, q0 q0Var, int i10, int i11) {
+        this.f47048a = i11;
+        this.f47049b = u0Var;
+        this.f47050c = q0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f46616a) {
+        switch (this.f47048a) {
             case 0:
-                s0 s0Var = this.f46617b;
-                o0 o0Var = this.f46618c;
-                ((a11) s0Var.e).c(o0Var.f46748a);
+                u0 u0Var = this.f47049b;
+                q0 q0Var = this.f47050c;
+                ((d11) u0Var.e).c(q0Var.f47189a);
                 return;
             case 1:
-                s0 s0Var2 = this.f46617b;
-                o0 o0Var2 = this.f46618c;
-                p0 p0Var = s0Var2.e;
-                long j10 = o0Var2.f46748a;
-                a11 a11Var = (a11) p0Var;
-                synchronized (a11Var) {
-                    a11Var.c(j10);
+                u0 u0Var2 = this.f47049b;
+                q0 q0Var2 = this.f47050c;
+                r0 r0Var = u0Var2.e;
+                long j10 = q0Var2.f47189a;
+                d11 d11Var = (d11) r0Var;
+                synchronized (d11Var) {
+                    d11Var.c(j10);
                 }
                 return;
             default:
-                s0 s0Var3 = this.f46617b;
-                o0 o0Var3 = this.f46618c;
-                ((a11) s0Var3.e).c(o0Var3.f46748a);
+                u0 u0Var3 = this.f47049b;
+                q0 q0Var3 = this.f47050c;
+                ((d11) u0Var3.e).c(q0Var3.f47189a);
                 return;
         }
     }
 
-    public h0(s0 s0Var, o0 o0Var, Exception exc) {
-        this.f46616a = 1;
-        this.f46617b = s0Var;
-        this.f46618c = o0Var;
+    public h0(u0 u0Var, q0 q0Var, Exception exc) {
+        this.f47048a = 1;
+        this.f47049b = u0Var;
+        this.f47050c = q0Var;
     }
 }

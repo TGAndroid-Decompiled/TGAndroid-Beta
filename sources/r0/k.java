@@ -5,21 +5,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
 public final class k {
-    public ViewParent f44834a;
-    public ViewParent f44835b;
-    public final ViewGroup f44836c;
+    public ViewParent f45246a;
+    public ViewParent f45247b;
+    public final ViewGroup f45248c;
     public boolean d;
     public int[] e;
 
     public k(ViewGroup viewGroup) {
-        this.f44836c = viewGroup;
+        this.f45248c = viewGroup;
     }
 
     public final boolean a(float f7, float f10, boolean z10) {
         ViewParent e;
         if (this.d && (e = e(0)) != null) {
             try {
-                return e.onNestedFling(this.f44836c, f7, f10, z10);
+                return e.onNestedFling(this.f45248c, f7, f10, z10);
             } catch (AbstractMethodError e7) {
                 Log.e("ViewParentCompat", "ViewParent " + e + " does not implement interface method onNestedFling", e7);
             }
@@ -31,7 +31,7 @@ public final class k {
         ViewParent e;
         if (this.d && (e = e(0)) != null) {
             try {
-                return e.onNestedPreFling(this.f44836c, f7, f10);
+                return e.onNestedPreFling(this.f45248c, f7, f10);
             } catch (AbstractMethodError e7) {
                 Log.e("ViewParentCompat", "ViewParent " + e + " does not implement interface method onNestedPreFling", e7);
             }
@@ -55,7 +55,7 @@ public final class k {
             iArr2[1] = 0;
             return false;
         }
-        ViewGroup viewGroup = this.f44836c;
+        ViewGroup viewGroup = this.f45248c;
         if (iArr2 != null) {
             viewGroup.getLocationInWindow(iArr2);
             i13 = iArr2[0];
@@ -75,7 +75,7 @@ public final class k {
         iArr3[0] = 0;
         iArr3[1] = 0;
         if (e instanceof l) {
-            ((l) e).E(viewGroup, i10, i11, iArr3, i12);
+            ((l) e).D(viewGroup, i10, i11, iArr3, i12);
         } else if (i12 == 0) {
             try {
                 e.onNestedPreScroll(viewGroup, i10, i11, iArr3);
@@ -107,7 +107,7 @@ public final class k {
                     return false;
                 }
             } else {
-                ViewGroup viewGroup = this.f44836c;
+                ViewGroup viewGroup = this.f45248c;
                 if (iArr != null) {
                     viewGroup.getLocationInWindow(iArr);
                     i15 = iArr[0];
@@ -128,7 +128,7 @@ public final class k {
                     iArr3 = iArr2;
                 }
                 if (e instanceof m) {
-                    ((m) e).i(viewGroup, i10, i11, i12, i13, i14, iArr3);
+                    ((m) e).h(viewGroup, i10, i11, i12, i13, i14, iArr3);
                 } else {
                     iArr3[0] = iArr3[0] + i12;
                     iArr3[1] = iArr3[1] + i13;
@@ -158,9 +158,9 @@ public final class k {
             if (i10 != 1) {
                 return null;
             }
-            return this.f44835b;
+            return this.f45247b;
         }
-        return this.f44834a;
+        return this.f45246a;
     }
 
     public final boolean f(int i10) {
@@ -174,12 +174,12 @@ public final class k {
         boolean onStartNestedScroll;
         if (!f(i11)) {
             if (this.d) {
-                View view = this.f44836c;
+                View view = this.f45248c;
                 View view2 = view;
                 for (ViewParent parent = view.getParent(); parent != null; parent = parent.getParent()) {
                     boolean z10 = parent instanceof l;
                     if (z10) {
-                        onStartNestedScroll = ((l) parent).p(view2, view, i10, i11);
+                        onStartNestedScroll = ((l) parent).o(view2, view, i10, i11);
                     } else {
                         if (i11 == 0) {
                             try {
@@ -193,13 +193,13 @@ public final class k {
                     if (onStartNestedScroll) {
                         if (i11 != 0) {
                             if (i11 == 1) {
-                                this.f44835b = parent;
+                                this.f45247b = parent;
                             }
                         } else {
-                            this.f44834a = parent;
+                            this.f45246a = parent;
                         }
                         if (z10) {
-                            ((l) parent).s(view2, view, i10, i11);
+                            ((l) parent).r(view2, view, i10, i11);
                         } else if (i11 == 0) {
                             try {
                                 parent.onNestedScrollAccepted(view2, view, i10);
@@ -223,9 +223,9 @@ public final class k {
         ViewParent e = e(i10);
         if (e != null) {
             boolean z10 = e instanceof l;
-            ViewGroup viewGroup = this.f44836c;
+            ViewGroup viewGroup = this.f45248c;
             if (z10) {
-                ((l) e).n(i10, viewGroup);
+                ((l) e).m(i10, viewGroup);
             } else if (i10 == 0) {
                 try {
                     e.onStopNestedScroll(viewGroup);
@@ -235,12 +235,12 @@ public final class k {
             }
             if (i10 != 0) {
                 if (i10 == 1) {
-                    this.f44835b = null;
+                    this.f45247b = null;
                     return;
                 }
                 return;
             }
-            this.f44834a = null;
+            this.f45246a = null;
         }
     }
 }

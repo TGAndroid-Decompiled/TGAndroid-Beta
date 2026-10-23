@@ -4,21 +4,21 @@ import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-public final class ly extends z4.a implements vd0 {
-    public final tz f28324c;
+public final class ly extends z4.a implements yd0 {
+    public final tz f28433c;
 
     public ly(tz tzVar) {
-        this.f28324c = tzVar;
+        this.f28433c = tzVar;
     }
 
     @Override
-    public final void a(z4.g gVar, Object obj) {
-        gVar.removeView((View) obj);
+    public final void a(z4.h hVar, Object obj) {
+        hVar.removeView((View) obj);
     }
 
     @Override
     public final int b() {
-        return this.f28324c.e.size();
+        return this.f28433c.e.size();
     }
 
     @Override
@@ -36,9 +36,9 @@ public final class ly extends z4.a implements vd0 {
     }
 
     @Override
-    public final Object e(z4.g gVar, int i10) {
-        FrameLayout frameLayout = ((pz) this.f28324c.e.get(i10)).f29419b;
-        gVar.addView(frameLayout);
+    public final Object e(z4.h hVar, int i10) {
+        FrameLayout frameLayout = ((pz) this.f28433c.e.get(i10)).f29702b;
+        hVar.addView(frameLayout);
         return frameLayout;
     }
 

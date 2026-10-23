@@ -1,56 +1,65 @@
 package org.telegram.ui.Components;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.view.KeyEvent;
-import android.view.View;
-import android.view.ViewTreeObserver;
-import androidx.recyclerview.widget.RecyclerView;
-public final class qt0 implements ViewTreeObserver.OnPreDrawListener {
-    public final int f29711a;
-    public final int f29712b;
-    public final KeyEvent.Callback f29713c;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class qt0 extends AnimatorListenerAdapter {
+    public final int f29987a;
+    public final xv0 f29988b;
 
-    public qt0(KeyEvent.Callback callback, int i10, int i11) {
-        this.f29711a = i11;
-        this.f29713c = callback;
-        this.f29712b = i10;
+    public qt0(xv0 xv0Var, int i10) {
+        this.f29987a = i10;
+        this.f29988b = xv0Var;
     }
 
     @Override
-    public final boolean onPreDraw() {
-        int i10 = this.f29711a;
-        int i11 = this.f29712b;
-        KeyEvent.Callback callback = this.f29713c;
-        switch (i10) {
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f29987a) {
             case 0:
-                uv0 uv0Var = (uv0) callback;
-                uv0Var.f31051k0[i11].getViewTreeObserver().removeOnPreDrawListener(this);
-                uv0Var.U(i11);
-                return true;
+                this.f29988b.L0 = null;
+                return;
             default:
-                l71 l71Var = (l71) callback;
-                ai.u1 u1Var = l71Var.d;
-                u1Var.getViewTreeObserver().removeOnPreDrawListener(this);
-                int childCount = u1Var.getChildCount();
-                AnimatorSet animatorSet = new AnimatorSet();
-                for (int i12 = 0; i12 < childCount; i12++) {
-                    View childAt = u1Var.getChildAt(i12);
-                    u1Var.getClass();
-                    int R = RecyclerView.R(childAt);
-                    if (R >= i11) {
-                        if (R == 1 && u1Var.getAdapter() == l71Var.e && (childAt instanceof org.telegram.ui.Cells.u3)) {
-                            childAt = ((org.telegram.ui.Cells.u3) childAt).getTextView();
+                xv0 xv0Var = this.f29988b;
+                org.telegram.ui.ActionBar.u0 u0Var = xv0Var.f32692n0;
+                qu0[] qu0VarArr = xv0Var.f32687k0;
+                xv0Var.f32677f1 = null;
+                int i10 = 4;
+                if (xv0Var.f32684i1) {
+                    qu0VarArr[1].setVisibility(8);
+                    if (u0Var != null && !xv0Var.E()) {
+                        if (xv0Var.y0()) {
+                            i10 = 8;
                         }
-                        childAt.setAlpha(0.0f);
-                        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(childAt, View.ALPHA, 0.0f, 1.0f);
-                        ofFloat.setStartDelay((int) ((Math.min(u1Var.getMeasuredHeight(), Math.max(0, childAt.getTop())) / u1Var.getMeasuredHeight()) * 100.0f));
-                        ofFloat.setDuration(200L);
-                        animatorSet.playTogether(ofFloat);
+                        u0Var.setVisibility(i10);
+                        xv0Var.f32694o0 = 0.0f;
+                    } else {
+                        xv0Var.f32694o0 = xv0Var.c0(0.0f);
+                        xv0Var.x1(0.0f);
                     }
+                    xv0Var.u1(false);
+                    xv0Var.f32716x0 = 0;
+                } else {
+                    qu0 qu0Var = qu0VarArr[0];
+                    qu0VarArr[0] = qu0VarArr[1];
+                    qu0VarArr[1] = qu0Var;
+                    qu0Var.setVisibility(8);
+                    if (u0Var != null && xv0Var.f32716x0 == 2) {
+                        if (xv0Var.y0()) {
+                            i10 = 8;
+                        }
+                        u0Var.setVisibility(i10);
+                    }
+                    xv0Var.f32716x0 = 0;
+                    xv0Var.c1(1.0f, qu0VarArr[0].F);
+                    xv0Var.O0();
+                    xv0Var.i1();
                 }
-                animatorSet.start();
-                return true;
+                xv0Var.f32680g1 = false;
+                xv0Var.f32720y1 = false;
+                xv0Var.f32717x1 = false;
+                xv0Var.Q0(false);
+                xv0Var.G.setEnabled(true);
+                xv0Var.I0.setEnabled(true);
+                return;
         }
     }
 }

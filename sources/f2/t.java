@@ -3,26 +3,26 @@ package f2;
 import java.nio.ByteBuffer;
 import v7.u6;
 public final class t {
-    public final boolean f10340a;
-    public final boolean f10341b;
-    public final boolean f10342c;
+    public final boolean f10357a;
+    public final boolean f10358b;
+    public final boolean f10359c;
     public final boolean d;
     public final boolean e;
-    public final int f10343f;
-    public final int f10344g;
+    public final int f10360f;
+    public final int f10361g;
     public final boolean h;
-    public final boolean f10345i;
-    public final boolean f10346j;
-    public final boolean f10347k;
-    public final boolean f10348l;
-    public final byte f10349m;
-    public final byte f10350n;
-    public final byte f10351o;
+    public final boolean f10362i;
+    public final boolean f10363j;
+    public final boolean f10364k;
+    public final boolean f10365l;
+    public final byte f10366m;
+    public final byte f10367n;
+    public final byte f10368o;
 
     public t(s sVar) {
         boolean z10;
-        int i10 = sVar.f10338a;
-        ByteBuffer byteBuffer = sVar.f10339b;
+        int i10 = sVar.f10355a;
+        ByteBuffer byteBuffer = sVar.f10356b;
         if (i10 == 1) {
             z10 = true;
         } else {
@@ -33,13 +33,13 @@ public final class t {
         byte[] bArr = new byte[remaining];
         byteBuffer.asReadOnlyBuffer().get(bArr);
         a4.g gVar = new a4.g(bArr, remaining);
-        this.f10344g = gVar.g(3);
+        this.f10361g = gVar.g(3);
         gVar.n();
         boolean f7 = gVar.f();
-        this.f10340a = f7;
+        this.f10357a = f7;
         if (f7) {
             gVar.g(5);
-            this.f10341b = false;
+            this.f10358b = false;
             this.h = false;
         } else {
             if (gVar.f()) {
@@ -54,12 +54,12 @@ public final class t {
                     }
                 }
                 boolean f10 = gVar.f();
-                this.f10341b = f10;
+                this.f10358b = f10;
                 if (f10) {
                     gVar.o(47);
                 }
             } else {
-                this.f10341b = false;
+                this.f10358b = false;
             }
             this.h = gVar.f();
             int g10 = gVar.g(5);
@@ -72,7 +72,7 @@ public final class t {
                 } else if (gVar.g(5) > 7) {
                     gVar.n();
                 }
-                if (this.f10341b) {
+                if (this.f10358b) {
                     gVar.n();
                 }
                 if (this.h && gVar.f()) {
@@ -88,20 +88,20 @@ public final class t {
         int g12 = gVar.g(4);
         gVar.o(g11 + 1);
         gVar.o(g12 + 1);
-        if (!this.f10340a) {
-            this.f10342c = gVar.f();
+        if (!this.f10357a) {
+            this.f10359c = gVar.f();
         } else {
-            this.f10342c = false;
+            this.f10359c = false;
         }
-        if (this.f10342c) {
+        if (this.f10359c) {
             gVar.o(4);
             gVar.o(3);
         }
         gVar.o(3);
-        if (this.f10340a) {
+        if (this.f10357a) {
             this.e = true;
             this.d = true;
-            this.f10343f = 0;
+            this.f10360f = 0;
         } else {
             gVar.o(4);
             boolean f11 = gVar.f();
@@ -123,61 +123,61 @@ public final class t {
                 this.e = true;
             }
             if (f11) {
-                this.f10343f = gVar.g(3) + 1;
+                this.f10360f = gVar.g(3) + 1;
             } else {
-                this.f10343f = 0;
+                this.f10360f = 0;
             }
         }
         gVar.o(3);
         boolean f12 = gVar.f();
-        if (this.f10344g == 2 && f12) {
-            this.f10345i = gVar.f();
+        if (this.f10361g == 2 && f12) {
+            this.f10362i = gVar.f();
         } else {
-            this.f10345i = false;
+            this.f10362i = false;
         }
-        if (this.f10344g != 1) {
-            this.f10346j = gVar.f();
+        if (this.f10361g != 1) {
+            this.f10363j = gVar.f();
         } else {
-            this.f10346j = false;
+            this.f10363j = false;
         }
         if (gVar.f()) {
-            this.f10349m = (byte) gVar.g(8);
-            this.f10350n = (byte) gVar.g(8);
-            this.f10351o = (byte) gVar.g(8);
+            this.f10366m = (byte) gVar.g(8);
+            this.f10367n = (byte) gVar.g(8);
+            this.f10368o = (byte) gVar.g(8);
         } else {
-            this.f10349m = (byte) 0;
-            this.f10350n = (byte) 0;
-            this.f10351o = (byte) 0;
+            this.f10366m = (byte) 0;
+            this.f10367n = (byte) 0;
+            this.f10368o = (byte) 0;
         }
-        if (this.f10346j) {
+        if (this.f10363j) {
             gVar.n();
-            this.f10347k = false;
-            this.f10348l = false;
-        } else if (this.f10349m == 1 && this.f10350n == 13 && this.f10351o == 0) {
-            this.f10347k = false;
-            this.f10348l = false;
+            this.f10364k = false;
+            this.f10365l = false;
+        } else if (this.f10366m == 1 && this.f10367n == 13 && this.f10368o == 0) {
+            this.f10364k = false;
+            this.f10365l = false;
         } else {
             gVar.n();
-            int i13 = this.f10344g;
+            int i13 = this.f10361g;
             if (i13 == 0) {
-                this.f10347k = true;
-                this.f10348l = true;
+                this.f10364k = true;
+                this.f10365l = true;
             } else if (i13 == 1) {
-                this.f10347k = false;
-                this.f10348l = false;
-            } else if (this.f10345i) {
+                this.f10364k = false;
+                this.f10365l = false;
+            } else if (this.f10362i) {
                 boolean f13 = gVar.f();
-                this.f10347k = f13;
+                this.f10364k = f13;
                 if (f13) {
-                    this.f10348l = gVar.f();
+                    this.f10365l = gVar.f();
                 } else {
-                    this.f10348l = false;
+                    this.f10365l = false;
                 }
             } else {
-                this.f10347k = true;
-                this.f10348l = false;
+                this.f10364k = true;
+                this.f10365l = false;
             }
-            if (this.f10347k && this.f10348l) {
+            if (this.f10364k && this.f10365l) {
                 gVar.g(2);
             }
         }

@@ -1,102 +1,21 @@
 package org.telegram.ui;
+public final class pg1 implements Runnable {
+    public final int f40480a;
+    public final qg1 f40481b;
+    public final String f40482c;
+    public final boolean d;
+    public final boolean e;
 
-import android.view.View;
-import android.view.WindowInsets;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.voip.VoIPService;
-public final class pg1 implements org.telegram.ui.ActionBar.a2, org.telegram.ui.Components.voip.r1, r0.n, org.telegram.ui.Components.voip.g3 {
-    public final int f40231a;
-    public final hh1 f40232b;
-
-    public pg1(hh1 hh1Var, int i10) {
-        this.f40231a = i10;
-        this.f40232b = hh1Var;
+    public pg1(qg1 qg1Var, String str, boolean z10, boolean z11, int i10) {
+        this.f40480a = i10;
+        this.f40481b = qg1Var;
+        this.f40482c = str;
+        this.d = z10;
+        this.e = z11;
     }
 
     @Override
-    public r0.k1 B0(View view, r0.k1 k1Var) {
-        WindowInsets g10 = k1Var.g();
-        hh1 hh1Var = this.f40232b;
-        hh1Var.f37669r0 = g10;
-        ((FrameLayout.LayoutParams) hh1Var.f37657j0.getLayoutParams()).bottomMargin = hh1Var.f37669r0.getSystemWindowInsetBottom();
-        ((FrameLayout.LayoutParams) hh1Var.f37646e0.getLayoutParams()).bottomMargin = hh1Var.f37669r0.getSystemWindowInsetBottom();
-        ((FrameLayout.LayoutParams) hh1Var.H.getLayoutParams()).topMargin = hh1Var.f37669r0.getSystemWindowInsetTop();
-        ((FrameLayout.LayoutParams) hh1Var.I.getLayoutParams()).topMargin = hh1Var.f37669r0.getSystemWindowInsetTop();
-        ((FrameLayout.LayoutParams) hh1Var.K.getLayoutParams()).topMargin = hh1Var.f37669r0.getSystemWindowInsetTop() + AndroidUtilities.dp(56.0f);
-        ((FrameLayout.LayoutParams) hh1Var.X.getLayoutParams()).topMargin = hh1Var.f37669r0.getSystemWindowInsetTop() + AndroidUtilities.dp(135.0f);
-        ((FrameLayout.LayoutParams) hh1Var.N.getLayoutParams()).topMargin = hh1Var.f37669r0.getSystemWindowInsetTop() + AndroidUtilities.dp(17.0f);
-        ((FrameLayout.LayoutParams) hh1Var.f37679y.getLayoutParams()).topMargin = hh1Var.f37669r0.getSystemWindowInsetTop() + AndroidUtilities.dp(93.0f);
-        ((FrameLayout.LayoutParams) hh1Var.O.getLayoutParams()).topMargin = hh1Var.f37669r0.getSystemWindowInsetTop();
-        ((FrameLayout.LayoutParams) hh1Var.R.getLayoutParams()).topMargin = hh1Var.f37669r0.getSystemWindowInsetTop() + AndroidUtilities.dp(118.0f);
-        ((FrameLayout.LayoutParams) hh1Var.Q.getLayoutParams()).topMargin = hh1Var.f37669r0.getSystemWindowInsetTop() + AndroidUtilities.dp(380.0f);
-        ((FrameLayout.LayoutParams) hh1Var.Z.getLayoutParams()).bottomMargin = hh1Var.f37669r0.getSystemWindowInsetBottom();
-        ((FrameLayout.LayoutParams) hh1Var.M0.getLayoutParams()).bottomMargin = hh1Var.f37669r0.getSystemWindowInsetBottom();
-        hh1Var.Y.setInsets(hh1Var.f37669r0);
-        hh1Var.Z.setInsets(hh1Var.f37669r0);
-        hh1Var.f37670s.requestLayout();
-        ah1 ah1Var = hh1Var.f37665o0;
-        if (ah1Var != null) {
-            ah1Var.setBottomPadding(hh1Var.f37669r0.getSystemWindowInsetBottom());
-        }
-        return r0.k1.f44838b;
-    }
-
-    @Override
-    public void c(org.telegram.ui.Components.voip.h3 h3Var) {
-        int i10;
-        switch (this.f40231a) {
-            case 5:
-                VoIPService sharedInstance = VoIPService.getSharedInstance();
-                if (sharedInstance != null) {
-                    hh1 hh1Var = this.f40232b;
-                    AndroidUtilities.cancelRunOnUIThread(hh1Var.S0);
-                    hh1Var.R0 = false;
-                    boolean isMicMute = sharedInstance.isMicMute();
-                    boolean z10 = !isMicMute;
-                    if (hh1Var.f37676w0.isTouchExplorationEnabled()) {
-                        if (!isMicMute) {
-                            i10 = R.string.AccDescrVoipMicOff;
-                        } else {
-                            i10 = R.string.AccDescrVoipMicOn;
-                        }
-                        h3Var.announceForAccessibility(LocaleController.getString(i10));
-                    }
-                    sharedInstance.setMicMute(z10, false, true);
-                    hh1Var.f37667q0 = hh1Var.f37666p0;
-                    hh1Var.G();
-                    return;
-                }
-                return;
-            default:
-                hh1 hh1Var2 = this.f40232b;
-                AndroidUtilities.cancelRunOnUIThread(hh1Var2.S0);
-                hh1Var2.R0 = false;
-                if (hh1Var2.f37638b.checkSelfPermission("android.permission.CAMERA") != 0) {
-                    hh1Var2.f37638b.requestPermissions(new String[]{"android.permission.CAMERA"}, 102);
-                    return;
-                } else {
-                    hh1Var2.B();
-                    return;
-                }
-        }
-    }
-
-    @Override
-    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f40231a) {
-            case 0:
-                zg1 zg1Var = this.f40232b.f37673u0;
-                if (zg1Var != null) {
-                    zg1Var.b();
-                    return;
-                }
-                return;
-            default:
-                this.f40232b.f37673u0.b();
-                return;
-        }
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.pg1.run():void");
     }
 }

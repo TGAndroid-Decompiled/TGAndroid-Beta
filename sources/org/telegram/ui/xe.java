@@ -7,96 +7,96 @@ import org.telegram.messenger.MessageSuggestionParams;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.tl.TL_stories;
 public final class xe implements Utilities.Callback {
-    public final int f43201a;
-    public final qn f43202b;
+    public final int f43586a;
+    public final sn f43587b;
 
-    public xe(qn qnVar, int i10) {
-        this.f43201a = i10;
-        this.f43202b = qnVar;
+    public xe(sn snVar, int i10) {
+        this.f43586a = i10;
+        this.f43587b = snVar;
     }
 
     @Override
     public final void run(Object obj) {
-        int i10 = this.f43201a;
-        qn qnVar = this.f43202b;
+        int i10 = this.f43586a;
+        sn snVar = this.f43587b;
         switch (i10) {
             case 0:
                 MessageSuggestionParams messageSuggestionParams = (MessageSuggestionParams) obj;
-                qn qnVar2 = this.f43202b;
-                qnVar2.f40697g5 = messageSuggestionParams;
-                qnVar2.p5.messageOwner.suggested_post = messageSuggestionParams.toTl();
-                qnVar2.Db(true, null, qnVar2.p5, null, null, true, 0, null, false, 0L, null, true);
+                sn snVar2 = this.f43587b;
+                snVar2.f41677s5 = messageSuggestionParams;
+                snVar2.B5.messageOwner.suggested_post = messageSuggestionParams.toTl();
+                snVar2.Eb(true, null, snVar2.B5, null, null, true, 0, null, false, 0L, null, true);
                 return;
             case 1:
-                qnVar.Ab(true, false);
+                snVar.Bb(true, false);
                 if (((Boolean) obj).booleanValue()) {
-                    qnVar.finishFragment();
+                    snVar.finishFragment();
                     return;
                 }
                 return;
             case 2:
-                qnVar.ia((String) obj, false);
+                snVar.ia((String) obj, false);
                 return;
             case 3:
-                qnVar.E1 = (ChannelBoostsController.CanApplyBoost) obj;
+                snVar.Q1 = (ChannelBoostsController.CanApplyBoost) obj;
                 return;
             case 4:
-                qnVar.Ib((MessageSuggestionParams) obj);
+                snVar.Jb((MessageSuggestionParams) obj);
                 return;
             case 5:
                 TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = (TL_stories.TL_premium_boostsStatus) obj;
                 if (tL_premium_boostsStatus != null) {
-                    qnVar.D1 = tL_premium_boostsStatus;
-                    qnVar.getMessagesController().getBoostsController().userCanBoostChannel(qnVar.T5, tL_premium_boostsStatus, new xe(qnVar, 3));
+                    snVar.P1 = tL_premium_boostsStatus;
+                    snVar.getMessagesController().getBoostsController().userCanBoostChannel(snVar.f41519f6, tL_premium_boostsStatus, new xe(snVar, 3));
                     return;
                 }
                 return;
             case 6:
                 View view = (View) obj;
-                if (view instanceof org.telegram.ui.Cells.u1) {
-                    org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) view;
-                    u1Var.E8 = qnVar.y9();
-                    u1Var.F8 = qnVar.H9();
-                    boolean G9 = qnVar.G9();
-                    if (u1Var.G8 != G9) {
-                        u1Var.G8 = G9;
-                        qnVar.f40905x0.getClass();
+                if (view instanceof org.telegram.ui.Cells.t1) {
+                    org.telegram.ui.Cells.t1 t1Var = (org.telegram.ui.Cells.t1) view;
+                    t1Var.E8 = snVar.y9();
+                    t1Var.F8 = snVar.H9();
+                    boolean G9 = snVar.G9();
+                    if (t1Var.G8 != G9) {
+                        t1Var.G8 = G9;
+                        snVar.f41737x0.getClass();
                         int R = RecyclerView.R(view);
-                        u1Var.f23413n8 = true;
-                        u1Var.forceLayout();
+                        t1Var.f23500n8 = true;
+                        t1Var.forceLayout();
                         if (R >= 0) {
-                            qnVar.A0.m(R);
+                            snVar.A0.m(R);
                         }
                     }
-                    u1Var.H8 = qnVar.V8();
-                    int W8 = qnVar.W8();
-                    if (u1Var.I8 != W8) {
-                        u1Var.I8 = W8;
-                        u1Var.y4();
-                        u1Var.invalidate();
+                    t1Var.H8 = snVar.V8();
+                    int W8 = snVar.W8();
+                    if (t1Var.I8 != W8) {
+                        t1Var.I8 = W8;
+                        t1Var.x4();
+                        t1Var.invalidate();
                         return;
                     }
                     return;
-                } else if (view instanceof org.telegram.ui.Cells.w0) {
-                    org.telegram.ui.Cells.w0 w0Var = (org.telegram.ui.Cells.w0) view;
-                    w0Var.f23696e0 = qnVar.y9();
-                    w0Var.f23709i0 = qnVar.H9();
-                    qnVar.G9();
-                    qnVar.V8();
-                    int W82 = qnVar.W8();
-                    if (w0Var.f23712j0 != W82) {
-                        w0Var.f23712j0 = W82;
-                        w0Var.invalidate();
+                } else if (view instanceof org.telegram.ui.Cells.v0) {
+                    org.telegram.ui.Cells.v0 v0Var = (org.telegram.ui.Cells.v0) view;
+                    v0Var.f23766e0 = snVar.y9();
+                    v0Var.f23779i0 = snVar.H9();
+                    snVar.G9();
+                    snVar.V8();
+                    int W82 = snVar.W8();
+                    if (v0Var.f23782j0 != W82) {
+                        v0Var.f23782j0 = W82;
+                        v0Var.invalidate();
                         return;
                     }
                     return;
-                } else if (view instanceof org.telegram.ui.Cells.w1) {
-                    ((org.telegram.ui.Cells.w1) view).getTextView().setTranslationX(qnVar.W8() / 2.0f);
+                } else if (view instanceof org.telegram.ui.Cells.v1) {
+                    ((org.telegram.ui.Cells.v1) view).getTextView().setTranslationX(snVar.W8() / 2.0f);
                     return;
-                } else if (view instanceof org.telegram.ui.Cells.b0) {
+                } else if (view instanceof org.telegram.ui.Cells.a0) {
                     view.invalidate();
                     return;
-                } else if (view instanceof org.telegram.ui.Cells.h0) {
+                } else if (view instanceof org.telegram.ui.Cells.g0) {
                     view.invalidate();
                     return;
                 } else {
@@ -104,25 +104,25 @@ public final class xe implements Utilities.Callback {
                 }
             case 7:
                 Long l4 = (Long) obj;
-                org.telegram.ui.Components.s31 s31Var = qnVar.R1;
-                if (s31Var != null) {
-                    s31Var.m(l4.longValue(), true);
+                org.telegram.ui.Components.w31 w31Var = snVar.f41490d2;
+                if (w31Var != null) {
+                    w31Var.n(l4.longValue(), true);
                     return;
                 }
                 return;
             case 8:
-                ur urVar = qnVar.f40656d0;
-                urVar.f42035c.add(((org.telegram.ui.ActionBar.u0) obj).getIconView());
+                wr wrVar = snVar.f41488d0;
+                wrVar.f43424c.add(((org.telegram.ui.ActionBar.u0) obj).getIconView());
                 return;
             case 9:
                 int intValue = ((Integer) obj).intValue();
-                int i11 = qn.Ic;
-                qnVar.Fa(intValue);
+                int i11 = sn.Vc;
+                snVar.Fa(intValue);
                 return;
             default:
                 int intValue2 = ((Integer) obj).intValue();
-                int i12 = qn.Ic;
-                qnVar.Fa(intValue2);
+                int i12 = sn.Vc;
+                snVar.Fa(intValue2);
                 return;
         }
     }

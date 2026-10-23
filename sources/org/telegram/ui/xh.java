@@ -5,16 +5,16 @@ import java.util.ArrayList;
 public final class xh extends org.telegram.ui.Components.aw {
     public final yh W;
 
-    public xh(yh yhVar, org.telegram.ui.ActionBar.n2 n2Var, Activity activity, org.telegram.ui.ActionBar.d6 d6Var, ArrayList arrayList) {
-        super(n2Var, activity, d6Var, arrayList);
+    public xh(yh yhVar, org.telegram.ui.ActionBar.o2 o2Var, Activity activity, org.telegram.ui.ActionBar.g6 g6Var, ArrayList arrayList) {
+        super(o2Var, activity, g6Var, arrayList);
         this.W = yhVar;
     }
 
     @Override
     public final void dismiss() {
         super.dismiss();
-        qn qnVar = this.W.f43504p;
-        qnVar.getClass();
-        qnVar.j8(false, true, 0.0f);
+        sn snVar = this.W.f43867p;
+        snVar.getClass();
+        snVar.j8(false, true, 0.0f);
     }
 }

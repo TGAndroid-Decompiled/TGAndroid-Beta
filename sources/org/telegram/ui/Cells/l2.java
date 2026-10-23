@@ -1,58 +1,14 @@
 package org.telegram.ui.Cells;
-
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class l2 extends AnimatorListenerAdapter {
-    public final int f22529a;
-    public final r2 f22530b;
-
-    public l2(r2 r2Var, int i10) {
-        this.f22529a = i10;
-        this.f22530b = r2Var;
-    }
-
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        int i10;
-        int i11;
-        switch (this.f22529a) {
-            case 0:
-                r2 r2Var = this.f22530b;
-                r2Var.V3 = 1.0f;
-                r2Var.Y3 = null;
-                r2Var.Z3 = null;
-                r2Var.f22812a4 = null;
-                r2Var.invalidate();
-                return;
-            case 1:
-                r2 r2Var2 = this.f22530b;
-                r2Var2.W3 = 1.0f;
-                r2Var2.invalidate();
-                return;
-            default:
-                r2 r2Var3 = this.f22530b;
-                boolean z10 = r2Var3.S2;
-                if (r2Var3.Q2) {
-                    i10 = 2;
-                } else {
-                    i10 = 0;
-                }
-                int i12 = (z10 ? 1 : 0) + i10;
-                if (r2Var3.R2) {
-                    i11 = 4;
-                } else {
-                    i11 = 0;
-                }
-                int i13 = i12 + i11;
-                int i14 = r2Var3.f22918v4;
-                if (i14 != i13) {
-                    r2Var3.A(i14, i13);
-                } else {
-                    r2Var3.f22940z4 = false;
-                    r2Var3.f22930x4 = i14;
-                }
-                r2Var3.invalidate();
-                return;
-        }
-    }
+public final class l2 {
+    public String f22664a;
+    public String f22665b;
+    public int f22666c;
+    public int d;
+    public boolean e;
+    public boolean f22667f;
+    public int f22668g;
+    public int h;
+    public boolean f22669i;
+    public boolean f22670j;
+    public int f22671k = -1;
 }

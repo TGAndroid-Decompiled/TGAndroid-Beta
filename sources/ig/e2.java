@@ -1,395 +1,178 @@
 package ig;
 
-import ai.ua;
-import android.content.Context;
 import android.content.SharedPreferences;
-import android.media.AudioTrack;
-import android.net.Uri;
-import android.os.Handler;
-import android.text.SpannableString;
-import android.view.KeyEvent;
-import android.view.View;
-import android.view.ViewGroup;
-import ei.bc;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.InputStream;
+import android.text.TextUtils;
+import j$.time.Instant;
+import j$.time.ZoneId;
+import j$.time.format.TextStyle;
 import java.util.ArrayList;
-import java.util.concurrent.ScheduledExecutorService;
-import ki.b6;
-import ki.c6;
-import ki.e3;
-import ki.e6;
-import ki.j3;
-import ki.o5;
-import ki.w3;
-import ki.w5;
-import ki.z5;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.MediaController;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.video.VideoAds;
-import org.telegram.messenger.video.VideoPlayerHolderBase;
+import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.SerializedData;
-import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.tgnet.tl.TL_wallet;
-import org.telegram.ui.ActionBar.ActionBarLayout;
-import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.ActionBar.k3;
-import org.telegram.ui.ActionBar.m3;
-import org.telegram.ui.ActionBar.n2;
-import org.telegram.ui.ActionBar.n3;
-import org.telegram.ui.Cells.ka;
-import org.telegram.ui.Cells.ma;
-import org.telegram.ui.Components.bw0;
-import org.telegram.ui.Components.f5;
-import org.telegram.ui.Components.ff;
-import org.telegram.ui.Components.i80;
-import org.telegram.ui.Components.k8;
-import org.telegram.ui.Components.lg;
-import org.telegram.ui.Components.ng;
-import org.telegram.ui.Components.qc;
-import org.telegram.ui.Components.rp0;
-import org.telegram.ui.qn;
-public final class e2 implements Runnable {
-    public final int f12879a;
-    public final Object f12880b;
-    public final Object f12881c;
-    public final Object d;
+public final class e2 {
+    public static volatile e2[] e = new e2[4];
+    public static final Object[] f12917f = new Object[4];
+    public final int f12918a;
+    public boolean f12919b;
+    public boolean f12920c;
+    public final ArrayList d = new ArrayList();
 
-    public e2(Object obj, Object obj2, Object obj3, int i10) {
-        this.f12879a = i10;
-        this.f12880b = obj;
-        this.f12881c = obj2;
-        this.d = obj3;
-    }
-
-    @Override
-    public final void run() {
-        ViewGroup viewGroup;
-        int i10 = 0;
-        switch (this.f12879a) {
-            case 0:
-                f2 f2Var = (f2) this.f12880b;
-                TLObject tLObject = (TLObject) this.f12881c;
-                SharedPreferences sharedPreferences = (SharedPreferences) this.d;
-                ArrayList arrayList = f2Var.d;
-                if (tLObject instanceof TLRPC.TL_help_timezonesList) {
-                    arrayList.clear();
-                    arrayList.addAll(((TLRPC.TL_help_timezonesList) tLObject).timezones);
-                    SerializedData serializedData = new SerializedData(tLObject.getObjectSize());
-                    tLObject.serializeToStream(serializedData);
-                    sharedPreferences.edit().putString("timezones", Utilities.bytesToHex(serializedData.toByteArray())).apply();
-                    NotificationCenter.getInstance(f2Var.f12897a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.timezonesUpdated, new Object[0]);
-                }
-                f2Var.f12899c = true;
-                f2Var.f12898b = false;
-                return;
-            case 1:
-                String str = e2.m0.f8252a;
-                j2.f fVar = ((i2.c0) ((k2.u) ((qf.b) this.f12880b).f44452c)).f12325a.f12413s;
-                j2.a p5 = fVar.p();
-                fVar.q(p5, 1009, new j2.e(p5, (b2.w) this.f12881c, (i2.g) this.d, 4));
-                return;
-            case 2:
-                AudioTrack audioTrack = (AudioTrack) this.f12880b;
-                Handler handler = (Handler) this.f12881c;
-                e2.r rVar = (e2.r) this.d;
-                try {
-                    audioTrack.flush();
-                    audioTrack.release();
-                    if (handler.getLooper().getThread().isAlive()) {
-                        handler.post(new bc(rVar, 27));
-                    }
-                    synchronized (k2.i0.f14692t) {
-                        try {
-                            int i11 = k2.i0.v - 1;
-                            k2.i0.v = i11;
-                            if (i11 == 0) {
-                                ScheduledExecutorService scheduledExecutorService = k2.i0.f14693u;
-                                scheduledExecutorService.getClass();
-                                scheduledExecutorService.shutdown();
-                                k2.i0.f14693u = null;
-                            }
-                        } finally {
-                        }
-                    }
-                    return;
-                } catch (Throwable th2) {
-                    if (handler.getLooper().getThread().isAlive()) {
-                        handler.post(new bc(rVar, 27));
-                    }
-                    synchronized (k2.i0.f14692t) {
-                        try {
-                            int i12 = k2.i0.v - 1;
-                            k2.i0.v = i12;
-                            if (i12 == 0) {
-                                ScheduledExecutorService scheduledExecutorService2 = k2.i0.f14693u;
-                                scheduledExecutorService2.getClass();
-                                scheduledExecutorService2.shutdown();
-                                k2.i0.f14693u = null;
-                            }
-                            throw th2;
-                        } finally {
-                        }
-                    }
-                }
-            case 3:
-                w3 w3Var = (w3) this.f12880b;
-                i80 i80Var = (i80) this.f12881c;
-                o5 o5Var = (o5) this.d;
-                if (w3Var.f15597h4 == i80Var) {
-                    w3Var.f15597h4 = null;
-                    if (w3Var.A3 && w3Var.f15595g4 == o5Var && !o5Var.H.isEmpty()) {
-                        w3Var.N2();
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 4:
-                w3 w3Var2 = (w3) this.f12880b;
-                ki.a aVar = (ki.a) this.f12881c;
-                ki.a aVar2 = (ki.a) this.d;
-                ArrayList arrayList2 = w3Var2.f15608n4;
-                j3 j3Var = w3Var2.f15604l3;
-                if (j3Var != null && aVar != null && aVar2 != null) {
-                    int indexOf = arrayList2.indexOf(aVar);
-                    int indexOf2 = arrayList2.indexOf(aVar2);
-                    if (indexOf >= 0 && indexOf2 >= 0) {
-                        while (i10 < arrayList2.size()) {
-                            ki.a aVar3 = (ki.a) arrayList2.get(i10);
-                            long j10 = aVar3.f15110t;
-                            if (j10 != 0) {
-                                j3Var.X(i10, e6.l((TL_iv.RichText) w3Var2.f15602k3.get(Long.valueOf(j10))));
-                            } else {
-                                j3Var.X(i10, c6.z(aVar3.f15095b));
-                            }
-                            i10++;
-                        }
-                        j3Var.i0(Math.min(indexOf, indexOf2), Math.max(indexOf, indexOf2));
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 5:
-                ((w3) this.f12880b).a5((String) this.d, (ki.a) this.f12881c);
-                return;
-            case 6:
-                ki.a aVar4 = (ki.a) this.f12881c;
-                b6 b6Var = (b6) this.d;
-                z5 z5Var = ((w5) this.f12880b).f15627a.f15188y;
-                if (z5Var != null) {
-                    ((e3) z5Var).d(aVar4, b6Var.f15158a, b6Var.f15159b, b6Var.f15160c, b6Var.d, b6Var.e);
-                    return;
-                }
-                return;
-            case 7:
-                li.m mVar = (li.m) this.f12880b;
-                ArrayList arrayList3 = (ArrayList) this.f12881c;
-                ArrayList arrayList4 = (ArrayList) this.d;
-                mVar.getClass();
-                for (int i13 = 0; i13 < arrayList3.size(); i13++) {
-                    ((View) arrayList3.get(i13)).setVisibility(0);
-                }
-                if (mVar.A.removeAll(arrayList4)) {
-                    while (i10 < arrayList4.size()) {
-                        mVar.d((s4.b1) arrayList4.get(i10));
-                        i10++;
-                    }
-                    mVar.G();
-                }
-                mVar.K.removeAll(arrayList3);
-                return;
-            case 8:
-                li.m mVar2 = (li.m) this.f12880b;
-                View view = (View) this.f12881c;
-                s4.b1 b1Var = (s4.b1) this.d;
-                mVar2.getClass();
-                view.setVisibility(0);
-                if (mVar2.A.remove(b1Var)) {
-                    mVar2.d(b1Var);
-                    mVar2.G();
-                }
-                mVar2.K.remove(view);
-                return;
-            case 9:
-                m4.b0 b0Var = (m4.b0) this.f12880b;
-                m4.v vVar = (m4.v) this.f12881c;
-                KeyEvent keyEvent = (KeyEvent) this.d;
-                m4.f0 f0Var = b0Var.f16485b;
-                if (f0Var.i(vVar)) {
-                    f0Var.b(keyEvent, false, false);
-                } else {
-                    m4.p0 p0Var = f0Var.h;
-                    n4.t tVar = vVar.f16758a;
-                    tVar.getClass();
-                    p0Var.getClass();
-                    p0Var.H(1, new m4.i0(p0Var, 9), tVar, true);
-                }
-                b0Var.f16484a = null;
-                return;
-            case 10:
-                m4.f0 f0Var2 = (m4.f0) this.f12880b;
-                m4.v0 v0Var = (m4.v0) this.f12881c;
-                m4.w wVar = (m4.w) this.d;
-                if (!f0Var2.j()) {
-                    m4.m1 m1Var = f0Var2.f16534t;
-                    v0Var.getClass();
-                    w7.v.b(m1Var, wVar);
-                    return;
-                }
-                return;
-            case 11:
-                SpannableString spannableString = (SpannableString) this.f12880b;
-                mi.k.a(spannableString, spannableString.length(), (com.google.android.gms.internal.play_billing.s0) ((mi.q) this.f12881c).f16973b);
-                ((ua) this.d).run(spannableString);
-                return;
-            case 12:
-                n2.k kVar = (n2.k) this.f12880b;
-                this.f12881c.b(kVar.f17057a, kVar.f17058b, (Exception) this.d);
-                return;
-            case 13:
-                n2.k kVar2 = (n2.k) this.f12880b;
-                this.f12881c.c(kVar2.f17057a, kVar2.f17058b, (oa.d) this.d);
-                return;
-            case 14:
-                ((VideoAds) this.f12880b).lambda$show$3((qc) this.f12881c, (TLRPC.TL_sponsoredMessage) this.d);
-                return;
-            case 15:
-                ((VideoAds) this.f12880b).lambda$show$5((qc) this.f12881c, (boolean[]) this.d);
-                return;
-            case 16:
-                ((VideoPlayerHolderBase) this.f12880b).lambda$release$3((TLRPC.Document) this.f12881c, (Runnable) this.d);
-                return;
-            case 17:
-                ((Utilities.Callback2) this.f12880b).run((TLObject) this.f12881c, (TLRPC.TL_error) this.d);
-                return;
-            case 18:
-                ((Utilities.Callback2) this.f12880b).run((TLRPC.Updates) this.f12881c, (TLRPC.TL_error) this.d);
-                return;
-            case 19:
-                ActionBarLayout actionBarLayout = (ActionBarLayout) this.f12880b;
-                n2 n2Var = (n2) this.f12881c;
-                n2 n2Var2 = (n2) this.d;
-                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = actionBarLayout.J;
-                if (actionBarPopupWindow$ActionBarPopupWindowLayout != null && (viewGroup = (ViewGroup) actionBarPopupWindow$ActionBarPopupWindowLayout.getParent()) != null) {
-                    viewGroup.removeView(actionBarLayout.J);
-                }
-                if (!actionBarLayout.h && !actionBarLayout.f20551a0) {
-                    actionBarLayout.v.setTranslationX(0.0f);
-                } else {
-                    actionBarLayout.v.setScaleX(1.0f);
-                    actionBarLayout.v.setScaleY(1.0f);
-                    actionBarLayout.h = false;
-                    actionBarLayout.J = null;
-                    actionBarLayout.f20551a0 = false;
-                }
-                actionBarLayout.m(n2Var);
-                n2Var.setRemovingFromStack(false);
-                n2Var.onTransitionAnimationEnd(false, true);
-                n2Var2.onTransitionAnimationEnd(true, true);
-                n2Var2.onBecomeFullyVisible();
-                return;
-            case 20:
-                ((n2) this.f12881c).presentFragment((qn) this.d);
-                ((n3) this.f12880b).f21619c = false;
-                return;
-            case 21:
-                n3 n3Var = (n3) this.f12880b;
-                ArrayList arrayList5 = (ArrayList) this.f12881c;
-                m3 m3Var = (m3) this.d;
-                n3Var.getClass();
-                while (i10 < arrayList5.size()) {
-                    if (((k3) arrayList5.get(i10)).f21528a == m3Var) {
-                        arrayList5.remove(i10);
-                        i10--;
-                    }
-                    i10++;
-                }
-                n3Var.invalidate();
-                return;
-            case 22:
-                g6 g6Var = (g6) this.f12880b;
-                TLObject tLObject2 = (TLObject) this.f12881c;
-                g6 g6Var2 = (g6) this.d;
-                if (tLObject2 instanceof TLRPC.TL_wallPaper) {
-                    TLRPC.TL_wallPaper tL_wallPaper = (TLRPC.TL_wallPaper) tLObject2;
-                    g6Var.f20895g0 = FileLoader.getAttachFileName(tL_wallPaper.document);
-                    NotificationCenter.getInstance(g6Var.E).addObserver(g6Var, NotificationCenter.fileLoaded);
-                    NotificationCenter.getInstance(g6Var.E).addObserver(g6Var, NotificationCenter.fileLoadFailed);
-                    FileLoader.getInstance(g6Var2.E).loadFile(tL_wallPaper.document, tL_wallPaper, 1, 1);
-                    return;
-                }
-                g6Var.s();
-                return;
-            case 23:
-                org.telegram.ui.Cells.w0 w0Var = (org.telegram.ui.Cells.w0) this.f12880b;
-                org.telegram.ui.Wallet.o5.B0(w0Var.getContext(), w0Var.H, (TL_wallet.walletTransaction) this.f12881c, null, null, null, (org.telegram.ui.Cells.p0) this.d, w0Var.f23704g1);
-                return;
-            case 24:
-                org.telegram.ui.Cells.w0 w0Var2 = (org.telegram.ui.Cells.w0) this.f12880b;
-                w0Var2.f23701f1.C1(w0Var2, (TLRPC.TL_premiumGiftOption) this.f12881c, (String) this.d);
-                return;
-            case 25:
-                g6 g6Var3 = (g6) this.f12881c;
-                g6Var3.f20893f = true ^ g6Var3.d((File) this.d, g6Var3.f20889c);
-                AndroidUtilities.runOnUIThread(new ka(8, (ma) this.f12880b, g6Var3));
-                return;
-            case 26:
-                org.telegram.ui.Components.e0 e0Var = (org.telegram.ui.Components.e0) this.f12880b;
-                f5.L((Context) this.f12881c, e0Var.f25667l0, new k2.w0(e0Var, 10), (d6) this.d);
-                return;
-            case 27:
-                k8.p((k8) this.f12880b, (org.telegram.ui.ActionBar.b2) this.d, (TLObject) this.f12881c);
-                return;
-            case 28:
-                ff ffVar = (ff) this.f12880b;
-                ffVar.getClass();
-                ((bw0) this.f12881c).getViewTreeObserver().removeOnDrawListener(ffVar);
-                ((rp0) this.d).f29991a.setHideAvatar(true);
-                return;
-            default:
-                ng ngVar = (ng) this.f12880b;
-                Uri uri = (Uri) this.f12881c;
-                File file = (File) this.d;
-                try {
-                    InputStream openInputStream = ngVar.getContext().getContentResolver().openInputStream(uri);
-                    FileOutputStream fileOutputStream = new FileOutputStream(file);
-                    byte[] bArr = new byte[1024];
-                    while (true) {
-                        int read = openInputStream.read(bArr);
-                        if (read > 0) {
-                            fileOutputStream.write(bArr, 0, read);
-                            fileOutputStream.flush();
-                        } else {
-                            openInputStream.close();
-                            fileOutputStream.close();
-                            MediaController.PhotoEntry photoEntry = new MediaController.PhotoEntry(0, -1, 0L, file.getAbsolutePath(), 0, false, 0, 0, 0L);
-                            ArrayList arrayList6 = new ArrayList();
-                            arrayList6.add(photoEntry);
-                            AndroidUtilities.runOnUIThread(new lg(ngVar, arrayList6, file, 0));
-                            return;
-                        }
-                    }
-                } catch (Throwable th3) {
-                    th3.printStackTrace();
-                    return;
-                }
+    static {
+        for (int i10 = 0; i10 < 4; i10++) {
+            f12917f[i10] = new Object();
         }
     }
 
-    public e2(k8 k8Var, org.telegram.ui.ActionBar.b2 b2Var, TLObject tLObject) {
-        this.f12879a = 27;
-        this.f12880b = k8Var;
-        this.d = b2Var;
-        this.f12881c = tLObject;
+    public e2(int i10) {
+        this.f12918a = i10;
+    }
+
+    public static e2 b(int i10) {
+        e2 e2Var;
+        e2 e2Var2 = e[i10];
+        if (e2Var2 == null) {
+            synchronized (f12917f[i10]) {
+                try {
+                    e2Var = e[i10];
+                    if (e2Var == null) {
+                        e2[] e2VarArr = e;
+                        e2 e2Var3 = new e2(i10);
+                        e2VarArr[i10] = e2Var3;
+                        e2Var = e2Var3;
+                    }
+                } catch (Throwable th2) {
+                    throw th2;
+                }
+            }
+            return e2Var;
+        }
+        return e2Var2;
+    }
+
+    public static String e(TLRPC.TL_timezone tL_timezone, boolean z10) {
+        if (tL_timezone == null) {
+            return null;
+        }
+        if (z10) {
+            return tL_timezone.name + ", " + f(tL_timezone);
+        }
+        return tL_timezone.name;
+    }
+
+    public static String f(TLRPC.TL_timezone tL_timezone) {
+        String str;
+        String str2;
+        int i10 = tL_timezone.utc_offset;
+        if (i10 == 0) {
+            return "GMT";
+        }
+        if (i10 < 0) {
+            str = "-";
+        } else {
+            str = "+";
+        }
+        String concat = "GMT".concat(str);
+        int abs = Math.abs(tL_timezone.utc_offset) / 60;
+        int i11 = abs / 60;
+        int i12 = abs % 60;
+        StringBuilder u10 = a1.g.u(concat);
+        String str3 = "";
+        if (i11 >= 10) {
+            str2 = "";
+        } else {
+            str2 = "0";
+        }
+        u10.append(str2);
+        u10.append(i11);
+        StringBuilder u11 = a1.g.u(si.o0.u(u10.toString(), ":"));
+        if (i12 < 10) {
+            str3 = "0";
+        }
+        u11.append(str3);
+        u11.append(i12);
+        return u11.toString();
+    }
+
+    public final TLRPC.TL_timezone a(String str) {
+        if (str == null) {
+            return null;
+        }
+        g();
+        int i10 = 0;
+        while (true) {
+            ArrayList arrayList = this.d;
+            if (i10 >= arrayList.size()) {
+                return null;
+            }
+            TLRPC.TL_timezone tL_timezone = (TLRPC.TL_timezone) arrayList.get(i10);
+            if (TextUtils.equals(tL_timezone.f20481id, str)) {
+                return tL_timezone;
+            }
+            i10++;
+        }
+    }
+
+    public final java.lang.String c() {
+        throw new UnsupportedOperationException("Method not decompiled: ig.e2.c():java.lang.String");
+    }
+
+    public final String d(String str, boolean z10) {
+        String str2;
+        TLRPC.TL_timezone a2 = a(str);
+        if (a2 != null) {
+            return e(a2, z10);
+        }
+        ZoneId of2 = ZoneId.of(str);
+        String str3 = "";
+        if (of2 == null) {
+            return "";
+        }
+        if (z10) {
+            String displayName = of2.getRules().getOffset(Instant.now()).getDisplayName(TextStyle.FULL, LocaleController.getInstance().getCurrentLocale());
+            str2 = "GMT";
+            if (displayName.length() != 1 || displayName.charAt(0) != 'Z') {
+                str2 = "GMT".concat(displayName);
+            }
+        } else {
+            str2 = null;
+        }
+        StringBuilder sb2 = new StringBuilder();
+        sb2.append(of2.getId().replace("/", ", ").replace("_", " "));
+        if (str2 != null) {
+            str3 = ", ".concat(str2);
+        }
+        sb2.append(str3);
+        return sb2.toString();
+    }
+
+    public final void g() {
+        if (!this.f12919b && !this.f12920c) {
+            this.f12919b = true;
+            int i10 = this.f12918a;
+            SharedPreferences mainSettings = MessagesController.getInstance(i10).getMainSettings();
+            TLRPC.help_timezonesList help_timezoneslist = null;
+            String string = mainSettings.getString("timezones", null);
+            int i11 = 0;
+            if (string != null) {
+                SerializedData serializedData = new SerializedData(Utilities.hexToBytes(string));
+                help_timezoneslist = TLRPC.help_timezonesList.TLdeserialize(serializedData, serializedData.readInt32(false), false);
+            }
+            ArrayList arrayList = this.d;
+            arrayList.clear();
+            if (help_timezoneslist != null) {
+                arrayList.addAll(help_timezoneslist.timezones);
+            }
+            NotificationCenter.getInstance(i10).lambda$postNotificationNameOnUIThread$1(NotificationCenter.timezonesUpdated, new Object[0]);
+            TLRPC.TL_help_getTimezonesList tL_help_getTimezonesList = new TLRPC.TL_help_getTimezonesList();
+            if (help_timezoneslist != null) {
+                i11 = help_timezoneslist.hash;
+            }
+            tL_help_getTimezonesList.hash = i11;
+            ConnectionsManager.getInstance(i10).sendRequest(tL_help_getTimezonesList, new ai.g(22, this, mainSettings));
+        }
     }
 }

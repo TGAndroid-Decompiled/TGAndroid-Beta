@@ -1,6 +1,6 @@
 package qg;
 
-import ai.uc;
+import ai.vc;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Path;
@@ -13,26 +13,25 @@ import android.widget.LinearLayout;
 import com.google.android.gms.internal.play_billing.k3;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.ActionBar.f3;
-import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.h3;
+import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.e91;
-import org.telegram.ui.t6;
+import org.telegram.ui.Components.l91;
 import w7.z5;
-public final class y extends f3 {
-    public static final int f44709s = 0;
-    public final uc f44710b;
-    public final ImageView f44711c;
-    public final t6 d;
+public final class y extends h3 {
+    public static final int f45126s = 0;
+    public final vc f45127b;
+    public final ImageView f45128c;
+    public final p d;
     public final Path e;
-    public int f44712f;
+    public int f45129f;
     public q0.a h;
-    public v f44713n;
-    public boolean f44714r;
+    public v f45130n;
+    public boolean f45131r;
 
-    public y(Context context, d6 d6Var) {
-        super(1, context, d6Var, true);
+    public y(Context context, g6 g6Var) {
+        super(1, context, g6Var, true);
         this.e = new Path();
         fixNavigationBar(-14342875);
         Drawable mutate = context.getResources().getDrawable(R.drawable.sheet_shadow_round).mutate();
@@ -42,45 +41,45 @@ public final class y extends f3 {
         linearLayout.setOrientation(1);
         linearLayout.setPadding(0, AndroidUtilities.dp(16.0f), 0, 0);
         ImageView imageView = new ImageView(context);
-        this.f44711c = imageView;
+        this.f45128c = imageView;
         imageView.setImageResource(R.drawable.picker);
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
         imageView.setColorFilter(new PorterDuffColorFilter(-1, mode));
-        imageView.setBackground(h6.g0(1090519039, 1, -1));
-        imageView.setOnClickListener(new n(0, this, context));
+        imageView.setBackground(k6.g0(1090519039, 1, -1));
+        imageView.setOnClickListener(new org.telegram.ui.web.c(1, this, context));
         ImageView imageView2 = new ImageView(context);
         imageView2.setImageResource(R.drawable.ic_ab_done);
         imageView2.setColorFilter(new PorterDuffColorFilter(-1, mode));
-        imageView2.setBackground(h6.g0(1090519039, 1, -1));
+        imageView2.setBackground(k6.g0(1090519039, 1, -1));
         imageView2.setOnClickListener(new hg.r0(this, 16));
-        t6 t6Var = new t6(this, context);
-        this.d = t6Var;
-        t6Var.d = Color.alpha(-65536) / 255.0f;
-        t6Var.a();
-        t6Var.invalidate();
-        uc ucVar = new uc(context, 5);
-        ucVar.setOrientation(1);
+        p pVar = new p(this, context);
+        this.d = pVar;
+        pVar.f45013c = Color.alpha(-65536) / 255.0f;
+        pVar.a();
+        pVar.invalidate();
+        vc vcVar = new vc(context, 5);
+        vcVar.setOrientation(1);
         u uVar = new u(this, context);
-        ucVar.f2277b = uVar;
-        uVar.a(this.f44712f);
-        ucVar.f2278c = new t(this, context);
-        ucVar.d = new x(this, context);
-        e91 e91Var = new e91(context, this.resourcesProvider);
-        e91Var.setAdapter(new r(ucVar));
-        ucVar.addView(e91Var, z5.l(1.0f, -1, 0));
-        ucVar.addView(t6Var, z5.k(12.0f, 0.0f, 12.0f, 0.0f, -1, 48));
+        vcVar.f2335b = uVar;
+        uVar.a(this.f45129f);
+        vcVar.f2336c = new t(this, context);
+        vcVar.d = new x(this, context);
+        l91 l91Var = new l91(context, this.resourcesProvider);
+        l91Var.setAdapter(new r(vcVar));
+        vcVar.addView(l91Var, z5.l(1.0f, -1, 0));
+        vcVar.addView(pVar, z5.k(12.0f, 0.0f, 12.0f, 0.0f, -1, 48));
         LinearLayout linearLayout2 = new LinearLayout(context);
         linearLayout2.setOrientation(0);
         linearLayout2.setGravity(16);
         linearLayout2.addView(imageView, z5.n(28, 28));
-        linearLayout2.addView(e91Var.n(8, false), z5.p(-1, 40, 1.0f, 16, 12, 0, 12, 0));
+        linearLayout2.addView(l91Var.n(8, false), z5.p(-1, 40, 1.0f, 16, 12, 0, 12, 0));
         linearLayout2.addView(imageView2, z5.n(28, 28));
-        ucVar.addView(linearLayout2, z5.k(14.0f, 0.0f, 14.0f, 0.0f, -1, 48));
-        this.f44710b = ucVar;
-        linearLayout.addView(ucVar, z5.n(-1, 0));
-        p pVar = new p(this, context, linearLayout);
-        pVar.addView(linearLayout);
-        setCustomView(pVar);
+        vcVar.addView(linearLayout2, z5.k(14.0f, 0.0f, 14.0f, 0.0f, -1, 48));
+        this.f45127b = vcVar;
+        linearLayout.addView(vcVar, z5.n(-1, 0));
+        o oVar = new o(this, context, linearLayout);
+        oVar.addView(linearLayout);
+        setCustomView(oVar);
     }
 
     @Override
@@ -88,36 +87,36 @@ public final class y extends f3 {
         super.dismiss();
         q0.a aVar = this.h;
         if (aVar != null) {
-            aVar.accept(Integer.valueOf(this.f44712f));
+            aVar.accept(Integer.valueOf(this.f45129f));
         }
     }
 
-    public final void n(int i10, int i11) {
+    public final void m(int i10, int i11) {
         boolean z10;
         float D;
         View findFocus;
-        if (!this.f44714r) {
+        if (!this.f45131r) {
             if (i11 != 2) {
                 return;
             }
-            this.f44714r = true;
+            this.f45131r = true;
         }
-        uc ucVar = this.f44710b;
-        if (i11 != 5 && (findFocus = ucVar.findFocus()) != null) {
+        vc vcVar = this.f45127b;
+        if (i11 != 5 && (findFocus = vcVar.findFocus()) != null) {
             findFocus.clearFocus();
             AndroidUtilities.hideKeyboard(findFocus);
         }
         if (i11 != 3) {
-            ((u) ucVar.f2277b).a(i10);
+            ((u) vcVar.f2335b).a(i10);
         }
         if (i11 != 0) {
-            t tVar = (t) ucVar.f2278c;
+            t tVar = (t) vcVar.f2336c;
             if (i11 != 1) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            tVar.f44638n.f44712f = i10;
+            tVar.f45073n.f45129f = i10;
             float[] fArr = tVar.h;
             Color.colorToHSV(i10, fArr);
             if (z10) {
@@ -134,22 +133,22 @@ public final class y extends f3 {
             tVar.invalidate();
         }
         if (i11 != 1) {
-            t6 t6Var = this.d;
-            t6Var.getClass();
-            t6Var.d = Color.alpha(i10) / 255.0f;
-            t6Var.a();
-            t6Var.invalidate();
+            p pVar = this.d;
+            pVar.getClass();
+            pVar.f45013c = Color.alpha(i10) / 255.0f;
+            pVar.a();
+            pVar.invalidate();
         }
-        x xVar = (x) ucVar.d;
+        x xVar = (x) vcVar.d;
         xVar.e = true;
-        xVar.f44702a.b();
-        xVar.f44703b.b();
-        xVar.f44704c.b();
+        xVar.f45115a.b();
+        xVar.f45116b.b();
+        xVar.f45117c.b();
         EditTextBoldCursor editTextBoldCursor = xVar.d;
         if (!editTextBoldCursor.isFocused()) {
             int selectionStart = editTextBoldCursor.getSelectionStart();
             int selectionEnd = editTextBoldCursor.getSelectionEnd();
-            StringBuilder sb2 = new StringBuilder(Integer.toHexString(xVar.f44705f.f44712f));
+            StringBuilder sb2 = new StringBuilder(Integer.toHexString(xVar.f45118f.f45129f));
             while (sb2.length() < 8) {
                 sb2.insert(0, "0");
             }
@@ -161,8 +160,8 @@ public final class y extends f3 {
 
     @Override
     public final void show() {
-        if (!this.f44713n.g()) {
-            this.f44711c.setVisibility(8);
+        if (!this.f45130n.g()) {
+            this.f45128c.setVisibility(8);
         }
         super.show();
     }

@@ -6,16 +6,16 @@ import java.util.Arrays;
 import w7.f0;
 public final class b extends o6.a {
     public static final Parcelable.Creator<b> CREATOR = new j(3);
-    public final long f10921a;
-    public final int f10922b;
-    public final boolean f10923c;
+    public final long f10940a;
+    public final int f10941b;
+    public final boolean f10942c;
     public final String d;
     public final r7.j e;
 
     public b(long j10, int i10, boolean z10, String str, r7.j jVar) {
-        this.f10921a = j10;
-        this.f10922b = i10;
-        this.f10923c = z10;
+        this.f10940a = j10;
+        this.f10941b = i10;
+        this.f10942c = z10;
         this.d = str;
         this.e = jVar;
     }
@@ -25,25 +25,25 @@ public final class b extends o6.a {
             return false;
         }
         b bVar = (b) obj;
-        if (this.f10921a != bVar.f10921a || this.f10922b != bVar.f10922b || this.f10923c != bVar.f10923c || !n6.l.l(this.d, bVar.d) || !n6.l.l(this.e, bVar.e)) {
+        if (this.f10940a != bVar.f10940a || this.f10941b != bVar.f10941b || this.f10942c != bVar.f10942c || !n6.l.l(this.d, bVar.d) || !n6.l.l(this.e, bVar.e)) {
             return false;
         }
         return true;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Long.valueOf(this.f10921a), Integer.valueOf(this.f10922b), Boolean.valueOf(this.f10923c)});
+        return Arrays.hashCode(new Object[]{Long.valueOf(this.f10940a), Integer.valueOf(this.f10941b), Boolean.valueOf(this.f10942c)});
     }
 
     public final String toString() {
         String str;
         StringBuilder u10 = a1.g.u("LastLocationRequest[");
-        long j10 = this.f10921a;
+        long j10 = this.f10940a;
         if (j10 != Long.MAX_VALUE) {
             u10.append("maxAge=");
             r7.p.a(u10, j10);
         }
-        int i10 = this.f10922b;
+        int i10 = this.f10941b;
         if (i10 != 0) {
             u10.append(", ");
             if (i10 != 0) {
@@ -61,7 +61,7 @@ public final class b extends o6.a {
             }
             u10.append(str);
         }
-        if (this.f10923c) {
+        if (this.f10942c) {
             u10.append(", bypass");
         }
         String str2 = this.d;
@@ -82,11 +82,11 @@ public final class b extends o6.a {
     public final void writeToParcel(Parcel parcel, int i10) {
         int q6 = f0.q(parcel, 20293);
         f0.s(parcel, 1, 8);
-        parcel.writeLong(this.f10921a);
+        parcel.writeLong(this.f10940a);
         f0.s(parcel, 2, 4);
-        parcel.writeInt(this.f10922b);
+        parcel.writeInt(this.f10941b);
         f0.s(parcel, 3, 4);
-        parcel.writeInt(this.f10923c ? 1 : 0);
+        parcel.writeInt(this.f10942c ? 1 : 0);
         f0.l(parcel, 4, this.d);
         f0.k(parcel, 5, this.e, i10);
         f0.r(parcel, q6);

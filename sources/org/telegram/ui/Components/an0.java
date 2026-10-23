@@ -1,33 +1,31 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import org.telegram.messenger.R;
-public final class an0 implements View.OnClickListener {
-    public final int f24684a;
-    public final hn0 f24685b;
+import org.telegram.messenger.AndroidUtilities;
+public final class an0 implements Runnable {
+    public final int f24786a;
+    public final cn0 f24787b;
 
-    public an0(hn0 hn0Var, int i10) {
-        this.f24684a = i10;
-        this.f24685b = hn0Var;
+    public an0(cn0 cn0Var, int i10) {
+        this.f24786a = i10;
+        this.f24787b = cn0Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f24684a) {
+    public final void run() {
+        switch (this.f24786a) {
             case 0:
-                this.f24685b.f26935f.b(((Integer) view.getTag(R.id.index_tag)).intValue());
+                cn0 cn0Var = this.f24787b;
+                cn0Var.getClass();
+                AndroidUtilities.runOnUIThread(new an0(cn0Var, 2));
                 return;
             case 1:
-                this.f24685b.f26935f.b(((Integer) view.getTag(R.id.index_tag)).intValue());
+                AndroidUtilities.runOnUIThread(new an0(this.f24787b, 3));
                 return;
             case 2:
-                this.f24685b.f26935f.b(((Integer) view.getTag(R.id.index_tag)).intValue());
-                return;
-            case 3:
-                this.f24685b.f26935f.b(((Integer) view.getTag(R.id.index_tag)).intValue());
+                super/*android.app.Dialog*/.dismiss();
                 return;
             default:
-                this.f24685b.f26935f.b(((Integer) view.getTag(R.id.index_tag)).intValue());
+                super/*android.app.Dialog*/.dismiss();
                 return;
         }
     }

@@ -1,13 +1,14 @@
 package org.telegram.ui.ActionBar;
-public final class x3 extends b2 {
-    @Override
-    public final int f(int i10) {
-        if (i10 == h6.f21065h5) {
-            return -14277082;
-        }
-        if (i10 != h6.f21100j5 && i10 != h6.H5 && i10 != h6.A5) {
-            return h6.w0(i10, this.R0);
-        }
-        return -1;
-    }
+
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+public interface x3 {
+    Context getContext();
+
+    RectF getRect();
+
+    void setDrawingFromOverlay(boolean z10);
+
+    float y(Canvas canvas, RectF rectF, float f7, RectF rectF2, float f10);
 }

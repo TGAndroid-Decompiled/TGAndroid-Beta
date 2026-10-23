@@ -3,29 +3,29 @@ package z7;
 import java.util.Map;
 import java.util.Set;
 public abstract class lg implements k {
-    public transient fd f51102a;
-    public transient e9.e f51103b;
+    public transient ed f51563a;
+    public transient e9.e f51564b;
 
     public final Map a() {
-        e9.e eVar = this.f51103b;
+        e9.e eVar = this.f51564b;
         if (eVar == null) {
             mg mgVar = (mg) this;
-            e9.e eVar2 = new e9.e(mgVar, mgVar.f51116c, 2);
-            this.f51103b = eVar2;
+            e9.e eVar2 = new e9.e(mgVar, mgVar.f51577c, 2);
+            this.f51564b = eVar2;
             return eVar2;
         }
         return eVar;
     }
 
     public final Set b() {
-        fd fdVar = this.f51102a;
-        if (fdVar == null) {
+        ed edVar = this.f51563a;
+        if (edVar == null) {
             mg mgVar = (mg) this;
-            fd fdVar2 = new fd(mgVar, mgVar.f51116c);
-            this.f51102a = fdVar2;
-            return fdVar2;
+            ed edVar2 = new ed(mgVar, mgVar.f51577c);
+            this.f51563a = edVar2;
+            return edVar2;
         }
-        return fdVar;
+        return edVar;
     }
 
     public final boolean equals(Object obj) {
@@ -39,10 +39,10 @@ public abstract class lg implements k {
     }
 
     public final int hashCode() {
-        return ((e9.e) a()).f8433b.hashCode();
+        return ((e9.e) a()).f8440b.hashCode();
     }
 
     public final String toString() {
-        return ((e9.e) a()).f8433b.toString();
+        return ((e9.e) a()).f8440b.toString();
     }
 }

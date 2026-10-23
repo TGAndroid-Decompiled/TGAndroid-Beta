@@ -1,40 +1,20 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.text.TextUtils;
-import android.view.accessibility.AccessibilityNodeInfo;
-import android.widget.LinearLayout;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.voip.VoIPService;
-import org.telegram.messenger.voip.VoIPServiceState;
-public final class dh1 extends LinearLayout {
-    public final hh1 f36407a;
+import org.telegram.messenger.AndroidUtilities;
+import org.webrtc.RendererCommon;
+public final class dh1 implements RendererCommon.RendererEvents {
+    public final oh1 f36636a;
 
-    public dh1(hh1 hh1Var, Activity activity) {
-        super(activity);
-        this.f36407a = hh1Var;
+    public dh1(oh1 oh1Var) {
+        this.f36636a = oh1Var;
     }
 
     @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        VoIPServiceState sharedState = VoIPService.getSharedState();
-        CharSequence text = this.f36407a.E.getText();
-        if (sharedState != null && !TextUtils.isEmpty(text)) {
-            StringBuilder sb2 = new StringBuilder(text);
-            sb2.append(", ");
-            if (sharedState.getPrivateCall() != null && sharedState.getPrivateCall().video) {
-                sb2.append(LocaleController.getString(R.string.VoipInVideoCallBranding));
-            } else {
-                sb2.append(LocaleController.getString(R.string.VoipInCallBranding));
-            }
-            long callDuration = sharedState.getCallDuration();
-            if (callDuration > 0) {
-                sb2.append(", ");
-                sb2.append(LocaleController.formatDuration((int) (callDuration / 1000)));
-            }
-            accessibilityNodeInfo.setText(sb2);
-        }
+    public final void onFirstFrameRendered() {
+        AndroidUtilities.runOnUIThread(new my0(this, 23));
+    }
+
+    @Override
+    public final void onFrameResolutionChanged(int i10, int i11, int i12) {
     }
 }

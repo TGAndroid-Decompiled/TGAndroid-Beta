@@ -1,25 +1,47 @@
 package org.telegram.ui.Components;
+public final class uz0 {
+    public final int f31257a;
 
-import android.util.Pair;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-public final class uz0 extends ArrayList {
-    public final Class f31093a;
-    public final Class f31094b;
-
-    public uz0(Class cls, Class cls2) {
-        this.f31093a = cls;
-        this.f31094b = cls2;
+    public uz0(int i10) {
+        this.f31257a = i10;
     }
 
-    public final m.g3 h() {
-        int size = size();
-        Object[] objArr = (Object[]) Array.newInstance(this.f31093a, size);
-        Object[] objArr2 = (Object[]) Array.newInstance(this.f31094b, size);
-        for (int i10 = 0; i10 < size; i10++) {
-            objArr[i10] = ((Pair) get(i10)).first;
-            objArr2[i10] = ((Pair) get(i10)).second;
+    public final int a(b01 b01Var, int i10) {
+        switch (this.f31257a) {
+            case 0:
+                return Integer.MIN_VALUE;
+            case 1:
+                return 0;
+            case 2:
+                return i10;
+            case 3:
+                return Integer.MIN_VALUE;
+            default:
+                return Integer.MIN_VALUE;
         }
-        return new m.g3(objArr, objArr2);
+    }
+
+    public final int b(b01 b01Var, int i10) {
+        switch (this.f31257a) {
+            case 0:
+                return Integer.MIN_VALUE;
+            case 1:
+                return 0;
+            case 2:
+                return i10;
+            case 3:
+                return 0;
+            default:
+                return 0;
+        }
+    }
+
+    public int c(int i10, int i11) {
+        switch (this.f31257a) {
+            case 4:
+                return i11;
+            default:
+                return i10;
+        }
     }
 }

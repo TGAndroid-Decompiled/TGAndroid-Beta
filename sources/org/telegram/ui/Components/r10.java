@@ -4,24 +4,24 @@ import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocationController;
 import org.telegram.messenger.MediaController;
-public final class r10 implements org.telegram.ui.ActionBar.q0, ne.k, org.telegram.ui.ActionBar.a2, xv0 {
-    public final FragmentContextView f29784a;
+public final class r10 implements org.telegram.ui.ActionBar.q0, ne.k, org.telegram.ui.ActionBar.z1, aw0 {
+    public final FragmentContextView f30052a;
 
     public r10(FragmentContextView fragmentContextView) {
-        this.f29784a = fragmentContextView;
+        this.f30052a = fragmentContextView;
     }
 
     @Override
     public void b(LocationController.SharingLocationInfo sharingLocationInfo) {
-        float[] fArr = FragmentContextView.Q0;
-        this.f29784a.k(sharingLocationInfo);
+        float[] fArr = FragmentContextView.W0;
+        this.f30052a.k(sharingLocationInfo);
     }
 
     @Override
     public void e(ne.l lVar) {
-        FragmentContextView fragmentContextView = this.f29784a;
-        ne.l lVar2 = fragmentContextView.O0;
-        float f7 = 1.0f - lVar2.f17406a.d.f17399c.f17407a;
+        FragmentContextView fragmentContextView = this.f30052a;
+        ne.l lVar2 = fragmentContextView.U0;
+        float f7 = 1.0f - lVar2.f17469a.d.f17462c.f17470a;
         fragmentContextView.d.setAlpha(f7);
         fragmentContextView.d.setScaleX(AndroidUtilities.lerp(0.7f, 1.0f, f7));
         fragmentContextView.d.setScaleY(AndroidUtilities.lerp(0.7f, 1.0f, f7));
@@ -29,9 +29,9 @@ public final class r10 implements org.telegram.ui.ActionBar.q0, ne.k, org.telegr
         while (it.hasNext()) {
             ne.g gVar = (ne.g) it.next();
             float c10 = gVar.c();
-            Object obj = gVar.f17393a;
+            Object obj = gVar.f17456a;
             float lerp = AndroidUtilities.lerp(0.7f, 1.0f, c10);
-            mh.c cVar = ((d20) obj).f25318b;
+            mh.c cVar = ((d20) obj).f25490b;
             cVar.setAlpha(gVar.c());
             cVar.setScaleX(lerp);
             cVar.setScaleY(lerp);
@@ -39,26 +39,26 @@ public final class r10 implements org.telegram.ui.ActionBar.q0, ne.k, org.telegr
     }
 
     @Override
-    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        FragmentContextView fragmentContextView = this.f29784a;
-        org.telegram.ui.ActionBar.n2 n2Var = fragmentContextView.h;
-        if (n2Var instanceof org.telegram.ui.cy) {
+    public void g(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
+        FragmentContextView fragmentContextView = this.f30052a;
+        org.telegram.ui.ActionBar.o2 o2Var = fragmentContextView.h;
+        if (o2Var instanceof org.telegram.ui.ey) {
             for (int i11 = 0; i11 < 4; i11++) {
                 LocationController.getInstance(i11).removeAllLocationSharings();
             }
             return;
         }
-        LocationController.getInstance(n2Var.getCurrentAccount()).removeSharingLocation(fragmentContextView.f24232n.a());
+        LocationController.getInstance(o2Var.getCurrentAccount()).removeSharingLocation(fragmentContextView.f24373n.a());
     }
 
     @Override
-    public void j(int i10) {
-        float[] fArr = FragmentContextView.Q0;
+    public void h(int i10) {
+        float[] fArr = FragmentContextView.W0;
         if (i10 >= 0) {
-            float[] fArr2 = FragmentContextView.Q0;
+            float[] fArr2 = FragmentContextView.W0;
             if (i10 < 6) {
                 MediaController mediaController = MediaController.getInstance();
-                FragmentContextView fragmentContextView = this.f29784a;
+                FragmentContextView fragmentContextView = this.f30052a;
                 float playbackSpeed = mediaController.getPlaybackSpeed(fragmentContextView.W);
                 float f7 = fArr2[i10];
                 MediaController.getInstance().setPlaybackSpeed(fragmentContextView.W, f7);
@@ -70,6 +70,6 @@ public final class r10 implements org.telegram.ui.ActionBar.q0, ne.k, org.telegr
     }
 
     @Override
-    public void c() {
+    public void a() {
     }
 }

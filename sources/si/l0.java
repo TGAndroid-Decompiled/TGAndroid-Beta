@@ -1,22 +1,12 @@
 package si;
 public final class l0 {
-    public static final l0 f46711a;
-    public static final l0 f46712b;
-    public static final l0[] f46713c;
+    public final m0 f47143a;
+    public final int f47144b;
+    public final float f47145c;
 
-    static {
-        ?? r02 = new Enum("FRONT", 0);
-        f46711a = r02;
-        ?? r12 = new Enum("BACK", 1);
-        f46712b = r12;
-        f46713c = new l0[]{r02, r12};
-    }
-
-    public static l0 valueOf(String str) {
-        return (l0) Enum.valueOf(l0.class, str);
-    }
-
-    public static l0[] values() {
-        return (l0[]) f46713c.clone();
+    public l0(m0 m0Var, m0 m0Var2, int i10, float f7) {
+        this.f47143a = m0Var;
+        this.f47144b = i10;
+        this.f47145c = f7;
     }
 }

@@ -1,22 +1,22 @@
 package ai;
 
 import android.os.Bundle;
-import org.telegram.ui.qn;
-public final class yd extends qn {
-    public final boolean Rc;
-    public final le Sc;
+import org.telegram.ui.ProfileActivity;
+public final class yd extends ProfileActivity {
+    public final boolean J6;
+    public final me K6;
 
-    public yd(le leVar, Bundle bundle, boolean z10) {
-        super(bundle);
-        this.Sc = leVar;
-        this.Rc = z10;
+    public yd(me meVar, Bundle bundle, boolean z10) {
+        super(bundle, null);
+        this.K6 = meVar;
+        this.J6 = z10;
     }
 
     @Override
     public final void onFragmentDestroy() {
         super.onFragmentDestroy();
-        if (!this.Rc) {
-            this.Sc.show();
+        if (!this.J6) {
+            this.K6.show();
         }
     }
 }

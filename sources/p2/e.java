@@ -10,6 +10,7 @@ import e9.m2;
 import e9.n0;
 import e9.y0;
 import g2.b0;
+import i2.o1;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Collections;
@@ -17,51 +18,40 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
-import org.telegram.ui.fk0;
+import org.telegram.ui.web.d0;
 public final class e implements y2.g {
-    public static final fk0 J = new fk0(20);
+    public static final d0 J = new d0(2);
     public n0 E;
     public Uri F;
     public n G;
     public boolean H;
-    public final l2.f f43942a;
-    public final u f43943b;
-    public final oa.d f43944c;
-    public a5.a f43945f;
+    public final l2.f f44357a;
+    public final u f44358b;
+    public final oa.d f44359c;
+    public a5.a f44360f;
     public y2.l h;
-    public Handler f43946n;
-    public o2.l f43947r;
-    public q f43948s;
+    public Handler f44361n;
+    public o2.l f44362r;
+    public q f44363s;
     public w0 v;
-    public n0 f43949w;
-    public n0 f43950x;
-    public n0 f43951y;
+    public n0 f44364w;
+    public n0 f44365x;
+    public n0 f44366y;
     public final CopyOnWriteArrayList e = new CopyOnWriteArrayList();
     public final HashMap d = new HashMap();
     public long I = -9223372036854775807L;
 
     public e(l2.f fVar, oa.d dVar, u uVar) {
-        this.f43942a = fVar;
-        this.f43943b = uVar;
-        this.f43944c = dVar;
-    }
-
-    @Override
-    public final void J(y2.i iVar, long j10, long j11, boolean z10) {
-        y2.o oVar = (y2.o) iVar;
-        long j12 = oVar.f49938a;
-        g2.m mVar = oVar.f49939b;
-        b0 b0Var = oVar.d;
-        u2.u uVar = new u2.u(mVar, b0Var.f10764c, b0Var.d, j10, j11, b0Var.f10763b);
-        this.f43944c.getClass();
-        this.f43945f.q(uVar, 4, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L);
+        this.f44357a = fVar;
+        this.f44358b = uVar;
+        this.f44359c = dVar;
     }
 
     public final void a(List list) {
         for (int i10 = 0; i10 < list.size(); i10++) {
             x xVar = (x) list.get(i10);
             d dVar = new d(this, xVar);
-            m2 it = y0.u(xVar.f44081b.values()).iterator();
+            m2 it = y0.u(xVar.f44496b.values()).iterator();
             while (it.hasNext()) {
                 this.d.put((Uri) it.next(), dVar);
             }
@@ -76,18 +66,18 @@ public final class e implements y2.g {
         }
         n a2 = d.a(dVar, uri);
         if (a2 != null && z10) {
-            i(uri);
+            h(uri);
             d dVar2 = (d) hashMap.get(uri);
             dVar2.getClass();
-            HashMap hashMap2 = dVar2.f43940b;
-            c cVar = (c) i2.e.i(hashMap2, uri, uri);
+            HashMap hashMap2 = dVar2.f44355b;
+            c cVar = (c) o1.j(hashMap2, uri, uri);
             cVar.getClass();
-            if (!cVar.f43937w) {
-                c cVar2 = (c) i2.e.i(hashMap2, uri, uri);
+            if (!cVar.f44352w) {
+                c cVar2 = (c) o1.j(hashMap2, uri, uri);
                 cVar2.getClass();
-                cVar2.f43937w = true;
+                cVar2.f44352w = true;
                 n a10 = d.a(dVar2, uri);
-                if (a10 != null && !a10.f44014o) {
+                if (a10 != null && !a10.f44429o) {
                     d.b(dVar2, uri, true);
                 }
             }
@@ -104,20 +94,20 @@ public final class e implements y2.g {
                     }
                     return this.E;
                 }
-                return this.f43951y;
+                return this.f44366y;
             }
-            return this.f43950x;
+            return this.f44365x;
         }
-        return this.f43949w;
+        return this.f44364w;
     }
 
     public final Uri d(Uri uri) {
         j jVar;
         n nVar = this.G;
-        if (nVar != null && nVar.v.e && (jVar = (j) nVar.f44019t.get(uri)) != null) {
+        if (nVar != null && nVar.v.e && (jVar = (j) nVar.f44434t.get(uri)) != null) {
             Uri.Builder buildUpon = uri.buildUpon();
-            buildUpon.appendQueryParameter("_HLS_msn", String.valueOf(jVar.f43992b));
-            int i10 = jVar.f43993c;
+            buildUpon.appendQueryParameter("_HLS_msn", String.valueOf(jVar.f44407b));
+            int i10 = jVar.f44408c;
             if (i10 != -1) {
                 buildUpon.appendQueryParameter("_HLS_part", String.valueOf(i10));
             }
@@ -131,17 +121,17 @@ public final class e implements y2.g {
         boolean z10;
         long min;
         y2.o oVar = (y2.o) iVar;
-        long j12 = oVar.f49938a;
-        g2.m mVar = oVar.f49939b;
+        long j12 = oVar.f50378a;
+        g2.m mVar = oVar.f50379b;
         b0 b0Var = oVar.d;
-        u2.u uVar = new u2.u(mVar, b0Var.f10764c, b0Var.d, j10, j11, b0Var.f10763b);
-        int i11 = oVar.f49940c;
-        this.f43944c.getClass();
+        u2.v vVar = new u2.v(mVar, b0Var.f10783c, b0Var.d, j10, j11, b0Var.f10782b);
+        int i11 = oVar.f50380c;
+        this.f44359c.getClass();
         Throwable th2 = iOException;
         while (true) {
             z10 = true;
             if (th2 != null) {
-                if ((th2 instanceof w0) || (th2 instanceof FileNotFoundException) || (th2 instanceof g2.u) || (th2 instanceof y2.k) || ((th2 instanceof g2.j) && ((g2.j) th2).f10781a == 2008)) {
+                if ((th2 instanceof w0) || (th2 instanceof FileNotFoundException) || (th2 instanceof g2.u) || (th2 instanceof y2.k) || ((th2 instanceof g2.j) && ((g2.j) th2).f10800a == 2008)) {
                     break;
                 }
                 th2 = th2.getCause();
@@ -154,9 +144,9 @@ public final class e implements y2.g {
         if (min != -9223372036854775807L) {
             z10 = false;
         }
-        this.f43945f.t(uVar, i11, iOException, z10);
+        this.f44360f.t(vVar, i11, iOException, z10);
         if (z10) {
-            return y2.l.f49934f;
+            return y2.l.f50374f;
         }
         return new k4.d(0, min, false);
     }
@@ -167,10 +157,10 @@ public final class e implements y2.g {
         if (dVar == null) {
             return false;
         }
-        Iterator it = dVar.f43940b.values().iterator();
+        Iterator it = dVar.f44355b.values().iterator();
         boolean z11 = true;
         while (it.hasNext()) {
-            if (j10 <= ((c) it.next()).f43935r) {
+            if (j10 <= ((c) it.next()).f44350r) {
                 z10 = true;
             } else {
                 z10 = false;
@@ -184,13 +174,13 @@ public final class e implements y2.g {
         int i10;
         d dVar = (d) this.d.get(uri);
         if (dVar != null) {
-            c cVar = (c) i2.e.i(dVar.f43940b, uri, uri);
+            c cVar = (c) o1.j(dVar.f44355b, uri, uri);
             cVar.getClass();
             if (cVar.e != null) {
                 long elapsedRealtime = SystemClock.elapsedRealtime();
-                long max = Math.max(30000L, m0.h0(cVar.e.f44020u));
+                long max = Math.max(30000L, m0.h0(cVar.e.f44435u));
                 n nVar = cVar.e;
-                if (nVar.f44014o || (i10 = nVar.d) == 2 || i10 == 1 || cVar.f43933f + max > elapsedRealtime) {
+                if (nVar.f44429o || (i10 = nVar.d) == 2 || i10 == 1 || cVar.f44348f + max > elapsedRealtime) {
                     return true;
                 }
                 return false;
@@ -200,40 +190,24 @@ public final class e implements y2.g {
         return false;
     }
 
-    @Override
-    public final void h(y2.i iVar, long j10, long j11, int i10) {
-        u2.u uVar;
-        y2.o oVar = (y2.o) iVar;
-        if (i10 == 0) {
-            long j12 = oVar.f49938a;
-            uVar = new u2.u(oVar.f49939b, j10);
-        } else {
-            long j13 = oVar.f49938a;
-            g2.m mVar = oVar.f49939b;
-            b0 b0Var = oVar.d;
-            uVar = new u2.u(mVar, b0Var.f10764c, b0Var.d, j10, j11, b0Var.f10763b);
-        }
-        this.f43945f.v(uVar, oVar.f49940c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L, i10);
-    }
-
-    public final void i(Uri uri) {
+    public final void h(Uri uri) {
         if (!uri.equals(this.F)) {
-            List list = this.f43948s.e;
+            List list = this.f44363s.e;
             for (int i10 = 0; i10 < list.size(); i10++) {
-                if (uri.equals(((p) list.get(i10)).f44026a)) {
+                if (uri.equals(((p) list.get(i10)).f44441a)) {
                     n nVar = this.G;
-                    if (nVar == null || !nVar.f44014o) {
+                    if (nVar == null || !nVar.f44429o) {
                         this.F = uri;
                         d dVar = (d) this.d.get(uri);
                         dVar.getClass();
                         n a2 = d.a(dVar, uri);
-                        if (a2 != null && a2.f44014o) {
+                        if (a2 != null && a2.f44429o) {
                             this.G = a2;
-                            this.f43947r.v(a2);
+                            this.f44362r.v(a2);
                             return;
                         }
                         Uri d = d(uri);
-                        c cVar = (c) i2.e.i(dVar.f43940b, uri, uri);
+                        c cVar = (c) o1.j(dVar.f44355b, uri, uri);
                         cVar.getClass();
                         cVar.c(d);
                         return;
@@ -244,12 +218,12 @@ public final class e implements y2.g {
         }
     }
 
-    public final void j(Uri uri) {
+    public final void i(Uri uri) {
         d dVar = (d) this.d.get(uri);
         if (dVar != null) {
-            c cVar = (c) i2.e.i(dVar.f43940b, uri, uri);
+            c cVar = (c) o1.j(dVar.f44355b, uri, uri);
             cVar.getClass();
-            cVar.f43932c.a();
+            cVar.f44347c.a();
             IOException iOException = cVar.v;
             if (iOException != null) {
                 throw iOException;
@@ -258,53 +232,80 @@ public final class e implements y2.g {
     }
 
     @Override
+    public final void j(y2.i iVar, long j10, long j11, int i10) {
+        u2.v vVar;
+        y2.o oVar = (y2.o) iVar;
+        if (i10 == 0) {
+            long j12 = oVar.f50378a;
+            vVar = new u2.v(oVar.f50379b, j10);
+        } else {
+            long j13 = oVar.f50378a;
+            g2.m mVar = oVar.f50379b;
+            b0 b0Var = oVar.d;
+            vVar = new u2.v(mVar, b0Var.f10783c, b0Var.d, j10, j11, b0Var.f10782b);
+        }
+        this.f44360f.v(vVar, oVar.f50380c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L, i10);
+    }
+
+    @Override
     public final void k(y2.i iVar, long j10, long j11) {
         q qVar;
         y2.o oVar = (y2.o) iVar;
-        r rVar = (r) oVar.f49941f;
+        r rVar = (r) oVar.f50381f;
         boolean z10 = rVar instanceof n;
         if (z10) {
-            String str = rVar.f44039a;
-            q qVar2 = q.f44031n;
+            String str = rVar.f44454a;
+            q qVar2 = q.f44446n;
             Uri parse = Uri.parse(str);
             b2.v vVar = new b2.v();
-            vVar.f4061a = "0";
-            vVar.f4074q = v0.n("application/x-mpegURL");
+            vVar.f4068a = "0";
+            vVar.f4081q = v0.n("application/x-mpegURL");
             List singletonList = Collections.singletonList(new p(parse, new b2.w(vVar), null, null, null, null, null, null));
             List list = Collections.EMPTY_LIST;
             qVar = new q("", list, singletonList, list, list, list, list, null, null, false, Collections.EMPTY_MAP, list);
         } else {
             qVar = (q) rVar;
         }
-        this.f43948s = qVar;
+        this.f44363s = qVar;
         try {
-            this.f43949w = x.b(qVar.e);
-            this.f43950x = x.a(qVar.f44032f);
-            this.f43951y = x.a(qVar.f44033g);
+            this.f44364w = x.b(qVar.e);
+            this.f44365x = x.a(qVar.f44447f);
+            this.f44366y = x.a(qVar.f44448g);
             this.E = x.a(qVar.h);
-            this.F = ((x) this.f43949w.get(0)).c();
+            this.F = ((x) this.f44364w.get(0)).c();
             this.e.add(new a(this));
-            a(this.f43949w);
-            a(this.f43950x);
-            a(this.f43951y);
+            a(this.f44364w);
+            a(this.f44365x);
+            a(this.f44366y);
             a(this.E);
-            g2.m mVar = oVar.f49939b;
+            g2.m mVar = oVar.f50379b;
             b0 b0Var = oVar.d;
-            u2.u uVar = new u2.u(mVar, b0Var.f10764c, b0Var.d, j10, j11, b0Var.f10763b);
+            u2.v vVar2 = new u2.v(mVar, b0Var.f10783c, b0Var.d, j10, j11, b0Var.f10782b);
             d dVar = (d) this.d.get(this.F);
             dVar.getClass();
             if (z10) {
-                Uri uri = oVar.d.f10764c;
-                c cVar = (c) i2.e.i(dVar.f43940b, uri, uri);
+                Uri uri = oVar.d.f10783c;
+                c cVar = (c) o1.j(dVar.f44355b, uri, uri);
                 cVar.getClass();
-                cVar.d((n) rVar, uVar);
+                cVar.d((n) rVar, vVar2);
             } else {
                 d.b(dVar, this.F, false);
             }
-            this.f43944c.getClass();
-            this.f43945f.r(uVar, 4, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L);
+            this.f44359c.getClass();
+            this.f44360f.r(vVar2, 4, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L);
         } catch (w0 e) {
             this.v = e;
         }
+    }
+
+    @Override
+    public final void z(y2.i iVar, long j10, long j11, boolean z10) {
+        y2.o oVar = (y2.o) iVar;
+        long j12 = oVar.f50378a;
+        g2.m mVar = oVar.f50379b;
+        b0 b0Var = oVar.d;
+        u2.v vVar = new u2.v(mVar, b0Var.f10783c, b0Var.d, j10, j11, b0Var.f10782b);
+        this.f44359c.getClass();
+        this.f44360f.q(vVar, 4, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L);
     }
 }

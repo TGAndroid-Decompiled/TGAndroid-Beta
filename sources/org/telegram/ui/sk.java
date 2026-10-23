@@ -1,13 +1,11 @@
 package org.telegram.ui;
-public final class sk extends io {
-    public boolean T0;
 
-    @Override
-    public final void onBecomeFullyVisible() {
-        super.onBecomeFullyVisible();
-        if (!this.T0) {
-            i0();
-            this.T0 = true;
-        }
+import android.app.Activity;
+public final class sk extends org.telegram.ui.Components.p51 {
+    public final sn f41429y;
+
+    public sk(sn snVar, Activity activity, sn snVar2, org.telegram.ui.ActionBar.g6 g6Var) {
+        super(activity, g6Var, snVar2);
+        this.f41429y = snVar;
     }
 }

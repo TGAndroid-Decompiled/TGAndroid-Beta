@@ -2,21 +2,21 @@ package m4;
 
 import android.view.Surface;
 import android.view.View;
-import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.Components.bm0;
 import org.telegram.ui.Components.hu;
 import org.telegram.ui.Components.iu;
-import org.telegram.ui.Components.yl0;
-public final class s0 implements e2.j, hu, yl0 {
-    public final int f16723a;
-    public final int f16724b;
-    public final Object f16725c;
+public final class s0 implements e2.j, hu, bm0 {
+    public final int f16786a;
+    public final int f16787b;
+    public final Object f16788c;
     public final Object d;
 
     public s0(i1 i1Var, Surface surface, int i10, int i11) {
-        this.f16725c = i1Var;
+        this.f16788c = i1Var;
         this.d = surface;
-        this.f16723a = i10;
-        this.f16724b = i11;
+        this.f16786a = i10;
+        this.f16787b = i11;
     }
 
     @Override
@@ -26,43 +26,43 @@ public final class s0 implements e2.j, hu, yl0 {
 
     @Override
     public void accept(Object obj) {
-        i1 i1Var = (i1) this.f16725c;
+        i1 i1Var = (i1) this.f16788c;
         Surface surface = (Surface) this.d;
         m1 m1Var = (m1) obj;
-        ((f0) i1Var.f16563a.get()).getClass();
+        ((f0) i1Var.f16626a.get()).getClass();
         if (surface == null) {
             m1Var.T(null);
-            i1Var.f16567i = null;
+            i1Var.f16630i = null;
             return;
         }
-        h1 h1Var = new h1(surface, this.f16723a, this.f16724b);
-        i1Var.f16567i = h1Var;
+        h1 h1Var = new h1(surface, this.f16786a, this.f16787b);
+        i1Var.f16630i = h1Var;
         m1Var.T(h1Var);
     }
 
     @Override
-    public void d(float f7, float f10, int i10, View view) {
-        int i11 = this.f16724b;
-        ug.m1.R((ug.m1) this.f16725c, this.f16723a, (d6) this.d, i11, view, i10);
+    public void c(float f7, float f10, int i10, View view) {
+        int i11 = this.f16787b;
+        ug.l1.Q((ug.l1) this.f16788c, this.f16786a, (g6) this.d, i11, view, i10);
     }
 
     @Override
     public void run(String str) {
-        iu.k((iu) this.f16725c, this.f16723a, this.f16724b, (Runnable) this.d, str);
+        iu.k((iu) this.f16788c, this.f16786a, this.f16787b, (Runnable) this.d, str);
     }
 
     public s0(iu iuVar, int i10, int i11, Runnable runnable) {
-        this.f16725c = iuVar;
-        this.f16723a = i10;
-        this.f16724b = i11;
+        this.f16788c = iuVar;
+        this.f16786a = i10;
+        this.f16787b = i11;
         this.d = runnable;
     }
 
-    public s0(ug.m1 m1Var, int i10, d6 d6Var, int i11) {
-        this.f16725c = m1Var;
-        this.f16723a = i10;
-        this.d = d6Var;
-        this.f16724b = i11;
+    public s0(ug.l1 l1Var, int i10, g6 g6Var, int i11) {
+        this.f16788c = l1Var;
+        this.f16786a = i10;
+        this.d = g6Var;
+        this.f16787b = i11;
     }
 
     @Override

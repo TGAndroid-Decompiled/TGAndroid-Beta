@@ -10,25 +10,25 @@ import org.telegram.ui.Components.gh;
 import org.telegram.ui.Components.ri;
 import org.telegram.ui.Components.ti;
 public final class r1 implements ri {
-    public final ti f15482a;
-    public final d2 f15483b;
+    public final ti f15542a;
+    public final d2 f15543b;
 
     public r1(d2 d2Var, ti tiVar) {
-        this.f15483b = d2Var;
-        this.f15482a = tiVar;
+        this.f15543b = d2Var;
+        this.f15542a = tiVar;
     }
 
     @Override
     public final void b0(int i10, boolean z10, boolean z11, int i11, int i12, long j10, boolean z12, boolean z13, long j11) {
-        ti tiVar = this.f15482a;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = tiVar.f30562j0;
-        d2 d2Var = this.f15483b;
+        ti tiVar = this.f15542a;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = tiVar.f30742j0;
+        d2 d2Var = this.f15543b;
         if (i10 == 7 || i10 == 8) {
             HashMap<Object, Object> selectedPhotos = chatAttachAlertPhotoLayout.getSelectedPhotos();
             ArrayList<Object> selectedPhotosOrder = chatAttachAlertPhotoLayout.getSelectedPhotosOrder();
             w3 w3Var = d2Var.P;
-            a aVar = w3Var.Z3;
-            w3Var.Z3 = null;
+            a aVar = w3Var.f15648c4;
+            w3Var.f15648c4 = null;
             int i13 = 0;
             while (true) {
                 if (i13 >= selectedPhotosOrder.size()) {
@@ -37,16 +37,16 @@ public final class r1 implements ri {
                 Object obj = selectedPhotos.get(selectedPhotosOrder.get(i13));
                 if (obj instanceof MediaController.PhotoEntry) {
                     if (aVar != null) {
-                        d2Var.P.U1(aVar, (MediaController.PhotoEntry) obj);
+                        d2Var.P.Z1(aVar, (MediaController.PhotoEntry) obj);
                     } else {
-                        d2Var.P.g2((MediaController.PhotoEntry) obj);
+                        d2Var.P.l2((MediaController.PhotoEntry) obj);
                     }
                 } else {
                     i13++;
                 }
             }
         }
-        d2Var.P.Z3 = null;
+        d2Var.P.f15648c4 = null;
         tiVar.dismiss(true);
     }
 
@@ -56,21 +56,13 @@ public final class r1 implements ri {
     }
 
     @Override
-    public final void u(gh ghVar) {
-        NotificationCenter.getInstance(this.f15483b.getCurrentAccount()).doOnIdle(ghVar);
+    public final void r(gh ghVar) {
+        NotificationCenter.getInstance(this.f15543b.getCurrentAccount()).doOnIdle(ghVar);
     }
 
     @Override
-    public final boolean v() {
+    public final boolean u() {
         return false;
-    }
-
-    @Override
-    public final void E() {
-    }
-
-    @Override
-    public final void J() {
     }
 
     @Override
@@ -79,6 +71,14 @@ public final class r1 implements ri {
 
     @Override
     public final void X(TLRPC.User user) {
+    }
+
+    @Override
+    public final void E() {
+    }
+
+    @Override
+    public final void J() {
     }
 
     @Override

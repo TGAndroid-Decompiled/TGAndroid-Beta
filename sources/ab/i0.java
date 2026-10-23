@@ -28,7 +28,7 @@ public final class i0 extends md.i implements td.p {
 
     @Override
     public final Object invoke(Object obj, Object obj2) {
-        return ((i0) create((be.c0) obj, (kd.c) obj2)).invokeSuspend(id.i.f12775a);
+        return ((i0) create((be.c0) obj, (kd.c) obj2)).invokeSuspend(id.i.f12807a);
     }
 
     @Override

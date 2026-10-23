@@ -1,6 +1,6 @@
 package hg;
 
-import ai.md;
+import ai.nd;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -25,26 +25,26 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.ActionBar.n2;
+import org.telegram.ui.ActionBar.o2;
 import org.telegram.ui.Cells.r3;
+import org.telegram.ui.Components.c41;
 import org.telegram.ui.Components.nq;
 import org.telegram.ui.Components.q6;
-import org.telegram.ui.Components.x90;
 import org.telegram.ui.Components.xc;
-import org.telegram.ui.Components.y31;
+import org.telegram.ui.Components.y90;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PremiumPreviewFragment;
-import org.telegram.ui.ah1;
+import org.telegram.ui.hh1;
 import org.telegram.ui.kg;
-import org.telegram.ui.mi0;
-import rg.t2;
+import org.telegram.ui.qi0;
+import rg.u2;
 public final class r0 implements View.OnClickListener {
-    public final int f12027a;
-    public final Object f12028b;
+    public final int f12057a;
+    public final Object f12058b;
 
     public r0(Object obj, int i10) {
-        this.f12027a = i10;
-        this.f12028b = obj;
+        this.f12057a = i10;
+        this.f12058b = obj;
     }
 
     @Override
@@ -53,20 +53,20 @@ public final class r0 implements View.OnClickListener {
         int i11;
         ki.a aVar;
         m4 m4Var;
-        n2 R;
-        switch (this.f12027a) {
+        o2 R;
+        switch (this.f12057a) {
             case 0:
-                ((s0) this.f12028b).K();
+                ((s0) this.f12058b).K();
                 return;
             case 1:
-                e2 e2Var = (e2) this.f12028b;
-                LongSparseArray longSparseArray = e2Var.f11851n;
+                e2 e2Var = (e2) this.f12058b;
+                LongSparseArray longSparseArray = e2Var.f11878n;
                 r3 r3Var = (r3) view.getParent();
                 TLRPC.StickerSetCovered stickerSet = r3Var.getStickerSet();
-                if (stickerSet != null && e2Var.h.indexOfKey(stickerSet.set.f20307id) < 0 && longSparseArray.indexOfKey(stickerSet.set.f20307id) < 0) {
-                    if (r3Var.f22946r) {
-                        longSparseArray.put(stickerSet.set.f20307id, stickerSet);
-                        e2Var.e.f29851a.h(r3Var.getStickerSet());
+                if (stickerSet != null && e2Var.h.indexOfKey(stickerSet.set.f20370id) < 0 && longSparseArray.indexOfKey(stickerSet.set.f20370id) < 0) {
+                    if (r3Var.f23094r) {
+                        longSparseArray.put(stickerSet.set.f20370id, stickerSet);
+                        e2Var.e.f32163a.h(r3Var.getStickerSet());
                         return;
                     }
                     e2Var.F(stickerSet, r3Var);
@@ -74,33 +74,33 @@ public final class r0 implements View.OnClickListener {
                 }
                 return;
             case 2:
-                hi.o oVar = (hi.o) this.f12028b;
-                TLRPC.Chat chat = oVar.H;
-                if (chat != null && !chat.title.equals(((ai.t) oVar.f12195n.f899b).getText().toString())) {
-                    oVar.getMessagesController().changeChatTitle(oVar.H.f20280id, ((ai.t) oVar.f12195n.f899b).getText().toString(), new hi.h(oVar, 1));
+                hi.o oVar = (hi.o) this.f12058b;
+                TLRPC.Chat chat = oVar.I;
+                if (chat != null && !chat.title.equals(((ai.t) oVar.f12227r.f900b).getText().toString())) {
+                    oVar.getMessagesController().changeChatTitle(oVar.I.f20343id, ((ai.t) oVar.f12227r.f900b).getText().toString(), new hi.h(oVar, 1));
                 }
-                TLRPC.Chat chat2 = oVar.H;
-                if (chat2 != null && oVar.h != oVar.f12194f) {
+                TLRPC.Chat chat2 = oVar.I;
+                if (chat2 != null && oVar.f12226n != oVar.h) {
                     if (chat2.default_banned_rights == null) {
                         chat2.default_banned_rights = new TLRPC.TL_chatBannedRights();
                     }
-                    oVar.H.default_banned_rights.manage_linked_peers = !oVar.h;
-                    oVar.getMessagesController().setDefaultBannedRole(oVar.f12192b, oVar.H.default_banned_rights, false, oVar);
+                    oVar.I.default_banned_rights.manage_linked_peers = !oVar.f12226n;
+                    oVar.getMessagesController().setDefaultBannedRole(oVar.f12224c, oVar.I.default_banned_rights, false, oVar);
                 }
                 oVar.finishFragment();
                 return;
             case 3:
-                ((hi.e0) this.f12028b).h.d.D(0);
+                ((hi.e0) this.f12058b).h.d.D(0);
                 return;
             case 4:
-                hi.k0.z(((hi.f0) this.f12028b).f12147r);
+                hi.k0.B(((hi.f0) this.f12058b).f12178r);
                 return;
             case 5:
-                ig.e eVar = (ig.e) this.f12028b;
-                q6 q6Var = eVar.f12870f;
-                int i12 = eVar.f12867a;
-                boolean z10 = eVar.f12872r;
-                eVar.f12872r = !z10;
+                ig.e eVar = (ig.e) this.f12058b;
+                q6 q6Var = eVar.f12900f;
+                int i12 = eVar.f12897a;
+                boolean z10 = eVar.f12902r;
+                eVar.f12902r = !z10;
                 nq nqVar = eVar.h;
                 if (!z10) {
                     i10 = R.string.BizBotStart;
@@ -109,25 +109,25 @@ public final class r0 implements View.OnClickListener {
                 }
                 nqVar.c(LocaleController.getString(i10), true, true);
                 q6Var.a();
-                if (eVar.f12872r) {
+                if (eVar.f12902r) {
                     i11 = R.string.BizBotStatusStopped;
                 } else {
                     i11 = R.string.BizBotStatusManages;
                 }
                 q6Var.c(LocaleController.getString(i11), true, true);
-                if (eVar.f12872r) {
-                    eVar.f12874w |= 1;
+                if (eVar.f12902r) {
+                    eVar.f12904w |= 1;
                 } else {
-                    eVar.f12874w &= -2;
+                    eVar.f12904w &= -2;
                 }
-                MessagesController.getNotificationsSettings(i12).edit().putInt("dialog_botflags" + eVar.f12873s, eVar.f12874w).apply();
+                MessagesController.getNotificationsSettings(i12).edit().putInt("dialog_botflags" + eVar.f12903s, eVar.f12904w).apply();
                 TL_account.toggleConnectedBotPaused toggleconnectedbotpaused = new TL_account.toggleConnectedBotPaused();
-                toggleconnectedbotpaused.peer = MessagesController.getInstance(i12).getInputPeer(eVar.f12873s);
-                toggleconnectedbotpaused.paused = eVar.f12872r;
+                toggleconnectedbotpaused.peer = MessagesController.getInstance(i12).getInputPeer(eVar.f12903s);
+                toggleconnectedbotpaused.paused = eVar.f12902r;
                 ConnectionsManager.getInstance(i12).sendRequest(toggleconnectedbotpaused, null);
                 return;
             case 6:
-                TL_account.TL_businessChatLink tL_businessChatLink = ((ig.t) this.f12028b).f13015f;
+                TL_account.TL_businessChatLink tL_businessChatLink = ((ig.t) this.f12058b).f13074f;
                 if (tL_businessChatLink != null) {
                     AndroidUtilities.addToClipboard(tL_businessChatLink.link);
                     xc.a0(LaunchActivity.R()).k(false).j();
@@ -135,33 +135,33 @@ public final class r0 implements View.OnClickListener {
                 }
                 return;
             case 7:
-                ((ji.b) this.f12028b).dismiss();
+                ((ji.b) this.f12058b).dismiss();
                 return;
             case 8:
-                ki.q qVar = (ki.q) this.f12028b;
+                ki.q qVar = (ki.q) this.f12058b;
                 qVar.K(0, true, 0, false, 0L);
-                mi0 mi0Var = qVar.O;
-                if (mi0Var != null) {
-                    mi0Var.g(true);
+                qi0 qi0Var = qVar.O;
+                if (qi0Var != null) {
+                    qi0Var.g(true);
                     qVar.O = null;
                     return;
                 }
                 return;
             case 9:
-                ki.t0 t0Var = (ki.t0) this.f12028b;
+                ki.t0 t0Var = (ki.t0) this.f12058b;
                 d3 d3Var = t0Var.h;
-                if (d3Var != null && (aVar = t0Var.f15522f) != null) {
-                    w3 w3Var = d3Var.f15231a;
+                if (d3Var != null && (aVar = t0Var.f15582f) != null) {
+                    w3 w3Var = d3Var.f15289a;
                     w3Var.getClass();
-                    if (w3.y3(aVar)) {
-                        TL_iv.pageBlockDetails pageblockdetails = (TL_iv.pageBlockDetails) aVar.f15095b;
-                        h2 h2Var = w3Var.H3;
+                    if (w3.D3(aVar)) {
+                        TL_iv.pageBlockDetails pageblockdetails = (TL_iv.pageBlockDetails) aVar.f15141b;
+                        h2 h2Var = w3Var.K3;
                         if (h2Var != null) {
                             h2Var.d();
                         }
                         pageblockdetails.open = !pageblockdetails.open;
-                        w3Var.W2.N(true);
-                        h2 h2Var2 = w3Var.H3;
+                        w3Var.Z2.N(true);
+                        h2 h2Var2 = w3Var.K3;
                         if (h2Var2 != null) {
                             h2Var2.h();
                             return;
@@ -172,24 +172,24 @@ public final class r0 implements View.OnClickListener {
                 }
                 return;
             case 10:
-                o4 o4Var = (o4) this.f12028b;
-                ki.a aVar2 = o4Var.f15111a;
+                o4 o4Var = (o4) this.f12058b;
+                ki.a aVar2 = o4Var.f15157a;
                 if (aVar2 != null && (m4Var = o4Var.G) != null) {
-                    ((s3) m4Var).f15501a.f15592f3.i(aVar2);
+                    ((s3) m4Var).f15561a.f15656i3.i(aVar2);
                     return;
                 }
                 return;
             case 11:
-                org.telegram.ui.Components.voip.t tVar = (org.telegram.ui.Components.voip.t) this.f12028b;
+                org.telegram.ui.Components.voip.t tVar = (org.telegram.ui.Components.voip.t) this.f12058b;
                 if (VoIPService.getSharedInstance() != null) {
                     VoIPService.getSharedInstance().stopScreenCapture();
                 }
                 tVar.N.animate().alpha(0.0f).scaleX(0.0f).scaleY(0.0f).setDuration(180L).start();
                 return;
             case 12:
-                org.telegram.ui.Components.voip.v0 v0Var = (org.telegram.ui.Components.voip.v0) this.f12028b;
-                if (!v0Var.f31784a) {
-                    if (v0Var.f31792x == 0 && v0Var.f31793y) {
+                org.telegram.ui.Components.voip.v0 v0Var = (org.telegram.ui.Components.voip.v0) this.f12058b;
+                if (!v0Var.f31965a) {
+                    if (v0Var.f31973x == 0 && v0Var.f31974y) {
                         ((Activity) v0Var.getContext()).startActivityForResult(((MediaProjectionManager) v0Var.getContext().getSystemService("media_projection")).createScreenCaptureIntent(), 520);
                         return;
                     } else {
@@ -199,19 +199,19 @@ public final class r0 implements View.OnClickListener {
                 }
                 return;
             case 13:
-                ah1 ah1Var = (ah1) this.f12028b;
-                if (!ah1Var.f31351a) {
-                    if (ah1Var.f31358w == 0) {
-                        ((Activity) ah1Var.getContext()).startActivityForResult(((MediaProjectionManager) ah1Var.getContext().getSystemService("media_projection")).createScreenCaptureIntent(), 520);
+                hh1 hh1Var = (hh1) this.f12058b;
+                if (!hh1Var.f31532a) {
+                    if (hh1Var.f31539w == 0) {
+                        ((Activity) hh1Var.getContext()).startActivityForResult(((MediaProjectionManager) hh1Var.getContext().getSystemService("media_projection")).createScreenCaptureIntent(), 520);
                         return;
                     } else {
-                        ah1Var.a(false, true);
+                        hh1Var.a(false, true);
                         return;
                     }
                 }
                 return;
             case 14:
-                Context context = (Context) this.f12028b;
+                Context context = (Context) this.f12058b;
                 if (VoIPService.getSharedInstance() != null) {
                     Intent action = new Intent(context, LaunchActivity.class).setAction("voip_chat");
                     action.putExtra("currentAccount", VoIPService.getSharedInstance().getAccount());
@@ -224,51 +224,51 @@ public final class r0 implements View.OnClickListener {
                 }
                 return;
             case 15:
-                org.telegram.ui.web.k kVar = (org.telegram.ui.web.k) this.f12028b;
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(kVar.getContext());
-                alertDialog$Builder.f20609a.R = LocaleController.getString(R.string.WebRecentClearTitle);
-                alertDialog$Builder.f20609a.T = LocaleController.getString(R.string.WebRecentClearText);
-                alertDialog$Builder.k(LocaleController.getString(R.string.OK), new org.telegram.ui.web.a(kVar));
-                i2.e.r(R.string.Cancel, alertDialog$Builder, null);
+                org.telegram.ui.web.l lVar = (org.telegram.ui.web.l) this.f12058b;
+                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(lVar.getContext());
+                alertDialog$Builder.f20678a.R = LocaleController.getString(R.string.WebRecentClearTitle);
+                alertDialog$Builder.f20678a.T = LocaleController.getString(R.string.WebRecentClearText);
+                alertDialog$Builder.k(LocaleController.getString(R.string.OK), new org.telegram.ui.web.a(lVar));
+                i2.o1.s(R.string.Cancel, alertDialog$Builder, null);
                 return;
             case 16:
-                ((qg.y) this.f12028b).dismiss();
+                ((qg.y) this.f12058b).dismiss();
                 return;
             case 17:
-                ((y31) this.f12028b).run();
+                ((c41) this.f12058b).run();
                 return;
             case 18:
-                ((t2) this.f12028b).onBackPressed();
+                ((u2) this.f12058b).onBackPressed();
                 return;
             case 19:
-                ((kg) this.f12028b).run();
+                ((kg) this.f12058b).run();
                 return;
             case 20:
-                ((x90) this.f12028b).performClick();
+                ((y90) this.f12058b).performClick();
                 return;
             case 21:
                 PremiumPreviewFragment.p0();
-                PremiumPreviewFragment.k0(((sg.m1) this.f12028b).f46349t0, null, "profile", null);
+                PremiumPreviewFragment.k0(((sg.m1) this.f12058b).f46773t0, null, "profile", null);
                 return;
             case 22:
-                final ug.f0 f0Var = (ug.f0) this.f12028b;
-                wg.a aVar3 = f0Var.Q0;
-                if (!aVar3.f48951a.N) {
+                final ug.e0 e0Var = (ug.e0) this.f12058b;
+                wg.a aVar3 = e0Var.Q0;
+                if (!aVar3.f49389a.Q) {
                     aVar3.b(true);
-                    String str = f0Var.R0;
+                    String str = e0Var.R0;
                     Utilities.Callback callback = new Utilities.Callback() {
                         @Override
                         public final void run(Object obj) {
                             switch (r2) {
                                 case 0:
                                     Void r42 = (Void) obj;
-                                    f0 f0Var2 = f0Var;
-                                    f0Var2.Q0.b(false);
-                                    f0Var2.dismiss();
-                                    AndroidUtilities.runOnUIThread(new d0(f0Var2, 1), 200L);
+                                    e0 e0Var2 = e0Var;
+                                    e0Var2.Q0.b(false);
+                                    e0Var2.dismiss();
+                                    AndroidUtilities.runOnUIThread(new c0(e0Var2, 1), 200L);
                                     return;
                                 default:
-                                    f0.d0(f0Var, (TLRPC.TL_error) obj);
+                                    e0.i0(e0Var, (TLRPC.TL_error) obj);
                                     return;
                             }
                         }
@@ -279,13 +279,13 @@ public final class r0 implements View.OnClickListener {
                             switch (r2) {
                                 case 0:
                                     Void r42 = (Void) obj;
-                                    f0 f0Var2 = f0Var;
-                                    f0Var2.Q0.b(false);
-                                    f0Var2.dismiss();
-                                    AndroidUtilities.runOnUIThread(new d0(f0Var2, 1), 200L);
+                                    e0 e0Var2 = e0Var;
+                                    e0Var2.Q0.b(false);
+                                    e0Var2.dismiss();
+                                    AndroidUtilities.runOnUIThread(new c0(e0Var2, 1), 200L);
                                     return;
                                 default:
-                                    f0.d0(f0Var, (TLRPC.TL_error) obj);
+                                    e0.i0(e0Var, (TLRPC.TL_error) obj);
                                     return;
                             }
                         }
@@ -293,39 +293,39 @@ public final class r0 implements View.OnClickListener {
                     ConnectionsManager connectionsManager = ConnectionsManager.getInstance(UserConfig.selectedAccount);
                     TLRPC.TL_payments_applyGiftCode tL_payments_applyGiftCode = new TLRPC.TL_payments_applyGiftCode();
                     tL_payments_applyGiftCode.slug = str;
-                    connectionsManager.sendRequest(tL_payments_applyGiftCode, new ug.o(callback2, callback, 0), 2);
+                    connectionsManager.sendRequest(tL_payments_applyGiftCode, new ug.n(callback2, callback, 0), 2);
                     return;
                 }
                 return;
             case 23:
-                ((ug.i0) this.f12028b).dismiss();
+                ((ug.h0) this.f12058b).dismiss();
                 return;
             case 24:
-                ((ug.a0) ((vg.e) this.f12028b)).f47651r.dismiss();
+                ((ug.z) ((vg.e) this.f12058b)).f48266r.dismiss();
                 return;
             case 25:
-                Runnable runnable = ((yg.c) this.f12028b).d;
+                Runnable runnable = ((yg.c) this.f12058b).e;
                 if (runnable != null) {
                     runnable.run();
                     return;
                 }
                 return;
             case 26:
-                ((yh.c) this.f12028b).dismiss();
+                ((yh.c) this.f12058b).dismiss();
                 return;
             case 27:
-                ((yh.c0) this.f12028b).dismiss();
+                ((yh.c0) this.f12058b).dismiss();
                 return;
             case 28:
-                if (((yh.o1) this.f12028b).f50437f0.f989f > 0 && (R = LaunchActivity.R()) != 0) {
+                if (((yh.o1) this.f12058b).f50894f0.f1055f > 0 && (R = LaunchActivity.R()) != 0) {
                     ?? obj = new Object();
-                    obj.f21560a = true;
-                    R.showAsSheet(new md(), obj);
+                    obj.f21636a = true;
+                    R.showAsSheet(new nd(), obj);
                     return;
                 }
                 return;
             default:
-                ((zh.n) this.f12028b).f52040c.f52088b.f52027a.presentFragment(new PremiumPreviewFragment(0, "qr_emoji"));
+                ((zh.n) this.f12058b).f52502c.f52550b.f52489a.presentFragment(new PremiumPreviewFragment(0, "qr_emoji"));
                 return;
         }
     }

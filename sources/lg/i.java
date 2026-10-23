@@ -4,9 +4,9 @@ import android.graphics.Paint;
 public class i extends f {
     public i(kg.a aVar) {
         super(aVar, false, null);
-        this.f16055c.setStyle(Paint.Style.FILL);
+        this.f16118c.setStyle(Paint.Style.FILL);
         if (jg.g.A1) {
-            this.f16055c.setAntiAlias(false);
+            this.f16118c.setAntiAlias(false);
         }
     }
 }

@@ -1,31 +1,155 @@
 package org.telegram.ui.Cells;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.text.style.ReplacementSpan;
-public final class p2 extends ReplacementSpan {
-    public final int f22750a;
+import android.graphics.Typeface;
+import android.text.SpannableStringBuilder;
+import android.text.TextPaint;
+import android.text.style.MetricAffectingSpan;
+import j$.util.Comparator$CC;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.TLRPC;
+public final class p2 {
+    public final q2 f22878a;
+    public int f22879b;
+    public int f22880c;
+    public boolean d;
+    public boolean e;
+    public HashMap f22881f;
+    public CharSequence f22882g;
 
-    public p2(int i10) {
-        this.f22750a = i10;
+    public p2(q2 q2Var) {
+        this.f22878a = q2Var;
     }
 
-    @Override
-    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
-        if (fontMetricsInt == null) {
-            fontMetricsInt = paint.getFontMetricsInt();
+    public static void a(p2 p2Var, int i10, MessageObject messageObject, TLRPC.Chat chat) {
+        int i11;
+        int i12;
+        long j10;
+        boolean z10;
+        int i13;
+        boolean z11;
+        p2Var.getClass();
+        if (messageObject != null && chat != null) {
+            i11 = messageObject.getId();
+        } else {
+            i11 = 0;
         }
-        if (fontMetricsInt != null) {
-            int i12 = 1 - (fontMetricsInt.descent - fontMetricsInt.ascent);
-            fontMetricsInt.descent = i12;
-            fontMetricsInt.bottom = i12;
-            fontMetricsInt.ascent = -1;
-            fontMetricsInt.top = -1;
+        if (p2Var.f22879b != i11 || p2Var.e) {
+            p2Var.f22881f = null;
+            p2Var.f22880c = 0;
+            p2Var.d = false;
+            p2Var.e = false;
+            p2Var.f22879b = i11;
+            TextPaint textPaint = org.telegram.ui.ActionBar.k6.F0[0];
+            if (chat != null) {
+                ArrayList<TLRPC.TL_forumTopic> topics = MessagesController.getInstance(i10).getTopicsController().getTopics(chat.f20343id);
+                boolean z12 = true;
+                if (topics != null && !topics.isEmpty()) {
+                    ArrayList arrayList = new ArrayList(topics);
+                    Collections.sort(arrayList, Comparator$CC.comparingInt(new ai.v8(11)));
+                    SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+                    if (messageObject != null && !ChatObject.isMonoForum(chat)) {
+                        j10 = MessageObject.getTopicId(i10, messageObject.messageOwner, true);
+                        TLRPC.TL_forumTopic findTopic = MessagesController.getInstance(i10).getTopicsController().findTopic(chat.f20343id, j10);
+                        if (findTopic != null) {
+                            CharSequence j11 = og.d.j(findTopic, textPaint, null);
+                            spannableStringBuilder.append(j11);
+                            if (findTopic.unread_count > 0) {
+                                i13 = j11.length();
+                            } else {
+                                i13 = 0;
+                            }
+                            p2Var.f22880c = j11.length();
+                            if (messageObject.isOutOwner()) {
+                                p2Var.d = false;
+                            } else {
+                                if (findTopic.unread_count > 0) {
+                                    z11 = true;
+                                } else {
+                                    z11 = false;
+                                }
+                                p2Var.d = z11;
+                            }
+                        } else {
+                            p2Var.d = false;
+                            i13 = 0;
+                        }
+                        if (p2Var.d) {
+                            spannableStringBuilder.append((CharSequence) " ");
+                            spannableStringBuilder.setSpan(new o2(AndroidUtilities.dp(3.0f)), spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 0);
+                            z10 = true;
+                        } else {
+                            z10 = false;
+                        }
+                    } else {
+                        j10 = 0;
+                        z10 = false;
+                        i13 = 0;
+                    }
+                    if (ChatObject.isMonoForum(chat)) {
+                        p2Var.f22881f = new HashMap();
+                        for (int i14 = 0; i14 < Math.min(4, arrayList.size()); i14++) {
+                            if (spannableStringBuilder.length() != 0) {
+                                spannableStringBuilder.append((CharSequence) "  ");
+                            }
+                            long peerDialogId = DialogObject.getPeerDialogId(((TLRPC.TL_forumTopic) arrayList.get(i14)).from_id);
+                            org.telegram.ui.k5 k5Var = new org.telegram.ui.k5(i10, p2Var.f22878a);
+                            k5Var.h = false;
+                            k5Var.c(peerDialogId);
+                            p2Var.f22881f.put(Long.valueOf(peerDialogId), k5Var);
+                            SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(DialogObject.getName(peerDialogId));
+                            valueOf.insert(0, (CharSequence) "  ");
+                            valueOf.setSpan(k5Var, 0, 1, 33);
+                            spannableStringBuilder.append((CharSequence) valueOf);
+                        }
+                    } else {
+                        int i15 = 0;
+                        for (int i16 = 4; i15 < Math.min(i16, arrayList.size()); i16 = 4) {
+                            if (((TLRPC.TL_forumTopic) arrayList.get(i15)).f20395id != j10) {
+                                if (spannableStringBuilder.length() != 0) {
+                                    if (z12 && z10) {
+                                        spannableStringBuilder.append((CharSequence) " ");
+                                    } else {
+                                        spannableStringBuilder.append((CharSequence) ", ");
+                                    }
+                                }
+                                spannableStringBuilder.append(og.d.j((TLRPC.ForumTopic) arrayList.get(i15), textPaint, null));
+                                z12 = false;
+                            }
+                            i15++;
+                        }
+                    }
+                    if (i13 > 0) {
+                        Typeface bold = AndroidUtilities.bold();
+                        int i17 = org.telegram.ui.ActionBar.k6.X8;
+                        ?? metricAffectingSpan = new MetricAffectingSpan();
+                        metricAffectingSpan.f27530a = bold;
+                        metricAffectingSpan.f27532c = i17;
+                        metricAffectingSpan.f27531b = org.telegram.ui.ActionBar.k6.x0(null, i17, false);
+                        spannableStringBuilder.setSpan(metricAffectingSpan, 0, Math.min(spannableStringBuilder.length(), i13 + 2), 0);
+                    }
+                    p2Var.f22882g = spannableStringBuilder;
+                } else if (!MessagesController.getInstance(i10).getTopicsController().endIsReached(chat.f20343id)) {
+                    MessagesController.getInstance(i10).getTopicsController().preloadTopics(chat.f20343id);
+                    p2Var.f22882g = LocaleController.getString(R.string.Loading);
+                    p2Var.e = true;
+                } else {
+                    if (ChatObject.isMonoForum(chat)) {
+                        i12 = R.string.NoMonoforumTopicsCreated;
+                    } else {
+                        i12 = R.string.NoTopicsCreated;
+                    }
+                    p2Var.f22882g = LocaleController.getString(i12);
+                }
+            }
         }
-        return this.f22750a;
-    }
-
-    @Override
-    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
     }
 }

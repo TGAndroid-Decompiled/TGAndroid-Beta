@@ -1,27 +1,43 @@
 package org.telegram.ui;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import org.telegram.messenger.FileLog;
-public final class xh1 implements OnFailureListener {
-    public final int f43225a;
-    public final ei.d f43226b;
+import android.widget.EditText;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class xh1 extends org.telegram.ui.ActionBar.k5 {
+    public final WallpapersListActivity f43605r;
 
-    public xh1(ei.d dVar, int i10) {
-        this.f43225a = i10;
-        this.f43226b = dVar;
+    public xh1(WallpapersListActivity wallpapersListActivity) {
+        this.f43605r = wallpapersListActivity;
     }
 
     @Override
-    public final void onFailure(Exception exc) {
-        switch (this.f43225a) {
-            case 0:
-                FileLog.e("wear-auth: /answer send failed: " + exc.getMessage());
-                this.f43226b.setLoading(false);
-                return;
-            default:
-                FileLog.e("wear-auth: /token send failed: " + exc.getMessage());
-                this.f43226b.setLoading(false);
-                return;
-        }
+    public final void k() {
+        WallpapersListActivity wallpapersListActivity = this.f43605r;
+        ci1 ci1Var = wallpapersListActivity.J;
+        ci1Var.f36374n = null;
+        ci1Var.E(null, true);
+        wallpapersListActivity.L.setSearchFieldHint(LocaleController.getString(R.string.SearchBackgrounds));
+    }
+
+    @Override
+    public final void m() {
+        WallpapersListActivity wallpapersListActivity = this.f43605r;
+        wallpapersListActivity.H.setAdapter(wallpapersListActivity.I);
+        wallpapersListActivity.H.invalidate();
+        wallpapersListActivity.J.E(null, true);
+        wallpapersListActivity.L.setSearchFieldCaption(null);
+        k();
+    }
+
+    @Override
+    public final void n() {
+        WallpapersListActivity wallpapersListActivity = this.f43605r;
+        wallpapersListActivity.H.setAdapter(wallpapersListActivity.J);
+        wallpapersListActivity.H.invalidate();
+    }
+
+    @Override
+    public final void q(EditText editText) {
+        this.f43605r.J.E(editText.getText().toString(), false);
     }
 }

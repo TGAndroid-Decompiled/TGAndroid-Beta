@@ -1,68 +1,55 @@
 package org.telegram.ui;
 
-import android.window.BackEvent;
-import android.window.OnBackAnimationCallback;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.AnimationNotificationsLocker;
+import android.os.Bundle;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBarLayout;
-public final class la0 implements OnBackAnimationCallback {
-    public boolean f38879b;
-    public boolean e;
-    public final LaunchActivity f38881f;
-    public final AnimationNotificationsLocker f38878a = new AnimationNotificationsLocker();
-    public boolean f38880c = false;
-    public boolean d = false;
+public final class la0 implements MessagesController.MessagesLoadedCallback {
+    public final f80 f39206a;
+    public final boolean[] f39207b;
+    public final Bundle f39208c;
+    public final TLRPC.ChatInvite d;
+    public final LaunchActivity e;
 
-    public la0(LaunchActivity launchActivity) {
-        this.f38881f = launchActivity;
+    public la0(LaunchActivity launchActivity, f80 f80Var, boolean[] zArr, Bundle bundle, TLRPC.ChatInvite chatInvite) {
+        this.e = launchActivity;
+        this.f39206a = f80Var;
+        this.f39207b = zArr;
+        this.f39208c = bundle;
+        this.d = chatInvite;
     }
 
-    public final void onBackCancelled() {
-        ActionBarLayout actionBarLayout;
-        this.f38880c = false;
-        this.d = false;
-        if (this.f38879b) {
-            this.f38878a.unlock();
-            this.f38879b = false;
+    @Override
+    public final void onError() {
+        LaunchActivity launchActivity = this.e;
+        if (!launchActivity.isFinishing()) {
+            org.telegram.ui.Components.f5.u0((org.telegram.ui.ActionBar.o2) i2.o1.i(1, launchActivity.f33463d0), null, LocaleController.getString(R.string.JoinToGroupErrorNotExist), null);
         }
-        if (!AndroidUtilities.isTablet() && (actionBarLayout = this.f38881f.f33190q0) != null && actionBarLayout.f20558c1) {
-            actionBarLayout.f20558c1 = false;
-            actionBarLayout.e(true);
-        }
-    }
-
-    public final void onBackInvoked() {
-        this.d = true;
-        if (this.f38879b) {
-            this.f38878a.unlock();
-            this.f38879b = false;
-        }
-        if (AndroidUtilities.isTablet()) {
-            this.f38881f.onBackPressed();
-        } else if (!this.f38881f.d0(true)) {
-        } else {
-            LaunchActivity launchActivity = this.f38881f;
-            ActionBarLayout actionBarLayout = launchActivity.f33190q0;
-            if (actionBarLayout != null) {
-                if (!actionBarLayout.f20558c1) {
-                    actionBarLayout.G();
-                    return;
-                }
-                actionBarLayout.f20558c1 = false;
-                actionBarLayout.e(false);
-                return;
-            }
-            launchActivity.onBackPressed();
+        try {
+            this.f39206a.run();
+        } catch (Exception e) {
+            FileLog.e(e);
         }
     }
 
-    public final void onBackProgressed(android.window.BackEvent r11) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.la0.onBackProgressed(android.window.BackEvent):void");
-    }
-
-    public final void onBackStarted(BackEvent backEvent) {
-        this.f38880c = true;
-        this.d = false;
-        this.e = false;
+    @Override
+    public final void onMessagesLoaded(boolean z10) {
+        try {
+            this.f39206a.run();
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
+        if (this.f39207b[0]) {
+            return;
+        }
+        sn snVar = new sn(this.f39208c);
+        TLRPC.ChatInvite chatInvite = this.d;
+        if (chatInvite instanceof TLRPC.TL_chatInvitePeek) {
+            snVar.W5 = chatInvite;
+        }
+        ((ActionBarLayout) this.e.O()).Q(snVar);
     }
 }

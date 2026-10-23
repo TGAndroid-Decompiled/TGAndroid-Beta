@@ -5,14 +5,14 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.cp0;
+import org.telegram.ui.Components.gp0;
 import org.telegram.ui.Components.p31;
-import org.telegram.ui.tt;
-public final class b5 implements cp0 {
-    public final tt f22051a;
+import org.telegram.ui.wt;
+public final class b5 implements gp0 {
+    public final wt f22138a;
 
-    public b5(tt ttVar) {
-        this.f22051a = ttVar;
+    public b5(wt wtVar) {
+        this.f22138a = wtVar;
     }
 
     @Override
@@ -35,23 +35,23 @@ public final class b5 implements cp0 {
             }
         }
         int i11 = (int) d;
-        tt ttVar = this.f22051a;
+        wt wtVar = this.f22138a;
         long j10 = i11;
         boolean z11 = true;
-        ttVar.f22093b.setText(LocaleController.formatString("AutodownloadSizeLimitUpTo", R.string.AutodownloadSizeLimitUpTo, AndroidUtilities.formatFileSize(j10)));
-        ttVar.d = j10;
-        v8[] v8VarArr = ttVar.h;
-        AnimatorSet[] animatorSetArr = ttVar.f41750n;
-        int i12 = ttVar.e;
-        i10 = ttVar.f41751r.videosRow;
+        wtVar.f22204b.setText(LocaleController.formatString("AutodownloadSizeLimitUpTo", R.string.AutodownloadSizeLimitUpTo, AndroidUtilities.formatFileSize(j10)));
+        wtVar.d = j10;
+        w8[] w8VarArr = wtVar.h;
+        AnimatorSet[] animatorSetArr = wtVar.f43434n;
+        int i12 = wtVar.e;
+        i10 = wtVar.f43435r.videosRow;
         if (i12 == i10) {
-            ttVar.f41749f.setText(LocaleController.formatString("AutoDownloadPreloadVideoInfo", R.string.AutoDownloadPreloadVideoInfo, AndroidUtilities.formatFileSize(j10)));
+            wtVar.f43433f.setText(LocaleController.formatString("AutoDownloadPreloadVideoInfo", R.string.AutoDownloadPreloadVideoInfo, AndroidUtilities.formatFileSize(j10)));
             if (i11 <= 2097152) {
                 z11 = false;
             }
-            if (z11 != v8VarArr[0].isEnabled()) {
+            if (z11 != w8VarArr[0].isEnabled()) {
                 ArrayList arrayList = new ArrayList();
-                v8VarArr[0].e(arrayList, z11);
+                w8VarArr[0].e(arrayList, z11);
                 AnimatorSet animatorSet = animatorSetArr[0];
                 if (animatorSet != null) {
                     animatorSet.cancel();
@@ -60,7 +60,7 @@ public final class b5 implements cp0 {
                 AnimatorSet animatorSet2 = new AnimatorSet();
                 animatorSetArr[0] = animatorSet2;
                 animatorSet2.playTogether(arrayList);
-                animatorSetArr[0].addListener(new p31(ttVar, 20));
+                animatorSetArr[0].addListener(new p31(wtVar, 21));
                 animatorSetArr[0].setDuration(150L);
                 animatorSetArr[0].start();
             }
@@ -75,10 +75,10 @@ public final class b5 implements cp0 {
     @Override
     public final CharSequence getContentDescription() {
         StringBuilder sb2 = new StringBuilder();
-        tt ttVar = this.f22051a;
-        sb2.append((Object) ttVar.f22092a.getText());
+        wt wtVar = this.f22138a;
+        sb2.append((Object) wtVar.f22203a.getText());
         sb2.append(" ");
-        sb2.append((Object) ttVar.f22093b.getText());
+        sb2.append((Object) wtVar.f22204b.getText());
         return sb2.toString();
     }
 

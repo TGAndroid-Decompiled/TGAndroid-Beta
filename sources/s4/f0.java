@@ -2,19 +2,19 @@ package s4;
 
 import androidx.recyclerview.widget.RecyclerView;
 public final class f0 implements Runnable {
-    public final int f45960a;
-    public final RecyclerView f45961b;
+    public final int f46382a;
+    public final RecyclerView f46383b;
 
     public f0(RecyclerView recyclerView, int i10) {
-        this.f45960a = i10;
-        this.f45961b = recyclerView;
+        this.f46382a = i10;
+        this.f46383b = recyclerView;
     }
 
     @Override
     public final void run() {
-        switch (this.f45960a) {
+        switch (this.f46382a) {
             case 0:
-                RecyclerView recyclerView = this.f45961b;
+                RecyclerView recyclerView = this.f46383b;
                 if (recyclerView.I && !recyclerView.isLayoutRequested()) {
                     if (!recyclerView.G) {
                         recyclerView.requestLayout();
@@ -29,8 +29,8 @@ public final class f0 implements Runnable {
                 }
                 return;
             default:
-                RecyclerView recyclerView2 = this.f45961b;
-                l0 l0Var = recyclerView2.f3606c0;
+                RecyclerView recyclerView2 = this.f46383b;
+                l0 l0Var = recyclerView2.f3613c0;
                 if (l0Var != null) {
                     l0Var.m();
                 }

@@ -1,28 +1,69 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.view.MotionEvent;
+import android.view.View;
 import android.view.ViewGroup;
-import org.telegram.ui.Components.ThemeEditorView;
-public final class l21 extends EditTextBoldCursor {
-    public final n21 f28014b;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+public final class l21 extends lm0 {
+    public Context f28205c;
+    public ArrayList d;
 
-    public l21(n21 n21Var, Context context) {
-        super(context);
-        this.f28014b = n21Var;
+    @Override
+    public final boolean D(s4.b1 b1Var) {
+        return true;
     }
 
     @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        ViewGroup viewGroup;
-        MotionEvent obtain = MotionEvent.obtain(motionEvent);
-        float rawX = obtain.getRawX();
-        float rawY = obtain.getRawY();
-        ThemeEditorView.EditorAlert editorAlert = this.f28014b.f28672c;
-        viewGroup = ((org.telegram.ui.ActionBar.f3) editorAlert).containerView;
-        obtain.setLocation(rawX, rawY - viewGroup.getTranslationY());
-        editorAlert.f24402c.dispatchTouchEvent(obtain);
-        obtain.recycle();
-        return super.dispatchTouchEvent(motionEvent);
+    public final int h() {
+        ArrayList arrayList = this.d;
+        if (arrayList.isEmpty()) {
+            return 0;
+        }
+        return arrayList.size() + 1;
+    }
+
+    @Override
+    public final int j(int i10) {
+        if (i10 == 0) {
+            return 1;
+        }
+        return 0;
+    }
+
+    @Override
+    public final void v(s4.b1 b1Var, int i10) {
+        int c10;
+        if (b1Var.f46346f == 0) {
+            boolean z10 = true;
+            org.telegram.ui.ActionBar.t6 t6Var = (org.telegram.ui.ActionBar.t6) ((ArrayList) this.d.get(i10 - 1)).get(0);
+            if (t6Var.e == org.telegram.ui.ActionBar.k6.Nd) {
+                c10 = 0;
+            } else {
+                c10 = t6Var.c();
+            }
+            org.telegram.ui.Cells.z8 z8Var = (org.telegram.ui.Cells.z8) b1Var.f46343a;
+            z8Var.f24028a.setText(org.telegram.ui.ActionBar.k5.i(t6Var.e));
+            z8Var.f24029b = c10;
+            if (c10 != 0) {
+                z10 = false;
+            }
+            z8Var.setWillNotDraw(z10);
+            z8Var.invalidate();
+        }
+    }
+
+    @Override
+    public final s4.b1 x(ViewGroup viewGroup, int i10) {
+        View z8Var;
+        Context context = this.f28205c;
+        if (i10 != 0) {
+            z8Var = new View(context);
+            z8Var.setLayoutParams(new s4.o0(-1, AndroidUtilities.dp(56.0f)));
+        } else {
+            z8Var = new org.telegram.ui.Cells.z8(context);
+            z8Var.setLayoutParams(new s4.o0(-1, -2));
+        }
+        return new s4.b1(z8Var);
     }
 }

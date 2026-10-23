@@ -2,9 +2,9 @@ package bc;
 
 import java.util.ArrayList;
 public final class b {
-    public final ArrayList f4245a;
+    public final ArrayList f4252a;
 
     public b(ArrayList arrayList) {
-        this.f4245a = arrayList;
+        this.f4252a = arrayList;
     }
 }

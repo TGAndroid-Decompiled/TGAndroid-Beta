@@ -1,62 +1,29 @@
 package org.telegram.ui.Wallet;
 
-import android.text.TextUtils;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.xc;
-public final class u3 implements Utilities.Callback {
-    public final int f34993a;
-    public final ei.d f34994b;
-    public final org.telegram.ui.ActionBar.f3 f34995c;
-    public final org.telegram.ui.ActionBar.d6 d;
+import android.animation.ValueAnimator;
+public final class u3 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f35290a;
+    public final o5 f35291b;
 
-    public u3(ei.d dVar, org.telegram.ui.ActionBar.f3 f3Var, org.telegram.ui.ActionBar.d6 d6Var, int i10) {
-        this.f34993a = i10;
-        this.f34994b = dVar;
-        this.f34995c = f3Var;
-        this.d = d6Var;
+    public u3(o5 o5Var, int i10) {
+        this.f35290a = i10;
+        this.f35291b = o5Var;
     }
 
     @Override
-    public final void run(Object obj) {
-        String str = (String) obj;
-        switch (this.f34993a) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f35290a) {
             case 0:
-                this.f34994b.setLoading(false);
-                boolean isEmpty = TextUtils.isEmpty(str);
-                org.telegram.ui.ActionBar.f3 f3Var = this.f34995c;
-                if (!isEmpty) {
-                    new xc(f3Var.topBulletinContainer, this.d).e0(str, false);
-                    return;
-                } else {
-                    f3Var.dismiss();
-                    return;
-                }
-            case 1:
-                this.f34994b.setLoading(false);
-                org.telegram.ui.ActionBar.f3 f3Var2 = this.f34995c;
-                if (str != null) {
-                    new xc(f3Var2.topBulletinContainer, this.d).e0(str, false);
-                    return;
-                } else {
-                    f3Var2.dismiss();
-                    return;
-                }
+                o5 o5Var = this.f35291b;
+                o5Var.getClass();
+                o5Var.H0(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
             default:
-                org.telegram.ui.ActionBar.f3 f3Var3 = this.f34995c;
-                if (str != null) {
-                    new xc(f3Var3.topBulletinContainer, this.d).e0(str, false);
-                    return;
-                }
-                this.f34994b.setLoading(false);
-                f3Var3.dismiss();
+                o5 o5Var2 = this.f35291b;
+                o5Var2.getClass();
+                o5Var2.G0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                o5Var2.O0();
                 return;
         }
-    }
-
-    public u3(org.telegram.ui.ActionBar.f3 f3Var, org.telegram.ui.ActionBar.d6 d6Var, ei.d dVar) {
-        this.f34993a = 2;
-        this.f34995c = f3Var;
-        this.d = d6Var;
-        this.f34994b = dVar;
     }
 }

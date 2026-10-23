@@ -6,17 +6,17 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class p30 extends FrameLayout {
-    public final org.telegram.ui.p40 f29202a;
+    public final org.telegram.ui.s40 f29408a;
 
-    public p30(org.telegram.ui.p40 p40Var, Context context) {
+    public p30(org.telegram.ui.s40 s40Var, Context context) {
         super(context);
-        this.f29202a = p40Var;
+        this.f29408a = s40Var;
     }
 
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
-        u30.n(this.f29202a);
+        u30.m(this.f29408a);
     }
 
     @Override
@@ -27,8 +27,8 @@ public final class p30 extends FrameLayout {
         } else {
             z10 = false;
         }
-        org.telegram.ui.p40 p40Var = this.f29202a;
-        ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) p40Var.f30836c.getLayoutParams();
+        org.telegram.ui.s40 s40Var = this.f29408a;
+        ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) s40Var.f31070c.getLayoutParams();
         if (z10) {
             int dp = AndroidUtilities.dp(80.0f);
             marginLayoutParams.leftMargin = dp;
@@ -38,9 +38,9 @@ public final class p30 extends FrameLayout {
             marginLayoutParams.leftMargin = dp2;
             marginLayoutParams.rightMargin = dp2;
         }
-        int A = org.telegram.messenger.nk.A(200.0f, View.MeasureSpec.getSize(i10), 2);
-        p40Var.f30835b.setPadding(A, 0, A, 0);
+        int A = org.telegram.messenger.sl.A(200.0f, View.MeasureSpec.getSize(i10), 2);
+        s40Var.f31069b.setPadding(A, 0, A, 0);
         super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(370.0f), 1073741824));
-        measureChildWithMargins(p40Var.d, View.MeasureSpec.makeMeasureSpec(0, 0), 0, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(64.0f), 1073741824), 0);
+        measureChildWithMargins(s40Var.d, View.MeasureSpec.makeMeasureSpec(0, 0), 0, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(64.0f), 1073741824), 0);
     }
 }

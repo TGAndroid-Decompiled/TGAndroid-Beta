@@ -2,65 +2,79 @@ package eh;
 
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LiteMode;
-import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.ActionBar.r6;
 public class b implements a {
-    public final d6 f8650a;
-    public final int f8651b;
-    public final float f8652c;
+    public final g6 f8657a;
+    public final int f8658b;
+    public final float f8659c;
     public int d;
     public int e;
-    public int f8653f;
+    public int f8660f;
     public int h;
+    public int f8661n;
 
-    public b(int i10, d6 d6Var) {
-        this(d6Var, i10, LiteMode.isEnabled(262144) ? 0.85f : 0.76f);
+    public b(int i10, g6 g6Var) {
+        this(g6Var, i10, LiteMode.isEnabled(262144) ? 0.85f : 0.76f);
     }
 
     @Override
-    public int E() {
+    public int H() {
+        a();
         return this.e;
     }
 
-    public boolean a() {
-        if (AndroidUtilities.computePerceivedBrightness(h6.w0(this.f8651b, this.f8650a)) < 0.721f) {
+    public final void a() {
+        if (this.f8661n != r6.f21817b) {
+            c();
+        }
+    }
+
+    @Override
+    public int a0() {
+        a();
+        return this.d;
+    }
+
+    public boolean b() {
+        if (AndroidUtilities.computePerceivedBrightness(k6.w0(this.f8658b, this.f8657a)) < 0.721f) {
             return true;
         }
         return false;
     }
 
-    @Override
-    public int a0() {
-        return this.d;
-    }
-
-    public final void b() {
-        this.d = h6.m1(this.f8652c, h6.w0(this.f8651b, this.f8650a));
-        if (a()) {
-            this.f8653f = 687865855;
+    public final void c() {
+        this.f8661n = r6.f21817b;
+        this.d = k6.o1(this.f8659c, k6.w0(this.f8658b, this.f8657a));
+        if (b()) {
+            this.f8660f = 687865855;
             this.h = 352321535;
             this.e = 0;
             return;
         }
-        this.f8653f = -1;
+        this.f8660f = -1;
         this.h = -1;
         this.e = 536870912;
     }
 
     @Override
     public int h() {
-        return this.f8653f;
+        a();
+        return this.f8660f;
     }
 
     @Override
     public int u() {
+        a();
         return this.h;
     }
 
-    public b(d6 d6Var, int i10, float f7) {
-        this.f8650a = d6Var;
-        this.f8651b = i10;
-        this.f8652c = f7;
-        b();
+    public b(g6 g6Var, int i10, float f7) {
+        this.f8661n = r6.f21817b;
+        this.f8657a = g6Var;
+        this.f8658b = i10;
+        this.f8659c = f7;
+        c();
     }
 }

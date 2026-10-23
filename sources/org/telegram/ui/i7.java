@@ -18,6 +18,6 @@ public abstract class i7 extends pg.b {
 
     @Override
     public final int j(int i10) {
-        return ((p7) this.e.get(i10)).f44300a;
+        return ((p7) this.e.get(i10)).f44713a;
     }
 }

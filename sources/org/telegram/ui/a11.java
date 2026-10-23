@@ -1,32 +1,83 @@
 package org.telegram.ui;
-public final class a11 implements Runnable {
-    public final int f35247a;
-    public final e11 f35248b;
-    public final int f35249c;
 
-    public a11(e11 e11Var, int i10, int i11) {
-        this.f35247a = i11;
-        this.f35248b = e11Var;
-        this.f35249c = i10;
+import android.content.SharedPreferences;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.MessagesStorage;
+import org.telegram.messenger.NotificationsController;
+import org.telegram.tgnet.TLRPC;
+public final class a11 extends org.telegram.ui.ActionBar.j {
+    public final String f35548a;
+    public final d11 f35549b;
+
+    public a11(d11 d11Var, String str) {
+        this.f35549b = d11Var;
+        this.f35548a = str;
     }
 
     @Override
-    public final void run() {
-        switch (this.f35247a) {
-            case 0:
-                e11 e11Var = this.f35248b;
-                org.telegram.ui.Components.d91 d91Var = e11Var.f36523n;
-                d11 d11Var = e11Var.f36525s;
-                int i10 = this.f35249c;
-                d91Var.d(i10, d11Var.i(i10));
-                return;
-            default:
-                e11 e11Var2 = this.f35248b;
-                org.telegram.ui.Components.d91 d91Var2 = e11Var2.f36523n;
-                d11 d11Var2 = e11Var2.f36525s;
-                int i11 = this.f35249c;
-                d91Var2.d(i11, d11Var2.i(i11));
-                return;
+    public final void b(int i10) {
+        int i11;
+        int i12;
+        int i13;
+        int i14;
+        int i15;
+        int i16;
+        int i17;
+        d11 d11Var = this.f35549b;
+        long j10 = d11Var.f36474f;
+        long j11 = d11Var.e;
+        String str = this.f35548a;
+        if (i10 == -1) {
+            if (!d11Var.h && d11Var.f36475n) {
+                i17 = ((org.telegram.ui.ActionBar.o2) d11Var).currentAccount;
+                SharedPreferences.Editor edit = MessagesController.getNotificationsSettings(i17).edit();
+                edit.putInt("notify2_" + str, 0).apply();
+            }
+        } else if (i10 == 1) {
+            i11 = ((org.telegram.ui.ActionBar.o2) d11Var).currentAccount;
+            SharedPreferences notificationsSettings = MessagesController.getNotificationsSettings(i11);
+            SharedPreferences.Editor edit2 = notificationsSettings.edit();
+            edit2.putBoolean("custom_" + str, true);
+            i12 = ((org.telegram.ui.ActionBar.o2) d11Var).currentAccount;
+            TLRPC.Dialog dialog = (TLRPC.Dialog) MessagesController.getInstance(i12).dialogs_dict.f(j11);
+            if (d11Var.f36475n) {
+                edit2.putInt("notify2_" + str, 0);
+                if (j10 == 0) {
+                    i16 = ((org.telegram.ui.ActionBar.o2) d11Var).currentAccount;
+                    MessagesStorage.getInstance(i16).setDialogFlags(j11, 0L);
+                    if (dialog != null) {
+                        dialog.notify_settings = new TLRPC.TL_peerNotifySettings();
+                    }
+                }
+            } else {
+                edit2.putInt("notify2_" + str, 2);
+                if (j10 == 0) {
+                    i13 = ((org.telegram.ui.ActionBar.o2) d11Var).currentAccount;
+                    NotificationsController.getInstance(i13).removeNotificationsForDialog(j11);
+                    i14 = ((org.telegram.ui.ActionBar.o2) d11Var).currentAccount;
+                    MessagesStorage.getInstance(i14).setDialogFlags(j11, 1L);
+                    if (dialog != null) {
+                        TLRPC.TL_peerNotifySettings tL_peerNotifySettings = new TLRPC.TL_peerNotifySettings();
+                        dialog.notify_settings = tL_peerNotifySettings;
+                        tL_peerNotifySettings.mute_until = Integer.MAX_VALUE;
+                    }
+                }
+            }
+            edit2.apply();
+            i15 = ((org.telegram.ui.ActionBar.o2) d11Var).currentAccount;
+            NotificationsController.getInstance(i15).updateServerNotificationsSettings(j11, j10);
+            if (d11Var.f36476r != null) {
+                ?? obj = new Object();
+                obj.d = j11;
+                obj.f38255b = true;
+                int c10 = org.telegram.messenger.v0.c("notify2_", str, notificationsSettings, 0);
+                obj.f38256c = c10;
+                if (c10 != 0) {
+                    obj.f38254a = org.telegram.messenger.v0.c("notifyuntil_", str, notificationsSettings, 0);
+                }
+                d11Var.f36476r.r(obj);
+            }
         }
+        d11Var.finishFragment();
     }
 }

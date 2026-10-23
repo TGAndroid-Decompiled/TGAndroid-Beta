@@ -1,4 +1,6 @@
 package hb;
+
+import i2.o1;
 public class b1 extends eb.u {
     @Override
     public final Object read(mb.a aVar) {
@@ -11,9 +13,9 @@ public class b1 extends eb.u {
             if (p5 <= 255 && p5 >= -128) {
                 return Byte.valueOf((byte) p5);
             }
-            StringBuilder l4 = i2.e.l(p5, "Lossy conversion from ", " to byte; at path ");
-            l4.append(aVar.j());
-            throw new RuntimeException(l4.toString());
+            StringBuilder n10 = o1.n(p5, "Lossy conversion from ", " to byte; at path ");
+            n10.append(aVar.j());
+            throw new RuntimeException(n10.toString());
         } catch (NumberFormatException e) {
             throw new RuntimeException(e);
         }

@@ -1,29 +1,33 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.MotionEvent;
-import android.widget.EditText;
-public final class wa0 extends EditText {
-    public final int f42528a;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class wa0 implements Runnable {
+    public final int f42985a;
+    public final gb0 f42986b;
 
-    public wa0(Context context, int i10) {
-        super(context);
-        this.f42528a = i10;
+    public wa0(gb0 gb0Var, int i10) {
+        this.f42985a = i10;
+        this.f42986b = gb0Var;
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.f42528a) {
+    public final void run() {
+        switch (this.f42985a) {
             case 0:
-                if (motionEvent.getAction() == 1) {
-                    setCursorVisible(true);
-                }
-                return super.onTouchEvent(motionEvent);
+                gb0 gb0Var = this.f42986b;
+                gb0Var.f37558r.d.clearFocus();
+                AndroidUtilities.hideKeyboard(gb0Var.f37558r.d);
+                return;
+            case 1:
+                pf.d.r(this.f42986b.getParentActivity(), LocaleController.getString(R.string.RequireMonthlyFeeInfoLink));
+                return;
             default:
-                if (motionEvent.getAction() == 1) {
-                    setCursorVisible(true);
-                }
-                return super.onTouchEvent(motionEvent);
+                gb0 gb0Var2 = this.f42986b;
+                gb0Var2.f37558r.d.requestFocus();
+                AndroidUtilities.showKeyboard(gb0Var2.f37558r.d);
+                return;
         }
     }
 }

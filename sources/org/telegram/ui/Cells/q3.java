@@ -1,21 +1,11 @@
 package org.telegram.ui.Cells;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class q3 extends AnimatorListenerAdapter {
-    public final r3 f22781a;
-
-    public q3(r3 r3Var) {
-        this.f22781a = r3Var;
-    }
-
+import android.text.TextPaint;
+import org.telegram.ui.Components.m10;
+public final class q3 extends m10 {
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        r3 r3Var = this.f22781a;
-        if (r3Var.f22946r) {
-            r3Var.d.setVisibility(4);
-        } else {
-            r3Var.e.setVisibility(4);
-        }
+    public final void updateDrawState(TextPaint textPaint) {
+        super.updateDrawState(textPaint);
+        textPaint.setUnderlineText(true);
     }
 }

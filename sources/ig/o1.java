@@ -1,52 +1,74 @@
 package ig;
 
-import android.app.Activity;
-import ei.e4;
-import java.util.ArrayList;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.ActionBar.n2;
-public final class o1 extends org.telegram.ui.ActionBar.j {
-    public final x1 f12984a;
+import android.content.Context;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import org.telegram.ui.ActionBar.h5;
+import org.telegram.ui.Components.ow0;
+import org.telegram.ui.Components.tz;
+public final class o1 extends ow0 {
+    public final int f13015w0;
 
-    public o1(x1 x1Var) {
-        this.f12984a = x1Var;
+    public o1(Context context, h5 h5Var, int i10) {
+        super(context, h5Var);
+        this.f13015w0 = i10;
     }
 
     @Override
-    public final void b(int i10) {
-        int i11;
-        int i12;
-        d6 d6Var;
-        x1 x1Var = this.f12984a;
-        ArrayList arrayList = x1Var.f13084b;
-        if (i10 == -1) {
-            if (arrayList.isEmpty()) {
-                x1Var.finishFragment();
-            } else {
-                x1.X(x1Var);
-            }
-        } else if (i10 == 1) {
-            if (arrayList.size() == 1) {
-                int intValue = ((Integer) arrayList.get(0)).intValue();
-                i11 = ((n2) x1Var).currentAccount;
-                z1 c10 = a2.f(i11).c(intValue);
-                if (c10 != null) {
-                    Activity parentActivity = x1Var.getParentActivity();
-                    i12 = ((n2) x1Var).currentAccount;
-                    d6Var = ((n2) x1Var).resourceProvider;
-                    x1.d0(parentActivity, i12, null, c10, d6Var, new e4(this, intValue, 2));
+    public boolean O() {
+        switch (this.f13015w0) {
+            case 2:
+                return false;
+            case 3:
+                return false;
+            case 4:
+            default:
+                return super.O();
+            case 5:
+                return false;
+        }
+    }
+
+    @Override
+    public void addView(View view) {
+        switch (this.f13015w0) {
+            case 4:
+                if (view instanceof tz) {
+                    ViewGroup.LayoutParams layoutParams = ((tz) view).getLayoutParams();
+                    if (layoutParams == null) {
+                        layoutParams = new FrameLayout.LayoutParams(-1, -2);
+                    }
+                    if (layoutParams instanceof FrameLayout.LayoutParams) {
+                        ((FrameLayout.LayoutParams) layoutParams).gravity = 87;
+                    }
+                    view.setLayoutParams(layoutParams);
                 }
-            }
-        } else if (i10 == 2) {
-            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(x1Var.getParentActivity(), 0, x1Var.getResourceProvider());
-            alertDialog$Builder.f20609a.R = LocaleController.formatPluralString("BusinessRepliesDeleteTitle", arrayList.size(), new Object[0]);
-            alertDialog$Builder.f20609a.T = LocaleController.formatPluralString("BusinessRepliesDeleteMessage", arrayList.size(), new Object[0]);
-            alertDialog$Builder.k(LocaleController.getString(R.string.Remove), new e1.c(this, 22));
-            alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-            x1Var.showDialog(alertDialog$Builder.f20609a);
+                super.addView(view);
+                return;
+            default:
+                super.addView(view);
+                return;
+        }
+    }
+
+    @Override
+    public void onLayout(boolean r17, int r18, int r19, int r20, int r21) {
+        throw new UnsupportedOperationException("Method not decompiled: ig.o1.onLayout(boolean, int, int, int, int):void");
+    }
+
+    @Override
+    public void onMeasure(int i10, int i11) {
+        switch (this.f13015w0) {
+            case 0:
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i11), 1073741824));
+                return;
+            case 1:
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i11), 1073741824));
+                return;
+            default:
+                super.onMeasure(i10, i11);
+                return;
         }
     }
 }

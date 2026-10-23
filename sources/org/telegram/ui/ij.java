@@ -1,10 +1,10 @@
 package org.telegram.ui;
 public final class ij extends qh.i {
-    public final qn H;
+    public final sn H;
 
-    public ij(qn qnVar, kf kfVar) {
+    public ij(sn snVar, kf kfVar) {
         super(kfVar);
-        this.H = qnVar;
+        this.H = snVar;
     }
 
     @Override

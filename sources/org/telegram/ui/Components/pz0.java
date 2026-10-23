@@ -1,25 +1,23 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class pz0 extends AnimatorListenerAdapter {
-    public final int f29420a;
-    public final Switch f29421b;
+import org.telegram.messenger.SharedConfig;
+public final class pz0 implements md0, od0 {
+    public final rz0 f29703a;
 
-    public pz0(Switch r12, int i10) {
-        this.f29420a = i10;
-        this.f29421b = r12;
+    @Override
+    public String e(int i10) {
+        return this.f29703a.f30294n[i10];
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f29420a) {
-            case 0:
-                this.f29421b.d = null;
-                return;
-            default:
-                this.f29421b.e = null;
-                return;
+    public void n(qd0 qd0Var, int i10) {
+        rz0 rz0Var = this.f29703a;
+        rz0Var.b();
+        SharedConfig.updateChatListSwipeSetting(i10);
+        rz0Var.invalidate();
+        try {
+            qd0Var.performHapticFeedback(3, 2);
+        } catch (Exception unused) {
         }
     }
 }

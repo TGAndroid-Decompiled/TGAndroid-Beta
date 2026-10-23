@@ -1,76 +1,151 @@
 package ci;
 
-import android.animation.ValueAnimator;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.view.SurfaceView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-public final class i9 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f5517a;
-    public final aa f5518b;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.SharedConfig;
+import org.telegram.ui.Components.ck0;
+public final class i9 extends AnimatorListenerAdapter {
+    public final int f5459a;
+    public final z9 f5460b;
 
-    public i9(aa aaVar, int i10) {
-        this.f5517a = i10;
-        this.f5518b = aaVar;
+    public i9(z9 z9Var, int i10) {
+        this.f5459a = i10;
+        this.f5460b = z9Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        q4 currentPeerView;
-        switch (this.f5517a) {
+    public final void onAnimationEnd(Animator animator) {
+        p4 t10;
+        ck0 ck0Var;
+        switch (this.f5459a) {
             case 0:
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                aa aaVar = this.f5518b;
-                aaVar.U = floatValue;
-                aaVar.o();
-                o9 o9Var = aaVar.f5214s;
+                super.onAnimationEnd(animator);
+                z9 z9Var = this.f5460b;
+                w9 w9Var = z9Var.f6261s0;
+                o9 o9Var = z9Var.v;
                 if (o9Var != null) {
-                    o9Var.invalidate();
+                    o9Var.a(true);
                 }
-                h1 h1Var = aaVar.A0;
-                if (h1Var != null) {
-                    h1Var.v((1.0f - aaVar.V) * aaVar.U);
+                z9Var.o();
+                z9Var.J0.unlock();
+                l7 l7Var = z9Var.f6266u1;
+                if (l7Var != null) {
+                    l7Var.b();
+                    AndroidUtilities.removeFromParent(z9Var.f6266u1);
+                    z9Var.f6266u1 = null;
+                }
+                ImageReceiver imageReceiver = w9Var.f6068b;
+                if (imageReceiver != null) {
+                    imageReceiver.setVisible(true, true);
+                    w9Var.f6068b = null;
+                }
+                ImageReceiver imageReceiver2 = w9Var.f6069c;
+                if (imageReceiver2 != null) {
+                    imageReceiver2.setAlpha(1.0f);
+                    w9Var.f6069c.setVisible(true, true);
+                }
+                if (w9Var.d != null && (t10 = z9Var.t()) != null && (ck0Var = t10.f5693o1.d) != null) {
+                    ck0 ck0Var2 = w9Var.d;
+                    ck0Var2.getClass();
+                    ck0Var2.f25354c = ck0Var.f25354c;
+                    ck0Var2.f25355f = ck0Var.f25355f;
+                    ck0Var2.f25353b = ck0Var.f25353b;
+                    ck0Var2.f25352a = System.currentTimeMillis();
+                    ck0Var2.c();
+                }
+                o4 o4Var = z9Var.G0;
+                if (o4Var != null) {
+                    o4Var.b();
+                }
+                SurfaceView surfaceView = z9Var.C0;
+                if (surfaceView != null) {
+                    surfaceView.setVisibility(4);
+                }
+                z9Var.I();
+                try {
+                    AndroidUtilities.runOnUIThread(new androidx.fragment.app.d(this, 26));
+                } catch (Exception unused) {
+                }
+                z9Var.m0 = false;
+                z9Var.d = false;
+                s3 s3Var = z9Var.f6252o1;
+                if (s3Var != null) {
+                    s3Var.run();
+                    z9Var.f6252o1 = null;
                     return;
                 }
                 return;
             case 1:
-                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                aa aaVar2 = this.f5518b;
-                aaVar2.U = floatValue2;
-                p9 p9Var = aaVar2.v;
-                if (p9Var != null && floatValue2 > 0.6f && w.f6095c && p9Var.f6096a) {
-                    p9Var.a(false);
+                z9 z9Var2 = this.f5460b;
+                p4 p4Var = null;
+                z9Var2.H = null;
+                z9Var2.Z = 0.0f;
+                z9Var2.f6229d0 = 0.0f;
+                p9 p9Var = z9Var2.f6249n0;
+                if (p9Var != null) {
+                    p4Var = p9Var.getCurrentPeerView();
                 }
-                h1 h1Var2 = aaVar2.A0;
-                if (h1Var2 != null) {
-                    h1Var2.v((1.0f - aaVar2.V) * aaVar2.U);
-                }
-                aaVar2.o();
-                o9 o9Var2 = aaVar2.f5214s;
-                if (o9Var2 != null) {
-                    o9Var2.invalidate();
-                    return;
-                }
-                return;
-            case 2:
-                float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                aa aaVar3 = this.f5518b;
-                aaVar3.Z = floatValue3;
-                aaVar3.f5183d0 = Utilities.clamp(aaVar3.Z / AndroidUtilities.dp(200.0f), 1.0f, 0.0f);
-                q9 q9Var = aaVar3.f5203n0;
-                if (q9Var == null) {
-                    currentPeerView = null;
-                } else {
-                    currentPeerView = q9Var.getCurrentPeerView();
-                }
-                if (currentPeerView != null) {
-                    currentPeerView.invalidate();
+                if (p4Var != null) {
+                    p4Var.invalidate();
                     return;
                 }
                 return;
             default:
-                float floatValue4 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                aa aaVar4 = this.f5518b;
-                aaVar4.f5185e0 = floatValue4;
-                aaVar4.v.invalidate();
+                z9 z9Var3 = this.f5460b;
+                w9 w9Var2 = z9Var3.f6261s0;
+                z9Var3.U = 1.0f;
+                z9Var3.o();
+                z9.f6217x1 = false;
+                o9 o9Var2 = z9Var3.v;
+                if (o9Var2 != null) {
+                    o9Var2.a(true);
+                }
+                n9 n9Var = z9Var3.f6260s;
+                if (n9Var != null) {
+                    n9Var.invalidate();
+                }
+                ImageReceiver imageReceiver3 = w9Var2.f6068b;
+                if (imageReceiver3 != null && !z9Var3.d) {
+                    imageReceiver3.setVisible(true, true);
+                    w9Var2.f6068b = null;
+                }
+                ImageReceiver imageReceiver4 = w9Var2.f6069c;
+                if (imageReceiver4 != null && !z9Var3.d) {
+                    imageReceiver4.setAlpha(1.0f);
+                    w9Var2.f6069c.setVisible(true, true);
+                    w9Var2.f6069c = null;
+                }
+                p4 t11 = z9Var3.t();
+                if (t11 != null) {
+                    t11.e1(false);
+                }
+                h1 h1Var = z9Var3.A0;
+                if (h1Var != null) {
+                    h1Var.v((1.0f - z9Var3.V) * z9Var3.U);
+                }
+                if (z9Var3.f6271w1) {
+                    z9Var3.f6271w1 = false;
+                    z9Var3.p();
+                    AndroidUtilities.runOnUIThread(new s3(z9Var3, 1), 30L);
+                } else if (!SharedConfig.storiesIntroShown) {
+                    if (z9Var3.f6266u1 == null && z9Var3.v != null) {
+                        l7 l7Var2 = new l7(z9Var3.v.getContext(), z9Var3.f6260s);
+                        z9Var3.f6266u1 = l7Var2;
+                        l7Var2.setAlpha(0.0f);
+                        z9Var3.v.addView(z9Var3.f6266u1);
+                    }
+                    l7 l7Var3 = z9Var3.f6266u1;
+                    if (l7Var3 != null) {
+                        l7Var3.setOnClickListener(new ah.g0(this, 16));
+                        z9Var3.f6266u1.animate().alpha(1.0f).setDuration(150L).setListener(new s9(this, 1)).start();
+                    }
+                    SharedConfig.setStoriesIntroShown(true);
+                }
+                z9Var3.P();
+                z9Var3.J0.unlock();
                 return;
         }
     }

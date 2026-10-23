@@ -1,21 +1,51 @@
 package org.telegram.ui;
-public final class fn0 implements Runnable {
-    public final int f37047a;
-    public final Object f37048b;
-    public final Object f37049c;
-    public final Object d;
-    public final Object e;
 
-    public fn0(Object obj, Object obj2, Object obj3, Object obj4, int i10) {
-        this.f37047a = i10;
-        this.f37048b = obj;
-        this.f37049c = obj2;
-        this.d = obj3;
-        this.e = obj4;
+import org.telegram.messenger.AndroidUtilities;
+public final class fn0 implements Runnable {
+    public final int f37374a;
+    public final io0 f37375b;
+
+    public fn0(io0 io0Var, int i10) {
+        this.f37374a = i10;
+        this.f37375b = io0Var;
     }
 
     @Override
     public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.fn0.run():void");
+        switch (this.f37374a) {
+            case 0:
+                io0 io0Var = this.f37375b;
+                io0Var.f38300f[0].requestFocus();
+                AndroidUtilities.showKeyboard(io0Var.f38300f[0]);
+                return;
+            case 1:
+                this.f37375b.t0();
+                return;
+            case 2:
+                io0 io0Var2 = this.f37375b;
+                io0Var2.getMessagesController().newMessageCallback = null;
+                if (io0Var2.f38302f1 == 3 && !io0Var2.isFinishing()) {
+                    io0Var2.f38302f1 = 4;
+                    ho0 ho0Var = io0Var2.Z0;
+                    if (ho0Var != null) {
+                        ho0Var.a(4);
+                    }
+                    io0Var2.finishFragment();
+                    return;
+                } else if (io0Var2.f38302f1 == 1 && !io0Var2.isFinishing()) {
+                    io0Var2.finishFragment();
+                    return;
+                } else {
+                    return;
+                }
+            default:
+                io0 io0Var3 = this.f37375b;
+                if (io0Var3.f38296d0 != null) {
+                    io0Var3.w0();
+                    io0Var3.f38296d0 = null;
+                    return;
+                }
+                return;
+        }
     }
 }

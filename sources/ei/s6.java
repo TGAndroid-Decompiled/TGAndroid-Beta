@@ -9,23 +9,23 @@ import android.view.TextureView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 public final class s6 implements Runnable {
-    public final int f9789a;
-    public final v6 f9790b;
+    public final int f9805a;
+    public final v6 f9806b;
 
     public s6(v6 v6Var, int i10) {
-        this.f9789a = i10;
-        this.f9790b = v6Var;
+        this.f9805a = i10;
+        this.f9806b = v6Var;
     }
 
     @Override
     public final void run() {
         boolean z10;
         r8.n nVar;
-        switch (this.f9789a) {
+        switch (this.f9805a) {
             case 0:
-                v6 v6Var = this.f9790b;
-                if (v6Var.f9936a.get() != null && v6Var.f9939f != null && !v6Var.f9937b.get()) {
-                    TextureView textureView = v6Var.f9939f.getTextureView();
+                v6 v6Var = this.f9806b;
+                if (v6Var.f9953a.get() != null && v6Var.f9956f != null && !v6Var.f9954b.get()) {
+                    TextureView textureView = v6Var.f9956f.getTextureView();
                     if (textureView != null) {
                         int width = textureView.getWidth();
                         int height = textureView.getHeight();
@@ -39,28 +39,28 @@ public final class s6 implements Runnable {
                         boolean z11 = true;
                         int max = Math.max(1, width);
                         int max2 = Math.max(1, height);
-                        Bitmap bitmap = v6Var.f9940g;
-                        if (bitmap == null || max != bitmap.getWidth() || max2 != v6Var.f9940g.getHeight()) {
-                            v6Var.f9940g = Bitmap.createBitmap(max, max2, Bitmap.Config.ARGB_8888);
+                        Bitmap bitmap = v6Var.f9957g;
+                        if (bitmap == null || max != bitmap.getWidth() || max2 != v6Var.f9957g.getHeight()) {
+                            v6Var.f9957g = Bitmap.createBitmap(max, max2, Bitmap.Config.ARGB_8888);
                         }
-                        textureView.getBitmap(v6Var.f9940g);
-                        Bitmap bitmap2 = v6Var.f9940g;
+                        textureView.getBitmap(v6Var.f9957g);
+                        Bitmap bitmap2 = v6Var.f9957g;
                         String str = v6Var.e;
                         t6 t6Var = null;
-                        if (bitmap2 != null && (nVar = (r8.n) v6Var.f9936a.get()) != null && nVar.f45129b.k()) {
+                        if (bitmap2 != null && (nVar = (r8.n) v6Var.f9953a.get()) != null && nVar.f45541b.k()) {
                             int width2 = bitmap2.getWidth();
                             int height2 = bitmap2.getHeight();
                             m.g3 g3Var = new m.g3(22);
                             int width3 = bitmap2.getWidth();
                             int height3 = bitmap2.getHeight();
                             g3Var.d = bitmap2;
-                            a3.l lVar = (a3.l) g3Var.f16202b;
+                            a3.l lVar = (a3.l) g3Var.f16265b;
                             lVar.f139a = width3;
                             lVar.f140b = height3;
                             SparseArray e12 = nVar.e1(g3Var);
                             for (int i10 = 0; i10 < e12.size(); i10++) {
                                 r8.m mVar = (r8.m) e12.valueAt(i10);
-                                String str2 = mVar.f45120b;
+                                String str2 = mVar.f45532b;
                                 Point[] pointArr = mVar.e;
                                 if (str2 != null) {
                                     String trim = str2.trim();
@@ -90,9 +90,9 @@ public final class s6 implements Runnable {
                         }
                         if (z10 == z11) {
                             if (t6Var != null && t6Var2 != null) {
-                                PointF[] pointFArr2 = t6Var.f9852b;
-                                PointF[] pointFArr3 = t6Var2.f9852b;
-                                if (TextUtils.equals(t6Var.f9851a, t6Var2.f9851a)) {
+                                PointF[] pointFArr2 = t6Var.f9868b;
+                                PointF[] pointFArr3 = t6Var2.f9868b;
+                                if (TextUtils.equals(t6Var.f9867a, t6Var2.f9867a)) {
                                     if (pointFArr2 != pointFArr3) {
                                         if (pointFArr2.length == pointFArr3.length) {
                                             for (int i12 = 0; i12 < pointFArr2.length; i12++) {
@@ -107,7 +107,7 @@ public final class s6 implements Runnable {
                         v6Var.d = t6Var;
                         AndroidUtilities.runOnUIThread(new p6(2, v6Var, t6Var));
                     }
-                    if (!v6Var.f9937b.get()) {
+                    if (!v6Var.f9954b.get()) {
                         Utilities.globalQueue.cancelRunnable(v6Var.h);
                         Utilities.globalQueue.postRunnable(v6Var.h, v6Var.b());
                         return;
@@ -116,7 +116,7 @@ public final class s6 implements Runnable {
                 }
                 return;
             default:
-                this.f9790b.f9938c.run(null);
+                this.f9806b.f9955c.run(null);
                 return;
         }
     }

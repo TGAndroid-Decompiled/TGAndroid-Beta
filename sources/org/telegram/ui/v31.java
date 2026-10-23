@@ -1,227 +1,80 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.RadialGradient;
-import android.graphics.RectF;
-import android.graphics.Shader;
-import android.view.TextureView;
-import android.view.animation.LinearInterpolator;
+import android.app.Activity;
+import android.view.MotionEvent;
+import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessageObject;
-public final class v31 extends org.telegram.ui.Cells.u1 {
-    public boolean Ge;
-    public final RectF He;
-    public final RectF Ie;
-    public RadialGradient Je;
-    public Paint Ke;
-    public Matrix Le;
-    public final Path Me;
-    public Paint Ne;
-    public final Paint Oe;
-    public org.telegram.ui.Components.u21 Pe;
-    public final org.telegram.ui.Components.f6 Qe;
-    public final int Re;
-    public final int Se;
-    public final x31 Te;
+public final class v31 extends FrameLayout {
+    public float f42587a;
+    public final boolean f42588b;
+    public final boolean f42589c;
+    public boolean d;
+    public int e;
+    public final o1.j f42590f;
+    public final o1.k h;
+    public final u0 f42591n;
+    public final SecretMediaViewer f42592r;
 
-    public v31(x31 x31Var, Context context, int i10, org.telegram.ui.ActionBar.d6 d6Var, int i11, int i12) {
-        super(context, i10, false, null, d6Var);
-        this.Te = x31Var;
-        this.Re = i11;
-        this.Se = i12;
-        this.Ge = false;
-        this.He = new RectF();
-        this.Ie = new RectF();
-        this.Me = new Path();
-        this.Oe = new Paint(1);
-        this.Qe = new org.telegram.ui.Components.f6(0.0f, this, 0L, 120L, new LinearInterpolator());
+    public v31(SecretMediaViewer secretMediaViewer, Activity activity) {
+        super(activity);
+        this.f42592r = secretMediaViewer;
+        this.f42587a = 1.0f;
+        this.f42588b = true;
+        this.f42589c = true;
+        o1.j jVar = new o1.j(0.0f);
+        this.f42590f = jVar;
+        o1.k kVar = new o1.k(jVar);
+        kVar.f17622u = org.telegram.ui.Cells.b1.m(0.0f, 750.0f, 1.0f);
+        kVar.b(new dd0(this, 5));
+        this.h = kVar;
+        this.f42591n = new u0("progress", 6);
+        setWillNotDraw(false);
     }
 
     @Override
-    public final void E1(Canvas canvas) {
-        Paint paint = this.Ke;
-        x31 x31Var = this.Te;
-        if (paint != null) {
-            float f7 = x31Var.f43035s;
-            RectF rectF = x31Var.R;
-            if (f7 > 0.0f) {
-                if (x31Var.Q) {
-                    if (this.pe) {
-                        Bitmap bitmap = x31Var.P.getBitmap();
-                        if (bitmap != null) {
-                            canvas.save();
-                            Path path = this.Me;
-                            path.rewind();
-                            path.addCircle(rectF.centerX(), rectF.centerY(), rectF.width() / 2.0f, Path.Direction.CW);
-                            canvas.clipPath(path);
-                            canvas.scale(rectF.width() / bitmap.getWidth(), rectF.height() / bitmap.getHeight());
-                            canvas.translate(rectF.left, rectF.top);
-                            canvas.drawBitmap(bitmap, 0.0f, 0.0f, (Paint) null);
-                            canvas.restore();
-                            bitmap.recycle();
-                        }
-                    } else {
-                        float centerX = rectF.centerX();
-                        float centerY = rectF.centerY();
-                        float width = rectF.width() / 2.0f;
-                        if (this.Ne == null) {
-                            Paint paint2 = new Paint(1);
-                            this.Ne = paint2;
-                            paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-                        }
-                        canvas.drawCircle(centerX, centerY, width, this.Ne);
-                    }
-                    getPhotoImage().setAlpha(Math.max(1.0f - this.Qe.e(x31Var.Q), 1.0f - x31Var.f43035s));
-                    getPhotoImage().draw(canvas);
-                } else {
-                    getPhotoImage().draw(canvas);
-                }
-            }
-            this.Le.reset();
-            float width2 = (rectF.width() / 76.8f) * x31Var.v;
-            this.Le.postScale(width2, width2);
-            this.Le.postTranslate(rectF.centerX(), rectF.centerY());
-            this.Je.setLocalMatrix(this.Le);
-            canvas.saveLayerAlpha(rectF, 255, 31);
-            super.E1(canvas);
-            canvas.save();
-            canvas.drawRect(rectF, this.Ke);
-            canvas.restore();
-            canvas.restore();
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.f42590f.f17621a = 0.0f;
+        this.e = 0;
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        float f7;
+        super.onLayout(z10, i10, i11, i12, i13);
+        SecretMediaViewer secretMediaViewer = this.f42592r;
+        t31 t31Var = secretMediaViewer.f34139y;
+        if (t31Var != null) {
+            f7 = ((float) t31Var.n()) / ((float) secretMediaViewer.f34139y.p());
         } else {
-            super.E1(canvas);
+            f7 = 0.0f;
         }
-        canvas.saveLayerAlpha(x31Var.R, (int) (x31Var.v * 178.0f), 31);
-        Paint.Style style = Paint.Style.STROKE;
-        Paint paint3 = this.Oe;
-        paint3.setStyle(style);
-        paint3.setStrokeWidth(AndroidUtilities.dp(3.33f));
-        paint3.setColor(-1);
-        paint3.setStrokeCap(Paint.Cap.ROUND);
-        RectF rectF2 = AndroidUtilities.rectTmp;
-        rectF2.set(x31Var.R);
-        rectF2.inset(AndroidUtilities.dp(7.0f), AndroidUtilities.dp(7.0f));
-        canvas.drawArc(rectF2, -90.0f, (1.0f - x31Var.f43025a0) * (-360.0f), false, paint3);
-        if (this.Pe == null) {
-            org.telegram.ui.Components.u21 u21Var = new org.telegram.ui.Components.u21(120);
-            this.Pe = u21Var;
-            u21Var.f30828b = true;
+        secretMediaViewer.Q.h(f7, false);
+    }
+
+    @Override
+    public final void onMeasure(int r12, int r13) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.v31.onMeasure(int, int):void");
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        if (this.f42587a < 1.0f) {
+            return false;
         }
-        paint3.setStrokeWidth(AndroidUtilities.dp(2.8f));
-        this.Pe.a((1.0f - x31Var.f43025a0) * (-360.0f), 1.0f, canvas, paint3, rectF2);
-        canvas.restore();
-    }
-
-    @Override
-    public final void F1(Canvas canvas) {
-        AndroidUtilities.lerp(1.0f, 1.5f, this.Te.v);
-        super.F1(canvas);
-    }
-
-    @Override
-    public final void d2(Canvas canvas, float f7, Integer num) {
-        canvas.save();
-        ah.j1 j1Var = this.N;
-        x31 x31Var = this.Te;
-        canvas.translate(AndroidUtilities.lerp(0, -j1Var.f793c, x31Var.f43035s), AndroidUtilities.lerp(x31Var.O.getBackgroundDrawableBottom() - getBackgroundDrawableBottom(), j1Var.f803p, x31Var.f43035s));
-        super.d2(canvas, (1.0f - x31Var.f43035s) * f7, num);
-        canvas.restore();
-    }
-
-    @Override
-    public final int getBoundsLeft() {
-        return 0;
-    }
-
-    @Override
-    public final int getBoundsRight() {
-        return getWidth();
-    }
-
-    @Override
-    public final void m2(float f7, Canvas canvas, boolean z10) {
-        canvas.save();
-        x31 x31Var = this.Te;
-        if (x31Var.S) {
-            int i10 = this.f23442pb;
-            MessageObject messageObject = x31Var.M;
-            int i11 = 0;
-            if (messageObject != null && messageObject.isOutOwner()) {
-                MessageObject messageObject2 = x31Var.M;
-                if (messageObject2 != null && messageObject2.type == 19) {
-                    i11 = 4;
-                }
-                i11 += 20;
-            }
-            canvas.translate(((this.Ie.right - (AndroidUtilities.dp(8 + i11) + i10)) - this.f23471rb) * x31Var.f43035s, 0.0f);
+        SecretMediaViewer secretMediaViewer = this.f42592r;
+        if (secretMediaViewer.Q.e(motionEvent.getX() - AndroidUtilities.dp(2.0f), motionEvent.getY(), motionEvent.getAction())) {
+            getParent().requestDisallowInterceptTouchEvent(true);
+            secretMediaViewer.R.invalidate();
         }
-        super.m2(f7, canvas, z10);
-        canvas.restore();
+        return true;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        Canvas canvas2;
-        x31 x31Var = this.Te;
-        boolean z10 = x31Var.S;
-        RectF rectF = x31Var.R;
-        if (z10) {
-            boolean z11 = this.Ge;
-            RectF rectF2 = this.Ie;
-            RectF rectF3 = this.He;
-            if (!z11) {
-                rectF3.set(getPhotoImage().getImageX(), getPhotoImage().getImageY(), getPhotoImage().getImageX2(), getPhotoImage().getImageY2());
-                float min = Math.min(getMeasuredWidth(), getMeasuredHeight()) * 0.92f;
-                rectF2.set((getMeasuredWidth() - min) / 2.0f, (getMeasuredHeight() - min) / 2.0f, (getMeasuredWidth() + min) / 2.0f, (getMeasuredHeight() + min) / 2.0f);
-                this.Ge = true;
-                this.Je = new RadialGradient(0.0f, 0.0f, 48.0f, new int[]{-1, -1, 0}, new float[]{0.0f, 0.8f, 1.0f}, Shader.TileMode.CLAMP);
-                Paint paint = new Paint(1);
-                this.Ke = paint;
-                paint.setShader(this.Je);
-                this.Ke.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
-                this.Le = new Matrix();
-            }
-            AndroidUtilities.lerp(rectF3, rectF2, x31Var.f43035s, rectF);
-            U3(rectF.left, rectF.top, rectF.width(), rectF.height());
-            getPhotoImage().setRoundRadius((int) rectF.width());
-            if (x31Var.f43035s > 0.0f && x31Var.Q) {
-                canvas2 = canvas;
-                canvas2.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
-            } else {
-                canvas2 = canvas;
-            }
-            this.f23548we = 1.0f - x31Var.f43035s;
-        } else {
-            canvas2 = canvas;
+    public final void requestLayout() {
+        if (this.d) {
+            return;
         }
-        S1(canvas2);
-        if (x31Var.S && x31Var.f43035s > 0.0f && x31Var.Q) {
-            canvas2.restore();
-        }
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        setMeasuredDimension(this.Re, this.Se);
-    }
-
-    @Override
-    public final void setVisibility(int i10) {
-        super.setVisibility(i10);
-        TextureView textureView = this.Te.P;
-        if (textureView != null && i10 == 8) {
-            textureView.setVisibility(i10);
-        }
-    }
-
-    @Override
-    public final void setPressed(boolean z10) {
+        super.requestLayout();
     }
 }

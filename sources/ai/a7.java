@@ -2,37 +2,37 @@ package ai;
 
 import android.view.View;
 public final class a7 implements View.OnClickListener {
-    public final int f965a;
-    public final Runnable f966b;
+    public final int f966a;
+    public final Runnable f967b;
 
     public a7(int i10, Runnable runnable) {
-        this.f965a = i10;
-        this.f966b = runnable;
+        this.f966a = i10;
+        this.f967b = runnable;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f965a) {
+        switch (this.f966a) {
             case 0:
-                this.f966b.run();
+                this.f967b.run();
                 return;
             case 1:
-                this.f966b.run();
+                this.f967b.run();
                 return;
             case 2:
-                this.f966b.run();
+                this.f967b.run();
                 return;
             case 3:
-                this.f966b.run();
+                this.f967b.run();
                 return;
             case 4:
-                this.f966b.run();
+                this.f967b.run();
                 return;
             case 5:
-                this.f966b.run();
+                this.f967b.run();
                 return;
             default:
-                this.f966b.run();
+                this.f967b.run();
                 return;
         }
     }

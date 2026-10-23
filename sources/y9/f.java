@@ -17,12 +17,13 @@ import java.util.Map;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import si.o0;
 public final class f {
-    public static final Charset f50102b = Charset.forName("UTF-8");
-    public final ca.c f50103a;
+    public static final Charset f50542b = Charset.forName("UTF-8");
+    public final ca.c f50543a;
 
     public f(ca.c cVar) {
-        this.f50103a = cVar;
+        this.f50543a = cVar;
     }
 
     public static HashMap a(String str) {
@@ -59,7 +60,7 @@ public final class f {
         JSONArray jSONArray = new JSONArray();
         for (int i10 = 0; i10 < list.size(); i10++) {
             try {
-                jSONArray.put(new JSONObject(l.f50117a.M(list.get(i10))));
+                jSONArray.put(new JSONObject(l.f50557a.M(list.get(i10))));
             } catch (JSONException e) {
                 Log.w("FirebaseCrashlytics", "Exception parsing rollout assignment!", e);
             }
@@ -78,7 +79,7 @@ public final class f {
         File b10;
         FileInputStream fileInputStream;
         Exception e;
-        ca.c cVar = this.f50103a;
+        ca.c cVar = this.f50543a;
         if (z10) {
             b10 = cVar.b(str, "internal-keys");
         } else {
@@ -125,7 +126,7 @@ public final class f {
     public final String d(String str) {
         FileInputStream fileInputStream;
         String str2;
-        File b10 = this.f50103a.b(str, "user-data");
+        File b10 = this.f50543a.b(str, "user-data");
         Closeable closeable = null;
         if (b10.exists()) {
             ?? r32 = (b10.length() > 0L ? 1 : (b10.length() == 0L ? 0 : -1));
@@ -167,7 +168,7 @@ public final class f {
                 closeable = r32;
             }
         }
-        String h = r4.c.h("No userId set for session ", str);
+        String h = o0.h("No userId set for session ", str);
         if (Log.isLoggable("FirebaseCrashlytics", 3)) {
             Log.d("FirebaseCrashlytics", h, null);
         }
@@ -179,7 +180,7 @@ public final class f {
         File b10;
         String jSONObject;
         BufferedWriter bufferedWriter;
-        ca.c cVar = this.f50103a;
+        ca.c cVar = this.f50543a;
         if (z10) {
             b10 = cVar.b(str, "internal-keys");
         } else {
@@ -189,7 +190,7 @@ public final class f {
         try {
             try {
                 jSONObject = new JSONObject(map).toString();
-                bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(b10), f50102b));
+                bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(b10), f50542b));
             } catch (Exception e) {
                 e = e;
             }
@@ -217,7 +218,7 @@ public final class f {
     public final void h(String str, List list) {
         String e;
         BufferedWriter bufferedWriter;
-        File b10 = this.f50103a.b(str, "rollouts-state");
+        File b10 = this.f50543a.b(str, "rollouts-state");
         if (list.isEmpty()) {
             f(b10);
             return;
@@ -226,7 +227,7 @@ public final class f {
         try {
             try {
                 e = e(list);
-                bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(b10), f50102b));
+                bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(b10), f50542b));
             } catch (Exception e7) {
                 e = e7;
             }
@@ -254,14 +255,14 @@ public final class f {
     public final void i(String str, String str2) {
         String obj;
         BufferedWriter bufferedWriter;
-        File b10 = this.f50103a.b(str, "user-data");
+        File b10 = this.f50543a.b(str, "user-data");
         BufferedWriter bufferedWriter2 = null;
         try {
             try {
                 JSONObject jSONObject = new JSONObject();
                 jSONObject.put("userId", str2);
                 obj = jSONObject.toString();
-                bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(b10), f50102b));
+                bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(b10), f50542b));
             } catch (Exception e) {
                 e = e;
             }

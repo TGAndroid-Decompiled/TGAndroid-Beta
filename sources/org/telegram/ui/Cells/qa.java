@@ -1,118 +1,92 @@
 package org.telegram.ui.Cells;
 
 import android.content.Context;
-import android.text.SpannableString;
-import android.text.SpannableStringBuilder;
+import android.graphics.Canvas;
+import android.text.TextUtils;
 import android.view.View;
-import android.widget.LinearLayout;
+import android.widget.FrameLayout;
 import android.widget.TextView;
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.regex.Pattern;
+import java.util.HashSet;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UnconfirmedAuthController;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.xc;
-import org.telegram.ui.Components.yq;
-import org.telegram.ui.cy;
-import org.telegram.ui.qn;
-public final class qa implements View.OnClickListener {
-    public final int f22799a = 0;
-    public final boolean f22800b;
-    public final int f22801c;
-    public final org.telegram.ui.ActionBar.n2 d;
-    public final Serializable e;
+public final class qa extends FrameLayout implements org.telegram.ui.ActionBar.b6 {
+    public final org.telegram.ui.Components.w9 f23053a;
+    public final TextView f23054b;
+    public TLRPC.TL_forumTopic f23055c;
+    public boolean d;
 
-    public qa(qn qnVar, TLRPC.User user, String str, boolean z10, int i10) {
-        this.d = qnVar;
-        this.e = str;
-        this.f22800b = z10;
-        this.f22801c = i10;
+    public qa(Context context) {
+        super(context);
+        org.telegram.ui.Components.w9 w9Var = new org.telegram.ui.Components.w9(context);
+        this.f23053a = w9Var;
+        TextView textView = new TextView(context);
+        this.f23054b = textView;
+        org.telegram.messenger.v0.q(textView, org.telegram.ui.ActionBar.k6.G6, null, 1, 16.0f);
+        if (LocaleController.isRTL) {
+            addView(w9Var, w7.z5.d(30, 30.0f, 21, 12.0f, 0.0f, 12.0f, 0.0f));
+            addView(textView, w7.z5.d(-1, -2.0f, 21, 12.0f, 0.0f, 56.0f, 0.0f));
+            return;
+        }
+        addView(w9Var, w7.z5.d(30, 30.0f, 16, 12.0f, 0.0f, 12.0f, 0.0f));
+        addView(textView, w7.z5.d(-1, -2.0f, 16, 56.0f, 0.0f, 12.0f, 0.0f));
     }
 
     @Override
-    public final void onClick(View view) {
-        int i10;
-        int i11;
-        int i12 = this.f22799a;
-        int i13 = this.f22801c;
-        boolean z10 = this.f22800b;
-        Serializable serializable = this.e;
-        org.telegram.ui.ActionBar.n2 n2Var = this.d;
-        switch (i12) {
-            case 0:
-                cy cyVar = (cy) n2Var;
-                ArrayList<UnconfirmedAuthController.UnconfirmedAuth> arrayList = (ArrayList) serializable;
-                String string = LocaleController.getString(R.string.UnconfirmedAuthConfirmedMessage);
-                int i14 = org.telegram.ui.ActionBar.h6.Gi;
-                SpannableStringBuilder replaceSingleTag = AndroidUtilities.replaceSingleTag(string, i14, 0, new g(cyVar, 10));
-                SpannableString spannableString = new SpannableString(">");
-                yq yqVar = new yq(R.drawable.attach_arrow_right, 0);
-                yqVar.setOverrideColor(org.telegram.ui.ActionBar.h6.x0(null, i14, false));
-                yqVar.setScale(0.7f, 0.7f);
-                yqVar.setWidth(AndroidUtilities.dp(12.0f));
-                spannableString.setSpan(yqVar, 0, spannableString.length(), 33);
-                AndroidUtilities.replaceCharSequence(">", replaceSingleTag, spannableString);
-                xc a02 = xc.a0(cyVar);
-                int i15 = R.raw.contact_check;
-                if (z10) {
-                    i10 = R.string.UnconfirmedAuthConfirmedBot;
-                } else {
-                    i10 = R.string.UnconfirmedAuthConfirmed;
-                }
-                a02.M(LocaleController.getString(i10), replaceSingleTag, i15).j();
-                MessagesController.getInstance(i13).getUnconfirmedAuthController().confirm(arrayList, new ci.e(8));
-                MessagesController.getInstance(i13).getUnconfirmedAuthController().cleanup();
-                return;
-            default:
-                qn qnVar = (qn) n2Var;
-                String str = (String) serializable;
-                Pattern pattern = org.telegram.ui.Components.f5.f26081a;
-                if (qnVar.getParentActivity() != null) {
-                    org.telegram.ui.ActionBar.f3 f3Var = new org.telegram.ui.ActionBar.f3(1, (Context) qnVar.getParentActivity(), (org.telegram.ui.ActionBar.d6) null, false);
-                    f3Var.fixNavigationBar();
-                    if (z10) {
-                        i11 = R.string.ChatWithAdminChannelTitle;
-                    } else {
-                        i11 = R.string.ChatWithAdminGroupTitle;
-                    }
-                    f3Var.title = LocaleController.getString(i11);
-                    f3Var.bigTitle = true;
-                    LinearLayout linearLayout = new LinearLayout(qnVar.getParentActivity());
-                    linearLayout.setOrientation(1);
-                    TextView textView = new TextView(qnVar.getParentActivity());
-                    linearLayout.addView(textView, w7.z5.t(-1, -1, 0, 21, 0, 21, 8));
-                    textView.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.G6, false));
-                    textView.setTextSize(1, 16.0f);
-                    textView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("ChatWithAdminMessage", R.string.ChatWithAdminMessage, str, LocaleController.formatDateAudio(i13, false))));
-                    TextView textView2 = new TextView(qnVar.getParentActivity());
-                    textView2.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
-                    textView2.setGravity(17);
-                    textView2.setTextSize(1, 14.0f);
-                    textView2.setTypeface(AndroidUtilities.bold());
-                    textView2.setText(LocaleController.getString(R.string.IUnderstand));
-                    textView2.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.Sh, false));
-                    int dp = AndroidUtilities.dp(8.0f);
-                    int x02 = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.Oh, false);
-                    int x03 = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.Qh, false);
-                    textView2.setBackground(org.telegram.ui.ActionBar.h6.j0(dp, dp, dp, dp, x02, x03, x03));
-                    linearLayout.addView(textView2, w7.z5.t(-1, 48, 0, 16, 12, 16, 8));
-                    f3Var.customView = linearLayout;
-                    f3Var.show();
-                    textView2.setOnClickListener(new org.telegram.ui.Components.f3(f3Var, 0));
-                    return;
-                }
-                return;
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        if (this.d) {
+            int dp = AndroidUtilities.dp(56.0f);
+            if (LocaleController.isRTL) {
+                canvas.drawLine(0.0f, getMeasuredHeight() - 1, getMeasuredWidth() - dp, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.k6.f21304k0);
+            } else {
+                canvas.drawLine(dp, getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, org.telegram.ui.ActionBar.k6.f21304k0);
+            }
         }
     }
 
-    public qa(cy cyVar, boolean z10, int i10, ArrayList arrayList) {
-        this.d = cyVar;
-        this.f22800b = z10;
-        this.f22801c = i10;
-        this.e = arrayList;
+    public TLRPC.TL_forumTopic getTopic() {
+        return this.f23055c;
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
+    }
+
+    public void setTopic(TLRPC.TL_forumTopic tL_forumTopic) {
+        this.f23055c = tL_forumTopic;
+        boolean isEmpty = TextUtils.isEmpty(tL_forumTopic.searchQuery);
+        TextView textView = this.f23054b;
+        if (isEmpty) {
+            textView.setText(AndroidUtilities.removeDiacritics(tL_forumTopic.title));
+        } else {
+            textView.setText(AndroidUtilities.highlightText(AndroidUtilities.removeDiacritics(tL_forumTopic.title), tL_forumTopic.searchQuery, (org.telegram.ui.ActionBar.g6) null));
+        }
+        org.telegram.ui.Components.w9 w9Var = this.f23053a;
+        og.d.p(w9Var, tL_forumTopic, false, false, null);
+        if (w9Var != null && w9Var.getImageReceiver() != null && (w9Var.getImageReceiver().getDrawable() instanceof og.c)) {
+            ((og.c) w9Var.getImageReceiver().getDrawable()).a(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f21167c9, false));
+        }
+    }
+
+    @Override
+    public final void updateColors() {
+        org.telegram.ui.Components.w9 w9Var = this.f23053a;
+        if (w9Var != null) {
+            try {
+                if (w9Var.getImageReceiver() != null && (w9Var.getImageReceiver().getDrawable() instanceof og.c)) {
+                    ((og.c) w9Var.getImageReceiver().getDrawable()).a(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f21167c9, false));
+                    w9Var.invalidate();
+                }
+            } catch (Exception e) {
+                FileLog.e(e);
+            }
+        }
+    }
+
+    @Override
+    public final void addColorKeys(HashSet hashSet) {
     }
 }

@@ -1,5 +1,12 @@
 package org.telegram.ui.Components;
+public final class ky0 extends org.telegram.ui.cu0 {
+    @Override
+    public final boolean Q() {
+        return true;
+    }
 
-import android.widget.FrameLayout;
-public final class ky0 extends FrameLayout {
+    @Override
+    public final boolean z() {
+        return false;
+    }
 }

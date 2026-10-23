@@ -1,96 +1,47 @@
 package org.telegram.ui.Components;
 
+import android.app.Activity;
+import android.graphics.Canvas;
+import android.view.MotionEvent;
+import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.PhotoViewer;
-public final class vg0 implements Runnable {
-    public final int f31256a;
-    public final ah0 f31257b;
+public final class vg0 extends FrameLayout {
+    public float f31469a;
+    public float f31470b;
+    public boolean f31471c;
+    public boolean d;
+    public final PipRoundVideoView e;
 
-    public vg0(ah0 ah0Var, int i10) {
-        this.f31256a = i10;
-        this.f31257b = ah0Var;
+    public vg0(PipRoundVideoView pipRoundVideoView, Activity activity) {
+        super(activity);
+        this.e = pipRoundVideoView;
     }
 
     @Override
-    public final void run() {
-        lg0 lg0Var;
-        boolean z10;
-        switch (this.f31256a) {
-            case 0:
-                this.f31257b.u();
-                return;
-            case 1:
-                ah0 ah0Var = this.f31257b;
-                PhotoViewer photoViewer = ah0Var.V;
-                if (photoViewer != null) {
-                    if (ah0Var.f24620r != null) {
-                        ah0Var.Z = lg0Var.getCurrentPosition() / ah0Var.f24620r.getVideoDuration();
-                        ah0Var.f24604a0 = ah0Var.f24620r.getBufferedPosition();
-                    } else {
-                        c81 c81Var = photoViewer.F2;
-                        if (c81Var != null) {
-                            float m10 = (float) ah0Var.m();
-                            ah0Var.Z = ((float) c81Var.n()) / m10;
-                            ah0Var.f24604a0 = ((float) c81Var.j()) / m10;
-                        } else {
-                            return;
-                        }
-                    }
-                    ah0Var.f24606b0.invalidate();
-                    AndroidUtilities.runOnUIThread(ah0Var.f24610e0, 500L);
-                    return;
-                }
-                return;
-            case 2:
-                ah0 ah0Var2 = this.f31257b;
-                PhotoViewer photoViewer2 = ah0Var2.V;
-                if (photoViewer2 != null) {
-                    if ((photoViewer2.F2 != null || ah0Var2.f24620r != null) && !ah0Var2.f24608c0 && !ah0Var2.Y && !ah0Var2.f24622w && !ah0Var2.f24621s.isInProgress() && ah0Var2.f24612f0) {
-                        c81 c81Var2 = ah0Var2.V.F2;
-                        if (ah0Var2.f24613g0[0] >= ah0Var2.t() * ah0Var2.J * 0.5f) {
-                            z10 = true;
-                        } else {
-                            z10 = false;
-                        }
-                        long l4 = ah0Var2.l();
-                        long m11 = ah0Var2.m();
-                        if (l4 != -9223372036854775807L && m11 >= 15000) {
-                            lg0 lg0Var2 = ah0Var2.f24620r;
-                            if (lg0Var2 != null) {
-                                PhotoViewer photoViewer3 = ah0Var2.V;
-                                photoViewer3.f33269c4.startRewind(lg0Var2, z10, ah0Var2.f24613g0[0], photoViewer3.f33416t1, ah0Var2.R);
-                            } else {
-                                PhotoViewer photoViewer4 = ah0Var2.V;
-                                photoViewer4.f33269c4.startRewind(c81Var2, z10, ah0Var2.f24613g0[0], photoViewer4.f33416t1, ah0Var2.R);
-                            }
-                            if (!ah0Var2.E) {
-                                ah0Var2.E = true;
-                                ah0Var2.y(true);
-                                if (!ah0Var2.f24615i0) {
-                                    AndroidUtilities.runOnUIThread(ah0Var2.f24616j0, 1500L);
-                                    ah0Var2.f24615i0 = true;
-                                    return;
-                                }
-                                return;
-                            }
-                            return;
-                        }
-                        return;
-                    }
-                    return;
-                }
-                return;
-            default:
-                ah0 ah0Var3 = this.f31257b;
-                PhotoViewer photoViewer5 = ah0Var3.V;
-                if (photoViewer5 != null && photoViewer5.f33269c4.rewinding) {
-                    AndroidUtilities.runOnUIThread(ah0Var3.f24616j0, 1500L);
-                    return;
-                }
-                ah0Var3.E = false;
-                ah0Var3.y(false);
-                ah0Var3.f24615i0 = false;
-                return;
+    public final void onDraw(Canvas canvas) {
+        org.telegram.ui.ActionBar.l5 l5Var = org.telegram.ui.ActionBar.k6.f21307k3;
+        if (l5Var != null) {
+            l5Var.setAlpha((int) (getAlpha() * 255.0f));
+            org.telegram.ui.ActionBar.k6.f21307k3.setBounds(AndroidUtilities.dp(1.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(125.0f), AndroidUtilities.dp(125.0f));
+            org.telegram.ui.ActionBar.k6.f21307k3.draw(canvas);
+            org.telegram.ui.ActionBar.k6.S1.setColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f21444ra, false));
+            org.telegram.ui.ActionBar.k6.S1.setAlpha((int) (getAlpha() * 255.0f));
+            canvas.drawCircle(AndroidUtilities.dp(63.0f), AndroidUtilities.dp(63.0f), AndroidUtilities.dp(59.5f), org.telegram.ui.ActionBar.k6.S1);
         }
+    }
+
+    @Override
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        if (motionEvent.getAction() == 0) {
+            this.f31469a = motionEvent.getRawX();
+            this.f31470b = motionEvent.getRawY();
+            this.d = true;
+        }
+        return true;
+    }
+
+    @Override
+    public final boolean onTouchEvent(android.view.MotionEvent r19) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.vg0.onTouchEvent(android.view.MotionEvent):boolean");
     }
 }

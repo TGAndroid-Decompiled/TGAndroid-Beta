@@ -1,10 +1,10 @@
 package w3;
 
-import c3.i0;
+import c3.k0;
 public final class r {
-    public final boolean f48567a;
-    public final String f48568b;
-    public final i0 f48569c;
+    public final boolean f49005a;
+    public final String f49006b;
+    public final k0 f49007c;
     public final int d;
     public final byte[] e;
 

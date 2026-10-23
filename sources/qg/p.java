@@ -2,37 +2,94 @@ package qg;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.LinearGradient;
+import android.graphics.Paint;
+import android.graphics.Path;
 import android.graphics.RectF;
+import android.graphics.Shader;
+import android.view.MotionEvent;
 import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.h6;
-public final class p extends ScrollView {
-    public final LinearLayout f44597a;
-    public final y f44598b;
+public final class p extends View {
+    public final Paint f45011a;
+    public final Paint f45012b;
+    public float f45013c;
+    public final y d;
 
-    public p(y yVar, Context context, LinearLayout linearLayout) {
+    public p(y yVar, Context context) {
         super(context);
-        this.f44598b = yVar;
-        this.f44597a = linearLayout;
-        setWillNotDraw(false);
+        this.d = yVar;
+        this.f45011a = new Paint(1);
+        Paint paint = new Paint(1);
+        this.f45012b = paint;
+        paint.setColor(-1);
+        paint.setStyle(Paint.Style.FILL_AND_STROKE);
+        paint.setStrokeWidth(AndroidUtilities.dp(3.0f));
+    }
+
+    public final void a() {
+        this.f45011a.setShader(new LinearGradient(0.0f, 0.0f, getWidth(), 0.0f, new int[]{0, this.d.f45129f}, (float[]) null, Shader.TileMode.CLAMP));
+    }
+
+    public final void b(float f7) {
+        float dp = AndroidUtilities.dp(6.0f);
+        float a2 = w7.r.a(((f7 - dp) + (AndroidUtilities.dp(13.0f) - (this.f45012b.getStrokeWidth() / 2.0f))) / (getWidth() - (dp * 2.0f)), 0.0f, 1.0f);
+        this.f45013c = a2;
+        y yVar = this.d;
+        yVar.m(i0.a.o(yVar.f45129f, (int) (a2 * 255.0f)), 1);
+        invalidate();
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        float y3 = this.f44597a.getY() + AndroidUtilities.dp(1.0f);
-        int dp = AndroidUtilities.dp(36.0f);
+        float height = getHeight() / 2.0f;
+        float dp = AndroidUtilities.dp(6.0f);
         RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set((getMeasuredWidth() - dp) / 2.0f, y3, (getMeasuredWidth() + dp) / 2.0f, AndroidUtilities.dp(4.0f) + y3);
-        h6.f21284t0.setColor(-10790053);
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), h6.f21284t0);
+        float f7 = height - dp;
+        float f10 = height + dp;
+        rectF.set(dp, f7, getWidth() - dp, f10);
+        canvas.save();
+        y yVar = this.d;
+        yVar.e.rewind();
+        yVar.e.addRoundRect(rectF, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), Path.Direction.CW);
+        canvas.clipPath(yVar.e);
+        rg.j1.C1(canvas, rectF, AndroidUtilities.dp(6.0f));
+        canvas.restore();
+        rectF.set(dp, f7, getWidth() - dp, f10);
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), this.f45011a);
+        float dp2 = AndroidUtilities.dp(13.0f);
+        Paint paint = this.f45012b;
+        float strokeWidth = dp2 - (paint.getStrokeWidth() / 2.0f);
+        float max = Math.max(dp + strokeWidth, (((getWidth() - (2.0f * dp)) * this.f45013c) + dp) - strokeWidth);
+        canvas.drawCircle(max, height, dp2, paint);
+        rg.j1.D1(max, height, strokeWidth, i0.a.o(yVar.f45129f, (int) (this.f45013c * 255.0f)), canvas);
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-        ((LinearLayout.LayoutParams) this.f44598b.f44710b.getLayoutParams()).height = (int) (((View.MeasureSpec.getSize(i10) - AndroidUtilities.dp(24.0f)) * 0.8333333f) + AndroidUtilities.dp(88.0f));
+    public final void onSizeChanged(int i10, int i11, int i12, int i13) {
+        super.onSizeChanged(i10, i11, i12, i13);
+        a();
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        int actionMasked = motionEvent.getActionMasked();
+        if (actionMasked != 0) {
+            if (actionMasked != 1) {
+                if (actionMasked != 2) {
+                    if (actionMasked == 3) {
+                        getParent().requestDisallowInterceptTouchEvent(false);
+                    }
+                }
+            } else {
+                b(motionEvent.getX());
+                getParent().requestDisallowInterceptTouchEvent(false);
+            }
+            return true;
+        }
+        getParent().requestDisallowInterceptTouchEvent(true);
+        b(motionEvent.getX());
+        return true;
     }
 }

@@ -13,60 +13,60 @@ import v7.r7;
 public final class m extends p {
     public static final String v;
     public long e;
-    public c6.q f10851f;
-    public Long f10852g;
-    public ya.d h;
-    public int f10853i;
-    public final o f10854j;
-    public final o f10855k;
-    public final o f10856l;
-    public final o f10857m;
-    public final o f10858n;
-    public final o f10859o;
-    public final o f10860p;
-    public final o f10861q;
-    public final o f10862r;
-    public final o f10863s;
-    public final o f10864t;
-    public final o f10865u;
+    public c6.q f10870f;
+    public Long f10871g;
+    public ya.c h;
+    public int f10872i;
+    public final o f10873j;
+    public final o f10874k;
+    public final o f10875l;
+    public final o f10876m;
+    public final o f10877n;
+    public final o f10878o;
+    public final o f10879p;
+    public final o f10880q;
+    public final o f10881r;
+    public final o f10882s;
+    public final o f10883t;
+    public final o f10884u;
 
     static {
-        Pattern pattern = a.f10840a;
+        Pattern pattern = a.f10859a;
         v = "urn:x-cast:com.google.cast.media";
     }
 
     public m() {
         super(v);
-        this.f10853i = -1;
+        this.f10872i = -1;
         o oVar = new o(86400000L, "load");
-        this.f10854j = oVar;
+        this.f10873j = oVar;
         o oVar2 = new o(86400000L, "pause");
-        this.f10855k = oVar2;
+        this.f10874k = oVar2;
         o oVar3 = new o(86400000L, "play");
-        this.f10856l = oVar3;
+        this.f10875l = oVar3;
         o oVar4 = new o(86400000L, "stop");
         o oVar5 = new o(10000L, "seek");
-        this.f10857m = oVar5;
+        this.f10876m = oVar5;
         o oVar6 = new o(86400000L, "volume");
-        this.f10858n = oVar6;
+        this.f10877n = oVar6;
         o oVar7 = new o(86400000L, "mute");
-        this.f10859o = oVar7;
+        this.f10878o = oVar7;
         o oVar8 = new o(86400000L, "status");
-        this.f10860p = oVar8;
+        this.f10879p = oVar8;
         o oVar9 = new o(86400000L, "activeTracks");
         o oVar10 = new o(86400000L, "trackStyle");
         o oVar11 = new o(86400000L, "queueInsert");
         o oVar12 = new o(86400000L, "queueUpdate");
-        this.f10861q = oVar12;
+        this.f10880q = oVar12;
         o oVar13 = new o(86400000L, "queueRemove");
         o oVar14 = new o(86400000L, "queueReorder");
         o oVar15 = new o(86400000L, "queueFetchItemIds");
-        this.f10862r = oVar15;
+        this.f10881r = oVar15;
         o oVar16 = new o(86400000L, "queueFetchItemRange");
-        this.f10864t = oVar16;
-        this.f10863s = new o(86400000L, "queueFetchItems");
+        this.f10883t = oVar16;
+        this.f10882s = new o(86400000L, "queueFetchItems");
         o oVar17 = new o(86400000L, "setPlaybackRate");
-        this.f10865u = oVar17;
+        this.f10884u = oVar17;
         o oVar18 = new o(86400000L, "skipAd");
         a(oVar);
         a(oVar2);
@@ -93,7 +93,7 @@ public final class m extends p {
     public static l f(JSONObject jSONObject) {
         MediaError.b(jSONObject);
         ?? obj = new Object();
-        Pattern pattern = a.f10840a;
+        Pattern pattern = a.f10859a;
         if (jSONObject.has("customData")) {
             jSONObject.optJSONObject("customData");
         }
@@ -125,14 +125,14 @@ public final class m extends p {
             if (b11 != null) {
                 jSONObject.put("repeatMode", b11);
             }
-            int i11 = this.f10853i;
+            int i11 = this.f10872i;
             if (i11 != -1) {
                 jSONObject.put("sequenceNumber", i11);
             }
         } catch (JSONException unused) {
         }
         c(b10, jSONObject.toString());
-        this.f10861q.a(b10, new n4.s(this, nVar, false, 20));
+        this.f10880q.a(b10, new n4.s(this, nVar, false, 20));
     }
 
     public final long e(double d, long j10, long j11) {
@@ -155,7 +155,7 @@ public final class m extends p {
 
     public final void g() {
         this.e = 0L;
-        this.f10851f = null;
+        this.f10870f = null;
         for (o oVar : this.d) {
             oVar.f(2002);
         }
@@ -163,20 +163,20 @@ public final class m extends p {
 
     public final void h(String str, JSONObject jSONObject) {
         if (jSONObject.has("sequenceNumber")) {
-            this.f10853i = jSONObject.optInt("sequenceNumber", -1);
+            this.f10872i = jSONObject.optInt("sequenceNumber", -1);
             return;
         }
-        b bVar = this.f10872a;
-        Log.w(bVar.f10842a, bVar.d(str.concat(" message is missing a sequence number."), new Object[0]));
+        b bVar = this.f10891a;
+        Log.w(bVar.f10861a, bVar.d(str.concat(" message is missing a sequence number."), new Object[0]));
     }
 
     public final void i() {
-        ya.d dVar = this.h;
-        if (dVar != null) {
-            e6.h hVar = (e6.h) dVar.f50125b;
+        ya.c cVar = this.h;
+        if (cVar != null) {
+            e6.h hVar = (e6.h) cVar.f50564b;
             Iterator it = hVar.h.iterator();
             if (!it.hasNext()) {
-                Iterator it2 = hVar.f8374i.iterator();
+                Iterator it2 = hVar.f8381i.iterator();
                 while (it2.hasNext()) {
                     ((e6.g) it2.next()).c();
                 }
@@ -187,12 +187,12 @@ public final class m extends p {
     }
 
     public final void j() {
-        ya.d dVar = this.h;
-        if (dVar != null) {
-            e6.h hVar = (e6.h) dVar.f50125b;
+        ya.c cVar = this.h;
+        if (cVar != null) {
+            e6.h hVar = (e6.h) cVar.f50564b;
             Iterator it = hVar.h.iterator();
             if (!it.hasNext()) {
-                Iterator it2 = hVar.f8374i.iterator();
+                Iterator it2 = hVar.f8381i.iterator();
                 while (it2.hasNext()) {
                     ((e6.g) it2.next()).d();
                 }
@@ -203,12 +203,12 @@ public final class m extends p {
     }
 
     public final void k() {
-        ya.d dVar = this.h;
-        if (dVar != null) {
-            e6.h hVar = (e6.h) dVar.f50125b;
+        ya.c cVar = this.h;
+        if (cVar != null) {
+            e6.h hVar = (e6.h) cVar.f50564b;
             Iterator it = hVar.h.iterator();
             if (!it.hasNext()) {
-                Iterator it2 = hVar.f8374i.iterator();
+                Iterator it2 = hVar.f8381i.iterator();
                 while (it2.hasNext()) {
                     ((e6.g) it2.next()).e();
                 }
@@ -219,10 +219,10 @@ public final class m extends p {
     }
 
     public final void l() {
-        ya.d dVar = this.h;
-        if (dVar != null) {
-            e6.h hVar = (e6.h) dVar.f50125b;
-            Iterator it = hVar.f8375j.values().iterator();
+        ya.c cVar = this.h;
+        if (cVar != null) {
+            e6.h hVar = (e6.h) cVar.f50564b;
+            Iterator it = hVar.f8382j.values().iterator();
             if (it.hasNext()) {
                 if (it.next() == null) {
                     if (!hVar.h()) {
@@ -237,7 +237,7 @@ public final class m extends p {
             }
             Iterator it2 = hVar.h.iterator();
             if (!it2.hasNext()) {
-                Iterator it3 = hVar.f8374i.iterator();
+                Iterator it3 = hVar.f8381i.iterator();
                 while (it3.hasNext()) {
                     ((e6.g) it3.next()).g();
                 }
@@ -265,24 +265,24 @@ public final class m extends p {
         MediaInfo mediaInfo2;
         long j10;
         c6.j jVar;
-        c6.q qVar = this.f10851f;
+        c6.q qVar = this.f10870f;
         MediaInfo mediaInfo3 = null;
         if (qVar == null) {
             mediaInfo = null;
         } else {
-            mediaInfo = qVar.f4890a;
+            mediaInfo = qVar.f4895a;
         }
         long j11 = 0;
         if (mediaInfo != null && qVar != null) {
-            Long l4 = this.f10852g;
+            Long l4 = this.f10871g;
             if (l4 != null) {
                 if (l4.equals(4294967296000L)) {
-                    c6.q qVar2 = this.f10851f;
+                    c6.q qVar2 = this.f10870f;
                     if (qVar2.K != null) {
                         long longValue = l4.longValue();
-                        c6.q qVar3 = this.f10851f;
+                        c6.q qVar3 = this.f10870f;
                         if (qVar3 != null && (jVar = qVar3.K) != null) {
-                            long j12 = jVar.f4858b;
+                            long j12 = jVar.f4863b;
                             if (!jVar.d) {
                                 j11 = e(1.0d, j12, -1L);
                             } else {
@@ -294,7 +294,7 @@ public final class m extends p {
                     if (qVar2 == null) {
                         mediaInfo2 = null;
                     } else {
-                        mediaInfo2 = qVar2.f4890a;
+                        mediaInfo2 = qVar2.f4895a;
                     }
                     if (mediaInfo2 != null) {
                         j10 = mediaInfo2.e;
@@ -303,9 +303,9 @@ public final class m extends p {
                     }
                     if (j10 >= 0) {
                         long longValue2 = l4.longValue();
-                        c6.q qVar4 = this.f10851f;
+                        c6.q qVar4 = this.f10870f;
                         if (qVar4 != null) {
-                            mediaInfo3 = qVar4.f4890a;
+                            mediaInfo3 = qVar4.f4895a;
                         }
                         if (mediaInfo3 != null) {
                             j11 = mediaInfo3.e;
@@ -328,9 +328,9 @@ public final class m extends p {
     }
 
     public final long p() {
-        c6.q qVar = this.f10851f;
+        c6.q qVar = this.f10870f;
         if (qVar != null) {
-            return qVar.f4891b;
+            return qVar.f4896b;
         }
         throw new Exception();
     }

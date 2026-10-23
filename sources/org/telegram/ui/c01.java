@@ -1,121 +1,60 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.drawable.GradientDrawable;
+import android.content.Context;
 import android.view.View;
-import java.util.Arrays;
+import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
-public final class c01 extends View implements org.telegram.ui.Components.gi0 {
-    public boolean E;
-    public float F;
-    public float G;
-    public float[] H;
-    public long I;
-    public float J;
-    public int K;
-    public float L;
-    public int M;
-    public float N;
-    public int O;
-    public final ProfileActivity P;
-    public final int f35770a;
-    public final Rect f35771b;
-    public final Rect f35772c;
-    public final RectF d;
-    public final GradientDrawable e;
-    public final GradientDrawable f35773f;
-    public final ValueAnimator h;
-    public final float[] f35774n;
-    public final Paint f35775r;
-    public final Paint f35776s;
-    public final Paint v;
-    public final GradientDrawable[] f35777w;
-    public final boolean[] f35778x;
-    public final float[] f35779y;
+public final class c01 extends View {
+    public int f36206a;
+    public int f36207b;
+    public final f01 f36208c;
 
-    public c01(org.telegram.ui.ProfileActivity r7, android.content.Context r8) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.c01.<init>(org.telegram.ui.ProfileActivity, android.content.Context):void");
+    public c01(f01 f01Var, Context context) {
+        super(context);
+        this.f36208c = f01Var;
+        this.f36206a = 0;
+        this.f36207b = 0;
     }
 
     @Override
-    public final void a() {
-        Arrays.fill(this.f35778x, false);
-        postInvalidateOnAnimation();
-    }
-
-    @Override
-    public final void b(boolean z10) {
-        this.f35778x[!z10 ? 1 : 0] = true;
-        postInvalidateOnAnimation();
-    }
-
-    @Override
-    public final void c() {
-        this.P.i5(false);
-    }
-
-    @Override
-    public final void d() {
-        invalidate();
-    }
-
-    public final void e(float f7, boolean z10) {
-        int i10 = (int) (255.0f * f7);
-        this.e.setAlpha(i10);
-        this.f35773f.setAlpha(i10);
-        this.f35775r.setAlpha((int) (66.0f * f7));
-        this.f35776s.setAlpha((int) (85.0f * f7));
-        this.v.setAlpha(i10);
-        this.G = f7;
-        if (!z10) {
-            this.F = f7;
+    public final void onMeasure(int i10, int i11) {
+        int measuredHeight;
+        int i12 = this.f36207b;
+        ProfileActivity profileActivity = this.f36208c.e;
+        int i13 = 0;
+        if (i12 != profileActivity.f33882a.getMeasuredHeight()) {
+            this.f36206a = 0;
         }
-        invalidate();
-    }
-
-    public final void f(float f7, boolean z10) {
-        if (z10 != this.E) {
-            this.E = z10;
-            ValueAnimator valueAnimator = this.h;
-            valueAnimator.cancel();
-            float f10 = this.F;
-            float[] fArr = this.f35774n;
-            float lerp = AndroidUtilities.lerp(fArr, f10);
-            float f11 = 1.0f;
-            if (z10) {
-                valueAnimator.setDuration(((1.0f - lerp) * 250.0f) / f7);
+        this.f36207b = profileActivity.f33882a.getMeasuredHeight();
+        int childCount = profileActivity.f33882a.getChildCount();
+        if (childCount == profileActivity.d.e.O2) {
+            int i14 = 0;
+            for (int i15 = 0; i15 < childCount; i15++) {
+                View childAt = profileActivity.f33882a.getChildAt(i15);
+                profileActivity.f33882a.getClass();
+                int R = RecyclerView.R(childAt);
+                if (R >= 0 && R != profileActivity.D3) {
+                    i14 += profileActivity.f33882a.getChildAt(i15).getMeasuredHeight();
+                }
+            }
+            View view = profileActivity.fragmentView;
+            if (view == null) {
+                measuredHeight = 0;
             } else {
-                valueAnimator.setDuration((250.0f * lerp) / f7);
+                measuredHeight = view.getMeasuredHeight();
             }
-            fArr[0] = lerp;
-            if (!z10) {
-                f11 = 0.0f;
+            int currentActionBarHeight = ((measuredHeight - org.telegram.ui.ActionBar.k.getCurrentActionBarHeight()) - AndroidUtilities.statusBarHeight) - i14;
+            if (currentActionBarHeight > profileActivity.V3()) {
+                currentActionBarHeight = 0;
             }
-            fArr[1] = f11;
-            valueAnimator.start();
+            if (currentActionBarHeight > 0) {
+                i13 = currentActionBarHeight;
+            }
+            int measuredWidth = profileActivity.f33882a.getMeasuredWidth();
+            this.f36206a = i13;
+            setMeasuredDimension(measuredWidth, i13);
+            return;
         }
-    }
-
-    @Override
-    public final void onDraw(android.graphics.Canvas r32) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.c01.onDraw(android.graphics.Canvas):void");
-    }
-
-    @Override
-    public final void onSizeChanged(int i10, int i11, int i12, int i13) {
-        int currentActionBarHeight = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + this.f35770a;
-        Rect rect = this.f35771b;
-        rect.set(0, 0, i10, (int) (currentActionBarHeight * 0.5f));
-        Rect rect2 = this.f35772c;
-        rect2.set(0, (int) (i11 - (AndroidUtilities.dp(72.0f) * 0.5f)), i10, i11);
-        this.e.setBounds(0, rect.bottom, i10, AndroidUtilities.dp(16.0f) + currentActionBarHeight);
-        this.f35773f.setBounds(0, ((i11 - this.P.O3()) - AndroidUtilities.dp(72.0f)) - AndroidUtilities.dp(24.0f), i10, rect2.top);
-        GradientDrawable[] gradientDrawableArr = this.f35777w;
-        int i14 = i10 / 5;
-        gradientDrawableArr[0].setBounds(0, 0, i14, i11);
-        gradientDrawableArr[1].setBounds(i10 - i14, 0, i10, i11);
+        setMeasuredDimension(profileActivity.f33882a.getMeasuredWidth(), this.f36206a);
     }
 }

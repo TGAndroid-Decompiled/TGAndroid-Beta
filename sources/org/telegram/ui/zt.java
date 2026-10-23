@@ -1,156 +1,37 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
-import org.telegram.messenger.SharedConfig;
-public final class zt extends org.telegram.ui.Components.im0 {
-    public final Context f43807c;
-    public final DataSettingsActivity d;
+import org.telegram.messenger.AndroidUtilities;
+public final class zt implements Runnable {
+    public final int f44201a;
+    public final DataSettingsActivity f44202b;
 
-    public zt(DataSettingsActivity dataSettingsActivity, Context context) {
-        this.d = dataSettingsActivity;
-        this.f43807c = context;
+    public zt(DataSettingsActivity dataSettingsActivity, int i10) {
+        this.f44201a = i10;
+        this.f44202b = dataSettingsActivity;
     }
 
     @Override
-    public final boolean D(s4.b1 b1Var) {
+    public final void run() {
         int i10;
-        int i11;
-        int i12;
-        int i13;
-        int i14;
-        int i15;
-        int i16;
-        int b10 = b1Var.b();
-        DataSettingsActivity dataSettingsActivity = this.d;
-        if (b10 != dataSettingsActivity.e && b10 != dataSettingsActivity.f33128f && b10 != dataSettingsActivity.h && b10 != dataSettingsActivity.f33131s) {
-            i10 = dataSettingsActivity.useLessDataForCallsRow;
-            if (b10 != i10 && b10 != dataSettingsActivity.v) {
-                i11 = dataSettingsActivity.proxyRow;
-                if (b10 != i11) {
-                    i12 = dataSettingsActivity.clearDraftsRow;
-                    if (b10 != i12 && b10 != dataSettingsActivity.E && b10 != dataSettingsActivity.f33134y && b10 != dataSettingsActivity.F && b10 != dataSettingsActivity.G && b10 != dataSettingsActivity.N && b10 != dataSettingsActivity.K && b10 != dataSettingsActivity.J && b10 != dataSettingsActivity.f33129n) {
-                        i13 = dataSettingsActivity.saveToGalleryGroupsRow;
-                        if (b10 != i13) {
-                            i14 = dataSettingsActivity.saveToGalleryPeerRow;
-                            if (b10 != i14) {
-                                i15 = dataSettingsActivity.saveToGalleryChannelsRow;
-                                if (b10 != i15) {
-                                    i16 = dataSettingsActivity.resetDownloadRow;
-                                    if (b10 != i16) {
-                                        return false;
-                                    }
-                                }
-                            }
-                        }
-                    }
+        switch (this.f44201a) {
+            case 0:
+                this.f44202b.getMediaDataController().clearAllDrafts(true);
+                return;
+            case 1:
+                DataSettingsActivity dataSettingsActivity = this.f44202b;
+                dataSettingsActivity.X = true;
+                if (dataSettingsActivity.f33422a != null && (i10 = dataSettingsActivity.f33428s) >= 0) {
+                    dataSettingsActivity.n0(i10);
+                    return;
                 }
-            }
-        }
-        return true;
-    }
-
-    @Override
-    public final int h() {
-        return this.d.U;
-    }
-
-    @Override
-    public final int j(int i10) {
-        int i11;
-        int i12;
-        int i13;
-        DataSettingsActivity dataSettingsActivity = this.d;
-        if (i10 != dataSettingsActivity.f33130r && i10 != dataSettingsActivity.f33132w && i10 != dataSettingsActivity.O && i10 != dataSettingsActivity.Q && i10 != dataSettingsActivity.L && i10 != dataSettingsActivity.R && i10 != dataSettingsActivity.T) {
-            if (i10 != dataSettingsActivity.d && i10 != dataSettingsActivity.f33133x && i10 != dataSettingsActivity.M && i10 != 0 && i10 != dataSettingsActivity.P && i10 != dataSettingsActivity.I && i10 != dataSettingsActivity.S) {
-                if (i10 != dataSettingsActivity.E && i10 != dataSettingsActivity.f33134y && i10 != dataSettingsActivity.F && i10 != dataSettingsActivity.G && i10 != dataSettingsActivity.J && i10 != dataSettingsActivity.K) {
-                    if (i10 == dataSettingsActivity.H) {
-                        return 4;
-                    }
-                    if (i10 != dataSettingsActivity.e && i10 != dataSettingsActivity.h && i10 != dataSettingsActivity.f33128f) {
-                        i11 = dataSettingsActivity.saveToGalleryGroupsRow;
-                        if (i10 != i11) {
-                            i12 = dataSettingsActivity.saveToGalleryPeerRow;
-                            if (i10 != i12) {
-                                i13 = dataSettingsActivity.saveToGalleryChannelsRow;
-                                if (i10 != i13) {
-                                    if (i10 != dataSettingsActivity.f33131s && i10 != dataSettingsActivity.v && i10 != dataSettingsActivity.f33129n) {
-                                        return 1;
-                                    }
-                                    return 6;
-                                }
-                                return 5;
-                            }
-                            return 5;
-                        }
-                        return 5;
-                    }
-                    return 5;
-                }
-                return 3;
-            }
-            return 2;
-        }
-        return 0;
-    }
-
-    @Override
-    public final void v(s4.b1 r28, int r29) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.zt.v(s4.b1, int):void");
-    }
-
-    @Override
-    public final s4.b1 x(ViewGroup viewGroup, int i10) {
-        View z6Var;
-        Context context = this.f43807c;
-        if (i10 != 0) {
-            if (i10 != 1) {
-                if (i10 != 2) {
-                    if (i10 != 3) {
-                        if (i10 != 4) {
-                            if (i10 != 5) {
-                                z6Var = new org.telegram.ui.Cells.q8(context);
-                            } else {
-                                z6Var = new org.telegram.ui.Cells.i5(context);
-                            }
-                        } else {
-                            z6Var = new org.telegram.ui.Cells.d9(context);
-                        }
-                    } else {
-                        z6Var = new org.telegram.ui.Cells.v8(context);
-                    }
-                } else {
-                    z6Var = new org.telegram.ui.Cells.l4(context, 22);
-                }
-            } else {
-                z6Var = new org.telegram.ui.Cells.ba(context);
-            }
-        } else {
-            z6Var = new org.telegram.ui.Cells.z6(context, (org.telegram.ui.Cells.c1) null);
-        }
-        return com.google.android.gms.internal.play_billing.k3.l(z6Var, z6Var, -1, -2);
-    }
-
-    @Override
-    public final void y(s4.b1 b1Var) {
-        if (b1Var.f45924f == 3) {
-            org.telegram.ui.Cells.v8 v8Var = (org.telegram.ui.Cells.v8) b1Var.f45921a;
-            int b10 = b1Var.b();
-            DataSettingsActivity dataSettingsActivity = this.d;
-            if (b10 == dataSettingsActivity.E) {
-                v8Var.setChecked(SharedConfig.saveStreamMedia);
-            } else if (b10 == dataSettingsActivity.f33134y) {
-                v8Var.setChecked(SharedConfig.streamMedia);
-            } else if (b10 == dataSettingsActivity.F) {
-                v8Var.setChecked(SharedConfig.streamAllVideo);
-            } else if (b10 == dataSettingsActivity.G) {
-                v8Var.setChecked(SharedConfig.streamMkv);
-            } else if (b10 == dataSettingsActivity.J) {
-                v8Var.setChecked(SharedConfig.isAutoplayGifs());
-            } else if (b10 == dataSettingsActivity.K) {
-                v8Var.setChecked(SharedConfig.isAutoplayVideo());
-            }
+                return;
+            default:
+                c7.m0 = null;
+                DataSettingsActivity dataSettingsActivity2 = this.f44202b;
+                zt ztVar = new zt(dataSettingsActivity2, 1);
+                AndroidUtilities.runOnUIThread(ztVar, 100L);
+                c7.k0(new ai.f2(dataSettingsActivity2, ztVar, System.currentTimeMillis(), 1));
+                return;
         }
     }
 }

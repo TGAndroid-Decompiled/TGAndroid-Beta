@@ -1,40 +1,21 @@
 package ci;
 
-import android.text.Layout;
-import android.text.StaticLayout;
-import android.text.TextPaint;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.Components.bs;
-public final class z8 {
-    public final n4 f6257a;
-    public final org.telegram.ui.Components.f6 f6258b;
-    public final TextPaint f6259c;
-    public final StaticLayout d;
-    public final float e;
-    public final float f6260f;
-    public float f6261g;
-    public boolean h;
-    public int f6262i;
+import org.telegram.ui.sc0;
+public final class z8 extends sc0 {
+    public final int S0;
 
-    public z8(q4 q4Var, n4 n4Var) {
-        float f7;
-        this.f6257a = n4Var;
-        this.f6258b = new org.telegram.ui.Components.f6(q4Var, 0L, 360L, bs.h);
-        TextPaint textPaint = new TextPaint(1);
-        this.f6259c = textPaint;
-        textPaint.setTextSize(AndroidUtilities.dp(14.0f));
-        textPaint.setColor(-1);
-        textPaint.setShadowLayer(AndroidUtilities.dp(3.0f), 0.0f, AndroidUtilities.dp(1.0f), 805306368);
-        StaticLayout staticLayout = new StaticLayout(LocaleController.getString(R.string.StorySeekHelp), textPaint, AndroidUtilities.displaySize.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-        this.d = staticLayout;
-        if (staticLayout.getLineCount() > 0) {
-            f7 = staticLayout.getLineLeft(0);
-        } else {
-            f7 = 0.0f;
+    public z8(int i10, int i11) {
+        super(i10);
+        this.S0 = i11;
+    }
+
+    @Override
+    public final boolean h0() {
+        switch (this.S0) {
+            case 0:
+                return true;
+            default:
+                return true;
         }
-        this.e = f7;
-        this.f6260f = staticLayout.getLineCount() > 0 ? staticLayout.getLineWidth(0) : 0.0f;
     }
 }

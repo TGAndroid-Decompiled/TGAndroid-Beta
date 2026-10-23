@@ -1,14 +1,14 @@
 package z9;
 public final class o0 extends n1 {
-    public final long f51451a;
-    public final long f51452b;
-    public final String f51453c;
+    public final long f51912a;
+    public final long f51913b;
+    public final String f51914c;
     public final String d;
 
     public o0(String str, long j10, long j11, String str2) {
-        this.f51451a = j10;
-        this.f51452b = j11;
-        this.f51453c = str;
+        this.f51912a = j10;
+        this.f51913b = j11;
+        this.f51914c = str;
         this.d = str2;
     }
 
@@ -20,7 +20,7 @@ public final class o0 extends n1 {
         if (obj instanceof n1) {
             o0 o0Var = (o0) ((n1) obj);
             String str2 = o0Var.d;
-            if (this.f51451a == o0Var.f51451a && this.f51452b == o0Var.f51452b && this.f51453c.equals(o0Var.f51453c) && ((str = this.d) != null ? str.equals(str2) : str2 == null)) {
+            if (this.f51912a == o0Var.f51912a && this.f51913b == o0Var.f51913b && this.f51914c.equals(o0Var.f51914c) && ((str = this.d) != null ? str.equals(str2) : str2 == null)) {
                 return true;
             }
         }
@@ -29,9 +29,9 @@ public final class o0 extends n1 {
 
     public final int hashCode() {
         int hashCode;
-        long j10 = this.f51451a;
-        long j11 = this.f51452b;
-        int hashCode2 = (((((((int) (j10 ^ (j10 >>> 32))) ^ 1000003) * 1000003) ^ ((int) (j11 ^ (j11 >>> 32)))) * 1000003) ^ this.f51453c.hashCode()) * 1000003;
+        long j10 = this.f51912a;
+        long j11 = this.f51913b;
+        int hashCode2 = (((((((int) (j10 ^ (j10 >>> 32))) ^ 1000003) * 1000003) ^ ((int) (j11 ^ (j11 >>> 32)))) * 1000003) ^ this.f51914c.hashCode()) * 1000003;
         String str = this.d;
         if (str == null) {
             hashCode = 0;
@@ -43,11 +43,11 @@ public final class o0 extends n1 {
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("BinaryImage{baseAddress=");
-        sb2.append(this.f51451a);
+        sb2.append(this.f51912a);
         sb2.append(", size=");
-        sb2.append(this.f51452b);
+        sb2.append(this.f51913b);
         sb2.append(", name=");
-        sb2.append(this.f51453c);
+        sb2.append(this.f51914c);
         sb2.append(", uuid=");
         return a1.g.s(sb2, this.d, "}");
     }

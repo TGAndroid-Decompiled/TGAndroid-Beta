@@ -1,15 +1,13 @@
 package ki;
 
 import android.view.View;
-import org.telegram.ui.Components.i80;
+import org.telegram.ui.Components.j80;
 public interface u3 {
-    void A(int i10);
-
     void C(c6 c6Var, String str);
 
     void J();
 
-    i80 M(View view);
+    j80 M(View view);
 
     void P();
 
@@ -29,7 +27,9 @@ public interface u3 {
 
     void p();
 
-    void r();
+    void s();
 
-    void x();
+    void y();
+
+    void z(int i10);
 }

@@ -15,25 +15,24 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.ActionBar.n2;
-import org.telegram.ui.Components.ks0;
-import org.telegram.ui.Components.x61;
+import org.telegram.ui.Components.e71;
+import org.telegram.ui.Components.ns0;
 import org.telegram.ui.Components.xc;
-import org.telegram.ui.sp0;
+import org.telegram.ui.vp0;
 import yh.g1;
 import yh.l2;
 import yh.o2;
 public final class o implements Runnable {
-    public final int f46745a;
-    public final Object f46746b;
-    public final Object f46747c;
+    public final int f47177a;
+    public final Object f47178b;
+    public final Object f47179c;
     public final Object d;
     public final Object e;
 
     public o(Object obj, Object obj2, Object obj3, Object obj4, int i10) {
-        this.f46745a = i10;
-        this.f46746b = obj;
-        this.f46747c = obj2;
+        this.f47177a = i10;
+        this.f47178b = obj;
+        this.f47179c = obj2;
         this.d = obj3;
         this.e = obj4;
     }
@@ -45,48 +44,48 @@ public final class o implements Runnable {
         int max2;
         String str = null;
         int i10 = 1;
-        switch (this.f46745a) {
+        switch (this.f47177a) {
             case 0:
-                t tVar = (t) this.f46746b;
-                l0 l0Var = (l0) this.f46747c;
-                l0 l0Var2 = (l0) this.d;
+                t tVar = (t) this.f47178b;
+                m0 m0Var = (m0) this.f47179c;
+                m0 m0Var2 = (m0) this.d;
                 Handler handler = (Handler) this.e;
-                if (tVar.f46819r0 && tVar.W == 0 && tVar.T) {
+                if (tVar.f47228r0 && tVar.W == 0 && tVar.T) {
                     tVar.N.g(tVar.L, tVar.D, false);
                     tVar.U = false;
                     tVar.V = false;
-                    tVar.f46793c0 = 0.0f;
+                    tVar.f47202c0 = 0.0f;
                     tVar.W = 1;
                     long elapsedRealtimeNanos = SystemClock.elapsedRealtimeNanos();
                     tVar.X = elapsedRealtimeNanos;
                     tVar.Y = elapsedRealtimeNanos;
-                    tVar.f46794d0 = l0Var;
-                    tVar.f46795e0 = l0Var2;
-                    String[] strArr = t0.f46833a;
-                    synchronized (t0.class) {
-                        t0.b();
-                        if (l0Var != l0Var2) {
-                            if (l0Var == l0.f46712b) {
+                    tVar.f47203d0 = m0Var;
+                    tVar.f47204e0 = m0Var2;
+                    String[] strArr = v0.f47274a;
+                    synchronized (v0.class) {
+                        v0.b();
+                        if (m0Var != m0Var2) {
+                            if (m0Var == m0.f47169b) {
                                 i10 = 0;
                             }
-                            a2 = t0.a(i10);
+                            a2 = v0.a(i10);
                         } else {
                             throw new IllegalArgumentException("Camera switch direction must change");
                         }
                     }
-                    tVar.f46791b0 = a2;
+                    tVar.f47200b0 = a2;
                     tVar.Z = ((Math.max(210, Math.min(300, 300 - ((Math.max(0, a2 - 400) * 3) / 20))) * 45) / 100) * 1000000;
-                    tVar.f46789a0 = (max - max2) * 1000000;
-                    tVar.f46801i.b("synthetic camera switch started: from=" + l0Var + ", to=" + l0Var2 + ", expectedWaitMs=" + tVar.f46791b0 + ", targetBlurRadiusPx=" + (((tVar.N.f46574a * 4.0f) / 48.0f) * 1.15f) + ", overdueBlurGrowth=0.35, revealMs=" + ((tVar.Z + tVar.f46789a0) / 1000000));
+                    tVar.f47198a0 = (max - max2) * 1000000;
+                    tVar.f47210i.b("synthetic camera switch started: from=" + m0Var + ", to=" + m0Var2 + ", expectedWaitMs=" + tVar.f47200b0 + ", targetBlurRadiusPx=" + (((tVar.N.f47006a * 4.0f) / 48.0f) * 1.15f) + ", overdueBlurGrowth=0.35, revealMs=" + ((tVar.Z + tVar.f47198a0) / 1000000));
                     tVar.Q = -1L;
-                    handler.removeCallbacks(tVar.f46830x0);
-                    handler.post(tVar.f46830x0);
+                    handler.removeCallbacks(tVar.f47239x0);
+                    handler.post(tVar.f47239x0);
                     return;
                 }
                 return;
             case 1:
-                TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f46746b;
-                Utilities.Callback callback = (Utilities.Callback) this.f46747c;
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f47178b;
+                Utilities.Callback callback = (Utilities.Callback) this.f47179c;
                 TLObject tLObject = (TLObject) this.d;
                 Utilities.Callback callback2 = (Utilities.Callback) this.e;
                 if (tL_error != null) {
@@ -99,61 +98,61 @@ public final class o implements Runnable {
                     return;
                 }
             case 2:
-                final l2 l2Var = (l2) this.f46746b;
-                TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) this.f46747c;
+                final l2 l2Var = (l2) this.f47178b;
+                TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) this.f47179c;
                 g1 g1Var = (g1) this.d;
                 final View view = (View) this.e;
-                ks0 ks0Var = l2Var.f50369a;
+                ns0 ns0Var = l2Var.f50825a;
                 if (savedStarGift.unsaved) {
                     savedStarGift.unsaved = false;
-                    g1Var.h(savedStarGift, true, false);
+                    g1Var.i(savedStarGift, true, false);
                     TL_stars.saveStarGift savestargift = new TL_stars.saveStarGift();
                     savestargift.stargift = l2Var.e.h(savedStarGift);
                     savestargift.unsave = savedStarGift.unsaved;
-                    ConnectionsManager.getInstance(l2Var.f50370b).sendRequest(savestargift, null, 64);
+                    ConnectionsManager.getInstance(l2Var.f50826b).sendRequest(savestargift, null, 64);
                 }
                 boolean z10 = savedStarGift.pinned_to_top;
                 final boolean z11 = !z10;
                 if (l2Var.e.o(savedStarGift, z11, false)) {
-                    new o2(l2Var.getContext(), ks0Var.f50469c, savedStarGift, l2Var.f50371c, new Utilities.Callback0Return() {
+                    new o2(l2Var.getContext(), ns0Var.f50926c, savedStarGift, l2Var.f50827c, new Utilities.Callback0Return() {
                         @Override
                         public final Object run() {
-                            ((g1) view).c(z11, true);
+                            ((g1) view).d(z11, true);
                             l2 l2Var2 = l2.this;
-                            l2Var2.f50372f.u0(0);
-                            return xc.a0(l2Var2.f50369a.f50467a);
+                            l2Var2.f50828f.u0(0);
+                            return xc.a0(l2Var2.f50825a.f50924a);
                         }
                     }).show();
                     return;
                 }
                 if (!z10) {
-                    xc.a0(ks0Var.f50467a).M(LocaleController.getString(R.string.Gift2PinnedTitle), LocaleController.getString(R.string.Gift2PinnedSubtitle), R.raw.ic_pin).j();
+                    xc.a0(ns0Var.f50924a).M(LocaleController.getString(R.string.Gift2PinnedTitle), LocaleController.getString(R.string.Gift2PinnedSubtitle), R.raw.ic_pin).j();
                 } else {
-                    org.telegram.messenger.g0.q(R.string.Gift2Unpinned, xc.a0(ks0Var.f50467a), R.raw.ic_unpin, 36);
+                    org.telegram.messenger.v0.p(R.string.Gift2Unpinned, xc.a0(ns0Var.f50924a), R.raw.ic_unpin, 36);
                 }
-                ((g1) view).c(z11, true);
-                l2Var.f50372f.u0(0);
+                ((g1) view).d(z11, true);
+                l2Var.f50828f.u0(0);
                 return;
             case 3:
-                x61 x61Var = (x61) this.f46746b;
-                zh.b0 b0Var = (zh.b0) this.f46747c;
+                e71 e71Var = (e71) this.f47178b;
+                zh.b0 b0Var = (zh.b0) this.f47179c;
                 Utilities.CallbackReturn callbackReturn = (Utilities.CallbackReturn) this.d;
                 Utilities.Callback callback3 = (Utilities.Callback) this.e;
-                if (zh.b0.d(x61Var.getParentActivity())) {
+                if (zh.b0.d(e71Var.getParentActivity())) {
                     b0Var.e();
-                    sp0 sp0Var = new sp0(10, false, false, null);
-                    sp0Var.G = 1;
-                    sp0Var.H = false;
-                    sp0Var.f41518x = false;
-                    sp0Var.V = new zh.y(callbackReturn, x61Var, callback3);
-                    x61Var.presentFragment(sp0Var);
+                    vp0 vp0Var = new vp0(10, false, false, null);
+                    vp0Var.G = 1;
+                    vp0Var.H = false;
+                    vp0Var.f42812x = false;
+                    vp0Var.V = new zh.y(callbackReturn, e71Var, callback3);
+                    e71Var.presentFragment(vp0Var);
                     return;
                 }
                 return;
             default:
-                String str2 = (String) this.f46746b;
-                Utilities.CallbackReturn callbackReturn2 = (Utilities.CallbackReturn) this.f46747c;
-                n2 n2Var = (n2) this.d;
+                String str2 = (String) this.f47178b;
+                Utilities.CallbackReturn callbackReturn2 = (Utilities.CallbackReturn) this.f47179c;
+                org.telegram.ui.ActionBar.o2 o2Var = (org.telegram.ui.ActionBar.o2) this.d;
                 Utilities.Callback callback4 = (Utilities.Callback) this.e;
                 try {
                     Point realScreenSize = AndroidUtilities.getRealScreenSize();
@@ -165,7 +164,7 @@ public final class o implements Runnable {
                 } catch (Throwable th2) {
                     FileLog.e(th2);
                 }
-                AndroidUtilities.runOnUIThread(new zh.x(n2Var, str, callback4));
+                AndroidUtilities.runOnUIThread(new zh.x(o2Var, str, callback4));
                 return;
         }
     }

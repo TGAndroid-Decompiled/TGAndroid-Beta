@@ -4,32 +4,32 @@ import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import org.telegram.tgnet.TLRPC;
 public final class y8 extends pg.a {
-    public int f10135c;
+    public int f10152c;
     public Drawable d;
     public CharSequence e;
-    public CharSequence f10136f;
-    public TLRPC.User f10137g;
+    public CharSequence f10153f;
+    public TLRPC.User f10154g;
     public TLRPC.Chat h;
-    public int f10138i;
-    public int f10139j;
-    public boolean f10140k;
-    public boolean f10141l;
-    public boolean f10142m;
-    public boolean f10143n;
-    public int f10144o;
-    public int f10145p;
-    public int f10146q;
+    public int f10155i;
+    public int f10156j;
+    public boolean f10157k;
+    public boolean f10158l;
+    public boolean f10159m;
+    public boolean f10160n;
+    public int f10161o;
+    public int f10162p;
+    public int f10163q;
 
     public y8(int i10, boolean z10) {
         super(i10, z10);
-        this.f10145p = -1;
+        this.f10162p = -1;
     }
 
     public static y8 b(String str, CharSequence charSequence, int i10) {
         y8 y8Var = new y8(9, false);
         y8Var.e = str;
-        y8Var.f10136f = charSequence;
-        y8Var.f10146q = i10;
+        y8Var.f10153f = charSequence;
+        y8Var.f10163q = i10;
         return y8Var;
     }
 
@@ -39,7 +39,7 @@ public final class y8 extends pg.a {
 
     public static y8 d() {
         y8 y8Var = new y8(-1, false);
-        y8Var.f10144o = -1;
+        y8Var.f10161o = -1;
         return y8Var;
     }
 
@@ -59,17 +59,17 @@ public final class y8 extends pg.a {
 
     public static y8 h(int i10, int i11, boolean z10) {
         y8 y8Var = new y8(3, false);
-        y8Var.f10138i = i10;
-        y8Var.f10140k = z10;
-        y8Var.f10139j = i11;
+        y8Var.f10155i = i10;
+        y8Var.f10157k = z10;
+        y8Var.f10156j = i11;
         return y8Var;
     }
 
     public static y8 i(TLRPC.User user, boolean z10, boolean z11) {
         y8 y8Var = new y8(3, true);
-        y8Var.f10137g = user;
-        y8Var.f10140k = z10;
-        y8Var.f10141l = z11;
+        y8Var.f10154g = user;
+        y8Var.f10157k = z10;
+        y8Var.f10158l = z11;
         return y8Var;
     }
 
@@ -77,19 +77,19 @@ public final class y8 extends pg.a {
         if (this != obj) {
             if (obj != null && y8.class == obj.getClass()) {
                 y8 y8Var = (y8) obj;
-                int i10 = this.f44300a;
-                if (i10 == y8Var.f44300a) {
-                    if (i10 != -1 || (this.f10144o == y8Var.f10144o && this.f10145p == y8Var.f10145p)) {
-                        if (i10 != 3 || (this.f10137g == y8Var.f10137g && this.h == y8Var.h && this.f10138i == y8Var.f10138i && this.f10139j == y8Var.f10139j && this.f10140k == y8Var.f10140k && this.f10142m == y8Var.f10142m && this.f10143n == y8Var.f10143n)) {
-                            if (i10 != 0 || this.f10135c == y8Var.f10135c) {
+                int i10 = this.f44713a;
+                if (i10 == y8Var.f44713a) {
+                    if (i10 != -1 || (this.f10161o == y8Var.f10161o && this.f10162p == y8Var.f10162p)) {
+                        if (i10 != 3 || (this.f10154g == y8Var.f10154g && this.h == y8Var.h && this.f10155i == y8Var.f10155i && this.f10156j == y8Var.f10156j && this.f10157k == y8Var.f10157k && this.f10159m == y8Var.f10159m && this.f10160n == y8Var.f10160n)) {
+                            if (i10 != 0 || this.f10152c == y8Var.f10152c) {
                                 if (i10 != 2 || TextUtils.equals(this.e, y8Var.e)) {
-                                    if (this.f44300a != 8 || TextUtils.equals(this.e, y8Var.e)) {
-                                        int i11 = this.f44300a;
-                                        if ((i11 != 4 && i11 != 11) || (TextUtils.equals(this.e, y8Var.e) && TextUtils.equals(this.f10136f, y8Var.f10136f))) {
-                                            if (this.f44300a != 6 || (TextUtils.equals(this.e, y8Var.e) && this.f10135c == y8Var.f10135c)) {
-                                                if (this.f44300a != 7 || (this.f10135c == y8Var.f10135c && TextUtils.equals(this.e, y8Var.e) && this.f10140k == y8Var.f10140k)) {
-                                                    if (this.f44300a != 9 || (this.f10146q == y8Var.f10146q && this.d == y8Var.d && TextUtils.equals(this.e, y8Var.e) && TextUtils.equals(this.f10136f, y8Var.f10136f))) {
-                                                        if (this.f44300a != 10 || this.f10146q == y8Var.f10146q) {
+                                    if (this.f44713a != 8 || TextUtils.equals(this.e, y8Var.e)) {
+                                        int i11 = this.f44713a;
+                                        if ((i11 != 4 && i11 != 11) || (TextUtils.equals(this.e, y8Var.e) && TextUtils.equals(this.f10153f, y8Var.f10153f))) {
+                                            if (this.f44713a != 6 || (TextUtils.equals(this.e, y8Var.e) && this.f10152c == y8Var.f10152c)) {
+                                                if (this.f44713a != 7 || (this.f10152c == y8Var.f10152c && TextUtils.equals(this.e, y8Var.e) && this.f10157k == y8Var.f10157k)) {
+                                                    if (this.f44713a != 9 || (this.f10163q == y8Var.f10163q && this.d == y8Var.d && TextUtils.equals(this.e, y8Var.e) && TextUtils.equals(this.f10153f, y8Var.f10153f))) {
+                                                        if (this.f44713a != 10 || this.f10163q == y8Var.f10163q) {
                                                             return true;
                                                         }
                                                         return false;

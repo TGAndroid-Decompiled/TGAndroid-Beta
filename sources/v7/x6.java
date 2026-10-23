@@ -75,7 +75,7 @@ public abstract class x6 {
     }
 
     public void v(df.p pVar) {
-        for (df.p pVar2 = (df.p) pVar.f7985c; pVar2 != null; pVar2 = (df.p) pVar2.f7986f) {
+        for (df.p pVar2 = (df.p) pVar.f7997c; pVar2 != null; pVar2 = (df.p) pVar2.f7998f) {
             pVar2.a(this);
         }
     }

@@ -1,50 +1,68 @@
 package org.telegram.ui.Wallet;
 
-import android.util.Base64;
+import j$.util.DesugarCollections;
+import java.util.ArrayList;
+import java.util.List;
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 public final class d2 {
-    public final String f34100a;
-    public final String f34101b;
-    public final String f34102c;
-    public final String d;
-    public final long e;
-    public final boolean f34103f;
+    public final long f34398a;
+    public final List f34399b;
+    public final long f34400c;
 
     public d2(JSONObject jSONObject) {
-        String str;
-        String string = jSONObject.getString("address");
-        this.f34100a = string;
-        if (!string.contains(":") && WalletEngine2.isValidAddress(string)) {
-            this.f34103f = (Base64.decode(string.replace('-', '+').replace('_', '/'), 2)[0] & Byte.MAX_VALUE) == 17;
-            Object obj = jSONObject.get("amount");
-            if (obj instanceof String) {
-                String str2 = (String) obj;
-                if (str2.matches("[0-9]+")) {
-                    long parseLong = Long.parseLong(str2);
-                    this.e = parseLong;
-                    if (jSONObject.has("extra_currency") && jSONObject.getJSONObject("extra_currency").length() != 0) {
-                        throw new IllegalArgumentException("Extra currencies are not supported");
-                    }
-                    if (parseLong >= 0) {
-                        if (jSONObject.has("payload")) {
-                            str = jSONObject.getString("payload");
-                        } else {
-                            str = null;
-                        }
-                        this.f34101b = str;
-                        String string2 = jSONObject.has("stateInit") ? jSONObject.getString("stateInit") : null;
-                        this.f34102c = string2;
-                        if ((str != null && !WalletEngine2.isValidCellBoc(str)) || (string2 != null && !WalletEngine2.isValidCellBoc(string2))) {
-                            throw new IllegalArgumentException("Invalid transaction cell");
-                        }
-                        this.d = WalletEngine2.textCommentFromBody(str);
-                        return;
-                    }
-                    throw new IllegalArgumentException("Transfer amount must not be negative");
+        boolean z10;
+        long optLong = jSONObject.optLong("valid_until", 0L);
+        this.f34398a = optLong;
+        JSONArray jSONArray = jSONObject.getJSONArray("messages");
+        if (jSONArray.length() != 0 && jSONArray.length() <= 255 && optLong >= 0) {
+            ArrayList arrayList = new ArrayList();
+            long j10 = 0;
+            int i10 = 0;
+            while (i10 < jSONArray.length()) {
+                c2 c2Var = new c2(jSONArray.getJSONObject(i10));
+                long j11 = c2Var.e;
+                long j12 = j10 + j11;
+                if ((j11 ^ j10) < 0) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                if (z10 | ((j10 ^ j12) >= 0)) {
+                    arrayList.add(c2Var);
+                    i10++;
+                    j10 = j12;
+                } else {
+                    throw new ArithmeticException();
                 }
             }
-            throw new IllegalArgumentException("Invalid transfer amount");
+            this.f34400c = j10;
+            this.f34399b = DesugarCollections.unmodifiableList(arrayList);
+            return;
         }
-        throw new IllegalArgumentException("Expected a friendly destination address");
+        throw new JSONException("Invalid transaction");
+    }
+
+    public final String[] a() {
+        String str;
+        List list = this.f34399b;
+        String[] strArr = new String[list.size() * 5];
+        for (int i10 = 0; i10 < list.size(); i10++) {
+            c2 c2Var = (c2) list.get(i10);
+            int i11 = i10 * 5;
+            strArr[i11] = c2Var.f34356a;
+            strArr[i11 + 1] = Long.toString(c2Var.e);
+            strArr[i11 + 2] = c2Var.f34357b;
+            strArr[i11 + 3] = c2Var.f34358c;
+            int i12 = i11 + 4;
+            if (c2Var.f34359f) {
+                str = "1";
+            } else {
+                str = "0";
+            }
+            strArr[i12] = str;
+        }
+        return strArr;
     }
 }

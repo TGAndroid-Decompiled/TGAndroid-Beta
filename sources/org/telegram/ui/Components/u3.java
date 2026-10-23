@@ -1,46 +1,9 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Point;
-import android.widget.LinearLayout;
-import org.telegram.messenger.AndroidUtilities;
-public final class u3 extends LinearLayout {
-    public boolean f30832a;
-    public final r3 f30833b;
-    public final t3 f30834c;
-
-    public u3(Context context, r3 r3Var, t3 t3Var) {
-        super(context);
-        this.f30833b = r3Var;
-        this.f30834c = t3Var;
-        this.f30832a = false;
-    }
-
+import org.telegram.messenger.LocaleController;
+public final class u3 extends qd0 {
     @Override
-    public final void onMeasure(int i10, int i11) {
-        int i12;
-        this.f30832a = true;
-        Point point = AndroidUtilities.displaySize;
-        if (point.x > point.y) {
-            i12 = 3;
-        } else {
-            i12 = 5;
-        }
-        r3 r3Var = this.f30833b;
-        r3Var.setItemCount(i12);
-        t3 t3Var = this.f30834c;
-        t3Var.setItemCount(i12);
-        r3Var.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i12;
-        t3Var.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i12;
-        this.f30832a = false;
-        super.onMeasure(i10, i11);
-    }
-
-    @Override
-    public final void requestLayout() {
-        if (this.f30832a) {
-            return;
-        }
-        super.requestLayout();
+    public final CharSequence d(int i10) {
+        return LocaleController.formatPluralString("Hours", i10, new Object[0]);
     }
 }

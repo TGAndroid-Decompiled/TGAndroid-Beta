@@ -1,10 +1,7 @@
 package org.telegram.ui.Components;
-
-import org.telegram.messenger.MessageObject;
-import org.telegram.tgnet.TLRPC;
-public final class vu0 extends MessageObject {
-    @Override
-    public final boolean canDeleteMessage(boolean z10, TLRPC.Chat chat) {
-        return false;
-    }
+public final class vu0 {
+    public String f32054a;
+    public int f32055b;
+    public int f32056c;
+    public int d;
 }

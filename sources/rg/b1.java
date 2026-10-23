@@ -17,9 +17,9 @@ public final class b1 extends s4.t {
         MessageObject.GroupedMessagePosition position;
         byte b10;
         r5 r5Var = this.S;
-        ArrayList arrayList = r5Var.f45339s0;
+        ArrayList arrayList = r5Var.f45768s0;
         int size = (arrayList.size() - 1) - i10;
-        MessageObject.GroupedMessages groupedMessages = r5Var.f45340t0;
+        MessageObject.GroupedMessages groupedMessages = r5Var.f45769t0;
         if (groupedMessages != null && size >= 0 && size < arrayList.size() && (position = groupedMessages.getPosition((MessageObject) arrayList.get(size))) != null && position.minX != position.maxX && (b10 = position.minY) == position.maxY && b10 != 0) {
             int size2 = groupedMessages.posArray.size();
             for (int i11 = 0; i11 < size2; i11++) {
@@ -38,8 +38,8 @@ public final class b1 extends s4.t {
 
     @Override
     public final boolean C1(View view) {
-        if (view instanceof org.telegram.ui.Cells.u1) {
-            return !((org.telegram.ui.Cells.u1) view).getMessageObject().isOutOwner();
+        if (view instanceof org.telegram.ui.Cells.t1) {
+            return !((org.telegram.ui.Cells.t1) view).getMessageObject().isOutOwner();
         }
         return false;
     }

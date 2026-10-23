@@ -2,11 +2,11 @@ package de;
 
 import w7.c0;
 public final class a {
-    public static final a[] f7941a;
+    public static final a[] f7953a;
 
     static {
         a[] aVarArr = {new Enum("SUSPEND", 0), new Enum("DROP_OLDEST", 1), new Enum("DROP_LATEST", 2)};
-        f7941a = aVarArr;
+        f7953a = aVarArr;
         c0.a(aVarArr);
     }
 
@@ -15,6 +15,6 @@ public final class a {
     }
 
     public static a[] values() {
-        return (a[]) f7941a.clone();
+        return (a[]) f7953a.clone();
     }
 }

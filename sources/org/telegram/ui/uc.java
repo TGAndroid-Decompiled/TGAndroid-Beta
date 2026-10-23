@@ -4,33 +4,36 @@ import android.view.View;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class uc implements Utilities.Callback {
-    public final int f41931a;
-    public final zc f41932b;
+    public final int f42370a;
+    public final zc f42371b;
 
     public uc(zc zcVar, int i10) {
-        this.f41931a = i10;
-        this.f41932b = zcVar;
+        this.f42370a = i10;
+        this.f42371b = zcVar;
     }
 
     @Override
     public final void run(Object obj) {
         TLRPC.WallPaper wallPaper;
         View view = (View) obj;
-        switch (this.f41931a) {
+        switch (this.f42370a) {
             case 0:
-                zc zcVar = this.f41932b;
+                zc zcVar = this.f42371b;
                 zcVar.getClass();
-                ((org.telegram.ui.Components.r21) view).setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21082i5, zcVar.f43717b));
+                if (view instanceof org.telegram.ui.Components.v21) {
+                    view.setBackgroundColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f21271i5, zcVar.f44108b));
+                    return;
+                }
                 return;
             default:
-                if (view instanceof org.telegram.ui.Components.r21) {
-                    org.telegram.ui.Components.r21 r21Var = (org.telegram.ui.Components.r21) view;
-                    if (r21Var.G.f31854a.f20728b) {
+                if (view instanceof org.telegram.ui.Components.v21) {
+                    org.telegram.ui.Components.v21 v21Var = (org.telegram.ui.Components.v21) view;
+                    if (v21Var.G.f32035a.f20885b) {
                         wallPaper = null;
                     } else {
-                        wallPaper = this.f41932b.v;
+                        wallPaper = this.f42371b.v;
                     }
-                    r21Var.setFallbackWallpaper(wallPaper);
+                    v21Var.setFallbackWallpaper(wallPaper);
                     return;
                 }
                 return;

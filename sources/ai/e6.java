@@ -22,15 +22,15 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.Components.bk0;
 import org.telegram.ui.Components.bs;
-import org.telegram.ui.Components.yj0;
 public final class e6 extends FrameLayout {
     public final org.telegram.ui.Components.z5 E;
     public final t5 F;
     public final LinearLayout G;
     public final org.telegram.ui.Components.q6 H;
     public final org.telegram.ui.Components.q6 I;
-    public final yj0 J;
+    public final bk0 J;
     public final TextView K;
     public final TextView L;
     public final TextView M;
@@ -44,35 +44,35 @@ public final class e6 extends FrameLayout {
     public final int[] U;
     public final int[] V;
     public int W;
-    public final org.telegram.ui.ActionBar.d6 f1202a;
-    public long f1203a0;
-    public final d6 f1204b;
-    public TLRPC.Document f1205b0;
-    public final ImageView f1206c;
-    public String f1207c0;
+    public final org.telegram.ui.ActionBar.g6 f1195a;
+    public long f1196a0;
+    public final d6 f1197b;
+    public TLRPC.Document f1198b0;
+    public final ImageView f1199c;
+    public String f1200c0;
     public final y5[] d;
-    public ArrayList f1208d0;
+    public ArrayList f1201d0;
     public final y5 e;
-    public Utilities.Callback3 f1209e0;
-    public final a6 f1210f;
-    public Utilities.Callback2 f1211f0;
-    public Runnable f1212g0;
+    public Utilities.Callback3 f1202e0;
+    public final a6 f1203f;
+    public Utilities.Callback2 f1204f0;
+    public Runnable f1205g0;
     public final x5 h;
-    public boolean f1213h0;
-    public boolean f1214i0;
-    public boolean f1215j0;
-    public Runnable f1216k0;
-    public yj0 f1217l0;
+    public boolean f1206h0;
+    public boolean f1207i0;
+    public boolean f1208j0;
+    public Runnable f1209k0;
+    public bk0 f1210l0;
     public SpannableStringBuilder m0;
-    public final c6[] f1218n;
-    public final wh.n f1219r;
-    public boolean f1220s;
+    public final c6[] f1211n;
+    public final wh.n f1212r;
+    public boolean f1213s;
     public final LinearLayout v;
-    public final LinearLayout f1221w;
-    public final s5[] f1222x;
-    public final s5[] f1223y;
+    public final LinearLayout f1214w;
+    public final s5[] f1215x;
+    public final s5[] f1216y;
 
-    public e6(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
+    public e6(Context context, org.telegram.ui.ActionBar.g6 g6Var) {
         super(context);
         float f7;
         boolean z10;
@@ -80,27 +80,27 @@ public final class e6 extends FrameLayout {
         int i10;
         int i11 = 6;
         this.U = new int[]{-14861233, -15787732, -11327734, -14742773, -14527649, -15920861};
-        this.V = new int[]{org.telegram.ui.ActionBar.h6.m1(0.08f, -1), org.telegram.ui.ActionBar.h6.m1(0.08f, -1), -294362, -3914963, -13519030, -12613223};
-        this.f1202a = d6Var;
-        d6 d6Var2 = new d6();
-        this.f1204b = d6Var2;
+        this.V = new int[]{org.telegram.ui.ActionBar.k6.o1(0.08f, -1), org.telegram.ui.ActionBar.k6.o1(0.08f, -1), -294362, -3914963, -13519030, -12613223};
+        this.f1195a = g6Var;
+        d6 d6Var = new d6();
+        this.f1197b = d6Var;
         Drawable mutate = context.getResources().getDrawable(R.drawable.filled_forge).mutate();
         mutate.setColorFilter(new PorterDuffColorFilter(-16777216, PorterDuff.Mode.SRC_IN));
-        d6Var2.f1144g = mutate;
-        setBackground(d6Var2);
+        d6Var.f1138g = mutate;
+        setBackground(d6Var);
         FrameLayout frameLayout = new FrameLayout(context);
         this.P = frameLayout;
         addView(frameLayout, w7.z5.e(-1, 60, 55));
         ImageView imageView = new ImageView(context);
-        this.f1206c = imageView;
+        this.f1199c = imageView;
         imageView.setImageResource(R.drawable.outline_question_mark);
-        imageView.setBackground(new u6(AndroidUtilities.dp(24.0f), org.telegram.ui.ActionBar.h6.m1(0.08f, -1)));
+        imageView.setBackground(new u6(AndroidUtilities.dp(24.0f), org.telegram.ui.ActionBar.k6.o1(0.08f, -1)));
         frameLayout.addView(imageView, w7.z5.d(32, 32.0f, 51, 14.0f, 14.0f, 14.0f, 14.0f));
         imageView.setOnClickListener(new p5(this, 0));
         w7.b6.a(imageView);
         ImageView imageView2 = new ImageView(context);
         imageView2.setImageResource(R.drawable.msg_close);
-        imageView2.setBackground(new u6(AndroidUtilities.dp(24.0f), org.telegram.ui.ActionBar.h6.m1(0.08f, -1)));
+        imageView2.setBackground(new u6(AndroidUtilities.dp(24.0f), org.telegram.ui.ActionBar.k6.o1(0.08f, -1)));
         frameLayout.addView(imageView2, w7.z5.d(32, 32.0f, 53, 14.0f, 14.0f, 14.0f, 14.0f));
         boolean z11 = true;
         imageView2.setOnClickListener(new p5(this, 1));
@@ -124,7 +124,7 @@ public final class e6 extends FrameLayout {
         frameLayout4.setAlpha(0.0f);
         addView(frameLayout4, w7.z5.e(-1, -1, 119));
         wh.n nVar = new wh.n(context);
-        this.f1219r = nVar;
+        this.f1212r = nVar;
         nVar.setGravity(17);
         nVar.setTextSize(1, 13.0f);
         nVar.setTextColor(-1);
@@ -147,7 +147,7 @@ public final class e6 extends FrameLayout {
         linearLayout.setOrientation(0);
         linearLayout.setGravity(17);
         LinearLayout linearLayout2 = new LinearLayout(context);
-        this.f1221w = linearLayout2;
+        this.f1214w = linearLayout2;
         LayoutTransition layoutTransition2 = new LayoutTransition();
         layoutTransition2.setDuration(2, 320L);
         layoutTransition2.setDuration(3, 320L);
@@ -163,25 +163,25 @@ public final class e6 extends FrameLayout {
         linearLayout2.setOrientation(0);
         linearLayout2.setAlpha(0.0f);
         linearLayout2.setGravity(17);
-        this.f1222x = new s5[4];
-        this.f1223y = new s5[4];
+        this.f1215x = new s5[4];
+        this.f1216y = new s5[4];
         for (int i12 = 0; i12 < 4; i12++) {
             LinearLayout linearLayout3 = this.v;
-            s5[] s5VarArr = this.f1222x;
+            s5[] s5VarArr = this.f1215x;
             s5 s5Var = new s5(context);
             s5VarArr[i12] = s5Var;
             linearLayout3.addView(s5Var, w7.z5.k(0.0f, 0.0f, 0.0f, 0.0f, 48, 54));
-            this.f1222x[i12].setOnClickListener(new p5(this, 2));
+            this.f1215x[i12].setOnClickListener(new p5(this, 2));
         }
         for (int i13 = 0; i13 < 4; i13++) {
             LinearLayout linearLayout4 = this.v;
-            s5[] s5VarArr2 = this.f1223y;
+            s5[] s5VarArr2 = this.f1216y;
             s5 s5Var2 = new s5(context);
             s5VarArr2[i13] = s5Var2;
             linearLayout4.addView(s5Var2, w7.z5.k(0.0f, 0.0f, 0.0f, 0.0f, 48, 54));
-            this.f1223y[i13].setOnClickListener(new p5(this, 3));
+            this.f1216y[i13].setOnClickListener(new p5(this, 3));
         }
-        this.f1218n = new c6[4];
+        this.f1211n = new c6[4];
         this.d = new y5[6];
         int i14 = 0;
         while (i14 < i11) {
@@ -193,7 +193,7 @@ public final class e6 extends FrameLayout {
             }
             ?? frameLayout5 = new FrameLayout(context);
             FrameLayout frameLayout6 = new FrameLayout(context);
-            frameLayout6.setBackground(new u6(AndroidUtilities.dp(24.0f), org.telegram.ui.ActionBar.h6.m1(0.08f, -1)));
+            frameLayout6.setBackground(new u6(AndroidUtilities.dp(24.0f), org.telegram.ui.ActionBar.k6.o1(0.08f, -1)));
             frameLayout5.addView(frameLayout6, w7.z5.d(-1, -1.0f, 119, 2.0f, 2.0f, 2.0f, 2.0f));
             org.telegram.ui.Components.w9 w9Var = new org.telegram.ui.Components.w9(context);
             w9Var.setImageResource(R.drawable.large_forge);
@@ -212,12 +212,12 @@ public final class e6 extends FrameLayout {
             if (z10) {
                 w9Var.setTranslationX(AndroidUtilities.dp(-4.0f));
                 z5 z5Var = new z5(context);
-                frameLayout5.f2485b = z5Var;
+                frameLayout5.f2492b = z5Var;
                 z5Var.e = AndroidUtilities.dp(37.0f);
-                z5Var.f2537a.setStrokeWidth(AndroidUtilities.dpf2(4.66f));
+                z5Var.f2541a.setStrokeWidth(AndroidUtilities.dpf2(4.66f));
                 frameLayout6.addView(z5Var, w7.z5.e(90, 90, 17));
                 org.telegram.ui.Components.q6 q6Var = new org.telegram.ui.Components.q6(context, false, false, false);
-                frameLayout5.f2484a = q6Var;
+                frameLayout5.f2491a = q6Var;
                 q6Var.getDrawable().r(false, true);
                 q6Var.setTypeface(AndroidUtilities.bold());
                 q6Var.setTextColor(-1);
@@ -233,7 +233,7 @@ public final class e6 extends FrameLayout {
         }
         this.e = this.d[5];
         a6 a6Var = new a6(context);
-        this.f1210f = a6Var;
+        this.f1203f = a6Var;
         a6Var.setVisibility(8);
         a6Var.setAlpha(0.0f);
         addView(a6Var, w7.z5.d(300, 300.0f, 49, 0.0f, 0.0f, 0.0f, 0.0f));
@@ -248,25 +248,25 @@ public final class e6 extends FrameLayout {
         z5Var2.setPadding(AndroidUtilities.dp(9.0f), 0, AndroidUtilities.dp(9.0f), 0);
         z5Var2.setGravity(17);
         z5Var2.setTextColor(-1);
-        if (this.f1208d0 != null) {
+        if (this.f1201d0 != null) {
             f7 = 1.0f;
         } else {
             f7 = 0.25f;
         }
         z5Var2.setAlpha(f7);
-        z5Var2.setBackground(new u6(AndroidUtilities.dp(14.0f), org.telegram.ui.ActionBar.h6.m1(0.08f, -1)));
+        z5Var2.setBackground(new u6(AndroidUtilities.dp(14.0f), org.telegram.ui.ActionBar.k6.o1(0.08f, -1)));
         w7.b6.b(z5Var2, 0.02f, 1.2f);
         this.Q.addView(z5Var2, w7.z5.d(-2, 27.0f, 49, 32.0f, 412.0f, 32.0f, 84.0f));
-        z5Var2.setOnClickListener(new p(8, this, d6Var));
+        z5Var2.setOnClickListener(new p(8, this, g6Var));
         this.Q.addView(this.v, w7.z5.d(-2, 54.0f, 49, 32.0f, 340.0f, 32.0f, 84.0f));
-        this.Q.addView(this.f1221w, w7.z5.d(-2, 54.0f, 49, 32.0f, 394.0f, 32.0f, 84.0f));
+        this.Q.addView(this.f1214w, w7.z5.d(-2, 54.0f, 49, 32.0f, 394.0f, 32.0f, 84.0f));
         LinearLayout linearLayout5 = new LinearLayout(context);
         this.G = linearLayout5;
         linearLayout5.setOrientation(1);
         t5 t5Var = new t5();
         this.F = t5Var;
         linearLayout5.setBackground(t5Var);
-        t5Var.a(org.telegram.ui.ActionBar.h6.m1(0.08f, -1), org.telegram.ui.ActionBar.h6.m1(0.08f, -1));
+        t5Var.a(org.telegram.ui.ActionBar.k6.o1(0.08f, -1), org.telegram.ui.ActionBar.k6.o1(0.08f, -1));
         w7.b6.b(linearLayout5, 0.02f, 1.2f);
         addView(linearLayout5, w7.z5.d(-1, -2.0f, 87, 20.0f, 0.0f, 20.0f, 18.0f));
         linearLayout5.setOnClickListener(new p5(this, 4));
@@ -274,7 +274,7 @@ public final class e6 extends FrameLayout {
         this.H = q6Var2;
         q6Var2.setTypeface(AndroidUtilities.bold());
         q6Var2.setGravity(17);
-        q6Var2.setTextColor(org.telegram.ui.ActionBar.h6.m1(0.75f, -1));
+        q6Var2.setTextColor(org.telegram.ui.ActionBar.k6.o1(0.75f, -1));
         q6Var2.setText(LocaleController.getString(R.string.GiftCraftButton));
         q6Var2.setTextSize(AndroidUtilities.dp(14.0f));
         linearLayout5.addView(q6Var2, w7.z5.r(-1, 18, 55, 16.0f, 7.33f, 16.0f, 0.0f));
@@ -282,7 +282,7 @@ public final class e6 extends FrameLayout {
         this.I = q6Var3;
         q6Var3.getDrawable().r(true, false);
         q6Var3.setGravity(17);
-        q6Var3.setTextColor(org.telegram.ui.ActionBar.h6.m1(0.75f, -1));
+        q6Var3.setTextColor(org.telegram.ui.ActionBar.k6.o1(0.75f, -1));
         q6Var3.setText(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.GiftCraftSuccessChance, "0%")));
         q6Var3.setTextSize(AndroidUtilities.dp(12.0f));
         linearLayout5.addView(q6Var3, w7.z5.r(-1, 14, 55, 16.0f, 2.66f, 16.0f, 7.66f));
@@ -305,29 +305,29 @@ public final class e6 extends FrameLayout {
         TextView textView3 = new TextView(context);
         this.K = textView3;
         textView3.setTextSize(1, 13.0f);
-        textView3.setTextColor(org.telegram.ui.ActionBar.h6.m1(0.5f, -1));
+        textView3.setTextColor(org.telegram.ui.ActionBar.k6.o1(0.5f, -1));
         textView3.setTypeface(AndroidUtilities.bold());
         textView3.setGravity(17);
-        TextView j10 = org.telegram.ui.Cells.c1.j(this.R, textView3, w7.z5.d(-1, -2.0f, 49, 0.0f, 383.0f, 0.0f, 0.0f), context);
+        TextView j10 = org.telegram.ui.Cells.b1.j(this.R, textView3, w7.z5.d(-1, -2.0f, 49, 0.0f, 383.0f, 0.0f, 0.0f), context);
         this.L = j10;
         j10.setTextSize(1, 13.0f);
         j10.setTextColor(-1);
         j10.setTypeface(AndroidUtilities.bold());
         j10.setGravity(17);
         j10.setPadding(AndroidUtilities.dp(9.0f), 0, AndroidUtilities.dp(9.0f), 0);
-        j10.setBackground(new u6(AndroidUtilities.dp(14.0f), org.telegram.ui.ActionBar.h6.m1(0.08f, -1)));
-        TextView j11 = org.telegram.ui.Cells.c1.j(this.R, j10, w7.z5.d(-2, 27.0f, 81, 0.0f, 0.0f, 0.0f, 74.0f), context);
+        j10.setBackground(new u6(AndroidUtilities.dp(14.0f), org.telegram.ui.ActionBar.k6.o1(0.08f, -1)));
+        TextView j11 = org.telegram.ui.Cells.b1.j(this.R, j10, w7.z5.d(-2, 27.0f, 81, 0.0f, 0.0f, 0.0f, 74.0f), context);
         j11.setTextSize(1, 13.0f);
-        j11.setTextColor(org.telegram.ui.ActionBar.h6.m1(0.5f, -1));
+        j11.setTextColor(org.telegram.ui.ActionBar.k6.o1(0.5f, -1));
         j11.setGravity(17);
         j11.setText(LocaleController.getString(R.string.GiftCraftProgressText));
-        TextView j12 = org.telegram.ui.Cells.c1.j(this.R, j11, w7.z5.d(-1, -2.0f, 81, 42.0f, 0.0f, 42.0f, 24.0f), context);
+        TextView j12 = org.telegram.ui.Cells.b1.j(this.R, j11, w7.z5.d(-1, -2.0f, 81, 42.0f, 0.0f, 42.0f, 24.0f), context);
         j12.setText(LocaleController.getString(R.string.GiftCraftFailedTitle));
         j12.setTextColor(-505270);
         j12.setTextSize(1, 20.0f);
         j12.setTypeface(AndroidUtilities.bold());
         j12.setGravity(17);
-        TextView j13 = org.telegram.ui.Cells.c1.j(this.S, j12, w7.z5.d(-1, -2.0f, 55, 32.0f, 352.0f, 32.0f, 0.0f), context);
+        TextView j13 = org.telegram.ui.Cells.b1.j(this.S, j12, w7.z5.d(-1, -2.0f, 55, 32.0f, 352.0f, 32.0f, 0.0f), context);
         this.M = j13;
         j13.setTextColor(-17253);
         j13.setTextSize(1, 13.0f);
@@ -345,14 +345,14 @@ public final class e6 extends FrameLayout {
         c6[] c6VarArr;
         float f7;
         this.W = i10;
-        this.f1203a0 = j10;
-        this.f1205b0 = document;
-        this.f1207c0 = str;
-        this.f1213h0 = false;
-        this.f1215j0 = false;
+        this.f1196a0 = j10;
+        this.f1198b0 = document;
+        this.f1200c0 = str;
+        this.f1206h0 = false;
+        this.f1208j0 = false;
         int i11 = 0;
         while (true) {
-            c6VarArr = this.f1218n;
+            c6VarArr = this.f1211n;
             if (i11 >= c6VarArr.length) {
                 break;
             }
@@ -363,12 +363,12 @@ public final class e6 extends FrameLayout {
             i11++;
         }
         x5 x5Var = this.h;
-        View[] viewArr = x5Var.f2435a;
+        View[] viewArr = x5Var.f2438a;
         w5 w5Var = x5Var.H;
         if (w5Var != null) {
             w5Var.e = true;
-            w5Var.f2359l = false;
-            w5Var.f2351a.H = null;
+            w5Var.f2362l = false;
+            w5Var.f2354a.H = null;
             x5Var.H = null;
         }
         ValueAnimator valueAnimator = x5Var.G;
@@ -379,10 +379,10 @@ public final class e6 extends FrameLayout {
         x5Var.F = -1;
         x5Var.E = 0.0f;
         x5Var.v.clear();
-        x5Var.f2442w.clear();
-        x5Var.f2443x.clear();
+        x5Var.f2445w.clear();
+        x5Var.f2446x.clear();
         for (int i12 = 0; i12 < 6; i12++) {
-            x5Var.f2444y[i12] = 0.0f;
+            x5Var.f2447y[i12] = 0.0f;
         }
         x5Var.removeAllViews();
         for (int i13 = 0; i13 < viewArr.length; i13++) {
@@ -390,10 +390,10 @@ public final class e6 extends FrameLayout {
             viewArr[i13].setVisibility(0);
             x5Var.addView(viewArr[i13], w7.z5.e(108, 108, 17));
         }
-        Matrix.setIdentityM(x5Var.f2437c, 0);
+        Matrix.setIdentityM(x5Var.f2440c, 0);
         x5Var.e = 0.0f;
         x5Var.d = 0.0f;
-        x5Var.f2438f = true;
+        x5Var.f2441f = true;
         c6 c6Var2 = new c6(getContext());
         c6VarArr[0] = c6Var2;
         addView(c6Var2, w7.z5.d(76, 76.0f, 49, -117.0f, 74.0f, 0.0f, 0.0f));
@@ -412,7 +412,7 @@ public final class e6 extends FrameLayout {
             c6VarArr[i14].setOnClickListener(new p5(this, 5));
         }
         d(false);
-        this.f1213h0 = false;
+        this.f1206h0 = false;
         FrameLayout frameLayout = this.Q;
         frameLayout.animate().cancel();
         frameLayout.setAlpha(1.0f);
@@ -428,15 +428,15 @@ public final class e6 extends FrameLayout {
         FrameLayout frameLayout4 = this.P;
         frameLayout4.animate().cancel();
         frameLayout4.setAlpha(1.0f);
-        if (this.f1220s) {
+        if (this.f1213s) {
             f7 = 0.0f;
-        } else if (this.f1208d0 != null) {
+        } else if (this.f1201d0 != null) {
             f7 = 1.0f;
         } else {
             f7 = 0.25f;
         }
         this.E.setAlpha(f7);
-        a6 a6Var = this.f1210f;
+        a6 a6Var = this.f1203f;
         a6Var.setVisibility(8);
         a6Var.setAlpha(0.0f);
         String string = LocaleController.getString(R.string.GiftCraftButton);
@@ -449,9 +449,9 @@ public final class e6 extends FrameLayout {
 
     public final void b(s5 s5Var) {
         if (s5Var.d != null) {
-            c(s5Var, AndroidUtilities.replaceTags(LocaleController.formatPluralString("GiftCraftBackdropChance", Math.round(s5Var.f2152f * 100.0f), s5Var.d.name)));
+            c(s5Var, AndroidUtilities.replaceTags(LocaleController.formatPluralString("GiftCraftBackdropChance", Math.round(s5Var.f2155f * 100.0f), s5Var.d.name)));
         } else if (s5Var.e != null) {
-            c(s5Var, AndroidUtilities.replaceTags(LocaleController.formatPluralString("GiftCraftSymbolChance", Math.round(s5Var.f2152f * 100.0f), s5Var.e.name)));
+            c(s5Var, AndroidUtilities.replaceTags(LocaleController.formatPluralString("GiftCraftSymbolChance", Math.round(s5Var.f2155f * 100.0f), s5Var.e.name)));
         }
     }
 
@@ -464,7 +464,7 @@ public final class e6 extends FrameLayout {
             x3Var.e(true);
             this.T = null;
         }
-        if (!this.f1213h0 && !this.f1215j0) {
+        if (!this.f1206h0 && !this.f1208j0) {
             if (s5Var.getParent() instanceof View) {
                 view = (View) s5Var.getParent();
             }
@@ -504,7 +504,7 @@ public final class e6 extends FrameLayout {
         TL_stars.StarGift starGift;
         int i10 = 0;
         while (true) {
-            c6[] c6VarArr = this.f1218n;
+            c6[] c6VarArr = this.f1211n;
             if (i10 >= c6VarArr.length) {
                 return null;
             }
@@ -531,7 +531,7 @@ public final class e6 extends FrameLayout {
         int i10 = 0;
         int i11 = 0;
         while (true) {
-            c6[] c6VarArr = this.f1218n;
+            c6[] c6VarArr = this.f1211n;
             if (i10 < c6VarArr.length) {
                 c6 c6Var = c6VarArr[i10];
                 if (c6Var != null) {
@@ -555,7 +555,7 @@ public final class e6 extends FrameLayout {
         int i10 = 0;
         int i11 = 0;
         while (true) {
-            c6[] c6VarArr = this.f1218n;
+            c6[] c6VarArr = this.f1211n;
             if (i10 < c6VarArr.length) {
                 c6 c6Var = c6VarArr[i10];
                 if (c6Var != null) {
@@ -585,14 +585,14 @@ public final class e6 extends FrameLayout {
     }
 
     public void setOnAddGift(Utilities.Callback2<Utilities.Callback<TL_stars.StarGift>, Boolean> callback2) {
-        this.f1211f0 = callback2;
+        this.f1204f0 = callback2;
     }
 
     public void setOnClose(Runnable runnable) {
-        this.f1212g0 = runnable;
+        this.f1205g0 = runnable;
     }
 
     public void setOnCraft(Utilities.Callback3<ArrayList<TL_stars.StarGift>, Utilities.Callback2<TL_stars.StarGift, Runnable>, Runnable> callback3) {
-        this.f1209e0 = callback3;
+        this.f1202e0 = callback3;
     }
 }

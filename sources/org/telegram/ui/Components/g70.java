@@ -1,149 +1,75 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.UserConfig;
-public final class g70 extends im0 {
-    public final l70 f26524c;
+import org.telegram.messenger.MessagesController;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+public final class g70 implements q90 {
+    public final h70 f26557a;
 
-    public g70(l70 l70Var) {
-        this.f26524c = l70Var;
+    public g70(h70 h70Var) {
+        this.f26557a = h70Var;
     }
 
     @Override
-    public final boolean D(s4.b1 b1Var) {
-        int i10;
-        int b10 = b1Var.b();
-        l70 l70Var = this.f26524c;
-        if (b10 == l70Var.f28086n) {
-            long j10 = l70Var.f28072b.admin_id;
-            i10 = ((org.telegram.ui.ActionBar.f3) l70Var).currentAccount;
-            if (j10 != UserConfig.getInstance(i10).clientUserId) {
-                return true;
-            }
-            return false;
-        } else if (b10 < l70Var.f28090x || b10 >= l70Var.f28091y) {
-            if (b10 >= l70Var.O && b10 < l70Var.P) {
-                return true;
-            }
-            return false;
+    public final void a() {
+        m70 m70Var = this.f26557a.f26813c;
+        org.telegram.ui.ActionBar.o2 o2Var = m70Var.U;
+        if (o2Var instanceof org.telegram.ui.mh0) {
+            org.telegram.ui.mh0 mh0Var = (org.telegram.ui.mh0) o2Var;
+            TLRPC.TL_chatInviteExported tL_chatInviteExported = m70Var.f28576b;
+            org.telegram.ui.gb0 gb0Var = new org.telegram.ui.gb0(1, mh0Var.f39592n);
+            gb0Var.T = mh0Var.f39600s0;
+            gb0Var.Y(tL_chatInviteExported);
+            mh0Var.presentFragment(gb0Var);
         } else {
-            return true;
+            org.telegram.ui.gb0 gb0Var2 = new org.telegram.ui.gb0(1, m70Var.f28584g0);
+            gb0Var2.Y(m70Var.f28576b);
+            gb0Var2.T = new f70(this);
+            m70Var.U.presentFragment(gb0Var2);
         }
+        m70Var.dismiss();
     }
 
     @Override
-    public final int h() {
-        return this.f26524c.S;
+    public final void c() {
+        int i10;
+        int i11;
+        m70 m70Var = this.f26557a.f26813c;
+        org.telegram.ui.ActionBar.o2 o2Var = m70Var.U;
+        if (o2Var instanceof org.telegram.ui.mh0) {
+            ((org.telegram.ui.mh0) o2Var).f0(m70Var.f28576b);
+        } else {
+            TLRPC.TL_messages_editExportedChatInvite tL_messages_editExportedChatInvite = new TLRPC.TL_messages_editExportedChatInvite();
+            tL_messages_editExportedChatInvite.link = m70Var.f28576b.link;
+            tL_messages_editExportedChatInvite.revoked = true;
+            i10 = ((org.telegram.ui.ActionBar.h3) m70Var).currentAccount;
+            tL_messages_editExportedChatInvite.peer = MessagesController.getInstance(i10).getInputPeer(-m70Var.f28584g0);
+            i11 = ((org.telegram.ui.ActionBar.h3) m70Var).currentAccount;
+            ConnectionsManager.getInstance(i11).sendRequest(tL_messages_editExportedChatInvite, new e70(this, 0));
+        }
+        m70Var.dismiss();
     }
 
     @Override
-    public final int j(int i10) {
-        l70 l70Var = this.f26524c;
-        if (i10 == l70Var.h || i10 == l70Var.N || i10 == l70Var.f28089w || i10 == l70Var.e) {
-            return 0;
+    public final void k() {
+        int i10;
+        int i11;
+        m70 m70Var = this.f26557a.f26813c;
+        org.telegram.ui.ActionBar.o2 o2Var = m70Var.U;
+        if (o2Var instanceof org.telegram.ui.mh0) {
+            ((org.telegram.ui.mh0) o2Var).c0(m70Var.f28576b);
+        } else {
+            TLRPC.TL_messages_deleteExportedChatInvite tL_messages_deleteExportedChatInvite = new TLRPC.TL_messages_deleteExportedChatInvite();
+            tL_messages_deleteExportedChatInvite.link = m70Var.f28576b.link;
+            i10 = ((org.telegram.ui.ActionBar.h3) m70Var).currentAccount;
+            tL_messages_deleteExportedChatInvite.peer = MessagesController.getInstance(i10).getInputPeer(-m70Var.f28584g0);
+            i11 = ((org.telegram.ui.ActionBar.h3) m70Var).currentAccount;
+            ConnectionsManager.getInstance(i11).sendRequest(tL_messages_deleteExportedChatInvite, new e70(this, 1));
         }
-        if (i10 != l70Var.f28086n) {
-            if (i10 < l70Var.O || i10 >= l70Var.P) {
-                if (i10 < l70Var.f28090x || i10 >= l70Var.f28091y) {
-                    if (i10 != l70Var.f28087r && i10 != l70Var.f28088s) {
-                        if (i10 == l70Var.H) {
-                            return 3;
-                        }
-                        if (i10 == l70Var.I) {
-                            return 4;
-                        }
-                        if (i10 == l70Var.J) {
-                            return 5;
-                        }
-                        l70Var.getClass();
-                        if (i10 != 0 && i10 != l70Var.K && i10 != l70Var.L) {
-                            if (i10 == l70Var.v) {
-                                return 7;
-                            }
-                            if (i10 == l70Var.M) {
-                                return 8;
-                            }
-                            if (i10 != l70Var.f28078f) {
-                                return 0;
-                            }
-                            return 9;
-                        }
-                        return 6;
-                    }
-                    return 2;
-                }
-                return 1;
-            }
-            return 1;
-        }
-        return 1;
+        m70Var.dismiss();
     }
 
     @Override
-    public final void v(s4.b1 r25, int r26) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.g70.v(s4.b1, int):void");
-    }
-
-    @Override
-    public final s4.b1 x(ViewGroup viewGroup, int i10) {
-        b10 b10Var;
-        b10 b10Var2;
-        org.telegram.ui.ActionBar.d6 d6Var;
-        Context context = viewGroup.getContext();
-        l70 l70Var = this.f26524c;
-        switch (i10) {
-            case 1:
-                b10Var2 = new j70(context);
-                break;
-            case 2:
-                b10Var2 = new org.telegram.ui.Cells.z6(context, org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20936a7, false), 0);
-                break;
-            case 3:
-                c70 c70Var = new c70(this, context, l70Var.U, l70Var, l70Var.f28081h0);
-                c70Var.setDelegate(new f70(this));
-                c70Var.setLayoutParams(new s4.o0(-1, -2));
-                b10Var2 = c70Var;
-                break;
-            case 4:
-                b10Var2 = new k70(l70Var, context);
-                break;
-            case 5:
-                b10 b10Var3 = new b10(context, null);
-                b10Var3.setIsSingleCell(true);
-                b10Var3.setViewType(10);
-                b10Var3.f24778w = false;
-                b10Var3.setPaddingLeft(AndroidUtilities.dp(10.0f));
-                b10Var = b10Var3;
-                b10Var2 = b10Var;
-                break;
-            case 6:
-                b10Var2 = new un(context, 12);
-                break;
-            case 7:
-                b10Var2 = new org.telegram.ui.Cells.z6(context, (org.telegram.ui.Cells.c1) null);
-                break;
-            case 8:
-                ?? frameLayout = new FrameLayout(context);
-                TextView textView = new TextView(context);
-                frameLayout.f26803a = textView;
-                textView.setTextSize(1, 14.0f);
-                com.google.android.gms.internal.play_billing.k3.o(org.telegram.ui.ActionBar.h6.f21382y6, null, false, textView, 1);
-                frameLayout.addView(textView, w7.z5.d(-1, -2.0f, 16, 60.0f, 0.0f, 60.0f, 0.0f));
-                b10Var = frameLayout;
-                b10Var2 = b10Var;
-                break;
-            case 9:
-                b10Var2 = new i70(l70Var, context);
-                break;
-            default:
-                d6Var = ((org.telegram.ui.ActionBar.f3) l70Var).resourcesProvider;
-                b10Var2 = new org.telegram.ui.Cells.u3(context, d6Var);
-                break;
-        }
-        return com.google.android.gms.internal.play_billing.k3.l(b10Var2, b10Var2, -1, -2);
+    public final void j() {
     }
 }

@@ -2,18 +2,18 @@ package gi;
 
 import android.view.View;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.h61;
+import org.telegram.ui.Components.m61;
 public final class s implements Utilities.Callback5, Utilities.Callback5Return {
-    public final t f11433a;
+    public final t f11459a;
 
     @Override
     public Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        h61 h61Var = (h61) obj;
+        m61 m61Var = (m61) obj;
         View view = (View) obj2;
         ((Integer) obj3).intValue();
         ((Float) obj4).floatValue();
         ((Float) obj5).floatValue();
-        this.f11433a.getClass();
+        this.f11459a.getClass();
         return Boolean.FALSE;
     }
 
@@ -23,6 +23,6 @@ public final class s implements Utilities.Callback5, Utilities.Callback5Return {
         ((Integer) obj3).getClass();
         ((Float) obj4).getClass();
         ((Float) obj5).getClass();
-        t.V(this.f11433a, (h61) obj);
+        t.V(this.f11459a, (m61) obj);
     }
 }

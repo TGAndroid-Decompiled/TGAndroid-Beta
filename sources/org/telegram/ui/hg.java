@@ -1,38 +1,56 @@
 package org.telegram.ui;
+public final class hg implements q0.a {
+    public final int f37843a;
+    public final sn f37844b;
 
-import android.content.DialogInterface;
-public final class hg implements DialogInterface.OnCancelListener {
-    public final int f37625a;
-    public final Object f37626b;
-
-    public hg(Object obj, int i10) {
-        this.f37625a = i10;
-        this.f37626b = obj;
+    public hg(sn snVar, int i10) {
+        this.f37843a = i10;
+        this.f37844b = snVar;
     }
 
     @Override
-    public final void onCancel(DialogInterface dialogInterface) {
-        switch (this.f37625a) {
+    public final void accept(Object obj) {
+        switch (this.f37843a) {
             case 0:
-                qn qnVar = (qn) this.f37626b;
-                qnVar.f40638b9 = true;
-                qnVar.Z8 = 0;
-                qnVar.f40823qb = 0;
-                qnVar.N4 = 0;
-                qnVar.w9();
-                qnVar.Sb(false);
+                Integer num = (Integer) obj;
+                sn snVar = this.f37844b;
+                snVar.getClass();
+                if (num.intValue() == 0) {
+                    snVar.f41738x1 = 0;
+                    snVar.Ic(true);
+                    snVar.getMessagesController().markReactionsAsRead(snVar.f41519f6, snVar.d());
+                    return;
+                }
+                snVar.Ic(true);
+                snVar.j(num.intValue(), 0, false, 0, true, 0);
                 return;
             case 1:
-                io ioVar = (io) this.f37626b;
-                ioVar.M0 = false;
-                ioVar.f38039b = null;
-                ioVar.N0 = false;
-                return;
-            case 2:
-                ((ip) this.f37626b).f38078n = null;
+                Integer num2 = (Integer) obj;
+                sn snVar2 = this.f37844b;
+                snVar2.getClass();
+                if (num2.intValue() == 0) {
+                    snVar2.f41752y1 = 0;
+                    snVar2.Hc(true);
+                    snVar2.getMessagesController().markPollVotesAsRead(snVar2.f41519f6, snVar2.d());
+                    return;
+                }
+                int i10 = snVar2.f41752y1 - 1;
+                snVar2.f41752y1 = i10;
+                if (i10 <= 0) {
+                    snVar2.getMessagesController().markPollVotesAsRead(snVar2.f41519f6, snVar2.d());
+                }
+                snVar2.Hc(true);
+                snVar2.j(num2.intValue(), 0, false, 0, true, 0);
                 return;
             default:
-                ((ib0) this.f37626b).b();
+                sn snVar3 = this.f37844b;
+                snVar3.getClass();
+                boolean booleanValue = ((Boolean) obj).booleanValue();
+                snVar3.f41665r7 = booleanValue;
+                if (!booleanValue) {
+                    snVar3.v8();
+                    return;
+                }
                 return;
         }
     }

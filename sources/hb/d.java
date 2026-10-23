@@ -8,25 +8,25 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 public final class d implements eb.v {
-    public final int f11715a;
-    public final qf.b f11716b;
+    public final int f11742a;
+    public final qf.b f11743b;
 
     public d(qf.b bVar, int i10) {
-        this.f11715a = i10;
-        this.f11716b = bVar;
+        this.f11742a = i10;
+        this.f11743b = bVar;
     }
 
     @Override
     public final eb.u create(eb.g gVar, lb.a aVar) {
         Type[] actualTypeArguments;
         eb.u uVar;
-        int i10 = this.f11715a;
-        qf.b bVar = this.f11716b;
+        int i10 = this.f11742a;
+        qf.b bVar = this.f11743b;
         Type type = Object.class;
         switch (i10) {
             case 0:
-                Type type2 = aVar.f15995b;
-                Class cls = aVar.f15994a;
+                Type type2 = aVar.f16058b;
+                Class cls = aVar.f16057a;
                 if (!Collection.class.isAssignableFrom(cls)) {
                     return null;
                 }
@@ -40,8 +40,8 @@ public final class d implements eb.v {
                 }
                 return new c(gVar, type, gVar.b(new lb.a(type)), bVar.W(aVar));
             default:
-                Type type3 = aVar.f15995b;
-                Class cls2 = aVar.f15994a;
+                Type type3 = aVar.f16058b;
+                Class cls2 = aVar.f16057a;
                 if (!Map.class.isAssignableFrom(cls2)) {
                     return null;
                 }
@@ -59,7 +59,7 @@ public final class d implements eb.v {
                 if (type4 != Boolean.TYPE && type4 != Boolean.class) {
                     uVar = gVar.b(new lb.a(type4));
                 } else {
-                    uVar = h1.f11724c;
+                    uVar = h1.f11751c;
                 }
                 eb.u b10 = gVar.b(new lb.a(actualTypeArguments[1]));
                 gb.n W = bVar.W(aVar);

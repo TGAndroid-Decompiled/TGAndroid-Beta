@@ -1,78 +1,52 @@
 package org.telegram.ui.ActionBar;
 
-import android.view.animation.Animation;
-import android.view.animation.Transformation;
-import android.widget.RelativeLayout;
-public final class n4 extends Animation {
-    public final int f21627a;
-    public final int f21628b;
-    public final int f21629c;
-    public final float d;
-    public final v4 e;
+import android.graphics.Rect;
+import android.view.View;
+import org.telegram.ui.Components.hp0;
+public final class n4 implements View.OnLayoutChangeListener {
+    public final int f21672a;
+    public final Object f21673b;
+    public final Object f21674c;
+    public final Object d;
 
-    public n4(v4 v4Var, int i10, int i11, float f7, float f10, int i12) {
-        this.f21627a = i12;
-        this.e = v4Var;
-        this.f21628b = i10;
-        this.f21629c = i11;
-        this.d = f10;
+    public n4(hp0 hp0Var, hp0 hp0Var2, hp0 hp0Var3) {
+        this.f21672a = 1;
+        this.f21673b = hp0Var;
+        this.f21674c = hp0Var2;
+        this.d = hp0Var3;
     }
 
     @Override
-    public final void applyTransformation(float f7, Transformation transformation) {
-        switch (this.f21627a) {
+    public final void onLayoutChange(View view, int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17) {
+        switch (this.f21672a) {
             case 0:
-                int i10 = this.f21628b;
-                int i11 = this.f21629c;
-                v4 v4Var = this.e;
-                RelativeLayout relativeLayout = v4Var.f21808f;
-                v4.l(relativeLayout, relativeLayout.getLayoutParams().width, i11 + ((int) (f7 * (i10 - i11))));
-                if (v4Var.M) {
-                    relativeLayout.setY(this.d - relativeLayout.getHeight());
-                    v4.a(v4Var);
-                    return;
-                }
-                return;
-            case 1:
-                int i12 = this.f21628b;
-                int i13 = this.f21629c;
-                v4 v4Var2 = this.e;
-                RelativeLayout relativeLayout2 = v4Var2.f21808f;
-                v4.l(relativeLayout2, ((int) (f7 * (i12 - i13))) + i13, relativeLayout2.getLayoutParams().height);
-                relativeLayout2.setX(this.d - relativeLayout2.getWidth());
-                v4Var2.f21809g.setX(relativeLayout2.getWidth() - i13);
-                v4Var2.h.setX(relativeLayout2.getWidth() - i12);
-                return;
-            case 2:
-                int i14 = this.f21628b;
-                int i15 = this.f21629c;
-                v4 v4Var3 = this.e;
-                RelativeLayout relativeLayout3 = v4Var3.f21808f;
-                v4.l(relativeLayout3, relativeLayout3.getLayoutParams().width, ((int) (f7 * (i14 - i15))) + i15);
-                if (v4Var3.M) {
-                    relativeLayout3.setY(this.d - (relativeLayout3.getHeight() - i15));
-                    v4.a(v4Var3);
+                Rect rect = (Rect) this.f21673b;
+                rect.set(i10, i11, i12, i13);
+                Rect rect2 = (Rect) this.f21674c;
+                rect2.set(i14, i15, i16, i17);
+                a5 a5Var = (a5) this.d;
+                y4 y4Var = a5Var.f20692b;
+                if (y4Var.f() && !rect.equals(rect2)) {
+                    a5Var.h = true;
+                    if (y4Var.f()) {
+                        a5Var.c();
+                        return;
+                    }
                     return;
                 }
                 return;
             default:
-                int i16 = this.f21628b;
-                int i17 = this.f21629c;
-                v4 v4Var4 = this.e;
-                RelativeLayout relativeLayout4 = v4Var4.f21808f;
-                v4.l(relativeLayout4, ((int) (f7 * (i16 - i17))) + i17, relativeLayout4.getLayoutParams().height);
-                relativeLayout4.setX(this.d - relativeLayout4.getWidth());
-                v4Var4.f21809g.setX(relativeLayout4.getWidth() - i16);
-                v4Var4.h.setX(relativeLayout4.getWidth() - i17);
+                ((hp0) this.f21673b).setProgress(org.telegram.ui.m5.f39375c);
+                ((hp0) this.f21674c).setProgress(org.telegram.ui.m5.d);
+                ((hp0) this.d).setProgress(org.telegram.ui.m5.e);
                 return;
         }
     }
 
-    public n4(v4 v4Var, int i10, int i11, float f7, int i12) {
-        this.f21627a = i12;
-        this.e = v4Var;
-        this.f21628b = i10;
-        this.f21629c = i11;
-        this.d = f7;
+    public n4(a5 a5Var) {
+        this.f21672a = 0;
+        this.d = a5Var;
+        this.f21673b = new Rect();
+        this.f21674c = new Rect();
     }
 }

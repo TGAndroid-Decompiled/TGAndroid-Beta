@@ -1,66 +1,66 @@
 package j3;
 
-import c3.e0;
+import c3.g0;
 import c3.l;
-import c3.o;
-import c3.p;
 import c3.q;
+import c3.r;
 import c3.s;
+import c3.u;
 import e9.l0;
 import e9.n0;
 import e9.x1;
 import java.util.List;
 import v7.k8;
-public final class b implements o {
-    public final o f13978a;
-    public final boolean f13979b;
+public final class b implements q {
+    public final q f14023a;
+    public final boolean f14024b;
 
     public b(int i10) {
         boolean z10 = (i10 & 1) != 0;
-        this.f13979b = z10;
+        this.f14024b = z10;
         if (z10) {
-            this.f13978a = new e0(-1, -1, "image/heif");
+            this.f14023a = new g0(-1, -1, "image/heif");
         } else {
-            this.f13978a = new a();
+            this.f14023a = new a();
         }
     }
 
     @Override
-    public final boolean a(p pVar) {
-        if (this.f13979b) {
-            return k8.a((l) pVar, false);
+    public final boolean a(r rVar) {
+        if (this.f14024b) {
+            return k8.a((l) rVar, false);
         }
-        return this.f13978a.a(pVar);
+        return this.f14023a.a(rVar);
     }
 
     @Override
-    public final void c(q qVar) {
-        this.f13978a.c(qVar);
+    public final void c(s sVar) {
+        this.f14023a.c(sVar);
     }
 
     @Override
     public final void d(long j10, long j11) {
-        this.f13978a.d(j10, j11);
+        this.f14023a.d(j10, j11);
     }
 
     @Override
     public final List e() {
-        l0 l0Var = n0.f8474b;
+        l0 l0Var = n0.f8481b;
         return x1.e;
     }
 
     @Override
-    public final int f(p pVar, s sVar) {
-        return this.f13978a.f(pVar, sVar);
+    public final int f(r rVar, u uVar) {
+        return this.f14023a.f(rVar, uVar);
     }
 
     @Override
     public final void release() {
-        this.f13978a.release();
+        this.f14023a.release();
     }
 
     @Override
-    public final o b() {
+    public final q b() {
         return this;
     }
 }

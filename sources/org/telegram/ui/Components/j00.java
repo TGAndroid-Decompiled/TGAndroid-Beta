@@ -3,11 +3,11 @@ package org.telegram.ui.Components;
 import android.graphics.RectF;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-public final class j00 implements yl0, zl0 {
-    public final s00 f27375a;
+public final class j00 implements bm0, cm0 {
+    public final s00 f27479a;
 
     public j00(s00 s00Var) {
-        this.f27375a = s00Var;
+        this.f27479a = s00Var;
     }
 
     @Override
@@ -16,32 +16,32 @@ public final class j00 implements yl0, zl0 {
     }
 
     @Override
-    public boolean a(int r24, android.view.View r25) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.j00.a(int, android.view.View):boolean");
-    }
-
-    @Override
-    public void d(float f7, float f10, int i10, View view) {
-        s00 s00Var = this.f27375a;
+    public void c(float f7, float f10, int i10, View view) {
+        s00 s00Var = this.f27479a;
         n00 n00Var = s00Var.J;
-        if (!((org.telegram.ui.bw) n00Var).f35752b.f36124j2) {
+        if (!((org.telegram.ui.dw) n00Var).f36743b.f37087j2) {
             q00 q00Var = (q00) view;
-            if (s00Var.f30085n) {
+            if (s00Var.f30320n) {
                 if (i10 != 0) {
                     int dp = AndroidUtilities.dp(6.0f);
-                    RectF rectF = q00Var.f29441f;
+                    RectF rectF = q00Var.f29726f;
                     float f11 = dp;
                     if (rectF.left - f11 < f7 && rectF.right + f11 > f7) {
-                        org.telegram.ui.bw bwVar = (org.telegram.ui.bw) s00Var.J;
-                        bwVar.d(bwVar.f35752b.getMessagesController().getDialogFilters().get(q00Var.f29435b.f29180a));
+                        org.telegram.ui.dw dwVar = (org.telegram.ui.dw) s00Var.J;
+                        dwVar.d(dwVar.f36743b.getMessagesController().getDialogFilters().get(q00Var.f29720b.f29374a));
                     }
                 }
             } else if (i10 == s00Var.K && n00Var != null) {
-                ((org.telegram.ui.bw) n00Var).f35752b.v4(true, false);
+                ((org.telegram.ui.dw) n00Var).f36743b.v4(true, false);
             } else {
-                s00Var.f(q00Var.f29435b, i10);
+                s00Var.f(q00Var.f29720b, i10);
             }
         }
+    }
+
+    @Override
+    public boolean d(int r24, android.view.View r25) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.j00.d(int, android.view.View):boolean");
     }
 
     @Override

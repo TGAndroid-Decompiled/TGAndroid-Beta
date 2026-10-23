@@ -1,17 +1,39 @@
 package org.telegram.ui;
+
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
 public final class ix0 implements Runnable {
-    public final int f38133a = 1;
-    public final kx0 f38134b;
+    public final int f38410a;
+    public final PrivacySettingsActivity f38411b;
+
+    public ix0(PrivacySettingsActivity privacySettingsActivity, int i10) {
+        this.f38410a = i10;
+        this.f38411b = privacySettingsActivity;
+    }
 
     @Override
     public final void run() {
-        switch (this.f38133a) {
+        switch (this.f38410a) {
             case 0:
-                this.f38134b.getClass();
-                throw null;
+                PrivacySettingsActivity privacySettingsActivity = this.f38411b;
+                privacySettingsActivity.f33869a.l();
+                privacySettingsActivity.R = true;
+                return;
+            case 1:
+                this.f38411b.f33873c.dismiss();
+                return;
             default:
-                this.f38134b.getClass();
-                throw null;
+                PrivacySettingsActivity privacySettingsActivity2 = this.f38411b;
+                org.telegram.ui.Components.yb ybVar = new org.telegram.ui.Components.yb(privacySettingsActivity2.getParentActivity(), null);
+                ybVar.d(R.raw.email_check_inbox, new String[0]);
+                ybVar.f32863b.setText(LocaleController.getString(R.string.YourLoginEmailChangedSuccess));
+                org.telegram.ui.Components.qc.g(privacySettingsActivity2, ybVar, 1500).j();
+                try {
+                    privacySettingsActivity2.fragmentView.performHapticFeedback(3, 2);
+                } catch (Exception unused) {
+                }
+                privacySettingsActivity2.z0();
+                return;
         }
     }
 }

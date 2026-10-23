@@ -1,152 +1,15 @@
 package org.telegram.ui.Components;
 
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.drawable.Drawable;
-import android.text.TextPaint;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-public final class t71 extends Drawable {
-    public static final int[] f30463r = {10, 7, 26, 16, 10, 25};
-    public final Paint f30464a;
-    public final TextPaint f30465b;
-    public final Path f30466c;
-    public boolean d;
-    public final boolean e;
-    public Path f30467f;
-    public int f30468g;
-    public float h;
-    public float f30469i;
-    public boolean f30470j;
-    public boolean f30471k;
-    public boolean f30472l;
-    public long f30473m;
-    public s71 f30474n;
-    public long f30475o;
-    public String f30476p;
-    public float f30477q;
+import org.telegram.messenger.ImageReceiver;
+public final class t71 extends ImageReceiver {
+    public final u71 f30663a;
 
-    public t71(boolean z10) {
-        Paint paint = new Paint(1);
-        this.f30464a = paint;
-        TextPaint textPaint = new TextPaint(1);
-        this.f30465b = textPaint;
-        Path path = new Path();
-        this.f30466c = path;
-        this.f30477q = 1.0f;
-        this.e = z10;
-        paint.setColor(-1);
-        textPaint.setColor(-1);
-        textPaint.setTextSize(AndroidUtilities.dp(12.0f));
-        textPaint.setTextAlign(Paint.Align.CENTER);
-        path.reset();
-        for (int i10 = 0; i10 < 3; i10++) {
-            int[] iArr = f30463r;
-            if (i10 == 0) {
-                int i11 = i10 * 2;
-                this.f30466c.moveTo(AndroidUtilities.dp(iArr[i11]), AndroidUtilities.dp(iArr[i11 + 1]));
-            } else {
-                int i12 = i10 * 2;
-                this.f30466c.lineTo(AndroidUtilities.dp(iArr[i12]), AndroidUtilities.dp(iArr[i12 + 1]));
-            }
-        }
-        this.f30466c.close();
-    }
-
-    public final void a() {
-        s71 s71Var = this.f30474n;
-        if (s71Var != null) {
-            s71Var.invalidate();
-        } else {
-            invalidateSelf();
-        }
-    }
-
-    public final boolean b() {
-        return this.f30470j;
-    }
-
-    public final void c(org.telegram.ui.zr0 zr0Var) {
-        this.f30474n = zr0Var;
-    }
-
-    public final void d(boolean z10) {
-        boolean z11 = this.d;
-        if (z11 == z10 && this.h >= 1.0f && this.f30471k) {
-            return;
-        }
-        if (z11 != z10) {
-            this.f30475o = 0L;
-            this.f30476p = null;
-        }
-        this.d = z10;
-        this.f30470j = true;
-        this.h = 0.0f;
-        invalidateSelf();
+    public t71(u71 u71Var) {
+        this.f30663a = u71Var;
     }
 
     @Override
-    public final void draw(android.graphics.Canvas r15) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.t71.draw(android.graphics.Canvas):void");
-    }
-
-    public final void e(boolean z10) {
-        if (this.f30471k != z10) {
-            this.f30471k = z10;
-            this.f30476p = null;
-            this.f30475o = 0L;
-            this.h = 0.0f;
-        }
-    }
-
-    public final void f(boolean z10) {
-        this.f30472l = z10;
-        a();
-    }
-
-    public final void g(long j10) {
-        this.f30475o = j10;
-        if (j10 >= 1000) {
-            this.f30476p = LocaleController.formatPluralString("Seconds", (int) (j10 / 1000), new Object[0]);
-        } else {
-            this.f30476p = null;
-        }
-    }
-
-    @Override
-    public final int getIntrinsicHeight() {
-        return AndroidUtilities.dp(32.0f);
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        return AndroidUtilities.dp(32.0f);
-    }
-
-    @Override
-    public final int getMinimumHeight() {
-        return AndroidUtilities.dp(32.0f);
-    }
-
-    @Override
-    public final int getMinimumWidth() {
-        return AndroidUtilities.dp(32.0f);
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-        this.f30464a.setAlpha(i10);
-        this.f30465b.setAlpha(i10);
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        this.f30464a.setColorFilter(colorFilter);
+    public final void invalidate() {
+        this.f30663a.invalidate();
     }
 }

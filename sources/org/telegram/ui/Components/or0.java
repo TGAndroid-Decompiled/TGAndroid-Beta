@@ -1,54 +1,102 @@
 package org.telegram.ui.Components;
 
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.view.View;
+import java.util.HashSet;
+import java.util.Random;
 import org.telegram.messenger.AndroidUtilities;
-public final class or0 implements Runnable {
-    public final int f29130a;
-    public final uv0 f29131b;
+import org.telegram.messenger.FileLog;
+public final class or0 extends View implements org.telegram.ui.ActionBar.b6 {
+    public Random f29296a;
+    public Paint f29297b;
+    public Paint f29298c;
+    public Paint d;
+    public Paint e;
+    public float f29299f;
+    public float h;
+    public float f29300n;
 
-    public or0(uv0 uv0Var, int i10) {
-        this.f29130a = i10;
-        this.f29131b = uv0Var;
+    @Override
+    public final void onDraw(Canvas canvas) {
+        float f7;
+        Paint paint = this.f29298c;
+        Paint paint2 = this.f29297b;
+        super.onDraw(canvas);
+        canvas.saveLayerAlpha(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), 255, 31);
+        float f10 = 3.0f;
+        int measuredWidth = (getMeasuredWidth() / 2) - AndroidUtilities.dp(3.0f);
+        int dp = AndroidUtilities.dp(1.0f) + ((AndroidUtilities.dp(1.0f) + measuredWidth) * 7);
+        bs bsVar = bs.f25134g;
+        float f11 = this.f29299f;
+        if (f11 > 0.4f) {
+            f7 = (f11 - 0.4f) / 0.6f;
+        } else {
+            f7 = 0.0f;
+        }
+        float interpolation = bsVar.getInterpolation(f7);
+        float f12 = (this.f29300n * interpolation) + ((1.0f - interpolation) * this.h);
+        canvas.save();
+        canvas.translate(0.0f, (-org.telegram.messenger.v0.z(4.0f, getMeasuredHeight(), dp)) * f12);
+        int i10 = 0;
+        for (int i11 = 7; i10 < i11; i11 = 7) {
+            int dp2 = ((AndroidUtilities.dp(1.0f) + measuredWidth) * i10) + AndroidUtilities.dp(f10);
+            RectF rectF = AndroidUtilities.rectTmp;
+            float f13 = dp2;
+            float f14 = dp2 + measuredWidth;
+            rectF.set(0.0f, f13, measuredWidth, f14);
+            canvas.drawRoundRect(rectF, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), paint2);
+            rectF.set(AndroidUtilities.dp(1.0f) + measuredWidth, f13, org.telegram.messenger.v0.C(1.0f, measuredWidth, measuredWidth), f14);
+            canvas.drawRoundRect(rectF, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), paint2);
+            i10++;
+            f10 = f10;
+        }
+        float f15 = f10;
+        canvas.restore();
+        canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), AndroidUtilities.dp(4.0f), this.d);
+        canvas.translate(0.0f, getMeasuredHeight() - AndroidUtilities.dp(4.0f));
+        canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), AndroidUtilities.dp(4.0f), this.e);
+        canvas.restore();
+        float measuredHeight = ((getMeasuredHeight() - AndroidUtilities.dp(21.0f)) * f12) + AndroidUtilities.dp(f15);
+        RectF rectF2 = AndroidUtilities.rectTmp;
+        rectF2.set(getMeasuredWidth() - AndroidUtilities.dp(f15), measuredHeight, getMeasuredWidth(), AndroidUtilities.dp(15.0f) + measuredHeight);
+        canvas.drawRoundRect(rectF2, AndroidUtilities.dp(1.5f), AndroidUtilities.dp(1.5f), paint);
+        float centerY = rectF2.centerY();
+        float dp3 = AndroidUtilities.dp(0.5f) + measuredWidth;
+        rectF2.set(dp3 - AndroidUtilities.dp(8.0f), centerY - AndroidUtilities.dp(f15), dp3 + AndroidUtilities.dp(8.0f), centerY + AndroidUtilities.dp(f15));
+        canvas.drawRoundRect(rectF2, AndroidUtilities.dp(f15), AndroidUtilities.dp(f15), paint);
+        float f16 = this.f29299f + 0.016f;
+        this.f29299f = f16;
+        if (f16 > 1.0f) {
+            this.h = this.f29300n;
+            float g10 = org.telegram.ui.Cells.b1.g(this.f29296a, 1001) / 1000.0f;
+            this.f29300n = g10;
+            if (g10 > this.h) {
+                this.f29300n = g10 + 0.3f;
+            } else {
+                this.f29300n = g10 - 0.3f;
+            }
+            this.f29300n = Math.max(0.0f, Math.min(1.0f, this.f29300n));
+            this.f29299f = 0.0f;
+        }
+        invalidate();
     }
 
     @Override
-    public final void run() {
-        switch (this.f29130a) {
-            case 0:
-                uv0 uv0Var = this.f29131b;
-                us usVar = uv0Var.P0;
-                uv0Var.f31031b2 = (int) usVar.c(AndroidUtilities.dp(14.0f));
-                ks0 ks0Var = uv0Var.V;
-                if (ks0Var != null) {
-                    ks0Var.setPaddingTop(AndroidUtilities.dp(48.0f) + ((int) usVar.c(AndroidUtilities.dp(7.0f))));
-                }
-                nu0[] nu0VarArr = uv0Var.f31051k0;
-                if (nu0VarArr != null) {
-                    for (nu0 nu0Var : nu0VarArr) {
-                        if (nu0Var != null) {
-                            int paddingTop = nu0Var.h.getPaddingTop();
-                            ts0 ts0Var = nu0Var.h;
-                            int paddingLeft = ts0Var.getPaddingLeft();
-                            int Z = uv0Var.Z(nu0Var.F);
-                            int paddingRight = nu0Var.h.getPaddingRight();
-                            ts0 ts0Var2 = nu0Var.h;
-                            int Y = uv0Var.Y(uv0Var.x0());
-                            ts0Var2.f28605c3 = Y;
-                            ts0Var.setPadding(paddingLeft, Z, paddingRight, Y);
-                            AndroidUtilities.doOnLayout(nu0Var.h, new wr0(nu0Var, paddingTop - nu0Var.h.getPaddingTop(), 0));
-                        }
-                    }
-                    return;
-                }
-                return;
-            case 1:
-                uv0 uv0Var2 = this.f29131b;
-                uv0Var2.d1(false);
-                uv0Var2.G.h(true);
-                uv0Var2.f31027a1 = 0;
-                return;
-            default:
-                this.f29131b.l0();
-                return;
+    public final void updateColors() {
+        try {
+            Paint paint = this.f29297b;
+            int i10 = org.telegram.ui.ActionBar.k6.f21410pf;
+            paint.setColor(i0.a.o(org.telegram.ui.ActionBar.k6.x0(null, i10, false), 76));
+            this.f29298c.setColor(org.telegram.ui.ActionBar.k6.x0(null, i10, false));
+            invalidate();
+        } catch (Exception e) {
+            FileLog.e(e);
         }
+    }
+
+    @Override
+    public final void addColorKeys(HashSet hashSet) {
     }
 }

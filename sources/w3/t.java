@@ -1,18 +1,19 @@
 package w3;
 
 import e2.m0;
+import i2.o1;
 import v7.u6;
 public final class t {
-    public final q f48584a;
-    public final int f48585b;
-    public final long[] f48586c;
+    public final q f49022a;
+    public final int f49023b;
+    public final long[] f49024c;
     public final int[] d;
     public final int e;
-    public final long[] f48587f;
-    public final int[] f48588g;
+    public final long[] f49025f;
+    public final int[] f49026g;
     public final int[] h;
-    public final long f48589i;
-    public final boolean f48590j;
+    public final long f49027i;
+    public final boolean f49028j;
 
     public t(q qVar, long[] jArr, int[] iArr, int i10, long[] jArr2, int[] iArr2, int[] iArr3, boolean z10, long j10, int i11) {
         boolean z11;
@@ -30,16 +31,16 @@ public final class t {
         }
         u6.g(z12);
         u6.g(iArr2.length == jArr2.length);
-        this.f48584a = qVar;
-        this.f48586c = jArr;
+        this.f49022a = qVar;
+        this.f49024c = jArr;
         this.d = iArr;
         this.e = i10;
-        this.f48587f = jArr2;
-        this.f48588g = iArr2;
+        this.f49025f = jArr2;
+        this.f49026g = iArr2;
         this.h = iArr3;
-        this.f48590j = z10;
-        this.f48589i = j10;
-        this.f48585b = i11;
+        this.f49028j = z10;
+        this.f49027i = j10;
+        this.f49023b = i11;
         if (iArr2.length > 0) {
             int length = iArr2.length - 1;
             iArr2[length] = iArr2[length] | 536870912;
@@ -47,19 +48,19 @@ public final class t {
     }
 
     public final int a(long j10) {
-        long[] jArr = this.f48587f;
+        long[] jArr = this.f49025f;
         if (jArr.length <= 0) {
             return -1;
         }
         int i10 = 0;
-        if (this.f48590j) {
+        if (this.f49028j) {
             return m0.f(jArr, j10, false);
         }
         int[] iArr = this.h;
         int length = iArr.length - 1;
         int i11 = -1;
         while (i10 <= length) {
-            int C = i2.e.C(length, i10, 2, i10);
+            int C = o1.C(length, i10, 2, i10);
             if (jArr[iArr[C]] <= j10) {
                 i10 = C + 1;
                 i11 = C;
@@ -80,11 +81,11 @@ public final class t {
     }
 
     public final int b(long j10) {
-        long[] jArr = this.f48587f;
+        long[] jArr = this.f49025f;
         if (jArr.length <= 0) {
             return -1;
         }
-        if (this.f48590j) {
+        if (this.f49028j) {
             return m0.b(jArr, j10, true);
         }
         int[] iArr = this.h;
@@ -92,7 +93,7 @@ public final class t {
         int i10 = 0;
         int i11 = -1;
         while (i10 <= length) {
-            int C = i2.e.C(length, i10, 2, i10);
+            int C = o1.C(length, i10, 2, i10);
             if (jArr[iArr[C]] >= j10) {
                 length = C - 1;
                 i11 = C;

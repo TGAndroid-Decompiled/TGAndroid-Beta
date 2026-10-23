@@ -13,21 +13,21 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.dq;
+import org.telegram.ui.Components.eq;
 public final class u0 extends ImageView {
-    public int f9874a;
-    public FrameLayout f9875b;
-    public boolean f9876c;
+    public int f9890a;
+    public FrameLayout f9891b;
+    public boolean f9892c;
     public boolean d;
     public boolean e;
-    public dq f9877f;
+    public eq f9893f;
     public u9 h;
-    public t0 f9878n;
-    public a8 f9879r;
-    public r0 f9880s;
+    public t0 f9894n;
+    public a8 f9895r;
+    public r0 f9896s;
     public Uri v;
-    public boolean f9881w;
-    public boolean f9882x;
+    public boolean f9897w;
+    public boolean f9898x;
 
     public static void a(u0 u0Var) {
         u9 u9Var = u0Var.h;
@@ -37,7 +37,7 @@ public final class u0 extends ImageView {
             if (findActivity != null) {
                 findActivity.requestPermissions(new String[]{"android.permission.WRITE_EXTERNAL_STORAGE"}, 113);
             }
-        } else if (!u0Var.f9876c && u0Var.f9879r != null) {
+        } else if (!u0Var.f9892c && u0Var.f9895r != null) {
             if (u0Var.v != null) {
                 if (i10 >= 30) {
                     u0Var.getContext().getContentResolver().delete(u0Var.v, null);
@@ -51,16 +51,16 @@ public final class u0 extends ImageView {
                     u0Var.v = null;
                 }
             }
-            u0Var.f9876c = true;
-            t0 t0Var = u0Var.f9878n;
+            u0Var.f9892c = true;
+            t0 t0Var = u0Var.f9894n;
             if (t0Var != null) {
                 t0Var.a();
-                u0Var.f9878n = null;
+                u0Var.f9894n = null;
             }
-            r0 r0Var = u0Var.f9880s;
+            r0 r0Var = u0Var.f9896s;
             if (r0Var != null) {
                 r0Var.a(true);
-                u0Var.f9880s = null;
+                u0Var.f9896s = null;
             }
             if (u9Var != null) {
                 u0Var.e = true;
@@ -75,22 +75,22 @@ public final class u0 extends ImageView {
 
     public final void b() {
         a8 a8Var;
-        if (this.e && (a8Var = this.f9879r) != null) {
+        if (this.e && (a8Var = this.f9895r) != null) {
             this.e = false;
             if (a8Var.E()) {
                 this.d = true;
                 t0 t0Var = new t0(getContext());
-                this.f9878n = t0Var;
+                this.f9894n = t0Var;
                 t0Var.setOnCancelListener(new o0(this, 1));
-                this.f9875b.addView(this.f9878n);
+                this.f9891b.addView(this.f9894n);
                 File generateVideoPath = AndroidUtilities.generateVideoPath();
-                this.f9880s = new r0(this.f9874a, this.f9879r, generateVideoPath, new p0(this, generateVideoPath, 0), new q0(this, 0), new o0(this, 2));
+                this.f9896s = new r0(this.f9890a, this.f9895r, generateVideoPath, new p0(this, generateVideoPath, 0), new q0(this, 0), new o0(this, 2));
             } else {
                 this.d = false;
                 File generatePicturePath = AndroidUtilities.generatePicturePath(false, "png");
                 if (generatePicturePath == null) {
-                    this.f9878n.b(R.raw.error, 3500, LocaleController.getString("UnknownError"));
-                    this.f9876c = false;
+                    this.f9894n.b(R.raw.error, 3500, LocaleController.getString("UnknownError"));
+                    this.f9892c = false;
                     d();
                     return;
                 }
@@ -101,15 +101,15 @@ public final class u0 extends ImageView {
     }
 
     public final void c(int i10, String str) {
-        t0 t0Var = this.f9878n;
+        t0 t0Var = this.f9894n;
         if (t0Var != null) {
             t0Var.a();
-            this.f9878n = null;
+            this.f9894n = null;
         }
         t0 t0Var2 = new t0(getContext());
-        this.f9878n = t0Var2;
+        this.f9894n = t0Var2;
         t0Var2.b(i10, 3500, str);
-        this.f9875b.addView(this.f9878n);
+        this.f9891b.addView(this.f9894n);
     }
 
     public final void d() {
@@ -117,8 +117,8 @@ public final class u0 extends ImageView {
         boolean z11;
         float f7;
         boolean z12;
-        boolean z13 = this.f9881w;
-        boolean z14 = this.f9876c;
+        boolean z13 = this.f9897w;
+        boolean z14 = this.f9892c;
         boolean z15 = false;
         if (z14 && !this.d) {
             z10 = true;
@@ -131,15 +131,15 @@ public final class u0 extends ImageView {
             } else {
                 z12 = false;
             }
-            this.f9881w = z12;
+            this.f9897w = z12;
             if (z12) {
-                AndroidUtilities.updateImageViewImageAnimated(this, this.f9877f);
+                AndroidUtilities.updateImageViewImageAnimated(this, this.f9893f);
             } else {
                 AndroidUtilities.updateImageViewImageAnimated(this, R.drawable.media_download);
             }
         }
-        boolean z16 = this.f9882x;
-        if (this.f9876c && this.d) {
+        boolean z16 = this.f9898x;
+        if (this.f9892c && this.d) {
             z11 = true;
         } else {
             z11 = false;
@@ -147,10 +147,10 @@ public final class u0 extends ImageView {
         if (z16 != z11) {
             clearAnimation();
             ViewPropertyAnimator animate = animate();
-            if (this.f9876c && this.d) {
+            if (this.f9892c && this.d) {
                 z15 = true;
             }
-            this.f9882x = z15;
+            this.f9898x = z15;
             if (z15) {
                 f7 = 0.4f;
             } else {
@@ -162,19 +162,19 @@ public final class u0 extends ImageView {
 
     public void setEntry(a8 a8Var) {
         this.v = null;
-        this.f9879r = a8Var;
-        r0 r0Var = this.f9880s;
+        this.f9895r = a8Var;
+        r0 r0Var = this.f9896s;
         if (r0Var != null) {
             r0Var.a(true);
-            this.f9880s = null;
+            this.f9896s = null;
         }
-        t0 t0Var = this.f9878n;
+        t0 t0Var = this.f9894n;
         if (t0Var != null) {
             t0Var.a();
-            this.f9878n = null;
+            this.f9894n = null;
         }
         if (a8Var == null) {
-            this.f9876c = false;
+            this.f9892c = false;
             d();
         }
     }

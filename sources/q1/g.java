@@ -5,16 +5,16 @@ import android.widget.TextView;
 import androidx.emoji2.text.l;
 import w7.l6;
 public final class g extends l6 {
-    public final f f44346a;
+    public final f f44759a;
 
     public g(TextView textView) {
-        this.f44346a = new f(textView);
+        this.f44759a = new f(textView);
     }
 
     @Override
     public final InputFilter[] a(InputFilter[] inputFilterArr) {
         boolean z10;
-        if (l.f3102j != null) {
+        if (l.f3109j != null) {
             z10 = true;
         } else {
             z10 = false;
@@ -22,13 +22,13 @@ public final class g extends l6 {
         if (!z10) {
             return inputFilterArr;
         }
-        return this.f44346a.a(inputFilterArr);
+        return this.f44759a.a(inputFilterArr);
     }
 
     @Override
     public final void b(boolean z10) {
         boolean z11;
-        if (l.f3102j != null) {
+        if (l.f3109j != null) {
             z11 = true;
         } else {
             z11 = false;
@@ -36,20 +36,20 @@ public final class g extends l6 {
         if (!z11) {
             return;
         }
-        this.f44346a.b(z10);
+        this.f44759a.b(z10);
     }
 
     @Override
     public final void c(boolean z10) {
         boolean z11;
-        f fVar = this.f44346a;
-        if (l.f3102j != null) {
+        f fVar = this.f44759a;
+        if (l.f3109j != null) {
             z11 = true;
         } else {
             z11 = false;
         }
         if (!z11) {
-            fVar.f44345c = z10;
+            fVar.f44758c = z10;
         } else {
             fVar.c(z10);
         }

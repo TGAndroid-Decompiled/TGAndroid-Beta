@@ -1,81 +1,99 @@
 package org.telegram.ui.Components;
 
-import android.view.KeyEvent;
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public final class cz0 implements Runnable {
-    public final int f25291a;
-    public final int f25292b;
-    public final Object f25293c;
-    public final Object d;
-    public final Object e;
+import android.animation.AnimatorSet;
+import android.animation.ValueAnimator;
+import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import java.util.HashSet;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLog;
+public final class cz0 extends FrameLayout implements org.telegram.ui.ActionBar.b6 {
+    public float E;
+    public float F;
+    public ValueAnimator G;
+    public ValueAnimator H;
+    public c2.b I;
+    public float J;
+    public boolean K;
+    public org.telegram.ui.Components.voip.h L;
+    public Paint f25457a;
+    public Paint f25458b;
+    public Paint f25459c;
+    public Paint d;
+    public boolean e;
+    public ai.jc f25460f;
+    public TextView h;
+    public TextView f25461n;
+    public TextView f25462r;
+    public TextView f25463s;
+    public TextView v;
+    public View f25464w;
+    public int f25465x;
+    public org.telegram.ui.Cells.ca f25466y;
 
-    public cz0(int i10, int i11, KeyEvent.Callback callback, Object obj, Object obj2) {
-        this.f25291a = i11;
-        this.d = callback;
-        this.f25292b = i10;
-        this.e = obj;
-        this.f25293c = obj2;
+    @Override
+    public final void invalidate() {
+        TextView textView = this.f25463s;
+        TextView textView2 = this.f25462r;
+        TextView textView3 = this.f25461n;
+        TextView textView4 = this.h;
+        super.invalidate();
+        this.f25460f.invalidate();
+        int i10 = this.f25465x;
+        int i11 = org.telegram.ui.ActionBar.k6.Vi;
+        if (i10 != org.telegram.ui.ActionBar.k6.x0(null, i11, false)) {
+            this.f25465x = org.telegram.ui.ActionBar.k6.x0(null, i11, false);
+            textView4.setCompoundDrawablesWithIntrinsicBounds(org.telegram.ui.ActionBar.k6.K(AndroidUtilities.dp(10.0f), this.f25465x), (Drawable) null, (Drawable) null, (Drawable) null);
+            textView4.setCompoundDrawablePadding(AndroidUtilities.dp(6.0f));
+            textView3.setCompoundDrawablesWithIntrinsicBounds(org.telegram.ui.ActionBar.k6.K(AndroidUtilities.dp(10.0f), this.f25465x), (Drawable) null, (Drawable) null, (Drawable) null);
+            textView3.setCompoundDrawablePadding(AndroidUtilities.dp(6.0f));
+            textView2.setCompoundDrawablesWithIntrinsicBounds(org.telegram.ui.ActionBar.k6.K(AndroidUtilities.dp(10.0f), i0.a.o(this.f25465x, 64)), (Drawable) null, (Drawable) null, (Drawable) null);
+            textView2.setCompoundDrawablePadding(AndroidUtilities.dp(6.0f));
+            textView.setCompoundDrawablesWithIntrinsicBounds(org.telegram.ui.ActionBar.k6.K(AndroidUtilities.dp(10.0f), i0.a.o(this.f25465x, 127)), (Drawable) null, (Drawable) null, (Drawable) null);
+            textView.setCompoundDrawablePadding(AndroidUtilities.dp(6.0f));
+        }
+        org.telegram.ui.ActionBar.r6.W(this.f25466y.getTextView(), org.telegram.ui.ActionBar.k6.G6, null);
+        org.telegram.ui.ActionBar.r6.i(org.telegram.ui.ActionBar.k6.f21184d7, this.f25464w, null);
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.cz0.run():void");
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        c2.b bVar = this.I;
+        if (bVar != null) {
+            bVar.f4493a = true;
+            AnimatorSet animatorSet = (AnimatorSet) bVar.f4495c;
+            if (!animatorSet.isRunning()) {
+                animatorSet.start();
+            }
+        }
     }
 
-    public cz0(int i10, TLRPC.TL_error tL_error, org.telegram.ui.ActionBar.n2 n2Var, TLRPC.TL_payments_assignPlayMarketTransaction tL_payments_assignPlayMarketTransaction) {
-        this.f25291a = 12;
-        this.f25292b = i10;
-        this.d = tL_error;
-        this.e = n2Var;
-        this.f25293c = tL_payments_assignPlayMarketTransaction;
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        c2.b bVar = this.I;
+        if (bVar != null) {
+            bVar.f4493a = false;
+            ((AnimatorSet) bVar.f4495c).cancel();
+        }
     }
 
-    public cz0(Object obj, Object obj2, int i10, Object obj3, int i11) {
-        this.f25291a = i11;
-        this.d = obj;
-        this.e = obj2;
-        this.f25292b = i10;
-        this.f25293c = obj3;
+    @Override
+    public final void updateColors() {
+        try {
+            if (this.f25460f != null && this.h != null && this.f25465x != org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.Vi, false)) {
+                invalidate();
+            }
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
     }
 
-    public cz0(Object obj, Object obj2, int i10, Object obj3, int i11, boolean z10) {
-        this.f25291a = i11;
-        this.d = obj;
-        this.f25293c = obj2;
-        this.f25292b = i10;
-        this.e = obj3;
-    }
-
-    public cz0(Object obj, Object obj2, Object obj3, int i10, int i11) {
-        this.f25291a = i11;
-        this.d = obj;
-        this.e = obj2;
-        this.f25293c = obj3;
-        this.f25292b = i10;
-    }
-
-    public cz0(String str, int i10, org.telegram.ui.ActionBar.f3 f3Var, org.telegram.ui.ActionBar.d6 d6Var) {
-        this.f25291a = 4;
-        this.e = str;
-        this.f25292b = i10;
-        this.d = f3Var;
-        this.f25293c = d6Var;
-    }
-
-    public cz0(org.telegram.ui.ActionBar.n2 n2Var, Object obj, String str, int i10, int i11) {
-        this.f25291a = i11;
-        this.d = n2Var;
-        this.f25293c = obj;
-        this.e = str;
-        this.f25292b = i10;
-    }
-
-    public cz0(im0 im0Var, int i10, ArrayList arrayList, ArrayList arrayList2, int i11) {
-        this.f25291a = i11;
-        this.d = im0Var;
-        this.f25292b = i10;
-        this.f25293c = arrayList;
-        this.e = arrayList2;
+    @Override
+    public final void addColorKeys(HashSet hashSet) {
     }
 }

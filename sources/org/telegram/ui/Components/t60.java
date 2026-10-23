@@ -1,34 +1,37 @@
 package org.telegram.ui.Components;
-public final class t60 {
-    public final int f30453a;
-    public final int f30454b;
-
-    public t60(int i10, int i11) {
-        this.f30453a = i10;
-        this.f30454b = i11;
-    }
-
-    public final boolean equals(Object obj) {
-        if (this == obj) {
+public abstract class t60 extends ep0 {
+    @Override
+    public final boolean a() {
+        if (j() > 0) {
             return true;
-        }
-        if (obj != null && t60.class == obj.getClass()) {
-            t60 t60Var = (t60) obj;
-            if (this.f30453a == t60Var.f30453a && this.f30454b == t60Var.f30454b) {
-                return true;
-            }
         }
         return false;
     }
 
-    public final int hashCode() {
-        return (this.f30453a * 31) + this.f30454b;
+    @Override
+    public final boolean b() {
+        if (j() < i()) {
+            return true;
+        }
+        return false;
     }
 
-    public final String toString() {
-        StringBuilder sb2 = new StringBuilder("IntSize(");
-        sb2.append(this.f30453a);
-        sb2.append(", ");
-        return a1.g.n(this.f30454b, ")", sb2);
+    @Override
+    public final void c(boolean z10) {
+        int h = h();
+        if (z10) {
+            h *= -1;
+        }
+        k(Math.min(i(), Math.max(0, j() + h)));
     }
+
+    public int h() {
+        return 1;
+    }
+
+    public abstract int i();
+
+    public abstract int j();
+
+    public abstract void k(int i10);
 }

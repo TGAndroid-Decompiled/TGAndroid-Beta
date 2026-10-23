@@ -1,32 +1,23 @@
 package org.telegram.ui.Components;
-public final class fq0 extends g.o {
-    public final int f26343c;
-    public final fr0 d;
 
-    public fq0(fr0 fr0Var, int i10) {
-        this.f26343c = i10;
-        this.d = fr0Var;
+import android.graphics.Canvas;
+import android.view.View;
+public final class fq0 implements bh.k {
+    public final int f26438a;
+    public final mm0 f26439b;
+
+    public fq0(mm0 mm0Var, int i10) {
+        this.f26438a = i10;
+        this.f26439b = mm0Var;
     }
 
     @Override
-    public final int i(int i10) {
-        switch (this.f26343c) {
+    public final boolean a(Canvas canvas, View view, long j10) {
+        switch (this.f26438a) {
             case 0:
-                if (i10 == 0) {
-                    return this.d.J.J;
-                }
-                return 1;
-            case 1:
-                if (i10 == 0) {
-                    return this.d.I.J;
-                }
-                return 1;
+                return ((lq0) this.f26439b).drawChild(canvas, view, j10);
             default:
-                br0 br0Var = this.d.N;
-                if (i10 != br0Var.f25022w && i10 != br0Var.f25023x && i10 != br0Var.f25024y && i10 != br0Var.F && br0Var.j(i10) != 0) {
-                    return 1;
-                }
-                return 4;
+                return ((pu0) this.f26439b).drawChild(canvas, view, j10);
         }
     }
 }

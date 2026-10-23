@@ -1,71 +1,61 @@
 package org.telegram.ui.ActionBar;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
-import org.telegram.messenger.AndroidUtilities;
-public final class h5 extends Drawable {
-    public final int f20927a;
-    public Paint f20928b;
+import android.app.Activity;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.FrameLayout;
+import java.util.List;
+public interface h5 {
+    o2 getBackgroundFragment();
 
-    public h5(int i10) {
-        this.f20927a = i10;
-        switch (i10) {
-            case 1:
-                this.f20928b = new Paint(1);
-                return;
-            default:
-                return;
-        }
-    }
+    h3 getBottomSheet();
 
-    @Override
-    public final void draw(Canvas canvas) {
-        switch (this.f20927a) {
-            case 0:
-                canvas.drawCircle(getBounds().centerX(), getBounds().centerY() - AndroidUtilities.dp(1.0f), (getBounds().width() - AndroidUtilities.dp(8.0f)) / 2.0f, this.f20928b);
-                return;
-            default:
-                Paint paint = this.f20928b;
-                paint.setColor(h6.x0(null, h6.hl, false));
-                canvas.drawRoundRect(getBounds().left, getBounds().exactCenterY() - AndroidUtilities.dp(14.0f), getBounds().right, AndroidUtilities.dp(14.0f) + getBounds().exactCenterY(), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f), paint);
-                return;
-        }
-    }
+    List getFragmentStack();
 
-    @Override
-    public final int getOpacity() {
-        switch (this.f20927a) {
-            case 0:
-                return 0;
-            default:
-                return 0;
-        }
-    }
+    o2 getLastFragment();
 
-    @Override
-    public final void setAlpha(int i10) {
-        switch (this.f20927a) {
-            case 0:
-                this.f20928b.setAlpha(i10);
-                return;
-            default:
-                return;
-        }
-    }
+    j5 getMessageDrawableOutMediaStart();
 
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        int i10 = this.f20927a;
-    }
+    j5 getMessageDrawableOutStart();
 
-    private final void a(int i10) {
-    }
+    FrameLayout getOverlayContainerView();
 
-    private final void b(ColorFilter colorFilter) {
-    }
+    Activity getParentActivity();
 
-    private final void c(ColorFilter colorFilter) {
-    }
+    List getPulledDialogs();
+
+    o2 getSafeLastFragment();
+
+    float getThemeAnimationValue();
+
+    ViewGroup getView();
+
+    Window getWindow();
+
+    void setBackgroundView(View view);
+
+    void setDelegate(d5 d5Var);
+
+    void setDrawerLayoutContainer(b4 b4Var);
+
+    void setFragmentPanTranslationOffset(int i10);
+
+    void setFragmentStack(List list);
+
+    void setHighlightActionButtons(boolean z10);
+
+    void setInBubbleMode(boolean z10);
+
+    void setIsSheet(boolean z10);
+
+    void setNavigationBarColor(int i10);
+
+    void setPulledDialogs(List list);
+
+    void setRemoveActionBarExtraHeight(boolean z10);
+
+    void setUseAlphaAnimations(boolean z10);
+
+    void setWindow(Window window);
 }

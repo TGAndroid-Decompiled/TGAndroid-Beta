@@ -1,44 +1,75 @@
 package u2;
+public final class m1 implements f1 {
+    public int f47814a;
+    public boolean f47815b;
+    public final o1 f47816c;
 
-import java.util.Arrays;
-import v7.k7;
-public final class m1 implements y2.i {
-    public final g2.m f47370a;
-    public final g2.b0 f47371b;
-    public byte[] f47372c;
-
-    public m1(g2.h hVar, g2.m mVar) {
-        u.f47444g.getAndIncrement();
-        this.f47370a = mVar;
-        this.f47371b = new g2.b0(hVar);
+    public m1(o1 o1Var) {
+        this.f47816c = o1Var;
     }
 
     @Override
     public final void a() {
-        g2.b0 b0Var = this.f47371b;
-        b0Var.f10763b = 0L;
-        try {
-            b0Var.open(this.f47370a);
-            int i10 = 0;
-            while (i10 != -1) {
-                int i11 = (int) b0Var.f10763b;
-                byte[] bArr = this.f47372c;
-                if (bArr == null) {
-                    this.f47372c = new byte[1024];
-                } else if (i11 == bArr.length) {
-                    this.f47372c = Arrays.copyOf(bArr, bArr.length * 2);
-                }
-                byte[] bArr2 = this.f47372c;
-                i10 = b0Var.read(bArr2, i11, bArr2.length - i11);
-            }
-            k7.a(b0Var);
-        } catch (Throwable th2) {
-            k7.a(b0Var);
-            throw th2;
+        o1 o1Var = this.f47816c;
+        if (!o1Var.v) {
+            o1Var.f47838r.a();
+        }
+    }
+
+    public final void b() {
+        if (!this.f47815b) {
+            o1 o1Var = this.f47816c;
+            o1Var.e.m(b2.v0.h(o1Var.f47839s.f4135s), o1Var.f47839s, 0, null, 0L);
+            this.f47815b = true;
         }
     }
 
     @Override
-    public final void O() {
+    public final boolean f() {
+        return this.f47816c.f47840w;
+    }
+
+    @Override
+    public final int g(qf.b bVar, h2.h hVar, int i10) {
+        b();
+        o1 o1Var = this.f47816c;
+        boolean z10 = o1Var.f47840w;
+        if (z10 && o1Var.f47841x == null) {
+            this.f47814a = 2;
+        }
+        int i11 = this.f47814a;
+        if (i11 == 2) {
+            hVar.addFlag(4);
+            return -4;
+        } else if ((i10 & 2) == 0 && i11 != 0) {
+            if (!z10) {
+                return -3;
+            }
+            o1Var.f47841x.getClass();
+            hVar.addFlag(1);
+            hVar.e = 0L;
+            if ((i10 & 4) == 0) {
+                hVar.b(o1Var.f47842y);
+                hVar.f11661c.put(o1Var.f47841x, 0, o1Var.f47842y);
+            }
+            if ((i10 & 1) == 0) {
+                this.f47814a = 2;
+            }
+            return -4;
+        } else {
+            bVar.f44865c = o1Var.f47839s;
+            this.f47814a = 1;
+            return -5;
+        }
+    }
+
+    @Override
+    public final int m(long j10) {
+        b();
+        if (j10 > 0 && this.f47814a != 2) {
+            this.f47814a = 2;
+            return 1;
+        }
+        return 0;
     }
 }

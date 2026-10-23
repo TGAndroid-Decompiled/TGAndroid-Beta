@@ -23,10 +23,11 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import org.telegram.ui.Cells.c1;
+import org.telegram.ui.Cells.b1;
+import si.o0;
 public abstract class g {
-    public static final ArrayMap f48460a;
-    public static final ArrayMap f48461b;
+    public static final ArrayMap f48898a;
+    public static final ArrayMap f48899b;
 
     static {
         ArrayMap arrayMap = new ArrayMap();
@@ -42,7 +43,7 @@ public abstract class g {
         arrayMap.put(Map.class, "map");
         arrayMap.put(List.class, "list");
         arrayMap.put(IconCompat.class, "image");
-        f48460a = arrayMap;
+        f48898a = arrayMap;
         ArrayMap arrayMap2 = new ArrayMap();
         arrayMap2.put(0, "primitive");
         arrayMap2.put(1, "iInterface");
@@ -52,7 +53,7 @@ public abstract class g {
         arrayMap2.put(4, "list");
         arrayMap2.put(5, "object");
         arrayMap2.put(6, "image");
-        f48461b = arrayMap2;
+        f48899b = arrayMap2;
     }
 
     public static void a(Bundle bundle, AbstractCollection abstractCollection, e eVar) {
@@ -80,7 +81,7 @@ public abstract class g {
                 } catch (ClassNotFoundException e) {
                     throw new f(a1.g.p("Enum class [", string2, "] not found"), eVar, e);
                 } catch (IllegalArgumentException e7) {
-                    throw new f(c1.k("Enum value [", string, "] does not exist in enum class [", string2, "]"), eVar, e7);
+                    throw new f(b1.l("Enum value [", string, "] does not exist in enum class [", string2, "]"), eVar, e7);
                 } catch (ReflectiveOperationException e10) {
                     throw new f(a1.g.p("Enum of class [", string2, "] missing valueOf method"), eVar, e10);
                 }
@@ -189,11 +190,11 @@ public abstract class g {
         Objects.requireNonNull(classLoader);
         bundle.setClassLoader(classLoader);
         int i10 = bundle.getInt("tag_class_type");
-        String str2 = (String) f48461b.get(Integer.valueOf(bundle.getInt("tag_class_type")));
+        String str2 = (String) f48899b.get(Integer.valueOf(bundle.getInt("tag_class_type")));
         if (str2 == null) {
             str2 = "unknown";
         }
-        e eVar2 = new e(bundle, str2, eVar.f48459b);
+        e eVar2 = new e(bundle, str2, eVar.f48897b);
         try {
             switch (i10) {
                 case 0:
@@ -305,7 +306,7 @@ public abstract class g {
     }
 
     public static String i(Class cls) {
-        String str = (String) f48460a.get(cls);
+        String str = (String) f48898a.get(cls);
         if (str == null) {
             if (List.class.isAssignableFrom(cls)) {
                 return "<List>";
@@ -382,14 +383,14 @@ public abstract class g {
                 i10++;
                 Field field = (Field) obj2;
                 field.setAccessible(true);
-                String u10 = r4.c.u(field.getDeclaringClass().getName(), field.getName());
+                String u10 = o0.u(field.getDeclaringClass().getName(), field.getName());
                 try {
                     Object obj3 = field.get(obj);
                     if (obj3 != null) {
                         bundle.putParcelable(u10, o(obj3, field.getName(), eVar));
                     }
                 } catch (IllegalAccessException e) {
-                    throw new f(r4.c.h("Field is not accessible: ", u10), eVar, e);
+                    throw new f(o0.h("Field is not accessible: ", u10), eVar, e);
                 }
             }
             return bundle;
@@ -437,11 +438,11 @@ public abstract class g {
     }
 
     public static Bundle o(Object obj, String str, e eVar) {
-        ArrayDeque arrayDeque = eVar.f48459b;
+        ArrayDeque arrayDeque = eVar.f48897b;
         if (obj != null) {
             Iterator it = arrayDeque.iterator();
             while (it.hasNext()) {
-                if (((d) it.next()).f48456a == obj) {
+                if (((d) it.next()).f48894a == obj) {
                     throw new f("Found cycle while bundling type ".concat(obj.getClass().getSimpleName()), eVar);
                 }
             }

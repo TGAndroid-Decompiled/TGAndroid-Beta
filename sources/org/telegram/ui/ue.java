@@ -3,15 +3,15 @@ package org.telegram.ui;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 public final class ue implements Runnable {
-    public final int f41945a;
-    public final qn f41946b;
-    public final org.telegram.ui.Components.zm0 f41947c;
+    public final int f42390a;
+    public final sn f42391b;
+    public final org.telegram.ui.Components.cn0 f42392c;
     public final String d;
 
-    public ue(qn qnVar, org.telegram.ui.Components.zm0 zm0Var, String str, int i10) {
-        this.f41945a = i10;
-        this.f41946b = qnVar;
-        this.f41947c = zm0Var;
+    public ue(sn snVar, org.telegram.ui.Components.cn0 cn0Var, String str, int i10) {
+        this.f42390a = i10;
+        this.f42391b = snVar;
+        this.f42392c = cn0Var;
         this.d = str;
     }
 
@@ -19,32 +19,32 @@ public final class ue implements Runnable {
     public final void run() {
         org.telegram.ui.Components.xc a02;
         int i10;
-        switch (this.f41945a) {
+        switch (this.f42390a) {
             case 0:
-                this.f41947c.dismiss();
+                this.f42392c.dismiss();
                 AndroidUtilities.addToClipboard(this.d);
-                a02 = org.telegram.ui.Components.xc.a0(this.f41946b);
+                a02 = org.telegram.ui.Components.xc.a0(this.f42391b);
                 i10 = R.string.RelativeDateCopied;
                 break;
             case 1:
-                this.f41947c.dismiss();
+                this.f42392c.dismiss();
                 AndroidUtilities.addToClipboard(this.d);
-                a02 = org.telegram.ui.Components.xc.a0(this.f41946b);
+                a02 = org.telegram.ui.Components.xc.a0(this.f42391b);
                 i10 = R.string.WalletAddressCopiedBulletin;
                 break;
             case 2:
-                this.f41947c.dismiss();
-                AndroidUtilities.addToClipboard("@" + this.d);
-                a02 = org.telegram.ui.Components.xc.a0(this.f41946b);
-                i10 = R.string.UsernameCopied;
-                break;
-            default:
-                this.f41947c.dismiss();
+                this.f42392c.dismiss();
                 AndroidUtilities.addToClipboard(this.d);
-                a02 = org.telegram.ui.Components.xc.a0(this.f41946b);
+                a02 = org.telegram.ui.Components.xc.a0(this.f42391b);
                 i10 = R.string.CardNumberCopied;
                 break;
+            default:
+                this.f42392c.dismiss();
+                AndroidUtilities.addToClipboard("@" + this.d);
+                a02 = org.telegram.ui.Components.xc.a0(this.f42391b);
+                i10 = R.string.UsernameCopied;
+                break;
         }
-        org.telegram.messenger.nk.p(i10, a02);
+        org.telegram.messenger.sl.p(i10, a02);
     }
 }

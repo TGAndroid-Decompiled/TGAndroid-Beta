@@ -1,6 +1,6 @@
 package ei;
 
-import ai.wc;
+import ai.xc;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -14,17 +14,16 @@ import org.telegram.messenger.AnimationNotificationsLocker;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.Components.jm0;
-import org.telegram.ui.Components.u61;
-import org.telegram.ui.Components.xc;
+import org.telegram.ui.Components.b71;
+import org.telegram.ui.Components.mm0;
 import org.telegram.ui.LaunchActivity;
 public final class bc implements Runnable {
-    public final int f8800a;
-    public final Object f8801b;
+    public final int f8809a;
+    public final Object f8810b;
 
-    public bc(i2.c0 c0Var, SurfaceTexture surfaceTexture) {
-        this.f8800a = 15;
-        this.f8801b = c0Var;
+    public bc(i2.b0 b0Var, SurfaceTexture surfaceTexture) {
+        this.f8809a = 15;
+        this.f8810b = b0Var;
     }
 
     @Override
@@ -32,28 +31,28 @@ public final class bc implements Runnable {
         boolean z10;
         Object obj;
         Bitmap bitmap = null;
-        switch (this.f8800a) {
+        switch (this.f8809a) {
             case 0:
-                ec ecVar = (ec) this.f8801b;
+                ec ecVar = (ec) this.f8810b;
                 MediaMetadataRetriever mediaMetadataRetriever = ecVar.e;
                 if (mediaMetadataRetriever != null) {
                     try {
-                        bitmap = mediaMetadataRetriever.getFrameAtTime(ecVar.f8986j * 1000, 2);
+                        bitmap = mediaMetadataRetriever.getFrameAtTime(ecVar.f8997j * 1000, 2);
                         if (bitmap != null) {
-                            Bitmap createBitmap = Bitmap.createBitmap(ecVar.f8983f, ecVar.f8984g, Bitmap.Config.ARGB_8888);
+                            Bitmap createBitmap = Bitmap.createBitmap(ecVar.f8994f, ecVar.f8995g, Bitmap.Config.ARGB_8888);
                             Canvas canvas = new Canvas(createBitmap);
-                            float max = Math.max(ecVar.f8983f / bitmap.getWidth(), ecVar.f8984g / bitmap.getHeight());
+                            float max = Math.max(ecVar.f8994f / bitmap.getWidth(), ecVar.f8995g / bitmap.getHeight());
                             Rect rect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
                             Rect rect2 = new Rect((int) com.google.android.gms.internal.play_billing.k3.c(bitmap.getWidth(), max, createBitmap.getWidth(), 2.0f), (int) com.google.android.gms.internal.play_billing.k3.c(bitmap.getHeight(), max, createBitmap.getHeight(), 2.0f), (int) com.google.android.gms.internal.play_billing.k3.w(bitmap.getWidth(), max, createBitmap.getWidth(), 2.0f), (int) com.google.android.gms.internal.play_billing.k3.w(bitmap.getHeight(), max, createBitmap.getHeight(), 2.0f));
                             if (ecVar.h) {
-                                if (ecVar.f8989m == null) {
-                                    ecVar.f8989m = new Path();
+                                if (ecVar.f9000m == null) {
+                                    ecVar.f9000m = new Path();
                                 }
-                                ecVar.f8989m.rewind();
-                                ecVar.f8989m.addCircle(ecVar.f8983f / 2.0f, ecVar.f8984g / 2.0f, Math.min(ecVar.f8983f, ecVar.f8984g) / 2.0f, Path.Direction.CW);
-                                canvas.clipPath(ecVar.f8989m);
+                                ecVar.f9000m.rewind();
+                                ecVar.f9000m.addCircle(ecVar.f8994f / 2.0f, ecVar.f8995g / 2.0f, Math.min(ecVar.f8994f, ecVar.f8995g) / 2.0f, Path.Direction.CW);
+                                canvas.clipPath(ecVar.f9000m);
                             }
-                            canvas.drawBitmap(bitmap, rect, rect2, ecVar.f8988l);
+                            canvas.drawBitmap(bitmap, rect, rect2, ecVar.f8999l);
                             bitmap.recycle();
                             bitmap = createBitmap;
                         }
@@ -65,10 +64,10 @@ public final class bc implements Runnable {
                 }
                 return;
             case 1:
-                wc wcVar = (wc) this.f8801b;
-                wcVar.getClass();
+                xc xcVar = (xc) this.f8810b;
+                xcVar.getClass();
                 try {
-                    jm0 currentListView = ((fi.g) wcVar.M0).R.getCurrentListView();
+                    mm0 currentListView = ((fi.g) xcVar.M0).T.getCurrentListView();
                     if (currentListView != null && currentListView.getAdapter() != null) {
                         currentListView.getAdapter().l();
                         return;
@@ -78,172 +77,172 @@ public final class bc implements Runnable {
                     return;
                 }
             case 2:
-                ((gi.f0) this.f8801b).invalidateSelf();
+                ((gi.f0) this.f8810b).invalidateSelf();
                 return;
             case 3:
-                ((gi.g0) this.f8801b).invalidateSelf();
+                ((gi.g0) this.f8810b).invalidateSelf();
                 return;
             case 4:
-                ((gi.i0) this.f8801b).d();
+                ((gi.i0) this.f8810b).d();
                 return;
             case 5:
-                ((gi.v0) this.f8801b).c();
+                ((gi.v0) this.f8810b).c();
                 return;
             case 6:
-                ((gi.v0) this.f8801b).c();
+                ((gi.v0) this.f8810b).c();
                 return;
             case 7:
-                ((gi.w0) this.f8801b).a();
+                ((gi.w0) this.f8810b).a();
                 return;
             case 8:
-                ((gi.x0) this.f8801b).a();
+                ((gi.x0) this.f8810b).a();
                 return;
             case 9:
-                ((gi.c3) this.f8801b).invalidate();
+                ((gi.c3) this.f8810b).invalidate();
                 return;
             case 10:
-                ((AnimationNotificationsLocker) this.f8801b).unlock();
+                ((AnimationNotificationsLocker) this.f8810b).unlock();
                 return;
             case 11:
-                gi.e4 e4Var = (gi.e4) this.f8801b;
-                e4Var.Q = e4Var.f11187r;
+                gi.e4 e4Var = (gi.e4) this.f8810b;
+                e4Var.Q = e4Var.f11209r;
                 return;
             case 12:
-                ((e2.j0) this.f8801b).getClass();
+                ((e2.j0) this.f8810b).getClass();
                 return;
             case 13:
-                ci.u6 u6Var = ((hg.n1) this.f8801b).f11998y;
-                if (u6Var != null) {
-                    u6Var.p(3, true);
+                ci.t6 t6Var = ((hg.n1) this.f8810b).f12025y;
+                if (t6Var != null) {
+                    t6Var.p(3, true);
                     return;
                 }
                 return;
             case 14:
-                i2.i0 i0Var = (i2.i0) this.f8801b;
-                e2.c cVar = i0Var.C;
-                Context context = i0Var.e;
-                String str = e2.m0.f8252a;
+                i2.h0 h0Var = (i2.h0) this.f8810b;
+                e2.c cVar = h0Var.C;
+                Context context = h0Var.e;
+                String str = e2.m0.f8259a;
                 int generateAudioSessionId = c2.i.e(context).generateAudioSessionId();
                 if (generateAudioSessionId == -1) {
                     generateAudioSessionId = 0;
                 }
                 cVar.getClass();
                 Looper myLooper = Looper.myLooper();
-                if (myLooper == ((e2.i0) cVar.f8204c).f8237a.getLooper()) {
+                if (myLooper == ((e2.i0) cVar.f8211c).f8244a.getLooper()) {
                     obj = cVar.e;
                 } else {
-                    if (myLooper == ((e2.i0) cVar.f8203b).f8237a.getLooper()) {
+                    if (myLooper == ((e2.i0) cVar.f8210b).f8244a.getLooper()) {
                         z10 = true;
                     } else {
                         z10 = false;
                     }
                     v7.u6.p(z10);
-                    obj = cVar.f8205f;
+                    obj = cVar.f8212f;
                 }
                 if (((Integer) obj).intValue() != generateAudioSessionId) {
                     Integer valueOf = Integer.valueOf(generateAudioSessionId);
-                    cVar.f8205f = valueOf;
+                    cVar.f8212f = valueOf;
                     e2.b bVar = new e2.b(cVar, valueOf, 0);
-                    e2.i0 i0Var2 = (e2.i0) cVar.f8204c;
-                    if (i0Var2.f8237a.getLooper().getThread().isAlive()) {
-                        i0Var2.d(bVar);
+                    e2.i0 i0Var = (e2.i0) cVar.f8211c;
+                    if (i0Var.f8244a.getLooper().getThread().isAlive()) {
+                        i0Var.d(bVar);
                     }
-                    i0Var.t1(1, 10, Integer.valueOf(generateAudioSessionId));
-                    i0Var.t1(2, 10, Integer.valueOf(generateAudioSessionId));
+                    h0Var.t1(1, 10, Integer.valueOf(generateAudioSessionId));
+                    h0Var.t1(2, 10, Integer.valueOf(generateAudioSessionId));
                     return;
                 }
                 return;
             case 15:
-                i2.i0 i0Var3 = ((i2.c0) this.f8801b).f12325a;
-                i0Var3.x1(null);
-                i0Var3.q1(0, 0);
+                i2.h0 h0Var2 = ((i2.b0) this.f8810b).f12353a;
+                h0Var2.x1(null);
+                h0Var2.q1(0, 0);
                 return;
             case 16:
                 try {
-                    i2.r0.g((i2.m1) this.f8801b);
+                    i2.q0.h((i2.l1) this.f8810b);
                     return;
-                } catch (i2.n e7) {
+                } catch (i2.m e7) {
                     e2.a.d("ExoPlayerImplInternal", "Unexpected error delivering message on external thread.", e7);
                     throw new RuntimeException(e7);
                 }
             case 17:
-                ig.c cVar2 = (ig.c) this.f8801b;
-                cVar2.f12836c.W2.N(true);
+                ig.c cVar2 = (ig.c) this.f8810b;
+                cVar2.d.Z2.N(true);
                 cVar2.V(true);
                 return;
             case 18:
-                AndroidUtilities.addToClipboard(((TL_account.TL_businessChatLink) this.f8801b).link);
-                xc.a0(LaunchActivity.R()).k(false).j();
+                AndroidUtilities.addToClipboard(((TL_account.TL_businessChatLink) this.f8810b).link);
+                org.telegram.ui.Components.xc.a0(LaunchActivity.R()).k(false).j();
                 return;
             case 19:
-                ig.k0 k0Var = (ig.k0) this.f8801b;
-                u61 u61Var = k0Var.f12946d0;
-                if (u61Var != null) {
-                    u61Var.N(true);
+                ig.j0 j0Var = (ig.j0) this.f8810b;
+                b71 b71Var = j0Var.f12972e0;
+                if (b71Var != null) {
+                    b71Var.N(true);
                 }
-                k0Var.U(true);
+                j0Var.T(true);
                 return;
             case 20:
-                ig.t0 t0Var = (ig.t0) ((a6.i) this.f8801b).f307b;
-                t0Var.f13032c.W2.N(true);
-                t0Var.b0();
+                ig.s0 s0Var = (ig.s0) ((a6.i) this.f8810b).f307b;
+                s0Var.e.Z2.N(true);
+                s0Var.b0();
                 return;
             case 21:
-                ig.v0 v0Var = (ig.v0) this.f8801b;
-                v0Var.f13057c.W2.N(true);
-                v0Var.V(true);
+                ig.u0 u0Var = (ig.u0) this.f8810b;
+                u0Var.d.Z2.N(true);
+                u0Var.V(true);
                 return;
             case 22:
-                ig.f1 f1Var = (ig.f1) this.f8801b;
-                f1Var.f12890a.W2.N(true);
-                f1Var.Y(true);
+                ig.e1 e1Var = (ig.e1) this.f8810b;
+                e1Var.f12910a.Z2.N(true);
+                e1Var.Y(true);
                 return;
             case 23:
-                ((ci.z2) this.f8801b).run(Boolean.FALSE);
+                ((ci.y2) this.f8810b).run(Boolean.FALSE);
                 return;
             case 24:
-                NotificationCenter.getInstance(((ig.a2) this.f8801b).f12825a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.quickRepliesUpdated, new Object[0]);
+                NotificationCenter.getInstance(((ig.z1) this.f8810b).f13138a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.quickRepliesUpdated, new Object[0]);
                 return;
             case 25:
-                j2.f fVar = (j2.f) this.f8801b;
-                j2.a l4 = fVar.l();
-                fVar.q(l4, 1028, new j2.c(l4));
-                fVar.f13942f.d();
+                j2.e eVar = (j2.e) this.f8810b;
+                j2.a l4 = eVar.l();
+                eVar.q(l4, 1028, new ih.l(l4));
+                eVar.f13987f.d();
                 return;
             case 26:
-                ((k2.e) this.f8801b).c();
+                ((k2.e) this.f8810b).c();
                 return;
             case 27:
-                e2.r rVar = (e2.r) this.f8801b;
+                e2.r rVar = (e2.r) this.f8810b;
                 rVar.getClass();
-                if (Thread.currentThread() == rVar.f8272a) {
-                    rVar.e(-1, new j2.e(28));
+                if (Thread.currentThread() == rVar.f8279a) {
+                    rVar.e(-1, new k2.f(2));
                     return;
                 }
                 return;
             case 28:
-                k2.t0 t0Var2 = (k2.t0) this.f8801b;
-                if (t0Var2.f14801a0 >= 300000) {
-                    t0Var2.f14812n.j();
-                    t0Var2.f14801a0 = 0L;
+                k2.t0 t0Var = (k2.t0) this.f8810b;
+                if (t0Var.f14844a0 >= 300000) {
+                    t0Var.f14855n.j();
+                    t0Var.f14844a0 = 0L;
                     return;
                 }
                 return;
             default:
-                org.telegram.ui.Cells.g3 g3Var = ((org.telegram.ui.Cells.i3) this.f8801b).f22406b;
-                g3Var.requestFocus();
-                AndroidUtilities.showKeyboard(g3Var);
+                org.telegram.ui.Cells.f3 f3Var = ((org.telegram.ui.Cells.h3) this.f8810b).d;
+                f3Var.requestFocus();
+                AndroidUtilities.showKeyboard(f3Var);
                 return;
         }
     }
 
-    public bc(i2.r0 r0Var, i2.m1 m1Var) {
-        this.f8800a = 16;
-        this.f8801b = m1Var;
+    public bc(i2.q0 q0Var, i2.l1 l1Var) {
+        this.f8809a = 16;
+        this.f8810b = l1Var;
     }
 
     public bc(Object obj, int i10) {
-        this.f8800a = i10;
-        this.f8801b = obj;
+        this.f8809a = i10;
+        this.f8810b = obj;
     }
 }

@@ -3,7 +3,7 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import android.view.ActionMode;
 import android.view.Menu;
-public final class zn extends org.telegram.ui.Cells.c6 {
+public final class zn extends org.telegram.ui.Cells.d6 {
     public final co F;
 
     public zn(co coVar, Context context, int i10) {
@@ -12,11 +12,11 @@ public final class zn extends org.telegram.ui.Cells.c6 {
     }
 
     @Override
-    public final void g(org.telegram.ui.Cells.b6 b6Var, ActionMode actionMode) {
-        if (b6Var.isFocused() && b6Var.hasSelection()) {
+    public final void g(org.telegram.ui.Cells.c6 c6Var, ActionMode actionMode) {
+        if (c6Var.isFocused() && c6Var.hasSelection()) {
             Menu menu = actionMode.getMenu();
             if (menu.findItem(16908321) != null) {
-                org.telegram.ui.qn.n8(menu, ((org.telegram.ui.qn) this.F.d.f28177b.f30550f0).h, false, true, true, true);
+                org.telegram.ui.sn.n8(menu, ((org.telegram.ui.sn) this.F.d.f28366b.f30730f0).h, false, true, true, true);
             }
         }
     }
@@ -27,12 +27,12 @@ public final class zn extends org.telegram.ui.Cells.c6 {
     }
 
     @Override
-    public final void j(org.telegram.ui.Cells.c6 c6Var) {
-        fo.Q(this.F.d, c6Var);
+    public final void j(org.telegram.ui.Cells.d6 d6Var) {
+        fo.Q(this.F.d, d6Var);
     }
 
     @Override
-    public final void k(org.telegram.ui.Cells.b6 b6Var) {
-        this.F.d.f28177b.w1(b6Var, true);
+    public final void k(org.telegram.ui.Cells.c6 c6Var) {
+        this.F.d.f28366b.z1(c6Var, true);
     }
 }

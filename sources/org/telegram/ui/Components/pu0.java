@@ -1,63 +1,18 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import java.util.ArrayList;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.MessageObject;
-public final class pu0 extends org.telegram.ui.Cells.h7 {
-    public final int f29399l0;
-    public final im0 m0;
+import org.telegram.messenger.AndroidUtilities;
+public class pu0 extends ia implements ci.o7 {
+    public int f29671e3;
+    public int f29672f3;
 
-    public pu0(im0 im0Var, Context context, org.telegram.ui.ActionBar.d6 d6Var, int i10) {
-        super(context, 0, d6Var);
-        this.f29399l0 = i10;
-        this.m0 = im0Var;
+    public pu0(Context context) {
+        super(context, null);
     }
 
     @Override
-    public final boolean d(MessageObject messageObject) {
-        ArrayList<MessageObject> arrayList;
-        ArrayList<MessageObject> arrayList2;
-        switch (this.f29399l0) {
-            case 0:
-                qu0 qu0Var = (qu0) this.m0;
-                if (!messageObject.isVoice() && !messageObject.isRoundVideo()) {
-                    if (!messageObject.isMusic()) {
-                        return false;
-                    }
-                    return MediaController.getInstance().setPlaylist(qu0Var.d, messageObject, qu0Var.v.f31034c1);
-                }
-                boolean playMessage = MediaController.getInstance().playMessage(messageObject);
-                MediaController mediaController = MediaController.getInstance();
-                if (playMessage) {
-                    arrayList = qu0Var.d;
-                } else {
-                    arrayList = null;
-                }
-                mediaController.setVoiceMessagesPlaylist(arrayList, false);
-                if (messageObject.isRoundVideo()) {
-                    MediaController.getInstance().setCurrentVideoVisible(false);
-                }
-                return playMessage;
-            default:
-                hv0 hv0Var = (hv0) this.m0;
-                int i10 = hv0Var.d;
-                uv0 uv0Var = hv0Var.f27011f;
-                if (!messageObject.isVoice() && !messageObject.isRoundVideo()) {
-                    if (!messageObject.isMusic()) {
-                        return false;
-                    }
-                    return MediaController.getInstance().setPlaylist(uv0Var.f31071t1[i10].f27645a, messageObject, uv0Var.f31034c1);
-                }
-                boolean playMessage2 = MediaController.getInstance().playMessage(messageObject);
-                MediaController mediaController2 = MediaController.getInstance();
-                if (playMessage2) {
-                    arrayList2 = uv0Var.f31071t1[i10].f27645a;
-                } else {
-                    arrayList2 = null;
-                }
-                mediaController2.setVoiceMessagesPlaylist(arrayList2, false);
-                return playMessage2;
-        }
+    public final void a(int[] iArr) {
+        iArr[0] = (getPaddingTop() - AndroidUtilities.dp(2.0f)) - this.f29671e3;
+        iArr[1] = (getMeasuredHeight() - getPaddingBottom()) - this.f29672f3;
     }
 }

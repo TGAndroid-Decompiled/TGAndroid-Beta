@@ -1,20 +1,20 @@
 package gi;
 
 import android.os.Bundle;
-import org.telegram.ui.qn;
-public final class p3 extends qn {
-    public final org.telegram.ui.ActionBar.f3 Rc;
+import org.telegram.ui.sn;
+public final class p3 extends sn {
+    public final org.telegram.ui.ActionBar.h3 f11409ed;
 
-    public p3(Bundle bundle, org.telegram.ui.ActionBar.f3 f3Var) {
+    public p3(Bundle bundle, org.telegram.ui.ActionBar.h3 h3Var) {
         super(bundle);
-        this.Rc = f3Var;
+        this.f11409ed = h3Var;
     }
 
     @Override
     public final void onFragmentDestroy() {
         super.onFragmentDestroy();
-        org.telegram.ui.ActionBar.f3 f3Var = this.Rc;
-        f3Var.makeAttached(null);
-        f3Var.show();
+        org.telegram.ui.ActionBar.h3 h3Var = this.f11409ed;
+        h3Var.makeAttached(null);
+        h3Var.show();
     }
 }

@@ -1,11 +1,25 @@
 package si;
-public enum n0 {
-    FPS_30(30),
-    FPS_60(60);
-    
-    public final int f46744a;
+public final class n0 {
+    public static final n0 f47174a;
+    public static final n0 f47175b;
+    public static final n0 f47176c;
+    public static final n0[] d;
 
-    n0(int i10) {
-        this.f46744a = i10;
+    static {
+        ?? r02 = new Enum("HIGH", 0);
+        f47174a = r02;
+        ?? r12 = new Enum("MEDIUM", 1);
+        f47175b = r12;
+        ?? r32 = new Enum("LOW", 2);
+        f47176c = r32;
+        d = new n0[]{r02, r12, r32};
+    }
+
+    public static n0 valueOf(String str) {
+        return (n0) Enum.valueOf(n0.class, str);
+    }
+
+    public static n0[] values() {
+        return (n0[]) d.clone();
     }
 }

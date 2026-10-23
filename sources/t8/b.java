@@ -11,18 +11,19 @@ import java.nio.ByteBuffer;
 import java.util.HashSet;
 import m.g3;
 import n6.l;
+import si.o0;
 public final class b extends c1 {
-    public final q8.a f46914b;
-    public final t2 f46915c;
+    public final q8.a f47349b;
+    public final t2 f47350c;
     public final Object d;
     public boolean e;
 
     public b(t2 t2Var) {
         super(4);
-        this.f46914b = new q8.a();
+        this.f47349b = new q8.a();
         this.d = new Object();
         this.e = true;
-        this.f46915c = t2Var;
+        this.f47350c = t2Var;
     }
 
     @Override
@@ -33,7 +34,7 @@ public final class b extends c1 {
                 if (!this.e) {
                     return;
                 }
-                this.f46915c.l();
+                this.f47350c.l();
                 this.e = false;
             } catch (Throwable th2) {
                 throw th2;
@@ -60,8 +61,8 @@ public final class b extends c1 {
                 float blue = Color.blue(pixel);
                 I.put(i12, (byte) ((0.114f * blue) + (0.587f * green) + (0.299f * red)));
                 if (i14 % 2 == 0 && i13 % 2 == 0) {
-                    float c10 = r4.c.c(blue, 0.5f, ((-0.331f) * green) + ((-0.169f) * red), 128.0f);
-                    float c11 = r4.c.c(blue, -0.081f, (green * (-0.419f)) + (red * 0.5f), 128.0f);
+                    float c10 = o0.c(blue, 0.5f, ((-0.331f) * green) + ((-0.169f) * red), 128.0f);
+                    float c11 = o0.c(blue, -0.081f, (green * (-0.419f)) + (red * 0.5f), 128.0f);
                     int i15 = i11 + 1;
                     I.put(i11, (byte) c10);
                     i11 += 2;
@@ -73,7 +74,7 @@ public final class b extends c1 {
         }
         synchronized (this.d) {
             if (this.e) {
-                t2 t2Var = this.f46915c;
+                t2 t2Var = this.f47350c;
                 l.h(I);
                 n10 = t2Var.n(I, f3.b(g3Var));
             } else {
@@ -84,14 +85,14 @@ public final class b extends c1 {
         SparseArray sparseArray = new SparseArray(n10.length);
         int i16 = 0;
         for (a aVar : n10) {
-            int i17 = aVar.f46911a;
+            int i17 = aVar.f47346a;
             i16 = Math.max(i16, i17);
             if (hashSet.contains(Integer.valueOf(i17))) {
                 i17 = i16 + 1;
                 i16 = i17;
             }
             hashSet.add(Integer.valueOf(i17));
-            sparseArray.append(this.f46914b.a(i17), aVar);
+            sparseArray.append(this.f47349b.a(i17), aVar);
         }
         return sparseArray;
     }

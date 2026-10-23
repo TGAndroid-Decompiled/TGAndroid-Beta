@@ -2,10 +2,10 @@ package gb;
 
 import java.util.Comparator;
 public final class i implements Comparator {
-    public final int f10961a;
+    public final int f10980a;
 
     public i(int i10) {
-        this.f10961a = i10;
+        this.f10980a = i10;
     }
 
     @Override

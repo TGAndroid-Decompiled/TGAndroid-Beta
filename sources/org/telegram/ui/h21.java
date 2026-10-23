@@ -2,33 +2,38 @@ package org.telegram.ui;
 
 import android.content.Context;
 import org.telegram.messenger.AndroidUtilities;
-public final class h21 implements k21 {
-    public final org.telegram.messenger.video.a f37476a;
-    public final org.telegram.ui.Components.xc f37477b;
-    public final Context f37478c;
-    public final ci.k0 d;
-    public final org.telegram.messenger.video.d e;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class h21 implements Runnable {
+    public final int f37717a;
+    public final org.telegram.messenger.video.a f37718b;
+    public final org.telegram.ui.Components.xc f37719c;
+    public final Context d;
+    public final ci.k0 e;
 
-    public h21(org.telegram.messenger.video.a aVar, org.telegram.ui.Components.xc xcVar, Context context, ci.k0 k0Var, org.telegram.messenger.video.d dVar) {
-        this.f37476a = aVar;
-        this.f37477b = xcVar;
-        this.f37478c = context;
-        this.d = k0Var;
-        this.e = dVar;
+    public h21(org.telegram.messenger.video.a aVar, org.telegram.ui.Components.xc xcVar, Context context, ci.k0 k0Var, int i10) {
+        this.f37717a = i10;
+        this.f37718b = aVar;
+        this.f37719c = xcVar;
+        this.d = context;
+        this.e = k0Var;
     }
 
     @Override
-    public final void a() {
-        AndroidUtilities.runOnUIThread(new d21(this.f37476a, this.f37477b, this.f37478c, this.d, 2), 200L);
-    }
-
-    @Override
-    public final void b() {
-        AndroidUtilities.runOnUIThread(new jv0(25, this.f37476a, this.f37477b), 200L);
-    }
-
-    @Override
-    public final void c() {
-        this.e.run();
+    public final void run() {
+        switch (this.f37717a) {
+            case 0:
+                this.f37718b.run();
+                this.f37719c.c(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.AdReported), -1, 2, new dv(this.d, 2), this.e)).j();
+                return;
+            case 1:
+                this.f37718b.run();
+                this.f37719c.c(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.AdReported), -1, 2, new dv(this.d, 5), this.e)).j();
+                return;
+            default:
+                this.f37718b.run();
+                this.f37719c.c(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.AdReported), -1, 2, new dv(this.d, 6), this.e)).j();
+                return;
+        }
     }
 }

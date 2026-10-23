@@ -18,30 +18,30 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
 public final class l6 extends FrameLayout {
-    public final int f9376a;
-    public int f9377b;
-    public final ai.w1 f9378c;
+    public final int f9387a;
+    public int f9388b;
+    public final ai.w1 f9389c;
     public final FrameLayout d;
-    public final ci.s8 e;
-    public boolean f9379f;
+    public final ci.r8 e;
+    public boolean f9390f;
     public boolean h;
 
     public l6(Activity activity, int i10, ci.b bVar) {
         super(activity);
-        this.f9377b = 1;
-        this.f9379f = false;
+        this.f9388b = 1;
+        this.f9390f = false;
         this.h = false;
-        this.f9376a = i10;
+        this.f9387a = i10;
         TLRPC.User currentUser = UserConfig.getInstance(i10).getCurrentUser();
         ai.w1 w1Var = new ai.w1(this, getContext());
-        this.f9378c = w1Var;
-        ci.m4 m4Var = new ci.m4(getContext(), null);
-        m4Var.f5608a.getAvatarDrawable().m(i10, currentUser);
-        ci.k4 k4Var = m4Var.f5608a;
-        k4Var.e(currentUser, k4Var.getAvatarDrawable());
-        m4Var.f5609b.l(Emoji.replaceEmoji(UserObject.getUserName(currentUser), m4Var.f5609b.getPaint().getFontMetricsInt(), false), false);
-        m4Var.c(LocaleController.getString(R.string.RightNow), false);
-        w1Var.addView(m4Var, w7.z5.d(-1, -2.0f, 55, 0.0f, 17.0f, 0.0f, 0.0f));
+        this.f9389c = w1Var;
+        ci.l4 l4Var = new ci.l4(getContext(), null);
+        l4Var.f5514a.getAvatarDrawable().m(i10, currentUser);
+        ci.j4 j4Var = l4Var.f5514a;
+        j4Var.e(currentUser, j4Var.getAvatarDrawable());
+        l4Var.f5515b.l(Emoji.replaceEmoji(UserObject.getUserName(currentUser), l4Var.f5515b.getPaint().getFontMetricsInt(), false), false);
+        l4Var.c(LocaleController.getString(R.string.RightNow), false);
+        w1Var.addView(l4Var, w7.z5.d(-1, -2.0f, 55, 0.0f, 17.0f, 0.0f, 0.0f));
         ImageView imageView = new ImageView(activity);
         imageView.setImageDrawable(getContext().getResources().getDrawable(R.drawable.ic_close_white).mutate());
         imageView.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
@@ -49,18 +49,18 @@ public final class l6 extends FrameLayout {
         addView(w1Var, w7.z5.c(-2.0f, -1));
         FrameLayout frameLayout = new FrameLayout(getContext());
         this.d = frameLayout;
-        ci.s8 s8Var = new ci.s8(getContext(), bVar);
-        this.e = s8Var;
-        s8Var.f5993s0 = true;
-        s8Var.setTranslationY(AndroidUtilities.dp(8.0f));
-        frameLayout.addView(s8Var, w7.z5.d(-1, -1.0f, 87, 0.0f, 0.0f, 0.0f, 64.0f));
+        ci.r8 r8Var = new ci.r8(getContext(), bVar);
+        this.e = r8Var;
+        r8Var.f5892s0 = true;
+        r8Var.setTranslationY(AndroidUtilities.dp(8.0f));
+        frameLayout.addView(r8Var, w7.z5.d(-1, -1.0f, 87, 0.0f, 0.0f, 0.0f, 64.0f));
         ImageView imageView2 = new ImageView(activity);
         imageView2.setImageResource(R.drawable.msg_share);
         PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
         imageView2.setColorFilter(new PorterDuffColorFilter(-1, mode));
         frameLayout.addView(imageView2, w7.z5.d(28, 28.0f, 85, 0.0f, 0.0f, 12.0f, 16.0f));
         FrameLayout frameLayout2 = new FrameLayout(activity);
-        frameLayout2.setBackground(org.telegram.ui.ActionBar.h6.c0(AndroidUtilities.dp(22.0f), i0.a.o(-16777216, 122)));
+        frameLayout2.setBackground(org.telegram.ui.ActionBar.k6.c0(AndroidUtilities.dp(22.0f), i0.a.o(-16777216, 122)));
         TextView textView = new TextView(activity);
         textView.setTextSize(1, 18.0f);
         textView.setTextColor(1694498815);
@@ -81,8 +81,8 @@ public final class l6 extends FrameLayout {
         View view;
         float f7;
         if (z10) {
-            if (this.f9379f != z11) {
-                this.f9379f = z11;
+            if (this.f9390f != z11) {
+                this.f9390f = z11;
             } else {
                 return;
             }
@@ -92,7 +92,7 @@ public final class l6 extends FrameLayout {
             return;
         }
         if (z10) {
-            view = this.f9378c;
+            view = this.f9389c;
         } else {
             view = this.d;
         }
@@ -120,7 +120,7 @@ public final class l6 extends FrameLayout {
     }
 
     public final void b(CharSequence charSequence) {
-        this.e.f5977b0.b(org.telegram.ui.Components.a6.cloneSpans(new SpannableString(charSequence)), null, null, false, false);
+        this.e.f5876b0.b(org.telegram.ui.Components.a6.cloneSpans(new SpannableString(charSequence)), null, null, false, false);
     }
 
     @Override

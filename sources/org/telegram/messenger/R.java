@@ -1754,12 +1754,14 @@ public final class R {
         public static int tag_view_on_post_draw_root_state = 0x7f0901b8;
         public static int tag_view_on_post_draw_state = 0x7f0901b9;
         public static int text_wrap = 0x7f0901c4;
-        public static int timeout_callback = 0x7f0901c7;
-        public static int title = 0x7f0901c8;
-        public static int widget_deleted_text = 0x7f0901de;
-        public static int widget_edititem = 0x7f0901df;
-        public static int widget_edititem_text = 0x7f0901e0;
-        public static int width_tag = 0x7f0901e1;
+        public static int theme_bind = 0x7f0901c5;
+        public static int theme_generation = 0x7f0901c6;
+        public static int timeout_callback = 0x7f0901c9;
+        public static int title = 0x7f0901ca;
+        public static int widget_deleted_text = 0x7f0901e0;
+        public static int widget_edititem = 0x7f0901e1;
+        public static int widget_edititem_text = 0x7f0901e2;
+        public static int width_tag = 0x7f0901e3;
 
         private id() {
         }

@@ -8,34 +8,34 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_update;
 import org.telegram.ui.Components.lg;
-import org.telegram.ui.Components.ue0;
+import org.telegram.ui.Components.xe0;
 import org.telegram.ui.WallpapersListActivity;
-import org.telegram.ui.bo;
-import org.telegram.ui.cn;
-import org.telegram.ui.eo0;
-import org.telegram.ui.im0;
-import org.telegram.ui.io;
-import org.telegram.ui.jq0;
-import org.telegram.ui.u60;
-import org.telegram.ui.vf1;
-import org.telegram.ui.wo;
-import org.telegram.ui.x70;
+import org.telegram.ui.bg1;
+import org.telegram.ui.dn;
+import org.telegram.ui.eo;
+import org.telegram.ui.io0;
+import org.telegram.ui.ko;
+import org.telegram.ui.mm0;
+import org.telegram.ui.mq0;
+import org.telegram.ui.v90;
+import org.telegram.ui.y60;
+import org.telegram.ui.yo;
 public final class o3 implements RequestDelegate {
-    public final int f9548a;
-    public final boolean f9549b;
-    public final Object f9550c;
+    public final int f9562a;
+    public final boolean f9563b;
+    public final Object f9564c;
 
     public o3(int i10, Object obj, boolean z10) {
-        this.f9548a = i10;
-        this.f9550c = obj;
-        this.f9549b = z10;
+        this.f9562a = i10;
+        this.f9564c = obj;
+        this.f9563b = z10;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        int i10 = this.f9548a;
-        boolean z10 = this.f9549b;
-        Object obj = this.f9550c;
+        int i10 = this.f9562a;
+        boolean z10 = this.f9563b;
+        Object obj = this.f9564c;
         switch (i10) {
             case 0:
                 AndroidUtilities.runOnUIThread(new ai.y7((p3) obj, tLObject, z10, 4));
@@ -67,45 +67,45 @@ public final class o3 implements RequestDelegate {
                 }
                 return;
             case 4:
-                AndroidUtilities.runOnUIThread(new ai.y7((cn) obj, tLObject, z10, 16));
+                AndroidUtilities.runOnUIThread(new ai.y7((dn) obj, tLObject, z10, 15));
                 return;
             case 5:
-                io ioVar = (io) obj;
+                ko koVar = (ko) obj;
                 if (tLObject instanceof TLRPC.Updates) {
-                    ioVar.getMessagesController().lambda$processUpdates$377((TLRPC.Updates) tLObject, false);
-                    AndroidUtilities.runOnUIThread(new ah.t(25, ioVar, z10));
+                    koVar.getMessagesController().lambda$processUpdates$377((TLRPC.Updates) tLObject, false);
+                    AndroidUtilities.runOnUIThread(new ah.t(25, koVar, z10));
                     return;
                 }
-                AndroidUtilities.runOnUIThread(new bo(ioVar, 3));
+                AndroidUtilities.runOnUIThread(new eo(koVar, 3));
                 return;
             case 6:
-                AndroidUtilities.runOnUIThread(new ai.x9((Object) ((wo) obj), (Object) tL_error, (Object) tLObject, this.f9549b, 13));
+                AndroidUtilities.runOnUIThread(new ai.x9((Object) ((yo) obj), (Object) tL_error, (Object) tLObject, this.f9563b, 14));
                 return;
             case 7:
-                AndroidUtilities.runOnUIThread(new lg((ue0) obj, tL_error, tLObject, z10));
+                AndroidUtilities.runOnUIThread(new lg((xe0) obj, tL_error, tLObject, z10));
                 return;
             case 8:
-                AndroidUtilities.runOnUIThread(new ai.x9((Object) ((u60) obj), (Object) tL_error, (Object) tLObject, this.f9549b, 22));
+                AndroidUtilities.runOnUIThread(new ai.x9((Object) ((y60) obj), (Object) tL_error, (Object) tLObject, this.f9563b, 23));
                 return;
             case 9:
-                AndroidUtilities.runOnUIThread(new ai.x9((Object) ((im0) obj), (Object) tL_error, (Object) tLObject, this.f9549b, 23));
+                AndroidUtilities.runOnUIThread(new ai.x9((Object) ((mm0) obj), (Object) tL_error, (Object) tLObject, this.f9563b, 24));
                 return;
             case 10:
-                AndroidUtilities.runOnUIThread(new ai.x9((Object) ((eo0) obj), (Object) tL_error, (Object) tLObject, this.f9549b, 26));
+                AndroidUtilities.runOnUIThread(new ai.x9((Object) ((io0) obj), (Object) tL_error, (Object) tLObject, this.f9563b, 27));
                 return;
             case 11:
-                jq0 jq0Var = (jq0) obj;
+                mq0 mq0Var = (mq0) obj;
                 if (tLObject != null) {
-                    AndroidUtilities.runOnUIThread(new x70(jq0Var, tLObject, z10, 5));
+                    AndroidUtilities.runOnUIThread(new v90(mq0Var, tLObject, z10, 4));
                     return;
                 }
                 return;
             case 12:
-                AndroidUtilities.runOnUIThread(new ai.x9((Object) ((vf1) obj), (Object) tL_error, (Object) tLObject, this.f9549b, 27));
+                AndroidUtilities.runOnUIThread(new ai.x9((Object) ((bg1) obj), (Object) tL_error, (Object) tLObject, this.f9563b, 28));
                 return;
             default:
-                int[][] iArr = WallpapersListActivity.f35211k0;
-                AndroidUtilities.runOnUIThread(new x70((WallpapersListActivity) obj, tLObject, z10, 14));
+                int[][] iArr = WallpapersListActivity.f35515k0;
+                AndroidUtilities.runOnUIThread(new v90((WallpapersListActivity) obj, tLObject, z10, 13));
                 return;
         }
     }

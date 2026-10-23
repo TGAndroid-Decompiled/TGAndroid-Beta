@@ -26,10 +26,11 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.R;
+import org.telegram.ui.wg1;
 public final class p5 {
-    public static volatile boolean f34703j0;
+    public static volatile boolean f35005j0;
     public static Bitmap[] m0;
-    public static Bitmap[][] f34706n0;
+    public static Bitmap[][] f35008n0;
     public PorterDuffColorFilter A;
     public int B;
     public PorterDuffColorFilter C;
@@ -43,42 +44,42 @@ public final class p5 {
     public float W;
     public float X;
     public float Z;
-    public final Runnable f34709a;
-    public float f34710a0;
-    public SweepGradient f34714c0;
-    public final SweepGradient f34715d0;
-    public final ComposeShader f34716e0;
-    public int f34718f0;
-    public boolean f34723i0;
-    public float f34731q;
-    public boolean f34732r;
+    public final Runnable f35011a;
+    public float f35012a0;
+    public SweepGradient f35016c0;
+    public final SweepGradient f35017d0;
+    public final ComposeShader f35018e0;
+    public int f35020f0;
+    public boolean f35025i0;
+    public float f35033q;
+    public boolean f35034r;
     public final SweepGradient v;
-    public final SweepGradient f34736w;
-    public final ComposeShader f34738y;
-    public int f34739z;
-    public static final AtomicBoolean f34704k0 = new AtomicBoolean();
-    public static final DispatchQueue f34705l0 = new DispatchQueue("walletCardAssets", true, 10);
-    public static final int[] f34707o0 = {-16748837, -16747809, -16746781, -16745754, -16744728, -16743955, -16743183, -16742412, -16741643};
-    public static final LruCache f34708p0 = new LruCache(2);
-    public final Paint f34711b = new Paint(3);
-    public final Paint f34713c = new Paint(3);
+    public final SweepGradient f35038w;
+    public final ComposeShader f35040y;
+    public int f35041z;
+    public static final AtomicBoolean f35006k0 = new AtomicBoolean();
+    public static final DispatchQueue f35007l0 = new DispatchQueue("walletCardAssets", true, 10);
+    public static final int[] f35009o0 = {-16748837, -16747809, -16746781, -16745754, -16744728, -16743955, -16743183, -16742412, -16741643};
+    public static final LruCache f35010p0 = new LruCache(2);
+    public final Paint f35013b = new Paint(3);
+    public final Paint f35015c = new Paint(3);
     public final Paint d = new Paint(1);
     public final Matrix e = new Matrix();
-    public final RectF f34717f = new RectF(0.0f, 0.0f, 336.0f, 205.0f);
-    public final RectF f34719g = new RectF();
+    public final RectF f35019f = new RectF(0.0f, 0.0f, 336.0f, 205.0f);
+    public final RectF f35021g = new RectF();
     public final RectF h = new RectF(-42.0f, -107.5f, 378.0f, 312.5f);
-    public final float[] f34722i = new float[152];
-    public final float[] f34724j = new float[152];
-    public final float[] f34725k = new float[152];
-    public final float[] f34726l = new float[152];
-    public final float[] f34727m = new float[76];
-    public final float[] f34728n = new float[76];
-    public final int[] f34729o = new int[76];
-    public final Path f34730p = new Path();
-    public final Path f34733s = new Path();
-    public final Path f34734t = new Path();
-    public final Path f34735u = new Path();
-    public final Shader[] f34737x = new Shader[2];
+    public final float[] f35024i = new float[152];
+    public final float[] f35026j = new float[152];
+    public final float[] f35027k = new float[152];
+    public final float[] f35028l = new float[152];
+    public final float[] f35029m = new float[76];
+    public final float[] f35030n = new float[76];
+    public final int[] f35031o = new int[76];
+    public final Path f35032p = new Path();
+    public final Path f35035s = new Path();
+    public final Path f35036t = new Path();
+    public final Path f35037u = new Path();
+    public final Shader[] f35039x = new Shader[2];
     public final int[] D = new int[2];
     public final Shader[] E = new Shader[2];
     public final SweepGradient[] F = new SweepGradient[2];
@@ -92,9 +93,9 @@ public final class p5 {
     public final Bitmap[] O = new Bitmap[8];
     public final Bitmap[] P = new Bitmap[8];
     public float Y = 1.0f;
-    public float f34712b0 = 1.0f;
-    public int f34720g0 = -14456619;
-    public int f34721h0 = -14184457;
+    public float f35014b0 = 1.0f;
+    public int f35022g0 = -14456619;
+    public int f35023h0 = -14184457;
 
     public p5(Context context, int i10, int i11, Runnable runnable) {
         char c10;
@@ -115,7 +116,7 @@ public final class p5 {
         int i19 = 0;
         char c11 = 6;
         float f15 = 1.0f;
-        this.f34709a = runnable;
+        this.f35011a = runnable;
         this.R = context;
         int i20 = 0;
         while (true) {
@@ -146,12 +147,12 @@ public final class p5 {
                 int i24 = i19;
                 float cos = (float) Math.cos(radians);
                 float sin = (float) Math.sin(radians);
-                float[] fArr = this.f34722i;
+                float[] fArr = this.f35024i;
                 int i25 = i22 * 2;
                 fArr[i25] = com.google.android.gms.internal.play_billing.k3.w(cos, 25.2f, f11, 336.0f);
                 int i26 = i25 + 1;
                 fArr[i26] = com.google.android.gms.internal.play_billing.k3.w(25.368736f, sin, f12, 205.0f);
-                float[] fArr2 = this.f34724j;
+                float[] fArr2 = this.f35026j;
                 fArr2[i25] = cos;
                 fArr2[i26] = sin;
                 i19 = i24 + 1;
@@ -191,7 +192,7 @@ public final class p5 {
                 }
             }
         }
-        if (f34706n0 == null) {
+        if (f35008n0 == null) {
             int[] iArr = new int[2];
             iArr[z12 ? 1 : 0] = i28;
             iArr[i29] = 2;
@@ -217,7 +218,7 @@ public final class p5 {
                 i31++;
                 i28 = i32;
             }
-            f34706n0 = bitmapArr;
+            f35008n0 = bitmapArr;
         }
         int[] iArr2 = new int[129];
         int[] iArr3 = new int[129];
@@ -240,14 +241,14 @@ public final class p5 {
         char c14 = c10;
         this.v = new SweepGradient(168.0f, 102.5f, iArr2, (float[]) null);
         SweepGradient sweepGradient = new SweepGradient(168.0f, 102.5f, iArr3, (float[]) null);
-        this.f34736w = sweepGradient;
+        this.f35038w = sweepGradient;
         if (m0[c13] != null) {
             Bitmap bitmap3 = m0[c13];
             Shader.TileMode tileMode = Shader.TileMode.CLAMP;
             BitmapShader bitmapShader = new BitmapShader(bitmap3, tileMode, tileMode);
             this.e.setScale(f7 / m0[c13].getWidth(), f10 / m0[c13].getHeight());
             bitmapShader.setLocalMatrix(this.e);
-            this.f34738y = new ComposeShader(bitmapShader, sweepGradient, PorterDuff.Mode.DST_IN);
+            this.f35040y = new ComposeShader(bitmapShader, sweepGradient, PorterDuff.Mode.DST_IN);
         }
         int i35 = i29;
         while (i35 < i17) {
@@ -258,7 +259,7 @@ public final class p5 {
                 this.e.setScale(f7 / m0[i35].getWidth(), f10 / m0[i35].getHeight());
                 bitmapShader2.setLocalMatrix(this.e);
                 i14 = i17;
-                this.f34737x[i35] = new ComposeShader(bitmapShader2, this.f34736w, PorterDuff.Mode.DST_IN);
+                this.f35039x[i35] = new ComposeShader(bitmapShader2, this.f35038w, PorterDuff.Mode.DST_IN);
             } else {
                 i14 = i17;
             }
@@ -291,7 +292,7 @@ public final class p5 {
             i12 = 128;
         }
         int i38 = i17;
-        this.f34713c.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SCREEN));
+        this.f35015c.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SCREEN));
         this.d.setStyle(Paint.Style.STROKE);
         Random random = new Random(24560118926758988L);
         for (int i39 = i29; i39 < this.L.length; i39++) {
@@ -325,7 +326,7 @@ public final class p5 {
             }
             this.L[i39][i38] = (((random.nextFloat() * 6.0f) + f17) * f7) / 512.0f;
             double nextFloat3 = random.nextFloat() * 3.141592653589793d * 2.0d;
-            float d11 = org.telegram.ui.Cells.c1.d(random, 0.45f, 0.05f);
+            float d11 = org.telegram.ui.Cells.b1.d(random, 0.45f, 0.05f);
             float sqrt = f17 / ((float) Math.sqrt((d11 * d11) + f17));
             this.L[i39][i27] = ((float) Math.cos(nextFloat3)) * d11 * sqrt;
             this.L[i39][c14] = ((float) Math.sin(nextFloat3)) * d11 * sqrt;
@@ -336,7 +337,7 @@ public final class p5 {
             iArr5[i42] = a((((float) Math.pow(Math.abs(Math.cos(((i42 * 3.141592653589793d) * 2.0d) / 64.0d)), 8.0d)) * 0.88f) + 0.12f, -1);
         }
         SweepGradient sweepGradient2 = new SweepGradient(this.M.centerX(), this.M.centerY(), iArr5, (float[]) null);
-        this.f34715d0 = sweepGradient2;
+        this.f35017d0 = sweepGradient2;
         if (m0[c14] != null) {
             Bitmap bitmap6 = m0[c14];
             Shader.TileMode tileMode4 = Shader.TileMode.CLAMP;
@@ -346,12 +347,12 @@ public final class p5 {
             RectF rectF = this.M;
             matrix.postTranslate(rectF.left, rectF.top);
             bitmapShader4.setLocalMatrix(this.e);
-            this.f34716e0 = new ComposeShader(bitmapShader4, sweepGradient2, PorterDuff.Mode.DST_IN);
+            this.f35018e0 = new ComposeShader(bitmapShader4, sweepGradient2, PorterDuff.Mode.DST_IN);
         }
         f(h(context, i10));
-        this.f34718f0 = i10;
+        this.f35020f0 = i10;
         k(0.0f, 0.0f);
-        f34703j0 = z12;
+        f35005j0 = z12;
     }
 
     public static int a(float f7, int i10) {
@@ -381,7 +382,7 @@ public final class p5 {
         int i11;
         String sb3;
         Integer valueOf = Integer.valueOf(i10);
-        LruCache lruCache = f34708p0;
+        LruCache lruCache = f35010p0;
         Bitmap[] bitmapArr = (Bitmap[]) lruCache.get(valueOf);
         if (bitmapArr != null) {
             return bitmapArr;
@@ -391,7 +392,7 @@ public final class p5 {
         } else if (i10 == R.drawable.wallet_card_info) {
             str = "info";
         } else {
-            throw new IllegalArgumentException(i2.e.j(i10, "Missing packaged wallet icon: "));
+            throw new IllegalArgumentException(i2.o1.k(i10, "Missing packaged wallet icon: "));
         }
         Bitmap[] bitmapArr2 = new Bitmap[17];
         for (int i12 = 0; i12 < 17; i12++) {
@@ -441,7 +442,7 @@ public final class p5 {
         if (bitmap == null) {
             return;
         }
-        Paint paint = this.f34711b;
+        Paint paint = this.f35013b;
         paint.setAlpha(i10);
         canvas.drawBitmap(bitmap, (Rect) null, rectF, paint);
         paint.setAlpha(255);
@@ -458,26 +459,26 @@ public final class p5 {
     }
 
     public final void j(int i10) {
-        if (i10 == this.f34718f0) {
+        if (i10 == this.f35020f0) {
             return;
         }
-        this.f34718f0 = i10;
-        Bitmap[] bitmapArr = (Bitmap[]) f34708p0.get(Integer.valueOf(i10));
+        this.f35020f0 = i10;
+        Bitmap[] bitmapArr = (Bitmap[]) f35010p0.get(Integer.valueOf(i10));
         if (bitmapArr != null) {
             f(bitmapArr);
             return;
         }
-        f34705l0.postRunnable(new j(this, i10, 2));
+        f35007l0.postRunnable(new wg1(this, i10, 3));
     }
 
     public final void k(float f7, float f10) {
         float f11;
         float f12;
         SweepGradient[] sweepGradientArr;
-        if (this.f34723i0 && this.S == f7 && this.T == f10) {
+        if (this.f35025i0 && this.S == f7 && this.T == f10) {
             return;
         }
-        this.f34723i0 = true;
+        this.f35025i0 = true;
         this.S = f7;
         this.T = f10;
         double d = f7;
@@ -501,21 +502,21 @@ public final class p5 {
         float f18 = this.Y / sqrt;
         this.Y = f18;
         this.Z = f16 + sin;
-        this.f34710a0 = f17 + sin2;
+        this.f35012a0 = f17 + sin2;
         float f19 = f18 + cos;
-        this.f34712b0 = f19;
+        this.f35014b0 = f19;
         float f20 = f19 * f19;
         float sqrt2 = (float) Math.sqrt(f20 + (f12 * f12) + (f11 * f11));
         this.Z /= sqrt2;
-        this.f34710a0 /= sqrt2;
-        this.f34712b0 /= sqrt2;
+        this.f35012a0 /= sqrt2;
+        this.f35014b0 /= sqrt2;
         this.U = (float) Math.toRadians(((f10 * 2.0f) + 1.72d) - (d * 1.25d));
-        float f21 = (this.f34710a0 * 4.0f) + ((this.Z - 0.103713065f) * (-2.0f));
+        float f21 = (this.f35012a0 * 4.0f) + ((this.Z - 0.103713065f) * (-2.0f));
         this.V = f21;
         Matrix matrix = this.e;
         matrix.setRotate((float) Math.toDegrees(f21), 168.0f, 102.5f);
         this.v.setLocalMatrix(matrix);
-        this.f34736w.setLocalMatrix(matrix);
+        this.f35038w.setLocalMatrix(matrix);
         for (SweepGradient sweepGradient : this.F) {
             if (sweepGradient != null) {
                 sweepGradient.setLocalMatrix(matrix);
@@ -526,11 +527,11 @@ public final class p5 {
         float cos3 = (float) Math.cos(radians2);
         float f22 = -((float) Math.sin(radians2));
         float f23 = (f22 * cos) + ((-cos3) * sin);
-        float z10 = org.telegram.ui.Cells.c1.z(sin4, cos3, cos, (((-sin4) * f22) * sin) - (cos2 * sin2));
+        float x10 = org.telegram.ui.Cells.b1.x(sin4, cos3, cos, (((-sin4) * f22) * sin) - (cos2 * sin2));
         float t10 = com.google.android.gms.internal.play_billing.k3.t(cos2, cos3, cos, ((f22 * cos2) * sin) - (sin4 * sin2));
-        double d10 = z10;
+        double d10 = x10;
         double d11 = t10;
-        float c10 = c((((((float) Math.pow(Math.max(0.0d, (d11 * 0.68d) + ((0.12d * d10) + (f23 * 0.72d))), 31.15d)) * 0.7832f) + ((((float) Math.pow(Math.max(0.0d, (d11 * 0.72d) + ((0.46d * d10) + ((-f23) * 0.52d))), 16.55d)) * 2.5191f) + ((((float) Math.pow(Math.max(0.0d, (0.571d * d11) + (d10 * 0.821d)), 4.65d)) * 0.1133f) + ((((float) Math.pow(Math.max(0.0d, (0.9757d * d11) + (0.2191d * d10)), 3.365d)) * 0.2556f) + i(0.061f, 0.356f, l(-0.45f, 0.72f, z10)))))) - 0.12f) / 1.8f);
+        float c10 = c((((((float) Math.pow(Math.max(0.0d, (d11 * 0.68d) + ((0.12d * d10) + (f23 * 0.72d))), 31.15d)) * 0.7832f) + ((((float) Math.pow(Math.max(0.0d, (d11 * 0.72d) + ((0.46d * d10) + ((-f23) * 0.52d))), 16.55d)) * 2.5191f) + ((((float) Math.pow(Math.max(0.0d, (0.571d * d11) + (d10 * 0.821d)), 4.65d)) * 0.1133f) + ((((float) Math.pow(Math.max(0.0d, (0.9757d * d11) + (0.2191d * d10)), 3.365d)) * 0.2556f) + i(0.061f, 0.356f, l(-0.45f, 0.72f, x10)))))) - 0.12f) / 1.8f);
         float i10 = i(0.25f, 2.2f, c10);
         float i11 = i(0.9f, 1.2f, c10) * 0.35f;
         int i12 = 0;
@@ -545,10 +546,10 @@ public final class p5 {
                 i12++;
             } else {
                 RectF rectF = this.M;
-                this.f34714c0 = new SweepGradient(rectF.centerX(), rectF.centerY(), iArr, (float[]) null);
+                this.f35016c0 = new SweepGradient(rectF.centerX(), rectF.centerY(), iArr, (float[]) null);
                 matrix.setRotate((float) Math.toDegrees(this.V), rectF.centerX(), rectF.centerY());
-                this.f34714c0.setLocalMatrix(matrix);
-                this.f34715d0.setLocalMatrix(matrix);
+                this.f35016c0.setLocalMatrix(matrix);
+                this.f35017d0.setLocalMatrix(matrix);
                 return;
             }
         }

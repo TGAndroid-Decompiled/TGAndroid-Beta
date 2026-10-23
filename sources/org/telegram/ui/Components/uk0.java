@@ -1,30 +1,21 @@
 package org.telegram.ui.Components;
-public final class uk0 extends pg.a {
-    public final ah.i1 f30960c;
 
-    public uk0(int i10, ah.i1 i1Var) {
-        super(i10, false);
-        this.f30960c = i1Var;
+import android.animation.ValueAnimator;
+public final class uk0 implements ValueAnimator.AnimatorUpdateListener {
+    public final float f31178a;
+    public final gl0 f31179b;
+
+    public uk0(gl0 gl0Var, float f7) {
+        this.f31179b = gl0Var;
+        this.f31178a = f7;
     }
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj != null && uk0.class == obj.getClass()) {
-            uk0 uk0Var = (uk0) obj;
-            int i10 = this.f44300a;
-            int i11 = uk0Var.f44300a;
-            if (i10 == i11 && (i10 == 0 || i10 == 3)) {
-                ah.i1 i1Var = this.f30960c;
-                if (i1Var != null && i1Var.equals(uk0Var.f30960c)) {
-                    return true;
-                }
-                return false;
-            } else if (i10 == i11) {
-                return true;
-            }
-        }
-        return false;
+    @Override
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        gl0 gl0Var = this.f31179b;
+        gl0Var.f26657o0 = floatValue;
+        gl0Var.f26656n0 = (1.0f - gl0Var.f26657o0) * this.f31178a;
+        gl0Var.invalidate();
     }
 }

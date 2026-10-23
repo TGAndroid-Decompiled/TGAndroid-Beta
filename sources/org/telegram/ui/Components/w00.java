@@ -1,18 +1,18 @@
 package org.telegram.ui.Components;
 public final class w00 {
-    public float f31929a;
-    public float f31930b;
-    public float f31931c;
+    public float f32083a;
+    public float f32084b;
+    public float f32085c;
     public float d;
     public float e;
-    public float f31932f;
-    public float f31933g;
+    public float f32086f;
+    public float f32087g;
     public float h;
-    public float f31934i;
-    public int f31935j;
-    public final x00 f31936k;
+    public float f32088i;
+    public int f32089j;
+    public final x00 f32090k;
 
     public w00(x00 x00Var) {
-        this.f31936k = x00Var;
+        this.f32090k = x00Var;
     }
 }

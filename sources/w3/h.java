@@ -6,14 +6,14 @@ import b2.v;
 import b2.v0;
 import b2.w;
 import b2.w0;
-import c3.g0;
-import c3.j0;
+import c3.i0;
+import c3.l0;
 import e2.k0;
 import e2.m0;
 import e2.x;
-import e9.l0;
 import e9.n0;
 import e9.x1;
+import i2.o1;
 import j$.util.DesugarCollections;
 import java.math.RoundingMode;
 import java.util.ArrayDeque;
@@ -22,7 +22,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.PriorityQueue;
 import java.util.UUID;
-public final class h implements c3.o {
+public final class h implements c3.q {
     public static final byte[] O = {-94, 57, 79, 82, 90, -101, 79, 20, -94, 68, 108, 66, 124, 100, -115, -12};
     public static final w P;
     public long A;
@@ -33,64 +33,64 @@ public final class h implements c3.o {
     public int F;
     public boolean G;
     public boolean H;
-    public c3.q I;
-    public j0[] J;
-    public j0[] K;
+    public c3.s I;
+    public l0[] J;
+    public l0[] K;
     public boolean L;
     public boolean M;
     public long N;
-    public final z3.k f48497a;
-    public final int f48498b;
-    public final List f48499c;
+    public final z3.k f48935a;
+    public final int f48936b;
+    public final List f48937c;
     public final byte[] h;
-    public final x f48502i;
-    public final k0 f48503j;
-    public final e2.c f48508o;
-    public final j0 f48509p;
-    public final qb.c f48510q;
-    public x1 f48511r;
-    public int f48512s;
-    public int f48513t;
-    public long f48514u;
+    public final x f48940i;
+    public final k0 f48941j;
+    public final e2.c f48946o;
+    public final l0 f48947p;
+    public final qb.c f48948q;
+    public x1 f48949r;
+    public int f48950s;
+    public int f48951t;
+    public long f48952u;
     public int v;
-    public x f48515w;
-    public long f48516x;
-    public int f48517y;
-    public long f48518z;
-    public final n2.e f48504k = new n2.e(1);
-    public final x f48505l = new x(16);
-    public final x e = new x(f2.q.f10335a);
-    public final x f48500f = new x(6);
-    public final x f48501g = new x();
-    public final ArrayDeque f48506m = new ArrayDeque();
-    public final ArrayDeque f48507n = new ArrayDeque();
+    public x f48953w;
+    public long f48954x;
+    public int f48955y;
+    public long f48956z;
+    public final n2.e f48942k = new n2.e(1);
+    public final x f48943l = new x(16);
+    public final x e = new x(f2.q.f10352a);
+    public final x f48938f = new x(6);
+    public final x f48939g = new x();
+    public final ArrayDeque f48944m = new ArrayDeque();
+    public final ArrayDeque f48945n = new ArrayDeque();
     public final SparseArray d = new SparseArray();
 
     static {
         v vVar = new v();
-        vVar.f4075r = v0.n("application/x-emsg");
+        vVar.f4082r = v0.n("application/x-emsg");
         P = new w(vVar);
     }
 
     public h(z3.k kVar, int i10, k0 k0Var, List list, l2.o oVar) {
-        this.f48497a = kVar;
-        this.f48498b = i10;
-        this.f48503j = k0Var;
-        this.f48499c = DesugarCollections.unmodifiableList(list);
-        this.f48509p = oVar;
+        this.f48935a = kVar;
+        this.f48936b = i10;
+        this.f48941j = k0Var;
+        this.f48937c = DesugarCollections.unmodifiableList(list);
+        this.f48947p = oVar;
         byte[] bArr = new byte[16];
         this.h = bArr;
-        this.f48502i = new x(bArr);
-        l0 l0Var = n0.f8474b;
-        this.f48511r = x1.e;
+        this.f48940i = new x(bArr);
+        e9.l0 l0Var = n0.f8481b;
+        this.f48949r = x1.e;
         this.A = -9223372036854775807L;
-        this.f48518z = -9223372036854775807L;
+        this.f48956z = -9223372036854775807L;
         this.B = -9223372036854775807L;
-        this.I = c3.q.f4654i;
-        this.J = new j0[0];
-        this.K = new j0[0];
-        this.f48508o = new e2.c(new e(this));
-        this.f48510q = new qb.c(10);
+        this.I = c3.s.f4663i;
+        this.J = new l0[0];
+        this.K = new l0[0];
+        this.f48946o = new e2.c(new e(this));
+        this.f48948q = new qb.c(10);
         this.N = -1L;
     }
 
@@ -113,16 +113,16 @@ public final class h implements c3.o {
         ArrayList arrayList = null;
         for (int i10 = 0; i10 < size; i10++) {
             f2.e eVar = (f2.e) list.get(i10);
-            if (eVar.f10287b == 1886614376) {
+            if (eVar.f10304b == 1886614376) {
                 if (arrayList == null) {
                     arrayList = new ArrayList();
                 }
-                byte[] bArr = eVar.f10285c.f8291a;
+                byte[] bArr = eVar.f10302c.f8298a;
                 j6.l i11 = p.i(bArr);
                 if (i11 == null) {
                     uuid = null;
                 } else {
-                    uuid = (UUID) i11.f14289b;
+                    uuid = (UUID) i11.f14334b;
                 }
                 if (uuid == null) {
                     e2.a.l("FragmentedMp4Extractor", "Skipped pssh atom (failed to extract uuid)");
@@ -141,7 +141,7 @@ public final class h implements c3.o {
         boolean z10;
         xVar.N(i10 + 8);
         int m10 = xVar.m();
-        byte[] bArr = c.f48479a;
+        byte[] bArr = c.f48917a;
         if ((m10 & 1) == 0) {
             if ((m10 & 2) != 0) {
                 z10 = true;
@@ -150,24 +150,24 @@ public final class h implements c3.o {
             }
             int E = xVar.E();
             if (E == 0) {
-                Arrays.fill(sVar.f48578l, 0, sVar.e, false);
+                Arrays.fill(sVar.f49016l, 0, sVar.e, false);
                 return;
             }
             int i11 = sVar.e;
-            x xVar2 = sVar.f48580n;
+            x xVar2 = sVar.f49018n;
             if (E == i11) {
-                Arrays.fill(sVar.f48578l, 0, E, z10);
+                Arrays.fill(sVar.f49016l, 0, E, z10);
                 xVar2.K(xVar.a());
-                sVar.f48577k = true;
-                sVar.f48581o = true;
-                xVar.k(0, xVar2.f8293c, xVar2.f8291a);
+                sVar.f49015k = true;
+                sVar.f49019o = true;
+                xVar.k(0, xVar2.f8300c, xVar2.f8298a);
                 xVar2.N(0);
-                sVar.f48581o = false;
+                sVar.f49019o = false;
                 return;
             }
-            StringBuilder l4 = i2.e.l(E, "Senc sample count ", " is different from fragment sample count");
-            l4.append(sVar.e);
-            throw w0.a(null, l4.toString());
+            StringBuilder n10 = o1.n(E, "Senc sample count ", " is different from fragment sample count");
+            n10.append(sVar.e);
+            throw w0.a(null, n10.toString());
         }
         throw w0.c("Overriding TrackEncryptionBox parameters is unsupported.");
     }
@@ -188,7 +188,7 @@ public final class h implements c3.o {
             G2 = xVar2.G();
         }
         long j11 = G2 + j10;
-        String str = m0.f8252a;
+        String str = m0.f8259a;
         long a02 = m0.a0(G, 1000000L, C, RoundingMode.DOWN);
         xVar2.O(2);
         int H = xVar2.H();
@@ -227,16 +227,16 @@ public final class h implements c3.o {
     }
 
     @Override
-    public final boolean a(c3.p pVar) {
+    public final boolean a(c3.r rVar) {
         x1 x1Var;
-        g0 m10 = p.m(pVar, true, false);
+        i0 m10 = p.m(rVar, true, false);
         if (m10 != null) {
             x1Var = n0.y(m10);
         } else {
-            l0 l0Var = n0.f8474b;
+            e9.l0 l0Var = n0.f8481b;
             x1Var = x1.e;
         }
-        this.f48511r = x1Var;
+        this.f48949r = x1Var;
         if (m10 == null) {
             return true;
         }
@@ -244,39 +244,39 @@ public final class h implements c3.o {
     }
 
     @Override
-    public final void c(c3.q qVar) {
+    public final void c(c3.s sVar) {
         int i10;
-        int i11 = this.f48498b;
+        int i11 = this.f48936b;
         if ((i11 & 32) == 0) {
-            qVar = new c2.b(qVar, this.f48497a);
+            sVar = new c2.b(sVar, this.f48935a);
         }
-        this.I = qVar;
+        this.I = sVar;
         h();
-        j0[] j0VarArr = new j0[2];
-        this.J = j0VarArr;
+        l0[] l0VarArr = new l0[2];
+        this.J = l0VarArr;
         int i12 = 0;
-        j0 j0Var = this.f48509p;
-        if (j0Var != null) {
-            j0VarArr[0] = j0Var;
+        l0 l0Var = this.f48947p;
+        if (l0Var != null) {
+            l0VarArr[0] = l0Var;
             i10 = 1;
         } else {
             i10 = 0;
         }
         int i13 = 100;
         if ((i11 & 4) != 0) {
-            j0VarArr[i10] = this.I.j0(100, 5);
+            l0VarArr[i10] = this.I.j0(100, 5);
             i13 = 101;
             i10++;
         }
-        j0[] j0VarArr2 = (j0[]) m0.U(i10, this.J);
-        this.J = j0VarArr2;
-        for (j0 j0Var2 : j0VarArr2) {
-            j0Var2.b(P);
+        l0[] l0VarArr2 = (l0[]) m0.U(i10, this.J);
+        this.J = l0VarArr2;
+        for (l0 l0Var2 : l0VarArr2) {
+            l0Var2.b(P);
         }
-        List list = this.f48499c;
-        this.K = new j0[list.size()];
+        List list = this.f48937c;
+        this.K = new l0[list.size()];
         while (i12 < this.K.length) {
-            j0 j02 = this.I.j0(i13, 3);
+            l0 j02 = this.I.j0(i13, 3);
             j02.b((w) list.get(i12));
             this.K[i12] = j02;
             i12++;
@@ -291,26 +291,26 @@ public final class h implements c3.o {
         for (int i10 = 0; i10 < size; i10++) {
             ((g) sparseArray.valueAt(i10)).e();
         }
-        this.f48507n.clear();
-        this.f48517y = 0;
-        ((PriorityQueue) this.f48508o.e).clear();
-        this.f48518z = j11;
-        this.f48506m.clear();
+        this.f48945n.clear();
+        this.f48955y = 0;
+        ((PriorityQueue) this.f48946o.e).clear();
+        this.f48956z = j11;
+        this.f48944m.clear();
         h();
     }
 
     @Override
     public final List e() {
-        return this.f48511r;
+        return this.f48949r;
     }
 
     @Override
-    public final int f(c3.p r33, c3.s r34) {
-        throw new UnsupportedOperationException("Method not decompiled: w3.h.f(c3.p, c3.s):int");
+    public final int f(c3.r r33, c3.u r34) {
+        throw new UnsupportedOperationException("Method not decompiled: w3.h.f(c3.r, c3.u):int");
     }
 
     public final void h() {
-        this.f48512s = 0;
+        this.f48950s = 0;
         this.v = 0;
     }
 
@@ -319,7 +319,7 @@ public final class h implements c3.o {
     }
 
     @Override
-    public final c3.o b() {
+    public final c3.q b() {
         return this;
     }
 

@@ -1,4 +1,4 @@
 package mi;
 public interface n {
-    void a(q qVar);
+    void d(q qVar);
 }

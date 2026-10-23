@@ -11,47 +11,47 @@ import w7.g9;
 import w7.m8;
 import z7.mg;
 public class o extends AbstractCollection {
-    public final int f8475a;
-    public final Object f8476b;
+    public final int f8482a;
+    public final Object f8483b;
 
     public o(Object obj, int i10) {
-        this.f8475a = i10;
-        this.f8476b = obj;
+        this.f8482a = i10;
+        this.f8483b = obj;
     }
 
     @Override
     public final void clear() {
-        switch (this.f8475a) {
+        switch (this.f8482a) {
             case 0:
-                ((p) this.f8476b).clear();
+                ((p) this.f8483b).clear();
                 return;
             case 1:
-                ((p1) this.f8476b).clear();
+                ((p1) this.f8483b).clear();
                 return;
             case 2:
-                ((x) this.f8476b).clear();
+                ((x) this.f8483b).clear();
                 return;
             case 3:
-                ((AbstractMap) this.f8476b).clear();
+                ((AbstractMap) this.f8483b).clear();
                 return;
             case 4:
-                ((x7.j) this.f8476b).clear();
+                ((x7.j) this.f8483b).clear();
                 return;
             case 5:
-                ((e) this.f8476b).clear();
+                ((e) this.f8483b).clear();
                 return;
             case 6:
-                ((z7.d) this.f8476b).clear();
+                ((z7.d) this.f8483b).clear();
                 return;
             default:
-                ((e) this.f8476b).clear();
+                ((e) this.f8483b).clear();
                 return;
         }
     }
 
     @Override
     public boolean contains(Object obj) {
-        switch (this.f8475a) {
+        switch (this.f8482a) {
             case 0:
                 if (!(obj instanceof Map.Entry)) {
                     return false;
@@ -59,91 +59,91 @@ public class o extends AbstractCollection {
                 Map.Entry entry = (Map.Entry) obj;
                 Object key = entry.getKey();
                 Object value = entry.getValue();
-                Collection collection = (Collection) ((p) this.f8476b).b().get(key);
+                Collection collection = (Collection) ((p) this.f8483b).b().get(key);
                 if (collection == null || !collection.contains(value)) {
                     return false;
                 }
                 return true;
             case 1:
-                return ((p1) this.f8476b).c(obj);
+                return ((p1) this.f8483b).c(obj);
             case 2:
             case 4:
             case 6:
             default:
                 return super.contains(obj);
             case 3:
-                return ((AbstractMap) this.f8476b).containsValue(obj);
+                return ((AbstractMap) this.f8483b).containsValue(obj);
             case 5:
-                return ((e) this.f8476b).containsValue(obj);
+                return ((e) this.f8483b).containsValue(obj);
             case 7:
-                return ((e) this.f8476b).containsValue(obj);
+                return ((e) this.f8483b).containsValue(obj);
         }
     }
 
     @Override
     public boolean isEmpty() {
-        switch (this.f8475a) {
+        switch (this.f8482a) {
             case 3:
-                return ((AbstractMap) this.f8476b).isEmpty();
+                return ((AbstractMap) this.f8483b).isEmpty();
             case 4:
             case 6:
             default:
                 return super.isEmpty();
             case 5:
-                return ((e) this.f8476b).isEmpty();
+                return ((e) this.f8483b).isEmpty();
             case 7:
-                return ((e) this.f8476b).isEmpty();
+                return ((e) this.f8483b).isEmpty();
         }
     }
 
     @Override
     public final Iterator iterator() {
-        switch (this.f8475a) {
+        switch (this.f8482a) {
             case 0:
-                return ((p) this.f8476b).g();
+                return ((p) this.f8483b).g();
             case 1:
-                return new b((p1) this.f8476b, 0);
+                return new b((p1) this.f8483b, 0);
             case 2:
-                x xVar = (x) this.f8476b;
+                x xVar = (x) this.f8483b;
                 Map c10 = xVar.c();
                 if (c10 != null) {
                     return c10.values().iterator();
                 }
                 return new t(xVar, 2);
             case 3:
-                return new l2(((AbstractMap) this.f8476b).entrySet().iterator());
+                return new l2(((AbstractMap) this.f8483b).entrySet().iterator());
             case 4:
-                x7.j jVar = (x7.j) this.f8476b;
+                x7.j jVar = (x7.j) this.f8483b;
                 Map a2 = jVar.a();
                 if (a2 != null) {
                     return a2.values().iterator();
                 }
                 return new x7.g(jVar, 2);
             case 5:
-                return new com.google.android.gms.internal.clearcut.g1(((e) this.f8476b).entrySet().iterator(), 1);
+                return new com.google.android.gms.internal.clearcut.g1(((e) this.f8483b).entrySet().iterator(), 1);
             case 6:
-                z7.d dVar = (z7.d) this.f8476b;
+                z7.d dVar = (z7.d) this.f8483b;
                 Map a10 = dVar.a();
                 if (a10 != null) {
                     return a10.values().iterator();
                 }
                 return new z7.a(dVar, 2);
             default:
-                return new com.google.android.gms.internal.clearcut.g1(((e) this.f8476b).entrySet().iterator(), 2);
+                return new com.google.android.gms.internal.clearcut.g1(((e) this.f8483b).entrySet().iterator(), 2);
         }
     }
 
     @Override
     public boolean remove(Object obj) {
-        switch (this.f8475a) {
+        switch (this.f8482a) {
             case 0:
                 if (obj instanceof Map.Entry) {
                     Map.Entry entry = (Map.Entry) obj;
-                    return ((p) this.f8476b).remove(entry.getKey(), entry.getValue());
+                    return ((p) this.f8483b).remove(entry.getKey(), entry.getValue());
                 }
                 return false;
             case 3:
-                AbstractMap abstractMap = (AbstractMap) this.f8476b;
+                AbstractMap abstractMap = (AbstractMap) this.f8483b;
                 try {
                     return super.remove(obj);
                 } catch (UnsupportedOperationException unused) {
@@ -156,7 +156,7 @@ public class o extends AbstractCollection {
                     return false;
                 }
             case 5:
-                e eVar = (e) this.f8476b;
+                e eVar = (e) this.f8483b;
                 try {
                     return super.remove(obj);
                 } catch (UnsupportedOperationException unused2) {
@@ -169,7 +169,7 @@ public class o extends AbstractCollection {
                     return false;
                 }
             case 7:
-                e eVar2 = (e) this.f8476b;
+                e eVar2 = (e) this.f8483b;
                 try {
                     return super.remove(obj);
                 } catch (UnsupportedOperationException unused3) {
@@ -188,9 +188,9 @@ public class o extends AbstractCollection {
 
     @Override
     public boolean removeAll(Collection collection) {
-        switch (this.f8475a) {
+        switch (this.f8482a) {
             case 3:
-                AbstractMap abstractMap = (AbstractMap) this.f8476b;
+                AbstractMap abstractMap = (AbstractMap) this.f8483b;
                 try {
                     collection.getClass();
                     return super.removeAll(collection);
@@ -208,7 +208,7 @@ public class o extends AbstractCollection {
             default:
                 return super.removeAll(collection);
             case 5:
-                e eVar = (e) this.f8476b;
+                e eVar = (e) this.f8483b;
                 try {
                     if (collection != null) {
                         return super.removeAll(collection);
@@ -224,7 +224,7 @@ public class o extends AbstractCollection {
                     return ((x7.f) eVar.e).b().removeAll(hashSet2);
                 }
             case 7:
-                e eVar2 = (e) this.f8476b;
+                e eVar2 = (e) this.f8483b;
                 try {
                     if (collection != null) {
                         return super.removeAll(collection);
@@ -244,9 +244,9 @@ public class o extends AbstractCollection {
 
     @Override
     public boolean retainAll(Collection collection) {
-        switch (this.f8475a) {
+        switch (this.f8482a) {
             case 3:
-                AbstractMap abstractMap = (AbstractMap) this.f8476b;
+                AbstractMap abstractMap = (AbstractMap) this.f8483b;
                 try {
                     collection.getClass();
                     return super.retainAll(collection);
@@ -264,7 +264,7 @@ public class o extends AbstractCollection {
             default:
                 return super.retainAll(collection);
             case 5:
-                e eVar = (e) this.f8476b;
+                e eVar = (e) this.f8483b;
                 try {
                     if (collection != null) {
                         return super.retainAll(collection);
@@ -280,7 +280,7 @@ public class o extends AbstractCollection {
                     return ((x7.f) eVar.e).b().retainAll(hashSet2);
                 }
             case 7:
-                e eVar2 = (e) this.f8476b;
+                e eVar2 = (e) this.f8483b;
                 try {
                     if (collection != null) {
                         return super.retainAll(collection);
@@ -300,28 +300,28 @@ public class o extends AbstractCollection {
 
     @Override
     public final int size() {
-        switch (this.f8475a) {
+        switch (this.f8482a) {
             case 0:
-                return ((p) this.f8476b).size();
+                return ((p) this.f8483b).size();
             case 1:
-                return ((p1) this.f8476b).f8485f;
+                return ((p1) this.f8483b).f8492f;
             case 2:
-                return ((x) this.f8476b).size();
+                return ((x) this.f8483b).size();
             case 3:
-                return ((AbstractMap) this.f8476b).size();
+                return ((AbstractMap) this.f8483b).size();
             case 4:
-                return ((x7.j) this.f8476b).size();
+                return ((x7.j) this.f8483b).size();
             case 5:
-                return ((e) this.f8476b).f8433b.size();
+                return ((e) this.f8483b).f8440b.size();
             case 6:
-                return ((z7.d) this.f8476b).size();
+                return ((z7.d) this.f8483b).size();
             default:
-                return ((e) this.f8476b).f8433b.size();
+                return ((e) this.f8483b).f8440b.size();
         }
     }
 
     public o(AbstractMap abstractMap, int i10) {
-        this.f8475a = i10;
-        this.f8476b = abstractMap;
+        this.f8482a = i10;
+        this.f8483b = abstractMap;
     }
 }

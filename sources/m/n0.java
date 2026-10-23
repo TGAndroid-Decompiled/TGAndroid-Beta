@@ -24,17 +24,17 @@ public final class n0 extends e2 implements p0 {
     }
 
     @Override
-    public final CharSequence e() {
+    public final CharSequence d() {
         return this.S;
     }
 
     @Override
-    public final void i(CharSequence charSequence) {
+    public final void h(CharSequence charSequence) {
         this.S = charSequence;
     }
 
     @Override
-    public final void l(int i10) {
+    public final void k(int i10) {
         this.V = i10;
     }
 
@@ -46,13 +46,13 @@ public final class n0 extends e2 implements p0 {
         s();
         yVar.setInputMethodMode(2);
         g();
-        s1 s1Var = this.f16186c;
+        s1 s1Var = this.f16249c;
         s1Var.setChoiceMode(1);
         h0.d(s1Var, i10);
         h0.c(s1Var, i11);
         q0 q0Var = this.W;
         int selectedItemPosition = q0Var.getSelectedItemPosition();
-        s1 s1Var2 = this.f16186c;
+        s1 s1Var2 = this.f16249c;
         if (yVar.isShowing() && s1Var2 != null) {
             s1Var2.setListSelectionHidden(false);
             s1Var2.setSelection(selectedItemPosition);
@@ -77,7 +77,7 @@ public final class n0 extends e2 implements p0 {
         int i10;
         int i11;
         q0 q0Var = this.W;
-        Rect rect = q0Var.f16304n;
+        Rect rect = q0Var.f16367n;
         y yVar = this.O;
         Drawable background = yVar.getBackground();
         if (background != null) {
@@ -113,6 +113,6 @@ public final class n0 extends e2 implements p0 {
         } else {
             i11 = paddingLeft + this.V + i10;
         }
-        this.f16187f = i11;
+        this.f16250f = i11;
     }
 }

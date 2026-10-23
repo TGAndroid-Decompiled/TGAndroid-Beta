@@ -1,113 +1,57 @@
 package org.telegram.ui;
 
-import android.os.SystemClock;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-public final class gq implements Utilities.Callback2 {
-    public final int f37395a;
-    public final boolean f37396b;
-    public final NotificationCenter.NotificationCenterDelegate f37397c;
-    public final Object d;
+import android.view.View;
+import org.telegram.messenger.MessagesStorage;
+public final class gq implements MessagesStorage.LongCallback, org.telegram.ui.ActionBar.z1, org.telegram.ui.Components.bm0, org.telegram.ui.Components.cm0 {
+    public final int f37651a;
+    public final jr f37652b;
 
-    public gq(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, Object obj, boolean z10, int i10) {
-        this.f37395a = i10;
-        this.f37397c = notificationCenterDelegate;
-        this.d = obj;
-        this.f37396b = z10;
+    public gq(jr jrVar, int i10) {
+        this.f37651a = i10;
+        this.f37652b = jrVar;
     }
 
     @Override
-    public final void run(Object obj, Object obj2) {
-        String str;
-        switch (this.f37395a) {
-            case 0:
-                hr hrVar = (hr) this.f37397c;
-                org.telegram.ui.Cells.q8 q8Var = (org.telegram.ui.Cells.q8) this.d;
-                TLRPC.Updates updates = (TLRPC.Updates) obj;
-                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                if (updates != null) {
-                    hrVar.getMessagesController().lambda$processUpdates$377(updates, false);
-                    return;
-                }
-                hrVar.getClass();
-                if (tL_error != null) {
-                    q8Var.setChecked(this.f37396b);
-                    org.telegram.ui.Components.xc.a0(hrVar).f0(tL_error, false);
-                    return;
-                }
+    public boolean P0(View view) {
+        return false;
+    }
+
+    @Override
+    public void c(float f7, float f10, int i10, View view) {
+        jr.V(this.f37652b, view, i10);
+    }
+
+    @Override
+    public boolean d(int i10, View view) {
+        jr jrVar = this.f37652b;
+        if (jrVar.getParentActivity() != null) {
+            s4.g0 adapter = jrVar.f38634c.getAdapter();
+            fr frVar = jrVar.f38628a;
+            if (adapter == frVar) {
+                return jrVar.h0(frVar.E(i10), false, view);
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public void g(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
+        switch (this.f37651a) {
+            case 1:
+                this.f37652b.u0();
                 return;
             default:
-                zh.r0 r0Var = (zh.r0) this.f37397c;
-                TLRPC.TL_exportedNoPaidMessagesToken tL_exportedNoPaidMessagesToken = (TLRPC.TL_exportedNoPaidMessagesToken) obj;
-                TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
-                int i10 = r0Var.f52097a;
-                zh.c1 c1Var = r0Var.f52098b;
-                boolean z10 = false;
-                if (r0Var.f52101n == ((int[]) this.d)[0] && !r0Var.E) {
-                    r0Var.f52101n = 0;
-                    boolean z11 = this.f37396b;
-                    boolean z12 = true;
-                    if (tL_exportedNoPaidMessagesToken == null) {
-                        String str2 = null;
-                        if (tL_error2 != null) {
-                            str = tL_error2.text;
-                        } else {
-                            str = null;
-                        }
-                        FileLog.e("QrShare: exportNoPaidMessagesToken " + str);
-                        TLRPC.TL_exportedNoPaidMessagesToken tL_exportedNoPaidMessagesToken2 = r0Var.f52100f;
-                        if (tL_exportedNoPaidMessagesToken2 != null) {
-                            if (tL_exportedNoPaidMessagesToken2.expires == 0) {
-                                z12 = false;
-                            }
-                            if (z12 == z11) {
-                                if (str != null) {
-                                    c1Var.getClass();
-                                    c1Var.d1(R.drawable.msg_warning, LocaleController.getString(R.string.ErrorOccurred), null);
-                                    return;
-                                }
-                                return;
-                            }
-                        }
-                        r0Var.d = 0;
-                        MessagesController.getMainSettings(i10).edit().putBoolean("qrNoPaidPermanent", false).apply();
-                        if (c1Var.f51916v0) {
-                            if (str != null) {
-                                str2 = LocaleController.getString(R.string.ErrorOccurred);
-                            }
-                            c1Var.U0(str2);
-                            return;
-                        } else if (str != null) {
-                            c1Var.d1(R.drawable.msg_warning, LocaleController.getString(R.string.ErrorOccurred), null);
-                            return;
-                        } else {
-                            return;
-                        }
-                    }
-                    int i11 = r0Var.d;
-                    if (i11 != 0) {
-                        if (i11 == 1) {
-                            z10 = true;
-                        }
-                        if (z11 == z10) {
-                            if (tL_exportedNoPaidMessagesToken.expires == 0) {
-                                MessagesController.getMainSettings(i10).edit().putString("qrNoPaidToken", tL_exportedNoPaidMessagesToken.token).putString("qrNoPaidUrl", tL_exportedNoPaidMessagesToken.url).apply();
-                            }
-                            r0Var.f52100f = tL_exportedNoPaidMessagesToken;
-                            r0Var.h = SystemClock.elapsedRealtime();
-                            c1Var.setFreeLink(r0Var.d(tL_exportedNoPaidMessagesToken));
-                            return;
-                        }
-                        return;
-                    }
-                    return;
-                }
+                this.f37652b.finishFragment();
                 return;
         }
+    }
+
+    @Override
+    public void run(long j10) {
+        jr.U(this.f37652b, j10);
+    }
+
+    @Override
+    public void a0(View view, float f7, float f10) {
     }
 }

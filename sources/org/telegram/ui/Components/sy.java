@@ -5,23 +5,19 @@ import java.util.LinkedHashSet;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.UserConfig;
 public final class sy implements hz {
-    public final ty f30377a;
+    public final ty f30571a;
 
     public sy(ty tyVar) {
-        this.f30377a = tyVar;
-    }
-
-    public final boolean a() {
-        return this.f30377a.F.V.F;
+        this.f30571a = tyVar;
     }
 
     @Override
     public final void e() {
-        if (a()) {
+        ty tyVar = this.f30571a;
+        if (tyVar.F.V.F) {
             return;
         }
         ArrayList arrayList = new ArrayList();
-        ty tyVar = this.f30377a;
         tyVar.F.V.e(true);
         ty.E(tyVar, new yt(6, this, arrayList), arrayList, true);
     }
@@ -29,10 +25,10 @@ public final class sy implements hz {
     @Override
     public final void run() {
         LinkedHashSet linkedHashSet = new LinkedHashSet();
-        String str = this.f30377a.v;
+        String str = this.f30571a.v;
         yt ytVar = new yt(5, this, str);
         if (Emoji.fullyConsistsOfEmojis(str)) {
-            rx0.f30037w3.fetch(UserConfig.selectedAccount, str, new org.telegram.ui.ActionBar.j3(28, linkedHashSet, ytVar));
+            ux0.f31230z3.fetch(UserConfig.selectedAccount, str, new org.telegram.ui.ActionBar.m3(28, linkedHashSet, ytVar));
         } else {
             ytVar.run();
         }

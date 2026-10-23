@@ -1,30 +1,30 @@
 package ci;
 
 import android.animation.ValueAnimator;
-import org.telegram.ui.tw;
+import org.telegram.ui.vw;
 public final class p implements Runnable {
-    public final int f5708a;
-    public final q f5709b;
+    public final int f5642a;
+    public final q f5643b;
 
     public p(q qVar, int i10) {
-        this.f5708a = i10;
-        this.f5709b = qVar;
+        this.f5642a = i10;
+        this.f5643b = qVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f5708a) {
+        switch (this.f5642a) {
             case 0:
-                tw twVar = this.f5709b.f5739b0;
-                ValueAnimator valueAnimator = twVar.f5879j0;
+                vw vwVar = this.f5643b.f5756b0;
+                ValueAnimator valueAnimator = vwVar.f5824j0;
                 if (valueAnimator != null) {
                     valueAnimator.start();
                 }
-                twVar.f5880k0 = null;
+                vwVar.f5825k0 = null;
                 return;
             default:
-                q qVar = this.f5709b;
-                qVar.f5745w = false;
+                q qVar = this.f5643b;
+                qVar.f5762w = false;
                 qVar.invalidate();
                 return;
         }

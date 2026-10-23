@@ -467,7 +467,7 @@ public class NotificationBadge {
 
         @Override
         public void executeBadge(int i10) {
-            AndroidUtilities.runOnUIThread(new tg(0, this, org.telegram.ui.Cells.c1.i(i10, "app_badge_count")));
+            AndroidUtilities.runOnUIThread(new tg(0, this, org.telegram.ui.Cells.b1.i(i10, "app_badge_count")));
         }
 
         @Override

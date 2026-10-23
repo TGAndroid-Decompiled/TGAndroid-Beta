@@ -1,43 +1,296 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
+import android.content.res.Resources;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.Rect;
+import android.graphics.Region;
 import android.graphics.drawable.Drawable;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-public final class ar extends Drawable {
-    public final Drawable f24705a;
-    public final Paint f24706b;
-    public final float f24707c;
+import android.view.View;
+public abstract class ar extends Drawable {
+    public final int f24828a;
+    public Object f24829b;
 
-    public ar(Context context, float f7) {
-        Paint paint = new Paint(1);
-        this.f24706b = paint;
-        this.f24705a = context.getResources().getDrawable(R.drawable.msg_filled_menu_groups);
-        paint.setColor(org.telegram.ui.ActionBar.h6.m1(0.1552f, -16777216));
-        this.f24707c = f7;
+    public ar() {
+        this.f24828a = 1;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        float f7 = this.f24707c;
-        canvas.drawRoundRect(getBounds().left, getBounds().top, getBounds().right, getBounds().bottom, f7, f7, this.f24706b);
-        zf.p.e(this.f24705a, getBounds().exactCenterX(), getBounds().exactCenterY(), AndroidUtilities.dp(36.0f), AndroidUtilities.dp(36.0f), 17);
-        this.f24705a.draw(canvas);
+    public void applyTheme(Resources.Theme theme) {
+        switch (this.f24828a) {
+            case 1:
+                Drawable drawable = (Drawable) this.f24829b;
+                if (drawable != null) {
+                    drawable.applyTheme(theme);
+                    return;
+                }
+                return;
+            default:
+                super.applyTheme(theme);
+                return;
+        }
     }
 
     @Override
-    public final int getOpacity() {
-        return -3;
+    public void clearColorFilter() {
+        switch (this.f24828a) {
+            case 1:
+                Drawable drawable = (Drawable) this.f24829b;
+                if (drawable != null) {
+                    drawable.clearColorFilter();
+                    return;
+                } else {
+                    super.clearColorFilter();
+                    return;
+                }
+            default:
+                super.clearColorFilter();
+                return;
+        }
     }
 
     @Override
-    public final void setAlpha(int i10) {
+    public Drawable getCurrent() {
+        switch (this.f24828a) {
+            case 1:
+                Drawable drawable = (Drawable) this.f24829b;
+                if (drawable != null) {
+                    return drawable.getCurrent();
+                }
+                return super.getCurrent();
+            default:
+                return super.getCurrent();
+        }
     }
 
     @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public int getMinimumHeight() {
+        switch (this.f24828a) {
+            case 1:
+                Drawable drawable = (Drawable) this.f24829b;
+                if (drawable != null) {
+                    return drawable.getMinimumHeight();
+                }
+                return super.getMinimumHeight();
+            default:
+                return super.getMinimumHeight();
+        }
+    }
+
+    @Override
+    public int getMinimumWidth() {
+        switch (this.f24828a) {
+            case 1:
+                Drawable drawable = (Drawable) this.f24829b;
+                if (drawable != null) {
+                    return drawable.getMinimumWidth();
+                }
+                return super.getMinimumWidth();
+            default:
+                return super.getMinimumWidth();
+        }
+    }
+
+    @Override
+    public int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public boolean getPadding(Rect rect) {
+        switch (this.f24828a) {
+            case 1:
+                Drawable drawable = (Drawable) this.f24829b;
+                if (drawable != null) {
+                    return drawable.getPadding(rect);
+                }
+                return super.getPadding(rect);
+            default:
+                return super.getPadding(rect);
+        }
+    }
+
+    @Override
+    public int[] getState() {
+        switch (this.f24828a) {
+            case 1:
+                Drawable drawable = (Drawable) this.f24829b;
+                if (drawable != null) {
+                    return drawable.getState();
+                }
+                return super.getState();
+            default:
+                return super.getState();
+        }
+    }
+
+    @Override
+    public Region getTransparentRegion() {
+        switch (this.f24828a) {
+            case 1:
+                Drawable drawable = (Drawable) this.f24829b;
+                if (drawable != null) {
+                    return drawable.getTransparentRegion();
+                }
+                return super.getTransparentRegion();
+            default:
+                return super.getTransparentRegion();
+        }
+    }
+
+    @Override
+    public void jumpToCurrentState() {
+        switch (this.f24828a) {
+            case 1:
+                Drawable drawable = (Drawable) this.f24829b;
+                if (drawable != null) {
+                    drawable.jumpToCurrentState();
+                    return;
+                }
+                return;
+            default:
+                super.jumpToCurrentState();
+                return;
+        }
+    }
+
+    @Override
+    public boolean onLevelChange(int i10) {
+        switch (this.f24828a) {
+            case 1:
+                Drawable drawable = (Drawable) this.f24829b;
+                if (drawable != null) {
+                    return drawable.setLevel(i10);
+                }
+                return super.onLevelChange(i10);
+            default:
+                return super.onLevelChange(i10);
+        }
+    }
+
+    @Override
+    public void setAlpha(int i10) {
+        ((Paint) this.f24829b).setAlpha(i10);
+    }
+
+    @Override
+    public void setChangingConfigurations(int i10) {
+        switch (this.f24828a) {
+            case 1:
+                Drawable drawable = (Drawable) this.f24829b;
+                if (drawable != null) {
+                    drawable.setChangingConfigurations(i10);
+                    return;
+                } else {
+                    super.setChangingConfigurations(i10);
+                    return;
+                }
+            default:
+                super.setChangingConfigurations(i10);
+                return;
+        }
+    }
+
+    @Override
+    public void setColorFilter(int i10, PorterDuff.Mode mode) {
+        switch (this.f24828a) {
+            case 1:
+                Drawable drawable = (Drawable) this.f24829b;
+                if (drawable != null) {
+                    drawable.setColorFilter(i10, mode);
+                    return;
+                } else {
+                    super.setColorFilter(i10, mode);
+                    return;
+                }
+            default:
+                super.setColorFilter(i10, mode);
+                return;
+        }
+    }
+
+    @Override
+    public void setFilterBitmap(boolean z10) {
+        switch (this.f24828a) {
+            case 1:
+                Drawable drawable = (Drawable) this.f24829b;
+                if (drawable != null) {
+                    drawable.setFilterBitmap(z10);
+                    return;
+                }
+                return;
+            default:
+                super.setFilterBitmap(z10);
+                return;
+        }
+    }
+
+    @Override
+    public void setHotspot(float f7, float f10) {
+        switch (this.f24828a) {
+            case 1:
+                Drawable drawable = (Drawable) this.f24829b;
+                if (drawable != null) {
+                    drawable.setHotspot(f7, f10);
+                    return;
+                }
+                return;
+            default:
+                super.setHotspot(f7, f10);
+                return;
+        }
+    }
+
+    @Override
+    public void setHotspotBounds(int i10, int i11, int i12, int i13) {
+        switch (this.f24828a) {
+            case 1:
+                Drawable drawable = (Drawable) this.f24829b;
+                if (drawable != null) {
+                    drawable.setHotspotBounds(i10, i11, i12, i13);
+                    return;
+                }
+                return;
+            default:
+                super.setHotspotBounds(i10, i11, i12, i13);
+                return;
+        }
+    }
+
+    @Override
+    public boolean setState(int[] iArr) {
+        switch (this.f24828a) {
+            case 1:
+                Drawable drawable = (Drawable) this.f24829b;
+                if (drawable != null) {
+                    return drawable.setState(iArr);
+                }
+                return super.setState(iArr);
+            default:
+                return super.setState(iArr);
+        }
+    }
+
+    public ar(View view) {
+        this.f24828a = 0;
+        this.f24829b = new Paint(1);
+        if (view != null) {
+            view.addOnAttachStateChangeListener(new ai.n6(this, 8));
+            if (view.isAttachedToWindow()) {
+                view.post(new zp(this, 2));
+            }
+        }
+    }
+
+    @Override
+    public void setColorFilter(ColorFilter colorFilter) {
+        ((Paint) this.f24829b).setColorFilter(colorFilter);
+    }
+
+    public void a() {
+    }
+
+    public void b() {
     }
 }

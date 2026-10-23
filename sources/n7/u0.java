@@ -5,16 +5,16 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 public final class u0 extends c1 {
-    public final m f17315a;
-    public final int f17316b;
+    public final m f17378a;
+    public final int f17379b;
 
     public u0(x xVar) {
         xVar.getClass();
-        this.f17315a = xVar;
+        this.f17378a = xVar;
         int i10 = 0;
         int i11 = 0;
         while (true) {
-            m mVar = this.f17315a;
+            m mVar = this.f17378a;
             if (i10 >= mVar.size()) {
                 break;
             }
@@ -25,7 +25,7 @@ public final class u0 extends c1 {
             i10++;
         }
         int i12 = i11 + 1;
-        this.f17316b = i12;
+        this.f17379b = i12;
         if (i12 <= 8) {
             return;
         }
@@ -34,7 +34,7 @@ public final class u0 extends c1 {
 
     @Override
     public final int a() {
-        return this.f17316b;
+        return this.f17379b;
     }
 
     @Override
@@ -45,8 +45,8 @@ public final class u0 extends c1 {
         if (c10 != zza) {
             return c10 - c1Var.zza();
         }
-        m mVar = ((u0) c1Var).f17315a;
-        m mVar2 = this.f17315a;
+        m mVar = ((u0) c1Var).f17378a;
+        m mVar2 = this.f17378a;
         if (mVar2.size() != mVar.size()) {
             return mVar2.size() - mVar.size();
         }
@@ -66,15 +66,15 @@ public final class u0 extends c1 {
         if (obj == null || u0.class != obj.getClass()) {
             return false;
         }
-        return this.f17315a.equals(((u0) obj).f17315a);
+        return this.f17378a.equals(((u0) obj).f17378a);
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Integer.valueOf(c1.c(Byte.MIN_VALUE)), this.f17315a});
+        return Arrays.hashCode(new Object[]{Integer.valueOf(c1.c(Byte.MIN_VALUE)), this.f17378a});
     }
 
     public final String toString() {
-        m mVar = this.f17315a;
+        m mVar = this.f17378a;
         if (mVar.isEmpty()) {
             return "[]";
         }

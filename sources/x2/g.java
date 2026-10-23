@@ -2,18 +2,19 @@ package x2;
 
 import b2.w;
 import e9.b0;
+import i2.o1;
 public final class g implements Comparable {
-    public final boolean f49150a;
-    public final boolean f49151b;
+    public final boolean f49592a;
+    public final boolean f49593b;
 
     public g(w wVar, int i10) {
-        this.f49150a = (wVar.e & 1) != 0;
-        this.f49151b = i2.e.e(i10, false);
+        this.f49592a = (wVar.e & 1) != 0;
+        this.f49593b = o1.e(i10, false);
     }
 
     @Override
     public final int compareTo(Object obj) {
         g gVar = (g) obj;
-        return b0.f8415a.c(this.f49151b, gVar.f49151b).c(this.f49150a, gVar.f49150a).e();
+        return b0.f8422a.c(this.f49593b, gVar.f49593b).c(this.f49592a, gVar.f49592a).e();
     }
 }

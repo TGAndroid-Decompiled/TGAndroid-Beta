@@ -2,22 +2,23 @@ package v2;
 
 import b2.o;
 import b2.w;
-import c3.i0;
-import c3.j0;
+import c3.k0;
+import c3.l0;
+import c3.p;
 import e2.m0;
 import e2.x;
-public final class c implements j0 {
-    public final int f47882a;
-    public final w f47883b;
-    public final c3.n f47884c = new c3.n();
+public final class c implements l0 {
+    public final int f48320a;
+    public final w f48321b;
+    public final p f48322c = new p();
     public final d d;
     public w e;
-    public j0 f47885f;
-    public long f47886g;
+    public l0 f48323f;
+    public long f48324g;
 
     public c(int i10, int i11, w wVar, d dVar) {
-        this.f47882a = i11;
-        this.f47883b = wVar;
+        this.f48320a = i11;
+        this.f48321b = wVar;
         this.d = dVar;
     }
 
@@ -29,25 +30,25 @@ public final class c implements j0 {
     @Override
     public final void b(w wVar) {
         this.d.getClass();
-        w wVar2 = this.f47883b;
+        w wVar2 = this.f48321b;
         if (wVar2 != null) {
             wVar = wVar.d(wVar2);
         }
         this.e = wVar;
-        j0 j0Var = this.f47885f;
-        String str = m0.f8252a;
-        j0Var.b(wVar);
+        l0 l0Var = this.f48323f;
+        String str = m0.f8259a;
+        l0Var.b(wVar);
     }
 
     @Override
-    public final void c(long j10, int i10, int i11, int i12, i0 i0Var) {
-        long j11 = this.f47886g;
+    public final void c(long j10, int i10, int i11, int i12, k0 k0Var) {
+        long j11 = this.f48324g;
         if (j11 != -9223372036854775807L && j10 >= j11) {
-            this.f47885f = this.f47884c;
+            this.f48323f = this.f48322c;
         }
-        j0 j0Var = this.f47885f;
-        String str = m0.f8252a;
-        j0Var.c(j10, i10, i11, i12, i0Var);
+        l0 l0Var = this.f48323f;
+        String str = m0.f8259a;
+        l0Var.c(j10, i10, i11, i12, k0Var);
     }
 
     @Override
@@ -57,16 +58,16 @@ public final class c implements j0 {
 
     @Override
     public final int f(o oVar, int i10, boolean z10) {
-        j0 j0Var = this.f47885f;
-        String str = m0.f8252a;
-        return j0Var.a(oVar, i10, z10);
+        l0 l0Var = this.f48323f;
+        String str = m0.f8259a;
+        return l0Var.a(oVar, i10, z10);
     }
 
     @Override
     public final void g(x xVar, int i10, int i11) {
-        j0 j0Var = this.f47885f;
-        String str = m0.f8252a;
-        j0Var.d(i10, xVar);
+        l0 l0Var = this.f48323f;
+        String str = m0.f8259a;
+        l0Var.d(i10, xVar);
     }
 
     @Override

@@ -1,33 +1,23 @@
 package org.telegram.ui;
-public final class b60 implements Runnable {
-    public final int f35519a;
-    public final l60 f35520b;
 
-    public b60(l60 l60Var, int i10) {
-        this.f35519a = i10;
-        this.f35520b = l60Var;
+import android.view.ViewTreeObserver;
+import android.widget.FrameLayout;
+public final class b60 implements ViewTreeObserver.OnGlobalLayoutListener {
+    public final FrameLayout f35882a;
+    public final d60 f35883b;
+
+    public b60(d60 d60Var, FrameLayout frameLayout) {
+        this.f35883b = d60Var;
+        this.f35882a = frameLayout;
     }
 
     @Override
-    public final void run() {
-        switch (this.f35519a) {
-            case 0:
-                this.f35520b.finishFragment();
-                return;
-            case 1:
-                l60 l60Var = this.f35520b;
-                l60Var.i0();
-                l60Var.e0();
-                return;
-            case 2:
-                l60 l60Var2 = this.f35520b;
-                l60Var2.getClass();
-                l60Var2.presentFragment(new PremiumPreviewFragment(0, "noncontacts"));
-                return;
-            default:
-                l60 l60Var3 = this.f35520b;
-                l60Var3.f38821n.postOnAnimation(new b60(l60Var3, 1));
-                return;
+    public final void onGlobalLayout() {
+        this.f35882a.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+        d60 d60Var = this.f35883b;
+        if (d60Var.f36520z0 == null) {
+            d60Var.f36520z0 = (tc) d60Var.A0(d60Var.Z);
         }
+        d60Var.f36520z0.f41949f.setOnClickListener(new w50(this, 1));
     }
 }

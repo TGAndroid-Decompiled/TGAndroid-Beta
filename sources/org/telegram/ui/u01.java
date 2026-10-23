@@ -1,15 +1,113 @@
 package org.telegram.ui;
-public final class u01 implements org.telegram.ui.ActionBar.a2 {
-    public final z01 f41785a;
-    public final String f41786b;
 
-    public u01(z01 z01Var, String str) {
-        this.f41785a = z01Var;
-        this.f41786b = str;
+import j$.time.LocalDate;
+import j$.time.Period;
+import java.util.ArrayList;
+import java.util.HashSet;
+import org.telegram.messenger.BirthdayController;
+import org.telegram.messenger.LiteMode;
+import org.telegram.messenger.MediaDataController;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+public final class u01 {
+    public final int f42121a;
+    public boolean f42122b;
+    public w01 f42123c;
+    public final boolean[] f42125g;
+    public boolean f42126i;
+    public final ArrayList d = new ArrayList();
+    public final ArrayList e = new ArrayList();
+    public final ArrayList f42124f = new ArrayList();
+    public final ArrayList h = new ArrayList();
+    public final ArrayList f42127j = new ArrayList();
+
+    public u01(int i10, int i11) {
+        boolean[] zArr = new boolean[2];
+        this.f42125g = zArr;
+        this.f42121a = i11;
+        if (i11 <= 0) {
+            zArr[0] = true;
+        } else {
+            ArrayList arrayList = new ArrayList();
+            HashSet hashSet = new HashSet();
+            String k10 = i2.o1.k(i11, "");
+            for (int i12 = 0; i12 < k10.length(); i12++) {
+                int charAt = k10.charAt(i12) - '0';
+                if (charAt >= 0 && charAt <= 9) {
+                    arrayList.add(Integer.valueOf(charAt));
+                    hashSet.add(Integer.valueOf(charAt));
+                }
+            }
+            TLRPC.TL_inputStickerSetShortName tL_inputStickerSetShortName = new TLRPC.TL_inputStickerSetShortName();
+            String[] strArr = x01.f43467s;
+            tL_inputStickerSetShortName.short_name = "FestiveFontEmoji";
+            MediaDataController.getInstance(i10).getStickerSet(tL_inputStickerSetShortName, 0, false, new y(this, hashSet, arrayList, 11));
+        }
+        String str = x01.f43467s[Utilities.random.nextInt(3)];
+        TLRPC.TL_inputStickerSetShortName tL_inputStickerSetShortName2 = new TLRPC.TL_inputStickerSetShortName();
+        tL_inputStickerSetShortName2.short_name = "EmojiAnimations";
+        MediaDataController.getInstance(i10).getStickerSet(tL_inputStickerSetShortName2, 0, false, new org.telegram.ui.Components.qy(20, this, str));
     }
 
-    @Override
-    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        z01.W(this.f41785a, this.f41786b);
+    public static u01 c(int i10, TLRPC.UserFull userFull, u01 u01Var) {
+        int i11;
+        TL_account.TL_birthday tL_birthday;
+        if (LiteMode.isEnabled(2) && BirthdayController.isToday(userFull)) {
+            if (userFull != null && (tL_birthday = userFull.birthday) != null && (tL_birthday.flags & 1) != 0) {
+                i11 = Period.between(LocalDate.of(tL_birthday.year, tL_birthday.month, tL_birthday.day), LocalDate.now()).getYears();
+            } else {
+                i11 = 0;
+            }
+            if (u01Var != null) {
+                if (u01Var.f42121a == i11) {
+                    return u01Var;
+                }
+                u01Var.b(false);
+            }
+            return new u01(i10, i11);
+        } else if (u01Var != null) {
+            u01Var.b(false);
+            return null;
+        } else {
+            return null;
+        }
+    }
+
+    public final void a() {
+        if (!this.f42122b && this.f42124f.size() >= this.e.size()) {
+            boolean[] zArr = this.f42125g;
+            int i10 = 0;
+            if (zArr[0] && zArr[1]) {
+                this.f42122b = true;
+                ArrayList arrayList = this.h;
+                int size = arrayList.size();
+                while (i10 < size) {
+                    Object obj = arrayList.get(i10);
+                    i10++;
+                    ((Runnable) obj).run();
+                }
+                arrayList.clear();
+            }
+        }
+    }
+
+    public final void b(boolean z10) {
+        if (!z10 && !this.f42127j.isEmpty()) {
+            this.f42126i = true;
+            return;
+        }
+        this.h.clear();
+        int i10 = 0;
+        while (true) {
+            ArrayList arrayList = this.e;
+            if (i10 < arrayList.size()) {
+                ((w01) arrayList.get(i10)).onDetachedFromWindow();
+                i10++;
+            } else {
+                arrayList.clear();
+                return;
+            }
+        }
     }
 }

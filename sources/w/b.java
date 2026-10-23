@@ -8,23 +8,23 @@ import android.util.Log;
 import java.util.ArrayDeque;
 public final class b implements Parcelable {
     public static final Parcelable.Creator<b> CREATOR = new a(0);
-    public final Bundle f48455a;
+    public final Bundle f48893a;
 
     public b(Object obj) {
-        ArrayMap arrayMap = g.f48460a;
+        ArrayMap arrayMap = g.f48898a;
         String i10 = g.i(obj.getClass());
         if (Log.isLoggable("CarApp.Bun", 3)) {
             Log.d("CarApp.Bun", "Bundling ".concat(i10));
         }
-        this.f48455a = g.o(obj, i10, new e(null, "", new ArrayDeque()));
+        this.f48893a = g.o(obj, i10, new e(null, "", new ArrayDeque()));
     }
 
     public final Object a() {
-        ArrayMap arrayMap = g.f48460a;
+        ArrayMap arrayMap = g.f48898a;
         boolean isLoggable = Log.isLoggable("CarApp.Bun", 3);
-        Bundle bundle = this.f48455a;
+        Bundle bundle = this.f48893a;
         if (isLoggable) {
-            String str = (String) g.f48461b.get(Integer.valueOf(bundle.getInt("tag_class_type")));
+            String str = (String) g.f48899b.get(Integer.valueOf(bundle.getInt("tag_class_type")));
             if (str == null) {
                 str = "unknown";
             }
@@ -40,10 +40,10 @@ public final class b implements Parcelable {
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        parcel.writeBundle(this.f48455a);
+        parcel.writeBundle(this.f48893a);
     }
 
     public b(Bundle bundle) {
-        this.f48455a = bundle;
+        this.f48893a = bundle;
     }
 }

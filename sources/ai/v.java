@@ -2,21 +2,21 @@ package ai;
 
 import android.content.Context;
 public final class v extends ei.d {
-    public final int f2281h0;
+    public final int f2283k0;
 
-    public v(int i10, Context context, org.telegram.ui.ActionBar.d6 d6Var, boolean z10) {
-        super(context, d6Var, z10);
-        this.f2281h0 = i10;
+    public v(int i10, Context context, org.telegram.ui.ActionBar.g6 g6Var, boolean z10) {
+        super(context, g6Var, z10);
+        this.f2283k0 = i10;
     }
 
     @Override
-    public boolean i() {
-        switch (this.f2281h0) {
+    public boolean j() {
+        switch (this.f2283k0) {
             case 0:
                 return false;
             case 1:
             default:
-                return super.i();
+                return super.j();
             case 2:
                 return false;
         }

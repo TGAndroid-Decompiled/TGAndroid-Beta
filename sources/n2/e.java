@@ -3,24 +3,21 @@ package n2;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Point;
+import android.graphics.SurfaceTexture;
+import android.os.Build;
 import android.os.SystemClock;
-import android.text.TextUtils;
-import android.text.style.CharacterStyle;
 import android.util.Log;
-import android.view.View;
 import android.widget.TextView;
 import androidx.lifecycle.t0;
 import androidx.lifecycle.z;
 import b2.u0;
-import c3.j0;
 import com.google.android.gms.tasks.SuccessContinuation;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.Tasks;
 import e2.m0;
 import e9.l0;
 import e9.n0;
+import ei.zb;
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.File;
@@ -30,7 +27,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.channels.FileChannel;
 import java.nio.channels.FileLock;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.concurrent.Executor;
@@ -38,92 +34,82 @@ import java.util.concurrent.atomic.AtomicInteger;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BotInlineKeyboard;
-import org.telegram.messenger.MessageObject;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.tgnet.tl.TL_keyboard;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Cells.c1;
-import org.telegram.ui.Cells.l1;
-import org.telegram.ui.Cells.o9;
-import org.telegram.ui.Cells.r2;
-import org.telegram.ui.Cells.u1;
-import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.a6;
-import org.telegram.ui.Components.am0;
-import org.telegram.ui.Components.cp0;
-import org.telegram.ui.Components.lw0;
-import org.telegram.ui.Components.x01;
-import org.telegram.ui.PremiumPreviewFragment;
-import org.telegram.ui.Wallet.o5;
-import org.telegram.ui.aw;
-import org.telegram.ui.ay;
-import org.telegram.ui.cy;
-import org.telegram.ui.n5;
-import org.telegram.ui.vu0;
-import qg.k0;
+import org.telegram.messenger.FileLog;
+import org.telegram.ui.Cells.e3;
+import org.telegram.ui.Cells.z1;
+import org.telegram.ui.Components.g81;
+import org.telegram.ui.Components.gp0;
+import org.telegram.ui.Components.gu;
+import org.telegram.ui.Components.ig0;
+import org.telegram.ui.Components.iu;
+import org.telegram.ui.Components.j81;
+import org.telegram.ui.Components.na;
+import org.telegram.ui.Components.yb0;
+import org.telegram.ui.Components.zy0;
+import org.telegram.ui.PhotoViewer;
+import org.telegram.ui.SecretMediaViewer;
+import org.telegram.ui.an0;
+import org.telegram.ui.im0;
+import org.telegram.ui.l7;
+import org.telegram.ui.m5;
+import org.telegram.ui.mv0;
+import org.telegram.ui.n31;
+import org.telegram.ui.n4;
+import org.telegram.ui.oj0;
+import org.telegram.ui.om0;
+import org.telegram.ui.v6;
+import org.telegram.ui.xu;
+import org.telegram.ui.yu;
+import qg.j0;
 import s4.b1;
 import s4.i1;
-import sg.a1;
-import u2.d1;
+import u2.e1;
 import w7.pa;
-public final class e implements cp0, l1, am0, gh.a, p2.u, ne.d, com.google.android.gms.common.api.internal.r, SuccessContinuation {
-    public final int f17038a;
-    public Object f17039b;
-    public Object f17040c;
+public final class e implements gp0, gu, zb, l7, om0, gh.a, g81, p2.u, ne.d, com.google.android.gms.common.api.internal.r, SuccessContinuation {
+    public final int f17101a;
+    public Object f17102b;
+    public Object f17103c;
 
     public e(int i10, Object obj, Object obj2) {
-        this.f17038a = i10;
-        this.f17039b = obj;
-        this.f17040c = obj2;
+        this.f17101a = i10;
+        this.f17102b = obj;
+        this.f17103c = obj2;
     }
 
-    public static n2.e a(android.content.Context r5) {
-        throw new UnsupportedOperationException("Method not decompiled: n2.e.a(android.content.Context):n2.e");
+    public static n2.e f(android.content.Context r5) {
+        throw new UnsupportedOperationException("Method not decompiled: n2.e.f(android.content.Context):n2.e");
     }
 
-    @Override
-    public boolean B1() {
-        return false;
-    }
-
-    public String C(String str) {
-        Resources resources = (Resources) this.f17039b;
-        int identifier = resources.getIdentifier(str, "string", (String) this.f17040c);
+    public String E(String str) {
+        Resources resources = (Resources) this.f17102b;
+        int identifier = resources.getIdentifier(str, "string", (String) this.f17103c);
         if (identifier == 0) {
             return null;
         }
         return resources.getString(identifier);
     }
 
-    public void E(sa.a aVar) {
+    public void G(sa.a aVar) {
         try {
             JSONObject jSONObject = new JSONObject();
-            jSONObject.put("Fid", aVar.f46157a);
-            jSONObject.put("Status", m1.j.c(aVar.f46158b));
-            jSONObject.put("AuthToken", aVar.f46159c);
+            jSONObject.put("Fid", aVar.f46579a);
+            jSONObject.put("Status", m1.j.c(aVar.f46580b));
+            jSONObject.put("AuthToken", aVar.f46581c);
             jSONObject.put("RefreshToken", aVar.d);
-            jSONObject.put("TokenCreationEpochInSecs", aVar.f46160f);
+            jSONObject.put("TokenCreationEpochInSecs", aVar.f46582f);
             jSONObject.put("ExpiresInSecs", aVar.e);
-            jSONObject.put("FisError", aVar.f46161g);
-            l9.h hVar = (l9.h) this.f17040c;
+            jSONObject.put("FisError", aVar.f46583g);
+            l9.h hVar = (l9.h) this.f17103c;
             hVar.a();
-            File createTempFile = File.createTempFile("PersistedInstallation", "tmp", hVar.f15967a.getFilesDir());
+            File createTempFile = File.createTempFile("PersistedInstallation", "tmp", hVar.f16030a.getFilesDir());
             FileOutputStream fileOutputStream = new FileOutputStream(createTempFile);
             fileOutputStream.write(jSONObject.toString().getBytes("UTF-8"));
             fileOutputStream.close();
-            if (!createTempFile.renameTo(z())) {
+            if (!createTempFile.renameTo(x())) {
                 throw new IOException("unable to rename the tmpfile to PersistedInstallation");
             }
         } catch (IOException | JSONException unused) {
         }
-    }
-
-    @Override
-    public void G1(u1 u1Var, TLRPC.WebPage webPage, String str, boolean z10) {
-        pf.d.r(u1Var.getContext(), str);
     }
 
     @Override
@@ -132,106 +118,21 @@ public final class e implements cp0, l1, am0, gh.a, p2.u, ne.d, com.google.andro
     }
 
     @Override
-    public CharacterStyle H1(u1 u1Var) {
-        return null;
-    }
-
-    @Override
     public y2.n J() {
-        return new mi.q(22, ((p2.u) this.f17039b).J(), (List) this.f17040c);
-    }
-
-    @Override
-    public boolean J0(long j10) {
-        return ((x01) this.f17040c).v;
-    }
-
-    @Override
-    public boolean J1(u1 u1Var, MessageObject messageObject) {
-        return false;
+        return new mi.q(21, ((p2.u) this.f17102b).J(), (List) this.f17103c);
     }
 
     @Override
     public void L(float f7, boolean z10) {
-        n5.f39416c = f7;
-        ((TextView) this.f17039b).setText("Saturation " + (f7 * 5.0f));
-        lw0 lw0Var = ((n5) this.f17040c).f39417b;
-        lw0Var.N();
-        lw0Var.M();
+        ((TextView) this.f17102b).setText("Alpha " + m5.e);
+        m5.e = f7;
+        ((m5) this.f17103c).f39376b.L();
     }
 
-    @Override
-    public boolean N(u1 u1Var, TLRPC.TodoItem todoItem, boolean z10) {
-        return false;
-    }
-
-    public boolean O() {
-        o5 o5Var = (o5) this.f17040c;
-        if (o5Var.H0 <= 0.0f && !o5Var.v0()) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public boolean O1(u1 u1Var, TLRPC.PollAnswer pollAnswer) {
-        return false;
-    }
-
-    @Override
-    public boolean P() {
-        return false;
-    }
-
-    @Override
-    public vu0 P1() {
-        return null;
-    }
-
-    @Override
-    public boolean Q(u1 u1Var) {
-        return false;
-    }
-
-    @Override
-    public boolean Q1(long j10) {
-        return ((x01) this.f17040c).f32299s;
-    }
-
-    @Override
-    public boolean R() {
-        return false;
-    }
-
-    @Override
-    public boolean S0(u1 u1Var, boolean z10) {
-        return false;
-    }
-
-    @Override
-    public boolean S1(u1 u1Var, TLRPC.TodoItem todoItem) {
-        return false;
-    }
-
-    @Override
-    public y2.n U(p2.q qVar, p2.n nVar) {
-        return new mi.q(22, ((p2.u) this.f17039b).U(qVar, nVar), (List) this.f17040c);
-    }
-
-    @Override
-    public int V() {
-        return 0;
-    }
-
-    @Override
-    public ih.a W() {
-        return null;
-    }
-
-    public void X(Exception exc, boolean z10) {
+    public void M(Exception exc, boolean z10) {
         int i10;
-        this.f17040c = null;
-        HashSet hashSet = (HashSet) this.f17039b;
+        this.f17103c = null;
+        HashSet hashSet = (HashSet) this.f17102b;
         n0 u10 = n0.u(hashSet);
         hashSet.clear();
         l0 listIterator = u10.listIterator(0);
@@ -247,59 +148,39 @@ public final class e implements cp0, l1, am0, gh.a, p2.u, ne.d, com.google.andro
         }
     }
 
-    @Override
-    public int Y() {
-        return 0;
-    }
-
-    @Override
-    public boolean Z(u1 u1Var) {
-        return false;
-    }
-
-    @Override
-    public boolean Z0(int i10, u1 u1Var) {
-        return false;
-    }
-
-    public void a0(o0.f fVar) {
-        androidx.biometric.o oVar = (androidx.biometric.o) this.f17040c;
-        a6.i iVar = (a6.i) this.f17039b;
-        int i10 = fVar.f17522b;
+    public void N(o0.f fVar) {
+        androidx.biometric.o oVar = (androidx.biometric.o) this.f17103c;
+        a6.i iVar = (a6.i) this.f17102b;
+        int i10 = fVar.f17585b;
         if (i10 == 0) {
-            oVar.execute(new j9.u(20, iVar, fVar.f17521a));
+            oVar.execute(new j9.u(20, iVar, fVar.f17584a));
         } else {
             oVar.execute(new androidx.activity.i(iVar, i10));
         }
     }
 
-    @Override
-    public void accept(java.lang.Object r53, java.lang.Object r54) {
-        throw new UnsupportedOperationException("Method not decompiled: n2.e.accept(java.lang.Object, java.lang.Object):void");
-    }
-
-    public u0 b0(b1 b1Var, int i10) {
+    public u0 O(b1 b1Var, int i10) {
         i1 i1Var;
         u0 u0Var;
-        a0.f fVar = (a0.f) this.f17039b;
+        a0.f fVar = (a0.f) this.f17102b;
         int c10 = fVar.c(b1Var);
         if (c10 >= 0 && (i1Var = (i1) fVar.h(c10)) != null) {
-            int i11 = i1Var.f45978a;
+            int i11 = i1Var.f46400a;
             if ((i11 & i10) != 0) {
                 int i12 = i11 & (~i10);
-                i1Var.f45978a = i12;
+                i1Var.f46400a = i12;
                 if (i10 == 4) {
-                    u0Var = i1Var.f45979b;
+                    u0Var = i1Var.f46401b;
                 } else if (i10 == 8) {
-                    u0Var = i1Var.f45980c;
+                    u0Var = i1Var.f46402c;
                 } else {
                     throw new IllegalArgumentException("Must provide flag PRE or POST");
                 }
                 if ((i12 & 12) == 0) {
                     fVar.f(c10);
-                    i1Var.f45978a = 0;
-                    i1Var.f45979b = null;
-                    i1Var.f45980c = null;
+                    i1Var.f46400a = 0;
+                    i1Var.f46401b = null;
+                    i1Var.f46402c = null;
                     i1.d.w(i1Var);
                 }
                 return u0Var;
@@ -308,103 +189,28 @@ public final class e implements cp0, l1, am0, gh.a, p2.u, ne.d, com.google.andro
         return null;
     }
 
-    @Override
-    public boolean b2(u1 u1Var, TL_iv.PageBlock pageBlock) {
-        return false;
-    }
-
-    @Override
-    public boolean c() {
-        return false;
-    }
-
-    @Override
-    public boolean c0(u1 u1Var, TLRPC.User user) {
-        return false;
-    }
-
-    @Override
-    public boolean mo17d(float f7, float f10, int i10, View view) {
-        cy cyVar = (cy) this.f17040c;
-        if (view instanceof r2) {
-            r2 r2Var = (r2) view;
-            if (r2Var.f22874n2) {
-                cyVar.L4(r2Var.getDialogId(), view);
-                return true;
-            }
-        }
-        aw awVar = cyVar.f36202z0;
-        if (awVar != null && awVar.getVisibility() == 0 && cyVar.f36202z0.f30085n) {
-            return false;
-        }
-        return cyVar.m4(view, i10, f7, ((ay) this.f17039b).d);
-    }
-
-    @Override
-    public boolean d1(MessageObject messageObject) {
-        return c1.a(messageObject);
-    }
-
-    @Override
-    public boolean e() {
-        return true;
-    }
-
-    @Override
-    public boolean e0() {
-        return false;
-    }
-
-    @Override
-    public dh.d f() {
-        return new dh.f(this);
-    }
-
-    @Override
-    public String g(u1 u1Var) {
-        return null;
-    }
-
-    public void g0(b bVar) {
-        ((HashSet) this.f17039b).add(bVar);
-        if (((b) this.f17040c) != null) {
+    public void P(b bVar) {
+        ((HashSet) this.f17102b).add(bVar);
+        if (((b) this.f17103c) != null) {
             return;
         }
-        this.f17040c = bVar;
-        q o10 = bVar.f17014b.o();
-        bVar.f17034z = o10;
-        android.support.v4.media.session.f fVar = bVar.f17028s;
-        String str = m0.f8252a;
+        this.f17103c = bVar;
+        q o10 = bVar.f17077b.o();
+        bVar.f17097z = o10;
+        android.support.v4.media.session.f fVar = bVar.f17091s;
+        String str = m0.f8259a;
         o10.getClass();
         fVar.getClass();
-        fVar.obtainMessage(1, new a(u2.u.f47444g.getAndIncrement(), true, SystemClock.elapsedRealtime(), o10)).sendToTarget();
+        fVar.obtainMessage(1, new a(u2.v.f47898g.getAndIncrement(), true, SystemClock.elapsedRealtime(), o10)).sendToTarget();
     }
 
-    @Override
-    public CharSequence getContentDescription() {
-        return null;
-    }
-
-    @Override
-    public void h() {
-        Point point = AndroidUtilities.displaySize;
-        if (point.x > point.y) {
-            ((cy) this.f17040c).finishPreviewFragment();
-        }
-    }
-
-    @Override
-    public int h0(u1 u1Var) {
-        return 0;
-    }
-
-    public sa.a j0() {
+    public sa.a Q() {
         JSONObject jSONObject;
         String str;
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         byte[] bArr = new byte[16384];
         try {
-            FileInputStream fileInputStream = new FileInputStream(z());
+            FileInputStream fileInputStream = new FileInputStream(x());
             while (true) {
                 int read = fileInputStream.read(bArr, 0, 16384);
                 if (read < 0) {
@@ -439,60 +245,26 @@ public final class e implements cp0, l1, am0, gh.a, p2.u, ne.d, com.google.andro
         throw new NullPointerException("Null registrationStatus");
     }
 
-    public void k(b1 b1Var, u0 u0Var) {
-        a0.f fVar = (a0.f) this.f17039b;
-        i1 i1Var = (i1) fVar.get(b1Var);
-        if (i1Var == null) {
-            i1Var = i1.a();
-            fVar.put(b1Var, i1Var);
-        }
-        i1Var.f45980c = u0Var;
-        i1Var.f45978a |= 8;
-    }
-
-    public void k0() {
+    public void R() {
         try {
-            ((FileLock) this.f17040c).release();
-            ((FileChannel) this.f17039b).close();
+            ((FileLock) this.f17103c).release();
+            ((FileChannel) this.f17102b).close();
         } catch (IOException e) {
             Log.e("CrossProcessLock", "encountered error while releasing, ignoring", e);
         }
     }
 
-    @Override
-    public boolean l0() {
-        return false;
-    }
-
-    @Override
-    public boolean l2(int i10) {
-        return false;
-    }
-
-    public void m0(b1 b1Var) {
-        i1 i1Var = (i1) ((a0.f) this.f17039b).get(b1Var);
+    public void S(b1 b1Var) {
+        i1 i1Var = (i1) ((a0.f) this.f17102b).get(b1Var);
         if (i1Var == null) {
             return;
         }
-        i1Var.f45978a &= -2;
+        i1Var.f46400a &= -2;
     }
 
-    @Override
-    public void o(float f7) {
-        Point point = AndroidUtilities.displaySize;
-        if (point.x > point.y) {
-            ((cy) this.f17040c).movePreviewFragment(f7);
-        }
-    }
-
-    @Override
-    public boolean o0(a6 a6Var) {
-        return false;
-    }
-
-    public void p0(b1 b1Var) {
-        a0.f fVar = (a0.f) this.f17039b;
-        a0.h hVar = (a0.h) this.f17040c;
+    public void T(b1 b1Var) {
+        a0.f fVar = (a0.f) this.f17102b;
+        a0.h hVar = (a0.h) this.f17103c;
         int m10 = hVar.m() - 1;
         while (true) {
             if (m10 < 0) {
@@ -512,80 +284,197 @@ public final class e implements cp0, l1, am0, gh.a, p2.u, ne.d, com.google.andro
         i1 i1Var = (i1) fVar.get(b1Var);
         if (i1Var != null) {
             fVar.remove(b1Var);
-            i1Var.f45978a = 0;
-            i1Var.f45979b = null;
-            i1Var.f45980c = null;
+            i1Var.f46400a = 0;
+            i1Var.f46401b = null;
+            i1Var.f46402c = null;
             i1.d.w(i1Var);
         }
     }
 
     @Override
-    public o9 p2() {
-        return null;
+    public y2.n U(p2.q qVar, p2.n nVar) {
+        return new mi.q(21, ((p2.u) this.f17102b).U(qVar, nVar), (List) this.f17103c);
     }
 
-    @Override
-    public void r(int i10, float f7, float f10, ne.e eVar) {
-        qh.i iVar = (qh.i) this.f17040c;
-        iVar.f44742c.a(f7);
-        iVar.d.a(f7);
-        iVar.f44741b.a(f7);
-        ((Runnable) this.f17039b).run();
-    }
-
-    public j0 r0(int i10) {
+    public c3.l0 V(int i10) {
         int i11 = 0;
         while (true) {
-            int[] iArr = (int[]) this.f17039b;
+            int[] iArr = (int[]) this.f17102b;
             if (i11 < iArr.length) {
                 if (i10 == iArr[i11]) {
-                    return ((d1[]) this.f17040c)[i11];
+                    return ((e1[]) this.f17103c)[i11];
                 }
                 i11++;
             } else {
                 e2.a.c("BaseMediaChunkOutput", "Unmatched track of type: " + i10);
-                return new c3.n();
+                return new c3.p();
             }
         }
     }
 
     @Override
-    public Task then(Object obj) {
-        switch (this.f17038a) {
-            case 26:
-                ea.a aVar = (ea.a) obj;
-                x9.m mVar = ((x9.k) this.f17040c).e;
-                if (aVar == null) {
-                    Log.w("FirebaseCrashlytics", "Received null app settings, cannot send reports at crash time.", null);
-                    return Tasks.forResult(null);
+    public int Y() {
+        return 0;
+    }
+
+    @Override
+    public void a(String str, String str2) {
+        an0 an0Var = ((im0) this.f17103c).f38269a;
+        if ("PHONE_VERIFICATION_NEEDED".equals(str)) {
+            an0Var.N1(true, str2, (oj0) this.f17102b, this, an0Var.B1);
+        } else {
+            an0Var.M1(true, false);
+        }
+    }
+
+    @Override
+    public void accept(java.lang.Object r53, java.lang.Object r54) {
+        throw new UnsupportedOperationException("Method not decompiled: n2.e.accept(java.lang.Object, java.lang.Object):void");
+    }
+
+    @Override
+    public dh.d d() {
+        if (Build.VERSION.SDK_INT >= 29) {
+            dh.e eVar = new dh.e(this);
+            ((PhotoViewer) this.f17103c).Z.add(eVar);
+            return eVar;
+        }
+        return new dh.f(this);
+    }
+
+    @Override
+    public void dismiss() {
+        ((yu) this.f17103c).dismiss();
+    }
+
+    @Override
+    public CharSequence getContentDescription() {
+        return null;
+    }
+
+    @Override
+    public void h() {
+        ((e3) this.f17103c).b(((iu) this.f17102b).getText());
+    }
+
+    public void l(b1 b1Var, u0 u0Var) {
+        a0.f fVar = (a0.f) this.f17102b;
+        i1 i1Var = (i1) fVar.get(b1Var);
+        if (i1Var == null) {
+            i1Var = i1.a();
+            fVar.put(b1Var, i1Var);
+        }
+        i1Var.f46402c = u0Var;
+        i1Var.f46400a |= 8;
+    }
+
+    @Override
+    public void o(int i10, float f7, float f10, ne.e eVar) {
+        qh.i iVar = (qh.i) this.f17103c;
+        iVar.f45154c.a(f7);
+        iVar.d.a(f7);
+        iVar.f45153b.a(f7);
+        ((Runnable) this.f17102b).run();
+    }
+
+    @Override
+    public void onError(j81 j81Var, Exception exc) {
+        SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f17103c;
+        int i10 = secretMediaViewer.f34089b0;
+        if (i10 > 0) {
+            secretMediaViewer.f34089b0 = i10 - 1;
+            AndroidUtilities.runOnUIThread(new mv0(28, this, (File) this.f17102b), 100L);
+            return;
+        }
+        FileLog.e(exc);
+    }
+
+    @Override
+    public void onRenderedFirstFrame(j2.a aVar) {
+    }
+
+    @Override
+    public void onStateChanged(boolean z10, int i10) {
+        SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f17103c;
+        n31 n31Var = secretMediaViewer.f34106i1;
+        if (secretMediaViewer.f34139y != null && secretMediaViewer.f34103h0 != null) {
+            AndroidUtilities.cancelRunOnUIThread(n31Var);
+            AndroidUtilities.runOnUIThread(n31Var);
+            if (i10 != 4 && i10 != 1) {
+                try {
+                    secretMediaViewer.f34088b.getWindow().addFlags(128);
+                } catch (Exception e) {
+                    FileLog.e(e);
                 }
-                return Tasks.whenAll(x9.m.b(mVar), mVar.f49708m.D((Executor) this.f17039b, null));
-            default:
-                return ((x9.m) this.f17040c).e.w(new u4.f(1, this, (Boolean) obj));
+            } else {
+                try {
+                    secretMediaViewer.f34088b.getWindow().clearFlags(128);
+                } catch (Exception e7) {
+                    FileLog.e(e7);
+                }
+            }
+            if (i10 == 3 && secretMediaViewer.f34134w.getVisibility() != 0) {
+                secretMediaViewer.f34134w.setVisibility(0);
+            }
+            if (secretMediaViewer.f34139y.y() && i10 != 4) {
+                if (!secretMediaViewer.E) {
+                    secretMediaViewer.E = true;
+                }
+            } else if (secretMediaViewer.E) {
+                secretMediaViewer.E = false;
+                if (i10 == 4) {
+                    secretMediaViewer.H = true;
+                    if (secretMediaViewer.I) {
+                        secretMediaViewer.e(true, !secretMediaViewer.f34121q1);
+                        return;
+                    }
+                    secretMediaViewer.f34139y.L(0L, false);
+                    secretMediaViewer.f34139y.C();
+                }
+            }
         }
     }
 
-    public String toString() {
-        switch (this.f17038a) {
-            case 22:
-                StringBuilder sb2 = new StringBuilder(128);
-                sb2.append("LoaderManager{");
-                sb2.append(Integer.toHexString(System.identityHashCode(this)));
-                sb2.append(" in ");
-                Class<?> cls = ((androidx.lifecycle.t) this.f17039b).getClass();
-                sb2.append(cls.getSimpleName());
-                sb2.append("{");
-                sb2.append(Integer.toHexString(System.identityHashCode(cls)));
-                sb2.append("}}");
-                return sb2.toString();
-            default:
-                return super.toString();
+    @Override
+    public boolean onSurfaceDestroyed(SurfaceTexture surfaceTexture) {
+        return false;
+    }
+
+    @Override
+    public void onVideoSizeChanged(int i10, int i11, int i12, float f7) {
+        float f10;
+        n4 n4Var = ((SecretMediaViewer) this.f17103c).f34134w;
+        if (n4Var != null) {
+            if (i11 == 0) {
+                f10 = 1.0f;
+            } else {
+                f10 = (i10 * f7) / i11;
+            }
+            n4Var.a(f10, 0);
         }
     }
 
-    public void u(String str, PrintWriter printWriter) {
+    @Override
+    public void q(float f7, boolean z10) {
+        yb0 yb0Var = (yb0) this.f17102b;
+        ig0 ig0Var = (ig0) this.f17103c;
+        j81 j81Var = ig0Var.d;
+        if (j81Var != null) {
+            long p5 = j81Var.p();
+            float max = 2.8f / ((float) Math.max(60L, p5));
+            long j10 = (((f7 / (1.0f - max)) * max) + f7) * ((float) p5);
+            ig0Var.e = j10;
+            ig0Var.d.L(j10, !z10);
+            if (!z10) {
+                AndroidUtilities.cancelRunOnUIThread(yb0Var);
+                AndroidUtilities.runOnUIThread(yb0Var, 120L);
+            }
+        }
+    }
+
+    public void r(String str, PrintWriter printWriter) {
         boolean z10;
-        w1.b bVar = (w1.b) this.f17040c;
+        w1.b bVar = (w1.b) this.f17103c;
         if (bVar.d.f30c > 0) {
             printWriter.print(str);
             printWriter.println("Loaders:");
@@ -608,8 +497,8 @@ public final class e implements cp0, l1, am0, gh.a, p2.u, ne.d, com.google.andro
                     printWriter.println((Object) null);
                     printWriter.print(str2);
                     printWriter.print("mLoader=");
-                    printWriter.println(aVar.f48464l);
-                    a6.d dVar = aVar.f48464l;
+                    printWriter.println(aVar.f48902l);
+                    a6.d dVar = aVar.f48902l;
                     String str3 = str2 + "  ";
                     dVar.getClass();
                     printWriter.print(str3);
@@ -649,21 +538,21 @@ public final class e implements cp0, l1, am0, gh.a, p2.u, ne.d, com.google.andro
                         dVar.h.getClass();
                         printWriter.println(false);
                     }
-                    if (aVar.f48466n != null) {
+                    if (aVar.f48904n != null) {
                         printWriter.print(str2);
                         printWriter.print("mCallbacks=");
-                        printWriter.println(aVar.f48466n);
-                        b2.t tVar = aVar.f48466n;
+                        printWriter.println(aVar.f48904n);
+                        b2.t tVar = aVar.f48904n;
                         tVar.getClass();
                         printWriter.print(str2 + "  ");
                         printWriter.print("mDeliveredData=");
-                        printWriter.println(tVar.f4005b);
+                        printWriter.println(tVar.f4012b);
                     }
                     printWriter.print(str2);
                     printWriter.print("mData=");
-                    a6.d dVar2 = aVar.f48464l;
+                    a6.d dVar2 = aVar.f48902l;
                     Object obj2 = aVar.e;
-                    if (obj2 != z.f3379k) {
+                    if (obj2 != z.f3386k) {
                         obj = obj2;
                     }
                     dVar2.getClass();
@@ -680,7 +569,7 @@ public final class e implements cp0, l1, am0, gh.a, p2.u, ne.d, com.google.andro
                     printWriter.println(sb2.toString());
                     printWriter.print(str2);
                     printWriter.print("mStarted=");
-                    if (aVar.f3382c > 0) {
+                    if (aVar.f3389c > 0) {
                         z10 = true;
                     } else {
                         z10 = false;
@@ -695,37 +584,99 @@ public final class e implements cp0, l1, am0, gh.a, p2.u, ne.d, com.google.andro
     }
 
     @Override
-    public boolean v1() {
-        return false;
+    public void s0(v6 v6Var, bi.b bVar, boolean z10) {
+        yu yuVar = (yu) this.f17103c;
+        xu xuVar = yuVar.X;
+        if (bVar != null) {
+            ((bi.c) this.f17102b).i(bVar);
+            yuVar.f43972e0.d();
+            bi.c cVar = yuVar.f43974g0;
+            zy0[] zy0VarArr = yuVar.f43969b0;
+            z1[] z1VarArr = yuVar.f43970c0;
+            z1 z1Var = z1VarArr[0];
+            if (z1Var != null) {
+                zy0 zy0Var = zy0VarArr[0];
+                boolean z11 = cVar.f4442m;
+                zy0Var.f33366c = z11;
+                z1Var.c(z11, true);
+            }
+            z1 z1Var2 = z1VarArr[1];
+            if (z1Var2 != null) {
+                zy0 zy0Var2 = zy0VarArr[1];
+                boolean z12 = cVar.f4443n;
+                zy0Var2.f33366c = z12;
+                z1Var2.c(z12, true);
+            }
+            z1 z1Var3 = z1VarArr[2];
+            if (z1Var3 != null) {
+                zy0 zy0Var3 = zy0VarArr[2];
+                boolean z13 = cVar.f4444o;
+                zy0Var3.f33366c = z13;
+                z1Var3.c(z13, true);
+            }
+            z1 z1Var4 = z1VarArr[3];
+            if (z1Var4 != null) {
+                zy0 zy0Var4 = zy0VarArr[3];
+                boolean z14 = cVar.f4445p;
+                zy0Var4.f33366c = z14;
+                z1Var4.c(z14, true);
+            }
+            z1 z1Var5 = z1VarArr[4];
+            if (z1Var5 != null) {
+                zy0 zy0Var5 = zy0VarArr[4];
+                boolean z15 = cVar.f4446q;
+                zy0Var5.f33366c = z15;
+                z1Var5.c(z15, true);
+            }
+            yuVar.f43968a0.a(xuVar.d(), true);
+            xuVar.c(true);
+        }
     }
 
     @Override
-    public String w(long j10) {
-        String trim = ((EditTextBoldCursor) this.f17039b).getText().toString().trim();
-        if (trim.length() > 16) {
-            trim = trim.substring(0, 16);
+    public Task then(Object obj) {
+        switch (this.f17101a) {
+            case 25:
+                ea.a aVar = (ea.a) obj;
+                x9.m mVar = ((x9.k) this.f17103c).e;
+                if (aVar == null) {
+                    Log.w("FirebaseCrashlytics", "Received null app settings, cannot send reports at crash time.", null);
+                    return Tasks.forResult(null);
+                }
+                return Tasks.whenAll(x9.m.b(mVar), mVar.f50150m.v((Executor) this.f17102b, null));
+            default:
+                return ((x9.m) this.f17103c).e.w(new u4.f(1, this, (Boolean) obj));
         }
-        if (!((x01) this.f17040c).f32299s && TextUtils.isEmpty(trim)) {
-            return null;
-        }
-        return trim;
     }
 
-    @Override
-    public boolean w0(MessageObject messageObject) {
-        return true;
+    public String toString() {
+        switch (this.f17101a) {
+            case 21:
+                StringBuilder sb2 = new StringBuilder(128);
+                sb2.append("LoaderManager{");
+                sb2.append(Integer.toHexString(System.identityHashCode(this)));
+                sb2.append(" in ");
+                Class<?> cls = ((androidx.lifecycle.t) this.f17102b).getClass();
+                sb2.append(cls.getSimpleName());
+                sb2.append("{");
+                sb2.append(Integer.toHexString(System.identityHashCode(cls)));
+                sb2.append("}}");
+                return sb2.toString();
+            default:
+                return super.toString();
+        }
     }
 
-    public byte[] x(n3.a aVar) {
-        DataOutputStream dataOutputStream = (DataOutputStream) this.f17040c;
-        ByteArrayOutputStream byteArrayOutputStream = (ByteArrayOutputStream) this.f17039b;
+    public byte[] u(n3.a aVar) {
+        DataOutputStream dataOutputStream = (DataOutputStream) this.f17103c;
+        ByteArrayOutputStream byteArrayOutputStream = (ByteArrayOutputStream) this.f17102b;
         byteArrayOutputStream.reset();
         try {
-            dataOutputStream.writeBytes(aVar.f17081a);
+            dataOutputStream.writeBytes(aVar.f17144a);
             dataOutputStream.writeByte(0);
-            dataOutputStream.writeBytes(aVar.f17082b);
+            dataOutputStream.writeBytes(aVar.f17145b);
             dataOutputStream.writeByte(0);
-            dataOutputStream.writeLong(aVar.f17083c);
+            dataOutputStream.writeLong(aVar.f17146c);
             dataOutputStream.writeLong(aVar.d);
             dataOutputStream.write(aVar.e);
             dataOutputStream.flush();
@@ -735,119 +686,123 @@ public final class e implements cp0, l1, am0, gh.a, p2.u, ne.d, com.google.andro
         }
     }
 
-    @Override
-    public void y(Canvas canvas, float f7, float f10, float f11, float f12) {
-        Paint paint = (Paint) this.f17039b;
-        PremiumPreviewFragment premiumPreviewFragment = (PremiumPreviewFragment) this.f17040c;
-        a1 a1Var = premiumPreviewFragment.m0;
-        if (premiumPreviewFragment.f33513h0) {
-            paint.setColor(premiumPreviewFragment.getThemedColor(h6.f20936a7));
-            canvas.drawRect(f7, f10, f11, f12, paint);
-            return;
-        }
-        a1Var.d(0, (-premiumPreviewFragment.f33508d0.getMeasuredWidth()) * 0.1f * premiumPreviewFragment.f33505b0, 0, premiumPreviewFragment.f33508d0.getMeasuredWidth(), 0.0f, premiumPreviewFragment.f33508d0.getMeasuredHeight());
-        canvas.drawRect(f7, f10, f11, f12, a1Var.f46195f);
-    }
-
-    public File z() {
-        if (((File) this.f17039b) == null) {
+    public File x() {
+        if (((File) this.f17102b) == null) {
             synchronized (this) {
                 try {
-                    if (((File) this.f17039b) == null) {
-                        l9.h hVar = (l9.h) this.f17040c;
+                    if (((File) this.f17102b) == null) {
+                        l9.h hVar = (l9.h) this.f17103c;
                         hVar.a();
-                        File filesDir = hVar.f15967a.getFilesDir();
-                        this.f17039b = new File(filesDir, "PersistedInstallation." + ((l9.h) this.f17040c).d() + ".json");
+                        File filesDir = hVar.f16030a.getFilesDir();
+                        this.f17102b = new File(filesDir, "PersistedInstallation." + ((l9.h) this.f17103c).d() + ".json");
                     }
                 } finally {
                 }
             }
         }
-        return (File) this.f17039b;
+        return (File) this.f17102b;
     }
 
     @Override
-    public boolean z1(u1 u1Var, TLRPC.Chat chat) {
-        return false;
+    public void y(Canvas canvas, float f7, float f10, float f11, float f12) {
+        canvas.save();
+        canvas.clipRect(f7, f10, f11, f12);
+        ((PhotoViewer) this.f17103c).V0(canvas, (na) this.f17102b, -14277082, 855638016, false, true, true);
+        canvas.drawColor(637534208);
+        canvas.restore();
     }
 
     public e(int i10, boolean z10) {
-        this.f17038a = i10;
+        this.f17101a = i10;
+    }
+
+    @Override
+    public void onRenderedFirstFrame() {
+        SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f17103c;
+        if (secretMediaViewer.f34092c0) {
+            return;
+        }
+        secretMediaViewer.f34092c0 = true;
+        secretMediaViewer.e.invalidate();
     }
 
     public e(Object obj, Object obj2, boolean z10, int i10) {
-        this.f17038a = i10;
-        this.f17040c = obj;
-        this.f17039b = obj2;
+        this.f17101a = i10;
+        this.f17103c = obj;
+        this.f17102b = obj2;
     }
 
     public e(Context context) {
-        this.f17038a = 2;
+        this.f17101a = 2;
         n6.l.h(context);
         Resources resources = context.getResources();
-        this.f17039b = resources;
-        this.f17040c = resources.getResourcePackageName(2131689566);
+        this.f17102b = resources;
+        this.f17103c = resources.getResourcePackageName(2131689566);
     }
 
     public e(u2.c cVar) {
-        this.f17038a = 23;
-        this.f17040c = new Object();
-        this.f17039b = cVar;
+        this.f17101a = 22;
+        this.f17103c = new Object();
+        this.f17102b = cVar;
         pa.b();
     }
 
     public e(androidx.lifecycle.t tVar, t0 t0Var) {
-        this.f17038a = 22;
-        this.f17039b = tVar;
-        this.f17040c = (w1.b) new androidx.biometric.e(t0Var, w1.b.f48467f).j(w1.b.class);
+        this.f17101a = 21;
+        this.f17102b = tVar;
+        this.f17103c = (w1.b) new androidx.biometric.e(t0Var, w1.b.f48905f).j(w1.b.class);
     }
 
-    public e(k0 k0Var) {
-        this.f17038a = 14;
-        this.f17039b = k0Var;
+    public e(j0 j0Var) {
+        this.f17101a = 13;
+        this.f17102b = j0Var;
+    }
+
+    public e(ig0 ig0Var) {
+        this.f17101a = 7;
+        this.f17103c = ig0Var;
+        this.f17102b = new yb0(this, 10);
     }
 
     public e(l9.h hVar) {
-        this.f17038a = 19;
-        this.f17040c = hVar;
+        this.f17101a = 18;
+        this.f17103c = hVar;
     }
 
     public e(x9.k kVar, Executor executor, String str) {
-        this.f17038a = 26;
-        this.f17040c = kVar;
-        this.f17039b = executor;
-    }
-
-    public e(PremiumPreviewFragment premiumPreviewFragment) {
-        this.f17038a = 11;
-        this.f17040c = premiumPreviewFragment;
-        this.f17039b = new Paint();
+        this.f17101a = 25;
+        this.f17103c = kVar;
+        this.f17102b = executor;
     }
 
     public e(int i10) {
-        this.f17038a = i10;
+        this.f17101a = i10;
         switch (i10) {
             case 1:
                 ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream(512);
-                this.f17039b = byteArrayOutputStream;
-                this.f17040c = new DataOutputStream(byteArrayOutputStream);
+                this.f17102b = byteArrayOutputStream;
+                this.f17103c = new DataOutputStream(byteArrayOutputStream);
                 return;
-            case 18:
-                this.f17039b = new a0.l(0);
-                this.f17040c = new a0.h();
+            case 17:
+                this.f17102b = new a0.l(0);
+                this.f17103c = new a0.h();
                 return;
-            case 28:
-                this.f17039b = new AtomicInteger();
-                this.f17040c = new AtomicInteger();
+            case 27:
+                this.f17102b = new AtomicInteger();
+                this.f17103c = new AtomicInteger();
                 return;
             default:
-                this.f17039b = new HashSet();
+                this.f17102b = new HashSet();
                 return;
         }
     }
 
     @Override
-    public void L1() {
+    public void D() {
+    }
+
+    @Override
+    public void W0() {
     }
 
     @Override
@@ -855,11 +810,7 @@ public final class e implements cp0, l1, am0, gh.a, p2.u, ne.d, com.google.andro
     }
 
     @Override
-    public void f1() {
-    }
-
-    @Override
-    public void g2() {
+    public void clear() {
     }
 
     @Override
@@ -867,234 +818,96 @@ public final class e implements cp0, l1, am0, gh.a, p2.u, ne.d, com.google.andro
     }
 
     @Override
-    public void n() {
-    }
-
-    @Override
-    public void n2() {
-    }
-
-    @Override
-    public void q() {
-    }
-
-    @Override
     public void v() {
     }
 
     @Override
-    public void y0() {
+    public void A(float f7) {
     }
 
     @Override
-    public void A(u1 u1Var) {
+    public void C(float f7) {
     }
 
     @Override
-    public void B(u1 u1Var) {
+    public void F(float f7) {
     }
 
     @Override
-    public void C0(u1 u1Var) {
+    public void K(long j10) {
     }
 
     @Override
-    public void D1(u1 u1Var) {
+    public void c(int i10) {
     }
 
     @Override
-    public void E0(u1 u1Var) {
+    public void e(float f7) {
     }
 
     @Override
-    public void F(u1 u1Var) {
+    public void g(float f7) {
     }
 
     @Override
-    public void F1(MessageObject messageObject) {
+    public void k(float f7) {
     }
 
     @Override
-    public void G(MessageObject.TextLayoutBlock textLayoutBlock) {
+    public void m(boolean z10) {
     }
 
     @Override
-    public void G0(u1 u1Var) {
+    public void onSeekFinished(j2.a aVar) {
     }
 
     @Override
-    public void I(u1 u1Var) {
+    public void onSeekStarted(j2.a aVar) {
     }
 
     @Override
-    public void K0(u1 u1Var) {
+    public void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
     }
 
     @Override
-    public void M(MessageObject messageObject) {
+    public void p(float f7) {
     }
 
     @Override
-    public void T(u1 u1Var) {
+    public void s(long j10) {
     }
 
     @Override
-    public void T0(u1 u1Var) {
+    public void t(boolean z10) {
     }
 
     @Override
-    public void U1(u1 u1Var) {
+    public void z(float f7) {
+    }
+
+    public e(PhotoViewer photoViewer) {
+        this.f17101a = 10;
+        this.f17103c = photoViewer;
+        this.f17102b = new na(photoViewer.f33552b0, photoViewer.f33580e0, 0, false);
     }
 
     @Override
-    public void V0(u1 u1Var) {
+    public void B(float f7, int i10) {
     }
 
     @Override
-    public void c2(u1 u1Var) {
+    public void I(int i10, long j10) {
     }
 
     @Override
-    public void d0(int i10) {
+    public void i(long j10, boolean z10) {
     }
 
     @Override
-    public void i0(u1 u1Var) {
+    public void n(float f7, int i10) {
     }
 
     @Override
-    public void m(u1 u1Var) {
-    }
-
-    @Override
-    public void n0(String str) {
-    }
-
-    @Override
-    public void p(u1 u1Var) {
-    }
-
-    @Override
-    public void s(u1 u1Var) {
-    }
-
-    @Override
-    public void t(u1 u1Var) {
-    }
-
-    @Override
-    public void w1(u1 u1Var) {
-    }
-
-    @Override
-    public void x0(u1 u1Var) {
-    }
-
-    @Override
-    public void A1(u1 u1Var, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
-    }
-
-    @Override
-    public void D(u1 u1Var, BotInlineKeyboard.ButtonCustom buttonCustom) {
-    }
-
-    @Override
-    public void K(int i10, u1 u1Var) {
-    }
-
-    @Override
-    public void K1(u1 u1Var, ah.t tVar) {
-    }
-
-    @Override
-    public void M0(int i10, u1 u1Var) {
-    }
-
-    @Override
-    public void M1(u1 u1Var, TLRPC.MessageExtendedMedia messageExtendedMedia) {
-    }
-
-    @Override
-    public void O0(u1 u1Var, TL_keyboard.KeyboardInlineButton keyboardInlineButton) {
-    }
-
-    @Override
-    public void W1(u1 u1Var, long j10) {
-    }
-
-    @Override
-    public void h1(u1 u1Var, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
-    }
-
-    @Override
-    public void k1(u1 u1Var, TLRPC.Document document) {
-    }
-
-    @Override
-    public void x1(u1 u1Var, boolean z10) {
-    }
-
-    @Override
-    public void A0(u1 u1Var, float f7, float f10) {
-    }
-
-    @Override
-    public void R0(u1 u1Var, CharacterStyle characterStyle, boolean z10) {
-    }
-
-    @Override
-    public void f0(u1 u1Var, float f7, float f10) {
-    }
-
-    @Override
-    public void o2(u1 u1Var, int i10, int i11) {
-    }
-
-    @Override
-    public void p1(u1 u1Var, float f7, float f10) {
-    }
-
-    @Override
-    public void q0(u1 u1Var, float f7, float f10) {
-    }
-
-    @Override
-    public void z0(u1 u1Var, TLObject tLObject, boolean z10) {
-    }
-
-    @Override
-    public void N1(u1 u1Var, TLRPC.User user, TLRPC.Document document, String str) {
-    }
-
-    @Override
-    public void l(u1 u1Var, TLRPC.PollAnswer pollAnswer, TLRPC.MessageMedia messageMedia, int i10) {
-    }
-
-    @Override
-    public void u0(u1 u1Var, TLRPC.User user, float f7, float f10) {
-    }
-
-    @Override
-    public void v0(u1 u1Var, float f7, float f10, boolean z10) {
-    }
-
-    @Override
-    public void R1(u1 u1Var, int i10, float f7, float f10, boolean z10) {
-    }
-
-    @Override
-    public void i(u1 u1Var, ArrayList arrayList, int i10, int i11, int i12) {
-    }
-
-    @Override
-    public void i2(u1 u1Var, TLRPC.ReactionCount reactionCount, boolean z10, float f7, float f10) {
-    }
-
-    @Override
-    public void S(u1 u1Var, TLRPC.Chat chat, int i10, float f7, float f10, boolean z10) {
-    }
-
-    @Override
-    public void I1(MessageObject messageObject, String str, String str2, String str3, String str4, int i10, int i11) {
+    public void w(float f7, int i10) {
     }
 }

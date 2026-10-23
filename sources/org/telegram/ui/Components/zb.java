@@ -4,27 +4,27 @@ import android.content.Context;
 import android.view.MotionEvent;
 import android.view.WindowManager;
 import org.telegram.messenger.FileLog;
-public final class zb extends dl0 {
-    public final int l1 = 0;
-    public final Object f32873m1;
+public final class zb extends gl0 {
+    public final int f33200m1 = 0;
+    public final Object f33201n1;
 
-    public zb(org.telegram.ui.et etVar, Context context, int i10, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(4, i10, context, null, d6Var);
-        this.f32873m1 = etVar;
+    public zb(org.telegram.ui.ht htVar, Context context, int i10, org.telegram.ui.ActionBar.g6 g6Var) {
+        super(4, i10, context, null, g6Var);
+        this.f33201n1 = htVar;
     }
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent motionEvent) {
         qc qcVar;
-        switch (this.l1) {
+        switch (this.f33200m1) {
             case 0:
-                bc bcVar = (bc) this.f32873m1;
+                bc bcVar = (bc) this.f33201n1;
                 if (motionEvent.getAction() == 0) {
-                    qc qcVar2 = bcVar.f24893n;
+                    qc qcVar2 = bcVar.f25036n;
                     if (qcVar2 != null) {
                         qcVar2.i(false);
                     }
-                } else if (motionEvent.getAction() == 1 && (qcVar = bcVar.f24893n) != null) {
+                } else if (motionEvent.getAction() == 1 && (qcVar = bcVar.f25036n) != null) {
                     qcVar.i(true);
                 }
                 return super.dispatchTouchEvent(motionEvent);
@@ -35,19 +35,19 @@ public final class zb extends dl0 {
 
     @Override
     public void j() {
-        switch (this.l1) {
+        switch (this.f33200m1) {
             case 1:
                 super.j();
-                org.telegram.ui.et etVar = (org.telegram.ui.et) this.f32873m1;
+                org.telegram.ui.ht htVar = (org.telegram.ui.ht) this.f33201n1;
                 if (getReactionsWindow() != null) {
-                    WindowManager.LayoutParams layoutParams = etVar.f36802x;
+                    WindowManager.LayoutParams layoutParams = htVar.f37956x;
                     layoutParams.flags &= -131073;
                     layoutParams.softInputMode = 16;
                 } else {
-                    etVar.f36802x.flags |= 131072;
+                    htVar.f37956x.flags |= 131072;
                 }
                 try {
-                    ((WindowManager) etVar.f36801w.getSystemService("window")).updateViewLayout(etVar.f36803y, etVar.f36802x);
+                    ((WindowManager) htVar.f37955w.getSystemService("window")).updateViewLayout(htVar.f37957y, htVar.f37956x);
                     return;
                 } catch (Exception e) {
                     FileLog.e(e);
@@ -61,21 +61,21 @@ public final class zb extends dl0 {
 
     @Override
     public void m() {
-        switch (this.l1) {
+        switch (this.f33200m1) {
             case 0:
-                qc qcVar = qc.f29528w;
+                qc qcVar = qc.f29825w;
                 if (qcVar != null) {
                     qcVar.i(false);
                 }
-                ((bc) this.f32873m1).d.getReactionsWindow().f870c.setOnClickListener(new f0(this, 4));
+                ((bc) this.f33201n1).d.getReactionsWindow().f871c.setOnClickListener(new f0(this, 4));
                 return;
             default:
                 return;
         }
     }
 
-    public zb(bc bcVar, org.telegram.ui.ActionBar.n2 n2Var, Context context, int i10, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(3, i10, context, n2Var, d6Var);
-        this.f32873m1 = bcVar;
+    public zb(bc bcVar, org.telegram.ui.ActionBar.o2 o2Var, Context context, int i10, org.telegram.ui.ActionBar.g6 g6Var) {
+        super(3, i10, context, o2Var, g6Var);
+        this.f33201n1 = bcVar;
     }
 }

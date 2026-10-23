@@ -1,7 +1,12 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import org.telegram.messenger.DispatchQueue;
-public abstract class ri0 extends View {
-    public static final DispatchQueue f29941a = new DispatchQueue("profileBlurQueue");
+import android.graphics.Canvas;
+public interface ri0 {
+    void a(float f7);
+
+    void b(float f7);
+
+    void c(tv tvVar, Canvas canvas);
+
+    void d(int i10, int i11);
 }

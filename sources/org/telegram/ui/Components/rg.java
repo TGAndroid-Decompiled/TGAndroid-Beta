@@ -6,21 +6,21 @@ import java.util.ArrayList;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class rg extends j1.b {
-    public final sg f29932o;
+    public final sg f30172o;
 
     public rg(sg sgVar, sg sgVar2) {
         super(sgVar2);
-        this.f29932o = sgVar;
+        this.f30172o = sgVar;
     }
 
     @Override
     public final int g(float f7, float f10) {
-        sg sgVar = this.f29932o;
-        ChatActivityEnterView chatActivityEnterView = sgVar.V;
-        if (chatActivityEnterView.f24023s4 && chatActivityEnterView.N1 != null && chatActivityEnterView.S3.contains(f7, f10)) {
+        sg sgVar = this.f30172o;
+        ChatActivityEnterView chatActivityEnterView = sgVar.f30482b0;
+        if (chatActivityEnterView.f24164s4 && chatActivityEnterView.N1 != null && chatActivityEnterView.S3.contains(f7, f10)) {
             return 2;
         }
-        if (chatActivityEnterView.P && chatActivityEnterView.N1 != null && chatActivityEnterView.f23996n4 > 0.1f && sgVar.J.contains(f7, f10)) {
+        if (chatActivityEnterView.P && chatActivityEnterView.N1 != null && chatActivityEnterView.f24134n4 > 0.1f && sgVar.J.contains(f7, f10)) {
             return 4;
         }
         return -1;
@@ -28,11 +28,11 @@ public final class rg extends j1.b {
 
     @Override
     public final void h(ArrayList arrayList) {
-        ChatActivityEnterView chatActivityEnterView = this.f29932o.V;
-        if (chatActivityEnterView.f24023s4) {
+        ChatActivityEnterView chatActivityEnterView = this.f30172o.f30482b0;
+        if (chatActivityEnterView.f24164s4) {
             arrayList.add(2);
         }
-        if (chatActivityEnterView.P && chatActivityEnterView.N1 != null && chatActivityEnterView.f23996n4 > 0.1f) {
+        if (chatActivityEnterView.P && chatActivityEnterView.N1 != null && chatActivityEnterView.f24134n4 > 0.1f) {
             arrayList.add(4);
         }
     }
@@ -43,33 +43,33 @@ public final class rg extends j1.b {
     }
 
     @Override
-    public final void l(int i10, s0.c cVar) {
+    public final void l(int i10, s0.d dVar) {
         int i11;
         int i12;
-        sg sgVar = this.f29932o;
-        ChatActivityEnterView chatActivityEnterView = sgVar.V;
+        sg sgVar = this.f30172o;
+        ChatActivityEnterView chatActivityEnterView = sgVar.f30482b0;
         if (i10 == 2) {
             Rect rect = chatActivityEnterView.U3;
             RectF rectF = chatActivityEnterView.S3;
             rect.set((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
-            cVar.h(chatActivityEnterView.U3);
-            if (chatActivityEnterView.f24006p4 > 0.5f) {
+            dVar.h(chatActivityEnterView.U3);
+            if (chatActivityEnterView.f24146p4 > 0.5f) {
                 i12 = R.string.AccActionResume;
             } else {
                 i12 = R.string.AccActionPause;
             }
-            cVar.o(LocaleController.getString(i12));
+            dVar.o(LocaleController.getString(i12));
         } else if (i10 == 4) {
             Rect rect2 = chatActivityEnterView.U3;
             RectF rectF2 = sgVar.J;
             rect2.set((int) rectF2.left, (int) rectF2.top, (int) rectF2.right, (int) rectF2.bottom);
-            cVar.h(chatActivityEnterView.U3);
+            dVar.h(chatActivityEnterView.U3);
             if (chatActivityEnterView.O) {
                 i11 = R.string.AccActionOnceDeactivate;
             } else {
                 i11 = R.string.AccActionOnceActivate;
             }
-            cVar.o(LocaleController.getString(i11));
+            dVar.o(LocaleController.getString(i11));
         }
     }
 }

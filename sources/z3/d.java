@@ -6,7 +6,7 @@ public interface d {
 
     long k(int i10);
 
-    List s(long j10);
+    List r(long j10);
 
-    int u();
+    int v();
 }

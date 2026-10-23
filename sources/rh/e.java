@@ -4,16 +4,16 @@ import android.graphics.Canvas;
 import android.view.View;
 import org.telegram.messenger.ImageReceiver;
 public abstract class e {
-    public final ImageReceiver f45759a = new ImageReceiver();
+    public final ImageReceiver f46180a = new ImageReceiver();
 
     public void a(View view) {
-        ImageReceiver imageReceiver = this.f45759a;
+        ImageReceiver imageReceiver = this.f46180a;
         imageReceiver.setParentView(view);
         imageReceiver.onAttachedToWindow();
     }
 
     public void b() {
-        this.f45759a.onDetachedFromWindow();
+        this.f46180a.onDetachedFromWindow();
     }
 
     public abstract void c(Canvas canvas, int i10, int i11);

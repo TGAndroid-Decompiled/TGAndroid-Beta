@@ -7,41 +7,45 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.h6;
+import org.telegram.messenger.FileLog;
+import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.ActionBar.r6;
 public final class j extends Drawable {
-    public eh.a f4411a;
-    public int f4412b;
-    public int f4413c;
-    public int f4414f;
-    public boolean f4417j;
-    public float f4418k;
+    public eh.a f4414a;
+    public int f4415b;
+    public int f4416c;
+    public int f4417f;
+    public boolean f4421k;
+    public float f4422l;
     public float d = 1.0f;
     public final RectF e = new RectF();
-    public final Paint f4415g = new Paint(1);
+    public final Paint f4418g = new Paint(1);
     public final Paint h = new Paint(1);
-    public final Paint f4416i = new Paint(1);
+    public final Paint f4419i = new Paint(1);
+    public int f4420j = r6.f21817b;
 
     public final void a(eh.a aVar) {
-        this.f4411a = aVar;
+        this.f4414a = aVar;
         Paint.Style style = Paint.Style.STROKE;
         this.h.setStyle(style);
-        this.f4416i.setStyle(style);
+        this.f4419i.setStyle(style);
         b();
     }
 
     public final void b() {
-        eh.a aVar = this.f4411a;
+        this.f4420j = r6.f21817b;
+        eh.a aVar = this.f4414a;
         if (aVar == null) {
             return;
         }
-        this.f4412b = h6.m1(this.d, aVar.h());
-        this.f4413c = h6.m1(this.d, this.f4411a.u());
-        int i10 = this.f4412b;
+        this.f4415b = k6.o1(this.d, aVar.h());
+        this.f4416c = k6.o1(this.d, this.f4414a.u());
+        int i10 = this.f4415b;
         Paint paint = this.h;
         paint.setColor(i10);
         paint.setStrokeWidth(AndroidUtilities.dpf2(1.0f));
-        int i11 = this.f4413c;
-        Paint paint2 = this.f4416i;
+        int i11 = this.f4416c;
+        Paint paint2 = this.f4419i;
         paint2.setColor(i11);
         paint2.setStrokeWidth(AndroidUtilities.dpf2(0.6666667f));
     }
@@ -49,28 +53,35 @@ public final class j extends Drawable {
     @Override
     public final void draw(Canvas canvas) {
         Canvas canvas2;
+        if (this.f4420j != r6.f21817b) {
+            try {
+                b();
+            } catch (Exception e) {
+                FileLog.e(e);
+            }
+        }
         float centerX = getBounds().centerX();
         float centerY = getBounds().centerY();
-        float min = (Math.min(getBounds().width(), getBounds().height()) / 2.0f) - this.f4414f;
+        float min = (Math.min(getBounds().width(), getBounds().height()) / 2.0f) - this.f4417f;
         RectF rectF = this.e;
         rectF.set(centerX - min, centerY - min, centerX + min, centerY + min);
-        if (this.f4417j) {
+        if (this.f4421k) {
             rectF.set(getBounds());
-            min = this.f4418k;
+            min = this.f4422l;
         }
         float f7 = min;
-        Paint paint = this.f4415g;
+        Paint paint = this.f4418g;
         if (Color.alpha(paint.getColor()) > 0) {
             canvas.drawCircle(centerX, centerY, f7, paint);
         }
-        if (this.f4412b != 0) {
+        if (this.f4415b != 0) {
             canvas2 = canvas;
             dh.d.f(canvas2, rectF, f7, AndroidUtilities.dpf2(1.0f), true, this.h);
         } else {
             canvas2 = canvas;
         }
-        if (this.f4413c != 0) {
-            dh.d.f(canvas2, rectF, f7, AndroidUtilities.dpf2(0.6666667f), false, this.f4416i);
+        if (this.f4416c != 0) {
+            dh.d.f(canvas2, rectF, f7, AndroidUtilities.dpf2(0.6666667f), false, this.f4419i);
         }
     }
 

@@ -1,19 +1,19 @@
 package c3;
-public final class e implements c0 {
-    public final g f4606a;
-    public final long f4607b;
-    public final long f4608c;
+public final class e implements e0 {
+    public final g f4611a;
+    public final long f4612b;
+    public final long f4613c;
     public final long d;
     public final long e;
-    public final long f4609f;
+    public final long f4614f;
 
     public e(g gVar, long j10, long j11, long j12, long j13, long j14) {
-        this.f4606a = gVar;
-        this.f4607b = j10;
-        this.f4608c = j11;
+        this.f4611a = gVar;
+        this.f4612b = j10;
+        this.f4613c = j11;
         this.d = j12;
         this.e = j13;
-        this.f4609f = j14;
+        this.f4614f = j14;
     }
 
     @Override
@@ -27,13 +27,13 @@ public final class e implements c0 {
     }
 
     @Override
-    public final b0 f(long j10) {
-        d0 d0Var = new d0(j10, f.a(this.f4606a.k(j10), 0L, this.f4608c, this.d, this.e, this.f4609f));
-        return new b0(d0Var, d0Var);
+    public final d0 f(long j10) {
+        f0 f0Var = new f0(j10, f.a(this.f4611a.k(j10), 0L, this.f4613c, this.d, this.e, this.f4614f));
+        return new d0(f0Var, f0Var);
     }
 
     @Override
     public final long h() {
-        return this.f4607b;
+        return this.f4612b;
     }
 }

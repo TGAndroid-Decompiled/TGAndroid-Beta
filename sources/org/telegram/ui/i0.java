@@ -1,17 +1,40 @@
 package org.telegram.ui;
-public final class i0 implements Runnable {
-    public final int f37828a;
-    public final Object f37829b;
-    public final Object f37830c;
+public final class i0 extends org.telegram.ui.ActionBar.k5 {
+    public final int f37999r;
+    public final Object f38000s;
 
-    public i0(int i10, Object obj, Object obj2) {
-        this.f37828a = i10;
-        this.f37829b = obj;
-        this.f37830c = obj2;
+    public i0(Object obj, int i10) {
+        this.f37999r = i10;
+        this.f38000s = obj;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.i0.run():void");
+    public boolean g() {
+        switch (this.f37999r) {
+            case 0:
+                k4 k4Var = (k4) this.f38000s;
+                org.telegram.ui.Cells.o9 o9Var = k4Var.Q0;
+                if (o9Var != null && o9Var.x()) {
+                    k4Var.Q0.f(false);
+                    return false;
+                }
+                return true;
+            case 1:
+            default:
+                return super.g();
+            case 2:
+                return !((org.telegram.ui.Wallet.a2) this.f38000s).f34281m;
+        }
+    }
+
+    @Override
+    public void onOpenAnimationEnd() {
+        switch (this.f37999r) {
+            case 1:
+                ((org.telegram.ui.Components.ir0) this.f38000s).Z = true;
+                return;
+            default:
+                return;
+        }
     }
 }

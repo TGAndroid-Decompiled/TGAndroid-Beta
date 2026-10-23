@@ -11,8 +11,8 @@ import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.Components.r5;
 public class c1 extends ImageView {
     public static final int L = 0;
@@ -23,34 +23,34 @@ public class c1 extends ImageView {
     public boolean I;
     public org.telegram.ui.Components.voip.h J;
     public Integer K;
-    public final int f46229a;
-    public final float[] f46230b;
-    public final w1 f46231c;
-    public final d6 d;
+    public final int f46652a;
+    public final float[] f46653b;
+    public final w1 f46654c;
+    public final g6 d;
     public boolean e;
-    public final float f46232f;
+    public final float f46655f;
     public boolean h;
-    public int f46233n;
-    public int f46234r;
-    public int f46235s;
+    public int f46656n;
+    public int f46657r;
+    public int f46658s;
     public LinearGradient v;
-    public final Path f46236w;
-    public Paint f46237x;
-    public Paint f46238y;
+    public final Path f46659w;
+    public Paint f46660x;
+    public Paint f46661y;
 
-    public c1(Context context, int i10, d6 d6Var) {
+    public c1(Context context, int i10, g6 g6Var) {
         super(context);
         int i11;
-        this.f46230b = new float[3];
-        this.f46232f = 1.0f;
+        this.f46653b = new float[3];
+        this.f46655f = 1.0f;
         this.h = false;
-        this.f46233n = -1;
+        this.f46656n = -1;
         this.v = null;
-        this.f46236w = new Path();
-        this.f46237x = new Paint(1);
+        this.f46659w = new Path();
+        this.f46660x = new Paint(1);
         this.G = 1.0f;
-        this.f46229a = i10;
-        this.d = d6Var;
+        this.f46652a = i10;
+        this.d = g6Var;
         if (i10 == 0) {
             i11 = R.drawable.msg_premium_lock2;
         } else {
@@ -59,17 +59,17 @@ public class c1 extends ImageView {
         setImageResource(i11);
         if (i10 == 0) {
             w1 w1Var = new w1(5);
-            this.f46231c = w1Var;
+            this.f46654c = w1Var;
             w1Var.g();
             w1Var.M = false;
-            w1Var.f46494s = 4;
-            w1Var.f46495t = 4;
-            w1Var.f46493r = 2;
-            w1Var.f46490o = 0.1f;
+            w1Var.f46925s = 4;
+            w1Var.f46926t = 4;
+            w1Var.f46924r = 2;
+            w1Var.f46921o = 0.1f;
             w1Var.c();
         } else if (i10 == 2) {
-            this.f46232f = 0.8f;
-            this.f46237x.setColor(h6.x0(null, h6.f20936a7, false));
+            this.f46655f = 0.8f;
+            this.f46660x.setColor(k6.x0(null, k6.f21125a7, false));
         } else if (i10 == 3) {
             setScaleType(ImageView.ScaleType.CENTER);
             setImageResource(R.drawable.msg_archive_hide);
@@ -81,31 +81,31 @@ public class c1 extends ImageView {
 
     public final void a() {
         if (this.e && getMeasuredHeight() != 0 && getMeasuredWidth() != 0) {
-            int i10 = this.f46233n;
-            float[] fArr = this.f46230b;
+            int i10 = this.f46656n;
+            float[] fArr = this.f46653b;
             Color.colorToHSV(i10, fArr);
             fArr[1] = fArr[1] * 1.0f;
             if (fArr[2] > 0.7f) {
                 fArr[2] = 0.7f;
             }
             int HSVToColor = Color.HSVToColor(fArr);
-            int i11 = h6.f20994d6;
-            d6 d6Var = this.d;
-            int f7 = i0.a.f(0.5f, HSVToColor, h6.w0(i11, d6Var));
-            int f10 = i0.a.f(0.4f, HSVToColor, h6.w0(i11, d6Var));
-            if (this.v == null || this.f46234r != f10 || this.f46235s != f7) {
+            int i11 = k6.f21183d6;
+            g6 g6Var = this.d;
+            int f7 = i0.a.f(0.5f, HSVToColor, k6.w0(i11, g6Var));
+            int f10 = i0.a.f(0.4f, HSVToColor, k6.w0(i11, g6Var));
+            if (this.v == null || this.f46657r != f10 || this.f46658s != f7) {
                 if (this.I) {
-                    Paint paint = this.f46237x;
-                    this.f46238y = paint;
+                    Paint paint = this.f46660x;
+                    this.f46661y = paint;
                     paint.setAlpha(255);
                     this.G = 0.0f;
                 }
-                this.f46237x = new Paint(1);
-                this.f46234r = f10;
-                this.f46235s = f7;
+                this.f46660x = new Paint(1);
+                this.f46657r = f10;
+                this.f46658s = f7;
                 LinearGradient linearGradient = new LinearGradient(0.0f, getMeasuredHeight(), 0.0f, 0.0f, new int[]{f10, f7}, (float[]) null, Shader.TileMode.CLAMP);
                 this.v = linearGradient;
-                this.f46237x.setShader(linearGradient);
+                this.f46660x.setShader(linearGradient);
                 invalidate();
             }
         }
@@ -119,7 +119,7 @@ public class c1 extends ImageView {
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
         this.e = true;
-        if (this.f46229a != 0) {
+        if (this.f46652a != 0) {
             a();
         }
     }
@@ -128,10 +128,10 @@ public class c1 extends ImageView {
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         this.e = false;
-        Paint paint = this.f46237x;
-        if (paint != null && this.f46229a != 2) {
+        Paint paint = this.f46660x;
+        if (paint != null && this.f46652a != 2) {
             paint.setShader(null);
-            this.f46237x = null;
+            this.f46660x = null;
         }
         this.v = null;
         this.I = false;
@@ -145,8 +145,8 @@ public class c1 extends ImageView {
     @Override
     public final void onMeasure(int i10, int i11) {
         super.onMeasure(i10, i11);
-        if (this.f46229a == 0) {
-            Path path = this.f46236w;
+        if (this.f46652a == 0) {
+            Path path = this.f46659w;
             path.rewind();
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
@@ -155,9 +155,9 @@ public class c1 extends ImageView {
             rectF.set((getMeasuredWidth() / 2.0f) + AndroidUtilities.dp(2.5f), AndroidUtilities.dpf2(5.7f) + (getMeasuredHeight() / 2.0f), getMeasuredWidth() - AndroidUtilities.dpf2(0.2f), getMeasuredHeight());
             path.addRoundRect(rectF, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), direction);
             path.close();
-            w1 w1Var = this.f46231c;
-            w1Var.f46479a.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-            w1Var.f46479a.inset(AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f));
+            w1 w1Var = this.f46654c;
+            w1Var.f46910a.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+            w1Var.f46910a.inset(AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f));
             return;
         }
         a();
@@ -179,15 +179,15 @@ public class c1 extends ImageView {
         this.h = true;
         Integer num = this.K;
         if (num != null) {
-            i10 = h6.v(i10, num.intValue());
+            i10 = k6.v(i10, num.intValue());
         }
-        if (this.f46233n != i10) {
-            this.f46233n = i10;
-            int i11 = this.f46229a;
+        if (this.f46656n != i10) {
+            this.f46656n = i10;
+            int i11 = this.f46652a;
             if (i11 != 0 && i11 != 2) {
                 a();
             } else {
-                Paint paint = this.f46237x;
+                Paint paint = this.f46660x;
                 if (paint != null) {
                     paint.setColor(i10);
                 }
@@ -206,7 +206,7 @@ public class c1 extends ImageView {
 
     public void setLocked(boolean z10) {
         int i10;
-        if (this.f46229a != 0) {
+        if (this.f46652a != 0) {
             if (z10) {
                 i10 = R.drawable.msg_mini_premiumlock;
             } else {

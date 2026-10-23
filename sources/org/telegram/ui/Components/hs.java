@@ -6,19 +6,19 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
 public abstract class hs {
-    public final org.telegram.ui.ActionBar.m1 f26996a;
-    public boolean f26997b;
+    public final org.telegram.ui.ActionBar.m1 f27042a;
+    public boolean f27043b;
 
-    public hs(Context context, org.telegram.ui.ActionBar.d6 d6Var, boolean z10) {
-        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = new ActionBarPopupWindow$ActionBarPopupWindowLayout(R.drawable.popup_fixed_alert2, z10 ? 1 : 0, context, d6Var);
+    public hs(Context context, org.telegram.ui.ActionBar.g6 g6Var, boolean z10) {
+        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = new ActionBarPopupWindow$ActionBarPopupWindowLayout(R.drawable.popup_fixed_alert2, z10 ? 1 : 0, context, g6Var);
         actionBarPopupWindow$ActionBarPopupWindowLayout.setAnimationEnabled(false);
         actionBarPopupWindow$ActionBarPopupWindowLayout.setOnTouchListener(new rk(this, 1));
         actionBarPopupWindow$ActionBarPopupWindowLayout.setDispatchKeyEventListener(new s(this, 27));
         actionBarPopupWindow$ActionBarPopupWindowLayout.setShownFromBottom(false);
         b(actionBarPopupWindow$ActionBarPopupWindowLayout);
         org.telegram.ui.ActionBar.m1 m1Var = new org.telegram.ui.ActionBar.m1(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
-        this.f26996a = m1Var;
-        m1Var.f21580b = false;
+        this.f27042a = m1Var;
+        m1Var.f21630b = false;
         m1Var.setAnimationStyle(R.style.PopupContextAnimation2);
         m1Var.setOutsideTouchable(true);
         m1Var.setClippingEnabled(true);
@@ -33,15 +33,15 @@ public abstract class hs {
             public final void onDismiss() {
                 hs hsVar = hs.this;
                 hsVar.c();
-                hsVar.f26997b = false;
+                hsVar.f27043b = false;
             }
         });
     }
 
     public final void a() {
-        org.telegram.ui.ActionBar.m1 m1Var = this.f26996a;
+        org.telegram.ui.ActionBar.m1 m1Var = this.f27042a;
         if (m1Var != null) {
-            m1Var.d(true);
+            m1Var.dismiss();
         }
     }
 

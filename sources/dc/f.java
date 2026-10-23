@@ -1,17 +1,19 @@
 package dc;
+
+import i2.o1;
 public final class f extends d {
-    public final int f7930c;
+    public final int f7942c;
     public final int d;
     public final int e;
-    public final int f7931f;
+    public final int f7943f;
 
     public f(int i10, int i11, int i12, int i13, int i14, int i15) {
         super(i14, i15);
         if (i14 + i12 <= i10 && i15 + i13 <= i11) {
-            this.f7930c = i10;
+            this.f7942c = i10;
             this.d = i11;
             this.e = i12;
-            this.f7931f = i13;
+            this.f7943f = i13;
             return;
         }
         throw new IllegalArgumentException("Crop rectangle does not fit within image data.");
@@ -19,15 +21,15 @@ public final class f extends d {
 
     @Override
     public final byte[] a() {
-        int i10 = this.f7927a;
-        int i11 = this.f7928b;
-        int i12 = this.f7930c;
+        int i10 = this.f7939a;
+        int i11 = this.f7940b;
+        int i12 = this.f7942c;
         if (i10 == i12 && i11 == this.d) {
             return null;
         }
         int i13 = i10 * i11;
         byte[] bArr = new byte[i13];
-        int i14 = (this.f7931f * i12) + this.e;
+        int i14 = (this.f7943f * i12) + this.e;
         if (i10 == i12) {
             System.arraycopy(null, i14, bArr, 0, i13);
             return bArr;
@@ -41,14 +43,14 @@ public final class f extends d {
 
     @Override
     public final byte[] b(int i10, byte[] bArr) {
-        if (i10 >= 0 && i10 < this.f7928b) {
-            int i11 = this.f7927a;
+        if (i10 >= 0 && i10 < this.f7940b) {
+            int i11 = this.f7939a;
             if (bArr == null || bArr.length < i11) {
                 bArr = new byte[i11];
             }
-            System.arraycopy(null, ((i10 + this.f7931f) * this.f7930c) + this.e, bArr, 0, i11);
+            System.arraycopy(null, ((i10 + this.f7943f) * this.f7942c) + this.e, bArr, 0, i11);
             return bArr;
         }
-        throw new IllegalArgumentException(i2.e.j(i10, "Requested row is outside the image: "));
+        throw new IllegalArgumentException(o1.k(i10, "Requested row is outside the image: "));
     }
 }

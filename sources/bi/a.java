@@ -6,14 +6,14 @@ import f2.t;
 import java.nio.ByteBuffer;
 import v7.u6;
 public final class a {
-    public boolean f4423a;
+    public boolean f4427a;
 
     public a(t tVar, s sVar) {
         boolean z10;
         boolean z11;
         int i10;
-        int i11 = sVar.f10338a;
-        ByteBuffer byteBuffer = sVar.f10339b;
+        int i11 = sVar.f10355a;
+        ByteBuffer byteBuffer = sVar.f10356b;
         if (i11 != 6 && i11 != 3) {
             z10 = false;
         } else {
@@ -24,16 +24,16 @@ public final class a {
         byte[] bArr = new byte[min];
         byteBuffer.asReadOnlyBuffer().get(bArr);
         g gVar = new g(bArr, min);
-        if (!tVar.f10340a) {
+        if (!tVar.f10357a) {
             if (gVar.f()) {
-                this.f4423a = false;
+                this.f4427a = false;
                 return;
             }
             int g10 = gVar.g(2);
             boolean f7 = gVar.f();
-            if (!tVar.f10341b) {
+            if (!tVar.f10358b) {
                 if (!f7) {
-                    this.f4423a = true;
+                    this.f4427a = true;
                     return;
                 }
                 if (g10 != 3 && g10 != 0) {
@@ -50,11 +50,11 @@ public final class a {
                             throw new Exception();
                         }
                     }
-                    if (!tVar.f10342c) {
+                    if (!tVar.f10359c) {
                         if (g10 != 3) {
                             gVar.n();
                         }
-                        gVar.o(tVar.f10343f);
+                        gVar.o(tVar.f10360f);
                         if (g10 != 2 && g10 != 0 && !z11) {
                             gVar.o(3);
                         }
@@ -63,7 +63,7 @@ public final class a {
                         } else {
                             i10 = 255;
                         }
-                        this.f4423a = i10 != 0;
+                        this.f4427a = i10 != 0;
                         return;
                     }
                     throw new Exception();
@@ -76,9 +76,9 @@ public final class a {
     }
 
     public void a(boolean z10) {
-        if (this.f4423a == z10) {
+        if (this.f4427a == z10) {
             return;
         }
-        this.f4423a = z10;
+        this.f4427a = z10;
     }
 }

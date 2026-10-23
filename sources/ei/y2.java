@@ -1,6 +1,6 @@
 package ei;
 
-import ai.me;
+import ai.ne;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
@@ -14,20 +14,20 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.bs;
-public final class y2 extends org.telegram.ui.ActionBar.g5 {
-    public AnimatorSet f10127r;
-    public final q3 f10128s;
+public final class y2 extends org.telegram.ui.ActionBar.k5 {
+    public AnimatorSet f10144r;
+    public final q3 f10145s;
 
     public y2(q3 q3Var) {
-        this.f10128s = q3Var;
+        this.f10145s = q3Var;
     }
 
     @Override
     public final void m() {
-        q3 q3Var = this.f10128s;
+        q3 q3Var = this.f10145s;
         z2 z2Var = q3Var.d;
         f3 f3Var = q3Var.F;
-        AnimatorSet animatorSet = this.f10127r;
+        AnimatorSet animatorSet = this.f10144r;
         if (animatorSet != null) {
             animatorSet.cancel();
         }
@@ -53,21 +53,21 @@ public final class y2 extends org.telegram.ui.ActionBar.g5 {
         ofFloat.addUpdateListener(new x2(this, 1));
         arrayList.add(ofFloat);
         AnimatorSet animatorSet2 = new AnimatorSet();
-        this.f10127r = animatorSet2;
+        this.f10144r = animatorSet2;
         animatorSet2.setDuration(320L);
-        this.f10127r.setInterpolator(bs.h);
-        this.f10127r.playTogether(arrayList);
-        this.f10127r.addListener(new me(3, this, searchField));
-        this.f10127r.start();
+        this.f10144r.setInterpolator(bs.h);
+        this.f10144r.playTogether(arrayList);
+        this.f10144r.addListener(new ne(3, this, searchField));
+        this.f10144r.start();
     }
 
     @Override
     public final void n() {
-        q3 q3Var = this.f10128s;
+        q3 q3Var = this.f10145s;
         z2 z2Var = q3Var.d;
         FrameLayout frameLayout = q3Var.h;
         f3 f3Var = q3Var.F;
-        AnimatorSet animatorSet = this.f10127r;
+        AnimatorSet animatorSet = this.f10144r;
         if (animatorSet != null) {
             animatorSet.cancel();
         }
@@ -90,36 +90,36 @@ public final class y2 extends org.telegram.ui.ActionBar.g5 {
         arrayList.add(ObjectAnimator.ofFloat(z2Var, property3, 0.0f));
         z2Var.setFastScrollVisible(false);
         arrayList.add(ObjectAnimator.ofFloat(frameLayout, property3, 1.0f));
-        q3Var.f9636s.setVisibility(0);
+        q3Var.f9652s.setVisibility(0);
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
         ofFloat.addUpdateListener(new x2(this, 0));
         arrayList.add(ofFloat);
         AnimatorSet animatorSet2 = new AnimatorSet();
-        this.f10127r = animatorSet2;
+        this.f10144r = animatorSet2;
         animatorSet2.setDuration(320L);
-        this.f10127r.setInterpolator(bs.h);
-        this.f10127r.playTogether(arrayList);
-        this.f10127r.addListener(new ah.b(this, 18));
-        this.f10127r.start();
+        this.f10144r.setInterpolator(bs.h);
+        this.f10144r.playTogether(arrayList);
+        this.f10144r.addListener(new ah.b(this, 18));
+        this.f10144r.start();
     }
 
     @Override
     public final void q(EditText editText) {
         String obj = editText.getText().toString();
-        g3 g3Var = this.f10128s.f9635r;
+        g3 g3Var = this.f10145s.f9651r;
         com.google.firebase.messaging.s sVar = g3Var.v;
-        if (!TextUtils.equals(g3Var.f9583f, obj)) {
+        if (!TextUtils.equals(g3Var.f9597f, obj)) {
             if (g3Var.e != -1) {
-                ConnectionsManager.getInstance(g3Var.f9587w.f9621a).cancelRequest(g3Var.e, true);
+                ConnectionsManager.getInstance(g3Var.f9601w.f9637a).cancelRequest(g3Var.e, true);
                 g3Var.e = -1;
             }
             g3Var.d = false;
             g3Var.h = null;
         }
-        g3Var.f9583f = obj;
+        g3Var.f9597f = obj;
         AndroidUtilities.cancelRunOnUIThread(sVar);
         if (TextUtils.isEmpty(obj)) {
-            g3Var.f9582c.clear();
+            g3Var.f9596c.clear();
             g3Var.F(false);
             g3Var.l();
             return;

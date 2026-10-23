@@ -1,55 +1,15 @@
 package org.telegram.ui;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class hg1 implements TextWatcher {
-    public final UsersSelectActivity f37629a;
+import java.util.ArrayList;
+public final class hg1 {
+    public final int f37856a;
+    public boolean f37858c;
+    public boolean d;
+    public final ArrayList e = new ArrayList();
+    public final ArrayList f37859f = new ArrayList();
+    public final boolean f37857b = true;
 
-    public hg1(UsersSelectActivity usersSelectActivity) {
-        this.f37629a = usersSelectActivity;
-    }
-
-    @Override
-    public final void afterTextChanged(Editable editable) {
-        UsersSelectActivity usersSelectActivity = this.f37629a;
-        if (usersSelectActivity.f33962c.length() != 0) {
-            kg1 kg1Var = usersSelectActivity.h;
-            boolean z10 = kg1Var.f38609n;
-            if (!z10) {
-                usersSelectActivity.M = true;
-                usersSelectActivity.L = true;
-                if (!z10) {
-                    kg1Var.f38609n = true;
-                    kg1Var.l();
-                }
-                usersSelectActivity.d.setFastScrollVisible(false);
-                usersSelectActivity.d.setVerticalScrollBarEnabled(true);
-                usersSelectActivity.f33963f.d.setText(LocaleController.getString(R.string.NoResult));
-            }
-            usersSelectActivity.f33963f.e(true, true);
-            usersSelectActivity.h.L(usersSelectActivity.f33962c.getText().toString());
-            return;
-        }
-        usersSelectActivity.M = false;
-        usersSelectActivity.L = false;
-        kg1 kg1Var2 = usersSelectActivity.h;
-        if (kg1Var2.f38609n) {
-            kg1Var2.f38609n = false;
-            kg1Var2.l();
-        }
-        usersSelectActivity.h.L(null);
-        usersSelectActivity.d.setFastScrollVisible(true);
-        usersSelectActivity.d.setVerticalScrollBarEnabled(false);
-        usersSelectActivity.f33963f.d.setText(LocaleController.getString(R.string.NoContacts));
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public hg1(int i10) {
+        this.f37856a = i10;
     }
 }

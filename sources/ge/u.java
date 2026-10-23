@@ -2,7 +2,7 @@ package ge;
 
 import v7.i8;
 public abstract class u {
-    public static final int f11040a = 0;
+    public static final int f11059a = 0;
 
     static {
         Object a2;

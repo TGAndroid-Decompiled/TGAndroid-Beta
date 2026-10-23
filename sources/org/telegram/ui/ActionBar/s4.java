@@ -1,27 +1,37 @@
 package org.telegram.ui.ActionBar;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.UserConfig;
-public final class s4 extends AnimatorListenerAdapter {
-    public final int f21714a;
-    public final v4 f21715b;
+import android.content.Context;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+public final class s4 extends ArrayAdapter {
+    public final y4 f21841a;
 
-    public s4(v4 v4Var, int i10) {
-        this.f21714a = i10;
-        this.f21715b = v4Var;
+    public s4(y4 y4Var, Context context) {
+        super(context, 0);
+        this.f21841a = y4Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f21714a) {
-            case 0:
-                NotificationCenter.getInstance(UserConfig.selectedAccount).doOnIdle(new p(this, 13));
-                return;
-            default:
-                NotificationCenter.getInstance(UserConfig.selectedAccount).doOnIdle(new p(this, 14));
-                return;
+    public final View getView(int i10, View view, ViewGroup viewGroup) {
+        y4 y4Var = this.f21841a;
+        com.google.firebase.messaging.n nVar = y4Var.f22004q;
+        MenuItem menuItem = (MenuItem) getItem(i10);
+        int width = y4Var.I.getWidth();
+        boolean z10 = false;
+        if (view != null) {
+            int i11 = nVar.f7664a;
+            if (((y4) nVar.e).Q.f20697j != null) {
+                z10 = true;
+            }
+            a5.e(view, menuItem, z10);
+        } else {
+            view = a5.b(((y4) nVar.e).Q, (Context) nVar.f7666c, menuItem, true, false, false);
+            int i12 = nVar.f7665b;
+            view.setPadding(i12, 0, i12, 0);
         }
+        view.setMinimumWidth(width);
+        return view;
     }
 }

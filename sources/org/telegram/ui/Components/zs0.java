@@ -1,47 +1,52 @@
 package org.telegram.ui.Components;
 
+import android.graphics.Rect;
+import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
-public final class zs0 extends s4.r0 {
-    public final qs0 f33041a;
-    public final rs0 f33042b;
-    public final uv0 f33043c;
+public final class zs0 extends s4.m0 {
+    public final ts0 f33334a;
 
-    public zs0(uv0 uv0Var, qs0 qs0Var, rs0 rs0Var) {
-        this.f33043c = uv0Var;
-        this.f33041a = qs0Var;
-        this.f33042b = rs0Var;
+    public zs0(ts0 ts0Var) {
+        this.f33334a = ts0Var;
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, int i10) {
+    public final void a(Rect rect, View view, RecyclerView recyclerView, s4.y0 y0Var) {
         boolean z10;
-        if (i10 != 0) {
-            z10 = true;
-        } else {
-            z10 = false;
+        boolean z11;
+        if (view instanceof org.telegram.ui.Cells.s7) {
+            org.telegram.ui.Cells.s7 s7Var = (org.telegram.ui.Cells.s7) view;
+            ts0 ts0Var = this.f33334a;
+            ts0Var.f30004r.getClass();
+            int R = RecyclerView.R(s7Var);
+            int i10 = ts0Var.f30005s.J;
+            boolean z12 = true;
+            if (R < i10) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            s7Var.f23260a0 = z10;
+            int i11 = R % i10;
+            if (i11 == 0) {
+                z11 = true;
+            } else {
+                z11 = false;
+            }
+            s7Var.V = z11;
+            if (i11 != i10 - 1) {
+                z12 = false;
+            }
+            s7Var.W = z12;
+            rect.left = 0;
+            rect.top = 0;
+            rect.bottom = 0;
+            rect.right = 0;
+            return;
         }
-        this.f33043c.f31030b1 = z10;
-    }
-
-    @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        int i12;
-        int i13;
-        uv0 uv0Var = this.f33043c;
-        jv0[] jv0VarArr = uv0Var.f31071t1;
-        rs0 rs0Var = this.f33042b;
-        qs0 qs0Var = this.f33041a;
-        uv0Var.G(qs0Var, (jm0) recyclerView, rs0Var);
-        if (i11 != 0 && ((i13 = uv0Var.f31051k0[0].F) == 0 || i13 == 5)) {
-            jv0VarArr[0].f27645a.isEmpty();
-        }
-        if (i11 != 0 && ((i12 = qs0Var.F) == 0 || uv0.q0(i12))) {
-            uv0.r(qs0Var, jv0VarArr, true);
-        }
-        qs0Var.h.L0(true);
-        if (qs0Var.G != null) {
-            qs0Var.invalidate();
-        }
-        uv0Var.p0();
+        rect.left = 0;
+        rect.top = 0;
+        rect.bottom = 0;
+        rect.right = 0;
     }
 }

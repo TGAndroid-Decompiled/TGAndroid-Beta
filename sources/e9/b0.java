@@ -2,9 +2,9 @@ package e9;
 
 import java.util.Comparator;
 public abstract class b0 {
-    public static final z f8415a = new Object();
-    public static final a0 f8416b = new a0(-1);
-    public static final a0 f8417c = new a0(1);
+    public static final z f8422a = new Object();
+    public static final a0 f8423b = new a0(-1);
+    public static final a0 f8424c = new a0(1);
 
     public abstract b0 a(int i10, int i11);
 

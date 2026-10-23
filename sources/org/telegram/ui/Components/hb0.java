@@ -1,145 +1,43 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.MotionEvent;
+import android.graphics.Rect;
 import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
-public final class hb0 extends jm0 {
-    public boolean V2;
-    public boolean W2;
-    public int X2;
-    public int Y2;
-    public final ib0 Z2;
+public final class hb0 extends s4.m0 {
+    public final ib0 f26879a;
 
-    public hb0(ib0 ib0Var, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context, d6Var);
-        this.Z2 = ib0Var;
-        setOnScrollListener(new kv(this, 3));
-        i(new gb0(this));
+    public hb0(ib0 ib0Var) {
+        this.f26879a = ib0Var;
     }
 
     @Override
-    public final void k0(int i10, int i11) {
-        ib0 ib0Var = this.Z2;
-        ib0Var.invalidate();
-        ib0Var.b();
-    }
-
-    @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        boolean z10;
-        ib0 ib0Var = this.Z2;
-        hg.j1 j1Var = ib0Var.f27227f;
-        hg.p1 p1Var = ib0Var.e;
-        if (!ib0Var.f27226c.f45914t ? this.W2 || p1Var == null || p1Var.e == null || !p1Var.f12011f || motionEvent.getY() >= p1Var.e.getBottom() : this.W2 || p1Var == null || p1Var.e == null || !p1Var.f12011f || motionEvent.getY() <= p1Var.e.getTop()) {
-            if (!this.V2 && org.telegram.ui.et.q().r(motionEvent, ib0Var.f27225b, null, this.f27583n2)) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            if (((j1Var.N() && motionEvent.getAction() == 0) || motionEvent.getAction() == 2) && j1Var.N()) {
-                if (j1Var.f11934n0 == null) {
-                    hg.f1 f1Var = new hg.f1(j1Var, j1Var.f11925f, j1Var.f11933n, j1Var.f11938r, 0);
-                    j1Var.f11934n0 = f1Var;
-                    f1Var.a();
+    public final void a(Rect rect, View view, RecyclerView recyclerView, s4.y0 y0Var) {
+        int R;
+        int i10 = 0;
+        rect.left = 0;
+        rect.right = 0;
+        rect.top = 0;
+        rect.bottom = 0;
+        s4.n0 layoutManager = recyclerView.getLayoutManager();
+        jb0 jb0Var = this.f26879a.f27277c3;
+        if (layoutManager == jb0Var.d && (R = RecyclerView.R(view)) != 0 && !jb0Var.f27655f.N()) {
+            if (jb0Var.f27655f.I() == null && jb0Var.f27655f.U == null) {
+                rect.top = AndroidUtilities.dp(2.0f);
+            } else if (R != 0) {
+                R--;
+                cb0 cb0Var = jb0Var.d;
+                cb0Var.B1();
+                if (R > cb0Var.U) {
+                    rect.top = AndroidUtilities.dp(2.0f);
                 }
-                j1Var.f11934n0.b();
-            }
-            if (super.onInterceptTouchEvent(motionEvent) || z10) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        int N0;
-        int i14;
-        int i15;
-        int i16 = i12 - i10;
-        int i17 = i13 - i11;
-        ib0 ib0Var = this.Z2;
-        boolean g10 = ib0Var.g();
-        s4.b0 currentLayoutManager = ib0Var.getCurrentLayoutManager();
-        if (g10) {
-            N0 = currentLayoutManager.L0();
-        } else {
-            N0 = currentLayoutManager.N0();
-        }
-        View m10 = currentLayoutManager.m(N0);
-        if (m10 != null) {
-            int top = m10.getTop();
-            if (g10) {
-                i15 = 0;
             } else {
-                i15 = this.Y2 - i17;
+                return;
             }
-            i14 = top - i15;
-        } else {
-            i14 = 0;
-        }
-        super.onLayout(z10, i10, i11, i12, i13);
-        if (ib0Var.H) {
-            ib0Var.G = true;
-            currentLayoutManager.h1(0, 100000);
-            super.onLayout(false, i10, i11, i12, i13);
-            ib0Var.G = false;
-            ib0Var.H = false;
-        } else if (N0 != -1 && i16 == this.X2 && i17 - this.Y2 != 0) {
-            ib0Var.G = true;
-            currentLayoutManager.i1(N0, i14, false);
-            super.onLayout(false, i10, i11, i12, i13);
-            ib0Var.G = false;
-        }
-        this.Y2 = i17;
-        this.X2 = i16;
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        int size = View.MeasureSpec.getSize(i11);
-        ib0 ib0Var = this.Z2;
-        hg.p1 p1Var = ib0Var.e;
-        if (p1Var != null) {
-            p1Var.d = Integer.valueOf(size);
-            ai.ic icVar = p1Var.e;
-            if (icVar != null) {
-                icVar.requestLayout();
+            if (!jb0Var.d.E1(R)) {
+                i10 = AndroidUtilities.dp(2.0f);
             }
+            rect.right = i10;
         }
-        float min = (int) Math.min(AndroidUtilities.dp(126.0f), AndroidUtilities.displaySize.y * 0.22f);
-        ib0Var.v = min;
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(size + ((int) min), 1073741824));
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        ib0 ib0Var = this.Z2;
-        hg.p1 p1Var = ib0Var.e;
-        if (ib0Var.f27226c.f45914t) {
-            if (!this.W2 && p1Var != null && p1Var.e != null && p1Var.f12011f && motionEvent.getY() > p1Var.e.getTop()) {
-                return false;
-            }
-        } else if (!this.W2 && p1Var != null && p1Var.e != null && p1Var.f12011f && motionEvent.getY() < p1Var.e.getBottom()) {
-            return false;
-        }
-        return super.onTouchEvent(motionEvent);
-    }
-
-    @Override
-    public final void requestLayout() {
-        if (this.Z2.G) {
-            return;
-        }
-        super.requestLayout();
-    }
-
-    @Override
-    public void setTranslationY(float f7) {
-        super.setTranslationY(f7);
-        ib0 ib0Var = this.Z2;
-        ib0Var.invalidate();
-        ib0Var.b();
     }
 }

@@ -7,33 +7,33 @@ import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import nc.c;
 public final class a extends com.googlecode.mp4parser.a {
-    public static final te.b f46167b;
-    public static final te.b f46168c;
+    public static final te.b f46589b;
+    public static final te.b f46590c;
     public static final te.b d;
     public static final te.b e;
-    public static final te.b f46169f;
+    public static final te.b f46591f;
     public static final te.b h;
-    public static final te.b f46170n;
-    public static final te.b f46171r;
-    public static final te.b f46172s;
+    public static final te.b f46592n;
+    public static final te.b f46593r;
+    public static final te.b f46594s;
     public static final te.b v;
-    public static final te.b f46173w;
-    public static final te.b f46174x;
-    public static final te.b f46175y;
-    public b f46176a;
+    public static final te.b f46595w;
+    public static final te.b f46596x;
+    public static final te.b f46597y;
+    public b f46598a;
 
     static {
         te.a aVar = new te.a(a.class, "AvcConfigurationBox.java");
         aVar.e(aVar.d("getConfigurationVersion", "com.mp4parser.iso14496.part15.AvcConfigurationBox", "", "", "int"));
         aVar.e(aVar.d("getAvcProfileIndication", "com.mp4parser.iso14496.part15.AvcConfigurationBox", "", "", "int"));
         e = aVar.e(aVar.d("setAvcLevelIndication", "com.mp4parser.iso14496.part15.AvcConfigurationBox", "int", "avcLevelIndication", "void"));
-        f46169f = aVar.e(aVar.d("setLengthSizeMinusOne", "com.mp4parser.iso14496.part15.AvcConfigurationBox", "int", "lengthSizeMinusOne", "void"));
+        f46591f = aVar.e(aVar.d("setLengthSizeMinusOne", "com.mp4parser.iso14496.part15.AvcConfigurationBox", "int", "lengthSizeMinusOne", "void"));
         h = aVar.e(aVar.d("setSequenceParameterSets", "com.mp4parser.iso14496.part15.AvcConfigurationBox", "java.util.List", "sequenceParameterSets", "void"));
-        f46170n = aVar.e(aVar.d("setPictureParameterSets", "com.mp4parser.iso14496.part15.AvcConfigurationBox", "java.util.List", "pictureParameterSets", "void"));
+        f46592n = aVar.e(aVar.d("setPictureParameterSets", "com.mp4parser.iso14496.part15.AvcConfigurationBox", "java.util.List", "pictureParameterSets", "void"));
         aVar.e(aVar.d("getChromaFormat", "com.mp4parser.iso14496.part15.AvcConfigurationBox", "", "", "int"));
-        f46171r = aVar.e(aVar.d("setChromaFormat", "com.mp4parser.iso14496.part15.AvcConfigurationBox", "int", "chromaFormat", "void"));
+        f46593r = aVar.e(aVar.d("setChromaFormat", "com.mp4parser.iso14496.part15.AvcConfigurationBox", "int", "chromaFormat", "void"));
         aVar.e(aVar.d("getBitDepthLumaMinus8", "com.mp4parser.iso14496.part15.AvcConfigurationBox", "", "", "int"));
-        f46172s = aVar.e(aVar.d("setBitDepthLumaMinus8", "com.mp4parser.iso14496.part15.AvcConfigurationBox", "int", "bitDepthLumaMinus8", "void"));
+        f46594s = aVar.e(aVar.d("setBitDepthLumaMinus8", "com.mp4parser.iso14496.part15.AvcConfigurationBox", "int", "bitDepthLumaMinus8", "void"));
         aVar.e(aVar.d("getBitDepthChromaMinus8", "com.mp4parser.iso14496.part15.AvcConfigurationBox", "", "", "int"));
         v = aVar.e(aVar.d("setBitDepthChromaMinus8", "com.mp4parser.iso14496.part15.AvcConfigurationBox", "int", "bitDepthChromaMinus8", "void"));
         aVar.e(aVar.d("getProfileCompatibility", "com.mp4parser.iso14496.part15.AvcConfigurationBox", "", "", "int"));
@@ -41,18 +41,18 @@ public final class a extends com.googlecode.mp4parser.a {
         aVar.e(aVar.d("setSequenceParameterSetExts", "com.mp4parser.iso14496.part15.AvcConfigurationBox", "java.util.List", "sequenceParameterSetExts", "void"));
         aVar.e(aVar.d("hasExts", "com.mp4parser.iso14496.part15.AvcConfigurationBox", "", "", "boolean"));
         aVar.e(aVar.d("setHasExts", "com.mp4parser.iso14496.part15.AvcConfigurationBox", "boolean", "hasExts", "void"));
-        f46173w = aVar.e(aVar.d("getContentSize", "com.mp4parser.iso14496.part15.AvcConfigurationBox", "", "", "long"));
-        f46174x = aVar.e(aVar.d("getContent", "com.mp4parser.iso14496.part15.AvcConfigurationBox", "java.nio.ByteBuffer", "byteBuffer", "void"));
+        f46595w = aVar.e(aVar.d("getContentSize", "com.mp4parser.iso14496.part15.AvcConfigurationBox", "", "", "long"));
+        f46596x = aVar.e(aVar.d("getContent", "com.mp4parser.iso14496.part15.AvcConfigurationBox", "java.nio.ByteBuffer", "byteBuffer", "void"));
         aVar.e(aVar.d("getSPS", "com.mp4parser.iso14496.part15.AvcConfigurationBox", "", "", "[Ljava.lang.String;"));
         aVar.e(aVar.d("getPPS", "com.mp4parser.iso14496.part15.AvcConfigurationBox", "", "", "[Ljava.lang.String;"));
         aVar.e(aVar.d("getavcDecoderConfigurationRecord", "com.mp4parser.iso14496.part15.AvcConfigurationBox", "", "", "com.mp4parser.iso14496.part15.AvcDecoderConfigurationRecord"));
-        f46175y = aVar.e(aVar.d("toString", "com.mp4parser.iso14496.part15.AvcConfigurationBox", "", "", "java.lang.String"));
+        f46597y = aVar.e(aVar.d("toString", "com.mp4parser.iso14496.part15.AvcConfigurationBox", "", "", "java.lang.String"));
         aVar.e(aVar.d("getAvcLevelIndication", "com.mp4parser.iso14496.part15.AvcConfigurationBox", "", "", "int"));
         aVar.e(aVar.d("getLengthSizeMinusOne", "com.mp4parser.iso14496.part15.AvcConfigurationBox", "", "", "int"));
         aVar.e(aVar.d("getSequenceParameterSets", "com.mp4parser.iso14496.part15.AvcConfigurationBox", "", "", "java.util.List"));
         aVar.e(aVar.d("getPictureParameterSets", "com.mp4parser.iso14496.part15.AvcConfigurationBox", "", "", "java.util.List"));
-        f46167b = aVar.e(aVar.d("setConfigurationVersion", "com.mp4parser.iso14496.part15.AvcConfigurationBox", "int", "configurationVersion", "void"));
-        f46168c = aVar.e(aVar.d("setAvcProfileIndication", "com.mp4parser.iso14496.part15.AvcConfigurationBox", "int", "avcProfileIndication", "void"));
+        f46589b = aVar.e(aVar.d("setConfigurationVersion", "com.mp4parser.iso14496.part15.AvcConfigurationBox", "int", "configurationVersion", "void"));
+        f46590c = aVar.e(aVar.d("setAvcProfileIndication", "com.mp4parser.iso14496.part15.AvcConfigurationBox", "int", "avcProfileIndication", "void"));
         d = aVar.e(aVar.d("setProfileCompatibility", "com.mp4parser.iso14496.part15.AvcConfigurationBox", "int", "profileCompatibility", "void"));
     }
 
@@ -60,87 +60,87 @@ public final class a extends com.googlecode.mp4parser.a {
     public final void _parseDetails(ByteBuffer byteBuffer) {
         int i10;
         ?? obj = new Object();
-        obj.f46180f = new ArrayList();
-        obj.f46181g = new ArrayList();
+        obj.f46602f = new ArrayList();
+        obj.f46603g = new ArrayList();
         obj.h = true;
-        obj.f46182i = 1;
-        obj.f46183j = 0;
-        obj.f46184k = 0;
-        obj.f46185l = new ArrayList();
-        obj.f46186m = 63;
-        obj.f46187n = 7;
-        obj.f46188o = 31;
-        obj.f46189p = 31;
-        obj.f46190q = 31;
-        obj.f46177a = e5.b.k(byteBuffer);
-        obj.f46178b = e5.b.a(byteBuffer.get());
-        obj.f46179c = e5.b.a(byteBuffer.get());
+        obj.f46604i = 1;
+        obj.f46605j = 0;
+        obj.f46606k = 0;
+        obj.f46607l = new ArrayList();
+        obj.f46608m = 63;
+        obj.f46609n = 7;
+        obj.f46610o = 31;
+        obj.f46611p = 31;
+        obj.f46612q = 31;
+        obj.f46599a = e5.b.k(byteBuffer);
+        obj.f46600b = e5.b.a(byteBuffer.get());
+        obj.f46601c = e5.b.a(byteBuffer.get());
         obj.d = e5.b.a(byteBuffer.get());
         c cVar = new c(0, byteBuffer);
-        obj.f46186m = cVar.a(6);
+        obj.f46608m = cVar.a(6);
         obj.e = cVar.a(2);
-        obj.f46187n = cVar.a(3);
+        obj.f46609n = cVar.a(3);
         int a2 = cVar.a(5);
         for (int i11 = 0; i11 < a2; i11++) {
             byte[] bArr = new byte[e5.b.h(byteBuffer)];
             byteBuffer.get(bArr);
-            obj.f46180f.add(bArr);
+            obj.f46602f.add(bArr);
         }
         long a10 = e5.b.a(byteBuffer.get());
         for (int i12 = 0; i12 < a10; i12++) {
             byte[] bArr2 = new byte[e5.b.h(byteBuffer)];
             byteBuffer.get(bArr2);
-            obj.f46181g.add(bArr2);
+            obj.f46603g.add(bArr2);
         }
         if (byteBuffer.remaining() < 4) {
             obj.h = false;
         }
-        if (obj.h && ((i10 = obj.f46178b) == 100 || i10 == 110 || i10 == 122 || i10 == 144)) {
+        if (obj.h && ((i10 = obj.f46600b) == 100 || i10 == 110 || i10 == 122 || i10 == 144)) {
             c cVar2 = new c(0, byteBuffer);
-            obj.f46188o = cVar2.a(6);
-            obj.f46182i = cVar2.a(2);
-            obj.f46189p = cVar2.a(5);
-            obj.f46183j = cVar2.a(3);
-            obj.f46190q = cVar2.a(5);
-            obj.f46184k = cVar2.a(3);
+            obj.f46610o = cVar2.a(6);
+            obj.f46604i = cVar2.a(2);
+            obj.f46611p = cVar2.a(5);
+            obj.f46605j = cVar2.a(3);
+            obj.f46612q = cVar2.a(5);
+            obj.f46606k = cVar2.a(3);
             long a11 = e5.b.a(byteBuffer.get());
             for (int i13 = 0; i13 < a11; i13++) {
                 byte[] bArr3 = new byte[e5.b.h(byteBuffer)];
                 byteBuffer.get(bArr3);
-                obj.f46185l.add(bArr3);
+                obj.f46607l.add(bArr3);
             }
         } else {
-            obj.f46182i = -1;
-            obj.f46183j = -1;
-            obj.f46184k = -1;
+            obj.f46604i = -1;
+            obj.f46605j = -1;
+            obj.f46606k = -1;
         }
-        this.f46176a = obj;
+        this.f46598a = obj;
     }
 
     public final void d(int i10) {
-        k3.p(te.a.c(e, this, this, new Integer(i10)));
-        this.f46176a.d = i10;
+        k3.o(te.a.c(e, this, this, new Integer(i10)));
+        this.f46598a.d = i10;
     }
 
     public final void e(int i10) {
-        k3.p(te.a.c(f46168c, this, this, new Integer(i10)));
-        this.f46176a.f46178b = i10;
+        k3.o(te.a.c(f46590c, this, this, new Integer(i10)));
+        this.f46598a.f46600b = i10;
     }
 
     @Override
     public final void getContent(ByteBuffer byteBuffer) {
-        k3.p(te.a.c(f46174x, this, this, byteBuffer));
-        b bVar = this.f46176a;
-        e5.b.r(bVar.f46177a, byteBuffer);
-        byteBuffer.put((byte) (bVar.f46178b & 255));
-        byteBuffer.put((byte) (bVar.f46179c & 255));
+        k3.o(te.a.c(f46596x, this, this, byteBuffer));
+        b bVar = this.f46598a;
+        e5.b.r(bVar.f46599a, byteBuffer);
+        byteBuffer.put((byte) (bVar.f46600b & 255));
+        byteBuffer.put((byte) (bVar.f46601c & 255));
         byteBuffer.put((byte) (bVar.d & 255));
         c cVar = new c(1, byteBuffer);
-        cVar.c(bVar.f46186m, 6);
+        cVar.c(bVar.f46608m, 6);
         cVar.c(bVar.e, 2);
-        cVar.c(bVar.f46187n, 3);
-        cVar.c(bVar.f46181g.size(), 5);
-        ArrayList arrayList = bVar.f46180f;
+        cVar.c(bVar.f46609n, 3);
+        cVar.c(bVar.f46603g.size(), 5);
+        ArrayList arrayList = bVar.f46602f;
         int size = arrayList.size();
         int i10 = 0;
         int i11 = 0;
@@ -151,8 +151,8 @@ public final class a extends com.googlecode.mp4parser.a {
             e5.b.p(bArr.length, byteBuffer);
             byteBuffer.put(bArr);
         }
-        byteBuffer.put((byte) (bVar.f46181g.size() & 255));
-        ArrayList arrayList2 = bVar.f46181g;
+        byteBuffer.put((byte) (bVar.f46603g.size() & 255));
+        ArrayList arrayList2 = bVar.f46603g;
         int size2 = arrayList2.size();
         int i12 = 0;
         while (i12 < size2) {
@@ -163,16 +163,16 @@ public final class a extends com.googlecode.mp4parser.a {
             byteBuffer.put(bArr2);
         }
         if (bVar.h) {
-            int i13 = bVar.f46178b;
+            int i13 = bVar.f46600b;
             if (i13 == 100 || i13 == 110 || i13 == 122 || i13 == 144) {
                 c cVar2 = new c(1, byteBuffer);
-                cVar2.c(bVar.f46188o, 6);
-                cVar2.c(bVar.f46182i, 2);
-                cVar2.c(bVar.f46189p, 5);
-                cVar2.c(bVar.f46183j, 3);
-                cVar2.c(bVar.f46190q, 5);
-                cVar2.c(bVar.f46184k, 3);
-                ArrayList arrayList3 = bVar.f46185l;
+                cVar2.c(bVar.f46610o, 6);
+                cVar2.c(bVar.f46604i, 2);
+                cVar2.c(bVar.f46611p, 5);
+                cVar2.c(bVar.f46605j, 3);
+                cVar2.c(bVar.f46612q, 5);
+                cVar2.c(bVar.f46606k, 3);
+                ArrayList arrayList3 = bVar.f46607l;
                 int size3 = arrayList3.size();
                 while (i10 < size3) {
                     Object obj3 = arrayList3.get(i10);
@@ -188,9 +188,9 @@ public final class a extends com.googlecode.mp4parser.a {
     @Override
     public final long getContentSize() {
         int i10;
-        k3.p(te.a.b(f46173w, this, this));
-        b bVar = this.f46176a;
-        ArrayList arrayList = bVar.f46180f;
+        k3.o(te.a.b(f46595w, this, this));
+        b bVar = this.f46598a;
+        ArrayList arrayList = bVar.f46602f;
         int size = arrayList.size();
         long j10 = 6;
         int i11 = 0;
@@ -201,7 +201,7 @@ public final class a extends com.googlecode.mp4parser.a {
             j10 = j10 + 2 + ((byte[]) obj).length;
         }
         long j11 = j10 + 1;
-        ArrayList arrayList2 = bVar.f46181g;
+        ArrayList arrayList2 = bVar.f46603g;
         int size2 = arrayList2.size();
         int i13 = 0;
         while (i13 < size2) {
@@ -209,9 +209,9 @@ public final class a extends com.googlecode.mp4parser.a {
             i13++;
             j11 = j11 + 2 + ((byte[]) obj2).length;
         }
-        if (bVar.h && ((i10 = bVar.f46178b) == 100 || i10 == 110 || i10 == 122 || i10 == 144)) {
+        if (bVar.h && ((i10 = bVar.f46600b) == 100 || i10 == 110 || i10 == 122 || i10 == 144)) {
             long j12 = j11 + 4;
-            ArrayList arrayList3 = bVar.f46185l;
+            ArrayList arrayList3 = bVar.f46607l;
             int size3 = arrayList3.size();
             while (i11 < size3) {
                 Object obj3 = arrayList3.get(i11);
@@ -224,9 +224,9 @@ public final class a extends com.googlecode.mp4parser.a {
     }
 
     public final String toString() {
-        r b10 = te.a.b(f46175y, this, this);
+        r b10 = te.a.b(f46597y, this, this);
         g.a().getClass();
         g.b(b10);
-        return "AvcConfigurationBox{avcDecoderConfigurationRecord=" + this.f46176a + '}';
+        return "AvcConfigurationBox{avcDecoderConfigurationRecord=" + this.f46598a + '}';
     }
 }

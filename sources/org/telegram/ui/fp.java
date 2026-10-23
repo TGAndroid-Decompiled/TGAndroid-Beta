@@ -1,198 +1,22 @@
 package org.telegram.ui;
+public final class fp implements Runnable {
+    public final int f37380a;
+    public final gp f37381b;
 
-import android.content.Context;
-import android.text.TextUtils;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.TLRPC;
-public final class fp extends org.telegram.ui.Components.im0 {
-    public final Context f37055c;
-    public final ip d;
-
-    public fp(ip ipVar, Context context) {
-        this.d = ipVar;
-        this.f37055c = context;
+    public fp(gp gpVar, int i10) {
+        this.f37380a = i10;
+        this.f37381b = gpVar;
     }
 
     @Override
-    public final void A(s4.b1 b1Var) {
-        View view = b1Var.f45921a;
-        if (view instanceof org.telegram.ui.Cells.a5) {
-            ((org.telegram.ui.Cells.a5) view).a();
-        }
-    }
-
-    @Override
-    public final boolean D(s4.b1 b1Var) {
-        int i10 = b1Var.f45924f;
-        if (i10 != 0 && i10 != 2) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public final int h() {
-        ip ipVar = this.d;
-        if (ipVar.f38081w && !ipVar.f38082x) {
-            return 0;
-        }
-        return ipVar.M;
-    }
-
-    @Override
-    public final int j(int i10) {
-        ip ipVar = this.d;
-        ipVar.getClass();
-        if (i10 == 0) {
-            return 3;
-        }
-        if (i10 != ipVar.F && i10 != ipVar.I) {
-            if (i10 >= ipVar.G && i10 < ipVar.H) {
-                return 0;
-            }
-            if (i10 == ipVar.K) {
-                return 4;
-            }
-            return 1;
-        }
-        return 2;
-    }
-
-    @Override
-    public final void v(s4.b1 b1Var, int i10) {
-        String h;
-        ip ipVar = this.d;
-        boolean z10 = ipVar.f38080s;
-        int i11 = b1Var.f45924f;
-        View view = b1Var.f45921a;
-        boolean z11 = false;
-        if (i11 != 0) {
-            if (i11 != 1) {
-                if (i11 == 2) {
-                    org.telegram.ui.Cells.x4 x4Var = (org.telegram.ui.Cells.x4) view;
-                    if (z10) {
-                        if (ipVar.h.linked_chat_id != 0) {
-                            int i12 = org.telegram.ui.ActionBar.h6.f21215p7;
-                            x4Var.a(i12, i12);
-                            x4Var.b(LocaleController.getString(R.string.DiscussionUnlinkGroup), R.drawable.msg_remove, 5, false);
-                            return;
-                        }
-                        x4Var.a(org.telegram.ui.ActionBar.h6.f21327v6, org.telegram.ui.ActionBar.h6.f21310u6);
-                        x4Var.b(LocaleController.getString(R.string.DiscussionCreateGroup), R.drawable.msg_groups, 5, true);
-                        return;
-                    }
-                    int i13 = org.telegram.ui.ActionBar.h6.f21215p7;
-                    x4Var.a(i13, i13);
-                    x4Var.b(LocaleController.getString(R.string.DiscussionUnlinkChannel), R.drawable.msg_remove, 5, false);
-                    return;
-                }
+    public final void run() {
+        switch (this.f37380a) {
+            case 0:
+                this.f37381b.f37643x.d.P = false;
                 return;
-            }
-            org.telegram.ui.Cells.d9 d9Var = (org.telegram.ui.Cells.d9) view;
-            if (i10 == ipVar.L) {
-                d9Var.setText(LocaleController.getString(R.string.ChannelSettingsJoinRequestInfo));
+            default:
+                this.f37381b.f37643x.d.P = false;
                 return;
-            } else if (i10 == ipVar.J) {
-                if (z10) {
-                    d9Var.setText(LocaleController.getString(R.string.DiscussionChannelHelp2));
-                    return;
-                } else {
-                    d9Var.setText(LocaleController.getString(R.string.DiscussionGroupHelp2));
-                    return;
-                }
-            } else {
-                return;
-            }
         }
-        org.telegram.ui.Cells.a5 a5Var = (org.telegram.ui.Cells.a5) view;
-        a5Var.setTag(Integer.valueOf(i10));
-        TLRPC.Chat chat = (TLRPC.Chat) ipVar.v.get(i10 - ipVar.G);
-        String publicUsername = ChatObject.getPublicUsername(chat);
-        if (TextUtils.isEmpty(publicUsername)) {
-            h = null;
-        } else {
-            h = r4.c.h("@", publicUsername);
-        }
-        if (i10 != ipVar.H - 1 || ipVar.h.linked_chat_id != 0) {
-            z11 = true;
-        }
-        a5Var.b(chat, null, h, z11);
-    }
-
-    @Override
-    public final s4.b1 x(ViewGroup viewGroup, int i10) {
-        FrameLayout a5Var;
-        TLRPC.Chat chat;
-        ip ipVar = this.d;
-        boolean z10 = ipVar.f38080s;
-        if (i10 != 0) {
-            Context context = this.f37055c;
-            if (i10 != 1) {
-                if (i10 != 2) {
-                    if (i10 != 4) {
-                        FrameLayout frameLayout = new FrameLayout(context);
-                        ?? linearLayout = new LinearLayout(context);
-                        linearLayout.f35684c = UserConfig.selectedAccount;
-                        linearLayout.setPadding(0, AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f));
-                        linearLayout.setOrientation(1);
-                        org.telegram.ui.Components.w9 w9Var = new org.telegram.ui.Components.w9(context);
-                        linearLayout.f35682a = w9Var;
-                        org.telegram.ui.Components.da0 da0Var = new org.telegram.ui.Components.da0(w9Var, "M476.1,397.4c25.8-47.2,0.3-105.9-50.9-120c-2.5-6.9-7.8-12.7-15-16.4l0.4-229.4c0-12.3-10-22.4-22.4-22.4H128.5c-12.3,0-22.4,10-22.4,22.4l-0.4,229.8v0c0,6.7,2.9,12.6,7.6,16.7c-51.6,15.9-79.2,77.2-48.1,116.4c-8.7,11.7-13.4,27.5-14,47.2c-1.7,34.5,21.6,45.8,55.9,45.8c52.3,0,99.1,4.6,105.1-36.2c16.5,0.9,7.1-37.3-6.5-53.3c18.4-22.4,18.3-52.9,4.9-78.2c-0.7-5.3-3.8-9.8-8.1-12.6c-1.5-2-1.6-2-2.1-2.7c0.2-1,1.2-11.8-3.4-20.9h138.5c-4.8,8.8-4.7,17-2.9,22.1c-5.3,4.8-6.8,12.3-5.2,17c-11.4,24.9-10,53.8,4.3,77.5c-6.8,9.7-11.2,21.7-12.6,31.6c-0.2-0.2-0.4-0.3-0.6-0.5c0.8-3.3,0.4-6.4-1.3-7.8c9.3-12.1-4.5-29.2-17-21.7c-3.8-2.8-10.6-3.2-18.1-0.5c-2.4-10.6-21.1-10.6-28.6-1c-1.3,0.3-2.9,0.8-4.5,1.9c-5.2-0.9-10.9,0.1-14.1,4.4c-6.9,3-9.5,10.4-7.8,17c-0.9,1.8-1.1,4-0.8,6.3c-1.6,1.2-2.3,3.1-2,4.9c0.1,0.6,10.4,56.6,11.2,62c0.3,1.8,1.5,3.2,3.1,3.9c8.7,3.4,12,3.8,30.1,9.4c2.7,0.8,2.4,0.8,6.7-0.1c16.4-3.5,30.2-8.9,30.8-9.2c1.6-0.6,2.7-2,3.1-3.7c0.1-0.4,6.8-36.5,10-53.2c0.9,4.2,3.3,7.3,7.4,7.5c1.2,7.8,4.4,14.5,9.5,19.9c16.4,17.3,44.9,15.7,64.9,16.1c38.3,0.8,74.5,1.5,84.4-24.4C488.9,453.5,491.3,421.3,476.1,397.4z", AndroidUtilities.dp(104.0f), AndroidUtilities.dp(104.0f));
-                        linearLayout.f35683b = da0Var;
-                        w9Var.setImageDrawable(da0Var);
-                        linearLayout.addView(w9Var, w7.z5.t(104, 104, 49, 0, 2, 0, 0));
-                        frameLayout.addView((View) linearLayout, w7.z5.d(-2, -2.0f, 49, 0.0f, 10.0f, 0.0f, 0.0f));
-                        TextView textView = new TextView(context);
-                        textView.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21050g9, false));
-                        textView.setTextSize(1, 14.0f);
-                        textView.setGravity(17);
-                        if (z10) {
-                            TLRPC.ChatFull chatFull = ipVar.h;
-                            if (chatFull != null && chatFull.linked_chat_id != 0) {
-                                TLRPC.Chat chat2 = ipVar.getMessagesController().getChat(Long.valueOf(ipVar.h.linked_chat_id));
-                                if (chat2 != null) {
-                                    textView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("DiscussionChannelGroupSetHelp2", R.string.DiscussionChannelGroupSetHelp2, chat2.title)));
-                                }
-                            } else {
-                                textView.setText(LocaleController.getString(R.string.DiscussionChannelHelp3));
-                            }
-                        } else {
-                            TLRPC.Chat chat3 = ipVar.getMessagesController().getChat(Long.valueOf(ipVar.h.linked_chat_id));
-                            if (chat3 != null) {
-                                textView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("DiscussionGroupHelp", R.string.DiscussionGroupHelp, chat3.title)));
-                            }
-                        }
-                        frameLayout.addView(textView, w7.z5.d(-1, -2.0f, 51, 52.0f, 143.0f, 52.0f, 18.0f));
-                        frameLayout.setTag(-33024);
-                        a5Var = frameLayout;
-                    } else {
-                        if (z10) {
-                            chat = (TLRPC.Chat) ipVar.v.get(0);
-                        } else {
-                            chat = ipVar.f38077f;
-                        }
-                        ep epVar = new ep(this, context, chat, chat);
-                        ipVar.f38083y = epVar;
-                        a5Var = epVar;
-                    }
-                } else {
-                    a5Var = new org.telegram.ui.Cells.x4(context);
-                }
-            } else {
-                a5Var = new org.telegram.ui.Cells.d9(context);
-            }
-        } else {
-            a5Var = new org.telegram.ui.Cells.a5(6, 2, this.f37055c, null, false);
-        }
-        return new s4.b1(a5Var);
     }
 }

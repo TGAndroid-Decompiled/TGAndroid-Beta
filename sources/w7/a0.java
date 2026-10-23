@@ -23,18 +23,18 @@ public abstract class a0 {
                 g2.k kVar = new g2.k(b0Var, mVar2);
                 try {
                     byte[] b10 = f9.f.b(kVar);
-                    u2.u uVar = new u2.u(mVar, b0Var.f10764c, b0Var.d, SystemClock.elapsedRealtime(), 0L, b10.length);
+                    u2.v vVar = new u2.v(mVar, b0Var.f10783c, b0Var.d, SystemClock.elapsedRealtime(), 0L, b10.length);
                     mi.q qVar = new mi.q(b10);
-                    qVar.f16974c = uVar;
+                    qVar.f17037c = vVar;
                     n2.w wVar = new n2.w(qVar);
-                    String str2 = e2.m0.f8252a;
+                    String str2 = e2.m0.f8259a;
                     try {
                         kVar.close();
                     } catch (IOException unused) {
                     }
                     return wVar;
                 } catch (g2.x e) {
-                    int i11 = e.f10822c;
+                    int i11 = e.f10841c;
                     String str3 = null;
                     if ((i11 == 307 || i11 == 308) && i10 < 5 && (map2 = e.d) != null && (list = (List) map2.get("Location")) != null && !list.isEmpty()) {
                         str3 = (String) list.get(0);
@@ -44,7 +44,7 @@ public abstract class a0 {
                         g2.l a2 = mVar2.a();
                         a2.e = Uri.parse(str3);
                         mVar2 = a2.d();
-                        String str4 = e2.m0.f8252a;
+                        String str4 = e2.m0.f8259a;
                         try {
                             kVar.close();
                         } catch (IOException unused2) {
@@ -54,7 +54,7 @@ public abstract class a0 {
                     }
                 }
             } catch (Exception e7) {
-                throw new n2.x(mVar, b0Var.f10764c, b0Var.f10762a.getResponseHeaders(), b0Var.f10763b, e7);
+                throw new n2.x(mVar, b0Var.f10783c, b0Var.f10781a.getResponseHeaders(), b0Var.f10782b, e7);
             }
         }
     }

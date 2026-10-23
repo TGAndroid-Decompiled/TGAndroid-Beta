@@ -1,62 +1,46 @@
 package org.telegram.ui;
 
-import android.graphics.Point;
-import android.graphics.Rect;
 import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.messenger.AndroidUtilities;
+import java.util.ArrayList;
 import org.telegram.messenger.MessageObject;
-public final class g1 extends s4.m0 {
-    public final m1 f37172a;
+import org.telegram.tgnet.tl.TL_iv;
+public final class g1 extends s4.t {
+    public final l1 S;
 
-    public g1(m1 m1Var) {
-        this.f37172a = m1Var;
+    public g1(l1 l1Var) {
+        super(true);
+        this.S = l1Var;
     }
 
     @Override
-    public final void a(Rect rect, View view, RecyclerView recyclerView, s4.y0 y0Var) {
-        MessageObject.GroupedMessagePosition groupedMessagePosition;
-        float[] fArr;
-        int i10 = 0;
-        rect.bottom = 0;
-        boolean z10 = view instanceof f2;
-        m1 m1Var = this.f37172a;
-        if (z10) {
-            groupedMessagePosition = (MessageObject.GroupedMessagePosition) m1Var.v.f38723b.get(((f2) view).N);
-        } else if (view instanceof z2) {
-            groupedMessagePosition = (MessageObject.GroupedMessagePosition) m1Var.v.f38723b.get(((z2) view).L);
-        } else {
-            groupedMessagePosition = null;
-        }
-        if (groupedMessagePosition != null && groupedMessagePosition.siblingHeights != null) {
-            Point point = AndroidUtilities.displaySize;
-            float max = Math.max(point.x, point.y) * 0.5f;
-            int i11 = 0;
-            int i12 = 0;
-            while (true) {
-                if (i11 >= groupedMessagePosition.siblingHeights.length) {
-                    break;
-                }
-                i12 += (int) Math.ceil(fArr[i11] * max);
-                i11++;
-            }
-            int dp2 = (AndroidUtilities.dp2(11.0f) * (groupedMessagePosition.maxY - groupedMessagePosition.minY)) + i12;
-            int size = m1Var.v.f38722a.size();
-            while (true) {
-                if (i10 < size) {
-                    MessageObject.GroupedMessagePosition groupedMessagePosition2 = (MessageObject.GroupedMessagePosition) m1Var.v.f38722a.get(i10);
-                    byte b10 = groupedMessagePosition2.minY;
-                    byte b11 = groupedMessagePosition.minY;
-                    if (b10 == b11 && ((groupedMessagePosition2.minX != groupedMessagePosition.minX || groupedMessagePosition2.maxX != groupedMessagePosition.maxX || b10 != b11 || groupedMessagePosition2.maxY != groupedMessagePosition.maxY) && b10 == b11)) {
-                        dp2 = org.telegram.messenger.g0.A(4.0f, (int) Math.ceil(max * groupedMessagePosition2.f17796ph), dp2);
-                        break;
+    public final boolean B1(int i10) {
+        byte b10;
+        l1 l1Var = this.S;
+        ArrayList<TL_iv.PageBlock> arrayList = l1Var.f39104s.items;
+        MessageObject.GroupedMessagePosition groupedMessagePosition = (MessageObject.GroupedMessagePosition) l1Var.v.f38744b.get(arrayList.get((arrayList.size() - i10) - 1));
+        if (groupedMessagePosition.minX != groupedMessagePosition.maxX && (b10 = groupedMessagePosition.minY) == groupedMessagePosition.maxY && b10 != 0) {
+            int size = l1Var.v.f38743a.size();
+            for (int i11 = 0; i11 < size; i11++) {
+                MessageObject.GroupedMessagePosition groupedMessagePosition2 = (MessageObject.GroupedMessagePosition) l1Var.v.f38743a.get(i11);
+                if (groupedMessagePosition2 != groupedMessagePosition) {
+                    byte b11 = groupedMessagePosition2.minY;
+                    byte b12 = groupedMessagePosition.minY;
+                    if (b11 <= b12 && groupedMessagePosition2.maxY >= b12) {
+                        return true;
                     }
-                    i10++;
-                } else {
-                    break;
                 }
             }
-            rect.bottom = -dp2;
         }
+        return false;
+    }
+
+    @Override
+    public final boolean C1(View view) {
+        return false;
+    }
+
+    @Override
+    public final boolean y0() {
+        return false;
     }
 }

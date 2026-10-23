@@ -1,86 +1,132 @@
 package org.telegram.ui;
 
-import android.view.ViewPropertyAnimator;
-import android.widget.TextView;
-import org.telegram.messenger.Emoji;
+import android.content.Context;
+import android.view.View;
+import android.view.ViewGroup;
+import java.util.ArrayList;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-public final class b00 extends org.telegram.ui.Cells.l4 {
-    public final TextView f35468r;
-    public final ai.zc f35469s;
-    public int v;
-    public final org.telegram.ui.Components.i5 f35470w;
-    public boolean f35471x;
-    public final n00 f35472y;
+public final class b00 extends pg.b {
+    public final d00 d;
 
-    public b00(org.telegram.ui.n00 r13, android.content.Context r14) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.b00.<init>(org.telegram.ui.n00, android.content.Context):void");
+    public b00(d00 d00Var) {
+        this.d = d00Var;
     }
 
-    public final void d(int i10, boolean z10) {
+    @Override
+    public final boolean D(s4.b1 b1Var) {
+        int i10 = b1Var.f46346f;
+        if (i10 != 8 && i10 != 7) {
+            return false;
+        }
+        return true;
+    }
+
+    public final s4.g0 F() {
+        return this.d.d.getAdapter();
+    }
+
+    @Override
+    public final int h() {
+        return this.d.f36462e0.size();
+    }
+
+    @Override
+    public final int j(int i10) {
+        return ((h00) this.d.f36462e0.get(i10)).f44713a;
+    }
+
+    @Override
+    public final void l() {
+        F().l();
+    }
+
+    @Override
+    public final void m(int i10) {
+        F().m(i10 + 1);
+    }
+
+    @Override
+    public final void p(int i10, int i11) {
+        F().p(i10 + 1, i11);
+    }
+
+    @Override
+    public final void q(int i10, int i11) {
+        F().q(i10 + 1, i11);
+    }
+
+    @Override
+    public final void r(int i10, int i11, Object obj) {
+        F().r(i10 + 1, i11, obj);
+    }
+
+    @Override
+    public final void s(int i10, int i11) {
+        F().s(i10 + 1, i11);
+    }
+
+    @Override
+    public final void t(int i10, int i11) {
+        F().t(i10 + 1, i11);
+    }
+
+    @Override
+    public final void v(s4.b1 b1Var, int i10) {
+        boolean z10;
         int i11;
-        boolean z11;
-        float f7;
-        n00 n00Var = this.f35472y;
-        if (n00Var.getUserConfig().isPremium()) {
-            i11 = R.string.FolderTagNoColor;
+        int i12 = b1Var.f46346f;
+        View view = b1Var.f46343a;
+        ArrayList arrayList = this.d.f36462e0;
+        h00 h00Var = (h00) arrayList.get(i10);
+        int i13 = i10 + 1;
+        if (i13 < arrayList.size() && (i11 = ((h00) arrayList.get(i13)).f44713a) != 3 && i11 != 6) {
+            z10 = true;
         } else {
-            i11 = R.string.FolderTagNoColorPremium;
+            z10 = false;
         }
-        String string = LocaleController.getString(i11);
-        TextView textView = this.f35468r;
-        textView.setText(string);
-        int i12 = 0;
-        if (i10 < 0) {
-            z11 = true;
+        if (i12 == 7) {
+            ((j00) view).e(h00Var.f37704m, z10);
+        } else if (i12 != 6 && i12 != 3) {
+            if (i12 != 0 && i12 == 8) {
+                yz yzVar = (yz) view;
+                yzVar.f44012a.setText(LocaleController.getString(R.string.CreateNewInviteLink));
+                if (yzVar.f44014c != z10) {
+                    yzVar.f44014c = z10;
+                    yzVar.setWillNotDraw(!z10);
+                }
+            }
         } else {
-            z11 = false;
-        }
-        if (!z11) {
-            int[] iArr = org.telegram.ui.ActionBar.h6.f21253r8;
-            i12 = n00Var.getThemedColor(iArr[i10 % iArr.length]);
-        }
-        this.v = i12;
-        ai.zc zcVar = this.f35469s;
-        if (!z11) {
-            zcVar.setEmojiColor(i12);
-        }
-        if (!z10) {
-            this.f35470w.a(this.v, true);
-        }
-        if (z11 != this.f35471x) {
-            this.f35471x = z11;
-            ViewPropertyAnimator animate = textView.animate();
-            float f10 = 0.0f;
-            if (z11) {
-                f7 = 1.0f;
-            } else {
-                f7 = 0.0f;
+            org.telegram.ui.Cells.e9 e9Var = (org.telegram.ui.Cells.e9) view;
+            if (i12 == 6) {
+                e9Var.setFixedSize(0);
+                e9Var.setText(h00Var.d);
+                return;
             }
-            ViewPropertyAnimator duration = animate.alpha(f7).setDuration(320L);
-            org.telegram.ui.Components.bs bsVar = org.telegram.ui.Components.bs.h;
-            duration.setInterpolator(bsVar).start();
-            ViewPropertyAnimator animate2 = zcVar.animate();
-            if (!z11) {
-                f10 = 1.0f;
-            }
-            animate2.alpha(f10).setDuration(320L).setInterpolator(bsVar).start();
+            e9Var.setFixedSize(12);
+            e9Var.setText("");
         }
     }
 
-    public final void e(CharSequence charSequence, boolean z10) {
-        if (charSequence == null) {
-            charSequence = "";
+    @Override
+    public final s4.b1 x(ViewGroup viewGroup, int i10) {
+        View e9Var;
+        int i11;
+        d00 d00Var = this.d;
+        if (i10 == 8) {
+            e9Var = new yz(d00Var.getContext());
+            org.telegram.ui.ActionBar.r6.i(org.telegram.ui.ActionBar.k6.f21254h5, e9Var, null);
+        } else if (i10 == 7) {
+            Context context = d00Var.getContext();
+            i11 = ((org.telegram.ui.ActionBar.h3) d00Var).currentAccount;
+            e9Var = new a00(this, context, i11, d00Var.Y.f17862id);
+            org.telegram.ui.ActionBar.r6.i(org.telegram.ui.ActionBar.k6.f21254h5, e9Var, null);
+        } else if (i10 != 6 && i10 != 3) {
+            e9Var = new c00(d00Var, d00Var.getContext());
+        } else {
+            e9Var = new org.telegram.ui.Cells.e9(d00Var.getContext());
+            org.telegram.ui.ActionBar.r6.i(org.telegram.ui.ActionBar.k6.f21125a7, e9Var, null);
         }
-        boolean z11 = false;
-        if (charSequence.length() > 12) {
-            charSequence = charSequence.subSequence(0, 12);
-        }
-        ai.zc zcVar = this.f35469s;
-        CharSequence replaceEmoji = Emoji.replaceEmoji(charSequence, zcVar.getPaint().getFontMetricsInt(), false);
-        if (z10 && !LocaleController.isRTL) {
-            z11 = true;
-        }
-        zcVar.c(replaceEmoji, z11, true);
+        return new s4.b1(e9Var);
     }
 }

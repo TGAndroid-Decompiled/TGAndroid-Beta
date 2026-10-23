@@ -1,36 +1,21 @@
 package i2;
+public final class m1 extends u2.t {
+    public final b2.n1 f12518f;
 
-import android.os.Looper;
-import v7.u6;
-public final class m1 {
-    public final l1 f12478a;
-    public final k1 f12479b;
-    public int f12480c;
-    public Object d;
-    public final Looper e;
-    public boolean f12481f;
-
-    public m1(k1 k1Var, l1 l1Var, b2.o1 o1Var, int i10, Looper looper) {
-        this.f12479b = k1Var;
-        this.f12478a = l1Var;
-        this.e = looper;
+    public m1(b2.o1 o1Var) {
+        super(o1Var);
+        this.f12518f = new b2.n1();
     }
 
-    public final synchronized void a(boolean z10) {
-        synchronized (this) {
-            notifyAll();
+    @Override
+    public final b2.l1 f(int i10, b2.l1 l1Var, boolean z10) {
+        b2.o1 o1Var = this.e;
+        b2.l1 f7 = o1Var.f(i10, l1Var, z10);
+        if (o1Var.m(f7.f3829c, this.f12518f, 0L).a()) {
+            f7.h(l1Var.f3827a, l1Var.f3828b, l1Var.f3829c, l1Var.d, l1Var.e, b2.c.f3708c, true);
+            return f7;
         }
-    }
-
-    public final void b() {
-        u6.p(!this.f12481f);
-        this.f12481f = true;
-        r0 r0Var = (r0) this.f12479b;
-        if (!r0Var.Z && r0Var.f12565s.getThread().isAlive()) {
-            r0Var.f12558n.b(14, this).b();
-            return;
-        }
-        e2.a.l("ExoPlayerImplInternal", "Ignoring messages sent after release.");
-        a(false);
+        f7.f3830f = true;
+        return f7;
     }
 }

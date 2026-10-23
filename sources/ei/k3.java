@@ -7,8 +7,8 @@ public final class k3 extends xp {
     public final int d;
     public final ViewGroup e;
 
-    public k3(ViewGroup viewGroup, Context context, org.telegram.ui.ActionBar.d6 d6Var, int i10) {
-        super(context, 21, d6Var);
+    public k3(ViewGroup viewGroup, Context context, org.telegram.ui.ActionBar.g6 g6Var, int i10) {
+        super(context, 21, g6Var);
         this.d = i10;
         this.e = viewGroup;
     }
@@ -22,17 +22,17 @@ public final class k3 extends xp {
                 return;
             case 1:
                 super.invalidate();
-                ((org.telegram.ui.Cells.r2) this.e).invalidate();
+                ((org.telegram.ui.Cells.q2) this.e).invalidate();
                 return;
             default:
                 super.invalidate();
-                ((org.telegram.ui.web.h) this.e).invalidate();
+                ((org.telegram.ui.web.i) this.e).invalidate();
                 return;
         }
     }
 
-    public k3(m3 m3Var, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context, 24, d6Var);
+    public k3(m3 m3Var, Context context, org.telegram.ui.ActionBar.g6 g6Var) {
+        super(context, 24, g6Var);
         this.d = 0;
         this.e = m3Var;
     }

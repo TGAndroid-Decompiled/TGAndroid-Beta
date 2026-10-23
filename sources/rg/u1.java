@@ -1,66 +1,72 @@
 package rg;
 
-import android.view.GestureDetector;
-import android.view.MotionEvent;
-import com.google.android.gms.internal.play_billing.k3;
-public final class u1 extends GestureDetector.SimpleOnGestureListener {
-    public float f45669a;
-    public boolean f45670b;
-    public float f45671c;
-    public final w1 d;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Path;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.sl;
+import org.telegram.ui.Components.mm0;
+public final class u1 extends mm0 implements NotificationCenter.NotificationCenterDelegate {
+    public final Path Y2;
+    public q0.a Z2;
 
-    public u1(w1 w1Var) {
-        this.d = w1Var;
+    public u1(Context context) {
+        super(context, null);
+        this.Y2 = new Path();
+        setWillNotDraw(false);
+        setLayoutManager(new s4.b0());
+        setAdapter(new s4.g0());
+        setPadding(0, AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f));
+        setClipToPadding(false);
     }
 
     @Override
-    public final boolean onDown(MotionEvent motionEvent) {
-        float f7;
-        w1 w1Var = this.d;
-        boolean contains = w1Var.e.contains(motionEvent.getX(), motionEvent.getY());
-        if (w1Var.f45696f != contains) {
-            w1Var.f45696f = contains;
-            w1Var.invalidate();
-            if (contains) {
-                v1 v1Var = w1Var.K;
-                if (v1Var != null) {
-                    f7 = v1Var.get();
-                } else {
-                    f7 = w1Var.H.f44663c;
-                }
-                this.f45669a = f7;
-                this.f45670b = false;
-            }
-        }
-        return w1Var.f45696f;
+    public final Integer X0(int i10) {
+        return 285212671;
     }
 
     @Override
-    public final boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10) {
-        w1 w1Var = this.d;
-        if (w1Var.f45696f) {
-            if (!this.f45670b) {
-                this.f45671c = motionEvent.getY() - motionEvent2.getY();
-                this.f45670b = true;
-            }
-            float f11 = this.f45669a;
-            float y3 = ((motionEvent.getY() - motionEvent2.getY()) - this.f45671c) / w1Var.e.height();
-            float f12 = w1Var.G;
-            float f13 = w1Var.F;
-            float a2 = w7.r.a(k3.y(f12, f13, y3, f11), f13, f12);
-            v1 v1Var = w1Var.K;
-            if (v1Var != null) {
-                v1Var.U(a2);
-            } else {
-                w1Var.H.f44663c = a2;
-            }
-            w1Var.f45700w.d(a2, true);
-            Runnable runnable = w1Var.I;
-            if (runnable != null) {
-                runnable.run();
-            }
-            w1Var.invalidate();
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        if (i10 == NotificationCenter.customTypefacesLoaded) {
+            getAdapter().l();
         }
-        return w1Var.f45696f;
+    }
+
+    @Override
+    public final void draw(Canvas canvas) {
+        q0.a aVar = this.Z2;
+        if (aVar != null) {
+            Path path = this.Y2;
+            aVar.accept(path);
+            canvas.save();
+            canvas.clipPath(path);
+        }
+        super.draw(canvas);
+        if (this.Z2 != null) {
+            canvas.restore();
+        }
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.customTypefacesLoaded);
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.customTypefacesLoaded);
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, sl.C(16.0f, AndroidUtilities.dp(48.0f) * Math.min(qg.l0.c().size(), 6), 1073741824));
+    }
+
+    public void setMaskProvider(q0.a aVar) {
+        this.Z2 = aVar;
+        invalidate();
     }
 }

@@ -1,5 +1,6 @@
 package a0;
 
+import i2.o1;
 import java.util.Arrays;
 import java.util.ConcurrentModificationException;
 import java.util.Map;
@@ -12,13 +13,13 @@ public class l {
         int[] iArr;
         Object[] objArr;
         if (i10 == 0) {
-            iArr = b0.a.f3647a;
+            iArr = b0.a.f3654a;
         } else {
             iArr = new int[i10];
         }
         this.f25a = iArr;
         if (i10 == 0) {
-            objArr = b0.a.f3649c;
+            objArr = b0.a.f3656c;
         } else {
             objArr = new Object[i10 << 1];
         }
@@ -77,8 +78,8 @@ public class l {
 
     public final void clear() {
         if (this.f27c > 0) {
-            this.f25a = b0.a.f3647a;
-            this.f26b = b0.a.f3649c;
+            this.f25a = b0.a.f3654a;
+            this.f26b = b0.a.f3656c;
             this.f27c = 0;
         }
         if (this.f27c <= 0) {
@@ -129,7 +130,7 @@ public class l {
         if (i10 >= 0 && i10 < this.f27c) {
             return this.f26b[i10 << 1];
         }
-        throw new IllegalArgumentException(i2.e.j(i10, "Expected index to be within 0..size()-1, but was ").toString());
+        throw new IllegalArgumentException(o1.k(i10, "Expected index to be within 0..size()-1, but was ").toString());
     }
 
     public final boolean equals(Object obj) {
@@ -233,7 +234,7 @@ public class l {
             }
             throw new ConcurrentModificationException();
         }
-        throw new IllegalArgumentException(i2.e.j(i10, "Expected index to be within 0..size()-1, but was ").toString());
+        throw new IllegalArgumentException(o1.k(i10, "Expected index to be within 0..size()-1, but was ").toString());
     }
 
     public final Object g(int i10, Object obj) {
@@ -244,7 +245,7 @@ public class l {
             objArr[i11] = obj;
             return obj2;
         }
-        throw new IllegalArgumentException(i2.e.j(i10, "Expected index to be within 0..size()-1, but was ").toString());
+        throw new IllegalArgumentException(o1.k(i10, "Expected index to be within 0..size()-1, but was ").toString());
     }
 
     public Object get(Object obj) {
@@ -267,7 +268,7 @@ public class l {
         if (i10 >= 0 && i10 < this.f27c) {
             return this.f26b[(i10 << 1) + 1];
         }
-        throw new IllegalArgumentException(i2.e.j(i10, "Expected index to be within 0..size()-1, but was ").toString());
+        throw new IllegalArgumentException(o1.k(i10, "Expected index to be within 0..size()-1, but was ").toString());
     }
 
     public final int hashCode() {

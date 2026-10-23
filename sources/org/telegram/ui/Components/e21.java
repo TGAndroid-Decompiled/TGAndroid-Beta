@@ -1,21 +1,21 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
+import android.content.Context;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.ThemeEditorView;
-public final class e21 extends AnimatorListenerAdapter {
-    public final ThemeEditorView.EditorAlert f25704a;
+public final class e21 extends mm0 {
+    public final ThemeEditorView.EditorAlert Y2;
 
-    public e21(ThemeEditorView.EditorAlert editorAlert) {
-        this.f25704a = editorAlert;
+    public e21(ThemeEditorView.EditorAlert editorAlert, Context context) {
+        super(context, null);
+        this.Y2 = editorAlert;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        ThemeEditorView.EditorAlert editorAlert = this.f25704a;
-        editorAlert.f24402c.setVisibility(4);
-        editorAlert.f24403f.setVisibility(4);
-        editorAlert.f24406s.setVisibility(4);
-        editorAlert.H = false;
+    public final boolean E0(float f7) {
+        if (f7 >= AndroidUtilities.dp(48.0f) + this.Y2.E + AndroidUtilities.statusBarHeight) {
+            return true;
+        }
+        return false;
     }
 }

@@ -1,242 +1,243 @@
 package rg;
 
+import ai.ae;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.Point;
-import android.graphics.PointF;
 import android.graphics.Rect;
-import android.graphics.RectF;
-import android.os.Build;
+import android.view.KeyEvent;
 import android.view.View;
-import android.view.ViewGroup;
-import com.google.mlkit.vision.segmentation.subject.internal.zzd;
-import ei.a8;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLoader;
+import android.view.accessibility.AccessibilityNodeInfo;
+import android.widget.FrameLayout;
+import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MediaController;
-import org.telegram.messenger.nk;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.bs;
-import org.telegram.ui.Components.f6;
-import org.telegram.ui.Components.fl0;
-import org.telegram.ui.Components.fw0;
-import w7.z5;
-public final class y1 extends j {
-    public final Bitmap A0;
-    public boolean B0;
-    public boolean C0;
-    public final Rect D0;
-    public final Rect E0;
-    public final Paint F0;
-    public MediaController.CropState G0;
-    public final TLObject f45717q0;
-    public final String f45718r0;
-    public final int f45719s0;
-    public boolean f45720t0;
-    public final f6 f45721u0;
-    public final fw0 f45722v0;
-    public final int f45723w0;
-    public boolean f45724x0;
-    public final f6 f45725y0;
-    public final x1 f45726z0;
+import org.telegram.ui.ActionBar.h3;
+import org.telegram.ui.Components.iw0;
+public final class y1 extends FrameLayout {
+    public final int f46146a;
+    public final Object f46147b;
 
-    public y1(Context context, PointF pointF, fw0 fw0Var, String str, int i10) {
-        super(context, pointF);
-        this.f45719s0 = -1;
-        this.f45720t0 = false;
-        this.f45724x0 = false;
-        new Rect();
-        new RectF();
-        new Paint(3);
-        this.D0 = new Rect();
-        this.E0 = new Rect();
-        this.F0 = new Paint(3);
-        setRotation(0.0f);
-        setScale(1.0f);
-        this.f45718r0 = str;
-        this.f45722v0 = fw0Var;
-        x1 x1Var = new x1(this, context);
-        this.f45726z0 = x1Var;
-        addView(x1Var, z5.c(-1.0f, -1));
-        bs bsVar = bs.h;
-        this.f45721u0 = new f6(x1Var, 0L, 500L, bsVar);
-        this.f45725y0 = new f6(x1Var, 0L, 350L, bsVar);
-        this.f45723w0 = i10;
-        Bitmap q6 = a8.q(new qg.h0(str, 10), 1920, 1920, 0, false);
-        this.A0 = q6;
-        if (q6 != null) {
-            s(q6);
-        }
-        k();
-    }
-
-    private String getImageFilter() {
-        Point point = AndroidUtilities.displaySize;
-        int round = Math.round((Math.min(point.x, point.y) * 0.8f) / AndroidUtilities.density);
-        return a1.g.k(round, round, "_");
+    public y1(Object obj, Context context, int i10) {
+        super(context);
+        this.f46146a = i10;
+        this.f46147b = obj;
     }
 
     @Override
-    public final i a() {
-        return new p0(this, getContext());
-    }
-
-    public int getAnchor() {
-        return this.f45719s0;
-    }
-
-    public fw0 getBaseSize() {
-        return this.f45722v0;
-    }
-
-    public int getContentHeight() {
-        Bitmap bitmap = this.A0;
-        if (bitmap == null) {
-            return 1;
+    public void dispatchDraw(Canvas canvas) {
+        Canvas canvas2;
+        switch (this.f46146a) {
+            case 2:
+                u2 u2Var = (u2) this.f46147b;
+                if (u2Var.f46093y > 0.0f && u2Var.f46090s != null) {
+                    u2Var.v.reset();
+                    float width = getWidth() / u2Var.f46088n.getWidth();
+                    u2Var.v.postScale(width, width);
+                    u2Var.f46089r.setLocalMatrix(u2Var.v);
+                    u2Var.f46090s.setAlpha((int) (u2Var.f46093y * 255.0f));
+                    canvas2 = canvas;
+                    canvas2.drawRect(0.0f, 0.0f, getWidth(), getHeight(), u2Var.f46090s);
+                } else {
+                    canvas2 = canvas;
+                }
+                super.dispatchDraw(canvas2);
+                return;
+            default:
+                super.dispatchDraw(canvas);
+                return;
         }
-        return bitmap.getHeight();
-    }
-
-    public int getContentWidth() {
-        Bitmap bitmap = this.A0;
-        if (bitmap == null) {
-            return 1;
-        }
-        return bitmap.getWidth();
-    }
-
-    public int getOrientation() {
-        return this.f45723w0;
-    }
-
-    public Bitmap getSegmentedOutBitmap() {
-        return null;
     }
 
     @Override
-    public fl0 getSelectionBounds() {
-        ViewGroup viewGroup = (ViewGroup) getParent();
-        if (viewGroup == null) {
-            return new Object();
+    public boolean dispatchKeyEventPreIme(KeyEvent keyEvent) {
+        switch (this.f46146a) {
+            case 2:
+                if (keyEvent != null && keyEvent.getKeyCode() == 4 && keyEvent.getAction() == 1) {
+                    ((u2) this.f46147b).onBackPressed();
+                    return true;
+                }
+                return super.dispatchKeyEventPreIme(keyEvent);
+            default:
+                return super.dispatchKeyEventPreIme(keyEvent);
         }
-        float scaleX = viewGroup.getScaleX();
-        float scale = getScale();
-        float dp = (AndroidUtilities.dp(64.0f) / scaleX) + (scale * getMeasuredWidth());
-        float dp2 = (AndroidUtilities.dp(64.0f) / scaleX) + (getScale() * getMeasuredHeight());
-        float scale2 = getScale() * getMeasuredWidth();
-        getMeasuredHeight();
-        getScale();
-        AndroidUtilities.dp(64.0f);
-        float z10 = nk.z(dp, 2.0f, getPositionX(), scaleX);
-        return new fl0(z10, nk.z(dp2, 2.0f, getPositionY(), scaleX), ((((AndroidUtilities.dp(64.0f) / scaleX) + scale2) * scaleX) + z10) - z10, dp2 * scaleX);
     }
 
     @Override
-    public final void k() {
-        fw0 fw0Var = this.f45722v0;
-        float f7 = fw0Var.f26432a / 2.0f;
-        float f10 = fw0Var.f26433b / 2.0f;
-        MediaController.CropState cropState = this.G0;
-        if (cropState != null) {
-            f7 *= cropState.cropPw;
-            f10 *= cropState.cropPh;
+    public void onDraw(Canvas canvas) {
+        y1 y1Var;
+        MediaController.CropState cropState;
+        switch (this.f46146a) {
+            case 0:
+                z1 z1Var = (z1) this.f46147b;
+                Rect rect = z1Var.E0;
+                Rect rect2 = z1Var.D0;
+                Paint paint = z1Var.F0;
+                iw0 iw0Var = z1Var.f46154v0;
+                Bitmap bitmap = z1Var.A0;
+                if (z1Var.f46158z0 != null) {
+                    canvas.save();
+                    float e = z1Var.f46153u0.e(z1Var.f46152t0);
+                    canvas.scale(1.0f - (e * 2.0f), 1.0f, iw0Var.f27465a / 2.0f, 0.0f);
+                    canvas.skew(0.0f, org.telegram.messenger.v0.A(1.0f, e, 4.0f * e, 0.25f));
+                    float e7 = z1Var.f46157y0.e(z1Var.f46156x0);
+                    if (!z1Var.f46156x0) {
+                        canvas.save();
+                        paint.setAlpha((int) ((1.0f - e7) * 255.0f));
+                        if (bitmap != null) {
+                            canvas.translate(y1Var.getWidth() / 2.0f, y1Var.getHeight() / 2.0f);
+                            canvas.rotate(z1Var.f46155w0);
+                            float max = Math.max(iw0Var.f27465a / bitmap.getWidth(), iw0Var.f27466b / bitmap.getHeight());
+                            canvas.scale(max, max);
+                            if (z1Var.G0 != null) {
+                                canvas.rotate(-z1Var.getOrientation());
+                                int contentWidth = z1Var.getContentWidth();
+                                int contentHeight = z1Var.getContentHeight();
+                                if (((z1Var.getOrientation() + z1Var.G0.transformRotation) / 90) % 2 == 1) {
+                                    contentWidth = z1Var.getContentHeight();
+                                    contentHeight = z1Var.getContentWidth();
+                                }
+                                MediaController.CropState cropState2 = z1Var.G0;
+                                float f7 = cropState2.cropPw;
+                                float f10 = cropState2.cropPh;
+                                float f11 = contentWidth;
+                                float f12 = contentHeight;
+                                canvas.clipRect(((-contentWidth) * f7) / 2.0f, ((-contentHeight) * f10) / 2.0f, (f7 * f11) / 2.0f, (f10 * f12) / 2.0f);
+                                float f13 = z1Var.G0.cropScale;
+                                canvas.scale(f13, f13);
+                                MediaController.CropState cropState3 = z1Var.G0;
+                                canvas.translate(cropState3.cropPx * f11, cropState3.cropPy * f12);
+                                canvas.rotate(z1Var.G0.cropRotate + cropState.transformRotation);
+                                if (z1Var.G0.mirrored) {
+                                    canvas.scale(-1.0f, 1.0f);
+                                }
+                                canvas.rotate(z1Var.getOrientation());
+                            }
+                            canvas.translate((-bitmap.getWidth()) / 2.0f, (-bitmap.getHeight()) / 2.0f);
+                            rect2.set(0, 0, bitmap.getWidth(), bitmap.getHeight());
+                            rect.set(0, 0, bitmap.getWidth(), bitmap.getHeight());
+                            canvas.drawBitmap(bitmap, rect2, rect, paint);
+                        }
+                        canvas.restore();
+                    }
+                    canvas.restore();
+                    return;
+                }
+                return;
+            case 1:
+                p2 p2Var = (p2) this.f46147b;
+                ImageReceiver imageReceiver = p2Var.f46033x0;
+                iw0 iw0Var2 = p2Var.f46031v0;
+                if (p2Var.f46032w0 != null) {
+                    canvas.save();
+                    float e10 = p2Var.f46030u0.e(p2Var.f46029t0);
+                    canvas.scale(1.0f - (e10 * 2.0f), 1.0f, iw0Var2.f27465a / 2.0f, 0.0f);
+                    canvas.skew(0.0f, org.telegram.messenger.v0.A(1.0f, e10, 4.0f * e10, 0.25f));
+                    imageReceiver.setImageCoords(0.0f, 0.0f, (int) iw0Var2.f27465a, (int) iw0Var2.f27466b);
+                    imageReceiver.draw(canvas);
+                    canvas.restore();
+                    return;
+                }
+                return;
+            default:
+                super.onDraw(canvas);
+                return;
         }
-        setX(getPositionX() - f7);
-        setY(getPositionY() - f10);
-        m();
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
+    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        CharSequence charSequence;
+        sg.o0 o0Var;
+        sg.o0 o0Var2;
+        switch (this.f46146a) {
+            case 3:
+                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+                accessibilityNodeInfo.setClassName("android.widget.Button");
+                sg.p0 p0Var = (sg.p0) this.f46147b;
+                if (p0Var.f46805r && (o0Var2 = p0Var.h) != null) {
+                    charSequence = o0Var2.getText();
+                } else {
+                    charSequence = null;
+                }
+                if (charSequence == null && (o0Var = p0Var.f46803f) != null) {
+                    charSequence = o0Var.getText();
+                }
+                if (charSequence != null) {
+                    accessibilityNodeInfo.setText(charSequence);
+                    if (getContentDescription() == null) {
+                        accessibilityNodeInfo.setContentDescription(charSequence);
+                        return;
+                    }
+                    return;
+                }
+                return;
+            default:
+                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+                return;
+        }
     }
 
     @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        fw0 fw0Var = this.f45722v0;
-        float f7 = fw0Var.f26432a;
-        float f10 = fw0Var.f26433b;
-        MediaController.CropState cropState = this.G0;
-        if (cropState != null) {
-            f7 *= cropState.cropPw;
-            f10 *= cropState.cropPh;
-        }
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) f7, 1073741824), View.MeasureSpec.makeMeasureSpec((int) f10, 1073741824));
-    }
-
-    public final String q(int i10) {
-        TLObject tLObject = this.f45717q0;
-        if (tLObject instanceof TLRPC.Photo) {
-            try {
-                return FileLoader.getInstance(i10).getPathToAttach(FileLoader.getClosestPhotoSizeWithSize(((TLRPC.Photo) tLObject).sizes, 1000), true).getAbsolutePath();
-            } catch (Exception unused) {
-            }
-        }
-        return this.f45718r0;
-    }
-
-    public final void r(boolean z10) {
-        boolean z11 = !this.f45720t0;
-        this.f45720t0 = z11;
-        if (!z10) {
-            this.f45721u0.f(z11, true);
-        }
-        x1 x1Var = this.f45726z0;
-        if (x1Var != null) {
-            x1Var.invalidate();
-        }
-    }
-
-    public final void s(Bitmap bitmap) {
-        if (!this.C0 && !this.B0 && bitmap != null && Build.VERSION.SDK_INT >= 24) {
-            bc.d dVar = new bc.d();
-            dVar.f4246a = true;
-            zzd a2 = v7.f0.a(new bc.e(dVar));
-            this.B0 = true;
-            a2.g(wb.a.a(bitmap, this.f45723w0)).addOnSuccessListener(new qg.h0(this, 11)).addOnFailureListener(new org.telegram.ui.web.m(7, this, bitmap));
+    public void onMeasure(int i10, int i11) {
+        boolean z10;
+        float f7;
+        float top;
+        int measuredHeight;
+        gi.f fVar;
+        switch (this.f46146a) {
+            case 4:
+                sg.y0 y0Var = (sg.y0) this.f46147b;
+                z10 = ((h3) y0Var).isPortrait;
+                if (z10) {
+                    y0Var.f46952s = View.MeasureSpec.getSize(i10);
+                } else {
+                    y0Var.f46952s = (int) (Math.min(View.MeasureSpec.getSize(i10), View.MeasureSpec.getSize(i11)) * 0.8f);
+                }
+                super.onMeasure(i10, i11);
+                return;
+            case 5:
+                super.onMeasure(i10, i11);
+                sg.m1 m1Var = ((sg.l1) this.f46147b).f46752c;
+                ae aeVar = m1Var.f46771r0;
+                if (aeVar != null) {
+                    top = aeVar.getTop();
+                    measuredHeight = m1Var.f46771r0.getMeasuredHeight();
+                } else {
+                    View view = m1Var.B0;
+                    if (view != null) {
+                        top = view.getTop();
+                        measuredHeight = m1Var.B0.getMeasuredHeight();
+                    } else {
+                        f7 = 0.0f;
+                        m1Var.f46770q0.setTranslationY(f7 - (fVar.getMeasuredHeight() / 2.0f));
+                        return;
+                    }
+                }
+                f7 = (measuredHeight / 2.0f) + top;
+                m1Var.f46770q0.setTranslationY(f7 - (fVar.getMeasuredHeight() / 2.0f));
+                return;
+            case 6:
+                super.onMeasure(i10, i11);
+                ((yh.g1) this.f46147b).K.measure(View.MeasureSpec.makeMeasureSpec(getMeasuredWidth(), 1073741824), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824));
+                return;
+            default:
+                super.onMeasure(i10, i11);
+                return;
         }
     }
 
-    public final void t(boolean z10) {
-        boolean z11 = !this.f45724x0;
-        this.f45724x0 = z11;
-        if (!z10) {
-            this.f45725y0.f(z11, true);
-        }
-        x1 x1Var = this.f45726z0;
-        if (x1Var != null) {
-            x1Var.invalidate();
-        }
+    public y1(p2 p2Var, Context context) {
+        super(context);
+        this.f46146a = 1;
+        this.f46147b = p2Var;
+        setWillNotDraw(false);
     }
 
-    public y1(Context context, PointF pointF, fw0 fw0Var, TLObject tLObject) {
-        super(context, pointF);
-        this.f45719s0 = -1;
-        this.f45720t0 = false;
-        this.f45724x0 = false;
-        new Rect();
-        new RectF();
-        new Paint(3);
-        this.D0 = new Rect();
-        this.E0 = new Rect();
-        this.F0 = new Paint(3);
-        setRotation(0.0f);
-        setScale(1.0f);
-        this.f45717q0 = tLObject;
-        this.f45722v0 = fw0Var;
-        x1 x1Var = new x1(this, context);
-        this.f45726z0 = x1Var;
-        addView(x1Var, z5.c(-1.0f, -1));
-        bs bsVar = bs.h;
-        this.f45721u0 = new f6(x1Var, 0L, 500L, bsVar);
-        this.f45725y0 = new f6(x1Var, 0L, 350L, bsVar);
-        k();
+    public y1(z1 z1Var, Context context) {
+        super(context);
+        this.f46146a = 0;
+        this.f46147b = z1Var;
+        setWillNotDraw(false);
     }
 }

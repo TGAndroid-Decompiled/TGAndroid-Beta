@@ -1,31 +1,72 @@
 package ci;
-public final class n6 implements Runnable {
-    public final int f5648a;
-    public final i7 f5649b;
 
-    public n6(i7 i7Var, int i10) {
-        this.f5648a = i10;
-        this.f5649b = i7Var;
+import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.tl.TL_stories;
+public final class n6 implements Runnable {
+    public final int f5603a = 0;
+    public final boolean f5604b;
+    public final long f5605c;
+    public final long d;
+    public final Object e;
+    public final Object f5606f;
+    public final Object h;
+
+    public n6(h7 h7Var, long j10, boolean z10, TL_stories.PeerStories peerStories, long j11, TLObject tLObject) {
+        this.e = h7Var;
+        this.f5605c = j10;
+        this.f5604b = z10;
+        this.f5606f = peerStories;
+        this.d = j11;
+        this.h = tLObject;
     }
 
     @Override
     public final void run() {
-        switch (this.f5648a) {
+        switch (this.f5603a) {
             case 0:
-                i7 i7Var = this.f5649b;
-                i7Var.R = false;
-                i7Var.S = null;
-                return;
-            case 1:
-                i7 i7Var2 = this.f5649b;
-                i7Var2.f5506s = true;
-                i7Var2.f5499l.edit().putBoolean("read_loaded", true).apply();
+                h7 h7Var = (h7) this.e;
+                TL_stories.PeerStories peerStories = (TL_stories.PeerStories) this.f5606f;
+                TLObject tLObject = (TLObject) this.h;
+                h7Var.D.remove(Long.valueOf(this.f5605c));
+                boolean z10 = this.f5604b;
+                long j10 = this.d;
+                if (!z10) {
+                    peerStories = h7Var.y(j10);
+                }
+                if (peerStories != null) {
+                    if (tLObject instanceof TL_stories.TL_stories_stories) {
+                        TL_stories.TL_stories_stories tL_stories_stories = (TL_stories.TL_stories_stories) tLObject;
+                        for (int i10 = 0; i10 < tL_stories_stories.stories.size(); i10++) {
+                            for (int i11 = 0; i11 < peerStories.stories.size(); i11++) {
+                                if (peerStories.stories.get(i11).f20577id == tL_stories_stories.stories.get(i10).f20577id) {
+                                    peerStories.stories.set(i11, tL_stories_stories.stories.get(i10));
+                                    h7Var.W(j10, tL_stories_stories.stories.get(i10));
+                                }
+                            }
+                        }
+                        if (!z10) {
+                            v7 v7Var = h7Var.f5406k;
+                            v7Var.f6031b.getStorageQueue().postRunnable(new s7(v7Var, peerStories, 1));
+                        }
+                    }
+                    NotificationCenter.getInstance(h7Var.f5399a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesUpdated, new Object[0]);
+                    return;
+                }
                 return;
             default:
-                i7 i7Var3 = this.f5649b;
-                i7Var3.R = false;
-                i7Var3.S = null;
+                ((FileLoader) this.e).lambda$checkUploadNewDataAvailable$3(this.f5604b, (String) this.f5606f, this.f5605c, this.d, (Float) this.h);
                 return;
         }
+    }
+
+    public n6(FileLoader fileLoader, boolean z10, String str, long j10, long j11, Float f7) {
+        this.e = fileLoader;
+        this.f5604b = z10;
+        this.f5606f = str;
+        this.f5605c = j10;
+        this.d = j11;
+        this.h = f7;
     }
 }

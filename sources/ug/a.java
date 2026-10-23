@@ -12,41 +12,41 @@ import android.text.style.ReplacementSpan;
 import android.util.Pair;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
-import org.telegram.ui.Cells.u1;
+import org.telegram.ui.Cells.t1;
 import org.telegram.ui.Components.bs;
 import org.telegram.ui.Components.p6;
 public final class a extends ReplacementSpan {
-    public final Drawable f47647a;
-    public final Drawable f47648b;
-    public boolean f47649c;
+    public final Drawable f48087a;
+    public final Drawable f48088b;
+    public boolean f48089c;
     public boolean d;
     public final p6 e;
-    public final TextPaint f47650f;
+    public final TextPaint f48090f;
     public final int h;
 
-    public a(u1 u1Var, TextPaint textPaint, int i10) {
-        this.f47650f = textPaint;
+    public a(t1 t1Var, TextPaint textPaint, int i10) {
+        this.f48090f = textPaint;
         p6 p6Var = new p6(false, false, true);
         this.e = p6Var;
         p6Var.n(0.3f, 250L, bs.h);
-        p6Var.setCallback(u1Var);
+        p6Var.setCallback(t1Var);
         p6Var.w(AndroidUtilities.dp(11.5f));
         p6Var.x(AndroidUtilities.bold());
         p6Var.t("", true, true);
-        p6Var.f29230b = 17;
-        Drawable mutate = u1Var.getContext().getDrawable(R.drawable.mini_boost_profile_badge).mutate();
-        this.f47647a = mutate;
-        Drawable mutate2 = u1Var.getContext().getDrawable(R.drawable.mini_boost_profile_badge2).mutate();
-        this.f47648b = mutate2;
+        p6Var.f29437b = 17;
+        Drawable mutate = t1Var.getContext().getDrawable(R.drawable.mini_boost_profile_badge).mutate();
+        this.f48087a = mutate;
+        Drawable mutate2 = t1Var.getContext().getDrawable(R.drawable.mini_boost_profile_badge2).mutate();
+        this.f48088b = mutate2;
         mutate.setBounds(0, 0, mutate.getIntrinsicWidth(), mutate.getIntrinsicHeight());
         mutate2.setBounds(0, 0, mutate2.getIntrinsicWidth(), mutate2.getIntrinsicHeight());
         this.h = i10;
         p6Var.t(i10 > 1 ? String.valueOf(i10) : "", false, true);
     }
 
-    public static Pair a(u1 u1Var, TextPaint textPaint, int i10) {
+    public static Pair a(t1 t1Var, TextPaint textPaint, int i10) {
         SpannableString spannableString = new SpannableString("d");
-        a aVar = new a(u1Var, textPaint, i10);
+        a aVar = new a(t1Var, textPaint, i10);
         spannableString.setSpan(aVar, 0, 1, 33);
         return new Pair(spannableString, aVar);
     }
@@ -64,21 +64,21 @@ public final class a extends ReplacementSpan {
     @Override
     public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
         int i15;
-        TextPaint textPaint = this.f47650f;
+        TextPaint textPaint = this.f48090f;
         int color = textPaint.getColor();
         p6 p6Var = this.e;
-        int color2 = p6Var.f29228a.getColor();
-        Drawable drawable = this.f47648b;
-        Drawable drawable2 = this.f47647a;
+        int color2 = p6Var.f29435a.getColor();
+        Drawable drawable = this.f48088b;
+        Drawable drawable2 = this.f48087a;
         if (color != color2) {
             p6Var.u(textPaint.getColor());
-            int color3 = p6Var.f29228a.getColor();
+            int color3 = p6Var.f29435a.getColor();
             PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
             drawable2.setColorFilter(new PorterDuffColorFilter(color3, mode));
-            drawable.setColorFilter(new PorterDuffColorFilter(p6Var.f29228a.getColor(), mode));
+            drawable.setColorFilter(new PorterDuffColorFilter(p6Var.f29435a.getColor(), mode));
         }
         canvas.save();
-        if (this.d && !this.f47649c) {
+        if (this.d && !this.f48089c) {
             i15 = AndroidUtilities.dp(8.0f);
         } else {
             i15 = 0;

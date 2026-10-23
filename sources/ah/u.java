@@ -3,20 +3,20 @@ package ah;
 import android.view.ViewPropertyAnimator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.ActionBarLayout;
-import org.telegram.ui.ActionBar.d5;
+import org.telegram.ui.ActionBar.h5;
 import org.telegram.ui.ActionBar.o1;
 public final class u extends o1 {
-    public final v f890x;
+    public final v f891x;
 
     public u(v vVar, v vVar2) {
         super(vVar2);
-        this.f890x = vVar;
+        this.f891x = vVar;
     }
 
     @Override
     public final boolean b() {
-        a0 a0Var = (a0) this.f890x.f895c;
-        d5 parentLayout = a0Var.getParentLayout();
+        a0 a0Var = (a0) this.f891x.f896c;
+        h5 parentLayout = a0Var.getParentLayout();
         if (!a0.U(a0Var) && !AndroidUtilities.isTablet() && !a0.V(a0Var) && !AndroidUtilities.isInMultiwindow && parentLayout != null) {
             return true;
         }
@@ -25,16 +25,16 @@ public final class u extends o1 {
 
     @Override
     public final void e(float f7, float f10, boolean z10) {
-        a0 a0Var = (a0) this.f890x.f895c;
+        a0 a0Var = (a0) this.f891x.f896c;
         if (a0Var.getParentLayout() != null) {
-            boolean z11 = ((ActionBarLayout) a0Var.getParentLayout()).f20578n;
+            boolean z11 = ((ActionBarLayout) a0Var.getParentLayout()).f20641n;
         }
     }
 
     @Override
     public final void g(int i10, boolean z10) {
         float f7;
-        a0 a0Var = (a0) this.f890x.f895c;
+        a0 a0Var = (a0) this.f891x.f896c;
         a0Var.f646w.setVisibility(0);
         ViewPropertyAnimator animate = a0Var.f646w.animate();
         if (!z10) {

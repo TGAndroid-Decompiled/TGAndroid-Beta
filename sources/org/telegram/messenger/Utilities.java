@@ -98,13 +98,13 @@ public class Utilities {
         long nextLong = random.nextLong();
         ?? random2 = new Random(0L);
         long a2 = v7.r6.a(nextLong);
-        random2.f7824a = a2;
+        random2.f7836a = a2;
         long a10 = v7.r6.a(a2);
-        random2.f7825b = a10;
-        if (random2.f7824a == 0 && a10 == 0) {
+        random2.f7837b = a10;
+        if (random2.f7836a == 0 && a10 == 0) {
             long a11 = v7.r6.a(3735928559L);
-            random2.f7824a = a11;
-            random2.f7825b = v7.r6.a(a11);
+            random2.f7836a = a11;
+            random2.f7837b = v7.r6.a(a11);
         }
         fastRandom = random2;
         stageQueue = new DispatchQueue("stageQueue");
@@ -479,8 +479,8 @@ public class Utilities {
     public static void raceCallbacks(Runnable runnable, Callback<Runnable>... callbackArr) {
         if (callbackArr != 0 && callbackArr.length != 0) {
             tl tlVar = new tl(new int[]{0}, callbackArr, runnable, 0);
-            for (ai.h3 h3Var : callbackArr) {
-                h3Var.run(tlVar);
+            for (ai.hb hbVar : callbackArr) {
+                hbVar.run(tlVar);
             }
         } else if (runnable != null) {
             runnable.run();

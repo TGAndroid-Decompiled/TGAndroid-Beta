@@ -1,5 +1,6 @@
 package n7;
 
+import i2.o1;
 import j$.util.Map;
 import java.io.Serializable;
 import java.util.Map;
@@ -7,20 +8,20 @@ import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 public abstract class n implements Map, Serializable, j$.util.Map {
-    public static final Map.Entry[] f17297b = new Map.Entry[0];
-    public transient o f17298a;
+    public static final Map.Entry[] f17360b = new Map.Entry[0];
+    public transient o f17361a;
 
     @Override
     public final o entrySet() {
-        o oVar = this.f17298a;
+        o oVar = this.f17361a;
         if (oVar == null) {
             r rVar = (r) this;
             if (rVar.isEmpty()) {
-                oVar = y.f17324s;
+                oVar = y.f17387s;
             } else {
                 oVar = new q(rVar);
             }
-            this.f17298a = oVar;
+            this.f17361a = oVar;
         }
         return oVar;
     }
@@ -153,7 +154,7 @@ public abstract class n implements Map, Serializable, j$.util.Map {
             sb2.append('}');
             return sb2.toString();
         }
-        throw new IllegalArgumentException(i2.e.j(size, "size cannot be negative but was: "));
+        throw new IllegalArgumentException(o1.k(size, "size cannot be negative but was: "));
     }
 
     @Override

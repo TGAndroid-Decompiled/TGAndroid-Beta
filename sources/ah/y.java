@@ -9,34 +9,34 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.Components.a6;
 import org.telegram.ui.Components.r5;
 import org.telegram.ui.Components.xc;
-import org.telegram.ui.x51;
-public final class y extends x51 {
-    public boolean f905d2;
-    public final a0 f906e2;
+import org.telegram.ui.b61;
+public final class y extends b61 {
+    public boolean f906e2;
+    public final a0 f907f2;
 
-    public y(a0 a0Var, a0 a0Var2, Activity activity, d6 d6Var, int i10) {
-        super(a0Var2, activity, false, null, 6, false, d6Var, 16, i10);
-        this.f906e2 = a0Var;
-        this.f905d2 = true;
+    public y(a0 a0Var, a0 a0Var2, Activity activity, g6 g6Var, int i10) {
+        super(a0Var2, activity, false, null, 6, false, g6Var, 16, i10);
+        this.f907f2 = a0Var;
+        this.f906e2 = true;
         setDrawBackground(false);
     }
 
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
-        if (this.f905d2) {
-            this.f905d2 = false;
-            this.f906e2.f640b.s(null);
+        if (this.f906e2) {
+            this.f906e2 = false;
+            this.f907f2.f640b.s(null);
         }
     }
 
     @Override
     public final void p(View view, Long l4, TLRPC.Document document, TL_stars.TL_starGiftUnique tL_starGiftUnique, Integer num) {
-        a0 a0Var = this.f906e2;
+        a0 a0Var = this.f907f2;
         int i10 = a0Var.J;
         ArrayList arrayList = a0Var.F;
         LinkedHashMap linkedHashMap = a0Var.E;

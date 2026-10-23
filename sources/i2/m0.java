@@ -1,16 +1,14 @@
 package i2;
-
-import java.util.ArrayList;
 public final class m0 {
-    public final ArrayList f12475a;
-    public final u2.j1 f12476b;
-    public final int f12477c;
-    public final long d;
+    public final int f12515a;
+    public final int f12516b;
+    public final int f12517c;
+    public final u2.k1 d;
 
-    public m0(ArrayList arrayList, u2.j1 j1Var, int i10, long j10) {
-        this.f12475a = arrayList;
-        this.f12476b = j1Var;
-        this.f12477c = i10;
-        this.d = j10;
+    public m0(int i10, int i11, int i12, u2.k1 k1Var) {
+        this.f12515a = i10;
+        this.f12516b = i11;
+        this.f12517c = i12;
+        this.d = k1Var;
     }
 }

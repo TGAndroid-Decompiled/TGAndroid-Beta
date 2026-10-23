@@ -1,91 +1,114 @@
 package ci;
 
-import android.view.ScaleGestureDetector;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
+import android.view.View;
 import android.view.WindowManager;
-import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-public final class k1 implements ScaleGestureDetector.OnScaleGestureListener {
-    public final void a() {
-        p1 p1Var = p1.Z;
-        WindowManager.LayoutParams layoutParams = p1Var.f5713c;
-        int n10 = (int) (p1Var.n() * p1Var.M);
-        layoutParams.width = n10;
-        p1Var.J = n10;
-        WindowManager.LayoutParams layoutParams2 = p1Var.f5713c;
-        int m10 = (int) (p1Var.m() * p1Var.M);
-        layoutParams2.height = m10;
-        p1Var.K = m10;
-        AndroidUtilities.updateViewLayout(p1Var.f5712b, p1Var.d, p1Var.f5713c);
+import org.telegram.ui.Components.hw0;
+public final class k1 extends GestureDetector.SimpleOnGestureListener {
+    public float f5483a;
+    public float f5484b;
+    public final int f5485c;
+
+    public k1(int i10) {
+        hw0 hw0Var = o1.X;
+        this.f5485c = i10;
     }
 
     @Override
-    public final boolean onScale(ScaleGestureDetector scaleGestureDetector) {
+    public final boolean onDown(MotionEvent motionEvent) {
+        o1 o1Var = o1.Z;
+        if (o1Var.H) {
+            for (int i10 = 1; i10 < o1Var.e.getChildCount(); i10++) {
+                View childAt = o1Var.e.getChildAt(i10);
+                if (childAt.dispatchTouchEvent(motionEvent)) {
+                    o1Var.G = childAt;
+                    return true;
+                }
+            }
+        }
+        this.f5483a = o1Var.N;
+        this.f5484b = o1Var.O;
+        return true;
+    }
+
+    @Override
+    public final boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10) {
         float dp;
-        p1 p1Var = p1.Z;
-        p1Var.M = w7.r.a(scaleGestureDetector.getScaleFactor() * p1Var.M, 0.6f, p1Var.f5711a);
-        p1Var.J = (int) (p1Var.n() * p1Var.M);
-        p1Var.K = (int) (p1Var.m() * p1Var.M);
-        AndroidUtilities.runOnUIThread(new ah.j(this, 8));
-        o1.k kVar = p1Var.P;
-        kVar.f17550b = p1Var.N;
-        kVar.f17551c = true;
-        o1.l lVar = kVar.f17559u;
-        float focusX = scaleGestureDetector.getFocusX();
-        int i10 = AndroidUtilities.displaySize.x;
-        if (focusX >= i10 / 2.0f) {
-            dp = (i10 - p1Var.J) - AndroidUtilities.dp(16.0f);
-        } else {
-            dp = AndroidUtilities.dp(16.0f);
+        float f11;
+        o1 o1Var = o1.Z;
+        if (o1Var.E && !o1Var.F) {
+            o1.k kVar = o1Var.P;
+            kVar.f17612a = f7;
+            float f12 = o1Var.N;
+            kVar.f17613b = f12;
+            kVar.f17614c = true;
+            o1.l lVar = kVar.f17622u;
+            int i10 = o1Var.J;
+            float f13 = (f7 / 7.0f) + (i10 / 2.0f) + f12;
+            int i11 = AndroidUtilities.displaySize.x;
+            if (f13 >= i11 / 2.0f) {
+                dp = (i11 - i10) - AndroidUtilities.dp(16.0f);
+            } else {
+                dp = AndroidUtilities.dp(16.0f);
+            }
+            lVar.f17628i = dp;
+            o1Var.P.h();
+            o1.k kVar2 = o1Var.Q;
+            kVar2.f17612a = f7;
+            kVar2.f17613b = o1Var.O;
+            kVar2.f17614c = true;
+            kVar2.f17622u.f17628i = w7.r.a((f10 / 10.0f) + f11, AndroidUtilities.dp(16.0f), (AndroidUtilities.displaySize.y - o1Var.K) - AndroidUtilities.dp(16.0f));
+            o1Var.Q.h();
+            return true;
         }
-        lVar.f17565i = dp;
-        o1.k kVar2 = p1Var.P;
-        if (!kVar2.f17552f) {
-            kVar2.h();
+        return false;
+    }
+
+    @Override
+    public final boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10) {
+        o1 o1Var = o1.Z;
+        if (!o1Var.E && o1Var.I == null && !o1Var.F) {
+            float abs = Math.abs(f7);
+            float f11 = this.f5485c;
+            if (abs >= f11 || Math.abs(f10) >= f11) {
+                o1Var.E = true;
+                o1Var.P.c();
+                o1Var.Q.c();
+            }
         }
-        o1.k kVar3 = p1Var.Q;
-        kVar3.f17550b = p1Var.O;
-        kVar3.f17551c = true;
-        kVar3.f17559u.f17565i = w7.r.a(scaleGestureDetector.getFocusY() - (p1Var.K / 2.0f), AndroidUtilities.dp(16.0f), (AndroidUtilities.displaySize.y - p1Var.K) - AndroidUtilities.dp(16.0f));
-        o1.k kVar4 = p1Var.Q;
-        if (!kVar4.f17552f) {
-            kVar4.h();
+        if (o1Var.E) {
+            WindowManager.LayoutParams layoutParams = o1Var.f5619c;
+            float rawX = (motionEvent2.getRawX() + this.f5483a) - motionEvent.getRawX();
+            o1Var.N = rawX;
+            layoutParams.x = (int) rawX;
+            WindowManager.LayoutParams layoutParams2 = o1Var.f5619c;
+            float rawY = (motionEvent2.getRawY() + this.f5484b) - motionEvent.getRawY();
+            o1Var.O = rawY;
+            layoutParams2.y = (int) rawY;
+            AndroidUtilities.updateViewLayout(o1Var.f5618b, o1Var.d, o1Var.f5619c);
         }
         return true;
     }
 
     @Override
-    public final boolean onScaleBegin(ScaleGestureDetector scaleGestureDetector) {
-        p1 p1Var = p1.Z;
-        if (p1Var.E) {
-            p1Var.E = false;
+    public final boolean onSingleTapUp(MotionEvent motionEvent) {
+        o1 o1Var = o1.Z;
+        androidx.fragment.app.d dVar = o1Var.U;
+        if (o1Var.I == null) {
+            if (o1Var.T) {
+                AndroidUtilities.cancelRunOnUIThread(dVar);
+                o1Var.T = false;
+            }
+            boolean z10 = !o1Var.H;
+            o1Var.H = z10;
+            o1Var.o(z10);
+            if (o1Var.H && !o1Var.T) {
+                AndroidUtilities.runOnUIThread(dVar, 2500L);
+                o1Var.T = true;
+            }
         }
-        p1Var.F = true;
-        p1Var.f5713c.width = (int) (p1Var.n() * p1Var.f5711a);
-        p1Var.f5713c.height = (int) (p1Var.m() * p1Var.f5711a);
-        AndroidUtilities.updateViewLayout(p1Var.f5712b, p1Var.d, p1Var.f5713c);
         return true;
-    }
-
-    @Override
-    public final void onScaleEnd(ScaleGestureDetector scaleGestureDetector) {
-        p1 p1Var = p1.Z;
-        if (!p1Var.P.f17552f && !p1Var.Q.f17552f) {
-            a();
-            return;
-        }
-        ArrayList arrayList = new ArrayList();
-        j1 j1Var = new j1(this, arrayList, 0);
-        o1.k kVar = p1Var.P;
-        if (!kVar.f17552f) {
-            arrayList.add(kVar);
-        } else {
-            kVar.a(j1Var);
-        }
-        o1.k kVar2 = p1Var.Q;
-        if (!kVar2.f17552f) {
-            arrayList.add(kVar2);
-        } else {
-            kVar2.a(j1Var);
-        }
     }
 }

@@ -1,28 +1,30 @@
 package org.telegram.ui.Cells;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class m3 extends AnimatorListenerAdapter {
-    public final o3 f22577a;
+import android.content.Context;
+import android.view.View;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.b71;
+import org.telegram.ui.Components.j71;
+import org.telegram.ui.Components.l61;
+import org.telegram.ui.Components.m61;
+import org.telegram.ui.Components.mm0;
+public final class m3 extends l61 {
+    public static final int f22717a = 0;
 
-    public m3(o3 o3Var) {
-        this.f22577a = o3Var;
+    static {
+        l61.setup(new l61());
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        o3 o3Var = this.f22577a;
-        if (o3Var.v) {
-            o3Var.e.setVisibility(4);
-            o3Var.f22720f.setVisibility(4);
-            o3Var.h.setVisibility(0);
-            return;
-        }
-        if (o3Var.f22723s) {
-            o3Var.e.setVisibility(4);
-        } else {
-            o3Var.f22720f.setVisibility(4);
-        }
-        o3Var.h.setVisibility(8);
+    public final void bindView(View view, m61 m61Var, boolean z10, b71 b71Var, j71 j71Var) {
+        n3 n3Var = (n3) view;
+        n3Var.a((TLRPC.StickerSetCovered) m61Var.G, z10, m61Var.f28567t, false);
+        n3Var.f22786f.a(m61Var.f28567t, false);
+        n3Var.setAddOnClickListener(m61Var.D);
+    }
+
+    @Override
+    public final View createView(Context context, mm0 mm0Var, int i10, int i11, org.telegram.ui.ActionBar.g6 g6Var) {
+        return new n3(context, g6Var);
     }
 }

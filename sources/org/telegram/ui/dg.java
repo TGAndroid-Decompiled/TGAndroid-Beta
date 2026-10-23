@@ -1,100 +1,117 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-import android.view.View;
-import android.widget.ImageView;
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-public final class dg implements ValueAnimator.AnimatorUpdateListener {
-    public final int f36367a;
-    public final float f36368b;
-    public final Object f36369c;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.tgnet.tl.TL_wallet;
+public final class dg implements Utilities.Callback2 {
+    public final int f36617a;
+    public final int f36618b;
+    public final Object f36619c;
+    public final Object d;
 
-    public dg(Object obj, float f7, int i10) {
-        this.f36367a = i10;
-        this.f36369c = obj;
-        this.f36368b = f7;
+    public dg(Object obj, int i10, TLObject tLObject, int i11) {
+        this.f36617a = i11;
+        this.f36619c = obj;
+        this.f36618b = i10;
+        this.d = tLObject;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        int i10;
-        boolean z10;
-        switch (this.f36367a) {
+    public final void run(Object obj, Object obj2) {
+        TLRPC.Updates updates;
+        int i10 = this.f36617a;
+        int i11 = this.f36618b;
+        Object obj3 = this.d;
+        Object obj4 = this.f36619c;
+        switch (i10) {
             case 0:
-                qn qnVar = (qn) this.f36369c;
-                qnVar.getClass();
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                qnVar.H8 = floatValue;
-                qnVar.L8 = floatValue / this.f36368b;
-                View view = qnVar.fragmentView;
-                if (view != null) {
-                    view.invalidate();
+                AndroidUtilities.runOnUIThread(new ai.vb((sn) obj4, this.f36618b, (Boolean) obj, (TLRPC.WebPage) obj2, (TL_account.getWebPagePreview) obj3, 17));
+                return;
+            case 1:
+                LaunchActivity launchActivity = (LaunchActivity) obj4;
+                f80 f80Var = (f80) obj3;
+                TLRPC.ChatInviteJoinResult chatInviteJoinResult = (TLRPC.ChatInviteJoinResult) obj;
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
+                Pattern pattern = LaunchActivity.E1;
+                if (chatInviteJoinResult instanceof TLRPC.TL_chatInviteJoinResultOk) {
+                    TLRPC.Updates updates2 = ((TLRPC.TL_chatInviteJoinResultOk) chatInviteJoinResult).updates;
+                    MessagesController.getInstance(launchActivity.O).lambda$processUpdates$377(updates2, false);
+                    updates = updates2;
+                } else {
+                    if (chatInviteJoinResult instanceof TLRPC.TL_chatInviteJoinResultWebView) {
+                        AndroidUtilities.runOnUIThread(new f80(2, launchActivity, (TLRPC.TL_chatInviteJoinResultWebView) chatInviteJoinResult));
+                    }
+                    updates = null;
+                }
+                AndroidUtilities.runOnUIThread(new ai.vb(launchActivity, f80Var, tL_error, updates, this.f36618b, 26));
+                return;
+            case 2:
+                PasskeysActivity passkeysActivity = (PasskeysActivity) obj4;
+                TL_account.Passkey passkey = (TL_account.Passkey) obj3;
+                TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
+                ArrayList arrayList = passkeysActivity.f33538b;
+                if (((TLRPC.Bool) obj) instanceof TLRPC.TL_boolFalse) {
+                    org.telegram.ui.Components.xc.a0(passkeysActivity).e0("FALSE", false);
+                    arrayList.add(Utilities.clamp(i11, arrayList.size(), 0), passkey);
+                    passkeysActivity.f33537a.Z2.N(true);
+                    return;
+                } else if (tL_error2 != null) {
+                    org.telegram.ui.Components.xc.a0(passkeysActivity).f0(tL_error2, false);
+                    arrayList.add(Utilities.clamp(i11, arrayList.size(), 0), passkey);
+                    passkeysActivity.f33537a.Z2.N(true);
+                    return;
+                } else {
+                    return;
+                }
+            default:
+                org.telegram.ui.Wallet.t7 t7Var = (org.telegram.ui.Wallet.t7) obj4;
+                TL_wallet.card cardVar = (TL_wallet.card) obj3;
+                TL_wallet.card cardVar2 = (TL_wallet.card) obj;
+                TLRPC.TL_error tL_error3 = (TLRPC.TL_error) obj2;
+                t7Var.f35233f1 = 0;
+                if (cardVar2 != null) {
+                    org.telegram.ui.Wallet.t7.e0(i11, cardVar2);
+                    if (!t7Var.f35220a1) {
+                        if (t7Var.f35228d1) {
+                            t7Var.f35223b1 = cardVar2;
+                            t7Var.f35226c1 = org.telegram.ui.Wallet.t7.T(cardVar2);
+                            t7Var.Q();
+                            return;
+                        }
+                        t7Var.d(cardVar2);
+                        return;
+                    }
+                    return;
+                }
+                if (cardVar != null) {
+                    org.telegram.ui.Wallet.t7.e0(i11, cardVar);
+                }
+                if (!t7Var.f35220a1) {
+                    if (tL_error3 != null) {
+                        org.telegram.ui.Components.xc.a0(t7Var.f35218a).f0(tL_error3, false);
+                    }
+                    t7Var.f35228d1 = false;
+                    TL_wallet.card cardVar3 = t7Var.f35223b1;
+                    if (cardVar3 != null) {
+                        t7Var.d(cardVar3);
+                        return;
+                    }
                     return;
                 }
                 return;
-            case 1:
-                ArrayList arrayList = (ArrayList) this.f36369c;
-                float floatValue2 = 1.0f - ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                for (int i11 = 0; i11 < arrayList.size(); i11++) {
-                    View view2 = (View) arrayList.get(i11);
-                    if (view2 != null) {
-                        view2.setTranslationY(this.f36368b * floatValue2);
-                    }
-                }
-                return;
-            case 2:
-                ((org.telegram.ui.Components.fo) this.f36369c).E.setTranslationY(AndroidUtilities.lerp(this.f36368b, 0.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue()));
-                return;
-            case 3:
-                ((fv0) this.f36369c).R.setTranslationY(AndroidUtilities.lerp(this.f36368b, 0.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue()));
-                return;
-            case 4:
-                k11 k11Var = (k11) this.f36369c;
-                k11Var.getClass();
-                float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                float lerp = AndroidUtilities.lerp(0.0f, this.f36368b, floatValue3);
-                k11Var.f38392a.setTranslationX(lerp);
-                k11Var.f38393b.setTranslationX(lerp);
-                ImageView imageView = k11Var.f38394c;
-                imageView.setTranslationX(lerp);
-                org.telegram.ui.Components.xp xpVar = k11Var.f38395f;
-                if (LocaleController.isRTL) {
-                    i10 = AndroidUtilities.dp(32.0f);
-                } else {
-                    i10 = -AndroidUtilities.dp(32.0f);
-                }
-                xpVar.setTranslationX(i10 + lerp);
-                float f7 = (floatValue3 * 0.5f) + 0.5f;
-                xpVar.setScaleX(f7);
-                xpVar.setScaleY(f7);
-                xpVar.setAlpha(floatValue3);
-                float f10 = 1.0f - floatValue3;
-                float f11 = (f10 * 0.5f) + 0.5f;
-                imageView.setScaleX(f11);
-                imageView.setScaleY(f11);
-                imageView.setAlpha(f10);
-                return;
-            case 5:
-                org.telegram.ui.Wallet.n3 n3Var = (org.telegram.ui.Wallet.n3) this.f36369c;
-                n3Var.getClass();
-                n3Var.R = ((((Float) valueAnimator.getAnimatedValue()).floatValue() * 240.0f) + this.f36368b) % 360.0f;
-                n3Var.f34559a.invalidate();
-                return;
-            default:
-                org.telegram.ui.Wallet.i8 i8Var = (org.telegram.ui.Wallet.i8) this.f36369c;
-                i8Var.getClass();
-                float floatValue4 = 1.0f - ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                i8Var.f34343c = i8Var.c();
-                i8Var.d = this.f36368b * floatValue4;
-                if (floatValue4 > 0.0f) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                i8Var.f34347s = z10;
-                return;
         }
+    }
+
+    public dg(LaunchActivity launchActivity, f80 f80Var, int i10) {
+        this.f36617a = 1;
+        this.f36619c = launchActivity;
+        this.d = f80Var;
+        this.f36618b = i10;
     }
 }

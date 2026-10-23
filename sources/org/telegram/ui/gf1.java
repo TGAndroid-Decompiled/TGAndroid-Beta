@@ -1,98 +1,256 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-public final class gf1 extends org.telegram.ui.Components.im0 {
-    public final Context f37316c;
-    public final TwoStepVerificationActivity d;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class gf1 implements RequestDelegate {
+    public final int f37594a;
+    public final TwoStepVerificationActivity f37595b;
 
-    public gf1(TwoStepVerificationActivity twoStepVerificationActivity, Context context) {
-        this.d = twoStepVerificationActivity;
-        this.f37316c = context;
+    public gf1(TwoStepVerificationActivity twoStepVerificationActivity, int i10) {
+        this.f37594a = i10;
+        this.f37595b = twoStepVerificationActivity;
     }
 
     @Override
-    public final boolean D(s4.b1 b1Var) {
-        if (b1Var.f45924f == 0) {
-            return true;
+    public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        switch (this.f37594a) {
+            case 0:
+                final TwoStepVerificationActivity twoStepVerificationActivity = this.f37595b;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        String formatPluralString;
+                        int i10 = r3;
+                        TLObject tLObject2 = tLObject;
+                        TwoStepVerificationActivity twoStepVerificationActivity2 = twoStepVerificationActivity;
+                        switch (i10) {
+                            case 0:
+                                twoStepVerificationActivity2.o0();
+                                if (tLObject2 instanceof TL_account.resetPasswordOk) {
+                                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(twoStepVerificationActivity2.getParentActivity());
+                                    alertDialog$Builder.h(LocaleController.getString(R.string.OK), null);
+                                    String string = LocaleController.getString(R.string.ResetPassword);
+                                    org.telegram.ui.ActionBar.c2 c2Var = alertDialog$Builder.f20678a;
+                                    c2Var.R = string;
+                                    c2Var.T = LocaleController.getString(R.string.RestorePasswordResetPasswordOk);
+                                    twoStepVerificationActivity2.showDialog(c2Var, new v5(twoStepVerificationActivity2, 17));
+                                    return;
+                                } else if (tLObject2 instanceof TL_account.resetPasswordRequestedWait) {
+                                    twoStepVerificationActivity2.I.pending_reset_date = ((TL_account.resetPasswordRequestedWait) tLObject2).until_date;
+                                    twoStepVerificationActivity2.y0();
+                                    return;
+                                } else if (tLObject2 instanceof TL_account.resetPasswordFailedWait) {
+                                    int currentTime = ((TL_account.resetPasswordFailedWait) tLObject2).retry_date - twoStepVerificationActivity2.getConnectionsManager().getCurrentTime();
+                                    if (currentTime > 86400) {
+                                        formatPluralString = LocaleController.formatPluralString("Days", currentTime / 86400, new Object[0]);
+                                    } else if (currentTime > 3600) {
+                                        formatPluralString = LocaleController.formatPluralString("Hours", currentTime / 86400, new Object[0]);
+                                    } else if (currentTime > 60) {
+                                        formatPluralString = LocaleController.formatPluralString("Minutes", currentTime / 60, new Object[0]);
+                                    } else {
+                                        formatPluralString = LocaleController.formatPluralString("Seconds", Math.max(1, currentTime), new Object[0]);
+                                    }
+                                    twoStepVerificationActivity2.w0(LocaleController.getString(R.string.ResetPassword), LocaleController.formatString("ResetPasswordWait", R.string.ResetPasswordWait, formatPluralString));
+                                    return;
+                                } else {
+                                    return;
+                                }
+                            default:
+                                if (tLObject2 instanceof TLRPC.TL_boolTrue) {
+                                    twoStepVerificationActivity2.I.pending_reset_date = 0;
+                                    twoStepVerificationActivity2.y0();
+                                    return;
+                                }
+                                twoStepVerificationActivity2.getClass();
+                                return;
+                        }
+                    }
+                });
+                return;
+            case 1:
+                final TwoStepVerificationActivity twoStepVerificationActivity2 = this.f37595b;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r4) {
+                            case 0:
+                                TwoStepVerificationActivity.f0(twoStepVerificationActivity2, tL_error, tLObject);
+                                return;
+                            case 1:
+                                TwoStepVerificationActivity.U(twoStepVerificationActivity2, tL_error, tLObject);
+                                return;
+                            case 2:
+                                TwoStepVerificationActivity.Z(twoStepVerificationActivity2, tL_error, tLObject);
+                                return;
+                            case 3:
+                                TwoStepVerificationActivity.V(twoStepVerificationActivity2, tL_error, tLObject);
+                                return;
+                            default:
+                                TwoStepVerificationActivity.b0(twoStepVerificationActivity2, tL_error, tLObject);
+                                return;
+                        }
+                    }
+                });
+                return;
+            case 2:
+                final TwoStepVerificationActivity twoStepVerificationActivity3 = this.f37595b;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        String formatPluralString;
+                        int i10 = r3;
+                        TLObject tLObject2 = tLObject;
+                        TwoStepVerificationActivity twoStepVerificationActivity22 = twoStepVerificationActivity3;
+                        switch (i10) {
+                            case 0:
+                                twoStepVerificationActivity22.o0();
+                                if (tLObject2 instanceof TL_account.resetPasswordOk) {
+                                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(twoStepVerificationActivity22.getParentActivity());
+                                    alertDialog$Builder.h(LocaleController.getString(R.string.OK), null);
+                                    String string = LocaleController.getString(R.string.ResetPassword);
+                                    org.telegram.ui.ActionBar.c2 c2Var = alertDialog$Builder.f20678a;
+                                    c2Var.R = string;
+                                    c2Var.T = LocaleController.getString(R.string.RestorePasswordResetPasswordOk);
+                                    twoStepVerificationActivity22.showDialog(c2Var, new v5(twoStepVerificationActivity22, 17));
+                                    return;
+                                } else if (tLObject2 instanceof TL_account.resetPasswordRequestedWait) {
+                                    twoStepVerificationActivity22.I.pending_reset_date = ((TL_account.resetPasswordRequestedWait) tLObject2).until_date;
+                                    twoStepVerificationActivity22.y0();
+                                    return;
+                                } else if (tLObject2 instanceof TL_account.resetPasswordFailedWait) {
+                                    int currentTime = ((TL_account.resetPasswordFailedWait) tLObject2).retry_date - twoStepVerificationActivity22.getConnectionsManager().getCurrentTime();
+                                    if (currentTime > 86400) {
+                                        formatPluralString = LocaleController.formatPluralString("Days", currentTime / 86400, new Object[0]);
+                                    } else if (currentTime > 3600) {
+                                        formatPluralString = LocaleController.formatPluralString("Hours", currentTime / 86400, new Object[0]);
+                                    } else if (currentTime > 60) {
+                                        formatPluralString = LocaleController.formatPluralString("Minutes", currentTime / 60, new Object[0]);
+                                    } else {
+                                        formatPluralString = LocaleController.formatPluralString("Seconds", Math.max(1, currentTime), new Object[0]);
+                                    }
+                                    twoStepVerificationActivity22.w0(LocaleController.getString(R.string.ResetPassword), LocaleController.formatString("ResetPasswordWait", R.string.ResetPasswordWait, formatPluralString));
+                                    return;
+                                } else {
+                                    return;
+                                }
+                            default:
+                                if (tLObject2 instanceof TLRPC.TL_boolTrue) {
+                                    twoStepVerificationActivity22.I.pending_reset_date = 0;
+                                    twoStepVerificationActivity22.y0();
+                                    return;
+                                }
+                                twoStepVerificationActivity22.getClass();
+                                return;
+                        }
+                    }
+                });
+                return;
+            case 3:
+                final TwoStepVerificationActivity twoStepVerificationActivity4 = this.f37595b;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r4) {
+                            case 0:
+                                TwoStepVerificationActivity.f0(twoStepVerificationActivity4, tL_error, tLObject);
+                                return;
+                            case 1:
+                                TwoStepVerificationActivity.U(twoStepVerificationActivity4, tL_error, tLObject);
+                                return;
+                            case 2:
+                                TwoStepVerificationActivity.Z(twoStepVerificationActivity4, tL_error, tLObject);
+                                return;
+                            case 3:
+                                TwoStepVerificationActivity.V(twoStepVerificationActivity4, tL_error, tLObject);
+                                return;
+                            default:
+                                TwoStepVerificationActivity.b0(twoStepVerificationActivity4, tL_error, tLObject);
+                                return;
+                        }
+                    }
+                });
+                return;
+            case 4:
+                final TwoStepVerificationActivity twoStepVerificationActivity5 = this.f37595b;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r4) {
+                            case 0:
+                                TwoStepVerificationActivity.f0(twoStepVerificationActivity5, tL_error, tLObject);
+                                return;
+                            case 1:
+                                TwoStepVerificationActivity.U(twoStepVerificationActivity5, tL_error, tLObject);
+                                return;
+                            case 2:
+                                TwoStepVerificationActivity.Z(twoStepVerificationActivity5, tL_error, tLObject);
+                                return;
+                            case 3:
+                                TwoStepVerificationActivity.V(twoStepVerificationActivity5, tL_error, tLObject);
+                                return;
+                            default:
+                                TwoStepVerificationActivity.b0(twoStepVerificationActivity5, tL_error, tLObject);
+                                return;
+                        }
+                    }
+                });
+                return;
+            case 5:
+                final TwoStepVerificationActivity twoStepVerificationActivity6 = this.f37595b;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r4) {
+                            case 0:
+                                TwoStepVerificationActivity.f0(twoStepVerificationActivity6, tL_error, tLObject);
+                                return;
+                            case 1:
+                                TwoStepVerificationActivity.U(twoStepVerificationActivity6, tL_error, tLObject);
+                                return;
+                            case 2:
+                                TwoStepVerificationActivity.Z(twoStepVerificationActivity6, tL_error, tLObject);
+                                return;
+                            case 3:
+                                TwoStepVerificationActivity.V(twoStepVerificationActivity6, tL_error, tLObject);
+                                return;
+                            default:
+                                TwoStepVerificationActivity.b0(twoStepVerificationActivity6, tL_error, tLObject);
+                                return;
+                        }
+                    }
+                });
+                return;
+            default:
+                final TwoStepVerificationActivity twoStepVerificationActivity7 = this.f37595b;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r4) {
+                            case 0:
+                                TwoStepVerificationActivity.f0(twoStepVerificationActivity7, tL_error, tLObject);
+                                return;
+                            case 1:
+                                TwoStepVerificationActivity.U(twoStepVerificationActivity7, tL_error, tLObject);
+                                return;
+                            case 2:
+                                TwoStepVerificationActivity.Z(twoStepVerificationActivity7, tL_error, tLObject);
+                                return;
+                            case 3:
+                                TwoStepVerificationActivity.V(twoStepVerificationActivity7, tL_error, tLObject);
+                                return;
+                            default:
+                                TwoStepVerificationActivity.b0(twoStepVerificationActivity7, tL_error, tLObject);
+                                return;
+                        }
+                    }
+                });
+                return;
         }
-        return false;
-    }
-
-    @Override
-    public final int h() {
-        TwoStepVerificationActivity twoStepVerificationActivity = this.d;
-        if (!twoStepVerificationActivity.G && twoStepVerificationActivity.I != null) {
-            return twoStepVerificationActivity.T;
-        }
-        return 0;
-    }
-
-    @Override
-    public final int j(int i10) {
-        TwoStepVerificationActivity twoStepVerificationActivity = this.d;
-        if (i10 != twoStepVerificationActivity.P && i10 != twoStepVerificationActivity.S) {
-            return 0;
-        }
-        return 1;
-    }
-
-    @Override
-    public final void v(s4.b1 b1Var, int i10) {
-        int i11;
-        int i12;
-        int i13 = b1Var.f45924f;
-        View view = b1Var.f45921a;
-        TwoStepVerificationActivity twoStepVerificationActivity = this.d;
-        if (i13 != 0) {
-            if (i13 == 1) {
-                org.telegram.ui.Cells.d9 d9Var = (org.telegram.ui.Cells.d9) view;
-                if (i10 == twoStepVerificationActivity.P) {
-                    d9Var.setText(LocaleController.getString(R.string.SetAdditionalPasswordInfo));
-                    return;
-                } else if (i10 == twoStepVerificationActivity.S) {
-                    d9Var.setText(LocaleController.getString(R.string.EnabledPasswordText));
-                    return;
-                } else {
-                    return;
-                }
-            }
-            return;
-        }
-        org.telegram.ui.Cells.ba baVar = (org.telegram.ui.Cells.ba) view;
-        int i14 = org.telegram.ui.ActionBar.h6.G6;
-        baVar.setTag(Integer.valueOf(i14));
-        baVar.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, i14, false));
-        i11 = twoStepVerificationActivity.changePasswordRow;
-        if (i10 == i11) {
-            baVar.b(LocaleController.getString(R.string.ChangePassword), true);
-        } else if (i10 != twoStepVerificationActivity.O) {
-            i12 = twoStepVerificationActivity.turnPasswordOffRow;
-            if (i10 == i12) {
-                baVar.b(LocaleController.getString(R.string.TurnPasswordOff), true);
-            } else if (i10 == twoStepVerificationActivity.R) {
-                baVar.b(LocaleController.getString(R.string.ChangeRecoveryEmail), false);
-            } else if (i10 == twoStepVerificationActivity.Q) {
-                baVar.b(LocaleController.getString(R.string.SetRecoveryEmail), false);
-            }
-        } else {
-            baVar.b(LocaleController.getString(R.string.SetAdditionalPassword), true);
-        }
-    }
-
-    @Override
-    public final s4.b1 x(ViewGroup viewGroup, int i10) {
-        View baVar;
-        Context context = this.f37316c;
-        if (i10 != 0) {
-            baVar = new org.telegram.ui.Cells.d9(context);
-        } else {
-            baVar = new org.telegram.ui.Cells.ba(context);
-            baVar.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20994d6, false));
-        }
-        return new s4.b1(baVar);
     }
 }

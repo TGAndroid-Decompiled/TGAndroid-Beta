@@ -96,7 +96,7 @@ public class FileLog {
             if (name.startsWith("org.telegram.tgnet.")) {
                 name = name.substring(19);
             }
-            lVar.n("_", name == null ? eb.k.f8573a : new eb.m(name));
+            lVar.n("_", name == null ? eb.k.f8580a : new eb.m(name));
             try {
                 for (Field field : tLObject.getClass().getFields()) {
                     if (FileLog.privateFields == null || !FileLog.privateFields.contains(field.getName())) {
@@ -115,7 +115,7 @@ public class FileLog {
                                         }
                                     }
                                 }
-                                lVar.n(field.getName(), ((ya.d) nVar).d0(obj));
+                                lVar.n(field.getName(), ((ya.c) nVar).d0(obj));
                             }
                         } catch (IllegalAccessException e) {
                             e.printStackTrace();
@@ -169,8 +169,8 @@ public class FileLog {
                 @Override
                 public boolean shouldSkipField(eb.b bVar) {
                     HashSet hashSet3 = FileLog.privateFields;
-                    Field field = bVar.f8557a;
-                    Field field2 = bVar.f8557a;
+                    Field field = bVar.f8564a;
+                    Field field2 = bVar.f8564a;
                     if (!hashSet3.contains(field.getName())) {
                         if (!"message".equalsIgnoreCase(field2.getName()) || !String.class.equals(field2.getGenericType())) {
                             return false;
@@ -180,26 +180,26 @@ public class FileLog {
                     return true;
                 }
             };
-            gb.f fVar = gb.f.f10956c;
+            gb.f fVar = gb.f.f10975c;
             HashMap hashMap = new HashMap();
             ArrayList arrayList = new ArrayList();
             ArrayList arrayList2 = new ArrayList();
             eb.c cVar = eb.g.h;
-            eb.p pVar = eb.g.f8565i;
-            eb.q qVar = eb.g.f8566j;
+            eb.p pVar = eb.g.f8572i;
+            eb.q qVar = eb.g.f8573j;
             ArrayDeque arrayDeque = new ArrayDeque();
             eb.a aVar = exclusionStrategy;
             Objects.requireNonNull(aVar);
             gb.f clone = fVar.clone();
-            ArrayList arrayList3 = new ArrayList(fVar.f10957a);
-            clone.f10957a = arrayList3;
+            ArrayList arrayList3 = new ArrayList(fVar.f10976a);
+            clone.f10976a = arrayList3;
             arrayList3.add(aVar);
             ByteArrayHexAdapter byteArrayHexAdapter = new ByteArrayHexAdapter();
             boolean z11 = byteArrayHexAdapter instanceof eb.o;
             if (!eb.i.class.isAssignableFrom(byte[].class)) {
                 if (z11) {
                     lb.a aVar2 = new lb.a(byte[].class);
-                    if (aVar2.f15995b == aVar2.f15994a) {
+                    if (aVar2.f16058b == aVar2.f16057a) {
                         z10 = true;
                     } else {
                         z10 = false;
@@ -207,7 +207,7 @@ public class FileLog {
                     arrayList.add(new hb.z(byteArrayHexAdapter, aVar2, z10, null));
                 }
                 lb.a aVar3 = new lb.a(byte[].class);
-                hb.x0 x0Var = hb.h1.f11722a;
+                hb.x0 x0Var = hb.h1.f11749a;
                 arrayList.add(new hb.x0(aVar3, byteArrayHexAdapter, 2));
                 RuntimeClassNameTypeAdapterFactory of2 = RuntimeClassNameTypeAdapterFactory.of(TLObject.class, "type_", exclusionStrategy);
                 Objects.requireNonNull(of2);
@@ -221,7 +221,7 @@ public class FileLog {
                     ArrayList arrayList5 = new ArrayList(arrayList2);
                     Collections.reverse(arrayList5);
                     arrayList4.addAll(arrayList5);
-                    boolean z12 = kb.f.f15005a;
+                    boolean z12 = kb.f.f15051a;
                     gson = new eb.g(clone, new HashMap(hashMap), cVar, new ArrayList(arrayList), new ArrayList(arrayList2), arrayList4, pVar, qVar, new ArrayList(arrayDeque));
                     return;
                 }

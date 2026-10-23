@@ -1,21 +1,21 @@
 package org.telegram.ui.Components;
-public final class q30 implements z4.e {
-    public final org.telegram.ui.p40 f29474a;
+public final class q30 implements z4.f {
+    public final org.telegram.ui.s40 f29764a;
 
-    public q30(org.telegram.ui.p40 p40Var) {
-        this.f29474a = p40Var;
+    public q30(org.telegram.ui.s40 s40Var) {
+        this.f29764a = s40Var;
     }
 
     @Override
-    public final void a(float f7, int i10, int i11) {
-        org.telegram.ui.p40 p40Var = this.f29474a;
-        p40Var.h = i10;
-        p40Var.f30837f = f7;
-        u30.n(p40Var);
+    public final void b(float f7, int i10, int i11) {
+        org.telegram.ui.s40 s40Var = this.f29764a;
+        s40Var.h = i10;
+        s40Var.f31071f = f7;
+        u30.m(s40Var);
     }
 
     @Override
-    public final void b(int i10) {
+    public final void a(int i10) {
     }
 
     @Override

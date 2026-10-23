@@ -4,19 +4,19 @@ import java.util.Arrays;
 import v7.t6;
 import v7.u6;
 public final class u1 {
-    public transient Object[] f8511a;
-    public transient int[] f8512b;
-    public transient int f8513c;
+    public transient Object[] f8518a;
+    public transient int[] f8519b;
+    public transient int f8520c;
     public transient int[] d;
     public transient long[] e;
-    public transient float f8514f;
-    public transient int f8515g;
+    public transient float f8521f;
+    public transient int f8522g;
 
     public final void a(int i10) {
         if (i10 > this.e.length) {
             f(i10);
         }
-        if (i10 >= this.f8515g) {
+        if (i10 >= this.f8522g) {
             g(Math.max(2, Integer.highestOneBit(i10 - 1) << 1));
         }
     }
@@ -26,7 +26,7 @@ public final class u1 {
         if (c10 == -1) {
             return 0;
         }
-        return this.f8512b[c10];
+        return this.f8519b[c10];
     }
 
     public final int c(Object obj) {
@@ -35,7 +35,7 @@ public final class u1 {
         int i10 = iArr[(iArr.length - 1) & u10];
         while (i10 != -1) {
             long j10 = this.e[i10];
-            if (((int) (j10 >>> 32)) == u10 && t6.a(obj, this.f8511a[i10])) {
+            if (((int) (j10 >>> 32)) == u10 && t6.a(obj, this.f8518a[i10])) {
                 return i10;
             }
             i10 = (int) j10;
@@ -59,25 +59,25 @@ public final class u1 {
         int[] iArr = new int[highestOneBit];
         Arrays.fill(iArr, -1);
         this.d = iArr;
-        this.f8514f = 1.0f;
-        this.f8511a = new Object[i10];
-        this.f8512b = new int[i10];
+        this.f8521f = 1.0f;
+        this.f8518a = new Object[i10];
+        this.f8519b = new int[i10];
         long[] jArr = new long[i10];
         Arrays.fill(jArr, -1L);
         this.e = jArr;
-        this.f8515g = Math.max(1, (int) (highestOneBit * 1.0f));
+        this.f8522g = Math.max(1, (int) (highestOneBit * 1.0f));
     }
 
     public final void e(int i10, Object obj) {
         long j10;
         if (i10 > 0) {
             long[] jArr = this.e;
-            Object[] objArr = this.f8511a;
-            int[] iArr = this.f8512b;
+            Object[] objArr = this.f8518a;
+            int[] iArr = this.f8519b;
             int u10 = s.u(obj);
             int[] iArr2 = this.d;
             int length = (iArr2.length - 1) & u10;
-            int i11 = this.f8513c;
+            int i11 = this.f8520c;
             int i12 = iArr2[length];
             if (i12 == -1) {
                 iArr2[length] = i11;
@@ -113,10 +113,10 @@ public final class u1 {
                     }
                 }
                 this.e[i11] = (u10 << 32) | j10;
-                this.f8511a[i11] = obj;
-                this.f8512b[i11] = i10;
-                this.f8513c = i16;
-                if (i11 >= this.f8515g) {
+                this.f8518a[i11] = obj;
+                this.f8519b[i11] = i10;
+                this.f8520c = i16;
+                if (i11 >= this.f8522g) {
                     g(this.d.length * 2);
                     return;
                 }
@@ -124,12 +124,12 @@ public final class u1 {
             }
             throw new IllegalStateException("Cannot contain more than Integer.MAX_VALUE elements!");
         }
-        throw new IllegalArgumentException(i2.e.j(i10, "count must be positive but was: "));
+        throw new IllegalArgumentException(i2.o1.k(i10, "count must be positive but was: "));
     }
 
     public final void f(int i10) {
-        this.f8511a = Arrays.copyOf(this.f8511a, i10);
-        this.f8512b = Arrays.copyOf(this.f8512b, i10);
+        this.f8518a = Arrays.copyOf(this.f8518a, i10);
+        this.f8519b = Arrays.copyOf(this.f8519b, i10);
         long[] jArr = this.e;
         int length = jArr.length;
         long[] copyOf = Arrays.copyOf(jArr, i10);
@@ -141,22 +141,22 @@ public final class u1 {
 
     public final void g(int i10) {
         if (this.d.length >= 1073741824) {
-            this.f8515g = Integer.MAX_VALUE;
+            this.f8522g = Integer.MAX_VALUE;
             return;
         }
-        int i11 = ((int) (i10 * this.f8514f)) + 1;
+        int i11 = ((int) (i10 * this.f8521f)) + 1;
         int[] iArr = new int[i10];
         Arrays.fill(iArr, -1);
         long[] jArr = this.e;
         int i12 = i10 - 1;
-        for (int i13 = 0; i13 < this.f8513c; i13++) {
+        for (int i13 = 0; i13 < this.f8520c; i13++) {
             int i14 = (int) (jArr[i13] >>> 32);
             int i15 = i14 & i12;
             int i16 = iArr[i15];
             iArr[i15] = i13;
             jArr[i13] = (i14 << 32) | (i16 & 4294967295L);
         }
-        this.f8515g = i11;
+        this.f8522g = i11;
         this.d = iArr;
     }
 }

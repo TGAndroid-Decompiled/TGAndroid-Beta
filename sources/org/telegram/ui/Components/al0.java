@@ -1,146 +1,162 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Rect;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ImageReceiver;
-public final class al0 extends w9 {
-    public final int G;
-    public final bl0 H;
+import android.animation.ValueAnimator;
+import android.graphics.Paint;
+import androidx.recyclerview.widget.RecyclerView;
+public final class al0 extends s4.r0 {
+    public boolean f24770a;
+    public boolean f24771b;
+    public ValueAnimator f24772c;
+    public ValueAnimator d;
+    public final gl0 e;
 
-    public al0(bl0 bl0Var, Context context, int i10) {
-        super(context);
-        this.G = i10;
-        this.H = bl0Var;
+    public al0(gl0 gl0Var) {
+        this.e = gl0Var;
+    }
+
+    public static ValueAnimator c(float f7, float f10, q0.a aVar, Runnable runnable) {
+        ValueAnimator duration = ValueAnimator.ofFloat(f7, f10).setDuration(Math.abs(f10 - f7) * 150.0f);
+        duration.addUpdateListener(new d80(aVar, 9));
+        duration.addListener(new org.telegram.ui.s0(1, runnable));
+        duration.start();
+        return duration;
     }
 
     @Override
-    public ImageReceiver c() {
-        switch (this.G) {
-            case 0:
-                return new zk0(0, this);
-            case 1:
-                return new zk0(1, this);
-            default:
-                return super.c();
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        boolean z10;
+        float f7;
+        gl0 gl0Var = this.e;
+        hg.i0 i0Var = gl0Var.W;
+        boolean z11 = false;
+        if (i0Var.L0() != 0) {
+            z10 = true;
+        } else {
+            z10 = false;
         }
-    }
+        float f10 = 0.0f;
+        if (z10 != this.f24770a) {
+            ValueAnimator valueAnimator = this.f24772c;
+            if (valueAnimator != null) {
+                valueAnimator.cancel();
+            }
+            float f11 = gl0Var.f26660r;
+            if (z10) {
+                f7 = 1.0f;
+            } else {
+                f7 = 0.0f;
+            }
+            this.f24772c = c(f11, f7, new q0.a(this) {
+                public final al0 f32969b;
 
-    @Override
-    public void dispatchDraw(Canvas canvas) {
-        switch (this.G) {
-            case 0:
-                bl0 bl0Var = this.H;
-                al0 al0Var = bl0Var.f24980b;
-                super.dispatchDraw(canvas);
-                if (this.f31997a.getLottieAnimation() != null && !bl0Var.E) {
-                    this.f31997a.getLottieAnimation().start();
+                {
+                    this.f32969b = this;
                 }
-                if (bl0Var.f24985s && !bl0Var.v && this.f31997a.getLottieAnimation() != null && this.f31997a.getLottieAnimation().A() && al0Var.f31997a.getLottieAnimation() != null && al0Var.f31997a.getLottieAnimation().u()) {
-                    bl0Var.v = true;
-                    al0Var.f31997a.getLottieAnimation().N(0, false, true);
-                    al0Var.setVisibility(0);
-                    Runnable runnable = bl0Var.P.P0;
-                    if (runnable != null) {
-                        runnable.run();
+
+                @Override
+                public final void accept(Object obj) {
+                    Float f12 = (Float) obj;
+                    switch (r2) {
+                        case 0:
+                            gl0 gl0Var2 = this.f32969b.e;
+                            Paint paint = gl0Var2.h;
+                            float floatValue = f12.floatValue();
+                            gl0Var2.f26660r = floatValue;
+                            paint.setAlpha((int) (floatValue * 255.0f));
+                            gl0Var2.invalidate();
+                            return;
+                        default:
+                            gl0 gl0Var3 = this.f32969b.e;
+                            Paint paint2 = gl0Var3.f26655n;
+                            float floatValue2 = f12.floatValue();
+                            gl0Var3.f26662s = floatValue2;
+                            paint2.setAlpha((int) (floatValue2 * 255.0f));
+                            gl0Var3.invalidate();
+                            return;
                     }
-                    AndroidUtilities.runOnUIThread(new rc0(this, 17));
                 }
-                invalidate();
-                return;
-            default:
-                super.dispatchDraw(canvas);
-                return;
-        }
-    }
+            }, new Runnable(this) {
+                public final al0 f33256b;
 
-    @Override
-    public void invalidate(Rect rect) {
-        switch (this.G) {
-            case 0:
-                bl0 bl0Var = this.H;
-                if (ah.x0.c(this, bl0Var.P)) {
-                    return;
+                {
+                    this.f33256b = this;
                 }
-                super.invalidate(rect);
-                bl0Var.P.invalidate();
-                return;
-            default:
-                super.invalidate(rect);
-                return;
-        }
-    }
 
-    @Override
-    public void onDraw(Canvas canvas) {
-        ImageReceiver imageReceiver;
-        switch (this.G) {
-            case 1:
-                this.H.b();
-                super.onDraw(canvas);
-                return;
-            case 2:
-                r5 r5Var = this.e;
-                if (r5Var != null) {
-                    imageReceiver = r5Var.f29842k;
-                } else {
-                    imageReceiver = this.f31997a;
+                @Override
+                public final void run() {
+                    switch (r2) {
+                        case 0:
+                            this.f33256b.f24772c = null;
+                            return;
+                        default:
+                            this.f33256b.d = null;
+                            return;
+                    }
                 }
-                if (imageReceiver != null && imageReceiver.getLottieAnimation() != null) {
-                    imageReceiver.getLottieAnimation().start();
-                }
-                super.onDraw(canvas);
-                return;
-            default:
-                super.onDraw(canvas);
-                return;
+            });
+            this.f24770a = z10;
         }
-    }
-
-    @Override
-    public void invalidate(int i10, int i11, int i12, int i13) {
-        switch (this.G) {
-            case 0:
-                if (ah.x0.c(this)) {
-                    return;
-                }
-                super.invalidate(i10, i11, i12, i13);
-                return;
-            case 1:
-                if (ah.x0.c(this)) {
-                    return;
-                }
-                super.invalidate(i10, i11, i12, i13);
-                return;
-            default:
-                super.invalidate(i10, i11, i12, i13);
-                return;
+        if (i0Var.N0() != gl0Var.f26629a0.h() - 1) {
+            z11 = true;
         }
-    }
+        if (z11 != this.f24771b) {
+            ValueAnimator valueAnimator2 = this.d;
+            if (valueAnimator2 != null) {
+                valueAnimator2.cancel();
+            }
+            float f12 = gl0Var.f26662s;
+            if (z11) {
+                f10 = 1.0f;
+            }
+            this.d = c(f12, f10, new q0.a(this) {
+                public final al0 f32969b;
 
-    @Override
-    public final void invalidate() {
-        int i10 = this.G;
-        bl0 bl0Var = this.H;
-        switch (i10) {
-            case 0:
-                if (ah.x0.c(this, bl0Var.P)) {
-                    return;
+                {
+                    this.f32969b = this;
                 }
-                super.invalidate();
-                bl0Var.P.invalidate();
-                return;
-            case 1:
-                if (ah.x0.c(this)) {
-                    return;
+
+                @Override
+                public final void accept(Object obj) {
+                    Float f122 = (Float) obj;
+                    switch (r2) {
+                        case 0:
+                            gl0 gl0Var2 = this.f32969b.e;
+                            Paint paint = gl0Var2.h;
+                            float floatValue = f122.floatValue();
+                            gl0Var2.f26660r = floatValue;
+                            paint.setAlpha((int) (floatValue * 255.0f));
+                            gl0Var2.invalidate();
+                            return;
+                        default:
+                            gl0 gl0Var3 = this.f32969b.e;
+                            Paint paint2 = gl0Var3.f26655n;
+                            float floatValue2 = f122.floatValue();
+                            gl0Var3.f26662s = floatValue2;
+                            paint2.setAlpha((int) (floatValue2 * 255.0f));
+                            gl0Var3.invalidate();
+                            return;
+                    }
                 }
-                super.invalidate();
-                return;
-            default:
-                super.invalidate();
-                bl0Var.P.invalidate();
-                return;
+            }, new Runnable(this) {
+                public final al0 f33256b;
+
+                {
+                    this.f33256b = this;
+                }
+
+                @Override
+                public final void run() {
+                    switch (r2) {
+                        case 0:
+                            this.f33256b.f24772c = null;
+                            return;
+                        default:
+                            this.f33256b.d = null;
+                            return;
+                    }
+                }
+            });
+            this.f24771b = z11;
         }
     }
 }

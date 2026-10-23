@@ -4,29 +4,29 @@ import android.view.TextureView;
 import android.view.ViewGroup;
 import android.view.ViewParent;
 public final class q6 {
-    public TextureView f9643a;
-    public ig.l0 f9644b;
-    public hg.o f9645c;
+    public TextureView f9659a;
+    public ig.k0 f9660b;
+    public hg.o f9661c;
     public boolean d;
     public int e;
-    public int f9646f;
-    public boolean f9647g;
+    public int f9662f;
+    public boolean f9663g;
 
     public final void a(TextureView textureView) {
-        TextureView textureView2 = this.f9643a;
+        TextureView textureView2 = this.f9659a;
         if (textureView2 != textureView) {
             if (textureView2 != null) {
                 ViewParent parent = textureView2.getParent();
                 if (parent instanceof ViewGroup) {
-                    ((ViewGroup) parent).removeView(this.f9643a);
+                    ((ViewGroup) parent).removeView(this.f9659a);
                 }
-                this.f9643a = null;
+                this.f9659a = null;
             }
             this.d = false;
-            this.f9643a = textureView;
-            ig.l0 l0Var = this.f9644b;
-            if (l0Var != null) {
-                l0Var.run(textureView);
+            this.f9659a = textureView;
+            ig.k0 k0Var = this.f9660b;
+            if (k0Var != null) {
+                k0Var.run(textureView);
             }
         }
     }

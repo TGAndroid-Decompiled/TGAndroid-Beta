@@ -1,13 +1,13 @@
 package be;
 public final class d0 {
-    public static final d0 f4267a;
-    public static final d0[] f4268b;
+    public static final d0 f4274a;
+    public static final d0[] f4275b;
 
     static {
         ?? r02 = new Enum("DEFAULT", 0);
-        f4267a = r02;
+        f4274a = r02;
         d0[] d0VarArr = {r02, new Enum("LAZY", 1), new Enum("ATOMIC", 2), new Enum("UNDISPATCHED", 3)};
-        f4268b = d0VarArr;
+        f4275b = d0VarArr;
         w7.c0.a(d0VarArr);
     }
 
@@ -16,6 +16,6 @@ public final class d0 {
     }
 
     public static d0[] values() {
-        return (d0[]) f4268b.clone();
+        return (d0[]) f4275b.clone();
     }
 }

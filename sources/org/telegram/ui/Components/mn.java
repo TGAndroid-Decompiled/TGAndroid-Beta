@@ -2,17 +2,17 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 public final class mn extends ti {
-    public final Runnable S2;
+    public final Runnable V2;
 
-    public mn(Context context, org.telegram.ui.ActionBar.n2 n2Var, org.telegram.ui.ActionBar.d6 d6Var, Runnable runnable) {
-        super(context, n2Var, false, false, true, d6Var);
-        this.S2 = runnable;
+    public mn(Context context, org.telegram.ui.ActionBar.o2 o2Var, org.telegram.ui.ActionBar.g6 g6Var, Runnable runnable) {
+        super(context, o2Var, false, false, true, g6Var);
+        this.V2 = runnable;
     }
 
     @Override
     public final void dismissInternal() {
         super.dismissInternal();
-        Runnable runnable = this.S2;
+        Runnable runnable = this.V2;
         if (runnable != null) {
             runnable.run();
         }

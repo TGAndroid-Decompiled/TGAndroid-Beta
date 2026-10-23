@@ -1,38 +1,34 @@
 package org.telegram.ui.Components;
 
+import android.graphics.Canvas;
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-public final class zp0 implements Runnable {
-    public final int f33019a;
-    public final fr0 f33020b;
+import org.telegram.messenger.Utilities;
+public final class zp0 {
+    public final uu f33317a;
+    public final long f33318b;
+    public final float f33319c;
+    public final float d;
+    public final float e;
 
-    public zp0(fr0 fr0Var, int i10) {
-        this.f33019a = i10;
-        this.f33020b = fr0Var;
+    public zp0(View view) {
+        uu uuVar = new uu(1, view);
+        this.f33318b = System.currentTimeMillis();
+        this.f33317a = uuVar;
+        this.f33319c = AndroidUtilities.lerp(5.0f, 9.0f, Utilities.clamp01(Utilities.fastRandom.nextFloat()));
+        this.d = AndroidUtilities.lerp(2.5f, 5.0f, Utilities.clamp01(Utilities.fastRandom.nextFloat()));
+        this.e = AndroidUtilities.lerp(2.5f, 5.2f, Utilities.clamp01(Utilities.fastRandom.nextFloat()));
     }
 
-    @Override
-    public final void run() {
-        switch (this.f33019a) {
-            case 0:
-                fr0 fr0Var = this.f33020b;
-                fr0Var.B0 = true;
-                k20 k20Var = fr0Var.f26401z0;
-                k20Var.f27730r.setText("");
-                AndroidUtilities.showKeyboard(k20Var.f27730r);
-                return;
-            default:
-                rc rcVar = new rc(14);
-                fr0 fr0Var2 = this.f33020b;
-                if (fr0Var2.isKeyboardVisible()) {
-                    k20 k20Var2 = fr0Var2.f26401z0;
-                    if (k20Var2 != null) {
-                        AndroidUtilities.hideKeyboard(k20Var2.f27730r);
-                    }
-                    AndroidUtilities.runOnUIThread(rcVar, 300L);
-                    return;
-                }
-                rcVar.run();
-                return;
+    public final void a(Canvas canvas, float f7) {
+        uu uuVar;
+        float currentTimeMillis = ((float) (System.currentTimeMillis() - this.f33318b)) / 1000.0f;
+        canvas.translate(0.0f, 0.0f);
+        canvas.rotate(((float) Math.sin(this.f33319c * currentTimeMillis * 3.141592653589793d)) * 1.0f * f7);
+        canvas.translate(((float) Math.cos(this.d * currentTimeMillis * 3.141592653589793d)) * AndroidUtilities.dp(0.5f) * f7, ((float) Math.sin(currentTimeMillis * this.e * 3.141592653589793d)) * AndroidUtilities.dp(0.5f) * f7);
+        canvas.translate(-0.0f, -0.0f);
+        if (f7 > 0.0f && (uuVar = this.f33317a) != null) {
+            uuVar.run();
         }
     }
 }

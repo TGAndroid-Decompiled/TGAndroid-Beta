@@ -3,42 +3,42 @@ package org.telegram.ui.Components.voip;
 import android.animation.ValueAnimator;
 import org.telegram.messenger.AndroidUtilities;
 public final class w2 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f31815a;
-    public final x2 f31816b;
+    public final int f31996a;
+    public final x2 f31997b;
 
     public w2(x2 x2Var, int i10) {
-        this.f31815a = i10;
-        this.f31816b = x2Var;
+        this.f31996a = i10;
+        this.f31997b = x2Var;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f31815a) {
+        switch (this.f31996a) {
             case 0:
-                x2 x2Var = this.f31816b;
+                x2 x2Var = this.f31997b;
                 x2Var.getClass();
                 int intValue = ((Integer) valueAnimator.getAnimatedValue()).intValue();
                 x2Var.d = intValue;
                 x2Var.e = intValue;
-                x2Var.f31829f = intValue;
+                x2Var.f32010f = intValue;
                 x2Var.h = intValue;
-                x2Var.f31830n = intValue;
+                x2Var.f32011n = intValue;
                 x2Var.invalidate();
                 return;
             default:
-                x2 x2Var2 = this.f31816b;
+                x2 x2Var2 = this.f31997b;
                 x2Var2.getClass();
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 x2Var2.d = AndroidUtilities.lerp(x2Var2.F, AndroidUtilities.dp(56.0f), floatValue);
                 x2Var2.e = AndroidUtilities.lerp(x2Var2.F, AndroidUtilities.dp(36.0f), floatValue);
-                x2Var2.f31829f = AndroidUtilities.lerp(x2Var2.F, AndroidUtilities.dp(60.0f), floatValue);
+                x2Var2.f32010f = AndroidUtilities.lerp(x2Var2.F, AndroidUtilities.dp(60.0f), floatValue);
                 x2Var2.h = AndroidUtilities.lerp(x2Var2.F, AndroidUtilities.dp(36.0f), floatValue);
-                x2Var2.f31830n = AndroidUtilities.lerp(x2Var2.F, AndroidUtilities.dp(64.0f), floatValue);
-                x2Var2.f31831r = AndroidUtilities.lerp(0, AndroidUtilities.dp(50.0f), floatValue);
-                x2Var2.f31832s = AndroidUtilities.lerp(0, AndroidUtilities.dp(20.0f), floatValue);
+                x2Var2.f32011n = AndroidUtilities.lerp(x2Var2.F, AndroidUtilities.dp(64.0f), floatValue);
+                x2Var2.f32012r = AndroidUtilities.lerp(0, AndroidUtilities.dp(50.0f), floatValue);
+                x2Var2.f32013s = AndroidUtilities.lerp(0, AndroidUtilities.dp(20.0f), floatValue);
                 x2Var2.v = AndroidUtilities.lerp(0, 0, floatValue);
-                x2Var2.f31833w = AndroidUtilities.lerp(0, AndroidUtilities.dp(-20.0f), floatValue);
-                x2Var2.f31834x = AndroidUtilities.lerp(0, AndroidUtilities.dp(-40.0f), floatValue);
+                x2Var2.f32014w = AndroidUtilities.lerp(0, AndroidUtilities.dp(-20.0f), floatValue);
+                x2Var2.f32015x = AndroidUtilities.lerp(0, AndroidUtilities.dp(-40.0f), floatValue);
                 x2Var2.invalidate();
                 return;
         }

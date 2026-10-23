@@ -3,13 +3,13 @@ public abstract class p7 {
     public static void a(df.s sVar, df.s sVar2, int i10) {
         if (sVar != null && sVar2 != null && sVar != sVar2) {
             StringBuilder sb2 = new StringBuilder(i10);
-            sb2.append(sVar.f7988g);
-            df.p pVar = (df.p) sVar2.f7986f;
-            for (df.p pVar2 = (df.p) sVar.f7986f; pVar2 != pVar; pVar2 = (df.p) pVar2.f7986f) {
-                sb2.append(((df.s) pVar2).f7988g);
+            sb2.append(sVar.f8000g);
+            df.p pVar = (df.p) sVar2.f7998f;
+            for (df.p pVar2 = (df.p) sVar.f7998f; pVar2 != pVar; pVar2 = (df.p) pVar2.f7998f) {
+                sb2.append(((df.s) pVar2).f8000g);
                 pVar2.g();
             }
-            sVar.f7988g = sb2.toString();
+            sVar.f8000g = sb2.toString();
         }
     }
 
@@ -23,7 +23,7 @@ public abstract class p7 {
                 if (sVar == null) {
                     sVar = sVar2;
                 }
-                i10 = sVar2.f7988g.length() + i10;
+                i10 = sVar2.f8000g.length() + i10;
             } else {
                 a(sVar, sVar2, i10);
                 sVar = null;
@@ -33,7 +33,7 @@ public abstract class p7 {
             if (pVar == pVar2) {
                 break;
             }
-            pVar = (df.p) pVar.f7986f;
+            pVar = (df.p) pVar.f7998f;
         }
         a(sVar, sVar2, i10);
     }

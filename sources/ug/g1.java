@@ -1,35 +1,19 @@
 package ug;
 
 import android.content.Context;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.Components.jm0;
-public final class g1 extends yg.h {
-    public boolean J;
-    public final m1 K;
+import android.graphics.Canvas;
+import android.view.View;
+import org.telegram.ui.ActionBar.k6;
+public final class g1 extends View {
+    public final l1 f48126a;
 
-    public g1(m1 m1Var, Context context, d6 d6Var) {
-        super(context, d6Var);
-        this.K = m1Var;
+    public g1(l1 l1Var, Context context) {
+        super(context);
+        this.f48126a = l1Var;
     }
 
     @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        int dp = AndroidUtilities.dp(64.0f) + getMeasuredHeight();
-        m1 m1Var = this.K;
-        m1Var.f47729q0 = dp;
-        m1Var.f47728p0.G();
-        if (this.J != m1Var.isKeyboardVisible()) {
-            boolean isKeyboardVisible = m1Var.isKeyboardVisible();
-            this.J = isKeyboardVisible;
-            if (isKeyboardVisible) {
-                jm0 jm0Var = m1Var.d;
-                li.n nVar = new li.n(m1Var.getContext(), 2, 0.6f);
-                nVar.f46062a = 1;
-                nVar.f16144p = AndroidUtilities.dp(36.0f);
-                jm0Var.getLayoutManager().w0(nVar);
-            }
-        }
+    public final void onDraw(Canvas canvas) {
+        canvas.drawColor(this.f48126a.getThemedColor(k6.e7));
     }
 }

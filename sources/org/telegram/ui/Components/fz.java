@@ -2,39 +2,39 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import org.telegram.messenger.LiteMode;
-public final class fz extends rx0 {
-    public final int f26446x3;
-    public final gz y3;
+public final class fz extends ux0 {
+    public final int A3;
+    public final gz B3;
 
-    public fz(gz gzVar, Context context, int i10, org.telegram.ui.ActionBar.d6 d6Var, int i11) {
-        super(context, i10, d6Var);
-        this.y3 = gzVar;
-        this.f26446x3 = i11;
+    public fz(gz gzVar, Context context, int i10, org.telegram.ui.ActionBar.g6 g6Var, int i11) {
+        super(context, i10, g6Var);
+        this.B3 = gzVar;
+        this.A3 = i11;
     }
 
     @Override
-    public final boolean B1() {
+    public final boolean G1() {
         return LiteMode.isEnabled(8200);
     }
 
     @Override
-    public final void F1(int i10) {
+    public final void K1(int i10) {
         boolean z10;
         ex exVar;
         vx vxVar;
-        super.F1(i10);
-        gz gzVar = this.y3;
+        super.K1(i10);
+        gz gzVar = this.B3;
         tz tzVar = gzVar.G;
-        fz fzVar = gzVar.f26697r;
+        fz fzVar = gzVar.f26745r;
         boolean z11 = true;
         if (fzVar.getSelectedCategory() == null) {
             z10 = true;
         } else {
             z10 = false;
         }
-        int i11 = tz.O2;
+        int i11 = tz.U2;
         tzVar.M(z10);
-        int i12 = this.f26446x3;
+        int i12 = this.A3;
         if (i12 == 1 && (vxVar = tzVar.I) != null) {
             if (fzVar.getSelectedCategory() != null) {
                 z11 = false;
@@ -44,7 +44,7 @@ public final class fz extends rx0 {
             if (fzVar.getSelectedCategory() != null) {
                 z11 = false;
             }
-            exVar.f26945o0 = z11;
+            exVar.f28086o0 = z11;
             exVar.invalidate();
         }
         gzVar.g(false);

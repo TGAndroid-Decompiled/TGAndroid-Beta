@@ -16,15 +16,15 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.bh0;
 import org.telegram.ui.Components.bs;
+import org.telegram.ui.Components.eh0;
 public final class v9 implements View.OnClickListener {
-    public final int f9944a;
-    public final vb f9945b;
+    public final int f9961a;
+    public final vb f9962b;
 
     public v9(vb vbVar, int i10) {
-        this.f9944a = i10;
-        this.f9945b = vbVar;
+        this.f9961a = i10;
+        this.f9962b = vbVar;
     }
 
     @Override
@@ -37,49 +37,49 @@ public final class v9 implements View.OnClickListener {
         int i11;
         int i12;
         y yVar;
-        int i13 = this.f9944a;
+        int i13 = this.f9961a;
         boolean z11 = false;
-        vb vbVar = this.f9945b;
+        vb vbVar = this.f9962b;
         switch (i13) {
             case 0:
-                vb vbVar2 = this.f9945b;
-                if (vbVar2.K1 != null && vbVar2.C2 == null && vbVar2.f9975i1 != null) {
+                vb vbVar2 = this.f9962b;
+                if (vbVar2.K1 != null && vbVar2.C2 == null && vbVar2.f9992i1 != null) {
                     ValueAnimator valueAnimator = vbVar2.E2;
                     if (valueAnimator == null || !valueAnimator.isRunning()) {
-                        boolean z12 = vbVar2.K1.f8743y0;
-                        Bitmap createBitmap = Bitmap.createBitmap(vbVar2.f9987n.getWidth(), vbVar2.f9987n.getHeight(), Bitmap.Config.ARGB_8888);
+                        boolean z12 = vbVar2.K1.f8752y0;
+                        Bitmap createBitmap = Bitmap.createBitmap(vbVar2.f10004n.getWidth(), vbVar2.f10004n.getHeight(), Bitmap.Config.ARGB_8888);
                         Canvas canvas = new Canvas(createBitmap);
-                        vbVar2.f9975i1.setAlpha(0.0f);
+                        vbVar2.f9992i1.setAlpha(0.0f);
                         jb jbVar = vbVar2.X0;
                         if (jbVar != null) {
-                            jbVar.f9715g0 = true;
+                            jbVar.f9731g0 = true;
                         }
-                        xa xaVar = vbVar2.f10015v1;
+                        xa xaVar = vbVar2.f10032v1;
                         if (xaVar != null) {
                             xaVar.I0 = true;
                         }
-                        vbVar2.f9987n.draw(canvas);
+                        vbVar2.f10004n.draw(canvas);
                         jb jbVar2 = vbVar2.X0;
                         if (jbVar2 != null) {
-                            jbVar2.f9715g0 = false;
+                            jbVar2.f9731g0 = false;
                         }
-                        xa xaVar2 = vbVar2.f10015v1;
+                        xa xaVar2 = vbVar2.f10032v1;
                         if (xaVar2 != null) {
                             xaVar2.I0 = false;
                         }
-                        vbVar2.f9975i1.setAlpha(1.0f);
+                        vbVar2.f9992i1.setAlpha(1.0f);
                         Paint paint = new Paint(1);
                         paint.setColor(-16777216);
                         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
                         Paint paint2 = new Paint(1);
                         paint2.setFilterBitmap(true);
                         int[] iArr = new int[2];
-                        vbVar2.f9975i1.getLocationInWindow(iArr);
+                        vbVar2.f9992i1.getLocationInWindow(iArr);
                         float f7 = iArr[0];
                         float f10 = iArr[1];
                         Shader.TileMode tileMode = Shader.TileMode.CLAMP;
                         paint2.setShader(new BitmapShader(createBitmap, tileMode, tileMode));
-                        db dbVar = new db(vbVar2, vbVar2.f9950b, z12, canvas, (vbVar2.f9975i1.getMeasuredWidth() / 2.0f) + f7, (vbVar2.f9975i1.getMeasuredHeight() / 2.0f) + f10, Math.max(createBitmap.getHeight(), createBitmap.getWidth()) + AndroidUtilities.navigationBarHeight, paint, createBitmap, paint2, f7, f10, 0);
+                        db dbVar = new db(vbVar2, vbVar2.f9967b, z12, canvas, (vbVar2.f9992i1.getMeasuredWidth() / 2.0f) + f7, (vbVar2.f9992i1.getMeasuredHeight() / 2.0f) + f10, Math.max(createBitmap.getHeight(), createBitmap.getWidth()) + AndroidUtilities.navigationBarHeight, paint, createBitmap, paint2, f7, f10);
                         vbVar2.C2 = dbVar;
                         dbVar.setOnTouchListener(new di.d(2));
                         vbVar2.D2 = 0.0f;
@@ -97,13 +97,13 @@ public final class v9 implements View.OnClickListener {
                         valueAnimator2.setDuration(j10);
                         ValueAnimator valueAnimator3 = vbVar2.E2;
                         if (z12) {
-                            bsVar = bs.f25027i;
+                            bsVar = bs.f25135i;
                         } else {
                             bsVar = bs.h;
                         }
                         valueAnimator3.setInterpolator(bsVar);
                         vbVar2.E2.start();
-                        vbVar2.f9987n.addView(vbVar2.C2, new ViewGroup.LayoutParams(-1, -1));
+                        vbVar2.f10004n.addView(vbVar2.C2, new ViewGroup.LayoutParams(-1, -1));
                         AndroidUtilities.runOnUIThread(new t9(vbVar2, 4));
                         return;
                     }
@@ -130,15 +130,15 @@ public final class v9 implements View.OnClickListener {
                             ((a8) obj).Y = vbVar.K1.Y;
                         }
                     }
-                    boolean isEmpty = TextUtils.isEmpty(vbVar.K1.f8742y);
+                    boolean isEmpty = TextUtils.isEmpty(vbVar.K1.f8751y);
                     a8 a8Var2 = vbVar.K1;
-                    if (a8Var2.f8724o0 != null) {
+                    if (a8Var2.f8733o0 != null) {
                         z10 = true;
                     } else {
                         z10 = false;
                     }
-                    if (vbVar.f9968g0 == -1) {
-                        x3 x3Var = vbVar.f9981k1;
+                    if (vbVar.f9985g0 == -1) {
+                        x3 x3Var = vbVar.f9998k1;
                         if (a8Var2.Y) {
                             if (isEmpty && !z10) {
                                 i11 = R.string.StorySoundMuted;
@@ -154,7 +154,7 @@ public final class v9 implements View.OnClickListener {
                             }
                             string = LocaleController.getString(i10);
                         }
-                        boolean z13 = vbVar.f9981k1.V;
+                        boolean z13 = vbVar.f9998k1.V;
                         if (x3Var.getMeasuredWidth() < 0) {
                             x3Var.G = string;
                         } else {
@@ -164,7 +164,7 @@ public final class v9 implements View.OnClickListener {
                             }
                             p6Var.t(string, z11, true);
                         }
-                        vbVar.f9981k1.u();
+                        vbVar.f9998k1.u();
                     }
                     vbVar.e0(vbVar.K1.Y, true);
                     vbVar.X0.c();
@@ -174,7 +174,7 @@ public final class v9 implements View.OnClickListener {
             case 3:
                 boolean k10 = vbVar.X0.k();
                 vbVar.X0.x(-9982, k10);
-                ((bh0) vbVar.f9978j1.f9070c).a(!k10, true);
+                ((eh0) vbVar.f9995j1.f9080c).a(!k10, true);
                 return;
             case 4:
                 if (vbVar.B0 != null && !vbVar.S1) {
@@ -184,10 +184,10 @@ public final class v9 implements View.OnClickListener {
                         ya yaVar = vbVar.B0;
                         if (yaVar != null && yaVar.getCameraSession() != null) {
                             if (vbVar.B0.isFrontface() && !vbVar.B0.getCameraSession().hasFlashModes()) {
-                                int indexOf = vbVar.f10013u2.indexOf(E);
+                                int indexOf = vbVar.f10030u2.indexOf(E);
                                 if (indexOf >= 0) {
-                                    vbVar.f10010t2 = indexOf;
-                                    MessagesController.getGlobalMainSettings().edit().putInt("frontflash", vbVar.f10010t2).apply();
+                                    vbVar.f10027t2 = indexOf;
+                                    MessagesController.getGlobalMainSettings().edit().putInt("frontflash", vbVar.f10027t2).apply();
                                 }
                             } else {
                                 vbVar.B0.getCameraSession().setCurrentFlashMode(E);
@@ -201,7 +201,7 @@ public final class v9 implements View.OnClickListener {
                 return;
             case 5:
                 ya yaVar2 = vbVar.B0;
-                if (yaVar2 != null && vbVar.f9965f0 == 0) {
+                if (yaVar2 != null && vbVar.f9982f0 == 0) {
                     yaVar2.toggleDual();
                     vbVar.F0.setValue(vbVar.B0.isDual());
                     ic icVar = vbVar.F0;
@@ -213,23 +213,23 @@ public final class v9 implements View.OnClickListener {
                     icVar.setContentDescription(LocaleController.getString(i12));
                     vbVar.l1.e(true);
                     MessagesController.getGlobalMainSettings().edit().putInt("storydualhint", 2).apply();
-                    if (vbVar.f9985m1.V) {
+                    if (vbVar.f10002m1.V) {
                         MessagesController.getGlobalMainSettings().edit().putInt("storysvddualhint", 2).apply();
                     }
-                    vbVar.f9985m1.e(true);
+                    vbVar.f10002m1.e(true);
                     return;
                 }
                 return;
             case 6:
-                if (vbVar.f9965f0 == 0 && !vbVar.a2) {
+                if (vbVar.f9982f0 == 0 && !vbVar.a2) {
                     ya yaVar3 = vbVar.B0;
                     if (yaVar3 != null && yaVar3.isDual()) {
                         vbVar.B0.toggleDual();
                     }
                     if (!vbVar.I0.e && !vbVar.A0.j()) {
-                        vbVar.A0.o(vbVar.f10029z0);
-                        vbVar.I0.setSelected(vbVar.f10029z0);
-                        vbVar.G0.a(new u(vbVar.f10029z0, false), true);
+                        vbVar.A0.o(vbVar.f10046z0);
+                        vbVar.I0.setSelected(vbVar.f10046z0);
+                        vbVar.G0.a(new u(vbVar.f10046z0, false), true);
                         vbVar.G0.setSelected(true);
                         ya yaVar4 = vbVar.B0;
                         if (yaVar4 != null) {
@@ -268,15 +268,15 @@ public final class v9 implements View.OnClickListener {
                 return;
             case 9:
                 ya yaVar6 = vbVar.B0;
-                if (yaVar6 != null && !vbVar.S1 && !vbVar.P1 && yaVar6.isInited() && vbVar.f9965f0 == 0) {
+                if (yaVar6 != null && !vbVar.S1 && !vbVar.P1 && yaVar6.isInited() && vbVar.f9982f0 == 0) {
                     vbVar.B0.switchCamera();
                     vbVar.O0.d(180.0f);
                     vb.Z(vbVar.B0.isFrontface());
                     if (vbVar.p0()) {
-                        vbVar.f10004s.c(null);
+                        vbVar.f10021s.c(null);
                         return;
                     } else {
-                        vbVar.f10004s.d();
+                        vbVar.f10021s.d();
                         return;
                     }
                 }
@@ -287,11 +287,11 @@ public final class v9 implements View.OnClickListener {
             case 11:
                 a8 a8Var3 = vbVar.K1;
                 if (a8Var3 != null) {
-                    a8Var3.f8708f0 = true;
-                    a8Var3.f8705e0 = vbVar.M1;
+                    a8Var3.f8717f0 = true;
+                    a8Var3.f8714e0 = vbVar.M1;
                     vbVar.W();
                     a8 a8Var4 = vbVar.K1;
-                    if (a8Var4 != null && !a8Var4.f8698b0) {
+                    if (a8Var4 != null && !a8Var4.f8707b0) {
                         AndroidUtilities.runOnUIThread(new t9(vbVar, 24), 400L);
                         return;
                     }
@@ -299,7 +299,7 @@ public final class v9 implements View.OnClickListener {
                 }
                 return;
             case 12:
-                if (vbVar.f10007s2) {
+                if (vbVar.f10024s2) {
                     vbVar.Y(true);
                     return;
                 }

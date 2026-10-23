@@ -1,61 +1,55 @@
 package org.telegram.ui.ActionBar;
 
-import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
-import android.os.SystemClock;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.MediaController;
-public final class o5 implements SensorEventListener {
+import org.telegram.ui.Components.bs;
+import org.telegram.ui.Components.eq;
+public abstract class o5 extends TextView {
+    public boolean f21742a;
+    public final org.telegram.ui.Components.f6 f21743b;
+    public final eq f21744c;
+
+    public o5(Context context) {
+        super(context);
+        this.f21742a = false;
+        this.f21743b = new org.telegram.ui.Components.f6(this, 320L, bs.h);
+        this.f21744c = new eq(-1);
+    }
+
     @Override
-    public final void onSensorChanged(SensorEvent sensorEvent) {
-        float f7 = sensorEvent.values[0];
-        if (f7 <= 0.0f) {
-            f7 = 0.1f;
-        }
-        if (!ApplicationLoader.mainInterfacePaused && ApplicationLoader.isScreenOn) {
-            if (f7 > 500.0f) {
-                h6.h = 1.0f;
+    public final void onDraw(Canvas canvas) {
+        Canvas canvas2;
+        float e = this.f21743b.e(this.f21742a);
+        if (e < 1.0f) {
+            if (e <= 0.0f) {
+                canvas.save();
+                canvas2 = canvas;
             } else {
-                h6.h = ((float) Math.ceil((Math.log(f7) * 9.932299613952637d) + 27.05900001525879d)) / 100.0f;
+                canvas2 = canvas;
+                canvas2.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) ((1.0f - e) * 255.0f), 31);
             }
-            long j10 = 1800;
-            if (h6.h <= h6.f21225q) {
-                if (!MediaController.getInstance().isRecordingOrListeningByProximity()) {
-                    if (h6.f21094j) {
-                        h6.f21094j = false;
-                        AndroidUtilities.cancelRunOnUIThread(h6.f21133l);
-                    }
-                    if (!h6.f21114k) {
-                        h6.f21114k = true;
-                        androidx.emoji2.text.n nVar = h6.f21151m;
-                        if (Math.abs(h6.f21076i - SystemClock.elapsedRealtime()) < 12000) {
-                            j10 = 12000;
-                        }
-                        AndroidUtilities.runOnUIThread(nVar, j10);
-                        return;
-                    }
-                    return;
-                }
-                return;
-            }
-            if (h6.f21114k) {
-                h6.f21114k = false;
-                AndroidUtilities.cancelRunOnUIThread(h6.f21151m);
-            }
-            if (!h6.f21094j) {
-                h6.f21094j = true;
-                androidx.emoji2.text.n nVar2 = h6.f21133l;
-                if (Math.abs(h6.f21076i - SystemClock.elapsedRealtime()) < 12000) {
-                    j10 = 12000;
-                }
-                AndroidUtilities.runOnUIThread(nVar2, j10);
-            }
+            canvas2.translate(0.0f, AndroidUtilities.dp(6.0f) * e);
+            super.onDraw(canvas2);
+            canvas2.restore();
+        } else {
+            canvas2 = canvas;
+        }
+        if (e > 0.0f) {
+            int height = getHeight() / 2;
+            int width = (getWidth() / 2) - ((int) ((1.0f - e) * AndroidUtilities.dp(6.0f)));
+            eq eqVar = this.f21744c;
+            eqVar.setAlpha((int) (e * 255.0f));
+            eqVar.setBounds(width - (eqVar.getIntrinsicWidth() / 2), height - (eqVar.getIntrinsicWidth() / 2), (eqVar.getIntrinsicWidth() / 2) + width, (eqVar.getIntrinsicHeight() / 2) + height);
+            eqVar.draw(canvas2);
+            invalidate();
         }
     }
 
     @Override
-    public final void onAccuracyChanged(Sensor sensor, int i10) {
+    public void setTextColor(int i10) {
+        super.setTextColor(i10);
+        this.f21744c.b(i10);
     }
 }

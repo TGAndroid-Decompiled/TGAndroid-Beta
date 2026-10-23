@@ -1,15 +1,15 @@
 package z7;
 public final class v {
-    public static final v f51199a;
-    public static final v[] f51200b;
+    public static final v f51659a;
+    public static final v[] f51660b;
 
     static {
         ?? r02 = new Enum("DEFAULT", 0);
-        f51199a = r02;
-        f51200b = new v[]{r02, new Enum("SIGNED", 1), new Enum("FIXED", 2)};
+        f51659a = r02;
+        f51660b = new v[]{r02, new Enum("SIGNED", 1), new Enum("FIXED", 2)};
     }
 
     public static v[] values() {
-        return (v[]) f51200b.clone();
+        return (v[]) f51660b.clone();
     }
 }

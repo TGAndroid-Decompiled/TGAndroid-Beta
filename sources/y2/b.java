@@ -2,12 +2,12 @@ package y2;
 
 import android.os.Handler;
 public final class b {
-    public final Handler f49901a;
-    public final j2.f f49902b;
-    public boolean f49903c;
+    public final Handler f50341a;
+    public final j2.e f50342b;
+    public boolean f50343c;
 
-    public b(Handler handler, j2.f fVar) {
-        this.f49901a = handler;
-        this.f49902b = fVar;
+    public b(Handler handler, j2.e eVar) {
+        this.f50341a = handler;
+        this.f50342b = eVar;
     }
 }

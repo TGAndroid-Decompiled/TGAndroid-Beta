@@ -1,210 +1,167 @@
 package rg;
 
-import android.animation.ValueAnimator;
+import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Rect;
+import android.graphics.Paint;
 import android.graphics.RectF;
-import android.view.View;
-import android.view.ViewGroup;
-import ci.g9;
-import j$.util.Objects;
+import com.google.android.gms.internal.play_billing.k3;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.bs;
-import org.telegram.ui.Components.f6;
-import org.telegram.ui.Components.fl0;
-import org.telegram.ui.Components.fw0;
-import org.telegram.ui.Components.nl0;
-public final class b2 extends j {
-    public fw0 f45300q0;
-    public g9 f45301r0;
-    public g9 f45302s0;
-    public ah.y0 f45303t0;
-    public ah.y0 f45304u0;
-    public ah.i1 f45305v0;
-    public f6 f45306w0;
-    public f6 f45307x0;
-    public boolean f45308y0;
-    public float f45309z0;
+public final class b2 extends i {
+    public final int f45721n;
+    public RectF f45722r;
 
-    @Override
-    public final i a() {
-        a2 a2Var = new a2(this, getContext(), 0);
-        a2Var.f45290r = new RectF();
-        return a2Var;
+    public b2(j jVar, Context context, int i10) {
+        super(jVar, context);
+        this.f45721n = i10;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        int i10;
-        fw0 fw0Var = this.f45300q0;
-        int padding = getPadding();
-        float d = this.f45307x0.d(1.0f, false);
-        if (d == 1.0f) {
-            this.f45302s0 = null;
+    public final int a(float f7, float f10) {
+        float measuredWidth;
+        float measuredWidth2;
+        float measuredWidth3;
+        switch (this.f45721n) {
+            case 0:
+                float dp = AndroidUtilities.dp(19.5f);
+                float dp2 = AndroidUtilities.dp(1.0f) + dp;
+                float f11 = dp2 * 2.0f;
+                float z10 = k3.z(getMeasuredHeight(), f11, 2.0f, dp2);
+                if (f7 > dp2 - dp && f10 > z10 - dp && f7 < dp2 + dp && f10 < z10 + dp) {
+                    return 1;
+                }
+                if (f7 > ((getMeasuredWidth() - f11) + dp2) - dp && f10 > z10 - dp && f7 < (getMeasuredWidth() - f11) + dp2 + dp && f10 < z10 + dp) {
+                    return 2;
+                }
+                if (Math.pow(f10 - measuredWidth, 2.0d) + Math.pow(f7 - measuredWidth, 2.0d) < Math.pow(getMeasuredWidth() / 2.0f, 2.0d)) {
+                    return 3;
+                }
+                return 0;
+            case 1:
+                float dp3 = AndroidUtilities.dp(19.5f);
+                float dp4 = AndroidUtilities.dp(1.0f) + dp3;
+                float f12 = dp4 * 2.0f;
+                float z11 = k3.z(getMeasuredHeight(), f12, 2.0f, dp4);
+                if (f7 > dp4 - dp3 && f10 > z11 - dp3 && f7 < dp4 + dp3 && f10 < z11 + dp3) {
+                    return 1;
+                }
+                if (f7 > ((getMeasuredWidth() - f12) + dp4) - dp3 && f10 > z11 - dp3 && f7 < (getMeasuredWidth() - f12) + dp4 + dp3 && f10 < z11 + dp3) {
+                    return 2;
+                }
+                if (Math.pow(f10 - measuredWidth2, 2.0d) + Math.pow(f7 - measuredWidth2, 2.0d) < Math.pow(getMeasuredWidth() / 2.0f, 2.0d)) {
+                    return 3;
+                }
+                return 0;
+            default:
+                float dp5 = AndroidUtilities.dp(19.5f);
+                float dp6 = AndroidUtilities.dp(1.0f) + dp5;
+                float f13 = dp6 * 2.0f;
+                float z12 = k3.z(getMeasuredHeight(), f13, 2.0f, dp6);
+                if (f7 > dp6 - dp5 && f10 > z12 - dp5 && f7 < dp6 + dp5 && f10 < z12 + dp5) {
+                    return 1;
+                }
+                if (f7 > ((getMeasuredWidth() - f13) + dp6) - dp5 && f10 > z12 - dp5 && f7 < (getMeasuredWidth() - f13) + dp6 + dp5 && f10 < z12 + dp5) {
+                    return 2;
+                }
+                if (Math.pow(f10 - measuredWidth3, 2.0d) + Math.pow(f7 - measuredWidth3, 2.0d) < Math.pow(getMeasuredWidth() / 2.0f, 2.0d)) {
+                    return 3;
+                }
+                return 0;
         }
-        canvas.save();
-        float f7 = this.f45309z0;
-        canvas.scale(f7, f7, getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f);
-        g9 g9Var = this.f45302s0;
-        if (g9Var != null) {
-            g9Var.e = (int) ((1.0f - d) * 255.0f);
-            g9Var.setBounds(padding, padding, ((int) fw0Var.f26432a) - padding, ((int) fw0Var.f26433b) - padding);
-            this.f45302s0.draw(canvas);
-        }
-        g9 g9Var2 = this.f45301r0;
-        g9Var2.e = (int) (d * 255.0f);
-        g9Var2.setBounds(padding, padding, ((int) fw0Var.f26432a) - padding, ((int) fw0Var.f26433b) - padding);
-        this.f45301r0.draw(canvas);
-        Rect rect = AndroidUtilities.rectTmp2;
-        float width = (this.f45301r0.getBounds().width() * 0.61f) / 2.0f;
-        rect.set((int) (this.f45301r0.getBounds().centerX() - width), (int) (this.f45301r0.getBounds().centerY() - width), (int) (this.f45301r0.getBounds().centerX() + width), (int) (this.f45301r0.getBounds().centerY() + width));
-        float d10 = this.f45306w0.d(1.0f, false);
-        this.f45303t0.c(rect);
-        this.f45304u0.c(rect);
-        ah.y0 y0Var = this.f45303t0;
-        if (this.f45301r0.f5426a == 1) {
-            i10 = -1;
-        } else {
-            i10 = -16777216;
-        }
-        y0Var.d(i10);
-        if (d10 == 1.0f) {
-            this.f45303t0.a(canvas);
-        } else {
-            canvas.save();
-            float f10 = 1.0f - d10;
-            canvas.scale(f10, f10, rect.centerX(), rect.top);
-            ah.y0 y0Var2 = this.f45304u0;
-            y0Var2.h = f10;
-            y0Var2.a(canvas);
-            canvas.restore();
-            canvas.save();
-            canvas.scale(d10, d10, rect.centerX(), rect.bottom);
-            ah.y0 y0Var3 = this.f45303t0;
-            y0Var3.h = d10;
-            y0Var3.a(canvas);
-            canvas.restore();
-        }
-        canvas.restore();
-    }
-
-    public ah.i1 getCurrentReaction() {
-        return this.f45305v0;
     }
 
     @Override
-    public float getMaxScale() {
-        return 1.8f;
-    }
-
-    @Override
-    public float getMinScale() {
-        return 0.5f;
-    }
-
-    public int getPadding() {
-        return (int) ((this.f45300q0.f26433b - AndroidUtilities.dp(84.0f)) / 2.0f);
-    }
-
-    @Override
-    public fl0 getSelectionBounds() {
-        ViewGroup viewGroup = (ViewGroup) getParent();
-        if (viewGroup == null) {
-            return new Object();
+    public final void onDraw(Canvas canvas) {
+        switch (this.f45721n) {
+            case 0:
+                RectF rectF = this.f45722r;
+                super.onDraw(canvas);
+                int saveCount = canvas.getSaveCount();
+                float showAlpha = getShowAlpha();
+                if (showAlpha > 0.0f) {
+                    if (showAlpha < 1.0f) {
+                        canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) (showAlpha * 255.0f), 31);
+                    }
+                    float dpf2 = AndroidUtilities.dpf2(5.66f);
+                    float dp = AndroidUtilities.dp(1.0f) + dpf2 + AndroidUtilities.dp(15.0f);
+                    float measuredWidth = (getMeasuredWidth() / 2) - dp;
+                    float f7 = (2.0f * measuredWidth) + dp;
+                    rectF.set(dp, dp, f7, f7);
+                    Paint paint = this.f45793a;
+                    canvas.drawArc(rectF, 0.0f, 180.0f, false, paint);
+                    canvas.drawArc(rectF, 180.0f, 180.0f, false, paint);
+                    float f10 = measuredWidth + dp;
+                    Paint paint2 = this.f45795c;
+                    canvas.drawCircle(dp, f10, dpf2, paint2);
+                    Paint paint3 = this.f45794b;
+                    canvas.drawCircle(dp, f10, dpf2 - AndroidUtilities.dp(1.0f), paint3);
+                    canvas.drawCircle(f7, f10, dpf2, paint2);
+                    canvas.drawCircle(f7, f10, dpf2 - AndroidUtilities.dp(1.0f), paint3);
+                    canvas.restoreToCount(saveCount);
+                    return;
+                }
+                return;
+            case 1:
+                RectF rectF2 = this.f45722r;
+                super.onDraw(canvas);
+                int saveCount2 = canvas.getSaveCount();
+                float showAlpha2 = getShowAlpha();
+                if (showAlpha2 > 0.0f) {
+                    if (showAlpha2 < 1.0f) {
+                        canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) (showAlpha2 * 255.0f), 31);
+                    }
+                    float dpf22 = AndroidUtilities.dpf2(5.66f);
+                    float dp2 = AndroidUtilities.dp(1.0f) + dpf22 + AndroidUtilities.dp(15.0f);
+                    float measuredWidth2 = (getMeasuredWidth() / 2.0f) - dp2;
+                    float f11 = (2.0f * measuredWidth2) + dp2;
+                    rectF2.set(dp2, dp2, f11, f11);
+                    Paint paint4 = this.f45793a;
+                    canvas.drawArc(rectF2, 0.0f, 180.0f, false, paint4);
+                    canvas.drawArc(rectF2, 180.0f, 180.0f, false, paint4);
+                    float f12 = measuredWidth2 + dp2;
+                    Paint paint5 = this.f45795c;
+                    canvas.drawCircle(dp2, f12, dpf22, paint5);
+                    Paint paint6 = this.f45794b;
+                    canvas.drawCircle(dp2, f12, dpf22 - AndroidUtilities.dp(1.0f), paint6);
+                    canvas.drawCircle(f11, f12, dpf22, paint5);
+                    canvas.drawCircle(f11, f12, dpf22 - AndroidUtilities.dp(1.0f), paint6);
+                    canvas.restoreToCount(saveCount2);
+                    return;
+                }
+                return;
+            default:
+                RectF rectF3 = this.f45722r;
+                super.onDraw(canvas);
+                int saveCount3 = canvas.getSaveCount();
+                float showAlpha3 = getShowAlpha();
+                if (showAlpha3 > 0.0f) {
+                    if (showAlpha3 < 1.0f) {
+                        canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) (showAlpha3 * 255.0f), 31);
+                    }
+                    float dpf23 = AndroidUtilities.dpf2(5.66f);
+                    float dp3 = AndroidUtilities.dp(1.0f) + dpf23 + AndroidUtilities.dp(15.0f);
+                    float measuredWidth3 = (getMeasuredWidth() / 2) - dp3;
+                    float f13 = (2.0f * measuredWidth3) + dp3;
+                    rectF3.set(dp3, dp3, f13, f13);
+                    Paint paint7 = this.f45793a;
+                    canvas.drawArc(rectF3, 0.0f, 180.0f, false, paint7);
+                    canvas.drawArc(rectF3, 180.0f, 180.0f, false, paint7);
+                    float f14 = measuredWidth3 + dp3;
+                    Paint paint8 = this.f45795c;
+                    canvas.drawCircle(dp3, f14, dpf23, paint8);
+                    Paint paint9 = this.f45794b;
+                    canvas.drawCircle(dp3, f14, dpf23 - AndroidUtilities.dp(1.0f), paint9);
+                    canvas.drawCircle(f13, f14, dpf23, paint8);
+                    canvas.drawCircle(f13, f14, dpf23 - AndroidUtilities.dp(1.0f), paint9);
+                    canvas.restoreToCount(saveCount3);
+                    return;
+                }
+                return;
         }
-        float scaleX = viewGroup.getScaleX();
-        float scale = (getScale() + 0.4f) * getMeasuredWidth();
-        float f7 = scale / 2.0f;
-        float f10 = scale * scaleX;
-        return new fl0((getPositionX() - f7) * scaleX, (getPositionY() - f7) * scaleX, f10, f10);
     }
 
-    @Override
-    public final void k() {
-        fw0 fw0Var = this.f45300q0;
-        setX(getPositionX() - (fw0Var.f26432a / 2.0f));
-        setY(getPositionY() - (fw0Var.f26433b / 2.0f));
-        m();
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.f45303t0.b(true);
-        this.f45304u0.b(true);
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.f45303t0.b(false);
-        this.f45304u0.b(false);
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        fw0 fw0Var = this.f45300q0;
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) fw0Var.f26432a, 1073741824), View.MeasureSpec.makeMeasureSpec((int) fw0Var.f26433b, 1073741824));
-    }
-
-    public final void q(boolean z10) {
-        if (!z10) {
-            this.f45301r0.a();
-        } else {
-            this.f45302s0 = this.f45301r0;
-            g9 g9Var = new g9(this);
-            this.f45301r0 = g9Var;
-            if (this.f45302s0.f5426a != 1) {
-                g9Var.a();
-            }
-            this.f45301r0.b(this.f45308y0, false);
-            this.f45301r0.c(getScaleX());
-            this.f45307x0.d(0.0f, true);
-        }
-        invalidate();
-    }
-
-    public final void r(boolean z10) {
-        boolean z11 = !this.f45308y0;
-        this.f45308y0 = z11;
-        if (!z10) {
-            this.f45301r0.b(z11, z10);
-            return;
-        }
-        boolean[] zArr = {false};
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-        ofFloat.addUpdateListener(new ah.l0(28, this, zArr));
-        ofFloat.addListener(new nl0(20, this, zArr));
-        ofFloat.setInterpolator(bs.f25026g);
-        ofFloat.setDuration(350L);
-        ofFloat.start();
-    }
-
-    public final void s(ah.i1 i1Var, boolean z10) {
-        if (Objects.equals(this.f45305v0, i1Var)) {
-            return;
-        }
-        if (!z10) {
-            this.f45305v0 = i1Var;
-            this.f45303t0.e(i1Var);
-            invalidate();
-            return;
-        }
-        this.f45305v0 = i1Var;
-        this.f45304u0.e(i1Var);
-        ah.y0 y0Var = this.f45303t0;
-        this.f45303t0 = this.f45304u0;
-        this.f45304u0 = y0Var;
-        this.f45306w0.d(0.0f, true);
-        invalidate();
-    }
-
-    @Override
-    public void setScaleX(float f7) {
-        if (getScaleX() != f7) {
-            super.setScaleX(f7);
-            this.f45301r0.c(f7);
-            invalidate();
-        }
+    public b2(d2 d2Var, Context context) {
+        super(d2Var, context);
+        this.f45721n = 1;
+        this.f45722r = new RectF();
     }
 }

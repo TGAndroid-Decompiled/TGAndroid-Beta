@@ -1,41 +1,30 @@
 package ug;
 
-import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class n implements Runnable {
-    public final int f47739a;
-    public final TLRPC.Chat f47740b;
-    public final int f47741c;
-    public final ArrayList d;
-    public final Utilities.Callback e;
+import org.telegram.ui.Components.fy0;
+public final class n implements RequestDelegate {
+    public final int f48178a;
+    public final Utilities.Callback f48179b;
+    public final Utilities.Callback f48180c;
 
-    public n(TLRPC.Chat chat, int i10, ArrayList arrayList, Utilities.Callback callback, int i11) {
-        this.f47739a = i11;
-        this.f47740b = chat;
-        this.f47741c = i10;
-        this.d = arrayList;
-        this.e = callback;
+    public n(Utilities.Callback callback, Utilities.Callback callback2, int i10) {
+        this.f48178a = i10;
+        this.f48179b = callback;
+        this.f48180c = callback2;
     }
 
     @Override
-    public final void run() {
-        switch (this.f47739a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f48178a) {
             case 0:
-                TLRPC.Chat chat = this.f47740b;
-                ArrayList arrayList = this.d;
-                if (chat == null) {
-                    r.m(this.f47741c, arrayList);
-                }
-                this.e.run(arrayList);
+                AndroidUtilities.runOnUIThread(new fy0(tL_error, this.f48179b, this.f48180c, 25));
                 return;
             default:
-                TLRPC.Chat chat2 = this.f47740b;
-                ArrayList arrayList2 = this.d;
-                if (chat2 == null) {
-                    r.m(this.f47741c, arrayList2);
-                }
-                this.e.run(arrayList2);
+                AndroidUtilities.runOnUIThread(new si.o(tL_error, this.f48179b, tLObject, this.f48180c, 1));
                 return;
         }
     }

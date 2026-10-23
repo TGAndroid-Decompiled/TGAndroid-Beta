@@ -1,22 +1,50 @@
 package org.telegram.ui.Cells;
 
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-public final class i0 extends FrameLayout {
-    public TextView f22401a;
+import android.content.Context;
+import android.view.MotionEvent;
+import org.telegram.ui.Components.hp0;
+import org.telegram.ui.qb1;
+public final class i0 extends hp0 {
+    public final int m0;
 
-    public TextView getTextView() {
-        return this.f22401a;
+    public i0(int i10, Context context, org.telegram.ui.ActionBar.g6 g6Var, boolean z10) {
+        super(context, g6Var, z10);
+        this.m0 = i10;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(36.0f), 1073741824));
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        switch (this.m0) {
+            case 0:
+                if (motionEvent.getAction() == 0) {
+                    getParent().requestDisallowInterceptTouchEvent(true);
+                }
+                return d(motionEvent);
+            case 1:
+                if (motionEvent.getAction() == 0) {
+                    getParent().requestDisallowInterceptTouchEvent(true);
+                }
+                return d(motionEvent);
+            case 2:
+                if (motionEvent.getAction() == 0) {
+                    getParent().requestDisallowInterceptTouchEvent(true);
+                }
+                return d(motionEvent);
+            default:
+                if (motionEvent.getAction() == 0) {
+                    getParent().requestDisallowInterceptTouchEvent(true);
+                }
+                return d(motionEvent);
+        }
     }
 
-    public void setText(String str) {
-        this.f22401a.setText(str);
+    public i0(Context context) {
+        super(context);
+        this.m0 = 1;
+    }
+
+    public i0(Context context, qb1 qb1Var) {
+        super(context, qb1Var, false);
+        this.m0 = 3;
     }
 }

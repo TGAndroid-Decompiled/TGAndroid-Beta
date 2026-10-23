@@ -11,126 +11,126 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.tgnet.tl.TL_wallet;
-import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.Components.p80;
-import org.telegram.ui.Components.r80;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.Components.q80;
+import org.telegram.ui.Components.s80;
 public final class d1 implements Runnable {
-    public final int f11125a = 0;
-    public final Object f11126b;
-    public final long f11127c;
+    public final int f11144a = 0;
+    public final Object f11145b;
+    public final long f11146c;
     public final Object d;
     public final int e;
-    public final TLObject f11128f;
+    public final TLObject f11147f;
     public final Object h;
-    public final Object f11129n;
-    public final Object f11130r;
-    public final Object f11131s;
+    public final Object f11148n;
+    public final Object f11149r;
+    public final Object f11150s;
 
-    public d1(org.telegram.ui.ActionBar.b2 b2Var, Context context, int i10, long j10, TLRPC.TL_messages_preparedInlineMessage tL_messages_preparedInlineMessage, File[] fileArr, d6 d6Var, org.telegram.ui.web.t tVar, ai.s0 s0Var) {
-        this.f11126b = b2Var;
+    public d1(org.telegram.ui.ActionBar.c2 c2Var, Context context, int i10, long j10, TLRPC.TL_messages_preparedInlineMessage tL_messages_preparedInlineMessage, File[] fileArr, g6 g6Var, org.telegram.ui.web.t tVar, ai.s0 s0Var) {
+        this.f11145b = c2Var;
         this.d = context;
         this.e = i10;
-        this.f11127c = j10;
-        this.f11128f = tL_messages_preparedInlineMessage;
+        this.f11146c = j10;
+        this.f11147f = tL_messages_preparedInlineMessage;
         this.h = fileArr;
-        this.f11129n = d6Var;
-        this.f11130r = tVar;
-        this.f11131s = s0Var;
+        this.f11148n = g6Var;
+        this.f11149r = tVar;
+        this.f11150s = s0Var;
     }
 
     @Override
     public final void run() {
-        org.telegram.ui.Wallet.j0 j0Var;
+        org.telegram.ui.Wallet.i0 i0Var;
         String h;
-        org.telegram.ui.Wallet.b2 b2Var;
-        switch (this.f11125a) {
+        org.telegram.ui.Wallet.a2 a2Var;
+        switch (this.f11144a) {
             case 0:
                 Context context = (Context) this.d;
-                TLRPC.TL_messages_preparedInlineMessage tL_messages_preparedInlineMessage = (TLRPC.TL_messages_preparedInlineMessage) this.f11128f;
-                ((org.telegram.ui.ActionBar.b2) this.f11126b).dismiss();
-                new l1(context, this.e, this.f11127c, tL_messages_preparedInlineMessage, ((File[]) this.h)[0], null, (d6) this.f11129n, (org.telegram.ui.web.t) this.f11130r, (ai.s0) this.f11131s).show();
+                TLRPC.TL_messages_preparedInlineMessage tL_messages_preparedInlineMessage = (TLRPC.TL_messages_preparedInlineMessage) this.f11147f;
+                ((org.telegram.ui.ActionBar.c2) this.f11145b).dismiss();
+                new l1(context, this.e, this.f11146c, tL_messages_preparedInlineMessage, ((File[]) this.h)[0], null, (g6) this.f11148n, (org.telegram.ui.web.t) this.f11149r, (ai.s0) this.f11150s).show();
                 return;
             case 1:
-                org.telegram.ui.ActionBar.b2 b2Var2 = (org.telegram.ui.ActionBar.b2) this.f11126b;
+                org.telegram.ui.ActionBar.c2 c2Var = (org.telegram.ui.ActionBar.c2) this.f11145b;
                 AccountInstance accountInstance = (AccountInstance) this.h;
-                p80 p80Var = (p80) this.f11129n;
+                q80 q80Var = (q80) this.f11148n;
                 Context context2 = (Context) this.d;
-                org.telegram.ui.ActionBar.n2 n2Var = (org.telegram.ui.ActionBar.n2) this.f11130r;
-                TLRPC.Peer peer = (TLRPC.Peer) this.f11131s;
+                org.telegram.ui.ActionBar.o2 o2Var = (org.telegram.ui.ActionBar.o2) this.f11149r;
+                TLRPC.Peer peer = (TLRPC.Peer) this.f11150s;
                 try {
-                    b2Var2.dismiss();
+                    c2Var.dismiss();
                 } catch (Exception e) {
                     FileLog.e(e);
                 }
-                TLObject tLObject = this.f11128f;
+                TLObject tLObject = this.f11147f;
                 if (tLObject != null) {
                     TL_phone.joinAsPeers joinaspeers = (TL_phone.joinAsPeers) tLObject;
                     if (joinaspeers.peers.size() == 1) {
-                        p80Var.a(accountInstance.getMessagesController().getInputPeer(MessageObject.getPeerId(joinaspeers.peers.get(0))), false, false, false);
+                        q80Var.a(accountInstance.getMessagesController().getInputPeer(MessageObject.getPeerId(joinaspeers.peers.get(0))), false, false, false);
                         return;
                     }
-                    r80.G = joinaspeers.peers;
-                    long j10 = this.f11127c;
-                    r80.I = j10;
-                    r80.H = SystemClock.elapsedRealtime();
-                    r80.J = accountInstance.getCurrentAccount();
+                    s80.I = joinaspeers.peers;
+                    long j10 = this.f11146c;
+                    s80.K = j10;
+                    s80.J = SystemClock.elapsedRealtime();
+                    s80.L = accountInstance.getCurrentAccount();
                     accountInstance.getMessagesController().putChats(joinaspeers.chats, false);
                     accountInstance.getMessagesController().putUsers(joinaspeers.users, false);
-                    r80.x(context2, j10, joinaspeers.peers, n2Var, this.e, peer, p80Var);
+                    s80.w(context2, j10, joinaspeers.peers, o2Var, this.e, peer, q80Var);
                     return;
                 }
                 return;
             default:
-                org.telegram.ui.Wallet.f2 f2Var = (org.telegram.ui.Wallet.f2) this.f11126b;
+                org.telegram.ui.Wallet.e2 e2Var = (org.telegram.ui.Wallet.e2) this.f11145b;
                 TL_wallet.tonConnectPending tonconnectpending = (TL_wallet.tonConnectPending) this.d;
-                TL_wallet.tonConnectRequest tonconnectrequest = (TL_wallet.tonConnectRequest) this.f11128f;
-                org.telegram.ui.Wallet.j0 j0Var2 = (org.telegram.ui.Wallet.j0) this.h;
-                String str = (String) this.f11129n;
-                byte[] bArr = (byte[]) this.f11130r;
-                org.telegram.ui.Wallet.s1 s1Var = (org.telegram.ui.Wallet.s1) this.f11131s;
-                f2Var.getClass();
+                TL_wallet.tonConnectRequest tonconnectrequest = (TL_wallet.tonConnectRequest) this.f11147f;
+                org.telegram.ui.Wallet.i0 i0Var2 = (org.telegram.ui.Wallet.i0) this.h;
+                String str = (String) this.f11148n;
+                byte[] bArr = (byte[]) this.f11149r;
+                org.telegram.ui.Wallet.r1 r1Var = (org.telegram.ui.Wallet.r1) this.f11150s;
+                e2Var.getClass();
                 try {
-                    j0Var = j0Var2;
+                    i0Var = i0Var2;
                 } catch (Exception e7) {
                     e = e7;
-                    j0Var = j0Var2;
+                    i0Var = i0Var2;
                 }
                 try {
-                    b2Var = new org.telegram.ui.Wallet.b2(tonconnectpending, tonconnectrequest, org.telegram.ui.Wallet.f2.f(j0Var2, tonconnectpending.session, str, bArr, tonconnectrequest.body, f2Var.f34202f.getCurrentTime()), str, bArr);
+                    a2Var = new org.telegram.ui.Wallet.a2(tonconnectpending, tonconnectrequest, org.telegram.ui.Wallet.e2.f(i0Var2, tonconnectpending.session, str, bArr, tonconnectrequest.body, e2Var.f34432f.getCurrentTime()), str, bArr);
                     h = null;
                 } catch (Exception e10) {
                     e = e10;
-                    h = org.telegram.ui.Wallet.f2.h("decode request", e);
-                    b2Var = null;
-                    AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.m1(f2Var, b2Var, s1Var, h, this.f11127c, this.e, j0Var));
+                    h = org.telegram.ui.Wallet.e2.h("decode request", e);
+                    a2Var = null;
+                    AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.m1(e2Var, a2Var, r1Var, h, this.f11146c, this.e, i0Var));
                     return;
                 }
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.m1(f2Var, b2Var, s1Var, h, this.f11127c, this.e, j0Var));
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.m1(e2Var, a2Var, r1Var, h, this.f11146c, this.e, i0Var));
                 return;
         }
     }
 
-    public d1(org.telegram.ui.ActionBar.b2 b2Var, TLObject tLObject, AccountInstance accountInstance, p80 p80Var, long j10, Context context, org.telegram.ui.ActionBar.n2 n2Var, int i10, TLRPC.Peer peer) {
-        this.f11126b = b2Var;
-        this.f11128f = tLObject;
+    public d1(org.telegram.ui.ActionBar.c2 c2Var, TLObject tLObject, AccountInstance accountInstance, q80 q80Var, long j10, Context context, org.telegram.ui.ActionBar.o2 o2Var, int i10, TLRPC.Peer peer) {
+        this.f11145b = c2Var;
+        this.f11147f = tLObject;
         this.h = accountInstance;
-        this.f11129n = p80Var;
-        this.f11127c = j10;
+        this.f11148n = q80Var;
+        this.f11146c = j10;
         this.d = context;
-        this.f11130r = n2Var;
+        this.f11149r = o2Var;
         this.e = i10;
-        this.f11131s = peer;
+        this.f11150s = peer;
     }
 
-    public d1(org.telegram.ui.Wallet.f2 f2Var, TL_wallet.tonConnectPending tonconnectpending, TL_wallet.tonConnectRequest tonconnectrequest, org.telegram.ui.Wallet.j0 j0Var, String str, byte[] bArr, org.telegram.ui.Wallet.s1 s1Var, long j10, int i10) {
-        this.f11126b = f2Var;
+    public d1(org.telegram.ui.Wallet.e2 e2Var, TL_wallet.tonConnectPending tonconnectpending, TL_wallet.tonConnectRequest tonconnectrequest, org.telegram.ui.Wallet.i0 i0Var, String str, byte[] bArr, org.telegram.ui.Wallet.r1 r1Var, long j10, int i10) {
+        this.f11145b = e2Var;
         this.d = tonconnectpending;
-        this.f11128f = tonconnectrequest;
-        this.h = j0Var;
-        this.f11129n = str;
-        this.f11130r = bArr;
-        this.f11131s = s1Var;
-        this.f11127c = j10;
+        this.f11147f = tonconnectrequest;
+        this.h = i0Var;
+        this.f11148n = str;
+        this.f11149r = bArr;
+        this.f11150s = r1Var;
+        this.f11146c = j10;
         this.e = i10;
     }
 }

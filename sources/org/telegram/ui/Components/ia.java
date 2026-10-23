@@ -6,18 +6,35 @@ import android.view.View;
 import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.SharedConfig;
-public abstract class ia extends jm0 {
-    public int V2;
-    public int W2;
-    public int X2;
-    public boolean Y2;
+public abstract class ia extends mm0 {
+    public int Y2;
     public int Z2;
-    public boolean f27210a3;
+    public int f27257a3;
+    public boolean f27258b3;
+    public int f27259c3;
+    public boolean f27260d3;
+
+    public int C1() {
+        return AndroidUtilities.dp(203.0f);
+    }
+
+    public final void D1() {
+        if (getLayoutParams() == null) {
+            return;
+        }
+        if (SharedConfig.chatBlurEnabled()) {
+            this.Y2 = C1();
+            ((ViewGroup.MarginLayoutParams) getLayoutParams()).topMargin = -this.Y2;
+            return;
+        }
+        this.Y2 = 0;
+        ((ViewGroup.MarginLayoutParams) getLayoutParams()).topMargin = 0;
+    }
 
     @Override
     public void dispatchDraw(Canvas canvas) {
-        if (this.V2 != 0 && !Z0()) {
-            canvas.clipRect(0, this.V2, getMeasuredWidth(), getMeasuredHeight() + this.Z2);
+        if (this.Y2 != 0 && !a1()) {
+            canvas.clipRect(0, this.Y2, getMeasuredWidth(), getMeasuredHeight() + this.f27259c3);
             super.dispatchDraw(canvas);
             return;
         }
@@ -26,7 +43,7 @@ public abstract class ia extends jm0 {
 
     @Override
     public boolean drawChild(Canvas canvas, View view, long j10) {
-        if (view.getY() + view.getMeasuredHeight() < this.V2 && !this.f27210a3 && !Z0()) {
+        if (view.getY() + view.getMeasuredHeight() < this.Y2 && !this.f27260d3 && !a1()) {
             return true;
         }
         return super.drawChild(canvas, view, j10);
@@ -34,29 +51,29 @@ public abstract class ia extends jm0 {
 
     @Override
     public final void f(Canvas canvas, RectF rectF) {
-        this.f27210a3 = true;
+        this.f27260d3 = true;
         super.f(canvas, rectF);
-        this.f27210a3 = false;
+        this.f27260d3 = false;
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        y1();
+        D1();
     }
 
     @Override
     public void onMeasure(int i10, int i11) {
-        this.Y2 = true;
-        y1();
-        super.setPadding(getPaddingLeft(), this.W2 + this.V2, getPaddingRight(), getPaddingBottom());
-        this.Y2 = false;
+        this.f27258b3 = true;
+        D1();
+        super.setPadding(getPaddingLeft(), this.Z2 + this.Y2, getPaddingRight(), getPaddingBottom());
+        this.f27258b3 = false;
         super.onMeasure(i10, i11);
     }
 
     @Override
     public void requestLayout() {
-        if (this.Y2) {
+        if (this.f27258b3) {
             return;
         }
         super.requestLayout();
@@ -64,25 +81,8 @@ public abstract class ia extends jm0 {
 
     @Override
     public final void setPadding(int i10, int i11, int i12, int i13) {
-        this.W2 = i11;
-        this.X2 = i13;
-        super.setPadding(i10, i11 + this.V2, i12, i13);
-    }
-
-    public int x1() {
-        return AndroidUtilities.dp(203.0f);
-    }
-
-    public final void y1() {
-        if (getLayoutParams() == null) {
-            return;
-        }
-        if (SharedConfig.chatBlurEnabled()) {
-            this.V2 = x1();
-            ((ViewGroup.MarginLayoutParams) getLayoutParams()).topMargin = -this.V2;
-            return;
-        }
-        this.V2 = 0;
-        ((ViewGroup.MarginLayoutParams) getLayoutParams()).topMargin = 0;
+        this.Z2 = i11;
+        this.f27257a3 = i13;
+        super.setPadding(i10, i11 + this.Y2, i12, i13);
     }
 }

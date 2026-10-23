@@ -9,46 +9,46 @@ import org.telegram.tgnet.tl.TL_payments;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.DataSettingsActivity;
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.bx;
-import org.telegram.ui.cy;
+import org.telegram.ui.dx;
+import org.telegram.ui.ey;
 import org.telegram.ui.gf;
-import org.telegram.ui.wt;
+import org.telegram.ui.zt;
 public final class f2 implements Utilities.Callback {
-    public final int f1248a;
-    public final long f1249b;
-    public final Object f1250c;
+    public final int f1251a;
+    public final long f1252b;
+    public final Object f1253c;
     public final Object d;
 
     public f2(Object obj, Object obj2, long j10, int i10) {
-        this.f1248a = i10;
-        this.f1250c = obj;
+        this.f1251a = i10;
+        this.f1253c = obj;
         this.d = obj2;
-        this.f1249b = j10;
+        this.f1252b = j10;
     }
 
     @Override
     public final void run(Object obj) {
         boolean z10;
         int i10;
-        switch (this.f1248a) {
+        switch (this.f1251a) {
             case 0:
-                l7 l7Var = (l7) this.f1250c;
+                l7 l7Var = (l7) this.f1253c;
                 MessagesController messagesController = (MessagesController) this.d;
                 TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = (TL_stories.TL_premium_boostsStatus) obj;
                 if (tL_premium_boostsStatus != null && tL_premium_boostsStatus.level < messagesController.channelEmojiStatusLevelMin) {
                     ChannelBoostsController boostsController = messagesController.getBoostsController();
-                    long j10 = this.f1249b;
+                    long j10 = this.f1252b;
                     boostsController.userCanBoostChannel(j10, tL_premium_boostsStatus, new x2(l7Var, tL_premium_boostsStatus, j10, messagesController, 0));
                     return;
                 }
-                l7Var.f1738k0.setLoading(false);
-                l7Var.W2(true);
+                l7Var.f1730k0.setLoading(false);
+                l7Var.V2(true);
                 return;
             case 1:
-                DataSettingsActivity dataSettingsActivity = (DataSettingsActivity) this.f1250c;
+                DataSettingsActivity dataSettingsActivity = (DataSettingsActivity) this.f1253c;
                 Long l4 = (Long) obj;
-                AndroidUtilities.cancelRunOnUIThread((wt) this.d);
-                if (!dataSettingsActivity.W && System.currentTimeMillis() - this.f1249b <= 120) {
+                AndroidUtilities.cancelRunOnUIThread((zt) this.d);
+                if (!dataSettingsActivity.W && System.currentTimeMillis() - this.f1252b <= 120) {
                     z10 = false;
                 } else {
                     z10 = true;
@@ -56,24 +56,24 @@ public final class f2 implements Utilities.Callback {
                 dataSettingsActivity.W = z10;
                 dataSettingsActivity.Y = l4.longValue();
                 dataSettingsActivity.X = false;
-                if (dataSettingsActivity.f33125a != null && (i10 = dataSettingsActivity.f33131s) >= 0) {
+                if (dataSettingsActivity.f33422a != null && (i10 = dataSettingsActivity.f33428s) >= 0) {
                     dataSettingsActivity.n0(i10);
                     return;
                 }
                 return;
             case 2:
                 Runnable runnable = (Runnable) obj;
-                ((org.telegram.ui.ActionBar.b2) this.d).r(150L);
-                cy cyVar = ((bx) this.f1250c).f35756b;
-                Boolean bool = cyVar.G.bot_participant;
+                ((org.telegram.ui.ActionBar.c2) this.d).r(150L);
+                ey eyVar = ((dx) this.f1253c).f36747b;
+                Boolean bool = eyVar.G.bot_participant;
                 if (bool != null && bool.booleanValue()) {
-                    cyVar.getMessagesController().addUserToChat(this.f1249b, cyVar.getMessagesController().getUser(Long.valueOf(cyVar.H)), 0, null, cyVar, false, runnable, new gf(8, runnable));
+                    eyVar.getMessagesController().addUserToChat(this.f1252b, eyVar.getMessagesController().getUser(Long.valueOf(eyVar.H)), 0, null, eyVar, false, runnable, new gf(8, runnable));
                     return;
                 }
                 runnable.run();
                 return;
             default:
-                ProfileActivity.Z((ProfileActivity) this.f1250c, (Context) this.d, this.f1249b, (TL_payments.connectedBotStarRef) obj);
+                ProfileActivity.Z((ProfileActivity) this.f1253c, (Context) this.d, this.f1252b, (TL_payments.connectedBotStarRef) obj);
                 return;
         }
     }

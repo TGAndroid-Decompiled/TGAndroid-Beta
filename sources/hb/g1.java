@@ -5,15 +5,15 @@ import java.lang.reflect.Field;
 import java.security.PrivilegedAction;
 import java.util.ArrayList;
 public final class g1 implements PrivilegedAction {
-    public final Class f11718a;
+    public final Class f11745a;
 
     public g1(Class cls) {
-        this.f11718a = cls;
+        this.f11745a = cls;
     }
 
     @Override
     public final Object run() {
-        Field[] declaredFields = this.f11718a.getDeclaredFields();
+        Field[] declaredFields = this.f11745a.getDeclaredFields();
         ArrayList arrayList = new ArrayList(declaredFields.length);
         for (Field field : declaredFields) {
             if (field.isEnumConstant()) {

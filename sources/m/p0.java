@@ -9,19 +9,19 @@ public interface p0 {
 
     void c(int i10);
 
+    CharSequence d();
+
     void dismiss();
 
-    CharSequence e();
+    Drawable e();
 
-    Drawable h();
+    void h(CharSequence charSequence);
 
-    void i(CharSequence charSequence);
+    void i(Drawable drawable);
 
-    void j(Drawable drawable);
+    void j(int i10);
 
     void k(int i10);
-
-    void l(int i10);
 
     void m(int i10, int i11);
 

@@ -1,242 +1,649 @@
 package org.telegram.ui.Components;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.content.ComponentName;
-import android.content.Intent;
-import android.net.Uri;
-import android.net.http.SslError;
-import android.text.TextUtils;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.PointF;
+import android.graphics.PorterDuff;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+import android.view.MotionEvent;
+import android.view.TextureView;
 import android.view.View;
-import android.webkit.RenderProcessGoneDetail;
-import android.webkit.SslErrorHandler;
-import android.webkit.WebResourceError;
-import android.webkit.WebResourceRequest;
-import android.webkit.WebResourceResponse;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
-import java.io.ByteArrayInputStream;
-import org.telegram.messenger.ApplicationLoader;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
+import androidx.recyclerview.widget.RecyclerView;
+import java.nio.ByteBuffer;
+import java.util.concurrent.CountDownLatch;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.ci1;
-import org.telegram.ui.tf1;
-public final class hg0 extends WebViewClient {
-    public final int f26893a;
-    public final Object f26894b;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.R;
+public final class hg0 extends FrameLayout implements h00, ei.rb {
+    public final ImageView A0;
+    public final ImageView B0;
+    public final Bitmap C0;
+    public final Bitmap D0;
+    public final int E;
+    public final Rect E0;
+    public final int F;
+    public final Matrix F0;
+    public float G;
+    public final Paint G0;
+    public float H;
+    public final int H0;
+    public float I;
+    public final org.telegram.ui.ActionBar.g6 I0;
+    public float J;
+    public int J0;
+    public float K;
+    public int K0;
+    public float L;
+    public float M;
+    public int N;
+    public int O;
+    public float P;
+    public float Q;
+    public float R;
+    public float S;
+    public int T;
+    public float U;
+    public boolean V;
+    public final dg0 W;
+    public boolean f26917a;
+    public float f26918a0;
+    public final int f26919b;
+    public PointF f26920b0;
+    public final int f26921c;
+    public float f26922c0;
+    public final int d;
+    public float f26923d0;
+    public final int e;
+    public MediaController.SavedFilterState f26924e0;
+    public final int f26925f;
+    public final FrameLayout f26926f0;
+    public final TextView f26927g0;
+    public final int h;
+    public final TextView f26928h0;
+    public final TextureView f26929i0;
+    public final boolean f26930j0;
+    public final boolean f26931k0;
+    public e00 f26932l0;
+    public final xh m0;
+    public final int f26933n;
+    public final FrameLayout f26934n0;
+    public final vf0 f26935o0;
+    public final xf0 f26936p0;
+    public final TextView f26937q0;
+    public final int f26938r;
+    public final TextView f26939r0;
+    public final int f26940s;
+    public final TextView f26941s0;
+    public final FrameLayout f26942t0;
+    public final RadioButton[] f26943u0;
+    public final int v;
+    public final ce0 f26944v0;
+    public final int f26945w;
+    public final boolean f26946w0;
+    public final int f26947x;
+    public final boolean f26948x0;
+    public final int f26949y;
+    public int f26950y0;
+    public final ImageView f26951z0;
 
-    public hg0(Object obj, int i10) {
-        this.f26893a = i10;
-        this.f26894b = obj;
+    public hg0(android.content.Context r26, org.telegram.ui.Components.z71 r27, android.graphics.Bitmap r28, android.graphics.Bitmap r29, int r30, org.telegram.messenger.MediaController.SavedFilterState r31, org.telegram.ui.Components.ce0 r32, int r33, boolean r34, boolean r35, org.telegram.ui.Components.ja r36, final org.telegram.ui.ActionBar.g6 r37) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.hg0.<init>(android.content.Context, org.telegram.ui.Components.z71, android.graphics.Bitmap, android.graphics.Bitmap, int, org.telegram.messenger.MediaController$SavedFilterState, org.telegram.ui.Components.ce0, int, boolean, boolean, org.telegram.ui.Components.ja, org.telegram.ui.ActionBar.g6):void");
     }
 
-    public boolean a(String str) {
-        if (TextUtils.isEmpty(str)) {
+    private void setShowOriginal(boolean z10) {
+        if (this.f26917a != z10) {
+            this.f26917a = z10;
+            e00 e00Var = this.f26932l0;
+            if (e00Var != null) {
+                e00Var.d(false, false, false);
+            }
+        }
+    }
+
+    @Override
+    public final ByteBuffer a() {
+        dg0 dg0Var = this.W;
+        dg0Var.a();
+        return dg0Var.e;
+    }
+
+    @Override
+    public final boolean b() {
+        if (!this.f26917a && !this.V) {
             return false;
         }
-        Uri parse = Uri.parse(str);
-        if (!"tg".equals(parse.getScheme())) {
-            return false;
-        }
-        ((ci1) this.f26894b).getClass();
-        ((ci1) this.f26894b).finishFragment(false);
-        try {
-            Intent intent = new Intent("android.intent.action.VIEW", parse);
-            intent.setComponent(new ComponentName(ApplicationLoader.applicationContext.getPackageName(), LaunchActivity.class.getName()));
-            intent.putExtra("com.android.browser.application_id", ApplicationLoader.applicationContext.getPackageName());
-            ApplicationLoader.applicationContext.startActivity(intent);
-            return true;
-        } catch (Exception e) {
-            FileLog.e(e);
-            return true;
-        }
+        return true;
     }
 
     @Override
-    public void onLoadResource(WebView webView, String str) {
-        switch (this.f26893a) {
-            case 1:
-                if (!a(str)) {
-                    super.onLoadResource(webView, str);
-                    return;
-                }
-                return;
-            default:
-                super.onLoadResource(webView, str);
-                return;
-        }
+    public final boolean c() {
+        return !this.W.b();
     }
 
-    @Override
-    public void onPageFinished(WebView webView, String str) {
-        int i10 = this.f26893a;
-        Object obj = this.f26894b;
-        switch (i10) {
-            case 0:
-                super.onPageFinished(webView, str);
-                org.telegram.ui.ot0 ot0Var = (org.telegram.ui.ot0) obj;
-                View view = ot0Var.f28160r;
-                if (!ot0Var.f28163x) {
-                    ot0Var.f28159n.setVisibility(4);
-                    ot0Var.h.setVisibility(4);
-                    view.setEnabled(true);
-                    view.setAlpha(1.0f);
-                    return;
-                }
-                return;
-            case 1:
-                super.onPageFinished(webView, str);
-                ci1 ci1Var = (ci1) obj;
-                dr drVar = ci1Var.f35998c;
-                if (drVar != null && drVar.getVisibility() == 0) {
-                    AnimatorSet animatorSet = new AnimatorSet();
-                    ci1Var.f35997b.getContentView().setVisibility(0);
-                    ci1Var.f35997b.setEnabled(true);
-                    animatorSet.playTogether(ObjectAnimator.ofFloat(ci1Var.f35998c, "scaleX", 1.0f, 0.1f), ObjectAnimator.ofFloat(ci1Var.f35998c, "scaleY", 1.0f, 0.1f), ObjectAnimator.ofFloat(ci1Var.f35998c, "alpha", 1.0f, 0.0f), ObjectAnimator.ofFloat(ci1Var.f35997b.getContentView(), "scaleX", 0.0f, 1.0f), ObjectAnimator.ofFloat(ci1Var.f35997b.getContentView(), "scaleY", 0.0f, 1.0f), ObjectAnimator.ofFloat(ci1Var.f35997b.getContentView(), "alpha", 0.0f, 1.0f));
-                    animatorSet.addListener(new tf1(this, 10));
-                    animatorSet.setDuration(150L);
-                    animatorSet.start();
-                    return;
-                }
-                return;
-            default:
-                super.onPageFinished(webView, str);
-                return;
-        }
-    }
-
-    @Override
-    public void onReceivedError(WebView webView, WebResourceRequest webResourceRequest, WebResourceError webResourceError) {
-        switch (this.f26893a) {
-            case 2:
-                if (webResourceRequest.isForMainFrame()) {
-                    qi.i iVar = (qi.i) this.f26894b;
-                    if (webView == iVar.f44785o) {
-                        iVar.f();
-                        return;
-                    }
-                    return;
-                }
-                return;
-            default:
-                super.onReceivedError(webView, webResourceRequest, webResourceError);
-                return;
-        }
-    }
-
-    @Override
-    public void onReceivedHttpError(WebView webView, WebResourceRequest webResourceRequest, WebResourceResponse webResourceResponse) {
-        switch (this.f26893a) {
-            case 2:
-                if (webResourceRequest.isForMainFrame()) {
-                    qi.i iVar = (qi.i) this.f26894b;
-                    if (webView == iVar.f44785o) {
-                        iVar.f();
-                        return;
-                    }
-                    return;
-                }
-                return;
-            default:
-                super.onReceivedHttpError(webView, webResourceRequest, webResourceResponse);
-                return;
-        }
-    }
-
-    @Override
-    public void onReceivedSslError(WebView webView, SslErrorHandler sslErrorHandler, SslError sslError) {
-        switch (this.f26893a) {
-            case 2:
-                sslErrorHandler.cancel();
-                qi.i iVar = (qi.i) this.f26894b;
-                if (webView == iVar.f44785o) {
-                    iVar.f();
-                    return;
-                }
-                return;
-            default:
-                super.onReceivedSslError(webView, sslErrorHandler, sslError);
-                return;
-        }
-    }
-
-    @Override
-    public boolean onRenderProcessGone(WebView webView, RenderProcessGoneDetail renderProcessGoneDetail) {
-        switch (this.f26893a) {
-            case 2:
-                qi.i iVar = (qi.i) this.f26894b;
-                if (webView == iVar.f44785o) {
-                    iVar.f();
-                    return true;
-                }
+    public final boolean d() {
+        MediaController.SavedFilterState savedFilterState = this.f26924e0;
+        dg0 dg0Var = this.W;
+        if (savedFilterState != null) {
+            if (this.G != savedFilterState.enhanceValue || this.I != savedFilterState.contrastValue || this.P != savedFilterState.highlightsValue || this.H != savedFilterState.exposureValue || this.J != savedFilterState.warmthValue || this.K != savedFilterState.saturationValue || this.R != savedFilterState.vignetteValue || this.Q != savedFilterState.shadowsValue || this.S != savedFilterState.grainValue || this.U != savedFilterState.sharpenValue || this.L != savedFilterState.fadeValue || this.M != savedFilterState.softenSkinValue || this.O != savedFilterState.tintHighlightsColor || this.N != savedFilterState.tintShadowsColor || !dg0Var.b()) {
                 return true;
-            default:
-                return super.onRenderProcessGone(webView, renderProcessGoneDetail);
+            }
+            return false;
+        } else if (this.G != 0.0f || this.I != 0.0f || this.P != 0.0f || this.H != 0.0f || this.J != 0.0f || this.K != 0.0f || this.R != 0.0f || this.Q != 0.0f || this.S != 0.0f || this.U != 0.0f || this.L != 0.0f || this.M != 0.0f || this.O != 0 || this.N != 0 || !dg0Var.b()) {
+            return true;
+        } else {
+            return false;
         }
     }
 
     @Override
-    public WebResourceResponse shouldInterceptRequest(WebView webView, WebResourceRequest webResourceRequest) {
-        switch (this.f26893a) {
-            case 0:
-                String uri = webResourceRequest.getUrl().toString();
-                if (((org.telegram.ui.ot0) this.f26894b).f28163x && uri.startsWith("https://www.youtube.com/youtubei/v1/player?key=")) {
-                    Utilities.externalNetworkQueue.postRunnable(new lg(this, uri, webResourceRequest, 16));
+    public final boolean drawChild(Canvas canvas, View view, long j10) {
+        TextureView textureView;
+        boolean drawChild = super.drawChild(canvas, view, j10);
+        ce0 ce0Var = this.f26944v0;
+        if (ce0Var != null && view == (textureView = this.f26929i0)) {
+            canvas.save();
+            canvas.translate(textureView.getLeft(), textureView.getTop());
+            Bitmap bitmap = this.D0;
+            if (bitmap != null && textureView.getVisibility() == 0) {
+                int measuredWidth = textureView.getMeasuredWidth();
+                int measuredHeight = textureView.getMeasuredHeight();
+                Rect rect = this.E0;
+                rect.set(0, 0, measuredWidth, measuredHeight);
+                Paint paint = this.G0;
+                int i10 = this.H0;
+                if (i10 != 0) {
+                    Matrix matrix = this.F0;
+                    matrix.reset();
+                    matrix.postRotate(i10, bitmap.getWidth() / 2.0f, bitmap.getHeight() / 2.0f);
+                    float height = (bitmap.getHeight() - bitmap.getWidth()) / 2.0f;
+                    matrix.postTranslate(height, -height);
+                    matrix.postScale(rect.width() / bitmap.getHeight(), rect.height() / bitmap.getWidth());
+                    canvas.drawBitmap(bitmap, matrix, paint);
+                } else {
+                    canvas.drawBitmap(bitmap, (Rect) null, rect, paint);
+                }
+            }
+            float measuredWidth2 = textureView.getMeasuredWidth() / ce0Var.getMeasuredWidth();
+            canvas.scale(measuredWidth2, measuredWidth2);
+            ce0Var.draw(canvas);
+            canvas.restore();
+        }
+        return drawChild;
+    }
+
+    public final void e() {
+        boolean z10 = this.f26930j0;
+        TextureView textureView = this.f26929i0;
+        if (z10) {
+            e00 e00Var = this.f26932l0;
+            if (e00Var != null) {
+                e00Var.postRunnable(new b00(e00Var, 0));
+                this.f26932l0 = null;
+            }
+            textureView.setVisibility(8);
+        } else if (textureView instanceof z71) {
+            z71 z71Var = (z71) textureView;
+            MediaController.SavedFilterState savedFilterState = this.f26924e0;
+            if (savedFilterState == null) {
+                z71Var.setDelegate(null);
+                return;
+            }
+            e00 e00Var2 = this.f26932l0;
+            if (e00Var2 != null) {
+                e00Var2.f(new f00(savedFilterState));
+            }
+        }
+    }
+
+    public final void f() {
+        boolean z10;
+        int i10 = this.f26950y0;
+        xh xhVar = this.m0;
+        xf0 xf0Var = this.f26936p0;
+        FrameLayout frameLayout = this.f26942t0;
+        FrameLayout frameLayout2 = this.f26934n0;
+        vf0 vf0Var = this.f26935o0;
+        if (i10 == 0) {
+            vf0Var.setVisibility(4);
+            frameLayout2.setVisibility(4);
+            frameLayout.setVisibility(4);
+            xf0Var.setVisibility(4);
+            xhVar.setVisibility(0);
+        } else if (i10 == 1) {
+            xhVar.setVisibility(4);
+            frameLayout.setVisibility(4);
+            xf0Var.setVisibility(4);
+            frameLayout2.setVisibility(0);
+            if (this.T != 0) {
+                vf0Var.setVisibility(0);
+            }
+            h();
+        } else if (i10 == 2) {
+            xhVar.setVisibility(4);
+            frameLayout2.setVisibility(4);
+            vf0Var.setVisibility(4);
+            frameLayout.setVisibility(0);
+            xf0Var.setVisibility(0);
+            this.W.f25626f = 0;
+            for (int i11 = 0; i11 < 4; i11++) {
+                RadioButton radioButton = this.f26943u0[i11];
+                if (i11 == 0) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                radioButton.a(z10, false);
+            }
+        }
+    }
+
+    public final void g() {
+        boolean z10;
+        if (Math.abs(this.G) < 0.1f && Math.abs(this.M) < 0.1f && Math.abs(this.H) < 0.1f && Math.abs(this.I) < 0.1f && Math.abs(this.J) < 0.1f && Math.abs(this.K) < 0.1f && Math.abs(this.L) < 0.1f && this.N == 0 && this.O == 0 && Math.abs(this.P) < 0.1f && Math.abs(this.Q) < 0.1f && Math.abs(this.R) < 0.1f && Math.abs(this.S) < 0.1f && this.T == 0 && Math.abs(this.U) < 0.1f && this.W.b()) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        this.V = z10;
+    }
+
+    public Bitmap getBitmap() {
+        e00 e00Var = this.f26932l0;
+        if (e00Var != null && e00Var.f25796f && e00Var.isAlive()) {
+            CountDownLatch countDownLatch = new CountDownLatch(1);
+            Bitmap[] bitmapArr = new Bitmap[1];
+            try {
+                if (e00Var.postRunnable(new lg(e00Var, bitmapArr, countDownLatch, 6))) {
+                    countDownLatch.await();
+                }
+            } catch (Exception e) {
+                FileLog.e(e);
+            }
+            return bitmapArr[0];
+        }
+        return null;
+    }
+
+    @Override
+    public float getBlurAngle() {
+        return this.f26923d0;
+    }
+
+    public vf0 getBlurControl() {
+        return this.f26935o0;
+    }
+
+    @Override
+    public float getBlurExcludeBlurSize() {
+        return this.f26922c0;
+    }
+
+    @Override
+    public PointF getBlurExcludePoint() {
+        return this.f26920b0;
+    }
+
+    @Override
+    public float getBlurExcludeSize() {
+        return this.f26918a0;
+    }
+
+    @Override
+    public int getBlurType() {
+        return this.T;
+    }
+
+    public TextView getCancelTextView() {
+        return this.f26928h0;
+    }
+
+    @Override
+    public float getContrastValue() {
+        return a1.g.d(this.I, 100.0f, 0.3f, 1.0f);
+    }
+
+    public xf0 getCurveControl() {
+        return this.f26936p0;
+    }
+
+    public TextView getDoneTextView() {
+        return this.f26927g0;
+    }
+
+    @Override
+    public float getEnhanceValue() {
+        return this.G / 100.0f;
+    }
+
+    @Override
+    public float getExposureValue() {
+        return this.H / 100.0f;
+    }
+
+    @Override
+    public float getFadeValue() {
+        return this.L / 100.0f;
+    }
+
+    @Override
+    public float getGrainValue() {
+        return (this.S / 100.0f) * 0.04f;
+    }
+
+    @Override
+    public float getHighlightsValue() {
+        return com.google.android.gms.internal.play_billing.k3.w(this.P, 0.75f, 100.0f, 100.0f);
+    }
+
+    public TextureView getMyTextureView() {
+        if (this.f26930j0 && !this.f26931k0) {
+            return this.f26929i0;
+        }
+        return null;
+    }
+
+    @Override
+    public float getSaturationValue() {
+        float f7 = this.K / 100.0f;
+        if (f7 > 0.0f) {
+            f7 *= 1.05f;
+        }
+        return f7 + 1.0f;
+    }
+
+    public MediaController.SavedFilterState getSavedFilterState() {
+        MediaController.SavedFilterState savedFilterState = new MediaController.SavedFilterState();
+        savedFilterState.enhanceValue = this.G;
+        savedFilterState.exposureValue = this.H;
+        savedFilterState.contrastValue = this.I;
+        savedFilterState.warmthValue = this.J;
+        savedFilterState.saturationValue = this.K;
+        savedFilterState.fadeValue = this.L;
+        savedFilterState.softenSkinValue = this.M;
+        savedFilterState.tintShadowsColor = this.N;
+        savedFilterState.tintHighlightsColor = this.O;
+        savedFilterState.highlightsValue = this.P;
+        savedFilterState.shadowsValue = this.Q;
+        savedFilterState.vignetteValue = this.R;
+        savedFilterState.grainValue = this.S;
+        savedFilterState.blurType = this.T;
+        savedFilterState.sharpenValue = this.U;
+        savedFilterState.curvesToolValue = this.W;
+        savedFilterState.blurExcludeSize = this.f26918a0;
+        savedFilterState.blurExcludePoint = this.f26920b0;
+        savedFilterState.blurExcludeBlurSize = this.f26922c0;
+        savedFilterState.blurAngle = this.f26923d0;
+        this.f26924e0 = savedFilterState;
+        return savedFilterState;
+    }
+
+    @Override
+    public float getShadowsValue() {
+        return com.google.android.gms.internal.play_billing.k3.w(this.Q, 0.55f, 100.0f, 100.0f);
+    }
+
+    @Override
+    public float getSharpenValue() {
+        return a1.g.d(this.U, 100.0f, 0.6f, 0.11f);
+    }
+
+    @Override
+    public float getSoftenSkinValue() {
+        return this.M / 100.0f;
+    }
+
+    @Override
+    public int getTintHighlightsColor() {
+        return this.O;
+    }
+
+    @Override
+    public float getTintHighlightsIntensityValue() {
+        if (this.O == 0) {
+            return 0.0f;
+        }
+        return 0.5f;
+    }
+
+    @Override
+    public int getTintShadowsColor() {
+        return this.N;
+    }
+
+    @Override
+    public float getTintShadowsIntensityValue() {
+        if (this.N == 0) {
+            return 0.0f;
+        }
+        return 0.5f;
+    }
+
+    public FrameLayout getToolsView() {
+        return this.f26926f0;
+    }
+
+    public Bitmap getUiBlurBitmap() {
+        pa paVar;
+        e00 e00Var = this.f26932l0;
+        if (e00Var == null || (paVar = e00Var.I) == null) {
+            return null;
+        }
+        synchronized (paVar.f29488n) {
+            try {
+                if (!paVar.f29491q) {
                     return null;
                 }
-                return null;
-            case 1:
-            default:
-                return super.shouldInterceptRequest(webView, webResourceRequest);
-            case 2:
-                Uri url = webResourceRequest.getUrl();
-                if ("http".equalsIgnoreCase(url.getScheme()) || "https".equalsIgnoreCase(url.getScheme())) {
-                    qi.i iVar = (qi.i) this.f26894b;
-                    iVar.getClass();
-                    String path = url.getPath();
-                    if (!"https".equalsIgnoreCase(url.getScheme()) || !iVar.f44776c.equalsIgnoreCase(url.getHost()) || url.getUserInfo() != null || ((url.getPort() != -1 && url.getPort() != 443) || path == null || !path.startsWith(iVar.d))) {
-                        return new WebResourceResponse("text/plain", "UTF-8", new ByteArrayInputStream(new byte[0]));
-                    }
-                }
-                return null;
+                return paVar.f29490p;
+            } catch (Throwable th2) {
+                throw th2;
+            }
         }
     }
 
     @Override
-    public boolean shouldOverrideUrlLoading(WebView webView, String str) {
-        switch (this.f26893a) {
-            case 0:
-                if (((org.telegram.ui.ot0) this.f26894b).f28163x) {
-                    pf.d.r(webView.getContext(), str);
-                    return true;
-                }
-                return super.shouldOverrideUrlLoading(webView, str);
-            case 1:
-                return a(str) || super.shouldOverrideUrlLoading(webView, str);
-            default:
-                return super.shouldOverrideUrlLoading(webView, str);
-        }
+    public float getVignetteValue() {
+        return this.R / 100.0f;
     }
 
     @Override
-    public boolean shouldOverrideUrlLoading(WebView webView, WebResourceRequest webResourceRequest) {
-        switch (this.f26893a) {
-            case 2:
-                if (webResourceRequest.isForMainFrame()) {
-                    qi.i iVar = (qi.i) this.f26894b;
-                    Uri url = webResourceRequest.getUrl();
-                    if (url != null) {
-                        if (iVar.f44778g.equals(url.toString())) {
-                            return false;
-                        }
-                    } else {
-                        iVar.getClass();
+    public float getWarmthValue() {
+        return this.J / 100.0f;
+    }
+
+    public final void h() {
+        int i10 = this.T;
+        TextView textView = this.f26941s0;
+        TextView textView2 = this.f26939r0;
+        org.telegram.ui.ActionBar.g6 g6Var = this.I0;
+        TextView textView3 = this.f26937q0;
+        if (i10 == 0) {
+            Drawable mutate = textView3.getContext().getResources().getDrawable(R.drawable.msg_blur_off).mutate();
+            int i11 = org.telegram.ui.ActionBar.k6.f21596zf;
+            org.telegram.ui.ActionBar.r6.z(this, mutate, i11, g6Var, PorterDuff.Mode.MULTIPLY);
+            textView3.setCompoundDrawablesWithIntrinsicBounds((Drawable) null, mutate, (Drawable) null, (Drawable) null);
+            textView3.setTextColor(org.telegram.ui.ActionBar.k6.w0(i11, g6Var));
+            textView2.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.msg_blur_radial, 0, 0);
+            textView2.setTextColor(-1);
+            textView.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.msg_blur_linear, 0, 0);
+            textView.setTextColor(-1);
+        } else if (i10 == 1) {
+            textView3.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.msg_blur_off, 0, 0);
+            textView3.setTextColor(-1);
+            Drawable mutate2 = textView3.getContext().getResources().getDrawable(R.drawable.msg_blur_radial).mutate();
+            int i12 = org.telegram.ui.ActionBar.k6.f21596zf;
+            org.telegram.ui.ActionBar.r6.z(this, mutate2, i12, g6Var, PorterDuff.Mode.MULTIPLY);
+            textView2.setCompoundDrawablesWithIntrinsicBounds((Drawable) null, mutate2, (Drawable) null, (Drawable) null);
+            textView2.setTextColor(org.telegram.ui.ActionBar.k6.w0(i12, g6Var));
+            textView.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.msg_blur_linear, 0, 0);
+            textView.setTextColor(-1);
+        } else if (i10 == 2) {
+            textView3.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.msg_blur_off, 0, 0);
+            textView3.setTextColor(-1);
+            textView2.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.msg_blur_radial, 0, 0);
+            textView2.setTextColor(-1);
+            Drawable mutate3 = textView3.getContext().getResources().getDrawable(R.drawable.msg_blur_linear).mutate();
+            int i13 = org.telegram.ui.ActionBar.k6.f21596zf;
+            org.telegram.ui.ActionBar.r6.z(this, mutate3, i13, g6Var, PorterDuff.Mode.MULTIPLY);
+            textView.setCompoundDrawablesWithIntrinsicBounds((Drawable) null, mutate3, (Drawable) null, (Drawable) null);
+            textView.setTextColor(org.telegram.ui.ActionBar.k6.w0(i13, g6Var));
+        }
+        g();
+    }
+
+    @Override
+    public final boolean k(MotionEvent motionEvent) {
+        if (motionEvent.getActionMasked() != 0 && motionEvent.getActionMasked() != 5) {
+            if (motionEvent.getActionMasked() == 1 || motionEvent.getActionMasked() == 6) {
+                setShowOriginal(false);
+            }
+        } else {
+            TextureView textureView = this.f26929i0;
+            if (textureView instanceof z71) {
+                float x10 = motionEvent.getX();
+                float y3 = motionEvent.getY();
+                il0 il0Var = ((z71) textureView).f33159c;
+                float f7 = il0Var.f27364a;
+                if (x10 >= f7 && x10 <= f7 + il0Var.f27366c) {
+                    float f10 = il0Var.f27365b;
+                    if (y3 >= f10 && y3 <= f10 + il0Var.d) {
+                        setShowOriginal(true);
                     }
                 }
-                return true;
-            default:
-                return super.shouldOverrideUrlLoading(webView, webResourceRequest);
+            } else if (motionEvent.getX() >= textureView.getX() && motionEvent.getY() >= textureView.getY() && motionEvent.getX() <= textureView.getX() + textureView.getWidth() && motionEvent.getY() <= textureView.getY() + textureView.getHeight()) {
+                setShowOriginal(true);
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        int i12;
+        float width;
+        int height;
+        float f7;
+        float f10;
+        float f11;
+        float ceil;
+        float f12;
+        int i13;
+        int i14;
+        int size = View.MeasureSpec.getSize(i10);
+        int size2 = View.MeasureSpec.getSize(i11);
+        if (this.f26931k0) {
+            int dp = size - AndroidUtilities.dp(28.0f);
+            int dp2 = AndroidUtilities.dp(214.0f);
+            boolean z10 = this.f26948x0;
+            if (!z10) {
+                i12 = AndroidUtilities.statusBarHeight;
+            } else {
+                i12 = 0;
+            }
+            int i15 = size2 - (dp2 + i12);
+            TextureView textureView = this.f26929i0;
+            Bitmap bitmap = this.C0;
+            if (bitmap != null) {
+                int i16 = this.H0 % 360;
+                if (i16 != 90 && i16 != 270) {
+                    width = bitmap.getWidth();
+                    height = bitmap.getHeight();
+                } else {
+                    width = bitmap.getHeight();
+                    height = bitmap.getWidth();
+                }
+            } else {
+                width = textureView.getWidth();
+                height = textureView.getHeight();
+            }
+            float f13 = dp;
+            float f14 = i15;
+            if (f13 / width > f14 / height) {
+                f12 = (int) Math.ceil(width * f11);
+                ceil = f14;
+            } else {
+                ceil = (int) Math.ceil(f7 * f10);
+                f12 = f13;
+            }
+            int ceil2 = (int) Math.ceil(((f13 - f12) / 2.0f) + AndroidUtilities.dp(14.0f));
+            float dp3 = ((f14 - ceil) / 2.0f) + AndroidUtilities.dp(14.0f);
+            if (!z10) {
+                i13 = AndroidUtilities.statusBarHeight;
+            } else {
+                i13 = 0;
+            }
+            int ceil3 = (int) Math.ceil(dp3 + i13);
+            int i17 = (int) f12;
+            int i18 = (int) ceil;
+            if (this.f26930j0) {
+                FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) textureView.getLayoutParams();
+                layoutParams.leftMargin = ceil2;
+                layoutParams.topMargin = ceil3;
+                layoutParams.width = i17;
+                layoutParams.height = i18;
+            }
+            float f15 = ceil2;
+            if (!z10) {
+                i14 = AndroidUtilities.statusBarHeight;
+            } else {
+                i14 = 0;
+            }
+            float f16 = ceil3 - i14;
+            float f17 = i17;
+            float f18 = i18;
+            xf0 xf0Var = this.f26936p0;
+            il0 il0Var = xf0Var.e;
+            il0Var.f27364a = f15;
+            il0Var.f27365b = f16;
+            il0Var.f27366c = f17;
+            il0Var.d = f18;
+            vf0 vf0Var = this.f26935o0;
+            iw0 iw0Var = vf0Var.d;
+            iw0Var.f27465a = f17;
+            iw0Var.f27466b = f18;
+            ((FrameLayout.LayoutParams) vf0Var.getLayoutParams()).height = AndroidUtilities.dp(38.0f) + i15;
+            ((FrameLayout.LayoutParams) xf0Var.getLayoutParams()).height = AndroidUtilities.dp(28.0f) + i15;
+            if (AndroidUtilities.isTablet()) {
+                int dp4 = AndroidUtilities.dp(86.0f) * 10;
+                FrameLayout.LayoutParams layoutParams2 = (FrameLayout.LayoutParams) this.m0.getLayoutParams();
+                if (dp4 < dp) {
+                    layoutParams2.width = dp4;
+                    layoutParams2.leftMargin = (dp - dp4) / 2;
+                } else {
+                    layoutParams2.width = -1;
+                    layoutParams2.leftMargin = 0;
+                }
+            }
+        }
+        super.onMeasure(i10, i11);
+    }
+
+    public void setEnhanceValue(float f7) {
+        this.G = f7 * 100.0f;
+        g();
+        int i10 = 0;
+        while (true) {
+            xh xhVar = this.m0;
+            if (i10 >= xhVar.getChildCount()) {
+                break;
+            }
+            View childAt = xhVar.getChildAt(i10);
+            if ((childAt instanceof org.telegram.ui.Cells.v5) && RecyclerView.R(childAt) == this.f26919b) {
+                ((org.telegram.ui.Cells.v5) childAt).a(LocaleController.getString(R.string.Enhance), 0, this.G);
+                break;
+            }
+            i10++;
+        }
+        e00 e00Var = this.f26932l0;
+        if (e00Var != null) {
+            e00Var.d(true, false, false);
         }
     }
 }

@@ -2,26 +2,26 @@ package org.telegram.ui.Components;
 
 import org.telegram.messenger.Utilities;
 public final class cn implements Utilities.Callback {
-    public final int f25226a;
-    public final fo f25227b;
-    public final int f25228c;
+    public final int f25380a;
+    public final fo f25381b;
+    public final int f25382c;
 
     public cn(fo foVar, int i10, int i11) {
-        this.f25226a = i11;
-        this.f25227b = foVar;
-        this.f25228c = i10;
+        this.f25380a = i11;
+        this.f25381b = foVar;
+        this.f25382c = i10;
     }
 
     @Override
     public final void run(Object obj) {
-        switch (this.f25226a) {
+        switch (this.f25380a) {
             case 0:
-                this.f25227b.h0(this.f25228c, (rh.e) obj);
+                this.f25381b.h0(this.f25382c, (rh.e) obj);
                 return;
             default:
-                fo foVar = this.f25227b;
+                fo foVar = this.f25381b;
                 foVar.getClass();
-                foVar.h0(this.f25228c, new sh.e((String) obj));
+                foVar.h0(this.f25382c, new sh.e((String) obj));
                 return;
         }
     }

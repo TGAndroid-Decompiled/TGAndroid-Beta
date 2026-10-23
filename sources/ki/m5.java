@@ -8,37 +8,37 @@ import java.util.LinkedHashSet;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.LocaleController;
 import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.c71;
-import org.telegram.ui.Components.g61;
-import org.telegram.ui.Components.h61;
-import org.telegram.ui.Components.jm0;
-import org.telegram.ui.Components.u61;
-public final class m5 extends g61 {
-    public static final int f15391a = 0;
+import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.Components.b71;
+import org.telegram.ui.Components.j71;
+import org.telegram.ui.Components.l61;
+import org.telegram.ui.Components.m61;
+import org.telegram.ui.Components.mm0;
+public final class m5 extends l61 {
+    public static final int f15451a = 0;
 
     static {
-        g61.setup(new g61());
+        l61.setup(new l61());
     }
 
     @Override
-    public final void bindView(View view, h61 h61Var, boolean z10, u61 u61Var, c71 c71Var) {
+    public final void bindView(View view, m61 m61Var, boolean z10, b71 b71Var, j71 j71Var) {
         boolean z11;
         o5 o5Var = (o5) view;
-        a aVar = (a) h61Var.G;
-        c3 c3Var = (c3) h61Var.H;
+        a aVar = (a) m61Var.G;
+        c3 c3Var = (c3) m61Var.H;
         q5 q5Var = o5Var.v;
         boolean z12 = true;
-        if (o5Var.f15111a != aVar) {
+        if (o5Var.f15157a != aVar) {
             z11 = true;
         } else {
             z11 = false;
         }
-        o5Var.f15111a = aVar;
+        o5Var.f15157a = aVar;
         o5Var.E = c3Var;
-        o5Var.f15435y = LocaleController.isRTL;
+        o5Var.f15495y = LocaleController.isRTL;
         o5Var.c(aVar);
-        TL_iv.PageBlock pageBlock = aVar.f15095b;
+        TL_iv.PageBlock pageBlock = aVar.f15141b;
         if (!(pageBlock instanceof TL_iv.pageBlockTable)) {
             return;
         }
@@ -48,11 +48,11 @@ public final class m5 extends g61 {
         LinkedHashSet linkedHashSet = o5Var.H;
         Objects.requireNonNull(linkedHashSet);
         q5Var.setSelectionProvider(new j5.b(linkedHashSet, 10));
-        o5Var.y();
-        h1 h1Var = o5Var.f15431r;
-        a aVar2 = o5Var.f15111a;
+        o5Var.x();
+        h1 h1Var = o5Var.f15491r;
+        a aVar2 = o5Var.f15157a;
         if (aVar2 != null) {
-            TL_iv.PageBlock pageBlock2 = aVar2.f15095b;
+            TL_iv.PageBlock pageBlock2 = aVar2.f15141b;
             if (pageBlock2 instanceof TL_iv.pageBlockTable) {
                 TL_iv.pageBlockTable pageblocktable = (TL_iv.pageBlockTable) pageBlock2;
                 if (pageblocktable.title == null) {
@@ -60,29 +60,29 @@ public final class m5 extends g61 {
                 }
                 String l4 = e6.l(pageblocktable.title);
                 SpannableStringBuilder r10 = e6.r(pageblocktable.title, null, true);
-                a aVar3 = o5Var.f15111a;
-                if (!aVar3.f15109s) {
-                    aVar3.f15109s = true;
+                a aVar3 = o5Var.f15157a;
+                if (!aVar3.f15155s) {
+                    aVar3.f15155s = true;
                     if (r10.length() != 0 && (e6.q(0, r10.length(), r10) & 1) == 0) {
                         z12 = false;
                     }
-                    aVar3.f15108r = z12;
+                    aVar3.f15154r = z12;
                 }
-                h1Var.setAutoBold(o5Var.f15111a.f15108r);
+                h1Var.setAutoBold(o5Var.f15157a.f15154r);
                 if (z11 || !String.valueOf(h1Var.getText()).equals(l4)) {
                     h1Var.setTextSilently(Emoji.replaceEmoji(r10, h1Var.getPaint().getFontMetricsInt(), false));
                     h1Var.invalidateEffects();
                 }
             }
         }
-        o5Var.d();
-        o5Var.f15433w.requestLayout();
+        o5Var.updateColors();
+        o5Var.f15493w.requestLayout();
     }
 
     @Override
-    public final View createView(Context context, jm0 jm0Var, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var) {
-        o5 o5Var = new o5(context, d6Var);
-        o5Var.setBackground(new a2(h6.w0(h6.f20994d6, d6Var)));
+    public final View createView(Context context, mm0 mm0Var, int i10, int i11, org.telegram.ui.ActionBar.g6 g6Var) {
+        o5 o5Var = new o5(context, g6Var);
+        o5Var.setBackground(new a2(k6.w0(k6.f21183d6, g6Var)));
         return o5Var;
     }
 

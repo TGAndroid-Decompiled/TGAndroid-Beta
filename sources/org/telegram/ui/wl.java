@@ -1,18 +1,18 @@
 package org.telegram.ui;
 
 import android.content.Context;
-public final class wl extends org.telegram.ui.Cells.b0 {
-    public final dm f42897f;
+public final class wl extends org.telegram.ui.Cells.g0 {
+    public final em L;
 
-    public wl(dm dmVar, Context context, int i10, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context, i10, d6Var);
-        this.f42897f = dmVar;
+    public wl(em emVar, Context context, int i10, org.telegram.ui.ActionBar.g6 g6Var) {
+        super(context, i10, g6Var);
+        this.L = emVar;
     }
 
     @Override
     public final int getSideMenuWidth() {
-        qn qnVar = this.f42897f.Q;
-        int i10 = qn.Ic;
-        return qnVar.W8();
+        sn snVar = this.L.Q;
+        int i10 = sn.Vc;
+        return snVar.W8();
     }
 }

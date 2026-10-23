@@ -2,33 +2,33 @@ package v2;
 
 import android.util.SparseArray;
 import b2.w;
-import c3.c0;
-import c3.j0;
-import c3.o;
+import c3.e0;
+import c3.l0;
 import c3.q;
 import c3.s;
+import c3.u;
 import v7.u6;
-public final class e implements q {
-    public static final s v = new Object();
-    public final o f47888a;
-    public final int f47889b;
-    public final w f47890c;
+public final class e implements s {
+    public static final u v = new Object();
+    public final q f48326a;
+    public final int f48327b;
+    public final w f48328c;
     public final SparseArray d = new SparseArray();
-    public final d e = d.f47887a;
-    public boolean f47891f;
+    public final d e = d.f48325a;
+    public boolean f48329f;
     public n2.e h;
-    public long f47892n;
-    public c0 f47893r;
-    public w[] f47894s;
+    public long f48330n;
+    public e0 f48331r;
+    public w[] f48332s;
 
-    public e(o oVar, int i10, w wVar) {
-        this.f47888a = oVar;
-        this.f47889b = i10;
-        this.f47890c = wVar;
+    public e(q qVar, int i10, w wVar) {
+        this.f48326a = qVar;
+        this.f48327b = i10;
+        this.f48328c = wVar;
     }
 
     @Override
-    public final void H() {
+    public final void C() {
         SparseArray sparseArray = this.d;
         w[] wVarArr = new w[sparseArray.size()];
         for (int i10 = 0; i10 < sparseArray.size(); i10++) {
@@ -36,51 +36,51 @@ public final class e implements q {
             wVar.getClass();
             wVarArr[i10] = wVar;
         }
-        this.f47894s = wVarArr;
+        this.f48332s = wVarArr;
     }
 
     public final c3.j a() {
-        c0 c0Var = this.f47893r;
-        if (c0Var instanceof c3.j) {
-            return (c3.j) c0Var;
+        e0 e0Var = this.f48331r;
+        if (e0Var instanceof c3.j) {
+            return (c3.j) e0Var;
         }
-        if (c0Var instanceof u3.d) {
-            return ((u3.d) c0Var).f47521a;
+        if (e0Var instanceof u3.d) {
+            return ((u3.d) e0Var).f47961a;
         }
         return null;
     }
 
     public final void b(n2.e eVar, long j10, long j11) {
         this.h = eVar;
-        this.f47892n = j11;
-        boolean z10 = this.f47891f;
-        o oVar = this.f47888a;
+        this.f48330n = j11;
+        boolean z10 = this.f48329f;
+        q qVar = this.f48326a;
         if (!z10) {
-            oVar.c(this);
+            qVar.c(this);
             if (j10 != -9223372036854775807L) {
-                oVar.d(0L, j10);
+                qVar.d(0L, j10);
             }
-            this.f47891f = true;
+            this.f48329f = true;
             return;
         }
         if (j10 == -9223372036854775807L) {
             j10 = 0;
         }
-        oVar.d(0L, j10);
+        qVar.d(0L, j10);
         int i10 = 0;
         while (true) {
             SparseArray sparseArray = this.d;
             if (i10 < sparseArray.size()) {
                 c cVar = (c) sparseArray.valueAt(i10);
                 if (eVar == null) {
-                    cVar.f47885f = cVar.f47884c;
+                    cVar.f48323f = cVar.f48322c;
                 } else {
-                    cVar.f47886g = j11;
-                    j0 r02 = eVar.r0(cVar.f47882a);
-                    cVar.f47885f = r02;
+                    cVar.f48324g = j11;
+                    l0 V = eVar.V(cVar.f48320a);
+                    cVar.f48323f = V;
                     w wVar = cVar.e;
                     if (wVar != null) {
-                        r02.b(wVar);
+                        V.b(wVar);
                     }
                 }
                 i10++;
@@ -91,40 +91,40 @@ public final class e implements q {
     }
 
     @Override
-    public final void g0(c0 c0Var) {
-        this.f47893r = c0Var;
+    public final void g0(e0 e0Var) {
+        this.f48331r = e0Var;
     }
 
     @Override
-    public final j0 j0(int i10, int i11) {
+    public final l0 j0(int i10, int i11) {
         boolean z10;
         w wVar;
         SparseArray sparseArray = this.d;
         c cVar = (c) sparseArray.get(i10);
         if (cVar == null) {
-            if (this.f47894s == null) {
+            if (this.f48332s == null) {
                 z10 = true;
             } else {
                 z10 = false;
             }
             u6.p(z10);
-            if (i11 == this.f47889b) {
-                wVar = this.f47890c;
+            if (i11 == this.f48327b) {
+                wVar = this.f48328c;
             } else {
                 wVar = null;
             }
             cVar = new c(i10, i11, wVar, this.e);
             n2.e eVar = this.h;
-            long j10 = this.f47892n;
+            long j10 = this.f48330n;
             if (eVar == null) {
-                cVar.f47885f = cVar.f47884c;
+                cVar.f48323f = cVar.f48322c;
             } else {
-                cVar.f47886g = j10;
-                j0 r02 = eVar.r0(i11);
-                cVar.f47885f = r02;
+                cVar.f48324g = j10;
+                l0 V = eVar.V(i11);
+                cVar.f48323f = V;
                 w wVar2 = cVar.e;
                 if (wVar2 != null) {
-                    r02.b(wVar2);
+                    V.b(wVar2);
                 }
             }
             sparseArray.put(i10, cVar);

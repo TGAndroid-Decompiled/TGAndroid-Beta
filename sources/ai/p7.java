@@ -3,25 +3,25 @@ package ai;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import org.telegram.messenger.NotificationCenter;
-import org.telegram.ui.a50;
+import org.telegram.ui.d50;
 public final class p7 extends AnimatorListenerAdapter {
-    public final int f2011a;
-    public final float f2012b;
-    public final Runnable f2013c;
+    public final int f2002a;
+    public final float f2003b;
+    public final Runnable f2004c;
     public final Object d;
 
     public p7(Object obj, float f7, Runnable runnable, int i10) {
-        this.f2011a = i10;
+        this.f2002a = i10;
         this.d = obj;
-        this.f2012b = f7;
-        this.f2013c = runnable;
+        this.f2003b = f7;
+        this.f2004c = runnable;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        int i10 = this.f2011a;
-        Runnable runnable = this.f2013c;
-        float f7 = this.f2012b;
+        int i10 = this.f2002a;
+        Runnable runnable = this.f2004c;
+        float f7 = this.f2003b;
         Object obj = this.d;
         switch (i10) {
             case 0:
@@ -34,10 +34,10 @@ public final class p7 extends AnimatorListenerAdapter {
                 }
                 return;
             case 1:
-                ci.x1 x1Var = (ci.x1) obj;
-                x1Var.f6150n = f7;
-                x1Var.invalidate();
-                if (animator == x1Var.f6151r && runnable != null) {
+                ci.w1 w1Var = (ci.w1) obj;
+                w1Var.f6045n = f7;
+                w1Var.invalidate();
+                if (animator == w1Var.f6046r && runnable != null) {
                     runnable.run();
                     return;
                 }
@@ -56,8 +56,8 @@ public final class p7 extends AnimatorListenerAdapter {
                 vbVar.L = null;
                 vbVar.I = f7;
                 vbVar.j();
-                vbVar.f10000r.invalidate();
-                vbVar.f9987n.invalidate();
+                vbVar.f10017r.invalidate();
+                vbVar.f10004n.invalidate();
                 runnable.run();
                 vbVar.P.unlock();
                 NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 512);
@@ -68,13 +68,13 @@ public final class p7 extends AnimatorListenerAdapter {
                     runnable2.run();
                     vbVar.Q = null;
                 }
-                vbVar.f10000r.invalidate();
-                vbVar.f9971h0.invalidate();
+                vbVar.f10017r.invalidate();
+                vbVar.f9988h0.invalidate();
                 return;
             default:
-                a50 a50Var = (a50) obj;
-                a50Var.h = f7;
-                a50Var.f35278a.invalidate();
+                d50 d50Var = (d50) obj;
+                d50Var.h = f7;
+                d50Var.f36505a.invalidate();
                 if (runnable != null) {
                     runnable.run();
                     return;

@@ -1,26 +1,69 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.MediaDataController;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.tl.TL_account;
-public final class a41 implements org.telegram.ui.ActionBar.a2, org.telegram.ui.Components.ll0 {
-    public final x51 f35277a;
+import android.graphics.SurfaceTexture;
+import org.telegram.messenger.AndroidUtilities;
+public final class a41 implements org.telegram.ui.Components.g81, org.telegram.ui.Components.c81 {
+    public final b41 f35571a;
 
-    public a41(x51 x51Var) {
-        this.f35277a = x51Var;
+    public a41(b41 b41Var) {
+        this.f35571a = b41Var;
     }
 
     @Override
-    public void b() {
-        this.f35277a.m();
+    public boolean needUpdate() {
+        if (this.f35571a.V.f28265i != null) {
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        x51 x51Var = this.f35277a;
-        int i11 = x51Var.V;
-        ConnectionsManager.getInstance(i11).sendRequest(new TL_account.clearRecentEmojiStatuses(), null);
-        MediaDataController.getInstance(i11).clearRecentEmojiStatuses();
-        x51Var.B(false, true, true);
+    public void onRenderedFirstFrame(j2.a aVar) {
+    }
+
+    @Override
+    public void onStateChanged(boolean z10, int i10) {
+        b41 b41Var = this.f35571a;
+        if (i10 == 4) {
+            b41Var.dismiss();
+            return;
+        }
+        AndroidUtilities.cancelRunOnUIThread(b41Var.Z);
+        AndroidUtilities.runOnUIThread(b41Var.Z, 16L);
+    }
+
+    @Override
+    public boolean onSurfaceDestroyed(SurfaceTexture surfaceTexture) {
+        return false;
+    }
+
+    @Override
+    public void onVisualizerUpdate(boolean z10, boolean z11, float[] fArr) {
+        this.f35571a.V.e(z10, true, fArr);
+    }
+
+    @Override
+    public void onRenderedFirstFrame() {
+        AndroidUtilities.runOnUIThread(new my0(this, 14));
+    }
+
+    @Override
+    public void onSeekFinished(j2.a aVar) {
+    }
+
+    @Override
+    public void onSeekStarted(j2.a aVar) {
+    }
+
+    @Override
+    public void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
+    }
+
+    @Override
+    public void onError(org.telegram.ui.Components.j81 j81Var, Exception exc) {
+    }
+
+    @Override
+    public void onVideoSizeChanged(int i10, int i11, int i12, float f7) {
     }
 }

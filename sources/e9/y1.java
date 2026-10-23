@@ -4,19 +4,19 @@ import j$.util.Objects;
 import java.util.AbstractMap;
 import v7.u6;
 public final class y1 extends n0 {
-    public final z1 f8538c;
+    public final z1 f8545c;
 
     public y1(z1 z1Var) {
-        this.f8538c = z1Var;
+        this.f8545c = z1Var;
     }
 
     @Override
     public final Object get(int i10) {
-        z1 z1Var = this.f8538c;
+        z1 z1Var = this.f8545c;
         u6.j(i10, z1Var.h);
         Object[] objArr = z1Var.e;
         int i11 = i10 * 2;
-        int i12 = z1Var.f8540f;
+        int i12 = z1Var.f8547f;
         Object obj = objArr[i11 + i12];
         Objects.requireNonNull(obj);
         Object obj2 = objArr[i11 + (i12 ^ 1)];
@@ -31,6 +31,6 @@ public final class y1 extends n0 {
 
     @Override
     public final int size() {
-        return this.f8538c.h;
+        return this.f8545c.h;
     }
 }

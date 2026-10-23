@@ -22,8 +22,8 @@ import org.telegram.messenger.voip.VoIPService;
 import org.telegram.tgnet.TLRPC;
 public final class o30 extends FrameLayout implements NotificationCenter.NotificationCenterDelegate, VoIPService.StateListener {
     public final int E;
-    public final yj0 F;
-    public final vj0 G;
+    public final bk0 F;
+    public final yj0 G;
     public long H;
     public final boolean I;
     public final Random J;
@@ -34,29 +34,29 @@ public final class o30 extends FrameLayout implements NotificationCenter.Notific
     public float O;
     public final OvershootInterpolator P;
     public float Q;
-    public final Paint f28933a;
-    public final ba f28934b;
-    public final ba f28935c;
+    public final Paint f29079a;
+    public final ba f29080b;
+    public final ba f29081c;
     public float d;
     public float e;
-    public float f28936f;
+    public float f29082f;
     public n30 h;
-    public n30 f28937n;
-    public float f28938r;
-    public boolean f28939s;
+    public n30 f29083n;
+    public float f29084r;
+    public boolean f29085s;
     public float v;
-    public final LinearGradient f28940w;
-    public final Matrix f28941x;
-    public float f28942y;
+    public final LinearGradient f29086w;
+    public final Matrix f29087x;
+    public float f29088y;
 
     public o30(int i10, Context context, boolean z10) {
         super(context);
-        this.f28933a = new Paint(1);
-        this.f28934b = new ba(8);
-        this.f28935c = new ba(9);
-        this.f28938r = 1.0f;
-        this.f28941x = new Matrix();
-        this.f28942y = 0.0f;
+        this.f29079a = new Paint(1);
+        this.f29080b = new ba(8);
+        this.f29081c = new ba(9);
+        this.f29084r = 1.0f;
+        this.f29087x = new Matrix();
+        this.f29088y = 0.0f;
         this.J = new Random();
         this.L = new n30[4];
         this.P = new OvershootInterpolator();
@@ -65,21 +65,21 @@ public final class o30 extends FrameLayout implements NotificationCenter.Notific
         for (int i11 = 0; i11 < 4; i11++) {
             this.L[i11] = new n30(i11);
         }
-        this.f28934b.f24844b = AndroidUtilities.dp(37.0f);
-        this.f28934b.f24843a = AndroidUtilities.dp(32.0f);
-        this.f28935c.f24844b = AndroidUtilities.dp(37.0f);
-        this.f28935c.f24843a = AndroidUtilities.dp(32.0f);
-        this.f28934b.b();
-        this.f28935c.b();
-        vj0 vj0Var = new vj0(R.raw.voice_outlined, AndroidUtilities.dp(22.0f), AndroidUtilities.dp(30.0f), true, null);
-        this.G = vj0Var;
+        this.f29080b.f25008b = AndroidUtilities.dp(37.0f);
+        this.f29080b.f25007a = AndroidUtilities.dp(32.0f);
+        this.f29081c.f25008b = AndroidUtilities.dp(37.0f);
+        this.f29081c.f25007a = AndroidUtilities.dp(32.0f);
+        this.f29080b.b();
+        this.f29081c.b();
+        yj0 yj0Var = new yj0(R.raw.voice_outlined, AndroidUtilities.dp(22.0f), AndroidUtilities.dp(30.0f), true, null);
+        this.G = yj0Var;
         setWillNotDraw(false);
         ?? imageView = new ImageView(context);
         this.F = imageView;
-        imageView.setAnimation(vj0Var);
+        imageView.setAnimation(yj0Var);
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         addView(imageView);
-        this.f28940w = new LinearGradient(0.0f, 0.0f, AndroidUtilities.dp(350.0f), 0.0f, new int[]{-2801343, -561538, 0}, new float[]{0.0f, 0.4f, 1.0f}, Shader.TileMode.CLAMP);
+        this.f29086w = new LinearGradient(0.0f, 0.0f, AndroidUtilities.dp(350.0f), 0.0f, new int[]{-2801343, -561538, 0}, new float[]{0.0f, 0.4f, 1.0f}, Shader.TileMode.CLAMP);
         if (z10) {
             setState(0);
         }
@@ -88,7 +88,7 @@ public final class o30 extends FrameLayout implements NotificationCenter.Notific
     private void setAmplitude(double d) {
         float min = (float) (Math.min(8500.0d, d) / 8500.0d);
         this.e = min;
-        this.f28936f = (min - this.d) / 265.0f;
+        this.f29082f = (min - this.d) / 265.0f;
     }
 
     public final void a() {
@@ -148,9 +148,9 @@ public final class o30 extends FrameLayout implements NotificationCenter.Notific
             } else {
                 i10 = 24;
             }
-            vj0 vj0Var = this.G;
-            vj0Var.P(i10);
-            vj0Var.N(vj0Var.f31276f - 1, false, true);
+            yj0 yj0Var = this.G;
+            yj0Var.P(i10);
+            yj0Var.N(yj0Var.f32940f - 1, false, true);
             a();
         }
     }
@@ -169,12 +169,12 @@ public final class o30 extends FrameLayout implements NotificationCenter.Notific
         } else {
             i10 = 24;
         }
-        vj0 vj0Var = this.G;
-        if (vj0Var.P(i10)) {
+        yj0 yj0Var = this.G;
+        if (yj0Var.P(i10)) {
             if (z10) {
-                vj0Var.M(0);
+                yj0Var.M(0);
             } else {
-                vj0Var.M(12);
+                yj0Var.M(12);
             }
         }
         this.F.d();
@@ -212,9 +212,9 @@ public final class o30 extends FrameLayout implements NotificationCenter.Notific
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         int i10;
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        i30 i30Var = i30.f27103d0;
+        i30 i30Var = i30.f27184d0;
         if (i30Var != null) {
-            if (i30Var.f27115w) {
+            if (i30Var.f27196w) {
                 i10 = R.string.AccDescrCloseMenu;
             } else {
                 i10 = R.string.AccDescrOpenMenu2;
@@ -263,22 +263,22 @@ public final class o30 extends FrameLayout implements NotificationCenter.Notific
     public void setState(int i10) {
         String string;
         n30 n30Var = this.h;
-        if (n30Var != null && n30Var.f28679i == i10) {
+        if (n30Var != null && n30Var.f28817i == i10) {
             return;
         }
-        this.f28937n = n30Var;
+        this.f29083n = n30Var;
         n30 n30Var2 = this.L[i10];
         this.h = n30Var2;
         float f7 = 0.0f;
         if (n30Var != null) {
-            this.f28938r = 0.0f;
+            this.f29084r = 0.0f;
         } else {
-            this.f28938r = 1.0f;
-            int i11 = n30Var2.f28679i;
+            this.f29084r = 1.0f;
+            int i11 = n30Var2.f28817i;
             if (i11 != 3 && i11 != 2) {
                 f7 = 1.0f;
             }
-            this.f28942y = f7;
+            this.f29088y = f7;
         }
         VoIPService sharedInstance = VoIPService.getSharedInstance();
         if (sharedInstance != null && ChatObject.isChannelOrGiga(sharedInstance.getChat())) {
@@ -287,11 +287,11 @@ public final class o30 extends FrameLayout implements NotificationCenter.Notific
             string = LocaleController.getString(R.string.VoipGroupVoiceChat);
         }
         if (i10 == 0) {
-            string = org.telegram.messenger.g0.g(R.string.VoipTapToMute, r4.c.i(string, ", "));
+            string = org.telegram.messenger.v0.h(R.string.VoipTapToMute, si.o0.i(string, ", "));
         } else if (i10 == 2) {
-            string = org.telegram.messenger.g0.g(R.string.Connecting, r4.c.i(string, ", "));
+            string = org.telegram.messenger.v0.h(R.string.Connecting, si.o0.i(string, ", "));
         } else if (i10 == 3) {
-            string = org.telegram.messenger.g0.g(R.string.VoipMutedByAdmin, r4.c.i(string, ", "));
+            string = org.telegram.messenger.v0.h(R.string.VoipMutedByAdmin, si.o0.i(string, ", "));
         }
         setContentDescription(string);
         invalidate();

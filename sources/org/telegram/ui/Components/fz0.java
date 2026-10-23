@@ -1,77 +1,65 @@
 package org.telegram.ui.Components;
 
-import android.graphics.drawable.Drawable;
-import android.view.ViewGroup;
-import java.util.ArrayList;
-import org.telegram.messenger.Emoji;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.UserConfig;
-public final class fz0 extends im0 {
-    public final iz0 f26447c;
-    public final iz0 d;
+import android.view.View;
+import java.io.Serializable;
+import org.telegram.tgnet.TLRPC;
+public final class fz0 implements Runnable {
+    public final int f26478a;
+    public final Object f26479b;
+    public final int f26480c;
+    public final Object d;
+    public final Object e;
 
-    public fz0(iz0 iz0Var, iz0 iz0Var2) {
-        this.d = iz0Var;
-        this.f26447c = iz0Var2;
+    public fz0(int i10, TLRPC.TL_error tL_error, org.telegram.ui.ActionBar.o2 o2Var, TLRPC.TL_payments_assignPlayMarketTransaction tL_payments_assignPlayMarketTransaction) {
+        this.f26478a = 13;
+        this.f26480c = i10;
+        this.f26479b = tL_error;
+        this.e = o2Var;
+        this.d = tL_payments_assignPlayMarketTransaction;
     }
 
     @Override
-    public final boolean D(s4.b1 b1Var) {
-        return true;
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.fz0.run():void");
     }
 
-    @Override
-    public final int h() {
-        ArrayList arrayList = this.f26447c.f27368w;
-        if (arrayList == null) {
-            return 0;
-        }
-        return arrayList.size();
+    public fz0(View view, int i10, String str, Serializable serializable, int i11) {
+        this.f26478a = i11;
+        this.f26479b = view;
+        this.f26480c = i10;
+        this.d = str;
+        this.e = serializable;
     }
 
-    @Override
-    public final long i(int i10) {
-        ArrayList arrayList = this.f26447c.f27368w;
-        if (arrayList == null) {
-            return 0L;
-        }
-        return ((MediaDataController.KeywordResult) arrayList.get(i10)).emoji.hashCode();
+    public fz0(Object obj, int i10, Object obj2, Object obj3, int i11) {
+        this.f26478a = i11;
+        this.f26479b = obj;
+        this.f26480c = i10;
+        this.e = obj2;
+        this.d = obj3;
     }
 
-    @Override
-    public final void v(s4.b1 b1Var, int i10) {
-        String str;
-        hz0 hz0Var = (hz0) b1Var.f45921a;
-        iz0 iz0Var = this.f26447c;
-        ArrayList arrayList = iz0Var.f27368w;
-        if (arrayList == null) {
-            str = null;
-        } else {
-            str = ((MediaDataController.KeywordResult) arrayList.get(i10)).emoji;
-        }
-        int direction = iz0Var.getDirection();
-        hz0Var.f27017a = str;
-        if (str != null && str.startsWith("animated_")) {
-            try {
-                long parseLong = Long.parseLong(str.substring(9));
-                Drawable drawable = hz0Var.f27018b;
-                if (!(drawable instanceof r5) || ((r5) drawable).i() != parseLong) {
-                    hz0Var.setImageDrawable(r5.n(UserConfig.selectedAccount, parseLong, null, hz0Var.f27020f.d()));
-                }
-            } catch (Exception unused) {
-                hz0Var.setImageDrawable(null);
-            }
-        } else {
-            hz0Var.setImageDrawable(Emoji.getEmojiBigDrawable(str));
-        }
-        if (hz0Var.d != direction) {
-            hz0Var.d = direction;
-            hz0Var.requestLayout();
-        }
+    public fz0(Object obj, Object obj2, int i10, Object obj3, int i11) {
+        this.f26478a = i11;
+        this.f26479b = obj;
+        this.e = obj2;
+        this.f26480c = i10;
+        this.d = obj3;
     }
 
-    @Override
-    public final s4.b1 x(ViewGroup viewGroup, int i10) {
-        return new s4.b1(new hz0(this.d, this.f26447c.getContext()));
+    public fz0(Object obj, Object obj2, Object obj3, int i10, int i11) {
+        this.f26478a = i11;
+        this.f26479b = obj;
+        this.e = obj2;
+        this.d = obj3;
+        this.f26480c = i10;
+    }
+
+    public fz0(String str, int i10, org.telegram.ui.ActionBar.h3 h3Var, org.telegram.ui.ActionBar.g6 g6Var) {
+        this.f26478a = 5;
+        this.d = str;
+        this.f26480c = i10;
+        this.f26479b = h3Var;
+        this.e = g6Var;
     }
 }

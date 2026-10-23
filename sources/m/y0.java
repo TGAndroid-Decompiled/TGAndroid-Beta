@@ -1,6 +1,6 @@
 package m;
 public interface y0 {
-    void m(int i10);
+    void n(int i10);
 
-    void q(int i10);
+    void s(int i10);
 }

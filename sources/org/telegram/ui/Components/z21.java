@@ -1,33 +1,42 @@
 package org.telegram.ui.Components;
 
 import android.view.View;
-import org.telegram.messenger.Utilities;
-public final class z21 implements ne.d, Utilities.Callback5, Utilities.Callback5Return {
-    public final s31 f32822a;
+import android.view.ViewPropertyAnimator;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+public final class z21 extends TextView {
+    public View f33128a;
+    public ViewPropertyAnimator f33129b;
+    public boolean f33130c;
+    public kr0 d;
 
-    @Override
-    public void r(int i10, float f7, float f10, ne.e eVar) {
-        this.f32822a.g();
+    public final void a() {
+        if (this.f33128a == null) {
+            return;
+        }
+        View view = (View) getParent();
+        int i10 = 0;
+        int i11 = 0;
+        int i12 = 0;
+        for (View view2 = this.f33128a; view2 != view; view2 = (View) view2.getParent()) {
+            i12 += view2.getTop();
+            i11 += view2.getLeft();
+        }
+        int width = ((this.f33128a.getWidth() / 2) + i11) - (getMeasuredWidth() / 2);
+        if (width >= 0) {
+            if (getMeasuredWidth() + width > view.getMeasuredWidth()) {
+                i10 = (view.getMeasuredWidth() - getMeasuredWidth()) - AndroidUtilities.dp(16.0f);
+            } else {
+                i10 = width;
+            }
+        }
+        setTranslationX(i10);
+        setTranslationY(i12 - getMeasuredHeight());
     }
 
     @Override
-    public Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        ((Integer) obj3).getClass();
-        ((Float) obj4).getClass();
-        ((Float) obj5).getClass();
-        return Boolean.valueOf(s31.c(this.f32822a, (h61) obj, (View) obj2));
-    }
-
-    @Override
-    public void mo0run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        View view = (View) obj2;
-        ((Integer) obj3).getClass();
-        ((Float) obj4).getClass();
-        ((Float) obj5).getClass();
-        s31.a(this.f32822a, (h61) obj);
-    }
-
-    @Override
-    public void H(float f7, int i10) {
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        a();
     }
 }

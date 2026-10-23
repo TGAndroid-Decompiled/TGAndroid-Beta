@@ -1,38 +1,6 @@
 package org.telegram.ui.Components;
-public final class rw0 implements Runnable {
-    public final int f30034a;
-    public final tw0 f30035b;
+public interface rw0 {
+    void i(int i10);
 
-    public rw0(tw0 tw0Var, int i10) {
-        this.f30034a = i10;
-        this.f30035b = tw0Var;
-    }
-
-    @Override
-    public final void run() {
-        switch (this.f30034a) {
-            case 0:
-                tw0 tw0Var = this.f30035b;
-                tw0Var.V0 = false;
-                if (!tw0Var.Y0 && tw0Var.W0) {
-                    tw0Var.C(true);
-                    return;
-                }
-                return;
-            case 1:
-                this.f30035b.V0 = false;
-                return;
-            case 2:
-                tw0 tw0Var2 = this.f30035b;
-                tw0Var2.Y0 = false;
-                if (!tw0Var2.V0 && tw0Var2.W0) {
-                    tw0Var2.C(true);
-                    return;
-                }
-                return;
-            default:
-                this.f30035b.Y0 = false;
-                return;
-        }
-    }
+    void m();
 }

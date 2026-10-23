@@ -1,23 +1,34 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
-public final class cl0 extends FrameLayout {
-    public final org.telegram.ui.Components.yj0 f36011a;
+public final class cl0 extends org.telegram.ui.ActionBar.j {
+    public final org.telegram.ui.ActionBar.e1 f36389a;
+    public final PasscodeActivity f36390b;
 
-    public cl0(Context context) {
-        super(context);
-        ?? imageView = new ImageView(context);
-        this.f36011a = imageView;
-        imageView.setOnClickListener(new s50(this, 14));
-        int dp = AndroidUtilities.dp(120.0f);
-        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(dp, dp);
-        layoutParams.gravity = 1;
-        addView((View) imageView, layoutParams);
-        setPadding(0, AndroidUtilities.dp(32.0f), 0, 0);
-        setLayoutParams(new s4.o0(-1, -2));
+    public cl0(PasscodeActivity passcodeActivity, org.telegram.ui.ActionBar.e1 e1Var) {
+        this.f36390b = passcodeActivity;
+        this.f36389a = e1Var;
+    }
+
+    @Override
+    public final void b(int i10) {
+        PasscodeActivity passcodeActivity = this.f36390b;
+        if (i10 == -1) {
+            passcodeActivity.finishFragment();
+            return;
+        }
+        int i11 = 1;
+        if (i10 == 1) {
+            if (passcodeActivity.f33536y != 0) {
+                i11 = 0;
+            }
+            passcodeActivity.f33536y = i11;
+            AndroidUtilities.runOnUIThread(new bh0(8, this, this.f36389a), 150L);
+            passcodeActivity.h.setText("");
+            for (vr vrVar : passcodeActivity.f33531n.f41793f) {
+                vrVar.setText("");
+            }
+            passcodeActivity.o0();
+        }
     }
 }

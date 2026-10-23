@@ -1,538 +1,124 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.RadialGradient;
+import android.graphics.Rect;
 import android.graphics.RectF;
-import android.graphics.RenderNode;
-import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.accessibility.AccessibilityNodeProvider;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
+import android.text.Layout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.ProfileActivity;
-public final class zh0 extends View {
-    public float E;
-    public yh0 F;
-    public final HashSet G;
-    public int H;
-    public boolean I;
-    public boolean J;
-    public wh0 K;
-    public wh0 L;
-    public wh0 M;
-    public final float N;
-    public final float O;
-    public final float P;
-    public int Q;
-    public boolean R;
-    public RadialGradient S;
-    public final Matrix T;
-    public int U;
-    public PorterDuffColorFilter V;
-    public wh0 W;
-    public final ArrayList f32906a;
-    public float f32907a0;
-    public final Paint f32908b;
-    public float f32909b0;
-    public final Paint f32910c;
-    public long f32911c0;
-    public float d;
-    public vh0 f32912d0;
-    public boolean e;
-    public float f32913f;
-    public final Path h;
-    public final Path f32914n;
-    public org.telegram.ui.oz0 f32915r;
-    public float f32916s;
-    public float v;
-    public RenderNode f32917w;
-    public int f32918x;
-    public final int f32919y;
+public final class zh0 {
+    public int f33225a;
+    public final yc f33226b;
+    public final f6 e;
+    public Drawable f33230i;
+    public Drawable f33231j;
+    public yj0 f33232k;
+    public i11 f33233l;
+    public ca0 f33239r;
+    public boolean f33240s;
+    public boolean f33241t;
+    public int f33242u;
+    public long f33243w;
+    public int f33244x;
+    public final ci0 f33245y;
+    public final RectF f33227c = new RectF();
+    public final RectF d = new RectF();
+    public final RectF f33228f = new RectF();
+    public final RectF f33229g = new RectF();
+    public final Rect h = new Rect();
+    public float f33234m = 1.0f;
+    public boolean f33235n = false;
+    public boolean f33236o = false;
+    public boolean f33237p = false;
+    public final float f33238q = 1.0f;
+    public int v = 0;
 
-    public zh0(Context context, int i10) {
-        super(context);
-        this.f32906a = new ArrayList();
-        Paint paint = new Paint();
-        this.f32908b = paint;
-        this.f32910c = new Paint();
-        this.e = true;
-        this.f32913f = -1.0f;
-        this.h = new Path();
-        this.f32914n = new Path();
-        this.f32918x = 0;
-        this.E = 0.0f;
-        this.F = null;
-        this.G = new HashSet();
-        this.H = 6;
-        this.K = null;
-        this.Q = 0;
-        this.T = new Matrix();
-        this.W = null;
-        paint.setColor(-16777216);
-        paint.setAlpha(40);
-        this.N = AndroidUtilities.dpf2(14.0f);
-        float dpf2 = AndroidUtilities.dpf2(12.0f);
-        this.O = dpf2;
-        float dpf22 = AndroidUtilities.dpf2(8.0f);
-        this.P = dpf22;
-        AndroidUtilities.dpf2(4.0f);
-        this.f32919y = (int) ((i10 - dpf2) - dpf22);
-        setBackgroundColor(0);
-        setImportantForAccessibility(1);
-    }
-
-    private float getItemWidth() {
-        int measuredWidth = getMeasuredWidth();
-        float f7 = this.N;
-        int i10 = this.f32918x;
-        return ((measuredWidth - ((f7 / 2.0f) * (i10 - 1))) - (f7 * 2.0f)) / i10;
-    }
-
-    public static wh0 j(int i10, List list) {
-        int size = list.size();
-        for (int i11 = 0; i11 < size; i11++) {
-            wh0 wh0Var = (wh0) list.get(i11);
-            if (!wh0Var.f32121o && wh0Var.f32110a == i10) {
-                return wh0Var;
-            }
-        }
-        return null;
+    public zh0(ci0 ci0Var) {
+        this.f33245y = ci0Var;
+        this.f33226b = new yc(ci0Var);
+        this.e = new f6(ci0Var, 0L, 250L, bs.f25133f);
     }
 
     public final void a() {
-        wh0 wh0Var = new wh0(this, xh0.I);
-        wh0Var.f32110a = 14;
-        this.f32906a.add(wh0Var);
-    }
-
-    public final void b() {
-        wh0 wh0Var = new wh0(this, xh0.J);
-        wh0Var.f32110a = 16;
-        this.f32906a.add(wh0Var);
-    }
-
-    public final void c() {
-        wh0 wh0Var = new wh0(this, xh0.K);
-        wh0Var.f32110a = 17;
-        this.f32906a.add(wh0Var);
-    }
-
-    public final void d() {
-        boolean z10;
-        if (this.I) {
+        float d = this.e.d(1.0f, false);
+        if (d != 1.0f) {
+            RectF rectF = this.f33229g;
+            float f7 = rectF.left;
+            RectF rectF2 = this.f33228f;
+            float lerp = AndroidUtilities.lerp(f7, rectF2.left, d);
+            RectF rectF3 = this.d;
+            rectF3.left = lerp;
+            rectF3.right = AndroidUtilities.lerp(rectF.right, rectF2.right, d);
             return;
         }
-        if (this.H == 6) {
-            this.f32918x = this.f32906a.size();
-            invalidate();
-            return;
-        }
-        ArrayList arrayList = new ArrayList();
-        HashSet hashSet = this.G;
-        if (hashSet.contains(7) && !hashSet.contains(9)) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        int i10 = this.H;
-        if (i10 != 0) {
-            if (i10 != 1) {
-                if (i10 != 2) {
-                    if (i10 != 3 && i10 != 4) {
-                        if (i10 == 5) {
-                            m(0, arrayList);
-                            m(1, arrayList);
-                        }
-                    } else {
-                        if (z10) {
-                            m(7, arrayList);
-                        } else {
-                            m(0, arrayList);
-                        }
-                        m(1, arrayList);
-                        if (z10) {
-                            arrayList.add(k(8));
-                        } else {
-                            m(10, arrayList);
-                            n(11, 10, arrayList);
-                            m(12, arrayList);
-                            m(9, arrayList);
-                        }
-                    }
-                } else {
-                    m(0, arrayList);
-                    m(1, arrayList);
-                    m(4, arrayList);
-                    arrayList.add(k(13));
-                }
-            } else {
-                if (z10) {
-                    m(7, arrayList);
-                } else {
-                    m(10, arrayList);
-                    n(11, 10, arrayList);
-                }
-                m(1, arrayList);
-                if (!z10) {
-                    m(2, arrayList);
-                    if (hashSet.contains(3) && !hashSet.contains(2) && !hashSet.contains(12)) {
-                        arrayList.add(k(3));
-                    }
-                }
-                n(4, 12, arrayList);
-                if (z10) {
-                    arrayList.add(k(8));
-                } else {
-                    m(12, arrayList);
-                    n(9, 12, arrayList);
-                }
-            }
-        } else {
-            m(0, arrayList);
-            m(1, arrayList);
-            m(5, arrayList);
-            m(6, arrayList);
-            n(3, 6, arrayList);
-        }
-        AndroidUtilities.runOnUIThread(new yt(26, this, arrayList));
-    }
-
-    public final void e() {
-        this.I = true;
-    }
-
-    public final boolean f() {
-        int i10 = this.H;
-        if (i10 == 1 || i10 == 3) {
-            return true;
-        }
-        return false;
-    }
-
-    public final void g() {
-        float f7;
-        int i10 = this.Q;
-        if (i10 != 0) {
-            if (!this.R) {
-                this.f32908b.setColor(i10);
-                return;
-            }
-            int measuredWidth = getMeasuredWidth();
-            if (measuredWidth <= 0) {
-                return;
-            }
-            float f10 = this.N;
-            float max = ((measuredWidth - ((f10 / 2.0f) * Math.max(0, this.f32918x - 1))) - (f10 * 2.0f)) / Math.max(1, this.f32918x);
-            float f11 = max / 2.0f;
-            float f12 = this.f32919y / 2.0f;
-            if (this.R) {
-                f7 = max * 0.65f;
-            } else {
-                f7 = 1.0f;
-            }
-            RadialGradient radialGradient = new RadialGradient(f11, f12, f7, org.telegram.ui.ActionBar.h6.m1(0.8f, this.Q), this.Q, Shader.TileMode.CLAMP);
-            this.S = radialGradient;
-            this.f32910c.setShader(radialGradient);
+        this.f33235n = false;
+        if (this.f33236o) {
+            this.f33237p = true;
         }
     }
 
-    @Override
-    public AccessibilityNodeProvider getAccessibilityNodeProvider() {
-        if (this.f32912d0 == null) {
-            this.f32912d0 = new vh0(this);
-        }
-        return this.f32912d0;
-    }
-
-    public float getRoundRadius() {
-        return AndroidUtilities.dp(16.0f);
-    }
-
-    public final void h(Canvas canvas, Drawable drawable, float f7) {
-        if (drawable == null) {
-            return;
-        }
-        drawable.setColorFilter(this.V);
-        drawable.setAlpha((int) (f7 * 255.0f));
-        drawable.draw(canvas);
-    }
-
-    public final void i() {
-        if (this.f32917w != null) {
-            this.f32917w = null;
-            this.f32915r = null;
-            invalidate();
-        }
-    }
-
-    public final wh0 k(int i10) {
-        wh0 j10 = j(i10, this.f32906a);
-        if (j10 != null) {
-            if (i10 == 1) {
-                p(j10, false);
-            }
-            return j10;
-        }
-        switch (i10) {
-            case 0:
-                j10 = new wh0(this, xh0.d);
-                break;
-            case 1:
-                j10 = new wh0(this);
-                p(j10, false);
-                break;
-            case 2:
-                j10 = new wh0(this, xh0.h);
-                break;
-            case 3:
-                j10 = new wh0(this, xh0.f32428n);
-                j10.f32126t = true;
-                j10.f32129x = 200;
-                break;
-            case 4:
-                j10 = new wh0(this, xh0.f32429r);
-                break;
-            case 5:
-                j10 = new wh0(this, xh0.f32430s);
-                this.K = j10;
-                j10.f32126t = true;
-                j10.f32129x = 500;
-                break;
-            case 6:
-                j10 = new wh0(this, xh0.v);
-                j10.f32126t = true;
-                j10.f32129x = 500;
-                break;
-            case 7:
-                j10 = new wh0(this, xh0.f32431w);
-                j10.f32126t = true;
-                j10.v = 300;
-                break;
-            case 8:
-                j10 = new wh0(this, xh0.f32432x);
-                j10.f32126t = true;
-                j10.f32129x = 500;
-                break;
-            case 9:
-                j10 = new wh0(this, xh0.f32433y);
-                j10.f32126t = true;
-                j10.f32127u = R.raw.profile_leave;
-                j10.f32129x = 300;
-                break;
-            case 10:
-                j10 = new wh0(this, xh0.E);
-                j10.f32126t = true;
-                j10.f32127u = R.raw.profile_voicechat;
-                j10.f32129x = 500;
-                break;
-            case 11:
-                j10 = new wh0(this, xh0.F);
-                j10.f32126t = true;
-                j10.f32127u = R.raw.profile_voicechat;
-                j10.f32129x = 500;
-                break;
-            case 12:
-                j10 = new wh0(this, xh0.G);
-                break;
-            case 13:
-                j10 = new wh0(this, xh0.H);
-                j10.f32126t = true;
-                j10.f32129x = 300;
-                break;
-        }
-        if (j10 != null) {
-            j10.f32110a = i10;
-        }
-        return j10;
-    }
-
-    public final boolean l() {
-        if (this.G.contains(5) && this.K != null) {
-            return true;
-        }
-        return false;
-    }
-
-    public final void m(int i10, ArrayList arrayList) {
-        if (this.G.contains(Integer.valueOf(i10))) {
-            arrayList.add(k(i10));
-        }
-    }
-
-    public final void n(int i10, int i11, ArrayList arrayList) {
-        Integer valueOf = Integer.valueOf(i10);
-        HashSet hashSet = this.G;
-        if (hashSet.contains(valueOf) && !hashSet.contains(Integer.valueOf(i11))) {
-            arrayList.add(k(i10));
-        }
-    }
-
-    public final void o(int i10, boolean z10) {
-        boolean remove;
-        HashSet hashSet = this.G;
+    public final float b() {
+        boolean z10 = this.f33236o;
+        f6 f6Var = this.e;
         if (z10) {
-            remove = hashSet.add(Integer.valueOf(i10));
+            return 1.0f - f6Var.d(1.0f, false);
+        }
+        if (!this.f33235n) {
+            return 1.0f;
+        }
+        return f6Var.d(1.0f, false);
+    }
+
+    public final void c(String str) {
+        i11 i11Var = new i11(str, 11.0f, AndroidUtilities.bold());
+        i11Var.n(3);
+        Layout.Alignment alignment = Layout.Alignment.ALIGN_CENTER;
+        i11Var.a();
+        this.f33233l = i11Var;
+    }
+
+    public final void d(int i10, int i11, int i12) {
+        Drawable drawable;
+        Drawable drawable2 = null;
+        ci0 ci0Var = this.f33245y;
+        if (i10 != 0) {
+            yj0 yj0Var = new yj0(i10, AndroidUtilities.dp(56.0f), AndroidUtilities.dp(56.0f), false, null);
+            yj0Var.R(ci0Var);
+            yj0Var.start();
+            this.f33232k = yj0Var;
         } else {
-            remove = hashSet.remove(Integer.valueOf(i10));
+            this.f33232k = null;
         }
-        if (remove) {
-            d();
-        }
-    }
-
-    @Override
-    public final void onDraw(android.graphics.Canvas r37) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.zh0.onDraw(android.graphics.Canvas):void");
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        setMeasuredDimension(View.MeasureSpec.getSize(i10), View.MeasureSpec.makeMeasureSpec((int) (this.f32919y + this.P + this.O), 1073741824));
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        wh0 wh0Var;
-        if (this.E >= AndroidUtilities.dp(8.0f)) {
-            float x10 = motionEvent.getX();
-            float y3 = motionEvent.getY();
-            int action = motionEvent.getAction();
-            if (action == 0) {
-                this.W = null;
-                ArrayList arrayList = this.f32906a;
-                int size = arrayList.size();
-                int i10 = 0;
-                while (true) {
-                    if (i10 >= size) {
-                        break;
-                    }
-                    wh0 wh0Var2 = (wh0) arrayList.get(i10);
-                    if (!wh0Var2.f32121o && wh0Var2.d.contains(x10, y3)) {
-                        this.W = wh0Var2;
-                        this.f32907a0 = x10;
-                        this.f32909b0 = y3;
-                        this.f32911c0 = System.currentTimeMillis();
-                        this.W.f32111b.c(true);
-                        break;
-                    }
-                    i10++;
-                }
-            } else if (action == 2) {
-                if (this.W != null && (Math.abs(x10 - this.f32907a0) > 20.0f || Math.abs(y3 - this.f32909b0) > 20.0f)) {
-                    this.W.f32111b.c(false);
-                    this.W = null;
-                }
-            } else if ((action == 1 || action == 3) && (wh0Var = this.W) != null) {
-                wh0Var.f32111b.c(false);
-                if (action == 1 && this.W.d.contains(x10, y3)) {
-                    if (System.currentTimeMillis() - this.f32911c0 > 250) {
-                        try {
-                            performHapticFeedback(0, 1);
-                        } catch (Exception unused) {
-                        }
-                    }
-                    wh0 wh0Var3 = this.W;
-                    if (wh0Var3.f32126t && !wh0Var3.f32125s) {
-                        wh0Var3.f32125s = true;
-                        invalidate();
-                    }
-                    wh0 wh0Var4 = this.W;
-                    int i11 = wh0Var4.f32127u;
-                    if (i11 != 0) {
-                        wh0Var4.d(i11, 0, 0);
-                    }
-                    this.W.f32128w = System.currentTimeMillis();
-                    wh0 wh0Var5 = this.W;
-                    yh0 yh0Var = this.F;
-                    if (yh0Var != null) {
-                        int i12 = wh0Var5.v;
-                        if (i12 == 0) {
-                            int i13 = wh0Var5.f32110a;
-                            RectF rectF = wh0Var5.d;
-                            ProfileActivity.e0(((org.telegram.ui.mx0) yh0Var).f39368b, i13, rectF.left, rectF.top);
-                        } else {
-                            postDelayed(new yt(27, this, wh0Var5), i12);
-                        }
-                    }
-                }
-                this.W = null;
-                return true;
-            }
-            if (this.W != null) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public final void p(wh0 wh0Var, boolean z10) {
-        xh0 xh0Var;
-        if (z10) {
-            if (this.J) {
-                xh0 xh0Var2 = xh0.e;
-                wh0Var.c(LocaleController.getString(xh0Var2.f32434a));
-                wh0Var.d(R.raw.profile_unmuting, xh0Var2.f32435b, xh0Var2.f32436c);
-                return;
-            }
-            xh0 xh0Var3 = xh0.f32427f;
-            wh0Var.c(LocaleController.getString(xh0Var3.f32434a));
-            wh0Var.d(R.raw.profile_muting, xh0Var3.f32435b, xh0Var3.f32436c);
-            return;
-        }
-        if (this.J) {
-            xh0Var = xh0.e;
+        if (i11 != 0) {
+            drawable = ci0Var.getResources().getDrawable(i11).mutate();
         } else {
-            xh0Var = xh0.f32427f;
+            drawable = null;
         }
-        wh0Var.d(0, xh0Var.f32435b, xh0Var.f32436c);
-        wh0Var.c(LocaleController.getString(xh0Var.f32434a));
-    }
-
-    public void setNotifications(boolean z10) {
-        boolean z11;
-        if (this.J != z10) {
-            z11 = true;
-        } else {
-            z11 = false;
+        this.f33230i = drawable;
+        if (i12 != 0) {
+            drawable2 = ci0Var.getResources().getDrawable(i12).mutate();
         }
-        this.J = z10;
-        wh0 j10 = j(1, this.f32906a);
-        if (j10 != null) {
-            p(j10, z11);
-            invalidate();
-            return;
+        this.f33231j = drawable2;
+        yj0 yj0Var2 = this.f33232k;
+        Rect rect = this.h;
+        if (yj0Var2 != null) {
+            yj0Var2.setBounds(rect);
         }
-        this.G.add(1);
-        d();
-    }
-
-    public void setOnActionClickListener(yh0 yh0Var) {
-        this.F = yh0Var;
-    }
-
-    public void setParentExpanded(float f7) {
-        if (this.d != f7) {
-            this.d = f7;
-            invalidate();
+        Drawable drawable3 = this.f33230i;
+        if (drawable3 != null) {
+            drawable3.setBounds(rect);
+        }
+        Drawable drawable4 = this.f33231j;
+        if (drawable4 != null) {
+            drawable4.setBounds(rect);
         }
     }
 
-    @Override
-    public final boolean verifyDrawable(Drawable drawable) {
-        if (!super.verifyDrawable(drawable) && !(drawable instanceof ba0)) {
-            return false;
-        }
-        return true;
+    public zh0(ci0 ci0Var, ai0 ai0Var) {
+        this.f33245y = ci0Var;
+        this.f33226b = new yc(ci0Var);
+        this.e = new f6(ci0Var, 0L, 250L, bs.f25133f);
+        d(0, ai0Var.f24732b, ai0Var.f24733c);
+        c(LocaleController.getString(ai0Var.f24731a));
     }
 }

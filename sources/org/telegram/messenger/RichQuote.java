@@ -323,7 +323,7 @@ public class RichQuote {
                     RichMessageLayout.RichBlock richBlock = arrayList3.get(i13);
                     i13++;
                     RichMessageLayout.RichBlock richBlock2 = richBlock;
-                    org.telegram.ui.Cells.y9[] text = richBlock2.getText();
+                    org.telegram.ui.Cells.z9[] text = richBlock2.getText();
                     if (text != null) {
                         int length2 = text.length;
                         int i14 = i11;
@@ -541,12 +541,12 @@ public class RichQuote {
         return null;
     }
 
-    private static CharSequence getText(org.telegram.ui.Cells.y9 y9Var) {
+    private static CharSequence getText(org.telegram.ui.Cells.z9 z9Var) {
         Layout layout;
-        if (y9Var == null) {
+        if (z9Var == null) {
             layout = null;
         } else {
-            layout = y9Var.getLayout();
+            layout = z9Var.getLayout();
         }
         if (layout == null) {
             return null;

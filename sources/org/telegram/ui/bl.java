@@ -1,33 +1,95 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.text.style.CharacterStyle;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.UndoView;
-public final class bl extends UndoView {
-    public final qn f35673f0;
+import android.content.Context;
+import android.os.Bundle;
+import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.MessagePreviewParams;
+import org.telegram.tgnet.TLRPC;
+public final class bl extends org.telegram.ui.Components.rc0 {
+    public final sn H;
 
-    public bl(qn qnVar, Activity activity, qn qnVar2, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(activity, qnVar2, true, d6Var);
-        this.f35673f0 = qnVar;
+    public bl(sn snVar, Context context, sn snVar2, bh.b bVar, MessagePreviewParams messagePreviewParams, TLRPC.User user, TLRPC.Chat chat, int i10, org.telegram.ui.Components.nc0 nc0Var, int i11, boolean z10) {
+        super(context, snVar2, bVar, messagePreviewParams, user, chat, i10, nc0Var, i11, z10);
+        this.H = snVar;
     }
 
     @Override
-    public final void b(CharacterStyle characterStyle) {
-        this.f35673f0.X7(characterStyle, false, null, null);
-    }
-
-    @Override
-    public final void k(long j10, int i10, Object obj, Object obj2, Runnable runnable, Runnable runnable2) {
-        float f7;
-        int i11;
-        zj zjVar = this.f35673f0.X1;
-        if (zjVar != null && (((i11 = zjVar.U) == 1 || i11 == 3) && zjVar.T)) {
-            f7 = AndroidUtilities.dp(zjVar.getStyleHeight());
-        } else {
-            f7 = 0.0f;
+    public final void b() {
+        MessageObject messageObject;
+        in inVar;
+        sn snVar = this.H;
+        in inVar2 = snVar.f41742x5;
+        if (inVar2 != null && (messageObject = inVar2.f38270a) != null && ((inVar = snVar.f41663r5.quote) == null || inVar.f38270a == null || messageObject.getId() == snVar.f41663r5.quote.f38270a.getId())) {
+            return;
         }
-        setAdditionalTranslationY(f7);
-        super.k(j10, i10, obj, obj2, runnable, runnable2);
+        snVar.f41742x5 = snVar.f41663r5.quote;
+    }
+
+    @Override
+    public final void c(boolean z10) {
+        int i10;
+        boolean z11;
+        boolean z12;
+        long peerDialogId;
+        int i11;
+        MessagePreviewParams.Messages messages;
+        int i12 = 0;
+        a(false);
+        sn snVar = this.H;
+        MessagePreviewParams messagePreviewParams = snVar.f41663r5;
+        if (messagePreviewParams != null) {
+            if (!z10) {
+                snVar.f41755y5 = true;
+            }
+            MessagePreviewParams.Messages messages2 = messagePreviewParams.forwardMessages;
+            if (messages2 != null) {
+                int size = messages2.messages.size();
+                i10 = 0;
+                z11 = false;
+                for (int i13 = 0; i13 < size; i13++) {
+                    MessageObject messageObject = snVar.f41663r5.forwardMessages.messages.get(i13);
+                    if (messageObject.isTodo()) {
+                        i10 = 3;
+                    } else if (messageObject.isPoll()) {
+                        if (i10 != 2) {
+                            if (messageObject.isPublicPoll()) {
+                                i10 = 2;
+                            } else {
+                                i10 = 1;
+                            }
+                        }
+                    } else if (messageObject.isInvoice()) {
+                        z11 = true;
+                    }
+                    snVar.f41554i6[0].put(messageObject.getId(), messageObject);
+                }
+            } else {
+                i10 = 0;
+                z11 = false;
+            }
+            Bundle e = org.telegram.messenger.v0.e(3, "onlySelect", "dialogsType", true);
+            e.putBoolean("quote", !z10);
+            if (!z10 && (messages = snVar.f41663r5.replyMessage) != null && !messages.messages.isEmpty() && snVar.f41663r5.quote == null) {
+                z12 = true;
+            } else {
+                z12 = false;
+            }
+            e.putBoolean("reply_to", z12);
+            if (z12 && (DialogObject.getPeerDialogId(snVar.f41663r5.replyMessage.messages.get(0).getFromPeer())) != 0 && peerDialogId != snVar.a() && peerDialogId != snVar.getUserConfig().getClientUserId() && i11 > 0) {
+                e.putLong("reply_to_author", peerDialogId);
+            }
+            e.putInt("hasPoll", i10);
+            e.putBoolean("hasInvoice", z11);
+            MessagePreviewParams.Messages messages3 = snVar.f41663r5.forwardMessages;
+            if (messages3 != null) {
+                i12 = messages3.messages.size();
+            }
+            e.putInt("messagesCount", i12);
+            e.putBoolean("canSelectTopics", true);
+            ey eyVar = new ey(e);
+            eyVar.C2 = snVar;
+            snVar.presentFragment(eyVar);
+        }
     }
 }

@@ -1,18 +1,18 @@
 package v3;
 
 import android.util.Pair;
-import c3.b0;
 import c3.d0;
+import c3.f0;
 import e2.m0;
 public final class c implements h {
-    public final long[] f47923a;
-    public final long[] f47924b;
-    public final long f47925c;
+    public final long[] f48361a;
+    public final long[] f48362b;
+    public final long f48363c;
 
     public c(long j10, long[] jArr, long[] jArr2) {
-        this.f47923a = jArr;
-        this.f47924b = jArr2;
-        this.f47925c = j10 == -9223372036854775807L ? m0.S(jArr2[jArr2.length - 1]) : j10;
+        this.f48361a = jArr;
+        this.f48362b = jArr2;
+        this.f48363c = j10 == -9223372036854775807L ? m0.S(jArr2[jArr2.length - 1]) : j10;
     }
 
     public static Pair i(long j10, long[] jArr, long[] jArr2) {
@@ -35,13 +35,13 @@ public final class c implements h {
     }
 
     @Override
-    public final long a(long j10) {
-        return m0.S(((Long) i(j10, this.f47923a, this.f47924b).second).longValue());
+    public final long a() {
+        return -1L;
     }
 
     @Override
-    public final long b() {
-        return -1L;
+    public final long b(long j10) {
+        return m0.S(((Long) i(j10, this.f48361a, this.f48362b).second).longValue());
     }
 
     @Override
@@ -60,10 +60,10 @@ public final class c implements h {
     }
 
     @Override
-    public final b0 f(long j10) {
-        Pair i10 = i(m0.h0(m0.j(j10, 0L, this.f47925c)), this.f47924b, this.f47923a);
-        d0 d0Var = new d0(m0.S(((Long) i10.first).longValue()), ((Long) i10.second).longValue());
-        return new b0(d0Var, d0Var);
+    public final d0 f(long j10) {
+        Pair i10 = i(m0.h0(m0.j(j10, 0L, this.f48363c)), this.f48362b, this.f48361a);
+        f0 f0Var = new f0(m0.S(((Long) i10.first).longValue()), ((Long) i10.second).longValue());
+        return new d0(f0Var, f0Var);
     }
 
     @Override
@@ -73,6 +73,6 @@ public final class c implements h {
 
     @Override
     public final long h() {
-        return this.f47925c;
+        return this.f48363c;
     }
 }

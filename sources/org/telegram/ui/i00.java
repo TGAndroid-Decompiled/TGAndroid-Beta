@@ -1,59 +1,26 @@
 package org.telegram.ui;
+public final class i00 implements Runnable {
+    public final int f38001a;
+    public final j00 f38002b;
 
-import android.text.Editable;
-import android.text.TextUtils;
-import android.text.TextWatcher;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class i00 implements TextWatcher {
-    public final k00 f37831a;
-
-    public i00(k00 k00Var) {
-        this.f37831a = k00Var;
+    public i00(j00 j00Var, int i10) {
+        this.f38001a = i10;
+        this.f38002b = j00Var;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        org.telegram.ui.ActionBar.k kVar;
-        org.telegram.ui.ActionBar.k kVar2;
-        String str;
-        int i10;
-        n00 n00Var = this.f37831a.e;
-        if (!TextUtils.equals(editable, n00Var.f39386w)) {
-            n00Var.f39383n = !TextUtils.isEmpty(editable);
-            n00Var.f39386w = org.telegram.ui.Components.a6.onlyEmojiSpans(editable);
-            b00 b00Var = n00Var.I;
-            if (b00Var != null) {
-                b00Var.e(org.telegram.ui.Components.a6.cloneSpans(n00Var.f39386w, -1, b00Var.f35469s.getPaint().getFontMetricsInt(), 0.5f), true);
-            }
-            c00 c00Var = n00Var.J;
-            if (c00Var != null) {
-                org.telegram.ui.Cells.t3 t3Var = c00Var.f35769r;
-                if (n00.k0(n00Var.f39386w)) {
-                    if (n00Var.f39387x) {
-                        i10 = R.string.FilterNameAnimationsDisable;
-                    } else {
-                        i10 = R.string.FilterNameAnimationsEnable;
-                    }
-                    str = LocaleController.getString(i10);
-                } else {
-                    str = null;
-                }
-                t3Var.setText(str);
-            }
-            kVar = ((org.telegram.ui.ActionBar.n2) n00Var).actionBar;
-            CharSequence charSequence = n00Var.f39386w;
-            kVar2 = ((org.telegram.ui.ActionBar.n2) n00Var).actionBar;
-            kVar.setTitle(org.telegram.ui.Components.a6.cloneSpans(charSequence, -1, kVar2.getTitleFontMetricsInt()));
+    public final void run() {
+        switch (this.f38001a) {
+            case 0:
+                this.f38002b.d();
+                return;
+            case 1:
+                this.f38002b.a();
+                return;
+            default:
+                j00 j00Var = this.f38002b;
+                j00Var.b(j00Var.f38429y);
+                return;
         }
-        n00Var.i0(true);
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

@@ -1,34 +1,39 @@
 package org.telegram.ui;
 
-import android.app.Activity;
+import android.content.Context;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessageObject;
-public final class g21 implements k21 {
-    public final qn f37177a;
-    public final Activity f37178b;
-    public final org.telegram.ui.ActionBar.d6 f37179c;
-    public final MessageObject d;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class g21 implements Runnable {
+    public final int f37471a;
+    public final org.telegram.ui.ActionBar.o2 f37472b;
+    public final Context f37473c;
+    public final org.telegram.ui.ActionBar.g6 d;
+    public final org.telegram.ui.Components.ko0 e;
 
-    public g21(qn qnVar, Activity activity, org.telegram.ui.ActionBar.d6 d6Var, MessageObject messageObject) {
-        this.f37177a = qnVar;
-        this.f37178b = activity;
-        this.f37179c = d6Var;
-        this.d = messageObject;
+    public g21(org.telegram.ui.ActionBar.o2 o2Var, Context context, org.telegram.ui.ActionBar.g6 g6Var, org.telegram.ui.Components.ko0 ko0Var, int i10) {
+        this.f37471a = i10;
+        this.f37472b = o2Var;
+        this.f37473c = context;
+        this.d = g6Var;
+        this.e = ko0Var;
     }
 
     @Override
-    public final void a() {
-        AndroidUtilities.runOnUIThread(new a21(this.f37177a, this.f37178b, this.f37179c, this.d, 2), 200L);
-    }
-
-    @Override
-    public final void b() {
-        AndroidUtilities.runOnUIThread(new se(this.f37177a, this.d, 8), 200L);
-    }
-
-    @Override
-    public final void c() {
-        qn qnVar = this.f37177a;
-        qnVar.showDialog(new sg.y0((org.telegram.ui.ActionBar.n2) qnVar, 3, true));
+    public final void run() {
+        switch (this.f37471a) {
+            case 0:
+                org.telegram.ui.Components.xc.a0(this.f37472b).c(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.AdReported), -1, 2, new dv(this.f37473c, 4), this.d)).j();
+                AndroidUtilities.runOnUIThread(this.e);
+                return;
+            case 1:
+                org.telegram.ui.Components.xc.a0(this.f37472b).c(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.AdReported), -1, 2, new dv(this.f37473c, 3), this.d)).j();
+                AndroidUtilities.runOnUIThread(this.e);
+                return;
+            default:
+                org.telegram.ui.Components.xc.a0(this.f37472b).c(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.AdReported), -1, 2, new dv(this.f37473c, 7), this.d)).j();
+                AndroidUtilities.runOnUIThread(this.e);
+                return;
+        }
     }
 }

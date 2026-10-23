@@ -1,29 +1,42 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.widget.FrameLayout;
-public final class zu extends FrameLayout {
-    public org.telegram.ui.ActionBar.n2 f43808a;
-    public FrameLayout f43809b;
-    public org.telegram.ui.ActionBar.k f43810c;
-    public org.telegram.ui.Components.jm0 d;
-    public ai.u1 e;
-    public int f43811f;
-    public final av h;
+import java.util.ArrayList;
+import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.MessagesStorage;
+import org.telegram.tgnet.TLRPC;
+public final class zu implements xx, ts {
+    public final cv f44209a;
 
-    public zu(av avVar, Context context) {
-        super(context);
-        this.h = avVar;
+    public zu(cv cvVar) {
+        this.f44209a = cvVar;
     }
 
     @Override
-    public final void setTranslationX(float f7) {
-        zu zuVar;
-        super.setTranslationX(f7);
-        av avVar = this.h;
-        zu[] zuVarArr = avVar.f35435f;
-        if (avVar.f35436n && (zuVar = zuVarArr[0]) == this) {
-            avVar.e.j(Math.abs(zuVar.getTranslationX()) / zuVarArr[0].getMeasuredWidth(), zuVarArr[1].f43811f);
+    public boolean D() {
+        return false;
+    }
+
+    @Override
+    public boolean J(ey eyVar) {
+        return false;
+    }
+
+    @Override
+    public void b(TLRPC.User user) {
+        this.f44209a.l0(user);
+    }
+
+    @Override
+    public boolean w(ey eyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, ye1 ye1Var) {
+        if (!arrayList.isEmpty()) {
+            long j10 = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
+            if (DialogObject.isUserDialog(j10)) {
+                cv cvVar = this.f44209a;
+                cvVar.l0(cvVar.getMessagesController().getUser(Long.valueOf(j10)));
+                return true;
+            }
+            return true;
         }
+        return true;
     }
 }

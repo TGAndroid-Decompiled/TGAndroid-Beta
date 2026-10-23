@@ -1,6 +1,6 @@
 package be;
 public final class i2 implements kd.f, kd.g {
-    public static final i2 f4293a = new Object();
+    public static final i2 f4300a = new Object();
 
     @Override
     public final Object fold(Object obj, td.p pVar) {

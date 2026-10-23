@@ -1,32 +1,56 @@
 package org.telegram.ui.web;
 
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
+import android.util.LongSparseArray;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.ActionBar.n2;
-public final class d1 extends org.telegram.ui.ActionBar.j {
-    public final f1 f42626a;
+import org.telegram.ui.if0;
+public abstract class d1 {
+    public static boolean f43092a;
+    public static boolean f43093b;
+    public static ArrayList f43094c;
+    public static LongSparseArray d;
+    public static ArrayList e;
 
-    public d1(f1 f1Var) {
-        this.f42626a = f1Var;
+    public static ArrayList a(Utilities.Callback callback) {
+        boolean z10;
+        if (callback != null && !f43093b) {
+            if (e == null) {
+                e = new ArrayList();
+            }
+            e.add(callback);
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        b();
+        if (z10) {
+            return null;
+        }
+        return f43094c;
     }
 
-    @Override
-    public final void b(int i10) {
-        org.telegram.ui.ActionBar.k kVar;
-        org.telegram.ui.ActionBar.k kVar2;
-        if (i10 == -1) {
-            f1 f1Var = this.f42626a;
-            kVar = ((n2) f1Var).actionBar;
-            if (kVar.t()) {
-                kVar2 = ((n2) f1Var).actionBar;
-                kVar2.s();
-                f1Var.f42640s.clear();
-                AndroidUtilities.forEachViews((RecyclerView) f1Var.f32360a, (Utilities.Callback<View>) new ci.e(23));
-                return;
+    public static void b() {
+        if (!f43092a && !f43093b) {
+            f43092a = true;
+            f43094c = new ArrayList();
+            d = new LongSparseArray();
+            Utilities.globalQueue.postRunnable(new if0(13));
+        }
+    }
+
+    public static void c(c1 c1Var) {
+        if (c1Var != null && c1Var.d != null) {
+            b();
+            c1 c1Var2 = (c1) d.get(c1Var.f43087a);
+            if (c1Var2 != null) {
+                c1Var2.d = c1Var.d;
+            } else {
+                f43094c.add(c1Var);
+                d.put(c1Var.f43087a, c1Var);
             }
-            f1Var.finishFragment();
+            AndroidUtilities.cancelRunOnUIThread(new if0(12));
+            AndroidUtilities.runOnUIThread(new if0(12), 1000L);
         }
     }
 }

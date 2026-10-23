@@ -1,52 +1,154 @@
 package org.telegram.ui.ActionBar;
 
-import android.util.SparseIntArray;
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public final class b4 implements gg.a {
-    public g6 f20696a;
-    public TLRPC.TL_theme f20697b;
-    public TLRPC.TL_chatThemeUniqueGift f20698c;
-    public int d;
-    public int e = -1;
-    public SparseIntArray f20699f;
-    public String f20700g;
-    public int h;
-    public int f20701i;
-    public int f20702j;
-    public int f20703k;
-    public int f20704l;
-    public int f20705m;
-    public int f20706n;
-    public int f20707o;
+import android.app.Activity;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Point;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import java.util.WeakHashMap;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildVars;
+import org.telegram.messenger.FileLog;
+public final class b4 extends FrameLayout {
+    public h5 f20729a;
+    public ActionBarLayout f20730b;
+    public boolean f20731c;
+    public final Paint d;
+    public r0.k1 e;
+    public i0.b f20732f;
+    public i0.b h;
 
-    public final long a() {
-        TLRPC.TL_theme tL_theme = this.f20697b;
-        if (tL_theme != null) {
-            return tL_theme.f20417id;
-        }
-        TLRPC.TL_chatThemeUniqueGift tL_chatThemeUniqueGift = this.f20698c;
-        if (tL_chatThemeUniqueGift != null) {
-            return tL_chatThemeUniqueGift.gift.gift_id;
-        }
-        return 0L;
+    public b4(Activity activity) {
+        super(activity);
+        this.d = new Paint(1);
+        i0.b bVar = i0.b.e;
+        this.f20732f = bVar;
+        this.h = bVar;
+        n nVar = new n(this, 8);
+        WeakHashMap weakHashMap = r0.i0.f45242a;
+        r0.a0.i(this, nVar);
+        setSystemUiVisibility(1280);
     }
 
-    public final TLRPC.ThemeSettings b(int i10) {
-        ArrayList<TLRPC.ThemeSettings> arrayList;
-        TLRPC.TL_theme tL_theme = this.f20697b;
-        if (tL_theme != null) {
-            arrayList = tL_theme.settings;
-        } else {
-            TLRPC.TL_chatThemeUniqueGift tL_chatThemeUniqueGift = this.f20698c;
-            if (tL_chatThemeUniqueGift != null) {
-                arrayList = tL_chatThemeUniqueGift.theme_settings;
+    @Override
+    public final void addView(View view, int i10, ViewGroup.LayoutParams layoutParams) {
+        super.addView(view, i10, layoutParams);
+        r0.k1 k1Var = this.e;
+        if (k1Var != null) {
+            if ((view instanceof ActionBarLayout) || view.getTag() == null) {
+                r0.i0.b(view, k1Var);
             }
-            return null;
         }
-        if (arrayList != null && i10 >= 0 && arrayList.size() > i10) {
-            return arrayList.get(i10);
+    }
+
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        ActionBarLayout actionBarLayout = this.f20730b;
+        if (actionBarLayout != null && actionBarLayout.getParent() == this) {
+            this.f20730b.O(canvas, this);
         }
-        return null;
+        super.dispatchDraw(canvas);
+    }
+
+    public Paint getInternalNavbarPaint() {
+        return this.d;
+    }
+
+    @Override
+    public final boolean hasOverlappingRendering() {
+        return false;
+    }
+
+    @Override
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        return ((ActionBarLayout) this.f20729a).i();
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        this.f20731c = true;
+        int childCount = getChildCount();
+        for (int i14 = 0; i14 < childCount; i14++) {
+            View childAt = getChildAt(i14);
+            if (childAt.getVisibility() != 8) {
+                FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) childAt.getLayoutParams();
+                try {
+                    childAt.layout(layoutParams.leftMargin, layoutParams.topMargin + getPaddingTop(), layoutParams.leftMargin + childAt.getMeasuredWidth(), layoutParams.topMargin + childAt.getMeasuredHeight() + getPaddingTop());
+                } catch (Exception e) {
+                    FileLog.e(e);
+                    if (BuildVars.DEBUG_VERSION) {
+                        throw e;
+                    }
+                }
+            }
+        }
+        this.f20731c = false;
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        int makeMeasureSpec;
+        int size = View.MeasureSpec.getSize(i10);
+        int size2 = View.MeasureSpec.getSize(i11);
+        setMeasuredDimension(size, size2);
+        i0.b bVar = this.f20732f;
+        int i12 = (size - bVar.f12315a) - bVar.f12317c;
+        int i13 = (size2 - bVar.f12316b) - bVar.d;
+        Point point = AndroidUtilities.displaySize;
+        point.x = i12;
+        point.y = i13;
+        int childCount = getChildCount();
+        for (int i14 = 0; i14 < childCount; i14++) {
+            View childAt = getChildAt(i14);
+            if (childAt.getVisibility() != 8) {
+                FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) childAt.getLayoutParams();
+                int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec((size - layoutParams.leftMargin) - layoutParams.rightMargin, 1073741824);
+                int i15 = layoutParams.height;
+                if (i15 > 0) {
+                    makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(i15, 1073741824);
+                } else {
+                    makeMeasureSpec = View.MeasureSpec.makeMeasureSpec((size2 - layoutParams.topMargin) - layoutParams.bottomMargin, 1073741824);
+                }
+                if ((childAt instanceof ActionBarLayout) && ((ActionBarLayout) childAt).g0()) {
+                    childAt.forceLayout();
+                }
+                childAt.measure(makeMeasureSpec2, makeMeasureSpec);
+            }
+        }
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        return false;
+    }
+
+    @Override
+    public final void requestLayout() {
+        if (!this.f20731c) {
+            super.requestLayout();
+        }
+    }
+
+    public void setActionBarLayout(ActionBarLayout actionBarLayout) {
+        this.f20730b = actionBarLayout;
+    }
+
+    public void setInternalNavigationBarColor(int i10) {
+        Paint paint = this.d;
+        if (paint.getColor() != i10) {
+            paint.setColor(i10);
+            invalidate();
+            int childCount = getChildCount();
+            for (int i11 = 0; i11 < childCount; i11++) {
+                getChildAt(i11).invalidate();
+            }
+        }
+    }
+
+    public void setParentActionBarLayout(h5 h5Var) {
+        this.f20729a = h5Var;
     }
 }

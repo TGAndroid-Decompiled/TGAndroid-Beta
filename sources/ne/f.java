@@ -1,14 +1,14 @@
 package ne;
 public interface f {
-    void F();
+    void E();
 
-    void c();
+    void a();
 
-    void h(boolean z10);
+    void k(boolean z10);
 
-    boolean i();
+    boolean r();
 
-    boolean k(float f7);
+    boolean u(float f7);
 
-    void m();
+    void x();
 }

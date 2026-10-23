@@ -10,52 +10,52 @@ import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.SharedConfig;
-import org.telegram.ui.Components.jm0;
-import org.telegram.ui.Components.ml0;
-public final class o1 extends jm0 {
-    public ml0 V2;
-    public boolean W2;
-    public float X2;
-    public float Y2;
+import org.telegram.ui.Components.mm0;
+import org.telegram.ui.Components.pl0;
+public final class o1 extends mm0 {
+    public pl0 Y2;
     public boolean Z2;
-    public final SparseArray f9539a3;
-    public final ArrayList f9540b3;
-    public final ArrayList f9541c3;
-    public final ArrayList f9542d3;
-    public final ArrayList f9543e3;
-    public final PorterDuffColorFilter f9544f3;
+    public float f9550a3;
+    public float f9551b3;
+    public boolean f9552c3;
+    public final SparseArray f9553d3;
+    public final ArrayList f9554e3;
+    public final ArrayList f9555f3;
+    public final ArrayList f9556g3;
+    public final ArrayList f9557h3;
+    public final PorterDuffColorFilter f9558i3;
 
     public o1(Context context) {
         super(context, null);
-        this.Z2 = false;
-        this.f9539a3 = new SparseArray();
-        this.f9540b3 = new ArrayList();
-        this.f9541c3 = new ArrayList();
-        this.f9542d3 = new ArrayList();
-        this.f9543e3 = new ArrayList();
-        this.f9544f3 = new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN);
+        this.f9552c3 = false;
+        this.f9553d3 = new SparseArray();
+        this.f9554e3 = new ArrayList();
+        this.f9555f3 = new ArrayList();
+        this.f9556g3 = new ArrayList();
+        this.f9557h3 = new ArrayList();
+        this.f9558i3 = new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN);
     }
 
-    public static void x1(o1 o1Var, int i10, int i11) {
+    public static void C1(o1 o1Var, int i10, int i11) {
         int i12;
-        if (o1Var.V2 != null && (o1Var.getLayoutManager() instanceof s4.s)) {
+        if (o1Var.Y2 != null && (o1Var.getLayoutManager() instanceof s4.s)) {
             s4.s sVar = (s4.s) o1Var.getLayoutManager();
             View m10 = sVar.m(i10);
             int L0 = sVar.L0();
             if ((m10 == null && Math.abs(i10 - L0) > sVar.J * 9.0f) || !SharedConfig.animationsEnabled()) {
-                ml0 ml0Var = o1Var.V2;
+                pl0 pl0Var = o1Var.Y2;
                 if (sVar.L0() < i10) {
                     i12 = 0;
                 } else {
                     i12 = 1;
                 }
-                ml0Var.f28548b = i12;
-                o1Var.V2.c(i10, i11, false, false);
+                pl0Var.f29589b = i12;
+                o1Var.Y2.c(i10, i11, false, false);
                 return;
             }
             l1 l1Var = new l1(o1Var, o1Var.getContext(), 0);
-            l1Var.f46062a = i10;
-            l1Var.f16144p = i11;
+            l1Var.f46484a = i10;
+            l1Var.f16207p = i11;
             sVar.w0(l1Var);
         }
     }
@@ -72,8 +72,8 @@ public final class o1 extends jm0 {
         }
         int saveCount = canvas.getSaveCount();
         canvas.save();
-        canvas.clipRect(0.0f, this.X2, getWidth(), this.Y2);
-        if (!this.W2) {
+        canvas.clipRect(0.0f, this.f9550a3, getWidth(), this.f9551b3);
+        if (!this.Z2) {
             super.dispatchDraw(canvas);
             canvas.restore();
             return;
@@ -82,7 +82,7 @@ public final class o1 extends jm0 {
         if (!rect.isEmpty()) {
             this.B1.setBounds(rect);
             canvas.save();
-            q0.a aVar = this.f27581m2;
+            q0.a aVar = this.f28703m2;
             if (aVar != null) {
                 aVar.accept(canvas);
             }
@@ -92,9 +92,9 @@ public final class o1 extends jm0 {
         int i10 = 0;
         int i11 = 0;
         while (true) {
-            sparseArray = this.f9539a3;
+            sparseArray = this.f9553d3;
             int size = sparseArray.size();
-            arrayList = this.f9540b3;
+            arrayList = this.f9554e3;
             if (i11 >= size) {
                 break;
             }
@@ -108,8 +108,8 @@ public final class o1 extends jm0 {
             View childAt = getChildAt(i12);
             if (childAt instanceof n1) {
                 n1 n1Var = (n1) childAt;
-                if (n1Var.getY() < this.Y2 && n1Var.getY() + n1Var.getHeight() > this.X2) {
-                    if (this.Z2) {
+                if (n1Var.getY() < this.f9551b3 && n1Var.getY() + n1Var.getHeight() > this.f9550a3) {
+                    if (this.f9552c3) {
                         top = (int) n1Var.getY();
                     } else {
                         top = n1Var.getTop();
@@ -117,7 +117,7 @@ public final class o1 extends jm0 {
                     ArrayList arrayList4 = (ArrayList) sparseArray.get(top);
                     if (arrayList4 == null) {
                         if (!arrayList.isEmpty()) {
-                            arrayList4 = (ArrayList) i2.e.A(1, arrayList);
+                            arrayList4 = (ArrayList) i2.o1.A(1, arrayList);
                         } else {
                             arrayList4 = new ArrayList();
                         }
@@ -127,9 +127,9 @@ public final class o1 extends jm0 {
                 }
             }
         }
-        ArrayList arrayList5 = this.f9543e3;
+        ArrayList arrayList5 = this.f9557h3;
         arrayList5.clear();
-        ArrayList arrayList6 = this.f9542d3;
+        ArrayList arrayList6 = this.f9556g3;
         arrayList5.addAll(arrayList6);
         arrayList6.clear();
         canvas.save();
@@ -138,7 +138,7 @@ public final class o1 extends jm0 {
         int i13 = 0;
         while (true) {
             int size2 = sparseArray.size();
-            arrayList2 = this.f9541c3;
+            arrayList2 = this.f9555f3;
             if (i13 >= size2) {
                 break;
             }
@@ -160,7 +160,7 @@ public final class o1 extends jm0 {
             }
             if (m1Var == null) {
                 if (!arrayList2.isEmpty()) {
-                    m1Var = (m1) i2.e.A(1, arrayList2);
+                    m1Var = (m1) i2.o1.A(1, arrayList2);
                 } else {
                     m1Var = new m1(this);
                     m1Var.l(7);
@@ -208,12 +208,12 @@ public final class o1 extends jm0 {
     @Override
     public final void setLayoutManager(s4.n0 n0Var) {
         super.setLayoutManager(n0Var);
-        this.V2 = null;
+        this.Y2 = null;
         if (n0Var instanceof s4.b0) {
-            ml0 ml0Var = new ml0(this, (s4.b0) n0Var);
-            this.V2 = ml0Var;
-            ml0Var.f28552i = new k1(this, 0);
-            ml0Var.h = new e1.c(this, 3);
+            pl0 pl0Var = new pl0(this, (s4.b0) n0Var);
+            this.Y2 = pl0Var;
+            pl0Var.f29593i = new k1(this, 0);
+            pl0Var.h = new e1.c(this, 3);
         }
     }
 }

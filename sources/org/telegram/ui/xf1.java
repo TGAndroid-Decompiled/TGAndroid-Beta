@@ -1,88 +1,90 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.view.View;
-import android.view.ViewGroup;
-import java.util.WeakHashMap;
-import org.telegram.messenger.AndroidUtilities;
-public final class xf1 extends ViewGroup {
-    public final Paint f43214a;
-    public View f43215b;
-    public boolean f43216c;
+import android.app.Dialog;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class xf1 implements Runnable {
+    public final int f43593a;
+    public final bg1 f43594b;
+    public final TLRPC.TL_error f43595c;
 
-    public xf1(Context context) {
-        super(context);
-        this.f43214a = new Paint(1);
-        setClipToPadding(false);
+    public xf1(bg1 bg1Var, TLRPC.TL_error tL_error, int i10) {
+        this.f43593a = i10;
+        this.f43594b = bg1Var;
+        this.f43595c = tL_error;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        int paddingBottom = getPaddingBottom();
-        float navigationBarThirdButtonsFactor = AndroidUtilities.getNavigationBarThirdButtonsFactor(0.1f, 0.75f, paddingBottom);
-        int x02 = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.Oh, false);
-        int k10 = i0.a.k(org.telegram.ui.ActionBar.h6.m1(navigationBarThirdButtonsFactor, org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20994d6, false)), x02);
-        Paint paint = this.f43214a;
-        paint.setColor(x02);
-        canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight() - paddingBottom, paint);
-        paint.setColor(k10);
-        canvas.drawRect(0.0f, getMeasuredHeight() - paddingBottom, getMeasuredWidth(), getMeasuredHeight(), paint);
-        super.dispatchDraw(canvas);
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        int childCount = getChildCount();
-        for (int i14 = 0; i14 < childCount; i14++) {
-            View childAt = getChildAt(i14);
-            childAt.layout(0, 0, childAt.getMeasuredWidth(), childAt.getMeasuredHeight());
-        }
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        boolean z10;
-        int i12;
-        View view = this.f43215b;
-        if (view != null && view.getVisibility() == 0) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        int size = View.MeasureSpec.getSize(i10);
-        if (z10) {
-            i12 = getPaddingBottom() + AndroidUtilities.dp(44.0f);
-        } else {
-            i12 = 0;
-        }
-        setMeasuredDimension(size, i12);
-        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(size, 1073741824);
-        int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(i12, 1073741824);
-        int childCount = getChildCount();
-        for (int i13 = 0; i13 < childCount; i13++) {
-            getChildAt(i13).measure(makeMeasureSpec, makeMeasureSpec2);
-        }
-        if (this.f43216c != z10) {
-            this.f43216c = z10;
-            WeakHashMap weakHashMap = r0.i0.f44830a;
-            r0.y.c(this);
-        }
-    }
-
-    @Override
-    public final void onViewAdded(View view) {
-        super.onViewAdded(view);
-        this.f43215b = view;
-    }
-
-    @Override
-    public final void setPadding(int i10, int i11, int i12, int i13) {
-        super.setPadding(i10, i11, i12, i13);
-        int childCount = getChildCount();
-        for (int i14 = 0; i14 < childCount; i14++) {
-            getChildAt(i14).setPadding(i10, i11, i12, i13);
+    public final void run() {
+        String formatPluralString;
+        String formatPluralString2;
+        int i10 = this.f43593a;
+        TLRPC.TL_error tL_error = this.f43595c;
+        bg1 bg1Var = this.f43594b;
+        switch (i10) {
+            case 0:
+                bg1Var.w0();
+                if (tL_error == null) {
+                    bg1Var.getMessagesController().removeSuggestion(0L, "VALIDATE_PASSWORD");
+                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(bg1Var.getParentActivity());
+                    alertDialog$Builder.k(LocaleController.getString(R.string.OK), new sf1(bg1Var, 3));
+                    String string = LocaleController.getString(R.string.PasswordReset);
+                    org.telegram.ui.ActionBar.c2 c2Var = alertDialog$Builder.f20678a;
+                    c2Var.T = string;
+                    c2Var.R = LocaleController.getString(R.string.TwoStepVerificationTitle);
+                    Dialog showDialog = bg1Var.showDialog(c2Var);
+                    if (showDialog != null) {
+                        showDialog.setCanceledOnTouchOutside(false);
+                        showDialog.setCancelable(false);
+                        return;
+                    }
+                    return;
+                } else if (tL_error.text.startsWith("FLOOD_WAIT")) {
+                    int intValue = Utilities.parseInt((CharSequence) tL_error.text).intValue();
+                    if (intValue < 60) {
+                        formatPluralString = LocaleController.formatPluralString("Seconds", intValue, new Object[0]);
+                    } else {
+                        formatPluralString = LocaleController.formatPluralString("Minutes", intValue / 60, new Object[0]);
+                    }
+                    bg1Var.G0(LocaleController.getString(R.string.TwoStepVerificationTitle), LocaleController.formatString("FloodWaitTime", R.string.FloodWaitTime, formatPluralString));
+                    return;
+                } else {
+                    bg1Var.G0(LocaleController.getString(R.string.TwoStepVerificationTitle), tL_error.text);
+                    return;
+                }
+            case 1:
+                bg1Var.w0();
+                if (tL_error == null) {
+                    if (bg1Var.getParentActivity() != null) {
+                        bg1Var.u0(new tf1(bg1Var, 5));
+                        return;
+                    }
+                    return;
+                } else if (tL_error.text.startsWith("CODE_INVALID")) {
+                    bg1Var.y0();
+                    return;
+                } else if (tL_error.text.startsWith("FLOOD_WAIT")) {
+                    int intValue2 = Utilities.parseInt((CharSequence) tL_error.text).intValue();
+                    if (intValue2 < 60) {
+                        formatPluralString2 = LocaleController.formatPluralString("Seconds", intValue2, new Object[0]);
+                    } else {
+                        formatPluralString2 = LocaleController.formatPluralString("Minutes", intValue2 / 60, new Object[0]);
+                    }
+                    bg1Var.G0(LocaleController.getString(R.string.AppName), LocaleController.formatString("FloodWaitTime", R.string.FloodWaitTime, formatPluralString2));
+                    return;
+                } else {
+                    bg1Var.G0(LocaleController.getString(R.string.AppName), tL_error.text);
+                    return;
+                }
+            case 2:
+                bg1.e0(bg1Var, tL_error);
+                return;
+            default:
+                bg1.Z(bg1Var, tL_error);
+                return;
         }
     }
 }

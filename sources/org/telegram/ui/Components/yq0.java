@@ -1,26 +1,21 @@
 package org.telegram.ui.Components;
-public final class yq0 implements Runnable {
-    public final int f32716a;
-    public final br0 f32717b;
-    public final int f32718c;
-    public final String d;
 
-    public yq0(br0 br0Var, int i10, String str) {
-        this.f32716a = 1;
-        this.f32717b = br0Var;
-        this.f32718c = i10;
-        this.d = str;
+import android.content.Context;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class yq0 extends org.telegram.ui.Cells.g7 {
+    public final ar0 N;
+
+    public yq0(ar0 ar0Var, Context context, org.telegram.ui.ActionBar.g6 g6Var) {
+        super(context, 0, g6Var);
+        this.N = ar0Var;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.yq0.run():void");
-    }
-
-    public yq0(br0 br0Var, String str, int i10, int i11) {
-        this.f32716a = i11;
-        this.f32717b = br0Var;
-        this.d = str;
-        this.f32718c = i10;
+    public final String a() {
+        if (this.N.f24831f.f27409b0) {
+            return LocaleController.getString(R.string.RepostToStory);
+        }
+        return LocaleController.getString(R.string.FwdMyStory);
     }
 }

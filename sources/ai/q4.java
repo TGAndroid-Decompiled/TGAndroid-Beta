@@ -6,9 +6,9 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.Wallet.WalletEngine2;
-import org.telegram.ui.cy;
-import org.telegram.ui.h21;
-import org.telegram.ui.o21;
+import org.telegram.ui.ey;
+import org.telegram.ui.l21;
+import org.telegram.ui.s21;
 public final class q4 implements Runnable {
     public final int f2052a = 0;
     public final Object f2053b;
@@ -20,10 +20,10 @@ public final class q4 implements Runnable {
     public final Object f2056n;
     public final Object f2057r;
 
-    public q4(l7 l7Var, pf.c cVar, org.telegram.ui.ActionBar.b2 b2Var, TLObject tLObject, TL_stars.TL_starGiftUnique tL_starGiftUnique, TLRPC.TL_error tL_error, long j10, CharSequence charSequence) {
+    public q4(l7 l7Var, pf.c cVar, org.telegram.ui.ActionBar.c2 c2Var, TLObject tLObject, TL_stars.TL_starGiftUnique tL_starGiftUnique, TLRPC.TL_error tL_error, long j10, CharSequence charSequence) {
         this.f2055f = l7Var;
         this.h = cVar;
-        this.f2053b = b2Var;
+        this.f2053b = c2Var;
         this.f2054c = tLObject;
         this.f2056n = tL_starGiftUnique;
         this.e = tL_error;
@@ -35,10 +35,10 @@ public final class q4 implements Runnable {
     public final void run() {
         switch (this.f2052a) {
             case 0:
-                l7.v1((l7) this.f2055f, (pf.c) this.h, (org.telegram.ui.ActionBar.b2) this.f2053b, (TLObject) this.f2054c, (TL_stars.TL_starGiftUnique) this.f2056n, (TLRPC.TL_error) this.e, this.d, (CharSequence) this.f2057r);
+                l7.u1((l7) this.f2055f, (pf.c) this.h, (org.telegram.ui.ActionBar.c2) this.f2053b, (TLObject) this.f2054c, (TL_stars.TL_starGiftUnique) this.f2056n, (TLRPC.TL_error) this.e, this.d, (CharSequence) this.f2057r);
                 return;
             case 1:
-                cy.m0((cy) this.f2055f, (org.telegram.ui.ActionBar.b2) this.f2053b, (TLObject) this.f2054c, (TLRPC.User) this.h, (TLRPC.Chat) this.f2056n, this.d, (TLRPC.TL_error) this.e, (TLRPC.TL_messages_checkHistoryImportPeer) this.f2057r);
+                ey.l0((ey) this.f2055f, (org.telegram.ui.ActionBar.c2) this.f2053b, (TLObject) this.f2054c, (TLRPC.User) this.h, (TLRPC.Chat) this.f2056n, this.d, (TLRPC.TL_error) this.e, (TLRPC.TL_messages_checkHistoryImportPeer) this.f2057r);
                 return;
             case 2:
                 Context context = (Context) this.f2055f;
@@ -46,10 +46,10 @@ public final class q4 implements Runnable {
                 byte[] bArr = (byte[]) this.f2053b;
                 org.telegram.ui.Components.xc xcVar = (org.telegram.ui.Components.xc) this.e;
                 org.telegram.messenger.video.d dVar = (org.telegram.messenger.video.d) this.f2057r;
-                o21 o21Var = new o21(context, k0Var, this.d, bArr);
-                o21Var.P((TLRPC.TL_channels_sponsoredMessageReportResultChooseOption) ((TLObject) this.f2054c));
-                o21Var.f39755s = new h21((org.telegram.messenger.video.a) this.f2056n, xcVar, context, k0Var, dVar);
-                o21Var.show();
+                s21 s21Var = new s21(context, k0Var, this.d, bArr);
+                s21Var.R((TLRPC.TL_channels_sponsoredMessageReportResultChooseOption) ((TLObject) this.f2054c));
+                s21Var.v = new l21((org.telegram.messenger.video.a) this.f2056n, xcVar, context, k0Var, dVar);
+                s21Var.show();
                 return;
             default:
                 ((WalletEngine2) this.f2055f).lambda$prepareSend$50((byte[]) this.h, (String) this.f2053b, this.d, (byte[]) this.f2054c, (byte[]) this.f2056n, (String) this.e, (Utilities.Callback3) this.f2057r);
@@ -68,9 +68,9 @@ public final class q4 implements Runnable {
         this.f2057r = dVar;
     }
 
-    public q4(cy cyVar, org.telegram.ui.ActionBar.b2 b2Var, TLObject tLObject, TLRPC.User user, TLRPC.Chat chat, long j10, TLRPC.TL_error tL_error, TLRPC.TL_messages_checkHistoryImportPeer tL_messages_checkHistoryImportPeer) {
-        this.f2055f = cyVar;
-        this.f2053b = b2Var;
+    public q4(ey eyVar, org.telegram.ui.ActionBar.c2 c2Var, TLObject tLObject, TLRPC.User user, TLRPC.Chat chat, long j10, TLRPC.TL_error tL_error, TLRPC.TL_messages_checkHistoryImportPeer tL_messages_checkHistoryImportPeer) {
+        this.f2055f = eyVar;
+        this.f2053b = c2Var;
         this.f2054c = tLObject;
         this.h = user;
         this.f2056n = chat;

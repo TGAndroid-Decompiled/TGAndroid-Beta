@@ -1,68 +1,27 @@
 package rg;
 
-import org.telegram.ui.gt0;
-import org.telegram.ui.qq0;
-public final class c0 implements qg.e1 {
-    public final qq0 f45310a;
-    public final gt0 f45311b;
+import android.content.Context;
+import android.graphics.Bitmap;
+import org.telegram.ui.jt0;
+public final class c0 extends qg.e1 {
+    public final Bitmap E;
+    public final jt0 F;
 
-    public c0(gt0 gt0Var, qq0 qq0Var) {
-        this.f45311b = gt0Var;
-        this.f45310a = qq0Var;
+    public c0(jt0 jt0Var, Context context, qg.s0 s0Var, Bitmap bitmap, Bitmap bitmap2) {
+        super(context, s0Var, bitmap, null, null);
+        this.F = jt0Var;
+        this.E = bitmap2;
     }
 
     @Override
-    public final void a() {
-        this.f45310a.run();
-    }
-
-    @Override
-    public final void b() {
-        d0 d0Var = this.f45311b.X0;
-        if (d0Var != null) {
-            d0Var.invalidate();
+    public final void g(qg.m mVar) {
+        int indexOf = qg.m.f44984a.indexOf(mVar);
+        int i10 = indexOf + 1;
+        if (i10 <= 1 || this.E != null) {
+            indexOf = i10;
         }
-    }
-
-    @Override
-    public final void c() {
-        gt0 gt0Var = this.f45311b;
-        if (gt0Var.f45496k1) {
-            gt0Var.f45496k1 = false;
-            return;
-        }
-        gt0Var.f45508t1.b(1);
-        gt0Var.o((qg.m) qg.m.f44565a.get(0));
-    }
-
-    @Override
-    public final boolean d() {
-        boolean z10;
-        gt0 gt0Var = this.f45311b;
-        if (gt0Var.S0 == null) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        if (!z10) {
-            gt0Var.s0(null, true);
-        }
-        return z10;
-    }
-
-    @Override
-    public final void e() {
-        gt0 gt0Var = this.f45311b;
-        gt0Var.F0.f44699a.e();
-        gt0Var.l1.setViewHidden(false);
-    }
-
-    @Override
-    public final void f() {
-        gt0 gt0Var = this.f45311b;
-        if (gt0Var.S0 != null) {
-            gt0Var.s0(null, true);
-        }
-        gt0Var.l1.setViewHidden(true);
+        jt0 jt0Var = this.F;
+        jt0Var.f45914t1.b(indexOf);
+        jt0Var.n(mVar);
     }
 }

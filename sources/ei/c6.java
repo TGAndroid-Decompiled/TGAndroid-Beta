@@ -3,7 +3,6 @@ package ei;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
 import android.view.MotionEvent;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -11,50 +10,51 @@ import android.widget.TextView;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.bs;
 public final class c6 extends LinearLayout {
-    public final TextView f8824a;
-    public final ah.v f8825b;
-    public ImageView f8826c;
+    public final TextView f8833a;
+    public final ah.v f8834b;
+    public ImageView f8835c;
     public ImageView d;
     public float e;
-    public boolean f8827f;
+    public boolean f8836f;
     public ValueAnimator h;
-    public final ImageView f8828n;
-    public final f6 f8829r;
+    public final ImageView f8837n;
+    public final f6 f8838r;
 
     public c6(f6 f6Var, Context context) {
         super(context);
-        this.f8829r = f6Var;
+        this.f8838r = f6Var;
         setOrientation(0);
-        int i10 = org.telegram.ui.ActionBar.h6.f21083i6;
+        int i10 = org.telegram.ui.ActionBar.k6.f21272i6;
         t5 t5Var = f6Var.G1;
-        setBackground(org.telegram.ui.ActionBar.h6.g0(org.telegram.ui.ActionBar.h6.w0(i10, t5Var), 2, -1));
+        setBackground(org.telegram.ui.ActionBar.k6.g0(org.telegram.ui.ActionBar.k6.w0(i10, t5Var), 2, -1));
         ah.v vVar = new ah.v(this, context);
-        this.f8825b = vVar;
+        this.f8834b = vVar;
         addView(vVar, w7.z5.t(-2, -2, 19, 16, 0, 16, 0));
         ImageView imageView = new ImageView(context);
-        this.f8826c = imageView;
+        this.f8835c = imageView;
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
         imageView.setScaleType(scaleType);
-        ImageView imageView2 = this.f8826c;
-        int i11 = org.telegram.ui.ActionBar.h6.E8;
-        imageView2.setColorFilter(org.telegram.ui.ActionBar.h6.w0(i11, t5Var));
-        vVar.addView(this.f8826c, w7.z5.e(-2, -2, 17));
+        ImageView imageView2 = this.f8835c;
+        int i11 = org.telegram.ui.ActionBar.k6.E8;
+        PorterDuff.Mode mode = PorterDuff.Mode.SRC_ATOP;
+        org.telegram.ui.ActionBar.r6.t(imageView2, i11, t5Var, mode);
+        vVar.addView(this.f8835c, w7.z5.e(-2, -2, 17));
         ImageView imageView3 = new ImageView(context);
         this.d = imageView3;
         imageView3.setScaleType(scaleType);
-        this.d.setColorFilter(org.telegram.ui.ActionBar.h6.w0(i11, t5Var));
+        org.telegram.ui.ActionBar.r6.t(this.d, i11, t5Var, mode);
         this.d.setVisibility(8);
         vVar.addView(this.d, w7.z5.e(-2, -2, 17));
         TextView textView = new TextView(context);
-        this.f8824a = textView;
-        textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(i11, t5Var));
+        this.f8833a = textView;
+        org.telegram.ui.ActionBar.r6.W(textView, i11, t5Var);
         textView.setTextSize(1, 16.0f);
         addView(textView, w7.z5.t(-2, -2, 19, 0, 0, 16, 0));
         ImageView imageView4 = new ImageView(context);
-        this.f8828n = imageView4;
+        this.f8837n = imageView4;
         imageView4.setImageResource(R.drawable.msg_text_check);
         imageView4.setScaleType(scaleType);
-        imageView4.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21067h7, t5Var), PorterDuff.Mode.MULTIPLY));
+        org.telegram.ui.ActionBar.r6.t(imageView4, org.telegram.ui.ActionBar.k6.f21256h7, t5Var, PorterDuff.Mode.MULTIPLY);
         imageView4.setVisibility(8);
         addView(imageView4, w7.z5.n(50, -1));
     }
@@ -68,7 +68,7 @@ public final class c6 extends LinearLayout {
                 a(i10, false, false);
                 return;
             }
-            this.f8827f = z10;
+            this.f8836f = z10;
             this.d.setImageResource(i10);
             this.d.setVisibility(0);
             this.d.setAlpha(1.0f);
@@ -81,7 +81,7 @@ public final class c6 extends LinearLayout {
             this.h.start();
             return;
         }
-        this.f8826c.setImageResource(i10);
+        this.f8835c.setImageResource(i10);
     }
 
     @Override
@@ -91,7 +91,7 @@ public final class c6 extends LinearLayout {
 
     @Override
     public final boolean performClick() {
-        f6 f6Var = this.f8829r;
+        f6 f6Var = this.f8838r;
         org.telegram.ui.ActionBar.m1 m1Var = f6Var.H1;
         if (m1Var != null && m1Var.isShowing()) {
             f6Var.H1.d(true);
@@ -111,10 +111,10 @@ public final class c6 extends LinearLayout {
         } else {
             i10 = 8;
         }
-        this.f8828n.setVisibility(i10);
+        this.f8837n.setVisibility(i10);
     }
 
     public void setText(CharSequence charSequence) {
-        this.f8824a.setText(charSequence);
+        this.f8833a.setText(charSequence);
     }
 }

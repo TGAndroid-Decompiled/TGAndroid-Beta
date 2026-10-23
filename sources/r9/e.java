@@ -2,9 +2,9 @@ package r9;
 
 import com.google.firebase.components.ComponentRegistrar;
 import java.util.List;
-import qg.f0;
+import org.telegram.ui.web.d0;
 public interface e {
-    public static final f0 A = new f0(6);
+    public static final d0 A = new d0(18);
 
     List v(ComponentRegistrar componentRegistrar);
 }

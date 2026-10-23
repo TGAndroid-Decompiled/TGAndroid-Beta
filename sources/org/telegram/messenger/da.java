@@ -2,27 +2,27 @@ package org.telegram.messenger;
 
 import android.content.Context;
 public final class da implements Runnable {
-    public final int f18183a;
-    public final Context f18184b;
-    public final org.telegram.ui.ActionBar.b2 f18185c;
+    public final int f18247a;
+    public final Context f18248b;
+    public final org.telegram.ui.ActionBar.c2 f18249c;
 
-    public da(int i10, Context context, org.telegram.ui.ActionBar.b2 b2Var) {
-        this.f18183a = i10;
-        this.f18184b = context;
-        this.f18185c = b2Var;
+    public da(int i10, Context context, org.telegram.ui.ActionBar.c2 c2Var) {
+        this.f18247a = i10;
+        this.f18248b = context;
+        this.f18249c = c2Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f18183a) {
+        switch (this.f18247a) {
             case 0:
-                MessagesController.lambda$convertToMegaGroup$261(this.f18184b, this.f18185c);
+                MessagesController.lambda$convertToMegaGroup$261(this.f18248b, this.f18249c);
                 return;
             case 1:
-                MessagesController.lambda$convertToGigaGroup$266(this.f18184b, this.f18185c);
+                MessagesController.lambda$convertToGigaGroup$266(this.f18248b, this.f18249c);
                 return;
             default:
-                SecretChatHelper.lambda$startSecretChat$24(this.f18184b, this.f18185c);
+                SecretChatHelper.lambda$startSecretChat$24(this.f18248b, this.f18249c);
                 return;
         }
     }

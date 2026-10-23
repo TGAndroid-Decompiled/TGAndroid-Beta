@@ -1,53 +1,23 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Typeface;
-import android.text.TextPaint;
-import android.text.style.MetricAffectingSpan;
-public final class e61 extends MetricAffectingSpan {
-    public Typeface f25783a;
-    public int f25784b;
-    public int f25785c;
+import android.animation.ValueAnimator;
+public final class e61 implements ValueAnimator.AnimatorUpdateListener {
+    public int f25899a = 0;
+    public final int f25900b;
+    public final i61 f25901c;
 
-    public e61(Typeface typeface) {
-        this.f25785c = -1;
-        this.f25783a = typeface;
+    public e61(i61 i61Var, int i10) {
+        this.f25901c = i61Var;
+        this.f25900b = i10;
     }
 
     @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        int i10 = this.f25785c;
-        if (i10 >= 0) {
-            this.f25784b = org.telegram.ui.ActionBar.h6.x0(null, i10, false);
-        }
-        Typeface typeface = this.f25783a;
-        if (typeface != null) {
-            textPaint.setTypeface(typeface);
-        }
-        int i11 = this.f25784b;
-        if (i11 != 0) {
-            textPaint.setColor(i11);
-        }
-        textPaint.setFlags(textPaint.getFlags() | 128);
-    }
-
-    @Override
-    public final void updateMeasureState(TextPaint textPaint) {
-        Typeface typeface = this.f25783a;
-        if (typeface != null) {
-            textPaint.setTypeface(typeface);
-        }
-        textPaint.setFlags(textPaint.getFlags() | 128);
-    }
-
-    public e61() {
-        Typeface typeface = Typeface.DEFAULT;
-        this.f25785c = -1;
-        this.f25783a = typeface;
-    }
-
-    public e61(Typeface typeface, int i10) {
-        this.f25785c = -1;
-        this.f25783a = typeface;
-        this.f25784b = i10;
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        int floatValue = (int) (((Float) valueAnimator.getAnimatedValue()).floatValue() * this.f25900b);
+        i61 i61Var = this.f25901c;
+        i61Var.N = true;
+        i61Var.f27223n.scrollBy(0, floatValue - this.f25899a);
+        i61Var.N = false;
+        this.f25899a = floatValue;
     }
 }

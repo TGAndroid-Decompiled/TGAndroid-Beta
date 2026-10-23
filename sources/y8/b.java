@@ -6,12 +6,12 @@ import java.util.ArrayList;
 import java.util.List;
 public final class b extends o6.a implements x8.a {
     public static final Parcelable.Creator<b> CREATOR = new c(0);
-    public final String f49978a;
-    public final List f49979b;
+    public final String f50418a;
+    public final List f50419b;
 
     public b(String str, ArrayList arrayList) {
-        this.f49978a = str;
-        this.f49979b = arrayList;
+        this.f50418a = str;
+        this.f50419b = arrayList;
         n6.l.h(str);
         n6.l.h(arrayList);
     }
@@ -24,13 +24,13 @@ public final class b extends o6.a implements x8.a {
             return false;
         }
         b bVar = (b) obj;
-        List list = bVar.f49979b;
-        String str = bVar.f49978a;
-        String str2 = this.f49978a;
+        List list = bVar.f50419b;
+        String str = bVar.f50418a;
+        String str2 = this.f50418a;
         if (str2 == null ? str != null : !str2.equals(str)) {
             return false;
         }
-        List list2 = this.f49979b;
+        List list2 = this.f50419b;
         if (list2 == null ? list == null : list2.equals(list)) {
             return true;
         }
@@ -40,14 +40,14 @@ public final class b extends o6.a implements x8.a {
     public final int hashCode() {
         int i10;
         int i11 = 0;
-        String str = this.f49978a;
+        String str = this.f50418a;
         if (str != null) {
             i10 = str.hashCode();
         } else {
             i10 = 0;
         }
         int i12 = (i10 + 31) * 31;
-        List list = this.f49979b;
+        List list = this.f50419b;
         if (list != null) {
             i11 = list.hashCode();
         }
@@ -55,14 +55,14 @@ public final class b extends o6.a implements x8.a {
     }
 
     public final String toString() {
-        return org.telegram.ui.Cells.c1.k("CapabilityInfo{", this.f49978a, ", ", String.valueOf(this.f49979b), "}");
+        return org.telegram.ui.Cells.b1.l("CapabilityInfo{", this.f50418a, ", ", String.valueOf(this.f50419b), "}");
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         int q6 = w7.f0.q(parcel, 20293);
-        w7.f0.l(parcel, 2, this.f49978a);
-        w7.f0.p(parcel, 3, this.f49979b);
+        w7.f0.l(parcel, 2, this.f50418a);
+        w7.f0.p(parcel, 3, this.f50419b);
         w7.f0.r(parcel, q6);
     }
 }

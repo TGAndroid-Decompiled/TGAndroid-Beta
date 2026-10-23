@@ -3,21 +3,21 @@ package ei;
 import android.view.TextureView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.video.VideoPlayerHolderBase;
-import org.telegram.ui.tf1;
+import org.telegram.ui.ve1;
 public final class c0 extends VideoPlayerHolderBase {
-    public final int f8804a;
-    public final Object f8805b;
+    public final int f8813a;
+    public final Object f8814b;
 
     public c0(Object obj, int i10) {
-        this.f8804a = i10;
-        this.f8805b = obj;
+        this.f8813a = i10;
+        this.f8814b = obj;
     }
 
     @Override
     public boolean needRepeat() {
-        switch (this.f8804a) {
+        switch (this.f8813a) {
             case 0:
-                return !((d0) this.f8805b).f8877p.f8933n0;
+                return !((d0) this.f8814b).f8889p.f8944n0;
             default:
                 return super.needRepeat();
         }
@@ -25,18 +25,18 @@ public final class c0 extends VideoPlayerHolderBase {
 
     @Override
     public final void onRenderedFirstFrame() {
-        switch (this.f8804a) {
+        switch (this.f8813a) {
             case 0:
-                d0 d0Var = (d0) this.f8805b;
-                d0Var.f8868f = true;
-                d0Var.f8877p.invalidate();
+                d0 d0Var = (d0) this.f8814b;
+                d0Var.f8880f = true;
+                d0Var.f8889p.invalidate();
                 return;
             default:
-                sg.a2 a2Var = (sg.a2) this.f8805b;
+                sg.a2 a2Var = (sg.a2) this.f8814b;
                 TextureView textureView = a2Var.J;
                 if (textureView != null && !a2Var.F) {
                     textureView.setAlpha(0.0f);
-                    textureView.animate().alpha(1.0f).setListener(new tf1(this, 16)).setDuration(200L);
+                    textureView.animate().alpha(1.0f).setListener(new ve1(this, 17)).setDuration(200L);
                     return;
                 }
                 return;
@@ -45,9 +45,9 @@ public final class c0 extends VideoPlayerHolderBase {
 
     @Override
     public void onStateChanged(boolean z10, int i10) {
-        switch (this.f8804a) {
+        switch (this.f8813a) {
             case 1:
-                sg.a2 a2Var = (sg.a2) this.f8805b;
+                sg.a2 a2Var = (sg.a2) this.f8814b;
                 c0 c0Var = a2Var.H;
                 if (c0Var != null) {
                     if (i10 == 4) {
@@ -70,7 +70,7 @@ public final class c0 extends VideoPlayerHolderBase {
 
     @Override
     public void onVideoSizeChanged(int i10, int i11, int i12, float f7) {
-        switch (this.f8804a) {
+        switch (this.f8813a) {
             case 0:
                 AndroidUtilities.runOnUIThread(new b0(this, i10, i11, i12, 0));
                 return;

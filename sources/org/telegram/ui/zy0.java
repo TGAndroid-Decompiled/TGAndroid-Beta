@@ -1,25 +1,48 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.TLRPC;
-public final class zy0 extends bq {
-    public final boolean[] f43829d1;
-    public final TLRPC.User f43830e1;
-    public final ProfileActivity f43831f1;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import org.telegram.messenger.ImageReceiver;
+public final class zy0 extends AnimatorListenerAdapter {
+    public final ProfileActivity f44244a;
 
-    public zy0(ProfileActivity profileActivity, long j10, long j11, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, TLRPC.TL_chatBannedRights tL_chatBannedRights2, String str, int i10, boolean[] zArr, TLRPC.User user) {
-        super(j10, j11, tL_chatAdminRights, tL_chatBannedRights, tL_chatBannedRights2, str, i10, true, false, null);
-        this.f43831f1 = profileActivity;
-        this.f43829d1 = zArr;
-        this.f43830e1 = user;
+    public zy0(ProfileActivity profileActivity) {
+        this.f44244a = profileActivity;
     }
 
     @Override
-    public final void onTransitionAnimationEnd(boolean z10, boolean z11) {
-        if (!z10 && z11 && this.f43829d1[0]) {
-            ProfileActivity profileActivity = this.f43831f1;
-            if (org.telegram.ui.Components.xc.a(profileActivity)) {
-                org.telegram.ui.Components.xc.C(profileActivity, this.f43830e1.first_name).j();
-            }
+    public final void onAnimationEnd(Animator animator) {
+        org.telegram.ui.ActionBar.k kVar;
+        int w02;
+        ProfileActivity profileActivity = this.f44244a;
+        kVar = ((org.telegram.ui.ActionBar.o2) profileActivity).actionBar;
+        if (profileActivity.f33996q2) {
+            w02 = 1090519039;
+        } else if (profileActivity.S5 != null) {
+            w02 = 553648127;
+        } else {
+            w02 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f21220f8, profileActivity.A0);
         }
+        kVar.A(w02, false);
+        vy0 vy0Var = profileActivity.f33920f0;
+        ImageReceiver imageReceiver = vy0Var.U;
+        org.telegram.ui.Components.e6 animation = imageReceiver.getAnimation();
+        if (animation != null) {
+            animation.w(vy0Var);
+        }
+        imageReceiver.clearImage();
+        ImageReceiver.BitmapHolder bitmapHolder = vy0Var.W;
+        if (bitmapHolder != null) {
+            bitmapHolder.release();
+            vy0Var.W = null;
+        }
+        vy0Var.V = 0.0f;
+        vy0Var.invalidate();
+        profileActivity.I0 = false;
+        profileActivity.p5(false);
+    }
+
+    @Override
+    public final void onAnimationStart(Animator animator) {
     }
 }

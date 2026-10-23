@@ -2,63 +2,63 @@ package org.telegram.ui.Wallet;
 
 import org.telegram.messenger.Utilities;
 public final class c8 implements Utilities.Callback {
-    public final int f34083a = 0;
-    public final h8 f34084b;
-    public final Utilities.Callback f34085c;
-    public final q0 d;
-    public final m0 e;
+    public final int f34375a = 0;
+    public final i8 f34376b;
+    public final Utilities.Callback f34377c;
+    public final p0 d;
+    public final l0 e;
 
-    public c8(h8 h8Var, Utilities.Callback callback, m0 m0Var, q0 q0Var) {
-        this.f34084b = h8Var;
-        this.f34085c = callback;
-        this.e = m0Var;
-        this.d = q0Var;
+    public c8(i8 i8Var, Utilities.Callback callback, l0 l0Var, p0 p0Var) {
+        this.f34376b = i8Var;
+        this.f34377c = callback;
+        this.e = l0Var;
+        this.d = p0Var;
     }
 
     @Override
     public final void run(Object obj) {
         String o10;
-        switch (this.f34083a) {
+        switch (this.f34375a) {
             case 0:
-                h8.Y(this.f34084b, this.f34085c, this.e, this.d, (j0) obj);
+                i8.Y(this.f34376b, this.f34377c, this.e, this.d, (i0) obj);
                 return;
             default:
-                d0 d0Var = (d0) obj;
-                Utilities.Callback callback = this.f34085c;
-                if (d0Var == null) {
+                c0 c0Var = (c0) obj;
+                Utilities.Callback callback = this.f34377c;
+                if (c0Var == null) {
                     callback.run("ADDRESS_NO_INFO");
                     return;
                 }
-                byte[] bArr = d0Var.f34095c;
-                q0 q0Var = this.d;
+                byte[] bArr = c0Var.f34351c;
+                p0 p0Var = this.d;
                 if (bArr == null) {
-                    byte[][] m10 = q0Var.m();
+                    byte[][] m10 = p0Var.m();
                     if (m10.length <= 0) {
                         callback.run("STORAGE_NO_PUBLIC_KEY");
                         return;
                     }
                     bArr = m10[0];
                 }
-                if (!q0Var.f(bArr)) {
+                if (!p0Var.f(bArr)) {
                     callback.run("STORAGE_OLD_PUBLIC_KEY");
                     return;
                 }
-                c8 c8Var = new c8(this.f34084b, callback, this.e, q0Var);
+                c8 c8Var = new c8(this.f34376b, callback, this.e, p0Var);
                 if (bArr == null) {
                     o10 = "";
                 } else {
-                    o10 = q0.o(bArr);
+                    o10 = p0.o(bArr);
                 }
                 String str = o10;
-                q0.h.execute(new org.telegram.ui.Components.r2(q0Var, q0Var.l(), str, false, (Utilities.Callback) c8Var));
+                p0.h.execute(new org.telegram.ui.Components.q2(p0Var, p0Var.l(), str, false, (Utilities.Callback) c8Var));
                 return;
         }
     }
 
-    public c8(h8 h8Var, Utilities.Callback callback, q0 q0Var, m0 m0Var) {
-        this.f34084b = h8Var;
-        this.f34085c = callback;
-        this.d = q0Var;
-        this.e = m0Var;
+    public c8(i8 i8Var, Utilities.Callback callback, p0 p0Var, l0 l0Var) {
+        this.f34376b = i8Var;
+        this.f34377c = callback;
+        this.d = p0Var;
+        this.e = l0Var;
     }
 }

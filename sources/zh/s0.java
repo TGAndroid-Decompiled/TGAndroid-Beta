@@ -7,25 +7,25 @@ import android.graphics.Paint;
 import com.google.android.gms.internal.play_billing.k3;
 import java.nio.ByteBuffer;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.cz0;
+import org.telegram.ui.Components.fz0;
 public final class s0 implements Runnable {
-    public final int f52111a;
-    public final c1 f52112b;
-    public final int f52113c;
+    public final int f52573a;
+    public final c1 f52574b;
+    public final int f52575c;
 
     public s0(c1 c1Var, int i10, int i11) {
-        this.f52111a = i11;
-        this.f52112b = c1Var;
-        this.f52113c = i10;
+        this.f52573a = i11;
+        this.f52574b = c1Var;
+        this.f52575c = i10;
     }
 
     @Override
     public final void run() {
         byte[] bArr;
-        switch (this.f52111a) {
+        switch (this.f52573a) {
             case 0:
-                c1 c1Var = this.f52112b;
-                int i10 = this.f52113c;
+                c1 c1Var = this.f52574b;
+                int i10 = this.f52575c;
                 synchronized (c1.class) {
                     if (c1.O9 != null) {
                         bArr = c1.O9;
@@ -64,13 +64,13 @@ public final class s0 implements Runnable {
                 c1.s(iArr, bArr, i10);
                 createBitmap2.setPixels(iArr, 0, i13, 0, 0, i13, i13);
                 createBitmap2.prepareToDraw();
-                AndroidUtilities.runOnUIThread(new cz0(c1Var, createBitmap2, iArr, i10, 23));
+                AndroidUtilities.runOnUIThread(new fz0(c1Var, createBitmap2, iArr, i10, 24));
                 return;
             case 1:
-                this.f52112b.F0(this.f52113c);
+                this.f52574b.F0(this.f52575c);
                 return;
             default:
-                this.f52112b.F0(this.f52113c);
+                this.f52574b.F0(this.f52575c);
                 return;
         }
     }

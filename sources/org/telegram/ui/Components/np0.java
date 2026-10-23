@@ -1,117 +1,28 @@
 package org.telegram.ui.Components;
+public final class np0 implements o1.g {
+    public final int f28995a;
+    public final wp0 f28996b;
 
-import android.text.SpannableString;
-import android.text.TextUtils;
-import android.view.ViewGroup;
-import android.widget.TextView;
-import java.util.List;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserObject;
-import org.telegram.tgnet.TLRPC;
-public final class np0 extends im0 {
-    public final org.telegram.ui.ActionBar.d6 f28864c;
-    public final List d;
-    public final MessagesController e;
-    public final int f28865f;
-    public final TLRPC.Peer h;
-
-    public np0(org.telegram.ui.ActionBar.d6 d6Var, List list, MessagesController messagesController, int i10, TLRPC.Peer peer) {
-        this.f28864c = d6Var;
-        this.d = list;
-        this.e = messagesController;
-        this.f28865f = i10;
-        this.h = peer;
+    public np0(wp0 wp0Var, int i10) {
+        this.f28995a = i10;
+        this.f28996b = wp0Var;
     }
 
     @Override
-    public final boolean D(s4.b1 b1Var) {
-        return true;
-    }
-
-    @Override
-    public final int h() {
-        return this.d.size();
-    }
-
-    @Override
-    public final void v(s4.b1 b1Var, int i10) {
-        long j10;
-        String str;
-        rp0 rp0Var = (rp0) b1Var.f45921a;
-        TLRPC.TL_sendAsPeer tL_sendAsPeer = (TLRPC.TL_sendAsPeer) this.d.get(i10);
-        TLRPC.Peer peer = tL_sendAsPeer.peer;
-        long j11 = peer.channel_id;
-        if (j11 != 0) {
-            j10 = -j11;
-        } else {
-            j10 = 0;
+    public final void a(o1.h hVar, float f7, float f10) {
+        switch (this.f28995a) {
+            case 0:
+                this.f28996b.f32303o.setScaleX(1.0f / f7);
+                return;
+            case 1:
+                this.f28996b.f32303o.setScaleY(1.0f / f7);
+                return;
+            case 2:
+                this.f28996b.f32303o.setScaleX(1.0f / f7);
+                return;
+            default:
+                this.f28996b.f32303o.setScaleY(1.0f / f7);
+                return;
         }
-        if (j10 == 0) {
-            long j12 = peer.user_id;
-            if (j12 != 0) {
-                j10 = j12;
-            }
-        }
-        int i11 = (j10 > 0L ? 1 : (j10 == 0L ? 0 : -1));
-        TLRPC.Peer peer2 = this.h;
-        MessagesController messagesController = this.e;
-        boolean z10 = true;
-        if (i11 < 0) {
-            TLRPC.Chat chat = messagesController.getChat(Long.valueOf(-j10));
-            if (chat != null) {
-                if (tL_sendAsPeer.premium_required) {
-                    StringBuilder sb2 = new StringBuilder();
-                    String str2 = chat.title;
-                    TextView textView = rp0Var.f29992b;
-                    sb2.append((Object) TextUtils.ellipsize(str2, textView.getPaint(), this.f28865f - AndroidUtilities.dp(100.0f), TextUtils.TruncateAt.END));
-                    sb2.append(" d");
-                    SpannableString spannableString = new SpannableString(sb2.toString());
-                    yq yqVar = new yq(R.drawable.msg_mini_premiumlock, 0);
-                    yqVar.setTopOffset(1);
-                    yqVar.setSize(AndroidUtilities.dp(14.0f));
-                    yqVar.setColorKey(org.telegram.ui.ActionBar.h6.C6);
-                    spannableString.setSpan(yqVar, spannableString.length() - 1, spannableString.length(), 33);
-                    textView.setEllipsize(null);
-                    textView.setText(spannableString);
-                } else {
-                    rp0Var.f29992b.setEllipsize(TextUtils.TruncateAt.END);
-                    rp0Var.f29992b.setText(chat.title);
-                }
-                TextView textView2 = rp0Var.f29993c;
-                if (ChatObject.isChannel(chat) && !chat.megagroup) {
-                    str = "Subscribers";
-                } else {
-                    str = "Members";
-                }
-                textView2.setText(LocaleController.formatPluralString(str, chat.participants_count, new Object[0]));
-                rp0Var.f29991a.setAvatar(chat);
-            }
-            bw0 bw0Var = rp0Var.f29991a;
-            if (peer2 == null ? i10 != 0 : peer2.channel_id != peer.channel_id) {
-                z10 = false;
-            }
-            bw0Var.a(z10, false);
-            return;
-        }
-        TLRPC.User user = messagesController.getUser(Long.valueOf(j10));
-        if (user != null) {
-            rp0Var.f29992b.setText(UserObject.getUserName(user));
-            rp0Var.f29993c.setText(LocaleController.getString(R.string.VoipGroupPersonalAccount));
-            rp0Var.f29991a.setAvatar(user);
-        }
-        bw0 bw0Var2 = rp0Var.f29991a;
-        if (peer2 == null ? i10 != 0 : peer2.user_id != peer.user_id) {
-            z10 = false;
-        }
-        bw0Var2.a(z10, false);
-    }
-
-    @Override
-    public final s4.b1 x(ViewGroup viewGroup, int i10) {
-        return new s4.b1(new rp0(viewGroup.getContext(), this.f28864c));
     }
 }

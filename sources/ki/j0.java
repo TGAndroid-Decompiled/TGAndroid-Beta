@@ -1,9 +1,11 @@
 package ki;
 
-import org.telegram.ui.Cells.m9;
 import org.telegram.ui.Cells.n9;
+import org.telegram.ui.Cells.o9;
 public interface j0 {
-    m9 D();
+    void A(CharSequence charSequence);
+
+    n9 D();
 
     a F();
 
@@ -19,7 +21,5 @@ public interface j0 {
 
     void g();
 
-    n9 w();
-
-    void z(CharSequence charSequence);
+    o9 w();
 }

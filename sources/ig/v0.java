@@ -1,384 +1,60 @@
 package ig;
 
-import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import android.view.ViewPropertyAnimator;
-import android.widget.FrameLayout;
-import ei.bc;
-import java.util.ArrayList;
+import android.location.Address;
+import android.location.Geocoder;
+import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BotWebViewVibrationEffect;
+import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.ActionBar.n2;
-import org.telegram.ui.Components.as;
-import org.telegram.ui.Components.c71;
-import org.telegram.ui.Components.dq;
-import org.telegram.ui.Components.h61;
-import org.telegram.ui.Components.u61;
-import w7.z5;
-public final class v0 extends n2 implements NotificationCenter.NotificationCenterDelegate {
-    public as f13055a;
-    public org.telegram.ui.ActionBar.u0 f13056b;
-    public c71 f13057c;
-    public a0 d;
-    public final int[] e;
-    public final String[] f13058f;
-    public boolean h;
-    public int f13059n;
-    public TL_account.TL_businessGreetingMessage f13060r;
-    public boolean f13061s;
-    public boolean v;
-    public int f13062w;
+import org.telegram.ui.sc0;
+public final class v0 implements Runnable {
+    public final int f13097a = 0;
+    public final c1 f13098b;
+    public final sc0 f13099c;
+    public final org.telegram.ui.ActionBar.c2 d;
 
-    public v0() {
-        super(null);
-        int[] iArr = {7, 14, 21, 28};
-        this.e = iArr;
-        this.f13059n = -4;
-        this.f13062w = 7;
-        this.f13058f = new String[iArr.length];
-        int i10 = 0;
-        while (true) {
-            int[] iArr2 = this.e;
-            if (i10 < iArr2.length) {
-                this.f13058f[i10] = LocaleController.formatPluralString("DaysSchedule", iArr2[i10], new Object[0]);
-                i10++;
-            } else {
+    public v0(c1 c1Var, org.telegram.ui.ActionBar.c2 c2Var, sc0 sc0Var) {
+        this.f13098b = c1Var;
+        this.d = c2Var;
+        this.f13099c = sc0Var;
+    }
+
+    @Override
+    public final void run() {
+        switch (this.f13097a) {
+            case 0:
+                c1 c1Var = this.f13098b;
+                c1Var.getClass();
+                this.d.dismiss();
+                c1Var.presentFragment(this.f13099c);
                 return;
-            }
-        }
-    }
-
-    public static void U(v0 v0Var, ArrayList arrayList, u61 u61Var) {
-        String string = LocaleController.getString(R.string.BusinessGreet);
-        String string2 = LocaleController.getString(R.string.BusinessGreetInfo);
-        h61 h61Var = new h61(2);
-        h61Var.f26786l = string;
-        h61Var.f26789o = string2;
-        h61Var.f26787m = "RestrictedEmoji";
-        h61Var.f26788n = "👋";
-        arrayList.add(h61Var);
-        h61 i10 = h61.i(1, LocaleController.getString(R.string.BusinessGreetSend));
-        i10.K(v0Var.f13061s);
-        arrayList.add(i10);
-        arrayList.add(h61.B(null));
-        if (v0Var.f13061s) {
-            z1 d = a2.f(v0Var.currentAccount).d("hello");
-            if (d != null) {
-                h61 h61Var2 = new h61(17);
-                h61Var2.G = d;
-                arrayList.add(h61Var2);
-            } else {
-                h61 c10 = h61.c(2, R.drawable.msg2_chats_add, LocaleController.getString(R.string.BusinessGreetCreate));
-                c10.f26791q = true;
-                arrayList.add(c10);
-            }
-            arrayList.add(h61.B(null));
-            i2.e.p(R.string.BusinessRecipients, arrayList);
-            h61 w9 = h61.w(3, LocaleController.getString(R.string.BusinessChatsAllPrivateExcept2));
-            w9.K(v0Var.v);
-            arrayList.add(w9);
-            h61 w10 = h61.w(4, LocaleController.getString(R.string.BusinessChatsOnlySelected2));
-            w10.K(!v0Var.v);
-            arrayList.add(w10);
-            arrayList.add(h61.B(null));
-            v0Var.d.a(arrayList, u61Var, true);
-            i2.e.B(R.string.BusinessGreetRecipientsInfo, arrayList);
-            i2.e.p(R.string.BusinessGreetPeriod, arrayList);
-            int i11 = 0;
-            while (true) {
-                int[] iArr = v0Var.e;
-                if (i11 < iArr.length) {
-                    if (iArr[i11] == v0Var.f13062w) {
-                        break;
+            default:
+                c1 c1Var2 = this.f13098b;
+                sc0 sc0Var = this.f13099c;
+                try {
+                    List<Address> fromLocationName = new Geocoder(c1Var2.getParentActivity(), LocaleController.getInstance().getCurrentLocale()).getFromLocationName(c1Var2.E, 1);
+                    if (!fromLocationName.isEmpty()) {
+                        Address address = fromLocationName.get(0);
+                        TLRPC.TL_channelLocation tL_channelLocation = new TLRPC.TL_channelLocation();
+                        tL_channelLocation.address = c1Var2.E;
+                        TLRPC.TL_geoPoint tL_geoPoint = new TLRPC.TL_geoPoint();
+                        tL_channelLocation.geo_point = tL_geoPoint;
+                        tL_geoPoint.lat = address.getLatitude();
+                        tL_channelLocation.geo_point._long = address.getLongitude();
+                        sc0Var.A0 = tL_channelLocation;
                     }
-                    i11++;
-                } else {
-                    i11 = -1;
-                    break;
+                } catch (Exception e) {
+                    FileLog.e(e);
                 }
-            }
-            String[] strArr = v0Var.f13058f;
-            l0 l0Var = new l0(v0Var, 1);
-            h61 h61Var3 = new h61(14);
-            h61Var3.f26790p = strArr;
-            h61Var3.f26799z = i11;
-            h61Var3.C = l0Var;
-            h61Var3.B = -1L;
-            arrayList.add(h61Var3);
-            i2.e.B(R.string.BusinessGreetPeriodInfo, arrayList);
-        }
-    }
-
-    public final void V(boolean z10) {
-        float f7;
-        float f10;
-        float f11;
-        float f12;
-        if (this.f13056b == null) {
-            return;
-        }
-        boolean W = W();
-        this.f13056b.setEnabled(W);
-        float f13 = 0.0f;
-        if (z10) {
-            ViewPropertyAnimator animate = this.f13056b.animate();
-            if (W) {
-                f11 = 1.0f;
-            } else {
-                f11 = 0.0f;
-            }
-            ViewPropertyAnimator alpha = animate.alpha(f11);
-            if (W) {
-                f12 = 1.0f;
-            } else {
-                f12 = 0.0f;
-            }
-            ViewPropertyAnimator scaleX = alpha.scaleX(f12);
-            if (W) {
-                f13 = 1.0f;
-            }
-            scaleX.scaleY(f13).setDuration(180L).start();
-            return;
-        }
-        org.telegram.ui.ActionBar.u0 u0Var = this.f13056b;
-        if (W) {
-            f7 = 1.0f;
-        } else {
-            f7 = 0.0f;
-        }
-        u0Var.setAlpha(f7);
-        org.telegram.ui.ActionBar.u0 u0Var2 = this.f13056b;
-        if (W) {
-            f10 = 1.0f;
-        } else {
-            f10 = 0.0f;
-        }
-        u0Var2.setScaleX(f10);
-        org.telegram.ui.ActionBar.u0 u0Var3 = this.f13056b;
-        if (W) {
-            f13 = 1.0f;
-        }
-        u0Var3.setScaleY(f13);
-    }
-
-    public final boolean W() {
-        boolean z10;
-        a0 a0Var;
-        if (this.h) {
-            boolean z11 = this.f13061s;
-            TL_account.TL_businessGreetingMessage tL_businessGreetingMessage = this.f13060r;
-            if (tL_businessGreetingMessage != null) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            if (z11 != z10 || (z11 && tL_businessGreetingMessage != null && (tL_businessGreetingMessage.no_activity_days != this.f13062w || tL_businessGreetingMessage.recipients.exclude_selected != this.v || ((a0Var = this.d) != null && a0Var.g())))) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public final void X() {
-        if (this.f13055a.f24711c <= 0.0f) {
-            if (!W()) {
-                finishFragment();
+                AndroidUtilities.runOnUIThread(new v0(c1Var2, this.d, sc0Var));
                 return;
-            }
-            z1 d = a2.f(this.currentAccount).d("hello");
-            boolean z10 = this.f13061s;
-            if (z10 && d == null) {
-                BotWebViewVibrationEffect.APP_ERROR.vibrate();
-                View z12 = this.f13057c.z1(2);
-                int i10 = -this.f13059n;
-                this.f13059n = i10;
-                AndroidUtilities.shakeViewSpring(z12, i10);
-            } else if (z10 && !this.d.k(this.f13057c)) {
-            } else {
-                this.f13055a.a(1.0f);
-                TLRPC.UserFull userFull = getMessagesController().getUserFull(getUserConfig().getClientUserId());
-                TL_account.updateBusinessGreetingMessage updatebusinessgreetingmessage = new TL_account.updateBusinessGreetingMessage();
-                if (this.f13061s) {
-                    TL_account.TL_inputBusinessGreetingMessage tL_inputBusinessGreetingMessage = new TL_account.TL_inputBusinessGreetingMessage();
-                    updatebusinessgreetingmessage.message = tL_inputBusinessGreetingMessage;
-                    tL_inputBusinessGreetingMessage.shortcut_id = d.f13098a;
-                    tL_inputBusinessGreetingMessage.recipients = this.d.e();
-                    updatebusinessgreetingmessage.message.no_activity_days = this.f13062w;
-                    updatebusinessgreetingmessage.flags |= 1;
-                    if (userFull != null) {
-                        userFull.flags2 |= 4;
-                        TL_account.TL_businessGreetingMessage tL_businessGreetingMessage = new TL_account.TL_businessGreetingMessage();
-                        userFull.business_greeting_message = tL_businessGreetingMessage;
-                        tL_businessGreetingMessage.shortcut_id = d.f13098a;
-                        tL_businessGreetingMessage.recipients = this.d.f();
-                        userFull.business_greeting_message.no_activity_days = this.f13062w;
-                    }
-                } else if (userFull != null) {
-                    userFull.flags2 &= -5;
-                    userFull.business_greeting_message = null;
-                }
-                getConnectionsManager().sendRequest(updatebusinessgreetingmessage, new ai.h(this, 19));
-                getMessagesStorage().updateUserInfo(userFull, false);
-            }
         }
     }
 
-    public final void Y() {
-        boolean z10;
-        int i10;
-        boolean z11;
-        u61 u61Var;
-        TL_account.TL_businessRecipients tL_businessRecipients;
-        if (this.h) {
-            return;
-        }
-        TLRPC.UserFull userFull = getMessagesController().getUserFull(getUserConfig().getClientUserId());
-        if (userFull == null) {
-            getMessagesController().loadUserInfo(getUserConfig().getCurrentUser(), true, getClassGuid());
-            return;
-        }
-        TL_account.TL_businessGreetingMessage tL_businessGreetingMessage = userFull.business_greeting_message;
-        this.f13060r = tL_businessGreetingMessage;
-        if (tL_businessGreetingMessage != null) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        this.f13061s = z10;
-        if (tL_businessGreetingMessage != null) {
-            i10 = tL_businessGreetingMessage.no_activity_days;
-        } else {
-            i10 = 7;
-        }
-        this.f13062w = i10;
-        if (tL_businessGreetingMessage != null) {
-            z11 = tL_businessGreetingMessage.recipients.exclude_selected;
-        } else {
-            z11 = true;
-        }
-        this.v = z11;
-        a0 a0Var = this.d;
-        if (a0Var != null) {
-            if (tL_businessGreetingMessage == null) {
-                tL_businessRecipients = null;
-            } else {
-                tL_businessRecipients = tL_businessGreetingMessage.recipients;
-            }
-            a0Var.j(tL_businessRecipients);
-        }
-        c71 c71Var = this.f13057c;
-        if (c71Var != null && (u61Var = c71Var.W2) != null) {
-            u61Var.N(true);
-        }
-        V(true);
-        this.h = true;
-    }
-
-    @Override
-    public final View createView(Context context) {
-        TL_account.TL_businessRecipients tL_businessRecipients;
-        this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
-        this.actionBar.setAllowOverlayTitle(true);
-        this.actionBar.setTitle(LocaleController.getString(R.string.BusinessGreet));
-        this.actionBar.setActionBarMenuOnItemClick(new ah.s(this, 14));
-        Drawable mutate = context.getResources().getDrawable(R.drawable.ic_ab_done).mutate();
-        int i10 = h6.f21329v8;
-        mutate.setColorFilter(new PorterDuffColorFilter(h6.x0(null, i10, false), PorterDuff.Mode.MULTIPLY));
-        this.f13055a = new as(mutate, new dq(h6.x0(null, i10, false)));
-        this.f13056b = this.actionBar.n().i(AndroidUtilities.dp(56.0f), LocaleController.getString(R.string.Done), this.f13055a);
-        V(false);
-        FrameLayout frameLayout = new FrameLayout(context);
-        frameLayout.setBackgroundColor(h6.x0(null, h6.f20936a7, false));
-        a0 a0Var = new a0(this, new bc(this, 21));
-        this.d = a0Var;
-        a0Var.f12820n = true;
-        TL_account.TL_businessGreetingMessage tL_businessGreetingMessage = this.f13060r;
-        if (tL_businessGreetingMessage == null) {
-            tL_businessRecipients = null;
-        } else {
-            tL_businessRecipients = tL_businessGreetingMessage.recipients;
-        }
-        a0Var.j(tL_businessRecipients);
-        c71 c71Var = new c71(this, new hg.o(this, 6), new u0(this, 2), null);
-        this.f13057c = c71Var;
-        c71Var.p1();
-        c71 c71Var2 = this.f13057c;
-        c71Var2.W2.f30865r = false;
-        frameLayout.addView(c71Var2, z5.c(-1.0f, -1));
-        this.actionBar.A(this.f13057c, true);
-        Y();
-        this.fragmentView = frameLayout;
-        return frameLayout;
-    }
-
-    @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        u61 u61Var;
-        if (i10 == NotificationCenter.quickRepliesUpdated) {
-            c71 c71Var = this.f13057c;
-            if (c71Var != null && (u61Var = c71Var.W2) != null) {
-                u61Var.N(true);
-            }
-            V(true);
-        } else if (i10 == NotificationCenter.userInfoDidLoad) {
-            Y();
-        }
-    }
-
-    @Override
-    public final boolean isSupportEdgeToEdge() {
-        return true;
-    }
-
-    @Override
-    public final boolean onBackPressed(boolean z10) {
-        if (W()) {
-            if (z10) {
-                if (!this.f13061s) {
-                    X();
-                    return false;
-                }
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getParentActivity());
-                alertDialog$Builder.f20609a.R = LocaleController.getString(R.string.UnsavedChanges);
-                alertDialog$Builder.f20609a.T = LocaleController.getString(R.string.BusinessGreetUnsavedChanges);
-                alertDialog$Builder.k(LocaleController.getString(R.string.ApplyTheme), new u0(this, 0));
-                alertDialog$Builder.h(LocaleController.getString(R.string.PassportDiscard), new u0(this, 1));
-                showDialog(alertDialog$Builder.f20609a);
-            }
-            return false;
-        }
-        return super.onBackPressed(z10);
-    }
-
-    @Override
-    public final boolean onFragmentCreate() {
-        getNotificationCenter().addObserver(this, NotificationCenter.quickRepliesUpdated);
-        getNotificationCenter().addObserver(this, NotificationCenter.userInfoDidLoad);
-        a2.f(this.currentAccount).h();
-        Y();
-        return super.onFragmentCreate();
-    }
-
-    @Override
-    public final void onFragmentDestroy() {
-        getNotificationCenter().removeObserver(this, NotificationCenter.quickRepliesUpdated);
-        getNotificationCenter().removeObserver(this, NotificationCenter.userInfoDidLoad);
-        super.onFragmentDestroy();
-    }
-
-    @Override
-    public final void onInsets(int i10, int i11, int i12, int i13) {
-        this.f13057c.setPadding(0, 0, 0, i13);
-        this.f13057c.setClipToPadding(false);
+    public v0(c1 c1Var, sc0 sc0Var, org.telegram.ui.ActionBar.c2 c2Var) {
+        this.f13098b = c1Var;
+        this.f13099c = sc0Var;
+        this.d = c2Var;
     }
 }

@@ -3,17 +3,17 @@ package org.telegram.ui.Components;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 public final class vf extends AnimatorListenerAdapter {
-    public final ChatActivityEnterView f31233a;
+    public final ChatActivityEnterView f31436a;
 
     public vf(ChatActivityEnterView chatActivityEnterView) {
-        this.f31233a = chatActivityEnterView;
+        this.f31436a = chatActivityEnterView;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        ChatActivityEnterView chatActivityEnterView = this.f31233a;
-        chatActivityEnterView.f23959h1.setAllowDraw(true);
+        ChatActivityEnterView chatActivityEnterView = this.f31436a;
+        chatActivityEnterView.f24097h1.setAllowDraw(true);
         chatActivityEnterView.N1.setTransformToSeekbar(1.0f);
-        chatActivityEnterView.v0();
+        chatActivityEnterView.u0();
     }
 }

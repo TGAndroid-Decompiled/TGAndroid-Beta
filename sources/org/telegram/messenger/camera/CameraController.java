@@ -34,6 +34,7 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.SerializedData;
+import zf.e0;
 public class CameraController implements MediaRecorder.OnInfoListener {
     private static final int CORE_POOL_SIZE = 1;
     private static volatile CameraController Instance = null;
@@ -233,7 +234,7 @@ public class CameraController implements MediaRecorder.OnInfoListener {
             if (this.cameraInfos == null) {
                 SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
                 String string = globalMainSettings.getString("cameraCache", null);
-                a4.d dVar = new a4.d(29);
+                e0 e0Var = new e0(1);
                 ArrayList<CameraInfo> arrayList = new ArrayList<>();
                 int i10 = 0;
                 if (string != null) {
@@ -250,8 +251,8 @@ public class CameraController implements MediaRecorder.OnInfoListener {
                             cameraInfo.pictureSizes.add(new Size(serializedData.readInt32(false), serializedData.readInt32(false)));
                         }
                         arrayList.add(cameraInfo);
-                        Collections.sort(cameraInfo.previewSizes, dVar);
-                        Collections.sort(cameraInfo.pictureSizes, dVar);
+                        Collections.sort(cameraInfo.previewSizes, e0Var);
+                        Collections.sort(cameraInfo.pictureSizes, e0Var);
                     }
                     serializedData.cleanup();
                 } else {
@@ -320,8 +321,8 @@ public class CameraController implements MediaRecorder.OnInfoListener {
                         }
                         camera2.release();
                         arrayList.add(cameraInfo3);
-                        Collections.sort(cameraInfo3.previewSizes, dVar);
-                        Collections.sort(cameraInfo3.pictureSizes, dVar);
+                        Collections.sort(cameraInfo3.previewSizes, e0Var);
+                        Collections.sort(cameraInfo3.pictureSizes, e0Var);
                         i14 += ((cameraInfo3.previewSizes.size() + cameraInfo3.pictureSizes.size()) * 8) + 8;
                         i15 = i20 + 1;
                         globalMainSettings = sharedPreferences;

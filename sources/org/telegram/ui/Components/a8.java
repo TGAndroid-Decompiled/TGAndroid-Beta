@@ -17,13 +17,13 @@ public final class a8 extends f8 {
         int action = motionEvent.getAction();
         k8 k8Var = this.e;
         if (action == 0) {
-            if (this.f26143a[this.f26144b].getImageReceiver().hasBitmapImage()) {
-                k8Var.B0(true, true);
+            if (this.f26225a[this.f26226b].getImageReceiver().hasBitmapImage()) {
+                k8Var.H0(true, true);
                 this.d = SystemClock.elapsedRealtime();
                 return true;
             }
         } else if (action != 2 && SystemClock.elapsedRealtime() - this.d >= 400) {
-            k8Var.B0(false, true);
+            k8Var.H0(false, true);
         }
         return true;
     }

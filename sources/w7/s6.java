@@ -21,7 +21,7 @@ public abstract class s6 {
                             if (i10 == 512) {
                                 return 9;
                             }
-                            throw new IllegalArgumentException(i2.e.j(i10, "type needs to be >= FIRST and <= LAST, type="));
+                            throw new IllegalArgumentException(i2.o1.k(i10, "type needs to be >= FIRST and <= LAST, type="));
                         }
                         return 7;
                     }

@@ -6,45 +6,45 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.i80;
+import org.telegram.ui.Components.j80;
 public final class o3 extends ClickableSpan {
-    public final int f11371a;
-    public final ai.i0 f11372b;
-    public final u3 f11373c;
+    public final int f11396a;
+    public final ai.i0 f11397b;
+    public final u3 f11398c;
 
     public o3(u3 u3Var, int i10, ai.i0 i0Var) {
-        this.f11373c = u3Var;
-        this.f11371a = i10;
-        this.f11372b = i0Var;
+        this.f11398c = u3Var;
+        this.f11396a = i10;
+        this.f11397b = i0Var;
     }
 
     @Override
     public final void onClick(View view) {
         boolean z10;
         boolean z11;
-        i80 H = i80.H(this.f11373c, view);
+        j80 H = j80.H(this.f11398c, view);
         boolean z12 = true;
-        int i10 = this.f11371a;
+        int i10 = this.f11396a;
         if (i10 == 3) {
             z10 = true;
         } else {
             z10 = false;
         }
         String string = LocaleController.getString(R.string.ChannelAffiliateProgramProgramsSortDate);
-        final ai.i0 i0Var = this.f11372b;
+        final ai.i0 i0Var = this.f11397b;
         H.i(new Runnable() {
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
                         ai.i0 i0Var2 = i0Var;
-                        if (i0Var2.f1465g != 3) {
-                            i0Var2.f1465g = 3;
-                            i0Var2.f1463c = 0;
+                        if (i0Var2.f1453g != 3) {
+                            i0Var2.f1453g = 3;
+                            i0Var2.f1451c = 0;
                             i0Var2.d = false;
-                            i0Var2.f1466i = false;
-                            i0Var2.f1464f = 0L;
-                            i0Var2.f1467j = null;
+                            i0Var2.f1454i = false;
+                            i0Var2.f1452f = 0L;
+                            i0Var2.f1455j = null;
                             i0Var2.h = false;
                             i0Var2.a();
                             return;
@@ -52,13 +52,13 @@ public final class o3 extends ClickableSpan {
                         return;
                     case 1:
                         ai.i0 i0Var3 = i0Var;
-                        if (i0Var3.f1465g != 2) {
-                            i0Var3.f1465g = 2;
-                            i0Var3.f1463c = 0;
+                        if (i0Var3.f1453g != 2) {
+                            i0Var3.f1453g = 2;
+                            i0Var3.f1451c = 0;
                             i0Var3.d = false;
-                            i0Var3.f1466i = false;
-                            i0Var3.f1464f = 0L;
-                            i0Var3.f1467j = null;
+                            i0Var3.f1454i = false;
+                            i0Var3.f1452f = 0L;
+                            i0Var3.f1455j = null;
                             i0Var3.h = false;
                             i0Var3.a();
                             return;
@@ -66,13 +66,13 @@ public final class o3 extends ClickableSpan {
                         return;
                     default:
                         ai.i0 i0Var4 = i0Var;
-                        if (i0Var4.f1465g != 1) {
-                            i0Var4.f1465g = 1;
-                            i0Var4.f1463c = 0;
+                        if (i0Var4.f1453g != 1) {
+                            i0Var4.f1453g = 1;
+                            i0Var4.f1451c = 0;
                             i0Var4.d = false;
-                            i0Var4.f1466i = false;
-                            i0Var4.f1464f = 0L;
-                            i0Var4.f1467j = null;
+                            i0Var4.f1454i = false;
+                            i0Var4.f1452f = 0L;
+                            i0Var4.f1455j = null;
                             i0Var4.h = false;
                             i0Var4.a();
                             return;
@@ -92,13 +92,13 @@ public final class o3 extends ClickableSpan {
                 switch (r2) {
                     case 0:
                         ai.i0 i0Var2 = i0Var;
-                        if (i0Var2.f1465g != 3) {
-                            i0Var2.f1465g = 3;
-                            i0Var2.f1463c = 0;
+                        if (i0Var2.f1453g != 3) {
+                            i0Var2.f1453g = 3;
+                            i0Var2.f1451c = 0;
                             i0Var2.d = false;
-                            i0Var2.f1466i = false;
-                            i0Var2.f1464f = 0L;
-                            i0Var2.f1467j = null;
+                            i0Var2.f1454i = false;
+                            i0Var2.f1452f = 0L;
+                            i0Var2.f1455j = null;
                             i0Var2.h = false;
                             i0Var2.a();
                             return;
@@ -106,13 +106,13 @@ public final class o3 extends ClickableSpan {
                         return;
                     case 1:
                         ai.i0 i0Var3 = i0Var;
-                        if (i0Var3.f1465g != 2) {
-                            i0Var3.f1465g = 2;
-                            i0Var3.f1463c = 0;
+                        if (i0Var3.f1453g != 2) {
+                            i0Var3.f1453g = 2;
+                            i0Var3.f1451c = 0;
                             i0Var3.d = false;
-                            i0Var3.f1466i = false;
-                            i0Var3.f1464f = 0L;
-                            i0Var3.f1467j = null;
+                            i0Var3.f1454i = false;
+                            i0Var3.f1452f = 0L;
+                            i0Var3.f1455j = null;
                             i0Var3.h = false;
                             i0Var3.a();
                             return;
@@ -120,13 +120,13 @@ public final class o3 extends ClickableSpan {
                         return;
                     default:
                         ai.i0 i0Var4 = i0Var;
-                        if (i0Var4.f1465g != 1) {
-                            i0Var4.f1465g = 1;
-                            i0Var4.f1463c = 0;
+                        if (i0Var4.f1453g != 1) {
+                            i0Var4.f1453g = 1;
+                            i0Var4.f1451c = 0;
                             i0Var4.d = false;
-                            i0Var4.f1466i = false;
-                            i0Var4.f1464f = 0L;
-                            i0Var4.f1467j = null;
+                            i0Var4.f1454i = false;
+                            i0Var4.f1452f = 0L;
+                            i0Var4.f1455j = null;
                             i0Var4.h = false;
                             i0Var4.a();
                             return;
@@ -144,13 +144,13 @@ public final class o3 extends ClickableSpan {
                 switch (r2) {
                     case 0:
                         ai.i0 i0Var2 = i0Var;
-                        if (i0Var2.f1465g != 3) {
-                            i0Var2.f1465g = 3;
-                            i0Var2.f1463c = 0;
+                        if (i0Var2.f1453g != 3) {
+                            i0Var2.f1453g = 3;
+                            i0Var2.f1451c = 0;
                             i0Var2.d = false;
-                            i0Var2.f1466i = false;
-                            i0Var2.f1464f = 0L;
-                            i0Var2.f1467j = null;
+                            i0Var2.f1454i = false;
+                            i0Var2.f1452f = 0L;
+                            i0Var2.f1455j = null;
                             i0Var2.h = false;
                             i0Var2.a();
                             return;
@@ -158,13 +158,13 @@ public final class o3 extends ClickableSpan {
                         return;
                     case 1:
                         ai.i0 i0Var3 = i0Var;
-                        if (i0Var3.f1465g != 2) {
-                            i0Var3.f1465g = 2;
-                            i0Var3.f1463c = 0;
+                        if (i0Var3.f1453g != 2) {
+                            i0Var3.f1453g = 2;
+                            i0Var3.f1451c = 0;
                             i0Var3.d = false;
-                            i0Var3.f1466i = false;
-                            i0Var3.f1464f = 0L;
-                            i0Var3.f1467j = null;
+                            i0Var3.f1454i = false;
+                            i0Var3.f1452f = 0L;
+                            i0Var3.f1455j = null;
                             i0Var3.h = false;
                             i0Var3.a();
                             return;
@@ -172,13 +172,13 @@ public final class o3 extends ClickableSpan {
                         return;
                     default:
                         ai.i0 i0Var4 = i0Var;
-                        if (i0Var4.f1465g != 1) {
-                            i0Var4.f1465g = 1;
-                            i0Var4.f1463c = 0;
+                        if (i0Var4.f1453g != 1) {
+                            i0Var4.f1453g = 1;
+                            i0Var4.f1451c = 0;
                             i0Var4.d = false;
-                            i0Var4.f1466i = false;
-                            i0Var4.f1464f = 0L;
-                            i0Var4.f1467j = null;
+                            i0Var4.f1454i = false;
+                            i0Var4.f1452f = 0L;
+                            i0Var4.f1455j = null;
                             i0Var4.h = false;
                             i0Var4.a();
                             return;
@@ -188,8 +188,8 @@ public final class o3 extends ClickableSpan {
             }
         }, LocaleController.getString(R.string.ChannelAffiliateProgramProgramsSortProfitability), z12);
         H.V(5);
-        H.f27190t = false;
-        H.f27189s = 0;
+        H.f27581t = false;
+        H.f27580s = 0;
         H.a0(AndroidUtilities.dp(24.0f), -AndroidUtilities.dp(24.0f));
         H.Z();
     }

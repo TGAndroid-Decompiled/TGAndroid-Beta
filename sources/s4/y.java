@@ -12,8 +12,9 @@ import com.google.android.gms.internal.play_billing.k3;
 import java.util.ArrayList;
 import java.util.WeakHashMap;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.em0;
-import org.telegram.ui.Components.jm0;
+import org.telegram.ui.Components.hm0;
+import org.telegram.ui.Components.mm0;
+import org.telegram.ui.Wallet.m4;
 public class y extends m0 {
     public int E;
     public int G;
@@ -27,25 +28,25 @@ public class y extends m0 {
     public long R;
     public float d;
     public float e;
-    public float f46070f;
+    public float f46492f;
     public float h;
-    public float f46071n;
-    public float f46072r;
-    public float f46073s;
+    public float f46493n;
+    public float f46494r;
+    public float f46495s;
     public float v;
-    public final v f46075x;
-    public final ArrayList f46067a = new ArrayList();
-    public final float[] f46068b = new float[2];
-    public b1 f46069c = null;
-    public int f46074w = -1;
-    public int f46076y = 0;
+    public final v f46497x;
+    public final ArrayList f46489a = new ArrayList();
+    public final float[] f46490b = new float[2];
+    public b1 f46491c = null;
+    public int f46496w = -1;
+    public int f46498y = 0;
     public final ArrayList F = new ArrayList();
-    public final p8.b I = new p8.b(this, 3);
+    public final m4 I = new m4(this, 6);
     public View M = null;
-    public final em0 P = new em0(this);
+    public final hm0 P = new hm0(this);
 
     public y(v vVar) {
-        this.f46075x = vVar;
+        this.f46497x = vVar;
     }
 
     public static boolean m(View view, float f7, float f10, float f11, float f12) {
@@ -64,8 +65,8 @@ public class y extends m0 {
     public final void b(Canvas canvas, RecyclerView recyclerView) {
         float f7;
         float f10;
-        if (this.f46069c != null) {
-            float[] fArr = this.f46068b;
+        if (this.f46491c != null) {
+            float[] fArr = this.f46490b;
             l(fArr);
             float f11 = fArr[0];
             f7 = fArr[1];
@@ -74,31 +75,31 @@ public class y extends m0 {
             f7 = 0.0f;
             f10 = 0.0f;
         }
-        b1 b1Var = this.f46069c;
-        int i10 = this.f46076y;
-        v vVar = this.f46075x;
+        b1 b1Var = this.f46491c;
+        int i10 = this.f46498y;
+        v vVar = this.f46497x;
         vVar.getClass();
         ArrayList arrayList = this.F;
         int size = arrayList.size();
         for (int i11 = 0; i11 < size; i11++) {
             u uVar = (u) arrayList.get(i11);
             b1 b1Var2 = uVar.e;
-            float f12 = uVar.f46041a;
-            float f13 = uVar.f46043c;
+            float f12 = uVar.f46463a;
+            float f13 = uVar.f46465c;
             if (f12 == f13) {
-                uVar.f46046r = b1Var2.f45921a.getTranslationX();
+                uVar.f46468r = b1Var2.f46343a.getTranslationX();
             } else {
-                uVar.f46046r = k3.y(f13, f12, uVar.f46049x, f12);
+                uVar.f46468r = k3.y(f13, f12, uVar.f46471x, f12);
             }
-            float f14 = uVar.f46042b;
+            float f14 = uVar.f46464b;
             float f15 = uVar.d;
             if (f14 == f15) {
-                uVar.f46047s = b1Var2.f45921a.getTranslationY();
+                uVar.f46469s = b1Var2.f46343a.getTranslationY();
             } else {
-                uVar.f46047s = k3.y(f15, f14, uVar.f46049x, f14);
+                uVar.f46469s = k3.y(f15, f14, uVar.f46471x, f14);
             }
             int save = canvas.save();
-            vVar.m(canvas, recyclerView, uVar.e, uVar.f46046r, uVar.f46047s, uVar.f46044f, false);
+            vVar.m(canvas, recyclerView, uVar.e, uVar.f46468r, uVar.f46469s, uVar.f46466f, false);
             canvas.restoreToCount(save);
         }
         if (b1Var != null) {
@@ -111,19 +112,19 @@ public class y extends m0 {
     @Override
     public final void c(Canvas canvas, RecyclerView recyclerView) {
         boolean z10 = false;
-        if (this.f46069c != null) {
-            float[] fArr = this.f46068b;
+        if (this.f46491c != null) {
+            float[] fArr = this.f46490b;
             l(fArr);
             float f7 = fArr[0];
             float f10 = fArr[1];
         }
-        b1 b1Var = this.f46069c;
-        this.f46075x.getClass();
+        b1 b1Var = this.f46491c;
+        this.f46497x.getClass();
         ArrayList arrayList = this.F;
         int size = arrayList.size();
         for (int i10 = 0; i10 < size; i10++) {
             int save = canvas.save();
-            View view = ((u) arrayList.get(i10)).e.f45921a;
+            View view = ((u) arrayList.get(i10)).e.f46343a;
             canvas.restoreToCount(save);
         }
         if (b1Var != null) {
@@ -131,8 +132,8 @@ public class y extends m0 {
         }
         for (int i11 = size - 1; i11 >= 0; i11--) {
             u uVar = (u) arrayList.get(i11);
-            boolean z11 = uVar.f46048w;
-            if (z11 && !uVar.f46045n) {
+            boolean z11 = uVar.f46470w;
+            if (z11 && !uVar.f46467n) {
                 arrayList.remove(i11);
             } else if (!z11) {
                 z10 = true;
@@ -143,15 +144,15 @@ public class y extends m0 {
         }
     }
 
-    public final void d(jm0 jm0Var) {
+    public final void d(mm0 mm0Var) {
         RecyclerView recyclerView = this.H;
-        if (recyclerView != jm0Var) {
-            em0 em0Var = this.P;
+        if (recyclerView != mm0Var) {
+            hm0 hm0Var = this.P;
             if (recyclerView != null) {
                 recyclerView.p0(this);
                 RecyclerView recyclerView2 = this.H;
-                recyclerView2.E.remove(em0Var);
-                if (recyclerView2.F == em0Var) {
+                recyclerView2.E.remove(hm0Var);
+                if (recyclerView2.F == hm0Var) {
                     recyclerView2.F = null;
                 }
                 ArrayList arrayList = this.H.P;
@@ -165,7 +166,7 @@ public class y extends m0 {
                     if (size < 0) {
                         break;
                     }
-                    this.f46075x.a(this.H, ((u) arrayList2.get(0)).e);
+                    this.f46497x.a(this.H, ((u) arrayList2.get(0)).e);
                 }
                 arrayList2.clear();
                 this.M = null;
@@ -176,21 +177,21 @@ public class y extends m0 {
                 }
                 w wVar = this.O;
                 if (wVar != null) {
-                    wVar.f46055a = false;
+                    wVar.f46477a = false;
                     this.O = null;
                 }
                 if (this.N != null) {
                     this.N = null;
                 }
             }
-            this.H = jm0Var;
-            if (jm0Var != null) {
-                jm0Var.getResources();
-                this.f46070f = AndroidUtilities.dp(120.0f);
+            this.H = mm0Var;
+            if (mm0Var != null) {
+                mm0Var.getResources();
+                this.f46492f = AndroidUtilities.dp(120.0f);
                 this.h = AndroidUtilities.dp(800.0f);
                 this.G = ViewConfiguration.get(this.H.getContext()).getScaledTouchSlop();
                 this.H.i(this);
-                this.H.E.add(em0Var);
+                this.H.E.add(hm0Var);
                 RecyclerView recyclerView3 = this.H;
                 if (recyclerView3.P == null) {
                     recyclerView3.P = new ArrayList();
@@ -206,27 +207,27 @@ public class y extends m0 {
         int i11;
         if ((i10 & 12) != 0) {
             int i12 = 4;
-            if (this.f46071n > 0.0f) {
+            if (this.f46493n > 0.0f) {
                 i11 = 8;
             } else {
                 i11 = 4;
             }
             VelocityTracker velocityTracker = this.J;
-            v vVar = this.f46075x;
-            if (velocityTracker != null && this.f46074w > -1) {
+            v vVar = this.f46497x;
+            if (velocityTracker != null && this.f46496w > -1) {
                 velocityTracker.computeCurrentVelocity(1000, vVar.h(this.h));
-                float xVelocity = this.J.getXVelocity(this.f46074w);
-                float yVelocity = this.J.getYVelocity(this.f46074w);
+                float xVelocity = this.J.getXVelocity(this.f46496w);
+                float yVelocity = this.J.getYVelocity(this.f46496w);
                 if (xVelocity > 0.0f) {
                     i12 = 8;
                 }
                 float abs = Math.abs(xVelocity);
-                if ((i12 & i10) != 0 && i11 == i12 && abs >= vVar.f(this.f46070f) && abs > Math.abs(yVelocity)) {
+                if ((i12 & i10) != 0 && i11 == i12 && abs >= vVar.f(this.f46492f) && abs > Math.abs(yVelocity)) {
                     return i12;
                 }
             }
             float g10 = vVar.g() * this.H.getWidth();
-            if ((i10 & i11) != 0 && Math.abs(this.f46071n) > g10) {
+            if ((i10 & i11) != 0 && Math.abs(this.f46493n) > g10) {
                 return i11;
             }
             return 0;
@@ -236,11 +237,11 @@ public class y extends m0 {
 
     public final void h(int i10, int i11, MotionEvent motionEvent) {
         View k10;
-        if (this.f46069c == null && i10 == 2 && this.f46076y != 2) {
-            v vVar = this.f46075x;
+        if (this.f46491c == null && i10 == 2 && this.f46498y != 2) {
+            v vVar = this.f46497x;
             if (vVar.j() && this.H.getScrollState() != 1) {
                 n0 layoutManager = this.H.getLayoutManager();
-                int i12 = this.f46074w;
+                int i12 = this.f46496w;
                 b1 b1Var = null;
                 if (i12 != -1) {
                     int findPointerIndex = motionEvent.findPointerIndex(i12);
@@ -254,7 +255,7 @@ public class y extends m0 {
                 if (b1Var != null) {
                     RecyclerView recyclerView = this.H;
                     int e = vVar.e(recyclerView, b1Var);
-                    WeakHashMap weakHashMap = r0.i0.f44830a;
+                    WeakHashMap weakHashMap = r0.i0.f45242a;
                     int b10 = (vVar.b(e, recyclerView.getLayoutDirection()) & 65280) >> 8;
                     if (b10 != 0) {
                         float x10 = motionEvent.getX(i11);
@@ -280,9 +281,9 @@ public class y extends m0 {
                             } else {
                                 return;
                             }
-                            this.f46072r = 0.0f;
-                            this.f46071n = 0.0f;
-                            this.f46074w = motionEvent.getPointerId(0);
+                            this.f46494r = 0.0f;
+                            this.f46493n = 0.0f;
+                            this.f46496w = motionEvent.getPointerId(0);
                             p(b1Var, 1);
                         }
                     }
@@ -295,27 +296,27 @@ public class y extends m0 {
         int i11;
         if ((i10 & 3) != 0) {
             int i12 = 1;
-            if (this.f46072r > 0.0f) {
+            if (this.f46494r > 0.0f) {
                 i11 = 2;
             } else {
                 i11 = 1;
             }
             VelocityTracker velocityTracker = this.J;
-            v vVar = this.f46075x;
-            if (velocityTracker != null && this.f46074w > -1) {
+            v vVar = this.f46497x;
+            if (velocityTracker != null && this.f46496w > -1) {
                 velocityTracker.computeCurrentVelocity(1000, vVar.h(this.h));
-                float xVelocity = this.J.getXVelocity(this.f46074w);
-                float yVelocity = this.J.getYVelocity(this.f46074w);
+                float xVelocity = this.J.getXVelocity(this.f46496w);
+                float yVelocity = this.J.getYVelocity(this.f46496w);
                 if (yVelocity > 0.0f) {
                     i12 = 2;
                 }
                 float abs = Math.abs(yVelocity);
-                if ((i12 & i10) != 0 && i12 == i11 && abs >= vVar.f(this.f46070f) && abs > Math.abs(xVelocity)) {
+                if ((i12 & i10) != 0 && i12 == i11 && abs >= vVar.f(this.f46492f) && abs > Math.abs(xVelocity)) {
                     return i12;
                 }
             }
             float g10 = vVar.g() * this.H.getHeight();
-            if ((i10 & i11) != 0 && Math.abs(this.f46072r) > g10) {
+            if ((i10 & i11) != 0 && Math.abs(this.f46494r) > g10) {
                 return i11;
             }
             return 0;
@@ -329,7 +330,7 @@ public class y extends m0 {
             u uVar = (u) arrayList.get(size);
             if (uVar.e == b1Var) {
                 uVar.v |= z10;
-                if (!uVar.f46048w) {
+                if (!uVar.f46470w) {
                     uVar.h.cancel();
                 }
                 arrayList.remove(size);
@@ -341,18 +342,18 @@ public class y extends m0 {
     public final View k(MotionEvent motionEvent) {
         float x10 = motionEvent.getX();
         float y3 = motionEvent.getY();
-        b1 b1Var = this.f46069c;
+        b1 b1Var = this.f46491c;
         if (b1Var != null) {
-            View view = b1Var.f45921a;
-            if (m(view, x10, y3, this.f46073s + this.f46071n, this.v + this.f46072r)) {
+            View view = b1Var.f46343a;
+            if (m(view, x10, y3, this.f46495s + this.f46493n, this.v + this.f46494r)) {
                 return view;
             }
         }
         ArrayList arrayList = this.F;
         for (int size = arrayList.size() - 1; size >= 0; size--) {
             u uVar = (u) arrayList.get(size);
-            View view2 = uVar.e.f45921a;
-            if (m(view2, x10, y3, uVar.f46046r, uVar.f46047s)) {
+            View view2 = uVar.e.f46343a;
+            if (m(view2, x10, y3, uVar.f46468r, uVar.f46469s)) {
                 return view2;
             }
         }
@@ -361,14 +362,14 @@ public class y extends m0 {
 
     public final void l(float[] fArr) {
         if ((this.E & 12) != 0) {
-            fArr[0] = (this.f46073s + this.f46071n) - this.f46069c.f45921a.getLeft();
+            fArr[0] = (this.f46495s + this.f46493n) - this.f46491c.f46343a.getLeft();
         } else {
-            fArr[0] = this.f46069c.f45921a.getTranslationX();
+            fArr[0] = this.f46491c.f46343a.getTranslationX();
         }
         if ((this.E & 3) != 0) {
-            fArr[1] = (this.v + this.f46072r) - this.f46069c.f45921a.getTop();
+            fArr[1] = (this.v + this.f46494r) - this.f46491c.f46343a.getTop();
         } else {
-            fArr[1] = this.f46069c.f45921a.getTranslationY();
+            fArr[1] = this.f46491c.f46343a.getTranslationY();
         }
     }
 
@@ -386,12 +387,12 @@ public class y extends m0 {
         View view;
         int i11;
         int i12;
-        if (!this.H.isLayoutRequested() && this.f46076y == 2) {
-            v vVar = this.f46075x;
+        if (!this.H.isLayoutRequested() && this.f46498y == 2) {
+            v vVar = this.f46497x;
             vVar.getClass();
-            int i13 = (int) (this.f46073s + this.f46071n);
-            int i14 = (int) (this.v + this.f46072r);
-            View view2 = b1Var.f45921a;
+            int i13 = (int) (this.f46495s + this.f46493n);
+            int i14 = (int) (this.v + this.f46494r);
+            View view2 = b1Var.f46343a;
             if (Math.abs(i14 - view2.getTop()) >= view2.getHeight() * 0.5f || Math.abs(i13 - view2.getLeft()) >= view2.getWidth() * 0.5f) {
                 ArrayList arrayList2 = this.K;
                 if (arrayList2 == null) {
@@ -401,8 +402,8 @@ public class y extends m0 {
                     arrayList2.clear();
                     this.L.clear();
                 }
-                int round = Math.round(this.f46073s + this.f46071n);
-                int round2 = Math.round(this.v + this.f46072r);
+                int round = Math.round(this.f46495s + this.f46493n);
+                int round2 = Math.round(this.v + this.f46494r);
                 int width = view2.getWidth() + round;
                 int height = view2.getHeight() + round2;
                 int i15 = (round + width) / 2;
@@ -466,24 +467,24 @@ public class y extends m0 {
                     int i24 = 0;
                     while (i24 < size2) {
                         b1 b1Var3 = (b1) arrayList3.get(i24);
-                        if (left2 > 0 && (right = b1Var3.f45921a.getRight() - width2) < 0) {
+                        if (left2 > 0 && (right = b1Var3.f46343a.getRight() - width2) < 0) {
                             arrayList = arrayList3;
-                            if (b1Var3.f45921a.getRight() > view3.getRight() && (abs4 = Math.abs(right)) > i23) {
+                            if (b1Var3.f46343a.getRight() > view3.getRight() && (abs4 = Math.abs(right)) > i23) {
                                 i23 = abs4;
                                 b1Var2 = b1Var3;
                             }
                         } else {
                             arrayList = arrayList3;
                         }
-                        if (left2 < 0 && (left = b1Var3.f45921a.getLeft() - i22) > 0 && b1Var3.f45921a.getLeft() < view3.getLeft() && (abs3 = Math.abs(left)) > i23) {
+                        if (left2 < 0 && (left = b1Var3.f46343a.getLeft() - i22) > 0 && b1Var3.f46343a.getLeft() < view3.getLeft() && (abs3 = Math.abs(left)) > i23) {
                             i23 = abs3;
                             b1Var2 = b1Var3;
                         }
-                        if (top2 < 0 && (top = b1Var3.f45921a.getTop() - i14) > 0 && b1Var3.f45921a.getTop() < view3.getTop() && (abs2 = Math.abs(top)) > i23) {
+                        if (top2 < 0 && (top = b1Var3.f46343a.getTop() - i14) > 0 && b1Var3.f46343a.getTop() < view3.getTop() && (abs2 = Math.abs(top)) > i23) {
                             i23 = abs2;
                             b1Var2 = b1Var3;
                         }
-                        if (top2 > 0 && (bottom = b1Var3.f45921a.getBottom() - height2) < 0 && b1Var3.f45921a.getBottom() > view3.getBottom() && (abs = Math.abs(bottom)) > i23) {
+                        if (top2 > 0 && (bottom = b1Var3.f46343a.getBottom() - height2) < 0 && b1Var3.f46343a.getBottom() > view3.getBottom() && (abs = Math.abs(bottom)) > i23) {
                             i23 = abs;
                             b1Var2 = b1Var3;
                         }
@@ -498,7 +499,7 @@ public class y extends m0 {
                     int b10 = b1Var2.b();
                     b1Var.b();
                     if (vVar.n(this.H, b1Var, b1Var2)) {
-                        this.f46075x.o(this.H, b1Var, b1Var2, b10, i22, i14);
+                        this.f46497x.o(this.H, b1Var, b1Var2, b10, i22, i14);
                     }
                 }
             }
@@ -521,11 +522,11 @@ public class y extends m0 {
 
     public final void r(b1 b1Var) {
         RecyclerView recyclerView = this.H;
-        v vVar = this.f46075x;
+        v vVar = this.f46497x;
         int e = vVar.e(recyclerView, b1Var);
-        WeakHashMap weakHashMap = r0.i0.f44830a;
+        WeakHashMap weakHashMap = r0.i0.f45242a;
         if ((vVar.b(e, recyclerView.getLayoutDirection()) & 16711680) != 0) {
-            if (b1Var.f45921a.getParent() != this.H) {
+            if (b1Var.f46343a.getParent() != this.H) {
                 Log.e("ItemTouchHelper", "Start drag has been called with a view holder which is not a child of the RecyclerView which is controlled by this ItemTouchHelper.");
                 return;
             }
@@ -534,8 +535,8 @@ public class y extends m0 {
                 velocityTracker.recycle();
             }
             this.J = VelocityTracker.obtain();
-            this.f46072r = 0.0f;
-            this.f46071n = 0.0f;
+            this.f46494r = 0.0f;
+            this.f46493n = 0.0f;
             p(b1Var, 2);
             return;
         }
@@ -546,19 +547,19 @@ public class y extends m0 {
         float x10 = motionEvent.getX(i11);
         float y3 = motionEvent.getY(i11);
         float f7 = x10 - this.d;
-        this.f46071n = f7;
-        this.f46072r = y3 - this.e;
+        this.f46493n = f7;
+        this.f46494r = y3 - this.e;
         if ((i10 & 4) == 0) {
-            this.f46071n = Math.max(0.0f, f7);
+            this.f46493n = Math.max(0.0f, f7);
         }
         if ((i10 & 8) == 0) {
-            this.f46071n = Math.min(0.0f, this.f46071n);
+            this.f46493n = Math.min(0.0f, this.f46493n);
         }
         if ((i10 & 1) == 0) {
-            this.f46072r = Math.max(0.0f, this.f46072r);
+            this.f46494r = Math.max(0.0f, this.f46494r);
         }
         if ((i10 & 2) == 0) {
-            this.f46072r = Math.min(0.0f, this.f46072r);
+            this.f46494r = Math.min(0.0f, this.f46494r);
         }
     }
 }

@@ -3,5 +3,5 @@ package t7;
 import java.io.Closeable;
 import java.util.HashMap;
 public abstract class n implements Closeable {
-    public static final HashMap f46901a = new HashMap();
+    public static final HashMap f47336a = new HashMap();
 }

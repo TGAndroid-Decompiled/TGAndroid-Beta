@@ -1,11 +1,31 @@
 package k2;
-public final class h extends Exception {
-    public final int f14687a;
-    public final boolean f14688b;
+public final class h {
+    public static final h d = new Object().a();
+    public final boolean f14730a;
+    public final boolean f14731b;
+    public final boolean f14732c;
 
-    public h(int i10, boolean z10) {
-        super(i2.e.j(i10, "AudioOutput write failed: "));
-        this.f14688b = z10;
-        this.f14687a = i10;
+    public h(bc.d dVar) {
+        this.f14730a = dVar.f4253a;
+        this.f14731b = dVar.f4254b;
+        this.f14732c = dVar.f4255c;
+    }
+
+    public final boolean equals(Object obj) {
+        if (this != obj) {
+            if (obj != null && h.class == obj.getClass()) {
+                h hVar = (h) obj;
+                if (this.f14730a == hVar.f14730a && this.f14731b == hVar.f14731b && this.f14732c == hVar.f14732c) {
+                    return true;
+                }
+                return false;
+            }
+            return false;
+        }
+        return true;
+    }
+
+    public final int hashCode() {
+        return ((this.f14730a ? 1 : 0) << 2) + ((this.f14731b ? 1 : 0) << 1) + (this.f14732c ? 1 : 0);
     }
 }

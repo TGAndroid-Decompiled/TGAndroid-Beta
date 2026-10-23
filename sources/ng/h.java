@@ -8,57 +8,57 @@ import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.FrameLayout;
 import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.dp0;
+import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.Components.hp0;
 import org.telegram.ui.Components.s6;
 public final class h extends FrameLayout {
-    public dp0 f17459a;
-    public float f17460b;
-    public float f17461c;
+    public hp0 f17522a;
+    public float f17523b;
+    public float f17524c;
     public float d;
     public s6 e;
-    public String f17462f;
+    public String f17525f;
     public TextPaint h;
-    public int f17463n;
+    public int f17526n;
 
     @Override
     public final void invalidate() {
         super.invalidate();
-        this.f17459a.invalidate();
+        this.f17522a.invalidate();
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         TextPaint textPaint = this.h;
-        textPaint.setColor(h6.x0(null, h6.G6, false));
-        canvas.drawText(this.f17462f, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f), textPaint);
-        textPaint.setColor(h6.x0(null, h6.I6, false));
+        textPaint.setColor(k6.x0(null, k6.G6, false));
+        canvas.drawText(this.f17525f, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f), textPaint);
+        textPaint.setColor(k6.x0(null, k6.I6, false));
         String format = String.format(Locale.ROOT, "%.2f", Float.valueOf(this.d));
-        canvas.drawText(format, (getMeasuredWidth() - AndroidUtilities.dp(8.0f)) - textPaint.measureText(format), this.f17459a.getY() + AndroidUtilities.dp(23.0f), textPaint);
+        canvas.drawText(format, (getMeasuredWidth() - AndroidUtilities.dp(8.0f)) - textPaint.measureText(format), this.f17522a.getY() + AndroidUtilities.dp(23.0f), textPaint);
     }
 
     @Override
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        this.f17459a.getSeekBarAccessibilityDelegate().e(this, accessibilityNodeInfo);
+        this.f17522a.getSeekBarAccessibilityDelegate().e(this, accessibilityNodeInfo);
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
         super.onMeasure(i10, i11);
         int size = View.MeasureSpec.getSize(i10);
-        if (this.f17463n != size) {
-            dp0 dp0Var = this.f17459a;
+        if (this.f17526n != size) {
+            hp0 hp0Var = this.f17522a;
             float floatValue = ((Float) this.e.get(null)).floatValue();
-            float f7 = this.f17460b;
-            dp0Var.setProgress((floatValue - f7) / (this.f17461c - f7));
-            this.f17463n = size;
+            float f7 = this.f17523b;
+            hp0Var.setProgress((floatValue - f7) / (this.f17524c - f7));
+            this.f17526n = size;
         }
     }
 
     @Override
     public final boolean performAccessibilityAction(int i10, Bundle bundle) {
-        if (!super.performAccessibilityAction(i10, bundle) && !this.f17459a.getSeekBarAccessibilityDelegate().g(this, i10, bundle)) {
+        if (!super.performAccessibilityAction(i10, bundle) && !this.f17522a.getSeekBarAccessibilityDelegate().g(this, i10, bundle)) {
             return false;
         }
         return true;

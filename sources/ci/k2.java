@@ -1,39 +1,34 @@
 package ci;
 
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.ConnectionsManager;
 public final class k2 implements Runnable {
-    public final int f5558a;
-    public final Runnable f5559b;
+    public final int f5486a;
+    public final Runnable f5487b;
+    public final long f5488c;
 
-    public k2(int i10, Runnable runnable) {
-        this.f5558a = i10;
-        this.f5559b = runnable;
+    public k2(int i10, long j10, Runnable runnable) {
+        this.f5486a = i10;
+        this.f5487b = runnable;
+        this.f5488c = j10;
     }
 
     @Override
     public final void run() {
-        switch (this.f5558a) {
+        switch (this.f5486a) {
             case 0:
-                Runnable runnable = this.f5559b;
+                Runnable runnable = this.f5487b;
                 AndroidUtilities.cancelRunOnUIThread(runnable);
-                AndroidUtilities.runOnUIThread(runnable);
+                AndroidUtilities.runOnUIThread(runnable, Math.max(0L, 32 - (System.currentTimeMillis() - this.f5488c)));
                 return;
             case 1:
-                Runnable runnable2 = this.f5559b;
+                Runnable runnable2 = this.f5487b;
                 AndroidUtilities.cancelRunOnUIThread(runnable2);
-                AndroidUtilities.runOnUIThread(runnable2);
-                return;
-            case 2:
-                Runnable runnable3 = this.f5559b;
-                AndroidUtilities.cancelRunOnUIThread(runnable3);
-                AndroidUtilities.runOnUIThread(runnable3);
-                return;
-            case 3:
-                ConnectionsManager.lambda$cancelRequest$9(this.f5559b);
+                AndroidUtilities.runOnUIThread(runnable2, Math.max(0L, 32 - (System.currentTimeMillis() - this.f5488c)));
                 return;
             default:
-                this.f5559b.run();
+                Runnable runnable3 = this.f5487b;
+                AndroidUtilities.cancelRunOnUIThread(runnable3);
+                AndroidUtilities.runOnUIThread(runnable3, Math.max(0L, 32 - (System.currentTimeMillis() - this.f5488c)));
                 return;
         }
     }

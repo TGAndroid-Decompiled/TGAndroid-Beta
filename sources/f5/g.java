@@ -15,7 +15,7 @@ public final class g extends com.googlecode.mp4parser.c {
     }
 
     public final String toString() {
-        k3.p(te.a.b(e, this, this));
+        k3.o(te.a.b(e, this, this));
         return "DataEntryUrlBox[]";
     }
 }

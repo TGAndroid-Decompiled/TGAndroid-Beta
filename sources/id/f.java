@@ -2,18 +2,18 @@ package id;
 
 import java.io.Serializable;
 public final class f implements Serializable {
-    public final Object f12770a;
+    public final Object f12802a;
 
     public static final Throwable a(Object obj) {
         if (obj instanceof e) {
-            return ((e) obj).f12769a;
+            return ((e) obj).f12801a;
         }
         return null;
     }
 
     public final boolean equals(Object obj) {
         if (obj instanceof f) {
-            if (!kotlin.jvm.internal.i.a(this.f12770a, ((f) obj).f12770a)) {
+            if (!kotlin.jvm.internal.i.a(this.f12802a, ((f) obj).f12802a)) {
                 return false;
             }
             return true;
@@ -22,7 +22,7 @@ public final class f implements Serializable {
     }
 
     public final int hashCode() {
-        Object obj = this.f12770a;
+        Object obj = this.f12802a;
         if (obj == null) {
             return 0;
         }
@@ -30,7 +30,7 @@ public final class f implements Serializable {
     }
 
     public final String toString() {
-        Object obj = this.f12770a;
+        Object obj = this.f12802a;
         if (obj instanceof e) {
             return ((e) obj).toString();
         }

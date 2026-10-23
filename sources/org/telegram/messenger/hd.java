@@ -2,28 +2,28 @@ package org.telegram.messenger;
 
 import org.telegram.tgnet.TLObject;
 public final class hd implements Runnable {
-    public final int f18539a;
-    public final MessagesController f18540b;
-    public final TLObject f18541c;
-    public final org.telegram.ui.ActionBar.g6 d;
-    public final org.telegram.ui.ActionBar.f6 e;
+    public final int f18605a;
+    public final MessagesController f18606b;
+    public final TLObject f18607c;
+    public final org.telegram.ui.ActionBar.j6 d;
+    public final org.telegram.ui.ActionBar.i6 e;
 
-    public hd(MessagesController messagesController, TLObject tLObject, org.telegram.ui.ActionBar.g6 g6Var, org.telegram.ui.ActionBar.f6 f6Var, int i10) {
-        this.f18539a = i10;
-        this.f18540b = messagesController;
-        this.f18541c = tLObject;
-        this.d = g6Var;
-        this.e = f6Var;
+    public hd(MessagesController messagesController, TLObject tLObject, org.telegram.ui.ActionBar.j6 j6Var, org.telegram.ui.ActionBar.i6 i6Var, int i10) {
+        this.f18605a = i10;
+        this.f18606b = messagesController;
+        this.f18607c = tLObject;
+        this.d = j6Var;
+        this.e = i6Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f18539a) {
+        switch (this.f18605a) {
             case 0:
-                this.f18540b.lambda$didReceivedNotification$47(this.f18541c, this.d, this.e);
+                this.f18606b.lambda$didReceivedNotification$47(this.f18607c, this.d, this.e);
                 return;
             default:
-                this.f18540b.lambda$didReceivedNotification$45(this.f18541c, this.d, this.e);
+                this.f18606b.lambda$didReceivedNotification$45(this.f18607c, this.d, this.e);
                 return;
         }
     }

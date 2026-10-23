@@ -4,21 +4,21 @@ import android.content.Context;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
-import org.telegram.ui.Cells.n9;
-import org.telegram.ui.b70;
+import org.telegram.ui.Cells.o9;
+import org.telegram.ui.f70;
 public final class a4 extends HorizontalScrollView {
-    public final int f15120a;
-    public final Object f15121b;
+    public final int f15166a;
+    public final Object f15167b;
 
     public a4(FrameLayout frameLayout, Context context, int i10) {
         super(context);
-        this.f15120a = i10;
-        this.f15121b = frameLayout;
+        this.f15166a = i10;
+        this.f15167b = frameLayout;
     }
 
     @Override
     public void onMeasure(int i10, int i11) {
-        switch (this.f15120a) {
+        switch (this.f15166a) {
             case 0:
                 int mode = View.MeasureSpec.getMode(i10);
                 if (mode == 1073741824) {
@@ -27,7 +27,7 @@ public final class a4 extends HorizontalScrollView {
                 }
                 super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 0), i11);
                 int measuredWidth = getMeasuredWidth();
-                int i12 = ((b4) this.f15121b).K;
+                int i12 = ((b4) this.f15167b).K;
                 if (mode == Integer.MIN_VALUE) {
                     i12 = Math.min(i12, View.MeasureSpec.getSize(i10));
                 }
@@ -41,22 +41,22 @@ public final class a4 extends HorizontalScrollView {
 
     @Override
     public void onScrollChanged(int i10, int i11, int i12, int i13) {
-        n9 textSelectionHelper;
-        switch (this.f15120a) {
+        o9 textSelectionHelper;
+        switch (this.f15166a) {
             case 1:
                 super.onScrollChanged(i10, i11, i12, i13);
-                c3 c3Var = ((o5) this.f15121b).E;
-                if (c3Var != null && (textSelectionHelper = c3Var.f15175a.getTextSelectionHelper()) != null && textSelectionHelper.x()) {
+                c3 c3Var = ((o5) this.f15167b).E;
+                if (c3Var != null && (textSelectionHelper = c3Var.f15232a.getTextSelectionHelper()) != null && textSelectionHelper.x()) {
                     textSelectionHelper.w();
                 }
                 invalidate();
                 return;
             case 2:
                 super.onScrollChanged(i10, i11, i12, i13);
-                b70 b70Var = (b70) this.f15121b;
-                if (b70Var.d != null) {
-                    b70Var.d = null;
-                    b70Var.f35529f = null;
+                f70 f70Var = (f70) this.f15167b;
+                if (f70Var.d != null) {
+                    f70Var.d = null;
+                    f70Var.f37232f = null;
                     return;
                 }
                 return;
@@ -66,9 +66,9 @@ public final class a4 extends HorizontalScrollView {
         }
     }
 
-    public a4(Context context, b70 b70Var) {
+    public a4(Context context, f70 f70Var) {
         super(context);
-        this.f15120a = 2;
-        this.f15121b = b70Var;
+        this.f15166a = 2;
+        this.f15167b = f70Var;
     }
 }

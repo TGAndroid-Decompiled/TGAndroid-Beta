@@ -1,74 +1,75 @@
 package ig;
 
 import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import org.telegram.ui.ActionBar.d5;
-import org.telegram.ui.Components.lw0;
-import org.telegram.ui.Components.tz;
-public final class p1 extends lw0 {
-    public final int f12991w0;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.Components.EditTextBoldCursor;
+import org.telegram.ui.Components.bs;
+import org.telegram.ui.Components.i5;
+import org.telegram.ui.Components.p6;
+public final class p1 extends EditTextBoldCursor {
+    public final i5 f13022b;
+    public int f13023c;
+    public final p6 d;
+    public final g6 e;
 
-    public p1(Context context, d5 d5Var, int i10) {
-        super(context, d5Var);
-        this.f12991w0 = i10;
+    public p1(Context context, g6 g6Var) {
+        super(context);
+        this.e = g6Var;
+        this.f13022b = new i5(this);
+        p6 p6Var = new p6(false, true, true);
+        this.d = p6Var;
+        p6Var.n(0.2f, 160L, bs.h);
+        p6Var.w(AndroidUtilities.dp(15.33f));
+        p6Var.setCallback(this);
+        p6Var.f29437b = 5;
     }
 
     @Override
-    public boolean P() {
-        switch (this.f12991w0) {
-            case 2:
-                return false;
-            case 3:
-                return false;
-            case 4:
-            default:
-                return super.P();
-            case 5:
-                return false;
+    public final void dispatchDraw(Canvas canvas) {
+        int i10;
+        super.dispatchDraw(canvas);
+        if (this.f13023c < 0) {
+            i10 = k6.f21404p7;
+        } else {
+            i10 = k6.P5;
+        }
+        int a2 = this.f13022b.a(k6.w0(i10, this.e), false);
+        p6 p6Var = this.d;
+        p6Var.u(a2);
+        p6Var.setBounds(getScrollX(), 0, getWidth() + getScrollX(), getHeight());
+        p6Var.draw(canvas);
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(36.0f), 1073741824));
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        super.onTextChanged(charSequence, i10, i11, i12);
+        p6 p6Var = this.d;
+        if (p6Var != null) {
+            this.f13023c = 32 - charSequence.length();
+            p6Var.a();
+            String str = "";
+            if (this.f13023c <= 4) {
+                str = "" + this.f13023c;
+            }
+            p6Var.t(str, true, true);
         }
     }
 
     @Override
-    public void addView(View view) {
-        switch (this.f12991w0) {
-            case 4:
-                if (view instanceof tz) {
-                    ViewGroup.LayoutParams layoutParams = ((tz) view).getLayoutParams();
-                    if (layoutParams == null) {
-                        layoutParams = new FrameLayout.LayoutParams(-1, -2);
-                    }
-                    if (layoutParams instanceof FrameLayout.LayoutParams) {
-                        ((FrameLayout.LayoutParams) layoutParams).gravity = 87;
-                    }
-                    view.setLayoutParams(layoutParams);
-                }
-                super.addView(view);
-                return;
-            default:
-                super.addView(view);
-                return;
+    public final boolean verifyDrawable(Drawable drawable) {
+        if (drawable != this.d && !super.verifyDrawable(drawable)) {
+            return false;
         }
-    }
-
-    @Override
-    public void onLayout(boolean r17, int r18, int r19, int r20, int r21) {
-        throw new UnsupportedOperationException("Method not decompiled: ig.p1.onLayout(boolean, int, int, int, int):void");
-    }
-
-    @Override
-    public void onMeasure(int i10, int i11) {
-        switch (this.f12991w0) {
-            case 0:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i11), 1073741824));
-                return;
-            case 1:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i11), 1073741824));
-                return;
-            default:
-                super.onMeasure(i10, i11);
-                return;
-        }
+        return true;
     }
 }

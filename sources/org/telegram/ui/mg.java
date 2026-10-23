@@ -2,96 +2,96 @@ package org.telegram.ui;
 
 import android.content.DialogInterface;
 public final class mg implements Runnable {
-    public final int f39244a;
-    public final qn f39245b;
-    public final org.telegram.ui.ActionBar.b2[] f39246c;
+    public final int f39567a;
+    public final sn f39568b;
+    public final org.telegram.ui.ActionBar.c2[] f39569c;
     public final int d;
 
-    public mg(qn qnVar, org.telegram.ui.ActionBar.b2[] b2VarArr, int i10, int i11) {
-        this.f39244a = i11;
-        this.f39245b = qnVar;
-        this.f39246c = b2VarArr;
+    public mg(sn snVar, org.telegram.ui.ActionBar.c2[] c2VarArr, int i10, int i11) {
+        this.f39567a = i11;
+        this.f39568b = snVar;
+        this.f39569c = c2VarArr;
         this.d = i10;
     }
 
     @Override
     public final void run() {
-        switch (this.f39244a) {
+        switch (this.f39567a) {
             case 0:
-                org.telegram.ui.ActionBar.b2[] b2VarArr = this.f39246c;
-                org.telegram.ui.ActionBar.b2 b2Var = b2VarArr[0];
-                if (b2Var != null) {
-                    final qn qnVar = this.f39245b;
+                org.telegram.ui.ActionBar.c2[] c2VarArr = this.f39569c;
+                org.telegram.ui.ActionBar.c2 c2Var = c2VarArr[0];
+                if (c2Var != null) {
+                    final sn snVar = this.f39568b;
                     final int i10 = this.d;
-                    b2Var.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                    c2Var.setOnCancelListener(new DialogInterface.OnCancelListener() {
                         @Override
                         public final void onCancel(DialogInterface dialogInterface) {
                             switch (r3) {
                                 case 0:
-                                    qnVar.getConnectionsManager().cancelRequest(i10, true);
+                                    snVar.getConnectionsManager().cancelRequest(i10, true);
                                     return;
                                 case 1:
-                                    qnVar.getConnectionsManager().cancelRequest(i10, true);
+                                    snVar.getConnectionsManager().cancelRequest(i10, true);
                                     return;
                                 default:
-                                    qnVar.getConnectionsManager().cancelRequest(i10, true);
+                                    snVar.getConnectionsManager().cancelRequest(i10, true);
                                     return;
                             }
                         }
                     });
-                    qnVar.showDialog(b2VarArr[0]);
+                    snVar.showDialog(c2VarArr[0]);
                     return;
                 }
                 return;
             case 1:
-                org.telegram.ui.ActionBar.b2[] b2VarArr2 = this.f39246c;
-                org.telegram.ui.ActionBar.b2 b2Var2 = b2VarArr2[0];
-                if (b2Var2 != null) {
-                    final qn qnVar2 = this.f39245b;
+                org.telegram.ui.ActionBar.c2[] c2VarArr2 = this.f39569c;
+                org.telegram.ui.ActionBar.c2 c2Var2 = c2VarArr2[0];
+                if (c2Var2 != null) {
+                    final sn snVar2 = this.f39568b;
                     final int i11 = this.d;
-                    b2Var2.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                    c2Var2.setOnCancelListener(new DialogInterface.OnCancelListener() {
                         @Override
                         public final void onCancel(DialogInterface dialogInterface) {
                             switch (r3) {
                                 case 0:
-                                    qnVar2.getConnectionsManager().cancelRequest(i11, true);
+                                    snVar2.getConnectionsManager().cancelRequest(i11, true);
                                     return;
                                 case 1:
-                                    qnVar2.getConnectionsManager().cancelRequest(i11, true);
+                                    snVar2.getConnectionsManager().cancelRequest(i11, true);
                                     return;
                                 default:
-                                    qnVar2.getConnectionsManager().cancelRequest(i11, true);
+                                    snVar2.getConnectionsManager().cancelRequest(i11, true);
                                     return;
                             }
                         }
                     });
-                    qnVar2.showDialog(b2VarArr2[0]);
+                    snVar2.showDialog(c2VarArr2[0]);
                     return;
                 }
                 return;
             default:
-                org.telegram.ui.ActionBar.b2[] b2VarArr3 = this.f39246c;
-                org.telegram.ui.ActionBar.b2 b2Var3 = b2VarArr3[0];
-                if (b2Var3 != null) {
-                    final qn qnVar3 = this.f39245b;
+                org.telegram.ui.ActionBar.c2[] c2VarArr3 = this.f39569c;
+                org.telegram.ui.ActionBar.c2 c2Var3 = c2VarArr3[0];
+                if (c2Var3 != null) {
+                    final sn snVar3 = this.f39568b;
                     final int i12 = this.d;
-                    b2Var3.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                    c2Var3.setOnCancelListener(new DialogInterface.OnCancelListener() {
                         @Override
                         public final void onCancel(DialogInterface dialogInterface) {
                             switch (r3) {
                                 case 0:
-                                    qnVar3.getConnectionsManager().cancelRequest(i12, true);
+                                    snVar3.getConnectionsManager().cancelRequest(i12, true);
                                     return;
                                 case 1:
-                                    qnVar3.getConnectionsManager().cancelRequest(i12, true);
+                                    snVar3.getConnectionsManager().cancelRequest(i12, true);
                                     return;
                                 default:
-                                    qnVar3.getConnectionsManager().cancelRequest(i12, true);
+                                    snVar3.getConnectionsManager().cancelRequest(i12, true);
                                     return;
                             }
                         }
                     });
-                    qnVar3.showDialog(b2VarArr3[0]);
+                    snVar3.showDialog(c2VarArr3[0]);
                     return;
                 }
                 return;

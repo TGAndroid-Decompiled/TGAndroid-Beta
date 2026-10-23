@@ -6,21 +6,21 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 public final class l9 extends e9.j2 {
-    public final e9.e f51101b;
+    public final e9.e f51562b;
 
     public l9(e9.e eVar) {
         super(2);
-        this.f51101b = eVar;
+        this.f51562b = eVar;
     }
 
     @Override
     public final void clear() {
-        this.f51101b.clear();
+        this.f51562b.clear();
     }
 
     @Override
     public final boolean contains(Object obj) {
-        Set entrySet = this.f51101b.f8433b.entrySet();
+        Set entrySet = this.f51562b.f8440b.entrySet();
         entrySet.getClass();
         try {
             return entrySet.contains(obj);
@@ -31,12 +31,12 @@ public final class l9 extends e9.j2 {
 
     @Override
     public final boolean isEmpty() {
-        return this.f51101b.isEmpty();
+        return this.f51562b.isEmpty();
     }
 
     @Override
     public final Iterator iterator() {
-        return new e9.d(this.f51101b, (char) 0);
+        return new e9.d(this.f51562b, (char) 0);
     }
 
     @Override
@@ -48,7 +48,7 @@ public final class l9 extends e9.j2 {
         Map.Entry entry = (Map.Entry) obj;
         entry.getClass();
         Object key = entry.getKey();
-        d dVar = ((mg) this.f51101b.e).f51116c;
+        d dVar = ((mg) this.f51562b.e).f51577c;
         dVar.getClass();
         try {
             obj2 = dVar.remove(key);
@@ -94,7 +94,7 @@ public final class l9 extends e9.j2 {
                 if (size >= 0) {
                     i10 = size + 1;
                 } else {
-                    throw new IllegalArgumentException(i2.e.j(size, "expectedSize cannot be negative but was: "));
+                    throw new IllegalArgumentException(i2.o1.k(size, "expectedSize cannot be negative but was: "));
                 }
             } else if (size < 1073741824) {
                 i10 = (int) Math.ceil(size / 0.75d);
@@ -107,18 +107,18 @@ public final class l9 extends e9.j2 {
                     hashSet.add(((Map.Entry) obj).getKey());
                 }
             }
-            mg mgVar = (mg) this.f51101b.e;
-            fd fdVar = mgVar.f51102a;
-            if (fdVar == null) {
-                fdVar = new fd(mgVar, mgVar.f51116c);
-                mgVar.f51102a = fdVar;
+            mg mgVar = (mg) this.f51562b.e;
+            ed edVar = mgVar.f51563a;
+            if (edVar == null) {
+                edVar = new ed(mgVar, mgVar.f51577c);
+                mgVar.f51563a = edVar;
             }
-            return fdVar.retainAll(hashSet);
+            return edVar.retainAll(hashSet);
         }
     }
 
     @Override
     public final int size() {
-        return this.f51101b.f8433b.size();
+        return this.f51562b.f8440b.size();
     }
 }

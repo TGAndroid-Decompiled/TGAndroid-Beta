@@ -1,73 +1,174 @@
 package ig;
 
-import android.view.KeyEvent;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.text.TextUtils;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.TextView;
-import ci.z2;
+import java.util.HashSet;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-public final class t1 implements TextView.OnEditorActionListener {
-    public final q1 f13040a;
-    public final int f13041b;
-    public final z1 f13042c;
+import org.telegram.ui.ActionBar.b6;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.ActionBar.r6;
+import org.telegram.ui.Components.h9;
+import org.telegram.ui.Components.xp;
+import w7.z5;
+public final class t1 extends FrameLayout implements b6 {
+    public final h9 f13077a;
+    public final ImageReceiver f13078b;
+    public final TextView f13079c;
     public final TextView d;
-    public final z2 e;
-    public final Utilities.Callback f13043f;
-    public final org.telegram.ui.ActionBar.b2[] f13044g;
-    public final View h;
+    public final xp e;
+    public final Path f13080f;
+    public final Paint h;
+    public final g6 f13081n;
+    public final int[] f13082r;
+    public boolean f13083s;
 
-    public t1(q1 q1Var, int i10, z1 z1Var, TextView textView, z2 z2Var, Utilities.Callback callback, org.telegram.ui.ActionBar.b2[] b2VarArr, View view) {
-        this.f13040a = q1Var;
-        this.f13041b = i10;
-        this.f13042c = z1Var;
-        this.d = textView;
-        this.e = z2Var;
-        this.f13043f = callback;
-        this.f13044g = b2VarArr;
-        this.h = view;
+    public t1(Context context, g6 g6Var) {
+        super(context);
+        float f7;
+        float f10;
+        float f11;
+        float f12;
+        this.f13077a = new h9((g6) null);
+        this.f13078b = new ImageReceiver(this);
+        this.f13080f = new Path();
+        this.h = new Paint(1);
+        this.f13082r = new int[1];
+        this.f13081n = g6Var;
+        setWillNotDraw(false);
+        TextView textView = new TextView(context);
+        this.f13079c = textView;
+        textView.setSingleLine();
+        TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
+        textView.setEllipsize(truncateAt);
+        r6.W(textView, k6.G6, g6Var);
+        textView.setTypeface(AndroidUtilities.bold());
+        textView.setTextSize(1, 16.0f);
+        boolean z10 = LocaleController.isRTL;
+        if (z10) {
+            f7 = 40.0f;
+        } else {
+            f7 = 78.0f;
+        }
+        if (z10) {
+            f10 = 78.0f;
+        } else {
+            f10 = 40.0f;
+        }
+        addView(textView, z5.d(-1, -2.0f, 7, f7, 10.33f, f10, 0.0f));
+        TextView textView2 = new TextView(context);
+        this.d = textView2;
+        textView2.setLines(2);
+        textView2.setEllipsize(truncateAt);
+        r6.W(textView2, k6.f21588z6, g6Var);
+        textView2.setTextSize(1, 15.0f);
+        boolean z11 = LocaleController.isRTL;
+        if (z11) {
+            f11 = 40.0f;
+        } else {
+            f11 = 78.0f;
+        }
+        if (z11) {
+            f12 = 78.0f;
+        } else {
+            f12 = 40.0f;
+        }
+        addView(textView2, z5.d(-1, -2.0f, 7, f11, 32.0f, f12, 0.0f));
+        xp xpVar = new xp(getContext(), 21, g6Var);
+        this.e = xpVar;
+        xpVar.b(-1, k6.f21183d6, k6.f21311k7);
+        xpVar.setDrawUnchecked(false);
+        xpVar.setDrawBackgroundAsArc(3);
+        addView(xpVar, z5.i(24.0f, 24.0f, 8388659, 33.0f, 25.0f, 0.0f, 0.0f));
     }
 
     @Override
-    public final boolean onEditorAction(TextView textView, int i10, KeyEvent keyEvent) {
-        int i11;
-        if (i10 != 6) {
-            return false;
+    public final void onDraw(Canvas canvas) {
+        int dp;
+        float f7;
+        if (LocaleController.isRTL) {
+            dp = getMeasuredWidth() - AndroidUtilities.dp(65.0f);
+        } else {
+            dp = AndroidUtilities.dp(9.0f);
         }
-        q1 q1Var = this.f13040a;
-        String obj = q1Var.getText().toString();
-        if (obj.length() > 0 && obj.length() <= 32) {
-            a2 f7 = a2.f(this.f13041b);
-            z1 z1Var = this.f13042c;
-            if (z1Var == null) {
-                i11 = -1;
+        float f10 = dp;
+        ImageReceiver imageReceiver = this.f13078b;
+        imageReceiver.setImageCoords(f10, AndroidUtilities.dp(11.33f), AndroidUtilities.dp(56.0f), AndroidUtilities.dp(56.0f));
+        imageReceiver.draw(canvas);
+        super.onDraw(canvas);
+        canvas.drawPath(this.f13080f, this.h);
+        if (this.f13083s) {
+            Paint V0 = k6.V0("paintDivider", this.f13081n);
+            if (V0 == null) {
+                V0 = k6.f21304k0;
+            }
+            Paint paint = V0;
+            float f11 = 78.0f;
+            if (LocaleController.isRTL) {
+                f7 = 0.0f;
             } else {
-                i11 = z1Var.f13098a;
+                f7 = 78.0f;
             }
-            z1 d = f7.d(obj);
-            if (d != null && d.f13098a != i11) {
-                AndroidUtilities.shakeView(q1Var);
-                this.d.setText(LocaleController.getString(R.string.BusinessRepliesNameBusy));
-                this.e.run(Boolean.TRUE);
-                return true;
+            float dp2 = AndroidUtilities.dp(f7);
+            float measuredHeight = getMeasuredHeight() - 1;
+            int width = getWidth();
+            if (!LocaleController.isRTL) {
+                f11 = 0.0f;
             }
-            this.f13043f.run(obj);
-            org.telegram.ui.ActionBar.b2[] b2VarArr = this.f13044g;
-            org.telegram.ui.ActionBar.b2 b2Var = b2VarArr[0];
-            if (b2Var != null) {
-                b2Var.dismiss();
-            }
-            if (b2VarArr[0] == x1.h) {
-                x1.h = null;
-            }
-            View view = this.h;
-            if (view != null) {
-                view.requestFocus();
-            }
-            return true;
+            canvas.drawRect(dp2, measuredHeight, width - AndroidUtilities.dp(f11), getMeasuredHeight(), paint);
         }
-        AndroidUtilities.shakeView(q1Var);
-        return true;
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        float measuredWidth;
+        int i12;
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(78.0f) + (this.f13083s ? 1 : 0), 1073741824));
+        Paint.Style style = Paint.Style.STROKE;
+        Paint paint = this.h;
+        paint.setStyle(style);
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        paint.setStrokeJoin(Paint.Join.ROUND);
+        paint.setStrokeWidth(AndroidUtilities.dpf2(1.66f));
+        paint.setColor(k6.o1(0.85f, k6.w0(k6.f21588z6, this.f13081n)));
+        Path path = this.f13080f;
+        path.rewind();
+        float measuredHeight = getMeasuredHeight() / 2.0f;
+        if (LocaleController.isRTL) {
+            measuredWidth = AndroidUtilities.dpf2(29.66f);
+        } else {
+            measuredWidth = getMeasuredWidth() - AndroidUtilities.dpf2(24.33f);
+        }
+        path.moveTo(measuredWidth, measuredHeight - AndroidUtilities.dpf2(5.66f));
+        if (LocaleController.isRTL) {
+            i12 = -1;
+        } else {
+            i12 = 1;
+        }
+        path.lineTo((AndroidUtilities.dpf2(5.33f) * i12) + measuredWidth, measuredHeight);
+        path.lineTo(measuredWidth, AndroidUtilities.dpf2(5.66f) + measuredHeight);
+    }
+
+    @Override
+    public final void updateColors() {
+        try {
+            this.h.setColor(k6.o1(0.85f, k6.w0(k6.f21588z6, this.f13081n)));
+            invalidate();
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
+    }
+
+    @Override
+    public final void addColorKeys(HashSet hashSet) {
     }
 }

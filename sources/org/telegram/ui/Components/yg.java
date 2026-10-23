@@ -1,26 +1,26 @@
 package org.telegram.ui.Components;
 public final class yg {
-    public static final yg f32650a;
-    public static final yg f32651b;
-    public static final yg f32652c;
+    public static final yg f32911a;
+    public static final yg f32912b;
+    public static final yg f32913c;
     public static final yg d;
     public static final yg e;
-    public static final yg f32653f;
+    public static final yg f32914f;
     public static final yg[] h;
 
     static {
         ?? r02 = new Enum("VOICE", 0);
-        f32650a = r02;
+        f32911a = r02;
         ?? r12 = new Enum("VIDEO", 1);
-        f32651b = r12;
+        f32912b = r12;
         ?? r32 = new Enum("STICKER", 2);
-        f32652c = r32;
+        f32913c = r32;
         ?? r52 = new Enum("KEYBOARD", 3);
         d = r52;
         ?? r72 = new Enum("SMILE", 4);
         e = r72;
         ?? r92 = new Enum("GIF", 5);
-        f32653f = r92;
+        f32914f = r92;
         h = new yg[]{r02, r12, r32, r52, r72, r92};
     }
 

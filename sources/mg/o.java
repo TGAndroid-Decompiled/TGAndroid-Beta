@@ -6,5 +6,5 @@ public interface o {
 
     void W();
 
-    void v();
+    void u();
 }

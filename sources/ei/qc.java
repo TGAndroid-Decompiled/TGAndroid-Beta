@@ -7,44 +7,44 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class qc implements Runnable {
-    public final MessagesController f9667a;
-    public final TLRPC.User[] f9668b;
-    public final double f9669c;
+    public final MessagesController f9683a;
+    public final TLRPC.User[] f9684b;
+    public final double f9685c;
     public final double d;
     public final int[] e;
-    public final ConnectionsManager f9670f;
+    public final ConnectionsManager f9686f;
     public final oc h;
-    public final String f9671n;
+    public final String f9687n;
 
     public qc(MessagesController messagesController, TLRPC.User[] userArr, double d, double d10, int[] iArr, ConnectionsManager connectionsManager, oc ocVar, String str) {
-        this.f9667a = messagesController;
-        this.f9668b = userArr;
-        this.f9669c = d;
+        this.f9683a = messagesController;
+        this.f9684b = userArr;
+        this.f9685c = d;
         this.d = d10;
         this.e = iArr;
-        this.f9670f = connectionsManager;
+        this.f9686f = connectionsManager;
         this.h = ocVar;
-        this.f9671n = str;
+        this.f9687n = str;
     }
 
     @Override
     public final void run() {
         TLRPC.TL_messages_getInlineBotResults tL_messages_getInlineBotResults = new TLRPC.TL_messages_getInlineBotResults();
-        tL_messages_getInlineBotResults.bot = this.f9667a.getInputUser(this.f9668b[0]);
+        tL_messages_getInlineBotResults.bot = this.f9683a.getInputUser(this.f9684b[0]);
         tL_messages_getInlineBotResults.query = "";
         tL_messages_getInlineBotResults.offset = "";
         tL_messages_getInlineBotResults.flags |= 1;
         TLRPC.TL_inputGeoPoint tL_inputGeoPoint = new TLRPC.TL_inputGeoPoint();
         tL_messages_getInlineBotResults.geo_point = tL_inputGeoPoint;
-        final double d = this.f9669c;
+        final double d = this.f9685c;
         tL_inputGeoPoint.lat = d;
         final double d10 = this.d;
         tL_inputGeoPoint._long = d10;
         tL_messages_getInlineBotResults.peer = new TLRPC.TL_inputPeerEmpty();
         final int[] iArr = this.e;
         final oc ocVar = this.h;
-        final String str = this.f9671n;
-        iArr[0] = this.f9670f.sendRequest(tL_messages_getInlineBotResults, new RequestDelegate() {
+        final String str = this.f9687n;
+        iArr[0] = this.f9686f.sendRequest(tL_messages_getInlineBotResults, new RequestDelegate() {
             @Override
             public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
                 final int[] iArr2 = iArr;
@@ -67,12 +67,12 @@ public final class qc implements Runnable {
                                 try {
                                     float parseFloat = Float.parseFloat(botInlineResult.description);
                                     ?? tLObject3 = new TLObject();
-                                    tLObject3.f9866a = d11;
-                                    tLObject3.f9867b = d12;
-                                    tLObject3.f9868c = str3;
+                                    tLObject3.f9882a = d11;
+                                    tLObject3.f9883b = d12;
+                                    tLObject3.f9884c = str3;
                                     tLObject3.d = parseFloat;
-                                    uc.f9919a = str2;
-                                    uc.f9920b = tLObject3;
+                                    uc.f9935a = str2;
+                                    uc.f9936b = tLObject3;
                                     ocVar3.run(tLObject3);
                                     return;
                                 } catch (Exception unused) {

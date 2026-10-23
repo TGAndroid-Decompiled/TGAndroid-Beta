@@ -16,7 +16,7 @@ public final class z0 extends c10 {
         StringBuilder sb2 = new StringBuilder();
         sb2.append(ed.a(this.e.getSpeed()));
         sb2.append("x  ");
-        return org.telegram.messenger.g0.g(R.string.AccDescrSpeedSlider, sb2);
+        return org.telegram.messenger.v0.h(R.string.AccDescrSpeedSlider, sb2);
     }
 
     @Override
@@ -41,6 +41,6 @@ public final class z0 extends c10 {
 
     @Override
     public final void l(float f7) {
-        this.e.d(f7, true);
+        this.e.e(f7, true);
     }
 }

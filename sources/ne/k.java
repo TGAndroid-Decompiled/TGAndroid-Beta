@@ -1,6 +1,6 @@
 package ne;
 public interface k {
-    void c();
+    void a();
 
     void e(l lVar);
 }

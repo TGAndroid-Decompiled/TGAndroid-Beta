@@ -11,12 +11,12 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.WebFile;
-import org.telegram.messenger.nk;
+import org.telegram.messenger.sl;
 import org.telegram.tgnet.TLRPC;
 public final class k5 extends FrameLayout {
-    public final TextView f22509a;
-    public final TextView f22510b;
-    public final TextView f22511c;
+    public final TextView f22632a;
+    public final TextView f22633b;
+    public final TextView f22634c;
     public final org.telegram.ui.Components.w9 d;
 
     public k5(Context context) {
@@ -43,9 +43,9 @@ public final class k5 extends FrameLayout {
         }
         addView(w9Var, w7.z5.d(100, 100.0f, i10, 10.0f, 10.0f, 10.0f, 0.0f));
         TextView textView = new TextView(context);
-        this.f22509a = textView;
-        int i16 = org.telegram.ui.ActionBar.h6.G6;
-        textView.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, i16, false));
+        this.f22632a = textView;
+        int i16 = org.telegram.ui.ActionBar.k6.G6;
+        org.telegram.ui.ActionBar.r6.W(textView, i16, null);
         textView.setTextSize(1, 16.0f);
         textView.setLines(1);
         textView.setTypeface(AndroidUtilities.bold());
@@ -78,8 +78,8 @@ public final class k5 extends FrameLayout {
         }
         addView(textView, w7.z5.d(-1, -2.0f, i17, f7, 9.0f, f10, 0.0f));
         TextView textView2 = new TextView(context);
-        this.f22510b = textView2;
-        textView2.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, i16, false));
+        this.f22633b = textView2;
+        org.telegram.ui.ActionBar.r6.W(textView2, i16, null);
         textView2.setTextSize(1, 14.0f);
         textView2.setMaxLines(3);
         textView2.setEllipsize(truncateAt);
@@ -108,9 +108,9 @@ public final class k5 extends FrameLayout {
         }
         addView(textView2, w7.z5.d(-1, -2.0f, i18, f11, 33.0f, f12, 0.0f));
         TextView textView3 = new TextView(context);
-        this.f22511c = textView3;
-        nk.u(textView3, org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21399z6, false), 1, 14.0f, 1);
-        textView3.setMaxLines(1);
+        this.f22634c = textView3;
+        org.telegram.ui.ActionBar.r6.W(textView3, org.telegram.ui.ActionBar.k6.f21588z6, null);
+        sl.u(textView3, 1, 14.0f, 1, 1);
         textView3.setSingleLine(true);
         textView3.setEllipsize(truncateAt);
         if (LocaleController.isRTL) {
@@ -146,11 +146,11 @@ public final class k5 extends FrameLayout {
         float f12;
         float f13;
         float f14;
-        TextView textView = this.f22509a;
+        TextView textView = this.f22632a;
         textView.setText(str);
-        TextView textView2 = this.f22510b;
+        TextView textView2 = this.f22633b;
         textView2.setText(str2);
-        TextView textView3 = this.f22511c;
+        TextView textView3 = this.f22634c;
         textView3.setText(str3);
         if (AndroidUtilities.isTablet()) {
             min = AndroidUtilities.getMinTabletSide();
@@ -258,10 +258,10 @@ public final class k5 extends FrameLayout {
             i12 = i10;
         } else {
             int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(0, 0);
-            TextView textView = this.f22510b;
+            TextView textView = this.f22633b;
             i12 = i10;
             measureChildWithMargins(textView, i12, 0, i11, 0);
-            ((FrameLayout.LayoutParams) this.f22511c.getLayoutParams()).topMargin = AndroidUtilities.dp(3.0f) + textView.getMeasuredHeight() + AndroidUtilities.dp(33.0f);
+            ((FrameLayout.LayoutParams) this.f22634c.getLayoutParams()).topMargin = AndroidUtilities.dp(3.0f) + textView.getMeasuredHeight() + AndroidUtilities.dp(33.0f);
             i13 = makeMeasureSpec;
         }
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i12), 1073741824), i13);

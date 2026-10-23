@@ -3,15 +3,15 @@ package org.telegram.messenger;
 import java.util.function.ToIntFunction;
 import org.telegram.messenger.GiftAuctionController;
 public final class h4 implements ToIntFunction {
-    public final int f18509a;
+    public final int f18575a;
 
     public h4(int i10) {
-        this.f18509a = i10;
+        this.f18575a = i10;
     }
 
     @Override
     public final int applyAsInt(Object obj) {
-        switch (this.f18509a) {
+        switch (this.f18575a) {
             case 0:
                 return GiftAuctionController.d((GiftAuctionController.Auction) obj);
             default:

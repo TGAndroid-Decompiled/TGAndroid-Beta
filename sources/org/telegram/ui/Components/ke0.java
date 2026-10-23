@@ -1,4 +1,44 @@
 package org.telegram.ui.Components;
-public interface ke0 {
-    void j(me0 me0Var);
+
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
+public final class ke0 extends AnimatorListenerAdapter {
+    public final int f28025a;
+    public final ei.x8 f28026b;
+
+    public ke0(ei.x8 x8Var, int i10) {
+        this.f28025a = i10;
+        this.f28026b = x8Var;
+    }
+
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f28025a) {
+            case 0:
+                ei.x8 x8Var = this.f28026b;
+                AnimatorSet animatorSet = (AnimatorSet) x8Var.e;
+                if (animatorSet != null && animatorSet.equals(animator)) {
+                    x8Var.e = null;
+                    return;
+                }
+                return;
+            case 1:
+                ei.x8 x8Var2 = this.f28026b;
+                AnimatorSet animatorSet2 = (AnimatorSet) x8Var2.e;
+                if (animatorSet2 != null && animatorSet2.equals(animator)) {
+                    x8Var2.e = null;
+                    return;
+                }
+                return;
+            default:
+                ei.x8 x8Var3 = this.f28026b;
+                AnimatorSet animatorSet3 = (AnimatorSet) x8Var3.e;
+                if (animatorSet3 != null && animatorSet3.equals(animator)) {
+                    x8Var3.e = null;
+                    return;
+                }
+                return;
+        }
+    }
 }

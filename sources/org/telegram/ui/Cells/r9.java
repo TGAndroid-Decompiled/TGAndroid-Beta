@@ -1,12 +1,11 @@
 package org.telegram.ui.Cells;
 
-import android.graphics.Path;
-import org.telegram.ui.Components.er;
-public final class r9 extends Path {
-    public er f22962a;
-
-    @Override
-    public final void addRect(float f7, float f10, float f11, float f12, Path.Direction direction) {
-        this.f22962a.addRect(f7, f10, f11, f12, direction);
-    }
+import android.graphics.Rect;
+import android.text.Layout;
+public final class r9 {
+    public int f23118a;
+    public Layout f23119b;
+    public float f23120c;
+    public float d;
+    public Rect e;
 }

@@ -17,8 +17,8 @@ public abstract class b {
         }
         try {
             InputStream open = ApplicationLoader.applicationContext.getAssets().open("currencies.json");
-            String str = m0.f8252a;
-            JSONObject jSONObject = new JSONObject(new String(f9.f.b(open), d9.j.f7891a));
+            String str = m0.f8259a;
+            JSONObject jSONObject = new JSONObject(new String(f9.f.b(open), d9.j.f7903a));
             Iterator<String> keys = jSONObject.keys();
             while (keys.hasNext()) {
                 String next = keys.next();
@@ -35,12 +35,12 @@ public abstract class b {
         SerializedData serializedData = new SerializedData(Utilities.hexToBytes(str));
         a a2 = a.a(serializedData, serializedData.readInt32(true));
         serializedData.cleanup();
-        if (a2.f51529c != null) {
+        if (a2.f51990c != null) {
             FileLog.d("BillingUtilities.getPurpose: got purpose from received obfuscated profile id");
-            return a2.f51529c;
+            return a2.f51990c;
         }
         SerializedData serializedData2 = new SerializedData(8);
-        serializedData2.writeInt64(a2.f51528b);
+        serializedData2.writeInt64(a2.f51989b);
         String bytesToHex = Utilities.bytesToHex(serializedData2.toByteArray());
         serializedData2.cleanup();
         FileLog.d("BillingUtilities.getPurpose: searching purpose under " + bytesToHex);
@@ -50,7 +50,7 @@ public abstract class b {
             SerializedData serializedData3 = new SerializedData(Utilities.hexToBytes(string));
             a a10 = a.a(serializedData3, serializedData3.readInt32(true));
             serializedData3.cleanup();
-            return a10.f51529c;
+            return a10.f51990c;
         }
         FileLog.d("BillingUtilities.getPurpose: purpose under " + bytesToHex + " not found");
         throw new RuntimeException(a1.g.p("no purpose under ", bytesToHex, " found :("));

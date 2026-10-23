@@ -1,57 +1,40 @@
 package i2;
 
-import android.os.Bundle;
-import org.telegram.messenger.GenericProvider;
-import org.telegram.ui.Components.qc;
-import org.telegram.ui.Components.xc;
-import org.telegram.ui.ng0;
-public final class y implements e2.o, e2.j, p.a, GenericProvider {
-    public final int f12616a;
-    public final boolean f12617b;
+import e9.x1;
+import java.util.List;
+public final class y implements e2.o, m4.g1 {
+    public final int f12655a;
+    public final List f12656b;
 
-    public y(int i10, boolean z10) {
-        this.f12616a = i10;
-        this.f12617b = z10;
+    public y(int i10, x1 x1Var) {
+        this.f12655a = i10;
+        this.f12656b = x1Var;
     }
 
     @Override
-    public void accept(Object obj) {
-        switch (this.f12616a) {
+    public Object a(m4.f0 f0Var, m4.v vVar, int i10) {
+        switch (this.f12655a) {
             case 2:
-                ((m4.m1) obj).X(this.f12617b);
-                return;
-            case 3:
-                ((m4.m1) obj).q0(this.f12617b);
-                return;
+                return f0Var.l(vVar, this.f12656b);
             default:
-                ((m4.m1) obj).w(this.f12617b);
-                return;
+                return f0Var.l(vVar, this.f12656b);
         }
-    }
-
-    @Override
-    public qc c(xc xcVar) {
-        return xcVar.k(this.f12617b);
     }
 
     @Override
     public void invoke(Object obj) {
-        switch (this.f12616a) {
+        switch (this.f12655a) {
             case 0:
-                ((b2.d1) obj).onShuffleModeEnabledChanged(this.f12617b);
+                ((b2.d1) obj).onCues(this.f12656b);
                 return;
             default:
-                ((b2.d1) obj).onSkipSilenceEnabledChanged(this.f12617b);
+                ((j2.b) obj).getClass();
                 return;
         }
     }
 
-    @Override
-    public Object provide(Object obj) {
-        Void r22 = (Void) obj;
-        Bundle h = a1.g.h("afterSignup", this.f12617b);
-        ng0 ng0Var = new ng0();
-        ng0Var.l0(h);
-        return ng0Var;
+    public y(j2.a aVar, List list) {
+        this.f12655a = 1;
+        this.f12656b = list;
     }
 }

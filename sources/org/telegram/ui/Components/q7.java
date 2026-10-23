@@ -7,27 +7,27 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 public final class q7 extends FrameLayout {
-    public final int f29489a;
-    public final k8 f29490b;
+    public final int f29781a;
+    public final k8 f29782b;
 
     public q7(k8 k8Var, Context context, int i10) {
         super(context);
-        this.f29489a = i10;
-        this.f29490b = k8Var;
+        this.f29781a = i10;
+        this.f29782b = k8Var;
     }
 
     @Override
     public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         TextView textView;
-        switch (this.f29489a) {
+        switch (this.f29781a) {
             case 0:
-                int A = org.telegram.messenger.nk.A(248.0f, i12 - i10, 4);
+                int A = org.telegram.messenger.sl.A(248.0f, i12 - i10, 4);
                 for (int i14 = 0; i14 < 5; i14++) {
                     int dp = (A * i14) + AndroidUtilities.dp((i14 * 48) + 4);
                     int dp2 = AndroidUtilities.dp(9.0f);
-                    k8 k8Var = this.f29490b;
-                    View view = k8Var.f27795n0[i14];
-                    view.layout(dp, dp2, view.getMeasuredWidth() + dp, k8Var.f27795n0[i14].getMeasuredHeight() + dp2);
+                    k8 k8Var = this.f29782b;
+                    View view = k8Var.m0[i14];
+                    view.layout(dp, dp2, view.getMeasuredWidth() + dp, k8Var.m0[i14].getMeasuredHeight() + dp2);
                 }
                 return;
             case 1:
@@ -36,11 +36,11 @@ public final class q7 extends FrameLayout {
                 return;
             case 2:
                 super.onLayout(z10, i10, i11, i12, i13);
-                k8 k8Var2 = this.f29490b;
-                if (k8Var2.V != null && (textView = k8Var2.f27779a0) != null) {
-                    int left = (textView.getLeft() - AndroidUtilities.dp(4.0f)) - k8Var2.V.getMeasuredWidth();
-                    org.telegram.ui.ActionBar.u0 u0Var = k8Var2.V;
-                    u0Var.layout(left, u0Var.getTop(), k8Var2.V.getMeasuredWidth() + left, k8Var2.V.getBottom());
+                k8 k8Var2 = this.f29782b;
+                if (k8Var2.U != null && (textView = k8Var2.Z) != null) {
+                    int left = (textView.getLeft() - AndroidUtilities.dp(4.0f)) - k8Var2.U.getMeasuredWidth();
+                    org.telegram.ui.ActionBar.u0 u0Var = k8Var2.U;
+                    u0Var.layout(left, u0Var.getTop(), k8Var2.U.getMeasuredWidth() + left, k8Var2.U.getBottom());
                     return;
                 }
                 return;
@@ -49,11 +49,11 @@ public final class q7 extends FrameLayout {
 
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.f29489a) {
+        switch (this.f29781a) {
             case 1:
-                k8 k8Var = this.f29490b;
-                if (k8Var.f27790i0.getTag() != null) {
-                    k8Var.B0(false, true);
+                k8 k8Var = this.f29782b;
+                if (k8Var.f27924h0.getTag() != null) {
+                    k8Var.H0(false, true);
                 }
                 return true;
             default:

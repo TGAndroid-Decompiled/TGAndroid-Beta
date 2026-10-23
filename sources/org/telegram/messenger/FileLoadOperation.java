@@ -234,7 +234,7 @@ public class FileLoadOperation {
             this.location = tL_inputEncryptedFileLocation;
             TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated = imageLocation.location;
             long j11 = tL_fileLocationToBeDeprecated.volume_id;
-            tL_inputEncryptedFileLocation.f20295id = j11;
+            tL_inputEncryptedFileLocation.f20358id = j11;
             tL_inputEncryptedFileLocation.volume_id = j11;
             tL_inputEncryptedFileLocation.local_id = tL_fileLocationToBeDeprecated.local_id;
             tL_inputEncryptedFileLocation.access_hash = imageLocation.access_hash;
@@ -246,7 +246,7 @@ public class FileLoadOperation {
             TLRPC.TL_inputPeerPhotoFileLocation tL_inputPeerPhotoFileLocation = new TLRPC.TL_inputPeerPhotoFileLocation();
             TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated2 = imageLocation.location;
             long j12 = tL_fileLocationToBeDeprecated2.volume_id;
-            tL_inputPeerPhotoFileLocation.f20295id = j12;
+            tL_inputPeerPhotoFileLocation.f20358id = j12;
             tL_inputPeerPhotoFileLocation.volume_id = j12;
             tL_inputPeerPhotoFileLocation.local_id = tL_fileLocationToBeDeprecated2.local_id;
             tL_inputPeerPhotoFileLocation.photo_id = imageLocation.photoId;
@@ -257,7 +257,7 @@ public class FileLoadOperation {
             TLRPC.TL_inputStickerSetThumb tL_inputStickerSetThumb = new TLRPC.TL_inputStickerSetThumb();
             TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated3 = imageLocation.location;
             long j13 = tL_fileLocationToBeDeprecated3.volume_id;
-            tL_inputStickerSetThumb.f20295id = j13;
+            tL_inputStickerSetThumb.f20358id = j13;
             tL_inputStickerSetThumb.volume_id = j13;
             tL_inputStickerSetThumb.local_id = tL_fileLocationToBeDeprecated3.local_id;
             tL_inputStickerSetThumb.thumb_version = imageLocation.thumbVersion;
@@ -267,7 +267,7 @@ public class FileLoadOperation {
             if (imageLocation.photoId != 0) {
                 TLRPC.TL_inputPhotoFileLocation tL_inputPhotoFileLocation = new TLRPC.TL_inputPhotoFileLocation();
                 this.location = tL_inputPhotoFileLocation;
-                tL_inputPhotoFileLocation.f20295id = imageLocation.photoId;
+                tL_inputPhotoFileLocation.f20358id = imageLocation.photoId;
                 TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated4 = imageLocation.location;
                 tL_inputPhotoFileLocation.volume_id = tL_fileLocationToBeDeprecated4.volume_id;
                 tL_inputPhotoFileLocation.local_id = tL_fileLocationToBeDeprecated4.local_id;
@@ -281,7 +281,7 @@ public class FileLoadOperation {
                 TLRPC.TL_inputDocumentFileLocation tL_inputDocumentFileLocation = new TLRPC.TL_inputDocumentFileLocation();
                 this.location = tL_inputDocumentFileLocation;
                 long j14 = imageLocation.documentId;
-                tL_inputDocumentFileLocation.f20295id = j14;
+                tL_inputDocumentFileLocation.f20358id = j14;
                 this.documentId = j14;
                 TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated5 = imageLocation.location;
                 tL_inputDocumentFileLocation.volume_id = tL_fileLocationToBeDeprecated5.volume_id;
@@ -461,10 +461,10 @@ public class FileLoadOperation {
                     requestInfo.cancelling = true;
                     if (runnable == null) {
                         requestInfo.cancelled = true;
-                        g0.o(requestInfo.requestToken, new StringBuilder("cancelRequests cancel "));
+                        v0.n(requestInfo.requestToken, new StringBuilder("cancelRequests cancel "));
                         ConnectionsManager.getInstance(this.currentAccount).cancelRequest(requestInfo.requestToken, true);
                     } else {
-                        requestInfo.whenCancelled = new h0(requestInfo, iArr, runnable, 21);
+                        requestInfo.whenCancelled = new g0(requestInfo, iArr, runnable, 21);
                         iArr[0] = iArr[0] + 1;
                         FileLog.d("cancelRequests cancel " + requestInfo.requestToken + " with callback");
                         ConnectionsManager.getInstance(this.currentAccount).cancelRequest(requestInfo.requestToken, true, new r2(requestInfo, 1));
@@ -809,7 +809,7 @@ public class FileLoadOperation {
                 return;
             }
             randomAccessFile.seek(0L);
-            this.filePartsStream.write(filesQueueByteBuffer.f51625a, 0, i10);
+            this.filePartsStream.write(filesQueueByteBuffer.f52087a, 0, i10);
             this.writingToFilePartsStream = false;
             if (this.closeFilePartsStreamOnWriteEnd) {
                 try {
@@ -1206,7 +1206,7 @@ public class FileLoadOperation {
             sb2.append(" conType=");
             sb2.append(i11);
             sb2.append(" reqId");
-            g0.o(requestInfo.requestToken, sb2);
+            v0.n(requestInfo.requestToken, sb2);
         }
         if (requestInfo == this.priorityRequestInfo) {
             if (BuildVars.DEBUG_VERSION) {
@@ -1355,7 +1355,7 @@ public class FileLoadOperation {
                 sb2.append(" of ");
                 sb2.append(this.totalBytesCount);
                 sb2.append(" prefSize=");
-                g0.o(this.preloadPrefixSize, sb2);
+                v0.n(this.preloadPrefixSize, sb2);
             }
         }
         if (this.fileMetadata != null) {
@@ -1411,7 +1411,7 @@ public class FileLoadOperation {
         TLRPC.TL_upload_getCdnFileHashes tL_upload_getCdnFileHashes = new TLRPC.TL_upload_getCdnFileHashes();
         tL_upload_getCdnFileHashes.file_token = this.cdnToken;
         tL_upload_getCdnFileHashes.offset = j10;
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_upload_getCdnFileHashes, new i0(this, 2), null, null, 0, this.datacenterId, 1, true);
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_upload_getCdnFileHashes, new h0(this, 2), null, null, 0, this.datacenterId, 1, true);
     }
 
     private void requestReference(RequestInfo requestInfo) {
@@ -1510,7 +1510,7 @@ public class FileLoadOperation {
     public File getCurrentFile() {
         CountDownLatch countDownLatch = new CountDownLatch(1);
         File[] fileArr = new File[1];
-        Utilities.stageQueue.postRunnable(new h0(this, fileArr, countDownLatch, 20));
+        Utilities.stageQueue.postRunnable(new g0(this, fileArr, countDownLatch, 20));
         try {
             countDownLatch.await();
         } catch (Exception e) {
@@ -1951,7 +1951,7 @@ public class FileLoadOperation {
                     }
                     if (fileLoadOperation.streamPriorityStartOffset != j10) {
                         if (BuildVars.DEBUG_VERSION) {
-                            i2.e.x(new StringBuilder("frame get offset = "), fileLoadOperation.streamPriorityStartOffset);
+                            i2.o1.x(new StringBuilder("frame get offset = "), fileLoadOperation.streamPriorityStartOffset);
                         }
                         j12 = j10;
                         fileLoadOperation.streamPriorityStartOffset = j12;
@@ -1989,7 +1989,7 @@ public class FileLoadOperation {
                             sb2.append(" conType=");
                             sb2.append(i26);
                             sb2.append(" priority=");
-                            g0.o(fileLoadOperation.priority, sb2);
+                            v0.n(fileLoadOperation.priority, sb2);
                         }
                         AndroidUtilities.runOnUIThread(new q2(fileLoadOperation, sendRequestSync, 3));
                         fileLoadOperation.requestsCount++;
@@ -2066,7 +2066,7 @@ public class FileLoadOperation {
         TLRPC.TL_inputSecureFileLocation tL_inputSecureFileLocation = new TLRPC.TL_inputSecureFileLocation();
         this.location = tL_inputSecureFileLocation;
         TLRPC.TL_secureFile tL_secureFile = secureDocument.secureFile;
-        tL_inputSecureFileLocation.f20295id = tL_secureFile.f20415id;
+        tL_inputSecureFileLocation.f20358id = tL_secureFile.f20478id;
         tL_inputSecureFileLocation.access_hash = tL_secureFile.access_hash;
         this.datacenterId = tL_secureFile.dc_id;
         this.totalBytesCount = tL_secureFile.size;

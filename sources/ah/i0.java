@@ -1,37 +1,37 @@
 package ah;
 
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.rc0;
+import org.telegram.ui.Components.yb0;
 public final class i0 implements Runnable {
-    public final int f778a;
-    public final t0 f779b;
+    public final int f779a;
+    public final t0 f780b;
 
     public i0(t0 t0Var, int i10) {
-        this.f778a = i10;
-        this.f779b = t0Var;
+        this.f779a = i10;
+        this.f780b = t0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f778a) {
+        switch (this.f779a) {
             case 0:
-                this.f779b.f868a.invalidate();
+                this.f780b.f869a.invalidate();
                 return;
             default:
-                t0 t0Var = this.f779b;
-                v vVar = t0Var.f870c;
+                t0 t0Var = this.f780b;
+                v vVar = t0Var.f871c;
                 if (vVar.getParent() != null) {
                     if (t0Var.d) {
                         AndroidUtilities.removeFromParent(vVar);
                     } else {
                         try {
-                            t0Var.f869b.removeView(vVar);
+                            t0Var.f870b.removeView(vVar);
                         } catch (Exception unused) {
                         }
                     }
-                    rc0 rc0Var = t0Var.f880p;
-                    if (rc0Var != null) {
-                        rc0Var.run();
+                    yb0 yb0Var = t0Var.f881p;
+                    if (yb0Var != null) {
+                        yb0Var.run();
                         return;
                     }
                     return;

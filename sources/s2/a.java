@@ -3,12 +3,13 @@ package s2;
 import b2.w;
 import q3.h;
 import s3.c;
+import si.o0;
 import w7.m;
 public final class a {
-    public static final a f45882a = new Object();
+    public static final a f46304a = new Object();
 
     public final m a(w wVar) {
-        String str = wVar.f4128s;
+        String str = wVar.f4135s;
         if (str != null) {
             char c10 = 65535;
             switch (str.hashCode()) {
@@ -56,11 +57,11 @@ public final class a {
                     return new c();
             }
         }
-        throw new IllegalArgumentException(r4.c.h("Attempted to create decoder for unsupported MIME type: ", str));
+        throw new IllegalArgumentException(o0.h("Attempted to create decoder for unsupported MIME type: ", str));
     }
 
     public final boolean b(w wVar) {
-        String str = wVar.f4128s;
+        String str = wVar.f4135s;
         if (!"application/id3".equals(str) && !"application/x-emsg".equals(str) && !"application/x-scte35".equals(str) && !"application/x-icy".equals(str) && !"application/vnd.dvb.ait".equals(str)) {
             return false;
         }

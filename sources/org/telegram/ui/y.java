@@ -1,36 +1,21 @@
 package org.telegram.ui;
 
-import android.text.TextUtils;
-import org.telegram.messenger.AndroidUtilities;
-public final class y implements Runnable {
-    public final int f43318a;
-    public final l4 f43319b;
-    public final String f43320c;
+import org.telegram.messenger.Utilities;
+public final class y implements Utilities.Callback {
+    public final int f43677a;
+    public final Object f43678b;
+    public final Object f43679c;
+    public final Object d;
 
-    public y(l4 l4Var, String str, int i10) {
-        this.f43318a = i10;
-        this.f43319b = l4Var;
-        this.f43320c = str;
+    public y(Object obj, Object obj2, Object obj3, int i10) {
+        this.f43677a = i10;
+        this.f43678b = obj;
+        this.f43679c = obj2;
+        this.d = obj3;
     }
 
     @Override
-    public final void run() {
-        switch (this.f43318a) {
-            case 0:
-                l4 l4Var = this.f43319b;
-                ai.t tVar = l4Var.f38771h0.f42792b0;
-                String str = this.f43320c;
-                if (TextUtils.isEmpty(str)) {
-                    str = "about:blank";
-                }
-                tVar.setText(str);
-                ai.t tVar2 = l4Var.f38771h0.f42792b0;
-                tVar2.setSelection(tVar2.getText().length());
-                AndroidUtilities.showKeyboard(l4Var.f38771h0.f42792b0);
-                return;
-            default:
-                pf.d.l(this.f43319b.L, this.f43320c, false, null);
-                return;
-        }
+    public final void run(java.lang.Object r24) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.y.run(java.lang.Object):void");
     }
 }

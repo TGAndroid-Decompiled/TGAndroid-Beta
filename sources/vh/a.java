@@ -2,5 +2,5 @@ package vh;
 
 import android.graphics.Canvas;
 public interface a {
-    void p(Canvas canvas, int i10);
+    void m(Canvas canvas, int i10);
 }

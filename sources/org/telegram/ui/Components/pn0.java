@@ -1,83 +1,159 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import org.telegram.messenger.MessageObject;
-public final class pn0 extends s4.o {
-    public final int f29346b;
-    public final int f29347c;
-    public final int d;
-    public final int e;
-    public final int f29348f;
-    public final ArrayList f29349g;
-    public final int h;
-    public final int f29350i;
-    public final ArrayList f29351j;
-    public final un0 f29352k;
+import android.content.Context;
+import android.view.ViewConfiguration;
+import android.view.animation.AnimationUtils;
+import android.view.animation.DecelerateInterpolator;
+import android.view.animation.Interpolator;
+public final class pn0 {
+    public static final float A;
+    public static final float v = (float) (Math.log(0.75d) / Math.log(0.9d));
+    public static final float f29602w = 0.4f;
+    public static final float f29603x = 1.0f - 0.4f;
+    public static final float[] f29604y = new float[101];
+    public static final float f29605z;
+    public int f29606a;
+    public int f29607b;
+    public int f29608c;
+    public int d;
+    public int e;
+    public int f29609f;
+    public int f29610g;
+    public int h;
+    public int f29611i;
+    public int f29612j;
+    public int f29613k;
+    public long f29614l;
+    public int f29615m;
+    public float f29616n;
+    public float f29617o;
+    public float f29618p;
+    public final Interpolator f29620r;
+    public float f29622t;
+    public final float f29623u;
+    public boolean f29619q = true;
+    public final boolean f29621s = true;
 
-    public pn0(un0 un0Var, int i10, int i11, int i12, int i13, int i14, ArrayList arrayList, int i15, int i16, ArrayList arrayList2) {
-        this.f29352k = un0Var;
-        this.f29346b = i10;
-        this.f29347c = i11;
-        this.d = i12;
-        this.e = i13;
-        this.f29348f = i14;
-        this.f29349g = arrayList;
-        this.h = i15;
-        this.f29350i = i16;
-        this.f29351j = arrayList2;
-    }
-
-    @Override
-    public final boolean a(int i10, int i11) {
-        return b(i10, i11);
-    }
-
-    @Override
-    public final boolean b(int i10, int i11) {
-        MessageObject messageObject;
-        un0 un0Var = this.f29352k;
-        if (i10 >= 0 && i11 >= 0) {
-            if (i10 == this.f29347c && i11 == un0Var.f30986s) {
-                return true;
+    static {
+        float f7;
+        float f10;
+        float f11 = 0.0f;
+        for (int i10 = 0; i10 <= 100; i10++) {
+            float f12 = i10 / 100.0f;
+            float f13 = 1.0f;
+            while (true) {
+                float z10 = com.google.android.gms.internal.play_billing.k3.z(f13, f11, 2.0f, f11);
+                float f14 = 1.0f - z10;
+                f7 = 3.0f * z10 * f14;
+                f10 = z10 * z10 * z10;
+                float A2 = com.google.android.gms.internal.play_billing.k3.A(z10, f29603x, f14 * f29602w, f7) + f10;
+                if (Math.abs(A2 - f12) < 1.0E-5d) {
+                    break;
+                } else if (A2 > f12) {
+                    f13 = z10;
+                } else {
+                    f11 = z10;
+                }
             }
-            if (i10 == this.d && i11 == un0Var.f30988x) {
-                return true;
-            }
+            f29604y[i10] = f7 + f10;
         }
-        MessageObject messageObject2 = null;
-        int i12 = this.e;
-        if (i10 >= i12 && i10 < this.f29348f) {
-            messageObject = (MessageObject) this.f29349g.get(i10 - i12);
+        f29604y[100] = 1.0f;
+        f29605z = 8.0f;
+        A = 1.0f;
+        A = 1.0f / e(1.0f);
+    }
+
+    public pn0(Context context, DecelerateInterpolator decelerateInterpolator) {
+        this.f29620r = decelerateInterpolator;
+        this.f29623u = context.getResources().getDisplayMetrics().density * 160.0f * 386.0878f * ViewConfiguration.getScrollFriction();
+    }
+
+    public static float e(float f7) {
+        float y3;
+        float f10 = f7 * f29605z;
+        if (f10 < 1.0f) {
+            y3 = f10 - (1.0f - ((float) Math.exp(-f10)));
         } else {
-            int i13 = this.h;
-            if (i10 >= i13 && i10 < this.f29350i) {
-                messageObject = (MessageObject) this.f29351j.get(i10 - i13);
+            y3 = com.google.android.gms.internal.play_billing.k3.y(1.0f, (float) Math.exp(1.0f - f10), 0.63212055f, 0.36787945f);
+        }
+        return y3 * A;
+    }
+
+    public final void a() {
+        this.f29612j = this.d;
+        this.f29613k = this.e;
+        this.f29619q = true;
+    }
+
+    public final boolean b() {
+        float interpolation;
+        if (this.f29619q) {
+            return false;
+        }
+        int currentAnimationTimeMillis = (int) (AnimationUtils.currentAnimationTimeMillis() - this.f29614l);
+        int i10 = this.f29615m;
+        if (currentAnimationTimeMillis < i10) {
+            int i11 = this.f29606a;
+            if (i11 != 0) {
+                if (i11 == 1) {
+                    float f7 = currentAnimationTimeMillis / i10;
+                    int i12 = (int) (f7 * 100.0f);
+                    float f10 = i12 / 100.0f;
+                    int i13 = i12 + 1;
+                    float[] fArr = f29604y;
+                    float f11 = fArr[i12];
+                    float y3 = com.google.android.gms.internal.play_billing.k3.y(fArr[i13], f11, (f7 - f10) / ((i13 / 100.0f) - f10), f11);
+                    int i14 = this.f29607b;
+                    int round = Math.round((this.d - i14) * y3) + i14;
+                    this.f29612j = round;
+                    int min = Math.min(round, this.f29610g);
+                    this.f29612j = min;
+                    this.f29612j = Math.max(min, this.f29609f);
+                    int i15 = this.f29608c;
+                    int round2 = Math.round(y3 * (this.e - i15)) + i15;
+                    this.f29613k = round2;
+                    int min2 = Math.min(round2, this.f29611i);
+                    this.f29613k = min2;
+                    int max = Math.max(min2, this.h);
+                    this.f29613k = max;
+                    if (this.f29612j == this.d && max == this.e) {
+                        this.f29619q = true;
+                    }
+                }
+                return true;
+            }
+            float f12 = currentAnimationTimeMillis * this.f29616n;
+            Interpolator interpolator = this.f29620r;
+            if (interpolator == null) {
+                interpolation = e(f12);
             } else {
-                messageObject = null;
+                interpolation = interpolator.getInterpolation(f12);
             }
-        }
-        int i14 = un0Var.v;
-        if (i11 >= i14 && i11 < un0Var.f30987w) {
-            messageObject2 = (MessageObject) un0Var.e.get(i11 - i14);
-        } else {
-            int i15 = un0Var.f30989y;
-            if (i11 >= i15 && i11 < un0Var.E) {
-                messageObject2 = (MessageObject) un0Var.f30983f.get(i11 - i15);
-            }
-        }
-        if (messageObject2 != null && messageObject != null && messageObject2.getDocument() != null && messageObject.getDocument() != null && messageObject2.getDocument().f20286id == messageObject.getDocument().f20286id) {
+            this.f29612j = Math.round(this.f29617o * interpolation) + this.f29607b;
+            this.f29613k = Math.round(interpolation * this.f29618p) + this.f29608c;
             return true;
         }
-        return false;
+        this.f29612j = this.d;
+        this.f29613k = this.e;
+        this.f29619q = true;
+        return true;
     }
 
-    @Override
-    public final int d() {
-        return this.f29352k.f30985r;
+    public final void c(int r19, int r20, int r21, int r22, int r23, int r24, int r25, int r26) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.pn0.c(int, int, int, int, int, int, int, int):void");
     }
 
-    @Override
-    public final int e() {
-        return this.f29346b;
+    public final void d(int i10, int i11) {
+        this.f29606a = 0;
+        this.f29619q = false;
+        this.f29615m = i11;
+        this.f29614l = AnimationUtils.currentAnimationTimeMillis();
+        this.f29607b = 0;
+        this.f29608c = 0;
+        this.d = 0;
+        this.e = i10;
+        this.f29617o = 0;
+        this.f29618p = i10;
+        this.f29616n = 1.0f / this.f29615m;
     }
 }

@@ -1,59 +1,28 @@
 package org.telegram.ui.Components;
+public final class wb0 implements Runnable {
+    public final int f32210a;
+    public final lc0 f32211b;
 
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.MessageObject;
-public final class wb0 extends s4.t {
-    public final ic0 S;
-
-    public wb0(ic0 ic0Var) {
-        super(true);
-        this.S = ic0Var;
+    public wb0(lc0 lc0Var, int i10) {
+        this.f32210a = i10;
+        this.f32211b = lc0Var;
     }
 
     @Override
-    public final boolean B1(int i10) {
-        byte b10;
-        ic0 ic0Var = this.S;
-        MessageObject messageObject = ic0Var.f27244r.previewMessages.get(i10);
-        MessageObject.GroupedMessages a2 = ic0.a(ic0Var, messageObject);
-        if (a2 != null) {
-            MessageObject.GroupedMessagePosition position = a2.getPosition(messageObject);
-            if (position.minX != position.maxX && (b10 = position.minY) == position.maxY && b10 != 0) {
-                int size = a2.posArray.size();
-                for (int i11 = 0; i11 < size; i11++) {
-                    MessageObject.GroupedMessagePosition groupedMessagePosition = a2.posArray.get(i11);
-                    if (groupedMessagePosition != position) {
-                        byte b11 = groupedMessagePosition.minY;
-                        byte b12 = position.minY;
-                        if (b11 <= b12 && groupedMessagePosition.maxY >= b12) {
-                            return true;
-                        }
-                    }
+    public final void run() {
+        switch (this.f32210a) {
+            case 0:
+                lc0 lc0Var = this.f32211b;
+                ec0 ec0Var = lc0Var.f28341f;
+                if (lc0Var.f28340c0.d.webpageTop) {
+                    ec0Var.w0(-ec0Var.computeVerticalScrollOffset(), 250, li.m.V);
+                    return;
                 }
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean C1(View view) {
-        return false;
-    }
-
-    @Override
-    public final void b0(qf.e eVar, s4.y0 y0Var) {
-        if (BuildVars.DEBUG_PRIVATE_VERSION) {
-            super.b0(eVar, y0Var);
-            return;
-        }
-        try {
-            super.b0(eVar, y0Var);
-        } catch (Exception e) {
-            FileLog.e(e);
-            AndroidUtilities.runOnUIThread(new hq(this, 29));
+                ec0Var.w0(ec0Var.computeVerticalScrollRange() - (ec0Var.computeVerticalScrollExtent() + ec0Var.computeVerticalScrollOffset()), 250, li.m.V);
+                return;
+            default:
+                this.f32211b.h(true, false);
+                return;
         }
     }
 }

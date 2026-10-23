@@ -1,48 +1,61 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.app.Activity;
-import org.telegram.messenger.AndroidUtilities;
-public final class ae1 extends AnimatorListenerAdapter {
-    public final int f35362a;
-    public final boolean f35363b;
-    public final re1 f35364c;
+import android.os.Build;
+import androidx.recyclerview.widget.RecyclerView;
+public final class ae1 extends s4.r0 {
+    public final int f35662a;
+    public final ye1 f35663b;
 
-    public ae1(re1 re1Var, boolean z10, int i10) {
-        this.f35362a = i10;
-        this.f35364c = re1Var;
-        this.f35363b = z10;
+    public ae1(ye1 ye1Var, int i10) {
+        this.f35662a = i10;
+        this.f35663b = ye1Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        float f7;
-        int i10;
-        switch (this.f35362a) {
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        int i12;
+        boolean z10;
+        ye1 ye1Var;
+        bh.f fVar;
+        switch (this.f35662a) {
             case 0:
-                super.onAnimationEnd(animator);
-                boolean z10 = this.f35363b;
-                if (z10) {
-                    f7 = 1.0f;
-                } else {
-                    f7 = 0.0f;
-                }
-                re1 re1Var = this.f35364c;
-                re1Var.S0(f7);
-                if (z10) {
-                    re1Var.f41184q0.setVisibility(8);
+                ye1 ye1Var2 = this.f35663b;
+                int L0 = ye1Var2.F.L0();
+                if (L0 != -1) {
+                    s4.b1 K = recyclerView.K(L0);
+                    boolean z11 = false;
+                    if (K != null) {
+                        i12 = K.f46343a.getTop();
+                    } else {
+                        i12 = 0;
+                    }
+                    if (L0 == 0) {
+                        int i13 = 0 - i12;
+                        if (i12 < 0) {
+                            z10 = true;
+                        } else {
+                            z10 = false;
+                        }
+                        Math.abs(i13);
+                    } else if (L0 > 0) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    if (z10 || !ye1Var2.K) {
+                        z11 = true;
+                    }
+                    ye1Var2.F0(z11, true);
                     return;
                 }
-                Activity parentActivity = re1Var.getParentActivity();
-                i10 = ((org.telegram.ui.ActionBar.n2) re1Var).classGuid;
-                AndroidUtilities.setAdjustResizeToNothing(parentActivity, i10);
-                re1Var.f41186r0.setVisibility(8);
-                re1Var.Q0(true);
+                return;
+            case 1:
+                this.f35663b.x0();
                 return;
             default:
-                if (!this.f35363b) {
-                    this.f35364c.f41182o0.setVisibility(8);
+                if (Build.VERSION.SDK_INT >= 31 && (fVar = (ye1Var = this.f35663b).f43809g1) != null) {
+                    fVar.f(i10, i11);
+                    ye1Var.w0();
                     return;
                 }
                 return;

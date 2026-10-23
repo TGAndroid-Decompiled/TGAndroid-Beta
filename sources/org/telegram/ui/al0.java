@@ -1,59 +1,41 @@
 package org.telegram.ui;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-public final class al0 implements TextWatcher {
-    public final int f35389a;
-    public final PasscodeActivity f35390b;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.NotificationCenter;
+public final class al0 implements Runnable {
+    public final int f35694a;
+    public final PasscodeActivity f35695b;
+    public final boolean f35696c;
 
-    public al0(PasscodeActivity passcodeActivity, int i10) {
-        this.f35389a = i10;
-        this.f35390b = passcodeActivity;
+    public al0(PasscodeActivity passcodeActivity, boolean z10, int i10) {
+        this.f35694a = i10;
+        this.f35695b = passcodeActivity;
+        this.f35696c = z10;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        int i10 = this.f35389a;
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        switch (this.f35389a) {
+    public final void run() {
+        switch (this.f35694a) {
             case 0:
-                PasscodeActivity passcodeActivity = this.f35390b;
-                wk0 wk0Var = passcodeActivity.S;
-                if (passcodeActivity.R) {
-                    passcodeActivity.f33234n.removeCallbacks(wk0Var);
-                    wk0Var.run();
-                    return;
+                PasscodeActivity passcodeActivity = this.f35695b;
+                passcodeActivity.getMediaDataController().buildShortcuts();
+                if (this.f35696c) {
+                    passcodeActivity.presentFragment(new PasscodeActivity(0), true);
+                    kb0 kb0Var = passcodeActivity.U;
+                    if (kb0Var != null) {
+                        AndroidUtilities.runOnUIThread(kb0Var);
+                        passcodeActivity.U = null;
+                    }
+                } else {
+                    passcodeActivity.finishFragment();
                 }
+                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didSetPasscode, new Object[0]);
                 return;
             default:
-                PasscodeActivity passcodeActivity2 = this.f35390b;
-                wk0 wk0Var2 = passcodeActivity2.S;
-                if (passcodeActivity2.R) {
-                    passcodeActivity2.f33234n.removeCallbacks(wk0Var2);
-                    wk0Var2.run();
-                    return;
-                }
+                PasscodeActivity passcodeActivity2 = this.f35695b;
+                passcodeActivity2.f33534w.e(true, this.f35696c);
+                AndroidUtilities.cancelRunOnUIThread(passcodeActivity2.T);
                 return;
         }
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        int i13 = this.f35389a;
-    }
-
-    private final void a(Editable editable) {
-    }
-
-    private final void b(Editable editable) {
-    }
-
-    private final void c(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void d(int i10, int i11, int i12, CharSequence charSequence) {
     }
 }

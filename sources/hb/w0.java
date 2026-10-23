@@ -1,5 +1,6 @@
 package hb;
 
+import i2.o1;
 import java.util.BitSet;
 public class w0 extends eb.u {
     @Override
@@ -15,7 +16,7 @@ public class w0 extends eb.u {
                 if (c10 == 7) {
                     z10 = aVar.n();
                 } else {
-                    throw new RuntimeException("Invalid bitset value type: " + i2.e.E(x10) + "; at path " + aVar.h());
+                    throw new RuntimeException("Invalid bitset value type: " + o1.E(x10) + "; at path " + aVar.h());
                 }
             } else {
                 int p5 = aVar.p();
@@ -24,9 +25,9 @@ public class w0 extends eb.u {
                 } else if (p5 == 1) {
                     z10 = true;
                 } else {
-                    StringBuilder l4 = i2.e.l(p5, "Invalid bitset value ", ", expected 0 or 1; at path ");
-                    l4.append(aVar.j());
-                    throw new RuntimeException(l4.toString());
+                    StringBuilder n10 = o1.n(p5, "Invalid bitset value ", ", expected 0 or 1; at path ");
+                    n10.append(aVar.j());
+                    throw new RuntimeException(n10.toString());
                 }
             }
             if (z10) {

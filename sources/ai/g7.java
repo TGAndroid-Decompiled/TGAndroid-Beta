@@ -5,12 +5,12 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.br;
-public final class g7 extends br {
-    public final View f1356c;
+import org.telegram.ui.Components.ar;
+public final class g7 extends ar {
+    public final View f1353c;
     public final Paint d;
     public final Path e;
-    public final long f1357f;
+    public final long f1354f;
     public float h;
 
     public g7(ei.d dVar, int i10) {
@@ -19,10 +19,10 @@ public final class g7 extends br {
         this.d = paint;
         Path path = new Path();
         this.e = path;
-        this.f1357f = System.currentTimeMillis();
+        this.f1354f = System.currentTimeMillis();
         this.h = 1.0f;
-        this.f1356c = dVar;
-        ((Paint) this.f25016b).setColor(-1);
+        this.f1353c = dVar;
+        ((Paint) this.f24829b).setColor(-1);
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeJoin(Paint.Join.ROUND);
         paint.setStrokeCap(Paint.Cap.ROUND);
@@ -36,16 +36,16 @@ public final class g7 extends br {
     @Override
     public final void draw(Canvas canvas) {
         float f7;
-        Paint paint = (Paint) this.f25016b;
+        Paint paint = (Paint) this.f24829b;
         paint.setAlpha((int) (this.h * 255.0f));
         canvas.drawCircle(getBounds().centerX(), getBounds().centerY(), getBounds().width() / 2.0f, paint);
-        float currentTimeMillis = ((float) ((System.currentTimeMillis() - this.f1357f) % 400)) / 400.0f;
+        float currentTimeMillis = ((float) ((System.currentTimeMillis() - this.f1354f) % 400)) / 400.0f;
         Paint paint2 = this.d;
         int alpha = paint2.getAlpha();
         paint2.setAlpha((int) (alpha * this.h));
         paint2.setStrokeWidth(AndroidUtilities.dpf2(1.33f));
         canvas.save();
-        canvas.translate(getBounds().centerX(), getBounds().centerY() - (org.telegram.ui.Cells.c1.b(1.166f, 2.0f, AndroidUtilities.dpf2(2.16f) * 3.0f) / 2.0f));
+        canvas.translate(getBounds().centerX(), getBounds().centerY() - (org.telegram.ui.Cells.b1.b(1.166f, 2.0f, AndroidUtilities.dpf2(2.16f) * 3.0f) / 2.0f));
         for (int i10 = 0; i10 < 4; i10++) {
             if (i10 == 0) {
                 f7 = 1.0f - currentTimeMillis;
@@ -64,7 +64,7 @@ public final class g7 extends br {
         }
         canvas.restore();
         paint2.setAlpha(alpha);
-        View view = this.f1356c;
+        View view = this.f1353c;
         if (view != null) {
             view.invalidate();
         }

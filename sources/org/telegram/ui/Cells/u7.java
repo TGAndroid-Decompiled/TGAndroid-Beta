@@ -14,34 +14,34 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.LocationController;
 import org.telegram.ui.Components.rl;
 public final class u7 implements Runnable {
-    public final int f23603a;
-    public final FrameLayout f23604b;
-    public final double f23605c;
+    public final int f23739a;
+    public final FrameLayout f23740b;
+    public final double f23741c;
     public final double d;
 
     public u7(FrameLayout frameLayout, double d, double d10, int i10) {
-        this.f23603a = i10;
-        this.f23604b = frameLayout;
-        this.f23605c = d;
+        this.f23739a = i10;
+        this.f23740b = frameLayout;
+        this.f23741c = d;
         this.d = d10;
     }
 
     @Override
     public final void run() {
-        switch (this.f23603a) {
+        switch (this.f23739a) {
             case 0:
-                v7 v7Var = (v7) this.f23604b;
-                double d = this.f23605c;
+                v7 v7Var = (v7) this.f23740b;
+                double d = this.f23741c;
                 double d10 = this.d;
                 try {
                     List<Address> fromLocation = new Geocoder(ApplicationLoader.applicationContext, LocaleController.getInstance().getCurrentLocale()).getFromLocation(d, d10, 1);
                     if (fromLocation.isEmpty()) {
                         String detectOcean = LocationController.detectOcean(d10, d);
-                        v7Var.I = detectOcean;
+                        v7Var.K = detectOcean;
                         if (detectOcean == null) {
-                            v7Var.I = "";
+                            v7Var.K = "";
                         } else {
-                            v7Var.I = "🌊 " + ((Object) v7Var.I);
+                            v7Var.K = "🌊 " + ((Object) v7Var.K);
                         }
                     } else {
                         Address address = fromLocation.get(0);
@@ -61,10 +61,10 @@ public final class u7 implements Runnable {
                                 sb2.append(str);
                             }
                         }
-                        v7Var.I = sb2.toString();
+                        v7Var.K = sb2.toString();
                         String countryCodeToEmoji = LocationController.countryCodeToEmoji(address.getCountryCode());
                         if (countryCodeToEmoji != null && Emoji.getEmojiDrawable(countryCodeToEmoji) != null) {
-                            v7Var.I = countryCodeToEmoji + " " + ((Object) v7Var.I);
+                            v7Var.K = countryCodeToEmoji + " " + ((Object) v7Var.K);
                         }
                     }
                 } catch (Exception unused) {
@@ -72,20 +72,20 @@ public final class u7 implements Runnable {
                 AndroidUtilities.runOnUIThread(new u7(v7Var, d, d10, 1));
                 return;
             case 1:
-                v7 v7Var2 = (v7) this.f23604b;
-                double d11 = this.f23605c;
+                v7 v7Var2 = (v7) this.f23740b;
+                double d11 = this.f23741c;
                 double d12 = this.d;
-                v7Var2.F = d11;
-                v7Var2.G = d12;
-                v7Var2.E = false;
-                CharSequence charSequence = v7Var2.I;
-                org.telegram.ui.ActionBar.j5 j5Var = v7Var2.f23647b;
-                CharSequence replaceEmoji = Emoji.replaceEmoji(charSequence, j5Var.getPaint().getFontMetricsInt(), false);
-                v7Var2.I = replaceEmoji;
-                j5Var.l(replaceEmoji, false);
+                v7Var2.H = d11;
+                v7Var2.I = d12;
+                v7Var2.G = false;
+                CharSequence charSequence = v7Var2.K;
+                org.telegram.ui.ActionBar.n5 n5Var = v7Var2.d;
+                CharSequence replaceEmoji = Emoji.replaceEmoji(charSequence, n5Var.getPaint().getFontMetricsInt(), false);
+                v7Var2.K = replaceEmoji;
+                n5Var.l(replaceEmoji, false);
                 return;
             default:
-                ((rl) this.f23604b).e0(this.f23605c, this.d);
+                ((rl) this.f23740b).f0(this.f23741c, this.d);
                 return;
         }
     }

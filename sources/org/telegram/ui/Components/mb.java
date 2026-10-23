@@ -3,10 +3,10 @@ package org.telegram.ui.Components;
 import android.widget.FrameLayout;
 public abstract class mb extends FrameLayout implements rb {
     @Override
-    public final void c() {
+    public final void a() {
     }
 
     @Override
-    public final void d() {
+    public final void b() {
     }
 }

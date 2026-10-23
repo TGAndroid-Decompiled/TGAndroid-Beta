@@ -4,10 +4,10 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.i80;
+import org.telegram.ui.Components.j80;
 import org.telegram.ui.Components.qy;
-import org.telegram.ui.ct;
-public final class r1 implements ct {
+import org.telegram.ui.ft;
+public final class r1 implements ft {
     @Override
     public final MessageObject A() {
         return null;
@@ -114,7 +114,7 @@ public final class r1 implements ct {
     }
 
     @Override
-    public final i80 u(ah.v vVar) {
+    public final j80 u(ah.v vVar) {
         return null;
     }
 
@@ -133,14 +133,6 @@ public final class r1 implements ct {
 
     @Override
     public final void H(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void K() {
-    }
-
-    @Override
-    public final void L() {
     }
 
     @Override
@@ -164,19 +156,27 @@ public final class r1 implements ct {
     }
 
     @Override
-    public final void q() {
-    }
-
-    @Override
-    public final void s() {
-    }
-
-    @Override
     public final void v(TLRPC.Document document) {
     }
 
     @Override
     public final void z(String str) {
+    }
+
+    @Override
+    public final void K() {
+    }
+
+    @Override
+    public final void L() {
+    }
+
+    @Override
+    public final void q() {
+    }
+
+    @Override
+    public final void s() {
     }
 
     @Override

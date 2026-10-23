@@ -1,42 +1,17 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-public final class d01 implements z4.e {
-    public int f36218a;
-    public final e01 f36219b;
+import android.content.Context;
+public final class d01 extends ig.h1 {
+    public final f01 G;
 
-    public d01(e01 e01Var) {
-        this.f36219b = e01Var;
+    public d01(f01 f01Var, Context context, org.telegram.ui.ActionBar.g6 g6Var) {
+        super(context, g6Var);
+        this.G = f01Var;
     }
 
     @Override
-    public final void b(int i10) {
-        boolean z10;
-        e01 e01Var = this.f36219b;
-        ProfileActivity profileActivity = e01Var.f36489n;
-        int k10 = profileActivity.f33684o0.D0.k(i10);
-        if (this.f36218a != k10) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        e01Var.a(z10);
-        this.f36218a = k10;
-        if (profileActivity.f33704r0 == null) {
-            return;
-        }
-        if (profileActivity.U0.t()) {
-            AndroidUtilities.runOnUIThread(new qy0(e01Var, 3), 500L);
-        } else {
-            e01Var.c();
-        }
-    }
-
-    @Override
-    public final void c(int i10) {
-    }
-
-    @Override
-    public final void a(float f7, int i10, int i11) {
+    public final int a(int i10) {
+        this.G.e.getClass();
+        return i10;
     }
 }

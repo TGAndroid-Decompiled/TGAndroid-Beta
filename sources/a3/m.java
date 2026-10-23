@@ -21,7 +21,7 @@ public final class m implements Handler.Callback {
         Surface surface;
         n nVar = this.f146b;
         n4.s sVar = nVar.f148b1;
-        if (this == nVar.M1 && nVar.f44965d0 != null) {
+        if (this == nVar.M1 && nVar.f45377d0 != null) {
             if (j10 == Long.MAX_VALUE) {
                 nVar.M0 = true;
                 return;
@@ -44,11 +44,11 @@ public final class m implements Handler.Callback {
                 a0Var.f64l.getClass();
                 a0Var.f60g = e2.m0.S(SystemClock.elapsedRealtime());
                 if (z10 && (surface = nVar.f163r1) != null) {
-                    sVar.D(surface);
+                    sVar.B(surface);
                     nVar.f166u1 = true;
                 }
                 nVar.h0(j10);
-            } catch (i2.n e) {
+            } catch (i2.m e) {
                 nVar.N0 = e;
             }
         }
@@ -61,7 +61,7 @@ public final class m implements Handler.Callback {
         }
         int i10 = message.arg1;
         int i11 = message.arg2;
-        String str = e2.m0.f8252a;
+        String str = e2.m0.f8259a;
         a(((i10 & 4294967295L) << 32) | (4294967295L & i11));
         return true;
     }

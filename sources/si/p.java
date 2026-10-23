@@ -1,25 +1,25 @@
 package si;
 public final class p implements Runnable {
-    public final int f46751a;
-    public final t f46752b;
+    public final int f47180a;
+    public final t f47181b;
 
     public p(t tVar, int i10) {
-        this.f46751a = i10;
-        this.f46752b = tVar;
+        this.f47180a = i10;
+        this.f47181b = tVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f46751a) {
+        switch (this.f47180a) {
             case 0:
-                t tVar = this.f46752b;
+                t tVar = this.f47181b;
                 if (tVar.W != 0) {
                     tVar.V = true;
                     return;
                 }
                 return;
             default:
-                this.f46752b.c();
+                this.f47181b.c();
                 return;
         }
     }

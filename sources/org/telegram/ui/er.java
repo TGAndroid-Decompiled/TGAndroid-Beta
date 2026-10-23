@@ -1,69 +1,56 @@
 package org.telegram.ui;
+public final class er implements org.telegram.ui.Cells.z4, org.telegram.ui.Components.rw0 {
+    public final int f37016a;
+    public final fr f37017b;
 
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
-import org.telegram.tgnet.TLRPC;
-public final class er implements Runnable {
-    public final int f36764a;
-    public final gr f36765b;
-    public final String f36766c;
-
-    public er(gr grVar, String str, int i10) {
-        this.f36764a = i10;
-        this.f36765b = grVar;
-        this.f36766c = str;
+    public er(fr frVar, int i10) {
+        this.f37016a = i10;
+        this.f37017b = frVar;
     }
 
     @Override
-    public final void run() {
-        ArrayList arrayList;
-        ArrayList arrayList2;
-        org.telegram.messenger.camera.i iVar;
+    public boolean c(org.telegram.ui.Cells.a5 a5Var, boolean z10) {
+        jr jrVar = this.f37017b.d;
+        return jrVar.h0(jrVar.f38628a.E(((Integer) a5Var.getTag()).intValue()), !z10, a5Var);
+    }
+
+    @Override
+    public void i(int i10) {
         boolean z10;
-        long j10;
-        switch (this.f36764a) {
-            case 0:
-                gr grVar = this.f36765b;
-                grVar.getClass();
-                AndroidUtilities.runOnUIThread(new er(grVar, this.f36766c, 1));
+        switch (this.f37016a) {
+            case 1:
+                jr jrVar = this.f37017b.d;
+                if (jrVar.f38668s != null) {
+                    int i11 = jrVar.f38662p1;
+                    if ((i11 > 0 && i10 == 0) || (i11 == 0 && i10 > 0)) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    jrVar.f38662p1 = i10;
+                    if (z10) {
+                        dr w02 = jrVar.w0();
+                        jrVar.B0();
+                        jrVar.A0(w02);
+                    }
+                    jrVar.f38628a.m(jrVar.P0);
+                    return;
+                }
                 return;
             default:
-                gr grVar2 = this.f36765b;
-                grVar2.f37401n = null;
-                hr hrVar = grVar2.f37406y;
-                TLRPC.Chat chat = hrVar.f37757r;
-                int i10 = hrVar.f37732e1;
-                if (!ChatObject.isChannel(chat) && hrVar.f37760s != null) {
-                    arrayList = new ArrayList(hrVar.f37760s.participants.participants);
-                } else {
-                    arrayList = null;
-                }
-                if (i10 == 1) {
-                    arrayList2 = new ArrayList(hrVar.getContactsController().contacts);
-                } else {
-                    arrayList2 = null;
-                }
-                String str = this.f36766c;
-                if (arrayList == null && arrayList2 == null) {
-                    grVar2.f37403s = false;
-                    iVar = null;
-                } else {
-                    iVar = new org.telegram.messenger.camera.i(grVar2, str, arrayList, arrayList2, 18);
-                }
-                hg.a2 a2Var = grVar2.h;
-                if (i10 != 0) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                if (ChatObject.isChannel(hrVar.f37757r)) {
-                    j10 = hrVar.N;
-                } else {
-                    j10 = 0;
-                }
-                a2Var.h(str, z10, false, true, false, false, j10, false, hrVar.O, 1, 0L, iVar);
+                this.f37017b.d.f38670s1 = i10 + 1;
                 return;
         }
+    }
+
+    @Override
+    public void m() {
+        int i10 = this.f37016a;
+    }
+
+    private final void a() {
+    }
+
+    private final void b() {
     }
 }

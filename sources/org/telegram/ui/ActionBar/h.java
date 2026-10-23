@@ -6,26 +6,26 @@ import android.transition.TransitionValues;
 import android.view.View;
 import java.util.Iterator;
 public final class h extends AnimatorListenerAdapter {
-    public final int f20905a;
-    public final Object f20906b;
+    public final int f20927a;
+    public final Object f20928b;
 
     public h(Object obj, int i10) {
-        this.f20905a = i10;
-        this.f20906b = obj;
+        this.f20927a = i10;
+        this.f20928b = obj;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
         float f7;
         float f10;
-        switch (this.f20905a) {
+        switch (this.f20927a) {
             case 0:
                 super.onAnimationEnd(animator);
-                ((TransitionValues) this.f20906b).view.setLayerType(0, null);
+                ((TransitionValues) this.f20928b).view.setLayerType(0, null);
                 return;
             case 1:
-                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = (ActionBarPopupWindow$ActionBarPopupWindowLayout) this.f20906b;
-                actionBarPopupWindow$ActionBarPopupWindowLayout.f20603n = false;
+                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = (ActionBarPopupWindow$ActionBarPopupWindowLayout) this.f20928b;
+                actionBarPopupWindow$ActionBarPopupWindowLayout.f20672n = false;
                 int itemsCount = actionBarPopupWindow$ActionBarPopupWindowLayout.getItemsCount();
                 for (int i10 = 0; i10 < itemsCount; i10++) {
                     View childAt = actionBarPopupWindow$ActionBarPopupWindowLayout.L.getChildAt(i10);
@@ -41,17 +41,17 @@ public final class h extends AnimatorListenerAdapter {
                 }
                 return;
             case 2:
-                o1 o1Var = (o1) this.f20906b;
+                o1 o1Var = (o1) this.f20928b;
                 if (!o1Var.e) {
                     o1Var.j();
                     return;
                 }
                 return;
             case 3:
-                n3 n3Var = (n3) this.f20906b;
-                if (n3Var.F == animator) {
-                    n3Var.G = n3Var.H;
-                    Iterator it = n3Var.I.iterator();
+                q3 q3Var = (q3) this.f20928b;
+                if (q3Var.F == animator) {
+                    q3Var.G = q3Var.H;
+                    Iterator it = q3Var.I.iterator();
                     while (it.hasNext()) {
                         ((Runnable) it.next()).run();
                     }
@@ -59,21 +59,21 @@ public final class h extends AnimatorListenerAdapter {
                 }
                 return;
             default:
-                w3 w3Var = (w3) this.f20906b;
-                n3 n3Var2 = w3Var.f21837a;
-                if (n3Var2 != null) {
-                    n3Var2.f21618b = true;
-                    n3Var2.invalidate();
+                z3 z3Var = (z3) this.f20928b;
+                q3 q3Var2 = z3Var.f22022a;
+                if (q3Var2 != null) {
+                    q3Var2.f21788b = true;
+                    q3Var2.invalidate();
                 }
-                if (w3Var.U) {
+                if (z3Var.U) {
                     f10 = 1.0f;
                 } else {
                     f10 = 0.0f;
                 }
-                w3Var.V = f10;
-                w3Var.invalidate();
-                if (!w3Var.U) {
-                    w3Var.R.clear();
+                z3Var.V = f10;
+                z3Var.invalidate();
+                if (!z3Var.U) {
+                    z3Var.R.clear();
                     return;
                 }
                 return;
@@ -82,10 +82,10 @@ public final class h extends AnimatorListenerAdapter {
 
     @Override
     public void onAnimationStart(Animator animator) {
-        switch (this.f20905a) {
+        switch (this.f20927a) {
             case 0:
                 super.onAnimationStart(animator);
-                ((TransitionValues) this.f20906b).view.setLayerType(2, null);
+                ((TransitionValues) this.f20928b).view.setLayerType(2, null);
                 return;
             default:
                 super.onAnimationStart(animator);

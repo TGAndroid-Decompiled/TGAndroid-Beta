@@ -24,7 +24,7 @@ import java.util.HashMap;
 import java.util.Map;
 import org.telegram.messenger.CompoundEmoji;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.yq;
+import org.telegram.ui.Components.xq;
 public class Emoji {
     private static final String[] DEFAULT_RECENT;
     private static final int MAX_RECENT_EMOJI_COUNT = 48;
@@ -122,7 +122,7 @@ public class Emoji {
         }
         if (num.intValue() == 0 && hashMap.size() >= 48) {
             ArrayList<String> arrayList = recentEmoji;
-            hashMap.remove((String) i2.e.h(1, arrayList));
+            hashMap.remove((String) i2.o1.i(1, arrayList));
             arrayList.set(arrayList.size() - 1, str);
         }
         hashMap.put(str, Integer.valueOf(num.intValue() + 1));
@@ -840,7 +840,7 @@ public class Emoji {
             return charSequence;
         }
         org.telegram.ui.Components.a6[] a6VarArr = (org.telegram.ui.Components.a6[]) newSpannable.getSpans(0, newSpannable.length(), org.telegram.ui.Components.a6.class);
-        yq[] yqVarArr = (yq[]) newSpannable.getSpans(0, newSpannable.length(), yq.class);
+        xq[] xqVarArr = (xq[]) newSpannable.getSpans(0, newSpannable.length(), xq.class);
         int i14 = (SharedConfig.getDevicePerformanceClass() >= 2 ? 100 : 50) - i11;
         for (int i15 = 0; i15 < parseEmojis.size(); i15++) {
             try {
@@ -850,9 +850,9 @@ public class Emoji {
                         i13 = (a6Var != null && newSpannable.getSpanStart(a6Var) == emojiSpanRange.start && newSpannable.getSpanEnd(a6Var) == emojiSpanRange.end) ? 0 : i13 + 1;
                     }
                 }
-                if (yqVarArr != null && yqVarArr.length > 0) {
-                    for (yq yqVar : yqVarArr) {
-                        i12 = (yqVar != null && newSpannable.getSpanStart(yqVar) == emojiSpanRange.start && newSpannable.getSpanEnd(yqVar) == emojiSpanRange.end) ? 0 : i12 + 1;
+                if (xqVarArr != null && xqVarArr.length > 0) {
+                    for (xq xqVar : xqVarArr) {
+                        i12 = (xqVar != null && newSpannable.getSpanStart(xqVar) == emojiSpanRange.start && newSpannable.getSpanEnd(xqVar) == emojiSpanRange.end) ? 0 : i12 + 1;
                     }
                 }
                 EmojiDrawable emojiDrawable = getEmojiDrawable(emojiSpanRange.code);

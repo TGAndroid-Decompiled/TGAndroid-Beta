@@ -1,35 +1,70 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-public final class jx0 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f27670a;
-    public final mx0 f27671b;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.DialogObject;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class jx0 {
+    public final p5 f27775a;
+    public Drawable f27776b;
 
-    public jx0(mx0 mx0Var, int i10) {
-        this.f27670a = i10;
-        this.f27671b = mx0Var;
+    public jx0(FrameLayout frameLayout) {
+        this(18, frameLayout);
     }
 
-    @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f27670a) {
-            case 0:
-                mx0 mx0Var = this.f27671b;
-                mx0Var.getClass();
-                mx0Var.E = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                mx0Var.invalidate();
-                return;
-            case 1:
-                mx0 mx0Var2 = this.f27671b;
-                mx0Var2.getClass();
-                mx0Var2.m(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                return;
-            default:
-                mx0 mx0Var3 = this.f27671b;
-                mx0Var3.getClass();
-                mx0Var3.f28628y = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                mx0Var3.invalidate();
-                return;
+    public final p5 a(TLObject tLObject, boolean z10, int i10) {
+        if (tLObject instanceof TLRPC.User) {
+            return b((TLRPC.User) tLObject, null, i10, z10);
         }
+        if (tLObject instanceof TLRPC.Chat) {
+            return b(null, (TLRPC.Chat) tLObject, i10, z10);
+        }
+        return b(null, null, i10, z10);
+    }
+
+    public final p5 b(TLRPC.User user, TLRPC.Chat chat, int i10, boolean z10) {
+        p5 p5Var = this.f27775a;
+        if (chat != null && chat.verified) {
+            Drawable drawable = this.f27776b;
+            if (drawable == null) {
+                drawable = new yq(org.telegram.ui.ActionBar.k6.f21214f1, org.telegram.ui.ActionBar.k6.f21267i1);
+            }
+            this.f27776b = drawable;
+            p5Var.g(drawable, z10);
+            p5Var.k(null);
+            return p5Var;
+        } else if (chat != null && DialogObject.getEmojiStatusDocumentId(chat.emoji_status) != 0) {
+            p5Var.j(DialogObject.getEmojiStatusDocumentId(chat.emoji_status), z10);
+            p5Var.k(Integer.valueOf(i10));
+            return p5Var;
+        } else if (user != null && user.verified) {
+            Drawable drawable2 = this.f27776b;
+            if (drawable2 == null) {
+                drawable2 = new yq(org.telegram.ui.ActionBar.k6.f21214f1, org.telegram.ui.ActionBar.k6.f21267i1);
+            }
+            this.f27776b = drawable2;
+            p5Var.g(drawable2, z10);
+            p5Var.k(null);
+            return p5Var;
+        } else if (user != null && DialogObject.getEmojiStatusDocumentId(user.emoji_status) != 0) {
+            p5Var.j(DialogObject.getEmojiStatusDocumentId(user.emoji_status), z10);
+            p5Var.k(Integer.valueOf(i10));
+            return p5Var;
+        } else if (user != null && user.premium) {
+            p5Var.g(sg.b1.d().e, z10);
+            p5Var.k(Integer.valueOf(i10));
+            return p5Var;
+        } else {
+            p5Var.g(null, z10);
+            p5Var.k(null);
+            return p5Var;
+        }
+    }
+
+    public jx0(int i10, View view) {
+        this.f27775a = new p5(AndroidUtilities.dp(i10), view);
     }
 }

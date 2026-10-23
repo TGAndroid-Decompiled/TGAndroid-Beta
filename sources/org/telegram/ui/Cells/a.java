@@ -5,25 +5,25 @@ import android.view.View;
 import org.telegram.messenger.GiftAuctionController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.ui.Components.RadioButton;
-import org.telegram.ui.Components.yj0;
-import org.telegram.ui.c10;
-import org.telegram.ui.e10;
-import org.telegram.ui.pp0;
-import org.telegram.ui.qp0;
+import org.telegram.ui.Components.bk0;
+import org.telegram.ui.g10;
+import org.telegram.ui.i10;
 import org.telegram.ui.sp0;
+import org.telegram.ui.tp0;
+import org.telegram.ui.vp0;
 public final class a implements View.OnClickListener {
-    public final int f21955a;
-    public final Object f21956b;
+    public final int f22069a;
+    public final Object f22070b;
 
     public a(Object obj, int i10) {
-        this.f21955a = i10;
-        this.f21956b = obj;
+        this.f22069a = i10;
+        this.f22070b = obj;
     }
 
     @Override
     public final void onClick(View view) {
-        int i10 = this.f21955a;
-        Object obj = this.f21956b;
+        int i10 = this.f22069a;
+        Object obj = this.f22070b;
         switch (i10) {
             case 0:
                 ((j) obj).h();
@@ -38,18 +38,18 @@ public final class a implements View.OnClickListener {
                     return;
                 }
             case 2:
-                ((w) obj).toggle();
+                ((v) obj).toggle();
                 return;
             case 3:
-                yj0 yj0Var = ((x2) obj).f23798f;
-                if (!yj0Var.b()) {
-                    yj0Var.setProgress(0.0f);
-                    yj0Var.d();
+                bk0 bk0Var = ((w2) obj).f23899f;
+                if (!bk0Var.b()) {
+                    bk0Var.setProgress(0.0f);
+                    bk0Var.d();
                     return;
                 }
                 return;
             case 4:
-                ((o3) obj).getClass();
+                ((n3) obj).getClass();
                 return;
             case 5:
                 d4 d4Var = (d4) obj;
@@ -60,19 +60,19 @@ public final class a implements View.OnClickListener {
                 return;
             case 7:
                 a5 a5Var = (a5) obj;
-                a5Var.L.d(a5Var, true);
+                a5Var.L.c(a5Var, true);
                 return;
             case 8:
                 t5 t5Var = (t5) obj;
                 t5Var.d = t5Var.e[((Integer) ((RadioButton) view).getTag()).intValue()];
                 t5Var.b(true);
-                t5Var.f23193c.onClick(t5Var);
+                t5Var.f23693c.onClick(t5Var);
                 return;
             case 9:
-                x5 x5Var = (x5) obj;
-                w5 w5Var = x5Var.d;
-                if (w5Var != null) {
-                    sp0.U(((qp0) ((pp0) w5Var).f40282b).d, x5Var.f23808b[((Integer) view.getTag()).intValue()]);
+                y5 y5Var = (y5) obj;
+                x5 x5Var = y5Var.d;
+                if (x5Var != null) {
+                    vp0.U(((tp0) ((sp0) x5Var).f41783b).d, y5Var.f23977b[((Integer) view.getTag()).intValue()]);
                     return;
                 }
                 return;
@@ -81,11 +81,11 @@ public final class a implements View.OnClickListener {
                 if (t7Var.d != null) {
                     int intValue = ((Integer) view.getTag()).intValue();
                     q7 q7Var = t7Var.d;
-                    int i11 = t7Var.f23206c[intValue];
-                    MessageObject messageObject = t7Var.f23205b[intValue];
-                    e10 e10Var = ((c10) ((org.telegram.ui.g) q7Var).f37154b).d;
-                    SpannableStringBuilder[] spannableStringBuilderArr = e10.f36495s0;
-                    e10Var.f(i11, t7Var, messageObject, intValue);
+                    int i11 = t7Var.f23706c[intValue];
+                    MessageObject messageObject = t7Var.f23705b[intValue];
+                    i10 i10Var = ((g10) ((org.telegram.ui.f) q7Var).f37180b).d;
+                    SpannableStringBuilder[] spannableStringBuilderArr = i10.f38009s0;
+                    i10Var.f(i11, t7Var, messageObject, intValue);
                     return;
                 }
                 return;

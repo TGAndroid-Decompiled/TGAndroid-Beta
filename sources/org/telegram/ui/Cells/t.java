@@ -6,17 +6,41 @@ import java.util.Arrays;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
-import org.telegram.ui.Components.jm0;
-import org.telegram.ui.oa0;
-public final class t extends jm0 implements NotificationCenter.NotificationCenterDelegate {
-    public ArrayList V2;
-    public s4.b0 W2;
-    public int X2;
+import org.telegram.ui.Components.mm0;
+import org.telegram.ui.ua0;
+public final class t extends mm0 implements NotificationCenter.NotificationCenterDelegate {
+    public ArrayList Y2;
+    public s4.b0 Z2;
+    public int f23301a3;
+
+    public final void C1() {
+        ArrayList arrayList = this.Y2;
+        arrayList.clear();
+        arrayList.addAll(Arrays.asList(ua0.values()));
+        if (MessagesController.getInstance(this.f23301a3).premiumFeaturesBlocked()) {
+            int i10 = 0;
+            while (i10 < arrayList.size()) {
+                if (((ua0) arrayList.get(i10)).e) {
+                    arrayList.remove(i10);
+                    i10--;
+                }
+                i10++;
+            }
+        }
+        getAdapter().l();
+        a0();
+        for (int i11 = 0; i11 < arrayList.size(); i11++) {
+            if (w7.g6.a((ua0) arrayList.get(i11))) {
+                this.Z2.h1(i11, AndroidUtilities.dp(16.0f));
+                return;
+            }
+        }
+    }
 
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         if (i10 == NotificationCenter.premiumStatusChangedGlobal) {
-            x1();
+            C1();
         }
     }
 
@@ -41,29 +65,5 @@ public final class t extends jm0 implements NotificationCenter.NotificationCente
     public final void onSizeChanged(int i10, int i11, int i12, int i13) {
         super.onSizeChanged(i10, i11, i12, i13);
         a0();
-    }
-
-    public final void x1() {
-        ArrayList arrayList = this.V2;
-        arrayList.clear();
-        arrayList.addAll(Arrays.asList(oa0.values()));
-        if (MessagesController.getInstance(this.X2).premiumFeaturesBlocked()) {
-            int i10 = 0;
-            while (i10 < arrayList.size()) {
-                if (((oa0) arrayList.get(i10)).e) {
-                    arrayList.remove(i10);
-                    i10--;
-                }
-                i10++;
-            }
-        }
-        getAdapter().l();
-        a0();
-        for (int i11 = 0; i11 < arrayList.size(); i11++) {
-            if (w7.g6.a((oa0) arrayList.get(i11))) {
-                this.W2.h1(i11, AndroidUtilities.dp(16.0f));
-                return;
-            }
-        }
     }
 }

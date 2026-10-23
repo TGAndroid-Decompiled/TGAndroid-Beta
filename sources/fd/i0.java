@@ -14,19 +14,19 @@ public enum i0 extends a2 {
                     if (d != '>') {
                         if (d != 65535) {
                             kVar.f(d);
-                            kVar.f10567c = f0Var;
+                            kVar.f10584c = f0Var;
                             return;
                         }
                         kVar.l(this);
-                        kVar.f10567c = a2.f10519a;
+                        kVar.f10584c = a2.f10536a;
                         return;
                     }
                     kVar.f(d);
-                    kVar.f10567c = a2.f10527f;
+                    kVar.f10584c = a2.f10544f;
                     return;
                 }
                 kVar.f(d);
-                kVar.f10567c = a2.U;
+                kVar.f10584c = a2.U;
                 return;
             }
             kVar.f(d);
@@ -34,6 +34,6 @@ public enum i0 extends a2 {
         }
         kVar.m(this);
         kVar.f((char) 65533);
-        kVar.f10567c = f0Var;
+        kVar.f10584c = f0Var;
     }
 }

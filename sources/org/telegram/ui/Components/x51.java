@@ -1,26 +1,41 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.MessageObject;
-import org.telegram.tgnet.TLRPC;
-public final class x51 implements ny0 {
-    public final d61 f32353a;
+import android.content.Context;
+import android.text.TextUtils;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.ConnectionsManager;
+public final class x51 extends yn0 {
+    public final i61 f32438f;
 
-    public x51(d61 d61Var) {
-        this.f32353a = d61Var;
+    public x51(i61 i61Var, Context context, org.telegram.ui.ActionBar.g6 g6Var) {
+        super(context, 14.0f, g6Var);
+        this.f32438f = i61Var;
     }
 
     @Override
-    public final boolean b() {
-        return this.f32353a.f25352b.a();
-    }
-
-    @Override
-    public final boolean c() {
-        return this.f32353a.f25352b.c();
-    }
-
-    @Override
-    public final void e(TLRPC.Document document, String str, Object obj, MessageObject.SendAnimationData sendAnimationData, boolean z10, boolean z11, int i10, int i11) {
-        this.f32353a.f25352b.f(document, obj, z11, i10);
+    public final void a(String str) {
+        hg.e2 e2Var = this.f32438f.v;
+        hg.c2 c2Var = e2Var.S;
+        int i10 = e2Var.f11876c;
+        if (e2Var.N != 0) {
+            ConnectionsManager.getInstance(i10).cancelRequest(e2Var.N, true);
+            e2Var.N = 0;
+        }
+        if (e2Var.O != 0) {
+            ConnectionsManager.getInstance(i10).cancelRequest(e2Var.O, true);
+            e2Var.O = 0;
+        }
+        if (TextUtils.isEmpty(str)) {
+            e2Var.R = null;
+            e2Var.F.clear();
+            e2Var.I.clear();
+            e2Var.E.clear();
+            e2Var.e.b(false);
+            e2Var.l();
+        } else {
+            e2Var.R = str.toLowerCase();
+        }
+        AndroidUtilities.cancelRunOnUIThread(c2Var);
+        AndroidUtilities.runOnUIThread(c2Var, 300L);
     }
 }

@@ -2,9 +2,9 @@ package ed;
 
 import java.util.Map;
 public final class a implements Map.Entry, Cloneable {
-    public String f8603a;
-    public String f8604b;
-    public c f8605c;
+    public String f8610a;
+    public String f8611b;
+    public c f8612c;
 
     public final Object clone() {
         try {
@@ -21,13 +21,13 @@ public final class a implements Map.Entry, Cloneable {
         }
         if (obj != null && a.class == obj.getClass()) {
             a aVar = (a) obj;
-            String str = aVar.f8603a;
-            String str2 = this.f8603a;
+            String str = aVar.f8610a;
+            String str2 = this.f8610a;
             if (str2 == null ? str != null : !str2.equals(str)) {
                 return false;
             }
-            String str3 = this.f8604b;
-            String str4 = aVar.f8604b;
+            String str3 = this.f8611b;
+            String str4 = aVar.f8611b;
             if (str3 != null) {
                 return str3.equals(str4);
             }
@@ -40,18 +40,18 @@ public final class a implements Map.Entry, Cloneable {
 
     @Override
     public final Object getKey() {
-        return this.f8603a;
+        return this.f8610a;
     }
 
     @Override
     public final Object getValue() {
-        return this.f8604b;
+        return this.f8611b;
     }
 
     @Override
     public final int hashCode() {
         int i10;
-        String str = this.f8603a;
+        String str = this.f8610a;
         int i11 = 0;
         if (str != null) {
             i10 = str.hashCode();
@@ -59,7 +59,7 @@ public final class a implements Map.Entry, Cloneable {
             i10 = 0;
         }
         int i12 = i10 * 31;
-        String str2 = this.f8604b;
+        String str2 = this.f8611b;
         if (str2 != null) {
             i11 = str2.hashCode();
         }
@@ -70,18 +70,18 @@ public final class a implements Map.Entry, Cloneable {
     public final Object setValue(Object obj) {
         String str;
         String str2 = (String) obj;
-        c cVar = this.f8605c;
-        String str3 = this.f8603a;
+        c cVar = this.f8612c;
+        String str3 = this.f8610a;
         int h = cVar.h(str3);
         String str4 = "";
-        if (h != -1 && (str = cVar.f8611c[h]) != null) {
+        if (h != -1 && (str = cVar.f8618c[h]) != null) {
             str4 = str;
         }
         int h10 = cVar.h(str3);
         if (h10 != -1) {
-            cVar.f8611c[h10] = str2;
+            cVar.f8618c[h10] = str2;
         }
-        this.f8604b = str2;
+        this.f8611b = str2;
         return str4;
     }
 }

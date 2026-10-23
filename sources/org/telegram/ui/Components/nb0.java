@@ -2,21 +2,40 @@ package org.telegram.ui.Components;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import org.telegram.tgnet.TLRPC;
-public final class nb0 extends a6 {
-    public final ob0 f28777a;
+import android.text.style.ReplacementSpan;
+import android.view.KeyEvent;
+public final class nb0 extends ReplacementSpan {
+    public final int f28930a;
+    public final KeyEvent.Callback f28931b;
 
-    public nb0(ob0 ob0Var, TLRPC.Document document, Paint.FontMetricsInt fontMetricsInt) {
-        super(document, fontMetricsInt);
-        this.f28777a = ob0Var;
+    public nb0(KeyEvent.Callback callback, int i10) {
+        this.f28930a = i10;
+        this.f28931b = callback;
     }
 
     @Override
     public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
-        ob0 ob0Var = this.f28777a;
-        int i15 = ob0Var.f28986y;
-        int i16 = i14 + i12;
-        int i17 = this.measuredSize;
-        ob0Var.f28979c.set((int) f7, i2.e.C(i16, i17, 2, i15), (int) (f7 + i17), ((i16 + i17) / 2) + i15);
+        int i15 = this.f28930a;
+    }
+
+    @Override
+    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
+        switch (this.f28930a) {
+            case 0:
+                return ((pb0) this.f28931b).f29506x;
+            case 1:
+                return (int) ((org.telegram.ui.fj0) this.f28931b).f37357n0;
+            default:
+                return (int) ((ug.l1) this.f28931b).f48165t0;
+        }
+    }
+
+    private final void a(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
+    }
+
+    private final void b(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
+    }
+
+    private final void c(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
     }
 }

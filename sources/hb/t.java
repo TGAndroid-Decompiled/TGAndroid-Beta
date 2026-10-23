@@ -3,10 +3,10 @@ package hb;
 import java.util.Map;
 import v7.r8;
 public abstract class t extends eb.u {
-    public final v f11762a;
+    public final v f11789a;
 
     public t(v vVar) {
-        this.f11762a = vVar;
+        this.f11789a = vVar;
     }
 
     public abstract Object a();
@@ -22,7 +22,7 @@ public abstract class t extends eb.u {
             return null;
         }
         Object a2 = a();
-        Map map = this.f11762a.f11765a;
+        Map map = this.f11789a.f11792a;
         try {
             aVar.b();
             while (aVar.k()) {
@@ -36,7 +36,7 @@ public abstract class t extends eb.u {
             aVar.f();
             return b(a2);
         } catch (IllegalAccessException e) {
-            r8 r8Var = jb.c.f14370a;
+            r8 r8Var = jb.c.f14415a;
             throw new RuntimeException("Unexpected IllegalAccessException occurred (Gson 2.11.0). Certain ReflectionAccessFilter features require Java >= 9 to work correctly. If you are not using ReflectionAccessFilter, report this to the Gson maintainers.", e);
         } catch (IllegalStateException e7) {
             throw new RuntimeException(e7);
@@ -51,12 +51,12 @@ public abstract class t extends eb.u {
         }
         bVar.c();
         try {
-            for (s sVar : this.f11762a.f11766b) {
+            for (s sVar : this.f11789a.f11793b) {
                 sVar.a(bVar, obj);
             }
             bVar.f();
         } catch (IllegalAccessException e) {
-            r8 r8Var = jb.c.f14370a;
+            r8 r8Var = jb.c.f14415a;
             throw new RuntimeException("Unexpected IllegalAccessException occurred (Gson 2.11.0). Certain ReflectionAccessFilter features require Java >= 9 to work correctly. If you are not using ReflectionAccessFilter, report this to the Gson maintainers.", e);
         }
     }

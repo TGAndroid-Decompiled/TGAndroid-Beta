@@ -4,51 +4,51 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class m8 implements Runnable {
-    public final int f39140a;
-    public final m9 f39141b;
+    public final int f39391a;
+    public final m9 f39392b;
 
     public m8(m9 m9Var, int i10) {
-        this.f39140a = i10;
-        this.f39141b = m9Var;
+        this.f39391a = i10;
+        this.f39392b = m9Var;
     }
 
     @Override
     public final void run() {
         org.telegram.ui.Components.xc a02;
-        switch (this.f39140a) {
+        switch (this.f39391a) {
             case 0:
-                m9 m9Var = this.f39141b;
-                m9Var.f0();
-                m9Var.i0();
+                m9 m9Var = this.f39392b;
+                m9Var.e0();
+                m9Var.h0();
                 return;
             case 1:
-                m9 m9Var2 = this.f39141b;
-                m9Var2.n0(false);
-                if (m9Var2.f39161w) {
+                m9 m9Var2 = this.f39392b;
+                m9Var2.m0(false);
+                if (m9Var2.f39422w) {
                     a02 = org.telegram.ui.Components.xc.X();
                 } else {
                     a02 = org.telegram.ui.Components.xc.a0(m9Var2);
                 }
                 org.telegram.ui.Components.qc I = a02.I(R.raw.contact_check, AndroidUtilities.replaceTags(LocaleController.getString(R.string.GroupCallTabWasHiddenTitle)), LocaleController.getString(R.string.UndoNoCaps), 5000, true, new m8(m9Var2, 5));
-                I.f29535j = 5000;
+                I.f29832j = 5000;
                 I.j();
                 return;
             case 2:
-                this.f39141b.p0(true);
+                this.f39392b.o0(true);
                 return;
             case 3:
-                m9 m9Var3 = this.f39141b;
-                m9Var3.h0();
-                m9Var3.f0();
+                m9 m9Var3 = this.f39392b;
+                m9Var3.g0();
+                m9Var3.e0();
                 return;
             case 4:
-                this.f39141b.n0(false);
+                this.f39392b.m0(false);
                 return;
             case 5:
-                this.f39141b.n0(true);
+                this.f39392b.m0(true);
                 return;
             default:
-                m9 m9Var4 = this.f39141b;
+                m9 m9Var4 = this.f39392b;
                 m9Var4.d.postOnAnimation(new m8(m9Var4, 3));
                 return;
         }

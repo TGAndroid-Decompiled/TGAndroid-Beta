@@ -1,21 +1,21 @@
 package xh;
 
-import org.telegram.ui.ActionBar.n2;
-import org.telegram.ui.Components.ya0;
-public final class b extends ya0 {
-    public final d f49838a0;
+import org.telegram.ui.ActionBar.o2;
+import org.telegram.ui.Components.za0;
+public final class b extends za0 {
+    public final d f50278b0;
 
-    public b(d dVar, n2 n2Var, long j10) {
-        super(n2Var, j10);
-        this.f49838a0 = dVar;
+    public b(d dVar, o2 o2Var, long j10) {
+        super(o2Var, j10);
+        this.f50278b0 = dVar;
     }
 
     @Override
     public final void dismiss() {
-        d dVar = this.f49838a0;
-        b bVar = dVar.f49844i;
-        if (bVar != null && !bVar.U.f49868b) {
-            dVar.f49844i = null;
+        d dVar = this.f50278b0;
+        b bVar = dVar.f50284i;
+        if (bVar != null && !bVar.U.f50308b) {
+            dVar.f50284i = null;
         }
         super.dismiss();
     }

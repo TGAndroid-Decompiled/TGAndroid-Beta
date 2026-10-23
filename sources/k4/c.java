@@ -1,32 +1,31 @@
 package k4;
 
-import c3.j0;
-import c3.o;
-import c3.p;
+import c3.l0;
 import c3.q;
-import e9.l0;
+import c3.r;
+import c3.s;
 import e9.n0;
 import e9.x1;
 import java.util.List;
-public final class c implements o {
-    public q f14891a;
-    public j0 f14892b;
-    public int f14893c;
+public final class c implements q {
+    public s f14937a;
+    public l0 f14938b;
+    public int f14939c;
     public long d;
     public b e;
-    public int f14894f;
-    public long f14895g;
+    public int f14940f;
+    public long f14941g;
 
     @Override
-    public final boolean a(p pVar) {
-        return e.a(pVar);
+    public final boolean a(r rVar) {
+        return e.a(rVar);
     }
 
     @Override
-    public final void c(q qVar) {
-        this.f14891a = qVar;
-        this.f14892b = qVar.j0(0, 1);
-        qVar.H();
+    public final void c(s sVar) {
+        this.f14937a = sVar;
+        this.f14938b = sVar.j0(0, 1);
+        sVar.C();
     }
 
     @Override
@@ -37,7 +36,7 @@ public final class c implements o {
         } else {
             i10 = 4;
         }
-        this.f14893c = i10;
+        this.f14939c = i10;
         b bVar = this.e;
         if (bVar != null) {
             bVar.a(j11);
@@ -46,17 +45,17 @@ public final class c implements o {
 
     @Override
     public final List e() {
-        l0 l0Var = n0.f8474b;
+        e9.l0 l0Var = n0.f8481b;
         return x1.e;
     }
 
     @Override
-    public final int f(c3.p r21, c3.s r22) {
-        throw new UnsupportedOperationException("Method not decompiled: k4.c.f(c3.p, c3.s):int");
+    public final int f(c3.r r21, c3.u r22) {
+        throw new UnsupportedOperationException("Method not decompiled: k4.c.f(c3.r, c3.u):int");
     }
 
     @Override
-    public final o b() {
+    public final q b() {
         return this;
     }
 

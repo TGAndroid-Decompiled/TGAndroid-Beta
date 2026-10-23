@@ -1,29 +1,17 @@
 package org.telegram.ui.Components;
+public abstract class gq extends z4.a {
+    public abstract int j();
 
-import android.content.Context;
-public abstract class gq extends z4.g {
-    public fq f26652w0;
-
-    public gq(Context context) {
-        super(context);
-        b(new eq((li0) this));
-    }
-
-    @Override
-    @Deprecated
-    public void setAdapter(z4.a aVar) {
-        if (aVar instanceof fq) {
-            setAdapter((fq) aVar);
-            return;
+    public final int k(int i10) {
+        int size = ((ni0) this).f28955c.size();
+        int j10 = j();
+        if (i10 < j10) {
+            return ((size - (j10 * 2)) - ((j10 - i10) - 1)) - 1;
         }
-        throw new IllegalArgumentException();
-    }
-
-    public void setAdapter(fq fqVar) {
-        this.f26652w0 = fqVar;
-        super.setAdapter((z4.a) fqVar);
-        if (fqVar != null) {
-            x(fqVar.j(), false);
+        int i11 = size - j10;
+        if (i10 >= i11) {
+            return i10 - i11;
         }
+        return i10 - j10;
     }
 }

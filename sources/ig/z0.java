@@ -1,102 +1,192 @@
 package ig;
 
+import android.app.Activity;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
+import java.nio.charset.StandardCharsets;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-import org.telegram.messenger.nk;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.xc;
-public final class z0 implements RequestDelegate {
-    public final int f13096a;
-    public final d1 f13097b;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.Components.EditTextBoldCursor;
+import org.telegram.ui.Components.al;
+import org.telegram.ui.Components.bs;
+import org.telegram.ui.Components.i5;
+import org.telegram.ui.Components.p6;
+import org.telegram.ui.Wallet.j9;
+public final class z0 extends EditTextBoldCursor {
+    public final int f13134b = 0;
+    public int f13135c;
+    public final i5 d;
+    public final p6 e;
+    public final NotificationCenter.NotificationCenterDelegate f13136f;
 
-    public z0(d1 d1Var, int i10) {
-        this.f13096a = i10;
-        this.f13097b = d1Var;
+    public z0(c1 c1Var, Activity activity) {
+        super(activity);
+        this.f13136f = c1Var;
+        this.d = new i5(this);
+        p6 p6Var = new p6(false, true, true);
+        this.e = p6Var;
+        p6Var.n(0.2f, 160L, bs.h);
+        p6Var.w(AndroidUtilities.dp(15.33f));
+        p6Var.setCallback(this);
+        p6Var.f29437b = 5;
     }
 
     @Override
-    public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f13096a) {
+    public final void dispatchDraw(Canvas canvas) {
+        int i10;
+        int i11;
+        int i12;
+        switch (this.f13134b) {
             case 0:
-                final d1 d1Var = this.f13097b;
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r4) {
-                            case 0:
-                                d1 d1Var2 = d1Var;
-                                d1Var2.f12853b.a(0.0f);
-                                TLRPC.TL_error tL_error2 = tL_error;
-                                if (tL_error2 != null) {
-                                    xc.d0(tL_error2);
-                                    return;
-                                } else if (tLObject instanceof TLRPC.TL_boolFalse) {
-                                    nk.q(R.string.UnknownError, xc.a0(d1Var2), null);
-                                    return;
-                                } else {
-                                    d1Var2.finishFragment();
-                                    return;
-                                }
-                            default:
-                                d1 d1Var3 = d1Var;
-                                TLRPC.TL_error tL_error3 = tL_error;
-                                if (tL_error3 != null) {
-                                    d1Var3.f12853b.a(0.0f);
-                                    xc.d0(tL_error3);
-                                    return;
-                                } else if (tLObject instanceof TLRPC.TL_boolFalse) {
-                                    d1Var3.f12853b.a(0.0f);
-                                    nk.q(R.string.UnknownError, xc.a0(d1Var3), null);
-                                    return;
-                                } else {
-                                    d1Var3.finishFragment();
-                                    return;
-                                }
-                        }
-                    }
-                });
+                super.dispatchDraw(canvas);
+                if (this.f13135c < 0) {
+                    i10 = k6.f21404p7;
+                } else {
+                    i10 = k6.P5;
+                }
+                int a2 = this.d.a(k6.w0(i10, ((c1) this.f13136f).getResourceProvider()), false);
+                p6 p6Var = this.e;
+                p6Var.u(a2);
+                p6Var.setBounds(getScrollX(), 0, getWidth() + getScrollX(), getHeight());
+                p6Var.draw(canvas);
+                return;
+            case 1:
+                super.dispatchDraw(canvas);
+                if (this.f13135c <= 0) {
+                    i11 = k6.f21404p7;
+                } else {
+                    i11 = k6.P5;
+                }
+                int a10 = this.d.a(k6.w0(i11, ((al) this.f13136f).f28365a), false);
+                p6 p6Var2 = this.e;
+                p6Var2.u(a10);
+                int scrollX = getScrollX();
+                int dp = AndroidUtilities.dp(48.0f) + ((getWidth() + scrollX) - getPaddingRight());
+                int height = getHeight() + getScrollY();
+                p6Var2.setBounds(dp - AndroidUtilities.dp(48.0f), height - Math.min(AndroidUtilities.dp(44.0f), getHeight()), dp, height);
+                p6Var2.draw(canvas);
                 return;
             default:
-                final d1 d1Var2 = this.f13097b;
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r4) {
-                            case 0:
-                                d1 d1Var22 = d1Var2;
-                                d1Var22.f12853b.a(0.0f);
-                                TLRPC.TL_error tL_error2 = tL_error;
-                                if (tL_error2 != null) {
-                                    xc.d0(tL_error2);
-                                    return;
-                                } else if (tLObject instanceof TLRPC.TL_boolFalse) {
-                                    nk.q(R.string.UnknownError, xc.a0(d1Var22), null);
-                                    return;
-                                } else {
-                                    d1Var22.finishFragment();
-                                    return;
-                                }
-                            default:
-                                d1 d1Var3 = d1Var2;
-                                TLRPC.TL_error tL_error3 = tL_error;
-                                if (tL_error3 != null) {
-                                    d1Var3.f12853b.a(0.0f);
-                                    xc.d0(tL_error3);
-                                    return;
-                                } else if (tLObject instanceof TLRPC.TL_boolFalse) {
-                                    d1Var3.f12853b.a(0.0f);
-                                    nk.q(R.string.UnknownError, xc.a0(d1Var3), null);
-                                    return;
-                                } else {
-                                    d1Var3.finishFragment();
-                                    return;
-                                }
-                        }
-                    }
-                });
+                super.dispatchDraw(canvas);
+                if (this.f13135c <= 0) {
+                    i12 = k6.f21404p7;
+                } else {
+                    i12 = k6.P5;
+                }
+                int a11 = this.d.a(k6.w0(i12, ((j9) this.f13136f).getResourceProvider()), false);
+                p6 p6Var3 = this.e;
+                p6Var3.u(a11);
+                int scrollX2 = getScrollX();
+                int dp2 = AndroidUtilities.dp(48.0f) + ((getWidth() + scrollX2) - getPaddingRight());
+                int height2 = getHeight() + getScrollY();
+                p6Var3.setBounds(dp2 - AndroidUtilities.dp(48.0f), height2 - Math.min(AndroidUtilities.dp(44.0f), getHeight()), dp2, height2);
+                p6Var3.draw(canvas);
                 return;
         }
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        String str;
+        String str2;
+        switch (this.f13134b) {
+            case 0:
+                super.onTextChanged(charSequence, i10, i11, i12);
+                p6 p6Var = this.e;
+                if (p6Var != null) {
+                    this.f13135c = 96 - charSequence.length();
+                    p6Var.a();
+                    String str3 = "";
+                    if (this.f13135c <= 12) {
+                        str3 = "" + this.f13135c;
+                    }
+                    p6Var.t(str3, true, true);
+                    return;
+                }
+                return;
+            case 1:
+                super.onTextChanged(charSequence, i10, i11, i12);
+                p6 p6Var2 = this.e;
+                if (p6Var2 != null) {
+                    this.f13135c = 960 - charSequence.toString().getBytes(StandardCharsets.UTF_8).length;
+                    p6Var2.a();
+                    int i13 = this.f13135c;
+                    if (i13 <= 100) {
+                        str = Integer.toString(i13);
+                    } else {
+                        str = "";
+                    }
+                    p6Var2.t(str, isAttachedToWindow(), true);
+                    invalidate();
+                    return;
+                }
+                return;
+            default:
+                super.onTextChanged(charSequence, i10, i11, i12);
+                p6 p6Var3 = this.e;
+                if (p6Var3 != null) {
+                    this.f13135c = 960 - charSequence.toString().getBytes(StandardCharsets.UTF_8).length;
+                    p6Var3.a();
+                    int i14 = this.f13135c;
+                    if (i14 <= 100) {
+                        str2 = Integer.toString(i14);
+                    } else {
+                        str2 = "";
+                    }
+                    p6Var3.t(str2, isAttachedToWindow(), true);
+                    invalidate();
+                    return;
+                }
+                return;
+        }
+    }
+
+    @Override
+    public final boolean verifyDrawable(Drawable drawable) {
+        switch (this.f13134b) {
+            case 0:
+                if (drawable != this.e && !super.verifyDrawable(drawable)) {
+                    return false;
+                }
+                return true;
+            case 1:
+                if (drawable != this.e && !super.verifyDrawable(drawable)) {
+                    return false;
+                }
+                return true;
+            default:
+                if (drawable != this.e && !super.verifyDrawable(drawable)) {
+                    return false;
+                }
+                return true;
+        }
+    }
+
+    public z0(al alVar, Context context) {
+        super(context);
+        this.f13136f = alVar;
+        this.f13135c = 960;
+        this.d = new i5(this);
+        p6 p6Var = new p6(false, true, true);
+        this.e = p6Var;
+        p6Var.n(0.2f, 160L, bs.h);
+        p6Var.w(AndroidUtilities.dp(15.33f));
+        p6Var.f29437b = 5;
+        p6Var.setCallback(this);
+    }
+
+    public z0(j9 j9Var, Activity activity) {
+        super(activity);
+        this.f13136f = j9Var;
+        this.f13135c = 960;
+        this.d = new i5(this);
+        p6 p6Var = new p6(false, true, true);
+        this.e = p6Var;
+        p6Var.n(0.2f, 160L, bs.h);
+        p6Var.w(AndroidUtilities.dp(15.33f));
+        p6Var.f29437b = 5;
+        p6Var.setCallback(this);
     }
 }

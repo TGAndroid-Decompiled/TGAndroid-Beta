@@ -1,181 +1,90 @@
 package org.telegram.ui;
 
-import android.os.Bundle;
+import android.graphics.PointF;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.SerializedData;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-public final class dd0 implements Runnable {
-    public final int f36337a = 0;
-    public final md0 f36338b;
-    public final TLRPC.TL_error f36339c;
-    public final TLObject d;
-    public final String e;
+public final class dd0 implements o1.g {
+    public final int f36598a;
+    public final Object f36599b;
 
-    public dd0(md0 md0Var, TLRPC.TL_error tL_error, String str, TLObject tLObject) {
-        this.f36338b = md0Var;
-        this.f36339c = tL_error;
-        this.e = str;
-        this.d = tLObject;
+    public dd0(Object obj, int i10) {
+        this.f36598a = i10;
+        this.f36599b = obj;
     }
 
     @Override
-    public final void run() {
-        int i10;
-        switch (this.f36337a) {
+    public final void a(o1.h hVar, float f7, float f10) {
+        int i10 = this.f36598a;
+        int i11 = 0;
+        Object obj = this.f36599b;
+        switch (i10) {
             case 0:
-                final md0 md0Var = this.f36338b;
-                id0 id0Var = md0Var.f39214a;
-                dg0 dg0Var = md0Var.W;
-                dg0Var.k1(false, true);
-                TLRPC.TL_error tL_error = this.f36339c;
-                String str = this.e;
-                if (tL_error == null) {
-                    md0Var.E = false;
-                    dg0Var.v1(false, true);
-                    final Bundle bundle = new Bundle();
-                    bundle.putString("phone", md0Var.I);
-                    bundle.putString("ephone", md0Var.J);
-                    bundle.putString("phoneFormated", md0Var.L);
-                    bundle.putString("phoneHash", md0Var.M);
-                    bundle.putString("code", str);
-                    TLObject tLObject = this.d;
-                    if (tLObject instanceof TLRPC.TL_auth_authorizationSignUpRequired) {
-                        TLRPC.TL_help_termsOfService tL_help_termsOfService = ((TLRPC.TL_auth_authorizationSignUpRequired) tLObject).terms_of_service;
-                        if (tL_help_termsOfService != null) {
-                            dg0Var.f36390p0 = tL_help_termsOfService;
-                        }
-                        md0Var.o(new Runnable() {
-                            @Override
-                            public final void run() {
-                                switch (r3) {
-                                    case 0:
-                                        md0Var.W.u1(5, true, bundle, false);
-                                        return;
-                                    default:
-                                        md0Var.W.u1(6, true, bundle, false);
-                                        return;
-                                }
-                            }
-                        });
-                    } else {
-                        md0Var.o(new jq(md0Var, tLObject, bundle, 27));
-                    }
-                } else if (tL_error.text.contains("SESSION_PASSWORD_NEEDED")) {
-                    TL_account.getPassword getpassword = new TL_account.getPassword();
-                    i10 = ((org.telegram.ui.ActionBar.n2) dg0Var).currentAccount;
-                    ConnectionsManager.getInstance(i10).sendRequest(getpassword, new bd0(md0Var, str, 1), 10);
-                } else {
-                    md0Var.E = false;
-                    dg0Var.v1(false, true);
-                    if (tL_error.text.contains("EMAIL_ADDRESS_INVALID")) {
-                        dg0Var.l1(LocaleController.getString(R.string.RestorePasswordNoEmailTitle), LocaleController.getString(R.string.EmailAddressInvalid));
-                    } else if (tL_error.text.contains("PHONE_NUMBER_INVALID")) {
-                        dg0Var.l1(LocaleController.getString(R.string.RestorePasswordNoEmailTitle), LocaleController.getString("InvalidPhoneNumber", R.string.InvalidPhoneNumber));
-                    } else if (!tL_error.text.contains("CODE_EMPTY") && !tL_error.text.contains("CODE_INVALID") && !tL_error.text.contains("EMAIL_CODE_INVALID") && !tL_error.text.contains("PHONE_CODE_INVALID")) {
-                        if (tL_error.text.contains("EMAIL_NOT_ALLOWED")) {
-                            dg0Var.l1(LocaleController.getString(R.string.RestorePasswordNoEmailTitle), LocaleController.getString(R.string.EmailNotAllowed));
-                        } else if (tL_error.text.contains("EMAIL_TOKEN_INVALID")) {
-                            dg0Var.l1(LocaleController.getString(R.string.RestorePasswordNoEmailTitle), LocaleController.getString(R.string.EmailTokenInvalid));
-                        } else if (tL_error.text.contains("EMAIL_VERIFY_EXPIRED")) {
-                            dg0Var.u1(0, true, null, true);
-                            dg0Var.l1(LocaleController.getString(R.string.RestorePasswordNoEmailTitle), LocaleController.getString("CodeExpired", R.string.CodeExpired));
-                        } else if (tL_error.text.startsWith("FLOOD_WAIT")) {
-                            dg0Var.l1(LocaleController.getString(R.string.RestorePasswordNoEmailTitle), LocaleController.getString("FloodWait", R.string.FloodWait));
-                        } else {
-                            dg0Var.l1(LocaleController.getString(R.string.RestorePasswordNoEmailTitle), LocaleController.getString("ErrorOccurred", R.string.ErrorOccurred) + "\n" + tL_error.text);
-                        }
-                    } else {
-                        ed0 ed0Var = md0Var.S;
-                        ld0 ld0Var = md0Var.Q;
-                        try {
-                            id0Var.performHapticFeedback(3, 2);
-                        } catch (Exception unused) {
-                        }
-                        int i11 = 0;
-                        while (true) {
-                            tr[] trVarArr = id0Var.f40963f;
-                            if (i11 < trVarArr.length) {
-                                trVarArr[i11].setText("");
-                                id0Var.f40963f[i11].i(1.0f);
-                                i11++;
-                            } else {
-                                if (ld0Var.getCurrentView() == md0Var.e) {
-                                    ld0Var.showNext();
-                                    AndroidUtilities.updateViewVisibilityAnimated(md0Var.h, false, 1.0f, true);
-                                }
-                                id0Var.f40963f[0].requestFocus();
-                                AndroidUtilities.shakeViewSpring(id0Var, 10.0f, new ed0(md0Var, 3));
-                                md0Var.removeCallbacks(ed0Var);
-                                md0Var.postDelayed(ed0Var, 5000L);
-                                md0Var.R = true;
-                            }
-                        }
-                    }
-                    if (id0Var.f40963f != null) {
-                        int i12 = 0;
-                        while (true) {
-                            tr[] trVarArr2 = id0Var.f40963f;
-                            if (i12 < trVarArr2.length) {
-                                trVarArr2[i12].setText("");
-                                i12++;
-                            } else {
-                                trVarArr2[0].requestFocus();
-                            }
-                        }
-                    }
-                    id0Var.e = false;
-                }
-                md0Var.F = null;
-                return;
-            default:
-                final md0 md0Var2 = this.f36338b;
-                md0Var2.E = false;
-                dg0 dg0Var2 = md0Var2.W;
-                dg0Var2.v1(false, true);
-                TLRPC.TL_error tL_error2 = this.f36339c;
-                if (tL_error2 == null) {
-                    TL_account.Password password = (TL_account.Password) this.d;
-                    if (!TwoStepVerificationActivity.i0(password, true)) {
-                        org.telegram.ui.Components.f5.w0(dg0Var2.getParentActivity(), LocaleController.getString("UpdateAppAlert", R.string.UpdateAppAlert), true);
-                        return;
-                    }
-                    final Bundle bundle2 = new Bundle();
-                    SerializedData serializedData = new SerializedData(password.getObjectSize());
-                    password.serializeToStream(serializedData);
-                    bundle2.putString("password", Utilities.bytesToHex(serializedData.toByteArray()));
-                    bundle2.putString("phoneFormated", md0Var2.L);
-                    bundle2.putString("phoneHash", md0Var2.M);
-                    bundle2.putString("code", this.e);
-                    md0Var2.o(new Runnable() {
-                        @Override
-                        public final void run() {
-                            switch (r3) {
-                                case 0:
-                                    md0Var2.W.u1(5, true, bundle2, false);
-                                    return;
-                                default:
-                                    md0Var2.W.u1(6, true, bundle2, false);
-                                    return;
-                            }
-                        }
-                    });
+                wf0 wf0Var = ((ig0) obj).f38195b0;
+                if (wf0Var != null) {
+                    int i12 = wf0.F;
+                    View view = wf0Var.f43354c;
+                    ViewGroup viewGroup = wf0Var.f43353b;
+                    PointF pointF = wf0Var.f43361y;
+                    ih.k.b(view, viewGroup, pointF);
+                    org.telegram.ui.Components.h20 h20Var = wf0Var.h;
+                    h20Var.setTranslationX(pointF.x);
+                    h20Var.setTranslationY(pointF.y);
+                    wf0Var.requestLayout();
                     return;
                 }
-                dg0Var2.l1(LocaleController.getString(R.string.RestorePasswordNoEmailTitle), tL_error2.text);
+                return;
+            case 1:
+                eo0 eo0Var = (eo0) obj;
+                float f11 = f7 / 100.0f;
+                eo0Var.f37005b = f11;
+                TextView textView = eo0Var.d.U;
+                if (textView != null) {
+                    textView.setAlpha((f11 * 0.2f) + 0.8f);
+                }
+                eo0Var.invalidate();
+                return;
+            case 2:
+                xt0 xt0Var = (xt0) obj;
+                xt0Var.f43645c0 = f7;
+                xt0Var.f43647e0 = f10;
+                xt0Var.G();
+                return;
+            case 3:
+                tu0 tu0Var = (tu0) obj;
+                if (tu0Var.e > tu0Var.f42079f) {
+                    i11 = AndroidUtilities.dp(48.0f);
+                }
+                org.telegram.ui.Components.l81 l81Var = tu0Var.f42082s.f33687q3;
+                int measuredWidth = (int) (((tu0Var.getMeasuredWidth() - AndroidUtilities.dp(16.0f)) - f7) - i11);
+                int measuredHeight = tu0Var.getMeasuredHeight();
+                l81Var.h = measuredWidth;
+                l81Var.f28283i = measuredHeight;
+                View view2 = l81Var.v;
+                if (view2 != null) {
+                    view2.invalidate();
+                    return;
+                }
+                return;
+            case 4:
+                b31 b31Var = (b31) obj;
+                b31Var.f35846y = f7 / 1000.0f;
+                b31Var.invalidate();
+                return;
+            default:
+                v31 v31Var = (v31) obj;
+                org.telegram.ui.Components.l81 l81Var2 = v31Var.f42592r.Q;
+                int measuredWidth2 = (int) (((v31Var.getMeasuredWidth() - AndroidUtilities.dp(16.0f)) - f7) - 0);
+                int measuredHeight2 = v31Var.getMeasuredHeight();
+                l81Var2.h = measuredWidth2;
+                l81Var2.f28283i = measuredHeight2;
+                View view3 = l81Var2.v;
+                if (view3 != null) {
+                    view3.invalidate();
+                    return;
+                }
                 return;
         }
-    }
-
-    public dd0(md0 md0Var, TLRPC.TL_error tL_error, TLObject tLObject, String str) {
-        this.f36338b = md0Var;
-        this.f36339c = tL_error;
-        this.d = tLObject;
-        this.e = str;
     }
 }

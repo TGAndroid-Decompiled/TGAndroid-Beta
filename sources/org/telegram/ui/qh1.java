@@ -1,43 +1,32 @@
 package org.telegram.ui;
 
-import android.widget.EditText;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class qh1 extends org.telegram.ui.ActionBar.g5 {
-    public final WallpapersListActivity f40588r;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.view.ViewGroup;
+import java.util.ArrayList;
+import org.telegram.ui.Components.ChatActivityEnterView;
+public final class qh1 extends AnimatorListenerAdapter {
+    public final org.telegram.ui.Cells.t1 f40813a;
+    public final org.telegram.ui.Components.si f40814b;
+    public final rh1 f40815c;
 
-    public qh1(WallpapersListActivity wallpapersListActivity) {
-        this.f40588r = wallpapersListActivity;
+    public qh1(rh1 rh1Var, org.telegram.ui.Cells.t1 t1Var, org.telegram.ui.Components.si siVar) {
+        this.f40815c = rh1Var;
+        this.f40813a = t1Var;
+        this.f40814b = siVar;
     }
 
     @Override
-    public final void k() {
-        WallpapersListActivity wallpapersListActivity = this.f40588r;
-        vh1 vh1Var = wallpapersListActivity.J;
-        vh1Var.f42266n = null;
-        vh1Var.E(null, true);
-        wallpapersListActivity.L.setSearchFieldHint(LocaleController.getString(R.string.SearchBackgrounds));
-    }
-
-    @Override
-    public final void m() {
-        WallpapersListActivity wallpapersListActivity = this.f40588r;
-        wallpapersListActivity.H.setAdapter(wallpapersListActivity.I);
-        wallpapersListActivity.H.invalidate();
-        wallpapersListActivity.J.E(null, true);
-        wallpapersListActivity.L.setSearchFieldCaption(null);
-        k();
-    }
-
-    @Override
-    public final void n() {
-        WallpapersListActivity wallpapersListActivity = this.f40588r;
-        wallpapersListActivity.H.setAdapter(wallpapersListActivity.J);
-        wallpapersListActivity.H.invalidate();
-    }
-
-    @Override
-    public final void q(EditText editText) {
-        this.f40588r.J.E(editText.getText().toString(), false);
+    public final void onAnimationEnd(Animator animator) {
+        this.f40813a.setEnterTransitionInProgress(false);
+        org.telegram.ui.Components.si siVar = this.f40814b;
+        rh1 rh1Var = this.f40815c;
+        ((ArrayList) siVar.f30498c).remove(rh1Var);
+        siVar.a();
+        ((ViewGroup) siVar.d).invalidate();
+        ChatActivityEnterView.RecordCircle recordCircle = rh1Var.f41147g;
+        if (recordCircle != null) {
+            recordCircle.N = false;
+        }
     }
 }

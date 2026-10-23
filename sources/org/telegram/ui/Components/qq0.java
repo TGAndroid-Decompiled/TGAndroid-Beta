@@ -1,49 +1,56 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.Path;
 import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-import org.telegram.messenger.AndroidUtilities;
-public final class qq0 extends Drawable {
-    public final Paint f29693a = new Paint(1);
-    public final Path f29694b = new Path();
-    public final fr0 f29695c;
+import android.view.MotionEvent;
+import android.view.View;
+public final class qq0 implements View.OnTouchListener {
+    public final int f29963a;
+    public final Rect f29964b;
+    public final ir0 f29965c;
 
-    public qq0(fr0 fr0Var) {
-        this.f29695c = fr0Var;
+    public qq0(ir0 ir0Var, int i10) {
+        this.f29963a = i10;
+        switch (i10) {
+            case 1:
+                this.f29965c = ir0Var;
+                this.f29964b = new Rect();
+                return;
+            default:
+                this.f29965c = ir0Var;
+                this.f29964b = new Rect();
+                return;
+        }
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        Rect bounds = getBounds();
-        float dp = AndroidUtilities.dp(25.0f);
-        fr0 fr0Var = this.f29695c;
-        float min = Math.min(bounds.top, fr0Var.f26383n - fr0Var.f26369b.getY());
-        int themedColor = fr0Var.getThemedColor(org.telegram.ui.ActionBar.h6.f21065h5);
-        Paint paint = this.f29693a;
-        paint.setColor(themedColor);
-        Path path = this.f29694b;
-        path.rewind();
-        path.addRoundRect(bounds.left, min, bounds.right, bounds.bottom + dp, dp, dp, Path.Direction.CW);
-        canvas.save();
-        canvas.clipRect(bounds);
-        canvas.drawPath(path, paint);
-        canvas.restore();
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -3;
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public final boolean onTouch(View view, MotionEvent motionEvent) {
+        ir0 ir0Var;
+        org.telegram.ui.ActionBar.m1 m1Var;
+        ir0 ir0Var2;
+        org.telegram.ui.ActionBar.m1 m1Var2;
+        switch (this.f29963a) {
+            case 0:
+                if (motionEvent.getActionMasked() == 0 && (m1Var = (ir0Var = this.f29965c).K0) != null && m1Var.isShowing()) {
+                    Rect rect = this.f29964b;
+                    view.getHitRect(rect);
+                    if (!rect.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
+                        ir0Var.K0.d(true);
+                        return false;
+                    }
+                    return false;
+                }
+                return false;
+            default:
+                if (motionEvent.getActionMasked() == 0 && (m1Var2 = (ir0Var2 = this.f29965c).K0) != null && m1Var2.isShowing()) {
+                    Rect rect2 = this.f29964b;
+                    view.getHitRect(rect2);
+                    if (!rect2.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
+                        ir0Var2.K0.d(true);
+                        return false;
+                    }
+                    return false;
+                }
+                return false;
+        }
     }
 }

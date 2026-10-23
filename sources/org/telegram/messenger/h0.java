@@ -1,149 +1,48 @@
 package org.telegram.messenger;
 
-import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
-import android.os.Bundle;
-import android.util.Pair;
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.atomic.AtomicInteger;
-import org.telegram.messenger.BirthdayController;
-import org.telegram.messenger.FileLoadOperation;
-import org.telegram.messenger.FilePathDatabase;
-import org.telegram.messenger.ImageLoader;
-import org.telegram.messenger.LocationController;
-import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.messenger.TelegramMediaSession;
-import org.telegram.messenger.TranslateController;
-import org.telegram.messenger.Utilities;
+import org.telegram.messenger.MessagesController;
+import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.Vector;
-import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.tgnet.tl.TL_update;
-public final class h0 implements Runnable {
-    public final int f18494a;
-    public final Object f18495b;
-    public final Object f18496c;
-    public final Object d;
+public final class h0 implements RequestDelegate {
+    public final int f18561a;
+    public final Object f18562b;
 
-    public h0(Object obj, Object obj2, Object obj3, int i10) {
-        this.f18494a = i10;
-        this.f18495b = obj;
-        this.f18496c = obj2;
-        this.d = obj3;
+    public h0(Object obj, int i10) {
+        this.f18561a = i10;
+        this.f18562b = obj;
     }
 
     @Override
-    public final void run() {
-        switch (this.f18494a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f18561a) {
             case 0:
-                BirthdayController.c((BirthdayController) this.f18495b, (BirthdayController.TL_birthdays) this.f18496c, (ArrayList) this.d);
+                BirthdayController.d((BirthdayController) this.f18562b, tLObject, tL_error);
                 return;
             case 1:
-                ((ImageLoader.AnonymousClass5) this.f18495b).lambda$fileLoadProgressChanged$7((String) this.f18496c, (FileLoadOperation) this.d);
+                ((DownloadController) this.f18562b).lambda$loadAutoDownloadConfig$2(tLObject, tL_error);
                 return;
             case 2:
-                ((ImageLoader.CacheOutTask) this.f18495b).lambda$onPostExecute$0((Drawable) this.f18496c, (String) this.d);
+                ((FileLoadOperation) this.f18562b).lambda$requestFileOffsets$22(tLObject, tL_error);
                 return;
             case 3:
-                ((SendMessagesHelper.ImportingHistory.AnonymousClass3) this.f18495b).lambda$run$0((TLRPC.TL_error) this.f18496c, (TLRPC.TL_messages_startHistoryImport) this.d);
+                MessagesController.lambda$unblockPeer$110((Runnable) this.f18562b, tLObject, tL_error);
                 return;
             case 4:
-                ((SendMessagesHelper.ImportingSticker.AnonymousClass1) this.f18495b).lambda$run$0((TLObject) this.f18496c, (Runnable) this.d);
+                MessagesController.lambda$checkIsInChat$476((MessagesController.IsInChatCheckedCallback) this.f18562b, tLObject, tL_error);
                 return;
             case 5:
-                ((TelegramMediaSession.SessionCallback) this.f18495b).lambda$onPlayFromMediaId$1((String) this.f18496c, (Bundle) this.d);
+                ((MessagesController.SavedMusicIds) this.f18562b).lambda$load$1(tLObject, tL_error);
                 return;
             case 6:
-                ((TranslateController) this.f18495b).lambda$detectStoryLanguage$33((TL_stories.StoryItem) this.f18496c, (TranslateController.StoryKey) this.d);
+                ((MessagesController.SavedMusicList) this.f18562b).lambda$load$1(tLObject, tL_error);
                 return;
             case 7:
-                AndroidUtilities.lambda$showProxyAlert$19((boolean[]) this.f18495b, (org.telegram.ui.Components.zc[]) this.f18496c, (qi.a) this.d);
-                return;
-            case 8:
-                ((BetaUpdaterController) this.f18495b).lambda$checkForUpdate$1((String) this.f18496c, (Runnable) this.d);
-                return;
-            case 9:
-                BillingController.lambda$launchBillingFlow$3((ArrayList) this.d, (AtomicInteger) this.f18495b, (b0) this.f18496c);
-                return;
-            case 10:
-                BillingController.lambda$onPurchasesUpdatedInternal$7((AccountInstance) this.f18495b, (TLRPC.TL_payments_assignPlayMarketTransaction) this.f18496c, (TL_update.TL_updateSentPhoneCode) this.d);
-                return;
-            case 11:
-                CacheFetcher.a((CacheFetcher) this.f18495b, (Pair) this.f18496c, (Utilities.Callback) this.d);
-                return;
-            case 12:
-                ChannelBoostsController.a((Utilities.Callback) this.f18496c, (TLObject) this.f18495b, (TLRPC.TL_error) this.d);
-                return;
-            case 13:
-                ChatThemeController.lambda$saveWallpaperPatternBitmap$12((File) this.f18495b, (List) this.f18496c, (Bitmap) this.d);
-                return;
-            case 14:
-                ((ContactsController) this.f18495b).lambda$addContact$51((TLRPC.Updates) this.f18496c, (TLRPC.User) this.d);
-                return;
-            case 15:
-                ((ContactsController) this.f18495b).lambda$reloadContactsStatuses$58((SharedPreferences.Editor) this.f18496c, (Vector) this.d);
-                return;
-            case 16:
-                ((ContactsController) this.f18495b).lambda$applyContactsUpdates$48((ArrayList) this.d, (ArrayList) this.f18496c);
-                return;
-            case 17:
-                ((DispatchQueuePoolBackground) this.f18495b).lambda$execute$1((Runnable) this.f18496c, (DispatchQueue) this.d);
-                return;
-            case 18:
-                ((DownloadController) this.f18495b).lambda$loadDownloadingFiles$10((ArrayList) this.d, (ArrayList) this.f18496c);
-                return;
-            case 19:
-                FactCheckController.lambda$getFromDatabase$5((MessagesStorage) this.f18495b, (ArrayList) this.d, (Utilities.Callback) this.f18496c);
-                return;
-            case 20:
-                ((FileLoadOperation) this.f18495b).lambda$getCurrentFile$4((File[]) this.f18496c, (CountDownLatch) this.d);
-                return;
-            case 21:
-                FileLoadOperation.lambda$cancelRequests$16((FileLoadOperation.RequestInfo) this.f18495b, (int[]) this.f18496c, (Runnable) this.d);
-                return;
-            case 22:
-                ((FileLoader) this.f18495b).lambda$setForceStreamLoadingFile$6((TLRPC.FileLocation) this.f18496c, (String) this.d);
-                return;
-            case 23:
-                ((FileLoader) this.f18495b).lambda$startVideoStream$15((TLRPC.Document) this.f18496c, this.d);
-                return;
-            case 24:
-                ((FileLoader) this.f18495b).lambda$checkDownloadQueue$17((FileLoaderPriorityQueue) this.f18496c, (FileLoadOperation) this.d);
-                return;
-            case 25:
-                ((FilePathDatabase) this.f18495b).lambda$saveFileDialogId$5((File) this.f18496c, (FilePathDatabase.FileMeta) this.d);
-                return;
-            case 26:
-                LocaleController.lambda$applyRemoteLanguage$13((int[]) this.f18495b, (int[]) this.f18496c, (Runnable) this.d);
-                return;
-            case 27:
-                ((LocationController) this.f18495b).lambda$addSharingLocation$11((LocationController.SharingLocationInfo) this.f18496c, (LocationController.SharingLocationInfo) this.d);
-                return;
-            case 28:
-                ((MediaDataController) this.f18495b).lambda$saveToRingtones$204((TLObject) this.f18496c, (TLRPC.Document) this.d);
+                ((TopicsController) this.f18562b).lambda$toggleViewForumAsMessages$18(tLObject, tL_error);
                 return;
             default:
-                ((MediaDataController) this.f18495b).lambda$processLoadedDiceStickers$88((String) this.f18496c, (TLRPC.TL_messages_stickerSet) this.d);
+                ((UserConfig) this.f18562b).lambda$loadGlobalTTl$4(tLObject, tL_error);
                 return;
         }
-    }
-
-    public h0(ArrayList arrayList, AtomicInteger atomicInteger, b0 b0Var) {
-        this.f18494a = 9;
-        this.d = arrayList;
-        this.f18495b = atomicInteger;
-        this.f18496c = b0Var;
-    }
-
-    public h0(BaseController baseController, ArrayList arrayList, Object obj, int i10) {
-        this.f18494a = i10;
-        this.f18495b = baseController;
-        this.d = arrayList;
-        this.f18496c = obj;
     }
 }

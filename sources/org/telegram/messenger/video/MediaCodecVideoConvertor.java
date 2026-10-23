@@ -5,6 +5,7 @@ import android.media.MediaExtractor;
 import android.media.MediaFormat;
 import android.media.MediaMuxer;
 import android.os.Build;
+import com.google.android.gms.internal.play_billing.k3;
 import ei.t;
 import ei.z7;
 import java.io.File;
@@ -147,8 +148,8 @@ public class MediaCodecVideoConvertor {
                 MixedSoundInfo mixedSoundInfo = arrayList.get(i10);
                 try {
                     bg.c cVar = new bg.c(mixedSoundInfo.audioFile);
-                    AudioDecoder audioDecoder = cVar.f4347b;
-                    cVar.f4344a = Math.max(0.0f, Math.min(mixedSoundInfo.volume, 1.0f));
+                    AudioDecoder audioDecoder = cVar.f4354b;
+                    cVar.f4351a = Math.max(0.0f, Math.min(mixedSoundInfo.volume, 1.0f));
                     long j10 = mixedSoundInfo.startTime;
                     int i11 = (j10 > 0L ? 1 : (j10 == 0L ? 0 : -1));
                     if (i11 > 0) {
@@ -246,22 +247,22 @@ public class MediaCodecVideoConvertor {
         if ((min2 & 1) == 0) {
             f16 += 0.01f;
         }
-        StringBuilder m10 = i2.e.m("source size ", i10, "x", i11, "    dest size ");
-        i2.e.w(m10, i12, "x", i13, "   rotated ");
-        m10.append(z11);
-        m10.append("   ratio ");
-        m10.append(f10);
-        m10.append("x");
-        m10.append(f12);
-        m10.append("   samples ");
-        m10.append(min);
-        m10.append("x");
-        m10.append(min2);
-        m10.append("   kernel scale ");
-        m10.append(f13);
-        m10.append("x");
-        m10.append(f14);
-        FileLog.d(m10.toString());
+        StringBuilder k10 = k3.k("source size ", i10, "x", i11, "    dest size ");
+        k3.r(k10, i12, "x", i13, "   rotated ");
+        k10.append(z11);
+        k10.append("   ratio ");
+        k10.append(f10);
+        k10.append("x");
+        k10.append(f12);
+        k10.append("   samples ");
+        k10.append(min);
+        k10.append("x");
+        k10.append(min2);
+        k10.append("   kernel scale ");
+        k10.append(f13);
+        k10.append("x");
+        k10.append(f14);
+        FileLog.d(k10.toString());
         String glslFloat = glslFloat(f15);
         String glslFloat2 = glslFloat(f16);
         String glslFloat3 = glslFloat(f13);
@@ -408,22 +409,22 @@ public class MediaCodecVideoConvertor {
         if ((min2 & 1) == 0) {
             f16 += 0.01f;
         }
-        StringBuilder m10 = i2.e.m("HDR source size ", i10, "x", i11, "    dest size ");
-        i2.e.w(m10, i12, "x", i13, "   rotated ");
-        m10.append(z11);
-        m10.append("   ratio ");
-        m10.append(f10);
-        m10.append("x");
-        m10.append(f12);
-        m10.append("   samples ");
-        m10.append(min);
-        m10.append("x");
-        m10.append(min2);
-        m10.append("   kernel scale ");
-        m10.append(f13);
-        m10.append("x");
-        m10.append(f14);
-        FileLog.d(m10.toString());
+        StringBuilder k10 = k3.k("HDR source size ", i10, "x", i11, "    dest size ");
+        k3.r(k10, i12, "x", i13, "   rotated ");
+        k10.append(z11);
+        k10.append("   ratio ");
+        k10.append(f10);
+        k10.append("x");
+        k10.append(f12);
+        k10.append("   samples ");
+        k10.append(min);
+        k10.append("x");
+        k10.append(min2);
+        k10.append("   kernel scale ");
+        k10.append(f13);
+        k10.append("x");
+        k10.append(f14);
+        FileLog.d(k10.toString());
         String glslFloat = glslFloat(f15);
         String glslFloat2 = glslFloat(f16);
         String glslFloat3 = glslFloat(f13);

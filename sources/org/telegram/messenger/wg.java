@@ -6,11 +6,11 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
 import org.telegram.tgnet.tl.TL_iv;
-public final class wg implements Vector.TLDeserializer, org.telegram.ui.ActionBar.a2 {
-    public final int f20009a;
+public final class wg implements Vector.TLDeserializer, org.telegram.ui.ActionBar.z1 {
+    public final int f20074a;
 
     public wg(int i10) {
-        this.f20009a = i10;
+        this.f20074a = i10;
     }
 
     public static NotificationChannel a(Object obj) {
@@ -19,7 +19,7 @@ public final class wg implements Vector.TLDeserializer, org.telegram.ui.ActionBa
 
     @Override
     public TLObject deserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
-        switch (this.f20009a) {
+        switch (this.f20074a) {
             case 2:
                 return TL_iv.RichText.TLdeserialize(inputSerializedData, i10, z10);
             default:
@@ -28,7 +28,7 @@ public final class wg implements Vector.TLDeserializer, org.telegram.ui.ActionBa
     }
 
     @Override
-    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        SharedConfig.lambda$checkSdCard$1(b2Var, i10);
+    public void g(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
+        SharedConfig.lambda$checkSdCard$1(c2Var, i10);
     }
 }

@@ -8,27 +8,27 @@ import org.telegram.messenger.MessagesStorage;
 import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.tl.TL_stars;
 public final class h9 implements Runnable {
-    public final int f1430a;
-    public final MessagesStorage f1431b;
-    public final int f1432c;
+    public final int f1410a;
+    public final MessagesStorage f1411b;
+    public final int f1412c;
     public final ArrayList d;
     public final long e;
 
     public h9(int i10, int i11, long j10, ArrayList arrayList, MessagesStorage messagesStorage) {
-        this.f1430a = i11;
-        this.f1431b = messagesStorage;
-        this.f1432c = i10;
+        this.f1410a = i11;
+        this.f1411b = messagesStorage;
+        this.f1412c = i10;
         this.d = arrayList;
         this.e = j10;
     }
 
     @Override
     public final void run() {
-        switch (this.f1430a) {
+        switch (this.f1410a) {
             case 0:
-                int i10 = this.f1432c;
+                int i10 = this.f1412c;
                 long j10 = this.e;
-                SQLiteDatabase database = this.f1431b.getDatabase();
+                SQLiteDatabase database = this.f1411b.getDatabase();
                 SQLitePreparedStatement sQLitePreparedStatement = null;
                 try {
                     try {
@@ -39,7 +39,7 @@ public final class h9 implements Runnable {
                             for (int i11 = 0; i11 < arrayList.size(); i11++) {
                                 TL_stars.StarGift starGift = (TL_stars.StarGift) arrayList.get(i11);
                                 sQLitePreparedStatement.requery();
-                                sQLitePreparedStatement.bindLong(1, starGift.f20504id);
+                                sQLitePreparedStatement.bindLong(1, starGift.f20567id);
                                 NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(starGift.getObjectSize());
                                 starGift.serializeToStream(nativeByteBuffer);
                                 sQLitePreparedStatement.bindByteBuffer(2, nativeByteBuffer);
@@ -68,19 +68,19 @@ public final class h9 implements Runnable {
                     throw th2;
                 }
             case 1:
-                this.f1431b.lambda$loadPendingTasks$27(this.f1432c, this.d, this.e);
+                this.f1411b.lambda$loadPendingTasks$27(this.f1412c, this.d, this.e);
                 return;
             default:
-                this.f1431b.lambda$loadPendingTasks$28(this.f1432c, this.d, this.e);
+                this.f1411b.lambda$loadPendingTasks$28(this.f1412c, this.d, this.e);
                 return;
         }
     }
 
     public h9(MessagesStorage messagesStorage, long j10, ArrayList arrayList, int i10) {
-        this.f1430a = 0;
-        this.f1431b = messagesStorage;
+        this.f1410a = 0;
+        this.f1411b = messagesStorage;
         this.d = arrayList;
-        this.f1432c = i10;
+        this.f1412c = i10;
         this.e = j10;
     }
 }

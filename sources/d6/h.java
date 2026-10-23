@@ -10,11 +10,11 @@ public interface h {
 
     void p(f fVar);
 
-    void q(f fVar, int i10);
+    void r(f fVar, int i10);
 
-    void r(f fVar);
+    void u(f fVar);
 
-    void v(f fVar, String str);
+    void w(f fVar, String str);
 
-    void w(f fVar, int i10);
+    void z(f fVar, int i10);
 }

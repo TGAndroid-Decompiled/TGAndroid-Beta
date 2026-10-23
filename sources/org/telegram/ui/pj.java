@@ -5,18 +5,18 @@ import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
 public final class pj extends li.m {
     public Runnable W;
-    public final qn X;
+    public final sn X;
 
-    public pj(qn qnVar, qn qnVar2, nj njVar, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(qnVar2, njVar, d6Var);
-        this.X = qnVar;
+    public pj(sn snVar, sn snVar2, nj njVar, org.telegram.ui.ActionBar.g6 g6Var) {
+        super(snVar2, njVar, g6Var);
+        this.X = snVar;
     }
 
     @Override
     public final void F() {
-        qn qnVar = this.X;
-        if (qnVar.H9 == -1) {
-            qnVar.H9 = qnVar.getNotificationCenter().setAnimationInProgress(qnVar.H9, qn.Oc, false);
+        sn snVar = this.X;
+        if (snVar.T9 == -1) {
+            snVar.T9 = snVar.getNotificationCenter().setAnimationInProgress(snVar.T9, sn.f41445bd, false);
         }
     }
 
@@ -35,8 +35,8 @@ public final class pj extends li.m {
 
     @Override
     public final void W() {
-        qn qnVar = this.X;
-        qnVar.H9 = qnVar.getNotificationCenter().setAnimationInProgress(qnVar.H9, qn.Oc, false);
+        sn snVar = this.X;
+        snVar.T9 = snVar.getNotificationCenter().setAnimationInProgress(snVar.T9, sn.f41445bd, false);
         Runnable runnable = this.W;
         if (runnable != null) {
             AndroidUtilities.cancelRunOnUIThread(runnable);
@@ -45,10 +45,10 @@ public final class pj extends li.m {
         if (BuildVars.LOGS_ENABLED) {
             FileLog.d("chatItemAnimator disable notifications");
         }
-        org.telegram.ui.ActionBar.v2 v2Var = qnVar.Y.getAdjustPanLayoutHelper().h;
-        AndroidUtilities.cancelRunOnUIThread(v2Var);
-        v2Var.run();
-        org.telegram.ui.Components.af afVar = qnVar.Y.Y3;
+        org.telegram.ui.ActionBar.w2 w2Var = snVar.Y.getAdjustPanLayoutHelper().h;
+        AndroidUtilities.cancelRunOnUIThread(w2Var);
+        w2Var.run();
+        org.telegram.ui.Components.af afVar = snVar.Y.Y3;
         AndroidUtilities.cancelRunOnUIThread(afVar);
         afVar.run();
     }

@@ -8,22 +8,22 @@ import org.telegram.messenger.R;
 public final class ll extends hg.t0 {
     public final rl N;
 
-    public ll(rl rlVar, Context context, org.telegram.ui.ActionBar.d6 d6Var, boolean z10) {
-        super(context, d6Var, z10, false);
+    public ll(rl rlVar, Context context, org.telegram.ui.ActionBar.g6 g6Var, boolean z10) {
+        super(context, g6Var, z10, false);
         this.N = rlVar;
     }
 
     @Override
     public final void l() {
         rl rlVar = this.N;
-        ll llVar = rlVar.R;
-        org.telegram.ui.ActionBar.u0 u0Var = rlVar.E;
+        ll llVar = rlVar.P;
+        org.telegram.ui.ActionBar.u0 u0Var = rlVar.f30216x;
         if (u0Var != null) {
             u0Var.setShowSearchProgress(llVar.J);
         }
-        TextView textView = rlVar.f29979y;
+        TextView textView = rlVar.f30214w;
         if (textView != null) {
-            textView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("NoPlacesFoundInfo", R.string.NoPlacesFoundInfo, llVar.f11820x)));
+            textView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("NoPlacesFoundInfo", R.string.NoPlacesFoundInfo, llVar.f11847x)));
         }
         super.l();
     }

@@ -2,10 +2,12 @@ package org.webrtc;
 
 import android.hardware.Camera;
 import android.os.SystemClock;
+import i2.o1;
 import java.util.ArrayList;
 import java.util.List;
 import org.webrtc.CameraEnumerationAndroid;
 import org.webrtc.CameraVideoCapturer;
+import si.o0;
 public class Camera1Enumerator implements CameraEnumerator {
     private static final String TAG = "Camera1Enumerator";
     private static List<List<CameraEnumerationAndroid.CaptureFormat>> cachedSupportedFormats;
@@ -60,10 +62,10 @@ public class Camera1Enumerator implements CameraEnumerator {
                     Logging.e("Camera1Enumerator", "getSupportedFormats() failed on camera index " + i10, e);
                 }
                 long elapsedRealtime2 = SystemClock.elapsedRealtime();
-                StringBuilder l4 = i2.e.l(i10, "Get supported formats for camera index ", " done. Time spent: ");
-                l4.append(elapsedRealtime2 - elapsedRealtime);
-                l4.append(" ms.");
-                Logging.d("Camera1Enumerator", l4.toString());
+                StringBuilder n10 = o1.n(i10, "Get supported formats for camera index ", " done. Time spent: ");
+                n10.append(elapsedRealtime2 - elapsedRealtime);
+                n10.append(" ms.");
+                Logging.d("Camera1Enumerator", n10.toString());
                 return arrayList;
             } catch (RuntimeException e7) {
                 Logging.e("Camera1Enumerator", "Open camera failed on camera index " + i10, e7);
@@ -88,7 +90,7 @@ public class Camera1Enumerator implements CameraEnumerator {
                 return i10;
             }
         }
-        throw new IllegalArgumentException(r4.c.h("No such camera: ", str));
+        throw new IllegalArgumentException(o0.h("No such camera: ", str));
     }
 
     private static Camera.CameraInfo getCameraInfo(int i10) {

@@ -1,69 +1,29 @@
 package org.telegram.ui.Components;
 
-import android.content.DialogInterface;
 import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class b1 implements DialogInterface.OnDismissListener {
-    public final int f24769a;
-    public final Object f24770b;
+public final class b1 implements View.OnClickListener {
+    public final int f24914a;
+    public final org.telegram.ui.Cells.z1[] f24915b;
 
-    public b1(Object obj, int i10) {
-        this.f24769a = i10;
-        this.f24770b = obj;
+    public b1(org.telegram.ui.Cells.z1[] z1VarArr, int i10) {
+        this.f24914a = i10;
+        this.f24915b = z1VarArr;
     }
 
     @Override
-    public final void onDismiss(DialogInterface dialogInterface) {
-        int i10 = this.f24769a;
-        Object obj = this.f24770b;
-        switch (i10) {
+    public final void onClick(View view) {
+        switch (this.f24914a) {
             case 0:
-                ((org.telegram.ui.kg) obj).run();
-                return;
-            case 1:
-                AndroidUtilities.hideKeyboard((EditTextBoldCursor) obj);
-                return;
-            case 2:
-                AndroidUtilities.hideKeyboard((g4) obj);
-                return;
-            case 3:
-                ((ChatActivityEnterView) obj).L0 = null;
-                return;
-            case 4:
-                ((ti) obj).C2 = false;
-                return;
-            case 5:
-                al alVar = (al) obj;
-                alVar.Q0 = null;
-                alVar.P.post(new uk(alVar, 2));
-                return;
-            case 6:
-                iu.i((iu) obj);
-                return;
-            case 7:
-                float[] fArr = FragmentContextView.Q0;
-                ((FragmentContextView) obj).c(false);
-                return;
-            case 8:
-                go0.H = null;
-                ((View) obj).requestFocus();
-                return;
-            case 9:
-                AndroidUtilities.hideKeyboard((ao0) obj);
+                Integer num = (Integer) view.getTag();
+                int intValue = num.intValue();
+                org.telegram.ui.Cells.z1[] z1VarArr = this.f24915b;
+                z1VarArr[intValue].c(!z1VarArr[num.intValue()].b(), true);
                 return;
             default:
-                ThemeEditorView themeEditorView = ((w11) obj).d;
-                themeEditorView.f24399l = null;
-                if (themeEditorView.f24392b != null) {
-                    AndroidUtilities.setPreferredMaxRefreshRate(themeEditorView.h, themeEditorView.f24391a, themeEditorView.f24395g);
-                    try {
-                        themeEditorView.h.addView(themeEditorView.f24391a, themeEditorView.f24395g);
-                        themeEditorView.d();
-                        return;
-                    } catch (Exception unused) {
-                        return;
-                    }
-                }
+                Integer num2 = (Integer) view.getTag();
+                int intValue2 = num2.intValue();
+                org.telegram.ui.Cells.z1[] z1VarArr2 = this.f24915b;
+                z1VarArr2[intValue2].c(!z1VarArr2[num2.intValue()].b(), true);
                 return;
         }
     }

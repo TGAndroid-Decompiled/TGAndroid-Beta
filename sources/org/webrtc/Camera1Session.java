@@ -5,6 +5,7 @@ import android.hardware.Camera;
 import android.os.Handler;
 import android.os.SystemClock;
 import ci.h1;
+import i2.o1;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.List;
@@ -211,18 +212,18 @@ public class Camera1Session implements CameraSession {
 
             @Override
             public void onError(int i10, Camera camera) {
-                String j10;
+                String k10;
                 if (i10 == 100) {
-                    j10 = "Camera server died!";
+                    k10 = "Camera server died!";
                 } else {
-                    j10 = i2.e.j(i10, "Camera error: ");
+                    k10 = o1.k(i10, "Camera error: ");
                 }
-                Logging.e("Camera1Session", j10);
+                Logging.e("Camera1Session", k10);
                 Camera1Session.this.stopInternal();
                 if (i10 == 2) {
                     Camera1Session.this.events.onCameraDisconnected(Camera1Session.this);
                 } else {
-                    Camera1Session.this.events.onCameraError(Camera1Session.this, j10);
+                    Camera1Session.this.events.onCameraError(Camera1Session.this, k10);
                 }
             }
         });

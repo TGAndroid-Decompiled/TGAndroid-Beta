@@ -11,23 +11,23 @@ import android.view.accessibility.AccessibilityManager;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.view.accessibility.AccessibilityNodeProvider;
 import android.widget.Button;
-import org.telegram.ui.fh1;
+import org.telegram.ui.mh1;
 public abstract class c extends AccessibilityNodeProvider {
-    public final e f31366a;
+    public final e f31547a;
     public final AccessibilityManager d;
-    public final Rect f31368c = new Rect();
+    public final Rect f31549c = new Rect();
     public int e = -1;
-    public final int f31367b = 2;
+    public final int f31548b = 2;
 
     public c(e eVar) {
-        this.f31366a = eVar;
+        this.f31547a = eVar;
         this.d = (AccessibilityManager) eVar.getContext().getSystemService(AccessibilityManager.class);
     }
 
     public final void a(int i10) {
         View view;
         ViewParent parent;
-        if (this.d.isTouchExplorationEnabled() && (parent = (view = this.f31366a).getParent()) != null) {
+        if (this.d.isTouchExplorationEnabled() && (parent = (view = this.f31547a).getParent()) != null) {
             AccessibilityEvent obtain = AccessibilityEvent.obtain(32768);
             obtain.setPackageName(view.getContext().getPackageName());
             obtain.setSource(view, i10);
@@ -39,11 +39,11 @@ public abstract class c extends AccessibilityNodeProvider {
     public final AccessibilityNodeInfo createAccessibilityNodeInfo(int i10) {
         StaticLayout staticLayout;
         CharSequence text;
-        e eVar = this.f31366a;
+        e eVar = this.f31547a;
         if (i10 == -1) {
             AccessibilityNodeInfo obtain = AccessibilityNodeInfo.obtain(eVar);
             obtain.setPackageName(eVar.getContext().getPackageName());
-            for (int i11 = 0; i11 < this.f31367b; i11++) {
+            for (int i11 = 0; i11 < this.f31548b; i11++) {
                 obtain.addChild(eVar, i11);
             }
             return obtain;
@@ -53,7 +53,7 @@ public abstract class c extends AccessibilityNodeProvider {
         int i12 = Build.VERSION.SDK_INT;
         obtain2.addAction(AccessibilityNodeInfo.AccessibilityAction.ACTION_CLICK);
         b bVar = (b) this;
-        e eVar2 = bVar.f31348g;
+        e eVar2 = bVar.f31529g;
         if (i10 == 0) {
             if (eVar2.R) {
                 StaticLayout staticLayout2 = eVar2.h;
@@ -69,7 +69,7 @@ public abstract class c extends AccessibilityNodeProvider {
                 text = null;
             }
         } else {
-            if (i10 == 1 && (staticLayout = eVar2.f31392f) != null) {
+            if (i10 == 1 && (staticLayout = eVar2.f31573f) != null) {
                 text = staticLayout.getText();
             }
             text = null;
@@ -83,7 +83,7 @@ public abstract class c extends AccessibilityNodeProvider {
         obtain2.setClickable(true);
         obtain2.setEnabled(true);
         obtain2.setParent(eVar);
-        Rect rect = this.f31368c;
+        Rect rect = this.f31549c;
         if (i10 == 0) {
             rect.set(eVar2.M);
         } else if (i10 == 1) {
@@ -91,7 +91,7 @@ public abstract class c extends AccessibilityNodeProvider {
         } else {
             rect.setEmpty();
         }
-        int[] iArr = bVar.f31347f;
+        int[] iArr = bVar.f31528f;
         eVar2.getLocationOnScreen(iArr);
         rect.offset(iArr[0], iArr[1]);
         obtain2.setBoundsInScreen(rect);
@@ -101,19 +101,19 @@ public abstract class c extends AccessibilityNodeProvider {
     @Override
     public final boolean performAction(int i10, int i11, Bundle bundle) {
         if (i10 == -1) {
-            return this.f31366a.performAccessibilityAction(i11, bundle);
+            return this.f31547a.performAccessibilityAction(i11, bundle);
         }
         if (i11 == 64) {
             a(i10);
             return false;
         } else if (i11 == 16) {
-            d dVar = ((b) this).f31348g.Q;
+            d dVar = ((b) this).f31529g.Q;
             if (dVar != null) {
                 if (i10 == 0) {
-                    ((fh1) dVar).a();
+                    ((mh1) dVar).a();
                     return true;
                 } else if (i10 == 1) {
-                    ((fh1) dVar).b();
+                    ((mh1) dVar).b();
                 }
             }
             return true;

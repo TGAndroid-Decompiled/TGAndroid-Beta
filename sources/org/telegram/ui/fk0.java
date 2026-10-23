@@ -1,139 +1,133 @@
 package org.telegram.ui;
 
-import android.graphics.Typeface;
-import android.graphics.drawable.Drawable;
-import android.media.AudioRecordingConfiguration;
-import android.media.MediaRoute2Info;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
+import android.content.Context;
+import android.view.View;
+import android.view.ViewGroup;
+import java.util.ArrayList;
+import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.Utilities;
-public final class fk0 implements org.telegram.ui.ActionBar.a2, org.telegram.ui.Components.kd0, Utilities.Callback2Return, org.telegram.ui.Components.ow0, q3.g, g2.g, qg.k0 {
-    public final int f37030a;
+import org.telegram.tgnet.TLObject;
+public final class fk0 extends org.telegram.ui.Components.lm0 {
+    public final Context f37366c;
+    public ArrayList d = new ArrayList();
+    public ArrayList e = new ArrayList();
+    public ek0 f37367f;
+    public final hg.a2 h;
+    public final NotificationsCustomSettingsActivity f37368n;
 
-    public fk0(int i10) {
-        this.f37030a = i10;
-    }
-
-    public static AudioRecordingConfiguration c(Object obj) {
-        return (AudioRecordingConfiguration) obj;
-    }
-
-    public static MediaRoute2Info d(Object obj) {
-        return (MediaRoute2Info) obj;
-    }
-
-    @Override
-    public Typeface a() {
-        switch (this.f37030a) {
-            case 25:
-                return AndroidUtilities.getTypeface("fonts/rmedium.ttf");
-            case 26:
-                return AndroidUtilities.getTypeface("fonts/rmediumitalic.ttf");
-            case 27:
-                return Typeface.create("serif", 1);
-            case 28:
-                return AndroidUtilities.getTypeface("fonts/rcondensedbold.ttf");
-            default:
-                return AndroidUtilities.getTypeface("fonts/rmono.ttf");
-        }
+    public fk0(NotificationsCustomSettingsActivity notificationsCustomSettingsActivity, Context context) {
+        this.f37368n = notificationsCustomSettingsActivity;
+        this.f37366c = context;
+        hg.a2 a2Var = new hg.a2(true);
+        this.h = a2Var;
+        a2Var.f11819a = new xt(this, 24);
     }
 
     @Override
-    public boolean b(int i10, int i11, int i12, int i13, int i14) {
-        return false;
+    public final boolean D(s4.b1 b1Var) {
+        return true;
+    }
+
+    public final Object E(int i10) {
+        if (i10 >= 0 && i10 < this.d.size()) {
+            return this.d.get(i10);
+        }
+        int g10 = com.google.android.gms.internal.play_billing.k3.g(1, i10, this.d);
+        hg.a2 a2Var = this.h;
+        ArrayList arrayList = a2Var.e;
+        if (g10 >= 0 && g10 < arrayList.size()) {
+            return a2Var.e.get(g10);
+        }
+        return null;
+    }
+
+    public final void F(String str) {
+        if (this.f37367f != null) {
+            Utilities.searchQueue.cancelRunnable(this.f37367f);
+            this.f37367f = null;
+        }
+        if (str == null) {
+            this.d.clear();
+            this.e.clear();
+            this.h.f(null, null);
+            hg.a2 a2Var = this.h;
+            int i10 = this.f37368n.f33513s;
+            boolean z10 = true;
+            a2Var.g(null, true, (i10 == 1 || i10 == 3) ? false : false, true, false, 0L, false, 0, 0);
+            l();
+            return;
+        }
+        DispatchQueue dispatchQueue = Utilities.searchQueue;
+        ek0 ek0Var = new ek0(this, str, 0);
+        this.f37367f = ek0Var;
+        dispatchQueue.postRunnable(ek0Var, 300L);
     }
 
     @Override
-    public g2.h createDataSource() {
-        return new g2.b(ApplicationLoader.applicationContext);
+    public final int h() {
+        int size = this.d.size();
+        ArrayList arrayList = this.h.e;
+        if (!arrayList.isEmpty()) {
+            return arrayList.size() + 1 + size;
+        }
+        return size;
     }
 
     @Override
-    public String e(int i10) {
-        if (i10 == 0) {
-            return LocaleController.getString(R.string.AutoLockDisabled);
+    public final int j(int i10) {
+        if (i10 == this.d.size()) {
+            return 1;
         }
-        if (i10 == 1) {
-            return LocaleController.formatString("AutoLockInTime", R.string.AutoLockInTime, LocaleController.formatPluralString("Minutes", 1, new Object[0]));
-        }
-        if (i10 == 2) {
-            return LocaleController.formatString("AutoLockInTime", R.string.AutoLockInTime, LocaleController.formatPluralString("Minutes", 5, new Object[0]));
-        }
-        if (i10 == 3) {
-            return LocaleController.formatString("AutoLockInTime", R.string.AutoLockInTime, LocaleController.formatPluralString("Hours", 1, new Object[0]));
-        }
-        if (i10 == 4) {
-            return LocaleController.formatString("AutoLockInTime", R.string.AutoLockInTime, LocaleController.formatPluralString("Hours", 5, new Object[0]));
-        }
-        return "";
+        return 0;
     }
 
     @Override
-    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f37030a) {
-            case 0:
-                b2Var.dismiss();
+    public final void v(s4.b1 b1Var, int i10) {
+        int i11 = b1Var.f46346f;
+        View view = b1Var.f46343a;
+        boolean z10 = true;
+        if (i11 != 0) {
+            if (i11 != 1) {
                 return;
-            case 1:
-            case 5:
-            case 8:
-            case 9:
-            case 10:
-            case 11:
-            case 12:
-            case 14:
-            default:
-                b2Var.dismiss();
-                return;
-            case 2:
-                Drawable[] drawableArr = PhotoViewer.U8;
-                return;
-            case 3:
-                b2Var.dismiss();
-                return;
-            case 4:
-                b2Var.dismiss();
-                return;
-            case 6:
-                b2Var.dismiss();
-                return;
-            case 7:
-                b2Var.dismiss();
-                return;
-            case 13:
-                b2Var.dismiss();
-                return;
-            case 15:
-                b2Var.dismiss();
-                return;
-            case 16:
-                b2Var.dismiss();
-                return;
-            case 17:
-                b2Var.dismiss();
-                return;
+            }
+            ((org.telegram.ui.Cells.u3) view).setText(LocaleController.getString("AddToExceptions", R.string.AddToExceptions));
+            return;
         }
-    }
-
-    @Override
-    public void h(int i10) {
-        SharedConfig.proxyRotationTimeout = i10;
-        SharedConfig.saveConfig();
-    }
-
-    @Override
-    public Object run(Object obj, Object obj2) {
-        Integer num = (Integer) obj2;
-        if (((Integer) obj).intValue() == 0) {
-            return ai.md.Y0(false, LocaleController.formatPluralStringComma("Stars", num.intValue()), 0.66f, null);
+        org.telegram.ui.Cells.wa waVar = (org.telegram.ui.Cells.wa) view;
+        boolean z11 = false;
+        if (i10 < this.d.size()) {
+            ik0 ik0Var = (ik0) this.d.get(i10);
+            CharSequence charSequence = (CharSequence) this.e.get(i10);
+            if (i10 == this.d.size() - 1) {
+                z10 = false;
+            }
+            waVar.f(ik0Var, charSequence, z10);
+            waVar.setAddButtonVisible(false);
+            return;
         }
-        return LocaleController.formatNumber(num.intValue(), ',');
+        int g10 = com.google.android.gms.internal.play_billing.k3.g(1, i10, this.d);
+        ArrayList arrayList = this.h.e;
+        TLObject tLObject = (TLObject) arrayList.get(g10);
+        String string = LocaleController.getString("NotificationsOn", R.string.NotificationsOn);
+        if (g10 != arrayList.size() - 1) {
+            z11 = true;
+        }
+        waVar.d(tLObject, null, string, z11);
+        waVar.setAddButtonVisible(true);
     }
 
     @Override
-    public void m() {
+    public final s4.b1 x(ViewGroup viewGroup, int i10) {
+        View waVar;
+        if (i10 != 0) {
+            waVar = new org.telegram.ui.Cells.u3(this.f37366c, null);
+            waVar.setBackgroundColor(0);
+            waVar.setTag(-33024);
+        } else {
+            waVar = new org.telegram.ui.Cells.wa(4, 0, this.f37366c, null, false, true);
+        }
+        return new s4.b1(waVar);
     }
 }

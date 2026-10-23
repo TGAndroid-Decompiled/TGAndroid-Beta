@@ -18,24 +18,24 @@ import org.telegram.ui.Components.gh;
 import org.telegram.ui.Components.ri;
 import org.telegram.ui.Components.ti;
 public final class c implements ri {
-    public final ti f8032a;
-    public final String f8033b;
-    public final v f8034c;
+    public final ti f8039a;
+    public final String f8040b;
+    public final v f8041c;
 
     public c(v vVar, ti tiVar, String str) {
-        this.f8034c = vVar;
-        this.f8032a = tiVar;
-        this.f8033b = str;
+        this.f8041c = vVar;
+        this.f8039a = tiVar;
+        this.f8040b = str;
     }
 
     @Override
     public final void b0(int i10, boolean z10, boolean z11, int i11, int i12, long j10, boolean z12, boolean z13, long j11) {
         int i13;
         ub ubVar;
-        v vVar = this.f8034c;
+        v vVar = this.f8041c;
         long j12 = vVar.d;
-        ti tiVar = this.f8032a;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = tiVar.f30562j0;
+        ti tiVar = this.f8039a;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = tiVar.f30742j0;
         if (!chatAttachAlertPhotoLayout.getSelectedPhotos().isEmpty()) {
             HashMap<Object, Object> selectedPhotos = chatAttachAlertPhotoLayout.getSelectedPhotos();
             chatAttachAlertPhotoLayout.getSelectedPhotosOrder();
@@ -44,38 +44,38 @@ public final class c implements ri {
                 if (next instanceof MediaController.PhotoEntry) {
                     a8 l4 = a8.l((MediaController.PhotoEntry) next);
                     l4.J0 = j12;
-                    String str = this.f8033b;
+                    String str = this.f8040b;
                     l4.K0 = str;
                     l4.A();
-                    vb D = vb.D(vVar.f8068a.getParentActivity(), vVar.f8069b);
+                    vb D = vb.D(vVar.f8075a.getParentActivity(), vVar.f8076b);
                     RectF rectF = D.H;
                     WindowManager.LayoutParams layoutParams = D.h;
-                    int i14 = D.f9954c;
-                    WindowManager windowManager = D.f9964f;
+                    int i14 = D.f9971c;
+                    WindowManager windowManager = D.f9981f;
                     if (!D.d) {
                         if (MessagesController.getInstance(i14).isFrozen()) {
                             org.telegram.ui.b.b(i14);
                         } else {
-                            D.f10014v0 = j12;
-                            D.f10018w0 = str;
-                            D.f10011u0 = false;
+                            D.f10031v0 = j12;
+                            D.f10035w0 = str;
+                            D.f10028u0 = false;
                             D.e = false;
                             D.B2 = false;
-                            if (windowManager != null && (ubVar = D.f9987n) != null && ubVar.getParent() == null) {
-                                AndroidUtilities.setPreferredMaxRefreshRate(windowManager, D.f9987n, layoutParams);
-                                windowManager.addView(D.f9987n, layoutParams);
+                            if (windowManager != null && (ubVar = D.f10004n) != null && ubVar.getParent() == null) {
+                                AndroidUtilities.setPreferredMaxRefreshRate(windowManager, D.f10004n, layoutParams);
+                                windowManager.addView(D.f10004n, layoutParams);
                                 D.f0();
                             }
                             D.K1 = l4;
                             l4.J0 = j12;
                             l4.K0 = str;
                             D.O1 = l4.K ? 1 : 0;
-                            D.f10005s0.f9647g = false;
+                            D.f10022s0.f9663g = false;
                             D.J = 0;
                             rectF.set(0.0f, AndroidUtilities.dp(100.0f), AndroidUtilities.displaySize.x, AndroidUtilities.dp(100.0f) + AndroidUtilities.displaySize.y);
                             D.G = AndroidUtilities.dp(8.0f);
-                            D.f10000r.c();
-                            hb hbVar = D.f9971h0;
+                            D.f10017r.c();
+                            hb hbVar = D.f9988h0;
                             int i15 = D.J;
                             if (i15 != 1 && i15 != 0) {
                                 i13 = -14737633;
@@ -83,21 +83,21 @@ public final class c implements ri {
                                 i13 = 0;
                             }
                             hbVar.setBackgroundColor(i13);
-                            D.f10000r.setTranslationX(0.0f);
-                            D.f10000r.setTranslationY(0.0f);
-                            D.f10000r.b(0.0f);
-                            D.f10000r.setScaleX(1.0f);
-                            D.f10000r.setScaleY(1.0f);
+                            D.f10017r.setTranslationX(0.0f);
+                            D.f10017r.setTranslationY(0.0f);
+                            D.f10017r.b(0.0f);
+                            D.f10017r.setScaleX(1.0f);
+                            D.f10017r.setScaleY(1.0f);
                             D.K = 0.0f;
-                            AndroidUtilities.lockOrientation(D.f9950b, 1);
+                            AndroidUtilities.lockOrientation(D.f9967b, 1);
                             a8 a8Var = D.K1;
                             if (a8Var != null) {
-                                D.f9956c1.setText(a8Var.C0);
+                                D.f9973c1.setText(a8Var.C0);
                             }
                             D.J(1, false);
                             D.k0(-1, false, false);
-                            D.f9952b1.b(false, false);
-                            D.f9952b1.b(true, true);
+                            D.f9969b1.b(false, false);
+                            D.f9969b1.b(true, true);
                             D.f(1.0f, true, new t9(D, 6));
                             D.d();
                         }
@@ -114,21 +114,13 @@ public final class c implements ri {
     }
 
     @Override
-    public final void u(gh ghVar) {
+    public final void r(gh ghVar) {
         ghVar.run();
     }
 
     @Override
-    public final boolean v() {
+    public final boolean u() {
         return false;
-    }
-
-    @Override
-    public final void E() {
-    }
-
-    @Override
-    public final void J() {
     }
 
     @Override
@@ -137,6 +129,14 @@ public final class c implements ri {
 
     @Override
     public final void X(TLRPC.User user) {
+    }
+
+    @Override
+    public final void E() {
+    }
+
+    @Override
+    public final void J() {
     }
 
     @Override

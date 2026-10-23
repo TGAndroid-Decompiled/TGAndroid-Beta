@@ -15,15 +15,15 @@ import org.telegram.tgnet.tl.TL_aicompose;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.web.BotWebViewContainer$BotWebViewProxy;
 public final class s0 implements Utilities.Callback2 {
-    public final int f2138a;
-    public final Object f2139b;
-    public final Object f2140c;
+    public final int f2141a;
+    public final Object f2142b;
+    public final Object f2143c;
     public final Object d;
 
     public s0(Object obj, Object obj2, Object obj3, int i10) {
-        this.f2138a = i10;
-        this.f2139b = obj;
-        this.f2140c = obj2;
+        this.f2141a = i10;
+        this.f2142b = obj;
+        this.f2143c = obj2;
         this.d = obj3;
     }
 
@@ -31,13 +31,13 @@ public final class s0 implements Utilities.Callback2 {
     public final void run(Object obj, Object obj2) {
         org.telegram.ui.Components.ad adVar;
         org.telegram.ui.Components.ad adVar2;
-        switch (this.f2138a) {
+        switch (this.f2141a) {
             case 0:
-                b1.S((b1) this.f2139b, (pf.c) this.f2140c, (org.telegram.ui.ActionBar.b2) this.d, (TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
+                b1.R((b1) this.f2142b, (pf.c) this.f2143c, (org.telegram.ui.ActionBar.c2) this.d, (TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
                 return;
             case 1:
-                l7 l7Var = (l7) this.f2139b;
-                ei.x3[] x3VarArr = (ei.x3[]) this.f2140c;
+                l7 l7Var = (l7) this.f2142b;
+                ei.x3[] x3VarArr = (ei.x3[]) this.f2143c;
                 FrameLayout frameLayout = (FrameLayout) this.d;
                 View view = (View) obj;
                 CharSequence charSequence = (CharSequence) obj2;
@@ -67,7 +67,7 @@ public final class s0 implements Utilities.Callback2 {
                 x3Var2.k(11.0f, 8.0f, 11.0f, 7.0f);
                 x3Var2.q(10.0f);
                 x3Var2.s(replaceTags);
-                x3Var2.f10080l0 = new y2(x3Var2, 1);
+                x3Var2.f10097l0 = new y2(x3Var2, 1);
                 x3Var2.setTranslationY((-AndroidUtilities.dp(100.0f)) + y3);
                 x3Var2.h = AndroidUtilities.dp(300.0f);
                 x3Var2.setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f));
@@ -76,42 +76,42 @@ public final class s0 implements Utilities.Callback2 {
                 x3Var2.u();
                 return;
             case 2:
-                ((ConnectionsManager) this.f2139b).lambda$sendRequestTypedAndProcessUpdates$5((Executor) this.f2140c, (Utilities.Callback2) this.d, (TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
+                ((ConnectionsManager) this.f2142b).lambda$sendRequestTypedAndProcessUpdates$5((Executor) this.f2143c, (Utilities.Callback2) this.d, (TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
                 return;
             case 3:
                 TLRPC.Bool bool = (TLRPC.Bool) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                org.telegram.ui.Components.e0.X((org.telegram.ui.Components.e0) this.f2139b, (pf.c) this.f2140c, (TL_aicompose.TL_aiComposeTone) this.d);
+                org.telegram.ui.Components.e0.W((org.telegram.ui.Components.e0) this.f2142b, (pf.c) this.f2143c, (TL_aicompose.TL_aiComposeTone) this.d);
                 return;
             case 4:
                 TLRPC.Bool bool2 = (TLRPC.Bool) obj;
-                org.telegram.ui.Components.q.T((org.telegram.ui.Components.q) this.f2139b, (org.telegram.ui.ActionBar.d6) this.f2140c, (TL_aicompose.AiComposeTone) this.d, (TLRPC.TL_error) obj2);
+                org.telegram.ui.Components.q.S((org.telegram.ui.Components.q) this.f2142b, (org.telegram.ui.ActionBar.g6) this.f2143c, (TL_aicompose.AiComposeTone) this.d, (TLRPC.TL_error) obj2);
                 return;
             case 5:
                 TLRPC.Bool bool3 = (TLRPC.Bool) obj;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
-                org.telegram.ui.Components.y.Q((org.telegram.ui.Components.y) this.f2139b, (pf.c) this.f2140c, (org.telegram.ui.ActionBar.b2) this.d);
+                org.telegram.ui.Components.y.P((org.telegram.ui.Components.y) this.f2142b, (pf.c) this.f2143c, (org.telegram.ui.ActionBar.c2) this.d);
                 return;
             case 6:
-                org.telegram.ui.web.a1 a1Var = (org.telegram.ui.web.a1) this.f2139b;
-                ci.z7 z7Var = (ci.z7) this.f2140c;
+                org.telegram.ui.web.b1 b1Var = (org.telegram.ui.web.b1) this.f2142b;
+                ci.y7 y7Var = (ci.y7) this.f2143c;
                 BotWebViewContainer$BotWebViewProxy botWebViewContainer$BotWebViewProxy = (BotWebViewContainer$BotWebViewProxy) this.d;
                 String str = (String) obj;
                 ArrayList arrayList = (ArrayList) obj2;
                 if (TextUtils.isEmpty(str)) {
-                    a1Var.x(z7Var, "prepared_message_sent", null);
-                    org.telegram.ui.web.g0 g0Var = a1Var.f42569c;
-                    if (g0Var != null) {
-                        g0Var.c();
+                    b1Var.x(y7Var, "prepared_message_sent", null);
+                    org.telegram.ui.web.h0 h0Var = b1Var.f43047c;
+                    if (h0Var != null) {
+                        h0Var.c();
                     }
-                    AndroidUtilities.runOnUIThread(new org.telegram.ui.Wallet.z3(22, botWebViewContainer$BotWebViewProxy, arrayList), 500L);
+                    AndroidUtilities.runOnUIThread(new org.telegram.ui.Wallet.y3(22, botWebViewContainer$BotWebViewProxy, arrayList), 500L);
                     return;
                 }
-                a1Var.x(z7Var, "prepared_message_failed", org.telegram.ui.web.a1.A(str, "error"));
+                b1Var.x(y7Var, "prepared_message_failed", org.telegram.ui.web.b1.A(str, "error"));
                 return;
             case 7:
-                yh.v vVar = (yh.v) this.f2139b;
-                ei.x3[] x3VarArr2 = (ei.x3[]) this.f2140c;
+                yh.v vVar = (yh.v) this.f2142b;
+                ei.x3[] x3VarArr2 = (ei.x3[]) this.f2143c;
                 FrameLayout frameLayout2 = (FrameLayout) this.d;
                 View view2 = (View) obj;
                 CharSequence charSequence2 = (CharSequence) obj2;
@@ -141,7 +141,7 @@ public final class s0 implements Utilities.Callback2 {
                 x3Var4.k(11.0f, 8.0f, 11.0f, 7.0f);
                 x3Var4.q(10.0f);
                 x3Var4.s(replaceTags2);
-                x3Var4.f10080l0 = new y2(x3Var4, 3);
+                x3Var4.f10097l0 = new y2(x3Var4, 3);
                 x3Var4.setTranslationY((-AndroidUtilities.dp(100.0f)) + y10);
                 x3Var4.h = AndroidUtilities.dp(300.0f);
                 x3Var4.setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f));
@@ -150,12 +150,12 @@ public final class s0 implements Utilities.Callback2 {
                 x3Var4.u();
                 return;
             default:
-                yh.f4 f4Var = (yh.f4) this.f2139b;
+                yh.f4 f4Var = (yh.f4) this.f2142b;
                 TL_stars.TL_starGiftUnique tL_starGiftUnique = (TL_stars.TL_starGiftUnique) this.d;
                 String str2 = (String) obj2;
-                ((pf.c) this.f2140c).b();
+                ((pf.c) this.f2143c).b();
                 if (((Boolean) obj).booleanValue()) {
-                    s2 s2Var = f4Var.f50249f0;
+                    s2 s2Var = f4Var.f50693f0;
                     if (s2Var != null) {
                         s2Var.run(tL_starGiftUnique);
                     }

@@ -4,26 +4,27 @@ import com.google.android.gms.internal.play_billing.k3;
 import df.p;
 import df.s;
 import java.util.regex.Pattern;
+import si.o0;
 public final class a extends h {
     public static final Pattern e = Pattern.compile("^<([a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*)>");
-    public static final Pattern f10992f = Pattern.compile("^<[a-zA-Z][a-zA-Z0-9.+-]{1,31}:[^<>\u0000- ]*>");
+    public static final Pattern f11011f = Pattern.compile("^<[a-zA-Z][a-zA-Z0-9.+-]{1,31}:[^<>\u0000- ]*>");
 
     @Override
     public final p b() {
         String a2 = a(e);
         if (a2 != null) {
-            String j10 = k3.j(1, 1, a2);
-            df.k kVar = new df.k(1, r4.c.h("mailto:", j10), null);
-            kVar.b(new s(j10));
+            String i10 = k3.i(1, 1, a2);
+            df.k kVar = new df.k(1, o0.h("mailto:", i10), null);
+            kVar.b(new s(i10));
             return kVar;
         }
-        String a10 = a(f10992f);
+        String a10 = a(f11011f);
         if (a10 == null) {
             return null;
         }
-        String j11 = k3.j(1, 1, a10);
-        df.k kVar2 = new df.k(1, j11, null);
-        kVar2.b(new s(j11));
+        String i11 = k3.i(1, 1, a10);
+        df.k kVar2 = new df.k(1, i11, null);
+        kVar2.b(new s(i11));
         return kVar2;
     }
 

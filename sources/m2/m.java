@@ -9,19 +9,19 @@ import java.util.Collections;
 import java.util.List;
 import v7.u6;
 public abstract class m {
-    public final w f16452a;
-    public final n0 f16453b;
-    public final long f16454c;
+    public final w f16515a;
+    public final n0 f16516b;
+    public final long f16517c;
     public final List d;
     public final List e;
-    public final List f16455f;
+    public final List f16518f;
     public final j h;
 
     public m(w wVar, List list, s sVar, List list2, List list3, List list4) {
         List unmodifiableList;
         u6.g(!list.isEmpty());
-        this.f16452a = wVar;
-        this.f16453b = n0.u(list);
+        this.f16515a = wVar;
+        this.f16516b = n0.u(list);
         if (list2 == null) {
             unmodifiableList = Collections.EMPTY_LIST;
         } else {
@@ -29,17 +29,17 @@ public abstract class m {
         }
         this.d = unmodifiableList;
         this.e = list3;
-        this.f16455f = list4;
+        this.f16518f = list4;
         this.h = sVar.a(this);
-        long j10 = sVar.f16467c;
-        long j11 = sVar.f16466b;
-        String str = m0.f8252a;
-        this.f16454c = m0.a0(j10, 1000000L, j11, RoundingMode.DOWN);
+        long j10 = sVar.f16530c;
+        long j11 = sVar.f16529b;
+        String str = m0.f8259a;
+        this.f16517c = m0.a0(j10, 1000000L, j11, RoundingMode.DOWN);
     }
 
-    public abstract String b();
+    public abstract String a();
 
-    public abstract l2.i c();
+    public abstract l2.i d();
 
     public abstract j h();
 }

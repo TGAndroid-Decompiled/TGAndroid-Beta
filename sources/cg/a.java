@@ -5,10 +5,10 @@ import oa.d;
 import rb.b;
 import t7.u;
 public interface a {
-    public static final u f5120k = new u(5);
-    public static final b f5121l = new b(6);
-    public static final d f5122m = new d(6);
-    public static final pb.a f5123o = new pb.a(6);
+    public static final u f5125k = new u(5);
+    public static final b f5126l = new b(6);
+    public static final d f5127m = new d(6);
+    public static final pb.a f5128o = new pb.a(6);
 
     int E1(int i10, int i11, int i12);
 

@@ -7,8 +7,8 @@ public abstract class s8 {
             }
             throw new IllegalArgumentException(a1.g.l(i10, i11, "fromIndex: ", " > toIndex: "));
         }
-        StringBuilder m10 = i2.e.m("fromIndex: ", i10, ", toIndex: ", i11, ", size: ");
-        m10.append(i12);
-        throw new IndexOutOfBoundsException(m10.toString());
+        StringBuilder k10 = com.google.android.gms.internal.play_billing.k3.k("fromIndex: ", i10, ", toIndex: ", i11, ", size: ");
+        k10.append(i12);
+        throw new IndexOutOfBoundsException(k10.toString());
     }
 }

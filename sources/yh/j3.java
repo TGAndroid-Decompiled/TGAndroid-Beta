@@ -7,26 +7,33 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.yq;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.ActionBar.n6;
+import org.telegram.ui.ActionBar.r6;
+import org.telegram.ui.Components.xq;
 import w7.b6;
 public final class j3 extends TextView {
-    public final yq f50336a;
+    public final xq f50788a;
 
-    public j3(Context context, d6 d6Var) {
+    public j3(Context context, g6 g6Var) {
         super(context);
-        int w02 = h6.w0(h6.f21384y8, d6Var);
-        setTextColor(w02);
-        setBackground(h6.a0(h6.m1(0.08f, w02), h6.m1(0.15f, w02), AndroidUtilities.dp(13.0f), AndroidUtilities.dp(13.0f)));
+        int i10 = k6.f21573y8;
+        int w02 = k6.w0(i10, g6Var);
+        r6.W(this, i10, g6Var);
+        org.telegram.ui.Cells.y a02 = k6.a0(k6.o1(0.08f, w02), k6.o1(0.15f, w02), AndroidUtilities.dp(13.0f), AndroidUtilities.dp(13.0f));
+        n6 M = r6.M(0.08f, i10);
+        n6 M2 = r6.M(0.15f, i10);
+        setBackground(a02);
+        r6.k(this, a02, M, M2, g6Var);
         setPadding(AndroidUtilities.dp(11.0f), 0, AndroidUtilities.dp(11.0f), 0);
         setGravity(17);
         setTypeface(AndroidUtilities.bold());
         b6.a(this);
-        yq yqVar = new yq(R.drawable.arrows_select, 0);
-        this.f50336a = yqVar;
-        yqVar.spaceScaleX = 0.8f;
-        yqVar.translate(0.0f, AndroidUtilities.dp(1.0f));
+        xq xqVar = new xq(R.drawable.arrows_select, 0);
+        this.f50788a = xqVar;
+        xqVar.spaceScaleX = 0.8f;
+        xqVar.translate(0.0f, AndroidUtilities.dp(1.0f));
     }
 
     @Override
@@ -35,25 +42,25 @@ public final class j3 extends TextView {
     }
 
     public void setSorting(r3 r3Var) {
-        yq yqVar;
+        xq xqVar;
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("v ");
         if (r3Var == r3.BY_DATE) {
-            yqVar = new yq(R.drawable.mini_gift_sorting_date, 0);
-            spannableStringBuilder.setSpan(yqVar, 0, 1, 33);
+            xqVar = new xq(R.drawable.mini_gift_sorting_date, 0);
+            spannableStringBuilder.setSpan(xqVar, 0, 1, 33);
             spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.ResellGiftFilterSortDateShort));
         } else if (r3Var == r3.BY_PRICE) {
-            yqVar = new yq(R.drawable.mini_gift_sorting_price, 0);
-            spannableStringBuilder.setSpan(yqVar, 0, 1, 33);
+            xqVar = new xq(R.drawable.mini_gift_sorting_price, 0);
+            spannableStringBuilder.setSpan(xqVar, 0, 1, 33);
             spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.ResellGiftFilterSortPriceShort));
         } else if (r3Var == r3.BY_NUMBER) {
-            yqVar = new yq(R.drawable.mini_gift_sorting_num, 0);
-            spannableStringBuilder.setSpan(yqVar, 0, 1, 33);
+            xqVar = new xq(R.drawable.mini_gift_sorting_num, 0);
+            spannableStringBuilder.setSpan(xqVar, 0, 1, 33);
             spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.ResellGiftFilterSortNumberShort));
         } else {
-            yqVar = null;
+            xqVar = null;
         }
-        if (yqVar != null) {
-            yqVar.translate(0.0f, AndroidUtilities.dp(1.0f));
+        if (xqVar != null) {
+            xqVar.translate(0.0f, AndroidUtilities.dp(1.0f));
         }
         setText(spannableStringBuilder);
     }
@@ -61,7 +68,7 @@ public final class j3 extends TextView {
     public void setValue(CharSequence charSequence) {
         SpannableStringBuilder append = new SpannableStringBuilder(charSequence).append((CharSequence) " v");
         int length = append.length();
-        append.setSpan(this.f50336a, append.length() - 1, length, 33);
+        append.setSpan(this.f50788a, append.length() - 1, length, 33);
         setText(append);
     }
 }

@@ -9,31 +9,31 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.Utilities;
-public final class j8 extends im0 {
-    public final Context f27426c;
+public final class j8 extends lm0 {
+    public final Context f27546c;
     public ArrayList d = new ArrayList();
     public String e;
-    public h8 f27427f;
+    public h8 f27547f;
     public boolean h;
-    public final k8 f27428n;
+    public final k8 f27548n;
 
     public j8(k8 k8Var, Context context) {
-        this.f27428n = k8Var;
-        this.f27426c = context;
+        this.f27548n = k8Var;
+        this.f27546c = context;
     }
 
     @Override
     public final boolean D(s4.b1 b1Var) {
-        if (this.f27428n.f27805v0 && b1Var.b() == 0) {
+        if (this.f27548n.f27939u0 && b1Var.b() == 0) {
             return false;
         }
         return true;
     }
 
     public final void E(String str) {
-        if (this.f27427f != null) {
-            Utilities.searchQueue.cancelRunnable(this.f27427f);
-            this.f27427f = null;
+        if (this.f27547f != null) {
+            Utilities.searchQueue.cancelRunnable(this.f27547f);
+            this.f27547f = null;
         }
         if (str == null) {
             this.e = null;
@@ -43,19 +43,19 @@ public final class j8 extends im0 {
         }
         DispatchQueue dispatchQueue = Utilities.searchQueue;
         h8 h8Var = new h8(this, str, 0);
-        this.f27427f = h8Var;
+        this.f27547f = h8Var;
         dispatchQueue.postRunnable(h8Var, 300L);
     }
 
     @Override
     public final int h() {
         int size;
-        k8 k8Var = this.f27428n;
-        boolean z10 = k8Var.f27805v0;
-        if (k8Var.f27786f) {
+        k8 k8Var = this.f27548n;
+        boolean z10 = k8Var.f27939u0;
+        if (k8Var.f27921f) {
             size = this.d.size();
-        } else if (k8Var.f27809x0.size() > 1) {
-            size = k8Var.f27809x0.size();
+        } else if (k8Var.f27942w0.size() > 1) {
+            size = k8Var.f27942w0.size();
         } else {
             return 0;
         }
@@ -64,7 +64,7 @@ public final class j8 extends im0 {
 
     @Override
     public final int j(int i10) {
-        if (this.f27428n.f27805v0 && i10 == 0) {
+        if (this.f27548n.f27939u0 && i10 == 0) {
             return 1;
         }
         return 0;
@@ -73,20 +73,22 @@ public final class j8 extends im0 {
     @Override
     public final void l() {
         boolean z10;
+        org.telegram.ui.ActionBar.g6 g6Var;
+        org.telegram.ui.ActionBar.g6 g6Var2;
         boolean z11;
         super.l();
-        k8 k8Var = this.f27428n;
+        k8 k8Var = this.f27548n;
         View view = k8Var.e;
-        q7 q7Var = k8Var.E;
-        v7 v7Var = k8Var.f27794n;
+        q7 q7Var = k8Var.f27945y;
+        v7 v7Var = k8Var.f27929n;
         int i10 = 0;
-        if (k8Var.f27809x0.size() > 1) {
+        if (k8Var.f27942w0.size() > 1) {
             z10 = true;
         } else {
             z10 = false;
         }
         if (z10 != this.h) {
-            if (k8Var.f27809x0.size() > 1) {
+            if (k8Var.f27942w0.size() > 1) {
                 z11 = true;
             } else {
                 z11 = false;
@@ -96,10 +98,10 @@ public final class j8 extends im0 {
                 v7Var.setVisibility(0);
                 v7Var.setTranslationY(AndroidUtilities.displaySize.y);
                 v7Var.animate().translationY(0.0f).setUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                    public final j8 f26527b;
+                    public final j8 f26559b;
 
                     {
-                        this.f26527b = this;
+                        this.f26559b = this;
                     }
 
                     @Override
@@ -108,11 +110,11 @@ public final class j8 extends im0 {
                         ViewGroup viewGroup2;
                         switch (r2) {
                             case 0:
-                                viewGroup = ((org.telegram.ui.ActionBar.f3) this.f26527b.f27428n).containerView;
+                                viewGroup = ((org.telegram.ui.ActionBar.h3) this.f26559b.f27548n).containerView;
                                 viewGroup.invalidate();
                                 return;
                             default:
-                                viewGroup2 = ((org.telegram.ui.ActionBar.f3) this.f26527b.f27428n).containerView;
+                                viewGroup2 = ((org.telegram.ui.ActionBar.h3) this.f26559b.f27548n).containerView;
                                 viewGroup2.invalidate();
                                 return;
                         }
@@ -120,10 +122,10 @@ public final class j8 extends im0 {
                 }).setDuration(420L).setInterpolator(bs.h).start();
             } else {
                 v7Var.animate().translationY(AndroidUtilities.displaySize.y).setUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                    public final j8 f26527b;
+                    public final j8 f26559b;
 
                     {
-                        this.f26527b = this;
+                        this.f26559b = this;
                     }
 
                     @Override
@@ -132,29 +134,33 @@ public final class j8 extends im0 {
                         ViewGroup viewGroup2;
                         switch (r2) {
                             case 0:
-                                viewGroup = ((org.telegram.ui.ActionBar.f3) this.f26527b.f27428n).containerView;
+                                viewGroup = ((org.telegram.ui.ActionBar.h3) this.f26559b.f27548n).containerView;
                                 viewGroup.invalidate();
                                 return;
                             default:
-                                viewGroup2 = ((org.telegram.ui.ActionBar.f3) this.f26527b.f27428n).containerView;
+                                viewGroup2 = ((org.telegram.ui.ActionBar.h3) this.f26559b.f27548n).containerView;
                                 viewGroup2.invalidate();
                                 return;
                         }
                     }
-                }).setDuration(420L).setInterpolator(bs.h).withEndAction(new pg(this, 9)).start();
+                }).setDuration(420L).setInterpolator(bs.h).withEndAction(new pg(this, 10)).start();
             }
         }
-        if (k8Var.f27809x0.size() > 1) {
-            q7Var.setBackgroundColor(k8Var.getThemedColor(org.telegram.ui.ActionBar.h6.Ri));
+        if (k8Var.f27942w0.size() > 1) {
+            int i11 = org.telegram.ui.ActionBar.k6.Ri;
+            g6Var2 = ((org.telegram.ui.ActionBar.h3) k8Var).resourcesProvider;
+            org.telegram.ui.ActionBar.r6.i(i11, q7Var, g6Var2);
             view.setVisibility(0);
             v7Var.setPadding(0, v7Var.getPaddingTop(), 0, AndroidUtilities.dp(231.0f));
         } else {
-            q7Var.setBackgroundColor(k8Var.getThemedColor(org.telegram.ui.ActionBar.h6.Ri));
+            int i12 = org.telegram.ui.ActionBar.k6.Ri;
+            g6Var = ((org.telegram.ui.ActionBar.h3) k8Var).resourcesProvider;
+            org.telegram.ui.ActionBar.r6.i(i12, q7Var, g6Var);
             view.setVisibility(0);
             v7Var.setPadding(0, v7Var.getPaddingTop(), 0, 0);
         }
-        k8Var.v.setVisibility((k8Var.h && k8Var.f27801s.h() == 0) ? 8 : 8);
-        k8Var.E0();
+        k8Var.v.setVisibility((k8Var.h && k8Var.f27936s.h() == 0) ? 8 : 8);
+        k8Var.K0();
     }
 
     @Override
@@ -164,15 +170,15 @@ public final class j8 extends im0 {
 
     @Override
     public final s4.b1 x(ViewGroup viewGroup, int i10) {
-        org.telegram.ui.ActionBar.d6 d6Var;
-        Context context = this.f27426c;
+        org.telegram.ui.ActionBar.g6 g6Var;
+        Context context = this.f27546c;
         if (i10 == 1) {
             un unVar = new un(context, 10);
             unVar.setTag(-33024);
             return new s4.b1(unVar);
         }
         boolean currentPlaylistIsGlobalSearch = MediaController.getInstance().currentPlaylistIsGlobalSearch();
-        d6Var = ((org.telegram.ui.ActionBar.f3) this.f27428n).resourcesProvider;
-        return new s4.b1(new org.telegram.ui.Cells.x(context, currentPlaylistIsGlobalSearch ? 1 : 0, d6Var));
+        g6Var = ((org.telegram.ui.ActionBar.h3) this.f27548n).resourcesProvider;
+        return new s4.b1(new org.telegram.ui.Cells.w(context, currentPlaylistIsGlobalSearch ? 1 : 0, g6Var));
     }
 }

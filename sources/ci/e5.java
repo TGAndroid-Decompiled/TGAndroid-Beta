@@ -1,38 +1,31 @@
 package ci;
 
-import ai.pa;
-import android.content.Context;
 import android.text.TextUtils;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.vn0;
-public final class e5 extends vn0 {
-    public pa h;
-    public final u5 f5355n;
+import j$.util.Objects;
+public final class e5 {
+    public boolean f5288a = true;
+    public boolean f5289b;
+    public String f5290c;
 
-    public e5(u5 u5Var, Context context, b bVar) {
-        super(context, 13.0f, bVar);
-        this.f5355n = u5Var;
+    public final boolean equals(Object obj) {
+        boolean z10;
+        if (this != obj) {
+            if (obj != null && e5.class == obj.getClass()) {
+                e5 e5Var = (e5) obj;
+                if ((TextUtils.isEmpty(this.f5290c) && TextUtils.isEmpty(e5Var.f5290c)) || Objects.equals(this.f5290c, e5Var.f5290c)) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                if (this.f5288a != e5Var.f5288a || this.f5289b != e5Var.f5289b || !z10) {
+                }
+            }
+            return false;
+        }
+        return true;
     }
 
-    @Override
-    public final void a(String str) {
-        pa paVar = this.h;
-        if (paVar != null) {
-            AndroidUtilities.cancelRunOnUIThread(paVar);
-        }
-        this.h = new pa(17, this, str);
-        if (!TextUtils.isEmpty(str)) {
-            AndroidUtilities.runOnUIThread(this.h, 300L);
-        } else {
-            this.h.run();
-        }
-        if (this.h != null) {
-            u5 u5Var = this.f5355n;
-            if (!u5Var.Q) {
-                u5Var.Q = true;
-                u5Var.f6053w.E();
-                u5Var.f6054x.h1(0, -u5Var.f6051r.getPaddingTop());
-            }
-        }
+    public final int hashCode() {
+        return Objects.hash(Boolean.valueOf(this.f5288a), Boolean.valueOf(this.f5289b), this.f5290c);
     }
 }

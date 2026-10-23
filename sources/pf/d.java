@@ -8,11 +8,13 @@ import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.RemoteException;
 import android.text.TextUtils;
+import i2.o1;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import mi.q;
 import n2.e;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
@@ -20,22 +22,21 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.UserConfig;
 import org.telegram.ui.ActionBar.ActionBarLayout;
-import org.telegram.ui.ActionBar.m3;
-import org.telegram.ui.ActionBar.n2;
-import org.telegram.ui.ActionBar.n3;
+import org.telegram.ui.ActionBar.o2;
+import org.telegram.ui.ActionBar.p3;
+import org.telegram.ui.ActionBar.q3;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.b3;
-import org.telegram.ui.l4;
-import org.telegram.ui.o3;
-import org.telegram.ui.web.x0;
-import xf.f;
+import org.telegram.ui.a3;
+import org.telegram.ui.k4;
+import org.telegram.ui.n3;
+import org.telegram.ui.web.y0;
 public abstract class d {
-    public static e f44296a;
-    public static xf.c f44297b;
-    public static a9.d f44298c;
+    public static e f44709a;
+    public static q f44710b;
+    public static a9.d f44711c;
     public static String d;
     public static WeakReference e;
-    public static Pattern f44299f;
+    public static Pattern f44712f;
 
     public static java.lang.String a(java.lang.String r3) {
         throw new UnsupportedOperationException("Method not decompiled: pf.d.a(java.lang.String):java.lang.String");
@@ -55,7 +56,7 @@ public abstract class d {
             if (str.startsWith("https://t.me/")) {
                 return str.substring(13);
             }
-            Matcher matcher = LaunchActivity.C1.matcher(str);
+            Matcher matcher = LaunchActivity.E1.matcher(str);
             if (matcher.find()) {
                 return matcher.group(1);
             }
@@ -64,24 +65,24 @@ public abstract class d {
     }
 
     public static e c() {
-        xf.c cVar = f44297b;
+        q qVar = f44710b;
         e eVar = null;
-        if (cVar == null) {
-            f44296a = null;
-        } else if (f44296a == null) {
+        if (qVar == null) {
+            f44709a = null;
+        } else if (f44709a == null) {
             rb.b bVar = new rb.b(19);
-            f fVar = (f) cVar.f49785a;
+            xf.e eVar2 = (xf.e) qVar.f17036b;
             xf.b bVar2 = new xf.b(bVar);
             try {
-                if (((xf.d) fVar).F0(bVar2)) {
-                    eVar = new e(29, bVar2, (ComponentName) cVar.f49786b);
+                if (((xf.c) eVar2).F0(bVar2)) {
+                    eVar = new e(28, bVar2, (ComponentName) qVar.f17037c);
                 }
             } catch (RemoteException unused) {
             }
-            f44296a = eVar;
+            f44709a = eVar;
             new WeakReference(eVar);
         }
-        return f44296a;
+        return f44709a;
     }
 
     public static boolean d(android.content.Context r8, java.lang.String r9) {
@@ -105,7 +106,7 @@ public abstract class d {
                 return false;
             }
         } else {
-            Matcher matcher = LaunchActivity.C1.matcher(str);
+            Matcher matcher = LaunchActivity.E1.matcher(str);
             if (matcher.find()) {
                 StringBuilder sb2 = new StringBuilder("https://t.me/");
                 sb2.append(matcher.group(1));
@@ -217,16 +218,16 @@ public abstract class d {
 
     public static boolean i(String str) {
         boolean matches;
-        if (f44299f == null) {
-            f44299f = Pattern.compile("^[a-zA-Z0-9\\-\\_\\.]+\\.[a-zA-Z0-9\\-\\_]+$");
+        if (f44712f == null) {
+            f44712f = Pattern.compile("^[a-zA-Z0-9\\-\\_\\.]+\\.[a-zA-Z0-9\\-\\_]+$");
         }
         String hostAuthority = AndroidUtilities.getHostAuthority(str, true);
         if (hostAuthority != null && (hostAuthority.endsWith(".ton") || hostAuthority.endsWith(".adnl"))) {
-            matches = f44299f.matcher(hostAuthority).matches();
+            matches = f44712f.matcher(hostAuthority).matches();
         } else {
             Uri parse = Uri.parse(str);
             if (parse.getScheme() != null && parse.getScheme().equalsIgnoreCase("tonsite")) {
-                matches = f44299f.matcher(parse.getScheme()).matches();
+                matches = f44712f.matcher(parse.getScheme()).matches();
             } else {
                 return false;
             }
@@ -242,7 +243,7 @@ public abstract class d {
         if (AndroidUtilities.findActivity(context) instanceof LaunchActivity) {
             launchActivity = (LaunchActivity) AndroidUtilities.findActivity(context);
         } else {
-            launchActivity = LaunchActivity.H1;
+            launchActivity = LaunchActivity.J1;
             if (launchActivity == null) {
                 return false;
             }
@@ -256,7 +257,7 @@ public abstract class d {
         intent.putExtra("com.android.browser.application_id", context.getPackageName());
         intent.putExtra("force_not_internal_apps", z10);
         intent.putExtra("force_request", z11);
-        launchActivity.f0(intent, cVar);
+        launchActivity.g0(intent, cVar);
         return true;
     }
 
@@ -298,33 +299,33 @@ public abstract class d {
     }
 
     public static void m(String str) {
-        n3 P;
-        m3 m3Var;
+        q3 P;
+        p3 p3Var;
         String openURL;
-        o3[] o3VarArr;
-        o3 o3Var;
-        LaunchActivity launchActivity = LaunchActivity.H1;
+        n3[] n3VarArr;
+        n3 n3Var;
+        LaunchActivity launchActivity = LaunchActivity.J1;
         if (launchActivity != null && (P = launchActivity.P()) != null) {
             if (!TextUtils.isEmpty(str)) {
-                ArrayList<m3> tabs = P.getTabs();
+                ArrayList<p3> tabs = P.getTabs();
                 for (int i10 = 0; i10 < tabs.size(); i10++) {
-                    m3Var = tabs.get(i10);
-                    l4 l4Var = m3Var.J;
-                    if (l4Var != null && !l4Var.f38767d0.isEmpty()) {
-                        Object h = i2.e.h(1, m3Var.J.f38767d0);
-                        if (h instanceof b3) {
-                            x0 x0Var = ((b3) h).f21587b;
-                            if (x0Var == null && (o3VarArr = m3Var.J.f38783u0) != null && (o3Var = o3VarArr[0]) != null) {
-                                x0Var = o3Var.getWebView();
+                    p3Var = tabs.get(i10);
+                    k4 k4Var = p3Var.J;
+                    if (k4Var != null && !k4Var.f38789d0.isEmpty()) {
+                        Object i11 = o1.i(1, p3Var.J.f38789d0);
+                        if (i11 instanceof a3) {
+                            y0 y0Var = ((a3) i11).f21755b;
+                            if (y0Var == null && (n3VarArr = p3Var.J.f38805u0) != null && (n3Var = n3VarArr[0]) != null) {
+                                y0Var = n3Var.getWebView();
                             }
-                            if (x0Var != null) {
-                                if (x0Var.canGoBack()) {
-                                    openURL = x0Var.getUrl();
+                            if (y0Var != null) {
+                                if (y0Var.canGoBack()) {
+                                    openURL = y0Var.getUrl();
                                 } else {
-                                    openURL = x0Var.getOpenURL();
+                                    openURL = y0Var.getOpenURL();
                                 }
-                                if (TextUtils.equals(n3.p(openURL), n3.p(str))) {
-                                    P.e(m3Var);
+                                if (TextUtils.equals(q3.p(openURL), q3.p(str))) {
+                                    P.e(p3Var);
                                     break;
                                 }
                             } else {
@@ -336,12 +337,12 @@ public abstract class d {
                     }
                 }
             }
-            m3Var = null;
-            if (m3Var != null) {
+            p3Var = null;
+            if (p3Var != null) {
                 return;
             }
         }
-        n2 U = LaunchActivity.U();
+        o2 U = LaunchActivity.U();
         if (U != null && U.getArticleViewer() != null) {
             U.getArticleViewer().N(null, null, null, str);
             return;
@@ -442,7 +443,7 @@ public abstract class d {
 
     public static void w(Activity activity) {
         Activity activity2;
-        if (f44298c == null) {
+        if (f44711c == null) {
             return;
         }
         WeakReference weakReference = e;
@@ -455,11 +456,11 @@ public abstract class d {
             e.clear();
         }
         try {
-            activity.unbindService(f44298c);
+            activity.unbindService(f44711c);
         } catch (Exception unused) {
         }
-        f44297b = null;
-        f44296a = null;
+        f44710b = null;
+        f44709a = null;
     }
 
     public static boolean x(String str) {

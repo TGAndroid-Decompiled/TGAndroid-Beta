@@ -28,7 +28,7 @@ public final class h2 extends ge.s {
         if (this.threadLocalIsSet) {
             id.d dVar = (id.d) this.e.get();
             if (dVar != null) {
-                ge.a.f((kd.h) dVar.f12767a, dVar.f12768b);
+                ge.a.f((kd.h) dVar.f12799a, dVar.f12800b);
             }
             this.e.remove();
         }
@@ -37,7 +37,7 @@ public final class h2 extends ge.s {
         kd.h context = cVar.getContext();
         h2 h2Var = null;
         Object k10 = ge.a.k(context, null);
-        if (k10 != ge.a.f11014f) {
+        if (k10 != ge.a.f11033f) {
             h2Var = f0.v(cVar, context, k10);
         }
         try {

@@ -6,24 +6,24 @@ import v7.u6;
 public final class h1 extends g1 {
     public static final String d;
     public static final String e;
-    public final int f3773b;
-    public final float f3774c;
+    public final int f3780b;
+    public final float f3781c;
 
     static {
-        String str = e2.m0.f8252a;
+        String str = e2.m0.f8259a;
         d = Integer.toString(1, 36);
         e = Integer.toString(2, 36);
     }
 
     public h1(int i10) {
         u6.f("maxStars must be a positive integer", i10 > 0);
-        this.f3773b = i10;
-        this.f3774c = -1.0f;
+        this.f3780b = i10;
+        this.f3781c = -1.0f;
     }
 
     @Override
     public final boolean b() {
-        if (this.f3774c != -1.0f) {
+        if (this.f3781c != -1.0f) {
             return true;
         }
         return false;
@@ -32,9 +32,9 @@ public final class h1 extends g1 {
     @Override
     public final Bundle c() {
         Bundle bundle = new Bundle();
-        bundle.putInt(g1.f3768a, 2);
-        bundle.putInt(d, this.f3773b);
-        bundle.putFloat(e, this.f3774c);
+        bundle.putInt(g1.f3775a, 2);
+        bundle.putInt(d, this.f3780b);
+        bundle.putFloat(e, this.f3781c);
         return bundle;
     }
 
@@ -43,14 +43,14 @@ public final class h1 extends g1 {
             return false;
         }
         h1 h1Var = (h1) obj;
-        if (this.f3773b != h1Var.f3773b || this.f3774c != h1Var.f3774c) {
+        if (this.f3780b != h1Var.f3780b || this.f3781c != h1Var.f3781c) {
             return false;
         }
         return true;
     }
 
     public final int hashCode() {
-        return Objects.hash(Integer.valueOf(this.f3773b), Float.valueOf(this.f3774c));
+        return Objects.hash(Integer.valueOf(this.f3780b), Float.valueOf(this.f3781c));
     }
 
     public h1(int i10, float f7) {
@@ -60,7 +60,7 @@ public final class h1 extends g1 {
             z10 = true;
         }
         u6.f("starRating is out of range [0, maxStars]", z10);
-        this.f3773b = i10;
-        this.f3774c = f7;
+        this.f3780b = i10;
+        this.f3781c = f7;
     }
 }

@@ -20,8 +20,8 @@ public final class q9 implements Runnable {
     public final Object f2082r;
     public final Object f2083s;
 
-    public q9(ga gaVar, TLObject tLObject, Runnable runnable, TLRPC.TL_error tL_error, boolean z10, long j10, int i10, MessageObject messageObject, long j11) {
-        this.f2080f = gaVar;
+    public q9(ha haVar, TLObject tLObject, Runnable runnable, TLRPC.TL_error tL_error, boolean z10, long j10, int i10, MessageObject messageObject, long j11) {
+        this.f2080f = haVar;
         this.h = tLObject;
         this.f2081n = runnable;
         this.f2082r = tL_error;
@@ -36,7 +36,7 @@ public final class q9 implements Runnable {
     public final void run() {
         switch (this.f2077a) {
             case 0:
-                ga gaVar = (ga) this.f2080f;
+                ha haVar = (ha) this.f2080f;
                 TLObject tLObject = (TLObject) this.h;
                 Runnable runnable = (Runnable) this.f2081n;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f2082r;
@@ -46,14 +46,14 @@ public final class q9 implements Runnable {
                 MessageObject messageObject = (MessageObject) this.f2083s;
                 long j11 = this.d;
                 if (tLObject instanceof TLRPC.Updates) {
-                    Utilities.stageQueue.postRunnable(new c9(gaVar, tLObject, 5));
+                    Utilities.stageQueue.postRunnable(new c9(haVar, tLObject, 5));
                     runnable.run();
                     return;
                 } else if (tL_error != null && FileRefController.isFileRefError(tL_error.text) && !z10) {
                     TLRPC.TL_messages_getScheduledMessages tL_messages_getScheduledMessages = new TLRPC.TL_messages_getScheduledMessages();
-                    tL_messages_getScheduledMessages.peer = MessagesController.getInstance(gaVar.f1363a).getInputPeer(j10);
-                    tL_messages_getScheduledMessages.f20380id.add(Integer.valueOf(i10));
-                    ConnectionsManager.getInstance(gaVar.f1363a).sendRequest(tL_messages_getScheduledMessages, new d0(gaVar, messageObject, j11, runnable, 2));
+                    tL_messages_getScheduledMessages.peer = MessagesController.getInstance(haVar.f1413a).getInputPeer(j10);
+                    tL_messages_getScheduledMessages.f20443id.add(Integer.valueOf(i10));
+                    ConnectionsManager.getInstance(haVar.f1413a).sendRequest(tL_messages_getScheduledMessages, new d0(haVar, messageObject, j11, runnable, 2));
                     return;
                 } else {
                     runnable.run();

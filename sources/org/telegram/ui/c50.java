@@ -1,32 +1,35 @@
 package org.telegram.ui;
 
-import android.view.View;
-import java.util.Iterator;
-public final class c50 implements org.telegram.ui.Components.x5 {
-    public final int f35824a;
-    public final Object f35825b;
+import org.telegram.messenger.AndroidUtilities;
+public final class c50 implements Runnable {
+    public final int f36246a;
+    public final d50 f36247b;
 
-    public c50(Object obj, int i10) {
-        this.f35824a = i10;
-        this.f35825b = obj;
+    public c50(d50 d50Var, int i10) {
+        this.f36246a = i10;
+        this.f36247b = d50Var;
     }
 
     @Override
-    public final void invalidate() {
-        switch (this.f35824a) {
+    public final void run() {
+        switch (this.f36246a) {
             case 0:
-                Iterator it = ((d50) this.f35825b).f36272i.iterator();
-                while (it.hasNext()) {
-                    ((View) it.next()).invalidate();
+                d50 d50Var = this.f36247b;
+                e50 e50Var = d50Var.f36506b;
+                if (e50Var != null) {
+                    e50Var.setVisibility(0);
+                }
+                AndroidUtilities.runOnUIThread(new c50(d50Var, 2), 16L);
+                return;
+            case 1:
+                e50 e50Var2 = this.f36247b.f36506b;
+                if (e50Var2 != null) {
+                    e50Var2.setVisibility(4);
+                    return;
                 }
                 return;
             default:
-                g51 g51Var = (g51) this.f35825b;
-                g51Var.getClass();
-                if (!ah.x0.f901b && g51Var.getParent() != null) {
-                    ((View) g51Var.getParent()).invalidate();
-                    return;
-                }
+                super/*android.app.Dialog*/.dismiss();
                 return;
         }
     }

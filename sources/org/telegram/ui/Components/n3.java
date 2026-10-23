@@ -1,21 +1,10 @@
 package org.telegram.ui.Components;
 
-import android.app.Activity;
-import android.widget.FrameLayout;
-public final class n3 extends FrameLayout {
-    public final org.telegram.ui.Cells.a2[] f28673a;
-
-    public n3(Activity activity, org.telegram.ui.Cells.a2[] a2VarArr) {
-        super(activity);
-        this.f28673a = a2VarArr;
-    }
-
+import android.widget.TextView;
+import org.telegram.messenger.Emoji;
+public final class n3 extends TextView {
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-        org.telegram.ui.Cells.a2[] a2VarArr = this.f28673a;
-        if (a2VarArr[0] != null) {
-            setMeasuredDimension(getMeasuredWidth(), a2VarArr[0].getMeasuredHeight() + getMeasuredHeight());
-        }
+    public final void setText(CharSequence charSequence, TextView.BufferType bufferType) {
+        super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), false), bufferType);
     }
 }

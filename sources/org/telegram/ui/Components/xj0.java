@@ -1,47 +1,50 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
-public final class xj0 extends Drawable {
-    public final int f32444a;
-    public final int f32445b;
-    public final yj0 f32446c;
+public final class xj0 implements Runnable {
+    public final int f32588a;
+    public final yj0 f32589b;
 
-    public xj0(yj0 yj0Var, int i10, int i11) {
-        this.f32446c = yj0Var;
-        this.f32444a = i10;
-        this.f32445b = i11;
+    public xj0(yj0 yj0Var, int i10) {
+        this.f32588a = i10;
+        this.f32589b = yj0Var;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        Rect rect = AndroidUtilities.rectTmp2;
-        int centerX = getBounds().centerX();
-        float f7 = this.f32444a;
-        int dp = centerX - (AndroidUtilities.dp(f7) / 2);
-        int centerY = getBounds().centerY();
-        float f10 = this.f32445b;
-        rect.set(dp, centerY - (AndroidUtilities.dp(f10) / 2), (AndroidUtilities.dp(f7) / 2) + getBounds().centerX(), (AndroidUtilities.dp(f10) / 2) + getBounds().centerY());
-        yj0 yj0Var = this.f32446c;
-        yj0Var.f32670c.setImageCoords(rect);
-        yj0Var.f32670c.draw(canvas);
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-        this.f32446c.f32670c.setAlpha(i10 / 255.0f);
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        this.f32446c.f32670c.setColorFilter(colorFilter);
+    public final void run() {
+        switch (this.f32588a) {
+            case 0:
+                yj0 yj0Var = this.f32589b;
+                yj0Var.getClass();
+                try {
+                    zf.e eVar = yj0Var.B0;
+                    if (eVar != null) {
+                        eVar.b();
+                    }
+                } catch (Throwable unused) {
+                }
+                AndroidUtilities.runOnUIThread(yj0Var.f32966z0);
+                return;
+            case 1:
+                yj0 yj0Var2 = this.f32589b;
+                yj0Var2.P = null;
+                yj0Var2.p();
+                return;
+            case 2:
+                yj0.h(this.f32589b);
+                return;
+            case 3:
+                yj0.e(this.f32589b);
+                return;
+            case 4:
+                yj0.d(this.f32589b);
+                return;
+            case 5:
+                yj0.f(this.f32589b);
+                return;
+            default:
+                this.f32589b.m();
+                return;
+        }
     }
 }

@@ -13,44 +13,44 @@ public final class a5 implements NotificationCenter.NotificationCenterDelegate {
     public String F;
     public TLRPC.InputFile G;
     public boolean H;
-    public final int f15122a;
-    public final String f15123b;
-    public final boolean f15124c;
+    public final int f15168a;
+    public final String f15169b;
+    public final boolean f15170c;
     public final boolean d;
     public final boolean e;
-    public final int f15125f;
+    public final int f15171f;
     public final int h;
-    public final int f15126n;
-    public final TLRPC.Document f15127r;
-    public final z4 f15128s;
+    public final int f15172n;
+    public final TLRPC.Document f15173r;
+    public final z4 f15174s;
     public boolean v;
-    public boolean f15129w;
-    public boolean f15130x;
-    public int f15131y;
+    public boolean f15175w;
+    public boolean f15176x;
+    public int f15177y;
 
     public a5(int i10, String str, boolean z10, int i11, int i12, int i13, i3 i3Var) {
-        this.f15122a = i10;
-        this.f15123b = str;
-        this.f15124c = z10;
+        this.f15168a = i10;
+        this.f15169b = str;
+        this.f15170c = z10;
         this.d = false;
         this.e = false;
-        this.f15125f = i11;
+        this.f15171f = i11;
         this.h = i12;
-        this.f15126n = i13;
-        this.f15127r = null;
-        this.f15128s = i3Var;
+        this.f15172n = i13;
+        this.f15173r = null;
+        this.f15174s = i3Var;
     }
 
     public final void a(String str) {
         int i10;
         boolean z10;
-        if (!this.f15129w && !this.f15130x) {
+        if (!this.f15175w && !this.f15176x) {
             this.E = str;
-            NotificationCenter notificationCenter = NotificationCenter.getInstance(this.f15122a);
+            NotificationCenter notificationCenter = NotificationCenter.getInstance(this.f15168a);
             notificationCenter.addObserver(this, NotificationCenter.fileUploaded);
             notificationCenter.addObserver(this, NotificationCenter.fileUploadFailed);
             notificationCenter.addObserver(this, NotificationCenter.fileUploadProgressChanged);
-            if (this.f15124c) {
+            if (this.f15170c) {
                 i10 = 33554432;
             } else if (this.d) {
                 i10 = 50331648;
@@ -59,9 +59,9 @@ public final class a5 implements NotificationCenter.NotificationCenterDelegate {
             } else {
                 i10 = 16777216;
             }
-            FileLoader fileLoader = FileLoader.getInstance(this.f15122a);
+            FileLoader fileLoader = FileLoader.getInstance(this.f15168a);
             String str2 = this.E;
-            if (!this.f15124c && !this.d && !this.e) {
+            if (!this.f15170c && !this.d && !this.e) {
                 z10 = true;
             } else {
                 z10 = false;
@@ -71,17 +71,17 @@ public final class a5 implements NotificationCenter.NotificationCenterDelegate {
     }
 
     public final void b() {
-        if (!this.f15130x && !this.f15129w) {
-            this.f15129w = true;
+        if (!this.f15176x && !this.f15175w) {
+            this.f15175w = true;
             try {
                 if (this.E != null) {
-                    FileLoader.getInstance(this.f15122a).cancelFileUpload(this.E, false);
+                    FileLoader.getInstance(this.f15168a).cancelFileUpload(this.E, false);
                 }
             } catch (Throwable unused) {
             }
-            if (this.f15131y != 0) {
-                ConnectionsManager.getInstance(this.f15122a).cancelRequest(this.f15131y, true);
-                this.f15131y = 0;
+            if (this.f15177y != 0) {
+                ConnectionsManager.getInstance(this.f15168a).cancelRequest(this.f15177y, true);
+                this.f15177y = 0;
             }
             e();
         }
@@ -91,14 +91,14 @@ public final class a5 implements NotificationCenter.NotificationCenterDelegate {
         String str;
         TLRPC.TL_messages_uploadMedia tL_messages_uploadMedia = new TLRPC.TL_messages_uploadMedia();
         tL_messages_uploadMedia.peer = new TLRPC.TL_inputPeerSelf();
-        if (this.f15124c) {
+        if (this.f15170c) {
             TLRPC.TL_inputMediaUploadedDocument tL_inputMediaUploadedDocument = new TLRPC.TL_inputMediaUploadedDocument();
             tL_inputMediaUploadedDocument.file = inputFile;
             tL_inputMediaUploadedDocument.mime_type = "video/mp4";
             TLRPC.TL_documentAttributeVideo tL_documentAttributeVideo = new TLRPC.TL_documentAttributeVideo();
             tL_documentAttributeVideo.supports_streaming = true;
-            tL_documentAttributeVideo.duration = this.f15126n;
-            tL_documentAttributeVideo.f20287w = this.f15125f;
+            tL_documentAttributeVideo.duration = this.f15172n;
+            tL_documentAttributeVideo.f20350w = this.f15171f;
             tL_documentAttributeVideo.h = this.h;
             tL_inputMediaUploadedDocument.attributes.add(tL_documentAttributeVideo);
             tL_messages_uploadMedia.media = tL_inputMediaUploadedDocument;
@@ -112,7 +112,7 @@ public final class a5 implements NotificationCenter.NotificationCenterDelegate {
             } else {
                 TLRPC.TL_inputMediaUploadedDocument tL_inputMediaUploadedDocument2 = new TLRPC.TL_inputMediaUploadedDocument();
                 tL_inputMediaUploadedDocument2.file = inputFile;
-                TLRPC.Document document = this.f15127r;
+                TLRPC.Document document = this.f15173r;
                 if (z11) {
                     str = "application/octet-stream";
                 } else if (document == null || (str = document.mime_type) == null) {
@@ -146,33 +146,33 @@ public final class a5 implements NotificationCenter.NotificationCenterDelegate {
                 tL_messages_uploadMedia.media = tL_inputMediaUploadedDocument2;
             }
         }
-        this.f15131y = ConnectionsManager.getInstance(this.f15122a).sendRequest(tL_messages_uploadMedia, new ai.h(this, 23));
+        this.f15177y = ConnectionsManager.getInstance(this.f15168a).sendRequest(tL_messages_uploadMedia, new ai.h(this, 23));
     }
 
     public final void d() {
         int i10;
         int i11;
-        if (!this.v && !this.f15129w && !this.f15130x) {
+        if (!this.v && !this.f15175w && !this.f15176x) {
             this.v = true;
-            if (this.f15124c) {
-                z4 z4Var = this.f15128s;
-                int i12 = this.f15125f;
+            if (this.f15170c) {
+                z4 z4Var = this.f15174s;
+                int i12 = this.f15171f;
                 if (i12 > 0 && (i11 = this.h) > 0) {
                     z4Var.a(i12, i11);
                 }
-                a(this.f15123b);
+                a(this.f15169b);
             } else if (this.e) {
                 Utilities.globalQueue.postRunnable(new y4(this, 0));
             } else if (this.d) {
-                a(this.f15123b);
+                a(this.f15169b);
             } else {
                 try {
                     BitmapFactory.Options options = new BitmapFactory.Options();
                     options.inJustDecodeBounds = true;
-                    BitmapFactory.decodeFile(this.f15123b, options);
+                    BitmapFactory.decodeFile(this.f15169b, options);
                     int i13 = options.outWidth;
                     if (i13 > 0 && (i10 = options.outHeight) > 0) {
-                        this.f15128s.a(i13, i10);
+                        this.f15174s.a(i13, i10);
                     }
                 } catch (Exception unused) {
                 }
@@ -185,7 +185,7 @@ public final class a5 implements NotificationCenter.NotificationCenterDelegate {
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         float f7;
         TLRPC.InputFile inputFile;
-        if (i11 == this.f15122a && !this.f15129w && !this.f15130x) {
+        if (i11 == this.f15168a && !this.f15175w && !this.f15176x) {
             String str = (String) objArr[0];
             if (this.E != null && this.E.equals(str)) {
                 if (i10 == NotificationCenter.fileUploaded) {
@@ -194,7 +194,7 @@ public final class a5 implements NotificationCenter.NotificationCenterDelegate {
                         this.G = inputFile2;
                         this.H = true;
                         this.E = this.F;
-                        FileLoader.getInstance(this.f15122a).uploadFile(this.E, false, true, 16777216);
+                        FileLoader.getInstance(this.f15168a).uploadFile(this.E, false, true, 16777216);
                     } else if (this.e && this.H) {
                         c(this.G, inputFile2);
                     } else {
@@ -205,13 +205,13 @@ public final class a5 implements NotificationCenter.NotificationCenterDelegate {
                         c(inputFile, null);
                         return;
                     }
-                    this.f15130x = true;
+                    this.f15176x = true;
                     e();
-                    this.f15128s.onError();
+                    this.f15174s.onError();
                 } else if (i10 == NotificationCenter.fileUploadProgressChanged) {
                     long longValue = ((Long) objArr[1]).longValue();
                     long longValue2 = ((Long) objArr[2]).longValue();
-                    z4 z4Var = this.f15128s;
+                    z4 z4Var = this.f15174s;
                     if (!this.H) {
                         if (longValue2 > 0) {
                             f7 = ((float) longValue) / ((float) longValue2);
@@ -226,35 +226,35 @@ public final class a5 implements NotificationCenter.NotificationCenterDelegate {
     }
 
     public final void e() {
-        NotificationCenter notificationCenter = NotificationCenter.getInstance(this.f15122a);
+        NotificationCenter notificationCenter = NotificationCenter.getInstance(this.f15168a);
         notificationCenter.removeObserver(this, NotificationCenter.fileUploaded);
         notificationCenter.removeObserver(this, NotificationCenter.fileUploadFailed);
         notificationCenter.removeObserver(this, NotificationCenter.fileUploadProgressChanged);
     }
 
     public a5(int i10, String str, TLRPC.Document document, g3 g3Var) {
-        this.f15122a = i10;
-        this.f15123b = str;
-        this.f15124c = false;
+        this.f15168a = i10;
+        this.f15169b = str;
+        this.f15170c = false;
         this.d = true;
         this.e = false;
-        this.f15125f = 0;
+        this.f15171f = 0;
         this.h = 0;
-        this.f15126n = 0;
-        this.f15127r = document;
-        this.f15128s = g3Var;
+        this.f15172n = 0;
+        this.f15173r = document;
+        this.f15174s = g3Var;
     }
 
     public a5(int i10, String str, TLRPC.Document document, f3 f3Var) {
-        this.f15122a = i10;
-        this.f15123b = str;
-        this.f15124c = false;
+        this.f15168a = i10;
+        this.f15169b = str;
+        this.f15170c = false;
         this.d = false;
         this.e = true;
-        this.f15125f = 0;
+        this.f15171f = 0;
         this.h = 0;
-        this.f15126n = 0;
-        this.f15127r = document;
-        this.f15128s = f3Var;
+        this.f15172n = 0;
+        this.f15173r = document;
+        this.f15174s = f3Var;
     }
 }

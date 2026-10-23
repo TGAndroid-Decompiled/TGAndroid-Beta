@@ -12,28 +12,28 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.ui.Components.bs;
 import org.telegram.ui.Components.f6;
 import org.telegram.ui.Components.ti;
-import org.telegram.ui.s10;
+import org.telegram.ui.w10;
 public final class j extends FrameLayout {
-    public final int f12931a = 0;
-    public int f12932b;
-    public final Object f12933c;
+    public final int f12963a = 0;
+    public int f12964b;
+    public final Object f12965c;
     public final Object d;
     public final NotificationCenter.NotificationCenterDelegate e;
 
     public j(m mVar, Context context) {
         super(context);
         this.e = mVar;
-        this.f12932b = -1;
-        this.f12933c = new Rect();
+        this.f12964b = -1;
+        this.f12965c = new Rect();
         this.d = new f6(this, 220L, bs.h);
     }
 
     @Override
     public void dispatchDraw(Canvas canvas) {
-        switch (this.f12931a) {
+        switch (this.f12963a) {
             case 1:
-                s10 s10Var = (s10) this.d;
-                Path path = (Path) this.f12933c;
+                w10 w10Var = (w10) this.d;
+                Path path = (Path) this.f12965c;
                 ti tiVar = (ti) this.e;
                 dh.d dVar = tiVar.E0;
                 if (dVar != null) {
@@ -53,9 +53,9 @@ public final class j extends FrameLayout {
                 canvas.saveLayerAlpha(rectF, 255, 31);
                 super.dispatchDraw(canvas);
                 rectF.set(getPaddingLeft(), f7, getWidth() - getPaddingRight(), AndroidUtilities.dp(6.0f) + dp2);
-                s10Var.b(canvas, rectF, 1, 1.0f);
+                w10Var.b(canvas, rectF, 1, 1.0f);
                 rectF.set(getPaddingLeft(), (getHeight() - dp3) - AndroidUtilities.dp(6.0f), getWidth() - getPaddingRight(), getHeight() - dp3);
-                s10Var.b(canvas, rectF, 3, 1.0f);
+                w10Var.b(canvas, rectF, 3, 1.0f);
                 canvas.restore();
                 canvas.restore();
                 return;
@@ -67,16 +67,16 @@ public final class j extends FrameLayout {
 
     @Override
     public boolean drawChild(Canvas canvas, View view, long j10) {
-        switch (this.f12931a) {
+        switch (this.f12963a) {
             case 0:
                 float width = getWidth() / 2.0f;
                 m mVar = (m) this.e;
-                float d = ((f6) this.d).d(mVar.f12957n.getWidth(), false);
-                Rect rect = (Rect) this.f12933c;
+                float d = ((f6) this.d).d(mVar.v.getWidth(), false);
+                Rect rect = (Rect) this.f12965c;
                 float f7 = d / 2.0f;
-                rect.set((int) (width - (mVar.f12957n.getScaleX() * f7)), (int) (((1.0f - mVar.f12957n.getScaleY()) * mVar.f12957n.getHeight()) + mVar.f12957n.getY()), (int) ((mVar.f12957n.getScaleX() * f7) + width), (int) (mVar.f12957n.getY() + mVar.f12957n.getHeight()));
-                mVar.f12958r.setBounds(rect);
-                mVar.f12958r.draw(canvas);
+                rect.set((int) (width - (mVar.v.getScaleX() * f7)), (int) (((1.0f - mVar.v.getScaleY()) * mVar.v.getHeight()) + mVar.v.getY()), (int) ((mVar.v.getScaleX() * f7) + width), (int) (mVar.v.getY() + mVar.v.getHeight()));
+                mVar.f12995w.setBounds(rect);
+                mVar.f12995w.draw(canvas);
                 return super.drawChild(canvas, view, j10);
             default:
                 return super.drawChild(canvas, view, j10);
@@ -85,16 +85,16 @@ public final class j extends FrameLayout {
 
     @Override
     public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        switch (this.f12931a) {
+        switch (this.f12963a) {
             case 1:
-                int i14 = this.f12932b;
+                int i14 = this.f12964b;
                 ti tiVar = (ti) this.e;
-                int top = i14 - tiVar.f30602w.getTop();
+                int top = i14 - tiVar.f30782w.getTop();
                 super.onLayout(z10, i10, i11, i12, i13);
-                this.f12932b = getHeight();
-                if (tiVar.f30602w.getVisibility() == 0 && getHeight() - tiVar.f30602w.getTop() != top) {
-                    tiVar.f30602w.setTranslationY(tiVar.f30602w.getTranslationY() + ((getHeight() - tiVar.f30602w.getTop()) - top));
-                    tiVar.f30602w.animate().translationY(0.0f).setDuration(320L).setInterpolator(bs.h).start();
+                this.f12964b = getHeight();
+                if (tiVar.f30782w.getVisibility() == 0 && getHeight() - tiVar.f30782w.getTop() != top) {
+                    tiVar.f30782w.setTranslationY(tiVar.f30782w.getTranslationY() + ((getHeight() - tiVar.f30782w.getTop()) - top));
+                    tiVar.f30782w.animate().translationY(0.0f).setDuration(320L).setInterpolator(bs.h).start();
                     return;
                 }
                 return;
@@ -106,14 +106,14 @@ public final class j extends FrameLayout {
 
     @Override
     public void onMeasure(int i10, int i11) {
-        switch (this.f12931a) {
+        switch (this.f12963a) {
             case 0:
                 m mVar = (m) this.e;
-                mVar.f12957n.measure(i10, i11);
+                mVar.v.measure(i10, i11);
                 invalidate();
-                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(Math.max(this.f12932b, AndroidUtilities.dp(36.0f) + mVar.f12957n.getMeasuredHeight()), 1073741824));
-                if (this.f12932b < 0) {
-                    this.f12932b = getMeasuredHeight();
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(Math.max(this.f12964b, AndroidUtilities.dp(36.0f) + mVar.v.getMeasuredHeight()), 1073741824));
+                if (this.f12964b < 0) {
+                    this.f12964b = getMeasuredHeight();
                     return;
                 }
                 return;
@@ -126,7 +126,7 @@ public final class j extends FrameLayout {
     public j(ti tiVar, Context context) {
         super(context);
         this.e = tiVar;
-        this.f12933c = new Path();
-        this.d = new s10();
+        this.f12965c = new Path();
+        this.d = new w10();
     }
 }

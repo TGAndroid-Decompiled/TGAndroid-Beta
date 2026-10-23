@@ -1,39 +1,22 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.graphics.RectF;
-public final class xk implements org.telegram.ui.Components.cl0 {
-    public final qn f43231a;
+import org.telegram.messenger.NotificationCenter;
+public final class xk implements NotificationCenter.PostponeNotificationCallback {
+    public final sn f43613a;
 
-    public xk(qn qnVar) {
-        this.f43231a = qnVar;
+    public xk(sn snVar) {
+        this.f43613a = snVar;
     }
 
     @Override
-    public final boolean i() {
-        return true;
-    }
-
-    @Override
-    public final boolean m() {
+    public final boolean needPostpone(int i10, int i11, Object[] objArr) {
+        if (i10 == NotificationCenter.didReceiveNewMessages) {
+            long longValue = ((Long) objArr[0]).longValue();
+            sn snVar = this.f43613a;
+            if (snVar.T6 && longValue == snVar.f41519f6) {
+                return true;
+            }
+        }
         return false;
-    }
-
-    @Override
-    public final void o(android.view.View r24, ah.i1 r25, boolean r26, boolean r27) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.xk.o(android.view.View, ah.i1, boolean, boolean):void");
-    }
-
-    @Override
-    public final boolean w() {
-        return false;
-    }
-
-    @Override
-    public final void v() {
-    }
-
-    @Override
-    public final void q(Canvas canvas, RectF rectF, float f7, float f10, float f11, int i10, boolean z10) {
     }
 }

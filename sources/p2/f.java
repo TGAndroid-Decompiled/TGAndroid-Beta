@@ -3,15 +3,15 @@ package p2;
 import j$.util.Objects;
 import v7.u6;
 public final class f {
-    public final String f43952a;
-    public final int f43953b;
-    public final double f43954c;
+    public final String f44367a;
+    public final int f44368b;
+    public final double f44369c;
     public final String d;
 
     public f(String str, double d) {
-        this.f43952a = str;
-        this.f43953b = 2;
-        this.f43954c = d;
+        this.f44367a = str;
+        this.f44368b = 2;
+        this.f44369c = d;
         this.d = null;
     }
 
@@ -19,7 +19,7 @@ public final class f {
         if (this != obj) {
             if (obj instanceof f) {
                 f fVar = (f) obj;
-                if (this.f43953b == fVar.f43953b && Double.compare(this.f43954c, fVar.f43954c) == 0 && Objects.equals(this.f43952a, fVar.f43952a) && Objects.equals(this.d, fVar.d)) {
+                if (this.f44368b == fVar.f44368b && Double.compare(this.f44369c, fVar.f44369c) == 0 && Objects.equals(this.f44367a, fVar.f44367a) && Objects.equals(this.d, fVar.d)) {
                     return true;
                 }
                 return false;
@@ -30,7 +30,7 @@ public final class f {
     }
 
     public final int hashCode() {
-        return Objects.hash(this.f43952a, Integer.valueOf(this.f43953b), Double.valueOf(this.f43954c), this.d);
+        return Objects.hash(this.f44367a, Integer.valueOf(this.f44368b), Double.valueOf(this.f44369c), this.d);
     }
 
     public f(int i10, String str, String str2) {
@@ -39,9 +39,9 @@ public final class f {
             z10 = false;
         }
         u6.p(z10);
-        this.f43952a = str;
-        this.f43953b = i10;
+        this.f44367a = str;
+        this.f44368b = i10;
         this.d = str2;
-        this.f43954c = 0.0d;
+        this.f44369c = 0.0d;
     }
 }

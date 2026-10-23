@@ -1,18 +1,24 @@
 package org.telegram.ui;
+public final class m61 extends g.o {
+    public final o61 f39384c;
 
-import android.view.View;
-import org.telegram.tgnet.TLRPC;
-public final class m61 implements View.OnClickListener {
-    public final TLRPC.TL_authorization f39132a;
-    public final u61 f39133b;
-
-    public m61(u61 u61Var, TLRPC.TL_authorization tL_authorization) {
-        this.f39133b = u61Var;
-        this.f39132a = tL_authorization;
+    public m61(o61 o61Var) {
+        this.f39384c = o61Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        u61.n(this.f39133b, this.f39132a.country);
+    public final int i(int i10) {
+        int i11;
+        o61 o61Var = this.f39384c;
+        org.telegram.ui.Components.wz wzVar = o61Var.X;
+        org.telegram.ui.Components.b71 b71Var = o61Var.f40085d0;
+        if (b71Var == null) {
+            return wzVar.J;
+        }
+        org.telegram.ui.Components.m61 G = b71Var.G(i10 - 1);
+        if (G != null && (i11 = G.f28568u) != -1) {
+            return i11;
+        }
+        return wzVar.J;
     }
 }

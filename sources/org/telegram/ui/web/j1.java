@@ -1,37 +1,37 @@
 package org.telegram.ui.web;
 
-import android.util.Base64InputStream;
-import java.io.BufferedInputStream;
 import java.io.File;
-import java.io.FilterInputStream;
-import java.util.HashMap;
-public final class j1 {
-    public final HashMap f42692a = new HashMap();
-    public File f42693b;
-    public long f42694c;
-    public long d;
+import java.io.FileInputStream;
+public final class j1 extends FileInputStream {
+    public final long f43162a;
 
-    public final FilterInputStream a() {
-        String str;
-        BufferedInputStream bufferedInputStream = new BufferedInputStream(new i1(this.f42694c, this.d, this.f42693b));
-        HashMap hashMap = this.f42692a;
-        k1 k1Var = (k1) hashMap.get("content-transfer-encoding");
-        String str2 = null;
-        if (k1Var == null) {
-            str = null;
-        } else {
-            str = k1Var.f42709a;
+    public j1(long j10, long j11, File file) {
+        super(file);
+        this.f43162a = j11;
+        if (j10 > 0 && skip(j10) != j10) {
+            throw new RuntimeException("BoundedInputStream failed to skip");
         }
-        if ("base64".equals(str)) {
-            return new Base64InputStream(bufferedInputStream, 0);
+    }
+
+    @Override
+    public final int read() {
+        if (getChannel().position() >= this.f43162a) {
+            return -1;
         }
-        k1 k1Var2 = (k1) hashMap.get("content-transfer-encoding");
-        if (k1Var2 != null) {
-            str2 = k1Var2.f42709a;
+        return super.read();
+    }
+
+    @Override
+    public final int read(byte[] bArr, int i10, int i11) {
+        long position = getChannel().position();
+        long j10 = this.f43162a;
+        if (position >= j10) {
+            return -1;
         }
-        if ("quoted-printable".equalsIgnoreCase(str2)) {
-            return new l1(bufferedInputStream, 0);
+        long position2 = j10 - getChannel().position();
+        if (i11 > position2) {
+            i11 = (int) position2;
         }
-        return bufferedInputStream;
+        return super.read(bArr, i10, i11);
     }
 }

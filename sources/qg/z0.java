@@ -1,34 +1,36 @@
 package qg;
 public final class z0 implements Runnable {
-    public final int f44727a;
-    public final f1 f44728b;
+    public final int f45139a;
+    public final a1 f45140b;
 
-    public z0(f1 f1Var, int i10) {
-        this.f44727a = i10;
-        this.f44728b = f1Var;
+    public z0(a1 a1Var, int i10) {
+        this.f45139a = i10;
+        this.f45140b = a1Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f44727a) {
+        switch (this.f45139a) {
             case 0:
-                e1 e1Var = this.f44728b.f44524a;
-                if (e1Var != null) {
-                    e1Var.b();
+                c1 c1Var = this.f45140b.f44889b.d;
+                if (c1Var != null) {
+                    c1Var.postRunnable(c1Var.f44905w);
                     return;
                 }
                 return;
             case 1:
-                f1 f1Var = this.f44728b;
-                f1Var.f44526c.a(f1Var.f44529r);
-                d1 d1Var = f1Var.d;
-                d1Var.getClass();
-                d1Var.postRunnable(new c1(d1Var, 2));
-                f1Var.d = null;
+                c1 c1Var2 = this.f45140b.f44889b.d;
+                if (c1Var2 != null) {
+                    c1Var2.postRunnable(c1Var2.f44905w);
+                    return;
+                }
                 return;
             default:
-                f1 f1Var2 = this.f44728b;
-                f1Var2.f44526c.q(f1Var2.f44532x);
+                e1 e1Var = this.f45140b.f44889b;
+                c1 c1Var3 = e1Var.d;
+                c1Var3.getClass();
+                c1Var3.postRunnable(new b1(c1Var3, 2));
+                e1Var.d = null;
                 return;
         }
     }

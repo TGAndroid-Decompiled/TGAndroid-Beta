@@ -1,36 +1,40 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.View;
-public final class p41 extends View {
-    public final int f40066a;
-    public final Integer f40067b;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.FileLog;
+public final class p41 extends s4.s {
+    public final int Q;
+    public final b61 R;
 
-    public p41(Context context, Integer num, int i10) {
-        super(context);
-        this.f40066a = i10;
-        this.f40067b = num;
+    public p41(b61 b61Var, int i10) {
+        super(40);
+        this.Q = i10;
+        this.R = b61Var;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        switch (this.f40066a) {
+    public final void v0(RecyclerView recyclerView, s4.y0 y0Var, int i10) {
+        switch (this.Q) {
             case 0:
-                super.onMeasure(i10, i11);
-                Integer num = this.f40067b;
-                if (num != null) {
-                    setPivotX(num.intValue());
+                try {
+                    ei.l1 l1Var = new ei.l1(this, recyclerView.getContext(), 3);
+                    l1Var.f46484a = i10;
+                    w0(l1Var);
+                    return;
+                } catch (Exception e) {
+                    FileLog.e(e);
                     return;
                 }
-                return;
             default:
-                super.onMeasure(i10, i11);
-                Integer num2 = this.f40067b;
-                if (num2 != null) {
-                    setPivotX(num2.intValue());
+                try {
+                    ei.l1 l1Var2 = new ei.l1(this, recyclerView.getContext(), 5);
+                    l1Var2.f46484a = i10;
+                    w0(l1Var2);
+                    return;
+                } catch (Exception e7) {
+                    FileLog.e(e7);
                     return;
                 }
-                return;
         }
     }
 }

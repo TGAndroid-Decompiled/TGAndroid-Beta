@@ -1,16 +1,67 @@
 package org.telegram.ui.Components;
-public final class do0 {
-    public ah.i1 f25579a;
-    public int f25580b;
-    public String f25581c;
-    public int d;
 
-    public final boolean equals(Object obj) {
-        if (!(obj instanceof do0)) {
-            return false;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class do0 extends EditTextBoldCursor {
+    public final i5 f25678b;
+    public int f25679c;
+    public final p6 d;
+    public final org.telegram.ui.ActionBar.g6 e;
+
+    public do0(Context context, org.telegram.ui.ActionBar.g6 g6Var) {
+        super(context);
+        this.e = g6Var;
+        this.f25678b = new i5(this);
+        p6 p6Var = new p6(false, true, true);
+        this.d = p6Var;
+        p6Var.n(0.2f, 160L, bs.h);
+        p6Var.w(AndroidUtilities.dp(15.33f));
+        p6Var.setCallback(this);
+        p6Var.f29437b = 5;
+    }
+
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        int i10;
+        super.dispatchDraw(canvas);
+        if (this.f25679c < 0) {
+            i10 = org.telegram.ui.ActionBar.k6.f21404p7;
+        } else {
+            i10 = org.telegram.ui.ActionBar.k6.P5;
         }
-        do0 do0Var = (do0) obj;
-        if (this.f25580b != do0Var.f25580b || this.f25579a.h != do0Var.f25579a.h || this.d != do0Var.d) {
+        int a2 = this.f25678b.a(org.telegram.ui.ActionBar.k6.w0(i10, this.e), false);
+        p6 p6Var = this.d;
+        p6Var.u(a2);
+        p6Var.setBounds(getScrollX(), 0, getWidth() + getScrollX(), getHeight());
+        p6Var.draw(canvas);
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(36.0f), 1073741824));
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        super.onTextChanged(charSequence, i10, i11, i12);
+        p6 p6Var = this.d;
+        if (p6Var != null) {
+            this.f25679c = 12 - charSequence.length();
+            p6Var.a();
+            String str = "";
+            if (this.f25679c <= 4) {
+                str = "" + this.f25679c;
+            }
+            p6Var.t(str, true, true);
+        }
+    }
+
+    @Override
+    public final boolean verifyDrawable(Drawable drawable) {
+        if (drawable != this.d && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

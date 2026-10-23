@@ -1,28 +1,55 @@
 package org.telegram.ui;
 
-import android.text.TextUtils;
+import android.widget.EditText;
 import org.telegram.messenger.AndroidUtilities;
-public final class dq0 extends g.o {
-    public final jq0 f36445c;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.ConnectionsManager;
+public final class dq0 extends org.telegram.ui.ActionBar.k5 {
+    public final oj0 f36711r = new oj0(this, 13);
+    public final mq0 f36712s;
 
-    public dq0(jq0 jq0Var) {
-        this.f36445c = jq0Var;
+    public dq0(mq0 mq0Var) {
+        this.f36712s = mq0Var;
     }
 
     @Override
-    public final int i(int i10) {
-        int i11;
-        jq0 jq0Var = this.f36445c;
-        if (jq0Var.L.j(i10) != 1 && !jq0Var.Y && (jq0Var.J != null || !TextUtils.isEmpty(jq0Var.v))) {
-            int i12 = jq0Var.R;
-            int i13 = jq0Var.f38315g0;
-            if (i10 % i13 != i13 - 1) {
-                i11 = AndroidUtilities.dp(2.0f);
-            } else {
-                i11 = 0;
+    public final boolean b() {
+        this.f36712s.finishFragment();
+        return false;
+    }
+
+    @Override
+    public final void p(ei.e2 e2Var) {
+        this.f36712s.b0(e2Var);
+    }
+
+    @Override
+    public final void q(EditText editText) {
+        int i10;
+        if (editText.getText().length() == 0) {
+            mq0 mq0Var = this.f36712s;
+            mq0Var.f39651f.clear();
+            mq0Var.h.clear();
+            mq0Var.v = null;
+            mq0Var.f39666s = true;
+            mq0Var.f39664r = false;
+            if (mq0Var.f39673x != 0) {
+                i10 = ((org.telegram.ui.ActionBar.o2) mq0Var).currentAccount;
+                ConnectionsManager.getInstance(i10).cancelRequest(mq0Var.f39673x, true);
+                mq0Var.f39673x = 0;
             }
-            return i12 + i11;
+            mq0Var.N.d.setText(LocaleController.getString(R.string.NoRecentSearches));
+            mq0Var.N.e(false, true);
+            mq0Var.j0();
+            return;
         }
-        return jq0Var.M.J;
+        oj0 oj0Var = this.f36711r;
+        AndroidUtilities.cancelRunOnUIThread(oj0Var);
+        AndroidUtilities.runOnUIThread(oj0Var, 1200L);
+    }
+
+    @Override
+    public final void n() {
     }
 }

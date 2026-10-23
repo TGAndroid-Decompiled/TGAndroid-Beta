@@ -1,21 +1,23 @@
 package org.telegram.ui;
 
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class ia0 implements View.OnLayoutChangeListener {
-    public boolean f37907a;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.tgnet.TLRPC;
+public final class ia0 implements aq {
+    public final ey f38132a;
+    public final int f38133b;
+
+    public ia0(ey eyVar, int i10) {
+        this.f38132a = eyVar;
+        this.f38133b = i10;
+    }
 
     @Override
-    public final void onLayoutChange(View view, int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17) {
-        boolean z10;
-        if (i13 - i11 > i12 - i10) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        if (z10 != this.f37907a) {
-            AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.rc(this, 28));
-            this.f37907a = z10;
-        }
+    public final void b(int i10, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str) {
+        this.f38132a.removeSelfFromStack();
+        NotificationCenter.getInstance(this.f38133b).lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeChats, new Object[0]);
+    }
+
+    @Override
+    public final void a(TLRPC.User user) {
     }
 }

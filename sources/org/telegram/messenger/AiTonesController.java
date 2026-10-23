@@ -44,9 +44,9 @@ public final class AiTonesController {
 
     public void add(TL_aicompose.AiComposeTone aiComposeTone) {
         if (aiComposeTone instanceof TL_aicompose.TL_aiComposeTone) {
-            long j10 = ((TL_aicompose.TL_aiComposeTone) aiComposeTone).f20488id;
+            long j10 = ((TL_aicompose.TL_aiComposeTone) aiComposeTone).f20551id;
             for (int i10 = 0; i10 < this.tones.size(); i10++) {
-                if ((this.tones.get(i10) instanceof TL_aicompose.TL_aiComposeTone) && ((TL_aicompose.TL_aiComposeTone) this.tones.get(i10)).f20488id == j10) {
+                if ((this.tones.get(i10) instanceof TL_aicompose.TL_aiComposeTone) && ((TL_aicompose.TL_aiComposeTone) this.tones.get(i10)).f20551id == j10) {
                     return;
                 }
             }
@@ -65,7 +65,7 @@ public final class AiTonesController {
 
     public void edit(TL_aicompose.TL_aiComposeTone tL_aiComposeTone) {
         for (int i10 = 0; i10 < this.tones.size(); i10++) {
-            if ((this.tones.get(i10) instanceof TL_aicompose.TL_aiComposeTone) && ((TL_aicompose.TL_aiComposeTone) this.tones.get(i10)).f20488id == tL_aiComposeTone.f20488id) {
+            if ((this.tones.get(i10) instanceof TL_aicompose.TL_aiComposeTone) && ((TL_aicompose.TL_aiComposeTone) this.tones.get(i10)).f20551id == tL_aiComposeTone.f20551id) {
                 this.tones.set(i10, tL_aiComposeTone);
                 notifyUpdate();
                 return;

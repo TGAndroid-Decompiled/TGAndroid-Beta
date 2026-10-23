@@ -1,10 +1,12 @@
 package hb;
+
+import i2.o1;
 public final class q extends eb.u {
-    public static final p f11752b = new p(new q(eb.t.f8577b), 0);
-    public final eb.t f11753a;
+    public static final p f11779b = new p(new q(eb.t.f8584b), 0);
+    public final eb.t f11780a;
 
     public q(eb.t tVar) {
-        this.f11753a = tVar;
+        this.f11780a = tVar;
     }
 
     @Override
@@ -16,9 +18,9 @@ public final class q extends eb.u {
                 aVar.t();
                 return null;
             }
-            throw new RuntimeException("Expecting number, got: " + i2.e.E(x10) + "; at path " + aVar.h());
+            throw new RuntimeException("Expecting number, got: " + o1.E(x10) + "; at path " + aVar.h());
         }
-        return this.f11753a.a(aVar);
+        return this.f11780a.a(aVar);
     }
 
     @Override

@@ -1,31 +1,41 @@
 package org.telegram.ui.Wallet;
-
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.Components.xc;
 public final class u2 implements Runnable {
-    public final int f34991a;
-    public final org.telegram.ui.ActionBar.n2 f34992b;
+    public final int f35288a;
+    public final y2 f35289b;
 
-    public u2(int i10, org.telegram.ui.ActionBar.n2 n2Var) {
-        this.f34991a = i10;
-        this.f34992b = n2Var;
+    public u2(y2 y2Var, int i10) {
+        this.f35288a = i10;
+        this.f35289b = y2Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f34991a) {
+        switch (this.f35288a) {
             case 0:
-                org.telegram.ui.ActionBar.n2 n2Var = this.f34992b;
-                o5.D0(n2Var.getContext(), n2Var.getResourceProvider());
-                return;
-            case 1:
-                this.f34992b.presentFragment(new o5());
+                y2 y2Var = this.f35289b;
+                if (!y2Var.S && !y2Var.R) {
+                    y2Var.a(1.0f);
+                    return;
+                }
                 return;
             default:
-                org.telegram.ui.ActionBar.n2 n2Var2 = this.f34992b;
-                if (xc.a(n2Var2)) {
-                    xc.a0(n2Var2).M(LocaleController.getString(R.string.WalletCreated), LocaleController.getString(R.string.WalletCreatedInfo), R.raw.contact_check).j();
+                y2 y2Var2 = this.f35289b;
+                if (!y2Var2.S && !y2Var2.R) {
+                    hh.d.c(y2Var2.E, y2Var2.h);
+                    y2Var2.F.d();
+                    x5 x5Var = y2Var2.f35436r;
+                    u2 u2Var = new u2(y2Var2, 0);
+                    s5 s5Var = x5Var.f35412y;
+                    if (s5Var != null) {
+                        if (s5Var.f35131b != null) {
+                            u2Var.run();
+                            return;
+                        } else {
+                            s5Var.d = u2Var;
+                            return;
+                        }
+                    }
+                    u2Var.run();
                     return;
                 }
                 return;

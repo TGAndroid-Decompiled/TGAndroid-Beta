@@ -1,4 +1,4 @@
 package wh;
 public interface k {
-    void o(g gVar, float f7, float f10);
+    void l(g gVar, float f7, float f10);
 }

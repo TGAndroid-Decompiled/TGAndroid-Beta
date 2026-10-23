@@ -5,36 +5,36 @@ import java.util.ArrayList;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.TLRPC;
-public abstract class ct extends u61 {
-    public final int N;
-    public final int O;
-    public final ArrayList P;
-    public final ArrayList Q;
+public abstract class ct extends b71 {
+    public final int P;
+    public final int Q;
     public final ArrayList R;
     public final ArrayList S;
-    public boolean T;
-    public boolean U;
-    public final ArrayList V;
+    public final ArrayList T;
+    public final ArrayList U;
+    public boolean V;
     public boolean W;
-    public boolean X;
+    public final ArrayList X;
     public boolean Y;
-    public int Z;
-    public int f25259a0;
-    public String f25260b0;
-    public final hq f25261c0;
+    public boolean Z;
+    public boolean f25418a0;
+    public int f25419b0;
+    public int f25420c0;
+    public String f25421d0;
+    public final zp f25422e0;
 
-    public ct(jm0 jm0Var, Context context, int i10, int i11) {
-        super(jm0Var, context, i10, 0, false, null, null);
-        this.P = new ArrayList();
-        this.Q = new ArrayList();
+    public ct(mm0 mm0Var, Context context, int i10, int i11) {
+        super(mm0Var, context, i10, 0, false, null, null);
         this.R = new ArrayList();
         this.S = new ArrayList();
-        this.V = new ArrayList();
-        ro0 ro0Var = (ro0) this;
-        this.f25261c0 = new hq(ro0Var, 6);
-        this.f30866s = new d(ro0Var, 9);
-        this.N = i10;
-        this.O = i11;
+        this.T = new ArrayList();
+        this.U = new ArrayList();
+        this.X = new ArrayList();
+        uo0 uo0Var = (uo0) this;
+        this.f25422e0 = new zp(uo0Var, 7);
+        this.v = new d(uo0Var, 9);
+        this.P = i10;
+        this.Q = i11;
         N(false);
     }
 
@@ -44,14 +44,14 @@ public abstract class ct extends u61 {
 
     public final void W() {
         ArrayList arrayList = new ArrayList();
-        int i10 = this.N;
+        int i10 = this.P;
         ArrayList<TLRPC.Dialog> allDialogs = MessagesController.getInstance(i10).getAllDialogs();
         int size = allDialogs.size();
         int i11 = 0;
         while (i11 < size) {
             TLRPC.Dialog dialog = allDialogs.get(i11);
             i11++;
-            TLRPC.Chat chat = MessagesController.getInstance(i10).getChat(Long.valueOf(-dialog.f20284id));
+            TLRPC.Chat chat = MessagesController.getInstance(i10).getChat(Long.valueOf(-dialog.f20347id));
             if (chat != null && ChatObject.isChannelAndNotMegaGroup(chat) && ChatObject.isPublic(chat) && !ChatObject.isNotInChat(chat)) {
                 arrayList.add(chat);
                 if (arrayList.size() >= 100) {
@@ -59,7 +59,7 @@ public abstract class ct extends u61 {
                 }
             }
         }
-        ArrayList arrayList2 = this.V;
+        ArrayList arrayList2 = this.X;
         arrayList2.clear();
         arrayList2.addAll(arrayList);
     }

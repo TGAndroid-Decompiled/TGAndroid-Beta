@@ -16,10 +16,10 @@ import qb.c;
 import r2.k;
 import r2.l;
 public final class b implements k {
-    public final Context f14563a;
+    public final Context f14609a;
 
     public b(Context context) {
-        this.f14563a = context;
+        this.f14609a = context;
     }
 
     public static FingerprintManager b(Context context) {
@@ -37,16 +37,16 @@ public final class b implements k {
     public l J(com.google.firebase.messaging.l lVar) {
         Context context;
         int i10 = Build.VERSION.SDK_INT;
-        if (i10 >= 31 || ((context = this.f14563a) != null && i10 >= 28 && context.getPackageManager().hasSystemFeature("com.amazon.hardware.tv_screen"))) {
-            int h = v0.h(((w) lVar.f7647c).f4128s);
+        if (i10 >= 31 || ((context = this.f14609a) != null && i10 >= 28 && context.getPackageManager().hasSystemFeature("com.amazon.hardware.tv_screen"))) {
+            int h = v0.h(((w) lVar.f7659c).f4135s);
             e2.a.g("DMCodecAdapterFactory", "Creating an asynchronous MediaCodec adapter for track type " + m0.I(h));
             r2.b bVar = new r2.b(h, 0);
             r2.b bVar2 = new r2.b(h, 1);
             ?? obj = new Object();
-            obj.f2668b = bVar;
-            obj.f2669c = bVar2;
-            obj.f2667a = true;
-            obj.f2667a = true;
+            obj.f2675b = bVar;
+            obj.f2676c = bVar2;
+            obj.f2674a = true;
+            obj.f2674a = true;
             return obj.J(lVar);
         }
         return new sb.a(20).J(lVar);
@@ -59,14 +59,14 @@ public final class b implements k {
         if (tVar != null) {
             synchronized (tVar) {
                 try {
-                    if (((CancellationSignal) tVar.f4006c) == null) {
+                    if (((CancellationSignal) tVar.f4013c) == null) {
                         CancellationSignal cancellationSignal3 = new CancellationSignal();
-                        tVar.f4006c = cancellationSignal3;
-                        if (tVar.f4005b) {
+                        tVar.f4013c = cancellationSignal3;
+                        if (tVar.f4012b) {
                             cancellationSignal3.cancel();
                         }
                     }
-                    cancellationSignal2 = (CancellationSignal) tVar.f4006c;
+                    cancellationSignal2 = (CancellationSignal) tVar.f4013c;
                 } finally {
                 }
             }
@@ -74,12 +74,12 @@ public final class b implements k {
         } else {
             cancellationSignal = null;
         }
-        FingerprintManager b10 = b(this.f14563a);
+        FingerprintManager b10 = b(this.f14609a);
         if (b10 != null) {
             if (eVar != null) {
                 Mac mac = (Mac) eVar.d;
-                Signature signature = (Signature) eVar.f2815b;
-                Cipher cipher = (Cipher) eVar.f2816c;
+                Signature signature = (Signature) eVar.f2822b;
+                Cipher cipher = (Cipher) eVar.f2823c;
                 if (cipher != null) {
                     cryptoObject = new FingerprintManager.CryptoObject(cipher);
                 } else if (signature != null) {

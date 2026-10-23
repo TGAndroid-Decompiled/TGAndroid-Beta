@@ -10,5 +10,5 @@ public interface z1 {
 
     void f(int i10);
 
-    a0.h y();
+    a0.h x();
 }

@@ -1,96 +1,28 @@
 package qg;
-
-import android.animation.ValueAnimator;
-import android.graphics.RectF;
-import org.telegram.messenger.BotWebViewVibrationEffect;
-import org.telegram.ui.Components.bs;
 public final class p0 implements Runnable {
-    public final int f44599a;
-    public final t0 f44600b;
-    public final i1 f44601c;
+    public final int f45014a;
+    public final s0 f45015b;
 
-    public p0(t0 t0Var, i1 i1Var, int i10) {
-        this.f44599a = i10;
-        this.f44600b = t0Var;
-        this.f44601c = i1Var;
+    public p0(s0 s0Var, int i10) {
+        this.f45014a = i10;
+        this.f45015b = s0Var;
     }
 
     @Override
     public final void run() {
-        boolean z10;
-        boolean z11;
-        float f7;
-        int i10 = this.f44599a;
-        i1 i1Var = this.f44601c;
-        t0 t0Var = this.f44600b;
-        switch (i10) {
+        switch (this.f45014a) {
             case 0:
-                t0Var.f44641c = i1Var;
-                if (t0Var.h == null) {
-                    t0Var.h = new RectF();
-                }
-                t0Var.f44641c.a(t0Var.h);
-                ki.t1 t1Var = t0Var.f44639a;
+                s0 s0Var = this.f45015b;
+                s0Var.f45046c = null;
+                ki.t1 t1Var = s0Var.f45044a;
                 if (t1Var != null) {
-                    t1Var.s();
+                    t1Var.J();
                     return;
                 }
                 return;
             default:
-                if (i1Var != null && t0Var.f44652q == 0) {
-                    t0Var.f44652q = u1.b(t0Var.f44643g);
-                }
-                boolean z12 = t0Var.H;
-                if (i1Var != null) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                if (z12 != z10) {
-                    if (i1Var != null) {
-                        z11 = true;
-                    } else {
-                        z11 = false;
-                    }
-                    t0Var.H = z11;
-                    ValueAnimator valueAnimator = t0Var.K;
-                    if (valueAnimator != null) {
-                        valueAnimator.cancel();
-                        t0Var.K = null;
-                    }
-                    float f10 = t0Var.I;
-                    if (t0Var.H) {
-                        f7 = 1.0f;
-                    } else {
-                        f7 = 0.0f;
-                    }
-                    ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, f7);
-                    t0Var.K = ofFloat;
-                    ofFloat.addUpdateListener(new o0(t0Var, 0));
-                    t0Var.K.addListener(new s0(t0Var, 0));
-                    t0Var.K.setInterpolator(bs.h);
-                    t0Var.K.start();
-                    t0Var.d = i1Var;
-                    ki.t1 t1Var2 = t0Var.f44639a;
-                    if (t1Var2 != null) {
-                        t1Var2.s();
-                    }
-                    if (t0Var.H) {
-                        BotWebViewVibrationEffect.SELECTION_CHANGE.vibrate();
-                        return;
-                    }
-                    return;
-                } else if (i1Var != t0Var.d) {
-                    t0Var.d = i1Var;
-                    ki.t1 t1Var3 = t0Var.f44639a;
-                    if (t1Var3 != null) {
-                        t1Var3.s();
-                        return;
-                    }
-                    return;
-                } else {
-                    return;
-                }
+                this.f45015b.b();
+                return;
         }
     }
 }

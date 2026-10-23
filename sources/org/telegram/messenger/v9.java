@@ -1,105 +1,105 @@
 package org.telegram.messenger;
 public final class v9 implements Runnable {
-    public final int f19752a;
-    public final MessagesController f19753b;
+    public final int f19815a;
+    public final MessagesController f19816b;
 
     public v9(MessagesController messagesController, int i10) {
-        this.f19752a = i10;
-        this.f19753b = messagesController;
+        this.f19815a = i10;
+        this.f19816b = messagesController;
     }
 
     @Override
     public final void run() {
-        switch (this.f19752a) {
+        switch (this.f19815a) {
             case 0:
-                this.f19753b.requestIsUserContactBlocked();
+                this.f19816b.requestIsUserContactBlocked();
                 return;
             case 1:
-                this.f19753b.lambda$new$508();
+                this.f19816b.lambda$new$508();
                 return;
             case 2:
-                this.f19753b.lambda$registerForPush$322();
+                this.f19816b.lambda$registerForPush$322();
                 return;
             case 3:
-                this.f19753b.lambda$updateTimerProc$157();
+                this.f19816b.lambda$updateTimerProc$157();
                 return;
             case 4:
-                this.f19753b.lambda$updateTimerProc$160();
+                this.f19816b.lambda$updateTimerProc$160();
                 return;
             case 5:
-                this.f19753b.lambda$applyAppConfig$35();
+                this.f19816b.lambda$applyAppConfig$35();
                 return;
             case 6:
-                this.f19753b.lambda$applyAppConfig$36();
+                this.f19816b.lambda$applyAppConfig$36();
                 return;
             case 7:
-                this.f19753b.lambda$processUpdateArray$412();
+                this.f19816b.lambda$processUpdateArray$412();
                 return;
             case 8:
-                this.f19753b.lambda$processUpdateArray$413();
+                this.f19816b.lambda$processUpdateArray$413();
                 return;
             case 9:
-                this.f19753b.lambda$processUpdateArray$414();
+                this.f19816b.lambda$processUpdateArray$414();
                 return;
             case 10:
-                this.f19753b.lambda$loadRemoteFilters$26();
+                this.f19816b.lambda$loadRemoteFilters$26();
                 return;
             case 11:
-                this.f19753b.lambda$loadRemoteFilters$27();
+                this.f19816b.lambda$loadRemoteFilters$27();
                 return;
             case 12:
-                this.f19753b.lambda$loadRemoteFilters$28();
+                this.f19816b.lambda$loadRemoteFilters$28();
                 return;
             case 13:
-                this.f19753b.lambda$loadRemoteFilters$29();
+                this.f19816b.lambda$loadRemoteFilters$29();
                 return;
             case 14:
-                this.f19753b.lambda$migrateDialogs$214();
+                this.f19816b.lambda$migrateDialogs$214();
                 return;
             case 15:
-                this.f19753b.lambda$addWebBrowserException$515();
+                this.f19816b.lambda$addWebBrowserException$515();
                 return;
             case 16:
-                this.f19753b.lambda$processUpdates$383();
+                this.f19816b.lambda$processUpdates$383();
                 return;
             case 17:
-                this.f19753b.lambda$migrateDialogs$212();
+                this.f19816b.lambda$migrateDialogs$212();
                 return;
             case 18:
-                this.f19753b.lambda$cleanup$51();
+                this.f19816b.lambda$cleanup$51();
                 return;
             case 19:
-                this.f19753b.lambda$cleanup$52();
+                this.f19816b.lambda$cleanup$52();
                 return;
             case 20:
-                this.f19753b.lambda$cleanup$53();
+                this.f19816b.lambda$cleanup$53();
                 return;
             case 21:
-                this.f19753b.lambda$processLoadedDeleteTask$86();
+                this.f19816b.lambda$processLoadedDeleteTask$86();
                 return;
             case 22:
-                this.f19753b.lambda$didReceivedNotification$41();
+                this.f19816b.lambda$didReceivedNotification$41();
                 return;
             case 23:
-                this.f19753b.lambda$removeWebBrowserException$517();
+                this.f19816b.lambda$removeWebBrowserException$517();
                 return;
             case 24:
-                this.f19753b.lambda$scheduleTranscriptionUpdate$37();
+                this.f19816b.lambda$scheduleTranscriptionUpdate$37();
                 return;
             case 25:
-                this.f19753b.lambda$toggleChannelForum$284();
+                this.f19816b.lambda$toggleChannelForum$284();
                 return;
             case 26:
-                this.f19753b.lambda$toggleChannelSignatures$282();
+                this.f19816b.lambda$toggleChannelSignatures$282();
                 return;
             case 27:
-                this.f19753b.lambda$updateEmojiStatusUntil$477();
+                this.f19816b.lambda$updateEmojiStatusUntil$477();
                 return;
             case 28:
-                this.f19753b.lambda$checkPromoInfoInternal$165();
+                this.f19816b.lambda$checkPromoInfoInternal$165();
                 return;
             default:
-                this.f19753b.lambda$markAllTopicsAsRead$5();
+                this.f19816b.lambda$markAllTopicsAsRead$5();
                 return;
         }
     }

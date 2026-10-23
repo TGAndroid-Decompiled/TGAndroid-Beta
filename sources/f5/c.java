@@ -16,7 +16,7 @@ public abstract class c extends com.googlecode.mp4parser.c {
         StringBuilder sb2 = new StringBuilder(getClass().getSimpleName());
         sb2.append("[entryCount=");
         t tVar = (t) this;
-        k3.p(te.a.b(t.h, tVar, tVar));
-        return a1.g.n(tVar.f10445f.length, "]", sb2);
+        k3.o(te.a.b(t.h, tVar, tVar));
+        return a1.g.n(tVar.f10462f.length, "]", sb2);
     }
 }

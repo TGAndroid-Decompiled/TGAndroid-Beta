@@ -1,52 +1,50 @@
 package org.telegram.ui;
 
-import android.graphics.Bitmap;
-import android.graphics.Point;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.ImageLoader;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.Utilities;
-import org.telegram.messenger.VideoEditedInfo;
-public final class xb1 extends zt0 {
-    public final MediaController.PhotoEntry f43189a;
-    public final yb1 f43190b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.widget.FrameLayout;
+public final class xb1 extends AnimatorListenerAdapter {
+    public final boolean f43563a;
+    public final int f43564b;
+    public final int f43565c;
+    public final boolean d;
+    public final qc1 e;
 
-    public xb1(yb1 yb1Var, MediaController.PhotoEntry photoEntry) {
-        this.f43190b = yb1Var;
-        this.f43189a = photoEntry;
+    public xb1(qc1 qc1Var, boolean z10, int i10, int i11, boolean z11) {
+        this.e = qc1Var;
+        this.f43563a = z10;
+        this.f43564b = i10;
+        this.f43565c = i11;
+        this.d = z11;
     }
 
     @Override
-    public final void o(int i10, VideoEditedInfo videoEditedInfo, boolean z10, int i11, int i12, boolean z11) {
-        kc1 kc1Var = this.f43190b.f43447a;
-        MediaController.PhotoEntry photoEntry = this.f43189a;
-        if (photoEntry.imagePath != null) {
-            File directory = FileLoader.getDirectory(4);
-            File file = new File(directory, Utilities.random.nextInt() + ".jpg");
-            Point realScreenSize = AndroidUtilities.getRealScreenSize();
-            Bitmap loadBitmap = ImageLoader.loadBitmap(photoEntry.imagePath, null, (float) realScreenSize.x, (float) realScreenSize.y, true);
-            try {
-                loadBitmap.compress(Bitmap.CompressFormat.JPEG, 87, new FileOutputStream(file));
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
-            File file2 = new File(photoEntry.imagePath);
-            kc1Var.B1 = new th1(file2, file2, "");
-            kc1Var.C1 = loadBitmap;
-            kc1Var.f38527b2 = 0;
-            kc1Var.f38583x0.requestLayout();
-            kc1Var.b1(false);
-            kc1Var.f38581w1 = null;
-            kc1Var.i1();
+    public final void onAnimationEnd(Animator animator) {
+        qc1 qc1Var = this.e;
+        FrameLayout[] frameLayoutArr = qc1Var.M0;
+        qc1Var.f40765s1 = null;
+        int i10 = this.f43565c;
+        int i11 = this.f43564b;
+        boolean z10 = this.f43563a;
+        if (z10 && frameLayoutArr[i11].getVisibility() == 0) {
+            frameLayoutArr[i11].setAlpha(1.0f);
+            frameLayoutArr[i11].setVisibility(4);
+        } else if (!z10) {
+            frameLayoutArr[i10].setVisibility(4);
         }
-    }
-
-    @Override
-    public final boolean z() {
-        return false;
+        int i12 = qc1Var.f40716b;
+        char c10 = 2;
+        if (i12 != 1 && i12 != 2) {
+            if (i10 == 1) {
+                frameLayoutArr[i11].setAlpha(0.0f);
+                return;
+            }
+            return;
+        }
+        org.telegram.ui.Components.m91[] m91VarArr = qc1Var.K0;
+        if (this.d) {
+            c10 = 0;
+        }
+        m91VarArr[c10].setVisibility(4);
     }
 }

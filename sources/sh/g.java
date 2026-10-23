@@ -7,16 +7,16 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.Components.RadialProgress2;
 public final class g extends rh.e {
-    public final MessageObject f46552b;
-    public final RadialProgress2 f46553c;
+    public final MessageObject f46984b;
+    public final RadialProgress2 f46985c;
 
     public g(MessageObject messageObject) {
-        this.f46552b = messageObject;
+        this.f46984b = messageObject;
         RadialProgress2 radialProgress2 = new RadialProgress2(null, null);
-        this.f46553c = radialProgress2;
+        this.f46985c = radialProgress2;
         TLRPC.Document document = messageObject.getDocument();
         if (MessageObject.isDocumentHasThumb(document)) {
             TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, AndroidUtilities.dp(22.0f), true, null, false);
@@ -29,14 +29,14 @@ public final class g extends rh.e {
                 radialProgress2.i(null, null, null);
             }
         }
-        radialProgress2.g(h6.f21090ie, h6.f21109je, h6.f21315uc, h6.f21333vc);
+        radialProgress2.g(k6.f21279ie, k6.f21298je, k6.f21504uc, k6.f21522vc);
     }
 
     @Override
     public final void a(View view) {
         super.a(view);
-        RadialProgress2 radialProgress2 = this.f46553c;
-        radialProgress2.m(view);
+        RadialProgress2 radialProgress2 = this.f46985c;
+        radialProgress2.n(view);
         radialProgress2.e();
         radialProgress2.setIcon(0, false, false);
     }
@@ -44,14 +44,14 @@ public final class g extends rh.e {
     @Override
     public final void b() {
         super.b();
-        this.f46553c.f();
+        this.f46985c.f();
     }
 
     @Override
     public final void c(Canvas canvas, int i10, int i11) {
-        RadialProgress2 radialProgress2 = this.f46553c;
+        RadialProgress2 radialProgress2 = this.f46985c;
         radialProgress2.setCircleRadius(i10 / 2);
-        radialProgress2.q(0, 0, i10, i11);
+        radialProgress2.r(0, 0, i10, i11);
         radialProgress2.draw(canvas);
     }
 }

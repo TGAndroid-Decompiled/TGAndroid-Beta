@@ -1,25 +1,14 @@
 package u2;
-public final class s0 {
-    public static final s0 f47431a;
-    public static final s0 f47432b;
-    public static final s0 f47433c;
-    public static final s0[] d;
+public final class s0 extends c3.x {
+    public final y0 f47883b;
 
-    static {
-        ?? r02 = new Enum("PASS_THROUGH", 0);
-        f47431a = r02;
-        ?? r12 = new Enum("DISCARD_AFTER_NEXT_SAMPLE_METADATA", 1);
-        f47432b = r12;
-        ?? r32 = new Enum("DISCARDING", 2);
-        f47433c = r32;
-        d = new s0[]{r02, r12, r32};
+    public s0(y0 y0Var, c3.e0 e0Var) {
+        super(e0Var);
+        this.f47883b = y0Var;
     }
 
-    public static s0 valueOf(String str) {
-        return (s0) Enum.valueOf(s0.class, str);
-    }
-
-    public static s0[] values() {
-        return (s0[]) d.clone();
+    @Override
+    public final long h() {
+        return this.f47883b.T;
     }
 }

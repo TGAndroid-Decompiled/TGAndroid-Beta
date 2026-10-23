@@ -4,48 +4,48 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.view.View;
 import org.telegram.messenger.MessageObject;
-import org.telegram.ui.Cells.u1;
+import org.telegram.ui.Cells.t1;
 import s4.b1;
 public final class i extends AnimatorListenerAdapter {
-    public final b1 f16113a;
-    public final int f16114b;
-    public final View f16115c;
+    public final b1 f16176a;
+    public final int f16177b;
+    public final View f16178c;
     public final m d;
 
     public i(m mVar, b1 b1Var, int i10, View view) {
         this.d = mVar;
-        this.f16113a = b1Var;
-        this.f16114b = i10;
-        this.f16115c = view;
+        this.f16176a = b1Var;
+        this.f16177b = i10;
+        this.f16178c = view;
     }
 
     @Override
     public final void onAnimationCancel(Animator animator) {
-        if (this.f16114b != 0) {
-            this.f16115c.setTranslationY(0.0f);
+        if (this.f16177b != 0) {
+            this.f16178c.setTranslationY(0.0f);
         }
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
         animator.removeAllListeners();
-        b1 b1Var = this.f16113a;
-        View view = b1Var.f45921a;
+        b1 b1Var = this.f16176a;
+        View view = b1Var.f46343a;
         m mVar = this.d;
         mVar.X(view);
-        View view2 = b1Var.f45921a;
-        if (view2 instanceof u1) {
-            u1 u1Var = (u1) view2;
-            if (u1Var.f23304fd) {
-                u1Var.f23304fd = false;
-                u1Var.setVisibility(0);
+        View view2 = b1Var.f46343a;
+        if (view2 instanceof t1) {
+            t1 t1Var = (t1) view2;
+            if (t1Var.f23391fd) {
+                t1Var.f23391fd = false;
+                t1Var.setVisibility(0);
             }
-            MessageObject.GroupedMessages currentMessagesGroup = u1Var.getCurrentMessagesGroup();
+            MessageObject.GroupedMessages currentMessagesGroup = t1Var.getCurrentMessagesGroup();
             if (currentMessagesGroup != null) {
                 currentMessagesGroup.transitionParams.reset();
             }
         }
-        if (mVar.f45994z.remove(b1Var)) {
+        if (mVar.f46416z.remove(b1Var)) {
             mVar.v(b1Var);
             mVar.G();
         }

@@ -2,7 +2,7 @@ package i9;
 
 import java.util.Arrays;
 public abstract class c {
-    public static final byte[] f12740a;
+    public static final byte[] f12772a;
 
     static {
         byte[] bArr = new byte[128];
@@ -15,6 +15,6 @@ public abstract class c {
             bArr[i11 + 65] = b10;
             bArr[i11 + 97] = b10;
         }
-        f12740a = bArr;
+        f12772a = bArr;
     }
 }

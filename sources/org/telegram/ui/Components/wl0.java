@@ -1,3 +1,3 @@
 package org.telegram.ui.Components;
-public interface wl0 {
+public final class wl0 extends s4.b1 {
 }

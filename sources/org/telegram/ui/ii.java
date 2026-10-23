@@ -1,46 +1,46 @@
 package org.telegram.ui;
 public final class ii extends org.telegram.ui.ActionBar.m1 {
-    public final org.telegram.ui.Components.dl0 f38017o;
-    public final qn f38018p;
+    public final org.telegram.ui.Components.gl0 f38235o;
+    public final sn f38236p;
 
-    public ii(qn qnVar, eb ebVar, org.telegram.ui.Components.dl0 dl0Var) {
+    public ii(sn snVar, eb ebVar, org.telegram.ui.Components.gl0 gl0Var) {
         super(ebVar, -2, -2);
-        this.f38018p = qnVar;
-        this.f38017o = dl0Var;
+        this.f38236p = snVar;
+        this.f38235o = gl0Var;
     }
 
     @Override
     public final void d(boolean z10) {
         super.d(true);
-        org.telegram.ui.Components.dl0 dl0Var = this.f38017o;
-        if (dl0Var != null) {
-            dl0Var.d();
+        org.telegram.ui.Components.gl0 gl0Var = this.f38235o;
+        if (gl0Var != null) {
+            gl0Var.d();
         }
     }
 
     @Override
     public final void dismiss() {
         d(true);
-        qn qnVar = this.f38018p;
-        if (qnVar.Q8 == this) {
-            org.telegram.ui.Components.qc qcVar = org.telegram.ui.Components.qc.f29528w;
-            org.telegram.ui.Components.qc qcVar2 = qnVar.f40779n1;
+        sn snVar = this.f38236p;
+        if (snVar.f41484c9 == this) {
+            org.telegram.ui.Components.qc qcVar = org.telegram.ui.Components.qc.f29825w;
+            org.telegram.ui.Components.qc qcVar2 = snVar.f41763z1;
             if (qcVar == qcVar2 && qcVar2 != null) {
                 qcVar2.b();
-                qnVar.f40779n1 = null;
+                snVar.f41763z1 = null;
             }
-            qnVar.Q8 = null;
-            qnVar.T8 = null;
-            qnVar.S8 = null;
-            qnVar.f40930z0.R = true;
-            if (qnVar.R8) {
-                qnVar.j8(false, true, 0.0f);
+            snVar.f41484c9 = null;
+            snVar.f41521f9 = null;
+            snVar.f41508e9 = null;
+            snVar.f41762z0.R = true;
+            if (snVar.f41497d9) {
+                snVar.j8(false, true, 0.0f);
             } else {
-                qnVar.R8 = true;
+                snVar.f41497d9 = true;
             }
-            fk fkVar = qnVar.Y;
-            if (fkVar != null && fkVar.getEditField() != null) {
-                qnVar.Y.getEditField().setAllowDrawCursor(true);
+            gk gkVar = snVar.Y;
+            if (gkVar != null && gkVar.getEditField() != null) {
+                snVar.Y.getEditField().setAllowDrawCursor(true);
             }
         }
     }

@@ -6,24 +6,28 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import java.util.HashSet;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLog;
 import org.telegram.ui.Components.st;
-public final class s extends LinearLayout {
-    public static final int f22966f = 0;
-    public Paint f22967a;
-    public Paint f22968b;
-    public q f22969c;
+public final class s extends LinearLayout implements org.telegram.ui.ActionBar.b6 {
+    public static final int h = 0;
+    public Paint f23124a;
+    public Paint f23125b;
+    public q f23126c;
     public TextView d;
     public float e;
+    public boolean f23127f;
 
     public final void a(float f7) {
         this.e = f7;
+        this.f23127f = true;
         TextView textView = this.d;
-        int x02 = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.G6, false);
-        int i10 = org.telegram.ui.ActionBar.h6.I6;
-        textView.setTextColor(i0.a.f(f7, x02, org.telegram.ui.ActionBar.h6.x0(null, i10, false)));
-        Paint paint = this.f22967a;
-        paint.setColor(i0.a.f(f7, i0.a.o(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.M6, false), 63), org.telegram.ui.ActionBar.h6.x0(null, i10, false)));
+        int x02 = org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.G6, false);
+        int i10 = org.telegram.ui.ActionBar.k6.I6;
+        textView.setTextColor(i0.a.f(f7, x02, org.telegram.ui.ActionBar.k6.x0(null, i10, false)));
+        Paint paint = this.f23124a;
+        paint.setColor(i0.a.f(f7, i0.a.o(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.M6, false), 63), org.telegram.ui.ActionBar.k6.x0(null, i10, false)));
         paint.setStrokeWidth(Math.max(2, AndroidUtilities.dp(AndroidUtilities.lerp(0.5f, 2.0f, f7))));
         invalidate();
     }
@@ -51,13 +55,28 @@ public final class s extends LinearLayout {
 
     @Override
     public final void draw(Canvas canvas) {
-        Paint paint = this.f22967a;
+        Paint paint = this.f23124a;
         float strokeWidth = paint.getStrokeWidth();
         RectF rectF = AndroidUtilities.rectTmp;
-        q qVar = this.f22969c;
+        q qVar = this.f23126c;
         rectF.set(qVar.getLeft() + strokeWidth, qVar.getTop() + strokeWidth, qVar.getRight() - strokeWidth, qVar.getBottom() - strokeWidth);
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f), this.f22968b);
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f), this.f23125b);
         super.draw(canvas);
         canvas.drawRoundRect(rectF, AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f), paint);
+    }
+
+    @Override
+    public final void updateColors() {
+        try {
+            if (this.f23127f && this.d != null) {
+                a(this.e);
+            }
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
+    }
+
+    @Override
+    public final void addColorKeys(HashSet hashSet) {
     }
 }

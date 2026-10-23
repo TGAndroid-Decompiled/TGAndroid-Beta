@@ -4,20 +4,20 @@ import android.os.Bundle;
 import android.text.style.ClickableSpan;
 import android.view.View;
 public final class a extends ClickableSpan {
-    public final int f45869a;
-    public final c f45870b;
-    public final int f45871c;
+    public final int f46290a;
+    public final d f46291b;
+    public final int f46292c;
 
-    public a(int i10, c cVar, int i11) {
-        this.f45869a = i10;
-        this.f45870b = cVar;
-        this.f45871c = i11;
+    public a(int i10, d dVar, int i11) {
+        this.f46290a = i10;
+        this.f46291b = dVar;
+        this.f46292c = i11;
     }
 
     @Override
     public final void onClick(View view) {
         Bundle bundle = new Bundle();
-        bundle.putInt("ACCESSIBILITY_CLICKABLE_SPAN_ID", this.f45869a);
-        this.f45870b.f45878a.performAction(this.f45871c, bundle);
+        bundle.putInt("ACCESSIBILITY_CLICKABLE_SPAN_ID", this.f46290a);
+        this.f46291b.f46300a.performAction(this.f46292c, bundle);
     }
 }

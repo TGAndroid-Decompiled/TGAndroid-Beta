@@ -9,31 +9,31 @@ import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 public final class r7 {
-    public final TextPaint f22954a;
-    public final Paint f22955b;
-    public final Drawable f22956c;
+    public final TextPaint f23103a;
+    public final Paint f23104b;
+    public final Drawable f23105c;
     public final Drawable d;
     public final Paint e;
-    public final SparseArray f22957f;
-    public final HashMap f22958g;
+    public final SparseArray f23106f;
+    public final HashMap f23107g;
 
-    public r7(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
+    public r7(Context context, org.telegram.ui.ActionBar.g6 g6Var) {
         TextPaint textPaint = new TextPaint(1);
-        this.f22954a = textPaint;
+        this.f23103a = textPaint;
         Paint paint = new Paint();
-        this.f22955b = paint;
+        this.f23104b = paint;
         this.e = new Paint();
-        this.f22957f = new SparseArray();
-        this.f22958g = new HashMap();
+        this.f23106f = new SparseArray();
+        this.f23107g = new HashMap();
         textPaint.setTextSize(AndroidUtilities.dp(12.0f));
         textPaint.setColor(-1);
         textPaint.setTypeface(AndroidUtilities.bold());
         Drawable mutate = context.getDrawable(R.drawable.play_mini_video).mutate();
-        this.f22956c = mutate;
+        this.f23105c = mutate;
         mutate.setBounds(0, 0, mutate.getIntrinsicWidth(), mutate.getIntrinsicHeight());
         Drawable mutate2 = context.getDrawable(R.drawable.filled_views).mutate();
         this.d = mutate2;
         mutate2.setBounds(0, 0, (int) (mutate2.getIntrinsicWidth() * 0.7f), (int) (mutate2.getIntrinsicHeight() * 0.7f));
-        paint.setColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Lh, d6Var));
+        paint.setColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.Lh, g6Var));
     }
 }

@@ -1,47 +1,52 @@
 package org.telegram.ui;
 
+import android.widget.TextView;
+import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
-public final class zf1 implements Utilities.Callback {
-    public final int f43743a;
-    public final UserInfoActivity f43744b;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class zf1 extends org.telegram.ui.ActionBar.j {
+    public final bg1 f44136a;
 
-    public zf1(UserInfoActivity userInfoActivity, int i10) {
-        this.f43743a = i10;
-        this.f43744b = userInfoActivity;
+    public zf1(bg1 bg1Var) {
+        this.f44136a = bg1Var;
     }
 
     @Override
-    public final void run(Object obj) {
-        switch (this.f43743a) {
-            case 0:
-                UserInfoActivity userInfoActivity = this.f43744b;
-                userInfoActivity.J = (TL_account.TL_birthday) obj;
-                org.telegram.ui.Components.w61 w61Var = userInfoActivity.f33958x;
-                if (w61Var != null) {
-                    w61Var.W2.N(true);
-                }
-                userInfoActivity.b0(true);
-                return;
-            default:
-                TLRPC.Chat chat = (TLRPC.Chat) obj;
-                UserInfoActivity userInfoActivity2 = this.f43744b;
-                if (userInfoActivity2.K != chat) {
-                    userInfoActivity2.K = chat;
-                    if (chat != null) {
-                        org.telegram.messenger.g0.q(R.string.EditProfileChannelSet, org.telegram.ui.Components.xc.a0(userInfoActivity2), R.raw.contact_check, 36);
-                    }
-                    userInfoActivity2.b0(true);
-                    org.telegram.ui.Components.w61 w61Var2 = userInfoActivity2.f33958x;
-                    if (w61Var2 != null) {
-                        w61Var2.W2.N(true);
-                        return;
-                    }
+    public final void b(int i10) {
+        String string;
+        org.telegram.ui.ActionBar.h5 h5Var;
+        bg1 bg1Var = this.f44136a;
+        if (i10 == -1) {
+            if (bg1Var.G >= 0) {
+                h5Var = ((org.telegram.ui.ActionBar.o2) bg1Var).parentLayout;
+                if (h5Var.getFragmentStack().size() == 1) {
+                    bg1Var.I0();
                     return;
                 }
-                return;
+            }
+            bg1Var.finishFragment();
+        } else if (i10 == 1) {
+            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(bg1Var.getParentActivity());
+            TL_account.Password password = bg1Var.U;
+            if (password != null && password.has_password) {
+                string = LocaleController.getString(R.string.CancelEmailQuestion);
+            } else {
+                string = LocaleController.getString(R.string.CancelPasswordQuestion);
+            }
+            String string2 = LocaleController.getString(R.string.CancelEmailQuestionTitle);
+            String string3 = LocaleController.getString(R.string.Abort);
+            org.telegram.ui.ActionBar.c2 c2Var = alertDialog$Builder.f20678a;
+            c2Var.T = string;
+            c2Var.R = string2;
+            alertDialog$Builder.k(string3, new sp0(this, 23));
+            alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
+            org.telegram.ui.ActionBar.c2 c2Var2 = alertDialog$Builder.f20678a;
+            bg1Var.showDialog(c2Var2);
+            TextView textView = (TextView) c2Var2.d(-1);
+            if (textView != null) {
+                org.telegram.ui.ActionBar.r6.W(textView, org.telegram.ui.ActionBar.k6.f21421q7, null);
+            }
         }
     }
 }

@@ -1,15 +1,53 @@
 package org.telegram.ui.Components;
-public final class s2 implements org.telegram.ui.ActionBar.a2 {
-    public final int f30141a;
-    public final org.telegram.ui.ActionBar.n2 f30142b;
 
-    public s2(int i10, org.telegram.ui.ActionBar.n2 n2Var) {
-        this.f30141a = i10;
-        this.f30142b = n2Var;
+import android.view.KeyEvent;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+public final class s2 implements TextView.OnEditorActionListener {
+    public final int f30344a;
+
+    public s2(int i10) {
+        this.f30344a = i10;
     }
 
     @Override
-    public final void g(org.telegram.ui.ActionBar.b2 r11, int r12) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.s2.g(org.telegram.ui.ActionBar.b2, int):void");
+    public final boolean onEditorAction(TextView textView, int i10, KeyEvent keyEvent) {
+        switch (this.f30344a) {
+            case 0:
+                AndroidUtilities.hideKeyboard(textView);
+                return false;
+            case 1:
+                if (i10 == 6) {
+                    AndroidUtilities.hideKeyboard(textView);
+                    return true;
+                }
+                return false;
+            case 2:
+                if (i10 == 6) {
+                    AndroidUtilities.hideKeyboard(textView);
+                    return true;
+                }
+                return false;
+            case 3:
+                if (i10 == 6) {
+                    AndroidUtilities.hideKeyboard(textView);
+                    return true;
+                }
+                return false;
+            case 4:
+                if (i10 == 6) {
+                    textView.clearFocus();
+                    AndroidUtilities.hideKeyboard(textView);
+                    return false;
+                }
+                return false;
+            default:
+                if (i10 == 6) {
+                    textView.clearFocus();
+                    AndroidUtilities.hideKeyboard(textView);
+                    return false;
+                }
+                return false;
+        }
     }
 }

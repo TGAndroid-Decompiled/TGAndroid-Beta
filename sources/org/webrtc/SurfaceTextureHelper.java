@@ -4,6 +4,7 @@ import android.graphics.SurfaceTexture;
 import android.opengl.GLES20;
 import android.os.Handler;
 import android.os.HandlerThread;
+import i2.o1;
 import java.util.concurrent.Callable;
 import org.webrtc.EglBase;
 import org.webrtc.TextureBufferImpl;
@@ -200,9 +201,9 @@ public class SurfaceTextureHelper {
                 this.handler.post(new hg.n(this, i10, i11, 12));
                 return;
             }
-            throw new IllegalArgumentException(i2.e.j(i11, "Texture height must be positive, but was "));
+            throw new IllegalArgumentException(o1.k(i11, "Texture height must be positive, but was "));
         }
-        throw new IllegalArgumentException(i2.e.j(i10, "Texture width must be positive, but was "));
+        throw new IllegalArgumentException(o1.k(i10, "Texture width must be positive, but was "));
     }
 
     public void startListening(VideoSink videoSink) {

@@ -3,33 +3,33 @@ package org.telegram.ui;
 import android.animation.ValueAnimator;
 import android.view.View;
 public final class ui implements ValueAnimator.AnimatorUpdateListener {
-    public final int f41987a;
-    public final org.telegram.ui.ActionBar.n2 f41988b;
+    public final int f42450a;
+    public final org.telegram.ui.ActionBar.o2 f42451b;
 
-    public ui(int i10, org.telegram.ui.ActionBar.n2 n2Var) {
-        this.f41987a = i10;
-        this.f41988b = n2Var;
+    public ui(int i10, org.telegram.ui.ActionBar.o2 o2Var) {
+        this.f42450a = i10;
+        this.f42451b = o2Var;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f41987a) {
+        switch (this.f42450a) {
             case 0:
-                qn qnVar = (qn) this.f41988b;
-                qnVar.f40762la = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                qnVar.X0.invalidate();
+                sn snVar = (sn) this.f42451b;
+                snVar.f41747xa = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                snVar.f41561j1.invalidate();
                 return;
             case 1:
-                cy cyVar = (cy) this.f41988b;
-                cyVar.H0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                View view = cyVar.fragmentView;
+                ey eyVar = (ey) this.f42451b;
+                eyVar.H0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                View view = eyVar.fragmentView;
                 if (view != null) {
                     view.invalidate();
                     return;
                 }
                 return;
             default:
-                ((kc1) this.f41988b).f38583x0.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                ((qc1) this.f42451b).f40779y0.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 return;
         }
     }

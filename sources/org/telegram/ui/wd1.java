@@ -1,23 +1,54 @@
 package org.telegram.ui;
 
 import android.view.View;
-import org.telegram.messenger.NotificationCenter;
-public final class wd1 implements View.OnClickListener {
-    public final re1 f42547a;
+import org.telegram.messenger.MessagesController;
+import org.telegram.tgnet.TLRPC;
+public final class wd1 implements xh.c, MessagesController.ErrorDelegate, r0.n, org.telegram.ui.Components.dm0 {
+    public final ye1 f43013a;
 
-    public wd1(re1 re1Var) {
-        this.f42547a = re1Var;
+    public wd1(ye1 ye1Var) {
+        this.f43013a = ye1Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        re1 re1Var = this.f42547a;
-        if (re1Var.M == 1) {
-            org.telegram.ui.Components.f5.i0(re1Var, -re1Var.f41152a, null, re1Var.g(), null, false, re1Var.J, new va(this, 5), re1Var.getResourceProvider());
-            return;
+    public r0.k1 B0(View view, r0.k1 k1Var) {
+        int i10 = k1Var.f45251a.f(519).d;
+        ye1 ye1Var = this.f43013a;
+        ye1Var.f43807f1 = i10;
+        te1 te1Var = ye1Var.f43829r0;
+        if (te1Var != null) {
+            te1Var.setPadding(0, 0, 0, i10);
         }
-        re1Var.getMessagesController().addUserToChat(re1Var.f41152a, re1Var.getUserConfig().getCurrentUser(), 0, null, re1Var, false, new pd1(re1Var, 2), new qd1(re1Var));
-        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeSearchByActiveAction, new Object[0]);
-        re1Var.O0(false);
+        ne1 ne1Var = ye1Var.f43820n;
+        if (ne1Var != null) {
+            ne1Var.f39858a.setTranslationY((-ye1Var.f43807f1) - ye1Var.f43804e1);
+        }
+        ye1Var.h.setTranslationY(((-ye1Var.X0) - ye1Var.f43807f1) - ye1Var.f43804e1);
+        ye1Var.A0();
+        return r0.k1.f45250b;
+    }
+
+    @Override
+    public boolean mo17c(float f7, float f10, int i10, View view) {
+        return ye1.W(this.f43013a, view, f7);
+    }
+
+    @Override
+    public void f(boolean z10, boolean z11) {
+        ye1 ye1Var = this.f43013a;
+        ye1Var.U0.i(ye1Var.R0.b(), z10, z11);
+    }
+
+    @Override
+    public boolean run(TLRPC.TL_error tL_error) {
+        return ye1.U(this.f43013a, tL_error);
+    }
+
+    @Override
+    public void h() {
+    }
+
+    @Override
+    public void o(float f7) {
     }
 }

@@ -7,6 +7,7 @@ import android.os.IInterface;
 import android.os.Parcel;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.tasks.TaskCompletionSource;
+import i2.o1;
 import kotlin.jvm.internal.i;
 import v7.h5;
 public final class e extends Binder implements b, IInterface {
@@ -51,7 +52,7 @@ public final class e extends Binder implements b, IInterface {
                 S(status, bVar);
                 return true;
             }
-            throw new BadParcelableException(i2.e.j(dataAvail, "Parcel data not fully consumed, unread size: "));
+            throw new BadParcelableException(o1.k(dataAvail, "Parcel data not fully consumed, unread size: "));
         }
         Status status2 = (Status) a.a(parcel, Status.CREATOR);
         l8.d dVar = (l8.d) a.a(parcel, l8.d.CREATOR);
@@ -60,7 +61,7 @@ public final class e extends Binder implements b, IInterface {
             s(status2, dVar);
             return true;
         }
-        throw new BadParcelableException(i2.e.j(dataAvail2, "Parcel data not fully consumed, unread size: "));
+        throw new BadParcelableException(o1.k(dataAvail2, "Parcel data not fully consumed, unread size: "));
     }
 
     @Override

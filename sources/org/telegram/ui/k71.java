@@ -1,291 +1,58 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-import android.app.Activity;
-import android.content.SharedPreferences;
-import android.os.Bundle;
-import android.view.View;
-import android.view.ViewPropertyAnimator;
-import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.voip.VoIPService;
+import org.telegram.messenger.MrzRecognizer;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-import org.telegram.tgnet.tl.TL_wallet;
-import org.telegram.ui.Wallet.WalletEngine2;
-public final class k71 implements Runnable {
-    public final int f38441a;
-    public final Object f38442b;
-    public final Object f38443c;
+public final class k71 implements v9 {
+    public TLObject f38843a = null;
+    public TLRPC.TL_error f38844b = null;
+    public final SessionsActivity f38845c;
 
-    public k71(int i10, Object obj, Object obj2) {
-        this.f38441a = i10;
-        this.f38442b = obj;
-        this.f38443c = obj2;
+    public k71(SessionsActivity sessionsActivity) {
+        this.f38845c = sessionsActivity;
     }
 
     @Override
-    public final void run() {
-        org.telegram.ui.Components.tl0 tl0Var;
-        String message;
-        int i10 = this.f38441a;
-        long j10 = 0;
-        int i11 = 0;
-        Object obj = this.f38443c;
-        Object obj2 = this.f38442b;
-        switch (i10) {
-            case 0:
-                AndroidUtilities.addToClipboard((String) obj);
-                org.telegram.ui.Components.xc.a0((x71) obj2).k(false).j();
-                return;
-            case 1:
-                x71.W((x71) obj2, (TLRPC.TL_attachMenuBot) obj);
-                return;
-            case 2:
-                q71 q71Var = (q71) obj2;
-                a0.h hVar = (a0.h) obj;
-                x71 x71Var = q71Var.f40502c1;
-                Activity parentActivity = x71Var.getParentActivity();
-                y8 y8Var = x71Var.f43126b;
-                int m10 = hVar.m();
-                if (hVar.m() == 1) {
-                    j10 = ((TLRPC.Dialog) hVar.n(0)).f20284id;
-                }
-                org.telegram.ui.Components.xc.x(parentActivity, y8Var, m10, j10, q71Var.getThemedColor(org.telegram.ui.ActionBar.h6.Fi), q71Var.getThemedColor(org.telegram.ui.ActionBar.h6.Hi)).j();
-                return;
-            case 3:
-                org.telegram.ui.ActionBar.n2 n2Var = (org.telegram.ui.ActionBar.n2) obj2;
-                new h81(n2Var.getContext(), n2Var.getCurrentAccount(), n2Var.getResourceProvider(), (org.telegram.ui.ActionBar.j3) obj).show();
-                return;
-            case 4:
-                ((StickersActivity) obj2).n0((org.telegram.ui.Cells.l8) obj);
-                return;
-            case 5:
-                ThemeActivity themeActivity = (ThemeActivity) obj2;
-                View view = (View) obj;
-                themeActivity.getMessagesController().setContentSettings(true);
-                if (view instanceof org.telegram.ui.Cells.v8) {
-                    ((org.telegram.ui.Cells.v8) view).setChecked(themeActivity.getMessagesController().showSensitiveContent());
-                    return;
-                }
-                return;
-            case 6:
-                ThemeActivity themeActivity2 = (ThemeActivity) obj2;
-                String str = (String) obj;
-                themeActivity2.getClass();
-                org.telegram.ui.ActionBar.h6.f21339w = str;
-                if (str == null) {
-                    org.telegram.ui.ActionBar.h6.f21339w = String.format("(%.06f, %.06f)", Double.valueOf(org.telegram.ui.ActionBar.h6.f21357x), Double.valueOf(org.telegram.ui.ActionBar.h6.f21376y));
-                }
-                org.telegram.ui.ActionBar.h6.r1();
-                org.telegram.ui.Components.jm0 jm0Var = themeActivity2.f33903b;
-                if (jm0Var != null && (tl0Var = (org.telegram.ui.Components.tl0) jm0Var.K(themeActivity2.Y)) != null) {
-                    View view2 = tl0Var.f45921a;
-                    if (view2 instanceof org.telegram.ui.Cells.ba) {
-                        ((org.telegram.ui.Cells.ba) view2).c(LocaleController.getString("AutoNightUpdateLocation", R.string.AutoNightUpdateLocation), org.telegram.ui.ActionBar.h6.f21339w, false, false);
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 7:
-                kc1 kc1Var = (kc1) obj2;
-                SharedPreferences sharedPreferences = (SharedPreferences) obj;
-                if (kc1Var.f38558n == 3) {
-                    sharedPreferences.edit().putBoolean("bganimationhint", true).commit();
-                    kc1Var.A0.f(kc1Var.K0[0], true);
-                    return;
-                }
-                return;
-            case 8:
-                oc1.X((oc1) obj2, (String) obj);
-                return;
-            case 9:
-                oc1.V((oc1) obj2, (TLRPC.TL_theme) obj);
-                return;
-            case 10:
-                yc1 yc1Var = (yc1) obj2;
-                yc1Var.getClass();
-                AndroidUtilities.addToClipboard((String) obj);
-                yc1Var.c(true);
-                return;
-            case 11:
-                yc1 yc1Var2 = (yc1) obj2;
-                yc1Var2.getClass();
-                AndroidUtilities.addToClipboard(MessageObject.formatTextWithEntities(((TLRPC.TodoItem) obj).title, false));
-                yc1Var2.c(true);
-                return;
-            case 12:
-                xd1 xd1Var = (xd1) obj2;
-                xd1Var.getClass();
-                Bundle bundle = new Bundle();
-                re1 re1Var = xd1Var.f43200b;
-                bundle.putLong("dialog_id", -re1Var.f41152a);
-                bundle.putLong("topic_id", ((TLRPC.TL_forumTopic) obj).f20332id);
-                re1Var.presentFragment(new z01(bundle, null));
-                return;
-            case 13:
-                ne1 ne1Var = (ne1) obj2;
-                String str2 = (String) obj;
-                ArrayList arrayList = ne1Var.f39569c0;
-                re1 re1Var2 = ne1Var.f39585t0;
-                String lowerCase = str2.trim().toLowerCase();
-                ArrayList arrayList2 = new ArrayList();
-                int i12 = 0;
-                while (true) {
-                    ArrayList arrayList3 = re1Var2.f41155b;
-                    if (i12 < arrayList3.size()) {
-                        if (((ie1) arrayList3.get(i12)).f37963c != null && ((ie1) arrayList3.get(i12)).f37963c.title.toLowerCase().contains(lowerCase)) {
-                            arrayList2.add(((ie1) arrayList3.get(i12)).f37963c);
-                            ((ie1) arrayList3.get(i12)).f37963c.searchQuery = lowerCase;
-                        }
-                        i12++;
-                    } else {
-                        arrayList.clear();
-                        arrayList.addAll(arrayList2);
-                        ne1Var.L();
-                        if (!arrayList.isEmpty()) {
-                            ne1Var.f39578l0 = false;
-                            ne1Var.f39580o0.b(0);
-                        }
-                        ne1Var.J(str2);
-                        return;
-                    }
-                }
-                break;
-            case 14:
-                ue1 ue1Var = ((te1) obj2).f41663b;
-                ue1Var.f41950a.e.remove(Integer.valueOf(((TLRPC.TL_forumTopic) obj).f20332id));
-                ue1Var.f41950a.V();
-                return;
-            case 15:
-                TwoStepVerificationActivity.Y((TwoStepVerificationActivity) obj2, (byte[]) obj);
-                return;
-            case 16:
-                TwoStepVerificationActivity.d0((TwoStepVerificationActivity) obj2, (TL_account.updatePasswordSettings) obj);
-                return;
-            case 17:
-                TwoStepVerificationActivity.W((TwoStepVerificationActivity) obj2, (TLRPC.TL_error) obj);
-                return;
-            case 18:
-                vf1.g0((vf1) obj2, (String) obj);
-                return;
-            case 19:
-                Runnable runnable = (Runnable) obj;
-                tr[] trVarArr = ((vf1) obj2).f42251w.f40963f;
-                int length = trVarArr.length;
-                while (i11 < length) {
-                    trVarArr[i11].l(0.0f);
-                    i11++;
-                }
-                runnable.run();
-                return;
-            case 20:
-                bg1 bg1Var = (bg1) obj2;
-                TLObject tLObject = (TLObject) obj;
-                ArrayList arrayList4 = bg1Var.f35639f;
-                ArrayList<TLRPC.Chat> arrayList5 = bg1Var.e;
-                if (tLObject instanceof TLRPC.messages_Chats) {
-                    arrayList5.clear();
-                    arrayList5.addAll(((TLRPC.messages_Chats) tLObject).chats);
-                }
-                MessagesController.getInstance(bg1Var.f35636a).putChats(arrayList5, false);
-                bg1Var.d = false;
-                bg1Var.f35638c = true;
-                int size = arrayList4.size();
-                while (i11 < size) {
-                    Object obj3 = arrayList4.get(i11);
-                    i11++;
-                    ((Runnable) obj3).run();
-                }
-                arrayList4.clear();
-                return;
-            case 21:
-                hh1 hh1Var = (hh1) obj2;
-                hh1Var.U.a(new qg1(hh1Var, (VoIPService) obj, 1), true);
-                return;
-            case 22:
-                hh1 hh1Var2 = (hh1) obj2;
-                ValueAnimator valueAnimator = (ValueAnimator) obj;
-                org.telegram.ui.Components.voip.k2.U = false;
-                org.telegram.ui.Components.voip.k2.i();
-                ViewPropertyAnimator duration = hh1Var2.K.animate().setDuration(150L);
-                org.telegram.ui.Components.bs bsVar = org.telegram.ui.Components.bs.f25025f;
-                duration.setInterpolator(bsVar).start();
-                hh1Var2.H.animate().alpha(1.0f).setDuration(150L).setInterpolator(bsVar).start();
-                hh1Var2.I.animate().alpha(1.0f).setDuration(150L).setInterpolator(bsVar).start();
-                hh1Var2.N.animate().alpha(1.0f).setDuration(150L).setInterpolator(bsVar).start();
-                hh1Var2.X.animate().alpha(1.0f).setDuration(150L).setInterpolator(bsVar).start();
-                hh1Var2.f37657j0.animate().alpha(1.0f).setDuration(150L).setInterpolator(bsVar).start();
-                hh1Var2.f37653h0.animate().alpha(1.0f).setDuration(350L).setInterpolator(bsVar).start();
-                hh1Var2.f37655i0.animate().alpha(1.0f).setDuration(350L).setInterpolator(bsVar).start();
-                hh1Var2.M0.animate().alpha(1.0f).setDuration(350L).setInterpolator(bsVar).start();
-                valueAnimator.addListener(new vg1(hh1Var2, 2));
-                valueAnimator.setDuration(350L);
-                valueAnimator.setInterpolator(bsVar);
-                valueAnimator.start();
-                return;
-            case 23:
-                MessagesController.getInstance(((org.telegram.ui.Wallet.m0) obj2).f34481a).lambda$processUpdates$377((TLRPC.Updates) obj, false);
-                return;
-            case 24:
-                org.telegram.ui.Wallet.m0 m0Var = (org.telegram.ui.Wallet.m0) obj2;
-                org.telegram.ui.Wallet.m0.F("enable backup: ready! getting secret phrase...");
-                m0Var.y(new ai.r5(24, m0Var, (org.telegram.ui.Wallet.x7) obj), false, true);
-                return;
-            case 25:
-                boolean[] zArr = (boolean[]) obj2;
-                org.telegram.ui.Wallet.r rVar = (org.telegram.ui.Wallet.r) obj;
-                if (!zArr[0]) {
-                    zArr[0] = true;
-                    rVar.run();
-                    return;
-                }
-                return;
-            case 26:
-                org.telegram.ui.Wallet.m0 m0Var2 = (org.telegram.ui.Wallet.m0) obj2;
-                org.telegram.ui.Wallet.k kVar = (org.telegram.ui.Wallet.k) obj;
-                org.telegram.ui.Wallet.m0.F("emulate disable backup: ready");
-                if (m0Var2.u() <= 0) {
-                    kVar.run(500000L, null);
-                    return;
-                }
-                WalletEngine2 walletEngine2 = m0Var2.f34482b;
-                if (walletEngine2 == null) {
-                    org.telegram.ui.Wallet.m0.i("emulate disable backup: no engine!");
-                    kVar.run(null, "NULL_ENGINE");
-                    return;
-                }
-                walletEngine2.emulateRotateKey(new org.telegram.ui.Wallet.d(m0Var2, kVar));
-                return;
-            case 27:
-                ai.q qVar = (ai.q) obj2;
-                Exception exc = (Exception) obj;
-                if (exc.getMessage() == null) {
-                    message = "NULL_ERROR";
-                } else {
-                    message = exc.getMessage();
-                }
-                qVar.run(null, message);
-                return;
-            case 28:
-                MessagesController.getInstance(((org.telegram.ui.Wallet.f2) obj2).f34199a).lambda$processUpdates$377((TLRPC.Updates) obj, false);
-                return;
-            default:
-                org.telegram.ui.ActionBar.n2 n2Var2 = (org.telegram.ui.ActionBar.n2) obj2;
-                n2Var2.presentFragment(new org.telegram.ui.Wallet.i9(n2Var2.getCurrentAccount(), ((TL_wallet.card) obj).address));
-                return;
+    public final void E(String str) {
+        TLObject tLObject = this.f38843a;
+        if (tLObject instanceof TLRPC.TL_authorization) {
+            TLRPC.TL_authorization tL_authorization = (TLRPC.TL_authorization) tLObject;
+            boolean z10 = tL_authorization.password_pending;
+            SessionsActivity sessionsActivity = this.f38845c;
+            if (z10) {
+                sessionsActivity.e.add(0, tL_authorization);
+                sessionsActivity.U = 4;
+                sessionsActivity.k0(false);
+            } else {
+                sessionsActivity.d.add(0, tL_authorization);
+            }
+            sessionsActivity.m0();
+            sessionsActivity.f34145a.l();
+            sessionsActivity.f34150r.m(0L, this.f38843a, 11);
+        } else if (this.f38844b != null) {
+            AndroidUtilities.runOnUIThread(new j71(this, 0));
         }
     }
 
-    public k71(q71 q71Var, a0.h hVar, int i10) {
-        this.f38441a = 2;
-        this.f38442b = q71Var;
-        this.f38443c = hVar;
+    @Override
+    public final boolean U0(String str, n9 n9Var) {
+        this.f38843a = null;
+        this.f38844b = null;
+        AndroidUtilities.runOnUIThread(new h71(this, str, n9Var, 1), 750L);
+        return true;
+    }
+
+    @Override
+    public final String p0() {
+        return null;
+    }
+
+    @Override
+    public final void F0(MrzRecognizer.Result result) {
+    }
+
+    @Override
+    public final void onDismiss() {
     }
 }

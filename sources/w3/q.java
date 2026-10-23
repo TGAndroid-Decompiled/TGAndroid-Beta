@@ -2,35 +2,35 @@ package w3;
 
 import b2.w;
 public final class q {
-    public final int f48558a;
-    public final int f48559b;
-    public final long f48560c;
+    public final int f48996a;
+    public final int f48997b;
+    public final long f48998c;
     public final long d;
     public final long e;
-    public final long f48561f;
-    public final w f48562g;
+    public final long f48999f;
+    public final w f49000g;
     public final int h;
-    public final long[] f48563i;
-    public final long[] f48564j;
-    public final int f48565k;
-    public final r[] f48566l;
+    public final long[] f49001i;
+    public final long[] f49002j;
+    public final int f49003k;
+    public final r[] f49004l;
 
     public q(int i10, int i11, long j10, long j11, long j12, long j13, w wVar, int i12, r[] rVarArr, int i13, long[] jArr, long[] jArr2) {
-        this.f48558a = i10;
-        this.f48559b = i11;
-        this.f48560c = j10;
+        this.f48996a = i10;
+        this.f48997b = i11;
+        this.f48998c = j10;
         this.d = j11;
         this.e = j12;
-        this.f48561f = j13;
-        this.f48562g = wVar;
+        this.f48999f = j13;
+        this.f49000g = wVar;
         this.h = i12;
-        this.f48566l = rVarArr;
-        this.f48565k = i13;
-        this.f48563i = jArr;
-        this.f48564j = jArr2;
+        this.f49004l = rVarArr;
+        this.f49003k = i13;
+        this.f49001i = jArr;
+        this.f49002j = jArr2;
     }
 
     public final q a(w wVar) {
-        return new q(this.f48558a, this.f48559b, this.f48560c, this.d, this.e, this.f48561f, wVar, this.h, this.f48566l, this.f48565k, this.f48563i, this.f48564j);
+        return new q(this.f48996a, this.f48997b, this.f48998c, this.d, this.e, this.f48999f, wVar, this.h, this.f49004l, this.f49003k, this.f49001i, this.f49002j);
     }
 }

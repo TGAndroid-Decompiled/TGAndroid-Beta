@@ -31,9 +31,9 @@ public final class v extends md.i implements td.p {
         kd.c cVar = (kd.c) obj2;
         switch (this.f468a) {
             case 0:
-                return ((v) create(c0Var, cVar)).invokeSuspend(id.i.f12775a);
+                return ((v) create(c0Var, cVar)).invokeSuspend(id.i.f12807a);
             default:
-                return ((v) create(c0Var, cVar)).invokeSuspend(id.i.f12775a);
+                return ((v) create(c0Var, cVar)).invokeSuspend(id.i.f12807a);
         }
     }
 
@@ -41,7 +41,7 @@ public final class v extends md.i implements td.p {
     public final Object invokeSuspend(Object obj) {
         switch (this.f468a) {
             case 0:
-                ld.a aVar = ld.a.f15999a;
+                ld.a aVar = ld.a.f16062a;
                 int i10 = this.f469b;
                 if (i10 != 0) {
                     if (i10 == 1) {
@@ -55,13 +55,13 @@ public final class v extends md.i implements td.p {
                     n4.s sVar = c0Var.d;
                     u uVar = new u(c0Var, 0);
                     this.f469b = 1;
-                    if (sVar.l(uVar, this) == aVar) {
+                    if (sVar.q(uVar, this) == aVar) {
                         return aVar;
                     }
                 }
-                return id.i.f12775a;
+                return id.i.f12807a;
             default:
-                ld.a aVar2 = ld.a.f15999a;
+                ld.a aVar2 = ld.a.f16062a;
                 int i11 = this.f469b;
                 if (i11 != 0) {
                     if (i11 == 1) {
@@ -71,7 +71,7 @@ public final class v extends md.i implements td.p {
                     }
                 } else {
                     i8.b(obj);
-                    bb.c cVar = bb.c.f4236a;
+                    bb.c cVar = bb.c.f4243a;
                     this.f469b = 1;
                     obj = cVar.b(this);
                     if (obj == aVar2) {
@@ -86,16 +86,16 @@ public final class v extends md.i implements td.p {
                     if (Log.isLoggable("FirebaseCrashlytics", 3)) {
                         Log.d("FirebaseCrashlytics", str2, null);
                     }
-                    x9.i iVar = jVar.f49692b;
+                    x9.i iVar = jVar.f50134b;
                     synchronized (iVar) {
-                        if (!Objects.equals(iVar.f49690c, str)) {
-                            x9.i.a(iVar.f49688a, iVar.f49689b, str);
-                            iVar.f49690c = str;
+                        if (!Objects.equals(iVar.f50132c, str)) {
+                            x9.i.a(iVar.f50130a, iVar.f50131b, str);
+                            iVar.f50132c = str;
                         }
                     }
-                    Log.d("SessionLifecycleClient", "Notified " + bb.d.f4238a + " of new session " + str);
+                    Log.d("SessionLifecycleClient", "Notified " + bb.d.f4245a + " of new session " + str);
                 }
-                return id.i.f12775a;
+                return id.i.f12807a;
         }
     }
 }

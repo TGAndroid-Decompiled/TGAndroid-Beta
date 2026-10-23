@@ -9,43 +9,43 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.i80;
-import org.telegram.ui.Components.s31;
+import org.telegram.ui.Components.j80;
+import org.telegram.ui.Components.w31;
 import org.telegram.ui.TwoStepVerificationActivity;
 public final class j implements Runnable {
-    public final int f1538a = 0;
-    public final boolean f1539b;
-    public final long f1540c;
+    public final int f1516a = 0;
+    public final boolean f1517b;
+    public final long f1518c;
     public final NotificationCenter.NotificationCenterDelegate d;
     public final Object e;
-    public final Object f1541f;
+    public final Object f1519f;
     public final Object h;
-    public final TLObject f1542n;
+    public final TLObject f1520n;
 
     public j(x xVar, TLRPC.TL_error tL_error, TwoStepVerificationActivity twoStepVerificationActivity, Activity activity, boolean z10, long j10, TLObject tLObject) {
         this.d = xVar;
         this.e = tL_error;
-        this.f1541f = twoStepVerificationActivity;
+        this.f1519f = twoStepVerificationActivity;
         this.h = activity;
-        this.f1539b = z10;
-        this.f1540c = j10;
-        this.f1542n = tLObject;
+        this.f1517b = z10;
+        this.f1518c = j10;
+        this.f1520n = tLObject;
     }
 
     @Override
     public final void run() {
         int i10;
-        switch (this.f1538a) {
+        switch (this.f1516a) {
             case 0:
-                x.Z((x) this.d, (TLRPC.TL_error) this.e, (TwoStepVerificationActivity) this.f1541f, (Activity) this.h, this.f1539b, this.f1540c, this.f1542n);
+                x.Z((x) this.d, (TLRPC.TL_error) this.e, (TwoStepVerificationActivity) this.f1519f, (Activity) this.h, this.f1517b, this.f1518c, this.f1520n);
                 return;
             default:
-                final s31 s31Var = (s31) this.d;
+                final w31 w31Var = (w31) this.d;
                 org.telegram.ui.ActionBar.e1 e1Var = (org.telegram.ui.ActionBar.e1) this.e;
-                final i80 i80Var = (i80) this.f1541f;
+                final j80 j80Var = (j80) this.f1519f;
                 final TLRPC.User user = (TLRPC.User) this.h;
-                final TLRPC.Chat chat = (TLRPC.Chat) this.f1542n;
-                boolean z10 = this.f1539b;
+                final TLRPC.Chat chat = (TLRPC.Chat) this.f1520n;
+                boolean z10 = this.f1517b;
                 final boolean z11 = !z10;
                 e1Var.setVisibility(0);
                 if (!z10) {
@@ -54,13 +54,13 @@ public final class j implements Runnable {
                     i10 = R.string.BanUserMonoforum;
                 }
                 e1Var.setText(LocaleController.getString(i10));
-                final long j10 = this.f1540c;
+                final long j10 = this.f1518c;
                 e1Var.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        s31 s31Var2 = s31.this;
-                        int i11 = s31Var2.f30184b;
-                        i80Var.u();
+                        w31 w31Var2 = w31.this;
+                        int i11 = w31Var2.f32132b;
+                        j80Var.u();
                         boolean z12 = z11;
                         TLRPC.User user2 = user;
                         if (!z12) {
@@ -71,20 +71,20 @@ public final class j implements Runnable {
                         tL_channels_editBanned.participant = MessagesController.getInputPeer(user2);
                         tL_channels_editBanned.channel = MessagesController.getInputChannel(chat);
                         tL_channels_editBanned.banned_rights = new TLRPC.TL_chatBannedRights();
-                        ConnectionsManager.getInstance(i11).sendRequest(tL_channels_editBanned, new y1(s31Var2, 15));
+                        ConnectionsManager.getInstance(i11).sendRequest(tL_channels_editBanned, new x1(w31Var2, 15));
                     }
                 });
                 return;
         }
     }
 
-    public j(s31 s31Var, boolean z10, org.telegram.ui.ActionBar.e1 e1Var, i80 i80Var, long j10, TLRPC.User user, TLRPC.Chat chat) {
-        this.d = s31Var;
-        this.f1539b = z10;
+    public j(w31 w31Var, boolean z10, org.telegram.ui.ActionBar.e1 e1Var, j80 j80Var, long j10, TLRPC.User user, TLRPC.Chat chat) {
+        this.d = w31Var;
+        this.f1517b = z10;
         this.e = e1Var;
-        this.f1541f = i80Var;
-        this.f1540c = j10;
+        this.f1519f = j80Var;
+        this.f1518c = j10;
         this.h = user;
-        this.f1542n = chat;
+        this.f1520n = chat;
     }
 }

@@ -8,27 +8,27 @@ import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotForumHelper;
 public final class ke extends FrameLayout {
-    public final int f27868a;
-    public final ChatActivityEnterView f27869b;
+    public final int f28023a;
+    public final ChatActivityEnterView f28024b;
 
     public ke(ChatActivityEnterView chatActivityEnterView, Context context, int i10) {
         super(context);
-        this.f27868a = i10;
-        this.f27869b = chatActivityEnterView;
+        this.f28023a = i10;
+        this.f28024b = chatActivityEnterView;
     }
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        switch (this.f27868a) {
+        switch (this.f28023a) {
             case 0:
-                ChatActivityEnterView chatActivityEnterView = this.f27869b;
-                gi.v3 v3Var = chatActivityEnterView.f23976k0;
+                ChatActivityEnterView chatActivityEnterView = this.f28024b;
+                gi.v3 v3Var = chatActivityEnterView.f24114k0;
                 if (v3Var != null && v3Var.getVisibility() == 0) {
-                    return chatActivityEnterView.f23976k0.dispatchTouchEvent(motionEvent);
+                    return chatActivityEnterView.f24114k0.dispatchTouchEvent(motionEvent);
                 }
                 return super.dispatchTouchEvent(motionEvent);
             case 1:
-                ChatActivityEnterView chatActivityEnterView2 = this.f27869b;
+                ChatActivityEnterView chatActivityEnterView2 = this.f28024b;
                 if (chatActivityEnterView2.J && chatActivityEnterView2.T4 != BotForumHelper.SteamingSendButtonState.BLOCKING) {
                     return super.dispatchTouchEvent(motionEvent);
                 }
@@ -40,10 +40,10 @@ public final class ke extends FrameLayout {
 
     @Override
     public boolean drawChild(Canvas canvas, View view, long j10) {
-        switch (this.f27868a) {
+        switch (this.f28023a) {
             case 1:
-                ChatActivityEnterView chatActivityEnterView = this.f27869b;
-                if (view == chatActivityEnterView.J0 && chatActivityEnterView.f23958h0) {
+                ChatActivityEnterView chatActivityEnterView = this.f28024b;
+                if (view == chatActivityEnterView.J0 && chatActivityEnterView.f24096h0) {
                     return true;
                 }
                 return super.drawChild(canvas, view, j10);
@@ -54,7 +54,7 @@ public final class ke extends FrameLayout {
 
     @Override
     public void onSizeChanged(int i10, int i11, int i12, int i13) {
-        switch (this.f27868a) {
+        switch (this.f28023a) {
             case 1:
                 super.onSizeChanged(i10, i11, i12, i13);
                 setPivotX(i10 - AndroidUtilities.dp(22.0f));
@@ -68,9 +68,9 @@ public final class ke extends FrameLayout {
 
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.f27868a) {
+        switch (this.f28023a) {
             case 1:
-                ChatActivityEnterView chatActivityEnterView = this.f27869b;
+                ChatActivityEnterView chatActivityEnterView = this.f28024b;
                 if (chatActivityEnterView.J && chatActivityEnterView.T4 != BotForumHelper.SteamingSendButtonState.BLOCKING) {
                     return super.onTouchEvent(motionEvent);
                 }
@@ -82,10 +82,10 @@ public final class ke extends FrameLayout {
 
     @Override
     public void setVisibility(int i10) {
-        switch (this.f27868a) {
+        switch (this.f28023a) {
             case 2:
                 super.setVisibility(i10);
-                this.f27869b.M1(true);
+                this.f28024b.M1(true);
                 return;
             default:
                 super.setVisibility(i10);

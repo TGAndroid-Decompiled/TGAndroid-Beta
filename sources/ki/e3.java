@@ -5,18 +5,18 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.tl.TL_iv;
 public final class e3 implements z5 {
-    public final w3 f15245a;
+    public final w3 f15303a;
 
     public e3(w3 w3Var) {
-        this.f15245a = w3Var;
+        this.f15303a = w3Var;
     }
 
     public final int a(a aVar) {
         float f7;
         int i10;
-        w3 w3Var = this.f15245a;
-        int indexOf = w3Var.f15600j3.indexOf(aVar);
-        if (indexOf >= 0 && (i10 = indexOf + 1) < w3Var.f15600j3.size() && ((a) w3Var.f15600j3.get(i10)).f15096c > 0) {
+        w3 w3Var = this.f15303a;
+        int indexOf = w3Var.f15663m3.indexOf(aVar);
+        if (indexOf >= 0 && (i10 = indexOf + 1) < w3Var.f15663m3.size() && ((a) w3Var.f15663m3.get(i10)).f15142c > 0) {
             f7 = 5.0f;
         } else {
             f7 = 11.0f;
@@ -26,9 +26,9 @@ public final class e3 implements z5 {
 
     public final int b(a aVar) {
         float f7;
-        w3 w3Var = this.f15245a;
-        int indexOf = w3Var.f15600j3.indexOf(aVar);
-        if (indexOf > 0 && ((a) w3Var.f15600j3.get(indexOf - 1)).f15096c > 0) {
+        w3 w3Var = this.f15303a;
+        int indexOf = w3Var.f15663m3.indexOf(aVar);
+        if (indexOf > 0 && ((a) w3Var.f15663m3.get(indexOf - 1)).f15142c > 0) {
             f7 = 2.0f;
         } else {
             f7 = 8.0f;
@@ -37,26 +37,26 @@ public final class e3 implements z5 {
     }
 
     public final void c(a aVar, int i10) {
-        w3 w3Var = this.f15245a;
-        u3 u3Var = w3Var.f15592f3;
+        w3 w3Var = this.f15303a;
+        u3 u3Var = w3Var.f15656i3;
         if (i10 == 7) {
-            w3Var.S4(aVar, new TL_iv.pageBlockButtonRow(), 0, 0, false, false);
+            w3Var.X4(aVar, new TL_iv.pageBlockButtonRow(), 0, 0, false, false);
             return;
         }
-        w3Var.Z3 = null;
-        w3Var.f15585a4 = aVar;
-        h2 h2Var = w3Var.H3;
+        w3Var.f15648c4 = null;
+        w3Var.f15649d4 = aVar;
+        h2 h2Var = w3Var.K3;
         if (h2Var != null) {
             h2Var.d();
         }
         if (aVar != null) {
-            c6.f(aVar.f15095b, "");
-            View A1 = w3Var.A1(aVar);
-            if (A1 instanceof c6) {
-                ((c6) A1).getEditText().setTextSilently("");
+            c6.e(aVar.f15141b, "");
+            View F1 = w3Var.F1(aVar);
+            if (F1 instanceof c6) {
+                ((c6) F1).getEditText().setTextSilently("");
             }
         }
-        h2 h2Var2 = w3Var.H3;
+        h2 h2Var2 = w3Var.K3;
         if (h2Var2 != null) {
             h2Var2.h();
         }
@@ -68,14 +68,14 @@ public final class e3 implements z5 {
                 u3Var.m(6);
                 return;
             case 3:
-                q.X(w3Var.getContext(), "", new ig.l0(w3Var, 7), w3Var.f15590e3);
+                q.X(w3Var.getContext(), "", new ig.k0(w3Var, 7), w3Var.f15654h3);
                 return;
             case 4:
             case 5:
                 u3Var.m(1);
                 return;
             case 6:
-                w3Var.u3();
+                w3Var.z3();
                 return;
             default:
                 return;
@@ -85,19 +85,19 @@ public final class e3 implements z5 {
     public final void d(a aVar, TL_iv.PageBlock pageBlock, int i10, int i11, boolean z10, boolean z11) {
         boolean z12;
         boolean z13 = pageBlock instanceof TL_iv.pageBlockBlockquote;
-        w3 w3Var = this.f15245a;
+        w3 w3Var = this.f15303a;
         if (z13) {
             if (aVar == null) {
-                aVar = w3Var.Y4();
+                aVar = w3Var.d5();
             }
             if (aVar != null) {
-                ArrayList arrayList = aVar.f15101k;
-                if (w3Var.f15600j3.indexOf(aVar) >= 0 && !w3.y3(aVar) && !aVar.f15099i) {
-                    h2 h2Var = w3Var.H3;
+                ArrayList arrayList = aVar.f15147k;
+                if (w3Var.f15663m3.indexOf(aVar) >= 0 && !w3.D3(aVar) && !aVar.f15145i) {
+                    h2 h2Var = w3Var.K3;
                     if (h2Var != null) {
                         h2Var.d();
                     }
-                    if (arrayList.isEmpty() && !c6.p(aVar.f15095b)) {
+                    if (arrayList.isEmpty() && !c6.o(aVar.f15141b)) {
                         z12 = true;
                     } else {
                         z12 = false;
@@ -105,31 +105,31 @@ public final class e3 implements z5 {
                     if (z12) {
                         TL_iv.pageBlockBlockquote pageblockblockquote = new TL_iv.pageBlockBlockquote();
                         pageblockblockquote.caption = new TL_iv.textEmpty();
-                        aVar.f15095b = pageblockblockquote;
+                        aVar.f15141b = pageblockblockquote;
                     } else {
-                        if (c6.p(aVar.f15095b)) {
+                        if (c6.o(aVar.f15141b)) {
                             long a2 = p0.a();
-                            TL_iv.RichText k10 = c6.k(aVar.f15095b);
-                            if (k10 != null && !(k10 instanceof TL_iv.textEmpty)) {
-                                w3Var.f15602k3.put(Long.valueOf(a2), k10);
+                            TL_iv.RichText j10 = c6.j(aVar.f15141b);
+                            if (j10 != null && !(j10 instanceof TL_iv.textEmpty)) {
+                                w3Var.f15665n3.put(Long.valueOf(a2), j10);
                             }
                             arrayList.add(Long.valueOf(a2));
                         }
-                        aVar.f15095b = new TL_iv.pageBlockParagraph();
+                        aVar.f15141b = new TL_iv.pageBlockParagraph();
                         arrayList.add(Long.valueOf(p0.a()));
                     }
-                    w3Var.t4();
+                    w3Var.y4();
                     if (z12 && (w3Var.findFocus() instanceof h1)) {
-                        w3Var.Y1();
-                        h2 h2Var2 = w3Var.H3;
+                        w3Var.d2();
+                        h2 h2Var2 = w3Var.K3;
                         if (h2Var2 != null) {
                             h2Var2.h();
                         }
-                        w3Var.e3(aVar);
+                        w3Var.j3(aVar);
                         return;
                     }
-                    w3Var.W2.N(false);
-                    h2 h2Var3 = w3Var.H3;
+                    w3Var.Z2.N(false);
+                    h2 h2Var3 = w3Var.K3;
                     if (h2Var3 != null) {
                         h2Var3.h();
                     }
@@ -140,6 +140,6 @@ public final class e3 implements z5 {
             }
             return;
         }
-        w3Var.S4(aVar, pageBlock, i10, i11, z10, z11);
+        w3Var.X4(aVar, pageBlock, i10, i11, z10, z11);
     }
 }

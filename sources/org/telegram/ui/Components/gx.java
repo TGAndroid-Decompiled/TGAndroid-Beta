@@ -4,17 +4,17 @@ import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.view.MotionEvent;
 import android.view.ViewGroup;
-public final class gx extends z4.g {
-    public final tz f26689w0;
+public final class gx extends z4.h {
+    public final tz f26735w0;
 
     public gx(tz tzVar, Context context) {
         super(context);
-        this.f26689w0 = tzVar;
+        this.f26735w0 = tzVar;
     }
 
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (this.f26689w0.f30735f) {
+        if (this.f26735w0.f30974f) {
             return false;
         }
         if (getParent() != null) {
@@ -30,14 +30,14 @@ public final class gx extends z4.g {
     @Override
     public final void x(int i10, boolean z10) {
         boolean z11;
-        tz tzVar = this.f26689w0;
+        tz tzVar = this.f26735w0;
         vx vxVar = tzVar.I;
         if (i10 == 1) {
             z11 = true;
         } else {
             z11 = false;
         }
-        tz.c(tzVar, z11);
+        tz.a(tzVar, z11);
         if (i10 == getCurrentItem()) {
             if (i10 == 0) {
                 tzVar.Q0[1] = 0;
@@ -52,7 +52,7 @@ public final class gx extends z4.g {
                 }
                 return;
             } else if (i10 == 1) {
-                tzVar.f30742h0.x0(0);
+                tzVar.f30981h0.x0(0);
                 return;
             } else {
                 tzVar.D0.x0(1);

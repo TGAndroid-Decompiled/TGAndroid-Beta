@@ -1,15 +1,15 @@
 package org.telegram.ui;
 
-import android.view.View;
-public final class d61 implements View.OnLayoutChangeListener {
-    public final h61 f36281a;
-
-    public d61(h61 h61Var) {
-        this.f36281a = h61Var;
-    }
-
+import android.view.MotionEvent;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class d61 extends EditTextBoldCursor {
     @Override
-    public final void onLayoutChange(View view, int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17) {
-        h61.T(this.f36281a);
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        if (motionEvent.getAction() == 0 && !AndroidUtilities.showKeyboard(this)) {
+            clearFocus();
+            requestFocus();
+        }
+        return super.onTouchEvent(motionEvent);
     }
 }

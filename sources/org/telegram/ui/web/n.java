@@ -11,12 +11,13 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.ActionBar.n2;
+import org.telegram.ui.ActionBar.o2;
+import org.telegram.ui.Wallet.e8;
 public final class n extends org.telegram.ui.ActionBar.j {
-    public final p f42735a;
+    public final p f43202a;
 
     public n(p pVar) {
-        this.f42735a = pVar;
+        this.f43202a = pVar;
     }
 
     @Override
@@ -24,15 +25,15 @@ public final class n extends org.telegram.ui.ActionBar.j {
         String str;
         org.telegram.ui.ActionBar.k kVar;
         org.telegram.ui.ActionBar.k kVar2;
-        p pVar = this.f42735a;
-        HashSet hashSet = pVar.f42753w;
+        p pVar = this.f43202a;
+        HashSet hashSet = pVar.f43224w;
         if (i10 == -1) {
-            kVar = ((n2) pVar).actionBar;
-            if (kVar.t()) {
-                kVar2 = ((n2) pVar).actionBar;
-                kVar2.s();
+            kVar = ((o2) pVar).actionBar;
+            if (kVar.s()) {
+                kVar2 = ((o2) pVar).actionBar;
+                kVar2.r();
                 hashSet.clear();
-                AndroidUtilities.forEachViews((RecyclerView) pVar.f32360a, (Utilities.Callback<View>) new ci.e(22));
+                AndroidUtilities.forEachViews((RecyclerView) pVar.f25907a, (Utilities.Callback<View>) new ci.e(22));
                 return;
             }
             pVar.finishFragment();
@@ -48,7 +49,7 @@ public final class n extends org.telegram.ui.ActionBar.j {
                     break;
                 }
                 int intValue = ((Integer) it.next()).intValue();
-                ArrayList arrayList2 = pVar.d.f42675a;
+                ArrayList arrayList2 = pVar.d.f43154a;
                 int size = arrayList2.size();
                 int i12 = 0;
                 while (true) {
@@ -63,9 +64,9 @@ public final class n extends org.telegram.ui.ActionBar.j {
                         break;
                     }
                 }
-                i iVar = pVar.e;
-                if (iVar != null && messageObject == null) {
-                    ArrayList arrayList3 = iVar.f42675a;
+                j jVar = pVar.e;
+                if (jVar != null && messageObject == null) {
+                    ArrayList arrayList3 = jVar.f43154a;
                     int size2 = arrayList3.size();
                     while (true) {
                         if (i11 >= size2) {
@@ -83,21 +84,21 @@ public final class n extends org.telegram.ui.ActionBar.j {
                 if (messageObject != null) {
                     arrayList.add(messageObject);
                     hashSet3.add(Integer.valueOf(messageObject.getId()));
-                    hashSet2.add(k.a(messageObject));
+                    hashSet2.add(l.a(messageObject));
                 }
             }
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(pVar.getParentActivity(), 0, pVar.getResourceProvider());
-            alertDialog$Builder.f20609a.R = LocaleController.formatPluralString("DeleteOptionsTitle", hashSet3.size(), new Object[0]);
+            alertDialog$Builder.f20678a.R = LocaleController.formatPluralString("DeleteOptionsTitle", hashSet3.size(), new Object[0]);
             if (hashSet3.size() == 1) {
                 str = "AreYouSureUnsaveSingleMessage";
             } else {
                 str = "AreYouSureUnsaveFewMessages";
             }
-            alertDialog$Builder.f20609a.T = LocaleController.getString(str);
-            alertDialog$Builder.k(LocaleController.getString(R.string.Delete), new m(0, pVar, hashSet3));
+            alertDialog$Builder.f20678a.T = LocaleController.getString(str);
+            alertDialog$Builder.k(LocaleController.getString(R.string.Delete), new e8(2, pVar, hashSet3));
             alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
             alertDialog$Builder.d(-1);
-            alertDialog$Builder.o();
+            alertDialog$Builder.p();
         } else if (i10 == R.id.menu_link) {
             pVar.d0();
         }

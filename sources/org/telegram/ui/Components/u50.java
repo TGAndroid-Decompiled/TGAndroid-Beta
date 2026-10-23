@@ -3,17 +3,17 @@ package org.telegram.ui.Components;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 public final class u50 {
-    public final ByteBuffer[] f30854a = new ByteBuffer[10];
-    public final long[] f30855b = new long[10];
-    public final int[] f30856c = new int[10];
+    public final ByteBuffer[] f31084a = new ByteBuffer[10];
+    public final long[] f31085b = new long[10];
+    public final int[] f31086c = new int[10];
     public int d;
     public int e;
-    public boolean f30857f;
+    public boolean f31087f;
 
     public u50() {
         for (int i10 = 0; i10 < 10; i10++) {
-            this.f30854a[i10] = ByteBuffer.allocateDirect(2048);
-            this.f30854a[i10].order(ByteOrder.nativeOrder());
+            this.f31084a[i10] = ByteBuffer.allocateDirect(2048);
+            this.f31084a[i10].order(ByteOrder.nativeOrder());
         }
     }
 }

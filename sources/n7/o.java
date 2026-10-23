@@ -1,11 +1,12 @@
 package n7;
 
+import i2.o1;
 import j$.util.Objects;
 import java.util.Arrays;
 import java.util.Set;
 public abstract class o extends h implements Set, j$.util.Set {
-    public static final int f17300c = 0;
-    public transient m f17301b;
+    public static final int f17363c = 0;
+    public transient m f17364b;
 
     public static o q(int i10, Object... objArr) {
         if (i10 != 0) {
@@ -34,7 +35,7 @@ public abstract class o extends h implements Set, j$.util.Set {
                             }
                         }
                     } else {
-                        throw new NullPointerException(i2.e.j(i14, "at index "));
+                        throw new NullPointerException(o1.k(i14, "at index "));
                     }
                 }
                 Arrays.fill(objArr, i13, i10, (Object) null);
@@ -55,7 +56,7 @@ public abstract class o extends h implements Set, j$.util.Set {
             Objects.requireNonNull(obj4);
             return new b0(obj4);
         }
-        return y.f17324s;
+        return y.f17387s;
     }
 
     public static int r(int i10) {
@@ -107,18 +108,18 @@ public abstract class o extends h implements Set, j$.util.Set {
     }
 
     public m s() {
-        m mVar = this.f17301b;
+        m mVar = this.f17364b;
         if (mVar == null) {
             m t10 = t();
-            this.f17301b = t10;
+            this.f17364b = t10;
             return t10;
         }
         return mVar;
     }
 
     public m t() {
-        Object[] array = toArray(h.f17272a);
-        i iVar = m.f17291b;
+        Object[] array = toArray(h.f17335a);
+        i iVar = m.f17354b;
         return m.s(array.length, array);
     }
 }

@@ -4,20 +4,20 @@ import android.content.Context;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 public final class eb extends org.telegram.ui.Components.cp {
-    public final int f36626s;
-    public final org.telegram.ui.ActionBar.n2 v;
+    public final int f36912s;
+    public final org.telegram.ui.ActionBar.o2 v;
 
-    public eb(int i10, Context context, org.telegram.ui.ActionBar.n2 n2Var) {
+    public eb(int i10, Context context, org.telegram.ui.ActionBar.o2 o2Var) {
         super(context);
-        this.f36626s = i10;
-        this.v = n2Var;
+        this.f36912s = i10;
+        this.v = o2Var;
         setOrientation(1);
     }
 
     @Override
     public final boolean dispatchKeyEvent(KeyEvent keyEvent) {
         fb fbVar;
-        switch (this.f36626s) {
+        switch (this.f36912s) {
             case 0:
                 if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (fbVar = ((vb) this.v).F0) != null) {
                     fbVar.dismiss();
@@ -25,7 +25,7 @@ public final class eb extends org.telegram.ui.Components.cp {
                 return super.dispatchKeyEvent(keyEvent);
             default:
                 if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0) {
-                    ((qn) this.v).D7(true);
+                    ((sn) this.v).D7(true);
                 }
                 return super.dispatchKeyEvent(keyEvent);
         }
@@ -34,7 +34,7 @@ public final class eb extends org.telegram.ui.Components.cp {
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
         fb fbVar;
-        switch (this.f36626s) {
+        switch (this.f36912s) {
             case 0:
                 boolean dispatchTouchEvent = super.dispatchTouchEvent(motionEvent);
                 if (motionEvent.getAction() == 0 && !dispatchTouchEvent && (fbVar = ((vb) this.v).F0) != null) {
@@ -44,7 +44,7 @@ public final class eb extends org.telegram.ui.Components.cp {
             default:
                 boolean dispatchTouchEvent2 = super.dispatchTouchEvent(motionEvent);
                 if (motionEvent.getAction() == 0 && !dispatchTouchEvent2) {
-                    ((qn) this.v).D7(true);
+                    ((sn) this.v).D7(true);
                 }
                 return dispatchTouchEvent2;
         }

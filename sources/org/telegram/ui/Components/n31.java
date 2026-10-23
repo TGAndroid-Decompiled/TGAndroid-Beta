@@ -1,25 +1,51 @@
 package org.telegram.ui.Components;
-public final class n31 {
-    public static final n31 f28683a;
-    public static final n31 f28684b;
-    public static final n31 f28685c;
-    public static final n31[] d;
 
-    static {
-        ?? r02 = new Enum("TOP", 0);
-        f28683a = r02;
-        ?? r12 = new Enum("LEFT", 1);
-        f28684b = r12;
-        ?? r32 = new Enum("BOTTOM", 2);
-        f28685c = r32;
-        d = new n31[]{r02, r12, r32};
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.R;
+public final class n31 extends Drawable {
+    public final Drawable f28821a;
+    public final Paint f28822b = new Paint(1);
+    public final RectF f28823c = new RectF();
+
+    public n31(Context context) {
+        this.f28821a = context.getResources().getDrawable(R.drawable.menu_topic_add).mutate();
     }
 
-    public static n31 valueOf(String str) {
-        return (n31) Enum.valueOf(n31.class, str);
+    @Override
+    public final void draw(Canvas canvas) {
+        Paint paint = this.f28822b;
+        canvas.drawRoundRect(this.f28823c, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), paint);
+        this.f28821a.draw(canvas);
     }
 
-    public static n31[] values() {
-        return (n31[]) d.clone();
+    @Override
+    public final int getOpacity() {
+        return 0;
+    }
+
+    @Override
+    public final void onBoundsChange(Rect rect) {
+        super.onBoundsChange(rect);
+        this.f28823c.set(rect);
+        int centerX = rect.centerX() - AndroidUtilities.dp(12.0f);
+        int centerY = rect.centerY() - AndroidUtilities.dp(12.0f);
+        this.f28821a.setBounds(centerX, centerY, AndroidUtilities.dp(24.0f) + centerX, AndroidUtilities.dp(24.0f) + centerY);
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+        this.f28822b.setAlpha(i10);
+        this.f28821a.setAlpha(i10);
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

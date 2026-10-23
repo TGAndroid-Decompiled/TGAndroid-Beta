@@ -43,10 +43,10 @@ public abstract class u {
                         duplicate.order(ByteOrder.LITTLE_ENDIAN);
                         int position = duplicate.position() + duplicate.getInt(duplicate.position());
                         cVar.d = duplicate;
-                        cVar.f43923a = position;
+                        cVar.f44338a = position;
                         int i15 = position - duplicate.getInt(position);
-                        cVar.f43924b = i15;
-                        cVar.f43925c = ((ByteBuffer) cVar.d).getShort(i15);
+                        cVar.f44339b = i15;
+                        cVar.f44340c = ((ByteBuffer) cVar.d).getShort(i15);
                         return cVar;
                     }
                 }

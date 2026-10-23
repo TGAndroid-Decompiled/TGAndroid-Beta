@@ -1,38 +1,56 @@
 package org.telegram.ui.Components;
 
-import android.text.Selection;
-import android.text.Spannable;
-import android.text.method.LinkMovementMethod;
-import android.text.style.CharacterStyle;
-import android.view.MotionEvent;
-import android.widget.TextView;
-import org.telegram.messenger.FileLog;
-public final class q61 extends LinkMovementMethod {
-    public final UndoView f29488a;
+import android.net.Uri;
+import android.text.TextPaint;
+import android.text.style.URLSpan;
+import android.view.View;
+import org.telegram.tgnet.TLObject;
+public class q61 extends URLSpan {
+    public final boolean f29778a;
+    public final q11 f29779b;
+    public TLObject f29780c;
+    public String d;
 
-    public q61(UndoView undoView) {
-        this.f29488a = undoView;
+    public q61(String str) {
+        this(str, (q11) null);
     }
 
     @Override
-    public final boolean onTouchEvent(TextView textView, Spannable spannable, MotionEvent motionEvent) {
-        CharacterStyle[] characterStyleArr;
-        try {
-            if (motionEvent.getAction() != 0 || ((characterStyleArr = (CharacterStyle[]) spannable.getSpans(textView.getSelectionStart(), textView.getSelectionEnd(), CharacterStyle.class)) != null && characterStyleArr.length != 0)) {
-                if (motionEvent.getAction() == 1) {
-                    CharacterStyle[] characterStyleArr2 = (CharacterStyle[]) spannable.getSpans(textView.getSelectionStart(), textView.getSelectionEnd(), CharacterStyle.class);
-                    if (characterStyleArr2 != null && characterStyleArr2.length > 0) {
-                        this.f29488a.b(characterStyleArr2[0]);
-                    }
-                    Selection.removeSelection(spannable);
-                    return true;
-                }
-                return super.onTouchEvent(textView, spannable, motionEvent);
-            }
-            return false;
-        } catch (Exception e) {
-            FileLog.e(e);
-            return false;
+    public void onClick(View view) {
+        String url = getURL();
+        if (url.startsWith("@")) {
+            pf.d.o(view.getContext(), Uri.parse("https://t.me/" + url.substring(1)), true, true);
+            return;
         }
+        pf.d.r(view.getContext(), url);
+    }
+
+    @Override
+    public void updateDrawState(TextPaint textPaint) {
+        boolean z10;
+        int i10 = textPaint.linkColor;
+        int color = textPaint.getColor();
+        super.updateDrawState(textPaint);
+        q11 q11Var = this.f29779b;
+        if (q11Var != null) {
+            q11Var.a(textPaint);
+        }
+        if (i10 == color && !this.f29778a) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        textPaint.setUnderlineText(z10);
+    }
+
+    public q61(String str, int i10) {
+        this(str, (q11) null);
+        this.f29778a = true;
+    }
+
+    public q61(String str, q11 q11Var) {
+        super(str != null ? str.replace((char) 8238, ' ') : str);
+        this.f29778a = false;
+        this.f29779b = q11Var;
     }
 }

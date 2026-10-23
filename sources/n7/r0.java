@@ -1,4 +1,6 @@
 package n7;
+
+import i2.o1;
 public final class r0 extends s0 {
     public final int d;
     public final int e;
@@ -15,16 +17,16 @@ public final class r0 extends s0 {
         int i11 = this.e;
         if (((i11 - (i10 + 1)) | i10) < 0) {
             if (i10 < 0) {
-                throw new ArrayIndexOutOfBoundsException(i2.e.j(i10, "Index < 0: "));
+                throw new ArrayIndexOutOfBoundsException(o1.k(i10, "Index < 0: "));
             }
             throw new ArrayIndexOutOfBoundsException(a1.g.l(i10, i11, "Index > length: ", ", "));
         }
-        return this.f17311b[this.d + i10];
+        return this.f17374b[this.d + i10];
     }
 
     @Override
     public final byte m(int i10) {
-        return this.f17311b[this.d + i10];
+        return this.f17374b[this.d + i10];
     }
 
     @Override
@@ -39,6 +41,6 @@ public final class r0 extends s0 {
 
     @Override
     public final void p(int i10, byte[] bArr) {
-        System.arraycopy(this.f17311b, this.d, bArr, 0, i10);
+        System.arraycopy(this.f17374b, this.d, bArr, 0, i10);
     }
 }

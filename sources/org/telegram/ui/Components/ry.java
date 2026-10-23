@@ -15,17 +15,17 @@ import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.R;
 import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.tgnet.TLRPC;
-public final class ry implements MediaDataController.KeywordResultCallback, e5, org.telegram.ui.ActionBar.a2, ImageReceiver.ImageReceiverDelegate, MessagesStorage.BooleanCallback, t5.b, s5.e, e2.j, x2.k {
-    public final int f30059a;
-    public final Object f30060b;
-    public final Object f30061c;
+public final class ry implements MediaDataController.KeywordResultCallback, d5, org.telegram.ui.ActionBar.z1, ImageReceiver.ImageReceiverDelegate, MessagesStorage.BooleanCallback, t5.b, s5.e, e2.j, x2.k {
+    public final int f30286a;
+    public final Object f30287b;
+    public final Object f30288c;
     public final Object d;
 
     public ry(Object obj, Object obj2, Object obj3, int i10) {
-        this.f30059a = i10;
-        this.f30061c = obj;
+        this.f30286a = i10;
+        this.f30288c = obj;
         this.d = obj2;
-        this.f30060b = obj3;
+        this.f30287b = obj3;
     }
 
     @Override
@@ -34,17 +34,17 @@ public final class ry implements MediaDataController.KeywordResultCallback, e5, 
         int i12;
         int i13;
         long j10;
-        f60 f60Var = (f60) this.f30061c;
+        f60 f60Var = (f60) this.f30288c;
         a60 a60Var = (a60) this.d;
-        VideoEditedInfo videoEditedInfo = (VideoEditedInfo) this.f30060b;
-        m60 m60Var = f60Var.H0;
-        MediaController.PhotoEntry photoEntry = new MediaController.PhotoEntry(0, 0, 0L, f60Var.f26096a.getAbsolutePath(), 0, true, 0, 0, 0L);
+        VideoEditedInfo videoEditedInfo = (VideoEditedInfo) this.f30287b;
+        n60 n60Var = f60Var.H0;
+        MediaController.PhotoEntry photoEntry = new MediaController.PhotoEntry(0, 0, 0L, f60Var.f26186a.getAbsolutePath(), 0, true, 0, 0, 0L);
         if (a60Var != null) {
-            photoEntry.ttl = a60Var.f24530c;
+            photoEntry.ttl = a60Var.f24652c;
             photoEntry.effectId = a60Var.d;
         }
-        y50 y50Var = m60Var.f28425n;
-        if (!z10 && a60Var != null && !a60Var.f24528a) {
+        y50 y50Var = n60Var.f28868n;
+        if (!z10 && a60Var != null && !a60Var.f24650a) {
             z11 = false;
         } else {
             z11 = true;
@@ -52,7 +52,7 @@ public final class ry implements MediaDataController.KeywordResultCallback, e5, 
         if (i10 != 0) {
             i12 = i10;
         } else if (a60Var != null) {
-            i12 = a60Var.f24529b;
+            i12 = a60Var.f24651b;
         } else {
             i12 = 0;
         }
@@ -67,12 +67,12 @@ public final class ry implements MediaDataController.KeywordResultCallback, e5, 
             j10 = 0;
         }
         y50Var.s(photoEntry, videoEditedInfo, z11, i12, i13, false, j10);
-        m60Var.r(false, false);
+        n60Var.r(false, false);
     }
 
     @Override
     public void accept(Object obj) {
-        ((u2.l0) obj).d(((a5.a) this.f30061c).f281b, (u2.g0) this.d, (u2.c0) this.f30060b);
+        ((u2.m0) obj).d(((a5.a) this.f30288c).f281b, (u2.h0) this.d, (u2.d0) this.f30287b);
     }
 
     @Override
@@ -82,11 +82,11 @@ public final class ry implements MediaDataController.KeywordResultCallback, e5, 
 
     @Override
     public e9.x1 b(int i10, b2.p1 p1Var, int[] iArr) {
-        x2.i iVar = (x2.i) this.f30061c;
+        x2.i iVar = (x2.i) this.f30288c;
         String str = (String) this.d;
-        String str2 = (String) this.f30060b;
+        String str2 = (String) this.f30287b;
         e9.k0 t10 = e9.n0.t();
-        for (int i11 = 0; i11 < p1Var.f3900a; i11++) {
+        for (int i11 = 0; i11 < p1Var.f3907a; i11++) {
             t10.c(new x2.j(i10, p1Var, i11, iVar, iArr[i11], str, str2));
         }
         return t10.f();
@@ -96,23 +96,23 @@ public final class ry implements MediaDataController.KeywordResultCallback, e5, 
     public void didSetImage(ImageReceiver imageReceiver, boolean z10, boolean z11, boolean z12) {
         Bitmap bitmap;
         int i10;
-        r21 r21Var = (r21) this.f30061c;
+        v21 v21Var = (v21) this.f30288c;
         vp vpVar = (vp) this.d;
-        TLRPC.WallPaper wallPaper = (TLRPC.WallPaper) this.f30060b;
+        TLRPC.WallPaper wallPaper = (TLRPC.WallPaper) this.f30287b;
         ImageReceiver.BitmapHolder bitmapSafe = imageReceiver.getBitmapSafe();
         if (z10 && bitmapSafe != null && (bitmap = bitmapSafe.bitmap) != null) {
-            Drawable drawable = vpVar.f31855b;
-            if (drawable instanceof wc0) {
-                wc0 wc0Var = (wc0) drawable;
+            Drawable drawable = vpVar.f32036b;
+            if (drawable instanceof yc0) {
+                yc0 yc0Var = (yc0) drawable;
                 TLRPC.WallPaperSettings wallPaperSettings = wallPaper.settings;
                 if (wallPaperSettings != null && wallPaperSettings.intensity < 0) {
                     i10 = -100;
                 } else {
                     i10 = 100;
                 }
-                wc0Var.s(r21.e(bitmap), i10);
-                wc0Var.t(r21Var.L);
-                r21Var.invalidate();
+                yc0Var.s(v21.e(bitmap), i10);
+                yc0Var.t(v21Var.L);
+                v21Var.invalidate();
             }
         }
     }
@@ -123,19 +123,19 @@ public final class ry implements MediaDataController.KeywordResultCallback, e5, 
     }
 
     @Override
-    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f30059a) {
+    public void g(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
+        switch (this.f30286a) {
             case 3:
-                uv0 uv0Var = (uv0) this.f30061c;
-                ArrayList arrayList = (ArrayList) this.f30060b;
-                ((ci.t6) this.d).F(arrayList);
-                xc.a0(uv0Var.f31075v1).Q(R.raw.ic_delete, 36, LocaleController.formatPluralString("BotPreviewsDeleted", arrayList.size(), new Object[0])).j();
-                uv0Var.L(false);
+                xv0 xv0Var = (xv0) this.f30288c;
+                ArrayList arrayList = (ArrayList) this.f30287b;
+                ((ci.s6) this.d).F(arrayList);
+                xc.a0(xv0Var.f32711v1).Q(R.raw.ic_delete, 36, LocaleController.formatPluralString("BotPreviewsDeleted", arrayList.size(), new Object[0])).j();
+                xv0Var.M(false);
                 return;
             case 6:
-                boolean[] zArr = (boolean[]) this.f30061c;
+                boolean[] zArr = (boolean[]) this.f30288c;
                 JsPromptResult jsPromptResult = (JsPromptResult) this.d;
-                iu iuVar = (iu) this.f30060b;
+                iu iuVar = (iu) this.f30287b;
                 if (!zArr[0]) {
                     zArr[0] = true;
                     jsPromptResult.confirm(iuVar.getText().toString());
@@ -143,27 +143,27 @@ public final class ry implements MediaDataController.KeywordResultCallback, e5, 
                 }
                 return;
             default:
-                sg.k0.Q((sg.k0) this.f30061c, (ArrayList) this.d, (TLRPC.User) this.f30060b);
+                sg.j0.P((sg.j0) this.f30288c, (ArrayList) this.d, (TLRPC.User) this.f30287b);
                 return;
         }
     }
 
     @Override
     public Object j() {
-        q5.a aVar = (q5.a) this.f30061c;
+        q5.a aVar = (q5.a) this.f30288c;
         l5.i iVar = (l5.i) this.d;
-        l5.h hVar = (l5.h) this.f30060b;
+        l5.h hVar = (l5.h) this.f30287b;
         s5.g gVar = (s5.g) aVar.d;
         gVar.getClass();
-        i5.d dVar = iVar.f15922c;
-        String str = hVar.f15916a;
-        String str2 = iVar.f15920a;
+        i5.d dVar = iVar.f15985c;
+        String str = hVar.f15979a;
+        String str2 = iVar.f15983a;
         String c10 = w7.i6.c("SQLiteEventStore");
         if (Log.isLoggable(c10, 3)) {
             Log.d(c10, "Storing event with priority=" + dVar + ", name=" + str + " for destination " + str2);
         }
         ((Long) gVar.c(new ry(gVar, hVar, iVar, 8))).getClass();
-        aVar.f44417a.U(iVar, 1, false);
+        aVar.f44830a.U(iVar, 1, false);
         return null;
     }
 
@@ -174,30 +174,30 @@ public final class ry implements MediaDataController.KeywordResultCallback, e5, 
 
     @Override
     public void run(boolean z10) {
-        TLRPC.Chat chat = (TLRPC.Chat) this.f30061c;
-        org.telegram.ui.ActionBar.n2 n2Var = (org.telegram.ui.ActionBar.n2) this.d;
-        org.telegram.ui.Components.voip.d2.l(chat, null, true, null, n2Var.getParentActivity(), n2Var, (AccountInstance) this.f30060b);
+        TLRPC.Chat chat = (TLRPC.Chat) this.f30288c;
+        org.telegram.ui.ActionBar.o2 o2Var = (org.telegram.ui.ActionBar.o2) this.d;
+        org.telegram.ui.Components.voip.d2.l(chat, null, true, null, o2Var.getParentActivity(), o2Var, (AccountInstance) this.f30287b);
     }
 
     @Override
     public void run(ArrayList arrayList, String str) {
-        switch (this.f30059a) {
+        switch (this.f30286a) {
             case 0:
-                Runnable runnable = (Runnable) this.f30060b;
-                ty tyVar = ((sy) this.f30061c).f30377a;
+                Runnable runnable = (Runnable) this.f30287b;
+                ty tyVar = ((sy) this.f30288c).f30571a;
                 if (((String) this.d).equals(tyVar.v)) {
-                    tyVar.f30715w = str;
-                    tyVar.f30712n.addAll(arrayList);
+                    tyVar.f30923w = str;
+                    tyVar.f30920n.addAll(arrayList);
                     runnable.run();
                     return;
                 }
                 return;
             default:
-                mz mzVar = (mz) this.f30061c;
+                mz mzVar = (mz) this.f30288c;
                 HashMap hashMap = (HashMap) this.d;
-                Runnable runnable2 = (Runnable) this.f30060b;
-                HashMap hashMap2 = mzVar.f28636f;
-                if (mzVar.f28640w.M != mzVar.f28634b) {
+                Runnable runnable2 = (Runnable) this.f30287b;
+                HashMap hashMap2 = mzVar.f28786f;
+                if (mzVar.f28790w.M != mzVar.f28784b) {
                     return;
                 }
                 int size = arrayList.size();

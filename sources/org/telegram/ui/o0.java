@@ -1,474 +1,69 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-import android.text.Editable;
-import android.text.TextUtils;
-import android.text.TextWatcher;
-import j$.util.Objects;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessagesController;
-public final class o0 implements TextWatcher {
-    public final int f39732a;
-    public final Object f39733b;
+public final class o0 extends Drawable {
+    public static Path d;
+    public final int f40027a;
+    public Bitmap f40028b;
+    public final Paint f40029c;
 
-    public o0(Object obj, int i10) {
-        this.f39732a = i10;
-        this.f39733b = obj;
+    public o0(Bitmap bitmap, Paint paint, int i10) {
+        this.f40027a = i10;
+        this.f40028b = bitmap;
+        this.f40029c = paint;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        org.telegram.ui.web.k kVar;
-        String obj;
-        String str;
-        boolean z10;
-        String str2;
-        int i10;
-        ht htVar;
-        boolean z11;
-        String str3;
-        Object obj2;
-        String str4;
-        boolean z12;
-        String str5;
-        ht htVar2;
-        String str6;
-        switch (this.f39732a) {
+    public final void draw(Canvas canvas) {
+        switch (this.f40027a) {
             case 0:
-                l4 l4Var = (l4) this.f39733b;
-                if (l4Var.f38771h0.W && (kVar = l4Var.f38772i0) != null) {
-                    if (editable == null) {
-                        obj = null;
-                    } else {
-                        obj = editable.toString();
-                    }
-                    kVar.setInput(obj);
+                Bitmap bitmap = this.f40028b;
+                if (bitmap != null) {
+                    canvas.save();
+                    canvas.translate(getBounds().left, getBounds().top);
+                    canvas.scale(getBounds().width() / bitmap.getWidth(), getBounds().height() / bitmap.getHeight());
+                    canvas.drawBitmap(bitmap, 0.0f, 0.0f, this.f40029c);
+                    canvas.restore();
                     return;
                 }
                 return;
             case 1:
-                return;
-            case 2:
-                io ioVar = (io) this.f39733b;
-                ioVar.f38058r.n(5L, ioVar.v.getText().toString(), null);
-                ci.k4 k4Var = ioVar.e;
-                if (k4Var != null) {
-                    k4Var.invalidate();
-                    return;
-                }
-                return;
-            case 3:
-                ((wo) this.f39733b).V();
-                return;
-            case 4:
-                aq aqVar = (aq) this.f39733b;
-                bq bqVar = aqVar.e;
-                if (!aqVar.d) {
-                    bqVar.S = editable.toString();
-                    s4.b1 K = bqVar.f35691b.K(bqVar.f35717u0);
-                    if (K != null) {
-                        bq.f0(bqVar, K.f45921a);
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 5:
-                return;
-            case 6:
-                l60 l60Var = (l60) this.f39733b;
-                if (l60Var.f38813f.f27730r.length() != 0) {
-                    j60 j60Var = l60Var.v;
-                    boolean z13 = j60Var.f38183n;
-                    if (!z13) {
-                        l60Var.T = true;
-                        l60Var.S = true;
-                        if (!z13) {
-                            j60Var.f38183n = true;
-                            j60Var.l();
-                        }
-                        l60Var.f38821n.setFastScrollVisible(false);
-                        l60Var.f38821n.setVerticalScrollBarEnabled(true);
-                    }
-                    l60Var.v.L(l60Var.f38813f.f27730r.getText().toString());
-                    l60Var.f38828s.e(true, false);
-                    return;
-                }
-                l60Var.T = false;
-                l60Var.S = false;
-                j60 j60Var2 = l60Var.v;
-                if (j60Var2.f38183n) {
-                    j60Var2.f38183n = false;
-                    j60Var2.l();
-                }
-                l60Var.v.L(null);
-                l60Var.f38821n.setFastScrollVisible(true);
-                l60Var.f38821n.setVerticalScrollBarEnabled(false);
-                l60Var.q0(0);
-                return;
-            case 7:
-            case 8:
-            case 9:
-                return;
-            case 10:
-                cg0 cg0Var = (cg0) this.f39733b;
-                HashMap hashMap = cg0Var.F;
-                ArrayList arrayList = cg0Var.E;
-                kj0 kj0Var = cg0Var.f35967a;
-                zf0 zf0Var = cg0Var.f35968b;
-                if (!cg0Var.I) {
-                    int i11 = 1;
-                    cg0Var.I = true;
-                    int i12 = 0;
-                    String d = jf.b.d(kj0Var.getText().toString(), false);
-                    kj0Var.setText(d);
-                    String str7 = null;
-                    if (d.length() == 0) {
-                        cg0Var.setCountryButtonText(null);
-                        zf0Var.setHintText((String) null);
-                        cg0Var.f35975x = 1;
-                        z11 = false;
-                    } else {
-                        int i13 = 4;
-                        if (d.length() > 4) {
-                            while (true) {
-                                if (i13 >= i11) {
-                                    String substring = d.substring(i12, i13);
-                                    List list = (List) hashMap.get(substring);
-                                    if (list == null) {
-                                        obj2 = str7;
-                                    } else if (list.size() > i11) {
-                                        String string = MessagesController.getGlobalMainSettings().getString("phone_code_last_matched_" + substring, str7);
-                                        Object obj3 = (ht) r4.c.f(i11, list);
-                                        if (string != null) {
-                                            int size = arrayList.size();
-                                            int i14 = i12;
-                                            while (true) {
-                                                if (i14 < size) {
-                                                    Object obj4 = arrayList.get(i14);
-                                                    i14++;
-                                                    ht htVar3 = (ht) obj4;
-                                                    if (Objects.equals(htVar3.d, string)) {
-                                                        obj3 = htVar3;
-                                                    }
-                                                }
-                                            }
-                                        }
-                                        obj2 = obj3;
-                                    } else {
-                                        obj2 = (ht) list.get(i12);
-                                    }
-                                    if (obj2 != null) {
-                                        str = d.substring(i13) + zf0Var.getText().toString();
-                                        kj0Var.setText(substring);
-                                        d = substring;
-                                        z10 = true;
-                                    } else {
-                                        i13--;
-                                        i11 = 1;
-                                        i12 = 0;
-                                        str7 = null;
-                                    }
-                                } else {
-                                    str = null;
-                                    z10 = false;
-                                }
-                            }
-                            if (!z10) {
-                                str = d.substring(1) + zf0Var.getText().toString();
-                                d = d.substring(0, 1);
-                                kj0Var.setText(d);
-                            }
-                        } else {
-                            str = null;
-                            z10 = false;
-                        }
-                        int size2 = arrayList.size();
-                        ht htVar4 = null;
-                        int i15 = 0;
-                        int i16 = 0;
-                        while (i16 < size2) {
-                            Object obj5 = arrayList.get(i16);
-                            i16++;
-                            ht htVar5 = (ht) obj5;
-                            if (htVar5.f37790c.startsWith(d)) {
-                                int i17 = i15 + 1;
-                                str3 = str;
-                                if (htVar5.f37790c.equals(d)) {
-                                    if (htVar4 == null || !htVar4.f37790c.equals(htVar5.f37790c)) {
-                                        i15 = i17;
-                                    }
-                                    htVar4 = htVar5;
-                                } else {
-                                    i15 = i17;
-                                }
-                            } else {
-                                str3 = str;
-                            }
-                            str = str3;
-                        }
-                        String str8 = str;
-                        if (i15 == 1 && htVar4 != null && str8 == null) {
-                            str2 = d.substring(htVar4.f37790c.length()) + zf0Var.getText().toString();
-                            d = htVar4.f37790c;
-                            kj0Var.setText(d);
-                        } else {
-                            str2 = str8;
-                        }
-                        List list2 = (List) hashMap.get(d);
-                        if (list2 == null) {
-                            i10 = 0;
-                            htVar = null;
-                        } else if (list2.size() > 1) {
-                            String string2 = MessagesController.getGlobalMainSettings().getString("phone_code_last_matched_" + d, null);
-                            ht htVar6 = (ht) r4.c.f(1, list2);
-                            if (string2 != null) {
-                                int size3 = arrayList.size();
-                                int i18 = 0;
-                                while (i18 < size3) {
-                                    Object obj6 = arrayList.get(i18);
-                                    i18++;
-                                    htVar = (ht) obj6;
-                                    if (Objects.equals(htVar.d, string2)) {
-                                        i10 = 0;
-                                    }
-                                }
-                            }
-                            htVar = htVar6;
-                            i10 = 0;
-                        } else {
-                            i10 = 0;
-                            htVar = (ht) list2.get(0);
-                        }
-                        if (htVar == null) {
-                            cg0Var.setCountryButtonText(null);
-                            zf0Var.setHintText((String) null);
-                            cg0Var.f35975x = 2;
-                        } else {
-                            cg0Var.H = true;
-                            cg0Var.f35976y = htVar;
-                            cg0Var.t(d, htVar);
-                            cg0Var.f35975x = i10;
-                        }
-                        if (!z10) {
-                            kj0Var.setSelection(kj0Var.getText().length());
-                        }
-                        if (str2 != null) {
-                            zf0Var.requestFocus();
-                            zf0Var.setText(str2);
-                            zf0Var.setSelection(zf0Var.length());
-                        }
-                        z11 = false;
-                    }
-                    cg0Var.I = z11;
-                    return;
-                }
-                return;
-            case 11:
-                mj0 mj0Var = (mj0) this.f39733b;
-                HashMap hashMap2 = mj0Var.f39306x;
-                ArrayList arrayList2 = mj0Var.f39305w;
-                if (!mj0Var.E) {
-                    mj0Var.E = true;
-                    String d10 = jf.b.d(mj0Var.O.getText().toString(), false);
-                    mj0Var.O.setText(d10);
-                    String str9 = null;
-                    if (d10.length() == 0) {
-                        mj0Var.v(null);
-                        mj0Var.Q.setHintText((String) null);
-                    } else {
-                        int i19 = 4;
-                        if (d10.length() > 4) {
-                            while (true) {
-                                if (i19 >= 1) {
-                                    str4 = d10.substring(0, i19);
-                                    List list3 = (List) hashMap2.get(str4);
-                                    Object obj7 = str9;
-                                    if (list3 != null) {
-                                        if (list3.size() > 1) {
-                                            String string3 = MessagesController.getGlobalMainSettings().getString("phone_code_last_matched_" + str4, str9);
-                                            Object obj8 = (ht) r4.c.f(1, list3);
-                                            if (string3 != null) {
-                                                int size4 = arrayList2.size();
-                                                int i20 = 0;
-                                                while (true) {
-                                                    if (i20 < size4) {
-                                                        Object obj9 = arrayList2.get(i20);
-                                                        i20++;
-                                                        ht htVar7 = (ht) obj9;
-                                                        if (Objects.equals(htVar7.d, string3)) {
-                                                            obj8 = htVar7;
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                            obj7 = obj8;
-                                        } else {
-                                            obj7 = (ht) list3.get(0);
-                                        }
-                                    }
-                                    if (obj7 != null) {
-                                        str5 = d10.substring(i19) + mj0Var.Q.getText().toString();
-                                        mj0Var.O.setText(str4);
-                                        z12 = true;
-                                    } else {
-                                        i19--;
-                                        str9 = null;
-                                    }
-                                } else {
-                                    str4 = d10;
-                                    z12 = false;
-                                    str5 = null;
-                                }
-                            }
-                            if (!z12) {
-                                str5 = str4.substring(1) + mj0Var.Q.getText().toString();
-                                kj0 kj0Var2 = mj0Var.O;
-                                str4 = str4.substring(0, 1);
-                                kj0Var2.setText(str4);
-                            }
-                        } else {
-                            str4 = d10;
-                            z12 = false;
-                            str5 = null;
-                        }
-                        int size5 = arrayList2.size();
-                        int i21 = 0;
-                        int i22 = 0;
-                        ht htVar8 = null;
-                        while (i22 < size5) {
-                            Object obj10 = arrayList2.get(i22);
-                            i22++;
-                            ht htVar9 = (ht) obj10;
-                            if (htVar9.f37790c.startsWith(str4)) {
-                                i21++;
-                                if (htVar9.f37790c.equals(str4)) {
-                                    htVar8 = htVar9;
-                                }
-                            }
-                        }
-                        if (i21 == 1 && htVar8 != null && str5 == null) {
-                            str5 = str4.substring(htVar8.f37790c.length()) + mj0Var.Q.getText().toString();
-                            kj0 kj0Var3 = mj0Var.O;
-                            String str10 = htVar8.f37790c;
-                            kj0Var3.setText(str10);
-                            str4 = str10;
-                        }
-                        List list4 = (List) hashMap2.get(str4);
-                        if (list4 == null) {
-                            htVar2 = null;
-                        } else if (list4.size() > 1) {
-                            String string4 = MessagesController.getGlobalMainSettings().getString("phone_code_last_matched_" + str4, null);
-                            ht htVar10 = (ht) r4.c.f(1, list4);
-                            if (string4 != null) {
-                                int size6 = arrayList2.size();
-                                int i23 = 0;
-                                while (i23 < size6) {
-                                    Object obj11 = arrayList2.get(i23);
-                                    i23++;
-                                    ht htVar11 = (ht) obj11;
-                                    if (Objects.equals(htVar11.d, string4)) {
-                                        htVar2 = htVar11;
-                                    }
-                                }
-                            }
-                            htVar2 = htVar10;
-                        } else {
-                            htVar2 = (ht) list4.get(0);
-                        }
-                        if (htVar2 != null) {
-                            mj0Var.G = true;
-                            mj0Var.w(str4, htVar2);
-                        } else {
-                            mj0Var.v(null);
-                            mj0Var.Q.setHintText((String) null);
-                        }
-                        if (!z12) {
-                            kj0 kj0Var4 = mj0Var.O;
-                            kj0Var4.setSelection(kj0Var4.getText().length());
-                        }
-                        if (str5 != null && str5.length() != 0) {
-                            mj0Var.Q.requestFocus();
-                            mj0Var.Q.setText(str5);
-                            kj0 kj0Var5 = mj0Var.Q;
-                            kj0Var5.setSelection(kj0Var5.length());
-                        }
-                    }
-                    mj0Var.E = false;
-                    mj0.s(mj0Var);
-                    return;
-                }
-                return;
-            case 12:
-                vm0 vm0Var = (vm0) this.f39733b;
-                if (!vm0Var.Z0 && vm0Var.T0 != 0 && vm0Var.Y[0].length() == vm0Var.T0) {
-                    vm0Var.L.callOnClick();
-                    return;
-                }
-                return;
-            case 13:
-                eo0 eo0Var = (eo0) this.f39733b;
-                if (eo0Var.f36710c0 != 0 && editable.length() == eo0Var.f36710c0) {
-                    eo0Var.A0(false);
-                    return;
-                }
-                return;
-            case 14:
-                iq0 iq0Var = ((jq0) this.f39733b).f38329s0;
-                if (iq0Var != null) {
-                    iq0Var.b(editable);
-                    return;
-                }
-                return;
-            case 15:
-                o41 o41Var = (o41) this.f39733b;
-                org.telegram.ui.Cells.b6 b6Var = o41Var.h;
-                if (b6Var.getText() != null && AndroidUtilities.trim(b6Var.getText(), null).length() != 0) {
-                    str6 = b6Var.getText().toString();
-                } else {
-                    str6 = null;
-                }
-                o41Var.f39127y.v(str6, true, true);
-                l51 l51Var = o41Var.f39122n;
-                if (l51Var != null) {
-                    l51Var.G1(null);
-                    o41Var.f39122n.H1(TextUtils.isEmpty(str6), true);
-                }
-                if (b6Var != null) {
-                    b6Var.clearAnimation();
-                    b6Var.animate().translationX(0.0f).setInterpolator(org.telegram.ui.Components.bs.h).start();
-                }
-                o41Var.c(false);
-                return;
-            case 16:
-                String trim = editable.toString().trim();
-                nd1 nd1Var = (nd1) this.f39733b;
-                String str11 = nd1Var.f39549n;
-                if (trim.length() > 0) {
-                    nd1Var.f39549n = trim.substring(0, 1).toUpperCase();
-                } else {
-                    nd1Var.f39549n = "";
-                }
-                if (!str11.equals(nd1Var.f39549n)) {
-                    org.telegram.ui.Components.f90 f90Var = new org.telegram.ui.Components.f90(1, null);
-                    f90Var.a(nd1Var.f39549n);
-                    org.telegram.ui.Components.om0 om0Var = nd1Var.v;
-                    if (om0Var != null) {
-                        om0Var.b(f90Var, true);
-                        return;
-                    }
+                Bitmap bitmap2 = this.f40028b;
+                if (bitmap2 != null) {
+                    canvas.save();
+                    canvas.translate(getBounds().left, getBounds().top);
+                    canvas.scale(getBounds().width() / bitmap2.getWidth(), getBounds().height() / bitmap2.getHeight());
+                    canvas.drawBitmap(bitmap2, 0.0f, 0.0f, this.f40029c);
+                    canvas.restore();
                     return;
                 }
                 return;
             default:
-                TwoStepVerificationActivity twoStepVerificationActivity = (TwoStepVerificationActivity) this.f39733b;
-                af1 af1Var = twoStepVerificationActivity.V;
-                if (twoStepVerificationActivity.U) {
-                    AndroidUtilities.cancelRunOnUIThread(af1Var);
-                    af1Var.run();
+                Rect bounds = getBounds();
+                if (!bounds.isEmpty()) {
+                    Bitmap bitmap3 = this.f40028b;
+                    if (bitmap3 == null || bitmap3.getWidth() != bounds.width() || this.f40028b.getHeight() != bounds.height()) {
+                        this.f40028b = Bitmap.createBitmap(bounds.width(), bounds.height(), Bitmap.Config.ARGB_8888);
+                        Path path = new Path();
+                        Matrix matrix = new Matrix();
+                        matrix.setScale(bounds.width() / 52.0f, bounds.height() / 52.0f);
+                        if (d == null) {
+                            d = v7.x7.d("M25.0339 38.8535L16.4947 44.2223C15.6075 44.7802 14.4361 44.5131 13.8782 43.6258C13.6038 43.1893 13.5188 42.6601 13.6426 42.1598L15.0264 36.5704C15.4811 34.7334 16.7041 33.1809 18.3835 32.3088L26.359 28.1671C26.7894 27.9436 26.9572 27.4137 26.7337 26.9833C26.5595 26.6481 26.1903 26.4617 25.8172 26.5208L16.9312 27.9261C14.8088 28.2617 12.6463 27.6475 11.0173 26.2465L7.5978 23.3054C6.8032 22.622 6.71306 21.4239 7.39646 20.6293C7.7225 20.2503 8.18486 20.0153 8.68322 19.9753L18.8056 19.1622C19.5221 19.1046 20.1443 18.6473 20.4134 17.9809L24.2843 8.39097C24.6766 7.41912 25.7823 6.94929 26.7542 7.34157C27.232 7.53443 27.6108 7.91321 27.8037 8.39097L31.6745 17.9809C31.9435 18.6473 32.5659 19.1046 33.2822 19.1622L43.4582 19.9795C44.5029 20.0634 45.2817 20.9784 45.1978 22.023C45.1582 22.5159 44.9279 22.9737 44.5559 23.2992L36.7229 30.1527C36.1947 30.6149 35.9647 31.3308 36.125 32.0141L38.5201 42.2261C38.7594 43.2465 38.1263 44.2677 37.106 44.507C36.6119 44.6228 36.0921 44.536 35.6626 44.2659L27.054 38.8535C26.4366 38.4654 25.6513 38.4654 25.0339 38.8535Z");
+                        }
+                        d.transform(matrix, path);
+                        Paint paint = new Paint(1);
+                        paint.setColor(-1);
+                        new Canvas(this.f40028b).drawPath(path, paint);
+                    }
+                    canvas.drawBitmap(this.f40028b, bounds.left, bounds.top, this.f40029c);
                     return;
                 }
                 return;
@@ -476,222 +71,79 @@ public final class o0 implements TextWatcher {
     }
 
     @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        boolean z10;
-        int i13 = this.f39732a;
-        Object obj = this.f39733b;
-        switch (i13) {
+    public final int getIntrinsicHeight() {
+        switch (this.f40027a) {
+            case 0:
+                return AndroidUtilities.dp(24.0f);
+            case 1:
+                return AndroidUtilities.dp(24.0f);
+            default:
+                return AndroidUtilities.dp(18.0f);
+        }
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        switch (this.f40027a) {
+            case 0:
+                return AndroidUtilities.dp(24.0f);
+            case 1:
+                return AndroidUtilities.dp(24.0f);
+            default:
+                return AndroidUtilities.dp(18.0f);
+        }
+    }
+
+    @Override
+    public final int getOpacity() {
+        switch (this.f40027a) {
+            case 0:
+                return -2;
+            case 1:
+                return -2;
+            default:
+                return -3;
+        }
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+        switch (this.f40027a) {
             case 0:
             case 1:
-            case 2:
-            case 3:
-            case 4:
                 return;
-            case 5:
-                or orVar = (or) obj;
-                if (charSequence.length() != 0) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                orVar.f41741x = z10;
-                orVar.v = 0.0f;
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                orVar.F = ofFloat;
-                ofFloat.addUpdateListener(new e3(orVar, 9));
-                if (!orVar.f41741x) {
-                    org.telegram.messenger.nk.l(1.5f, orVar.F);
-                    orVar.F.setDuration(350L);
-                } else {
-                    orVar.F.setDuration(220L);
-                }
-                orVar.F.start();
-                orVar.hideActionMode();
-                return;
-            case 6:
-                return;
-            case 7:
-                md0 md0Var = (md0) obj;
-                ed0 ed0Var = md0Var.S;
-                if (md0Var.R) {
-                    md0Var.removeCallbacks(ed0Var);
-                    ed0Var.run();
-                    return;
-                }
-                return;
-            case 8:
-                ge0 ge0Var = (ge0) obj;
-                ee0 ee0Var = ge0Var.f37311x;
-                if (ge0Var.f37310w) {
-                    ge0Var.removeCallbacks(ee0Var);
-                    ee0Var.run();
-                    return;
-                }
-                return;
-            case 9:
-                hf0 hf0Var = (hf0) obj;
-                se0 se0Var = hf0Var.f37619r0;
-                if (hf0Var.f37617q0) {
-                    hf0Var.removeCallbacks(se0Var);
-                    se0Var.run();
-                    return;
-                }
-                return;
-            case 10:
-            case 11:
-            case 12:
-            case 13:
-            case 14:
-            case 15:
-            case 16:
             default:
+                this.f40029c.setAlpha(i10);
                 return;
         }
     }
 
     @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        switch (this.f39732a) {
+    public final void setColorFilter(ColorFilter colorFilter) {
+        switch (this.f40027a) {
             case 0:
-                return;
             case 1:
-                md mdVar = (md) this.f39733b;
-                mdVar.d0(mdVar.f39210w.getText().toString());
                 return;
-            case 2:
-                return;
-            case 3:
-                wo woVar = (wo) this.f39733b;
-                if (!woVar.m0) {
-                    String obj = woVar.f42910a.getText().toString();
-                    pa paVar = woVar.O;
-                    if (paVar != null) {
-                        paVar.b(obj);
-                    }
-                    woVar.W(obj);
-                    return;
-                }
-                return;
-            case 4:
-            case 5:
-            case 6:
-            case 7:
-            case 8:
-            case 9:
-            case 10:
-            case 11:
-            case 12:
-            case 13:
-            case 14:
-            case 15:
-            case 16:
             default:
+                this.f40029c.setColorFilter(colorFilter);
                 return;
         }
     }
 
-    private final void a(Editable editable) {
+    public o0() {
+        this.f40027a = 2;
+        this.f40029c = new Paint(3);
     }
 
-    private final void b(Editable editable) {
+    private final void a(int i10) {
     }
 
-    private final void c(Editable editable) {
+    private final void b(int i10) {
     }
 
-    private final void d(Editable editable) {
+    private final void c(ColorFilter colorFilter) {
     }
 
-    private final void e(Editable editable) {
-    }
-
-    private final void A(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void B(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void C(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void D(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void E(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void F(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void G(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void H(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void I(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void f(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void g(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void h(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void i(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void j(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void k(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void l(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void m(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void n(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void o(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void p(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void q(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void r(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void s(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void t(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void u(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void v(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void w(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void x(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void y(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void z(int i10, int i11, int i12, CharSequence charSequence) {
+    private final void d(ColorFilter colorFilter) {
     }
 }

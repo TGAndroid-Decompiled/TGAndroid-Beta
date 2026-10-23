@@ -10,23 +10,23 @@ import java.lang.ref.WeakReference;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.VideoEditedInfo;
 public final class rk implements View.OnTouchListener {
-    public final int f29947a;
-    public final Object f29948b;
+    public final int f30181a;
+    public final Object f30182b;
 
     public rk(Object obj, int i10) {
-        this.f29947a = i10;
-        this.f29948b = obj;
+        this.f30181a = i10;
+        this.f30182b = obj;
     }
 
     @Override
     public final boolean onTouch(View view, MotionEvent motionEvent) {
         float f7;
-        i2.i0 i0Var;
+        i2.h0 h0Var;
         float f10;
-        d80 d80Var;
-        switch (this.f29947a) {
+        e80 e80Var;
+        switch (this.f30181a) {
             case 0:
-                al alVar = (al) this.f29948b;
+                al alVar = (al) this.f30182b;
                 alVar.getClass();
                 if (motionEvent.getActionMasked() == 1 && !view.hasFocus()) {
                     alVar.c0();
@@ -34,7 +34,7 @@ public final class rk implements View.OnTouchListener {
                 }
                 return false;
             case 1:
-                org.telegram.ui.ActionBar.m1 m1Var = ((hs) this.f29948b).f26996a;
+                org.telegram.ui.ActionBar.m1 m1Var = ((hs) this.f30182b).f27042a;
                 if (motionEvent.getActionMasked() == 1 && m1Var != null && m1Var.isShowing()) {
                     Rect rect = AndroidUtilities.rectTmp2;
                     view.getHitRect(rect);
@@ -46,138 +46,138 @@ public final class rk implements View.OnTouchListener {
                 }
                 return false;
             case 2:
-                l60 l60Var = (l60) this.f29948b;
+                m60 m60Var = (m60) this.f30182b;
                 boolean z10 = false;
-                if (l60Var.P == null || l60Var.R == null) {
+                if (m60Var.P == null || m60Var.R == null) {
                     return false;
                 }
                 float f11 = 0.0f;
                 if (motionEvent.getActionMasked() == 0) {
-                    ValueAnimator valueAnimator = l60Var.f28034a0;
+                    ValueAnimator valueAnimator = m60Var.f28521a0;
                     if (valueAnimator != null) {
                         valueAnimator.cancel();
                     }
-                    l60Var.B0 = false;
-                    l60Var.f28065z0 = motionEvent.getPointerId(0);
-                    l60Var.A0 = -1;
-                    int i10 = l60Var.R.f46762a;
+                    m60Var.B0 = false;
+                    m60Var.f28552z0 = motionEvent.getPointerId(0);
+                    m60Var.A0 = -1;
+                    int i10 = m60Var.R.f47242a;
                     if (i10 == 5) {
-                        ImageView imageView = l60Var.I;
-                        si.s0 s0Var = l60Var.P;
-                        if (s0Var != null && i10 == 5) {
-                            boolean z11 = l60Var.f28043i0;
-                            l60Var.f28043i0 = !z11;
-                            si.s0.t();
-                            if (s0Var.W == 5 && (i0Var = s0Var.S) != null) {
+                        ImageView imageView = m60Var.I;
+                        si.u0 u0Var = m60Var.P;
+                        if (u0Var != null && i10 == 5) {
+                            boolean z11 = m60Var.f28530i0;
+                            m60Var.f28530i0 = !z11;
+                            si.u0.t();
+                            if (u0Var.W == 5 && (h0Var = u0Var.S) != null) {
                                 if (!z11) {
                                     f10 = 0.0f;
                                 } else {
                                     f10 = 1.0f;
                                 }
-                                i0Var.U(f10);
+                                h0Var.U(f10);
                             }
-                            VideoEditedInfo videoEditedInfo = l60Var.U;
+                            VideoEditedInfo videoEditedInfo = m60Var.U;
                             if (videoEditedInfo != null) {
-                                videoEditedInfo.muted = l60Var.f28043i0;
+                                videoEditedInfo.muted = m60Var.f28530i0;
                             }
                             imageView.animate().cancel();
                             ViewPropertyAnimator animate = imageView.animate();
-                            if (l60Var.f28043i0) {
+                            if (m60Var.f28530i0) {
                                 f11 = 1.0f;
                             }
-                            org.telegram.messenger.nk.s(animate, f11, 180L);
+                            org.telegram.messenger.sl.s(animate, f11, 180L);
                         }
                     }
                 } else {
                     if (motionEvent.getActionMasked() == 5 && motionEvent.getPointerCount() == 2) {
-                        si.r0 r0Var = l60Var.R;
-                        if (r0Var.f46762a == 3 && !r0Var.e) {
-                            l60Var.f28065z0 = motionEvent.getPointerId(0);
-                            l60Var.A0 = motionEvent.getPointerId(1);
+                        si.t0 t0Var = m60Var.R;
+                        if (t0Var.f47242a == 3 && !t0Var.e) {
+                            m60Var.f28552z0 = motionEvent.getPointerId(0);
+                            m60Var.A0 = motionEvent.getPointerId(1);
                             float hypot = (float) Math.hypot(motionEvent.getX(1) - motionEvent.getX(0), motionEvent.getY(1) - motionEvent.getY(0));
-                            l60Var.f28062x0 = hypot;
+                            m60Var.f28549x0 = hypot;
                             if (hypot > 0.0f) {
                                 z10 = true;
                             }
-                            l60Var.B0 = z10;
-                            l60Var.f28064y0 = 0.0f;
+                            m60Var.B0 = z10;
+                            m60Var.f28551y0 = 0.0f;
                         }
                     }
-                    if (motionEvent.getActionMasked() == 2 && l60Var.B0) {
-                        int findPointerIndex = motionEvent.findPointerIndex(l60Var.f28065z0);
-                        int findPointerIndex2 = motionEvent.findPointerIndex(l60Var.A0);
+                    if (motionEvent.getActionMasked() == 2 && m60Var.B0) {
+                        int findPointerIndex = motionEvent.findPointerIndex(m60Var.f28552z0);
+                        int findPointerIndex2 = motionEvent.findPointerIndex(m60Var.A0);
                         if (findPointerIndex >= 0 && findPointerIndex2 >= 0) {
-                            float hypot2 = ((float) Math.hypot(motionEvent.getX(findPointerIndex2) - motionEvent.getX(findPointerIndex), motionEvent.getY(findPointerIndex2) - motionEvent.getY(findPointerIndex))) / l60Var.f28062x0;
-                            si.k0 k0Var = l60Var.S;
-                            if (k0Var == null) {
+                            float hypot2 = ((float) Math.hypot(motionEvent.getX(findPointerIndex2) - motionEvent.getX(findPointerIndex), motionEvent.getY(findPointerIndex2) - motionEvent.getY(findPointerIndex))) / m60Var.f28549x0;
+                            si.l0 l0Var = m60Var.S;
+                            if (l0Var == null) {
                                 f7 = 1.0f;
                             } else {
-                                f7 = k0Var.f46708c;
+                                f7 = l0Var.f47145c;
                             }
                             float max = (Math.max(0.0f, hypot2 - 1.0f) / 1.5f) + 1.0f;
                             if (f7 > 1.0f) {
                                 f11 = Math.max(0.0f, Math.min(1.0f, (max - 1.0f) / (f7 - 1.0f)));
                             }
-                            l60Var.f28064y0 = f11;
-                            l60Var.P.w(f11);
+                            m60Var.f28551y0 = f11;
+                            m60Var.P.w(f11);
                         } else {
-                            l60Var.s();
+                            m60Var.s();
                         }
-                    } else if (motionEvent.getActionMasked() == 6 && l60Var.B0) {
+                    } else if (motionEvent.getActionMasked() == 6 && m60Var.B0) {
                         int pointerId = motionEvent.getPointerId(motionEvent.getActionIndex());
-                        if (pointerId == l60Var.f28065z0 || pointerId == l60Var.A0) {
-                            l60Var.s();
+                        if (pointerId == m60Var.f28552z0 || pointerId == m60Var.A0) {
+                            m60Var.s();
                         }
-                    } else if ((motionEvent.getActionMasked() == 1 || motionEvent.getActionMasked() == 3) && l60Var.B0) {
-                        l60Var.s();
+                    } else if ((motionEvent.getActionMasked() == 1 || motionEvent.getActionMasked() == 3) && m60Var.B0) {
+                        m60Var.s();
                     }
                 }
                 return true;
             case 3:
-                i80 i80Var = (i80) ((WeakReference) this.f29948b).get();
-                if (i80Var != null && (d80Var = i80Var.f27179m) != null && d80Var.isShowing()) {
+                j80 j80Var = (j80) ((WeakReference) this.f30182b).get();
+                if (j80Var != null && (e80Var = j80Var.f27570m) != null && e80Var.isShowing()) {
                     if (view.getParent() != null) {
                         view.getParent().requestDisallowInterceptTouchEvent(true);
                     }
                     int actionMasked = motionEvent.getActionMasked();
                     if (actionMasked == 2) {
-                        i80Var.b0((int) motionEvent.getRawX(), (int) motionEvent.getRawY());
+                        j80Var.b0((int) motionEvent.getRawX(), (int) motionEvent.getRawY());
                     } else if (actionMasked == 1) {
-                        i80Var.b0((int) motionEvent.getRawX(), (int) motionEvent.getRawY());
-                        View view2 = i80Var.f27185p0;
+                        j80Var.b0((int) motionEvent.getRawX(), (int) motionEvent.getRawY());
+                        View view2 = j80Var.f27576p0;
                         if (view2 != null) {
-                            i80Var.f27185p0 = null;
+                            j80Var.f27576p0 = null;
                             view2.setPressed(false);
                             view2.performClick();
                         }
                         view.setOnTouchListener(null);
-                        i80Var.f27183o0 = null;
+                        j80Var.f27574o0 = null;
                     } else if (actionMasked == 3) {
-                        View view3 = i80Var.f27185p0;
+                        View view3 = j80Var.f27576p0;
                         if (view3 != null) {
                             view3.setPressed(false);
-                            i80Var.f27185p0 = null;
+                            j80Var.f27576p0 = null;
                         }
                         view.setOnTouchListener(null);
-                        i80Var.f27183o0 = null;
+                        j80Var.f27574o0 = null;
                     }
                     return true;
                 }
                 view.setOnTouchListener(null);
                 return false;
             case 4:
-                ib0 ib0Var = (ib0) this.f29948b;
-                ib0Var.getClass();
-                return org.telegram.ui.et.q().s(motionEvent, ib0Var.getListView(), ib0Var.f27231w, null, ib0Var.f27224a);
+                jb0 jb0Var = (jb0) this.f30182b;
+                jb0Var.getClass();
+                return org.telegram.ui.ht.o().q(motionEvent, jb0Var.getListView(), jb0Var.f27659w, null, jb0Var.f27652a);
             case 5:
-                ic0 ic0Var = (ic0) this.f29948b;
-                ic0Var.getClass();
+                lc0 lc0Var = (lc0) this.f30182b;
+                lc0Var.getClass();
                 if (motionEvent.getAction() == 1) {
-                    ic0Var.f27241c0.a(true);
+                    lc0Var.f28340c0.a(true);
                 }
                 return true;
             default:
-                return qy0.x((qy0) this.f29948b, motionEvent);
+                return ty0.y((ty0) this.f30182b, motionEvent);
         }
     }
 }

@@ -1,5 +1,6 @@
 package hb;
 
+import i2.o1;
 import j$.util.Objects;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -13,7 +14,7 @@ public final class n extends mb.b {
     public n() {
         super(H);
         this.E = new ArrayList();
-        this.G = eb.k.f8573a;
+        this.G = eb.k.f8580a;
     }
 
     @Override
@@ -81,13 +82,13 @@ public final class n extends mb.b {
 
     @Override
     public final mb.b i() {
-        w(eb.k.f8573a);
+        w(eb.k.f8580a);
         return this;
     }
 
     @Override
     public final void n(double d) {
-        if (this.f16843n == 1 || (!Double.isNaN(d) && !Double.isInfinite(d))) {
+        if (this.f16906n == 1 || (!Double.isNaN(d) && !Double.isInfinite(d))) {
             w(new eb.m(Double.valueOf(d)));
             return;
         }
@@ -102,7 +103,7 @@ public final class n extends mb.b {
     @Override
     public final void p(Boolean bool) {
         if (bool == null) {
-            w(eb.k.f8573a);
+            w(eb.k.f8580a);
         } else {
             w(new eb.m(bool));
         }
@@ -111,10 +112,10 @@ public final class n extends mb.b {
     @Override
     public final void q(Number number) {
         if (number == null) {
-            w(eb.k.f8573a);
+            w(eb.k.f8580a);
             return;
         }
-        if (this.f16843n != 1) {
+        if (this.f16906n != 1) {
             double doubleValue = number.doubleValue();
             if (Double.isNaN(doubleValue) || Double.isInfinite(doubleValue)) {
                 throw new IllegalArgumentException("JSON forbids NaN and infinities: " + number);
@@ -126,7 +127,7 @@ public final class n extends mb.b {
     @Override
     public final void r(String str) {
         if (str == null) {
-            w(eb.k.f8573a);
+            w(eb.k.f8580a);
         } else {
             w(new eb.m(str));
         }
@@ -146,7 +147,7 @@ public final class n extends mb.b {
     }
 
     public final eb.i v() {
-        return (eb.i) i2.e.h(1, this.E);
+        return (eb.i) o1.i(1, this.E);
     }
 
     public final void w(eb.i iVar) {
@@ -160,7 +161,7 @@ public final class n extends mb.b {
         } else {
             eb.i v = v();
             if (v instanceof eb.h) {
-                ((eb.h) v).f8572a.add(iVar);
+                ((eb.h) v).f8579a.add(iVar);
                 return;
             }
             throw new IllegalStateException();

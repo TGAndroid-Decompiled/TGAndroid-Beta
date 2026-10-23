@@ -1,39 +1,73 @@
 package org.telegram.ui.ActionBar;
 
-import android.graphics.Point;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class s5 extends w7.w5 {
-    public final boolean f21716a;
-    public final View f21717b;
+import android.util.SparseIntArray;
+import org.telegram.ui.qc1;
+public final class s5 extends j5 {
+    public final int T = 1;
+    public final Object U;
 
-    public s5(View view, boolean z10) {
-        this.f21716a = z10;
-        this.f21717b = view;
+    public s5(qc1 qc1Var, int i10, boolean z10) {
+        super(i10, true, z10, null);
+        this.U = qc1Var;
     }
 
     @Override
-    public final void b(int i10, int i11) {
-        boolean z10;
-        boolean z11 = this.f21716a;
-        View view = this.f21717b;
-        if (!z11) {
-            Point point = AndroidUtilities.displaySize;
-            boolean z12 = false;
-            if (point.x <= point.y) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            if (i10 <= i11) {
-                z12 = true;
-            }
-            if (z10 == z12) {
-                view.invalidate();
-                return;
-            }
-            return;
+    public int g(int i10) {
+        switch (this.T) {
+            case 0:
+                SparseIntArray sparseIntArray = (SparseIntArray) this.U;
+                int indexOfKey = sparseIntArray.indexOfKey(i10);
+                if (indexOfKey > 0) {
+                    return sparseIntArray.valueAt(indexOfKey);
+                }
+                return k6.ql[i10];
+            default:
+                return super.g(i10);
         }
-        view.invalidate();
+    }
+
+    @Override
+    public int h(int i10) {
+        switch (this.T) {
+            case 0:
+                return ((SparseIntArray) this.U).get(i10);
+            default:
+                return super.h(i10);
+        }
+    }
+
+    @Override
+    public void m(int i10, int i11, int i12) {
+        switch (this.T) {
+            case 1:
+                if (!((qc1) this.U).f40729e2) {
+                    super.m(i10, i11, i12);
+                    return;
+                }
+                return;
+            default:
+                super.m(i10, i11, i12);
+                return;
+        }
+    }
+
+    @Override
+    public void n(int i10, int i11, int i12, int i13, int i14, int i15, boolean z10, boolean z11) {
+        switch (this.T) {
+            case 1:
+                if (!((qc1) this.U).f40729e2) {
+                    super.n(i10, i11, i12, i13, i14, i15, z10, z11);
+                    return;
+                }
+                return;
+            default:
+                super.n(i10, i11, i12, i13, i14, i15, z10, z11);
+                return;
+        }
+    }
+
+    public s5(boolean z10, SparseIntArray sparseIntArray) {
+        super(2, z10, false, null);
+        this.U = sparseIntArray;
     }
 }

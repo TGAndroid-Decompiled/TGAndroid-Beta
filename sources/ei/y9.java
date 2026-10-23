@@ -6,32 +6,32 @@ import java.io.FileOutputStream;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 public final class y9 implements Runnable {
-    public final int f10147a;
-    public final Bitmap f10148b;
-    public final File f10149c;
+    public final int f10164a;
+    public final Bitmap f10165b;
+    public final File f10166c;
 
     public y9(Bitmap bitmap, File file, int i10) {
-        this.f10147a = i10;
-        this.f10148b = bitmap;
-        this.f10149c = file;
+        this.f10164a = i10;
+        this.f10165b = bitmap;
+        this.f10166c = file;
     }
 
     @Override
     public final void run() {
-        switch (this.f10147a) {
+        switch (this.f10164a) {
             case 0:
                 try {
-                    this.f10148b.compress(Bitmap.CompressFormat.PNG, 87, new FileOutputStream(this.f10149c));
+                    this.f10165b.compress(Bitmap.CompressFormat.PNG, 87, new FileOutputStream(this.f10166c));
                     return;
                 } catch (Exception e) {
                     FileLog.e(e);
                     return;
                 }
             case 1:
-                Bitmap bitmap = this.f10148b;
+                Bitmap bitmap = this.f10165b;
                 try {
                     try {
-                        bitmap.compress(Bitmap.CompressFormat.WEBP, 100, new FileOutputStream(this.f10149c));
+                        bitmap.compress(Bitmap.CompressFormat.WEBP, 100, new FileOutputStream(this.f10166c));
                         if (bitmap.isRecycled()) {
                             return;
                         }
@@ -50,10 +50,10 @@ public final class y9 implements Runnable {
                     throw th2;
                 }
             case 2:
-                Bitmap bitmap2 = this.f10148b;
+                Bitmap bitmap2 = this.f10165b;
                 try {
                     try {
-                        bitmap2.compress(Bitmap.CompressFormat.WEBP, 100, new FileOutputStream(this.f10149c));
+                        bitmap2.compress(Bitmap.CompressFormat.WEBP, 100, new FileOutputStream(this.f10166c));
                     } catch (Exception e10) {
                         FileLog.e(e10);
                     }
@@ -63,7 +63,7 @@ public final class y9 implements Runnable {
                 }
             case 3:
                 try {
-                    this.f10148b.compress(Bitmap.CompressFormat.PNG, 87, new FileOutputStream(this.f10149c));
+                    this.f10165b.compress(Bitmap.CompressFormat.PNG, 87, new FileOutputStream(this.f10166c));
                     return;
                 } catch (Exception e11) {
                     FileLog.e(e11);
@@ -71,15 +71,15 @@ public final class y9 implements Runnable {
                 }
             case 4:
                 try {
-                    this.f10148b.compress(Bitmap.CompressFormat.PNG, 87, new FileOutputStream(this.f10149c));
+                    this.f10165b.compress(Bitmap.CompressFormat.PNG, 87, new FileOutputStream(this.f10166c));
                     return;
                 } catch (Exception e12) {
                     FileLog.e(e12);
                     return;
                 }
             default:
-                File file = this.f10149c;
-                Bitmap bitmap3 = this.f10148b;
+                File file = this.f10166c;
+                Bitmap bitmap3 = this.f10165b;
                 try {
                     FileOutputStream fileOutputStream = new FileOutputStream(file);
                     bitmap3.compress(Bitmap.CompressFormat.PNG, 87, fileOutputStream);
@@ -93,8 +93,8 @@ public final class y9 implements Runnable {
     }
 
     public y9(File file, Bitmap bitmap) {
-        this.f10147a = 5;
-        this.f10149c = file;
-        this.f10148b = bitmap;
+        this.f10164a = 5;
+        this.f10166c = file;
+        this.f10165b = bitmap;
     }
 }

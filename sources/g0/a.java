@@ -37,7 +37,7 @@ public abstract class a {
     }
 
     public static void b(Canvas canvas, f0 f0Var, int i10, Paint paint) {
-        canvas.drawVertices(Canvas.VertexMode.TRIANGLES, i10 * 8, (float[]) f0Var.f8096c, 0, (float[]) f0Var.d, 0, (int[]) f0Var.f8097f, 0, (short[]) f0Var.e, 0, i10 * 6, paint);
+        canvas.drawVertices(Canvas.VertexMode.TRIANGLES, i10 * 8, (float[]) f0Var.f8103c, 0, (float[]) f0Var.d, 0, (int[]) f0Var.f8104f, 0, (short[]) f0Var.e, 0, i10 * 6, paint);
     }
 
     public static k2.b c(AudioManager audioManager, b2.f fVar, n0 n0Var, List list) {

@@ -3,14 +3,14 @@ package n2;
 import android.os.Handler;
 import e2.m0;
 public final class d implements m {
-    public final k f17035a;
-    public h f17036b;
-    public boolean f17037c;
+    public final k f17098a;
+    public h f17099b;
+    public boolean f17100c;
     public final f d;
 
     public d(f fVar, k kVar) {
         this.d = fVar;
-        this.f17035a = kVar;
+        this.f17098a = kVar;
     }
 
     @Override

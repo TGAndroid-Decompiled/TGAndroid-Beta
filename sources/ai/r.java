@@ -7,19 +7,19 @@ import android.graphics.RectF;
 import android.view.View;
 import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.xo0;
+import org.telegram.ui.Components.bp0;
 public class r extends LinearLayout {
-    public static float f2093b = 1.0f;
-    public final int f2094a;
+    public static float f2098b = 1.0f;
+    public final int f2099a;
 
     public r(Context context, int i10) {
         super(context);
-        this.f2094a = i10;
+        this.f2099a = i10;
     }
 
     @Override
     public void dispatchSetPressed(boolean z10) {
-        switch (this.f2094a) {
+        switch (this.f2099a) {
             case 8:
                 return;
             default:
@@ -33,14 +33,14 @@ public class r extends LinearLayout {
         View childAt;
         boolean z10;
         boolean z11;
-        switch (this.f2094a) {
+        switch (this.f2099a) {
             case 6:
-                if (getParent() instanceof xo0) {
-                    xo0 xo0Var = (xo0) getParent();
+                if (getParent() instanceof bp0) {
+                    bp0 bp0Var = (bp0) getParent();
                     canvas.save();
-                    LinearLayout linearLayout = xo0Var.f32459b;
-                    Path path = xo0Var.f32462n;
-                    if (view != null && xo0.e(view)) {
+                    LinearLayout linearLayout = bp0Var.f25119b;
+                    Path path = bp0Var.f25122n;
+                    if (view != null && bp0.e(view)) {
                         int indexOfChild = linearLayout.indexOfChild(view);
                         int i10 = indexOfChild - 1;
                         View view2 = null;
@@ -54,22 +54,22 @@ public class r extends LinearLayout {
                         if (i11 < linearLayout.getChildCount()) {
                             view2 = linearLayout.getChildAt(i11);
                         }
-                        if (childAt != null && xo0.e(childAt)) {
+                        if (childAt != null && bp0.e(childAt)) {
                             z10 = true;
                         } else {
                             z10 = false;
                         }
-                        if (view2 != null && xo0.e(view2)) {
+                        if (view2 != null && bp0.e(view2)) {
                             z11 = true;
                         } else {
                             z11 = false;
                         }
                         RectF rectF = AndroidUtilities.rectTmp;
                         float x10 = view.getX();
-                        float max = Math.max(xo0Var.getScrollY() - AndroidUtilities.dp(16.0f), view.getY() + linearLayout.getY());
+                        float max = Math.max(bp0Var.getScrollY() - AndroidUtilities.dp(16.0f), view.getY() + linearLayout.getY());
                         float x11 = view.getX() + view.getWidth();
-                        int height = xo0Var.getHeight();
-                        rectF.set(x10, max, x11, Math.min(AndroidUtilities.dp(16.0f) + xo0Var.getScrollY() + height, view.getY() + linearLayout.getY() + view.getHeight()));
+                        int height = bp0Var.getHeight();
+                        rectF.set(x10, max, x11, Math.min(AndroidUtilities.dp(16.0f) + bp0Var.getScrollY() + height, view.getY() + linearLayout.getY() + view.getHeight()));
                         if (z10 && z11) {
                             if (view.getY() >= rectF.top) {
                                 z10 = true;
@@ -85,16 +85,16 @@ public class r extends LinearLayout {
                         }
                         if (!z10 && !z11) {
                             path.rewind();
-                            float f7 = xo0Var.f32460c;
+                            float f7 = bp0Var.f25120c;
                             path.addRoundRect(rectF, f7, f7, Path.Direction.CW);
                             canvas.clipPath(path);
                         } else if (!z10) {
                             path.rewind();
-                            path.addRoundRect(rectF, xo0Var.d, Path.Direction.CW);
+                            path.addRoundRect(rectF, bp0Var.d, Path.Direction.CW);
                             canvas.clipPath(path);
                         } else if (!z11) {
                             path.rewind();
-                            path.addRoundRect(rectF, xo0Var.e, Path.Direction.CW);
+                            path.addRoundRect(rectF, bp0Var.e, Path.Direction.CW);
                             canvas.clipPath(path);
                         }
                     }
@@ -110,7 +110,7 @@ public class r extends LinearLayout {
 
     @Override
     public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        switch (this.f2094a) {
+        switch (this.f2099a) {
             case 4:
                 super.onLayout(z10, i10, i11, i12, i13);
                 setPivotX(getWidth());
@@ -121,8 +121,8 @@ public class r extends LinearLayout {
                 return;
             case 6:
                 super.onLayout(z10, i10, i11, i12, i13);
-                if (getParent() instanceof xo0) {
-                    ((xo0) getParent()).invalidate();
+                if (getParent() instanceof bp0) {
+                    ((bp0) getParent()).invalidate();
                     return;
                 }
                 return;
@@ -131,7 +131,7 @@ public class r extends LinearLayout {
 
     @Override
     public void onMeasure(int i10, int i11) {
-        switch (this.f2094a) {
+        switch (this.f2099a) {
             case 0:
                 super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
                 return;
@@ -172,7 +172,7 @@ public class r extends LinearLayout {
 
     public r(Context context) {
         super(context);
-        this.f2094a = 6;
+        this.f2099a = 6;
         setWillNotDraw(false);
     }
 

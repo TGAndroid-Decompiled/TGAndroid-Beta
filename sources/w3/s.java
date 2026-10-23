@@ -2,21 +2,21 @@ package w3;
 
 import e2.x;
 public final class s {
-    public d f48570a;
-    public long f48571b;
-    public long f48572c;
+    public d f49008a;
+    public long f49009b;
+    public long f49010c;
     public int d;
     public int e;
-    public boolean f48577k;
-    public r f48579m;
-    public boolean f48581o;
-    public long f48582p;
-    public boolean f48583q;
-    public long[] f48573f = new long[0];
-    public int[] f48574g = new int[0];
+    public boolean f49015k;
+    public r f49017m;
+    public boolean f49019o;
+    public long f49020p;
+    public boolean f49021q;
+    public long[] f49011f = new long[0];
+    public int[] f49012g = new int[0];
     public int[] h = new int[0];
-    public long[] f48575i = new long[0];
-    public boolean[] f48576j = new boolean[0];
-    public boolean[] f48578l = new boolean[0];
-    public final x f48580n = new x();
+    public long[] f49013i = new long[0];
+    public boolean[] f49014j = new boolean[0];
+    public boolean[] f49016l = new boolean[0];
+    public final x f49018n = new x();
 }

@@ -3,12 +3,12 @@ package ah;
 import android.content.Context;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.g6;
 public final class w extends w0 {
     public final a0 h;
 
-    public w(a0 a0Var, Context context, d6 d6Var, int i10) {
-        super(context, i10, d6Var);
+    public w(a0 a0Var, Context context, g6 g6Var, int i10) {
+        super(context, i10, g6Var);
         this.h = a0Var;
     }
 

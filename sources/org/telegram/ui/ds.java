@@ -1,84 +1,61 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.content.Context;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class ds extends org.telegram.ui.Cells.q8 {
-    public final int R = 2;
-    public final Object S;
+import org.telegram.messenger.ContactsController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.MessagesStorage;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.tgnet.TLRPC;
+public final class ds extends org.telegram.ui.ActionBar.j {
+    public final hs f36727a;
 
-    public ds(fs fsVar, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context, d6Var);
-        this.S = fsVar;
+    public ds(hs hsVar) {
+        this.f36727a = hsVar;
     }
 
     @Override
-    public int c(int i10) {
-        switch (this.R) {
-            case 2:
-                ((b01) this.S).e.getClass();
-                return i10;
-            default:
-                return i10;
+    public final void b(int i10) {
+        boolean z10;
+        int i11;
+        int i12;
+        hs hsVar = this.f36727a;
+        if (i10 == -1) {
+            hsVar.finishFragment();
+        } else if (i10 == 1 && hsVar.f37919b.getText().length() != 0) {
+            TLRPC.User user = hsVar.getMessagesController().getUser(Long.valueOf(hsVar.H));
+            TLRPC.UserFull userFull = hsVar.getMessagesController().getUserFull(hsVar.H);
+            user.first_name = hsVar.f37919b.getText().toString();
+            user.last_name = hsVar.f37920c.getText().toString();
+            user.contact = true;
+            TLRPC.TL_textWithEntities textWithEntities = hsVar.d.getTextWithEntities();
+            hsVar.getMessagesController().putUser(user, false);
+            ContactsController contactsController = hsVar.getContactsController();
+            if (hsVar.K && hsVar.X) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            contactsController.addContact(user, textWithEntities, z10);
+            i11 = ((org.telegram.ui.ActionBar.o2) hsVar).currentAccount;
+            MessagesController.getNotificationsSettings(i11).edit().putInt("dialog_bar_vis3" + hsVar.H, 3).commit();
+            hsVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.updateInterfaces, Integer.valueOf(MessagesController.UPDATE_MASK_NAME));
+            hsVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.peerSettingsDidLoad, Long.valueOf(hsVar.H));
+            if (userFull != null) {
+                if (textWithEntities != null && textWithEntities.text.length() > 0) {
+                    userFull.flags2 |= 4194304;
+                    userFull.note = textWithEntities;
+                } else {
+                    userFull.flags2 &= -4194305;
+                    userFull.note = null;
+                }
+                i12 = ((org.telegram.ui.ActionBar.o2) hsVar).currentAccount;
+                MessagesStorage.getInstance(i12).updateUserInfo(userFull, true);
+                hsVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.userInfoDidLoad, Long.valueOf(userFull.f20491id), userFull);
+            }
+            hsVar.finishFragment();
+            gs gsVar = hsVar.O;
+            if (gsVar != null) {
+                gsVar.b();
+            }
         }
-    }
-
-    @Override
-    public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        switch (this.R) {
-            case 0:
-                super.onLayout(z10, i10, i11, i12, i13);
-                int dp = AndroidUtilities.dp(21.0f);
-                int measuredHeight = getMeasuredHeight();
-                fs fsVar = (fs) this.S;
-                int measuredHeight2 = (measuredHeight - fsVar.U.getMeasuredHeight()) / 2;
-                org.telegram.ui.Components.w9 w9Var = fsVar.U;
-                w9Var.layout(dp, measuredHeight2, w9Var.getMeasuredWidth() + dp, fsVar.U.getMeasuredHeight() + measuredHeight2);
-                return;
-            case 1:
-                super.onLayout(z10, i10, i11, i12, i13);
-                int dp2 = AndroidUtilities.dp(21.0f);
-                int measuredHeight3 = getMeasuredHeight();
-                cx0 cx0Var = (cx0) this.S;
-                int measuredHeight4 = (measuredHeight3 - cx0Var.d.f33564v0.getMeasuredHeight()) / 2;
-                org.telegram.ui.Components.w9 w9Var2 = cx0Var.d.f33564v0;
-                w9Var2.layout(dp2, measuredHeight4, w9Var2.getMeasuredWidth() + dp2, cx0Var.d.f33564v0.getMeasuredHeight() + measuredHeight4);
-                return;
-            default:
-                super.onLayout(z10, i10, i11, i12, i13);
-                return;
-        }
-    }
-
-    @Override
-    public void onMeasure(int i10, int i11) {
-        switch (this.R) {
-            case 0:
-                super.onMeasure(i10, i11);
-                fs fsVar = (fs) this.S;
-                fsVar.U.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(30.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(30.0f), 1073741824));
-                fsVar.U.setRoundRadius(AndroidUtilities.dp(30.0f));
-                return;
-            case 1:
-                super.onMeasure(i10, i11);
-                cx0 cx0Var = (cx0) this.S;
-                cx0Var.d.f33564v0.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(30.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(30.0f), 1073741824));
-                cx0Var.d.f33564v0.setRoundRadius(AndroidUtilities.dp(30.0f));
-                return;
-            default:
-                super.onMeasure(i10, i11);
-                return;
-        }
-    }
-
-    public ds(cx0 cx0Var, Activity activity) {
-        super(activity);
-        this.S = cx0Var;
-    }
-
-    public ds(b01 b01Var, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(18, context, d6Var, false, false);
-        this.S = b01Var;
     }
 }

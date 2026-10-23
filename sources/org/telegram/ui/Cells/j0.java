@@ -1,50 +1,68 @@
 package org.telegram.ui.Cells;
 
 import android.content.Context;
-import android.view.MotionEvent;
-import org.telegram.ui.Components.dp0;
-import org.telegram.ui.kb1;
-public final class j0 extends dp0 {
-    public final int f22461l0;
-
-    public j0(int i10, Context context, org.telegram.ui.ActionBar.d6 d6Var, boolean z10) {
-        super(context, d6Var, z10);
-        this.f22461l0 = i10;
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.f22461l0) {
-            case 0:
-                if (motionEvent.getAction() == 0) {
-                    getParent().requestDisallowInterceptTouchEvent(true);
-                }
-                return d(motionEvent);
-            case 1:
-                if (motionEvent.getAction() == 0) {
-                    getParent().requestDisallowInterceptTouchEvent(true);
-                }
-                return d(motionEvent);
-            case 2:
-                if (motionEvent.getAction() == 0) {
-                    getParent().requestDisallowInterceptTouchEvent(true);
-                }
-                return d(motionEvent);
-            default:
-                if (motionEvent.getAction() == 0) {
-                    getParent().requestDisallowInterceptTouchEvent(true);
-                }
-                return d(motionEvent);
-        }
-    }
+import android.graphics.PorterDuff;
+import android.os.Bundle;
+import android.view.View;
+import android.view.accessibility.AccessibilityNodeInfo;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.R;
+public abstract class j0 extends FrameLayout {
+    public final int f22560a;
+    public final ImageView f22561b;
+    public final ImageView f22562c;
+    public final i0 d;
 
     public j0(Context context) {
         super(context);
-        this.f22461l0 = 1;
+        ImageView imageView = new ImageView(context);
+        this.f22561b = imageView;
+        addView(imageView, w7.z5.d(24, 24.0f, 51, 17.0f, 12.0f, 0.0f, 0.0f));
+        i0 i0Var = new i0(0, context, null, true);
+        this.d = i0Var;
+        i0Var.setReportChanges(true);
+        i0Var.setDelegate(new l2.f(this, 7));
+        i0Var.setImportantForAccessibility(2);
+        addView(i0Var, w7.z5.d(-1, 38.0f, 51, 54.0f, 5.0f, 54.0f, 0.0f));
+        ImageView imageView2 = new ImageView(context);
+        this.f22562c = imageView2;
+        addView(imageView2, w7.z5.d(24, 24.0f, 53, 0.0f, 12.0f, 17.0f, 0.0f));
+        imageView.setImageResource(R.drawable.msg_brightness_low);
+        imageView2.setImageResource(R.drawable.msg_brightness_high);
+        this.f22560a = 48;
     }
 
-    public j0(Context context, kb1 kb1Var) {
-        super(context, kb1Var, false);
-        this.f22461l0 = 3;
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        int i10 = org.telegram.ui.ActionBar.k6.f21346m6;
+        PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
+        org.telegram.ui.ActionBar.r6.t(this.f22561b, i10, null, mode);
+        org.telegram.ui.ActionBar.r6.t(this.f22562c, i10, null, mode);
+    }
+
+    @Override
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        this.d.getSeekBarAccessibilityDelegate().e(this, accessibilityNodeInfo);
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(this.f22560a), 1073741824));
+    }
+
+    @Override
+    public final boolean performAccessibilityAction(int i10, Bundle bundle) {
+        if (!super.performAccessibilityAction(i10, bundle) && !this.d.getSeekBarAccessibilityDelegate().g(this, i10, bundle)) {
+            return false;
+        }
+        return true;
+    }
+
+    public void setProgress(float f7) {
+        this.d.setProgress(f7);
     }
 }

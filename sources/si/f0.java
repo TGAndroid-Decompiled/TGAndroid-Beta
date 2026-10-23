@@ -5,20 +5,20 @@ import java.io.File;
 import java.util.ArrayList;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.VideoEditedInfo;
-import org.telegram.ui.Components.l60;
-import org.telegram.ui.Components.q60;
-import org.telegram.ui.Components.r81;
-import org.telegram.ui.fk;
+import org.telegram.ui.Components.m60;
+import org.telegram.ui.Components.r60;
+import org.telegram.ui.Components.y81;
+import org.telegram.ui.gk;
 import org.telegram.ui.pe;
 public final class f0 implements Runnable {
-    public final int f46603a;
-    public final s0 f46604b;
-    public final long f46605c;
+    public final int f47035a;
+    public final u0 f47036b;
+    public final long f47037c;
 
-    public f0(s0 s0Var, long j10, int i10) {
-        this.f46603a = i10;
-        this.f46604b = s0Var;
-        this.f46605c = j10;
+    public f0(u0 u0Var, long j10, int i10) {
+        this.f47035a = i10;
+        this.f47036b = u0Var;
+        this.f47037c = j10;
     }
 
     @Override
@@ -26,64 +26,64 @@ public final class f0 implements Runnable {
         File file;
         long j10;
         long j11;
-        fk fkVar;
-        r81 r81Var;
-        switch (this.f46603a) {
+        gk gkVar;
+        y81 y81Var;
+        switch (this.f47035a) {
             case 0:
-                s0 s0Var = this.f46604b;
-                long j12 = this.f46605c;
-                if (s0Var.W == 6) {
-                    s0Var.E = j12;
-                    s0Var.K = 0L;
-                    s0Var.G = 0L;
-                    s0Var.H = j12;
-                    s0Var.v(2);
-                    s0Var.f46774l.X(s0Var.Q, s0Var.E * 1000, s0Var.f46778p);
+                u0 u0Var = this.f47036b;
+                long j12 = this.f47037c;
+                if (u0Var.W == 6) {
+                    u0Var.E = j12;
+                    u0Var.K = 0L;
+                    u0Var.G = 0L;
+                    u0Var.H = j12;
+                    u0Var.v(2);
+                    u0Var.f47257l.X(u0Var.Q, u0Var.E * 1000, u0Var.f47261p);
                     return;
                 }
                 return;
             default:
-                s0 s0Var2 = this.f46604b;
-                long j13 = this.f46605c;
-                if (s0Var2.W == 4) {
-                    s0Var2.K = j13;
-                    long min = Math.min(s0Var2.f46777o, j13);
-                    s0Var2.E = min;
-                    s0Var2.G = 0L;
-                    s0Var2.H = min;
-                    s0Var2.f46767b.setSurfaceTextureListener(null);
-                    s0Var2.f46767b.setTransform(s0Var2.h);
-                    i2.i0 a2 = new i2.p(s0Var2.f46766a).a();
-                    s0Var2.S = a2;
-                    a2.z1(s0Var2.f46767b);
-                    s0Var2.S.r0(b2.o0.b(Uri.fromFile(s0Var2.R)));
-                    s0Var2.S.j(0);
-                    s0Var2.S.U(1.0f);
-                    s0Var2.S.p0(s0Var2.V);
-                    s0Var2.S.b();
-                    s0Var2.S.Z0(5, s0Var2.G);
-                    s0Var2.f46775m.b("preview player prepared: durationMs=" + s0Var2.E + ", trim=" + s0Var2.G + ".." + s0Var2.H);
-                    s0Var2.v(5);
-                    l2.f fVar = s0Var2.d;
-                    long j14 = s0Var2.E;
-                    long j15 = s0Var2.G;
-                    long j16 = s0Var2.H;
-                    ((l60) fVar.f15843b).f28059w.setProgress(((float) j14) / 60000.0f);
-                    l60 l60Var = (l60) fVar.f15843b;
-                    l60Var.f28043i0 = false;
-                    l60Var.I.setAlpha(0.0f);
-                    s0 s0Var3 = ((l60) fVar.f15843b).P;
-                    if (s0Var3 == null) {
+                u0 u0Var2 = this.f47036b;
+                long j13 = this.f47037c;
+                if (u0Var2.W == 4) {
+                    u0Var2.K = j13;
+                    long min = Math.min(u0Var2.f47260o, j13);
+                    u0Var2.E = min;
+                    u0Var2.G = 0L;
+                    u0Var2.H = min;
+                    u0Var2.f47250b.setSurfaceTextureListener(null);
+                    u0Var2.f47250b.setTransform(u0Var2.h);
+                    i2.h0 a2 = new i2.o(u0Var2.f47249a).a();
+                    u0Var2.S = a2;
+                    a2.z1(u0Var2.f47250b);
+                    u0Var2.S.r0(b2.o0.b(Uri.fromFile(u0Var2.R)));
+                    u0Var2.S.j(0);
+                    u0Var2.S.U(1.0f);
+                    u0Var2.S.p0(u0Var2.V);
+                    u0Var2.S.b();
+                    u0Var2.S.Z0(5, u0Var2.G);
+                    u0Var2.f47258m.b("preview player prepared: durationMs=" + u0Var2.E + ", trim=" + u0Var2.G + ".." + u0Var2.H);
+                    u0Var2.v(5);
+                    l2.f fVar = u0Var2.d;
+                    long j14 = u0Var2.E;
+                    long j15 = u0Var2.G;
+                    long j16 = u0Var2.H;
+                    ((m60) fVar.f15906b).f28546w.setProgress(((float) j14) / 60000.0f);
+                    m60 m60Var = (m60) fVar.f15906b;
+                    m60Var.f28530i0 = false;
+                    m60Var.I.setAlpha(0.0f);
+                    u0 u0Var3 = ((m60) fVar.f15906b).P;
+                    if (u0Var3 == null) {
                         file = null;
                     } else {
-                        s0.t();
-                        file = s0Var3.R;
+                        u0.t();
+                        file = u0Var3.R;
                     }
                     if (file != null) {
-                        l60 l60Var2 = (l60) fVar.f15843b;
-                        l60Var2.U = l60Var2.r(file, j14, null);
-                        l60 l60Var3 = (l60) fVar.f15843b;
-                        VideoEditedInfo videoEditedInfo = l60Var3.U;
+                        m60 m60Var2 = (m60) fVar.f15906b;
+                        m60Var2.U = m60Var2.r(file, j14, null);
+                        m60 m60Var3 = (m60) fVar.f15906b;
+                        VideoEditedInfo videoEditedInfo = m60Var3.U;
                         if (j15 > 0) {
                             j10 = j15;
                         } else {
@@ -96,19 +96,19 @@ public final class f0 implements Runnable {
                             j11 = -1;
                         }
                         videoEditedInfo.endTime = j11;
-                        NotificationCenter.getInstance(l60Var3.h).lambda$postNotificationNameOnUIThread$1(NotificationCenter.audioDidSent, Integer.valueOf(((l60) fVar.f15843b).f28047n), ((l60) fVar.f15843b).U, file.getAbsolutePath(), new ArrayList());
+                        NotificationCenter.getInstance(m60Var3.h).lambda$postNotificationNameOnUIThread$1(NotificationCenter.audioDidSent, Integer.valueOf(((m60) fVar.f15906b).f28534n), ((m60) fVar.f15906b).U, file.getAbsolutePath(), new ArrayList());
                         float max = (float) Math.max(1L, j14);
                         float f7 = ((float) j15) / max;
                         float f10 = ((float) j16) / max;
-                        q60 q60Var = ((l60) fVar.f15843b).f29855b;
-                        if (q60Var != null && (fkVar = ((pe) q60Var).f40203b.Y) != null && (r81Var = fkVar.f23947f1) != null) {
+                        r60 r60Var = ((m60) fVar.f15906b).f30390b;
+                        if (r60Var != null && (gkVar = ((pe) r60Var).f40456b.Y) != null && (y81Var = gkVar.f24085f1) != null) {
                             float max2 = Math.max(0.0f, Math.min(1.0f, f7));
-                            r81Var.f29883b = max2;
-                            r81Var.f29884c = Math.max(max2, Math.min(1.0f, f10));
-                            r81Var.invalidate();
+                            y81Var.f32833b = max2;
+                            y81Var.f32834c = Math.max(max2, Math.min(1.0f, f10));
+                            y81Var.invalidate();
                         }
                     }
-                    s0Var2.q();
+                    u0Var2.q();
                     return;
                 }
                 return;

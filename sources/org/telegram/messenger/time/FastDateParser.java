@@ -318,7 +318,7 @@ public class FastDateParser implements DateParser, Serializable {
                 switch (charAt) {
                     case '\'':
                         if (str.length() > 2) {
-                            return new CopyQuotedStrategy(k3.j(1, 1, str));
+                            return new CopyQuotedStrategy(k3.i(1, 1, str));
                         }
                         return new CopyQuotedStrategy(str);
                     case 'S':

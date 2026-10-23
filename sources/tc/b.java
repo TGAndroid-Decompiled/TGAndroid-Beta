@@ -2,22 +2,22 @@ package tc;
 
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.cz0;
-import org.telegram.ui.Wallet.a1;
+import org.telegram.ui.Components.fz0;
+import org.telegram.ui.Wallet.y0;
 import org.telegram.ui.Wallet.z0;
 public final class b extends z {
-    public final int f46942b;
+    public final int f47377b;
 
     public b(String str, u uVar, int i10, int i11) {
         super(str, uVar, i10);
-        this.f46942b = i11;
+        this.f47377b = i11;
     }
 
     @Override
     public final void a() {
-        switch (this.f46942b) {
+        switch (this.f47377b) {
             case 0:
-                u uVar = this.f47003a;
+                u uVar = this.f47438a;
                 try {
                     uVar.b();
                     return;
@@ -30,23 +30,23 @@ public final class b extends z {
                     while (i10 < size) {
                         Object obj = arrayList.get(i10);
                         i10++;
-                        z0 z0Var = (z0) obj;
+                        y0 y0Var = (y0) obj;
                         try {
                             try {
-                                u uVar2 = (u) bVar.f4490b;
-                                a1 a1Var = z0Var.f35169c;
-                                int i11 = z0Var.f35167a;
-                                AndroidUtilities.runOnUIThread(new cz0(a1Var, uVar2, i11, "connect error: " + a1.a(e), 15, false));
+                                u uVar2 = (u) bVar.f4494b;
+                                z0 z0Var = y0Var.f35427c;
+                                int i11 = y0Var.f35425a;
+                                AndroidUtilities.runOnUIThread(new fz0(z0Var, uVar2, i11, "connect error: " + z0.a(e), 16));
                             } catch (Throwable unused) {
                             }
                         } catch (Throwable unused2) {
-                            z0Var.getClass();
+                            y0Var.getClass();
                         }
                     }
                     return;
                 }
             default:
-                this.f47003a.d();
+                this.f47438a.d();
                 return;
         }
     }

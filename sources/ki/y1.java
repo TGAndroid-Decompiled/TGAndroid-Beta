@@ -6,26 +6,26 @@ import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.Button;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.fr0;
+import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.Components.ir0;
 import org.telegram.ui.Components.vg;
 import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.cy;
+import org.telegram.ui.ey;
 public final class y1 extends vg {
-    public final int f15658l0;
-    public final Object m0;
+    public final int f15719n0;
+    public final Object f15720o0;
 
-    public y1(int i10, int i11, Context context, Object obj, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(i10, context, d6Var, true);
-        this.f15658l0 = i11;
-        this.m0 = obj;
+    public y1(int i10, int i11, Context context, Object obj, org.telegram.ui.ActionBar.g6 g6Var) {
+        super(i10, context, g6Var, true);
+        this.f15719n0 = i11;
+        this.f15720o0 = obj;
     }
 
     @Override
     public boolean d() {
-        switch (this.f15658l0) {
+        switch (this.f15719n0) {
             case 0:
-                return ((d2) this.m0).l0();
+                return ((d2) this.f15720o0).l0();
             case 1:
             case 2:
             default:
@@ -39,14 +39,14 @@ public final class y1 extends vg {
 
     @Override
     public final boolean f() {
-        switch (this.f15658l0) {
+        switch (this.f15719n0) {
             case 0:
-                if (!((d2) this.m0).L0 && this.f31251r <= 0) {
+                if (!((d2) this.f15720o0).L0 && this.f31464r <= 0) {
                     return false;
                 }
                 return true;
             case 1:
-                if (!((b4) this.m0).W && this.f31251r <= 0) {
+                if (!((b4) this.f15720o0).W && this.f31464r <= 0) {
                     return false;
                 }
                 return true;
@@ -61,16 +61,16 @@ public final class y1 extends vg {
 
     @Override
     public int getFillColor() {
-        int i10 = this.f15658l0;
-        Object obj = this.m0;
+        int i10 = this.f15719n0;
+        Object obj = this.f15720o0;
         switch (i10) {
             case 2:
-                return ((fr0) obj).getThemedColor(h6.S5);
+                return ((ir0) obj).getThemedColor(k6.S5);
             case 3:
             default:
                 return super.getFillColor();
             case 4:
-                int i11 = h6.f21407zf;
+                int i11 = k6.f21596zf;
                 Drawable[] drawableArr = PhotoViewer.U8;
                 return ((PhotoViewer) obj).A1(i11);
         }
@@ -78,7 +78,7 @@ public final class y1 extends vg {
 
     @Override
     public boolean j() {
-        switch (this.f15658l0) {
+        switch (this.f15719n0) {
             case 2:
                 return true;
             case 3:
@@ -92,10 +92,10 @@ public final class y1 extends vg {
 
     @Override
     public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        switch (this.f15658l0) {
+        switch (this.f15719n0) {
             case 3:
                 super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                accessibilityNodeInfo.setText(LocaleController.formatPluralString("AccDescrShareInChats", ((cy) this.m0).I2.size(), new Object[0]));
+                accessibilityNodeInfo.setText(LocaleController.formatPluralString("AccDescrShareInChats", ((ey) this.f15720o0).I2.size(), new Object[0]));
                 accessibilityNodeInfo.setClassName(Button.class.getName());
                 accessibilityNodeInfo.setLongClickable(true);
                 accessibilityNodeInfo.setClickable(true);
@@ -106,9 +106,9 @@ public final class y1 extends vg {
         }
     }
 
-    public y1(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, Context context, int i10, org.telegram.ui.ActionBar.d6 d6Var, int i11) {
-        super(i10, context, d6Var, false);
-        this.f15658l0 = i11;
-        this.m0 = notificationCenterDelegate;
+    public y1(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, Context context, int i10, org.telegram.ui.ActionBar.g6 g6Var, int i11) {
+        super(i10, context, g6Var, false);
+        this.f15719n0 = i11;
+        this.f15720o0 = notificationCenterDelegate;
     }
 }

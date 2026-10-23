@@ -2,47 +2,47 @@ package org.telegram.ui;
 
 import android.content.DialogInterface;
 public final class oe implements DialogInterface.OnDismissListener {
-    public final int f39855a;
-    public final qn f39856b;
+    public final int f40142a;
+    public final sn f40143b;
 
-    public oe(qn qnVar, int i10) {
-        this.f39855a = i10;
-        this.f39856b = qnVar;
+    public oe(sn snVar, int i10) {
+        this.f40142a = i10;
+        this.f40143b = snVar;
     }
 
     @Override
     public final void onDismiss(DialogInterface dialogInterface) {
-        switch (this.f39855a) {
+        switch (this.f40142a) {
             case 0:
-                zj zjVar = this.f39856b.X1;
-                if (zjVar != null) {
-                    zjVar.c(false);
+                ak akVar = this.f40143b.f41562j2;
+                if (akVar != null) {
+                    akVar.c(false);
                     return;
                 }
                 return;
             case 1:
-                qn.a1(this.f39856b);
+                sn.k1(this.f40143b);
                 return;
             case 2:
-                this.f39856b.j8(false, true, 0.0f);
+                this.f40143b.j8(false, true, 0.0f);
                 return;
             case 3:
-                this.f39856b.j8(false, true, 0.0f);
+                this.f40143b.j8(false, true, 0.0f);
                 return;
             case 4:
-                this.f39856b.j8(false, true, 0.0f);
+                this.f40143b.j8(false, true, 0.0f);
                 return;
             case 5:
-                this.f39856b.j8(false, true, 0.0f);
+                this.f40143b.j8(false, true, 0.0f);
                 return;
             case 6:
-                this.f39856b.j8(false, true, 0.0f);
+                this.f40143b.j8(false, true, 0.0f);
                 return;
             case 7:
-                this.f39856b.j8(false, true, 0.0f);
+                this.f40143b.j8(false, true, 0.0f);
                 return;
             default:
-                this.f39856b.Gb = null;
+                this.f40143b.Tb = null;
                 return;
         }
     }

@@ -1,90 +1,35 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.view.ViewGroup;
+import android.view.View;
+import android.widget.FrameLayout;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-public final class q4 extends org.telegram.ui.Components.im0 {
-    public final Context f40372c;
-
-    public q4(Context context) {
-        this.f40372c = context;
-    }
+public final class q4 extends org.telegram.ui.ActionBar.o2 {
+    public org.telegram.ui.Components.mm0 f40619a;
+    public p4 f40620b;
 
     @Override
-    public final boolean D(s4.b1 b1Var) {
-        int b10 = b1Var.b();
-        if (b10 != 1) {
-            ti.a aVar = ti.e.f47224b;
-            aVar.a();
-            if (!aVar.d || b10 != 2) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    @Override
-    public final int h() {
-        return 4;
-    }
-
-    @Override
-    public final int j(int i10) {
-        if (i10 == 0) {
-            return 0;
-        }
-        if (i10 == 1) {
-            return 1;
-        }
-        if (i10 == 2) {
-            return 2;
-        }
-        return 3;
-    }
-
-    @Override
-    public final void v(s4.b1 b1Var, int i10) {
-        int i11;
-        ti.a aVar = ti.e.f47224b;
-        aVar.a();
-        boolean z10 = aVar.d;
-        int i12 = b1Var.f45924f;
-        if (i12 == 0) {
-            ((org.telegram.ui.Cells.l4) b1Var.f45921a).setText(LocaleController.getString(R.string.AudioRecorderGeneral));
-        } else if (i12 == 1) {
-            ((org.telegram.ui.Cells.v8) b1Var.f45921a).f(LocaleController.getString(R.string.AudioRecorderUseNewRecorder), z10, false);
-        } else if (i12 == 2) {
-            org.telegram.ui.Cells.ba baVar = (org.telegram.ui.Cells.ba) b1Var.f45921a;
-            baVar.setEnabled(z10);
-            String string = LocaleController.getString(R.string.AudioRecorderNoiseSuppression);
-            if (((ri.h) ti.e.f47225c.a()) == ri.h.f45817b) {
-                i11 = R.string.AudioRecorderNoiseSuppressionRNNoise;
-            } else {
-                i11 = R.string.AudioRecorderNoiseSuppressionOff;
-            }
-            baVar.c(string, LocaleController.getString(i11), false, false);
-        } else {
-            ((org.telegram.ui.Cells.d9) b1Var.f45921a).setText(LocaleController.getString(R.string.AudioRecorderGeneralInfo));
-        }
-    }
-
-    @Override
-    public final s4.b1 x(ViewGroup viewGroup, int i10) {
-        org.telegram.ui.Cells.ba baVar;
-        Context context = this.f40372c;
-        if (i10 == 0) {
-            baVar = new org.telegram.ui.Cells.l4(context);
-        } else if (i10 == 1) {
-            baVar = new org.telegram.ui.Cells.v8(context);
-        } else if (i10 == 2) {
-            org.telegram.ui.Cells.ba baVar2 = new org.telegram.ui.Cells.ba(context);
-            baVar2.setCanDisable(true);
-            baVar = baVar2;
-        } else {
-            baVar = new org.telegram.ui.Cells.d9(context);
-        }
-        baVar.setLayoutParams(new s4.o0(-1, -2));
-        return new s4.b1(baVar);
+    public final View createView(Context context) {
+        this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
+        this.actionBar.setAllowOverlayTitle(true);
+        this.actionBar.setTitle(LocaleController.getString(R.string.AudioRecorderSettings));
+        this.actionBar.setActionBarMenuOnItemClick(new ah.s(this, 22));
+        FrameLayout frameLayout = new FrameLayout(context);
+        org.telegram.ui.ActionBar.r6.i(org.telegram.ui.ActionBar.k6.f21125a7, frameLayout, null);
+        this.fragmentView = frameLayout;
+        org.telegram.ui.Components.mm0 mm0Var = new org.telegram.ui.Components.mm0(context, null);
+        this.f40619a = mm0Var;
+        mm0Var.t1();
+        this.actionBar.setAdaptiveBackground(this.f40619a);
+        this.f40619a.setLayoutManager(new s4.b0());
+        this.f40619a.setVerticalScrollBarEnabled(false);
+        org.telegram.ui.Components.mm0 mm0Var2 = this.f40619a;
+        p4 p4Var = new p4(context);
+        this.f40620b = p4Var;
+        mm0Var2.setAdapter(p4Var);
+        this.f40619a.setOnItemClickListener(new h(this, 2));
+        frameLayout.addView(this.f40619a, w7.z5.c(-1.0f, -1));
+        return this.fragmentView;
     }
 }

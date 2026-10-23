@@ -88,7 +88,7 @@ public class StatsController extends BaseController {
                         StatsController.this.statsFile.seek(0L);
                         RandomAccessFile randomAccessFile = StatsController.this.statsFile;
                         zf.z zVar = StatsController.this.byteArrayOutputStream;
-                        randomAccessFile.write(zVar.f51625a, 0, zVar.f51626b);
+                        randomAccessFile.write(zVar.f52087a, 0, zVar.f52088b);
                         StatsController.this.statsFile.getFD().sync();
                     } catch (Exception unused) {
                     }
@@ -97,7 +97,7 @@ public class StatsController extends BaseController {
         };
         File filesDirFixed = ApplicationLoader.getFilesDirFixed();
         if (i10 != 0) {
-            filesDirFixed = new File(ApplicationLoader.getFilesDirFixed(), i2.e.k(i10, "account", "/"));
+            filesDirFixed = new File(ApplicationLoader.getFilesDirFixed(), i2.o1.l(i10, "account", "/"));
             filesDirFixed.mkdirs();
         }
         try {

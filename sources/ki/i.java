@@ -3,40 +3,40 @@ package ki;
 import android.view.View;
 import android.view.ViewTreeObserver;
 public final class i implements ViewTreeObserver.OnGlobalFocusChangeListener {
-    public final int f15322a;
-    public final Object f15323b;
+    public final int f15382a;
+    public final Object f15383b;
 
     public i(Object obj, int i10) {
-        this.f15322a = i10;
-        this.f15323b = obj;
+        this.f15382a = i10;
+        this.f15383b = obj;
     }
 
     @Override
     public final void onGlobalFocusChanged(View view, View view2) {
         boolean z10;
-        switch (this.f15322a) {
+        switch (this.f15382a) {
             case 0:
-                ((q) this.f15323b).c0();
+                ((q) this.f15383b).c0();
                 return;
             case 1:
-                ((d2) this.f15323b).w0();
+                ((d2) this.f15383b).w0();
                 return;
             case 2:
-                w3 w3Var = (w3) this.f15323b;
+                w3 w3Var = (w3) this.f15383b;
                 if (view2 != null && w3Var.F(view2) != null) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                w3Var.Y2 = z10;
+                w3Var.f27541b3 = z10;
                 if (view2 instanceof h1) {
-                    w3Var.J3 = (h1) view2;
+                    w3Var.M3 = (h1) view2;
                     return;
                 }
                 return;
             default:
-                o5 o5Var = (o5) this.f15323b;
-                o5Var.x();
+                o5 o5Var = (o5) this.f15383b;
+                o5Var.w();
                 q5 q5Var = o5Var.v;
                 if (q5Var != null) {
                     q5Var.invalidate();

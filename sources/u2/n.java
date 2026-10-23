@@ -1,37 +1,37 @@
 package u2;
 
 import java.util.List;
-public final class n implements g1 {
-    public final g1 f47373a;
-    public final e9.n0 f47374b;
+public final class n implements h1 {
+    public final h1 f47817a;
+    public final e9.n0 f47818b;
 
-    public n(g1 g1Var, List list) {
-        this.f47373a = g1Var;
-        this.f47374b = e9.n0.u(list);
+    public n(h1 h1Var, List list) {
+        this.f47817a = h1Var;
+        this.f47818b = e9.n0.u(list);
     }
 
     @Override
     public final boolean c() {
-        return this.f47373a.c();
+        return this.f47817a.c();
     }
 
     @Override
     public final long d() {
-        return this.f47373a.d();
+        return this.f47817a.d();
     }
 
     @Override
-    public final boolean p(i2.v0 v0Var) {
-        return this.f47373a.p(v0Var);
+    public final boolean p(i2.u0 u0Var) {
+        return this.f47817a.p(u0Var);
     }
 
     @Override
     public final long s() {
-        return this.f47373a.s();
+        return this.f47817a.s();
     }
 
     @Override
     public final void u(long j10) {
-        this.f47373a.u(j10);
+        this.f47817a.u(j10);
     }
 }

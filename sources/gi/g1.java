@@ -1,7 +1,7 @@
 package gi;
-public final class g1 extends org.telegram.ui.Cells.u1 {
+public final class g1 extends org.telegram.ui.Cells.t1 {
     @Override
-    public final boolean f3() {
+    public final boolean e3() {
         return false;
     }
 }

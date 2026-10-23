@@ -4,40 +4,40 @@ import android.view.View;
 import android.view.ViewGroup;
 import androidx.appcompat.widget.SearchView;
 public final class s2 implements View.OnFocusChangeListener {
-    public final int f16332a;
-    public final ViewGroup f16333b;
+    public final int f16395a;
+    public final ViewGroup f16396b;
 
     public s2(ViewGroup viewGroup, int i10) {
-        this.f16332a = i10;
-        this.f16333b = viewGroup;
+        this.f16395a = i10;
+        this.f16396b = viewGroup;
     }
 
     @Override
     public final void onFocusChange(View view, boolean z10) {
-        switch (this.f16332a) {
+        switch (this.f16395a) {
             case 0:
-                SearchView searchView = (SearchView) this.f16333b;
-                View.OnFocusChangeListener onFocusChangeListener = searchView.f2767d0;
+                SearchView searchView = (SearchView) this.f16396b;
+                View.OnFocusChangeListener onFocusChangeListener = searchView.f2774d0;
                 if (onFocusChangeListener != null) {
                     onFocusChangeListener.onFocusChange(searchView, z10);
                     return;
                 }
                 return;
             case 1:
-                org.telegram.ui.Cells.f3 f3Var = (org.telegram.ui.Cells.f3) this.f16333b;
-                f3Var.h = z10;
-                if (f3Var.f22235f) {
-                    f3Var.c();
+                org.telegram.ui.Cells.e3 e3Var = (org.telegram.ui.Cells.e3) this.f16396b;
+                e3Var.f22318n = z10;
+                if (e3Var.h) {
+                    e3Var.c();
                     return;
                 }
                 return;
             default:
-                org.telegram.ui.Cells.i3 i3Var = (org.telegram.ui.Cells.i3) this.f16333b;
-                i3Var.f22409n = z10;
-                if (i3Var.f22408f) {
-                    i3Var.c();
+                org.telegram.ui.Cells.h3 h3Var = (org.telegram.ui.Cells.h3) this.f16396b;
+                h3Var.f22456s = z10;
+                if (h3Var.f22454n) {
+                    h3Var.c();
                 }
-                i3Var.a(z10);
+                h3Var.a(z10);
                 return;
         }
     }

@@ -1,75 +1,22 @@
 package ai;
 
-import android.content.Context;
-public final class zd extends tg.n {
-    public final int f2557i0;
+import android.os.Bundle;
+import org.telegram.ui.sn;
+public final class zd extends sn {
+    public final boolean f2563ed;
+    public final me f2564fd;
 
-    public zd(Context context, int i10, int i11, int i12) {
-        super(context, i10, i11);
-        this.f2557i0 = i12;
+    public zd(me meVar, Bundle bundle, boolean z10) {
+        super(bundle);
+        this.f2564fd = meVar;
+        this.f2563ed = z10;
     }
 
     @Override
-    public void n() {
-        switch (this.f2557i0) {
-            case 0:
-                return;
-            default:
-                super.n();
-                return;
+    public final void onFragmentDestroy() {
+        super.onFragmentDestroy();
+        if (!this.f2563ed) {
+            this.f2564fd.show();
         }
-    }
-
-    @Override
-    public void onAttachedToWindow() {
-        switch (this.f2557i0) {
-            case 1:
-                super.onAttachedToWindow();
-                setPaused(false);
-                return;
-            case 2:
-                super.onAttachedToWindow();
-                setPaused(false);
-                return;
-            case 3:
-                super.onAttachedToWindow();
-                setPaused(false);
-                return;
-            case 4:
-                super.onAttachedToWindow();
-                setPaused(false);
-                return;
-            default:
-                super.onAttachedToWindow();
-                return;
-        }
-    }
-
-    @Override
-    public void onDetachedFromWindow() {
-        switch (this.f2557i0) {
-            case 1:
-                super.onDetachedFromWindow();
-                setPaused(true);
-                return;
-            case 2:
-                super.onDetachedFromWindow();
-                setPaused(true);
-                return;
-            case 3:
-                super.onDetachedFromWindow();
-                setPaused(true);
-                return;
-            case 4:
-                super.onDetachedFromWindow();
-                setPaused(true);
-                return;
-            default:
-                super.onDetachedFromWindow();
-                return;
-        }
-    }
-
-    private final void p() {
     }
 }

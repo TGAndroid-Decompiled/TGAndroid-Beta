@@ -3,17 +3,17 @@ package zh;
 import java.util.ArrayList;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.ActionBar.n2;
-import org.telegram.ui.rp0;
-public final class y implements rp0 {
-    public final Utilities.CallbackReturn f52146a;
-    public final n2 f52147b;
-    public final Utilities.Callback f52148c;
+import org.telegram.ui.ActionBar.o2;
+import org.telegram.ui.up0;
+public final class y implements up0 {
+    public final Utilities.CallbackReturn f52608a;
+    public final o2 f52609b;
+    public final Utilities.Callback f52610c;
 
-    public y(Utilities.CallbackReturn callbackReturn, n2 n2Var, Utilities.Callback callback) {
-        this.f52146a = callbackReturn;
-        this.f52147b = n2Var;
-        this.f52148c = callback;
+    public y(Utilities.CallbackReturn callbackReturn, o2 o2Var, Utilities.Callback callback) {
+        this.f52608a = callbackReturn;
+        this.f52609b = o2Var;
+        this.f52610c = callback;
     }
 
     @Override
@@ -28,7 +28,7 @@ public final class y implements rp0 {
         if (str2 == null) {
             return;
         }
-        Utilities.globalQueue.postRunnable(new si.o(str2, this.f52146a, this.f52147b, this.f52148c, 4));
+        Utilities.globalQueue.postRunnable(new si.o(str2, this.f52608a, this.f52609b, this.f52610c, 4));
     }
 
     @Override

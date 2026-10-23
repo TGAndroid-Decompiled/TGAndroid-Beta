@@ -1,208 +1,53 @@
 package ai;
 
-import android.content.Context;
-import android.os.SystemClock;
+import java.io.File;
 import java.util.ArrayList;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.messenger.R;
 import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.messenger.TelegramMediaSession;
-import org.telegram.messenger.TranslateController;
-import org.telegram.messenger.ih;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_wallet;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.qn;
+import org.telegram.tgnet.tl.TL_stars;
 public final class xb implements Runnable {
-    public final int f2457a;
-    public final long f2458b;
-    public final int f2459c;
-    public final Object d;
+    public final int f2459a = 0;
+    public final boolean f2460b;
+    public final boolean f2461c;
+    public final int d;
     public final Object e;
+    public final Object f2462f;
+    public final Object h;
+    public final Object f2463n;
 
-    public xb(Object obj, long j10, int i10, Object obj2, int i11) {
-        this.f2457a = i11;
-        this.d = obj;
-        this.f2458b = j10;
-        this.f2459c = i10;
-        this.e = obj2;
+    public xb(int i10, ei.d dVar, TLObject tLObject, TL_stars.StarsSubscription starsSubscription, boolean z10, boolean z11, org.telegram.ui.ActionBar.h3[] h3VarArr) {
+        this.e = dVar;
+        this.f2462f = h3VarArr;
+        this.d = i10;
+        this.f2460b = z10;
+        this.h = starsSubscription;
+        this.f2461c = z11;
+        this.f2463n = tLObject;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f2457a;
-        boolean z10 = true;
-        long j10 = this.f2458b;
-        int i11 = this.f2459c;
-        Object obj = this.e;
-        Object obj2 = this.d;
-        switch (i10) {
-            case 0:
-                ((ei.d) obj2).setLoading(false);
-                org.telegram.ui.ActionBar.f3 f3Var = ((org.telegram.ui.ActionBar.f3[]) obj)[0];
-                if (f3Var != null) {
-                    f3Var.dismiss();
-                }
-                ga.y(i11, false).S();
-                org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
-                if (U != null) {
-                    U.presentFragment(qn.W9(j10));
-                    return;
-                }
-                return;
-            case 1:
-                ((MediaDataController) obj2).lambda$putMenuBotsToCache$6((TLRPC.TL_attachMenuBots) obj, j10, i11);
-                return;
-            case 2:
-                ((MediaDataController) obj2).lambda$processLoadedStickers$104((ArrayList) obj, j10, i11);
-                return;
-            case 3:
-                ((MessagesController) obj2).lambda$checkPromoInfoInternal$167(j10, (TLRPC.TL_help_promoData) obj, i11);
-                return;
-            case 4:
-                ((MessagesController) obj2).lambda$processUpdateArray$391(j10, i11, (TLRPC.TL_sendMessageTextDraftAction) obj);
-                return;
-            case 5:
-                ((MessagesController) obj2).lambda$processUpdateArray$392(j10, i11, (TLRPC.TL_sendMessageRichMessageDraftAction) obj);
-                return;
-            case 6:
-                ((MessagesStorage) obj2).lambda$updateTopicData$48(j10, (TLRPC.TL_forumTopic) obj, i11);
-                return;
-            case 7:
-                ((MessagesStorage) obj2).lambda$updateMessageVoiceTranscriptionOpen$107(i11, j10, (TLRPC.Message) obj);
-                return;
-            case 8:
-                ((MessagesStorage) obj2).lambda$updateMessageReactions$104(i11, j10, (TLRPC.TL_messageReactions) obj);
-                return;
-            case 9:
-                ((MessagesStorage) obj2).lambda$updateChatDefaultBannedRights$180(j10, i11, (TLRPC.TL_chatBannedRights) obj);
-                return;
-            case 10:
-                ((SendMessagesHelper) obj2).lambda$sendNotificationCallback$33(j10, i11, (byte[]) obj);
-                return;
-            case 11:
-                ((TelegramMediaSession) obj2).lambda$loadMusicForDialog$7((MessagesStorage) obj, j10, i11);
-                return;
-            case 12:
-                ((TranslateController) obj2).lambda$checkLanguage$14((MessageObject) obj, j10, i11);
-                return;
-            case 13:
-                org.telegram.ui.l4 l4Var = (org.telegram.ui.l4) obj2;
-                TLObject tLObject = (TLObject) obj;
-                if (l4Var.G0 != 0) {
-                    l4Var.G0 = 0;
-                    l4Var.b0(false);
-                    if (tLObject != null) {
-                        TLRPC.TL_contacts_resolvedPeer tL_contacts_resolvedPeer = (TLRPC.TL_contacts_resolvedPeer) tLObject;
-                        MessagesController.getInstance(i11).putUsers(tL_contacts_resolvedPeer.users, false);
-                        MessagesStorage.getInstance(i11).putUsersAndChats(tL_contacts_resolvedPeer.users, tL_contacts_resolvedPeer.chats, false, true);
-                        if (!tL_contacts_resolvedPeer.users.isEmpty()) {
-                            l4Var.P(j10, tL_contacts_resolvedPeer.users.get(0));
-                            return;
-                        }
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 14:
-                org.telegram.ui.p6 p6Var = (org.telegram.ui.p6) obj2;
-                long currentTimeMillis = System.currentTimeMillis();
-                Float valueOf = Float.valueOf(((int[]) obj)[0] / i11);
-                if (currentTimeMillis - j10 <= 250) {
-                    z10 = false;
-                }
-                p6Var.run(valueOf, Boolean.valueOf(z10));
-                return;
-            case 15:
-                ((ProfileActivity) obj2).getMessagesController().getStoriesController().b(i11, j10, (ArrayList) obj);
-                return;
-            case 16:
-                tc.u uVar = (tc.u) obj;
-                org.telegram.ui.Wallet.a1 a1Var = ((org.telegram.ui.Wallet.z0) obj2).f35169c;
-                if (!a1Var.c(uVar, i11)) {
-                    a1Var.d("closing stale connected websocket; attempt=" + i11);
-                    uVar.c();
-                    return;
-                }
-                a1Var.d("websocket connected after " + (SystemClock.elapsedRealtime() - j10) + " ms");
-                org.telegram.ui.Wallet.x0 x0Var = a1Var.f33986o;
-                try {
-                    JSONArray put = new JSONArray().put(a1Var.f33976b);
-                    StringBuilder sb2 = new StringBuilder("wallet-");
-                    int i12 = a1Var.f33979g + 1;
-                    a1Var.f33979g = i12;
-                    sb2.append(i12);
-                    a1Var.f33978f = sb2.toString();
-                    JSONObject put2 = new JSONObject().put("operation", "subscribe").put("id", a1Var.f33978f).put("types", new JSONArray().put("transactions").put("account_state_change")).put("include_address_book", true).put("addresses", put).put("min_finality", "pending");
-                    AndroidUtilities.cancelRunOnUIThread(x0Var);
-                    AndroidUtilities.runOnUIThread(x0Var, 30000L);
-                    a1Var.g(put2.toString());
-                    return;
-                } catch (JSONException unused) {
-                    a1Var.f("could not encode subscription");
-                    return;
-                }
-            case 17:
-                org.telegram.ui.Wallet.f2 f2Var = (org.telegram.ui.Wallet.f2) obj2;
-                ih ihVar = (ih) obj;
-                f2Var.getClass();
-                TL_wallet.tonConnectGetPending tonconnectgetpending = new TL_wallet.tonConnectGetPending();
-                long j11 = this.f2458b;
-                tonconnectgetpending.session_id = Long.valueOf(j11);
-                f2Var.f34202f.sendRequestTyped(tonconnectgetpending, new Object(), new org.telegram.ui.Wallet.t1(f2Var, ihVar, j11, this.f2459c, 0));
-                return;
-            default:
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder((Context) obj2, 0, (org.telegram.ui.ActionBar.d6) obj);
-                String string = LocaleController.getString(R.string.WalletNetworkFee);
-                org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20609a;
-                b2Var.R = string;
-                b2Var.T = AndroidUtilities.replaceTags(LocaleController.formatSpannable(R.string.WalletNetworkFeeInfo, org.telegram.ui.Wallet.m0.w(i11).l(j10, true)));
-                org.telegram.messenger.g0.p(R.string.WalletOK, alertDialog$Builder, null);
-                return;
-        }
+        throw new UnsupportedOperationException("Method not decompiled: ai.xb.run():void");
     }
 
-    public xb(Object obj, long j10, Object obj2, int i10, int i11) {
-        this.f2457a = i11;
-        this.d = obj;
-        this.f2458b = j10;
-        this.e = obj2;
-        this.f2459c = i10;
+    public xb(SendMessagesHelper sendMessagesHelper, boolean z10, TLRPC.Message message, ArrayList arrayList, boolean z11, ArrayList arrayList2, int i10) {
+        this.e = sendMessagesHelper;
+        this.f2460b = z10;
+        this.f2462f = message;
+        this.h = arrayList;
+        this.f2461c = z11;
+        this.f2463n = arrayList2;
+        this.d = i10;
     }
 
-    public xb(Object obj, Object obj2, int i10, long j10, int i11) {
-        this.f2457a = i11;
-        this.d = obj;
-        this.e = obj2;
-        this.f2459c = i10;
-        this.f2458b = j10;
-    }
-
-    public xb(Object obj, Object obj2, long j10, int i10, int i11) {
-        this.f2457a = i11;
-        this.d = obj;
-        this.e = obj2;
-        this.f2458b = j10;
-        this.f2459c = i10;
-    }
-
-    public xb(MessagesStorage messagesStorage, int i10, long j10, TLObject tLObject, int i11) {
-        this.f2457a = i11;
-        this.d = messagesStorage;
-        this.f2459c = i10;
-        this.f2458b = j10;
-        this.e = tLObject;
+    public xb(si.u0 u0Var, si.w wVar, boolean z10, File file, boolean z11, int i10, si.q0 q0Var) {
+        this.e = u0Var;
+        this.f2462f = wVar;
+        this.f2460b = z10;
+        this.h = file;
+        this.f2461c = z11;
+        this.d = i10;
+        this.f2463n = q0Var;
     }
 }

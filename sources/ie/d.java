@@ -3,14 +3,15 @@ package ie;
 import be.a0;
 import be.y0;
 import ge.v;
+import i2.o1;
 import java.util.concurrent.Executor;
 public final class d extends y0 implements Executor {
-    public static final d f12793c = new a0();
+    public static final d f12825c = new a0();
     public static final a0 d;
 
     static {
-        a0 a0Var = l.f12804c;
-        int i10 = v.f11041a;
+        a0 a0Var = l.f12836c;
+        int i10 = v.f11060a;
         if (64 >= i10) {
             i10 = 64;
         }
@@ -21,13 +22,13 @@ public final class d extends y0 implements Executor {
                 if (j10 >= 1) {
                     a0Var = new ge.i(a0Var, j10);
                 } else {
-                    throw new IllegalArgumentException(i2.e.j(j10, "Expected positive parallelism level, but got ").toString());
+                    throw new IllegalArgumentException(o1.k(j10, "Expected positive parallelism level, but got ").toString());
                 }
             }
             d = a0Var;
             return;
         }
-        throw new IllegalArgumentException(i2.e.j(j10, "Expected positive parallelism level, but got ").toString());
+        throw new IllegalArgumentException(o1.k(j10, "Expected positive parallelism level, but got ").toString());
     }
 
     @Override
@@ -42,7 +43,7 @@ public final class d extends y0 implements Executor {
 
     @Override
     public final void execute(Runnable runnable) {
-        c(kd.i.f15029a, runnable);
+        c(kd.i.f15075a, runnable);
     }
 
     @Override

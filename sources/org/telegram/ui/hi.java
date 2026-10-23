@@ -3,18 +3,18 @@ package org.telegram.ui;
 import android.app.Activity;
 import java.util.ArrayList;
 public final class hi extends org.telegram.ui.Components.aw {
-    public final qn W;
+    public final sn W;
 
-    public hi(qn qnVar, org.telegram.ui.ActionBar.n2 n2Var, Activity activity, org.telegram.ui.ActionBar.d6 d6Var, ArrayList arrayList) {
-        super(n2Var, activity, d6Var, arrayList);
-        this.W = qnVar;
+    public hi(sn snVar, org.telegram.ui.ActionBar.o2 o2Var, Activity activity, org.telegram.ui.ActionBar.g6 g6Var, ArrayList arrayList) {
+        super(o2Var, activity, g6Var, arrayList);
+        this.W = snVar;
     }
 
     @Override
     public final void dismiss() {
         super.dismiss();
-        qn qnVar = this.W;
-        qnVar.getClass();
-        qnVar.j8(false, true, 0.0f);
+        sn snVar = this.W;
+        snVar.getClass();
+        snVar.j8(false, true, 0.0f);
     }
 }

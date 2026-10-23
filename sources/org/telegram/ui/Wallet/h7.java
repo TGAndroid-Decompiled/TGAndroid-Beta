@@ -5,9 +5,9 @@ import android.util.LruCache;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.tl.TL_stars;
 public abstract class h7 {
-    public static final LruCache f34294a = new LruCache(128);
-    public static final float[] f34295b = {0.017513232f, 0.2844959f, 1.2347647f, 0.012535676f, 0.21663007f, 0.8356014f, 0.02682078f, 0.40080056f, 2.4040875f, 0.0032399998f, 0.171f, 0.47039998f};
-    public static final float[] f34296c = {0.0f, 0.47809f, 1.0f};
+    public static final LruCache f34576a = new LruCache(128);
+    public static final float[] f34577b = {0.017513232f, 0.2844959f, 1.2347647f, 0.012535676f, 0.21663007f, 0.8356014f, 0.02682078f, 0.40080056f, 2.4040875f, 0.0032399998f, 0.171f, 0.47039998f};
+    public static final float[] f34578c = {0.0f, 0.47809f, 1.0f};
     public static final LruCache d = new LruCache(64);
     public static final int e;
 
@@ -133,7 +133,7 @@ public abstract class h7 {
 
     public static float[] f(int i10) {
         float radians;
-        double[] s10 = org.telegram.ui.ActionBar.g5.s(org.telegram.ui.ActionBar.g5.t(org.telegram.ui.ActionBar.g5.r(i10)));
+        double[] s10 = org.telegram.ui.ActionBar.k5.s(org.telegram.ui.ActionBar.k5.t(org.telegram.ui.ActionBar.k5.r(i10)));
         float f7 = (float) s10[0];
         float f10 = (float) s10[1];
         if (Double.isNaN(s10[2])) {
@@ -268,7 +268,7 @@ public abstract class h7 {
         float[] fArr;
         float f7;
         String str = i10 + ":" + i11 + ":" + i12;
-        LruCache lruCache = f34294a;
+        LruCache lruCache = f34576a;
         Integer num = (Integer) lruCache.get(str);
         if (num != null) {
             return num.intValue();
@@ -334,7 +334,7 @@ public abstract class h7 {
         } else if (fArr[i11] == 0.0f && fArr[i11 + 1] == 1.0f && fArr[i11 + 2] == 1.0f) {
             return i10;
         } else {
-            double[] s10 = org.telegram.ui.ActionBar.g5.s(org.telegram.ui.ActionBar.g5.t(org.telegram.ui.ActionBar.g5.r(i10)));
+            double[] s10 = org.telegram.ui.ActionBar.k5.s(org.telegram.ui.ActionBar.k5.t(org.telegram.ui.ActionBar.k5.r(i10)));
             double d13 = s10[0];
             double d14 = 0.8d;
             if (d13 < 0.8d) {
@@ -363,11 +363,11 @@ public abstract class h7 {
                 } else {
                     sin = Math.sin((d17 * 3.141592653589793d) / 180.0d) * d16;
                 }
-                double[] j10 = org.telegram.ui.ActionBar.g5.j(org.telegram.ui.ActionBar.g5.d, new double[]{d15, cos, sin});
+                double[] j10 = org.telegram.ui.ActionBar.k5.j(org.telegram.ui.ActionBar.k5.d, new double[]{d15, cos, sin});
                 for (int i17 = 0; i17 < 3; i17++) {
                     j10[i17] = Math.pow(j10[i17], 3.0d);
                 }
-                dArr = org.telegram.ui.ActionBar.g5.j(org.telegram.ui.ActionBar.g5.f20883f, org.telegram.ui.ActionBar.g5.j(org.telegram.ui.ActionBar.g5.f20881b, j10));
+                dArr = org.telegram.ui.ActionBar.k5.j(org.telegram.ui.ActionBar.k5.f21116f, org.telegram.ui.ActionBar.k5.j(org.telegram.ui.ActionBar.k5.f21114b, j10));
                 double d18 = dArr[0];
                 if (d18 >= 0.0d) {
                     double d19 = dArr[1];

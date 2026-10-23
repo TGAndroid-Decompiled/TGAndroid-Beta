@@ -1,112 +1,209 @@
 package org.telegram.ui;
 
-import android.content.Context;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
-import java.util.ArrayList;
+import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.TLRPC;
-public final class ve1 extends pg.b {
-    public final xe1 d;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class ve1 extends AnimatorListenerAdapter {
+    public final int f42753a;
+    public final Object f42754b;
 
-    public ve1(xe1 xe1Var) {
-        this.d = xe1Var;
+    public ve1(Object obj, int i10) {
+        this.f42753a = i10;
+        this.f42754b = obj;
     }
 
     @Override
-    public final boolean D(s4.b1 b1Var) {
-        int i10 = b1Var.f45924f;
-        if (i10 == 1 || i10 == 2 || i10 == 4) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final int h() {
-        return this.d.d.size();
-    }
-
-    @Override
-    public final int j(int i10) {
-        return ((we1) this.d.d.get(i10)).f44300a;
-    }
-
-    @Override
-    public final void v(s4.b1 b1Var, int i10) {
-        xe1 xe1Var = this.d;
-        ArrayList arrayList = xe1Var.d;
-        if (((we1) arrayList.get(i10)).f44300a == 2) {
-            org.telegram.ui.Cells.oa oaVar = (org.telegram.ui.Cells.oa) b1Var.f45921a;
-            long j10 = xe1Var.f43208c;
-            TLRPC.TL_forumTopic tL_forumTopic = ((we1) arrayList.get(i10)).f42553c;
-            org.telegram.ui.Components.w9 w9Var = oaVar.f22744b;
-            boolean z10 = false;
-            og.d.p(w9Var, tL_forumTopic, false, false, null);
-            if (w9Var != null && w9Var.getImageReceiver() != null && (w9Var.getImageReceiver().getDrawable() instanceof og.c)) {
-                ((og.c) w9Var.getImageReceiver().getDrawable()).a(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20978c9, false));
-            }
-            oaVar.f22745c.setText(tL_forumTopic.title);
-            oaVar.d.setText(MessagesController.getInstance(UserConfig.selectedAccount).getMutedString(j10, tL_forumTopic.f20332id));
-            if (i10 == arrayList.size() - 1 || ((we1) arrayList.get(i10 + 1)).f44300a == 2) {
-                z10 = true;
-            }
-            oaVar.f22743a = z10;
-        }
-    }
-
-    @Override
-    public final s4.b1 x(ViewGroup viewGroup, int i10) {
-        org.telegram.ui.Cells.q8 q8Var;
-        View view = null;
-        if (i10 != 1) {
-            if (i10 != 2) {
-                if (i10 != 3) {
-                    if (i10 == 4) {
-                        org.telegram.ui.Cells.q8 q8Var2 = new org.telegram.ui.Cells.q8(viewGroup.getContext());
-                        q8Var2.i(LocaleController.getString(R.string.NotificationsDeleteAllException), false);
-                        q8Var2.e(-1, org.telegram.ui.ActionBar.h6.f21215p7);
-                        q8Var2.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20994d6, false));
-                        q8Var = q8Var2;
-                    }
-                    return com.google.android.gms.internal.play_billing.k3.l(view, view, -1, -2);
+    public final void onAnimationEnd(Animator animator) {
+        int i10;
+        int i11;
+        int i12 = this.f42753a;
+        int i13 = 4;
+        float f7 = 1.0f;
+        Object obj = this.f42754b;
+        switch (i12) {
+            case 0:
+                super.onAnimationEnd(animator);
+                ((we1) obj).setScrollEnabled(true);
+                return;
+            case 1:
+                ag1 ag1Var = (ag1) obj;
+                if (animator.equals(ag1Var.d.K)) {
+                    ag1Var.d.K = null;
+                    return;
                 }
-                q8Var = new org.telegram.ui.Cells.z6(viewGroup.getContext(), (org.telegram.ui.Cells.c1) null);
-            } else {
-                Context context = viewGroup.getContext();
-                ?? frameLayout = new FrameLayout(context);
-                org.telegram.ui.Components.w9 w9Var = new org.telegram.ui.Components.w9(context);
-                frameLayout.f22744b = w9Var;
-                frameLayout.addView(w9Var, w7.z5.d(30, 30.0f, 16, 20.0f, 0.0f, 0.0f, 0.0f));
-                TextView textView = new TextView(context);
-                frameLayout.f22745c = textView;
-                textView.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.G6, false));
-                textView.setTextSize(1, 16.0f);
-                textView.setTypeface(AndroidUtilities.bold());
-                textView.setMaxLines(1);
-                frameLayout.addView(textView, w7.z5.d(-1, -2.0f, 0, 72.0f, 8.0f, 12.0f, 0.0f));
-                TextView textView2 = new TextView(context);
-                frameLayout.d = textView2;
-                textView2.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21382y6, false));
-                textView2.setTextSize(1, 14.0f);
-                frameLayout.addView(textView2, w7.z5.d(-1, -2.0f, 0, 72.0f, 32.0f, 12.0f, 0.0f));
-                frameLayout.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20994d6, false));
-                q8Var = frameLayout;
-            }
-        } else {
-            org.telegram.ui.Cells.q8 q8Var3 = new org.telegram.ui.Cells.q8(viewGroup.getContext());
-            q8Var3.m(R.drawable.msg_contact_add, LocaleController.getString(R.string.NotificationsAddAnException), true);
-            q8Var3.e(org.telegram.ui.ActionBar.h6.f21327v6, org.telegram.ui.ActionBar.h6.f21310u6);
-            q8Var3.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20994d6, false));
-            q8Var = q8Var3;
+                return;
+            case 2:
+                rg1 rg1Var = (rg1) obj;
+                rg1Var.d = null;
+                rg1Var.f41134a = null;
+                rg1Var.f41135b = false;
+                rg1Var.f41137f.f34259c.setAllowDrawCursor(true);
+                return;
+            case 3:
+                ((org.telegram.ui.Wallet.f3) obj).K = null;
+                return;
+            case 4:
+                ((org.telegram.ui.Wallet.m3) obj).f();
+                return;
+            case 5:
+                org.telegram.ui.Wallet.o5 o5Var = (org.telegram.ui.Wallet.o5) obj;
+                if (o5Var.I0 == animator) {
+                    o5Var.I0 = null;
+                    return;
+                }
+                return;
+            case 6:
+                org.telegram.ui.Wallet.m5 m5Var = (org.telegram.ui.Wallet.m5) obj;
+                m5Var.h = false;
+                m5Var.f34856n = null;
+                m5Var.f34853b.setLayerType(0, null);
+                return;
+            case 7:
+                org.telegram.ui.Wallet.s5 s5Var = (org.telegram.ui.Wallet.s5) obj;
+                s5Var.N = 0.0f;
+                s5Var.O = 0.0f;
+                s5Var.f35132b0 = null;
+                return;
+            case 8:
+                org.telegram.ui.Wallet.m6 m6Var = (org.telegram.ui.Wallet.m6) obj;
+                m6Var.I = null;
+                m6Var.f34869i0 = 1.0f;
+                m6Var.f34868h0 = 0.0f;
+                m6Var.f34867g0 = 0.0f;
+                m6Var.e();
+                return;
+            case 9:
+                org.telegram.ui.Wallet.o8 o8Var = (org.telegram.ui.Wallet.o8) obj;
+                EditTextBoldCursor editTextBoldCursor = o8Var.f34969b;
+                if (o8Var.f34974s == animator) {
+                    o8Var.f34974s = null;
+                    View view = o8Var.f34968a;
+                    if (o8Var.f34976x) {
+                        i10 = 4;
+                    } else {
+                        i10 = 0;
+                    }
+                    view.setVisibility(i10);
+                    if (o8Var.f34976x) {
+                        i13 = 0;
+                    }
+                    editTextBoldCursor.setVisibility(i13);
+                    if (o8Var.f34976x && !o8Var.f34977y) {
+                        editTextBoldCursor.requestFocus();
+                        AndroidUtilities.showKeyboard(editTextBoldCursor);
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 10:
+                org.telegram.ui.Wallet.i9 i9Var = (org.telegram.ui.Wallet.i9) obj;
+                i9Var.f34613n = null;
+                org.telegram.ui.Wallet.m6 m6Var2 = i9Var.d;
+                if (i9Var.f34616w) {
+                    i11 = 4;
+                } else {
+                    i11 = 0;
+                }
+                m6Var2.setVisibility(i11);
+                TextView textView = i9Var.f34612f;
+                if (i9Var.f34617x) {
+                    i13 = 0;
+                }
+                textView.setVisibility(i13);
+                return;
+            case 11:
+                org.telegram.ui.Components.lg0 lg0Var = (org.telegram.ui.Components.lg0) obj;
+                ((ki1) lg0Var.f28361b).getClass();
+                ((ki1) lg0Var.f28361b).f38958c.setVisibility(4);
+                return;
+            case 12:
+                ((org.telegram.ui.web.b1) obj).f43066s.setVisibility(8);
+                return;
+            case 13:
+                qg.e0 e0Var = (qg.e0) obj;
+                e0Var.f44912a.getPainting().c(null, e0Var.f44912a.getCurrentColor(), true, null);
+                e0Var.f44926r = null;
+                return;
+            case 14:
+                super.onAnimationEnd(animator);
+                rg.l0 l0Var = (rg.l0) obj;
+                ImageView imageView = l0Var.f45858c;
+                l0Var.f45858c = l0Var.d;
+                l0Var.d = imageView;
+                imageView.bringToFront();
+                l0Var.d.setVisibility(8);
+                l0Var.h = null;
+                return;
+            case 15:
+                rg.s1 s1Var = (rg.s1) obj;
+                if (animator == s1Var.f46071r) {
+                    s1Var.f46069f = s1Var.h;
+                    s1Var.h = -1;
+                    s1Var.f46071r = null;
+                    return;
+                }
+                return;
+            case 16:
+                sg.p0 p0Var = (sg.p0) obj;
+                if (!p0Var.f46805r) {
+                    f7 = 0.0f;
+                }
+                p0Var.f46806s = f7;
+                p0Var.e();
+                return;
+            case 17:
+                sg.a2 a2Var = (sg.a2) ((ei.c0) obj).f8814b;
+                a2Var.F = true;
+                a2Var.invalidate();
+                return;
+            case 18:
+                int i14 = tg.f.K;
+                ((tg.f) ((tg.e) obj).f47499b).d();
+                return;
+            case 19:
+                tg.f fVar = (tg.f) obj;
+                fVar.d = null;
+                fVar.e();
+                return;
+            case 20:
+                super.onAnimationEnd(animator);
+                tg.n nVar = ((tg.i) obj).f47535b;
+                nVar.f47547b.d = 0.0f;
+                nVar.f47551d0 = null;
+                nVar.j(nVar.L);
+                return;
+            case 21:
+                ug.b bVar = (ug.b) obj;
+                bVar.f48096b = 1.0f;
+                bVar.invalidate();
+                return;
+            case 22:
+                wh.g gVar = (wh.g) obj;
+                Iterator it = gVar.h.iterator();
+                while (it.hasNext()) {
+                    wh.c cVar = (wh.c) it.next();
+                    if (gVar.f49500c.size() < gVar.d) {
+                        gVar.f49500c.push(cVar);
+                    }
+                    it.remove();
+                }
+                Runnable runnable = gVar.f49511q;
+                if (runnable != null) {
+                    runnable.run();
+                    gVar.f49511q = null;
+                }
+                gVar.f49512r = null;
+                gVar.invalidateSelf();
+                return;
+            default:
+                ((yh.g0) obj).f50701b.f50755w.setVisibility(8);
+                return;
         }
-        view = q8Var;
-        return com.google.android.gms.internal.play_billing.k3.l(view, view, -1, -2);
     }
 }

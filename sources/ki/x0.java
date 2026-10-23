@@ -7,105 +7,108 @@ import android.graphics.RectF;
 import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
+import java.util.HashSet;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Cells.m9;
+import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.Cells.n9;
-public final class x0 extends a0 implements org.telegram.ui.ActionBar.y5, m9 {
-    public final org.telegram.ui.ActionBar.d6 f15637n;
-    public final Paint f15638r;
-    public final Paint f15639s;
+import org.telegram.ui.Cells.o9;
+public final class x0 extends a0 implements org.telegram.ui.ActionBar.b6, n9 {
+    public final org.telegram.ui.ActionBar.g6 f15698n;
+    public final Paint f15699r;
+    public final Paint f15700s;
     public s2 v;
-    public boolean f15640w;
+    public boolean f15701w;
 
-    public x0(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
+    public x0(Context context, org.telegram.ui.ActionBar.g6 g6Var) {
         super(context);
-        this.f15638r = new Paint(1);
-        this.f15639s = new Paint(1);
-        this.f15637n = d6Var;
+        this.f15699r = new Paint(1);
+        this.f15700s = new Paint(1);
+        this.f15698n = g6Var;
         setWillNotDraw(false);
-        d();
+        updateColors();
     }
 
     @Override
-    public final void d() {
-        int i10 = h6.vk;
-        org.telegram.ui.ActionBar.d6 d6Var = this.f15637n;
-        this.f15638r.setColor(h6.w0(i10, d6Var));
-        this.f15639s.setColor(h6.w0(h6.f21318uf, d6Var));
+    public final void addColorKeys(HashSet hashSet) {
+        hashSet.add(Integer.valueOf(k6.vk));
+        hashSet.add(Integer.valueOf(k6.f21507uf));
     }
 
     @Override
-    public final void f(int i10) {
+    public final void e(int i10) {
         invalidate();
     }
 
     @Override
     public final void fillTextLayoutBlocks(ArrayList arrayList) {
         int i10;
-        if (this.f15640w) {
+        if (this.f15701w) {
             i10 = 0;
         } else {
-            i10 = this.f15113c;
+            i10 = this.f15159c;
         }
-        int h = (h() - i10) / 4;
-        arrayList.add(w7.j.a((i10 + h) - AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f) + (h() - h), AndroidUtilities.dp(12.0f)));
+        int g10 = (g() - i10) / 4;
+        arrayList.add(w7.j.a((i10 + g10) - AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f) + (g() - g10), AndroidUtilities.dp(12.0f)));
     }
 
-    public int[] getColorKeys() {
-        return null;
-    }
-
-    public a getRow() {
-        return this.f15111a;
-    }
-
-    public final int h() {
+    public final int g() {
         int i10;
         int measuredWidth = getMeasuredWidth();
-        if (this.f15640w) {
-            i10 = this.f15113c;
+        if (this.f15701w) {
+            i10 = this.f15159c;
         } else {
             i10 = 0;
         }
         return measuredWidth - i10;
     }
 
+    public a getRow() {
+        return this.f15157a;
+    }
+
     @Override
     public final void onDraw(Canvas canvas) {
         int i10;
         Canvas canvas2;
-        n9 textSelectionHelper;
-        if (this.f15640w) {
+        o9 textSelectionHelper;
+        if (this.f15701w) {
             i10 = 0;
         } else {
-            i10 = this.f15113c;
+            i10 = this.f15159c;
         }
-        int h = (h() - i10) / 4;
-        int i11 = i10 + h;
-        int h10 = h() - h;
+        int g10 = (g() - i10) / 4;
+        int i11 = i10 + g10;
+        int g11 = g() - g10;
         s2 s2Var = this.v;
-        if (s2Var != null && (textSelectionHelper = s2Var.f15500a.getTextSelectionHelper()) != null && textSelectionHelper.x() && (getParent() instanceof RecyclerView)) {
+        if (s2Var != null && (textSelectionHelper = s2Var.f15560a.getTextSelectionHelper()) != null && textSelectionHelper.x() && (getParent() instanceof RecyclerView)) {
             ((RecyclerView) getParent()).getClass();
             int R = RecyclerView.R(this);
-            if (R >= 0 && R >= textSelectionHelper.f22661p0 && R <= textSelectionHelper.f22664s0) {
+            if (R >= 0 && R >= textSelectionHelper.f22861p0 && R <= textSelectionHelper.f22864s0) {
                 canvas2 = canvas;
-                canvas2.drawRoundRect(i11 - AndroidUtilities.dp(12.0f), 0.0f, AndroidUtilities.dp(12.0f) + h10, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), this.f15639s);
+                canvas2.drawRoundRect(i11 - AndroidUtilities.dp(12.0f), 0.0f, AndroidUtilities.dp(12.0f) + g11, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), this.f15700s);
                 float dp = (AndroidUtilities.dp(12.0f) - AndroidUtilities.dp(1.0f)) / 2.0f;
                 RectF rectF = AndroidUtilities.rectTmp;
-                rectF.set(i11, dp, h10, AndroidUtilities.dp(1.0f) + dp);
-                canvas2.drawRoundRect(rectF, AndroidUtilities.dp(0.5f), AndroidUtilities.dp(0.5f), this.f15638r);
+                rectF.set(i11, dp, g11, AndroidUtilities.dp(1.0f) + dp);
+                canvas2.drawRoundRect(rectF, AndroidUtilities.dp(0.5f), AndroidUtilities.dp(0.5f), this.f15699r);
             }
         }
         canvas2 = canvas;
         float dp2 = (AndroidUtilities.dp(12.0f) - AndroidUtilities.dp(1.0f)) / 2.0f;
         RectF rectF2 = AndroidUtilities.rectTmp;
-        rectF2.set(i11, dp2, h10, AndroidUtilities.dp(1.0f) + dp2);
-        canvas2.drawRoundRect(rectF2, AndroidUtilities.dp(0.5f), AndroidUtilities.dp(0.5f), this.f15638r);
+        rectF2.set(i11, dp2, g11, AndroidUtilities.dp(1.0f) + dp2);
+        canvas2.drawRoundRect(rectF2, AndroidUtilities.dp(0.5f), AndroidUtilities.dp(0.5f), this.f15699r);
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
         setMeasuredDimension(View.MeasureSpec.getSize(i10), AndroidUtilities.dp(12.0f));
+    }
+
+    @Override
+    public final void updateColors() {
+        int i10 = k6.vk;
+        org.telegram.ui.ActionBar.g6 g6Var = this.f15698n;
+        this.f15699r.setColor(k6.w0(i10, g6Var));
+        this.f15700s.setColor(k6.w0(k6.f21507uf, g6Var));
     }
 }

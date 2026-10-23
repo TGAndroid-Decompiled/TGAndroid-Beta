@@ -2,24 +2,24 @@ package z9;
 
 import android.os.Build;
 public final class d1 {
-    public final int f51353a;
-    public final int f51354b;
-    public final long f51355c;
+    public final int f51814a;
+    public final int f51815b;
+    public final long f51816c;
     public final long d;
     public final boolean e;
-    public final int f51356f;
+    public final int f51817f;
 
     public d1(int i10, int i11, int i12, long j10, long j11, boolean z10) {
         String str = Build.MODEL;
         String str2 = Build.MANUFACTURER;
         String str3 = Build.PRODUCT;
-        this.f51353a = i10;
+        this.f51814a = i10;
         if (str != null) {
-            this.f51354b = i11;
-            this.f51355c = j10;
+            this.f51815b = i11;
+            this.f51816c = j10;
             this.d = j11;
             this.e = z10;
-            this.f51356f = i12;
+            this.f51817f = i12;
             if (str2 != null) {
                 if (str3 != null) {
                     return;
@@ -35,9 +35,9 @@ public final class d1 {
         if (obj != this) {
             if (obj instanceof d1) {
                 d1 d1Var = (d1) obj;
-                if (this.f51353a == d1Var.f51353a) {
+                if (this.f51814a == d1Var.f51814a) {
                     String str = Build.MODEL;
-                    if (str.equals(str) && this.f51354b == d1Var.f51354b && this.f51355c == d1Var.f51355c && this.d == d1Var.d && this.e == d1Var.e && this.f51356f == d1Var.f51356f) {
+                    if (str.equals(str) && this.f51815b == d1Var.f51815b && this.f51816c == d1Var.f51816c && this.d == d1Var.d && this.e == d1Var.e && this.f51817f == d1Var.f51817f) {
                         String str2 = Build.MANUFACTURER;
                         if (str2.equals(str2)) {
                             String str3 = Build.PRODUCT;
@@ -59,32 +59,32 @@ public final class d1 {
 
     public final int hashCode() {
         int i10;
-        long j10 = this.f51355c;
+        long j10 = this.f51816c;
         long j11 = this.d;
-        int hashCode = (((((((((this.f51353a ^ 1000003) * 1000003) ^ Build.MODEL.hashCode()) * 1000003) ^ this.f51354b) * 1000003) ^ ((int) (j10 ^ (j10 >>> 32)))) * 1000003) ^ ((int) (j11 ^ (j11 >>> 32)))) * 1000003;
+        int hashCode = (((((((((this.f51814a ^ 1000003) * 1000003) ^ Build.MODEL.hashCode()) * 1000003) ^ this.f51815b) * 1000003) ^ ((int) (j10 ^ (j10 >>> 32)))) * 1000003) ^ ((int) (j11 ^ (j11 >>> 32)))) * 1000003;
         if (this.e) {
             i10 = 1231;
         } else {
             i10 = 1237;
         }
-        return ((((((hashCode ^ i10) * 1000003) ^ this.f51356f) * 1000003) ^ Build.MANUFACTURER.hashCode()) * 1000003) ^ Build.PRODUCT.hashCode();
+        return ((((((hashCode ^ i10) * 1000003) ^ this.f51817f) * 1000003) ^ Build.MANUFACTURER.hashCode()) * 1000003) ^ Build.PRODUCT.hashCode();
     }
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("DeviceData{arch=");
-        sb2.append(this.f51353a);
+        sb2.append(this.f51814a);
         sb2.append(", model=");
         sb2.append(Build.MODEL);
         sb2.append(", availableProcessors=");
-        sb2.append(this.f51354b);
+        sb2.append(this.f51815b);
         sb2.append(", totalRam=");
-        sb2.append(this.f51355c);
+        sb2.append(this.f51816c);
         sb2.append(", diskSpace=");
         sb2.append(this.d);
         sb2.append(", isEmulator=");
         sb2.append(this.e);
         sb2.append(", state=");
-        sb2.append(this.f51356f);
+        sb2.append(this.f51817f);
         sb2.append(", manufacturer=");
         sb2.append(Build.MANUFACTURER);
         sb2.append(", modelClass=");

@@ -1,43 +1,29 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-public final class w30 extends TextView {
-    public final RectF f42461a;
-    public final Paint f42462b;
+import java.util.concurrent.CountDownLatch;
+import org.telegram.messenger.voip.VoIPService;
+public final class w30 implements org.telegram.ui.ActionBar.a3 {
+    public final u50 f42918a;
 
-    public w30(LaunchActivity launchActivity) {
-        super(launchActivity);
-        this.f42461a = new RectF();
-        Paint paint = new Paint(1);
-        this.f42462b = paint;
-        paint.setStyle(Paint.Style.FILL);
-        paint.setColor(-16711936);
+    public w30(u50 u50Var) {
+        this.f42918a = u50Var;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        RectF rectF = this.f42461a;
-        rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), this.f42462b);
-        super.dispatchDraw(canvas);
+    public final boolean g() {
+        return true;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        Paint paint = this.f42462b;
-        paint.setColor(-16711936);
-        RectF rectF = this.f42461a;
-        rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), paint);
-        super.onDraw(canvas);
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
+    public final void onOpenAnimationEnd() {
+        CountDownLatch groupCallBottomSheetLatch;
+        VoIPService sharedInstance = VoIPService.getSharedInstance();
+        if (sharedInstance != null && (groupCallBottomSheetLatch = sharedInstance.getGroupCallBottomSheetLatch()) != null) {
+            groupCallBottomSheetLatch.countDown();
+        }
+        u50 u50Var = this.f42918a;
+        if (u50Var.F1 == 6) {
+            u50.B0(u50Var);
+        }
     }
 }

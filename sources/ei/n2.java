@@ -9,47 +9,49 @@ import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-public class n2 extends org.telegram.ui.ActionBar.f3 implements NotificationCenter.NotificationCenterDelegate {
-    public static int G = 1;
-    public ig.g E;
-    public Utilities.CallbackReturn F;
-    public String f9499b;
-    public int f9500c;
+public class n2 extends org.telegram.ui.ActionBar.h3 implements NotificationCenter.NotificationCenterDelegate {
+    public static int H = 1;
+    public Utilities.Callback3Return E;
+    public ig.g F;
+    public Utilities.CallbackReturn G;
+    public String f9510b;
+    public int f9511c;
     public final f1 d;
     public final g1 e;
-    public final h1 f9501f;
+    public final h1 f9512f;
     public final m2 h;
-    public float f9502n;
-    public final boolean f9503r;
-    public final boolean f9504s;
+    public float f9513n;
+    public final boolean f9514r;
+    public final boolean f9515s;
     public boolean v;
-    public ai.q f9505w;
-    public float f9506x;
-    public Utilities.Callback3Return f9507y;
+    public int f9516w;
+    public ai.q f9517x;
+    public float f9518y;
 
-    public n2(Context context, org.telegram.ui.ActionBar.d6 d6Var, boolean z10, boolean z11) {
-        super(1, context, d6Var, true);
+    public n2(Context context, org.telegram.ui.ActionBar.g6 g6Var, boolean z10, boolean z11) {
+        super(1, context, g6Var, true);
         int i10;
-        this.f9499b = null;
-        this.f9500c = -1;
+        this.f9510b = null;
+        this.f9511c = -1;
         this.d = new TLRPC.Document();
         this.e = new TLRPC.Document();
-        this.f9502n = -1.0f;
-        this.f9503r = z10;
-        this.f9504s = z11;
+        this.f9513n = -1.0f;
+        this.f9514r = z10;
+        this.f9515s = z11;
         this.useSmoothKeyboard = true;
-        fixNavigationBar(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21065h5, d6Var));
+        fixNavigationBar(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f21254h5, g6Var));
+        this.f9516w = this.navBarColor;
         this.occupyNavigationBar = true;
         setUseLightStatusBar(false);
         this.containerView = new j1(this, context);
         h1 h1Var = new h1(this, context, 0);
-        this.f9501f = h1Var;
+        this.f9512f = h1Var;
         if (z10) {
             i10 = 0;
         } else {
-            i10 = G;
+            i10 = H;
         }
-        h1Var.f25866b = i10;
+        h1Var.f28307b = i10;
         h1Var.setAdapter(new i1(this, z10, context));
         this.containerView.addView(h1Var, w7.z5.e(-1, -1, 87));
         new b4(this.containerView, false, new d1(this, 0));
@@ -57,7 +59,7 @@ public class n2 extends org.telegram.ui.ActionBar.f3 implements NotificationCent
             m2 m2Var = new m2(context);
             this.h = m2Var;
             m2Var.G = new d1(this, 1);
-            m2Var.F = h1Var.f25866b;
+            m2Var.F = h1Var.f28307b;
             m2Var.invalidate();
             this.containerView.addView(m2Var, w7.z5.e(-1, -2, 87));
         }
@@ -75,27 +77,23 @@ public class n2 extends org.telegram.ui.ActionBar.f3 implements NotificationCent
         MediaDataController.getInstance(this.currentAccount).loadRecents(7, false, true, false);
     }
 
+    public static int D(n2 n2Var) {
+        return n2Var.currentAccount;
+    }
+
     public static int E(n2 n2Var) {
         return n2Var.currentAccount;
     }
 
-    public static int F(n2 n2Var) {
+    public static int G(n2 n2Var) {
         return n2Var.currentAccount;
     }
 
-    public static int I(n2 n2Var) {
-        return n2Var.currentAccount;
-    }
-
-    public static org.telegram.ui.ActionBar.d6 J(n2 n2Var) {
+    public static org.telegram.ui.ActionBar.g6 I(n2 n2Var) {
         return n2Var.resourcesProvider;
     }
 
-    public static int U(n2 n2Var) {
-        return n2Var.currentAccount;
-    }
-
-    public static int W(n2 n2Var) {
+    public static int V(n2 n2Var) {
         return n2Var.currentAccount;
     }
 
@@ -103,11 +101,15 @@ public class n2 extends org.telegram.ui.ActionBar.f3 implements NotificationCent
         return n2Var.currentAccount;
     }
 
-    public static ViewGroup c0(n2 n2Var) {
+    public static int Y(n2 n2Var) {
+        return n2Var.currentAccount;
+    }
+
+    public static ViewGroup d0(n2 n2Var) {
         return n2Var.containerView;
     }
 
-    public static void n(n2 n2Var) {
+    public static void m(n2 n2Var) {
         boolean z10 = n2Var.v;
         boolean z11 = n2Var.keyboardVisible;
         if (z10 != z11) {
@@ -117,15 +119,15 @@ public class n2 extends org.telegram.ui.ActionBar.f3 implements NotificationCent
             if (n2Var.keyboardVisible) {
                 int i10 = AndroidUtilities.displaySize.y;
                 int i11 = n2Var.keyboardHeight;
-                f7 = Math.min(0.0f, Math.max(((i10 - i11) * 0.3f) - n2Var.f9506x, (-i11) / 3.0f));
+                f7 = Math.min(0.0f, Math.max(((i10 - i11) * 0.3f) - n2Var.f9518y, (-i11) / 3.0f));
             }
-            n2Var.container.animate().translationY(f7).setDuration(250L).setInterpolator(org.telegram.ui.ActionBar.o1.f21636w).start();
+            n2Var.container.animate().translationY(f7).setDuration(250L).setInterpolator(org.telegram.ui.ActionBar.o1.f21717w).start();
         }
     }
 
     @Override
     public final boolean canDismissWithSwipe() {
-        if (this.f9501f.getTranslationY() >= ((int) this.f9502n)) {
+        if (this.f9512f.getTranslationY() >= ((int) this.f9513n)) {
             return true;
         }
         return false;
@@ -135,11 +137,11 @@ public class n2 extends org.telegram.ui.ActionBar.f3 implements NotificationCent
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         View[] viewPages;
         if (i10 == NotificationCenter.stickersDidLoad || i10 == NotificationCenter.groupStickersDidLoad) {
-            for (View view : this.f9501f.getViewPages()) {
+            for (View view : this.f9512f.getViewPages()) {
                 if (view instanceof b2) {
                     b2 b2Var = (b2) view;
-                    if (i10 == NotificationCenter.groupStickersDidLoad || ((b2Var.f10036a == 0 && ((Integer) objArr[0]).intValue() == 5) || (b2Var.f10036a == 1 && ((Integer) objArr[0]).intValue() == 0))) {
-                        a2 a2Var = b2Var.f8770c;
+                    if (i10 == NotificationCenter.groupStickersDidLoad || ((b2Var.f10053a == 0 && ((Integer) objArr[0]).intValue() == 5) || (b2Var.f10053a == 1 && ((Integer) objArr[0]).intValue() == 0))) {
+                        a2 a2Var = b2Var.f8779c;
                         if (a2Var.H == null) {
                             a2Var.D(null);
                         }
@@ -153,7 +155,7 @@ public class n2 extends org.telegram.ui.ActionBar.f3 implements NotificationCent
     public final void dismiss() {
         NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.stickersDidLoad);
         NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.groupStickersDidLoad);
-        p0();
+        q0();
         super.dismiss();
         FileLog.disableGson(false);
     }
@@ -163,52 +165,67 @@ public class n2 extends org.telegram.ui.ActionBar.f3 implements NotificationCent
         if (this.containerView.getMeasuredHeight() <= 0) {
             return AndroidUtilities.displaySize.y;
         }
-        return (int) (this.containerView.getMeasuredHeight() - this.f9501f.getY());
-    }
-
-    public boolean m0(Integer num) {
-        return true;
+        return (int) (this.containerView.getMeasuredHeight() - this.f9512f.getY());
     }
 
     public boolean n0(Integer num) {
         return true;
     }
 
-    public boolean o0(Runnable runnable) {
+    public boolean o0(Integer num) {
         return true;
     }
 
-    public final void p0() {
+    @Override
+    public final void onThemeColorsChanged() {
+        int w02;
+        super.onThemeColorsChanged();
+        try {
+            if (this.navBarColorKey < 0 && this.navBarColor == this.f9516w && (w02 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f21254h5, this.resourcesProvider)) != this.navBarColor) {
+                this.navBarColor = w02;
+                this.f9516w = w02;
+                setOverlayNavBarColor(w02);
+            }
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
+    }
+
+    public boolean p0(Runnable runnable) {
+        return true;
+    }
+
+    public final void q0() {
         View[] viewPages;
         h2 h2Var;
         this.keyboardVisible = false;
-        this.container.animate().translationY(0.0f).setDuration(250L).setInterpolator(org.telegram.ui.ActionBar.o1.f21636w).start();
-        for (View view : this.f9501f.getViewPages()) {
+        this.container.animate().translationY(0.0f).setDuration(250L).setInterpolator(org.telegram.ui.ActionBar.o1.f21717w).start();
+        for (View view : this.f9512f.getViewPages()) {
             if (view instanceof b2) {
-                h2 h2Var2 = ((b2) view).f8771f;
+                h2 h2Var2 = ((b2) view).f8780f;
                 if (h2Var2 != null) {
-                    AndroidUtilities.hideKeyboard(h2Var2.d);
+                    AndroidUtilities.hideKeyboard(h2Var2.e);
                 }
             } else if ((view instanceof v1) && (h2Var = ((v1) view).d) != null) {
-                AndroidUtilities.hideKeyboard(h2Var.d);
+                AndroidUtilities.hideKeyboard(h2Var.e);
             }
         }
     }
 
-    public final void q0(int i10) {
-        if (m0(Integer.valueOf(i10))) {
-            if ((i10 != 1 || o0(new ah.g(this, i10, 7))) && ((Boolean) this.F.run(Integer.valueOf(i10))).booleanValue()) {
+    public final void r0(int i10) {
+        if (n0(Integer.valueOf(i10))) {
+            if ((i10 != 1 || p0(new ah.g(this, i10, 7))) && ((Boolean) this.G.run(Integer.valueOf(i10))).booleanValue()) {
                 dismiss();
             }
         }
     }
 
-    public final void r0(Utilities.CallbackReturn callbackReturn) {
+    public final void s0(Utilities.CallbackReturn callbackReturn) {
         View[] viewPages;
-        this.F = callbackReturn;
-        for (View view : this.f9501f.getViewPages()) {
+        this.G = callbackReturn;
+        for (View view : this.f9512f.getViewPages()) {
             if (view instanceof b2) {
-                a2 a2Var = ((b2) view).f8770c;
+                a2 a2Var = ((b2) view).f8779c;
                 if (a2Var.H == null) {
                     a2Var.D(null);
                 }

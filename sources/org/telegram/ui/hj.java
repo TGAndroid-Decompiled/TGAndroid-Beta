@@ -3,21 +3,21 @@ package org.telegram.ui;
 import android.content.Context;
 import org.telegram.tgnet.TLRPC;
 public final class hj extends org.telegram.ui.Components.oo {
-    public final qn f37682v0;
+    public final sn f37872z0;
 
-    public hj(qn qnVar, Context context, qn qnVar2, boolean z10, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context, qnVar2, z10, d6Var);
-        this.f37682v0 = qnVar;
+    public hj(sn snVar, Context context, sn snVar2, boolean z10, org.telegram.ui.ActionBar.g6 g6Var) {
+        super(context, snVar2, z10, g6Var);
+        this.f37872z0 = snVar;
     }
 
     @Override
     public final boolean a() {
         boolean z10;
-        qn qnVar = this.f37682v0;
-        if (!qnVar.Pa && !qnVar.isInPreviewMode()) {
-            z10 = ((org.telegram.ui.ActionBar.n2) qnVar).inBubbleMode;
-            if (!z10 && qnVar.f40728j0 != null && !qnVar.f40843s3) {
-                if (!qnVar.K9() || qnVar.f40709h4) {
+        sn snVar = this.f37872z0;
+        if (!snVar.f41472bb && !snVar.isInPreviewMode()) {
+            z10 = ((org.telegram.ui.ActionBar.o2) snVar).inBubbleMode;
+            if (!z10 && snVar.f41560j0 != null && !snVar.E3) {
+                if (!snVar.K9() || snVar.f41689t4) {
                     return true;
                 }
                 return false;
@@ -29,15 +29,15 @@ public final class hj extends org.telegram.ui.Components.oo {
 
     @Override
     public final boolean d() {
-        qn qnVar = this.f37682v0;
-        TLRPC.User user = qnVar.f40680f;
+        sn snVar = this.f37872z0;
+        TLRPC.User user = snVar.f41512f;
         if (user != null && user.linked_community_id != 0) {
-            qnVar.showDialog(new hi.k0(qnVar, qnVar.f40680f.linked_community_id, null, null));
+            snVar.showDialog(new hi.k0(snVar, snVar.f41512f.linked_community_id, null, null));
             return true;
         }
-        TLRPC.Chat chat = qnVar.e;
+        TLRPC.Chat chat = snVar.e;
         if (chat != null && chat.linked_community_id != 0) {
-            qnVar.showDialog(new hi.k0(qnVar, qnVar.e.linked_community_id, null, null));
+            snVar.showDialog(new hi.k0(snVar, snVar.e.linked_community_id, null, null));
             return true;
         }
         return false;
@@ -46,18 +46,18 @@ public final class hj extends org.telegram.ui.Components.oo {
     @Override
     public final void f() {
         String str;
-        qn qnVar = this.f37682v0;
-        if (qnVar.J9()) {
+        sn snVar = this.f37872z0;
+        if (snVar.J9()) {
             str = "";
         } else {
             str = null;
         }
-        qnVar.qa(str);
+        snVar.qa(str);
     }
 
     @Override
-    public final boolean o() {
-        if (this.f37682v0.R3 == 3) {
+    public final boolean p() {
+        if (this.f37872z0.f41492d4 == 3) {
             return true;
         }
         return false;

@@ -2,14 +2,14 @@ package ee;
 
 import ab.b0;
 public final class i implements c {
-    public final kotlin.jvm.internal.n f8630a;
-    public final c f8631b;
-    public final b0 f8632c;
+    public final kotlin.jvm.internal.n f8637a;
+    public final c f8638b;
+    public final b0 f8639c;
 
     public i(kotlin.jvm.internal.n nVar, c cVar, b0 b0Var) {
-        this.f8630a = nVar;
-        this.f8631b = cVar;
-        this.f8632c = b0Var;
+        this.f8637a = nVar;
+        this.f8638b = cVar;
+        this.f8639c = b0Var;
     }
 
     @Override

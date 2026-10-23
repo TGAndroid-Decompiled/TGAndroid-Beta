@@ -3,12 +3,12 @@ package d9;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 public abstract class j {
-    public static final Charset f7891a;
+    public static final Charset f7903a;
 
     static {
         Charset charset = StandardCharsets.US_ASCII;
         Charset charset2 = StandardCharsets.ISO_8859_1;
-        f7891a = StandardCharsets.UTF_8;
+        f7903a = StandardCharsets.UTF_8;
         Charset charset3 = StandardCharsets.UTF_16BE;
         Charset charset4 = StandardCharsets.UTF_16LE;
         Charset charset5 = StandardCharsets.UTF_16;

@@ -1,85 +1,73 @@
 package org.telegram.ui;
 
-import android.content.Intent;
-import android.net.Uri;
+import android.view.View;
+import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.FileLog;
 import org.telegram.ui.Components.EditTextBoldCursor;
-public final class kl0 implements org.telegram.ui.ActionBar.a2, nt, km0 {
-    public final int f38641a;
-    public final vm0 f38642b;
+public final class kl0 implements Runnable {
+    public final int f38968a;
+    public final an0 f38969b;
 
-    public kl0(vm0 vm0Var, int i10) {
-        this.f38641a = i10;
-        this.f38642b = vm0Var;
+    public kl0(an0 an0Var, int i10) {
+        this.f38968a = i10;
+        this.f38969b = an0Var;
     }
 
     @Override
-    public void L0(ht htVar) {
-        String str;
-        switch (this.f38641a) {
-            case 2:
-                vm0 vm0Var = this.f38642b;
-                vm0Var.Y[5].setText(htVar.f37788a);
-                vm0Var.f42325s = htVar.d;
-                return;
-            default:
-                vm0 vm0Var2 = this.f38642b;
-                vm0Var2.Y[0].setText(htVar.f37788a);
-                if (vm0Var2.U0.indexOf(htVar.f37788a) != -1) {
-                    vm0Var2.Z0 = true;
-                    String str2 = (String) vm0Var2.V0.get(htVar.f37788a);
-                    vm0Var2.Y[1].setText(str2);
-                    String str3 = (String) vm0Var2.X0.get(str2);
-                    EditTextBoldCursor editTextBoldCursor = vm0Var2.Y[2];
-                    if (str3 != null) {
-                        str = str3.replace('X', (char) 8211);
-                    } else {
-                        str = null;
-                    }
-                    editTextBoldCursor.setHintText(str);
-                    vm0Var2.Z0 = false;
-                }
-                AndroidUtilities.runOnUIThread(new hl0(vm0Var2, 3), 300L);
-                vm0Var2.Y[2].requestFocus();
-                EditTextBoldCursor editTextBoldCursor2 = vm0Var2.Y[2];
-                editTextBoldCursor2.setSelection(editTextBoldCursor2.length());
-                return;
-        }
-    }
-
-    @Override
-    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f38641a) {
+    public final void run() {
+        ViewGroup viewGroup;
+        switch (this.f38968a) {
             case 0:
-                vm0 vm0Var = this.f38642b;
-                vm0Var.getClass();
-                try {
-                    Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-                    intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
-                    vm0Var.getParentActivity().startActivity(intent);
-                    return;
-                } catch (Exception e) {
-                    FileLog.e(e);
+                an0 an0Var = this.f38969b;
+                ViewGroup[] viewGroupArr = an0Var.Z;
+                if (viewGroupArr != null && (viewGroup = viewGroupArr[0]) != null && viewGroup.getVisibility() == 0) {
+                    an0Var.Y[0].requestFocus();
+                    AndroidUtilities.showKeyboard(an0Var.Y[0]);
                     return;
                 }
+                return;
             case 1:
-                this.f38642b.finishFragment();
+                an0 an0Var2 = this.f38969b;
+                an0Var2.presentFragment(an0Var2.f35720h1, true);
+                an0Var2.f35720h1 = null;
                 return;
             case 2:
+                an0 an0Var3 = this.f38969b;
+                EditTextBoldCursor[] editTextBoldCursorArr = an0Var3.f35702a0;
+                if (editTextBoldCursorArr != null) {
+                    an0Var3.H1(editTextBoldCursorArr[0]);
+                    return;
+                }
+                return;
             case 3:
-            default:
-                vm0.a0(this.f38642b);
+                AndroidUtilities.showKeyboard(this.f38969b.Y[2]);
                 return;
             case 4:
-                vm0.d0(this.f38642b);
+                this.f38969b.w1();
+                return;
+            case 5:
+                int i10 = 0;
+                while (true) {
+                    an0 an0Var4 = this.f38969b;
+                    if (i10 < an0Var4.f35708c0.getChildCount()) {
+                        View childAt = an0Var4.f35708c0.getChildAt(i10);
+                        if (childAt instanceof zm0) {
+                            an0Var4.f35708c0.removeView(childAt);
+                            i10--;
+                        }
+                        i10++;
+                    } else {
+                        an0Var4.w1();
+                        an0Var4.f35737q1.clear();
+                        an0Var4.f35735p1.clear();
+                        an0Var4.f35756y.values.clear();
+                        an0Var4.Q1();
+                        return;
+                    }
+                }
+            default:
+                this.f38969b.finishFragment();
                 return;
         }
-    }
-
-    @Override
-    public void p(String str, String str2) {
-        this.f38642b.w1();
     }
 }

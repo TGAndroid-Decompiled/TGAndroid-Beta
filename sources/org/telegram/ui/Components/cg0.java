@@ -1,141 +1,76 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Paint;
-import android.text.TextUtils;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class cg0 extends im0 {
-    public final Context f25189c;
-    public final dg0 d;
+import android.graphics.Matrix;
+import android.graphics.SurfaceTexture;
+import android.view.TextureView;
+public final class cg0 implements TextureView.SurfaceTextureListener {
+    public final boolean f25329a;
+    public final ja f25330b;
+    public final hg0 f25331c;
 
-    public cg0(dg0 dg0Var, Context context) {
-        this.d = dg0Var;
-        this.f25189c = context;
+    public cg0(hg0 hg0Var, boolean z10, ja jaVar) {
+        this.f25331c = hg0Var;
+        this.f25329a = z10;
+        this.f25330b = jaVar;
     }
 
     @Override
-    public final boolean D(s4.b1 b1Var) {
-        return false;
-    }
-
-    @Override
-    public final int h() {
-        return this.d.F;
-    }
-
-    @Override
-    public final long i(int i10) {
-        return i10;
-    }
-
-    @Override
-    public final int j(int i10) {
-        dg0 dg0Var = this.d;
-        if (i10 != dg0Var.f25500y && i10 != dg0Var.E) {
-            return 0;
-        }
-        return 1;
-    }
-
-    @Override
-    public final void v(s4.b1 b1Var, int i10) {
-        int i11 = b1Var.f45924f;
-        View view = b1Var.f45921a;
-        dg0 dg0Var = this.d;
-        if (i11 != 0) {
-            if (i11 == 1) {
-                org.telegram.ui.Cells.t5 t5Var = (org.telegram.ui.Cells.t5) view;
-                t5Var.setTag(Integer.valueOf(i10));
-                if (i10 == dg0Var.f25500y) {
-                    t5Var.a(dg0Var.N, LocaleController.getString(R.string.TintShadows));
-                    return;
-                } else if (i10 == dg0Var.E) {
-                    t5Var.a(dg0Var.O, LocaleController.getString(R.string.TintHighlights));
-                    return;
-                } else {
-                    return;
+    public final void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i10, int i11) {
+        hg0 hg0Var = this.f25331c;
+        TextureView textureView = hg0Var.f26929i0;
+        if (hg0Var.f26932l0 == null && surfaceTexture != null) {
+            e00 e00Var = new e00(surfaceTexture, hg0Var.C0, hg0Var.H0, hg0Var.f26946w0, this.f25329a, this.f25330b, i10, i11);
+            hg0Var.f26932l0 = e00Var;
+            if (!this.f25329a) {
+                e00Var.i(hg0Var.J0, hg0Var.K0);
+                e00 e00Var2 = hg0Var.f26932l0;
+                Matrix transform = textureView.getTransform(null);
+                int width = textureView.getWidth();
+                int height = textureView.getHeight();
+                pa paVar = e00Var2.I;
+                if (paVar != null) {
+                    Matrix matrix = paVar.v;
+                    transform.invert(matrix);
+                    float f7 = width;
+                    float f10 = height;
+                    matrix.preScale(f7, f10);
+                    matrix.postScale(1.0f / f7, 1.0f / f10);
+                    paVar.c(matrix);
+                    e00Var2.d(false, false, false);
                 }
             }
-            return;
-        }
-        org.telegram.ui.Cells.u5 u5Var = (org.telegram.ui.Cells.u5) view;
-        u5Var.setTag(Integer.valueOf(i10));
-        if (i10 == dg0Var.f25470b) {
-            u5Var.a(LocaleController.getString(R.string.Enhance), 0, dg0Var.G);
-        } else if (i10 == dg0Var.f25489r) {
-            u5Var.a(LocaleController.getString(R.string.Highlights), -100, dg0Var.P);
-        } else if (i10 == dg0Var.d) {
-            u5Var.a(LocaleController.getString(R.string.Contrast), -100, dg0Var.I);
-        } else if (i10 == dg0Var.f25472c) {
-            u5Var.a(LocaleController.getString(R.string.Exposure), -100, dg0Var.H);
-        } else if (i10 == dg0Var.f25476f) {
-            u5Var.a(LocaleController.getString(R.string.Warmth), -100, dg0Var.J);
-        } else if (i10 == dg0Var.e) {
-            u5Var.a(LocaleController.getString(R.string.Saturation), -100, dg0Var.K);
-        } else if (i10 == dg0Var.v) {
-            u5Var.a(LocaleController.getString(R.string.Vignette), 0, dg0Var.R);
-        } else if (i10 == dg0Var.f25491s) {
-            u5Var.a(LocaleController.getString(R.string.Shadows), -100, dg0Var.Q);
-        } else if (i10 == dg0Var.f25496w) {
-            u5Var.a(LocaleController.getString(R.string.Grain), 0, dg0Var.S);
-        } else if (i10 == dg0Var.f25498x) {
-            u5Var.a(LocaleController.getString(R.string.Sharpen), 0, dg0Var.U);
-        } else if (i10 == dg0Var.h) {
-            u5Var.a(LocaleController.getString(R.string.Fade), 0, dg0Var.L);
-        } else if (i10 == dg0Var.f25484n) {
-            u5Var.a(LocaleController.getString(R.string.SoftenSkin), 0, dg0Var.M);
+            hg0Var.f26932l0.f(hg0Var);
+            e00 e00Var3 = hg0Var.f26932l0;
+            e00Var3.getClass();
+            e00Var3.postRunnable(new a00(e00Var3, i10, i11, 1));
+            hg0Var.f26932l0.d(true, true, false);
         }
     }
 
     @Override
-    public final s4.b1 x(ViewGroup viewGroup, int i10) {
-        org.telegram.ui.Cells.t5 t5Var;
-        Context context = this.f25189c;
-        if (i10 == 0) {
-            org.telegram.ui.ActionBar.d6 d6Var = this.d.I0;
-            ?? frameLayout = new FrameLayout(context);
-            frameLayout.e = new androidx.activity.i((Object) frameLayout, 28);
-            TextView textView = new TextView(context);
-            frameLayout.f23599a = textView;
-            textView.setGravity(5);
-            textView.setTextColor(-1);
-            textView.setTextSize(1, 12.0f);
-            textView.setMaxLines(1);
-            textView.setSingleLine(true);
-            textView.setEllipsize(TextUtils.TruncateAt.END);
-            frameLayout.addView(textView, w7.z5.d(80, -2.0f, 19, 0.0f, 0.0f, 0.0f, 0.0f));
-            TextView textView2 = new TextView(context);
-            frameLayout.f23600b = textView2;
-            org.telegram.messenger.nk.o(org.telegram.ui.ActionBar.h6.f21407zf, d6Var, textView2, 1, 12.0f);
-            textView2.setGravity(5);
-            textView2.setSingleLine(true);
-            frameLayout.addView(textView2, w7.z5.d(80, -2.0f, 19, 0.0f, 0.0f, 0.0f, 0.0f));
-            ?? view = new View(context);
-            Paint paint = new Paint();
-            view.f29572a = paint;
-            Paint paint2 = new Paint(1);
-            view.f29573b = paint2;
-            view.f29574c = AndroidUtilities.dp(16.0f);
-            view.d = 0;
-            view.e = 0.0f;
-            view.f29575f = false;
-            paint.setColor(-11711155);
-            paint2.setColor(-1);
-            frameLayout.f23601c = view;
-            frameLayout.addView(view, w7.z5.d(-1, 40.0f, 19, 96.0f, 0.0f, 24.0f, 0.0f));
-            frameLayout.setSeekBarDelegate(new tv(this, 11));
-            t5Var = frameLayout;
-        } else {
-            org.telegram.ui.Cells.t5 t5Var2 = new org.telegram.ui.Cells.t5(context);
-            t5Var2.setOnClickListener(new u80(this, 5));
-            t5Var = t5Var2;
+    public final boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
+        hg0 hg0Var = this.f25331c;
+        e00 e00Var = hg0Var.f26932l0;
+        if (e00Var != null) {
+            e00Var.postRunnable(new b00(e00Var, 0));
+            hg0Var.f26932l0 = null;
+            return true;
         }
-        return new s4.b1(t5Var);
+        return true;
+    }
+
+    @Override
+    public final void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i10, int i11) {
+        hg0 hg0Var = this.f25331c;
+        e00 e00Var = hg0Var.f26932l0;
+        if (e00Var != null) {
+            e00Var.postRunnable(new a00(e00Var, i10, i11, 1));
+            hg0Var.f26932l0.d(false, true, false);
+            hg0Var.f26932l0.postRunnable(new yb0(this, 7));
+        }
+    }
+
+    @Override
+    public final void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
     }
 }

@@ -1,28 +1,27 @@
 package org.telegram.ui;
 
+import android.graphics.Canvas;
 import android.view.View;
-public final class dy0 implements View.OnClickListener {
-    public final int f36468a;
-    public final Runnable f36469b;
+public final class dy0 implements bh.k {
+    public final int f36760a;
+    public final Object f36761b;
 
-    public dy0(int i10, Runnable runnable) {
-        this.f36468a = i10;
-        this.f36469b = runnable;
+    public dy0(Object obj, int i10) {
+        this.f36760a = i10;
+        this.f36761b = obj;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f36468a) {
+    public final boolean a(Canvas canvas, View view, long j10) {
+        switch (this.f36760a) {
             case 0:
-                this.f36469b.run();
-                return;
-            default:
-                Runnable runnable = this.f36469b;
-                if (runnable != null) {
-                    runnable.run();
-                    return;
+                ProfileActivity profileActivity = (ProfileActivity) this.f36761b;
+                if (view == profileActivity.O) {
+                    return true;
                 }
-                return;
+                return profileActivity.f33882a.drawChild(canvas, view, j10);
+            default:
+                return ((we1) this.f36761b).drawChild(canvas, view, j10);
         }
     }
 }

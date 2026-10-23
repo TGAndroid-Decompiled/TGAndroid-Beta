@@ -24,14 +24,14 @@ public abstract class c extends pg.b {
     public final boolean d;
     public final boolean e;
     public boolean h;
-    public boolean f11816n;
+    public boolean f11843n;
     public Location v;
-    public String f11819w;
-    public String f11820x;
-    public b f11821y;
-    public boolean f11815f = false;
-    public final ArrayList f11817r = new ArrayList();
-    public final ArrayList f11818s = new ArrayList();
+    public String f11846w;
+    public String f11847x;
+    public b f11848y;
+    public boolean f11842f = false;
+    public final ArrayList f11844r = new ArrayList();
+    public final ArrayList f11845s = new ArrayList();
     public final int G = UserConfig.selectedAccount;
 
     public c(boolean z10, boolean z11) {
@@ -59,8 +59,8 @@ public abstract class c extends pg.b {
             dispatchQueue.postRunnable(aVar, 400L);
             return;
         }
-        this.f11818s.clear();
-        this.f11817r.clear();
+        this.f11845s.clear();
+        this.f11844r.clear();
         this.J = false;
         l();
     }
@@ -83,7 +83,7 @@ public abstract class c extends pg.b {
                 location3 = new Location(location);
             }
             this.v = location3;
-            this.f11819w = str;
+            this.f11846w = str;
             if (this.h) {
                 this.h = false;
                 if (this.F != 0) {
@@ -93,7 +93,7 @@ public abstract class c extends pg.b {
             }
             h();
             this.h = true;
-            this.f11815f = true;
+            this.f11842f = true;
             MessagesController messagesController = MessagesController.getInstance(this.G);
             if (this.d) {
                 str2 = MessagesController.getInstance(this.G).storyVenueSearchBot;
@@ -143,9 +143,9 @@ public abstract class c extends pg.b {
                     cVar = this;
                     str4 = str;
                     location4 = location;
-                    cVar.f11816n = false;
+                    cVar.f11843n = false;
                 } else {
-                    this.f11816n = true;
+                    this.f11843n = true;
                     Locale currentLocale = LocaleController.getInstance().getCurrentLocale();
                     if (this.d) {
                         if (currentLocale.getLanguage().contains("en")) {

@@ -1,38 +1,34 @@
 package org.telegram.ui.Components;
+public final class op0 implements o1.f {
+    public final int f29286a;
+    public final wp0 f29287b;
+    public final o1.k f29288c;
 
-import android.view.View;
-import android.view.ViewPropertyAnimator;
-import androidx.recyclerview.widget.RecyclerView;
-public final class op0 extends s4.r0 {
-    public final ef f29122a;
-
-    public op0(ef efVar) {
-        this.f29122a = efVar;
+    public op0(wp0 wp0Var, o1.k kVar, int i10) {
+        this.f29286a = i10;
+        this.f29287b = wp0Var;
+        this.f29288c = kVar;
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        boolean z10;
-        float f7;
-        ef efVar = this.f29122a;
-        View view = efVar.f30339u;
-        if (efVar.f30340w.I0() != 0) {
-            z10 = true;
-        } else {
-            z10 = false;
+    public final void a(o1.h hVar, boolean z10, float f7, float f10) {
+        switch (this.f29286a) {
+            case 0:
+                if (!z10) {
+                    this.f29287b.f32313z.remove(this.f29288c);
+                    hVar.c();
+                    return;
+                }
+                return;
+            default:
+                wp0 wp0Var = this.f29287b;
+                if (!z10) {
+                    wp0Var.f32313z.remove(this.f29288c);
+                    hVar.c();
+                    return;
+                }
+                wp0Var.getClass();
+                return;
         }
-        Boolean bool = efVar.f30341x;
-        if (bool != null && z10 == bool.booleanValue()) {
-            return;
-        }
-        view.animate().cancel();
-        ViewPropertyAnimator animate = view.animate();
-        if (z10) {
-            f7 = 1.0f;
-        } else {
-            f7 = 0.0f;
-        }
-        animate.alpha(f7).setDuration(150L).start();
-        efVar.f30341x = Boolean.valueOf(z10);
     }
 }

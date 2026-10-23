@@ -1,45 +1,70 @@
 package org.telegram.ui;
 
-import android.text.TextUtils;
-import android.text.TextWatcher;
-public final class zn0 implements TextWatcher {
-    public int f43786a = -1;
-    public boolean f43787b;
-    public int f43788c;
-    public final eo0 d;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
+public final class zn0 extends AnimatorListenerAdapter {
+    public final int f44179a;
+    public final boolean f44180b;
+    public final io0 f44181c;
 
-    public zn0(eo0 eo0Var) {
-        this.d = eo0Var;
+    public zn0(io0 io0Var, boolean z10, int i10) {
+        this.f44179a = i10;
+        this.f44181c = io0Var;
+        this.f44180b = z10;
     }
 
     @Override
-    public final void afterTextChanged(android.text.Editable r14) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.zn0.afterTextChanged(android.text.Editable):void");
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        boolean z10 = false;
-        if (i11 == 0 && i12 == 1) {
-            if (TextUtils.indexOf((CharSequence) this.d.f36716f[1].getText(), '/') != -1) {
-                z10 = true;
-            }
-            this.f43787b = z10;
-            this.f43786a = 1;
-        } else if (i11 == 1 && i12 == 0) {
-            if (charSequence.charAt(i10) == '/' && i10 > 0) {
-                this.f43787b = false;
-                this.f43786a = 3;
-                this.f43788c = i10 - 1;
+    public final void onAnimationCancel(Animator animator) {
+        switch (this.f44179a) {
+            case 0:
+                io0 io0Var = this.f44181c;
+                AnimatorSet animatorSet = io0Var.v;
+                if (animatorSet != null && animatorSet.equals(animator)) {
+                    io0Var.v = null;
+                    return;
+                }
                 return;
-            }
-            this.f43786a = 2;
-        } else {
-            this.f43786a = -1;
+            default:
+                io0 io0Var2 = this.f44181c;
+                AnimatorSet animatorSet2 = io0Var2.v;
+                if (animatorSet2 != null && animatorSet2.equals(animator)) {
+                    io0Var2.v = null;
+                    return;
+                }
+                return;
         }
     }
 
     @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f44179a) {
+            case 0:
+                io0 io0Var = this.f44181c;
+                AnimatorSet animatorSet = io0Var.v;
+                if (animatorSet != null && animatorSet.equals(animator)) {
+                    if (!this.f44180b) {
+                        io0Var.f38314r.setVisibility(4);
+                        return;
+                    } else {
+                        io0Var.f38309n.getContentView().setVisibility(4);
+                        return;
+                    }
+                }
+                return;
+            default:
+                io0 io0Var2 = this.f44181c;
+                AnimatorSet animatorSet2 = io0Var2.v;
+                if (animatorSet2 != null && animatorSet2.equals(animator)) {
+                    if (!this.f44180b) {
+                        io0Var2.f38316s.setVisibility(4);
+                        return;
+                    } else {
+                        io0Var2.U.setVisibility(4);
+                        return;
+                    }
+                }
+                return;
+        }
     }
 }

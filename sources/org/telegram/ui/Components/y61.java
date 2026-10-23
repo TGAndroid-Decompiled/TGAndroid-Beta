@@ -1,19 +1,19 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.AndroidUtilities;
-public final class y61 extends s4.b0 {
-    public final c71 I;
-
-    public y61(c71 c71Var, int i10) {
-        super(i10, false);
-        this.I = c71Var;
-    }
+import android.view.View;
+public final class y61 extends View {
+    public int f32821a;
 
     @Override
-    public final int W0(s4.y0 y0Var) {
-        if (this.I.Y2) {
-            return AndroidUtilities.displaySize.y;
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(this.f32821a, 1073741824));
+    }
+
+    public void setHeight(int i10) {
+        if (this.f32821a == i10) {
+            return;
         }
-        return super.W0(y0Var);
+        this.f32821a = i10;
+        requestLayout();
     }
 }

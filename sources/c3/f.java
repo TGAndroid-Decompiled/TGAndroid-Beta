@@ -1,6 +1,4 @@
 package c3;
-
-import e2.m0;
 public final class f {
     public final long f4615a;
     public final long f4616b;
@@ -24,7 +22,7 @@ public final class f {
     public static long a(long j10, long j11, long j12, long j13, long j14, long j15) {
         if (j13 + 1 < j14 && j11 + 1 < j12) {
             long j16 = ((float) (j10 - j11)) * (((float) (j14 - j13)) / ((float) (j12 - j11)));
-            return m0.j(((j16 + j13) - j15) - (j16 / 20), j13, j14 - 1);
+            return e2.m0.j(((j16 + j13) - j15) - (j16 / 20), j13, j14 - 1);
         }
         return j13;
     }

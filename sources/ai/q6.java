@@ -15,8 +15,8 @@ public final class q6 extends o6 {
     public final int h;
 
     public q6(TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop) {
-        this.f1936a = stargiftattributebackdrop.name;
-        this.f1937b = stargiftattributebackdrop.getRarityPermille();
+        this.f1937a = stargiftattributebackdrop.name;
+        this.f1938b = stargiftattributebackdrop.getRarityPermille();
         Paint paint = new Paint(1);
         this.f2061c = paint;
         this.d = new Matrix();

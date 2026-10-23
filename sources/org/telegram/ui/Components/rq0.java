@@ -1,84 +1,74 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class rq0 extends er0 {
-    public final fr0 f29996r;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
+import android.widget.FrameLayout;
+public final class rq0 extends AnimatorListenerAdapter {
+    public final int f30244a;
+    public final boolean f30245b;
+    public final ir0 f30246c;
 
-    public rq0(fr0 fr0Var, Context context) {
-        super(context);
-        this.f29996r = fr0Var;
-        this.h = new Paint(1);
-        this.f25962n = new RectF();
-        View view = new View(context);
-        this.f25958a = view;
-        int dp = AndroidUtilities.dp(18.0f);
-        int i10 = org.telegram.ui.ActionBar.h6.O5;
-        int i11 = fr0.f26366b1;
-        view.setBackgroundDrawable(org.telegram.ui.ActionBar.h6.c0(dp, fr0Var.getThemedColor(i10)));
-        addView(view, w7.z5.d(-1, 36.0f, 51, 14.0f, 0.0f, 14.0f, 0.0f));
-        ai.ic icVar = new ai.ic(this, context, 24);
-        this.d = icVar;
-        addView(icVar, w7.z5.d(-1, 36.0f, 51, 14.0f, 0.0f, 14.0f, 0.0f));
-        org.telegram.ui.ActionBar.j5 j5Var = new org.telegram.ui.ActionBar.j5(context);
-        this.f25960c = j5Var;
-        int i12 = org.telegram.ui.ActionBar.h6.f21187ng;
-        j5Var.setTextColor(fr0Var.getThemedColor(i12));
-        j5Var.setTextSize(13);
-        j5Var.setLeftDrawable(R.drawable.msg_tabs_mic1);
-        j5Var.l(LocaleController.getString(R.string.VoipGroupInviteCanSpeak), false);
-        j5Var.setGravity(17);
-        addView(j5Var, w7.z5.d(-1, -1.0f, 51, 14.0f, 0.0f, 0.0f, 0.0f));
-        j5Var.setOnClickListener(new View.OnClickListener(this) {
-            public final rq0 f25621b;
+    public rq0(ir0 ir0Var, boolean z10, int i10) {
+        this.f30244a = i10;
+        this.f30246c = ir0Var;
+        this.f30245b = z10;
+    }
 
-            {
-                this.f25621b = this;
-            }
-
-            @Override
-            public final void onClick(View view2) {
-                switch (r2) {
-                    case 0:
-                        this.f25621b.a(0);
-                        return;
-                    default:
-                        this.f25621b.a(1);
-                        return;
+    @Override
+    public final void onAnimationCancel(Animator animator) {
+        switch (this.f30244a) {
+            case 0:
+                AnimatorSet[] animatorSetArr = this.f30246c.U;
+                AnimatorSet animatorSet = animatorSetArr[0];
+                if (animatorSet != null && animatorSet.equals(animator)) {
+                    animatorSetArr[0] = null;
+                    return;
                 }
-            }
-        });
-        org.telegram.ui.ActionBar.j5 j5Var2 = new org.telegram.ui.ActionBar.j5(context);
-        this.f25959b = j5Var2;
-        j5Var2.setTextColor(fr0Var.getThemedColor(i12));
-        j5Var2.setTextSize(13);
-        j5Var2.setLeftDrawable(R.drawable.msg_tabs_mic2);
-        j5Var2.l(LocaleController.getString(R.string.VoipGroupInviteListenOnly), false);
-        j5Var2.setGravity(17);
-        addView(j5Var2, w7.z5.d(-1, -1.0f, 51, 0.0f, 0.0f, 14.0f, 0.0f));
-        j5Var2.setOnClickListener(new View.OnClickListener(this) {
-            public final rq0 f25621b;
-
-            {
-                this.f25621b = this;
-            }
-
-            @Override
-            public final void onClick(View view2) {
-                switch (r2) {
-                    case 0:
-                        this.f25621b.a(0);
-                        return;
-                    default:
-                        this.f25621b.a(1);
-                        return;
+                return;
+            default:
+                ir0 ir0Var = this.f30246c;
+                if (animator.equals(ir0Var.E)) {
+                    ir0Var.E = null;
+                    return;
                 }
-            }
-        });
+                return;
+        }
+    }
+
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f30244a) {
+            case 0:
+                ir0 ir0Var = this.f30246c;
+                AnimatorSet[] animatorSetArr = ir0Var.U;
+                AnimatorSet animatorSet = animatorSetArr[0];
+                if (animatorSet != null && animatorSet.equals(animator)) {
+                    if (!this.f30245b) {
+                        ir0Var.T[0].setVisibility(4);
+                    }
+                    animatorSetArr[0] = null;
+                    return;
+                }
+                return;
+            default:
+                ir0 ir0Var2 = this.f30246c;
+                FrameLayout frameLayout = ir0Var2.h;
+                if (animator.equals(ir0Var2.E)) {
+                    if (!this.f30245b) {
+                        ir0Var2.f27411c.setVisibility(4);
+                        FrameLayout frameLayout2 = ir0Var2.f27414d0;
+                        if (frameLayout2 != null && frameLayout == null) {
+                            frameLayout2.setVisibility(4);
+                        }
+                        ir0Var2.f27416f.setVisibility(4);
+                    } else if (frameLayout != null) {
+                        frameLayout.setVisibility(4);
+                    }
+                    ir0Var2.E = null;
+                    return;
+                }
+                return;
+        }
     }
 }

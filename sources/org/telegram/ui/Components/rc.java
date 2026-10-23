@@ -14,24 +14,24 @@ import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.PremiumPreviewFragment;
 public final class rc implements Runnable {
-    public final int f29920a;
+    public final int f30142a;
 
     public rc(int i10) {
-        this.f29920a = i10;
+        this.f30142a = i10;
     }
 
     @Override
     public final void run() {
-        switch (this.f29920a) {
+        switch (this.f30142a) {
             case 0:
                 SavedMessagesController.openSavedMessages();
                 return;
             case 1:
-                LaunchActivity launchActivity = LaunchActivity.H1;
+                LaunchActivity launchActivity = LaunchActivity.J1;
                 if (launchActivity != null && !launchActivity.isFinishing()) {
                     Intent intent = new Intent("android.intent.action.VIEW_DOWNLOADS");
                     intent.setFlags(268468224);
-                    LaunchActivity.H1.startActivity(intent);
+                    LaunchActivity.J1.startActivity(intent);
                     return;
                 }
                 return;
@@ -47,7 +47,7 @@ public final class rc implements Runnable {
             case 5:
                 return;
             case 6:
-                int i10 = fo.f26286m1;
+                int i10 = fo.f26384r1;
                 return;
             case 7:
                 PhotoViewer.u1().H0(false, false);
@@ -56,7 +56,7 @@ public final class rc implements Runnable {
                 PhotoViewer.u1().H0(false, false);
                 return;
             case 9:
-                int i11 = iu.f27341b;
+                int i11 = iu.f27449b;
                 return;
             case 10:
                 NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.groupCallVisibilityChanged, new Object[0]);
@@ -74,29 +74,29 @@ public final class rc implements Runnable {
                 NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 512);
                 return;
             case 14:
-                org.telegram.ui.ActionBar.n2 R = LaunchActivity.R();
+                org.telegram.ui.ActionBar.o2 R = LaunchActivity.R();
                 if (R != 0) {
                     ?? obj = new Object();
-                    obj.f21560a = true;
+                    obj.f21636a = true;
                     R.showAsSheet(new PremiumPreviewFragment(0, "noncontacts"), obj);
                     return;
                 }
                 return;
             case 15:
-                int i12 = g11.f26477f;
+                int i12 = j11.f27488f;
                 return;
             case 16:
                 SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
-                v11.f31118f = Boolean.TRUE;
+                y11.f32783f = Boolean.TRUE;
                 edit.putBoolean("nothanos", true).apply();
                 return;
             case 17:
                 SharedPreferences.Editor edit2 = MessagesController.getGlobalMainSettings().edit();
-                v11.f31118f = Boolean.TRUE;
+                y11.f32783f = Boolean.TRUE;
                 edit2.putBoolean("nothanos", true).apply();
                 return;
             case 18:
-                int i13 = s31.f30181f0;
+                int i13 = w31.f32129i0;
                 return;
             case 19:
                 SavedMessagesController.openSavedMessages();
@@ -108,12 +108,12 @@ public final class rc implements Runnable {
                 org.telegram.ui.Components.voip.k2.i();
                 return;
             case 22:
-                ci.g6.q();
+                ci.f6.q();
                 return;
             case 23:
-                org.telegram.ui.q50 q50Var = org.telegram.ui.q50.D3;
-                if (q50Var != null) {
-                    q50Var.show();
+                org.telegram.ui.u50 u50Var = org.telegram.ui.u50.D3;
+                if (u50Var != null) {
+                    u50Var.show();
                     return;
                 }
                 return;
@@ -124,13 +124,13 @@ public final class rc implements Runnable {
                 }
                 return;
             case 25:
-                Pattern pattern = LaunchActivity.C1;
+                Pattern pattern = LaunchActivity.E1;
                 return;
             case 26:
-                Pattern pattern2 = LaunchActivity.C1;
+                Pattern pattern2 = LaunchActivity.E1;
                 return;
             case 27:
-                Pattern pattern3 = LaunchActivity.C1;
+                Pattern pattern3 = LaunchActivity.E1;
                 ApplicationLoader.mainInterfacePausedStageQueue = false;
                 ApplicationLoader.mainInterfacePausedStageQueueTime = System.currentTimeMillis();
                 return;
@@ -143,7 +143,7 @@ public final class rc implements Runnable {
     }
 
     public rc(Object obj, int i10) {
-        this.f29920a = i10;
+        this.f30142a = i10;
     }
 
     private final void a() {

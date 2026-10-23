@@ -1,8 +1,8 @@
 package di;
 
 import android.content.Context;
-import ci.a7;
-import org.telegram.ui.Components.tx0;
+import ci.z6;
+import org.telegram.ui.Components.wx0;
 public final class l extends q {
     public final r v;
 
@@ -16,18 +16,18 @@ public final class l extends q {
         boolean z10;
         super.l();
         r rVar = this.v;
-        if (rVar.f8059r.getVisibility() == 0) {
-            rVar.f8061w.l();
+        if (rVar.f8066r.getVisibility() == 0) {
+            rVar.f8068w.l();
         }
-        tx0 tx0Var = rVar.f8063y;
-        if (tx0Var != null) {
-            a7 a7Var = this.e;
-            if (a7Var != null && a7Var.k()) {
+        wx0 wx0Var = rVar.f8070y;
+        if (wx0Var != null) {
+            z6 z6Var = this.e;
+            if (z6Var != null && z6Var.k()) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            tx0Var.e(z10, true);
+            wx0Var.e(z10, true);
         }
     }
 }

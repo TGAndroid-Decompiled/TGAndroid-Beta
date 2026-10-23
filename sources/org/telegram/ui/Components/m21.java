@@ -1,101 +1,118 @@
 package org.telegram.ui.Components;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.ViewPropertyAnimator;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
+import android.content.Context;
+import android.text.SpannableStringBuilder;
+import android.text.TextUtils;
+import android.text.style.ForegroundColorSpan;
+import android.view.View;
+import android.view.ViewGroup;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.ThemeEditorView;
-public final class m21 implements TextWatcher {
-    public final n21 f28362a;
+public final class m21 extends lm0 {
+    public final Context f28482c;
+    public int d;
+    public ArrayList e = new ArrayList();
+    public ArrayList f28483f = new ArrayList();
+    public org.telegram.ui.h4 h;
+    public String f28484n;
+    public final ThemeEditorView.EditorAlert f28485r;
 
-    public m21(n21 n21Var) {
-        this.f28362a = n21Var;
+    public m21(ThemeEditorView.EditorAlert editorAlert, Context context) {
+        this.f28485r = editorAlert;
+        this.f28482c = context;
+    }
+
+    public static CharSequence E(String str, String str2) {
+        if (TextUtils.isEmpty(str)) {
+            return "";
+        }
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+        String trim = str.trim();
+        String lowerCase = trim.toLowerCase();
+        int i10 = 0;
+        while (true) {
+            int indexOf = lowerCase.indexOf(str2, i10);
+            if (indexOf == -1) {
+                break;
+            }
+            int length = str2.length() + indexOf;
+            if (i10 != 0 && i10 != indexOf + 1) {
+                spannableStringBuilder.append((CharSequence) trim.substring(i10, indexOf));
+            } else if (i10 == 0 && indexOf != 0) {
+                spannableStringBuilder.append((CharSequence) trim.substring(0, indexOf));
+            }
+            String substring = trim.substring(indexOf, Math.min(trim.length(), length));
+            if (substring.startsWith(" ")) {
+                spannableStringBuilder.append((CharSequence) " ");
+            }
+            String trim2 = substring.trim();
+            int length2 = spannableStringBuilder.length();
+            spannableStringBuilder.append((CharSequence) trim2);
+            spannableStringBuilder.setSpan(new ForegroundColorSpan(-11697229), length2, trim2.length() + length2, 33);
+            i10 = length;
+        }
+        if (i10 != -1 && i10 < trim.length()) {
+            spannableStringBuilder.append((CharSequence) trim.substring(i10));
+        }
+        return spannableStringBuilder;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        boolean z10;
-        boolean z11;
-        float f7;
-        if (this.f28362a.f28671b.length() > 0) {
-            z10 = true;
-        } else {
-            z10 = false;
+    public final boolean D(s4.b1 b1Var) {
+        return true;
+    }
+
+    @Override
+    public final int h() {
+        if (this.e.isEmpty()) {
+            return 0;
         }
-        float f10 = 0.0f;
-        if (this.f28362a.f28670a.getAlpha() != 0.0f) {
-            z11 = true;
-        } else {
-            z11 = false;
+        return this.e.size() + 1;
+    }
+
+    @Override
+    public final int j(int i10) {
+        if (i10 == 0) {
+            return 1;
         }
-        if (z10 != z11) {
-            ViewPropertyAnimator animate = this.f28362a.f28670a.animate();
-            float f11 = 1.0f;
-            if (z10) {
-                f10 = 1.0f;
-            }
-            ViewPropertyAnimator duration = animate.alpha(f10).setDuration(150L);
-            if (z10) {
-                f7 = 1.0f;
+        return 0;
+    }
+
+    @Override
+    public final void v(s4.b1 b1Var, int i10) {
+        int c10;
+        if (b1Var.f46346f == 0) {
+            boolean z10 = true;
+            int i11 = i10 - 1;
+            org.telegram.ui.ActionBar.t6 t6Var = (org.telegram.ui.ActionBar.t6) ((ArrayList) this.e.get(i11)).get(0);
+            if (t6Var.e == org.telegram.ui.ActionBar.k6.Nd) {
+                c10 = 0;
             } else {
-                f7 = 0.1f;
+                c10 = t6Var.c();
             }
-            ViewPropertyAnimator scaleX = duration.scaleX(f7);
-            if (!z10) {
-                f11 = 0.1f;
+            org.telegram.ui.Cells.z8 z8Var = (org.telegram.ui.Cells.z8) b1Var.f46343a;
+            z8Var.f24028a.setText((CharSequence) this.f28483f.get(i11));
+            z8Var.f24029b = c10;
+            if (c10 != 0) {
+                z10 = false;
             }
-            scaleX.scaleY(f11).start();
+            z8Var.setWillNotDraw(z10);
+            z8Var.invalidate();
         }
-        String obj = this.f28362a.f28671b.getText().toString();
-        if (obj.length() != 0) {
-            vz vzVar = this.f28362a.f28672c.e;
-            if (vzVar != null) {
-                vzVar.setText(LocaleController.getString(R.string.NoResult));
-            }
+    }
+
+    @Override
+    public final s4.b1 x(ViewGroup viewGroup, int i10) {
+        View z8Var;
+        Context context = this.f28482c;
+        if (i10 != 0) {
+            z8Var = new View(context);
+            z8Var.setLayoutParams(new s4.o0(-1, AndroidUtilities.dp(56.0f)));
         } else {
-            s4.g0 adapter = this.f28362a.f28672c.f24402c.getAdapter();
-            ThemeEditorView.EditorAlert editorAlert = this.f28362a.f28672c;
-            if (adapter != editorAlert.f24404n) {
-                int K = ThemeEditorView.EditorAlert.K(editorAlert);
-                this.f28362a.f28672c.e.setText(LocaleController.getString(R.string.NoChats));
-                this.f28362a.f28672c.e.c();
-                ThemeEditorView.EditorAlert editorAlert2 = this.f28362a.f28672c;
-                editorAlert2.f24402c.setAdapter(editorAlert2.f24404n);
-                this.f28362a.f28672c.f24404n.l();
-                if (K > 0) {
-                    this.f28362a.f28672c.h.h1(0, -K);
-                }
-            }
+            z8Var = new org.telegram.ui.Cells.z8(context);
+            z8Var.setLayoutParams(new s4.o0(-1, -2));
         }
-        j21 j21Var = this.f28362a.f28672c.f24405r;
-        if (j21Var != null && !obj.equals(j21Var.f27391n)) {
-            j21Var.f27391n = obj;
-            if (j21Var.h != null) {
-                Utilities.searchQueue.cancelRunnable(j21Var.h);
-                j21Var.h = null;
-            }
-            if (obj.length() == 0) {
-                j21Var.e.clear();
-                ThemeEditorView.EditorAlert editorAlert3 = j21Var.f27392r;
-                editorAlert3.F = ThemeEditorView.EditorAlert.K(editorAlert3);
-                j21Var.d = -1;
-                j21Var.l();
-                return;
-            }
-            int i10 = j21Var.d + 1;
-            j21Var.d = i10;
-            j21Var.h = new org.telegram.ui.i4(j21Var, obj, i10, 28);
-            Utilities.searchQueue.postRunnable(j21Var.h, 300L);
-        }
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        return new s4.b1(z8Var);
     }
 }

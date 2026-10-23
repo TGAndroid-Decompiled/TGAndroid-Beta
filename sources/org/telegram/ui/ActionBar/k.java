@@ -1,6 +1,6 @@
 package org.telegram.ui.ActionBar;
 
-import ai.me;
+import ai.ne;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.TimeInterpolator;
@@ -33,24 +33,25 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
+import java.util.HashSet;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
-import org.telegram.messenger.nk;
+import org.telegram.messenger.sl;
+import org.telegram.ui.Components.bp0;
 import org.telegram.ui.Components.bs;
-import org.telegram.ui.Components.jm0;
 import org.telegram.ui.Components.ko;
-import org.telegram.ui.Components.lw0;
+import org.telegram.ui.Components.mm0;
 import org.telegram.ui.Components.oo;
+import org.telegram.ui.Components.ow0;
 import org.telegram.ui.Components.w00;
 import org.telegram.ui.Components.w9;
-import org.telegram.ui.Components.ww0;
 import org.telegram.ui.Components.x00;
-import org.telegram.ui.Components.xo0;
-import org.telegram.ui.qy0;
-public class k extends FrameLayout implements ne.d, y5 {
+import org.telegram.ui.Components.zw0;
+import org.telegram.ui.my0;
+public class k extends FrameLayout implements ne.d, b6 {
     public CharSequence A0;
     public boolean B0;
     public boolean C0;
@@ -58,15 +59,15 @@ public class k extends FrameLayout implements ne.d, y5 {
     public y E;
     public boolean E0;
     public d F;
-    public ci.i4 F0;
+    public ci.h4 F0;
     public String G;
     public boolean G0;
     public boolean H;
     public View.OnTouchListener H0;
     public boolean I;
-    public final d6 I0;
+    public final g6 I0;
     public boolean J;
-    public lw0 J0;
+    public ow0 J0;
     public boolean K;
     public boolean K0;
     public boolean L;
@@ -83,12 +84,12 @@ public class k extends FrameLayout implements ne.d, y5 {
     public boolean Q0;
     public boolean R;
     public oo R0;
-    public ww0 S;
+    public zw0 S;
     public boolean S0;
     public x00 T;
     public Runnable T0;
     public Paint.FontMetricsInt U;
-    public qy0 U0;
+    public my0 U0;
     public boolean V;
     public AnimatorSet V0;
     public Rect W;
@@ -96,90 +97,91 @@ public class k extends FrameLayout implements ne.d, y5 {
     public int X0;
     public boolean Y0;
     public boolean Z0;
-    public dh.d f21472a;
-    public int f21473a0;
-    public float f21474a1;
-    public dh.d f21475b;
-    public boolean f21476b0;
-    public final ne.e f21477b1;
-    public dh.d f21478c;
-    public CharSequence f21479c0;
-    public final ne.b f21480c1;
-    public final z4 d;
-    public Drawable f21481d0;
-    public final ne.e f21482d1;
+    public dh.d f21039a;
+    public int f21040a0;
+    public float f21041a1;
+    public dh.d f21042b;
+    public boolean f21043b0;
+    public final ne.e f21044b1;
+    public dh.d f21045c;
+    public CharSequence f21046c0;
+    public final ne.b f21047c1;
+    public final c5 d;
+    public Drawable f21048d0;
+    public final ne.e f21049d1;
     public ImageView e;
-    public View.OnClickListener f21483e0;
-    public final ne.b f21484e1;
-    public w9 f21485f;
-    public String f21486f0;
-    public int f21487f1;
-    public final Object[] f21488g0;
-    public int f21489g1;
+    public View.OnClickListener f21050e0;
+    public final ne.b f21051e1;
+    public w9 f21052f;
+    public String f21053f0;
+    public int f21054f1;
+    public final Object[] f21055g0;
+    public int f21056g1;
     public Drawable h;
-    public Runnable f21490h0;
-    public boolean f21491h1;
-    public boolean f21492i0;
-    public boolean f21493i1;
-    public Runnable f21494j0;
-    public boolean f21495j1;
-    public boolean f21496k0;
-    public boolean f21497k1;
-    public int f21498l0;
+    public Runnable f21057h0;
+    public boolean f21058h1;
+    public boolean f21059i0;
+    public boolean f21060i1;
+    public Runnable f21061j0;
+    public boolean f21062j1;
+    public boolean f21063k0;
+    public boolean f21064k1;
+    public int f21065l0;
     public boolean l1;
     public boolean m0;
-    public ci.k f21499m1;
-    public final j5[] f21500n;
-    public boolean f21501n0;
-    public boolean f21502n1;
-    public float f21503o0;
-    public boolean f21504o1;
-    public int f21505p0;
-    public int f21506p1;
-    public int f21507q0;
-    public int f21508q1;
-    public j5 f21509r;
-    public int f21510r0;
-    public boolean f21511r1;
-    public j5 f21512s;
-    public int f21513s0;
-    public float f21514s1;
-    public n2 f21515t0;
-    public ValueAnimator f21516t1;
-    public j f21517u0;
+    public ci.k f21066m1;
+    public final n5[] f21067n;
+    public boolean f21068n0;
+    public boolean f21069n1;
+    public float f21070o0;
+    public boolean f21071o1;
+    public int f21072p0;
+    public boolean f21073p1;
+    public int f21074q0;
+    public int f21075q1;
+    public n5 f21076r;
+    public int f21077r0;
+    public int f21078r1;
+    public n5 f21079s;
+    public int f21080s0;
+    public boolean f21081s1;
+    public o2 f21082t0;
+    public float f21083t1;
+    public j f21084u0;
+    public ValueAnimator f21085u1;
     public View v;
-    public int f21518v0;
-    public int f21519w;
-    public boolean f21520w0;
-    public int f21521x;
-    public boolean f21522x0;
-    public boolean f21523y;
-    public boolean f21524y0;
-    public boolean f21525z0;
+    public int f21086v0;
+    public int f21087w;
+    public boolean f21088w0;
+    public int f21089x;
+    public boolean f21090x0;
+    public boolean f21091y;
+    public boolean f21092y0;
+    public boolean f21093z0;
 
-    public k(Context context, d6 d6Var) {
+    public k(Context context, g6 g6Var) {
         super(context);
-        this.d = z4.f21920a;
-        this.f21500n = new j5[2];
+        this.d = c5.f20793a;
+        this.f21067n = new n5[2];
         this.I = true;
         this.K = true;
         this.M = true;
-        this.f21488g0 = new Object[3];
-        this.f21496k0 = true;
-        this.f21498l0 = 255;
-        this.f21518v0 = 0;
+        this.f21055g0 = new Object[3];
+        this.f21063k0 = true;
+        this.f21065l0 = 255;
+        this.f21086v0 = 0;
         this.L0 = new Paint();
         this.M0 = new Rect();
         this.N0 = new c2.b(this);
         bs bsVar = bs.h;
-        this.f21477b1 = new ne.e(0, this, bsVar, 380L);
-        this.f21480c1 = new ne.b(0, this, bsVar, 380L, false);
-        this.f21482d1 = new ne.e(0, this, bsVar, 320L);
-        this.f21484e1 = new ne.b(0, this, bsVar, 320L, false);
+        this.f21044b1 = new ne.e(0, this, bsVar, 380L);
+        this.f21047c1 = new ne.b(0, this, bsVar, 380L, false);
+        this.f21049d1 = new ne.e(0, this, bsVar, 320L);
+        this.f21051e1 = new ne.b(0, this, bsVar, 320L, false);
         this.l1 = true;
-        this.f21511r1 = true;
-        this.f21514s1 = 1.0f;
-        this.I0 = d6Var;
+        this.f21081s1 = true;
+        this.f21083t1 = 1.0f;
+        this.I0 = g6Var;
         setOnClickListener(new b(this, 0));
     }
 
@@ -201,16 +203,12 @@ public class k extends FrameLayout implements ne.d, y5 {
         return null;
     }
 
-    public final void A(jm0 jm0Var, boolean z10) {
-        z(jm0Var, z10, h6.f20936a7, h6.f21273s8);
-    }
-
-    public final void B(int i10, boolean z10) {
+    public final void A(int i10, boolean z10) {
         ImageView imageView;
         if (z10) {
-            this.f21507q0 = i10;
+            this.f21074q0 = i10;
             if (this.J && (imageView = this.e) != null) {
-                imageView.setBackgroundDrawable(h6.g0(i10, 1, -1));
+                imageView.setBackgroundDrawable(k6.g0(i10, 1, -1));
             }
             d dVar = this.F;
             if (dVar != null) {
@@ -219,10 +217,10 @@ public class k extends FrameLayout implements ne.d, y5 {
             }
             return;
         }
-        this.f21505p0 = i10;
+        this.f21072p0 = i10;
         ImageView imageView2 = this.e;
         if (imageView2 != null) {
-            imageView2.setBackgroundDrawable(h6.g0(i10, 1, -1));
+            imageView2.setBackgroundDrawable(k6.g0(i10, 1, -1));
         }
         y yVar = this.E;
         if (yVar != null) {
@@ -230,9 +228,9 @@ public class k extends FrameLayout implements ne.d, y5 {
         }
     }
 
-    public void C(int i10, boolean z10) {
+    public void B(int i10, boolean z10) {
         if (z10) {
-            this.f21513s0 = i10;
+            this.f21080s0 = i10;
             d dVar = this.F;
             if (dVar != null) {
                 dVar.t();
@@ -240,21 +238,21 @@ public class k extends FrameLayout implements ne.d, y5 {
             ImageView imageView = this.e;
             if (imageView != null) {
                 Drawable drawable = imageView.getDrawable();
-                if (drawable instanceof g2) {
-                    ((g2) drawable).b(i10);
+                if (drawable instanceof h2) {
+                    ((h2) drawable).b(i10);
                 } else if ((drawable instanceof BitmapDrawable) || (drawable instanceof VectorDrawable)) {
                     this.e.setColorFilter(new PorterDuffColorFilter(i10, PorterDuff.Mode.SRC_IN));
                 }
             }
         } else {
-            this.f21510r0 = i10;
+            this.f21077r0 = i10;
             ImageView imageView2 = this.e;
             if (imageView2 != null && i10 != 0) {
                 Drawable drawable2 = imageView2.getDrawable();
-                if (drawable2 instanceof g2) {
-                    ((g2) drawable2).a(i10);
-                } else if (drawable2 instanceof e5) {
-                    ((e5) drawable2).f20785j = i10;
+                if (drawable2 instanceof h2) {
+                    ((h2) drawable2).a(i10);
+                } else if (drawable2 instanceof i5) {
+                    ((i5) drawable2).f20958j = i10;
                 } else if ((drawable2 instanceof BitmapDrawable) || (drawable2 instanceof VectorDrawable)) {
                     this.e.setColorFilter(new PorterDuffColorFilter(i10, PorterDuff.Mode.SRC_IN));
                 }
@@ -266,11 +264,11 @@ public class k extends FrameLayout implements ne.d, y5 {
         }
         ImageView imageView3 = this.e;
         if (imageView3 != null && this.S0) {
-            imageView3.setColorFilter(new PorterDuffColorFilter(this.f21510r0, PorterDuff.Mode.SRC_IN));
+            imageView3.setColorFilter(new PorterDuffColorFilter(this.f21077r0, PorterDuff.Mode.SRC_IN));
         }
     }
 
-    public final void D(int i10, boolean z10) {
+    public final void C(int i10, boolean z10) {
         y yVar;
         d dVar;
         int i11 = 0;
@@ -295,7 +293,7 @@ public class k extends FrameLayout implements ne.d, y5 {
         }
     }
 
-    public final void E(int i10, boolean z10, boolean z11) {
+    public final void D(int i10, boolean z10, boolean z11) {
         y yVar;
         d dVar;
         int i11 = 0;
@@ -320,7 +318,7 @@ public class k extends FrameLayout implements ne.d, y5 {
         }
     }
 
-    public final void F(int i10, boolean z10) {
+    public final void E(int i10, boolean z10) {
         y yVar;
         d dVar;
         if (z10 && (dVar = this.F) != null) {
@@ -330,7 +328,7 @@ public class k extends FrameLayout implements ne.d, y5 {
         }
     }
 
-    public final void G(int i10, boolean z10) {
+    public final void F(int i10, boolean z10) {
         y yVar = this.E;
         if (yVar != null) {
             int childCount = yVar.getChildCount();
@@ -352,93 +350,93 @@ public class k extends FrameLayout implements ne.d, y5 {
         }
     }
 
-    public final void I(CharSequence charSequence, org.telegram.ui.Components.p5 p5Var) {
+    public final void G(CharSequence charSequence, org.telegram.ui.Components.p5 p5Var) {
         int i10;
-        j5[] j5VarArr = this.f21500n;
-        if (charSequence != null && j5VarArr[0] == null) {
+        n5[] n5VarArr = this.f21067n;
+        if (charSequence != null && n5VarArr[0] == null) {
             p(0);
         }
-        j5 j5Var = j5VarArr[0];
-        if (j5Var != null) {
-            if (charSequence != null && !this.f21501n0) {
+        n5 n5Var = n5VarArr[0];
+        if (n5Var != null) {
+            if (charSequence != null && !this.f21068n0) {
                 i10 = 0;
             } else {
                 i10 = 4;
             }
-            j5Var.setVisibility(i10);
-            j5 j5Var2 = j5VarArr[0];
-            this.f21479c0 = charSequence;
-            j5Var2.k(charSequence);
+            n5Var.setVisibility(i10);
+            n5 n5Var2 = n5VarArr[0];
+            this.f21046c0 = charSequence;
+            n5Var2.k(charSequence);
             if (this.C0) {
-                Drawable drawable = this.f21481d0;
+                Drawable drawable = this.f21048d0;
                 if (drawable instanceof org.telegram.ui.Components.p5) {
                     ((org.telegram.ui.Components.p5) drawable).l(null);
                 }
             }
-            j5 j5Var3 = j5VarArr[0];
-            this.f21481d0 = p5Var;
-            j5Var3.i(p5Var);
+            n5 n5Var3 = n5VarArr[0];
+            this.f21048d0 = p5Var;
+            n5Var3.i(p5Var);
             if (this.C0) {
-                Drawable drawable2 = this.f21481d0;
+                Drawable drawable2 = this.f21048d0;
                 if (drawable2 instanceof org.telegram.ui.Components.p5) {
-                    ((org.telegram.ui.Components.p5) drawable2).l(j5VarArr[0]);
+                    ((org.telegram.ui.Components.p5) drawable2).l(n5VarArr[0]);
                 }
             }
-            j5VarArr[0].setRightDrawableOnClick(this.f21483e0);
+            n5VarArr[0].setRightDrawableOnClick(this.f21050e0);
         }
-        this.f21524y0 = false;
+        this.f21092y0 = false;
     }
 
-    public final void J(CharSequence charSequence, boolean z10, long j10, Interpolator interpolator) {
+    public final void I(CharSequence charSequence, boolean z10, long j10, Interpolator interpolator) {
         boolean z11;
         float f7;
-        j5[] j5VarArr = this.f21500n;
-        if (j5VarArr[0] != null && charSequence != null) {
-            if (this.f21520w0 && !TextUtils.isEmpty(this.A0)) {
+        n5[] n5VarArr = this.f21067n;
+        if (n5VarArr[0] != null && charSequence != null) {
+            if (this.f21088w0 && !TextUtils.isEmpty(this.A0)) {
                 z11 = true;
             } else {
                 z11 = false;
             }
             if (z11) {
-                if (this.f21509r.getVisibility() != 0) {
-                    this.f21509r.setVisibility(0);
-                    this.f21509r.setAlpha(0.0f);
+                if (this.f21076r.getVisibility() != 0) {
+                    this.f21076r.setVisibility(0);
+                    this.f21076r.setAlpha(0.0f);
                 }
-                ViewPropertyAnimator animate = this.f21509r.animate();
+                ViewPropertyAnimator animate = this.f21076r.animate();
                 if (z10) {
                     f7 = 0.0f;
                 } else {
                     f7 = 1.0f;
                 }
-                nk.s(animate, f7, 220L);
+                sl.s(animate, f7, 220L);
             }
-            j5 j5Var = j5VarArr[1];
-            if (j5Var != null) {
-                if (j5Var.getParent() != null) {
-                    ((ViewGroup) j5VarArr[1].getParent()).removeView(j5VarArr[1]);
+            n5 n5Var = n5VarArr[1];
+            if (n5Var != null) {
+                if (n5Var.getParent() != null) {
+                    ((ViewGroup) n5VarArr[1].getParent()).removeView(n5VarArr[1]);
                 }
-                j5VarArr[1] = null;
+                n5VarArr[1] = null;
             }
-            j5VarArr[1] = j5VarArr[0];
-            j5VarArr[0] = null;
+            n5VarArr[1] = n5VarArr[0];
+            n5VarArr[0] = null;
             setTitle(charSequence);
-            this.f21524y0 = z10;
-            j5VarArr[0].setAlpha(0.0f);
+            this.f21092y0 = z10;
+            n5VarArr[0].setAlpha(0.0f);
             if (!z11) {
-                j5 j5Var2 = j5VarArr[0];
+                n5 n5Var2 = n5VarArr[0];
                 int dp = AndroidUtilities.dp(20.0f);
                 if (!z10) {
                     dp = -dp;
                 }
-                j5Var2.setTranslationY(dp);
+                n5Var2.setTranslationY(dp);
             }
-            ViewPropertyAnimator duration = j5VarArr[0].animate().alpha(1.0f).translationY(0.0f).setDuration(j10);
+            ViewPropertyAnimator duration = n5VarArr[0].animate().alpha(1.0f).translationY(0.0f).setDuration(j10);
             if (interpolator != null) {
                 duration.setInterpolator(interpolator);
             }
             duration.start();
-            this.f21522x0 = true;
-            ViewPropertyAnimator alpha = j5VarArr[1].animate().alpha(0.0f);
+            this.f21090x0 = true;
+            ViewPropertyAnimator alpha = n5VarArr[1].animate().alpha(0.0f);
             if (!z11) {
                 int dp2 = AndroidUtilities.dp(20.0f);
                 if (z10) {
@@ -456,40 +454,40 @@ public class k extends FrameLayout implements ne.d, y5 {
         setTitle(charSequence);
     }
 
-    public final void K(String str, int i10, Runnable runnable) {
+    public final void J(String str, int i10, Runnable runnable) {
         String str2;
         boolean z10;
         SpannableString spannableString;
         boolean z11;
-        j5 j5Var;
+        n5 n5Var;
         int indexOf;
         CharSequence charSequence;
-        if (this.f21476b0 && this.f21515t0.parentLayout != null) {
-            Object[] objArr = this.f21488g0;
+        if (this.f21043b0 && this.f21082t0.parentLayout != null) {
+            Object[] objArr = this.f21055g0;
             objArr[0] = str;
             objArr[1] = Integer.valueOf(i10);
             objArr[2] = runnable;
             if (!this.Y0) {
-                String str3 = this.f21486f0;
+                String str3 = this.f21053f0;
                 if (str3 != null || str != null) {
                     if (str3 == null || !str3.equals(str)) {
-                        this.f21486f0 = str;
+                        this.f21053f0 = str;
                         Drawable drawable = null;
-                        if (this.f21499m1 != null) {
+                        if (this.f21066m1 != null) {
                             if (i10 == R.string.ConnectingToProxyWithDots) {
                                 charSequence = AndroidUtilities.replaceArrows(LocaleController.getString(R.string.TitleSetupProxy), true, AndroidUtilities.dp(2.6666667f), AndroidUtilities.dp(2.0f));
                             } else {
                                 charSequence = null;
                             }
-                            this.f21499m1.a(charSequence);
+                            this.f21066m1.b(charSequence, true);
                         }
                         if (str != null) {
                             str2 = LocaleController.getString(str, i10);
                         } else {
-                            str2 = this.f21479c0;
+                            str2 = this.f21046c0;
                         }
                         if (str == null) {
-                            drawable = this.f21481d0;
+                            drawable = this.f21048d0;
                         }
                         c2.b bVar = this.N0;
                         if (str != null && (indexOf = TextUtils.indexOf(str2, "...")) >= 0) {
@@ -506,90 +504,90 @@ public class k extends FrameLayout implements ne.d, y5 {
                         } else {
                             z11 = false;
                         }
-                        this.f21492i0 = z11;
-                        j5[] j5VarArr = this.f21500n;
-                        if ((spannableString == null || j5VarArr[0] != null) && getMeasuredWidth() != 0 && ((j5Var = j5VarArr[0]) == null || j5Var.getVisibility() == 0)) {
-                            j5 j5Var2 = j5VarArr[0];
-                            if (j5Var2 != null) {
-                                j5Var2.animate().cancel();
-                                j5 j5Var3 = j5VarArr[1];
-                                if (j5Var3 != null) {
-                                    j5Var3.animate().cancel();
+                        this.f21059i0 = z11;
+                        n5[] n5VarArr = this.f21067n;
+                        if ((spannableString == null || n5VarArr[0] != null) && getMeasuredWidth() != 0 && ((n5Var = n5VarArr[0]) == null || n5Var.getVisibility() == 0)) {
+                            n5 n5Var2 = n5VarArr[0];
+                            if (n5Var2 != null) {
+                                n5Var2.animate().cancel();
+                                n5 n5Var3 = n5VarArr[1];
+                                if (n5Var3 != null) {
+                                    n5Var3.animate().cancel();
                                 }
-                                if (j5VarArr[1] == null) {
+                                if (n5VarArr[1] == null) {
                                     p(1);
                                 }
-                                j5VarArr[1].k(spannableString);
-                                j5VarArr[1].setDrawablePadding(AndroidUtilities.dp(4.0f));
-                                j5VarArr[1].i(drawable);
-                                j5VarArr[1].setRightDrawableOnClick(this.f21483e0);
+                                n5VarArr[1].k(spannableString);
+                                n5VarArr[1].setDrawablePadding(AndroidUtilities.dp(4.0f));
+                                n5VarArr[1].i(drawable);
+                                n5VarArr[1].setRightDrawableOnClick(this.f21050e0);
                                 if (drawable instanceof org.telegram.ui.Components.p5) {
-                                    ((org.telegram.ui.Components.p5) drawable).l(j5VarArr[1]);
+                                    ((org.telegram.ui.Components.p5) drawable).l(n5VarArr[1]);
                                 }
                                 if (z10) {
-                                    bVar.c(j5VarArr[1]);
+                                    bVar.c(n5VarArr[1]);
                                 }
                                 this.Y0 = true;
-                                j5 j5Var4 = j5VarArr[1];
-                                j5VarArr[1] = j5VarArr[0];
-                                j5VarArr[0] = j5Var4;
-                                j5Var4.setAlpha(0.0f);
-                                j5VarArr[0].setTranslationY(-AndroidUtilities.dp(20.0f));
-                                ViewPropertyAnimator animate = j5VarArr[0].animate();
+                                n5 n5Var4 = n5VarArr[1];
+                                n5VarArr[1] = n5VarArr[0];
+                                n5VarArr[0] = n5Var4;
+                                n5Var4.setAlpha(0.0f);
+                                n5VarArr[0].setTranslationY(-AndroidUtilities.dp(20.0f));
+                                ViewPropertyAnimator animate = n5VarArr[0].animate();
                                 float f7 = 1.0f;
-                                if (this.f21504o1) {
-                                    f7 = 1.0f - this.f21514s1;
+                                if (this.f21071o1) {
+                                    f7 = 1.0f - this.f21083t1;
                                 }
                                 animate.alpha(f7).translationY(0.0f).setDuration(220L).start();
-                                ViewPropertyAnimator alpha = j5VarArr[1].animate().alpha(0.0f);
-                                if (this.f21509r == null) {
+                                ViewPropertyAnimator alpha = n5VarArr[1].animate().alpha(0.0f);
+                                if (this.f21076r == null) {
                                     alpha.translationY(AndroidUtilities.dp(20.0f));
                                 } else {
                                     alpha.scaleY(0.7f).scaleX(0.7f);
                                 }
                                 requestLayout();
-                                this.f21525z0 = true;
+                                this.f21093z0 = true;
                                 alpha.setDuration(220L).setListener(new e(this, 1)).start();
                             }
                         } else {
                             p(0);
                             if (this.R) {
-                                j5VarArr[0].invalidate();
+                                n5VarArr[0].invalidate();
                                 invalidate();
                             }
-                            j5VarArr[0].k(spannableString);
-                            j5VarArr[0].setDrawablePadding(AndroidUtilities.dp(4.0f));
-                            j5VarArr[0].i(drawable);
-                            j5VarArr[0].setRightDrawableOnClick(this.f21483e0);
+                            n5VarArr[0].k(spannableString);
+                            n5VarArr[0].setDrawablePadding(AndroidUtilities.dp(4.0f));
+                            n5VarArr[0].i(drawable);
+                            n5VarArr[0].setRightDrawableOnClick(this.f21050e0);
                             if (drawable instanceof org.telegram.ui.Components.p5) {
-                                ((org.telegram.ui.Components.p5) drawable).l(j5VarArr[0]);
+                                ((org.telegram.ui.Components.p5) drawable).l(n5VarArr[0]);
                             }
                             if (z10) {
-                                bVar.c(j5VarArr[0]);
+                                bVar.c(n5VarArr[0]);
                             } else {
-                                bVar.v(j5VarArr[0]);
+                                bVar.v(n5VarArr[0]);
                             }
                         }
                         if (runnable == null) {
-                            runnable = this.f21490h0;
+                            runnable = this.f21057h0;
                         }
-                        this.f21494j0 = runnable;
+                        this.f21061j0 = runnable;
                     }
                 }
             }
         }
     }
 
-    public final void L() {
+    public final void K() {
         this.G0 = true;
         if (this.F0 == null) {
-            ci.i4 i4Var = new ci.i4(getContext(), 5);
-            this.F0 = i4Var;
-            addView(i4Var);
+            ci.h4 h4Var = new ci.h4(getContext(), 5);
+            this.F0 = h4Var;
+            addView(h4Var);
         }
     }
 
-    public final void M(bh.b bVar, eh.e eVar, boolean z10) {
+    public final void L(bh.b bVar, eh.e eVar, boolean z10) {
         setBackground(null);
         setClipChildren(false);
         this.O0 = true;
@@ -597,7 +595,7 @@ public class k extends FrameLayout implements ne.d, y5 {
         dh.d c10 = bVar.c(this, null, false);
         c10.o(eVar);
         c10.p(AndroidUtilities.dp(6.0f));
-        this.f21472a = c10;
+        this.f21039a = c10;
         if (z10) {
             c10.r(AndroidUtilities.dp(18.33f), AndroidUtilities.dp(23.0f), AndroidUtilities.dp(23.0f), AndroidUtilities.dp(18.33f));
         } else {
@@ -607,12 +605,12 @@ public class k extends FrameLayout implements ne.d, y5 {
         c11.o(eVar);
         c11.q(AndroidUtilities.dp(23.0f));
         c11.p(AndroidUtilities.dp(6.0f));
-        this.f21475b = c11;
+        this.f21042b = c11;
         dh.d c12 = bVar.c(this, null, false);
         c12.o(eVar);
         c12.q(AndroidUtilities.dp(23.0f));
         c12.p(AndroidUtilities.dp(6.0f));
-        this.f21478c = c12;
+        this.f21045c = c12;
         y yVar = this.E;
         if (yVar != null) {
             yVar.setTranslationX(-AndroidUtilities.dp(10.0f));
@@ -629,20 +627,20 @@ public class k extends FrameLayout implements ne.d, y5 {
         }
     }
 
-    public boolean N(View view) {
+    public boolean M(View view) {
         if (this.L) {
-            j5[] j5VarArr = this.f21500n;
-            if (view == j5VarArr[0] || view == j5VarArr[1] || view == this.f21509r || view == this.E || view == this.e || view == this.f21512s || view == this.F0) {
+            n5[] n5VarArr = this.f21067n;
+            if (view == n5VarArr[0] || view == n5VarArr[1] || view == this.f21076r || view == this.E || view == this.e || view == this.f21079s || view == this.F0) {
                 return true;
             }
         }
         return false;
     }
 
-    public void O(View[] viewArr, boolean[] zArr) {
+    public void N(View[] viewArr, boolean[] zArr) {
         if (this.F != null && !this.J) {
             this.J = true;
-            g();
+            f();
             ArrayList arrayList = new ArrayList();
             Property property = View.ALPHA;
             arrayList.add(ObjectAnimator.ofFloat(this.F, property, 0.0f, 1.0f));
@@ -654,14 +652,14 @@ public class k extends FrameLayout implements ne.d, y5 {
                 }
             }
             this.Q = viewArr;
-            if (this.f21519w == 0) {
-                if (!this.f21501n0) {
-                    j5 j5Var = this.f21500n[0];
-                    if (j5Var != null) {
-                        arrayList.add(ObjectAnimator.ofFloat(j5Var, property, 0.0f));
+            if (this.f21087w == 0) {
+                if (!this.f21068n0) {
+                    n5 n5Var = this.f21067n[0];
+                    if (n5Var != null) {
+                        arrayList.add(ObjectAnimator.ofFloat(n5Var, property, 0.0f));
                     }
-                    if (this.f21509r != null && !TextUtils.isEmpty(this.A0)) {
-                        arrayList.add(ObjectAnimator.ofFloat(this.f21509r, property, 0.0f));
+                    if (this.f21076r != null && !TextUtils.isEmpty(this.A0)) {
+                        arrayList.add(ObjectAnimator.ofFloat(this.f21076r, property, 0.0f));
                     }
                 }
                 y yVar = this.E;
@@ -669,9 +667,9 @@ public class k extends FrameLayout implements ne.d, y5 {
                     arrayList.add(ObjectAnimator.ofFloat(yVar, property, 0.0f));
                 }
             }
-            int i10 = this.f21519w;
+            int i10 = this.f21087w;
             if (i10 == 0) {
-                i10 = this.f21521x;
+                i10 = this.f21089x;
             }
             if (i10 != 0 && !this.O0) {
                 if (i0.a.h(i10) < 0.699999988079071d) {
@@ -695,20 +693,20 @@ public class k extends FrameLayout implements ne.d, y5 {
                 this.P.playTogether(ofFloat);
             }
             this.P.setDuration(200L);
-            this.P.addListener(new me(11, this, zArr));
+            this.P.addListener(new ne(11, this, zArr));
             this.P.start();
             ImageView imageView = this.e;
             if (imageView != null) {
                 Drawable drawable = imageView.getDrawable();
-                if (drawable instanceof g2) {
-                    ((g2) drawable).c(1.0f, true);
+                if (drawable instanceof h2) {
+                    ((h2) drawable).c(1.0f, true);
                 }
-                this.e.setBackgroundDrawable(h6.g0(this.f21507q0, 1, -1));
+                this.e.setBackgroundDrawable(k6.g0(this.f21074q0, 1, -1));
             }
         }
     }
 
-    public final void P() {
+    public final void O() {
         boolean z10;
         if (this.C0 && this.D0) {
             z10 = true;
@@ -719,16 +717,16 @@ public class k extends FrameLayout implements ne.d, y5 {
             this.E0 = z10;
             c2.b bVar = this.N0;
             if (z10) {
-                bVar.f4489a = true;
-                AnimatorSet animatorSet = (AnimatorSet) bVar.f4491c;
+                bVar.f4493a = true;
+                AnimatorSet animatorSet = (AnimatorSet) bVar.f4495c;
                 if (!animatorSet.isRunning()) {
                     animatorSet.start();
                     return;
                 }
                 return;
             }
-            bVar.f4489a = false;
-            ((AnimatorSet) bVar.f4491c).cancel();
+            bVar.f4493a = false;
+            ((AnimatorSet) bVar.f4495c).cancel();
         }
     }
 
@@ -746,34 +744,45 @@ public class k extends FrameLayout implements ne.d, y5 {
         return false;
     }
 
+    @Override
+    public final void addColorKeys(HashSet hashSet) {
+        hashSet.add(Integer.valueOf(this.f21078r1));
+        hashSet.add(Integer.valueOf(this.f21075q1));
+    }
+
     public final void b() {
+        float f7;
         int w02;
         int w03;
-        if (this.f21502n1) {
-            if (this.f21504o1) {
-                ci.i4 i4Var = this.F0;
-                if (i4Var != null) {
-                    i4Var.setAlpha(1.0f - this.f21514s1);
+        if (this.f21069n1) {
+            if (this.f21071o1) {
+                ci.h4 h4Var = this.F0;
+                if (h4Var != null) {
+                    h4Var.setAlpha(1.0f - this.f21083t1);
                 } else {
-                    j5 j5Var = this.f21500n[0];
-                    if (j5Var != null) {
-                        j5Var.setAlpha(1.0f - this.f21514s1);
+                    n5 n5Var = this.f21067n[0];
+                    if (n5Var != null) {
+                        n5Var.setAlpha(1.0f - this.f21083t1);
                     }
                 }
             }
-            float f7 = this.f21514s1;
-            int i10 = this.f21508q1;
-            d6 d6Var = this.I0;
+            if (this.f21073p1) {
+                f7 = 1.0f;
+            } else {
+                f7 = this.f21083t1;
+            }
+            int i10 = this.f21078r1;
+            g6 g6Var = this.I0;
             if (i10 == -1) {
                 w02 = 0;
             } else {
-                w02 = h6.w0(i10, d6Var);
+                w02 = k6.w0(i10, g6Var);
             }
-            int i11 = this.f21506p1;
+            int i11 = this.f21075q1;
             if (i11 == -1) {
                 w03 = 0;
             } else {
-                w03 = h6.w0(i11, d6Var);
+                w03 = k6.w0(i11, g6Var);
             }
             if (w03 == 0) {
                 w03 = i0.a.o(w02, 0);
@@ -782,7 +791,7 @@ public class k extends FrameLayout implements ne.d, y5 {
                 w02 = i0.a.o(w03, 0);
             }
             setBackgroundColor(i0.a.f(f7, w02, w03));
-            setShadowAlpha((int) ((1.0f - this.f21514s1) * 255.0f));
+            setShadowAlpha((int) ((1.0f - f7) * 255.0f));
             if (this.K0) {
                 invalidate();
             }
@@ -795,32 +804,42 @@ public class k extends FrameLayout implements ne.d, y5 {
             transitionSet.setOrdering(0);
             transitionSet.addTransition(new Fade());
             transitionSet.addTransition(new i(0));
-            this.f21525z0 = false;
+            this.f21093z0 = false;
             transitionSet.setDuration(220L);
-            transitionSet.setInterpolator((TimeInterpolator) bs.f25025f);
+            transitionSet.setInterpolator((TimeInterpolator) bs.f25133f);
             TransitionManager.beginDelayedTransition(this, transitionSet);
         }
     }
 
-    @Override
-    public final void d() {
-        b();
-        dh.d dVar = this.f21472a;
-        if (dVar != null) {
-            dVar.v();
+    public final void d(boolean z10) {
+        boolean z11;
+        float f7;
+        oo ooVar = this.R0;
+        if (ooVar == null) {
+            return;
         }
-        dh.d dVar2 = this.f21478c;
-        if (dVar2 != null) {
-            dVar2.v();
+        ko koVar = ooVar.e;
+        if (koVar != null && koVar.getVisibility() == 0) {
+            z11 = true;
+        } else {
+            z11 = false;
         }
-        dh.d dVar3 = this.f21475b;
-        if (dVar3 != null) {
-            dVar3.v();
+        int min = Math.min(getMeasuredWidth() - AndroidUtilities.dp(116.0f), this.R0.getVisualWidth());
+        ne.e eVar = this.f21044b1;
+        if (z10) {
+            if (eVar.f17455g) {
+                f7 = eVar.f17454f;
+            } else {
+                f7 = eVar.e;
+            }
+            float f10 = min;
+            if (f7 != f10) {
+                eVar.a(f10);
+            }
+        } else {
+            eVar.c(min);
         }
-        ci.k kVar = this.f21499m1;
-        if (kVar != null) {
-            kVar.b();
-        }
+        this.f21047c1.a(z11, z10);
     }
 
     @Override
@@ -829,22 +848,23 @@ public class k extends FrameLayout implements ne.d, y5 {
         boolean z10;
         float f7;
         int i11;
+        float f10;
         int i12;
         int i13;
         int i14;
-        float f10;
+        float f11;
         int i15;
         oo ooVar;
         int dp = AndroidUtilities.dp(6.0f);
         int dp2 = AndroidUtilities.dp(46.0f);
         float actionModeFactor = getActionModeFactor();
-        if (this.f21491h1) {
-            i10 = this.f21487f1;
+        if (this.f21058h1) {
+            i10 = this.f21054f1;
         } else {
-            i10 = (int) this.f21482d1.e;
+            i10 = (int) this.f21049d1.e;
         }
-        if (this.f21493i1) {
-            i10 = Math.max((int) ((1.0f - this.f21474a1) * this.f21489g1), i10);
+        if (this.f21060i1) {
+            i10 = Math.max((int) ((1.0f - this.f21041a1) * this.f21056g1), i10);
         }
         ImageView imageView = this.e;
         if (imageView != null && imageView.getVisibility() == 0) {
@@ -855,10 +875,10 @@ public class k extends FrameLayout implements ne.d, y5 {
         int height = (getHeight() - ((getCurrentActionBarHeight() + dp2) / 2)) - dp;
         int i16 = dp * 2;
         int i17 = height + dp2 + i16;
-        dh.d dVar = this.f21472a;
-        ne.b bVar = this.f21484e1;
+        dh.d dVar = this.f21039a;
+        ne.b bVar = this.f21051e1;
         if (dVar != null && !this.P0 && this.l1) {
-            if (this.f21491h1 || this.f21493i1) {
+            if (this.f21058h1 || this.f21060i1) {
                 f7 = 1.0f;
                 if (i10 > 0) {
                     i14 = dp;
@@ -874,77 +894,82 @@ public class k extends FrameLayout implements ne.d, y5 {
             int max = Math.max(i18, i19);
             i11 = 2;
             oo ooVar2 = this.R0;
-            ne.b bVar2 = this.f21480c1;
-            float f11 = 0.0f;
+            ne.b bVar2 = this.f21047c1;
+            float f12 = 0.0f;
             if (ooVar2 == null) {
-                f10 = 0.0f;
+                f11 = 0.0f;
             } else {
-                f10 = f7 - bVar2.e;
+                f11 = f7 - bVar2.e;
             }
-            int lerp = AndroidUtilities.lerp(i18, max, f10);
+            int lerp = AndroidUtilities.lerp(i18, max, f11);
             if (z10) {
                 i15 = i19;
             } else {
                 i15 = 0;
             }
             if (this.R0 != null) {
-                f11 = f7 - bVar2.e;
+                f12 = f7 - bVar2.e;
             }
-            int lerp2 = AndroidUtilities.lerp(i15, i19, f11);
+            int lerp2 = AndroidUtilities.lerp(i15, i19, f12);
             int width = getWidth() - lerp;
             int i20 = width - lerp2;
             if (this.R0 != null) {
-                int lerp3 = AndroidUtilities.lerp(Math.min(i20, ((int) this.f21477b1.e) + i16), i20, Math.max(this.f21474a1, actionModeFactor));
+                int lerp3 = AndroidUtilities.lerp(Math.min(i20, ((int) this.f21044b1.e) + i16), i20, Math.max(this.f21041a1, actionModeFactor));
                 lerp2 = ((width + lerp2) - lerp3) / 2;
                 width = lerp2 + lerp3;
                 float dp3 = AndroidUtilities.dp(3.0f) + ((lerp2 - ((ViewGroup.MarginLayoutParams) this.R0.getLayoutParams()).leftMargin) - this.R0.getLeftPadding()) + dp;
                 this.R0.setTranslationX(dp3);
                 this.R0.setPivotX((ooVar.getMeasuredWidth() / 2.0f) - dp3);
             }
-            this.f21472a.setBounds(lerp2, height, width, i17);
-            this.f21472a.draw(canvas);
+            this.f21039a.setBounds(lerp2, height, width, i17);
+            this.f21039a.draw(canvas);
         } else {
             f7 = 1.0f;
             i11 = 2;
         }
-        dh.d dVar2 = this.f21475b;
+        dh.d dVar2 = this.f21042b;
         if (dVar2 != null && z10) {
             dVar2.setBounds(0, height, dp2 + i16, i17);
-            this.f21475b.draw(canvas);
+            this.f21042b.draw(canvas);
         }
-        dh.d dVar3 = this.f21478c;
-        if (dVar3 != null && i10 > 0 && !this.P0 && !this.f21497k1) {
+        dh.d dVar3 = this.f21045c;
+        if (dVar3 != null && i10 > 0 && !this.P0 && !this.f21064k1) {
             dVar3.setBounds((getWidth() - Math.max(dp2, i10)) - i16, height, getWidth(), i17);
-            dh.d dVar4 = this.f21478c;
-            if (this.f21491h1) {
+            dh.d dVar4 = this.f21045c;
+            if (this.f21058h1) {
                 i13 = 255;
             } else {
                 i13 = (int) (bVar.e * 255.0f);
             }
             dVar4.setAlpha(i13);
-            this.f21478c.draw(canvas);
+            this.f21045c.draw(canvas);
         }
-        if (this.K0 && this.f21521x != 0) {
+        if (this.K0 && this.f21089x != 0) {
             this.M0.set(0, 0, getMeasuredWidth(), getMeasuredHeight());
-            int i21 = this.f21521x;
+            int i21 = this.f21089x;
             Paint paint = this.L0;
             paint.setColor(i21);
-            if (this.f21502n1) {
-                lw0 lw0Var = this.J0;
+            if (this.f21069n1) {
+                ow0 ow0Var = this.J0;
                 float y3 = getY();
-                float f12 = f7 - this.f21514s1;
-                lw0Var.getClass();
-                if (lw0.F() && SharedConfig.getDevicePerformanceClass() == i11) {
-                    i12 = h6.f21373xf;
+                if (this.f21073p1) {
+                    f10 = f7;
                 } else {
-                    i12 = h6.yf;
+                    f10 = this.f21083t1;
                 }
-                lw0Var.K(canvas, y3, this.M0, paint, true, AndroidUtilities.lerp(255, Color.alpha(h6.w0(i12, lw0Var.getResourceProvider())), f12));
+                float f13 = f7 - f10;
+                ow0Var.getClass();
+                if (ow0.E() && SharedConfig.getDevicePerformanceClass() == i11) {
+                    i12 = k6.f21562xf;
+                } else {
+                    i12 = k6.yf;
+                }
+                ow0Var.J(canvas, y3, this.M0, paint, true, AndroidUtilities.lerp(255, Color.alpha(k6.w0(i12, ow0Var.getResourceProvider())), f13));
             } else {
-                this.J0.J(canvas, getY(), this.M0, paint, true);
+                this.J0.I(canvas, getY(), this.M0, paint, true);
             }
         }
-        this.f21495j1 = true;
+        this.f21062j1 = true;
         if (this.Z0) {
             return;
         }
@@ -964,7 +989,7 @@ public class k extends FrameLayout implements ne.d, y5 {
             if (q6 == null) {
                 q6 = q(this, f7, f10, null);
             }
-            dh.d dVar = this.f21472a;
+            dh.d dVar = this.f21039a;
             boolean z12 = true;
             if (dVar != null && dVar.getBounds().contains(x10, y3)) {
                 z10 = true;
@@ -972,14 +997,14 @@ public class k extends FrameLayout implements ne.d, y5 {
                 z10 = false;
             }
             if (q6 != null && q6 != this.R0) {
-                dh.d dVar2 = this.f21475b;
+                dh.d dVar2 = this.f21042b;
                 if (dVar2 != null && dVar2.getBounds().contains(x10, y3)) {
                     z11 = true;
                 } else {
                     z11 = false;
                 }
                 boolean z13 = z10 | z11;
-                dh.d dVar3 = this.f21478c;
+                dh.d dVar3 = this.f21045c;
                 if (dVar3 == null || !dVar3.getBounds().contains(x10, y3)) {
                     z12 = false;
                 }
@@ -997,43 +1022,12 @@ public class k extends FrameLayout implements ne.d, y5 {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.k.drawChild(android.graphics.Canvas, android.view.View, long):boolean");
     }
 
-    public final void e(boolean z10) {
-        boolean z11;
-        float f7;
-        oo ooVar = this.R0;
-        if (ooVar == null) {
-            return;
-        }
-        ko koVar = ooVar.e;
-        if (koVar != null && koVar.getVisibility() == 0) {
-            z11 = true;
-        } else {
-            z11 = false;
-        }
-        int min = Math.min(getMeasuredWidth() - AndroidUtilities.dp(116.0f), this.R0.getVisualWidth());
-        ne.e eVar = this.f21477b1;
-        if (z10) {
-            if (eVar.f17392g) {
-                f7 = eVar.f17391f;
-            } else {
-                f7 = eVar.e;
-            }
-            float f10 = min;
-            if (f7 != f10) {
-                eVar.a(f10);
-            }
-        } else {
-            eVar.c(min);
-        }
-        this.f21480c1.a(z11, z10);
-    }
-
-    public final void f() {
+    public final void e() {
         int i10;
         ImageView imageView = this.e;
         if (imageView != null) {
             Drawable drawable = imageView.getDrawable();
-            if (!(drawable instanceof g2) && !(drawable instanceof e5)) {
+            if (!(drawable instanceof h2) && !(drawable instanceof i5)) {
                 i10 = 0;
             } else {
                 i10 = 2;
@@ -1045,7 +1039,7 @@ public class k extends FrameLayout implements ne.d, y5 {
         }
     }
 
-    public final void g() {
+    public final void f() {
         int i10;
         int i11;
         float f7;
@@ -1071,16 +1065,16 @@ public class k extends FrameLayout implements ne.d, y5 {
         if (max > 0) {
             z10 = true;
         }
-        this.f21484e1.a(z10, this.f21495j1);
-        ne.e eVar = this.f21482d1;
-        if (eVar.f17392g) {
-            f7 = eVar.f17391f;
+        this.f21051e1.a(z10, this.f21062j1);
+        ne.e eVar = this.f21049d1;
+        if (eVar.f17455g) {
+            f7 = eVar.f17454f;
         } else {
             f7 = eVar.e;
         }
         float f10 = max;
         if (f7 != f10) {
-            if (this.f21495j1) {
+            if (this.f21062j1) {
                 eVar.a(f10);
             } else {
                 eVar.c(f10);
@@ -1088,8 +1082,15 @@ public class k extends FrameLayout implements ne.d, y5 {
         }
     }
 
+    public void g(boolean z10) {
+        y yVar;
+        if (this.f21068n0 && (yVar = this.E) != null) {
+            yVar.j(z10);
+        }
+    }
+
     public j getActionBarMenuOnItemClick() {
-        return this.f21517u0;
+        return this.f21084u0;
     }
 
     public y getActionMode() {
@@ -1105,11 +1106,11 @@ public class k extends FrameLayout implements ne.d, y5 {
     }
 
     public FrameLayout getAdditionalSubTitleOverlayContainer() {
-        return this.f21499m1;
+        return this.f21066m1;
     }
 
-    public j5 getAdditionalSubtitleTextView() {
-        return this.f21512s;
+    public n5 getAdditionalSubtitleTextView() {
+        return this.f21079s;
     }
 
     public ImageView getBackButton() {
@@ -1120,20 +1121,16 @@ public class k extends FrameLayout implements ne.d, y5 {
         return this.h;
     }
 
-    public z4 getBackButtonState() {
+    public c5 getBackButtonState() {
         return this.d;
     }
 
     public int getBackgroundColor() {
-        return this.f21521x;
+        return this.f21089x;
     }
 
     public boolean getCastShadows() {
-        return this.f21496k0;
-    }
-
-    public int[] getColorKeys() {
-        return null;
+        return this.f21063k0;
     }
 
     public boolean getOccupyStatusBar() {
@@ -1141,37 +1138,49 @@ public class k extends FrameLayout implements ne.d, y5 {
     }
 
     public w9 getSearchAvatarImageView() {
-        return this.f21485f;
+        return this.f21052f;
     }
 
     public int getShadowAlpha() {
-        return this.f21498l0;
+        return this.f21065l0;
     }
 
     public String getSubtitle() {
         CharSequence charSequence;
-        if (this.f21509r != null && (charSequence = this.A0) != null) {
+        if (this.f21076r != null && (charSequence = this.A0) != null) {
             return charSequence.toString();
         }
         return null;
     }
 
-    public j5 getSubtitleTextView() {
-        return this.f21509r;
+    public int getSubtitleColorInternal() {
+        n5 n5Var = this.f21076r;
+        if (n5Var != null) {
+            return n5Var.getTextColor();
+        }
+        return 0;
+    }
+
+    public n5 getSubtitleTextView() {
+        return this.f21076r;
     }
 
     public String getTitle() {
-        j5 j5Var = this.f21500n[0];
-        if (j5Var == null) {
+        n5 n5Var = this.f21067n[0];
+        if (n5Var == null) {
             return null;
         }
-        return j5Var.getText().toString();
+        return n5Var.getText().toString();
+    }
+
+    public int getTitleColorToSet() {
+        return this.f21086v0;
     }
 
     public Paint.FontMetricsInt getTitleFontMetricsInt() {
         float f7;
-        j5 j5Var = this.f21500n[0];
-        if (j5Var == null) {
+        n5 n5Var = this.f21067n[0];
+        if (n5Var == null) {
             TextPaint textPaint = new TextPaint(1);
             if (!AndroidUtilities.isTablet() && getResources().getConfiguration().orientation == 2) {
                 f7 = 18.0f;
@@ -1181,26 +1190,23 @@ public class k extends FrameLayout implements ne.d, y5 {
             textPaint.setTextSize(AndroidUtilities.dp(f7));
             return textPaint.getFontMetricsInt();
         }
-        return j5Var.getPaint().getFontMetricsInt();
+        return n5Var.getPaint().getFontMetricsInt();
     }
 
-    public j5 getTitleTextView() {
-        return this.f21500n[0];
+    public n5 getTitleTextView() {
+        return this.f21067n[0];
     }
 
-    public j5 getTitleTextView2() {
-        return this.f21500n[1];
+    public n5 getTitleTextView2() {
+        return this.f21067n[1];
     }
 
     public FrameLayout getTitlesContainer() {
         return this.F0;
     }
 
-    public void h(boolean z10) {
-        y yVar;
-        if (this.f21501n0 && (yVar = this.E) != null) {
-            yVar.j(z10);
-        }
+    public final y h() {
+        return i(null);
     }
 
     @Override
@@ -1208,11 +1214,7 @@ public class k extends FrameLayout implements ne.d, y5 {
         return false;
     }
 
-    public final y i() {
-        return j(null);
-    }
-
-    public final y j(String str) {
+    public final y i(String str) {
         float f7;
         int i10;
         if (a(str)) {
@@ -1234,10 +1236,10 @@ public class k extends FrameLayout implements ne.d, y5 {
         dVar2.setTranslationX(f7);
         this.F.setGlassMode(this.O0);
         d dVar3 = this.F;
-        dVar3.f21898c = true;
+        dVar3.f21965c = true;
         dVar3.setClickable(true);
         if (!this.O0) {
-            this.F.setBackgroundColor(h6.w0(h6.f21348w8, this.I0));
+            r6.i(k6.f21537w8, this.F, this.I0);
         }
         addView(this.F, indexOfChild(this.e));
         d dVar4 = this.F;
@@ -1257,42 +1259,42 @@ public class k extends FrameLayout implements ne.d, y5 {
         return this.F;
     }
 
-    public final void k() {
-        if (this.f21499m1 == null) {
+    public final void j() {
+        if (this.f21066m1 == null) {
             ci.k kVar = new ci.k(this, getContext(), this.I0, this.N0);
-            this.f21499m1 = kVar;
+            this.f21066m1 = kVar;
             kVar.setClipChildren(false);
-            addView(this.f21499m1);
+            addView(this.f21066m1);
         }
+    }
+
+    public final void k() {
+        if (this.f21079s != null) {
+            return;
+        }
+        n5 n5Var = new n5(getContext());
+        this.f21079s = n5Var;
+        n5Var.setGravity(3);
+        this.f21079s.setVisibility(8);
+        r6.Z(this.f21079s, k6.B8, this.I0);
+        addView(this.f21079s, 0, w7.z5.e(-2, -2, 51));
     }
 
     public final void l() {
-        if (this.f21512s != null) {
-            return;
-        }
-        j5 j5Var = new j5(getContext());
-        this.f21512s = j5Var;
-        j5Var.setGravity(3);
-        this.f21512s.setVisibility(8);
-        this.f21512s.setTextColor(h6.w0(h6.B8, this.I0));
-        addView(this.f21512s, 0, w7.z5.e(-2, -2, 51));
-    }
-
-    public final void m() {
         if (this.e != null) {
             return;
         }
         ImageView imageView = new ImageView(getContext());
         this.e = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
-        this.e.setBackgroundDrawable(h6.g0(this.f21505p0, 1, -1));
+        this.e.setBackgroundDrawable(k6.g0(this.f21072p0, 1, -1));
         this.e.setPadding(AndroidUtilities.dp(1.0f), 0, 0, 0);
         addView(this.e, w7.z5.e(54, 54, 51));
         this.e.setOnClickListener(new b(this, 1));
         this.e.setContentDescription(LocaleController.getString(R.string.AccDescrGoBack));
     }
 
-    public final y n() {
+    public final y m() {
         y yVar = this.E;
         if (yVar != null) {
             return yVar;
@@ -1303,27 +1305,32 @@ public class k extends FrameLayout implements ne.d, y5 {
         return this.E;
     }
 
-    public final void o() {
-        if (this.f21509r != null) {
+    public final void n() {
+        if (this.f21076r != null) {
             return;
         }
-        j5 j5Var = new j5(getContext());
-        this.f21509r = j5Var;
-        j5Var.setGravity(3);
-        this.f21509r.setVisibility(8);
-        this.f21509r.setTextColor(h6.w0(h6.B8, this.I0));
-        addView(this.f21509r, 0, w7.z5.e(-2, -2, 51));
+        n5 n5Var = new n5(getContext());
+        this.f21076r = n5Var;
+        n5Var.setGravity(3);
+        this.f21076r.setVisibility(8);
+        r6.Z(this.f21076r, k6.B8, this.I0);
+        addView(this.f21076r, 0, w7.z5.e(-2, -2, 51));
+    }
+
+    @Override
+    public final void o(int i10, float f7, float f10, ne.e eVar) {
+        invalidate();
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
         this.C0 = true;
-        P();
+        O();
         if (this.J) {
-            int i10 = this.f21519w;
+            int i10 = this.f21087w;
             if (i10 == 0) {
-                i10 = this.f21521x;
+                i10 = this.f21089x;
             }
             if (i10 != 0 && !this.O0) {
                 if (i0.a.h(i10) < 0.699999988079071d) {
@@ -1335,9 +1342,9 @@ public class k extends FrameLayout implements ne.d, y5 {
                 NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needCheckSystemBarColors, new Object[0]);
             }
         }
-        Drawable drawable = this.f21481d0;
+        Drawable drawable = this.f21048d0;
         if (drawable instanceof org.telegram.ui.Components.p5) {
-            ((org.telegram.ui.Components.p5) drawable).l(this.f21500n[0]);
+            ((org.telegram.ui.Components.p5) drawable).l(this.f21067n[0]);
         }
     }
 
@@ -1345,10 +1352,10 @@ public class k extends FrameLayout implements ne.d, y5 {
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         this.C0 = false;
-        P();
+        O();
         if (this.J) {
-            int i10 = this.f21521x;
-            if (i10 != 0 && this.f21519w != 0 && !this.O0) {
+            int i10 = this.f21089x;
+            if (i10 != 0 && this.f21087w != 0 && !this.O0) {
                 if (i0.a.h(i10) < 0.699999988079071d) {
                     AndroidUtilities.setLightStatusBar((Activity) getContext(), false);
                 } else {
@@ -1358,7 +1365,7 @@ public class k extends FrameLayout implements ne.d, y5 {
                 NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needCheckSystemBarColors, new Object[0]);
             }
         }
-        Drawable drawable = this.f21481d0;
+        Drawable drawable = this.f21048d0;
         if (drawable instanceof org.telegram.ui.Components.p5) {
             ((org.telegram.ui.Components.p5) drawable).l(null);
         }
@@ -1366,32 +1373,32 @@ public class k extends FrameLayout implements ne.d, y5 {
 
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        Drawable z02;
-        if (this.R && !this.f21492i0 && !LocaleController.isRTL && motionEvent.getAction() == 0 && (z02 = h6.z0()) != null && z02.getBounds().contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
+        Drawable A0;
+        if (this.R && !this.f21059i0 && !LocaleController.isRTL && motionEvent.getAction() == 0 && (A0 = k6.A0()) != null && A0.getBounds().contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
             this.V = true;
-            ww0 ww0Var = this.S;
-            j5[] j5VarArr = this.f21500n;
-            if (ww0Var == null) {
+            zw0 zw0Var = this.S;
+            n5[] n5VarArr = this.f21067n;
+            if (zw0Var == null) {
                 this.T = null;
-                this.S = new ww0(0);
-                j5VarArr[0].invalidate();
+                this.S = new zw0(0);
+                n5VarArr[0].invalidate();
                 invalidate();
             } else {
                 this.S = null;
                 ?? obj = new Object();
-                obj.f32292c = new ArrayList();
+                obj.f32391c = new ArrayList();
                 obj.d = new ArrayList();
                 Paint paint = new Paint(1);
-                obj.f32290a = paint;
+                obj.f32389a = paint;
                 paint.setStrokeWidth(AndroidUtilities.dp(1.5f));
-                paint.setColor(h6.x0(null, h6.A8, false) & (-1644826));
+                paint.setColor(k6.x0(null, k6.A8, false) & (-1644826));
                 paint.setStrokeCap(Paint.Cap.ROUND);
                 paint.setStyle(Paint.Style.STROKE);
                 for (int i10 = 0; i10 < 20; i10++) {
                     obj.d.add(new w00(obj));
                 }
                 this.T = obj;
-                j5VarArr[0].invalidate();
+                n5VarArr[0].invalidate();
                 invalidate();
             }
         }
@@ -1412,13 +1419,13 @@ public class k extends FrameLayout implements ne.d, y5 {
         int i12;
         float f7;
         int dp;
-        j5[] j5VarArr;
-        j5 j5Var;
+        n5[] n5VarArr;
+        n5 n5Var;
         int i13;
         int i14;
         int i15;
         int i16;
-        j5 j5Var2;
+        n5 n5Var2;
         int i17;
         int i18;
         int closingSearchFieldWidth;
@@ -1472,7 +1479,7 @@ public class k extends FrameLayout implements ne.d, y5 {
         y yVar = kVar.E;
         if (yVar != null && yVar.getVisibility() != 8) {
             float f11 = 66.0f;
-            if (kVar.E.p() && !kVar.f21501n0) {
+            if (kVar.E.p() && !kVar.f21068n0) {
                 kVar.E.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), makeMeasureSpec2);
                 int l4 = kVar.E.l();
                 if (kVar.m0) {
@@ -1481,22 +1488,22 @@ public class k extends FrameLayout implements ne.d, y5 {
                     f11 = 74.0f;
                 }
                 makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(kVar.E.l() + (size - AndroidUtilities.dp(f11)), 1073741824);
-                if (!kVar.f21523y) {
+                if (!kVar.f21091y) {
                     kVar.E.r(-l4);
                 }
-            } else if (kVar.f21501n0) {
+            } else if (kVar.f21068n0) {
                 if (kVar.m0) {
                     f11 = 0.0f;
                 } else if (AndroidUtilities.isTablet()) {
                     f11 = 74.0f;
                 }
-                makeMeasureSpec = nk.c(f11, size, 1073741824);
-                if (!kVar.f21523y) {
+                makeMeasureSpec = sl.c(f11, size, 1073741824);
+                if (!kVar.f21091y) {
                     kVar.E.r(0.0f);
                 }
             } else {
                 makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE);
-                if (!kVar.f21523y) {
+                if (!kVar.f21091y) {
                     kVar.E.r(0.0f);
                 }
             }
@@ -1504,16 +1511,16 @@ public class k extends FrameLayout implements ne.d, y5 {
         }
         int i21 = 0;
         while (true) {
-            j5VarArr = kVar.f21500n;
+            n5VarArr = kVar.f21067n;
             if (i21 >= 2) {
                 break;
             }
-            j5 j5Var3 = j5VarArr[0];
-            if ((j5Var3 != null && j5Var3.getVisibility() != 8) || ((j5Var = kVar.f21509r) != null && j5Var.getVisibility() != 8)) {
+            n5 n5Var3 = n5VarArr[0];
+            if ((n5Var3 != null && n5Var3.getVisibility() != 8) || ((n5Var = kVar.f21076r) != null && n5Var.getVisibility() != 8)) {
                 y yVar2 = kVar.E;
                 if (yVar2 != null) {
                     int measuredWidth = yVar2.getMeasuredWidth();
-                    if (kVar.f21501n0) {
+                    if (kVar.f21068n0) {
                         closingSearchFieldWidth = 0;
                     } else {
                         closingSearchFieldWidth = kVar.E.getClosingSearchFieldWidth();
@@ -1522,103 +1529,103 @@ public class k extends FrameLayout implements ne.d, y5 {
                 } else {
                     i14 = 0;
                 }
-                int max = Math.max(org.telegram.messenger.g0.B(16.0f, size - i14, dp) - kVar.f21473a0, 0);
-                boolean z10 = kVar.f21524y0;
+                int max = Math.max(org.telegram.messenger.v0.B(16.0f, size - i14, dp) - kVar.f21040a0, 0);
+                boolean z10 = kVar.f21092y0;
                 int i22 = 20;
-                if (((z10 && i21 == 0) || (!z10 && i21 == i20)) && kVar.f21520w0 && kVar.f21522x0) {
-                    j5 j5Var4 = j5VarArr[i21];
+                if (((z10 && i21 == 0) || (!z10 && i21 == i20)) && kVar.f21088w0 && kVar.f21090x0) {
+                    n5 n5Var4 = n5VarArr[i21];
                     i13 = i20;
                     if (kVar.O0) {
                         i22 = 17;
                     } else if (!AndroidUtilities.isTablet() && kVar.getResources().getConfiguration().orientation == 2) {
                         i22 = 18;
                     }
-                    j5Var4.setTextSize(i22);
+                    n5Var4.setTextSize(i22);
                 } else {
                     i13 = i20;
-                    j5 j5Var5 = j5VarArr[0];
-                    if (j5Var5 != null && j5Var5.getVisibility() != 8 && (j5Var2 = kVar.f21509r) != null && j5Var2.getVisibility() != 8) {
-                        j5 j5Var6 = j5VarArr[i21];
-                        if (j5Var6 != null) {
+                    n5 n5Var5 = n5VarArr[0];
+                    if (n5Var5 != null && n5Var5.getVisibility() != 8 && (n5Var2 = kVar.f21076r) != null && n5Var2.getVisibility() != 8) {
+                        n5 n5Var6 = n5VarArr[i21];
+                        if (n5Var6 != null) {
                             if (kVar.O0) {
                                 i22 = 17;
                             } else if (!AndroidUtilities.isTablet()) {
                                 i22 = 18;
                             }
-                            j5Var6.setTextSize(i22);
+                            n5Var6.setTextSize(i22);
                         }
-                        j5 j5Var7 = kVar.f21509r;
+                        n5 n5Var7 = kVar.f21076r;
                         if (AndroidUtilities.isTablet()) {
                             i17 = 16;
                         } else {
                             i17 = 14;
                         }
-                        j5Var7.setTextSize(i17);
-                        j5 j5Var8 = kVar.f21512s;
-                        if (j5Var8 != null) {
+                        n5Var7.setTextSize(i17);
+                        n5 n5Var8 = kVar.f21079s;
+                        if (n5Var8 != null) {
                             if (AndroidUtilities.isTablet()) {
                                 i18 = 16;
                             } else {
                                 i18 = 14;
                             }
-                            j5Var8.setTextSize(i18);
+                            n5Var8.setTextSize(i18);
                         }
                     } else {
-                        j5 j5Var9 = j5VarArr[i21];
-                        if (j5Var9 != null && j5Var9.getVisibility() != 8) {
-                            j5 j5Var10 = j5VarArr[i21];
+                        n5 n5Var9 = n5VarArr[i21];
+                        if (n5Var9 != null && n5Var9.getVisibility() != 8) {
+                            n5 n5Var10 = n5VarArr[i21];
                             if (kVar.O0) {
                                 i22 = 17;
                             } else if (!AndroidUtilities.isTablet() && kVar.getResources().getConfiguration().orientation == 2) {
                                 i22 = 18;
                             }
-                            j5Var10.setTextSize(i22);
+                            n5Var10.setTextSize(i22);
                         }
-                        j5 j5Var11 = kVar.f21509r;
-                        if (j5Var11 != null && j5Var11.getVisibility() != 8) {
-                            j5 j5Var12 = kVar.f21509r;
+                        n5 n5Var11 = kVar.f21076r;
+                        if (n5Var11 != null && n5Var11.getVisibility() != 8) {
+                            n5 n5Var12 = kVar.f21076r;
                             if (!AndroidUtilities.isTablet() && kVar.getResources().getConfiguration().orientation == 2) {
                                 i16 = 14;
                             } else {
                                 i16 = 16;
                             }
-                            j5Var12.setTextSize(i16);
+                            n5Var12.setTextSize(i16);
                         }
-                        j5 j5Var13 = kVar.f21512s;
-                        if (j5Var13 != null) {
+                        n5 n5Var13 = kVar.f21079s;
+                        if (n5Var13 != null) {
                             if (!AndroidUtilities.isTablet() && kVar.getResources().getConfiguration().orientation == 2) {
                                 i15 = 14;
                             } else {
                                 i15 = 16;
                             }
-                            j5Var13.setTextSize(i15);
+                            n5Var13.setTextSize(i15);
                         }
                     }
                 }
-                j5 j5Var14 = j5VarArr[i21];
-                if (j5Var14 != null && j5Var14.getVisibility() != 8) {
-                    j5VarArr[i21].measure(View.MeasureSpec.makeMeasureSpec(max, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(j5VarArr[i21].getPaddingBottom() + j5VarArr[i21].getPaddingTop() + AndroidUtilities.dp(24.0f), Integer.MIN_VALUE));
-                    if (kVar.f21525z0) {
-                        CharSequence text = j5VarArr[i21].getText();
-                        j5 j5Var15 = j5VarArr[i21];
-                        j5Var15.setPivotX(j5Var15.getTextPaint().measureText(text, 0, text.length()) / 2.0f);
-                        j5VarArr[i21].setPivotY(AndroidUtilities.dp(24.0f) >> 1);
+                n5 n5Var14 = n5VarArr[i21];
+                if (n5Var14 != null && n5Var14.getVisibility() != 8) {
+                    n5VarArr[i21].measure(View.MeasureSpec.makeMeasureSpec(max, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(n5VarArr[i21].getPaddingBottom() + n5VarArr[i21].getPaddingTop() + AndroidUtilities.dp(24.0f), Integer.MIN_VALUE));
+                    if (kVar.f21093z0) {
+                        CharSequence text = n5VarArr[i21].getText();
+                        n5 n5Var15 = n5VarArr[i21];
+                        n5Var15.setPivotX(n5Var15.getTextPaint().measureText(text, 0, text.length()) / 2.0f);
+                        n5VarArr[i21].setPivotY(AndroidUtilities.dp(24.0f) >> 1);
                     } else {
-                        j5VarArr[i21].setPivotX(0.0f);
-                        j5VarArr[i21].setPivotY(0.0f);
+                        n5VarArr[i21].setPivotX(0.0f);
+                        n5VarArr[i21].setPivotY(0.0f);
                     }
                 }
-                j5 j5Var16 = kVar.f21509r;
-                if (j5Var16 != null && j5Var16.getVisibility() != 8) {
-                    kVar.f21509r.measure(View.MeasureSpec.makeMeasureSpec(max, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(20.0f), Integer.MIN_VALUE));
+                n5 n5Var16 = kVar.f21076r;
+                if (n5Var16 != null && n5Var16.getVisibility() != 8) {
+                    kVar.f21076r.measure(View.MeasureSpec.makeMeasureSpec(max, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(20.0f), Integer.MIN_VALUE));
                 }
-                ci.k kVar2 = kVar.f21499m1;
+                ci.k kVar2 = kVar.f21066m1;
                 if (kVar2 != null) {
                     kVar2.measure(View.MeasureSpec.makeMeasureSpec(max, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE));
                 }
-                j5 j5Var17 = kVar.f21512s;
-                if (j5Var17 != null && j5Var17.getVisibility() != 8) {
-                    kVar.f21512s.measure(View.MeasureSpec.makeMeasureSpec(max, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(20.0f), Integer.MIN_VALUE));
+                n5 n5Var17 = kVar.f21079s;
+                if (n5Var17 != null && n5Var17.getVisibility() != 8) {
+                    kVar.f21079s.measure(View.MeasureSpec.makeMeasureSpec(max, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(20.0f), Integer.MIN_VALUE));
                 }
             } else {
                 i13 = i20;
@@ -1627,7 +1634,7 @@ public class k extends FrameLayout implements ne.d, y5 {
             i20 = i13;
         }
         int i23 = i20;
-        w9 w9Var = kVar.f21485f;
+        w9 w9Var = kVar.f21052f;
         if (w9Var != null) {
             w9Var.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(42.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(42.0f), 1073741824));
         }
@@ -1635,7 +1642,7 @@ public class k extends FrameLayout implements ne.d, y5 {
         int i24 = 0;
         while (i24 < childCount) {
             View childAt = kVar.getChildAt(i24);
-            if (childAt.getVisibility() != 8 && childAt != j5VarArr[0] && childAt != j5VarArr[i23] && childAt != kVar.f21499m1 && childAt != kVar.f21509r && childAt != kVar.E && childAt != kVar.e && childAt != kVar.f21512s && childAt != kVar.f21485f) {
+            if (childAt.getVisibility() != 8 && childAt != n5VarArr[0] && childAt != n5VarArr[i23] && childAt != kVar.f21066m1 && childAt != kVar.f21076r && childAt != kVar.E && childAt != kVar.e && childAt != kVar.f21079s && childAt != kVar.f21052f) {
                 kVar.measureChildWithMargins(childAt, i10, 0, View.MeasureSpec.makeMeasureSpec(kVar.getMeasuredHeight(), 1073741824), 0);
             }
             i24++;
@@ -1655,21 +1662,21 @@ public class k extends FrameLayout implements ne.d, y5 {
     }
 
     public final void p(int i10) {
-        View[] viewArr = this.f21500n;
+        View[] viewArr = this.f21067n;
         if (viewArr[i10] != null) {
             return;
         }
-        j5 j5Var = new j5(getContext());
-        viewArr[i10] = j5Var;
-        j5Var.setGravity(19);
-        int i11 = this.f21518v0;
+        n5 n5Var = new n5(getContext());
+        viewArr[i10] = n5Var;
+        n5Var.setGravity(19);
+        int i11 = this.f21086v0;
         if (i11 != 0) {
             viewArr[i10].setTextColor(i11);
         } else {
-            viewArr[i10].setTextColor(h6.w0(h6.A8, this.I0));
+            r6.Z(viewArr[i10], k6.A8, this.I0);
         }
-        j5 j5Var2 = viewArr[i10];
-        j5Var2.setEmojiColor(j5Var2.getTextColor());
+        n5 n5Var2 = viewArr[i10];
+        n5Var2.setEmojiColor(n5Var2.getTextColor());
         viewArr[i10].setTypeface(AndroidUtilities.bold());
         viewArr[i10].setDrawablePadding(AndroidUtilities.dp(4.0f));
         viewArr[i10].setPadding(0, AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f));
@@ -1681,20 +1688,7 @@ public class k extends FrameLayout implements ne.d, y5 {
         }
     }
 
-    @Override
-    public final void r(int i10, float f7, float f10, ne.e eVar) {
-        invalidate();
-    }
-
-    @Override
-    public final void requestLayout() {
-        if (this.H) {
-            return;
-        }
-        super.requestLayout();
-    }
-
-    public void s() {
+    public void r() {
         d dVar = this.F;
         if (dVar != null && this.J) {
             int childCount = dVar.getChildCount();
@@ -1705,7 +1699,7 @@ public class k extends FrameLayout implements ne.d, y5 {
                 }
             }
             this.J = false;
-            g();
+            f();
             ArrayList arrayList = new ArrayList();
             Property property = View.ALPHA;
             arrayList.add(ObjectAnimator.ofFloat(this.F, property, 0.0f));
@@ -1724,22 +1718,22 @@ public class k extends FrameLayout implements ne.d, y5 {
                     i11++;
                 }
             }
-            boolean z10 = this.f21501n0;
-            j5[] j5VarArr = this.f21500n;
+            boolean z10 = this.f21068n0;
+            n5[] n5VarArr = this.f21067n;
             if (!z10) {
-                j5 j5Var = j5VarArr[0];
-                if (j5Var != null) {
-                    arrayList.add(ObjectAnimator.ofFloat(j5Var, property, 1.0f));
+                n5 n5Var = n5VarArr[0];
+                if (n5Var != null) {
+                    arrayList.add(ObjectAnimator.ofFloat(n5Var, property, 1.0f));
                 }
-                if (this.f21509r != null && !TextUtils.isEmpty(this.A0)) {
-                    arrayList.add(ObjectAnimator.ofFloat(this.f21509r, property, 1.0f));
+                if (this.f21076r != null && !TextUtils.isEmpty(this.A0)) {
+                    arrayList.add(ObjectAnimator.ofFloat(this.f21076r, property, 1.0f));
                 }
             }
             y yVar = this.E;
             if (yVar != null) {
                 arrayList.add(ObjectAnimator.ofFloat(yVar, property, 1.0f));
             }
-            int i12 = this.f21521x;
+            int i12 = this.f21089x;
             if (i12 != 0 && !this.O0) {
                 if (i0.a.h(i12) < 0.699999988079071d) {
                     AndroidUtilities.setLightStatusBar((Activity) getContext(), false);
@@ -1764,13 +1758,13 @@ public class k extends FrameLayout implements ne.d, y5 {
             this.P.setDuration(200L);
             this.P.addListener(new e(this, 0));
             this.P.start();
-            if (!this.f21501n0) {
-                j5 j5Var2 = j5VarArr[0];
-                if (j5Var2 != null) {
-                    j5Var2.setVisibility(0);
+            if (!this.f21068n0) {
+                n5 n5Var2 = n5VarArr[0];
+                if (n5Var2 != null) {
+                    n5Var2.setVisibility(0);
                 }
-                if (this.f21509r != null && !TextUtils.isEmpty(this.A0)) {
-                    this.f21509r.setVisibility(0);
+                if (this.f21076r != null && !TextUtils.isEmpty(this.A0)) {
+                    this.f21076r.setVisibility(0);
                 }
             }
             y yVar2 = this.E;
@@ -1780,38 +1774,55 @@ public class k extends FrameLayout implements ne.d, y5 {
             ImageView imageView = this.e;
             if (imageView != null) {
                 Drawable drawable = imageView.getDrawable();
-                if (drawable instanceof g2) {
-                    ((g2) drawable).c(0.0f, true);
+                if (drawable instanceof h2) {
+                    ((h2) drawable).c(0.0f, true);
                 }
-                this.e.setBackgroundDrawable(h6.g0(this.f21505p0, 1, -1));
+                this.e.setBackgroundDrawable(k6.g0(this.f21072p0, 1, -1));
             }
         }
     }
 
+    @Override
+    public final void requestLayout() {
+        if (this.H) {
+            return;
+        }
+        super.requestLayout();
+    }
+
+    public final boolean s() {
+        if (this.F != null && this.J) {
+            return true;
+        }
+        return false;
+    }
+
     public void setActionBarMenuOnItemClick(j jVar) {
-        this.f21517u0 = jVar;
+        this.f21084u0 = jVar;
     }
 
     public void setActionModeColor(int i10) {
         d dVar = this.F;
         if (dVar != null) {
-            dVar.setBackgroundColor(i10);
+            r6.r(dVar);
+            this.F.setBackgroundColor(i10);
         }
     }
 
     public void setActionModeOverrideColor(int i10) {
-        this.f21519w = i10;
+        this.f21087w = i10;
     }
 
     public void setActionModeTopColor(int i10) {
         View view = this.v;
         if (view != null) {
-            view.setBackgroundColor(i10);
+            r6.r(view);
+            this.v.setBackgroundColor(i10);
         }
     }
 
     public void setAdaptiveBackground(RecyclerView recyclerView) {
-        z(recyclerView, false, h6.f20936a7, h6.f21273s8);
+        y(recyclerView, false, k6.f21125a7, k6.f21462s8);
     }
 
     public void setAddToContainer(boolean z10) {
@@ -1823,7 +1834,7 @@ public class k extends FrameLayout implements ne.d, y5 {
     }
 
     public void setAllowOverlayTitle(boolean z10) {
-        this.f21476b0 = z10;
+        this.f21043b0 = z10;
     }
 
     public void setBackButtonContentDescription(CharSequence charSequence) {
@@ -1837,7 +1848,7 @@ public class k extends FrameLayout implements ne.d, y5 {
         int i10;
         float f7;
         if (this.e == null) {
-            m();
+            l();
         }
         ImageView imageView = this.e;
         if (drawable == null) {
@@ -1849,33 +1860,33 @@ public class k extends FrameLayout implements ne.d, y5 {
         ImageView imageView2 = this.e;
         this.h = drawable;
         imageView2.setImageDrawable(drawable);
-        if (drawable instanceof g2) {
-            g2 g2Var = (g2) drawable;
-            if (t()) {
+        if (drawable instanceof h2) {
+            h2 h2Var = (h2) drawable;
+            if (s()) {
                 f7 = 1.0f;
             } else {
                 f7 = 0.0f;
             }
-            g2Var.c(f7, false);
-            g2Var.b(this.f21513s0);
-            g2Var.a(this.f21510r0);
-        } else if (drawable instanceof e5) {
-            e5 e5Var = (e5) drawable;
-            e5Var.f20786k = this.f21521x;
-            e5Var.f20785j = this.f21510r0;
+            h2Var.c(f7, false);
+            h2Var.b(this.f21080s0);
+            h2Var.a(this.f21077r0);
+        } else if (drawable instanceof i5) {
+            i5 i5Var = (i5) drawable;
+            i5Var.f20959k = this.f21089x;
+            i5Var.f20958j = this.f21077r0;
         } else if ((drawable instanceof BitmapDrawable) || (drawable instanceof VectorDrawable)) {
-            this.e.setColorFilter(new PorterDuffColorFilter(this.f21510r0, PorterDuff.Mode.SRC_IN));
+            this.e.setColorFilter(new PorterDuffColorFilter(this.f21077r0, PorterDuff.Mode.SRC_IN));
         }
         if (this.S0) {
-            this.e.setColorFilter(new PorterDuffColorFilter(this.f21510r0, PorterDuff.Mode.SRC_IN));
+            this.e.setColorFilter(new PorterDuffColorFilter(this.f21077r0, PorterDuff.Mode.SRC_IN));
         }
-        f();
+        e();
     }
 
     public void setBackButtonImage(int i10) {
         int i11;
         if (this.e == null) {
-            m();
+            l();
         }
         ImageView imageView = this.e;
         if (i10 == 0) {
@@ -1885,31 +1896,31 @@ public class k extends FrameLayout implements ne.d, y5 {
         }
         imageView.setVisibility(i11);
         this.e.setImageResource(i10);
-        this.e.setColorFilter(new PorterDuffColorFilter(this.f21510r0, PorterDuff.Mode.SRC_IN));
-        f();
+        this.e.setColorFilter(new PorterDuffColorFilter(this.f21077r0, PorterDuff.Mode.SRC_IN));
+        e();
     }
 
     @Override
     public void setBackgroundColor(int i10) {
-        this.f21521x = i10;
+        this.f21089x = i10;
         if (!this.K0) {
             super.setBackgroundColor(i10);
         }
         ImageView imageView = this.e;
         if (imageView != null) {
             Drawable drawable = imageView.getDrawable();
-            if (drawable instanceof e5) {
-                ((e5) drawable).f20786k = i10;
+            if (drawable instanceof i5) {
+                ((i5) drawable).f20959k = i10;
             }
         }
     }
 
     public void setCastShadows(boolean z10) {
-        if (this.f21496k0 != z10 && (getParent() instanceof View)) {
+        if (this.f21063k0 != z10 && (getParent() instanceof View)) {
             ((View) getParent()).invalidate();
             invalidate();
         }
-        this.f21496k0 = z10;
+        this.f21063k0 = z10;
     }
 
     public void setChatAvatarContainer(oo ooVar) {
@@ -1928,10 +1939,10 @@ public class k extends FrameLayout implements ne.d, y5 {
         }
     }
 
-    public void setDrawBlurBackground(lw0 lw0Var) {
+    public void setDrawBlurBackground(ow0 ow0Var) {
         this.K0 = true;
-        this.J0 = lw0Var;
-        lw0Var.T.add(this);
+        this.J0 = ow0Var;
+        ow0Var.T.add(this);
         setBackground(null);
     }
 
@@ -1974,17 +1985,17 @@ public class k extends FrameLayout implements ne.d, y5 {
     }
 
     public void setForcedMenuMinWidth(int i10) {
-        this.f21493i1 = true;
-        if (this.f21489g1 != i10) {
-            this.f21489g1 = i10;
+        this.f21060i1 = true;
+        if (this.f21056g1 != i10) {
+            this.f21056g1 = i10;
             invalidate();
         }
     }
 
     public void setForcedMenuWidth(int i10) {
-        this.f21491h1 = true;
-        if (this.f21487f1 != i10) {
-            this.f21487f1 = i10;
+        this.f21058h1 = true;
+        if (this.f21054f1 != i10) {
+            this.f21054f1 = i10;
             invalidate();
         }
     }
@@ -1998,7 +2009,7 @@ public class k extends FrameLayout implements ne.d, y5 {
     }
 
     public void setMenuOffsetSuppressed(boolean z10) {
-        this.f21523y = z10;
+        this.f21091y = z10;
     }
 
     public void setOccupyStatusBar(boolean z10) {
@@ -2020,29 +2031,29 @@ public class k extends FrameLayout implements ne.d, y5 {
     }
 
     public void setOverlayTitleAnimation(boolean z10) {
-        this.f21520w0 = z10;
+        this.f21088w0 = z10;
     }
 
     public void setRightDrawableOnClick(View.OnClickListener onClickListener) {
-        this.f21483e0 = onClickListener;
-        j5[] j5VarArr = this.f21500n;
-        j5 j5Var = j5VarArr[0];
-        if (j5Var != null) {
-            j5Var.setRightDrawableOnClick(onClickListener);
+        this.f21050e0 = onClickListener;
+        n5[] n5VarArr = this.f21067n;
+        n5 n5Var = n5VarArr[0];
+        if (n5Var != null) {
+            n5Var.setRightDrawableOnClick(onClickListener);
         }
-        j5 j5Var2 = j5VarArr[1];
-        if (j5Var2 != null) {
-            j5Var2.setRightDrawableOnClick(this.f21483e0);
+        n5 n5Var2 = n5VarArr[1];
+        if (n5Var2 != null) {
+            n5Var2.setRightDrawableOnClick(this.f21050e0);
         }
     }
 
     public void setSearchAvatarImageView(w9 w9Var) {
-        w9 w9Var2 = this.f21485f;
+        w9 w9Var2 = this.f21052f;
         if (w9Var2 != w9Var) {
             if (w9Var2 != null) {
                 removeView(w9Var2);
             }
-            this.f21485f = w9Var;
+            this.f21052f = w9Var;
             if (w9Var != null) {
                 addView(w9Var);
             }
@@ -2057,8 +2068,8 @@ public class k extends FrameLayout implements ne.d, y5 {
     }
 
     public void setSearchFactor(float f7) {
-        if (this.f21474a1 != f7) {
-            this.f21474a1 = f7;
+        if (this.f21041a1 != f7) {
+            this.f21041a1 = f7;
             invalidate();
         }
     }
@@ -2075,14 +2086,14 @@ public class k extends FrameLayout implements ne.d, y5 {
     }
 
     public void setShadowAlpha(int i10) {
-        if (this.f21498l0 == i10) {
+        if (this.f21065l0 == i10) {
             return;
         }
         if (getParent() instanceof View) {
             ((View) getParent()).invalidate();
             invalidate();
         }
-        this.f21498l0 = i10;
+        this.f21065l0 = i10;
     }
 
     public void setSkipDrawChild(boolean z10) {
@@ -2094,31 +2105,32 @@ public class k extends FrameLayout implements ne.d, y5 {
 
     public void setSubtitle(CharSequence charSequence) {
         int i10;
-        if (charSequence != null && this.f21509r == null) {
-            o();
+        if (charSequence != null && this.f21076r == null) {
+            n();
         }
-        if (this.f21509r != null) {
+        if (this.f21076r != null) {
             boolean isEmpty = TextUtils.isEmpty(charSequence);
-            j5 j5Var = this.f21509r;
-            if (!isEmpty && !this.f21501n0) {
+            n5 n5Var = this.f21076r;
+            if (!isEmpty && !this.f21068n0) {
                 i10 = 0;
             } else {
                 i10 = 8;
             }
-            j5Var.setVisibility(i10);
-            this.f21509r.setAlpha(1.0f);
+            n5Var.setVisibility(i10);
+            this.f21076r.setAlpha(1.0f);
             if (!isEmpty) {
-                this.f21509r.l(charSequence, false);
+                this.f21076r.l(charSequence, false);
             }
             this.A0 = charSequence;
         }
     }
 
     public void setSubtitleColor(int i10) {
-        if (this.f21509r == null) {
-            o();
+        if (this.f21076r == null) {
+            n();
         }
-        this.f21509r.setTextColor(i10);
+        r6.r(this.f21076r);
+        this.f21076r.setTextColor(i10);
     }
 
     public void setSupportsHolidayImage(boolean z10) {
@@ -2131,35 +2143,37 @@ public class k extends FrameLayout implements ne.d, y5 {
     }
 
     public void setTitle(CharSequence charSequence) {
-        I(charSequence, null);
+        G(charSequence, null);
     }
 
     public void setTitleActionRunnable(Runnable runnable) {
-        this.f21494j0 = runnable;
-        this.f21490h0 = runnable;
+        this.f21061j0 = runnable;
+        this.f21057h0 = runnable;
     }
 
     public void setTitleColor(int i10) {
-        j5[] j5VarArr = this.f21500n;
-        if (j5VarArr[0] == null) {
+        n5[] n5VarArr = this.f21067n;
+        if (n5VarArr[0] == null) {
             p(0);
         }
-        this.f21518v0 = i10;
-        j5VarArr[0].setTextColor(i10);
-        j5VarArr[0].setEmojiColor(i10);
-        j5 j5Var = j5VarArr[1];
-        if (j5Var != null) {
-            j5Var.setTextColor(i10);
-            j5VarArr[1].setEmojiColor(i10);
+        this.f21086v0 = i10;
+        r6.r(n5VarArr[0]);
+        n5VarArr[0].setTextColor(i10);
+        n5VarArr[0].setEmojiColor(i10);
+        n5 n5Var = n5VarArr[1];
+        if (n5Var != null) {
+            r6.r(n5Var);
+            n5VarArr[1].setTextColor(i10);
+            n5VarArr[1].setEmojiColor(i10);
         }
     }
 
     public void setTitleRightMargin(int i10) {
-        this.f21473a0 = i10;
+        this.f21040a0 = i10;
     }
 
     public void setTitleScrollNonFitText(boolean z10) {
-        this.f21500n[0].setScrollNonFitText(z10);
+        this.f21067n[0].setScrollNonFitText(z10);
     }
 
     @Override
@@ -2170,14 +2184,7 @@ public class k extends FrameLayout implements ne.d, y5 {
         }
     }
 
-    public final boolean t() {
-        if (this.F != null && this.J) {
-            return true;
-        }
-        return false;
-    }
-
-    public final boolean u(String str) {
+    public final boolean t(String str) {
         if (this.F != null && this.J) {
             String str2 = this.G;
             if (str2 != null || str != null) {
@@ -2191,43 +2198,64 @@ public class k extends FrameLayout implements ne.d, y5 {
         return false;
     }
 
-    public boolean v() {
+    public boolean u() {
         return false;
     }
 
-    public void w(boolean z10) {
+    @Override
+    public final void updateColors() {
+        b();
+        dh.d dVar = this.f21039a;
+        if (dVar != null) {
+            dVar.updateColors();
+        }
+        dh.d dVar2 = this.f21045c;
+        if (dVar2 != null) {
+            dVar2.updateColors();
+        }
+        dh.d dVar3 = this.f21042b;
+        if (dVar3 != null) {
+            dVar3.updateColors();
+        }
+        ci.k kVar = this.f21066m1;
+        if (kVar != null) {
+            kVar.c();
+        }
+    }
+
+    public void v(boolean z10) {
         float f7;
         Property property;
         float f10;
         float f11;
         float f12;
         int i10;
-        this.f21501n0 = z10;
-        g();
+        this.f21068n0 = z10;
+        f();
         AnimatorSet animatorSet = this.V0;
         if (animatorSet != null) {
             animatorSet.cancel();
         }
         this.V0 = new AnimatorSet();
         ArrayList arrayList = new ArrayList();
-        boolean v = v();
-        if (!v) {
-            j5 j5Var = this.f21500n[0];
-            if (j5Var != null) {
-                arrayList.add(j5Var);
+        boolean u10 = u();
+        if (!u10) {
+            n5 n5Var = this.f21067n[0];
+            if (n5Var != null) {
+                arrayList.add(n5Var);
             }
-            if (this.f21509r != null && !TextUtils.isEmpty(this.A0)) {
-                arrayList.add(this.f21509r);
-                j5 j5Var2 = this.f21509r;
+            if (this.f21076r != null && !TextUtils.isEmpty(this.A0)) {
+                arrayList.add(this.f21076r);
+                n5 n5Var2 = this.f21076r;
                 if (z10) {
                     i10 = 4;
                 } else {
                     i10 = 0;
                 }
-                j5Var2.setVisibility(i10);
+                n5Var2.setVisibility(i10);
             }
         }
-        float f13 = this.f21503o0;
+        float f13 = this.f21070o0;
         float f14 = 0.0f;
         if (z10) {
             f7 = 1.0f;
@@ -2273,11 +2301,11 @@ public class k extends FrameLayout implements ne.d, y5 {
             animatorSet4.playTogether(ObjectAnimator.ofFloat(view, View.SCALE_X, f15));
             i11++;
         }
-        w9 w9Var = this.f21485f;
+        w9 w9Var = this.f21052f;
         if (w9Var != null) {
             w9Var.setVisibility(0);
             AnimatorSet animatorSet5 = this.V0;
-            w9 w9Var2 = this.f21485f;
+            w9 w9Var2 = this.f21052f;
             if (z10) {
                 f10 = 1.0f;
             } else {
@@ -2285,43 +2313,43 @@ public class k extends FrameLayout implements ne.d, y5 {
             }
             animatorSet5.playTogether(ObjectAnimator.ofFloat(w9Var2, property, f10));
         }
-        this.f21525z0 = true;
+        this.f21093z0 = true;
         requestLayout();
-        this.V0.addListener(new f(this, arrayList, z10, v));
+        this.V0.addListener(new f(this, arrayList, z10, u10));
         this.V0.setDuration(150L).start();
         ImageView imageView = this.e;
         if (imageView != null) {
             Drawable drawable = imageView.getDrawable();
-            if (drawable instanceof e5) {
-                e5 e5Var = (e5) drawable;
-                e5Var.h = true;
+            if (drawable instanceof i5) {
+                i5 i5Var = (i5) drawable;
+                i5Var.h = true;
                 if (z10) {
                     f14 = 1.0f;
                 }
-                e5Var.a(f14, true);
+                i5Var.a(f14, true);
             }
         }
     }
 
-    public final void x() {
-        g5 g5Var;
+    public final void w() {
+        k5 k5Var;
         y yVar = this.E;
         int childCount = yVar.getChildCount();
         for (int i10 = 0; i10 < childCount; i10++) {
             View childAt = yVar.getChildAt(i10);
             if (childAt instanceof u0) {
                 u0 u0Var = (u0) childAt;
-                if (u0Var.G && (g5Var = u0Var.H) != null) {
-                    g5Var.p(u0Var.e);
+                if (u0Var.G && (k5Var = u0Var.H) != null) {
+                    k5Var.p(u0Var.e);
                 }
             }
         }
     }
 
-    public final void y(String str) {
+    public final void x(String str) {
         y yVar = this.E;
         if (yVar != null && str != null) {
-            boolean z10 = this.f21501n0;
+            boolean z10 = this.f21068n0;
             boolean z11 = !z10;
             int childCount = yVar.getChildCount();
             for (int i10 = 0; i10 < childCount; i10++) {
@@ -2330,7 +2358,7 @@ public class k extends FrameLayout implements ne.d, y5 {
                     u0 u0Var = (u0) childAt;
                     if (u0Var.G) {
                         if (!z10) {
-                            yVar.f21897b.w(u0Var.L(z11));
+                            yVar.f21964b.v(u0Var.L(z11));
                         }
                         u0Var.H(str, false);
                         u0Var.getSearchField().setSelection(str.length());
@@ -2341,45 +2369,51 @@ public class k extends FrameLayout implements ne.d, y5 {
         }
     }
 
-    public final void z(RecyclerView recyclerView, boolean z10, int i10, int i11) {
+    public final void y(RecyclerView recyclerView, boolean z10, int i10, int i11) {
         float f7;
-        this.f21506p1 = i10;
-        this.f21508q1 = i11;
+        this.f21075q1 = i10;
+        this.f21078r1 = i11;
+        this.f21073p1 = AndroidUtilities.isTablet();
         m4.z zVar = new m4.z(23, this, recyclerView);
         recyclerView.j(new ah.d0(zVar, 17));
-        this.f21504o1 = z10;
-        if (this.f21502n1) {
+        this.f21071o1 = z10;
+        if (this.f21069n1) {
             zVar.run();
             return;
         }
-        this.f21502n1 = true;
+        this.f21069n1 = true;
         boolean canScrollVertically = recyclerView.canScrollVertically(-1);
-        this.f21511r1 = !canScrollVertically;
+        this.f21081s1 = !canScrollVertically;
         if (!canScrollVertically) {
             f7 = 1.0f;
         } else {
             f7 = 0.0f;
         }
-        this.f21514s1 = f7;
+        this.f21083t1 = f7;
         b();
     }
 
-    public void setAdaptiveBackground(xo0 xo0Var) {
-        int i10 = h6.f20936a7;
-        int i11 = h6.f21273s8;
-        this.f21506p1 = i10;
-        this.f21508q1 = i11;
+    public final void z(mm0 mm0Var, boolean z10) {
+        y(mm0Var, z10, k6.f21125a7, k6.f21462s8);
+    }
+
+    public void setAdaptiveBackground(bp0 bp0Var) {
+        int i10 = k6.f21125a7;
+        int i11 = k6.f21462s8;
+        this.f21075q1 = i10;
+        this.f21078r1 = i11;
+        this.f21073p1 = AndroidUtilities.isTablet();
         b();
-        m4.z zVar = new m4.z(22, this, xo0Var);
-        xo0Var.f32461f.add(zVar);
-        if (this.f21502n1) {
+        m4.z zVar = new m4.z(22, this, bp0Var);
+        bp0Var.f25121f.add(zVar);
+        if (this.f21069n1) {
             zVar.run();
             return;
         }
-        this.f21502n1 = true;
-        boolean canScrollVertically = xo0Var.canScrollVertically(-1);
-        this.f21511r1 = !canScrollVertically;
-        this.f21514s1 = !canScrollVertically ? 1.0f : 0.0f;
+        this.f21069n1 = true;
+        boolean canScrollVertically = bp0Var.canScrollVertically(-1);
+        this.f21081s1 = !canScrollVertically;
+        this.f21083t1 = !canScrollVertically ? 1.0f : 0.0f;
         b();
     }
 

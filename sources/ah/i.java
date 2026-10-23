@@ -2,55 +2,52 @@ package ah;
 
 import android.app.Activity;
 import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import ci.t4;
+import ci.s4;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.ActionBar.n6;
+import org.telegram.ui.ActionBar.r6;
 import w7.z5;
 public final class i extends FrameLayout {
     public static final int e = 0;
-    public final h f775a;
-    public boolean f776b;
-    public boolean f777c;
+    public final h f776a;
+    public boolean f777b;
+    public boolean f778c;
     public Utilities.Callback d;
 
-    public i(Activity activity, d6 d6Var) {
+    public i(Activity activity, g6 g6Var) {
         super(activity);
         int x02;
-        int x03;
         h hVar = new h(this, activity);
-        this.f775a = hVar;
+        this.f776a = hVar;
         hVar.setHapticFeedbackEnabled(true);
         hVar.setImageResource(R.drawable.smiles_tab_clear);
-        int i10 = h6.Re;
-        if (d6Var != null) {
-            x02 = d6Var.w(i10);
-        } else {
-            x02 = h6.x0(null, i10, false);
-        }
-        hVar.setColorFilter(new PorterDuffColorFilter(x02, PorterDuff.Mode.MULTIPLY));
+        r6.t(hVar, k6.Re, g6Var, PorterDuff.Mode.MULTIPLY);
         hVar.setScaleType(ImageView.ScaleType.CENTER);
         hVar.setContentDescription(LocaleController.getString(R.string.AccDescrBackspace));
         hVar.setFocusable(true);
         hVar.setOnClickListener(new f(0));
         addView(hVar, z5.e(36, 36, 17));
-        int x04 = h6.x0(null, h6.f21083i6, false);
+        int x03 = k6.x0(null, k6.f21272i6, false);
         int dp = AndroidUtilities.dp(36.0f);
-        int i11 = h6.f20994d6;
-        if (d6Var != null) {
-            x03 = d6Var.w(i11);
+        int i10 = k6.f21183d6;
+        if (g6Var != null) {
+            x02 = g6Var.g(i10);
         } else {
-            x03 = h6.x0(null, i11, false);
+            x02 = k6.x0(null, i10, false);
         }
-        hVar.setBackground(h6.i0(dp, x03, x04));
-        hVar.setOutlineProvider(new t4(18));
+        org.telegram.ui.Cells.y i02 = k6.i0(dp, x02, x03);
+        n6 O = r6.O(i10);
+        hVar.setBackground(i02);
+        r6.k(hVar, i02, O, null, g6Var);
+        hVar.setOutlineProvider(new s4(18));
         hVar.setElevation(AndroidUtilities.dp(1.0f));
         hVar.setClipToOutline(true);
         setClickable(true);

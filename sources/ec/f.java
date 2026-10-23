@@ -12,9 +12,9 @@ public final class f extends e {
         if (bVar != null) {
             return bVar;
         }
-        dc.d dVar = this.f8591a;
-        int i10 = dVar.f7927a;
-        int i11 = dVar.f7928b;
+        dc.d dVar = this.f8598a;
+        int i10 = dVar.f7939a;
+        int i11 = dVar.f7940b;
         if (i10 >= 40 && i11 >= 40) {
             byte[] a2 = dVar.a();
             int i12 = i10 >> 3;

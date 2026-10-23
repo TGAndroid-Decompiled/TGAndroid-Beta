@@ -1,50 +1,53 @@
 package org.telegram.ui.Wallet;
 
-import java.util.ArrayList;
+import android.view.View;
+import java.io.Serializable;
 import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.tl.TL_wallet;
-public final class t4 implements NotificationCenter.NotificationCenterDelegate {
-    public final int f34908a;
-    public final TL_wallet.walletTransaction[] f34909b;
-    public final b4 f34910c;
+public final class t4 implements View.OnAttachStateChangeListener {
+    public final ci.s f35208a;
+    public final TL_wallet.walletTransaction[] f35209b;
+    public final NotificationCenter.NotificationCenterDelegate f35210c;
+    public final int d;
+    public final Utilities.Callback2 e;
+    public final j2[] f35211f;
+    public final String[] h;
+    public final boolean[] f35212n;
 
-    public t4(int i10, TL_wallet.walletTransaction[] wallettransactionArr, b4 b4Var) {
-        this.f34908a = i10;
-        this.f34909b = wallettransactionArr;
-        this.f34910c = b4Var;
+    public t4(ci.s sVar, TL_wallet.walletTransaction[] wallettransactionArr, s4 s4Var, int i10, Utilities.Callback2 callback2, j2[] j2VarArr, String[] strArr, boolean[] zArr) {
+        this.f35208a = sVar;
+        this.f35209b = wallettransactionArr;
+        this.f35210c = s4Var;
+        this.d = i10;
+        this.e = callback2;
+        this.f35211f = j2VarArr;
+        this.h = strArr;
+        this.f35212n = zArr;
     }
 
     @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        TL_wallet.walletTransaction[] wallettransactionArr;
-        TL_wallet.walletTransaction wallettransaction;
-        if (i10 == NotificationCenter.walletUpdate || i10 == NotificationCenter.walletTransactionsUpdate) {
-            ArrayList arrayList = m0.w(this.f34908a).A().f34453c;
-            int size = arrayList.size();
-            int i12 = 0;
-            while (true) {
-                wallettransactionArr = this.f34909b;
-                if (i12 < size) {
-                    Object obj = arrayList.get(i12);
-                    i12++;
-                    wallettransaction = (TL_wallet.walletTransaction) obj;
-                    TL_wallet.walletTransaction wallettransaction2 = wallettransactionArr[0];
-                    if (wallettransaction != wallettransaction2) {
-                        if (m0.f0(wallettransaction2, wallettransaction)) {
-                            break;
-                        }
-                    } else {
-                        break;
-                    }
-                } else {
-                    wallettransaction = null;
-                    break;
-                }
-            }
-            if (wallettransaction != null) {
-                wallettransactionArr[0] = wallettransaction;
-                this.f34910c.run(wallettransaction);
-            }
+    public final void onViewAttachedToWindow(View view) {
+        this.f35208a.run(this.f35209b[0]);
+        NotificationCenter.NotificationCenterDelegate notificationCenterDelegate = this.f35210c;
+        if (notificationCenterDelegate != null) {
+            int i10 = this.d;
+            NotificationCenter.getInstance(i10).addObserver(notificationCenterDelegate, NotificationCenter.walletUpdate);
+            NotificationCenter.getInstance(i10).addObserver(notificationCenterDelegate, NotificationCenter.walletTransactionsUpdate);
+        }
+        Utilities.Callback2 callback2 = this.e;
+        if (callback2 != null) {
+            this.f35211f[0].setOnDismissListener(new h(callback2, (Serializable) this.h, (Serializable) this.f35212n, 12));
+        }
+    }
+
+    @Override
+    public final void onViewDetachedFromWindow(View view) {
+        NotificationCenter.NotificationCenterDelegate notificationCenterDelegate = this.f35210c;
+        if (notificationCenterDelegate != null) {
+            int i10 = this.d;
+            NotificationCenter.getInstance(i10).removeObserver(notificationCenterDelegate, NotificationCenter.walletUpdate);
+            NotificationCenter.getInstance(i10).removeObserver(notificationCenterDelegate, NotificationCenter.walletTransactionsUpdate);
         }
     }
 }

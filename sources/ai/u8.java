@@ -6,11 +6,11 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class u8 implements RequestDelegate {
     public final int f2264a;
-    public final ga f2265b;
+    public final ha f2265b;
 
-    public u8(ga gaVar, int i10) {
+    public u8(ha haVar, int i10) {
         this.f2264a = i10;
-        this.f2265b = gaVar;
+        this.f2265b = haVar;
     }
 
     @Override

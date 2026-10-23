@@ -1,64 +1,62 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.ViewGroup;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Timer;
-import org.telegram.messenger.Emoji;
-public final class mt extends org.telegram.ui.Components.im0 {
-    public final Context f39351c;
-    public Timer d;
-    public ArrayList e;
-    public final ArrayList f39352f = new ArrayList();
-    public final ot h;
+import java.util.Comparator;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.support.LongSparseIntArray;
+import org.telegram.tgnet.TLRPC;
+public final class mt implements Comparator {
+    public final int f39685a;
+    public final Object f39686b;
 
-    public mt(ot otVar, Context context, HashMap hashMap) {
-        this.h = otVar;
-        this.f39351c = context;
-        for (List<ht> list : hashMap.values()) {
-            for (ht htVar : list) {
-                this.f39352f.add(htVar);
-            }
+    public mt(Object obj, int i10) {
+        this.f39685a = i10;
+        this.f39686b = obj;
+    }
+
+    @Override
+    public final int compare(Object obj, Object obj2) {
+        switch (this.f39685a) {
+            case 0:
+                return ((Comparator) this.f39686b).compare(((lt) obj).f39322a, ((lt) obj2).f39322a);
+            case 1:
+                LongSparseIntArray longSparseIntArray = (LongSparseIntArray) this.f39686b;
+                int i10 = longSparseIntArray.get(((Long) obj).longValue());
+                int i11 = longSparseIntArray.get(((Long) obj2).longValue());
+                if (i10 > i11) {
+                    return 1;
+                }
+                if (i10 < i11) {
+                    return -1;
+                }
+                return 0;
+            case 2:
+                LocaleController.LocaleInfo localeInfo = (LocaleController.LocaleInfo) this.f39686b;
+                LocaleController.LocaleInfo localeInfo2 = (LocaleController.LocaleInfo) obj;
+                LocaleController.LocaleInfo localeInfo3 = (LocaleController.LocaleInfo) obj2;
+                if (localeInfo2 != localeInfo) {
+                    if (localeInfo3 != localeInfo) {
+                        int i12 = localeInfo2.serverIndex;
+                        int i13 = localeInfo3.serverIndex;
+                        if (i12 == i13) {
+                            return localeInfo2.name.compareTo(localeInfo3.name);
+                        }
+                        if (i12 <= i13) {
+                            if (i12 >= i13) {
+                                return 0;
+                            }
+                        }
+                    }
+                    return 1;
+                }
+                return -1;
+            default:
+                StickersActivity stickersActivity = (StickersActivity) this.f39686b;
+                int indexOf = stickersActivity.e.indexOf((TLRPC.TL_messages_stickerSet) obj);
+                int indexOf2 = stickersActivity.e.indexOf((TLRPC.TL_messages_stickerSet) obj2);
+                if (indexOf >= 0 && indexOf2 >= 0) {
+                    return indexOf - indexOf2;
+                }
+                return 0;
         }
-    }
-
-    @Override
-    public final boolean D(s4.b1 b1Var) {
-        return true;
-    }
-
-    @Override
-    public final int h() {
-        ArrayList arrayList = this.e;
-        if (arrayList == null) {
-            return 0;
-        }
-        return arrayList.size();
-    }
-
-    @Override
-    public final int j(int i10) {
-        return 0;
-    }
-
-    @Override
-    public final void v(s4.b1 b1Var, int i10) {
-        String str;
-        ht htVar = (ht) this.e.get(i10);
-        org.telegram.ui.Cells.ba baVar = (org.telegram.ui.Cells.ba) b1Var.f45921a;
-        CharSequence replaceEmoji = Emoji.replaceEmoji(ot.V(htVar), baVar.getTextView().getPaint().getFontMetricsInt(), false);
-        if (this.h.h) {
-            str = "+" + htVar.f37790c;
-        } else {
-            str = null;
-        }
-        baVar.c(replaceEmoji, str, false, false);
-    }
-
-    @Override
-    public final s4.b1 x(ViewGroup viewGroup, int i10) {
-        return new s4.b1(ot.U(this.f39351c));
     }
 }

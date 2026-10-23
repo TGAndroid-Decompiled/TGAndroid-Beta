@@ -1,12 +1,56 @@
 package org.telegram.ui;
 
+import android.content.Context;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-public final class xi0 extends yg.c {
-    @Override
-    public final int getHeaderHeight() {
-        if (getResources().getConfiguration().orientation == 2) {
-            return AndroidUtilities.dp(48.0f);
+public final class xi0 extends LinearLayout {
+    public static final int d = 0;
+    public final TextView[] f43606a;
+    public final TextView[] f43607b;
+    public final yi0 f43608c;
+
+    public xi0(yi0 yi0Var, Context context) {
+        super(context);
+        float f7;
+        this.f43608c = yi0Var;
+        this.f43606a = new TextView[4];
+        this.f43607b = new TextView[4];
+        setOrientation(1);
+        setPadding(AndroidUtilities.dp(16.0f), 0, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f));
+        for (int i10 = 0; i10 < 2; i10++) {
+            LinearLayout e = org.telegram.messenger.sl.e(context, 0);
+            for (int i11 = 0; i11 < 2; i11++) {
+                LinearLayout e7 = org.telegram.messenger.sl.e(context, 1);
+                LinearLayout e10 = org.telegram.messenger.sl.e(context, 0);
+                int i12 = (i10 * 2) + i11;
+                this.f43606a[i12] = new TextView(context);
+                this.f43607b[i12] = new TextView(context);
+                this.f43606a[i12].setTypeface(AndroidUtilities.bold());
+                this.f43606a[i12].setTextSize(1, 17.0f);
+                this.f43607b[i12].setTextSize(1, 13.0f);
+                this.f43607b[i12].setGravity(3);
+                e10.addView(this.f43606a[i12]);
+                e7.addView(e10);
+                e7.addView(this.f43607b[i12]);
+                e.addView(e7, w7.z5.l(1.0f, -1, -2));
+            }
+            if (i10 == 0) {
+                f7 = 16.0f;
+            } else {
+                f7 = 0.0f;
+            }
+            addView(e, w7.z5.d(-1, -2.0f, 0, 0.0f, 0.0f, 0.0f, f7));
         }
-        return AndroidUtilities.dp(54.0f);
+    }
+
+    public final void a() {
+        for (int i10 = 0; i10 < 4; i10++) {
+            TextView textView = this.f43606a[i10];
+            int i11 = org.telegram.ui.ActionBar.k6.G6;
+            yi0 yi0Var = this.f43608c;
+            textView.setTextColor(org.telegram.ui.ActionBar.k6.w0(i11, yi0Var.getResourceProvider()));
+            this.f43607b[i10].setTextColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f21588z6, yi0Var.getResourceProvider()));
+        }
     }
 }

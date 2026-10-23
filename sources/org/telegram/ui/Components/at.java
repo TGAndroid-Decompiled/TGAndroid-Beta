@@ -7,58 +7,58 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.R;
-public class at extends u61 {
-    public final int N;
-    public final int O;
-    public final boolean P;
-    public final zs Q;
-    public final ArrayList R;
-    public final ArrayList S;
+public class at extends b71 {
+    public final int P;
+    public final int Q;
+    public final boolean R;
+    public final zs S;
     public final ArrayList T;
-    public boolean U;
-    public boolean V;
-    public final CharSequence W;
-    public int X;
-    public int Y;
-    public boolean Z;
-    public boolean f24715a0;
-    public boolean f24716b0;
-    public int f24717c0;
-    public int f24718d0;
-    public String f24719e0;
-    public final ws f24720f0;
-    public boolean f24721g0;
-    public final z2 f24722h0;
+    public final ArrayList U;
+    public final ArrayList V;
+    public boolean W;
+    public boolean X;
+    public final CharSequence Y;
+    public int Z;
+    public int f24838a0;
+    public boolean f24839b0;
+    public boolean f24840c0;
+    public boolean f24841d0;
+    public int f24842e0;
+    public int f24843f0;
+    public String f24844g0;
+    public final ws f24845h0;
+    public boolean f24846i0;
+    public final y2 f24847j0;
 
-    public at(jm0 jm0Var, Context context, int i10, int i11, boolean z10, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(jm0Var, context, i10, 0, true, null, d6Var);
-        this.R = new ArrayList();
-        this.S = new ArrayList();
+    public at(mm0 mm0Var, Context context, int i10, int i11, boolean z10, org.telegram.ui.ActionBar.g6 g6Var) {
+        super(mm0Var, context, i10, 0, true, null, g6Var);
         this.T = new ArrayList();
-        this.f24720f0 = new ws(this, 0);
-        this.f24721g0 = true;
-        this.f24722h0 = new z2(this, 3);
-        this.f30866s = new d(this, 8);
-        this.N = i10;
-        this.O = i11;
-        this.P = z10;
-        this.Q = new zs(i10, new ws(this, 1));
-        this.W = AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.AppsTabInfo), new ai.b(this, d6Var, context)), true);
+        this.U = new ArrayList();
+        this.V = new ArrayList();
+        this.f24845h0 = new ws(this, 0);
+        this.f24846i0 = true;
+        this.f24847j0 = new y2(this, 3);
+        this.v = new d(this, 8);
+        this.P = i10;
+        this.Q = i11;
+        this.R = z10;
+        this.S = new zs(i10, new ws(this, 1));
+        this.Y = AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.AppsTabInfo), new ai.b(this, g6Var, context)), true);
         N(false);
         MediaDataController.getInstance(i10).loadHints(true);
     }
 
     public final void V() {
-        boolean isEmpty = TextUtils.isEmpty(this.f24719e0);
-        jm0 jm0Var = this.d;
+        boolean isEmpty = TextUtils.isEmpty(this.f24844g0);
+        mm0 mm0Var = this.d;
         if (!isEmpty) {
-            if (this.f24716b0 && !this.Z && jm0Var != null) {
+            if (this.f24841d0 && !this.f24839b0 && mm0Var != null) {
                 int i10 = 0;
                 while (true) {
-                    if (i10 >= jm0Var.getChildCount()) {
+                    if (i10 >= mm0Var.getChildCount()) {
                         break;
-                    } else if (jm0Var.getChildAt(i10) instanceof b10) {
-                        if (this.f24716b0 && !this.Z && !TextUtils.isEmpty(this.f24719e0)) {
+                    } else if (mm0Var.getChildAt(i10) instanceof b10) {
+                        if (this.f24841d0 && !this.f24839b0 && !TextUtils.isEmpty(this.f24844g0)) {
                             W(true);
                         }
                     } else {
@@ -67,18 +67,18 @@ public class at extends u61 {
                 }
             }
         } else {
-            if (!this.f24721g0) {
-                if (jm0Var != null) {
-                    for (int i11 = 0; i11 < jm0Var.getChildCount(); i11++) {
-                        if (!(jm0Var.getChildAt(i11) instanceof b10)) {
+            if (!this.f24846i0) {
+                if (mm0Var != null) {
+                    for (int i11 = 0; i11 < mm0Var.getChildCount(); i11++) {
+                        if (!(mm0Var.getChildAt(i11) instanceof b10)) {
                         }
                     }
                 }
             }
-            this.Q.a();
+            this.S.a();
             break;
         }
-        this.f24721g0 = false;
+        this.f24846i0 = false;
     }
 
     public final void W(boolean r10) {

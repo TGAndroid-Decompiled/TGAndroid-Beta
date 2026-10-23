@@ -1,14 +1,14 @@
 package yh;
 public final class s1 implements Runnable {
-    public final int f50502a;
-    public final Object f50503b;
-    public final Object f50504c;
+    public final int f50960a;
+    public final Object f50961b;
+    public final Object f50962c;
     public final Object d;
 
     public s1(Object obj, Object obj2, Object obj3, int i10) {
-        this.f50502a = i10;
-        this.f50503b = obj;
-        this.f50504c = obj2;
+        this.f50960a = i10;
+        this.f50961b = obj;
+        this.f50962c = obj2;
         this.d = obj3;
     }
 

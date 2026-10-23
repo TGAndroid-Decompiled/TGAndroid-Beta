@@ -23,16 +23,16 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 import w7.k6;
 public class z {
     public static final int[] d = {16843067, 16843068};
-    public final int f16392a = 2;
-    public View f16393b;
-    public Object f16394c;
+    public final int f16455a = 2;
+    public View f16456b;
+    public Object f16457c;
 
     public z() {
     }
 
     public KeyListener a(KeyListener keyListener) {
         if (!(keyListener instanceof NumberKeyListener)) {
-            ((mi.q) ((le.b) this.f16394c).f16009b).getClass();
+            ((mi.q) ((le.b) this.f16457c).f16072b).getClass();
             if (keyListener instanceof q1.e) {
                 return keyListener;
             }
@@ -49,9 +49,9 @@ public class z {
 
     public void b(AttributeSet attributeSet, int i10) {
         boolean z10 = true;
-        switch (this.f16392a) {
+        switch (this.f16455a) {
             case 0:
-                AbsSeekBar absSeekBar = (AbsSeekBar) this.f16393b;
+                AbsSeekBar absSeekBar = (AbsSeekBar) this.f16456b;
                 g3 P = g3.P(absSeekBar.getContext(), attributeSet, d, i10);
                 Drawable G = P.G(0);
                 if (G != null) {
@@ -77,7 +77,7 @@ public class z {
                 P.Q();
                 return;
             default:
-                TypedArray obtainStyledAttributes = ((EditText) this.f16393b).getContext().obtainStyledAttributes(attributeSet, f.a.f10254i, i10, 0);
+                TypedArray obtainStyledAttributes = ((EditText) this.f16456b).getContext().obtainStyledAttributes(attributeSet, f.a.f10271i, i10, 0);
                 try {
                     if (obtainStyledAttributes.hasValue(14)) {
                         z10 = obtainStyledAttributes.getBoolean(14, true);
@@ -93,39 +93,39 @@ public class z {
     }
 
     public q1.b c(InputConnection inputConnection, EditorInfo editorInfo) {
-        le.b bVar = (le.b) this.f16394c;
+        le.b bVar = (le.b) this.f16457c;
         if (inputConnection == null) {
             bVar.getClass();
             inputConnection = null;
         } else {
-            mi.q qVar = (mi.q) bVar.f16009b;
+            mi.q qVar = (mi.q) bVar.f16072b;
             qVar.getClass();
             if (!(inputConnection instanceof q1.b)) {
-                inputConnection = new q1.b((EditText) qVar.f16973b, inputConnection, editorInfo);
+                inputConnection = new q1.b((EditText) qVar.f17036b, inputConnection, editorInfo);
             }
         }
         return (q1.b) inputConnection;
     }
 
     public void d(boolean z10) {
-        q1.i iVar = (q1.i) ((mi.q) ((le.b) this.f16394c).f16009b).f16974c;
-        if (iVar.f44350c != z10) {
-            if (iVar.f44349b != null) {
+        q1.i iVar = (q1.i) ((mi.q) ((le.b) this.f16457c).f16072b).f17037c;
+        if (iVar.f44763c != z10) {
+            if (iVar.f44762b != null) {
                 androidx.emoji2.text.l a2 = androidx.emoji2.text.l.a();
-                q1.h hVar = iVar.f44349b;
+                q1.h hVar = iVar.f44762b;
                 a2.getClass();
                 k6.a(hVar, "initCallback cannot be null");
-                ReentrantReadWriteLock reentrantReadWriteLock = a2.f3103a;
+                ReentrantReadWriteLock reentrantReadWriteLock = a2.f3110a;
                 reentrantReadWriteLock.writeLock().lock();
                 try {
-                    a2.f3104b.remove(hVar);
+                    a2.f3111b.remove(hVar);
                 } finally {
                     reentrantReadWriteLock.writeLock().unlock();
                 }
             }
-            iVar.f44350c = z10;
+            iVar.f44763c = z10;
             if (z10) {
-                q1.i.a(iVar.f44348a, androidx.emoji2.text.l.a().b());
+                q1.i.a(iVar.f44761a, androidx.emoji2.text.l.a().b());
             }
         }
     }
@@ -165,8 +165,8 @@ public class z {
         } else if (drawable instanceof BitmapDrawable) {
             BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
             Bitmap bitmap = bitmapDrawable.getBitmap();
-            if (((Bitmap) this.f16394c) == null) {
-                this.f16394c = bitmap;
+            if (((Bitmap) this.f16457c) == null) {
+                this.f16457c = bitmap;
             }
             ShapeDrawable shapeDrawable = new ShapeDrawable(new RoundRectShape(new float[]{5.0f, 5.0f, 5.0f, 5.0f, 5.0f, 5.0f, 5.0f, 5.0f}, null, null));
             shapeDrawable.getPaint().setShader(new BitmapShader(bitmap, Shader.TileMode.REPEAT, Shader.TileMode.CLAMP));
@@ -180,11 +180,11 @@ public class z {
     }
 
     public z(AbsSeekBar absSeekBar) {
-        this.f16393b = absSeekBar;
+        this.f16456b = absSeekBar;
     }
 
     public z(EditText editText) {
-        this.f16393b = editText;
-        this.f16394c = new le.b(editText);
+        this.f16456b = editText;
+        this.f16457c = new le.b(editText);
     }
 }

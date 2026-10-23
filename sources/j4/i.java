@@ -4,7 +4,7 @@ public interface i {
 
     void c();
 
-    void d(c3.q qVar, f0 f0Var);
+    void d(c3.s sVar, f0 f0Var);
 
     void e(boolean z10);
 

@@ -1,10 +1,10 @@
 package v3;
 
-import c3.c0;
-public interface h extends c0 {
-    long a(long j10);
+import c3.e0;
+public interface h extends e0 {
+    long a();
 
-    long b();
+    long b(long j10);
 
     long c();
 

@@ -1,8 +1,7 @@
 package z4;
-public final class c {
-    public Object f50675a;
-    public int f50676b;
-    public boolean f50677c;
-    public float d;
-    public float e;
+
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+@Retention(RetentionPolicy.RUNTIME)
+public @interface c {
 }

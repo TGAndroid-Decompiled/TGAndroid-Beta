@@ -1,47 +1,43 @@
 package org.telegram.ui;
 
-import android.view.View;
-public final class qj0 implements Runnable {
-    public final int f40592a;
-    public final NotificationsCustomSettingsActivity f40593b;
-    public final ek0 f40594c;
-    public final View d;
+import android.text.TextUtils;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.MrzRecognizer;
+public final class qj0 implements v9 {
+    public final rj0 f40852a;
 
-    public qj0(NotificationsCustomSettingsActivity notificationsCustomSettingsActivity, ek0 ek0Var, View view, int i10, int i11) {
-        this.f40592a = i11;
-        this.f40593b = notificationsCustomSettingsActivity;
-        this.f40594c = ek0Var;
-        this.d = view;
+    public qj0(rj0 rj0Var) {
+        this.f40852a = rj0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f40592a) {
-            case 0:
-                this.f40593b.k0(this.f40594c, this.d, false);
-                return;
-            case 1:
-                this.f40593b.e0(this.f40594c, this.d);
-                return;
-            case 2:
-                NotificationsCustomSettingsActivity.X(this.f40593b, this.f40594c, this.d);
-                return;
-            case 3:
-                NotificationsCustomSettingsActivity.V(this.f40593b, this.f40594c, this.d);
-                return;
-            case 4:
-                this.f40593b.e0(this.f40594c, this.d);
-                return;
-            default:
-                this.f40593b.k0(this.f40594c, this.d, true);
-                return;
+    public final void E(String str) {
+        int i10;
+        String b10 = pf.d.b(str);
+        if (!TextUtils.isEmpty(b10)) {
+            i10 = ((org.telegram.ui.ActionBar.h3) this.f40852a).currentAccount;
+            MessagesController.getInstance(i10).getUserNameResolver().resolve(b10, new ci.e(18));
+            return;
         }
+        AndroidUtilities.runOnUIThread(new if0(1));
     }
 
-    public qj0(NotificationsCustomSettingsActivity notificationsCustomSettingsActivity, ek0 ek0Var, View view, boolean z10, int i10) {
-        this.f40592a = i10;
-        this.f40593b = notificationsCustomSettingsActivity;
-        this.f40594c = ek0Var;
-        this.d = view;
+    @Override
+    public final boolean U0(String str, n9 n9Var) {
+        return false;
+    }
+
+    @Override
+    public final String p0() {
+        return null;
+    }
+
+    @Override
+    public final void F0(MrzRecognizer.Result result) {
+    }
+
+    @Override
+    public final void onDismiss() {
     }
 }

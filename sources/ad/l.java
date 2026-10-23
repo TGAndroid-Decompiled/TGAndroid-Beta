@@ -7,7 +7,7 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import org.telegram.ui.ActionBar.ActionBarLayout;
-import org.telegram.ui.ActionBar.n2;
+import org.telegram.ui.ActionBar.o2;
 public final class l implements Runnable {
     public final int f534a;
     public boolean f535b;
@@ -34,7 +34,7 @@ public final class l implements Runnable {
                             accept.setSoTimeout(5000);
                             InputStream inputStream = accept.getInputStream();
                             m mVar = (m) this.d;
-                            mVar.f539c.C(new a(mVar, inputStream, accept));
+                            mVar.f539c.D(new a(mVar, inputStream, accept));
                         } catch (IOException e) {
                             m.d.log(Level.FINE, "Communication with the client broken", (Throwable) e);
                         }
@@ -53,17 +53,17 @@ public final class l implements Runnable {
                     Object obj = arrayList.get(i10);
                     i10++;
                     s4.j jVar = (s4.j) obj;
-                    mVar2.T(jVar.f45981a, jVar, this.f535b);
+                    mVar2.T(jVar.f46403a, jVar, this.f535b);
                 }
                 arrayList.clear();
-                mVar2.f45990u.remove(arrayList);
+                mVar2.f46412u.remove(arrayList);
                 return;
             default:
                 ActionBarLayout actionBarLayout = (ActionBarLayout) this.d;
                 if (actionBarLayout.e == this) {
                     actionBarLayout.e = null;
-                    ((n2) this.f536c).onTransitionAnimationStart(true, false);
-                    actionBarLayout.d0(true, true, this.f535b);
+                    ((o2) this.f536c).onTransitionAnimationStart(true, false);
+                    actionBarLayout.f0(true, true, this.f535b);
                     return;
                 }
                 return;

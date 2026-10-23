@@ -8,16 +8,11 @@ public abstract class ua extends bb {
     public FrameLayout Y;
     public ei.d Z;
 
-    public ua(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context, null, false, false, d6Var);
+    public ua(Context context, org.telegram.ui.ActionBar.g6 g6Var) {
+        super(context, null, false, false, g6Var);
         LinearLayout linearLayout = new LinearLayout(context);
         this.X = linearLayout;
         linearLayout.setOrientation(1);
-    }
-
-    @Override
-    public final CharSequence A() {
-        return null;
     }
 
     @Override
@@ -26,7 +21,12 @@ public abstract class ua extends bb {
     }
 
     @Override
-    public final im0 x(jm0 jm0Var) {
+    public final lm0 w(mm0 mm0Var) {
         return new ai.m5(this, 2);
+    }
+
+    @Override
+    public final CharSequence z() {
+        return null;
     }
 }

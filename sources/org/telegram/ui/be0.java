@@ -1,0 +1,147 @@
+package org.telegram.ui;
+
+import android.os.Bundle;
+import android.text.TextUtils;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.SerializedData;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class be0 extends org.telegram.ui.Components.tw0 {
+    public final EditTextBoldCursor f36059a;
+    public final TextView f36060b;
+    public final TextView f36061c;
+    public final TextView d;
+    public final org.telegram.ui.Components.bk0 e;
+    public Bundle f36062f;
+    public boolean h;
+    public TL_account.Password f36063n;
+    public String f36064r;
+    public String f36065s;
+    public String v;
+    public String f36066w;
+    public final org.telegram.ui.Components.vd0 f36067x;
+    public final ig0 f36068y;
+
+    public be0(org.telegram.ui.ig0 r20, android.content.Context r21) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.be0.<init>(org.telegram.ui.ig0, android.content.Context):void");
+    }
+
+    @Override
+    public final boolean b() {
+        return true;
+    }
+
+    @Override
+    public final boolean c(boolean z10) {
+        this.h = false;
+        this.f36068y.o1(true, true);
+        this.f36062f = null;
+        return true;
+    }
+
+    @Override
+    public final void d() {
+        this.h = false;
+    }
+
+    @Override
+    public String getHeaderName() {
+        return LocaleController.getString("LoginPassword", R.string.LoginPassword);
+    }
+
+    @Override
+    public final void h(String str) {
+        if (!this.h && this.f36063n != null) {
+            String obj = this.f36059a.getText().toString();
+            if (obj.length() == 0) {
+                ig0 ig0Var = this.f36068y;
+                if (ig0Var.getParentActivity() == null) {
+                    return;
+                }
+                ig0.W0(ig0Var, this.f36067x, true);
+                return;
+            }
+            this.h = true;
+            this.f36068y.r1(0, true);
+            Utilities.globalQueue.postRunnable(new f80(18, this, obj));
+        }
+    }
+
+    @Override
+    public final void j() {
+        AndroidUtilities.runOnUIThread(new fz(this, 21), ig0.f38191x0);
+    }
+
+    @Override
+    public final void k(Bundle bundle) {
+        Bundle bundle2 = bundle.getBundle("passview_params");
+        this.f36062f = bundle2;
+        if (bundle2 != null) {
+            m(bundle2, true);
+        }
+        String string = bundle.getString("passview_code");
+        if (string != null) {
+            this.f36059a.setText(string);
+        }
+    }
+
+    @Override
+    public final void l(Bundle bundle) {
+        String obj = this.f36059a.getText().toString();
+        if (obj.length() != 0) {
+            bundle.putString("passview_code", obj);
+        }
+        Bundle bundle2 = this.f36062f;
+        if (bundle2 != null) {
+            bundle.putBundle("passview_params", bundle2);
+        }
+    }
+
+    @Override
+    public final void m(Bundle bundle, boolean z10) {
+        if (bundle == null) {
+            return;
+        }
+        boolean isEmpty = bundle.isEmpty();
+        EditTextBoldCursor editTextBoldCursor = this.f36059a;
+        if (isEmpty) {
+            AndroidUtilities.hideKeyboard(editTextBoldCursor);
+            return;
+        }
+        editTextBoldCursor.setText("");
+        this.f36062f = bundle;
+        String string = bundle.getString("password");
+        this.f36064r = string;
+        if (string != null) {
+            SerializedData serializedData = new SerializedData(Utilities.hexToBytes(string));
+            this.f36063n = TL_account.Password.TLdeserialize(serializedData, serializedData.readInt32(false), false);
+        }
+        this.f36065s = bundle.getString("phoneFormated");
+        this.v = bundle.getString("phoneHash");
+        this.f36066w = bundle.getString("code");
+        TL_account.Password password = this.f36063n;
+        if (password != null && !TextUtils.isEmpty(password.hint)) {
+            editTextBoldCursor.setHint(this.f36063n.hint);
+        } else {
+            editTextBoldCursor.setHint((CharSequence) null);
+        }
+    }
+
+    @Override
+    public final void updateColors() {
+        int i10 = org.telegram.ui.ActionBar.k6.G6;
+        this.d.setTextColor(org.telegram.ui.ActionBar.k6.x0(null, i10, false));
+        this.f36060b.setTextColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.D6, false));
+        int x02 = org.telegram.ui.ActionBar.k6.x0(null, i10, false);
+        EditTextBoldCursor editTextBoldCursor = this.f36059a;
+        editTextBoldCursor.setTextColor(x02);
+        editTextBoldCursor.setCursorColor(org.telegram.ui.ActionBar.k6.x0(null, i10, false));
+        editTextBoldCursor.setHintTextColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.H6, false));
+        this.f36061c.setTextColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.q6, false));
+        this.f36067x.f();
+    }
+}

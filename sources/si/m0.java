@@ -1,18 +1,15 @@
 package si;
 public final class m0 {
-    public static final m0 f46736a;
-    public static final m0 f46737b;
-    public static final m0 f46738c;
-    public static final m0[] d;
+    public static final m0 f47168a;
+    public static final m0 f47169b;
+    public static final m0[] f47170c;
 
     static {
-        ?? r02 = new Enum("HIGH", 0);
-        f46736a = r02;
-        ?? r12 = new Enum("MEDIUM", 1);
-        f46737b = r12;
-        ?? r32 = new Enum("LOW", 2);
-        f46738c = r32;
-        d = new m0[]{r02, r12, r32};
+        ?? r02 = new Enum("FRONT", 0);
+        f47168a = r02;
+        ?? r12 = new Enum("BACK", 1);
+        f47169b = r12;
+        f47170c = new m0[]{r02, r12};
     }
 
     public static m0 valueOf(String str) {
@@ -20,6 +17,6 @@ public final class m0 {
     }
 
     public static m0[] values() {
-        return (m0[]) d.clone();
+        return (m0[]) f47170c.clone();
     }
 }

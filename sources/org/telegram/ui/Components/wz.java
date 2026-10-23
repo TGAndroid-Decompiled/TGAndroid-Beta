@@ -18,38 +18,38 @@ public class wz extends s4.s {
         this.Q = z10;
     }
 
-    public static fw0 C1(fw0 fw0Var) {
-        if (fw0Var == null) {
+    public static iw0 C1(iw0 iw0Var) {
+        if (iw0Var == null) {
             return null;
         }
-        if (fw0Var.f26432a == 0.0f) {
-            fw0Var.f26432a = 100.0f;
+        if (iw0Var.f27465a == 0.0f) {
+            iw0Var.f27465a = 100.0f;
         }
-        if (fw0Var.f26433b == 0.0f) {
-            fw0Var.f26433b = 100.0f;
+        if (iw0Var.f27466b == 0.0f) {
+            iw0Var.f27466b = 100.0f;
         }
-        float f7 = fw0Var.f26432a;
-        float f10 = fw0Var.f26433b;
+        float f7 = iw0Var.f27465a;
+        float f10 = iw0Var.f27466b;
         float f11 = f7 / f10;
         if (f11 <= 4.0f && f11 >= 0.2f) {
-            return fw0Var;
+            return iw0Var;
         }
         float max = Math.max(f7, f10);
-        fw0Var.f26432a = max;
-        fw0Var.f26433b = max;
-        return fw0Var;
+        iw0Var.f27465a = max;
+        iw0Var.f27466b = max;
+        return iw0Var;
     }
 
     public final void B1() {
-        fw0 fw0Var;
+        iw0 iw0Var;
         int i10;
         int min;
         boolean z10;
         boolean z11;
         float f7;
         SparseIntArray sparseIntArray = this.R;
-        if (sparseIntArray.size() != A() || this.W != this.f46022m || this.T != this.J) {
-            int i11 = this.f46022m;
+        if (sparseIntArray.size() != A() || this.W != this.f46444m || this.T != this.J) {
+            int i11 = this.f46444m;
             this.W = i11;
             float f10 = i11;
             if (f10 == 0.0f) {
@@ -75,11 +75,11 @@ public class wz extends s4.s {
             int i16 = i12;
             while (i14 < i13) {
                 if (i14 < A) {
-                    fw0Var = C1(D1(i14));
+                    iw0Var = C1(D1(i14));
                 } else {
-                    fw0Var = null;
+                    iw0Var = null;
                 }
-                if (fw0Var == null) {
+                if (iw0Var == null) {
                     if (i15 != 0) {
                         z11 = true;
                     } else {
@@ -89,13 +89,13 @@ public class wz extends s4.s {
                     min = i12;
                 } else {
                     i10 = dp;
-                    min = Math.min(i12, (int) Math.floor((((fw0Var.f26432a / fw0Var.f26433b) * dp) / f10) * i12));
+                    min = Math.min(i12, (int) Math.floor((((iw0Var.f27465a / iw0Var.f27466b) * dp) / f10) * i12));
                     if (i16 >= min && (min <= 33 || i16 >= min - 15)) {
                         z10 = false;
                     } else {
                         z10 = true;
                     }
-                    if (fw0Var.f26434c) {
+                    if (iw0Var.f27467c) {
                         sparseIntArray.put(i14, i16);
                         this.V++;
                         f7 = f10;
@@ -162,8 +162,8 @@ public class wz extends s4.s {
         }
     }
 
-    public fw0 D1(int i10) {
-        return new fw0(100.0f, 100.0f);
+    public iw0 D1(int i10) {
+        return new iw0(100.0f, 100.0f);
     }
 
     public final boolean E1(int i10) {

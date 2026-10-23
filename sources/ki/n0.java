@@ -7,14 +7,14 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class n0 {
     public static ArrayList d;
-    public final int f15394a;
-    public final String f15395b;
-    public final List f15396c;
+    public final int f15454a;
+    public final String f15455b;
+    public final List f15456c;
 
     public n0(int i10, String str, String... strArr) {
-        this.f15394a = i10;
-        this.f15395b = str;
-        this.f15396c = Arrays.asList(strArr);
+        this.f15454a = i10;
+        this.f15455b = str;
+        this.f15456c = Arrays.asList(strArr);
     }
 
     public static ArrayList a(String str) {
@@ -64,7 +64,7 @@ public final class n0 {
             i10++;
             n0 n0Var = (n0) obj;
             if (!lowerCase.isEmpty()) {
-                String[] split = n0Var.f15395b.toLowerCase().split(" ");
+                String[] split = n0Var.f15455b.toLowerCase().split(" ");
                 int length = split.length;
                 int i11 = 0;
                 while (true) {
@@ -74,7 +74,7 @@ public final class n0 {
                         }
                         i11++;
                     } else {
-                        for (String str2 : n0Var.f15396c) {
+                        for (String str2 : n0Var.f15456c) {
                             String lowerCase2 = str2.toLowerCase();
                             if (lowerCase2.startsWith("/")) {
                                 lowerCase2 = lowerCase2.substring(1);

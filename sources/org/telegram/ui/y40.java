@@ -1,80 +1,46 @@
 package org.telegram.ui;
 
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ImageLocation;
-import org.telegram.tgnet.TLRPC;
-public final class y40 implements org.telegram.ui.Components.d50 {
-    public float f43352a;
-    public TLRPC.FileLocation f43353b;
-    public TLRPC.FileLocation f43354c;
-    public ImageLocation d;
-    public final long e;
-    public final q50 f43355f;
+import android.graphics.LinearGradient;
+import android.graphics.Matrix;
+import android.graphics.Shader;
+public final class y40 extends org.telegram.ui.ActionBar.n5 {
+    public LinearGradient M0;
+    public int N0;
+    public final Matrix O0;
+    public float P0;
+    public float Q0;
+    public float R0;
+    public float S0;
+    public float T0;
+    public long U0;
+    public final u50 V0;
 
-    public y40(q50 q50Var, long j10) {
-        this.f43355f = q50Var;
-        this.e = j10;
+    public y40(u50 u50Var, LaunchActivity launchActivity) {
+        super(launchActivity);
+        this.V0 = u50Var;
+        this.O0 = new Matrix();
+        this.P0 = -1.0f;
     }
 
     @Override
-    public final void E(float f7) {
-        this.f43355f.f40382b.O(this.d, f7);
-        a(f7);
-    }
-
-    @Override
-    public final void Q(TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2, double d, String str, TLRPC.PhotoSize photoSize, TLRPC.PhotoSize photoSize2, boolean z10, TLRPC.VideoSize videoSize) {
-        AndroidUtilities.runOnUIThread(new hi.k(this, inputFile, inputFile2, videoSize, d, str, photoSize2, photoSize, 3));
-    }
-
-    public final void a(float f7) {
-        this.f43352a = f7;
-        w40 w40Var = this.f43355f.Q;
-        if (w40Var != null) {
-            for (int i10 = 0; i10 < w40Var.getChildCount(); i10++) {
-                View childAt = w40Var.getChildAt(i10);
-                if (childAt instanceof org.telegram.ui.Cells.d4) {
-                    org.telegram.ui.Cells.d4 d4Var = (org.telegram.ui.Cells.d4) childAt;
-                    if (d4Var.c()) {
-                        org.telegram.ui.Cells.y3 y3Var = d4Var.f22138x;
-                        y3Var.setProgress(f7);
-                        if (f7 < 1.0f) {
-                            AndroidUtilities.updateViewVisibilityAnimated(y3Var, true, 1.0f, true);
-                        } else {
-                            AndroidUtilities.updateViewVisibilityAnimated(y3Var, false, 1.0f, true);
-                        }
-                    }
-                }
-            }
+    public final void d(int i10) {
+        super.d(i10);
+        int textWidth = getTextWidth();
+        if (textWidth != this.N0) {
+            float f7 = textWidth;
+            this.T0 = 1.3f * f7;
+            float f10 = f7 * 2.0f;
+            int x02 = org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f21281ih, false);
+            int x03 = org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f21320kh, false);
+            int i11 = org.telegram.ui.ActionBar.k6.f21301jh;
+            this.M0 = new LinearGradient(0.0f, getTextHeight(), f10, 0.0f, new int[]{x02, x03, org.telegram.ui.ActionBar.k6.x0(null, i11, false), org.telegram.ui.ActionBar.k6.x0(null, i11, false)}, new float[]{0.0f, 0.38f, 0.76f, 1.0f}, Shader.TileMode.CLAMP);
+            getPaint().setShader(this.M0);
+            this.N0 = textWidth;
         }
     }
 
     @Override
-    public final boolean e() {
-        return true;
-    }
-
-    @Override
-    public final ju0 getCloseIntoObject() {
-        return null;
-    }
-
-    @Override
-    public final String getInitialSearchString() {
-        return null;
-    }
-
-    @Override
-    public final boolean v() {
-        return false;
-    }
-
-    @Override
-    public final void P() {
-    }
-
-    @Override
-    public final void K(boolean z10, boolean z11) {
+    public final void onDraw(android.graphics.Canvas r12) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.y40.onDraw(android.graphics.Canvas):void");
     }
 }

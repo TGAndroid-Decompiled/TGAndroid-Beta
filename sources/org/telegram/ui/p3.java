@@ -1,40 +1,156 @@
 package org.telegram.ui;
 
-import android.text.style.URLSpan;
 import android.view.View;
-import java.util.HashSet;
-public final class p3 extends URLSpan {
-    public final int f40061a;
-    public final q3 f40062b;
+import java.io.File;
+import java.util.List;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLoader;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_iv;
+public final class p3 implements gu0 {
+    public final TLRPC.WebPage f40337a;
+    public final List f40338b;
+    public final k4 f40339c;
 
-    public p3(q3 q3Var, String str, int i10) {
-        super(str);
-        this.f40061a = i10;
-        this.f40062b = q3Var;
+    public p3(k4 k4Var, TLRPC.WebPage webPage, List list) {
+        this.f40339c = k4Var;
+        this.f40337a = webPage;
+        this.f40338b = list;
     }
 
     @Override
-    public final void onClick(View view) {
-        l0 l0Var;
-        int i10 = this.f40061a;
-        q3 q3Var = this.f40062b;
-        switch (i10) {
-            case 0:
-                l4 l4Var = q3Var.f40361c;
-                String url = getURL();
-                org.telegram.ui.Components.y90 y90Var = l4Var.f35527b;
-                d3 d3Var = l4Var.d;
-                HashSet hashSet = l4.f38739b1;
-                if (y90Var == null) {
-                    l0Var = null;
-                } else {
-                    l0Var = new l0(l4Var, d3Var, y90Var);
-                }
-                l4Var.Q(url, null, l0Var);
-                return;
-            default:
-                q3Var.f40361c.Q(getURL(), null, null);
-                return;
+    public final boolean a(int i10) {
+        if (i10 < this.f40338b.size() && i10 >= 0 && g4.g(this.f40337a, get(i10))) {
+            return true;
         }
+        return false;
+    }
+
+    @Override
+    public final File b(int i10) {
+        TLRPC.Document a2;
+        TLRPC.PhotoSize closestPhotoSizeWithSize;
+        if (i10 < this.f40338b.size() && i10 >= 0) {
+            TL_iv.PageBlock pageBlock = get(i10);
+            boolean z10 = pageBlock instanceof TL_iv.pageBlockPhoto;
+            TLRPC.WebPage webPage = this.f40337a;
+            if (z10) {
+                TLRPC.Photo e = g4.e(webPage, ((TL_iv.pageBlockPhoto) pageBlock).photo_id);
+                if (e != null && (closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(e.sizes, AndroidUtilities.getPhotoSize())) != null) {
+                    return g4.c(closestPhotoSizeWithSize);
+                }
+            } else if ((pageBlock instanceof TL_iv.pageBlockVideo) && (a2 = g4.a(webPage, ((TL_iv.pageBlockVideo) pageBlock).video_id)) != null) {
+                return g4.c(a2);
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public final String c(int i10) {
+        TLObject d = d(i10);
+        if (d instanceof TLRPC.Photo) {
+            d = FileLoader.getClosestPhotoSizeWithSize(((TLRPC.Photo) d).sizes, AndroidUtilities.getPhotoSize());
+        }
+        return FileLoader.getAttachFileName(d);
+    }
+
+    @Override
+    public final TLObject d(int i10) {
+        if (i10 < this.f40338b.size() && i10 >= 0) {
+            TL_iv.PageBlock pageBlock = get(i10);
+            boolean z10 = pageBlock instanceof TL_iv.pageBlockPhoto;
+            TLRPC.WebPage webPage = this.f40337a;
+            if (z10) {
+                return g4.e(webPage, ((TL_iv.pageBlockPhoto) pageBlock).photo_id);
+            }
+            if (pageBlock instanceof TL_iv.pageBlockVideo) {
+                return g4.a(webPage, ((TL_iv.pageBlockVideo) pageBlock).video_id);
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public final boolean e(int i10) {
+        if (i10 < this.f40338b.size() && i10 >= 0 && !g4.g(this.f40337a, get(i10))) {
+            i4 i4Var = this.f40339c.f38805u0[0].f39753c;
+            TL_iv.PageBlock pageBlock = get(i10);
+            i4Var.getClass();
+            if (i4.I(pageBlock) == 5) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public final TLRPC.PhotoSize f(TLObject tLObject, int[] iArr) {
+        TLRPC.PhotoSize closestPhotoSizeWithSize;
+        if (tLObject instanceof TLRPC.Photo) {
+            TLRPC.PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(((TLRPC.Photo) tLObject).sizes, AndroidUtilities.getPhotoSize());
+            if (closestPhotoSizeWithSize2 != null) {
+                int i10 = closestPhotoSizeWithSize2.size;
+                iArr[0] = i10;
+                if (i10 == 0) {
+                    iArr[0] = -1;
+                }
+                return closestPhotoSizeWithSize2;
+            }
+            iArr[0] = -1;
+            return null;
+        } else if ((tLObject instanceof TLRPC.Document) && (closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(((TLRPC.Document) tLObject).thumbs, 90)) != null) {
+            int i11 = closestPhotoSizeWithSize.size;
+            iArr[0] = i11;
+            if (i11 == 0) {
+                iArr[0] = -1;
+            }
+            return closestPhotoSizeWithSize;
+        } else {
+            return null;
+        }
+    }
+
+    @Override
+    public final Object g() {
+        return this.f40337a;
+    }
+
+    @Override
+    public final TL_iv.PageBlock get(int i10) {
+        return (TL_iv.PageBlock) this.f40338b.get(i10);
+    }
+
+    @Override
+    public final List getAll() {
+        return this.f40338b;
+    }
+
+    @Override
+    public final void h(TL_iv.PageBlock pageBlock) {
+        k4 k4Var = this.f40339c;
+        int childCount = k4Var.f38805u0[0].f39752b.getChildCount();
+        for (int i10 = 0; i10 < childCount; i10++) {
+            View childAt = k4Var.f38805u0[0].f39752b.getChildAt(i10);
+            if (childAt instanceof r2) {
+                r2 r2Var = (r2) childAt;
+                int indexOf = r2Var.e.items.indexOf(pageBlock);
+                if (indexOf != -1) {
+                    r2Var.f40969b.x(indexOf, false);
+                    return;
+                }
+            }
+        }
+    }
+
+    @Override
+    public final java.lang.CharSequence i(int r9) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.p3.i(int):java.lang.CharSequence");
+    }
+
+    @Override
+    public final int j() {
+        return this.f40338b.size();
     }
 }

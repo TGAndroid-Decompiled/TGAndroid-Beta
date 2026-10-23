@@ -1,48 +1,33 @@
 package org.telegram.ui;
 
+import android.content.DialogInterface;
 import java.util.regex.Pattern;
-import org.telegram.messenger.FileLog;
-public final class q80 implements Runnable {
-    public final int f40507a;
-    public final z70 f40508b;
+import org.telegram.messenger.AndroidUtilities;
+public final class q80 implements DialogInterface.OnDismissListener {
+    public final int f40654a;
+    public final LaunchActivity f40655b;
 
-    public q80(z70 z70Var, int i10) {
-        this.f40507a = i10;
-        this.f40508b = z70Var;
+    public q80(LaunchActivity launchActivity, int i10) {
+        this.f40654a = i10;
+        this.f40655b = launchActivity;
     }
 
     @Override
-    public final void run() {
-        int i10 = this.f40507a;
-        z70 z70Var = this.f40508b;
+    public final void onDismiss(DialogInterface dialogInterface) {
+        int i10 = this.f40654a;
+        LaunchActivity launchActivity = this.f40655b;
         switch (i10) {
             case 0:
-                Pattern pattern = LaunchActivity.C1;
-                try {
-                    z70Var.run();
-                    return;
-                } catch (Exception e) {
-                    FileLog.e(e);
-                    return;
-                }
+                launchActivity.f33504y1 = false;
+                return;
             case 1:
-                Pattern pattern2 = LaunchActivity.C1;
-                try {
-                    z70Var.run();
-                    return;
-                } catch (Exception e7) {
-                    FileLog.e(e7);
-                    return;
-                }
+                Pattern pattern = LaunchActivity.E1;
+                AndroidUtilities.runOnUIThread(new p80(launchActivity, 6), 30000L);
+                return;
             default:
-                Pattern pattern3 = LaunchActivity.C1;
-                try {
-                    z70Var.run();
-                    return;
-                } catch (Exception e10) {
-                    FileLog.e(e10);
-                    return;
-                }
+                Pattern pattern2 = LaunchActivity.E1;
+                AndroidUtilities.runOnUIThread(new p80(launchActivity, 7), 30000L);
+                return;
         }
     }
 }

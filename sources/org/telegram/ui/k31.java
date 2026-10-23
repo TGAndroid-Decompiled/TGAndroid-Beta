@@ -1,23 +1,46 @@
 package org.telegram.ui;
 
-import android.view.View;
-import android.view.WindowInsets;
-public final class k31 implements View.OnApplyWindowInsetsListener {
-    public final int f38414a;
-    public final Object f38415b;
+import android.app.Activity;
+import android.graphics.Canvas;
+public final class k31 extends org.telegram.ui.Components.q6 {
+    public boolean f38759s;
+    public final org.telegram.ui.Components.f6 v;
+    public final SaveToGallerySettingsActivity f38760w;
 
-    public k31(Object obj, int i10) {
-        this.f38414a = i10;
-        this.f38415b = obj;
+    public k31(SaveToGallerySettingsActivity saveToGallerySettingsActivity, Activity activity) {
+        super(activity, true, true, false);
+        this.f38760w = saveToGallerySettingsActivity;
+        this.v = new org.telegram.ui.Components.f6(this);
+        getDrawable().J = true;
     }
 
     @Override
-    public final WindowInsets onApplyWindowInsets(View view, WindowInsets windowInsets) {
-        switch (this.f38414a) {
-            case 0:
-                return SecretMediaViewer.a((SecretMediaViewer) this.f38415b, windowInsets);
-            default:
-                return t51.b((m41) this.f38415b, view, windowInsets);
+    public final void dispatchDraw(Canvas canvas) {
+        float f7;
+        if (this.f38759s) {
+            f7 = 1.0f;
+        } else {
+            f7 = 0.0f;
+        }
+        org.telegram.ui.Components.f6 f6Var = this.v;
+        f6Var.d(f7, false);
+        int i10 = org.telegram.ui.ActionBar.k6.f21571y6;
+        SaveToGallerySettingsActivity saveToGallerySettingsActivity = this.f38760w;
+        setTextColor(i0.a.f(f6Var.f26180c, saveToGallerySettingsActivity.getThemedColor(i10), saveToGallerySettingsActivity.getThemedColor(org.telegram.ui.ActionBar.k6.f21366n6)));
+        super.dispatchDraw(canvas);
+    }
+
+    public final void e(boolean z10, boolean z11) {
+        float f7;
+        if (this.f38759s != z10) {
+            this.f38759s = z10;
+            if (z10) {
+                f7 = 1.0f;
+            } else {
+                f7 = 0.0f;
+            }
+            this.v.d(f7, z11);
+            invalidate();
         }
     }
 }

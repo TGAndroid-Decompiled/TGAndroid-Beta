@@ -34,17 +34,17 @@ public class NotificationsSettingsFacade {
         ConnectionsManager connectionsManager = ConnectionsManager.getInstance(this.currentAccount);
         MessagesStorage messagesStorage = MessagesStorage.getInstance(this.currentAccount);
         NotificationsController notificationsController = NotificationsController.getInstance(this.currentAccount);
-        int c10 = g0.c("notify2_", sharedPrefKey, getPreferences(), -1);
+        int c10 = v0.c("notify2_", sharedPrefKey, getPreferences(), -1);
         boolean z11 = true;
-        int c11 = g0.c("notifyuntil_", sharedPrefKey, getPreferences(), 0);
+        int c11 = v0.c("notifyuntil_", sharedPrefKey, getPreferences(), 0);
         SharedPreferences.Editor edit = getPreferences().edit();
         if ((peerNotifySettings.flags & 2) != 0) {
-            edit.putBoolean(r4.c.h("silent_", sharedPrefKey), peerNotifySettings.silent);
+            edit.putBoolean(si.o0.h("silent_", sharedPrefKey), peerNotifySettings.silent);
         } else {
             edit.remove("silent_" + sharedPrefKey);
         }
         if ((peerNotifySettings.flags & 64) != 0) {
-            edit.putBoolean(r4.c.h("stories_", sharedPrefKey), !peerNotifySettings.stories_muted);
+            edit.putBoolean(si.o0.h("stories_", sharedPrefKey), !peerNotifySettings.stories_muted);
         } else {
             edit.remove("stories_" + sharedPrefKey);
         }

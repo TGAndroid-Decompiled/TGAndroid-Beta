@@ -1,32 +1,8 @@
 package z4;
+public interface f {
+    void a(int i10);
 
-import android.os.Parcel;
-import android.os.Parcelable;
-public final class f extends i1.c {
-    public static final Parcelable.Creator<f> CREATOR = new i1.b(4);
-    public int f50682c;
-    public Parcelable d;
-    public final ClassLoader e;
+    void b(float f7, int i10, int i11);
 
-    public f(Parcel parcel, ClassLoader classLoader) {
-        super(parcel, classLoader);
-        classLoader = classLoader == null ? f.class.getClassLoader() : classLoader;
-        this.f50682c = parcel.readInt();
-        this.d = parcel.readParcelable(classLoader);
-        this.e = classLoader;
-    }
-
-    public final String toString() {
-        StringBuilder sb2 = new StringBuilder("FragmentPager.SavedState{");
-        sb2.append(Integer.toHexString(System.identityHashCode(this)));
-        sb2.append(" position=");
-        return a1.g.n(this.f50682c, "}", sb2);
-    }
-
-    @Override
-    public final void writeToParcel(Parcel parcel, int i10) {
-        super.writeToParcel(parcel, i10);
-        parcel.writeInt(this.f50682c);
-        parcel.writeParcelable(this.d, i10);
-    }
+    void c(int i10);
 }

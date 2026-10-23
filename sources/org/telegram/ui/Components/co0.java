@@ -1,33 +1,40 @@
 package org.telegram.ui.Components;
-public final class co0 extends s4.o {
-    public final go0 f25232b;
 
-    public co0(go0 go0Var) {
-        this.f25232b = go0Var;
-    }
-
+import android.view.View;
+public final class co0 extends s4.k {
     @Override
-    public final boolean a(int i10, int i11) {
-        go0 go0Var = this.f25232b;
-        return ((do0) go0Var.f26622n.get(i10)).equals(go0Var.f26623r.get(i11));
-    }
-
-    @Override
-    public final boolean b(int i10, int i11) {
-        go0 go0Var = this.f25232b;
-        if (((do0) go0Var.f26622n.get(i10)).f25579a.h == ((do0) go0Var.f26623r.get(i11)).f25579a.h) {
-            return true;
+    public final boolean r(s4.b1 b1Var, b2.u0 u0Var, int i10, int i11, int i12, int i13) {
+        io0 io0Var;
+        ho0 ho0Var;
+        View view = b1Var.f46343a;
+        if ((view instanceof io0) && (ho0Var = (io0Var = (io0) view).f27376a) != null) {
+            ho0Var.f753i = ho0Var.N;
+            ho0Var.f751g = ho0Var.O;
+            ho0Var.h = ho0Var.P;
+            io0Var.f27377b.d(0.0f, true);
+            io0Var.invalidate();
         }
-        return false;
+        int translationX = i10 + ((int) view.getTranslationX());
+        int translationY = i11 + ((int) view.getTranslationY());
+        R(b1Var);
+        int i14 = i12 - translationX;
+        int i15 = i13 - translationY;
+        if (i14 == 0 && i15 == 0) {
+            v(b1Var);
+            return false;
+        }
+        if (i14 != 0) {
+            view.setTranslationX(-i14);
+        }
+        if (i15 != 0) {
+            view.setTranslationY(-i15);
+        }
+        this.f46409r.add(new s4.j(b1Var, translationX, translationY, i12, i13));
+        return true;
     }
 
     @Override
-    public final int d() {
-        return this.f25232b.f26623r.size();
-    }
-
-    @Override
-    public final int e() {
-        return this.f25232b.f26622n.size();
+    public final boolean t(s4.b1 b1Var) {
+        return true;
     }
 }

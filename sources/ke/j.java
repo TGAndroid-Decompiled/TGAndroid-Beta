@@ -7,12 +7,12 @@ public final class j extends t {
 
     public j(long j10, j jVar, int i10) {
         super(j10, jVar, i10);
-        this.e = new AtomicReferenceArray(i.f15045f);
+        this.e = new AtomicReferenceArray(i.f15091f);
     }
 
     @Override
     public final int g() {
-        return i.f15045f;
+        return i.f15091f;
     }
 
     @Override
@@ -22,6 +22,6 @@ public final class j extends t {
     }
 
     public final String toString() {
-        return "SemaphoreSegment[id=" + this.f11039c + ", hashCode=" + hashCode() + ']';
+        return "SemaphoreSegment[id=" + this.f11058c + ", hashCode=" + hashCode() + ']';
     }
 }

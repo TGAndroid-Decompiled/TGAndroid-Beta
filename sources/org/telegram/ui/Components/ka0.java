@@ -1,6 +1,22 @@
 package org.telegram.ui.Components;
 
-import org.telegram.tgnet.tl.TL_iv;
-public final class ka0 extends TL_iv.RichText {
-    public int f27835a;
+import java.util.regex.Pattern;
+public final class ka0 extends gd.h {
+    public static final Pattern e = Pattern.compile("\\$([^\\s\\$][^\\$]*?)(?<!\\s)\\$(?![0-9])");
+
+    @Override
+    public final df.p b() {
+        String a2 = a(e);
+        if (a2 == null) {
+            return null;
+        }
+        ?? pVar = new df.p();
+        pVar.f4263g = com.google.android.gms.internal.play_billing.k3.i(1, 1, a2);
+        return pVar;
+    }
+
+    @Override
+    public final char d() {
+        return '$';
+    }
 }

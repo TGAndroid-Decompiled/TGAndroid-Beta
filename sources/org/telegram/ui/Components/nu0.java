@@ -1,66 +1,52 @@
 package org.telegram.ui.Components;
 
-import android.animation.ObjectAnimator;
-import android.graphics.Canvas;
-import android.view.View;
-import android.widget.FrameLayout;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-public abstract class nu0 extends FrameLayout {
-    public ml0 E;
-    public int F;
-    public mr0 G;
-    public ho0 H;
-    public boolean I;
-    public int J;
-    public boolean K;
-    public float L;
-    public long f28880a;
-    public boolean f28881b;
-    public ObjectAnimator f28882c;
-    public s4.k d;
-    public s4.t0 e;
-    public s4.t0 f28883f;
-    public ts0 h;
-    public bh.l f28884n;
-    public mu0 f28885r;
-    public vs0 f28886s;
-    public ct0 v;
-    public et0 f28887w;
-    public rs0 f28888x;
-    public bt0 f28889y;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.Utilities;
+public final class nu0 implements Runnable {
+    public final int f29014a;
+    public final ou0 f29015b;
+    public final String f29016c;
 
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        mr0 mr0Var;
-        super.dispatchDraw(canvas);
-        mr0 mr0Var2 = this.G;
-        if (mr0Var2 != null && mr0Var2.getVisibility() == 0) {
-            ql0 fastScroll = this.h.getFastScroll();
-            if (fastScroll != null) {
-                float dp = AndroidUtilities.dp(36.0f) + fastScroll.getScrollBarY();
-                if (this.F == 9) {
-                    dp += AndroidUtilities.dp(64.0f);
-                }
-                int i10 = this.F;
-                if (i10 == 8 || uv0.y0(i10)) {
-                    dp += AndroidUtilities.dp(42.0f);
-                }
-                this.G.setPivotX(mr0Var.getMeasuredWidth());
-                this.G.setPivotY(0.0f);
-                this.G.setTranslationX((getMeasuredWidth() - this.G.getMeasuredWidth()) - AndroidUtilities.dp(16.0f));
-                this.G.setTranslationY(dp);
-            }
-            if (fastScroll.getProgress() > 0.85f) {
-                uv0.r(this, null, false);
-            }
-        }
+    public nu0(ou0 ou0Var, String str, int i10) {
+        this.f29014a = i10;
+        this.f29015b = ou0Var;
+        this.f29016c = str;
     }
 
     @Override
-    public final boolean drawChild(Canvas canvas, View view, long j10) {
-        if (view == this.f28885r) {
-            return true;
+    public final void run() {
+        long j10;
+        switch (this.f29014a) {
+            case 0:
+                ou0 ou0Var = this.f29015b;
+                String str = this.f29016c;
+                ou0Var.getClass();
+                AndroidUtilities.runOnUIThread(new nu0(ou0Var, str, 1));
+                return;
+            default:
+                ou0 ou0Var2 = this.f29015b;
+                String str2 = this.f29016c;
+                ArrayList arrayList = null;
+                ou0Var2.f29316f = null;
+                if (!ChatObject.isChannel(ou0Var2.f29317n) && ou0Var2.f29319s.f32670d1 != null) {
+                    arrayList = new ArrayList(ou0Var2.f29319s.f32670d1.participants.participants);
+                }
+                ou0Var2.f29318r = 2;
+                if (arrayList != null) {
+                    Utilities.searchQueue.postRunnable(new lg((Object) ou0Var2, (Object) str2, arrayList, 24));
+                } else {
+                    ou0Var2.f29318r = 1;
+                }
+                hg.a2 a2Var = ou0Var2.e;
+                if (ChatObject.isChannel(ou0Var2.f29317n)) {
+                    j10 = ou0Var2.f29317n.f20343id;
+                } else {
+                    j10 = 0;
+                }
+                a2Var.g(str2, false, false, true, false, j10, false, 2, 1);
+                return;
         }
-        return super.drawChild(canvas, view, j10);
     }
 }

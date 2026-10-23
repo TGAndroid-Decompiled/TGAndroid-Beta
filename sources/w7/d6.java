@@ -3,26 +3,27 @@ package w7;
 import android.content.Context;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.x90;
+import org.telegram.ui.Components.y90;
 public abstract class d6 {
-    public static x90 a(Context context, float f7, int i10, boolean z10, org.telegram.ui.ActionBar.d6 d6Var) {
-        int i11 = org.telegram.ui.ActionBar.h6.f21053gc;
-        x90 x90Var = new x90(context, null);
-        x90Var.setTextSize(1, f7);
-        x90Var.setTextColor(org.telegram.ui.ActionBar.h6.w0(i10, d6Var));
-        x90Var.setLinkTextColor(org.telegram.ui.ActionBar.h6.w0(i11, d6Var));
+    public static y90 a(Context context, float f7, int i10, boolean z10, org.telegram.ui.ActionBar.g6 g6Var) {
+        int i11 = org.telegram.ui.ActionBar.k6.f21242gc;
+        y90 y90Var = new y90(context, null);
+        y90Var.setTextSize(1, f7);
+        org.telegram.ui.ActionBar.r6.W(y90Var, i10, g6Var);
+        org.telegram.ui.ActionBar.r6.I(y90Var, i11, g6Var);
         if (z10) {
-            x90Var.setTypeface(AndroidUtilities.bold());
+            y90Var.setTypeface(AndroidUtilities.bold());
         }
-        return x90Var;
+        return y90Var;
     }
 
-    public static TextView b(Context context, float f7, int i10, boolean z10, org.telegram.ui.ActionBar.d6 d6Var) {
-        TextView f10 = org.telegram.messenger.g0.f(context, 1, f7);
-        f10.setTextColor(org.telegram.ui.ActionBar.h6.w0(i10, d6Var));
+    public static TextView b(Context context, float f7, int i10, boolean z10, org.telegram.ui.ActionBar.g6 g6Var) {
+        TextView textView = new TextView(context);
+        textView.setTextSize(1, f7);
+        org.telegram.ui.ActionBar.r6.W(textView, i10, g6Var);
         if (z10) {
-            f10.setTypeface(AndroidUtilities.bold());
+            textView.setTypeface(AndroidUtilities.bold());
         }
-        return f10;
+        return textView;
     }
 }

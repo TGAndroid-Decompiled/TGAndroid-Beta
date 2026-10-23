@@ -6,9 +6,9 @@ import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.TaskCompletionSource;
 public final class a implements Continuation, com.google.android.gms.common.api.internal.r {
-    public static final a f45039a = new Object();
-    public static final a f45040b = new Object();
-    public static final a f45041c = new Object();
+    public static final a f45451a = new Object();
+    public static final a f45452b = new Object();
+    public static final a f45453c = new Object();
 
     public void a(k kVar, com.google.android.gms.common.api.internal.n nVar, boolean z10, TaskCompletionSource taskCompletionSource) {
         k6.c cVar;
@@ -19,9 +19,9 @@ public final class a implements Continuation, com.google.android.gms.common.api.
                     taskCompletionSource.setResult(Boolean.FALSE);
                     return;
                 }
-                com.google.android.gms.common.api.internal.p e = iVar.f45052b.e();
-                e.f6476b = null;
-                e.f6477c = null;
+                com.google.android.gms.common.api.internal.p e = iVar.f45464b.e();
+                e.f6488b = null;
+                e.f6489c = null;
                 if (z10) {
                     k6.c[] m10 = kVar.m();
                     if (m10 != null) {
@@ -30,7 +30,7 @@ public final class a implements Continuation, com.google.android.gms.common.api.
                         while (true) {
                             if (i10 < length) {
                                 cVar = m10[i10];
-                                if ("location_updates_with_callback".equals(cVar.f14968a)) {
+                                if ("location_updates_with_callback".equals(cVar.f15014a)) {
                                     break;
                                 }
                                 i10++;
@@ -76,7 +76,7 @@ public final class a implements Continuation, com.google.android.gms.common.api.
             while (true) {
                 if (i10 < length) {
                     cVar = m10[i10];
-                    if ("get_last_location_with_request".equals(cVar.f14968a)) {
+                    if ("get_last_location_with_request".equals(cVar.f15014a)) {
                         break;
                     }
                     i10++;

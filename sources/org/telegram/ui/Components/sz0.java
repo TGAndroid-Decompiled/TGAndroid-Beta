@@ -1,26 +1,25 @@
 package org.telegram.ui.Components;
-public final class sz0 extends wz0 {
-    public int d;
 
-    @Override
-    public final int a(f01 f01Var, yz0 yz0Var, rz0 rz0Var, int i10, boolean z10) {
-        return Math.max(0, this.f32286a - rz0Var.a(yz0Var, i10));
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class sz0 extends AnimatorListenerAdapter {
+    public final int f30578a;
+    public final Switch f30579b;
+
+    public sz0(Switch r12, int i10) {
+        this.f30578a = i10;
+        this.f30579b = r12;
     }
 
     @Override
-    public final void b(int i10, int i11) {
-        super.b(i10, i11);
-        this.d = Math.max(this.d, i10 + i11);
-    }
-
-    @Override
-    public final void c() {
-        super.c();
-        this.d = Integer.MIN_VALUE;
-    }
-
-    @Override
-    public final int d(boolean z10) {
-        return Math.max(super.d(z10), this.d);
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f30578a) {
+            case 0:
+                this.f30579b.d = null;
+                return;
+            default:
+                this.f30579b.e = null;
+                return;
+        }
     }
 }

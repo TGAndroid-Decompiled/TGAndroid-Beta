@@ -3,8 +3,8 @@ package b2;
 import v7.u6;
 public final class m1 extends o1 {
     public final e9.n0 e;
-    public final e9.n0 f3834f;
-    public final int[] f3835g;
+    public final e9.n0 f3841f;
+    public final int[] f3842g;
     public final int[] h;
 
     public m1(e9.x1 x1Var, e9.x1 x1Var2, int[] iArr) {
@@ -16,8 +16,8 @@ public final class m1 extends o1 {
         }
         u6.g(z10);
         this.e = x1Var;
-        this.f3834f = x1Var2;
-        this.f3835g = iArr;
+        this.f3841f = x1Var2;
+        this.f3842g = iArr;
         this.h = new int[iArr.length];
         for (int i10 = 0; i10 < iArr.length; i10++) {
             this.h[iArr[i10]] = i10;
@@ -32,7 +32,7 @@ public final class m1 extends o1 {
         if (!z10) {
             return 0;
         }
-        return this.f3835g[0];
+        return this.f3842g[0];
     }
 
     @Override
@@ -47,7 +47,7 @@ public final class m1 extends o1 {
         }
         e9.n0 n0Var = this.e;
         if (z10) {
-            return this.f3835g[n0Var.size() - 1];
+            return this.f3842g[n0Var.size() - 1];
         }
         return n0Var.size() - 1;
     }
@@ -63,7 +63,7 @@ public final class m1 extends o1 {
             }
             return -1;
         } else if (z10) {
-            return this.f3835g[this.h[i10] + 1];
+            return this.f3842g[this.h[i10] + 1];
         } else {
             return i10 + 1;
         }
@@ -71,14 +71,14 @@ public final class m1 extends o1 {
 
     @Override
     public final l1 f(int i10, l1 l1Var, boolean z10) {
-        l1 l1Var2 = (l1) this.f3834f.get(i10);
-        l1Var.h(l1Var2.f3820a, l1Var2.f3821b, l1Var2.f3822c, l1Var2.d, l1Var2.e, l1Var2.f3824g, l1Var2.f3823f);
+        l1 l1Var2 = (l1) this.f3841f.get(i10);
+        l1Var.h(l1Var2.f3827a, l1Var2.f3828b, l1Var2.f3829c, l1Var2.d, l1Var2.e, l1Var2.f3831g, l1Var2.f3830f);
         return l1Var;
     }
 
     @Override
     public final int h() {
-        return this.f3834f.size();
+        return this.f3841f.size();
     }
 
     @Override
@@ -92,7 +92,7 @@ public final class m1 extends o1 {
             }
             return -1;
         } else if (z10) {
-            return this.f3835g[this.h[i10] - 1];
+            return this.f3842g[this.h[i10] - 1];
         } else {
             return i10 - 1;
         }
@@ -106,8 +106,8 @@ public final class m1 extends o1 {
     @Override
     public final n1 m(int i10, n1 n1Var, long j10) {
         n1 n1Var2 = (n1) this.e.get(i10);
-        n1Var.b(n1Var2.f3867a, n1Var2.f3869c, n1Var2.d, n1Var2.e, n1Var2.f3870f, n1Var2.f3871g, n1Var2.h, n1Var2.f3872i, n1Var2.f3873j, n1Var2.f3875l, n1Var2.f3876m, n1Var2.f3877n, n1Var2.f3878o, n1Var2.f3879p);
-        n1Var.f3874k = n1Var2.f3874k;
+        n1Var.b(n1Var2.f3874a, n1Var2.f3876c, n1Var2.d, n1Var2.e, n1Var2.f3877f, n1Var2.f3878g, n1Var2.h, n1Var2.f3879i, n1Var2.f3880j, n1Var2.f3882l, n1Var2.f3883m, n1Var2.f3884n, n1Var2.f3885o, n1Var2.f3886p);
+        n1Var.f3881k = n1Var2.f3881k;
         return n1Var;
     }
 

@@ -8,17 +8,17 @@ import android.graphics.RectF;
 import java.util.ArrayList;
 import java.util.Arrays;
 import org.telegram.ui.PrivacyControlActivity;
-import org.telegram.ui.h60;
+import org.telegram.ui.l60;
 import zf.f0;
-public final class a implements hh.f, h60 {
-    public final int f7991a;
-    public final boolean f7992b;
-    public final Object f7993c;
+public final class a implements hh.f, l60 {
+    public final int f8003a;
+    public final boolean f8004b;
+    public final Object f8005c;
 
     public a(int i10, Object obj, boolean z10) {
-        this.f7993c = obj;
-        this.f7991a = i10;
-        this.f7992b = z10;
+        this.f8005c = obj;
+        this.f8003a = i10;
+        this.f8004b = z10;
     }
 
     @Override
@@ -26,30 +26,30 @@ public final class a implements hh.f, h60 {
         Paint paint;
         float f7;
         Path.Direction direction;
-        d dVar = (d) this.f7993c;
-        float[] fArr2 = d.E;
-        c cVar = dVar.f8014j;
+        d dVar = (d) this.f8005c;
+        float[] fArr2 = d.V;
+        c cVar = dVar.v;
         Path path = new Path();
         Path.Direction direction2 = Path.Direction.CW;
         path.addRoundRect(rectF, fArr, direction2);
         Paint paint2 = new Paint(1);
         paint2.setStyle(Paint.Style.FILL);
-        paint2.setColor(this.f7991a);
-        float f10 = dVar.f8018n;
+        paint2.setColor(this.f8003a);
+        float f10 = dVar.E;
         if (f10 > 0.0f) {
-            paint2.setShadowLayer(f10, 0.0f, dVar.f8019o, dVar.d);
+            paint2.setShadowLayer(f10, 0.0f, dVar.F, dVar.d);
         }
         canvas.drawPath(path, paint2);
-        if (dVar.f8018n > 0.0f) {
+        if (dVar.E > 0.0f) {
             paint2.clearShadowLayer();
             canvas.drawPath(path, paint2);
         }
-        if (this.f7992b) {
-            float[] copyOf = Arrays.copyOf(cVar.f7997b, 8);
+        if (this.f8004b) {
+            float[] copyOf = Arrays.copyOf(cVar.f8009b, 8);
             boolean c10 = f0.c(copyOf);
             float min = Math.min(rectF.width(), rectF.height()) / 2.0f;
             Paint paint3 = new Paint(1);
-            if (Color.alpha(dVar.f8011f) > 0 && copyOf[0] > 0.0f) {
+            if (Color.alpha(dVar.f8023f) > 0 && copyOf[0] > 0.0f) {
                 Arrays.fill(fArr2, 0.0f);
                 fArr2[0] = copyOf[0];
                 fArr2[1] = copyOf[1];
@@ -70,15 +70,15 @@ public final class a implements hh.f, h60 {
                 direction = direction2;
                 float f13 = rectF.left;
                 float f14 = rectF.top;
-                path2.addRoundRect(f13, cVar.f8001i + f14, rectF.right, Math.min(Math.max(copyOf[0], copyOf[2]) + f14, rectF.bottom), fArr2, Path.Direction.CCW);
-                paint.setColor(dVar.f8011f);
+                path2.addRoundRect(f13, cVar.f8013i + f14, rectF.right, Math.min(Math.max(copyOf[0], copyOf[2]) + f14, rectF.bottom), fArr2, Path.Direction.CCW);
+                paint.setColor(dVar.f8023f);
                 canvas.drawPath(path2, paint);
             } else {
                 paint = paint3;
                 f7 = 0.0f;
                 direction = direction2;
             }
-            if (Color.alpha(dVar.f8012g) > 0 && copyOf[4] > f7) {
+            if (Color.alpha(dVar.h) > 0 && copyOf[4] > f7) {
                 Arrays.fill(fArr2, f7);
                 fArr2[4] = copyOf[4];
                 fArr2[5] = copyOf[5];
@@ -92,8 +92,8 @@ public final class a implements hh.f, h60 {
                 }
                 Path path3 = new Path();
                 path3.addRoundRect(rectF.left, Math.max(rectF.bottom - Math.max(copyOf[4], copyOf[6]), rectF.top), rectF.right, rectF.bottom, fArr2, direction);
-                path3.addRoundRect(rectF.left, Math.max(rectF.bottom - Math.max(copyOf[4], copyOf[6]), rectF.top), rectF.right, rectF.bottom - cVar.f8002j, fArr2, Path.Direction.CCW);
-                paint.setColor(dVar.f8012g);
+                path3.addRoundRect(rectF.left, Math.max(rectF.bottom - Math.max(copyOf[4], copyOf[6]), rectF.top), rectF.right, rectF.bottom - cVar.f8014j, fArr2, Path.Direction.CCW);
+                paint.setColor(dVar.h);
                 canvas.drawPath(path3, paint);
             }
         }
@@ -102,27 +102,27 @@ public final class a implements hh.f, h60 {
     @Override
     public void b(ArrayList arrayList, boolean z10, boolean z11) {
         char c10;
-        PrivacyControlActivity privacyControlActivity = (PrivacyControlActivity) this.f7993c;
-        boolean[] zArr = privacyControlActivity.E;
-        int i10 = privacyControlActivity.T;
-        int i11 = this.f7991a;
-        boolean z12 = this.f7992b;
+        PrivacyControlActivity privacyControlActivity = (PrivacyControlActivity) this.f8005c;
+        boolean[] zArr = privacyControlActivity.F;
+        int i10 = privacyControlActivity.U;
+        int i11 = this.f8003a;
+        boolean z12 = this.f8004b;
         int i12 = 0;
         boolean z13 = true;
         if (i11 == i10) {
-            privacyControlActivity.H = arrayList;
-            int i13 = privacyControlActivity.I;
+            privacyControlActivity.I = arrayList;
+            int i13 = privacyControlActivity.J;
             if (!z12 || !z11) {
                 z13 = false;
             }
             zArr[i13] = z13;
-            while (i12 < privacyControlActivity.H.size()) {
-                privacyControlActivity.G.remove(privacyControlActivity.H.get(i12));
+            while (i12 < privacyControlActivity.I.size()) {
+                privacyControlActivity.H.remove(privacyControlActivity.I.get(i12));
                 i12++;
             }
         } else {
-            boolean[] zArr2 = privacyControlActivity.f33569y;
-            int i14 = privacyControlActivity.I;
+            boolean[] zArr2 = privacyControlActivity.E;
+            int i14 = privacyControlActivity.J;
             if (i14 == 2) {
                 c10 = 0;
             } else {
@@ -133,13 +133,13 @@ public final class a implements hh.f, h60 {
                 z13 = false;
             }
             zArr[i14] = z13;
-            privacyControlActivity.G = arrayList;
-            while (i12 < privacyControlActivity.G.size()) {
-                privacyControlActivity.H.remove(privacyControlActivity.G.get(i12));
+            privacyControlActivity.H = arrayList;
+            while (i12 < privacyControlActivity.H.size()) {
+                privacyControlActivity.I.remove(privacyControlActivity.H.get(i12));
                 i12++;
             }
         }
         privacyControlActivity.E0();
-        privacyControlActivity.f33537a.l();
+        privacyControlActivity.f33834a.l();
     }
 }

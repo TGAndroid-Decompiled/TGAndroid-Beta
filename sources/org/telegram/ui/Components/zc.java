@@ -10,14 +10,14 @@ import android.text.Spanned;
 import android.text.TextUtils;
 import android.view.MotionEvent;
 import org.telegram.messenger.AndroidUtilities;
-public class zc extends x90 {
+public class zc extends y90 {
     public final Path L;
     public final RectF M;
     public ad N;
     public ad O;
 
-    public zc(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context, d6Var);
+    public zc(Context context, org.telegram.ui.ActionBar.g6 g6Var) {
+        super(context, g6Var);
         this.L = new Path();
         this.M = new RectF();
     }

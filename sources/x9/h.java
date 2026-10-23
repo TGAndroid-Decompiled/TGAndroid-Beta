@@ -20,8 +20,9 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
+import si.o0;
 public abstract class h {
-    public static final char[] f49687a = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
+    public static final char[] f50129a = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
 
     public static ExecutorService a(String str) {
         ExecutorService unconfigurableExecutorService = Executors.unconfigurableExecutorService(new ThreadPoolExecutor(1, 1, 0L, TimeUnit.MILLISECONDS, new LinkedBlockingQueue(), new x(str, new AtomicLong(1L)), new ThreadPoolExecutor.DiscardPolicy()));
@@ -86,7 +87,7 @@ public abstract class h {
         for (int i10 = 0; i10 < bArr.length; i10++) {
             byte b10 = bArr[i10];
             int i11 = i10 * 2;
-            char[] cArr2 = f49687a;
+            char[] cArr2 = f50129a;
             cArr[i11] = cArr2[(b10 & 255) >>> 4];
             cArr[i11 + 1] = cArr2[b10 & 15];
         }
@@ -107,7 +108,7 @@ public abstract class h {
     public static boolean h() {
         boolean g10 = g();
         String str = Build.TAGS;
-        if ((!g10 && str != null && str.contains("test-keys")) || r4.c.t("/system/app/Superuser.apk")) {
+        if ((!g10 && str != null && str.contains("test-keys")) || o0.t("/system/app/Superuser.apk")) {
             return true;
         }
         File file = new File("/system/xbin/su");

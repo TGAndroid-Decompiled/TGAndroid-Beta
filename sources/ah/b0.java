@@ -2,8 +2,8 @@ package ah;
 
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.ui.Components.dl0;
-import org.telegram.ui.qn;
+import org.telegram.ui.Components.gl0;
+import org.telegram.ui.sn;
 import w7.z5;
 public final class b0 implements Runnable {
     public final int f660a;
@@ -26,11 +26,11 @@ public final class b0 implements Runnable {
             default:
                 f0 f0Var = this.f661b;
                 f0Var.e = f0Var.b();
-                int i12 = f0Var.f726f;
+                int i12 = f0Var.f727f;
                 int i13 = f0Var.h;
-                qn qnVar = f0Var.f723a;
-                if (f0Var.f724b == null) {
-                    if (qnVar.getUserConfig().getClientUserId() == qnVar.a()) {
+                sn snVar = f0Var.f724a;
+                if (f0Var.f725b == null) {
+                    if (snVar.getUserConfig().getClientUserId() == snVar.a()) {
                         z10 = true;
                     } else {
                         z10 = false;
@@ -40,10 +40,10 @@ public final class b0 implements Runnable {
                     } else {
                         i10 = 0;
                     }
-                    ?? dl0Var = new dl0(i10, qnVar.getCurrentAccount(), f0Var.getContext(), f0Var.f723a, qnVar.getResourceProvider());
-                    dl0Var.l1 = 1.0f;
-                    dl0Var.setWillNotDraw(false);
-                    f0Var.f724b = dl0Var;
+                    ?? gl0Var = new gl0(i10, snVar.getCurrentAccount(), f0Var.getContext(), f0Var.f724a, snVar.getResourceProvider());
+                    gl0Var.f720m1 = 1.0f;
+                    gl0Var.setWillNotDraw(false);
+                    f0Var.f725b = gl0Var;
                     int dp = AndroidUtilities.dp(4.0f);
                     if (LocaleController.isRTL) {
                         i11 = 0;
@@ -56,21 +56,21 @@ public final class b0 implements Runnable {
                     if (!LocaleController.isRTL) {
                         i13 = 0;
                     }
-                    dl0Var.setPadding(i14, dp2, dp3 + i13, AndroidUtilities.dp(i12));
-                    f0Var.f724b.setDelegate(new qb.c(f0Var, 3));
-                    f0Var.f724b.setClipChildren(false);
-                    f0Var.f724b.setClipToPadding(false);
-                    f0Var.addView(f0Var.f724b, z5.e(-2, i12 + 70, 5));
+                    gl0Var.setPadding(i14, dp2, dp3 + i13, AndroidUtilities.dp(i12));
+                    f0Var.f725b.setDelegate(new qb.c(f0Var, 3));
+                    f0Var.f725b.setClipChildren(false);
+                    f0Var.f725b.setClipToPadding(false);
+                    f0Var.addView(f0Var.f725b, z5.e(-2, i12 + 70, 5));
                 }
                 f0Var.c(false);
-                if (f0Var.f724b.isEnabled()) {
-                    f0Var.f731x = true;
-                    f0Var.f724b.p(f0Var.e, qnVar.Z7, true);
-                    f0Var.f724b.r(false);
+                if (f0Var.f725b.isEnabled()) {
+                    f0Var.f732x = true;
+                    f0Var.f725b.p(f0Var.e, snVar.f41592l8, true);
+                    f0Var.f725b.r(false);
                     return;
                 }
-                f0Var.f731x = false;
-                f0Var.f724b.setTransitionProgress(1.0f);
+                f0Var.f732x = false;
+                f0Var.f725b.setTransitionProgress(1.0f);
                 return;
         }
     }

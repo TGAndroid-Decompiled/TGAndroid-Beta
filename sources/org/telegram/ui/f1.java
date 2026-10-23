@@ -1,388 +1,62 @@
 package org.telegram.ui;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.text.Layout;
-import android.util.Property;
-import android.view.MotionEvent;
+import android.graphics.Point;
+import android.graphics.Rect;
 import android.view.View;
-import android.view.accessibility.AccessibilityNodeInfo;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.TextView;
-import java.util.ArrayList;
+import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_iv;
-public final class f1 extends FrameLayout implements org.telegram.ui.Cells.m9 {
-    public TL_iv.pageBlockChannel E;
-    public final b70 f36855a;
-    public final j4 f36856b;
-    public final org.telegram.ui.Components.dr f36857c;
-    public final TextView d;
-    public final ImageView e;
-    public int f36858f;
-    public d3 h;
-    public int f36859n;
-    public final int f36860r;
-    public final int f36861s;
-    public int v;
-    public final Paint f36862w;
-    public AnimatorSet f36863x;
-    public final int f36864y;
+import org.telegram.messenger.MessageObject;
+public final class f1 extends s4.m0 {
+    public final l1 f37186a;
 
-    public f1(Context context, b70 b70Var, j4 j4Var, int i10) {
-        super(context);
-        this.f36860r = AndroidUtilities.dp(18.0f);
-        this.f36861s = AndroidUtilities.dp(11.0f);
-        this.f36855a = b70Var;
-        this.f36856b = j4Var;
-        setWillNotDraw(false);
-        this.f36862w = new Paint();
-        this.f36864y = i10;
-        TextView textView = new TextView(context);
-        this.d = textView;
-        com.google.android.gms.internal.play_billing.k3.m(14.0f, 1, textView);
-        org.telegram.messenger.nk.m(R.string.ChannelJoin, textView, 19);
-        addView(textView, w7.z5.e(-2, 39, 53));
-        textView.setOnClickListener(new org.telegram.ui.ActionBar.s1(3, this, b70Var));
-        ImageView imageView = new ImageView(context);
-        this.e = imageView;
-        imageView.setImageResource(R.drawable.list_check);
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
-        addView(imageView, w7.z5.e(39, 39, 53));
-        org.telegram.ui.Components.dr drVar = new org.telegram.ui.Components.dr(context, 0);
-        this.f36857c = drVar;
-        addView(drVar, w7.z5.e(39, 39, 53));
+    public f1(l1 l1Var) {
+        this.f37186a = l1Var;
     }
 
-    public final void a(int i10, boolean z10) {
-        float f7;
-        float f10;
-        float f11;
-        float f12;
-        float f13;
-        float f14;
-        float f15;
-        float f16;
-        float f17;
-        float f18;
-        float f19;
-        float f20;
-        float f21;
-        float f22;
-        float f23;
-        float f24;
-        float f25;
-        float f26;
-        AnimatorSet animatorSet = this.f36863x;
-        if (animatorSet != null) {
-            animatorSet.cancel();
-        }
-        this.f36858f = i10;
-        ImageView imageView = this.e;
-        org.telegram.ui.Components.dr drVar = this.f36857c;
-        TextView textView = this.d;
+    @Override
+    public final void a(Rect rect, View view, RecyclerView recyclerView, s4.y0 y0Var) {
+        MessageObject.GroupedMessagePosition groupedMessagePosition;
+        float[] fArr;
+        int i10 = 0;
+        rect.bottom = 0;
+        boolean z10 = view instanceof e2;
+        l1 l1Var = this.f37186a;
         if (z10) {
-            AnimatorSet animatorSet2 = new AnimatorSet();
-            this.f36863x = animatorSet2;
-            if (i10 == 0) {
-                f18 = 1.0f;
-            } else {
-                f18 = 0.0f;
-            }
-            float[] fArr = {f18};
-            Property property = View.ALPHA;
-            ObjectAnimator ofFloat = ObjectAnimator.ofFloat(textView, property, fArr);
-            if (i10 == 0) {
-                f19 = 1.0f;
-            } else {
-                f19 = 0.1f;
-            }
-            float[] fArr2 = {f19};
-            Property property2 = View.SCALE_X;
-            ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(textView, property2, fArr2);
-            if (i10 == 0) {
-                f20 = 1.0f;
-            } else {
-                f20 = 0.1f;
-            }
-            Property property3 = View.SCALE_Y;
-            ObjectAnimator ofFloat3 = ObjectAnimator.ofFloat(textView, property3, f20);
-            if (i10 == 1) {
-                f21 = 1.0f;
-            } else {
-                f21 = 0.0f;
-            }
-            ObjectAnimator ofFloat4 = ObjectAnimator.ofFloat(drVar, property, f21);
-            if (i10 == 1) {
-                f22 = 1.0f;
-            } else {
-                f22 = 0.1f;
-            }
-            ObjectAnimator ofFloat5 = ObjectAnimator.ofFloat(drVar, property2, f22);
-            if (i10 == 1) {
-                f23 = 1.0f;
-            } else {
-                f23 = 0.1f;
-            }
-            ObjectAnimator ofFloat6 = ObjectAnimator.ofFloat(drVar, property3, f23);
-            if (i10 == 2) {
-                f24 = 1.0f;
-            } else {
-                f24 = 0.0f;
-            }
-            ObjectAnimator ofFloat7 = ObjectAnimator.ofFloat(imageView, property, f24);
-            if (i10 == 2) {
-                f25 = 1.0f;
-            } else {
-                f25 = 0.1f;
-            }
-            ObjectAnimator ofFloat8 = ObjectAnimator.ofFloat(imageView, property2, f25);
-            if (i10 == 2) {
-                f26 = 1.0f;
-            } else {
-                f26 = 0.1f;
-            }
-            animatorSet2.playTogether(ofFloat, ofFloat2, ofFloat3, ofFloat4, ofFloat5, ofFloat6, ofFloat7, ofFloat8, ObjectAnimator.ofFloat(imageView, property3, f26));
-            this.f36863x.setDuration(150L);
-            this.f36863x.start();
-            return;
-        }
-        if (i10 == 0) {
-            f7 = 1.0f;
+            groupedMessagePosition = (MessageObject.GroupedMessagePosition) l1Var.v.f38744b.get(((e2) view).N);
+        } else if (view instanceof y2) {
+            groupedMessagePosition = (MessageObject.GroupedMessagePosition) l1Var.v.f38744b.get(((y2) view).L);
         } else {
-            f7 = 0.0f;
+            groupedMessagePosition = null;
         }
-        textView.setAlpha(f7);
-        if (i10 == 0) {
-            f10 = 1.0f;
-        } else {
-            f10 = 0.1f;
-        }
-        textView.setScaleX(f10);
-        if (i10 == 0) {
-            f11 = 1.0f;
-        } else {
-            f11 = 0.1f;
-        }
-        textView.setScaleY(f11);
-        if (i10 == 1) {
-            f12 = 1.0f;
-        } else {
-            f12 = 0.0f;
-        }
-        drVar.setAlpha(f12);
-        if (i10 == 1) {
-            f13 = 1.0f;
-        } else {
-            f13 = 0.1f;
-        }
-        drVar.setScaleX(f13);
-        if (i10 == 1) {
-            f14 = 1.0f;
-        } else {
-            f14 = 0.1f;
-        }
-        drVar.setScaleY(f14);
-        if (i10 == 2) {
-            f15 = 1.0f;
-        } else {
-            f15 = 0.0f;
-        }
-        imageView.setAlpha(f15);
-        if (i10 == 2) {
-            f16 = 1.0f;
-        } else {
-            f16 = 0.1f;
-        }
-        imageView.setScaleX(f16);
-        if (i10 == 2) {
-            f17 = 1.0f;
-        } else {
-            f17 = 0.1f;
-        }
-        imageView.setScaleY(f17);
-    }
-
-    @Override
-    public final void fillTextLayoutBlocks(ArrayList arrayList) {
-        d3 d3Var = this.h;
-        if (d3Var != null) {
-            arrayList.add(d3Var);
-        }
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        d3 d3Var = this.h;
-        if (d3Var != null) {
-            d3Var.attach(this);
-        }
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        d3 d3Var = this.h;
-        if (d3Var != null) {
-            d3Var.detach(this);
-        }
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        if (this.E != null) {
-            canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), AndroidUtilities.dp(39.0f), this.f36862w);
-            d3 d3Var = this.h;
-            if (d3Var != null && d3Var.d.getLineCount() > 0) {
-                canvas.save();
-                int i10 = this.f36861s;
-                int i11 = this.f36860r;
-                j4 j4Var = this.f36856b;
-                if (j4Var != null && j4Var.G) {
-                    canvas.translate((getMeasuredWidth() - this.h.d.getLineWidth(0)) - i11, i10);
+        if (groupedMessagePosition != null && groupedMessagePosition.siblingHeights != null) {
+            Point point = AndroidUtilities.displaySize;
+            float max = Math.max(point.x, point.y) * 0.5f;
+            int i11 = 0;
+            int i12 = 0;
+            while (true) {
+                if (i11 >= groupedMessagePosition.siblingHeights.length) {
+                    break;
+                }
+                i12 += (int) Math.ceil(fArr[i11] * max);
+                i11++;
+            }
+            int dp2 = (AndroidUtilities.dp2(11.0f) * (groupedMessagePosition.maxY - groupedMessagePosition.minY)) + i12;
+            int size = l1Var.v.f38743a.size();
+            while (true) {
+                if (i10 < size) {
+                    MessageObject.GroupedMessagePosition groupedMessagePosition2 = (MessageObject.GroupedMessagePosition) l1Var.v.f38743a.get(i10);
+                    byte b10 = groupedMessagePosition2.minY;
+                    byte b11 = groupedMessagePosition.minY;
+                    if (b10 == b11 && ((groupedMessagePosition2.minX != groupedMessagePosition.minX || groupedMessagePosition2.maxX != groupedMessagePosition.maxX || b10 != b11 || groupedMessagePosition2.maxY != groupedMessagePosition.maxY) && b10 == b11)) {
+                        dp2 = org.telegram.messenger.v0.z(4.0f, (int) Math.ceil(max * groupedMessagePosition2.f17859ph), dp2);
+                        break;
+                    }
+                    i10++;
                 } else {
-                    canvas.translate(i11, i10);
+                    break;
                 }
-                if (this.f36864y == 0) {
-                    l4.v(this.f36855a, canvas, this, 0);
-                }
-                this.h.draw(canvas, this);
-                canvas.restore();
             }
+            rect.bottom = -dp2;
         }
-    }
-
-    @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        accessibilityNodeInfo.setEnabled(true);
-        d3 d3Var = this.h;
-        if (d3Var == null) {
-            return;
-        }
-        accessibilityNodeInfo.setText(l4.i(R.string.AccDescrChannel, l4.j(this.f36855a, this.f36856b, d3Var)));
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        int dp = ((this.f36859n / 2) + this.v) - AndroidUtilities.dp(19.0f);
-        int i14 = this.v;
-        int dp2 = AndroidUtilities.dp(20.0f);
-        int dp3 = AndroidUtilities.dp(39.0f);
-        this.e.layout(dp, 0, dp2 + (this.f36859n / 2) + i14, dp3);
-        this.f36857c.layout(((this.f36859n / 2) + this.v) - AndroidUtilities.dp(19.0f), 0, AndroidUtilities.dp(20.0f) + (this.f36859n / 2) + this.v, AndroidUtilities.dp(39.0f));
-        int i15 = this.v;
-        TextView textView = this.d;
-        textView.layout(i15, 0, textView.getMeasuredWidth() + i15, textView.getMeasuredHeight());
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        Layout.Alignment alignment;
-        int size = View.MeasureSpec.getSize(i10);
-        setMeasuredDimension(size, AndroidUtilities.dp(48.0f));
-        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), Integer.MIN_VALUE);
-        int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(39.0f), 1073741824);
-        TextView textView = this.d;
-        textView.measure(makeMeasureSpec, makeMeasureSpec2);
-        this.f36859n = textView.getMeasuredWidth();
-        this.f36857c.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(39.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(39.0f), 1073741824));
-        this.e.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(39.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(39.0f), 1073741824));
-        TL_iv.pageBlockChannel pageblockchannel = this.E;
-        if (pageblockchannel != null) {
-            String str = pageblockchannel.channel.title;
-            int dp = (size - AndroidUtilities.dp(52.0f)) - this.f36859n;
-            TL_iv.pageBlockChannel pageblockchannel2 = this.E;
-            Layout.Alignment[] alignmentArr = org.telegram.ui.Components.fx0.f26437a;
-            if (alignmentArr.length >= 5) {
-                alignment = alignmentArr[3];
-            } else {
-                alignment = Layout.Alignment.ALIGN_NORMAL;
-            }
-            Layout.Alignment alignment2 = alignment;
-            this.h = l4.p(this.f36855a, this, str, null, dp, this.f36861s, pageblockchannel2, alignment2, 1, this.f36856b);
-            int i12 = this.f36860r;
-            j4 j4Var = this.f36856b;
-            if (j4Var != null && j4Var.G) {
-                this.v = i12;
-            } else {
-                this.v = (getMeasuredWidth() - i12) - this.f36859n;
-            }
-            d3 d3Var = this.h;
-            if (d3Var != null) {
-                d3Var.f36246s = i12;
-                d3Var.v = this.f36861s;
-            }
-        }
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (this.f36864y != 0) {
-            return super.onTouchEvent(motionEvent);
-        }
-        if (!l4.l(this.f36855a, this.f36856b, motionEvent, this, this.h, this.f36860r, this.f36861s) && !super.onTouchEvent(motionEvent)) {
-            return false;
-        }
-        return true;
-    }
-
-    public void setBlock(TL_iv.pageBlockChannel pageblockchannel) {
-        this.E = pageblockchannel;
-        int i10 = this.f36864y;
-        ImageView imageView = this.e;
-        Paint paint = this.f36862w;
-        TextView textView = this.d;
-        b70 b70Var = this.f36855a;
-        if (i10 == 0) {
-            int i11 = org.telegram.ui.ActionBar.h6.M6;
-            l4 l4Var = (l4) b70Var;
-            l4Var.getClass();
-            int x02 = org.telegram.ui.ActionBar.h6.x0(null, i11, false);
-            int red = Color.red(x02);
-            int green = Color.green(x02);
-            int blue = Color.blue(x02);
-            l4Var.getClass();
-            textView.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.J6, false));
-            paint.setColor(Color.argb(34, red, green, blue));
-            imageView.setColorFilter(new PorterDuffColorFilter(b70Var.a(), PorterDuff.Mode.MULTIPLY));
-        } else {
-            textView.setTextColor(-1);
-            paint.setColor(2130706432);
-            imageView.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.MULTIPLY));
-        }
-        TLRPC.Chat chat = MessagesController.getInstance(((l4) b70Var).X).getChat(Long.valueOf(pageblockchannel.channel.f20280id));
-        if (chat != null && !chat.min) {
-            b70Var.f35530n = chat;
-            if (chat.left && !chat.kicked) {
-                a(0, false);
-            } else {
-                a(4, false);
-            }
-        } else {
-            TLRPC.Chat chat2 = pageblockchannel.channel;
-            if (!b70Var.f35531r && ChatObject.isPublic(chat2)) {
-                b70Var.f35531r = true;
-                int i12 = ((l4) b70Var).X;
-                TLRPC.TL_contacts_resolveUsername tL_contacts_resolveUsername = new TLRPC.TL_contacts_resolveUsername();
-                tL_contacts_resolveUsername.username = chat2.username;
-                ConnectionsManager.getInstance(i12).sendRequest(tL_contacts_resolveUsername, new ci.t8(b70Var, this.f36856b, i12, this, 2));
-            }
-            a(1, false);
-        }
-        requestLayout();
     }
 }

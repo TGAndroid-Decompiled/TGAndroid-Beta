@@ -1,18 +1,18 @@
 package org.telegram.ui.Components;
 public final class d6 implements zf.g {
-    public final int f25347a;
-    public final Object f25348b;
+    public final int f25506a;
+    public final Object f25507b;
 
     public d6(Object obj, int i10) {
-        this.f25347a = i10;
-        this.f25348b = obj;
+        this.f25506a = i10;
+        this.f25507b = obj;
     }
 
     @Override
     public final void doFrame(long j10) {
-        switch (this.f25347a) {
+        switch (this.f25506a) {
             case 0:
-                e6 e6Var = (e6) this.f25348b;
+                e6 e6Var = (e6) this.f25507b;
                 int i10 = e6Var.Q0 + 1;
                 e6Var.Q0 = i10;
                 if (i10 > 10) {
@@ -26,11 +26,11 @@ public final class d6 implements zf.g {
                 }
                 return;
             case 1:
-                int i11 = EditTextBoldCursor.f24215a;
-                ((EditTextBoldCursor) this.f25348b).invalidate();
+                int i11 = EditTextBoldCursor.f24356a;
+                ((EditTextBoldCursor) this.f25507b).invalidate();
                 return;
             default:
-                vj0.g((vj0) this.f25348b);
+                yj0.g((yj0) this.f25507b);
                 return;
         }
     }

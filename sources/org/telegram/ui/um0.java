@@ -1,70 +1,57 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-public final class um0 extends FrameLayout {
-    public TextView f42019a;
-    public TextView f42020b;
-    public ImageView f42021c;
-    public boolean d;
+import android.text.Editable;
+import android.text.TextWatcher;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class um0 implements TextWatcher {
+    public final int f42475a;
+    public final wm0 f42476b;
 
-    public final void a(String str, boolean z10) {
-        this.f42019a.setText(str);
-        this.f42020b.setText("");
-        this.d = z10;
-        setWillNotDraw(!z10);
+    public um0(wm0 wm0Var, int i10) {
+        this.f42476b = wm0Var;
+        this.f42475a = i10;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        float dp;
-        int i10;
-        if (this.d) {
-            if (LocaleController.isRTL) {
-                dp = 0.0f;
-            } else {
-                dp = AndroidUtilities.dp(20.0f);
+    public final void afterTextChanged(Editable editable) {
+        int length;
+        String code;
+        wm0 wm0Var = this.f42476b;
+        if (!wm0Var.H && (length = editable.length()) >= 1) {
+            int i10 = this.f42475a;
+            if (length > 1) {
+                String obj = editable.toString();
+                wm0Var.H = true;
+                for (int i11 = 0; i11 < Math.min(wm0Var.O - i10, length); i11++) {
+                    if (i11 == 0) {
+                        editable.replace(0, length, obj.substring(i11, i11 + 1));
+                    } else {
+                        wm0Var.d[i10 + i11].setText(obj.substring(i11, i11 + 1));
+                    }
+                }
+                wm0Var.H = false;
             }
-            float f7 = dp;
-            float measuredHeight = getMeasuredHeight() - 1;
-            int measuredWidth = getMeasuredWidth();
-            if (LocaleController.isRTL) {
-                i10 = AndroidUtilities.dp(20.0f);
-            } else {
-                i10 = 0;
+            if (i10 != wm0Var.O - 1) {
+                int i12 = i10 + 1;
+                EditTextBoldCursor editTextBoldCursor = wm0Var.d[i12];
+                editTextBoldCursor.setSelection(editTextBoldCursor.length());
+                wm0Var.d[i12].requestFocus();
             }
-            canvas.drawLine(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.h6.f21115k0);
+            int i13 = wm0Var.O;
+            if (i10 == i13 - 1 || (i10 == i13 - 2 && length >= 2)) {
+                code = wm0Var.getCode();
+                if (code.length() == wm0Var.O) {
+                    wm0Var.h(null);
+                }
+            }
         }
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(64.0f) + (this.d ? 1 : 0), 1073741824));
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 
-    public void setChecked(boolean z10) {
-        int i10;
-        ImageView imageView = this.f42021c;
-        if (z10) {
-            i10 = 0;
-        } else {
-            i10 = 4;
-        }
-        imageView.setVisibility(i10);
-    }
-
-    public void setNeedDivider(boolean z10) {
-        this.d = z10;
-        setWillNotDraw(!z10);
-        invalidate();
-    }
-
-    public void setValue(CharSequence charSequence) {
-        this.f42020b.setText(charSequence);
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

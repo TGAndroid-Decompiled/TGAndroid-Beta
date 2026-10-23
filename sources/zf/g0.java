@@ -4,7 +4,7 @@ import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
 import android.graphics.RenderEffect;
 public abstract class g0 {
-    public static RenderEffect f51569a;
+    public static RenderEffect f52031a;
 
     public static RenderEffect a() {
         ColorMatrix colorMatrix = new ColorMatrix();
@@ -13,11 +13,11 @@ public abstract class g0 {
     }
 
     public static RenderEffect b() {
-        if (f51569a == null) {
+        if (f52031a == null) {
             ColorMatrix colorMatrix = new ColorMatrix();
             colorMatrix.setSaturation(3.0f);
-            f51569a = RenderEffect.createColorFilterEffect(new ColorMatrixColorFilter(colorMatrix));
+            f52031a = RenderEffect.createColorFilterEffect(new ColorMatrixColorFilter(colorMatrix));
         }
-        return f51569a;
+        return f52031a;
     }
 }

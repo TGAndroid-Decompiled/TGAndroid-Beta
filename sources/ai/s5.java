@@ -13,26 +13,26 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.tl.TL_stars;
 public final class s5 extends FrameLayout {
-    public final org.telegram.ui.Components.w9 f2149a;
-    public final z5 f2150b;
-    public final org.telegram.ui.Components.q6 f2151c;
+    public final org.telegram.ui.Components.w9 f2152a;
+    public final z5 f2153b;
+    public final org.telegram.ui.Components.q6 f2154c;
     public TL_stars.starGiftAttributeBackdrop d;
     public TL_stars.starGiftAttributePattern e;
-    public float f2152f;
+    public float f2155f;
 
     public s5(Context context) {
         super(context);
         org.telegram.ui.Components.w9 w9Var = new org.telegram.ui.Components.w9(context);
-        this.f2149a = w9Var;
+        this.f2152a = w9Var;
         w9Var.setRoundRadius(AndroidUtilities.dp(13.0f));
         addView(w9Var, w7.z5.d(26, 26.0f, 49, 0.0f, 11.33f, 0.0f, 0.0f));
         z5 z5Var = new z5(context);
-        this.f2150b = z5Var;
+        this.f2153b = z5Var;
         z5Var.e = AndroidUtilities.dp(18.0f);
-        z5Var.f2537a.setStrokeWidth(AndroidUtilities.dp(3.0f));
+        z5Var.f2541a.setStrokeWidth(AndroidUtilities.dp(3.0f));
         addView(z5Var, w7.z5.d(48, 48.0f, 49, 0.0f, 0.66f, 0.0f, 0.0f));
         org.telegram.ui.Components.q6 q6Var = new org.telegram.ui.Components.q6(context, false, false, false);
-        this.f2151c = q6Var;
+        this.f2154c = q6Var;
         q6Var.setTypeface(AndroidUtilities.bold());
         q6Var.setGravity(17);
         q6Var.setTextSize(AndroidUtilities.dp(12.0f));
@@ -45,7 +45,7 @@ public final class s5 extends FrameLayout {
     public final void a(TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop) {
         this.d = stargiftattributebackdrop;
         this.e = null;
-        org.telegram.ui.Components.w9 w9Var = this.f2149a;
+        org.telegram.ui.Components.w9 w9Var = this.f2152a;
         w9Var.setScaleX(1.0f);
         w9Var.setScaleY(1.0f);
         if (stargiftattributebackdrop != null) {
@@ -60,13 +60,13 @@ public final class s5 extends FrameLayout {
             return;
         }
         w9Var.setAlpha(1.0f);
-        w9Var.setImageDrawable(org.telegram.ui.ActionBar.h6.K(AndroidUtilities.dp(26.0f), org.telegram.ui.ActionBar.h6.m1(0.25f, -1)));
+        w9Var.setImageDrawable(org.telegram.ui.ActionBar.k6.K(AndroidUtilities.dp(26.0f), org.telegram.ui.ActionBar.k6.o1(0.25f, -1)));
     }
 
     public final void b(TL_stars.starGiftAttributePattern stargiftattributepattern) {
         this.d = null;
         this.e = stargiftattributepattern;
-        org.telegram.ui.Components.w9 w9Var = this.f2149a;
+        org.telegram.ui.Components.w9 w9Var = this.f2152a;
         if (stargiftattributepattern == null) {
             w9Var.setAlpha(0.25f);
             w9Var.setScaleX(0.75f);
@@ -86,13 +86,13 @@ public final class s5 extends FrameLayout {
     }
 
     public final void c(float f7, boolean z10) {
-        this.f2152f = f7;
-        z5 z5Var = this.f2150b;
+        this.f2155f = f7;
+        z5 z5Var = this.f2153b;
         z5Var.d = f7;
         if (!z10) {
-            z5Var.f2538b.d(f7, true);
+            z5Var.f2542b.d(f7, true);
         }
         z5Var.invalidate();
-        this.f2151c.c(Math.round(f7 * 100.0f) + "%", z10, true);
+        this.f2154c.c(Math.round(f7 * 100.0f) + "%", z10, true);
     }
 }

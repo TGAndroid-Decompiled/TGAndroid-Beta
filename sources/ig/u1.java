@@ -1,156 +1,103 @@
 package ig;
 
-import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.Path;
-import android.text.TextUtils;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.RectF;
+import android.os.SystemClock;
+import android.text.style.ReplacementSpan;
 import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.nk;
-import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.h9;
-import org.telegram.ui.Components.xp;
-import w7.z5;
-public final class u1 extends FrameLayout {
-    public final h9 f13048a;
-    public final ImageReceiver f13049b;
-    public final TextView f13050c;
-    public final TextView d;
-    public final xp e;
-    public final Path f13051f;
-    public final Paint h;
-    public final d6 f13052n;
-    public final int[] f13053r;
-    public boolean f13054s;
+import org.telegram.messenger.Utilities;
+import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.Components.bs;
+import org.telegram.ui.Components.i11;
+public final class u1 extends ReplacementSpan {
+    public static final int d = 0;
+    public final int f13094a;
+    public final Object f13095b;
+    public final Object f13096c;
 
-    public u1(Context context, d6 d6Var) {
-        super(context);
-        float f7;
-        float f10;
-        float f11;
-        float f12;
-        this.f13048a = new h9((d6) null);
-        this.f13049b = new ImageReceiver(this);
-        this.f13051f = new Path();
-        this.h = new Paint(1);
-        this.f13053r = new int[1];
-        this.f13052n = d6Var;
-        setWillNotDraw(false);
-        TextView textView = new TextView(context);
-        this.f13050c = textView;
-        textView.setSingleLine();
-        TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
-        textView.setEllipsize(truncateAt);
-        textView.setTextColor(h6.w0(h6.G6, d6Var));
-        textView.setTypeface(AndroidUtilities.bold());
-        textView.setTextSize(1, 16.0f);
-        boolean z10 = LocaleController.isRTL;
-        if (z10) {
-            f7 = 40.0f;
-        } else {
-            f7 = 78.0f;
-        }
-        if (z10) {
-            f10 = 78.0f;
-        } else {
-            f10 = 40.0f;
-        }
-        addView(textView, z5.d(-1, -2.0f, 7, f7, 10.33f, f10, 0.0f));
-        TextView textView2 = new TextView(context);
-        this.d = textView2;
-        textView2.setLines(2);
-        textView2.setEllipsize(truncateAt);
-        nk.o(h6.f21399z6, d6Var, textView2, 1, 15.0f);
-        boolean z11 = LocaleController.isRTL;
-        if (z11) {
-            f11 = 40.0f;
-        } else {
-            f11 = 78.0f;
-        }
-        if (z11) {
-            f12 = 78.0f;
-        } else {
-            f12 = 40.0f;
-        }
-        addView(textView2, z5.d(-1, -2.0f, 7, f11, 32.0f, f12, 0.0f));
-        xp xpVar = new xp(getContext(), 21, d6Var);
-        this.e = xpVar;
-        xpVar.b(-1, h6.f20994d6, h6.f21122k7);
-        xpVar.setDrawUnchecked(false);
-        xpVar.setDrawBackgroundAsArc(3);
-        addView(xpVar, z5.i(24.0f, 24.0f, 8388659, 33.0f, 25.0f, 0.0f, 0.0f));
+    public u1(View[] viewArr) {
+        this.f13094a = 2;
+        this.f13095b = new bs(0.33d, 0.0d, 0.67d, 1.0d);
+        this.f13096c = viewArr;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        int dp;
-        float f7;
-        if (LocaleController.isRTL) {
-            dp = getMeasuredWidth() - AndroidUtilities.dp(65.0f);
-        } else {
-            dp = AndroidUtilities.dp(9.0f);
-        }
-        float f10 = dp;
-        ImageReceiver imageReceiver = this.f13049b;
-        imageReceiver.setImageCoords(f10, AndroidUtilities.dp(11.33f), AndroidUtilities.dp(56.0f), AndroidUtilities.dp(56.0f));
-        imageReceiver.draw(canvas);
-        super.onDraw(canvas);
-        canvas.drawPath(this.f13051f, this.h);
-        if (this.f13054s) {
-            Paint U0 = h6.U0("paintDivider", this.f13052n);
-            if (U0 == null) {
-                U0 = h6.f21115k0;
-            }
-            Paint paint = U0;
-            float f11 = 78.0f;
-            if (LocaleController.isRTL) {
-                f7 = 0.0f;
-            } else {
-                f7 = 78.0f;
-            }
-            float dp2 = AndroidUtilities.dp(f7);
-            float measuredHeight = getMeasuredHeight() - 1;
-            int width = getWidth();
-            if (!LocaleController.isRTL) {
-                f11 = 0.0f;
-            }
-            canvas.drawRect(dp2, measuredHeight, width - AndroidUtilities.dp(f11), getMeasuredHeight(), paint);
+    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
+        float interpolation;
+        switch (this.f13094a) {
+            case 0:
+                float dpf2 = AndroidUtilities.dpf2(14.66f);
+                float f10 = (i12 + i14) / 2.0f;
+                RectF rectF = AndroidUtilities.rectTmp;
+                float f11 = dpf2 / 2.0f;
+                rectF.set(f7, f10 - f11, ((int) (((i11) this.f13096c).f27164c + AndroidUtilities.dp(10.0f))) + f7, f11 + f10);
+                Paint paint2 = (Paint) this.f13095b;
+                int i15 = k6.f21588z6;
+                paint2.setColor(k6.o1(0.15f, k6.x0(null, i15, false)));
+                canvas.drawRoundRect(rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), paint2);
+                ((i11) this.f13096c).c(f7 + AndroidUtilities.dp(5.0f), f10, Utilities.clamp((paint.getAlpha() * 2) / 255.0f, 1.0f, 0.0f), k6.x0(null, i15, false), canvas);
+                return;
+            case 1:
+                float f12 = (i12 + i14) / 2.0f;
+                RectF rectF2 = AndroidUtilities.rectTmp;
+                rectF2.set(f7, f12 - AndroidUtilities.dp(7.66f), ((i11) this.f13096c).f27164c + f7 + AndroidUtilities.dp(6.66f), AndroidUtilities.dp(7.66f) + f12);
+                canvas.saveLayerAlpha(rectF2, 255, 31);
+                Paint paint3 = (Paint) this.f13095b;
+                paint3.setColor(paint.getColor());
+                canvas.drawRoundRect(rectF2, AndroidUtilities.dp(5.0f), AndroidUtilities.dp(5.0f), paint3);
+                ((i11) this.f13096c).c(f7 + AndroidUtilities.dp(3.33f), f12, 1.0f, -1, canvas);
+                canvas.restore();
+                return;
+            default:
+                bs bsVar = (bs) this.f13095b;
+                canvas.save();
+                canvas.translate(f7 + AndroidUtilities.dp(4.0f), i13 / 2.0f);
+                long uptimeMillis = (SystemClock.uptimeMillis() % 250) + 500;
+                for (int i16 = 0; i16 < 3; i16++) {
+                    float min = Math.min(1.0f, ((float) (((i16 * 250) + uptimeMillis) % 750)) / 667.0f);
+                    if (min <= 0.425f) {
+                        interpolation = bsVar.getInterpolation(min / 0.425f);
+                    } else {
+                        interpolation = 1.0f - bsVar.getInterpolation((min - 0.425f) / 0.575f);
+                    }
+                    canvas.drawCircle(AndroidUtilities.dpf2((bsVar.getInterpolation(min) * 16.0f) + 1.667f), AndroidUtilities.dp(3.0f), AndroidUtilities.dpf2(interpolation * 2.0f), paint);
+                }
+                canvas.restore();
+                for (View view : (View[]) this.f13096c) {
+                    view.invalidate();
+                }
+                return;
         }
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        float measuredWidth;
-        int i12;
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(78.0f) + (this.f13054s ? 1 : 0), 1073741824));
-        Paint.Style style = Paint.Style.STROKE;
-        Paint paint = this.h;
-        paint.setStyle(style);
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        paint.setStrokeJoin(Paint.Join.ROUND);
-        paint.setStrokeWidth(AndroidUtilities.dpf2(1.66f));
-        paint.setColor(h6.m1(0.85f, h6.w0(h6.f21399z6, this.f13052n)));
-        Path path = this.f13051f;
-        path.rewind();
-        float measuredHeight = getMeasuredHeight() / 2.0f;
-        if (LocaleController.isRTL) {
-            measuredWidth = AndroidUtilities.dpf2(29.66f);
-        } else {
-            measuredWidth = getMeasuredWidth() - AndroidUtilities.dpf2(24.33f);
+    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
+        switch (this.f13094a) {
+            case 0:
+                return (int) (((i11) this.f13096c).f27164c + AndroidUtilities.dp(10.0f));
+            case 1:
+                return (int) (((i11) this.f13096c).f27164c + AndroidUtilities.dp(6.66f));
+            default:
+                return AndroidUtilities.dp(20.0f);
         }
-        path.moveTo(measuredWidth, measuredHeight - AndroidUtilities.dpf2(5.66f));
-        if (LocaleController.isRTL) {
-            i12 = -1;
-        } else {
-            i12 = 1;
-        }
-        path.lineTo((AndroidUtilities.dpf2(5.33f) * i12) + measuredWidth, measuredHeight);
-        path.lineTo(measuredWidth, AndroidUtilities.dpf2(5.66f) + measuredHeight);
+    }
+
+    public u1(int i10) {
+        this.f13094a = 0;
+        this.f13095b = new Paint(1);
+        this.f13096c = new i11(LocaleController.formatPluralString("BusinessRepliesMore", i10, new Object[0]), 9.33f, AndroidUtilities.bold());
+    }
+
+    public u1() {
+        this.f13094a = 1;
+        this.f13095b = new Paint(1);
+        i11 i11Var = new i11("x50", 13.0f, AndroidUtilities.getTypeface("fonts/num.otf"));
+        this.f13096c = i11Var;
+        i11Var.f27162a.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
     }
 }

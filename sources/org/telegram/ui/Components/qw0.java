@@ -1,51 +1,34 @@
 package org.telegram.ui.Components;
+public final class qw0 extends t60 {
+    public final sw0 d;
 
-import android.os.Bundle;
-import android.widget.LinearLayout;
-public abstract class qw0 extends LinearLayout {
-    public boolean a() {
-        return this instanceof org.telegram.ui.md0;
+    public qw0(sw0 sw0Var) {
+        this.d = sw0Var;
     }
 
-    public boolean b() {
-        return this instanceof org.telegram.ui.md0;
+    @Override
+    public final CharSequence d() {
+        sw0 sw0Var = this.d;
+        int i10 = sw0Var.I;
+        String[] strArr = sw0Var.F;
+        if (i10 < strArr.length) {
+            return strArr[i10];
+        }
+        return null;
     }
 
-    public boolean c(boolean z10) {
-        return true;
+    @Override
+    public final int i() {
+        return this.d.F.length - 1;
     }
 
-    public String getHeaderName() {
-        return "";
+    @Override
+    public final int j() {
+        return this.d.I;
     }
 
-    public void d() {
-    }
-
-    public void f() {
-    }
-
-    public void g() {
-    }
-
-    public void h(String str) {
-    }
-
-    public void i() {
-    }
-
-    public void j() {
-    }
-
-    public void k(Bundle bundle) {
-    }
-
-    public void l(Bundle bundle) {
-    }
-
-    public void n() {
-    }
-
-    public void m(Bundle bundle, boolean z10) {
+    @Override
+    public final void k(int i10) {
+        this.d.setOption(i10);
     }
 }

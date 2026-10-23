@@ -1,126 +1,198 @@
 package org.telegram.ui;
 
-import android.os.Bundle;
-import java.util.regex.Pattern;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-public final class h80 implements Runnable {
-    public final int f37543a = 1;
-    public final LaunchActivity f37544b;
-    public final TLObject f37545c;
-    public final int d;
-    public final String e;
-    public final TLRPC.TL_error f37546f;
-    public final z70 h;
+import android.content.Context;
+import android.text.TextUtils;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.ui.Components.RadioButton;
+public final class h80 extends org.telegram.ui.Components.lm0 {
+    public final Context f37781c;
+    public final boolean d;
+    public final LanguageSelectActivity e;
 
-    public h80(LaunchActivity launchActivity, TLObject tLObject, int i10, String str, TLRPC.TL_error tL_error, z70 z70Var) {
-        this.f37544b = launchActivity;
-        this.f37545c = tLObject;
-        this.d = i10;
-        this.e = str;
-        this.f37546f = tL_error;
-        this.h = z70Var;
+    public h80(LanguageSelectActivity languageSelectActivity, Context context, boolean z10) {
+        this.e = languageSelectActivity;
+        this.f37781c = context;
+        this.d = z10;
     }
 
     @Override
-    public final void run() {
-        org.telegram.ui.Components.xc a02;
-        int i10;
-        int i11;
-        String str;
-        int i12 = this.f37543a;
-        z70 z70Var = this.h;
-        TLRPC.TL_error tL_error = this.f37546f;
-        String str2 = this.e;
-        TLObject tLObject = this.f37545c;
-        switch (i12) {
-            case 0:
-                Pattern pattern = LaunchActivity.C1;
-                if (tL_error != null) {
-                    org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
-                    if (U != null) {
-                        if ("STARGIFT_ALREADY_BURNED".equalsIgnoreCase(tL_error.text)) {
-                            a02 = org.telegram.ui.Components.xc.a0(U);
-                            i10 = R.raw.fire_on;
-                            i11 = R.string.UniqueGiftNotFoundBurned;
-                        } else {
-                            a02 = org.telegram.ui.Components.xc.a0(U);
-                            i10 = R.raw.error;
-                            i11 = R.string.UniqueGiftNotFound;
-                        }
-                        org.telegram.messenger.g0.q(i11, a02, i10, 36);
-                    } else {
-                        return;
-                    }
-                } else if (tLObject instanceof TL_stars.TL_payments_uniqueStarGift) {
-                    TL_stars.TL_payments_uniqueStarGift tL_payments_uniqueStarGift = (TL_stars.TL_payments_uniqueStarGift) tLObject;
-                    LaunchActivity launchActivity = this.f37544b;
-                    MessagesController.getInstance(launchActivity.O).putUsers(tL_payments_uniqueStarGift.users, false);
-                    MessagesController.getInstance(launchActivity.O).putChats(tL_payments_uniqueStarGift.chats, false);
-                    org.telegram.ui.ActionBar.n2 U2 = LaunchActivity.U();
-                    TL_stars.StarGift starGift = tL_payments_uniqueStarGift.gift;
-                    if (starGift instanceof TL_stars.TL_starGiftUnique) {
-                        ai.l7 l7Var = new ai.l7(launchActivity, this.d, 0L, null, null);
-                        l7Var.K2(str2, (TL_stars.TL_starGiftUnique) starGift, null);
-                        if (U2 != null) {
-                            if (U2.getLastStoryViewer() != null && U2.getLastStoryViewer().K0) {
-                                U2.getLastStoryViewer().showDialog(l7Var);
-                            } else {
-                                U2.showDialog(l7Var);
-                            }
-                        } else {
-                            l7Var.show();
-                        }
-                    }
-                }
-                try {
-                    z70Var.run();
-                    return;
-                } catch (Exception e) {
-                    FileLog.e(e);
-                    return;
-                }
-            default:
-                Pattern pattern2 = LaunchActivity.C1;
-                boolean z10 = tLObject instanceof TLRPC.User;
-                LaunchActivity launchActivity2 = this.f37544b;
-                if (z10) {
-                    TLRPC.User user = (TLRPC.User) tLObject;
-                    MessagesController.getInstance(this.d).putUser(user, false);
-                    Bundle bundle = new Bundle();
-                    bundle.putLong("user_id", user.f20427id);
-                    launchActivity2.t0(new qn(bundle));
-                } else {
-                    StringBuilder v = a1.g.v("cant import contact token. token=", str2, " err=");
-                    if (tL_error == null) {
-                        str = null;
-                    } else {
-                        str = tL_error.text;
-                    }
-                    v.append(str);
-                    FileLog.e(v.toString());
-                    org.telegram.messenger.nk.q(R.string.NoUsernameFound, org.telegram.ui.Components.xc.a0((org.telegram.ui.ActionBar.n2) i2.e.h(1, launchActivity2.f33166d0)), null);
-                }
-                try {
-                    z70Var.run();
-                    return;
-                } catch (Exception e7) {
-                    FileLog.e(e7);
-                    return;
-                }
+    public final boolean D(s4.b1 b1Var) {
+        int i10 = b1Var.f46346f;
+        if (i10 != 0 && i10 != 4 && i10 != 5 && i10 != 2) {
+            return false;
         }
+        return true;
     }
 
-    public h80(LaunchActivity launchActivity, TLRPC.TL_error tL_error, TLObject tLObject, int i10, String str, z70 z70Var) {
-        this.f37544b = launchActivity;
-        this.f37546f = tL_error;
-        this.f37545c = tLObject;
-        this.d = i10;
-        this.e = str;
-        this.h = z70Var;
+    @Override
+    public final int h() {
+        int i10;
+        int i11;
+        boolean z10 = this.d;
+        LanguageSelectActivity languageSelectActivity = this.e;
+        if (z10) {
+            ArrayList arrayList = languageSelectActivity.e;
+            if (arrayList == null) {
+                return 0;
+            }
+            return arrayList.size();
+        }
+        if (!languageSelectActivity.getMessagesController().isTranslationsManualEnabled() && !languageSelectActivity.getMessagesController().isTranslationsAutoEnabled()) {
+            i11 = 1;
+        } else {
+            if (languageSelectActivity.getMessagesController().isTranslationsManualEnabled()) {
+                i10 = 3;
+            } else {
+                i10 = 2;
+            }
+            if (languageSelectActivity.getMessagesController().isTranslationsAutoEnabled() && !languageSelectActivity.getMessagesController().premiumFeaturesBlocked()) {
+                i10++;
+            }
+            if (languageSelectActivity.g0() || languageSelectActivity.h0()) {
+                i10++;
+            }
+            i11 = i10 + 1;
+        }
+        int size = languageSelectActivity.f33454f.size() + i11 + 1;
+        if (!languageSelectActivity.h.isEmpty()) {
+            return languageSelectActivity.h.size() + 1 + size;
+        }
+        return size;
+    }
+
+    @Override
+    public final int j(int r7) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.h80.j(int):int");
+    }
+
+    @Override
+    public final void v(s4.b1 r22, int r23) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.h80.v(s4.b1, int):void");
+    }
+
+    @Override
+    public final s4.b1 x(ViewGroup viewGroup, int i10) {
+        int i11;
+        int i12;
+        float f7;
+        float f10;
+        int i13;
+        int i14;
+        float f11;
+        org.telegram.ui.Cells.b7 b7Var;
+        int i15 = 5;
+        Context context = this.f37781c;
+        if (i10 != 0) {
+            if (i10 != 2) {
+                if (i10 != 3) {
+                    if (i10 != 4 && i10 != 5) {
+                        if (i10 != 6) {
+                            b7Var = new org.telegram.ui.Cells.b7(context, (org.telegram.ui.Cells.b1) null);
+                        } else {
+                            b7Var = new org.telegram.ui.Cells.e9(context);
+                        }
+                    } else {
+                        b7Var = new org.telegram.ui.Cells.ca(context);
+                    }
+                } else {
+                    b7Var = new org.telegram.ui.Cells.l4(context);
+                }
+            } else {
+                b7Var = new org.telegram.ui.Cells.w8(context);
+            }
+        } else {
+            ?? frameLayout = new FrameLayout(context);
+            frameLayout.e = 50;
+            frameLayout.f22433r = 21;
+            TextView textView = new TextView(context);
+            frameLayout.f22428a = textView;
+            org.telegram.ui.ActionBar.r6.W(textView, org.telegram.ui.ActionBar.k6.G6, null);
+            org.telegram.messenger.sl.u(textView, 1, 16.0f, 1, 1);
+            textView.setSingleLine(true);
+            if (LocaleController.isRTL) {
+                i11 = 5;
+            } else {
+                i11 = 3;
+            }
+            textView.setGravity(i11 | 16);
+            TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
+            textView.setEllipsize(truncateAt);
+            boolean z10 = LocaleController.isRTL;
+            if (z10) {
+                i12 = 5;
+            } else {
+                i12 = 3;
+            }
+            int i16 = i12 | 48;
+            float f12 = 64.0f;
+            if (z10) {
+                f7 = 21;
+            } else {
+                f7 = 64.0f;
+            }
+            if (z10) {
+                f10 = 64.0f;
+            } else {
+                f10 = 21;
+            }
+            frameLayout.addView(textView, w7.z5.d(-1, -1.0f, i16, f7, 0.0f, f10, 0.0f));
+            TextView textView2 = new TextView(context);
+            frameLayout.f22429b = textView2;
+            org.telegram.ui.ActionBar.r6.W(textView2, org.telegram.ui.ActionBar.k6.f21588z6, null);
+            textView2.setTextSize(1, 13.0f);
+            if (LocaleController.isRTL) {
+                i13 = 5;
+            } else {
+                i13 = 3;
+            }
+            textView2.setGravity(i13);
+            textView2.setLines(1);
+            textView2.setMaxLines(1);
+            textView2.setSingleLine(true);
+            textView2.setPadding(0, 0, 0, 0);
+            textView2.setEllipsize(truncateAt);
+            boolean z11 = LocaleController.isRTL;
+            if (z11) {
+                i14 = 5;
+            } else {
+                i14 = 3;
+            }
+            int i17 = i14 | 48;
+            if (z11) {
+                f11 = 21;
+            } else {
+                f11 = 64.0f;
+            }
+            if (!z11) {
+                f12 = 21;
+            }
+            frameLayout.addView(textView2, w7.z5.d(-2, -2.0f, i17, f11, 36.0f, f12, 0.0f));
+            RadioButton radioButton = new RadioButton(context);
+            frameLayout.f22430c = radioButton;
+            radioButton.setSize(AndroidUtilities.dp(20.0f));
+            org.telegram.ui.ActionBar.r6.Q(radioButton, org.telegram.ui.ActionBar.k6.f21237g7, org.telegram.ui.ActionBar.k6.f21256h7, null);
+            if (!LocaleController.isRTL) {
+                i15 = 3;
+            }
+            frameLayout.addView(radioButton, w7.z5.d(20, 20.0f, i15 | 16, 22.0f, 0.0f, 22.0f, 0.0f));
+            frameLayout.f22432n = LocaleController.isRTL;
+            frameLayout.setClipChildren(false);
+            b7Var = frameLayout;
+        }
+        return new s4.b1(b7Var);
+    }
+
+    @Override
+    public final void y(s4.b1 b1Var) {
+        View view = b1Var.f46343a;
+        if (view instanceof org.telegram.ui.Cells.g9) {
+            ((org.telegram.ui.Cells.g9) view).c();
+        }
     }
 }

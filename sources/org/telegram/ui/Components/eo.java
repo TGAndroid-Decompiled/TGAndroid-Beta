@@ -4,5 +4,5 @@ import android.text.Editable;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public interface eo {
-    void d(TLRPC.MessageMedia messageMedia, Editable editable, rh.f fVar, ArrayList arrayList, boolean z10, int i10, long j10);
+    void c(TLRPC.MessageMedia messageMedia, Editable editable, rh.f fVar, ArrayList arrayList, boolean z10, int i10, long j10);
 }

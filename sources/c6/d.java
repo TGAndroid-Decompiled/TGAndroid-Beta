@@ -9,26 +9,26 @@ import java.util.Arrays;
 import java.util.List;
 public final class d extends o6.a {
     public static final Parcelable.Creator<d> CREATOR = new v(17);
-    public final String f4826a;
-    public final String f4827b;
-    public final List f4828c;
+    public final String f4831a;
+    public final String f4832b;
+    public final List f4833c;
     public final String d;
     public final Uri e;
-    public final String f4829f;
+    public final String f4834f;
     public final String h;
-    public final Boolean f4830n;
-    public final Boolean f4831r;
+    public final Boolean f4835n;
+    public final Boolean f4836r;
 
     public d(String str, String str2, ArrayList arrayList, String str3, Uri uri, String str4, String str5, Boolean bool, Boolean bool2) {
-        this.f4826a = str;
-        this.f4827b = str2;
-        this.f4828c = arrayList;
+        this.f4831a = str;
+        this.f4832b = str2;
+        this.f4833c = arrayList;
         this.d = str3;
         this.e = uri;
-        this.f4829f = str4;
+        this.f4834f = str4;
         this.h = str5;
-        this.f4830n = bool;
-        this.f4831r = bool2;
+        this.f4835n = bool;
+        this.f4836r = bool2;
     }
 
     public final boolean equals(Object obj) {
@@ -39,31 +39,31 @@ public final class d extends o6.a {
             return false;
         }
         d dVar = (d) obj;
-        if (g6.a.d(this.f4826a, dVar.f4826a) && g6.a.d(this.f4827b, dVar.f4827b) && g6.a.d(this.f4828c, dVar.f4828c) && g6.a.d(this.d, dVar.d) && g6.a.d(this.e, dVar.e) && g6.a.d(this.f4829f, dVar.f4829f) && g6.a.d(this.h, dVar.h)) {
+        if (g6.a.d(this.f4831a, dVar.f4831a) && g6.a.d(this.f4832b, dVar.f4832b) && g6.a.d(this.f4833c, dVar.f4833c) && g6.a.d(this.d, dVar.d) && g6.a.d(this.e, dVar.e) && g6.a.d(this.f4834f, dVar.f4834f) && g6.a.d(this.h, dVar.h)) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f4826a, this.f4827b, this.f4828c, this.d, this.e, this.f4829f});
+        return Arrays.hashCode(new Object[]{this.f4831a, this.f4832b, this.f4833c, this.d, this.e, this.f4834f});
     }
 
     public final String toString() {
         int size;
-        List list = this.f4828c;
+        List list = this.f4833c;
         if (list == null) {
             size = 0;
         } else {
             size = list.size();
         }
         String valueOf = String.valueOf(this.e);
-        StringBuilder w9 = a1.g.w("applicationId: ", this.f4826a, ", name: ", this.f4827b, ", namespaces.count: ");
+        StringBuilder w9 = a1.g.w("applicationId: ", this.f4831a, ", name: ", this.f4832b, ", namespaces.count: ");
         w9.append(size);
         w9.append(", senderAppIdentifier: ");
         w9.append(this.d);
         w9.append(", senderAppLaunchUrl: ");
-        a1.g.A(w9, valueOf, ", iconUrl: ", this.f4829f, ", type: ");
+        a1.g.A(w9, valueOf, ", iconUrl: ", this.f4834f, ", type: ");
         w9.append(this.h);
         return w9.toString();
     }
@@ -71,15 +71,15 @@ public final class d extends o6.a {
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         int q6 = w7.f0.q(parcel, 20293);
-        w7.f0.l(parcel, 2, this.f4826a);
-        w7.f0.l(parcel, 3, this.f4827b);
-        w7.f0.n(parcel, 5, DesugarCollections.unmodifiableList(this.f4828c));
+        w7.f0.l(parcel, 2, this.f4831a);
+        w7.f0.l(parcel, 3, this.f4832b);
+        w7.f0.n(parcel, 5, DesugarCollections.unmodifiableList(this.f4833c));
         w7.f0.l(parcel, 6, this.d);
         w7.f0.k(parcel, 7, this.e, i10);
-        w7.f0.l(parcel, 8, this.f4829f);
+        w7.f0.l(parcel, 8, this.f4834f);
         w7.f0.l(parcel, 9, this.h);
-        w7.f0.a(parcel, 10, this.f4830n);
-        w7.f0.a(parcel, 11, this.f4831r);
+        w7.f0.a(parcel, 10, this.f4835n);
+        w7.f0.a(parcel, 11, this.f4836r);
         w7.f0.r(parcel, q6);
     }
 }

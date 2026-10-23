@@ -14,37 +14,37 @@ import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.Components.cn0;
 import org.telegram.ui.Components.d50;
-import org.telegram.ui.Components.zm0;
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.cy;
-import org.telegram.ui.ju0;
-import org.telegram.ui.jz0;
-import org.telegram.ui.q50;
-import org.telegram.ui.qn;
-public final class y3 implements org.telegram.ui.ActionBar.a2, ei.y7, org.telegram.ui.Components.e5, t5.b, s9.g, d50 {
-    public final int f2476a;
-    public final long f2477b;
-    public final Object f2478c;
+import org.telegram.ui.ey;
+import org.telegram.ui.mu0;
+import org.telegram.ui.nz0;
+import org.telegram.ui.sn;
+import org.telegram.ui.u50;
+public final class y3 implements org.telegram.ui.ActionBar.z1, ei.y7, org.telegram.ui.Components.d5, t5.b, s9.g, d50 {
+    public final int f2483a;
+    public final long f2484b;
+    public final Object f2485c;
     public final Object d;
     public final Object e;
 
     public y3(Object obj, long j10, Object obj2, Object obj3, int i10) {
-        this.f2476a = i10;
-        this.f2478c = obj;
-        this.f2477b = j10;
+        this.f2483a = i10;
+        this.f2485c = obj;
+        this.f2484b = j10;
         this.d = obj2;
         this.e = obj3;
     }
 
     @Override
     public void C(int i10, int i11, boolean z10) {
-        qn.h0((qn) this.f2478c, (ArrayList) this.d, this.f2477b, (zm0) this.e, z10, i10);
+        sn.Z0((sn) this.f2485c, (ArrayList) this.d, this.f2484b, (cn0) this.e, z10, i10);
     }
 
     @Override
     public void Q(TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2, double d, String str, TLRPC.PhotoSize photoSize, TLRPC.PhotoSize photoSize2, boolean z10, TLRPC.VideoSize videoSize) {
-        qn qnVar = (qn) this.f2478c;
+        sn snVar = (sn) this.f2485c;
         TLRPC.FileLocation[] fileLocationArr = (TLRPC.FileLocation[]) this.d;
         TLRPC.FileLocation[] fileLocationArr2 = (TLRPC.FileLocation[]) this.e;
         if (inputFile == null && inputFile2 == null && videoSize == null) {
@@ -67,24 +67,24 @@ public final class y3 implements org.telegram.ui.ActionBar.a2, ei.y7, org.telegr
             tL_photos_uploadProfilePhoto.video_emoji_markup = videoSize;
             tL_photos_uploadProfilePhoto.flags |= 16;
         }
-        qnVar.getConnectionsManager().sendRequest(tL_photos_uploadProfilePhoto, new ci.b8(qnVar, fileLocationArr, str, fileLocationArr2, this.f2477b));
+        snVar.getConnectionsManager().sendRequest(tL_photos_uploadProfilePhoto, new ci.a8(snVar, fileLocationArr, str, fileLocationArr2, this.f2484b));
     }
 
     @Override
     public ScheduledFuture a(final le.b bVar) {
-        switch (this.f2476a) {
+        switch (this.f2483a) {
             case 6:
-                s9.f fVar = (s9.f) this.f2478c;
-                return fVar.f46145b.schedule(new s9.d(fVar, (Runnable) this.d, bVar, 1), this.f2477b, (TimeUnit) this.e);
+                s9.f fVar = (s9.f) this.f2485c;
+                return fVar.f46567b.schedule(new s9.d(fVar, (Runnable) this.d, bVar, 1), this.f2484b, (TimeUnit) this.e);
             default:
-                final s9.f fVar2 = (s9.f) this.f2478c;
+                final s9.f fVar2 = (s9.f) this.f2485c;
                 final Callable callable = (Callable) this.d;
-                return fVar2.f46145b.schedule(new Callable() {
+                return fVar2.f46567b.schedule(new Callable() {
                     @Override
                     public final Object call() {
-                        return f.this.f46144a.submit(new p2.b(18, callable, bVar));
+                        return f.this.f46566a.submit(new p2.b(18, callable, bVar));
                     }
-                }, this.f2477b, (TimeUnit) this.e);
+                }, this.f2484b, (TimeUnit) this.e);
         }
     }
 
@@ -94,39 +94,39 @@ public final class y3 implements org.telegram.ui.ActionBar.a2, ei.y7, org.telegr
     }
 
     @Override
-    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f2476a) {
+    public void g(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
+        switch (this.f2483a) {
             case 0:
-                l7 l7Var = (l7) this.f2478c;
-                ug.m1 m1Var = (ug.m1) this.e;
+                l7 l7Var = (l7) this.f2485c;
+                ug.l1 l1Var = (ug.l1) this.e;
                 l7Var.getClass();
-                l7Var.P1(this.f2477b, ((TL_stars.starGiftDepositPayload[]) this.d)[0], b2Var.h(i10, true, true), m1Var);
+                l7Var.O1(this.f2484b, ((TL_stars.starGiftDepositPayload[]) this.d)[0], c2Var.h(i10, true, true), l1Var);
                 return;
             case 3:
-                ChatObject.Call call = (ChatObject.Call) this.f2478c;
+                ChatObject.Call call = (ChatObject.Call) this.f2485c;
                 Runnable runnable = (Runnable) this.e;
                 boolean z10 = false;
-                org.telegram.ui.Cells.a2 a2Var = ((org.telegram.ui.Cells.a2[]) this.d)[0];
-                if (a2Var != null && a2Var.b()) {
+                org.telegram.ui.Cells.z1 z1Var = ((org.telegram.ui.Cells.z1[]) this.d)[0];
+                if (z1Var != null && z1Var.b()) {
                     z10 = true;
                 }
-                q50.x1(call, z10, this.f2477b, runnable);
+                u50.w1(call, z10, this.f2484b, runnable);
                 return;
             default:
                 TLRPC.User user = (TLRPC.User) this.e;
-                ProfileActivity profileActivity = ((jz0) this.f2478c).f38384b;
+                ProfileActivity profileActivity = ((nz0) this.f2485c).f40016b;
                 profileActivity.O1 = true;
                 Bundle h = a1.g.h("scrollToTopOnResume", true);
-                long j10 = -this.f2477b;
+                long j10 = -this.f2484b;
                 h.putLong("chat_id", j10);
-                if (profileActivity.getMessagesController().checkCanOpenChat(h, (cy) this.d)) {
-                    qn qnVar = new qn(h);
+                if (profileActivity.getMessagesController().checkCanOpenChat(h, (ey) this.d)) {
+                    sn snVar = new sn(h);
                     NotificationCenter notificationCenter = profileActivity.getNotificationCenter();
                     int i11 = NotificationCenter.closeChats;
                     notificationCenter.removeObserver(profileActivity, i11);
                     profileActivity.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(i11, new Object[0]);
-                    profileActivity.getMessagesController().addUserToChat(j10, user, 0, null, qnVar, true, null, null);
-                    profileActivity.presentFragment(qnVar, true);
+                    profileActivity.getMessagesController().addUserToChat(j10, user, 0, null, snVar, true, null, null);
+                    profileActivity.presentFragment(snVar, true);
                     return;
                 }
                 return;
@@ -134,7 +134,7 @@ public final class y3 implements org.telegram.ui.ActionBar.a2, ei.y7, org.telegr
     }
 
     @Override
-    public ju0 getCloseIntoObject() {
+    public mu0 getCloseIntoObject() {
         return null;
     }
 
@@ -145,10 +145,10 @@ public final class y3 implements org.telegram.ui.ActionBar.a2, ei.y7, org.telegr
 
     @Override
     public Object j() {
-        ea.b bVar = (ea.b) this.f2478c;
+        ea.b bVar = (ea.b) this.f2485c;
         Iterable iterable = (Iterable) this.d;
         l5.i iVar = (l5.i) this.e;
-        s5.g gVar = (s5.g) ((s5.d) bVar.f8547c);
+        s5.g gVar = (s5.g) ((s5.d) bVar.f8554c);
         gVar.getClass();
         if (iterable.iterator().hasNext()) {
             String str = "UPDATE events SET num_attempts = num_attempts + 1 WHERE _id in " + s5.g.g(iterable);
@@ -167,15 +167,15 @@ public final class y3 implements org.telegram.ui.ActionBar.a2, ei.y7, org.telegr
                 a2.endTransaction();
             }
         }
-        gVar.c(new ci.d1(((u5.a) bVar.f8549g).d() + this.f2477b, iVar));
+        gVar.c(new ci.d1(((u5.a) bVar.f8556g).d() + this.f2484b, iVar));
         return null;
     }
 
     @Override
     public Bitmap k(BitmapFactory.Options options) {
-        ei.r6 r6Var = (ei.r6) this.f2478c;
+        ei.r6 r6Var = (ei.r6) this.f2485c;
         ei.a8 a8Var = (ei.a8) this.d;
-        long j10 = this.f2477b;
+        long j10 = this.f2484b;
         String str = (String) this.e;
         if (a8Var.K) {
             String str2 = a8Var.N;
@@ -198,19 +198,19 @@ public final class y3 implements org.telegram.ui.ActionBar.a2, ei.y7, org.telegr
     }
 
     public y3(Object obj, Object obj2, long j10, Object obj3, int i10) {
-        this.f2476a = i10;
-        this.f2478c = obj;
+        this.f2483a = i10;
+        this.f2485c = obj;
         this.d = obj2;
-        this.f2477b = j10;
+        this.f2484b = j10;
         this.e = obj3;
     }
 
     public y3(Object obj, Object obj2, Object obj3, long j10, int i10) {
-        this.f2476a = i10;
-        this.f2478c = obj;
+        this.f2483a = i10;
+        this.f2485c = obj;
         this.d = obj2;
         this.e = obj3;
-        this.f2477b = j10;
+        this.f2484b = j10;
     }
 
     @Override

@@ -1,6 +1,6 @@
 package ki;
 
-import org.telegram.ui.Components.i80;
+import org.telegram.ui.Components.j80;
 public interface o0 {
-    i80 h(h1 h1Var);
+    j80 i(h1 h1Var);
 }

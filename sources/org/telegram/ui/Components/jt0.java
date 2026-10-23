@@ -1,28 +1,26 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-public final class jt0 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f27639a;
-    public final nu0 f27640b;
-    public final uv0 f27641c;
+import android.content.Context;
+import android.widget.FrameLayout;
+public final class jt0 extends FragmentContextView {
+    public final xv0 X0;
 
-    public jt0(uv0 uv0Var, nu0 nu0Var, int i10) {
-        this.f27639a = i10;
-        this.f27641c = uv0Var;
-        this.f27640b = nu0Var;
+    public jt0(xv0 xv0Var, Context context, org.telegram.ui.ActionBar.o2 o2Var, xv0 xv0Var2, org.telegram.ui.ActionBar.g6 g6Var) {
+        super(context, o2Var, xv0Var2, false, g6Var);
+        this.X0 = xv0Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f27639a) {
-            case 0:
-                this.f27641c.f31057n1 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                this.f27640b.h.invalidate();
-                return;
-            default:
-                this.f27641c.f31057n1 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                this.f27640b.h.invalidate();
-                return;
+    public final void setVisibility(int i10) {
+        boolean z10;
+        xv0 xv0Var = this.X0;
+        us usVar = xv0Var.P0;
+        FrameLayout frameLayout = xv0Var.Q0;
+        if (i10 == 0) {
+            z10 = true;
+        } else {
+            z10 = false;
         }
+        usVar.i(frameLayout, z10, true);
     }
 }

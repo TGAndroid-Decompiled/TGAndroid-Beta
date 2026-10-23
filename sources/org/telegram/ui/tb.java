@@ -1,3 +1,3 @@
 package org.telegram.ui;
-public abstract class tb extends org.telegram.ui.Components.jm0 {
+public abstract class tb extends org.telegram.ui.Components.mm0 {
 }

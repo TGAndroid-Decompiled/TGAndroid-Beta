@@ -5,5 +5,5 @@ import android.net.Uri;
 public interface a {
     void close();
 
-    Cursor u(Uri uri, String[] strArr, String[] strArr2);
+    Cursor r(Uri uri, String[] strArr, String[] strArr2);
 }

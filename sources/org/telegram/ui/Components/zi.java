@@ -6,47 +6,47 @@ import android.text.TextWatcher;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesController;
 public final class zi implements TextWatcher {
-    public final fj f32920a;
+    public final fj f33246a;
 
     public zi(fj fjVar) {
-        this.f32920a = fjVar;
+        this.f33246a = fjVar;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
         boolean z10;
-        fj fjVar = this.f32920a;
-        ui uiVar = fjVar.f26233f0;
-        TextUtils.isEmpty(fjVar.f26245y);
-        fjVar.f26245y = editable.toString().trim();
-        ui uiVar2 = fjVar.f26228a0;
+        fj fjVar = this.f33246a;
+        ui uiVar = fjVar.f26348f0;
+        TextUtils.isEmpty(fjVar.f26360y);
+        fjVar.f26360y = editable.toString().trim();
+        ui uiVar2 = fjVar.f26343a0;
         AndroidUtilities.cancelRunOnUIThread(uiVar2);
         boolean z11 = true;
-        if (!TextUtils.isEmpty(fjVar.f26245y)) {
-            String str = fjVar.f26245y;
+        if (!TextUtils.isEmpty(fjVar.f26360y)) {
+            String str = fjVar.f26360y;
             if (str != null && str.length() >= 0) {
                 z10 = true;
             } else {
                 z10 = false;
             }
             fjVar.W = z10;
-            if (!TextUtils.equals(fjVar.V, fjVar.f26245y)) {
+            if (!TextUtils.equals(fjVar.V, fjVar.f26360y)) {
                 fjVar.L.clear();
-                fjVar.f26229b0 = 0;
-                fjVar.f26230c0 = false;
+                fjVar.f26344b0 = 0;
+                fjVar.f26345c0 = false;
             }
             AndroidUtilities.runOnUIThread(uiVar2, 1500L);
         }
         AndroidUtilities.cancelRunOnUIThread(uiVar);
-        if (!TextUtils.isEmpty(fjVar.f26245y)) {
-            String str2 = fjVar.f26245y;
-            if (str2 == null || str2.length() < 3 || TextUtils.isEmpty(MessagesController.getInstance(fjVar.f28177b.M1).config.musicSearchUsername.get())) {
+        if (!TextUtils.isEmpty(fjVar.f26360y)) {
+            String str2 = fjVar.f26360y;
+            if (str2 == null || str2.length() < 3 || TextUtils.isEmpty(MessagesController.getInstance(fjVar.f28366b.M1).config.musicSearchUsername.get())) {
                 z11 = false;
             }
             fjVar.m0 = z11;
-            if (!TextUtils.equals(fjVar.f26232e0, fjVar.f26245y)) {
+            if (!TextUtils.equals(fjVar.f26347e0, fjVar.f26360y)) {
                 fjVar.M.clear();
-                fjVar.f26234g0 = false;
+                fjVar.f26349g0 = false;
             }
             AndroidUtilities.runOnUIThread(uiVar, 1500L);
         }

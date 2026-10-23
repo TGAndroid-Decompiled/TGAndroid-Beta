@@ -1,18 +1,18 @@
 package l5;
 
 import java.util.HashMap;
-import org.telegram.ui.fn0;
+import org.telegram.ui.jn0;
 public final class s {
-    public final i f15939a;
-    public final String f15940b;
-    public final i5.c f15941c;
+    public final i f16002a;
+    public final String f16003b;
+    public final i5.c f16004c;
     public final i5.e d;
     public final t e;
 
     public s(i iVar, String str, i5.c cVar, i5.e eVar, t tVar) {
-        this.f15939a = iVar;
-        this.f15940b = str;
-        this.f15941c = cVar;
+        this.f16002a = iVar;
+        this.f16003b = str;
+        this.f16004c = cVar;
         this.d = eVar;
         this.e = tVar;
     }
@@ -21,17 +21,17 @@ public final class s {
         i5.e eVar = this.d;
         if (eVar != null) {
             t tVar = this.e;
-            q5.b bVar = tVar.f15944c;
-            i b10 = this.f15939a.b(aVar.f12705c);
+            q5.b bVar = tVar.f16007c;
+            i b10 = this.f16002a.b(aVar.f12737c);
             ?? obj = new Object();
-            obj.f7648f = new HashMap();
-            obj.d = Long.valueOf(tVar.f15942a.d());
-            obj.e = Long.valueOf(tVar.f15943b.d());
-            obj.f7645a = this.f15940b;
-            obj.f7647c = new m(this.f15941c, (byte[]) eVar.apply(aVar.f12704b));
-            obj.f7646b = aVar.f12703a;
+            obj.f7660f = new HashMap();
+            obj.d = Long.valueOf(tVar.f16005a.d());
+            obj.e = Long.valueOf(tVar.f16006b.d());
+            obj.f7657a = this.f16003b;
+            obj.f7659c = new m(this.f16004c, (byte[]) eVar.apply(aVar.f12736b));
+            obj.f7658b = aVar.f12735a;
             q5.a aVar2 = (q5.a) bVar;
-            aVar2.f44418b.execute(new fn0(aVar2, b10, gVar, obj.h(), 26));
+            aVar2.f44831b.execute(new jn0(aVar2, b10, gVar, obj.f(), 26));
             return;
         }
         throw new NullPointerException("Null transformer");

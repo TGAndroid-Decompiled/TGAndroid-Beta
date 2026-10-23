@@ -18,11 +18,11 @@ public abstract class c0 {
             Selection.setSelection((Spannable) textView.getText(), offsetForPosition);
             ClipData clipData = dragEvent.getClipData();
             if (Build.VERSION.SDK_INT >= 31) {
-                dVar = new j2.j(clipData, 3);
+                dVar = new j2.i(clipData, 3);
             } else {
                 r0.e eVar = new r0.e();
-                eVar.f44810b = clipData;
-                eVar.f44811c = 3;
+                eVar.f45222b = clipData;
+                eVar.f45223c = 3;
                 dVar = eVar;
             }
             r0.i0.h(textView, dVar.build());
@@ -39,11 +39,11 @@ public abstract class c0 {
         activity.requestDragAndDropPermissions(dragEvent);
         ClipData clipData = dragEvent.getClipData();
         if (Build.VERSION.SDK_INT >= 31) {
-            dVar = new j2.j(clipData, 3);
+            dVar = new j2.i(clipData, 3);
         } else {
             r0.e eVar = new r0.e();
-            eVar.f44810b = clipData;
-            eVar.f44811c = 3;
+            eVar.f45222b = clipData;
+            eVar.f45223c = 3;
             dVar = eVar;
         }
         r0.i0.h(view, dVar.build());

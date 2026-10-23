@@ -1,96 +1,59 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
+import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.CornerPathEffect;
 import android.graphics.Paint;
 import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.text.StaticLayout;
+import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-public final class ym0 extends Drawable {
-    public int f32701a = 255;
-    public final r90 f32702b;
-    public final int[] f32703c;
-    public final org.telegram.ui.Cells.u1 d;
-    public final int[] e;
-    public final Bitmap f32704f;
-    public final RectF f32705g;
-    public final Paint h;
-    public final Paint f32706i;
-    public final StaticLayout f32707j;
+public final class ym0 extends FrameLayout {
+    public final Paint f32998a;
+    public final p50 f32999b;
+    public final RectF f33000c;
+    public final float d;
+    public float e;
 
-    public ym0(r90 r90Var, int[] iArr, org.telegram.ui.Cells.u1 u1Var, int[] iArr2, Bitmap bitmap, RectF rectF, Paint paint, Paint paint2, StaticLayout staticLayout) {
-        this.f32702b = r90Var;
-        this.f32703c = iArr;
-        this.d = u1Var;
-        this.e = iArr2;
-        this.f32704f = bitmap;
-        this.f32705g = rectF;
-        this.h = paint;
-        this.f32706i = paint2;
-        this.f32707j = staticLayout;
+    public ym0(Context context) {
+        super(context);
+        Paint paint = new Paint(1);
+        this.f32998a = paint;
+        p50 p50Var = new p50(this, 1);
+        this.f32999b = p50Var;
+        this.f33000c = new RectF();
+        this.d = (AndroidUtilities.dp(3.0f) * 0.5f) + AndroidUtilities.dp(5.0f);
+        a(paint, 0.2f);
+        a(p50Var, 1.0f);
+        setWillNotDraw(false);
+    }
+
+    public static void a(Paint paint, float f7) {
+        paint.setColor(-1);
+        paint.setAlpha(Math.round(f7 * 255.0f));
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(AndroidUtilities.dp(3.0f));
+        paint.setStrokeCap(Paint.Cap.ROUND);
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        if (this.f32701a <= 0) {
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        float f7 = this.d;
+        RectF rectF = this.f33000c;
+        rectF.set(f7, f7, getWidth() - f7, getHeight() - f7);
+        canvas.drawOval(rectF, this.f32998a);
+        canvas.drawArc(rectF, -90.0f, this.e * 360.0f, false, this.f32999b);
+    }
+
+    public Paint getPaint() {
+        return this.f32999b;
+    }
+
+    public void setProgress(float f7) {
+        float max = Math.max(0.0f, Math.min(1.0f, f7));
+        if (this.e == max) {
             return;
         }
-        RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(getBounds());
-        float f7 = rectF.left;
-        CornerPathEffect cornerPathEffect = r90.f29895w;
-        rectF.left = f7 - (AndroidUtilities.dp(5.0f) / 2.0f);
-        canvas.save();
-        canvas.saveLayerAlpha(rectF, this.f32701a, 31);
-        int[] iArr = this.f32703c;
-        canvas.translate(iArr[0], iArr[1]);
-        r90 r90Var = this.f32702b;
-        org.telegram.ui.Cells.u1 u1Var = this.d;
-        if (u1Var != null && u1Var.C1()) {
-            org.telegram.ui.ActionBar.f5 f5Var = u1Var.f23498t8;
-            if (f5Var != null && f5Var.f20816c != null) {
-                canvas.save();
-                u1Var.setBackgroundTopY(true);
-                canvas.translate(0.0f, -u1Var.f23498t8.f20828r);
-                canvas.drawPaint(u1Var.f23498t8.f20816c);
-                canvas.restore();
-            } else {
-                canvas.translate(-iArr[0], -iArr[1]);
-                int[] iArr2 = this.e;
-                canvas.translate(iArr2[0], u1Var.getPaddingTop() + iArr2[1]);
-                u1Var.D1(canvas, true, false);
-                canvas.translate(-iArr2[0], (-iArr2[1]) - u1Var.getPaddingTop());
-                canvas.translate(iArr[0], iArr[1]);
-            }
-            Bitmap bitmap = this.f32704f;
-            if (bitmap != null) {
-                canvas.save();
-                RectF rectF2 = this.f32705g;
-                canvas.drawBitmap(bitmap, rectF2.left, rectF2.top, this.h);
-                canvas.restore();
-            }
-        } else {
-            canvas.drawPath(r90Var, this.f32706i);
-        }
-        canvas.clipPath(r90Var);
-        this.f32707j.draw(canvas);
-        canvas.restore();
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-        this.f32701a = i10;
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+        this.e = max;
+        invalidate();
     }
 }

@@ -1,56 +1,117 @@
 package org.telegram.ui.Components;
 
-import org.telegram.ui.PhotoViewer;
-public final class f81 implements Runnable {
-    public final int f26146a;
-    public final j81 f26147b;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.SharedConfig;
+public final class f81 {
+    public final boolean f26230a;
+    public final int f26231b;
+    public final int f26232c;
+    public final ArrayList d;
 
-    public f81(j81 j81Var, int i10) {
-        this.f26146a = i10;
-        this.f26147b = j81Var;
+    public f81(h81 h81Var) {
+        ArrayList arrayList = new ArrayList();
+        this.d = arrayList;
+        this.f26230a = h81Var.f26828b;
+        this.f26231b = h81Var.f26832i;
+        this.f26232c = h81Var.f26833j;
+        arrayList.add(h81Var);
     }
 
-    @Override
-    public final void run() {
-        switch (this.f26146a) {
-            case 0:
-                j81 j81Var = this.f26147b;
-                j81Var.h = 0.0f;
-                e6 e6Var = j81Var.f27437b;
-                if (e6Var != null) {
-                    e6Var.u();
-                    j81Var.f27437b = null;
-                    return;
-                }
-                return;
-            case 1:
-                j81 j81Var2 = this.f26147b;
-                j81Var2.f27435a = true;
-                j81Var2.e = null;
-                if (j81Var2.f27437b != null) {
-                    j81Var2.f27448s = true;
-                    PhotoViewer photoViewer = j81Var2.M.f43543a;
-                    if (photoViewer.f33427u3) {
-                        photoViewer.d3(true);
-                        return;
-                    }
-                    return;
-                }
-                return;
-            default:
-                j81 j81Var3 = this.f26147b;
-                j81Var3.f27435a = true;
-                j81Var3.e = null;
-                if (j81Var3.f27437b != null) {
-                    j81Var3.f27448s = true;
-                    PhotoViewer photoViewer2 = j81Var3.M.f43543a;
-                    if (photoViewer2.f33427u3) {
-                        photoViewer2.d3(true);
-                        return;
-                    }
-                    return;
-                }
-                return;
+    public final h81 a() {
+        ArrayList arrayList = this.d;
+        h81 h81Var = null;
+        if (arrayList.isEmpty()) {
+            return null;
         }
+        int size = arrayList.size();
+        int i10 = 0;
+        while (i10 < size) {
+            Object obj = arrayList.get(i10);
+            i10++;
+            h81 h81Var2 = (h81) obj;
+            if (h81Var2.b()) {
+                return h81Var2;
+            }
+        }
+        long j10 = Long.MAX_VALUE;
+        for (int i11 = 0; i11 < arrayList.size(); i11++) {
+            h81 h81Var3 = (h81) arrayList.get(i11);
+            if (h81Var3.f26834k < j10 && j81.Y(h81Var3.f26836m)) {
+                j10 = h81Var3.f26834k;
+                h81Var = h81Var3;
+            }
+        }
+        if (h81Var != null) {
+            return h81Var;
+        }
+        return (h81) arrayList.get(0);
+    }
+
+    public final int b() {
+        int min = Math.min(this.f26231b, this.f26232c);
+        if (Math.abs(min - 2160) < 55) {
+            return 2160;
+        }
+        if (Math.abs(min - 1440) < 55) {
+            return 1440;
+        }
+        if (Math.abs(min - 1080) < 55) {
+            return 1080;
+        }
+        if (Math.abs(min - 720) < 55) {
+            return 720;
+        }
+        if (Math.abs(min - 480) < 55) {
+            return 480;
+        }
+        if (Math.abs(min - 360) < 55) {
+            return 360;
+        }
+        if (Math.abs(min - 240) < 55) {
+            return 240;
+        }
+        if (Math.abs(min - 144) < 55) {
+            return 144;
+        }
+        return min;
+    }
+
+    public final String toString() {
+        String str;
+        boolean z10 = SharedConfig.debugVideoQualities;
+        boolean z11 = this.f26230a;
+        String str2 = "";
+        if (z10) {
+            StringBuilder sb2 = new StringBuilder();
+            sb2.append(this.f26231b);
+            sb2.append("x");
+            sb2.append(this.f26232c);
+            if (!z11) {
+                str = "";
+            } else {
+                str = " (" + LocaleController.getString(R.string.QualitySource) + ")";
+            }
+            sb2.append(str);
+            sb2.append("\n");
+            ArrayList arrayList = this.d;
+            sb2.append(AndroidUtilities.formatFileSize((long) ((h81) arrayList.get(0)).f26835l).replace(" ", ""));
+            sb2.append("/s");
+            if (((h81) arrayList.get(0)).f26836m != null) {
+                str2 = ", " + ((h81) arrayList.get(0)).f26836m;
+            }
+            sb2.append(str2);
+            return sb2.toString();
+        }
+        StringBuilder sb3 = new StringBuilder();
+        sb3.append(b());
+        sb3.append("p");
+        if (z11) {
+            str2 = " (" + LocaleController.getString(R.string.QualitySource) + ")";
+        }
+        sb3.append(str2);
+        return sb3.toString();
     }
 }

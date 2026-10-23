@@ -2,14 +2,14 @@ package a1;
 
 import ab.e0;
 import ab.f0;
-import ai.ga;
 import ai.h1;
-import ai.jd;
-import ai.md;
+import ai.ha;
+import ai.kd;
 import ai.n7;
+import ai.nd;
 import ai.r0;
-import ai.tc;
 import ai.u1;
+import ai.uc;
 import ai.v6;
 import android.content.Intent;
 import android.graphics.Canvas;
@@ -20,21 +20,21 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import ci.aa;
-import ci.n2;
+import ci.m2;
+import ci.n9;
+import ci.o8;
 import ci.o9;
+import ci.p7;
 import ci.p8;
-import ci.p9;
-import ci.q7;
 import ci.q8;
-import ci.r8;
-import ci.t5;
+import ci.s5;
+import ci.t9;
 import ci.u;
 import ci.u0;
-import ci.u9;
 import ci.v0;
 import ci.w0;
 import ci.x0;
+import ci.z9;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -56,21 +56,21 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.ActionBar.a2;
-import org.telegram.ui.ActionBar.b2;
-import org.telegram.ui.Components.e5;
-import org.telegram.ui.Components.h61;
-import org.telegram.ui.Components.js0;
-import org.telegram.ui.Components.yl0;
-import org.telegram.ui.Components.zl0;
-import org.telegram.ui.Wallet.s1;
-import org.telegram.ui.do0;
+import org.telegram.ui.ActionBar.c2;
+import org.telegram.ui.ActionBar.z1;
+import org.telegram.ui.Components.bm0;
+import org.telegram.ui.Components.cm0;
+import org.telegram.ui.Components.d5;
+import org.telegram.ui.Components.m61;
+import org.telegram.ui.Components.ms0;
+import org.telegram.ui.Wallet.r1;
+import org.telegram.ui.ho0;
 import r0.k1;
 import r0.n;
 import s4.l0;
 import wh.k;
 import zf.m;
-public final class c implements OnSuccessListener, i, i5.e, e5, a2, m, ne.d, Utilities.Callback5, do0, zl0, Utilities.Callback2Return, yl0, q7, u9, k, n, Continuation, OnCompleteListener {
+public final class c implements OnSuccessListener, i, i5.e, d5, z1, m, ne.d, Utilities.Callback5, ho0, cm0, Utilities.Callback2Return, bm0, p7, t9, k, n, Continuation, OnCompleteListener {
     public final int f34a;
     public final Object f35b;
 
@@ -82,31 +82,31 @@ public final class c implements OnSuccessListener, i, i5.e, e5, a2, m, ne.d, Uti
     @Override
     public k1 B0(View view, k1 k1Var) {
         int a2;
-        aa aaVar = (aa) this.f35b;
+        z9 z9Var = (z9) this.f35b;
         int i10 = 0;
         i0.b defaultWindowInsets = AndroidUtilities.getDefaultWindowInsets(k1Var, false);
-        ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) aaVar.v.getLayoutParams();
-        if (!aaVar.f5180c) {
+        ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) z9Var.v.getLayoutParams();
+        if (!z9Var.f6226c) {
             i10 = k1Var.d();
         }
         marginLayoutParams.topMargin = i10;
-        if (aaVar.f5180c) {
-            a2 = k1Var.f44839a.f(2).d;
+        if (z9Var.f6226c) {
+            a2 = k1Var.f45251a.f(2).d;
         } else {
             a2 = k1Var.a();
         }
         marginLayoutParams.bottomMargin = a2;
-        marginLayoutParams.leftMargin = defaultWindowInsets.f12283a;
-        marginLayoutParams.rightMargin = defaultWindowInsets.f12285c;
-        o9 o9Var = aaVar.f5214s;
+        marginLayoutParams.leftMargin = defaultWindowInsets.f12315a;
+        marginLayoutParams.rightMargin = defaultWindowInsets.f12317c;
+        n9 n9Var = z9Var.f6260s;
+        if (n9Var != null) {
+            n9Var.requestLayout();
+        }
+        o9 o9Var = z9Var.v;
         if (o9Var != null) {
             o9Var.requestLayout();
         }
-        p9 p9Var = aaVar.v;
-        if (p9Var != null) {
-            p9Var.requestLayout();
-        }
-        return k1.f44838b;
+        return k1.f45250b;
     }
 
     @Override
@@ -116,9 +116,9 @@ public final class c implements OnSuccessListener, i, i5.e, e5, a2, m, ne.d, Uti
             long j10 = i10;
             if (h1Var.I != j10) {
                 h1Var.I = j10;
-                h1Var.f1407r.setText(h1.p(j10));
+                h1Var.f1387r.setText(h1.p(j10));
             }
-            h1Var.o(true);
+            h1Var.n(true);
         }
     }
 
@@ -128,31 +128,7 @@ public final class c implements OnSuccessListener, i, i5.e, e5, a2, m, ne.d, Uti
     }
 
     @Override
-    public boolean a(int r33, final android.view.View r34) {
-        throw new UnsupportedOperationException("Method not decompiled: a1.c.a(int, android.view.View):boolean");
-    }
-
-    @Override
-    public Object apply(Object obj) {
-        ((qb.c) this.f35b).getClass();
-        String M = f0.f398b.M((e0) obj);
-        kotlin.jvm.internal.i.d(M, "SessionEvents.SESSION_EVENT_ENCODER.encode(value)");
-        Log.d("EventGDTLogger", "Session Event: ".concat(M));
-        byte[] bytes = M.getBytes(zd.a.f51519a);
-        kotlin.jvm.internal.i.d(bytes, "this as java.lang.String).getBytes(charset)");
-        return bytes;
-    }
-
-    @Override
-    public void b(boolean z10) {
-        t5 t5Var = (t5) this.f35b;
-        if (t5Var != null) {
-            t5Var.c();
-        }
-    }
-
-    @Override
-    public void c(int i10) {
+    public void a(int i10) {
         switch (this.f34a) {
             case 8:
                 Utilities.Callback2 callback2 = (Utilities.Callback2) this.f35b;
@@ -166,23 +142,23 @@ public final class c implements OnSuccessListener, i, i5.e, e5, a2, m, ne.d, Uti
                     return;
                 }
             case 9:
-                s1 s1Var = (s1) this.f35b;
+                r1 r1Var = (r1) this.f35b;
                 if (i10 == 1) {
-                    s1Var.run(Boolean.TRUE, null);
+                    r1Var.run(Boolean.TRUE, null);
                     return;
                 } else if (i10 != 3) {
-                    s1Var.run(Boolean.FALSE, null);
+                    r1Var.run(Boolean.FALSE, null);
                     return;
                 } else {
                     return;
                 }
             default:
-                tc tcVar = (tc) this.f35b;
+                uc ucVar = (uc) this.f35b;
                 if (i10 == 1) {
-                    tcVar.run(Boolean.TRUE, null);
+                    ucVar.run(Boolean.TRUE, null);
                     return;
                 } else if (i10 != 3) {
-                    tcVar.run(Boolean.FALSE, null);
+                    ucVar.run(Boolean.FALSE, null);
                     return;
                 } else {
                     return;
@@ -191,34 +167,53 @@ public final class c implements OnSuccessListener, i, i5.e, e5, a2, m, ne.d, Uti
     }
 
     @Override
-    public void d(float f7, float f10, int i10, View view) {
+    public Object apply(Object obj) {
+        ((qb.c) this.f35b).getClass();
+        String M = f0.f398b.M((e0) obj);
+        kotlin.jvm.internal.i.d(M, "SessionEvents.SESSION_EVENT_ENCODER.encode(value)");
+        Log.d("EventGDTLogger", "Session Event: ".concat(M));
+        byte[] bytes = M.getBytes(zd.a.f51980a);
+        kotlin.jvm.internal.i.d(bytes, "this as java.lang.String).getBytes(charset)");
+        return bytes;
+    }
+
+    @Override
+    public void b(boolean z10) {
+        s5 s5Var = (s5) this.f35b;
+        if (s5Var != null) {
+            s5Var.c();
+        }
+    }
+
+    @Override
+    public void c(float f7, float f10, int i10, View view) {
         long j10;
         long j11;
         int i11;
         int i12;
         int i13;
-        n2 n2Var = (n2) this.f35b;
-        u1 u1Var = n2Var.f6133c;
-        ArrayList arrayList = n2Var.f6141r;
-        w0 w0Var = ((u0) view).f6033f;
-        int i14 = n2Var.N;
+        m2 m2Var = (m2) this.f35b;
+        u1 u1Var = m2Var.f6083c;
+        ArrayList arrayList = m2Var.f6091r;
+        w0 w0Var = ((u0) view).f5974f;
+        int i14 = m2Var.N;
         int currentTime = ConnectionsManager.getInstance(i14).getCurrentTime();
         HashSet hashSet = new HashSet();
         int i15 = 0;
         int i16 = 0;
         while (true) {
             j10 = 0;
-            if (i16 >= w0Var.f6100f.size()) {
+            if (i16 >= w0Var.f6040f.size()) {
                 break;
             }
-            v0 v0Var = (v0) w0Var.f6100f.get(i16);
-            long j12 = v0Var.f6068g;
+            v0 v0Var = (v0) w0Var.f6040f.get(i16);
+            long j12 = v0Var.f6005g;
             if (j12 > 0 && currentTime - v0Var.d <= u.b(i14, (int) j12, 0)) {
-                hashSet.add(Integer.valueOf(v0Var.f6064a));
+                hashSet.add(Integer.valueOf(v0Var.f6001a));
             }
             i16++;
         }
-        ci.h1 h1Var = n2Var.P;
+        ci.h1 h1Var = m2Var.P;
         if (h1Var != null) {
             j10 = h1Var.j();
         }
@@ -226,13 +221,13 @@ public final class c implements OnSuccessListener, i, i5.e, e5, a2, m, ne.d, Uti
         int i18 = 0;
         while (i17 < arrayList.size()) {
             v0 v0Var2 = (v0) arrayList.get(i17);
-            if (!v0Var2.f6065b && v0Var2.e && v0Var2.f6068g < j10) {
+            if (!v0Var2.f6002b && v0Var2.e && v0Var2.f6005g < j10) {
                 j11 = j10;
             } else {
-                if (hashSet.contains(Integer.valueOf(v0Var2.f6064a))) {
+                if (hashSet.contains(Integer.valueOf(v0Var2.f6001a))) {
                     j11 = j10;
-                    if (n2Var.f6143w != w0Var.f6098b || (i13 = n2Var.f6144x) == 0 || v0Var2.f6064a < i13) {
-                        i11 = v0Var2.f6064a;
+                    if (m2Var.f6093w != w0Var.f6038b || (i13 = m2Var.f6094x) == 0 || v0Var2.f6001a < i13) {
+                        i11 = v0Var2.f6001a;
                         break;
                     }
                 } else {
@@ -250,9 +245,9 @@ public final class c implements OnSuccessListener, i, i5.e, e5, a2, m, ne.d, Uti
             while (true) {
                 if (i15 < arrayList.size()) {
                     v0 v0Var3 = (v0) arrayList.get(i15);
-                    if (v0Var3.f6065b || !v0Var3.e || v0Var3.f6068g >= j11) {
-                        if (hashSet.contains(Integer.valueOf(v0Var3.f6064a))) {
-                            i12 = v0Var3.f6064a;
+                    if (v0Var3.f6002b || !v0Var3.e || v0Var3.f6005g >= j11) {
+                        if (hashSet.contains(Integer.valueOf(v0Var3.f6001a))) {
+                            i12 = v0Var3.f6001a;
                             i18 = i19;
                             break;
                         }
@@ -271,14 +266,19 @@ public final class c implements OnSuccessListener, i, i5.e, e5, a2, m, ne.d, Uti
         if (i12 < 0) {
             return;
         }
-        n2Var.f6143w = w0Var.f6098b;
-        n2Var.f6144x = i12;
-        n2Var.f6145y = true;
+        m2Var.f6093w = w0Var.f6038b;
+        m2Var.f6094x = i12;
+        m2Var.f6095y = true;
         l0 itemAnimator = u1Var.getItemAnimator();
         u1Var.setItemAnimator(null);
-        n2Var.d.i1(i18, u1Var.getHeight() / 2, true);
-        n2Var.e.m(i18);
+        m2Var.d.i1(i18, u1Var.getHeight() / 2, true);
+        m2Var.e.m(i18);
         u1Var.setItemAnimator(itemAnimator);
+    }
+
+    @Override
+    public boolean d(int r33, final android.view.View r34) {
+        throw new UnsupportedOperationException("Method not decompiled: a1.c.d(int, android.view.View):boolean");
     }
 
     @Override
@@ -301,10 +301,10 @@ public final class c implements OnSuccessListener, i, i5.e, e5, a2, m, ne.d, Uti
     }
 
     @Override
-    public void g(b2 b2Var, int i10) {
+    public void g(c2 c2Var, int i10) {
         switch (this.f34a) {
             case 4:
-                ((Utilities.Callback) this.f35b).run(b2Var.h(i10, true, true));
+                ((Utilities.Callback) this.f35b).run(c2Var.h(i10, true, true));
                 return;
             default:
                 ((Runnable) this.f35b).run();
@@ -318,13 +318,13 @@ public final class c implements OnSuccessListener, i, i5.e, e5, a2, m, ne.d, Uti
     }
 
     @Override
-    public void o(wh.g gVar, float f7, float f10) {
-        r8 r8Var;
-        q8 q8Var = (q8) this.f35b;
-        if (!q8Var.v.f5936x) {
-            gVar.f49069q = new p8(q8Var, 2);
-            float sqrt = (float) Math.sqrt(Math.pow(r8Var.getHeight(), 2.0d) + Math.pow(r8Var.getWidth(), 2.0d));
-            ArrayList arrayList = q8Var.f5853i;
+    public void l(wh.g gVar, float f7, float f10) {
+        q8 q8Var;
+        p8 p8Var = (p8) this.f35b;
+        if (!p8Var.v.f5806x) {
+            gVar.f49511q = new o8(p8Var, 2);
+            float sqrt = (float) Math.sqrt(Math.pow(q8Var.getHeight(), 2.0d) + Math.pow(q8Var.getWidth(), 2.0d));
+            ArrayList arrayList = p8Var.f5740i;
             int size = arrayList.size();
             int i10 = 0;
             while (i10 < size) {
@@ -336,13 +336,23 @@ public final class c implements OnSuccessListener, i, i5.e, e5, a2, m, ne.d, Uti
     }
 
     @Override
+    public void o(int i10, float f7, float f10, ne.e eVar) {
+        View view = ((n7) this.f35b).f1869b;
+        if (view instanceof org.telegram.ui.Cells.v0) {
+            ((org.telegram.ui.Cells.v0) view).M();
+        } else {
+            view.invalidate();
+        }
+    }
+
+    @Override
     public void onComplete(Task task) {
         switch (this.f34a) {
             case 24:
                 b0.b((Intent) this.f35b);
                 return;
             case 25:
-                ((d0) this.f35b).f7629b.trySetResult(null);
+                ((d0) this.f35b).f7641b.trySetResult(null);
                 return;
             default:
                 ((ScheduledFuture) this.f35b).cancel(false);
@@ -364,7 +374,7 @@ public final class c implements OnSuccessListener, i, i5.e, e5, a2, m, ne.d, Uti
                 y yVar = (y) obj;
                 if (((FirebaseMessaging) this.f35b).e.q() && yVar.h.a() != null) {
                     synchronized (yVar) {
-                        z10 = yVar.f7685g;
+                        z10 = yVar.f7697g;
                     }
                     if (!z10) {
                         yVar.h(0L);
@@ -380,26 +390,16 @@ public final class c implements OnSuccessListener, i, i5.e, e5, a2, m, ne.d, Uti
     }
 
     @Override
-    public void r(int i10, float f7, float f10, ne.e eVar) {
-        View view = ((n7) this.f35b).f1879b;
-        if (view instanceof org.telegram.ui.Cells.w0) {
-            ((org.telegram.ui.Cells.w0) view).N();
-        } else {
-            view.invalidate();
-        }
-    }
-
-    @Override
     public Object run(Object obj, Object obj2) {
         switch (this.f34a) {
             case 14:
                 Long l4 = (Long) obj;
                 return x0.a((x0) this.f35b, (Long) obj2);
             default:
-                js0 js0Var = (js0) this.f35b;
+                ms0 ms0Var = (ms0) this.f35b;
                 Integer num = (Integer) obj2;
                 if (((Integer) obj).intValue() == -1) {
-                    new di.u(js0Var.f8068a, LocaleController.getString(R.string.ProfileBotPreviewLanguageChoose), new r0(js0Var, 10)).show();
+                    new di.u(ms0Var.f8075a, LocaleController.getString(R.string.ProfileBotPreviewLanguageChoose), new r0(ms0Var, 10)).show();
                     return Boolean.TRUE;
                 }
                 return Boolean.FALSE;
@@ -436,18 +436,18 @@ public final class c implements OnSuccessListener, i, i5.e, e5, a2, m, ne.d, Uti
     public void mo0run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
         switch (this.f34a) {
             case 7:
-                ga.b((ga) this.f35b, (ArrayList) obj, (Integer) obj2, (Long) obj3, (ArrayList) obj4, (ArrayList) obj5);
+                ha.b((ha) this.f35b, (ArrayList) obj, (Integer) obj2, (Long) obj3, (ArrayList) obj4, (ArrayList) obj5);
                 return;
             default:
-                jd jdVar = (jd) this.f35b;
-                h61 h61Var = (h61) obj;
+                kd kdVar = (kd) this.f35b;
+                m61 m61Var = (m61) obj;
                 View view = (View) obj2;
                 ((Integer) obj3).intValue();
                 ((Float) obj4).floatValue();
                 ((Float) obj5).floatValue();
-                jdVar.getClass();
-                if (h61Var.G instanceof TL_stars.StarsTransaction) {
-                    md.i1(jdVar.getContext(), false, 0L, jdVar.f1595c, (TL_stars.StarsTransaction) h61Var.G, jdVar.f1594b);
+                kdVar.getClass();
+                if (m61Var.G instanceof TL_stars.StarsTransaction) {
+                    nd.i1(kdVar.getContext(), false, 0L, kdVar.f1643c, (TL_stars.StarsTransaction) m61Var.G, kdVar.f1642b);
                     return;
                 }
                 return;

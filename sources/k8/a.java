@@ -13,24 +13,24 @@ import w7.f0;
 import w7.g;
 public final class a extends o6.a {
     public static final Parcelable.Creator<a> CREATOR = new j(19);
-    public final String f14993a;
-    public final byte[] f14994b;
-    public final byte[][] f14995c;
+    public final String f15039a;
+    public final byte[] f15040b;
+    public final byte[][] f15041c;
     public final byte[][] d;
     public final byte[][] e;
-    public final byte[][] f14996f;
+    public final byte[][] f15042f;
     public final int[] h;
-    public final byte[][] f14997n;
+    public final byte[][] f15043n;
 
     public a(String str, byte[] bArr, byte[][] bArr2, byte[][] bArr3, byte[][] bArr4, byte[][] bArr5, int[] iArr, byte[][] bArr6) {
-        this.f14993a = str;
-        this.f14994b = bArr;
-        this.f14995c = bArr2;
+        this.f15039a = str;
+        this.f15040b = bArr;
+        this.f15041c = bArr2;
         this.d = bArr3;
         this.e = bArr4;
-        this.f14996f = bArr5;
+        this.f15042f = bArr5;
         this.h = iArr;
-        this.f14997n = bArr6;
+        this.f15043n = bArr6;
     }
 
     public static List b(int[] iArr) {
@@ -89,7 +89,7 @@ public final class a extends o6.a {
     public final boolean equals(Object obj) {
         if (obj instanceof a) {
             a aVar = (a) obj;
-            if (g.a(this.f14993a, aVar.f14993a) && Arrays.equals(this.f14994b, aVar.f14994b) && g.a(c(this.f14995c), c(aVar.f14995c)) && g.a(c(this.d), c(aVar.d)) && g.a(c(this.e), c(aVar.e)) && g.a(c(this.f14996f), c(aVar.f14996f)) && g.a(b(this.h), b(aVar.h)) && g.a(c(this.f14997n), c(aVar.f14997n))) {
+            if (g.a(this.f15039a, aVar.f15039a) && Arrays.equals(this.f15040b, aVar.f15040b) && g.a(c(this.f15041c), c(aVar.f15041c)) && g.a(c(this.d), c(aVar.d)) && g.a(c(this.e), c(aVar.e)) && g.a(c(this.f15042f), c(aVar.f15042f)) && g.a(b(this.h), b(aVar.h)) && g.a(c(this.f15043n), c(aVar.f15043n))) {
                 return true;
             }
         }
@@ -100,7 +100,7 @@ public final class a extends o6.a {
         String sb2;
         StringBuilder sb3 = new StringBuilder("ExperimentTokens");
         sb3.append("(");
-        String str = this.f14993a;
+        String str = this.f15039a;
         if (str == null) {
             sb2 = "null";
         } else {
@@ -112,7 +112,7 @@ public final class a extends o6.a {
         }
         sb3.append(sb2);
         sb3.append(", direct=");
-        byte[] bArr = this.f14994b;
+        byte[] bArr = this.f15040b;
         if (bArr == null) {
             sb3.append("null");
         } else {
@@ -121,13 +121,13 @@ public final class a extends o6.a {
             sb3.append("'");
         }
         sb3.append(", ");
-        d(sb3, "GAIA", this.f14995c);
+        d(sb3, "GAIA", this.f15041c);
         sb3.append(", ");
         d(sb3, "PSEUDO", this.d);
         sb3.append(", ");
         d(sb3, "ALWAYS", this.e);
         sb3.append(", ");
-        d(sb3, "OTHER", this.f14996f);
+        d(sb3, "OTHER", this.f15042f);
         sb3.append(", ");
         sb3.append("weak");
         sb3.append("=");
@@ -151,7 +151,7 @@ public final class a extends o6.a {
             sb3.append(")");
         }
         sb3.append(", ");
-        d(sb3, "directs", this.f14997n);
+        d(sb3, "directs", this.f15043n);
         sb3.append(")");
         return sb3.toString();
     }
@@ -159,14 +159,14 @@ public final class a extends o6.a {
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         int q6 = f0.q(parcel, 20293);
-        f0.l(parcel, 2, this.f14993a);
-        f0.c(parcel, 3, this.f14994b);
-        f0.d(parcel, 4, this.f14995c);
+        f0.l(parcel, 2, this.f15039a);
+        f0.c(parcel, 3, this.f15040b);
+        f0.d(parcel, 4, this.f15041c);
         f0.d(parcel, 5, this.d);
         f0.d(parcel, 6, this.e);
-        f0.d(parcel, 7, this.f14996f);
+        f0.d(parcel, 7, this.f15042f);
         f0.g(parcel, 8, this.h);
-        f0.d(parcel, 9, this.f14997n);
+        f0.d(parcel, 9, this.f15043n);
         f0.r(parcel, q6);
     }
 }

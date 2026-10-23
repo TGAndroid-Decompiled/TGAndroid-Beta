@@ -7,14 +7,14 @@ import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
 public final class h6 extends ImageView {
-    public final int f9158a;
-    public final k6 f9159b;
+    public final int f9169a;
+    public final k6 f9170b;
 
     public h6(k6 k6Var, Context context, int i10, int i11) {
         super(context);
-        this.f9159b = k6Var;
-        this.f9158a = i10;
-        setBackground(org.telegram.ui.ActionBar.h6.g0(1090519039, 1, -1));
+        this.f9170b = k6Var;
+        this.f9169a = i10;
+        setBackground(org.telegram.ui.ActionBar.k6.g0(1090519039, 1, -1));
         setScaleType(ImageView.ScaleType.CENTER);
         setImageResource(i11);
         setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.MULTIPLY));

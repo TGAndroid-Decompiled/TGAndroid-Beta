@@ -1,107 +1,176 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
+import android.graphics.Path;
 import android.graphics.RectF;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class dr extends View {
-    public final Paint f25614a;
-    public final Paint f25615b;
-    public final RectF f25616c;
-    public int d;
-    public long e;
-    public int f25617f;
-    public int h;
-    public int f25618n;
-    public int f25619r;
+import android.os.Build;
+import java.util.ArrayList;
+import java.util.List;
+public class dr extends Path {
+    public static ArrayList f25715g;
+    public int e;
+    public int f25719f;
+    public boolean f25717b = false;
+    public boolean f25718c = true;
+    public float d = 0.0f;
+    public final ArrayList f25716a = new ArrayList(1);
 
-    public dr(Context context, int i10) {
-        super(context);
-        Paint paint = new Paint(1);
-        this.f25614a = paint;
-        Paint paint2 = new Paint(1);
-        this.f25615b = paint2;
-        this.f25616c = new RectF();
-        this.d = 0;
-        Paint.Style style = Paint.Style.STROKE;
-        paint.setStyle(style);
-        paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
-        paint2.setStyle(style);
-        paint2.setStrokeWidth(AndroidUtilities.dp(2.0f));
-        paint2.setStrokeCap(Paint.Cap.ROUND);
-        if (i10 == 0) {
-            this.f25617f = org.telegram.ui.ActionBar.h6.B7;
-            this.h = org.telegram.ui.ActionBar.h6.C7;
-        } else if (i10 == 1) {
-            this.f25617f = org.telegram.ui.ActionBar.h6.D7;
-            this.h = org.telegram.ui.ActionBar.h6.E7;
-        } else if (i10 == 2) {
-            this.f25617f = org.telegram.ui.ActionBar.h6.F7;
-            this.h = org.telegram.ui.ActionBar.h6.G7;
-        } else if (i10 == 3) {
-            this.f25617f = org.telegram.ui.ActionBar.h6.H7;
-            this.h = org.telegram.ui.ActionBar.h6.I7;
-        }
-        b();
+    public dr() {
     }
 
-    public final void a(int i10, int i11) {
-        this.f25617f = -1;
-        this.h = -1;
-        this.f25618n = i10;
-        this.f25619r = i11;
-        b();
-    }
-
-    public final void b() {
-        int i10 = this.f25617f;
-        Paint paint = this.f25614a;
-        if (i10 >= 0) {
-            paint.setColor(org.telegram.ui.ActionBar.h6.x0(null, i10, false));
-        } else {
-            paint.setColor(this.f25618n);
+    public final void a() {
+        if (Build.VERSION.SDK_INT >= 34 && this.f25718c && !this.f25717b) {
+            b(this.f25716a);
+            this.f25717b = true;
         }
-        int i11 = this.h;
-        Paint paint2 = this.f25615b;
-        if (i11 >= 0) {
-            paint2.setColor(org.telegram.ui.ActionBar.h6.x0(null, i11, false));
-        } else {
-            paint2.setColor(this.f25619r);
-        }
-        invalidate();
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.e = System.currentTimeMillis();
-        invalidate();
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        if (getVisibility() != 0) {
+    public final void addRect(RectF rectF, Path.Direction direction) {
+        RectF rectF2;
+        if (Build.VERSION.SDK_INT >= 34 && this.f25718c) {
+            ArrayList arrayList = this.f25716a;
+            if (arrayList.size() <= 0 || !((RectF) i2.o1.i(1, arrayList)).contains(rectF)) {
+                if (arrayList.size() > 0 && Math.abs(rectF.top - ((RectF) i2.o1.i(1, arrayList)).top) <= this.d && Math.abs(rectF.bottom - ((RectF) i2.o1.i(1, arrayList)).bottom) <= this.d) {
+                    ((RectF) i2.o1.i(1, arrayList)).union(rectF);
+                } else {
+                    ArrayList arrayList2 = f25715g;
+                    if (arrayList2 != null && arrayList2.size() > 0) {
+                        rectF2 = (RectF) f25715g.remove(0);
+                    } else {
+                        rectF2 = new RectF();
+                    }
+                    rectF2.set(rectF);
+                    arrayList.add(rectF2);
+                }
+                this.f25717b = false;
+                return;
+            }
             return;
         }
-        long currentTimeMillis = System.currentTimeMillis();
-        long j10 = currentTimeMillis - this.e;
-        this.e = currentTimeMillis;
-        this.d = (int) ((((float) (j10 * 360)) / 1000.0f) + this.d);
-        int measuredWidth = (getMeasuredWidth() / 2) - AndroidUtilities.dp(9.0f);
-        int measuredHeight = (getMeasuredHeight() / 2) - AndroidUtilities.dp(9.0f);
-        RectF rectF = this.f25616c;
-        rectF.set(measuredWidth, measuredHeight, AndroidUtilities.dp(18.0f) + measuredWidth, AndroidUtilities.dp(18.0f) + measuredHeight);
-        canvas.drawCircle(getMeasuredWidth() / 2, getMeasuredHeight() / 2, AndroidUtilities.dp(9.0f), this.f25614a);
-        canvas.drawArc(rectF, this.d - 90, 90.0f, false, this.f25615b);
-        invalidate();
+        float f7 = rectF.left;
+        int i10 = this.e;
+        float f10 = f7 - i10;
+        float f11 = rectF.top;
+        int i11 = this.f25719f;
+        super.addRect(f10, f11 - i11, rectF.right + i10, rectF.bottom + i11, direction);
+    }
+
+    public final void b(List list) {
+        if (!list.isEmpty()) {
+            boolean z10 = false;
+            if (list.size() == 1) {
+                super.addRect(((RectF) list.get(0)).left - this.e, ((RectF) list.get(0)).top - this.f25719f, ((RectF) list.get(0)).right + this.e, ((RectF) list.get(0)).bottom + this.f25719f, Path.Direction.CW);
+                return;
+            }
+            RectF rectF = (RectF) list.get(0);
+            int size = list.size() - 1;
+            super.moveTo(rectF.left - this.e, rectF.top - this.f25719f);
+            for (int i10 = 1; i10 < list.size(); i10++) {
+                RectF rectF2 = (RectF) list.get(i10);
+                if (rectF2.width() != 0.0f) {
+                    float f7 = rectF.bottom;
+                    int i11 = this.f25719f;
+                    float f10 = f7 + i11;
+                    float f11 = rectF2.top;
+                    if (f10 >= f11 - i11) {
+                        float f12 = rectF.left;
+                        if (f12 <= rectF2.right) {
+                            float f13 = rectF.right;
+                            float f14 = rectF2.left;
+                            if (f13 >= f14) {
+                                if (f12 != f14) {
+                                    super.lineTo(f12 - this.e, f11);
+                                    super.lineTo(rectF2.left - this.e, rectF2.top);
+                                }
+                                rectF = rectF2;
+                            }
+                        }
+                    }
+                    z10 = true;
+                    size = i10;
+                    break;
+                }
+            }
+            super.lineTo(rectF.left - this.e, rectF.bottom + this.f25719f);
+            super.lineTo(rectF.right + this.e, rectF.bottom + this.f25719f);
+            for (int i12 = size - 1; i12 >= 0; i12--) {
+                RectF rectF3 = (RectF) list.get(i12);
+                if (rectF3.width() != 0.0f) {
+                    float f15 = rectF.right;
+                    if (f15 != rectF3.right) {
+                        super.lineTo(f15 + this.e, rectF.top);
+                        super.lineTo(rectF3.right + this.e, rectF.top);
+                    }
+                    rectF = rectF3;
+                }
+            }
+            super.lineTo(rectF.right + this.e, rectF.top - this.f25719f);
+            super.close();
+            if (z10) {
+                b(list.subList(size, list.size()));
+            }
+        }
     }
 
     @Override
-    public void setVisibility(int i10) {
-        super.setVisibility(i10);
-        this.e = System.currentTimeMillis();
-        invalidate();
+    public void reset() {
+        super.reset();
+        if (Build.VERSION.SDK_INT >= 34 && this.f25718c) {
+            ArrayList arrayList = f25715g;
+            ArrayList arrayList2 = this.f25716a;
+            if (arrayList == null) {
+                f25715g = new ArrayList(arrayList2.size());
+            }
+            f25715g.addAll(arrayList2);
+            arrayList2.clear();
+            this.f25717b = false;
+        }
+    }
+
+    @Override
+    public final void rewind() {
+        super.rewind();
+        if (Build.VERSION.SDK_INT >= 34 && this.f25718c) {
+            ArrayList arrayList = f25715g;
+            ArrayList arrayList2 = this.f25716a;
+            if (arrayList == null) {
+                f25715g = new ArrayList(arrayList2.size());
+            }
+            f25715g.addAll(arrayList2);
+            arrayList2.clear();
+            this.f25717b = false;
+        }
+    }
+
+    public dr(int i10) {
+    }
+
+    @Override
+    public void addRect(float f7, float f10, float f11, float f12, Path.Direction direction) {
+        RectF rectF;
+        if (Build.VERSION.SDK_INT >= 34 && this.f25718c) {
+            ArrayList arrayList = this.f25716a;
+            if (arrayList.size() <= 0 || !((RectF) i2.o1.i(1, arrayList)).contains(f7, f10, f11, f12)) {
+                if (arrayList.size() > 0 && Math.abs(f10 - ((RectF) i2.o1.i(1, arrayList)).top) <= this.d && Math.abs(f12 - ((RectF) i2.o1.i(1, arrayList)).bottom) <= this.d) {
+                    ((RectF) i2.o1.i(1, arrayList)).union(f7, f10, f11, f12);
+                } else {
+                    ArrayList arrayList2 = f25715g;
+                    if (arrayList2 != null && arrayList2.size() > 0) {
+                        rectF = (RectF) f25715g.remove(0);
+                    } else {
+                        rectF = new RectF();
+                    }
+                    rectF.set(f7, f10, f11, f12);
+                    arrayList.add(rectF);
+                }
+                this.f25717b = false;
+                return;
+            }
+            return;
+        }
+        int i10 = this.e;
+        float f13 = f7 - i10;
+        int i11 = this.f25719f;
+        super.addRect(f13, f10 - i11, f11 + i10, f12 + i11, direction);
     }
 }

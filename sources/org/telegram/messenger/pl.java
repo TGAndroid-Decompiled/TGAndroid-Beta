@@ -1,28 +1,44 @@
 package org.telegram.messenger;
-public final class pl implements Runnable {
-    public final int f19264a;
-    public final UnconfirmedAuthController f19265b;
 
-    public pl(UnconfirmedAuthController unconfirmedAuthController, int i10) {
-        this.f19264a = i10;
-        this.f19265b = unconfirmedAuthController;
+import org.telegram.messenger.UnconfirmedAuthController;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class pl implements Runnable {
+    public final int f19331a;
+    public final UnconfirmedAuthController.UnconfirmedAuth f19332b;
+    public final TLObject f19333c;
+    public final Utilities.Callback d;
+    public final TLRPC.TL_error e;
+
+    public pl(UnconfirmedAuthController.UnconfirmedAuth unconfirmedAuth, Utilities.Callback callback, TLObject tLObject, TLRPC.TL_error tL_error) {
+        this.f19331a = 1;
+        this.f19332b = unconfirmedAuth;
+        this.f19333c = tLObject;
+        this.d = callback;
+        this.e = tL_error;
     }
 
     @Override
     public final void run() {
-        switch (this.f19264a) {
+        switch (this.f19331a) {
             case 0:
-                UnconfirmedAuthController.h(this.f19265b);
+                this.f19332b.lambda$confirm$1(this.d, this.f19333c, this.e);
                 return;
             case 1:
-                UnconfirmedAuthController.a(this.f19265b);
-                return;
-            case 2:
-                UnconfirmedAuthController.d(this.f19265b);
+                this.f19332b.lambda$deny$3(this.f19333c, this.d, this.e);
                 return;
             default:
-                UnconfirmedAuthController.f(this.f19265b);
+                this.f19332b.lambda$deny$5(this.d, this.f19333c, this.e);
                 return;
         }
+    }
+
+    public pl(UnconfirmedAuthController.UnconfirmedAuth unconfirmedAuth, Utilities.Callback callback, TLObject tLObject, TLRPC.TL_error tL_error, int i10) {
+        this.f19331a = i10;
+        this.f19332b = unconfirmedAuth;
+        this.d = callback;
+        this.f19333c = tLObject;
+        this.e = tL_error;
     }
 }

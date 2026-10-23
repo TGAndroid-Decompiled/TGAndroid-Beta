@@ -10,21 +10,21 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.im0;
-public abstract class p3 extends im0 {
+import org.telegram.ui.Components.lm0;
+public abstract class p3 extends lm0 {
     public boolean d;
-    public String f9583f;
+    public String f9597f;
     public String h;
-    public TLRPC.User f9584n;
-    public boolean f9585r;
-    public final q3 f9587w;
-    public final ArrayList f9582c = new ArrayList();
+    public TLRPC.User f9598n;
+    public boolean f9599r;
+    public final q3 f9601w;
+    public final ArrayList f9596c = new ArrayList();
     public int e = -1;
-    public final ColorDrawable f9586s = new ColorDrawable(285212671);
+    public final ColorDrawable f9600s = new ColorDrawable(285212671);
     public final com.google.firebase.messaging.s v = new com.google.firebase.messaging.s(this, 17);
 
     public p3(q3 q3Var) {
-        this.f9587w = q3Var;
+        this.f9601w = q3Var;
     }
 
     @Override
@@ -33,28 +33,28 @@ public abstract class p3 extends im0 {
     }
 
     public final void E() {
-        int i10 = this.f9587w.f9621a;
+        int i10 = this.f9601w.f9637a;
         if (!this.d) {
             this.d = true;
             F(true);
             MessagesController messagesController = MessagesController.getInstance(i10);
             String str = messagesController.imageSearchBot;
-            if (this.f9584n == null) {
+            if (this.f9598n == null) {
                 TLObject userOrChat = messagesController.getUserOrChat(str);
                 if (userOrChat instanceof TLRPC.User) {
-                    this.f9584n = (TLRPC.User) userOrChat;
+                    this.f9598n = (TLRPC.User) userOrChat;
                 }
             }
-            TLRPC.User user = this.f9584n;
-            if (user == null && !this.f9585r) {
+            TLRPC.User user = this.f9598n;
+            if (user == null && !this.f9599r) {
                 TLRPC.TL_contacts_resolveUsername tL_contacts_resolveUsername = new TLRPC.TL_contacts_resolveUsername();
                 tL_contacts_resolveUsername.username = str;
                 this.e = ConnectionsManager.getInstance(i10).sendRequest(tL_contacts_resolveUsername, new ai.g(13, this, messagesController));
             } else if (user == null) {
             } else {
                 TLRPC.TL_messages_getInlineBotResults tL_messages_getInlineBotResults = new TLRPC.TL_messages_getInlineBotResults();
-                tL_messages_getInlineBotResults.bot = messagesController.getInputUser(this.f9584n);
-                String str2 = this.f9583f;
+                tL_messages_getInlineBotResults.bot = messagesController.getInputUser(this.f9598n);
+                String str2 = this.f9597f;
                 String str3 = "";
                 if (str2 == null) {
                     str2 = "";
@@ -75,15 +75,15 @@ public abstract class p3 extends im0 {
 
     @Override
     public final int h() {
-        return this.f9582c.size();
+        return this.f9596c.size();
     }
 
     @Override
     public final void v(s4.b1 b1Var, int i10) {
-        org.telegram.ui.Components.w9 w9Var = (org.telegram.ui.Components.w9) b1Var.f45921a;
-        TLObject tLObject = (TLObject) this.f9582c.get(i10);
+        org.telegram.ui.Components.w9 w9Var = (org.telegram.ui.Components.w9) b1Var.f46343a;
+        TLObject tLObject = (TLObject) this.f9596c.get(i10);
         boolean z10 = tLObject instanceof TLRPC.Document;
-        ColorDrawable colorDrawable = this.f9586s;
+        ColorDrawable colorDrawable = this.f9600s;
         if (z10) {
             w9Var.h(ImageLocation.getForDocument((TLRPC.Document) tLObject), "200_200", colorDrawable, null);
         } else if (tLObject instanceof TLRPC.Photo) {
@@ -104,6 +104,6 @@ public abstract class p3 extends im0 {
 
     @Override
     public final s4.b1 x(ViewGroup viewGroup, int i10) {
-        return new s4.b1(new ai.c7(this.f9587w.getContext(), 1));
+        return new s4.b1(new ai.c7(this.f9601w.getContext(), 1));
     }
 }

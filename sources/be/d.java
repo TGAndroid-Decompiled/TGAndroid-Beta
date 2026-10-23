@@ -1,9 +1,9 @@
 package be;
 public final class d implements k {
-    public final c[] f4266a;
+    public final c[] f4273a;
 
     public d(c[] cVarArr) {
-        this.f4266a = cVarArr;
+        this.f4273a = cVarArr;
     }
 
     @Override
@@ -12,8 +12,8 @@ public final class d implements k {
     }
 
     public final void b() {
-        for (c cVar : this.f4266a) {
-            p0 p0Var = cVar.f4264f;
+        for (c cVar : this.f4273a) {
+            p0 p0Var = cVar.f4271f;
             if (p0Var != null) {
                 p0Var.dispose();
             } else {
@@ -24,6 +24,6 @@ public final class d implements k {
     }
 
     public final String toString() {
-        return "DisposeHandlersOnCancel[" + this.f4266a + ']';
+        return "DisposeHandlersOnCancel[" + this.f4273a + ']';
     }
 }

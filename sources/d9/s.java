@@ -1,12 +1,12 @@
 package d9;
 public abstract class s implements m {
-    public static final o f7894a;
-    public static final s[] f7895b;
+    public static final o f7906a;
+    public static final s[] f7907b;
 
     static {
         o oVar = new o();
-        f7894a = oVar;
-        f7895b = new s[]{oVar, new s() {
+        f7906a = oVar;
+        f7907b = new s[]{oVar, new s() {
             @Override
             public final boolean apply(Object obj) {
                 return false;
@@ -50,6 +50,6 @@ public abstract class s implements m {
     }
 
     public static s[] values() {
-        return (s[]) f7895b.clone();
+        return (s[]) f7907b.clone();
     }
 }

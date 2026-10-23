@@ -10,15 +10,15 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.R;
 import org.telegram.messenger.XiaomiUtilities;
 public final class lu extends iu {
-    public Drawable f28280c;
+    public Drawable f28425c;
     public final int d;
     public final qu e;
 
-    public lu(qu quVar, Context context, org.telegram.ui.ActionBar.d6 d6Var, int i10) {
-        super(context, d6Var);
+    public lu(qu quVar, Context context, org.telegram.ui.ActionBar.g6 g6Var, int i10) {
+        super(context, g6Var);
         this.e = quVar;
         this.d = i10;
-        this.f28280c = null;
+        this.f28425c = null;
     }
 
     @Override
@@ -36,10 +36,10 @@ public final class lu extends iu {
             } else {
                 z10 = false;
             }
-            org.telegram.ui.qn.n8(menu, null, z10, true, true, true);
+            org.telegram.ui.sn.n8(menu, null, z10, true, true, true);
             return;
         }
-        quVar.i(menu);
+        quVar.i(actionMode, menu);
     }
 
     @Override
@@ -61,8 +61,8 @@ public final class lu extends iu {
         boolean z10;
         super.onSelectionChanged(i10, i11);
         qu quVar = this.e;
-        om0 om0Var = quVar.f29716c;
-        if (om0Var != null) {
+        rm0 rm0Var = quVar.f29991c;
+        if (rm0Var != null) {
             boolean z11 = false;
             if (i11 != i10) {
                 z10 = true;
@@ -73,15 +73,15 @@ public final class lu extends iu {
                 XiaomiUtilities.isMIUI();
                 z11 = true;
             }
-            if (quVar.f29718n != z11) {
-                quVar.f29718n = z11;
+            if (quVar.f29993n != z11) {
+                quVar.f29993n = z11;
                 if (z11) {
-                    this.f28280c = om0Var.d;
-                    om0Var.a(R.drawable.msg_edit, true);
+                    this.f28425c = rm0Var.d;
+                    rm0Var.a(R.drawable.msg_edit, true);
                     return;
                 }
-                om0Var.b(this.f28280c, true);
-                this.f28280c = null;
+                rm0Var.b(this.f28425c, true);
+                this.f28425c = null;
             }
         }
     }
@@ -93,9 +93,9 @@ public final class lu extends iu {
         qu quVar = this.e;
         if (quVar.e && motionEvent.getAction() == 0) {
             quVar.u();
-            if (quVar.f29722x && (muVar = quVar.d) != null) {
+            if (quVar.f29997x && (muVar = quVar.d) != null) {
                 muVar.u(false);
-                quVar.f29722x = false;
+                quVar.f29997x = false;
                 quVar.k(true);
                 AndroidUtilities.showKeyboard(this);
             } else {

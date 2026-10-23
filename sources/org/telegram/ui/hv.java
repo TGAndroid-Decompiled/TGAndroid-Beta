@@ -1,161 +1,28 @@
 package org.telegram.ui;
 
-import android.content.Intent;
-import android.net.Uri;
-import android.view.View;
-import android.view.ViewGroup;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.XiaomiUtilities;
-import org.telegram.ui.Components.UndoView;
-public final class hv implements org.telegram.ui.Components.jr0, org.telegram.ui.Components.yl0, org.telegram.ui.Components.zl0, v00, org.telegram.ui.ActionBar.a2, r0.n, org.telegram.ui.Components.ll0 {
-    public final int f37807a;
-    public final cy f37808b;
+import org.telegram.tgnet.TLRPC;
+public final class hv implements Runnable {
+    public final int f37971a;
+    public final ey f37972b;
+    public final TLRPC.TL_attachMenuBot f37973c;
+    public final LaunchActivity d;
 
-    public hv(cy cyVar, int i10) {
-        this.f37807a = i10;
-        this.f37808b = cyVar;
+    public hv(ey eyVar, TLRPC.TL_attachMenuBot tL_attachMenuBot, LaunchActivity launchActivity, int i10) {
+        this.f37971a = i10;
+        this.f37972b = eyVar;
+        this.f37973c = tL_attachMenuBot;
+        this.d = launchActivity;
     }
 
     @Override
-    public r0.k1 B0(View view, r0.k1 k1Var) {
-        UndoView[] undoViewArr;
-        cy cyVar = this.f37808b;
-        cyVar.v.j(k1Var);
-        i0.b defaultWindowInsets = AndroidUtilities.getDefaultWindowInsets(k1Var, false);
-        cyVar.f36106f4 = defaultWindowInsets.f12284b;
-        cyVar.f36111g4 = defaultWindowInsets.d;
-        int i10 = k1Var.f44839a.f(8).d;
-        if (cyVar.f36116h4 != i10) {
-            cyVar.f36116h4 = i10;
-            cyVar.fragmentView.requestLayout();
-        }
-        cyVar.F0.setPadding(0, cyVar.f36106f4, 0, 0);
-        cyVar.V4();
-        for (UndoView undoView : cyVar.f36199y0) {
-            if (undoView != null) {
-                int i11 = cyVar.f36111g4 + cyVar.f36121i4;
-                ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) undoView.getLayoutParams();
-                if (marginLayoutParams != null && marginLayoutParams.bottomMargin != i11) {
-                    marginLayoutParams.bottomMargin = i11;
-                    undoView.setLayoutParams(marginLayoutParams);
-                }
-            }
-        }
-        ww wwVar = cyVar.G3;
-        if (wwVar != null) {
-            r0.i0.b(wwVar, k1Var);
-        }
-        return r0.k1.f44838b;
-    }
-
-    @Override
-    public boolean P0(View view) {
-        switch (this.f37807a) {
-            case 1:
-                return false;
-            case 2:
-                return false;
+    public final void run() {
+        switch (this.f37971a) {
+            case 0:
+                ey.r0(this.f37972b, this.f37973c, this.d);
+                return;
             default:
-                return false;
-        }
-    }
-
-    @Override
-    public boolean a(int i10, View view) {
-        cy.G0(this.f37808b, i10);
-        return false;
-    }
-
-    @Override
-    public void a0(View view, float f7, float f10) {
-        int i10 = this.f37807a;
-    }
-
-    @Override
-    public void b() {
-        cy cyVar = this.f37808b;
-        cyVar.Q = true;
-        cyVar.fragmentView.invalidate();
-    }
-
-    @Override
-    public void d(float r7, float r8, int r9, android.view.View r10) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.hv.d(float, float, int, android.view.View):void");
-    }
-
-    @Override
-    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f37807a) {
-            case 6:
-                cy.g0(this.f37808b);
+                ey.f0(this.f37972b, this.f37973c, this.d);
                 return;
-            case 7:
-            default:
-                cy cyVar = this.f37808b;
-                cyVar.getMessagesController().hidePromoDialog();
-                cyVar.Z3(false);
-                return;
-            case 8:
-                cy cyVar2 = this.f37808b;
-                cyVar2.getClass();
-                Intent permissionManagerIntent = XiaomiUtilities.getPermissionManagerIntent();
-                if (permissionManagerIntent != null) {
-                    try {
-                        try {
-                            cyVar2.getParentActivity().startActivity(permissionManagerIntent);
-                            return;
-                        } catch (Exception unused) {
-                            Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-                            intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
-                            cyVar2.getParentActivity().startActivity(intent);
-                            return;
-                        }
-                    } catch (Exception e) {
-                        FileLog.e(e);
-                        return;
-                    }
-                }
-                return;
-            case 9:
-                cy cyVar3 = this.f37808b;
-                cyVar3.getClass();
-                Intent intent2 = new Intent("android.settings.MANAGE_APP_USE_FULL_SCREEN_INTENT");
-                intent2.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
-                try {
-                    cyVar3.getParentActivity().startActivity(intent2);
-                    return;
-                } catch (Exception e7) {
-                    FileLog.e(e7);
-                    return;
-                }
         }
-    }
-
-    public void h(int i10) {
-        mw mwVar = this.f37808b.B1;
-        if (mwVar == null) {
-            return;
-        }
-        if (i10 == 0) {
-            mwVar.o0(true);
-        } else {
-            mwVar.u1(true, false);
-        }
-    }
-
-    public void i(boolean z10, ArrayList arrayList, ArrayList arrayList2, boolean z11) {
-        this.f37808b.U4(z10, arrayList, arrayList2, z11, true);
-    }
-
-    private final void c(View view, float f7, float f10) {
-    }
-
-    private final void e(View view, float f7, float f10) {
-    }
-
-    private final void f(View view, float f7, float f10) {
     }
 }

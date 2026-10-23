@@ -3,16 +3,17 @@ package j9;
 import java.util.concurrent.Callable;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.concurrent.locks.LockSupport;
+import si.o0;
 public final class f0 extends AtomicReference implements Runnable {
-    public static final androidx.emoji2.text.n f14339c = new androidx.emoji2.text.n(2);
+    public static final androidx.emoji2.text.n f14384c = new androidx.emoji2.text.n(2);
     public static final androidx.emoji2.text.n d = new androidx.emoji2.text.n(2);
-    public final Callable f14340a;
-    public final g0 f14341b;
+    public final Callable f14385a;
+    public final g0 f14386b;
 
     public f0(g0 g0Var, Callable callable) {
-        this.f14341b = g0Var;
+        this.f14386b = g0Var;
         callable.getClass();
-        this.f14340a = callable;
+        this.f14385a = callable;
     }
 
     public final void a(Thread thread) {
@@ -54,12 +55,12 @@ public final class f0 extends AtomicReference implements Runnable {
         Thread currentThread = Thread.currentThread();
         Object obj = null;
         if (compareAndSet(null, currentThread)) {
-            g0 g0Var = this.f14341b;
+            g0 g0Var = this.f14386b;
             boolean isDone = g0Var.isDone();
-            androidx.emoji2.text.n nVar = f14339c;
+            androidx.emoji2.text.n nVar = f14384c;
             if (!isDone) {
                 try {
-                    obj = this.f14340a.call();
+                    obj = this.f14385a.call();
                 } catch (Throwable th2) {
                     try {
                         if (th2 instanceof InterruptedException) {
@@ -90,7 +91,7 @@ public final class f0 extends AtomicReference implements Runnable {
     public final String toString() {
         String str;
         Runnable runnable = (Runnable) get();
-        if (runnable == f14339c) {
+        if (runnable == f14384c) {
             str = "running=[DONE]";
         } else if (runnable instanceof x) {
             str = "running=[INTERRUPTED]";
@@ -99,8 +100,8 @@ public final class f0 extends AtomicReference implements Runnable {
         } else {
             str = "running=[NOT STARTED YET]";
         }
-        StringBuilder i10 = r4.c.i(str, ", ");
-        i10.append(this.f14340a.toString());
+        StringBuilder i10 = o0.i(str, ", ");
+        i10.append(this.f14385a.toString());
         return i10.toString();
     }
 }

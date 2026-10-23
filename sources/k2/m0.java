@@ -5,8 +5,8 @@ import java.nio.ByteOrder;
 import java.util.Arrays;
 import v7.u6;
 public final class m0 extends c2.o {
-    public int[] f14754i;
-    public int[] f14755j;
+    public int[] f14800i;
+    public int[] f14801j;
 
     @Override
     public final void c(ByteBuffer byteBuffer) {
@@ -14,15 +14,15 @@ public final class m0 extends c2.o {
         boolean z10;
         int i11;
         int i12;
-        int[] iArr = this.f14755j;
+        int[] iArr = this.f14801j;
         iArr.getClass();
         int position = byteBuffer.position();
         int limit = byteBuffer.limit();
-        ByteBuffer l4 = l(((limit - position) / this.f4519b.d) * this.f4520c.d);
+        ByteBuffer l4 = l(((limit - position) / this.f4523b.d) * this.f4524c.d);
         while (position < limit) {
             for (int i13 : iArr) {
-                int u10 = (e2.m0.u(this.f4519b.f4515c) * i13) + position;
-                int i14 = this.f4519b.f4515c;
+                int u10 = (e2.m0.u(this.f4523b.f4519c) * i13) + position;
+                int i14 = this.f4523b.f4519c;
                 if (i14 != 2) {
                     if (i14 != 3) {
                         if (i14 != 4) {
@@ -34,7 +34,7 @@ public final class m0 extends c2.o {
                                                 if (i14 == 1879048192) {
                                                     l4.putDouble(byteBuffer.getDouble(u10));
                                                 } else {
-                                                    throw new IllegalStateException("Unexpected encoding: " + this.f4519b.f4515c);
+                                                    throw new IllegalStateException("Unexpected encoding: " + this.f4523b.f4519c);
                                                 }
                                             }
                                         }
@@ -88,7 +88,7 @@ public final class m0 extends c2.o {
                 }
                 l4.putShort(byteBuffer.getShort(u10));
             }
-            position += this.f4519b.d;
+            position += this.f4523b.d;
         }
         byteBuffer.position(limit);
         l4.flip();
@@ -98,12 +98,12 @@ public final class m0 extends c2.o {
     public final c2.k h(c2.k kVar) {
         boolean z10;
         boolean z11;
-        int i10 = kVar.f4515c;
-        int[] iArr = this.f14754i;
+        int i10 = kVar.f4519c;
+        int[] iArr = this.f14800i;
         if (iArr == null) {
             return c2.k.e;
         }
-        int i11 = kVar.f4514b;
+        int i11 = kVar.f4518b;
         if (e2.m0.M(i10)) {
             if (i11 != iArr.length) {
                 z10 = true;
@@ -124,7 +124,7 @@ public final class m0 extends c2.o {
                 }
             }
             if (z10) {
-                return new c2.k(kVar.f4513a, iArr.length, i10);
+                return new c2.k(kVar.f4517a, iArr.length, i10);
             }
             return c2.k.e;
         }
@@ -133,12 +133,12 @@ public final class m0 extends c2.o {
 
     @Override
     public final void i() {
-        this.f14755j = this.f14754i;
+        this.f14801j = this.f14800i;
     }
 
     @Override
     public final void k() {
-        this.f14755j = null;
-        this.f14754i = null;
+        this.f14801j = null;
+        this.f14800i = null;
     }
 }

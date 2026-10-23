@@ -1,9 +1,9 @@
 package x7;
 public final class t3 implements ja.d {
-    public static final t3 f49556a = new Object();
+    public static final t3 f49998a = new Object();
 
     static {
-        r4.c.s(r4.c.m(c0.class, new z(1)));
+        si.o0.s(si.o0.m(c0.class, new z(1)));
     }
 
     @Override

@@ -1,62 +1,23 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.drawable.BitmapDrawable;
-import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-public final class qf0 extends AnimatorListenerAdapter {
-    public final int f40565a;
-    public final rf0 f40566b;
+public final class qf0 implements Runnable {
+    public final int f40798a;
+    public final u3 f40799b;
 
-    public qf0(rf0 rf0Var, int i10) {
-        this.f40565a = i10;
-        this.f40566b = rf0Var;
+    public qf0(u3 u3Var, int i10) {
+        this.f40798a = i10;
+        this.f40799b = u3Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f40565a) {
+    public final void run() {
+        switch (this.f40798a) {
             case 0:
-                if (AndroidUtilities.isAccessibilityTouchExplorationEnabled()) {
-                    this.f40566b.h.requestFocus();
-                    return;
-                }
+                this.f40799b.run("CANCELLED");
                 return;
             default:
-                rf0 rf0Var = this.f40566b;
-                if (rf0Var.getParent() instanceof ViewGroup) {
-                    ((ViewGroup) rf0Var.getParent()).removeView(rf0Var);
-                }
-                rf0Var.f41207c.setVisibility(0);
-                return;
-        }
-    }
-
-    @Override
-    public void onAnimationStart(Animator animator) {
-        switch (this.f40565a) {
-            case 0:
-                rf0 rf0Var = this.f40566b;
-                rf0Var.f41207c.setVisibility(8);
-                int measuredWidth = (int) (rf0Var.f41206b.getMeasuredWidth() / 10.0f);
-                int measuredHeight = (int) (rf0Var.f41206b.getMeasuredHeight() / 10.0f);
-                Bitmap createBitmap = Bitmap.createBitmap(measuredWidth, measuredHeight, Bitmap.Config.ARGB_8888);
-                Canvas canvas = new Canvas(createBitmap);
-                canvas.scale(0.1f, 0.1f);
-                canvas.drawColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20994d6, false));
-                rf0Var.f41206b.draw(canvas);
-                Utilities.stackBlurBitmap(createBitmap, Math.max(8, Math.max(measuredWidth, measuredHeight) / 150));
-                rf0Var.d.setBackground(new BitmapDrawable(rf0Var.getContext().getResources(), createBitmap));
-                rf0Var.d.setAlpha(0.0f);
-                rf0Var.d.setVisibility(0);
-                rf0Var.f41206b.addView(rf0Var);
-                return;
-            default:
-                super.onAnimationStart(animator);
+                AndroidUtilities.runOnUIThread(new qf0(this.f40799b, 0));
                 return;
         }
     }

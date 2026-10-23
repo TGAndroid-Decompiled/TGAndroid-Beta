@@ -6,12 +6,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 public final class f {
-    public final int f14053a;
-    public final List f14054b;
+    public final int f14098a;
+    public final List f14099b;
 
     public f(int i10, List list) {
-        this.f14053a = i10;
-        this.f14054b = list;
+        this.f14098a = i10;
+        this.f14099b = list;
     }
 
     public j4.g0 a(int r6, j6.l r7) {
@@ -25,14 +25,14 @@ public final class f {
         List list;
         boolean z11;
         boolean c10 = c(32);
-        List list2 = this.f14054b;
+        List list2 = this.f14099b;
         if (c10) {
             return list2;
         }
         e2.x xVar = new e2.x((byte[]) lVar.d);
         while (xVar.a() > 0) {
             int A = xVar.A();
-            int A2 = xVar.f8292b + xVar.A();
+            int A2 = xVar.f8299b + xVar.A();
             if (A == 134) {
                 ArrayList arrayList = new ArrayList();
                 int A3 = xVar.A() & 31;
@@ -59,16 +59,16 @@ public final class f {
                         } else {
                             z11 = false;
                         }
-                        byte[] bArr = e2.g.f8226a;
+                        byte[] bArr = e2.g.f8233a;
                         list = Collections.singletonList(z11 ? new byte[]{1} : new byte[]{0});
                     } else {
                         list = null;
                     }
                     b2.v vVar = new b2.v();
-                    vVar.f4075r = v0.n(str);
+                    vVar.f4082r = v0.n(str);
                     vVar.d = y3;
                     vVar.O = i10;
-                    vVar.f4078u = list;
+                    vVar.f4085u = list;
                     arrayList.add(new b2.w(vVar));
                 }
                 list2 = arrayList;
@@ -79,19 +79,19 @@ public final class f {
     }
 
     public boolean c(int i10) {
-        if ((i10 & this.f14053a) != 0) {
+        if ((i10 & this.f14098a) != 0) {
             return true;
         }
         return false;
     }
 
     public f() {
-        this.f14053a = 1;
-        this.f14054b = Collections.singletonList(null);
+        this.f14098a = 1;
+        this.f14099b = Collections.singletonList(null);
     }
 
     public f(ArrayList arrayList) {
-        this.f14053a = 0;
-        this.f14054b = arrayList;
+        this.f14098a = 0;
+        this.f14099b = arrayList;
     }
 }

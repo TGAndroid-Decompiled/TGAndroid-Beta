@@ -1,70 +1,180 @@
 package org.telegram.ui.ActionBar;
 
-import android.animation.ValueAnimator;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RadialGradient;
+import android.graphics.Rect;
 import android.graphics.RectF;
-import android.graphics.Shader;
+import android.text.TextUtils;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.bs;
-import org.telegram.ui.Components.yc;
-public final class v3 {
-    public final RectF f21790a = new RectF();
-    public final w3 f21791b;
-    public final m3 f21792c;
-    public final k3 d;
-    public final Paint e;
-    public final Matrix f21793f;
-    public final float[] f21794g;
-    public final float[] h;
-    public float f21795i;
-    public ValueAnimator f21796j;
-    public final yc f21797k;
-    public final Paint f21798l;
-    public final RectF f21799m;
-    public final Path f21800n;
-    public final Paint f21801o;
-    public final RadialGradient f21802p;
-    public final Matrix f21803q;
-    public final Paint f21804r;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class v3 extends j1.b {
+    public final Rect f21925o;
+    public final z3 f21926p;
 
-    public v3(w3 w3Var, m3 m3Var, k3 k3Var) {
-        Paint paint = new Paint(1);
-        this.e = paint;
-        this.f21793f = new Matrix();
-        this.f21794g = new float[8];
-        this.h = new float[8];
-        this.f21795i = 0.0f;
-        this.f21798l = new Paint(1);
-        this.f21799m = new RectF();
-        this.f21800n = new Path();
-        this.f21801o = new Paint(3);
-        this.f21802p = new RadialGradient(0.0f, 0.0f, 255.0f, new int[]{0, 805306368}, new float[]{0.5f, 1.0f}, Shader.TileMode.CLAMP);
-        this.f21803q = new Matrix();
-        this.f21804r = new Paint(1);
-        this.f21791b = w3Var;
-        this.f21792c = m3Var;
-        this.d = k3Var;
-        this.f21797k = new yc(w3Var);
-        paint.setColor(m3Var.f21600r);
+    public v3(z3 z3Var, z3 z3Var2) {
+        super(z3Var2);
+        this.f21926p = z3Var;
+        this.f21925o = new Rect();
     }
 
-    public final void a(float f7) {
-        ValueAnimator valueAnimator = this.f21796j;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
+    @Override
+    public final int g(float f7, float f10) {
+        z3 z3Var = this.f21926p;
+        ArrayList arrayList = z3Var.R;
+        if (z3Var.V >= 0.5f) {
+            org.telegram.ui.Cells.y yVar = z3Var.f22034i0;
+            if (yVar != null && yVar.getBounds().contains((int) f7, (int) f10)) {
+                return 1;
+            }
+            for (int size = arrayList.size() - 1; size >= 0; size--) {
+                y3 y3Var = (y3) arrayList.get(size);
+                float f11 = y3Var.f21981i;
+                RectF rectF = y3Var.f21976a;
+                if (Math.abs(f11) < 0.4f && rectF.contains(f7, f10)) {
+                    Rect bounds = y3Var.d.f21658l.getBounds();
+                    if (!bounds.isEmpty() && bounds.contains((int) (f7 - rectF.left), (int) ((f10 - rectF.top) - AndroidUtilities.dp(24.0f)))) {
+                        return size + 2000;
+                    }
+                    return size + 1000;
+                }
+            }
+            return -1;
         }
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.f21795i, f7);
-        this.f21796j = ofFloat;
-        ofFloat.addUpdateListener(new v0(this, 5));
-        this.f21796j.addListener(new y0(this, f7, 1));
-        if (Math.abs(f7) < 0.1f) {
-            AndroidUtilities.applySpring(this.f21796j, 285.0d, 20.0d);
+        return -1;
+    }
+
+    @Override
+    public final void h(ArrayList arrayList) {
+        z3 z3Var = this.f21926p;
+        ArrayList arrayList2 = z3Var.R;
+        if (z3Var.V >= 0.5f) {
+            org.telegram.ui.Cells.y yVar = z3Var.f22034i0;
+            if (yVar != null && !yVar.getBounds().isEmpty()) {
+                arrayList.add(1);
+            }
+            for (int i10 = 0; i10 < arrayList2.size(); i10++) {
+                y3 y3Var = (y3) arrayList2.get(i10);
+                if (Math.abs(y3Var.f21981i) < 0.4f && !y3Var.f21976a.isEmpty()) {
+                    arrayList.add(Integer.valueOf(i10 + 1000));
+                    n3 n3Var = y3Var.d;
+                    if (n3Var != null && !n3Var.f21658l.getBounds().isEmpty()) {
+                        arrayList.add(Integer.valueOf(i10 + 2000));
+                    }
+                }
+            }
+        }
+    }
+
+    @Override
+    public final boolean k(int i10, int i11) {
+        int i12;
+        boolean z10;
+        z3 z3Var = this.f21926p;
+        ArrayList arrayList = z3Var.R;
+        if (i11 == 16) {
+            if (i10 == 1) {
+                q3 q3Var = z3Var.f22022a;
+                if (q3Var != null) {
+                    q3Var.f();
+                }
+                z3Var.a(false);
+                return true;
+            }
+            if (i10 >= 2000) {
+                i12 = i10 - 2000;
+                z10 = true;
+            } else if (i10 >= 1000) {
+                i12 = i10 - 1000;
+                z10 = false;
+            }
+            if (i12 >= 0 && i12 < arrayList.size()) {
+                y3 y3Var = (y3) arrayList.get(i12);
+                if (z10) {
+                    q3 q3Var2 = z3Var.f22022a;
+                    if (q3Var2 != null) {
+                        q3Var2.g(y3Var.f21978c, new m3(2, this, y3Var));
+                        return true;
+                    }
+                } else if (z3Var.f22022a != null) {
+                    z3Var.a(false);
+                    y3Var.getClass();
+                    z3Var.f22022a.e(y3Var.f21978c);
+                }
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public final void l(int i10, s0.d dVar) {
+        int i11;
+        boolean z10;
+        String str;
+        String str2;
+        String str3;
+        z3 z3Var = this.f21926p;
+        ArrayList arrayList = z3Var.R;
+        dVar.i("android.widget.Button");
+        dVar.b(s0.c.f46294c);
+        Rect rect = this.f21925o;
+        if (i10 == 1) {
+            org.telegram.ui.Cells.y yVar = z3Var.f22034i0;
+            if (yVar != null) {
+                rect.set(yVar.getBounds());
+            } else {
+                rect.set(0, 0, 1, 1);
+                dVar.p(false);
+            }
+            dVar.h(rect);
+            dVar.j(LocaleController.getString(R.string.BotCloseAllTabs));
+            return;
+        }
+        if (i10 >= 2000) {
+            i11 = i10 - 2000;
+            z10 = true;
+        } else if (i10 >= 1000) {
+            i11 = i10 - 1000;
+            z10 = false;
         } else {
-            this.f21796j.setInterpolator(bs.h);
+            rect.set(0, 0, 1, 1);
+            dVar.h(rect);
+            dVar.p(false);
+            return;
         }
-        this.f21796j.start();
+        if (i11 >= 0 && i11 < arrayList.size()) {
+            y3 y3Var = (y3) arrayList.get(i11);
+            p3 p3Var = y3Var.f21978c;
+            RectF rectF = y3Var.f21976a;
+            if (p3Var != null && p3Var.b() != null) {
+                str = y3Var.f21978c.b();
+            } else {
+                str = "";
+            }
+            if (z10) {
+                Rect bounds = y3Var.d.f21658l.getBounds();
+                rect.set((int) (rectF.left + bounds.left), (int) (rectF.top + AndroidUtilities.dp(24.0f) + bounds.top), (int) (rectF.left + bounds.right), (int) (rectF.top + AndroidUtilities.dp(24.0f) + bounds.bottom));
+                dVar.h(rect);
+                if (TextUtils.isEmpty(str)) {
+                    str3 = LocaleController.getString(R.string.Close);
+                } else {
+                    str3 = LocaleController.getString(R.string.Close) + ", " + str;
+                }
+                dVar.j(str3);
+                return;
+            }
+            rect.set((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
+            dVar.h(rect);
+            if (TextUtils.isEmpty(str)) {
+                str2 = LocaleController.getString(R.string.Open);
+            } else {
+                str2 = LocaleController.getString(R.string.Open) + ", " + str;
+            }
+            dVar.j(str2);
+            return;
+        }
+        rect.set(0, 0, 1, 1);
+        dVar.h(rect);
+        dVar.p(false);
     }
 }

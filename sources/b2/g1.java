@@ -3,15 +3,15 @@ package b2;
 import android.os.Bundle;
 import v7.u6;
 public abstract class g1 {
-    public static final String f3768a;
+    public static final String f3775a;
 
     static {
-        String str = e2.m0.f8252a;
-        f3768a = Integer.toString(0, 36);
+        String str = e2.m0.f8259a;
+        f3775a = Integer.toString(0, 36);
     }
 
     public static g1 a(Bundle bundle) {
-        String str = f3768a;
+        String str = f3775a;
         int i10 = bundle.getInt(str, -1);
         boolean z10 = false;
         boolean z11 = true;
@@ -29,7 +29,7 @@ public abstract class g1 {
                         }
                         return new j1();
                     }
-                    throw new IllegalArgumentException(i2.e.j(i10, "Unknown RatingType: "));
+                    throw new IllegalArgumentException(i2.o1.k(i10, "Unknown RatingType: "));
                 }
                 String str3 = h1.d;
                 if (bundle.getInt(str, -1) == 2) {
@@ -43,12 +43,12 @@ public abstract class g1 {
                 }
                 return new h1(i11, f7);
             }
-            String str4 = x0.f4140c;
+            String str4 = x0.f4147c;
             if (bundle.getInt(str, -1) == 1) {
                 z10 = true;
             }
             u6.g(z10);
-            float f10 = bundle.getFloat(x0.f4140c, -1.0f);
+            float f10 = bundle.getFloat(x0.f4147c, -1.0f);
             if (f10 == -1.0f) {
                 return new x0();
             }

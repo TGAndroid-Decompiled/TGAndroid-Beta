@@ -24,7 +24,7 @@ public final class j0 {
                 str2 = str2 + " [" + TextUtils.join(", ", objArr) + "]";
             }
         }
-        return a1.g.C(str, " : ", str2);
+        return a1.g.D(str, " : ", str2);
     }
 
     public final void a(RemoteException remoteException, String str, Object... objArr) {

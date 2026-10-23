@@ -1,29 +1,28 @@
 package org.telegram.ui;
 
-import android.view.View;
-public final class bk0 implements org.telegram.ui.Components.yl0, org.telegram.ui.ActionBar.a2 {
-    public final NotificationsSettingsActivity f35672a;
+import android.widget.ImageView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+public final class bk0 extends org.telegram.ui.Cells.r8 {
+    public ImageView W;
 
-    public bk0(NotificationsSettingsActivity notificationsSettingsActivity) {
-        this.f35672a = notificationsSettingsActivity;
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        int dp;
+        super.onLayout(z10, i10, i11, i12, i13);
+        int i14 = i12 - i10;
+        if (LocaleController.isRTL) {
+            dp = AndroidUtilities.dp(17.0f);
+        } else {
+            dp = i14 - AndroidUtilities.dp(41.0f);
+        }
+        int A = org.telegram.messenger.sl.A(24.0f, i13 - i11, 2);
+        this.W.layout(dp, A, AndroidUtilities.dp(24.0f) + dp, AndroidUtilities.dp(24.0f) + A);
     }
 
     @Override
-    public boolean P0(View view) {
-        return false;
-    }
-
-    @Override
-    public void d(float f7, float f10, int i10, View view) {
-        NotificationsSettingsActivity.Y(this.f35672a, view, i10, f7);
-    }
-
-    @Override
-    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        NotificationsSettingsActivity.Z(this.f35672a);
-    }
-
-    @Override
-    public void a0(View view, float f7, float f10) {
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, i11);
+        this.W.measure(i10, i11);
     }
 }

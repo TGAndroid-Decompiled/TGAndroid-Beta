@@ -5,17 +5,17 @@ import android.os.Parcelable;
 import java.util.Arrays;
 public final class b0 extends o6.a {
     public static final Parcelable.Creator<b0> CREATOR = new r0(0);
-    public final n7.s0 f4930a;
-    public final String f4931b;
-    public final String f4932c;
+    public final n7.s0 f4935a;
+    public final String f4936b;
+    public final String f4937c;
     public final String d;
 
     public b0(String str, byte[] bArr, String str2, String str3) {
         n6.l.h(bArr);
-        this.f4930a = n7.s0.s(bArr.length, bArr);
+        this.f4935a = n7.s0.s(bArr.length, bArr);
         n6.l.h(str);
-        this.f4931b = str;
-        this.f4932c = str2;
+        this.f4936b = str;
+        this.f4937c = str2;
         n6.l.h(str3);
         this.d = str3;
     }
@@ -23,7 +23,7 @@ public final class b0 extends o6.a {
     public final boolean equals(Object obj) {
         if (obj instanceof b0) {
             b0 b0Var = (b0) obj;
-            if (n6.l.l(this.f4930a, b0Var.f4930a) && n6.l.l(this.f4931b, b0Var.f4931b) && n6.l.l(this.f4932c, b0Var.f4932c) && n6.l.l(this.d, b0Var.d)) {
+            if (n6.l.l(this.f4935a, b0Var.f4935a) && n6.l.l(this.f4936b, b0Var.f4936b) && n6.l.l(this.f4937c, b0Var.f4937c) && n6.l.l(this.d, b0Var.d)) {
                 return true;
             }
             return false;
@@ -32,14 +32,14 @@ public final class b0 extends o6.a {
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f4930a, this.f4931b, this.f4932c, this.d});
+        return Arrays.hashCode(new Object[]{this.f4935a, this.f4936b, this.f4937c, this.d});
     }
 
     public final String toString() {
-        StringBuilder v = a1.g.v("PublicKeyCredentialUserEntity{\n id=", u6.b.c(this.f4930a.t()), ", \n name='");
-        v.append(this.f4931b);
+        StringBuilder v = a1.g.v("PublicKeyCredentialUserEntity{\n id=", u6.b.c(this.f4935a.t()), ", \n name='");
+        v.append(this.f4936b);
         v.append("', \n icon='");
-        v.append(this.f4932c);
+        v.append(this.f4937c);
         v.append("', \n displayName='");
         return a1.g.s(v, this.d, "'}");
     }
@@ -47,9 +47,9 @@ public final class b0 extends o6.a {
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         int q6 = w7.f0.q(parcel, 20293);
-        w7.f0.c(parcel, 2, this.f4930a.t());
-        w7.f0.l(parcel, 3, this.f4931b);
-        w7.f0.l(parcel, 4, this.f4932c);
+        w7.f0.c(parcel, 2, this.f4935a.t());
+        w7.f0.l(parcel, 3, this.f4936b);
+        w7.f0.l(parcel, 4, this.f4937c);
         w7.f0.l(parcel, 5, this.d);
         w7.f0.r(parcel, q6);
     }

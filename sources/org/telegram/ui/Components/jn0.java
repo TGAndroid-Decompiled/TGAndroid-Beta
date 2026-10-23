@@ -1,47 +1,22 @@
 package org.telegram.ui.Components;
+public final class jn0 {
+    public static final jn0 f27717a;
+    public static final jn0 f27718b;
+    public static final jn0[] f27719c;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.accessibility.AccessibilityNodeInfo;
-import org.telegram.messenger.AndroidUtilities;
-public final class jn0 extends z5 {
-    public final f6 d;
-    public final int e;
-    public final ScrollSlidingTextTabStrip f27611f;
-
-    public jn0(ScrollSlidingTextTabStrip scrollSlidingTextTabStrip, Context context, int i10) {
-        super(context);
-        this.f27611f = scrollSlidingTextTabStrip;
-        this.e = i10;
-        this.d = new f6(this, 360L, bs.h);
+    static {
+        ?? r02 = new Enum("LINE", 0);
+        f27717a = r02;
+        ?? r12 = new Enum("TAB", 1);
+        f27718b = r12;
+        f27719c = new jn0[]{r02, r12};
     }
 
-    @Override
-    public final void onDraw(Canvas canvas) {
-        Canvas canvas2;
-        float e = this.d.e(this.f27611f.f24366n0);
-        int i10 = (e > 0.0f ? 1 : (e == 0.0f ? 0 : -1));
-        if (i10 > 0) {
-            canvas2 = canvas;
-            canvas2.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) (AndroidUtilities.lerp(1.0f, 0.5f, e) * 255.0f));
-        } else {
-            canvas2 = canvas;
-        }
-        super.onDraw(canvas2);
-        if (i10 > 0) {
-            canvas2.restore();
-        }
+    public static jn0 valueOf(String str) {
+        return (jn0) Enum.valueOf(jn0.class, str);
     }
 
-    @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        boolean z10;
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        if (this.f27611f.f24367r == this.e) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        accessibilityNodeInfo.setSelected(z10);
+    public static jn0[] values() {
+        return (jn0[]) f27719c.clone();
     }
 }

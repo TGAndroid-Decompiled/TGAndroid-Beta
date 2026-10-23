@@ -1,39 +1,119 @@
 package org.telegram.ui;
-public final class pd1 implements Runnable {
-    public final int f40200a;
-    public final re1 f40201b;
 
-    public pd1(re1 re1Var, int i10) {
-        this.f40200a = i10;
-        this.f40201b = re1Var;
+import android.os.Vibrator;
+import android.text.TextUtils;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_forum;
+public final class pd1 extends org.telegram.ui.ActionBar.j {
+    public final td1 f40454a;
+
+    public pd1(td1 td1Var) {
+        this.f40454a = td1Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f40200a) {
-            case 0:
-                re1 re1Var = this.f40201b;
-                re1Var.x0();
-                re1Var.B0();
+    public final void b(int i10) {
+        int i11;
+        org.telegram.ui.Cells.v8 v8Var;
+        org.telegram.ui.Cells.v8 v8Var2;
+        int i12;
+        String obj;
+        int i13;
+        td1 td1Var = this.f40454a;
+        if (i10 == -1) {
+            td1Var.finishFragment();
+            return;
+        }
+        String str = null;
+        if (i10 == 1) {
+            if (td1Var.e.getText() == null) {
+                obj = null;
+            } else {
+                obj = td1Var.e.getText().toString();
+            }
+            if (TextUtils.isEmpty(obj)) {
+                Vibrator vibrator = (Vibrator) td1Var.getParentActivity().getSystemService("vibrator");
+                if (vibrator != null) {
+                    vibrator.vibrate(200L);
+                }
+                AndroidUtilities.shakeView(td1Var.e);
+            } else if (!td1Var.f41963r) {
+                org.telegram.ui.ActionBar.c2 c2Var = new org.telegram.ui.ActionBar.c2(td1Var.getParentActivity(), 3, null);
+                c2Var.r(500L);
+                td1Var.f41963r = true;
+                TL_forum.TL_messages_createForumTopic tL_messages_createForumTopic = new TL_forum.TL_messages_createForumTopic();
+                tL_messages_createForumTopic.peer = td1Var.getMessagesController().getInputPeer(td1Var.f41958a);
+                tL_messages_createForumTopic.title = obj;
+                long j10 = td1Var.f41959b;
+                if (j10 != 0) {
+                    tL_messages_createForumTopic.icon_emoji_id = j10;
+                    tL_messages_createForumTopic.flags |= 8;
+                }
+                tL_messages_createForumTopic.random_id = Utilities.random.nextLong();
+                tL_messages_createForumTopic.icon_color = td1Var.E;
+                tL_messages_createForumTopic.flags |= 1;
+                i13 = ((org.telegram.ui.ActionBar.o2) td1Var).currentAccount;
+                ConnectionsManager.getInstance(i13).sendRequest(tL_messages_createForumTopic, new wr0(this, obj, c2Var, 11));
+            }
+        } else if (i10 == 2) {
+            if (td1Var.e.getText() != null) {
+                str = td1Var.e.getText().toString();
+            }
+            if (TextUtils.isEmpty(str)) {
+                Vibrator vibrator2 = (Vibrator) td1Var.getParentActivity().getSystemService("vibrator");
+                if (vibrator2 != null) {
+                    vibrator2.vibrate(200L);
+                }
+                AndroidUtilities.shakeView(td1Var.e);
                 return;
-            case 1:
-                this.f40201b.x0();
-                return;
-            case 2:
-                this.f40201b.O0(true);
-                return;
-            case 3:
-                this.f40201b.finishPreviewFragment();
-                return;
-            case 4:
-                re1 re1Var2 = this.f40201b;
-                re1Var2.A0 = null;
-                re1Var2.U0(true, false);
-                return;
-            default:
-                re1 re1Var3 = this.f40201b;
-                re1Var3.N.postOnAnimation(new pd1(re1Var3, 1));
-                return;
+            }
+            if (!td1Var.f41965w.title.equals(str) || td1Var.f41965w.icon_emoji_id != td1Var.f41959b) {
+                TL_forum.TL_messages_editForumTopic tL_messages_editForumTopic = new TL_forum.TL_messages_editForumTopic();
+                tL_messages_editForumTopic.peer = td1Var.getMessagesController().getInputPeer(td1Var.f41958a);
+                TLRPC.TL_forumTopic tL_forumTopic = td1Var.f41965w;
+                tL_messages_editForumTopic.topic_id = tL_forumTopic.f20395id;
+                if (!tL_forumTopic.title.equals(str)) {
+                    tL_messages_editForumTopic.title = str;
+                    tL_messages_editForumTopic.flags |= 1;
+                }
+                long j11 = td1Var.f41965w.icon_emoji_id;
+                long j12 = td1Var.f41959b;
+                if (j11 != j12) {
+                    tL_messages_editForumTopic.icon_emoji_id = j12;
+                    tL_messages_editForumTopic.flags |= 2;
+                }
+                i11 = ((org.telegram.ui.ActionBar.o2) td1Var).currentAccount;
+                ConnectionsManager.getInstance(i11).sendRequest(tL_messages_editForumTopic, new ci.d6(8));
+            }
+            if (td1Var.d != null) {
+                TLRPC.TL_forumTopic tL_forumTopic2 = td1Var.f41965w;
+                if (tL_forumTopic2.f20395id == 1 && (!v8Var.d.h) != tL_forumTopic2.hidden) {
+                    TL_forum.TL_messages_editForumTopic tL_messages_editForumTopic2 = new TL_forum.TL_messages_editForumTopic();
+                    tL_messages_editForumTopic2.peer = td1Var.getMessagesController().getInputPeer(td1Var.f41958a);
+                    tL_messages_editForumTopic2.topic_id = td1Var.f41965w.f20395id;
+                    tL_messages_editForumTopic2.hidden = !td1Var.d.d.h;
+                    tL_messages_editForumTopic2.flags |= 8;
+                    i12 = ((org.telegram.ui.ActionBar.o2) td1Var).currentAccount;
+                    ConnectionsManager.getInstance(i12).sendRequest(tL_messages_editForumTopic2, new ci.d6(8));
+                }
+            }
+            TLRPC.TL_forumTopic tL_forumTopic3 = td1Var.f41965w;
+            long j13 = td1Var.f41959b;
+            tL_forumTopic3.icon_emoji_id = j13;
+            if (j13 != 0) {
+                tL_forumTopic3.flags |= 1;
+            } else {
+                tL_forumTopic3.flags &= -2;
+            }
+            tL_forumTopic3.title = str;
+            if (td1Var.d != null) {
+                tL_forumTopic3.hidden = !v8Var2.d.h;
+            }
+            td1Var.getMessagesController().getTopicsController().onTopicEdited(td1Var.f41958a, td1Var.f41965w);
+            td1Var.finishFragment();
         }
     }
 }

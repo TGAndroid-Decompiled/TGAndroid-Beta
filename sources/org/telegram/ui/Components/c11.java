@@ -1,42 +1,18 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class c11 implements org.telegram.ui.ActionBar.a2 {
-    public final int f25089a;
-    public final e11 f25090b;
+import org.telegram.tgnet.TLRPC;
+public final class c11 {
+    public final long f25196a;
+    public final TLRPC.InputFile f25197b;
+    public final TLRPC.InputEncryptedFile f25198c;
+    public final byte[] d;
+    public final byte[] e;
 
-    public c11(e11 e11Var, int i10) {
-        this.f25089a = i10;
-        this.f25090b = e11Var;
-    }
-
-    @Override
-    public final void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f25089a) {
-            case 0:
-                this.f25090b.a();
-                return;
-            case 1:
-                e11 e11Var = this.f25090b;
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(e11Var.getContext());
-                alertDialog$Builder.f20609a.T = LocaleController.getString(R.string.TosDeclineDeleteAccount);
-                alertDialog$Builder.f20609a.R = LocaleController.getString(R.string.AppName);
-                alertDialog$Builder.k(LocaleController.getString(R.string.Deactivate), new c11(e11Var, 2));
-                i2.e.r(R.string.Cancel, alertDialog$Builder, null);
-                return;
-            default:
-                e11 e11Var2 = this.f25090b;
-                org.telegram.ui.ActionBar.b2 b2Var2 = new org.telegram.ui.ActionBar.b2(e11Var2.getContext(), 3, null);
-                b2Var2.f20669g0 = false;
-                TL_account.deleteAccount deleteaccount = new TL_account.deleteAccount();
-                deleteaccount.reason = "Decline ToS update";
-                ConnectionsManager.getInstance(e11Var2.d).sendRequest(deleteaccount, new org.telegram.ui.vc(23, e11Var2, b2Var2));
-                b2Var2.show();
-                return;
-        }
+    public c11(long j10, TLRPC.InputFile inputFile, TLRPC.InputEncryptedFile inputEncryptedFile, byte[] bArr, byte[] bArr2) {
+        this.f25196a = j10;
+        this.f25197b = inputFile;
+        this.f25198c = inputEncryptedFile;
+        this.d = bArr;
+        this.e = bArr2;
     }
 }

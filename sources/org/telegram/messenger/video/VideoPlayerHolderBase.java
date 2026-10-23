@@ -9,7 +9,7 @@ import android.view.Surface;
 import android.view.SurfaceView;
 import android.view.TextureView;
 import e2.n0;
-import ig.e2;
+import ig.d2;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.FileLoader;
@@ -18,8 +18,8 @@ import org.telegram.messenger.FileStreamLoadOperation;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.s8;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.c81;
-import org.telegram.ui.Components.z71;
+import org.telegram.ui.Components.g81;
+import org.telegram.ui.Components.j81;
 public class VideoPlayerHolderBase {
     private boolean allowMultipleInstances;
     boolean audioDisabled;
@@ -48,7 +48,7 @@ public class VideoPlayerHolderBase {
     private SurfaceView surfaceView;
     private TextureView textureView;
     public Uri uri;
-    c81 videoPlayer;
+    j81 videoPlayer;
     final DispatchQueue dispatchQueue = Utilities.getOrCreatePlayerQueue();
     Runnable progressRunnable = new Runnable() {
         {
@@ -58,12 +58,12 @@ public class VideoPlayerHolderBase {
         @Override
         public void run() {
             VideoPlayerHolderBase videoPlayerHolderBase = VideoPlayerHolderBase.this;
-            c81 c81Var = videoPlayerHolderBase.videoPlayer;
-            if (c81Var != null) {
+            j81 j81Var = videoPlayerHolderBase.videoPlayer;
+            if (j81Var != null) {
                 if (videoPlayerHolderBase.lastState == 4) {
                     videoPlayerHolderBase.progress = 1.0f;
                 } else {
-                    videoPlayerHolderBase.currentPosition = c81Var.n();
+                    videoPlayerHolderBase.currentPosition = j81Var.n();
                     VideoPlayerHolderBase videoPlayerHolderBase2 = VideoPlayerHolderBase.this;
                     videoPlayerHolderBase2.playerDuration = videoPlayerHolderBase2.videoPlayer.p();
                 }
@@ -86,7 +86,7 @@ public class VideoPlayerHolderBase {
     private final Runnable betterSeek = new j(this, 0);
     private final Runnable updateSeek = new j(this, 2);
 
-    public class AnonymousClass2 implements z71 {
+    public class AnonymousClass2 implements g81 {
         public AnonymousClass2() {
             VideoPlayerHolderBase.this = r1;
         }
@@ -118,7 +118,7 @@ public class VideoPlayerHolderBase {
         }
 
         @Override
-        public void onError(c81 c81Var, Exception exc) {
+        public void onError(j81 j81Var, Exception exc) {
             FileLog.e(exc);
             long currentPosition = VideoPlayerHolderBase.this.getCurrentPosition();
             VideoPlayerHolderBase.access$010(VideoPlayerHolderBase.this);
@@ -206,21 +206,21 @@ public class VideoPlayerHolderBase {
     }
 
     private void ensurePlayerCreated(boolean z10) {
-        c81 c81Var = this.videoPlayer;
-        if (c81Var != null) {
-            c81Var.H();
+        j81 j81Var = this.videoPlayer;
+        if (j81Var != null) {
+            j81Var.H();
         }
-        c81 c81Var2 = new c81(false, z10);
-        this.videoPlayer = c81Var2;
-        c81Var2.f25149y = this.allowMultipleInstances;
-        c81Var2.J = new AnonymousClass2();
-        this.videoPlayer.f25135c = true;
+        j81 j81Var2 = new j81(false, z10);
+        this.videoPlayer = j81Var2;
+        j81Var2.f27608y = this.allowMultipleInstances;
+        j81Var2.J = new AnonymousClass2();
+        this.videoPlayer.f27594c = true;
     }
 
     public void lambda$loopBack$9() {
-        c81 c81Var = this.videoPlayer;
-        if (c81Var != null) {
-            c81Var.K(0L);
+        j81 j81Var = this.videoPlayer;
+        if (j81Var != null) {
+            j81Var.K(0L);
         }
         this.progress = 0.0f;
         this.currentPosition = 0L;
@@ -244,32 +244,32 @@ public class VideoPlayerHolderBase {
                 this.lastBetterSeek = j10;
                 this.dispatchQueue.cancelRunnable(this.betterSeek);
                 this.dispatchQueue.postRunnable(this.betterSeek, 300L);
-                c81 c81Var = this.videoPlayer;
+                j81 j81Var = this.videoPlayer;
                 this.lastSeek = j10;
-                c81Var.L(j10, true);
+                j81Var.L(j10, true);
             }
         }
     }
 
     public void lambda$pause$4() {
-        c81 c81Var = this.videoPlayer;
-        if (c81Var != null) {
-            c81Var.B();
+        j81 j81Var = this.videoPlayer;
+        if (j81Var != null) {
+            j81Var.B();
         }
     }
 
     public void lambda$play$6() {
-        c81 c81Var = this.videoPlayer;
-        if (c81Var != null) {
+        j81 j81Var = this.videoPlayer;
+        if (j81Var != null) {
             Surface surface = this.surface;
             if (surface != null) {
-                c81Var.T(surface);
+                j81Var.T(surface);
             } else {
                 SurfaceView surfaceView = this.surfaceView;
                 if (surfaceView != null) {
-                    c81Var.U(surfaceView);
+                    j81Var.U(surfaceView);
                 } else {
-                    c81Var.V(this.textureView);
+                    j81Var.V(this.textureView);
                 }
             }
             long j10 = this.pendingSeekTo;
@@ -282,17 +282,17 @@ public class VideoPlayerHolderBase {
     }
 
     public void lambda$play$7(float f7) {
-        c81 c81Var = this.videoPlayer;
-        if (c81Var != null) {
+        j81 j81Var = this.videoPlayer;
+        if (j81Var != null) {
             Surface surface = this.surface;
             if (surface != null) {
-                c81Var.T(surface);
+                j81Var.T(surface);
             } else {
                 SurfaceView surfaceView = this.surfaceView;
                 if (surfaceView != null) {
-                    c81Var.U(surfaceView);
+                    j81Var.U(surfaceView);
                 } else {
-                    c81Var.V(this.textureView);
+                    j81Var.V(this.textureView);
                 }
             }
             long j10 = this.pendingSeekTo;
@@ -318,9 +318,9 @@ public class VideoPlayerHolderBase {
     }
 
     public void lambda$release$3(TLRPC.Document document, Runnable runnable) {
-        c81 c81Var = this.videoPlayer;
-        if (c81Var != null) {
-            c81Var.T(null);
+        j81 j81Var = this.videoPlayer;
+        if (j81Var != null) {
+            j81Var.T(null);
             this.videoPlayer.V(null);
             this.videoPlayer.U(null);
             this.videoPlayer.H();
@@ -336,34 +336,34 @@ public class VideoPlayerHolderBase {
     }
 
     public void lambda$seekTo$11(long j10) {
-        c81 c81Var = this.videoPlayer;
-        if (c81Var == null) {
+        j81 j81Var = this.videoPlayer;
+        if (j81Var == null) {
             this.pendingSeekTo = j10;
         } else {
-            c81Var.K(j10);
+            j81Var.K(j10);
         }
     }
 
     public void lambda$seekTo$12(long j10, boolean z10, Runnable runnable) {
-        c81 c81Var = this.videoPlayer;
-        if (c81Var == null) {
+        j81 j81Var = this.videoPlayer;
+        if (j81Var == null) {
             this.pendingSeekTo = j10;
         } else {
-            c81Var.M(j10, z10, runnable);
+            j81Var.M(j10, z10, runnable);
         }
     }
 
     public void lambda$setAudioEnabled$8(boolean z10, boolean z11) {
         float f7;
-        c81 c81Var = this.videoPlayer;
-        if (c81Var == null) {
+        j81 j81Var = this.videoPlayer;
+        if (j81Var == null) {
             return;
         }
-        boolean y3 = c81Var.y();
+        boolean y3 = j81Var.y();
         if (z10) {
-            c81 c81Var2 = this.videoPlayer;
-            if (c81Var2.f25134b0) {
-                c81Var2.B();
+            j81 j81Var2 = this.videoPlayer;
+            if (j81Var2.f27593b0) {
+                j81Var2.B();
                 long n10 = this.videoPlayer.n();
                 this.videoPlayer.H();
                 this.videoPlayer = null;
@@ -399,26 +399,26 @@ public class VideoPlayerHolderBase {
                 return;
             }
         }
-        c81 c81Var3 = this.videoPlayer;
+        j81 j81Var3 = this.videoPlayer;
         if (z10) {
             f7 = 1.0f;
         } else {
             f7 = 0.0f;
         }
-        c81Var3.W(f7);
+        j81Var3.W(f7);
     }
 
     public void lambda$setSpeed$5(float f7) {
-        c81 c81Var = this.videoPlayer;
-        if (c81Var != null) {
-            c81Var.Q(f7);
+        j81 j81Var = this.videoPlayer;
+        if (j81Var != null) {
+            j81Var.Q(f7);
         }
     }
 
     public void lambda$setVolume$10(float f7) {
-        c81 c81Var = this.videoPlayer;
-        if (c81Var != null) {
-            c81Var.W(f7);
+        j81 j81Var = this.videoPlayer;
+        if (j81Var != null) {
+            j81Var.W(f7);
         }
     }
 
@@ -619,7 +619,7 @@ public class VideoPlayerHolderBase {
         this.dispatchQueue.cancelRunnable(this.initRunnable);
         this.dispatchQueue.cancelRunnable(this.progressRunnable);
         this.initRunnable = null;
-        this.dispatchQueue.postRunnable(new e2(this, document, runnable, 16));
+        this.dispatchQueue.postRunnable(new d2(this, document, runnable, 16));
         Bitmap bitmap = this.playerStubBitmap;
         if (bitmap != null) {
             AndroidUtilities.recycleBitmap(bitmap);

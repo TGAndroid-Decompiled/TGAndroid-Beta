@@ -3,27 +3,20 @@ package org.telegram.ui;
 import android.graphics.Canvas;
 import android.view.View;
 public final class x8 implements bh.k {
-    public final int f43137a;
-    public final Object f43138b;
+    public final int f43537a;
+    public final org.telegram.ui.Components.j71 f43538b;
 
-    public x8(Object obj, int i10) {
-        this.f43137a = i10;
-        this.f43138b = obj;
+    public x8(org.telegram.ui.Components.j71 j71Var, int i10) {
+        this.f43537a = i10;
+        this.f43538b = j71Var;
     }
 
     @Override
     public final boolean a(Canvas canvas, View view, long j10) {
-        switch (this.f43137a) {
+        switch (this.f43537a) {
             case 0:
-                return ((org.telegram.ui.Components.c71) this.f43138b).drawChild(canvas, view, j10);
-            case 1:
-                ProfileActivity profileActivity = (ProfileActivity) this.f43138b;
-                if (view == profileActivity.O) {
-                    return true;
-                }
-                return profileActivity.f33585a.drawChild(canvas, view, j10);
             default:
-                return ((pe1) this.f43138b).drawChild(canvas, view, j10);
+                return this.f43538b.drawChild(canvas, view, j10);
         }
     }
 }

@@ -6,28 +6,28 @@ import v8.s;
 import w7.f0;
 public final class d extends o6.a {
     public static final Parcelable.Creator<d> CREATOR = new s(17);
-    public int f48891a;
-    public String f48892b;
-    public double f48893c;
+    public int f49329a;
+    public String f49330b;
+    public double f49331c;
     public String d;
     public long e;
-    public int f48894f;
+    public int f49332f;
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         int q6 = f0.q(parcel, 20293);
-        int i11 = this.f48891a;
+        int i11 = this.f49329a;
         f0.s(parcel, 2, 4);
         parcel.writeInt(i11);
-        f0.l(parcel, 3, this.f48892b);
-        double d = this.f48893c;
+        f0.l(parcel, 3, this.f49330b);
+        double d = this.f49331c;
         f0.s(parcel, 4, 8);
         parcel.writeDouble(d);
         f0.l(parcel, 5, this.d);
         long j10 = this.e;
         f0.s(parcel, 6, 8);
         parcel.writeLong(j10);
-        int i12 = this.f48894f;
+        int i12 = this.f49332f;
         f0.s(parcel, 7, 4);
         parcel.writeInt(i12);
         f0.r(parcel, q6);

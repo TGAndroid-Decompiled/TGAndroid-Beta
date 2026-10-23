@@ -2,6 +2,7 @@ package c7;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import i2.o1;
 import java.util.Locale;
 public enum r implements Parcelable {
     NOT_SUPPORTED_ERR(9),
@@ -18,21 +19,21 @@ public enum r implements Parcelable {
     ATTESTATION_NOT_PRIVATE_ERR(36);
     
     public static final Parcelable.Creator<r> CREATOR = new r0(23);
-    public final int f4999a;
+    public final int f5004a;
 
     r(int i10) {
-        this.f4999a = i10;
+        this.f5004a = i10;
     }
 
     public static r a(int i10) {
         r[] values;
         for (r rVar : values()) {
-            if (i10 == rVar.f4999a) {
+            if (i10 == rVar.f5004a) {
                 return rVar;
             }
         }
         Locale locale = Locale.US;
-        throw new Exception(i2.e.k(i10, "Error code ", " is not supported"));
+        throw new Exception(o1.l(i10, "Error code ", " is not supported"));
     }
 
     @Override
@@ -42,6 +43,6 @@ public enum r implements Parcelable {
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        parcel.writeInt(this.f4999a);
+        parcel.writeInt(this.f5004a);
     }
 }

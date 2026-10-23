@@ -18,15 +18,15 @@ public final class d1 extends r0.b {
             RecyclerView recyclerView = (RecyclerView) view;
             if (recyclerView.getLayoutManager() != null) {
                 b0 b0Var = (b0) recyclerView.getLayoutManager();
-                RecyclerView recyclerView2 = b0Var.f46014b;
-                qf.e eVar = recyclerView2.f3603b;
+                RecyclerView recyclerView2 = b0Var.f46436b;
+                qf.e eVar = recyclerView2.f3610b;
                 if (accessibilityEvent != null) {
                     boolean z10 = true;
-                    if (!recyclerView2.canScrollVertically(1) && !b0Var.f46014b.canScrollVertically(-1) && !b0Var.f46014b.canScrollHorizontally(-1) && !b0Var.f46014b.canScrollHorizontally(1)) {
+                    if (!recyclerView2.canScrollVertically(1) && !b0Var.f46436b.canScrollVertically(-1) && !b0Var.f46436b.canScrollHorizontally(-1) && !b0Var.f46436b.canScrollHorizontally(1)) {
                         z10 = false;
                     }
                     accessibilityEvent.setScrollable(z10);
-                    g0 g0Var = b0Var.f46014b.f3629w;
+                    g0 g0Var = b0Var.f46436b.f3636w;
                     if (g0Var != null) {
                         accessibilityEvent.setItemCount(g0Var.h());
                     }
@@ -40,13 +40,13 @@ public final class d1 extends r0.b {
     }
 
     @Override
-    public final void c(View view, s0.c cVar) {
-        this.f44798a.onInitializeAccessibilityNodeInfo(view, cVar.f45878a);
+    public final void c(View view, s0.d dVar) {
+        this.f45210a.onInitializeAccessibilityNodeInfo(view, dVar.f46300a);
         RecyclerView recyclerView = this.d;
         if (!recyclerView.Z() && recyclerView.getLayoutManager() != null) {
             n0 layoutManager = recyclerView.getLayoutManager();
-            RecyclerView recyclerView2 = layoutManager.f46014b;
-            layoutManager.S(recyclerView2.f3603b, recyclerView2.f3627u0, cVar);
+            RecyclerView recyclerView2 = layoutManager.f46436b;
+            layoutManager.S(recyclerView2.f3610b, recyclerView2.f3634u0, dVar);
         }
     }
 

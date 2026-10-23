@@ -1,40 +1,30 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.widget.TextView;
-public final class nb0 extends AnimatorListenerAdapter {
-    public final int f39497a;
-    public final float f39498b;
-    public final ob0 f39499c;
+import android.os.Bundle;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.UserObject;
+import org.telegram.tgnet.TLRPC;
+public final class nb0 extends sn {
+    public boolean f39841ed;
+    public final TLRPC.User f39842fd;
+    public final TLRPC.User[] f39843gd;
+    public final long f39844hd;
 
-    public nb0(ob0 ob0Var, float f7, int i10) {
-        this.f39497a = i10;
-        this.f39499c = ob0Var;
-        this.f39498b = f7;
+    public nb0(Bundle bundle, TLRPC.User user, TLRPC.User[] userArr, long j10) {
+        super(bundle);
+        this.f39842fd = user;
+        this.f39843gd = userArr;
+        this.f39844hd = j10;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f39497a) {
-            case 0:
-                ob0 ob0Var = this.f39499c;
-                TextView textView = ob0Var.f39824f;
-                int x02 = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21382y6, false);
-                int x03 = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21177n6, false);
-                float f7 = this.f39498b;
-                ob0Var.f39827s = f7;
-                textView.setTextColor(i0.a.f(f7, x02, x03));
-                return;
-            default:
-                ob0 ob0Var2 = this.f39499c;
-                TextView textView2 = ob0Var2.d;
-                int x04 = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21382y6, false);
-                int x05 = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21177n6, false);
-                float f10 = this.f39498b;
-                ob0Var2.f39828w = f10;
-                textView2.setTextColor(i0.a.f(f10, x04, x05));
-                return;
+    public final void onBecomeFullyVisible() {
+        super.onBecomeFullyVisible();
+        if (!this.f39841ed) {
+            this.f39841ed = true;
+            org.telegram.ui.Components.xc.a0(this).M(LocaleController.formatString(R.string.CreateManagedBotCreatedTitle, UserObject.getUserName(this.f39842fd)), AndroidUtilities.replaceSingleTag(LocaleController.formatString(R.string.CreateManagedBotCreatedText, UserObject.getUserName(this.f39843gd[0])), new ai.v3(this, this.f39844hd, 29)), R.raw.contact_check).j();
         }
     }
 }

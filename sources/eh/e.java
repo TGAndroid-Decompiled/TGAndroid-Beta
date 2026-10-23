@@ -1,34 +1,34 @@
 package eh;
 
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.k6;
 public final class e implements a {
-    public final d6 f8657a;
-    public d f8658b;
-    public d f8659c;
+    public final g6 f8665a;
+    public d f8666b;
+    public d f8667c;
     public d d;
     public d e;
-    public float f8660f;
+    public float f8668f;
     public float h;
-    public float f8661n;
-    public float f8662r;
+    public float f8669n;
+    public float f8670r;
 
-    public e(d6 d6Var) {
-        this.f8657a = d6Var;
+    public e(g6 g6Var) {
+        this.f8665a = g6Var;
         float dpf2 = AndroidUtilities.dpf2(1.0f);
         float dpf22 = AndroidUtilities.dpf2(0.33333334f);
-        this.f8661n = dpf2;
-        this.f8662r = dpf22;
+        this.f8669n = dpf2;
+        this.f8670r = dpf22;
         float dpf23 = AndroidUtilities.dpf2(1.0f);
         float dpf24 = AndroidUtilities.dpf2(0.6666667f);
-        this.f8660f = dpf23;
+        this.f8668f = dpf23;
         this.h = dpf24;
     }
 
     @Override
-    public final int E() {
-        return a(this.f8658b);
+    public final int H() {
+        return a(this.f8666b);
     }
 
     public final int a(d dVar) {
@@ -36,11 +36,11 @@ public final class e implements a {
         if (dVar == null) {
             return 0;
         }
-        d6 d6Var = this.f8657a;
-        if ((d6Var instanceof ci.b) || (d6Var == null ? h6.I.q() : d6Var.a())) {
+        g6 g6Var = this.f8665a;
+        if ((g6Var instanceof ci.b) || (g6Var == null ? k6.I.q() : g6Var.a())) {
             z10 = true;
         }
-        return dVar.f(d6Var, z10);
+        return dVar.i(g6Var, z10);
     }
 
     @Override
@@ -49,7 +49,7 @@ public final class e implements a {
     }
 
     public final void b(int i10, int i11) {
-        this.f8658b = new c(i11, i10, 0);
+        this.f8666b = new c(i11, i10, 0);
     }
 
     public final void c(int i10, int i11) {
@@ -57,12 +57,12 @@ public final class e implements a {
     }
 
     public final void d(int i10, int i11) {
-        this.f8659c = new c(i11, i10, 0);
+        this.f8667c = new c(i11, i10, 0);
     }
 
     @Override
     public final int h() {
-        return a(this.f8659c);
+        return a(this.f8667c);
     }
 
     @Override

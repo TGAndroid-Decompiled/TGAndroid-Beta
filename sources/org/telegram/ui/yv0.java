@@ -1,145 +1,226 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.Drawable;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.UserObject;
-public class yv0 extends FrameLayout {
-    public final org.telegram.ui.ActionBar.j5 f43567a;
-    public final TextView f43568b;
-    public final ImageView f43569c;
-    public final ImageView d;
-    public boolean e;
-    public ow0 f43570f;
-    public org.telegram.ui.Components.p5 h;
-    public Drawable f43571n;
+import android.view.View;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.MessagesController;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stories;
+public final class yv0 implements org.telegram.ui.Components.og {
+    public final PopupNotificationActivity f44000a;
 
-    public yv0(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context);
-        LinearLayout linearLayout = new LinearLayout(context);
-        linearLayout.setOrientation(1);
-        setClipChildren(false);
-        linearLayout.setClipChildren(false);
-        org.telegram.ui.ActionBar.j5 j5Var = new org.telegram.ui.ActionBar.j5(context);
-        this.f43567a = j5Var;
-        j5Var.setTypeface(AndroidUtilities.bold());
-        j5Var.setTextSize(15);
-        j5Var.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.G6, d6Var));
-        linearLayout.addView(j5Var, w7.z5.n(-1, -2));
-        TextView textView = new TextView(context);
-        this.f43568b = textView;
-        textView.setTextSize(1, 14.0f);
-        textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21382y6, d6Var));
-        textView.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
-        linearLayout.addView(textView, w7.z5.p(-1, -2, 0.0f, 0, 0, 1, 0, 0));
-        addView(linearLayout, w7.z5.d(-1, -2.0f, 0, 62.0f, 8.0f, 48.0f, 9.0f));
-        ImageView imageView = new ImageView(context);
-        this.f43569c = imageView;
-        ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER_INSIDE;
-        imageView.setScaleType(scaleType);
-        addView(imageView, w7.z5.d(28, 28.0f, 0, 18.0f, 12.0f, 0.0f, 0.0f));
-        ImageView imageView2 = new ImageView(context);
-        this.d = imageView2;
-        imageView2.setScaleType(scaleType);
-        imageView2.setImageResource(R.drawable.msg_arrowright);
-        imageView2.setColorFilter(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.M6, d6Var));
-        addView(imageView2, w7.z5.d(24, 24.0f, 21, 0.0f, 0.0f, 18.0f, 0.0f));
+    public yv0(PopupNotificationActivity popupNotificationActivity) {
+        this.f44000a = popupNotificationActivity;
     }
 
-    public final void a(ow0 ow0Var, boolean z10) {
-        long longValue;
-        boolean isPremium = UserConfig.getInstance(UserConfig.selectedAccount).isPremium();
-        ImageView imageView = this.d;
-        if (isPremium && ow0Var.f39992a == 12 && ow0Var.f39993b == R.drawable.filled_premium_status2) {
-            imageView.setVisibility(8);
-            if (this.h == null) {
-                this.h = new org.telegram.ui.Components.p5(AndroidUtilities.dp(24.0f), 13, this, false);
-                if (isAttachedToWindow()) {
-                    this.h.a();
-                }
-            }
-            Long emojiStatusDocumentId = UserObject.getEmojiStatusDocumentId(UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser());
-            if (emojiStatusDocumentId == null) {
-                longValue = 0;
-            } else {
-                longValue = emojiStatusDocumentId.longValue();
-            }
-            b(longValue, false);
-        } else {
-            imageView.setVisibility(0);
-            org.telegram.ui.Components.p5 p5Var = this.h;
-            if (p5Var != null) {
-                p5Var.b();
-                this.h = null;
-            }
-        }
-        this.f43570f = ow0Var;
-        this.f43567a.l(ow0Var.f39994c, false);
-        this.f43568b.setText(ow0Var.d);
-        this.f43569c.setImageResource(ow0Var.f39993b);
-        this.e = z10;
+    @Override
+    public final boolean B0() {
+        return true;
     }
 
-    public final void b(long j10, boolean z10) {
-        if (this.h == null) {
-            this.h = new org.telegram.ui.Components.p5(AndroidUtilities.dp(24.0f), 13, this, false);
-            if (isAttachedToWindow()) {
-                this.h.a();
-            }
-        }
-        if (j10 == 0) {
-            if (this.f43571n == null) {
-                Drawable mutate = getContext().getResources().getDrawable(R.drawable.msg_premium_prolfilestar).mutate();
-                this.f43571n = mutate;
-                mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21327v6, false), PorterDuff.Mode.SRC_IN));
-            }
-            this.h.g(this.f43571n, z10);
+    @Override
+    public final void L(CharSequence charSequence, boolean z10, int i10, int i11, long j10) {
+        PopupNotificationActivity popupNotificationActivity = this.f44000a;
+        if (popupNotificationActivity.Q == null) {
             return;
         }
-        this.h.j(j10, z10);
-    }
-
-    public final void c() {
-        this.h.setBounds((getWidth() - this.h.f29218s) - AndroidUtilities.dp(21.0f), (getHeight() - this.h.f29218s) / 2, getWidth() - AndroidUtilities.dp(21.0f), (getHeight() + this.h.f29218s) / 2);
-    }
-
-    @Override
-    public void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        if (this.h != null) {
-            c();
-            this.h.k(Integer.valueOf(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21327v6, false)));
-            this.h.draw(canvas);
+        int i12 = popupNotificationActivity.S;
+        if (i12 >= 0 && i12 < popupNotificationActivity.f33789a0.size()) {
+            popupNotificationActivity.f33789a0.remove(popupNotificationActivity.S);
         }
-        if (this.e) {
-            canvas.drawRect(AndroidUtilities.dp(62.0f), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight(), org.telegram.ui.ActionBar.h6.f21115k0);
-        }
+        MessagesController.getInstance(popupNotificationActivity.Q.currentAccount).markDialogAsRead(popupNotificationActivity.Q.getDialogId(), popupNotificationActivity.Q.getId(), Math.max(0, popupNotificationActivity.Q.getId()), popupNotificationActivity.Q.messageOwner.date, true, 0L, 0, true, 0);
+        popupNotificationActivity.Q = null;
+        popupNotificationActivity.f();
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        org.telegram.ui.Components.p5 p5Var = this.h;
-        if (p5Var != null) {
-            p5Var.a();
-        }
-        super.onAttachedToWindow();
+    public final TLRPC.TL_channels_sendAsPeers O() {
+        return null;
     }
 
     @Override
-    public final void onDetachedFromWindow() {
-        org.telegram.ui.Components.p5 p5Var = this.h;
-        if (p5Var != null) {
-            p5Var.b();
+    public final int Y0() {
+        return 0;
+    }
+
+    @Override
+    public final TL_stories.StoryItem a1() {
+        return null;
+    }
+
+    @Override
+    public final boolean b1(long j10) {
+        return false;
+    }
+
+    @Override
+    public final boolean e1() {
+        return false;
+    }
+
+    @Override
+    public final boolean j1() {
+        return false;
+    }
+
+    @Override
+    public final boolean o() {
+        return false;
+    }
+
+    @Override
+    public final in p0() {
+        return null;
+    }
+
+    @Override
+    public final boolean r1() {
+        return false;
+    }
+
+    @Override
+    public final int u() {
+        return 0;
+    }
+
+    @Override
+    public final TLRPC.Peer x() {
+        return null;
+    }
+
+    @Override
+    public final void y1() {
+        PopupNotificationActivity popupNotificationActivity = this.f44000a;
+        MessageObject messageObject = popupNotificationActivity.Q;
+        if (messageObject != null) {
+            MessagesController.getInstance(messageObject.currentAccount).sendTyping(popupNotificationActivity.Q.getDialogId(), 0L, 0, popupNotificationActivity.K);
         }
-        super.onDetachedFromWindow();
+    }
+
+    @Override
+    public final void C(boolean z10) {
+    }
+
+    @Override
+    public final void F0() {
+    }
+
+    @Override
+    public final void H() {
+    }
+
+    @Override
+    public final void H0() {
+    }
+
+    @Override
+    public final void Q0() {
+    }
+
+    @Override
+    public final void T1() {
+    }
+
+    @Override
+    public final void V1(int i10) {
+    }
+
+    @Override
+    public final void X0(int i10) {
+    }
+
+    @Override
+    public final void Y() {
+    }
+
+    @Override
+    public final void Y1() {
+    }
+
+    @Override
+    public final void Z1(boolean z10) {
+    }
+
+    @Override
+    public final void a0(boolean z10) {
+    }
+
+    @Override
+    public final void e2() {
+    }
+
+    @Override
+    public final void h() {
+    }
+
+    @Override
+    public final void i1() {
+    }
+
+    @Override
+    public final void k() {
+    }
+
+    @Override
+    public final void l1() {
+    }
+
+    @Override
+    public final void m0() {
+    }
+
+    @Override
+    public final void m1() {
+    }
+
+    @Override
+    public final void m2() {
+    }
+
+    @Override
+    public final void n1() {
+    }
+
+    @Override
+    public final void q1(CharSequence charSequence) {
+    }
+
+    @Override
+    public final void q2() {
+    }
+
+    @Override
+    public final void t0() {
+    }
+
+    @Override
+    public final void u1() {
+    }
+
+    @Override
+    public final void y() {
+    }
+
+    @Override
+    public final void z(float f7) {
+    }
+
+    @Override
+    public final void D0(int i10, int i11) {
+    }
+
+    @Override
+    public final void U(float f7, int i10) {
+    }
+
+    @Override
+    public final void g1(CharSequence charSequence, boolean z10, boolean z11) {
+    }
+
+    @Override
+    public final void o1(View view, CharSequence charSequence, boolean z10) {
+    }
+
+    @Override
+    public final void a2(int i10, int i11, int i12, long j10, long j11, boolean z10) {
     }
 }

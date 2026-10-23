@@ -1,8 +1,8 @@
 package jf;
 public final class c {
-    public int f14412a;
-    public int f14413b;
-    public int f14414c;
+    public int f14457a;
+    public int f14458b;
+    public int f14459c;
     public int d;
     public String e;
 

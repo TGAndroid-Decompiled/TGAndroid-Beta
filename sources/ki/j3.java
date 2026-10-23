@@ -1,8 +1,8 @@
 package ki;
 
 import java.util.ArrayList;
-import org.telegram.ui.Cells.n9;
-public final class j3 extends n9 {
+import org.telegram.ui.Cells.o9;
+public final class j3 extends o9 {
     public final u3 F0;
     public final w3 G0;
 
@@ -14,9 +14,9 @@ public final class j3 extends n9 {
     @Override
     public final boolean C() {
         w3 w3Var = this.G0;
-        CharSequence r10 = w3Var.f15604l3.r();
+        CharSequence r10 = w3Var.f15667o3.r();
         if (r10 != null && r10.length() != 0) {
-            w3Var.c5(r10);
+            w3Var.h5(r10);
             return true;
         }
         return true;
@@ -25,11 +25,11 @@ public final class j3 extends n9 {
     @Override
     public final void D() {
         w3 w3Var = this.G0;
-        CharSequence r10 = w3Var.f15604l3.r();
+        CharSequence r10 = w3Var.f15667o3.r();
         if (r10 != null && r10.length() > 0) {
-            w3Var.c5(r10);
+            w3Var.h5(r10);
         }
-        w3Var.F2();
+        w3Var.K2();
     }
 
     @Override
@@ -40,7 +40,7 @@ public final class j3 extends n9 {
 
     @Override
     public final void H() {
-        this.G0.d4();
+        this.G0.i4();
     }
 
     @Override
@@ -48,15 +48,15 @@ public final class j3 extends n9 {
         if (a0()) {
             return true;
         }
-        return this.G0.T4();
+        return this.G0.Y4();
     }
 
     @Override
     public final void K(float f7, float f10) {
         w3 w3Var = this.G0;
-        w3Var.f15613q3 = true;
-        w3Var.f15614r3 = f7;
-        w3Var.f15615s3 = f10;
+        w3Var.f15677t3 = true;
+        w3Var.f15678u3 = f7;
+        w3Var.f15679v3 = f10;
     }
 
     @Override
@@ -66,23 +66,23 @@ public final class j3 extends n9 {
         String str;
         int length;
         w3 w3Var = this.G0;
-        j3 j3Var = w3Var.f15604l3;
-        ArrayList arrayList = w3Var.f15600j3;
-        if (!arrayList.isEmpty() && j3Var.x() && j3Var.f22661p0 == 0 && j3Var.f22662q0 == 0 && j3Var.f22663r0 <= 0 && j3Var.f22664s0 == (size = arrayList.size() - 1)) {
+        j3 j3Var = w3Var.f15667o3;
+        ArrayList arrayList = w3Var.f15663m3;
+        if (!arrayList.isEmpty() && j3Var.x() && j3Var.f22861p0 == 0 && j3Var.f22862q0 == 0 && j3Var.f22863r0 <= 0 && j3Var.f22864s0 == (size = arrayList.size() - 1)) {
             a aVar = (a) arrayList.get(size);
-            if (c6.p(aVar.f15095b)) {
-                str = e6.l(c6.k(aVar.f15095b));
+            if (c6.o(aVar.f15141b)) {
+                str = e6.l(c6.j(aVar.f15141b));
             } else {
                 str = "";
             }
             int i10 = !str.isEmpty();
-            if (j3Var.f22665t0 == i10) {
+            if (j3Var.f22865t0 == i10) {
                 if (i10 == 1) {
                     length = str.length();
                 } else {
-                    length = c6.z(aVar.f15095b).length();
+                    length = c6.y(aVar.f15141b).length();
                 }
-                if (j3Var.f22666u0 >= length) {
+                if (j3Var.f22866u0 >= length) {
                     z10 = true;
                     return !z10;
                 }

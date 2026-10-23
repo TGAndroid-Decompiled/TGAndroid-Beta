@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.ShapeDrawable;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -14,63 +15,70 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.ActionBar.j5;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.ActionBar.n5;
+import org.telegram.ui.ActionBar.n6;
+import org.telegram.ui.ActionBar.r6;
 import w7.z5;
 public final class t extends FrameLayout {
-    public final j5 f13012a;
-    public final wh.n f13013b;
-    public final j5 f13014c;
-    public final d6 d;
+    public final n5 f13071a;
+    public final wh.n f13072b;
+    public final n5 f13073c;
+    public final g6 d;
     public boolean e;
-    public TL_account.TL_businessChatLink f13015f;
+    public TL_account.TL_businessChatLink f13074f;
 
-    public t(Context context, d6 d6Var) {
+    public t(Context context, g6 g6Var) {
         super(context);
         int i10;
         int i11;
-        this.d = d6Var;
+        this.d = g6Var;
         setWillNotDraw(false);
         ImageView imageView = new ImageView(context);
         imageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
         imageView.setImageResource(R.drawable.msg_limit_links);
         imageView.setPadding(AndroidUtilities.dp(9.0f), AndroidUtilities.dp(9.0f), AndroidUtilities.dp(9.0f), AndroidUtilities.dp(9.0f));
         imageView.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
-        imageView.setBackground(h6.K(AndroidUtilities.dp(36.0f), h6.x0(null, h6.Oh, false)));
+        int dp = AndroidUtilities.dp(36.0f);
+        int i12 = k6.Oh;
+        ShapeDrawable K = k6.K(dp, k6.x0(null, i12, false));
+        n6 O = r6.O(i12);
+        imageView.setBackground(K);
+        r6.k(imageView, K, O, null, null);
         imageView.setOnClickListener(new hg.r0(this, 6));
         addView(imageView, z5.i(36.0f, 36.0f, 8388627, 14.0f, 0.0f, 14.0f, 0.0f));
-        j5 j5Var = new j5(context);
-        this.f13012a = j5Var;
-        j5Var.setTextSize(15);
-        j5Var.setTextColor(h6.x0(null, h6.G6, false));
+        n5 n5Var = new n5(context);
+        this.f13071a = n5Var;
+        n5Var.setTextSize(15);
+        r6.Z(n5Var, k6.G6, null);
         if (LocaleController.isRTL) {
             i10 = 5;
         } else {
             i10 = 3;
         }
-        j5Var.setGravity(i10);
-        addView(j5Var, z5.i(-1.0f, 20.0f, 55, 64.0f, 10.0f, 14.0f, 0.0f));
-        j5 j5Var2 = new j5(context);
-        this.f13014c = j5Var2;
-        j5Var2.setTextSize(14);
-        int i12 = h6.f21399z6;
-        j5Var2.setTextColor(h6.x0(null, i12, false));
+        n5Var.setGravity(i10);
+        addView(n5Var, z5.i(-1.0f, 20.0f, 55, 64.0f, 10.0f, 14.0f, 0.0f));
+        n5 n5Var2 = new n5(context);
+        this.f13073c = n5Var2;
+        n5Var2.setTextSize(14);
+        int i13 = k6.f21588z6;
+        r6.Z(n5Var2, i13, null);
         if (LocaleController.isRTL) {
             i11 = 3;
         } else {
             i11 = 5;
         }
-        j5Var2.setGravity(i11);
-        addView(j5Var2, z5.i(-1.0f, 18.0f, 55, 64.0f, 10.66f, 14.0f, 0.0f));
+        n5Var2.setGravity(i11);
+        addView(n5Var2, z5.i(-1.0f, 18.0f, 55, 64.0f, 10.66f, 14.0f, 0.0f));
         wh.n nVar = new wh.n(context);
-        this.f13013b = nVar;
+        this.f13072b = nVar;
         nVar.setTextSize(1, 13.0f);
         nVar.setMaxLines(1);
         nVar.setEllipsize(TextUtils.TruncateAt.END);
-        nVar.setTextColor(h6.w0(i12, d6Var));
+        r6.W(nVar, i13, g6Var);
         nVar.setGravity(LocaleController.isRTL ? 5 : 3);
-        nVar.f49109r = false;
+        nVar.f49551r = false;
         nVar.setUseAlphaForEmoji(false);
         NotificationCenter.listenEmojiLoading(nVar);
         addView(nVar, z5.i(-1.0f, 20.0f, 87, 64.0f, 0.0f, 14.0f, 6.0f));
@@ -81,11 +89,11 @@ public final class t extends FrameLayout {
         float f7;
         super.onDraw(canvas);
         if (this.e) {
-            Paint U0 = h6.U0("paintDivider", this.d);
-            if (U0 == null) {
-                U0 = h6.f21115k0;
+            Paint V0 = k6.V0("paintDivider", this.d);
+            if (V0 == null) {
+                V0 = k6.f21304k0;
             }
-            Paint paint = U0;
+            Paint paint = V0;
             float f10 = 64.0f;
             if (LocaleController.isRTL) {
                 f7 = 0.0f;
@@ -106,12 +114,12 @@ public final class t extends FrameLayout {
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
         boolean z11 = LocaleController.isRTL;
-        j5 j5Var = this.f13014c;
-        j5 j5Var2 = this.f13012a;
+        n5 n5Var = this.f13073c;
+        n5 n5Var2 = this.f13071a;
         if (z11) {
-            j5Var2.setPadding(j5Var.getTextWidth(), 0, 0, 0);
+            n5Var2.setPadding(n5Var.getTextWidth(), 0, 0, 0);
         } else {
-            j5Var2.setPadding(0, 0, j5Var.getTextWidth(), 0);
+            n5Var2.setPadding(0, 0, n5Var.getTextWidth(), 0);
         }
     }
 

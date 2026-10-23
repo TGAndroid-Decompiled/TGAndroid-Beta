@@ -24,23 +24,23 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeoutException;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Cells.p2;
+import org.telegram.ui.Cells.o2;
 import org.telegram.ui.Components.p6;
 import org.telegram.ui.kg;
 import v7.u6;
 import w7.j6;
 public final class l implements OnSuccessListener, ne.k {
     public static l e;
-    public int f14288a;
-    public Object f14289b;
-    public Object f14290c;
+    public int f14333a;
+    public Object f14334b;
+    public Object f14335c;
     public Object d;
 
     public l(int i10, String str, ArrayList arrayList, ArrayList arrayList2) {
-        this.f14288a = i10;
+        this.f14333a = i10;
         this.d = str;
-        this.f14289b = arrayList;
-        this.f14290c = arrayList2;
+        this.f14334b = arrayList;
+        this.f14335c = arrayList2;
     }
 
     public static synchronized l j(Context context) {
@@ -51,9 +51,9 @@ public final class l implements OnSuccessListener, ne.k {
                     ScheduledExecutorService unconfigurableScheduledExecutorService = Executors.unconfigurableScheduledExecutorService(Executors.newScheduledThreadPool(1, new x("MessengerIpcClient")));
                     ?? obj = new Object();
                     obj.d = new j(obj);
-                    obj.f14288a = 1;
-                    obj.f14290c = unconfigurableScheduledExecutorService;
-                    obj.f14289b = context.getApplicationContext();
+                    obj.f14333a = 1;
+                    obj.f14335c = unconfigurableScheduledExecutorService;
+                    obj.f14334b = context.getApplicationContext();
                     e = obj;
                 }
                 lVar = e;
@@ -64,15 +64,20 @@ public final class l implements OnSuccessListener, ne.k {
         return lVar;
     }
 
-    public l a() {
+    @Override
+    public void a() {
+        f();
+    }
+
+    public l b() {
         boolean z10;
         String str;
-        if (!TextUtils.isEmpty((String) this.f14289b)) {
-            if (!v7.k.b(this.f14288a)) {
+        if (!TextUtils.isEmpty((String) this.f14334b)) {
+            if (!v7.k.b(this.f14333a)) {
                 StringBuilder sb2 = new StringBuilder("Authenticator combination is unsupported on API ");
                 sb2.append(Build.VERSION.SDK_INT);
                 sb2.append(": ");
-                int i10 = this.f14288a;
+                int i10 = this.f14333a;
                 if (i10 != 15) {
                     if (i10 != 255) {
                         if (i10 != 32768) {
@@ -97,7 +102,7 @@ public final class l implements OnSuccessListener, ne.k {
                 sb2.append(str);
                 throw new IllegalArgumentException(sb2.toString());
             }
-            int i11 = this.f14288a;
+            int i11 = this.f14333a;
             if (i11 != 0) {
                 z10 = v7.k.a(i11);
             } else {
@@ -109,13 +114,13 @@ public final class l implements OnSuccessListener, ne.k {
             if (!TextUtils.isEmpty((String) this.d) && z10) {
                 throw new IllegalArgumentException("Negative text must not be set if device credential authentication is allowed.");
             }
-            return new l((String) this.f14289b, (String) this.f14290c, (String) this.d, this.f14288a);
+            return new l((String) this.f14334b, (String) this.f14335c, (String) this.d, this.f14333a);
         }
         throw new IllegalArgumentException("Title must be set and non-empty.");
     }
 
-    public int b() {
-        int i10 = this.f14288a;
+    public int c() {
+        int i10 = this.f14333a;
         if (i10 != 2) {
             if (i10 != 3) {
                 return 0;
@@ -125,18 +130,13 @@ public final class l implements OnSuccessListener, ne.k {
         return 2048;
     }
 
-    @Override
-    public void c() {
-        f();
-    }
-
     public Looper d() {
         Looper looper;
         boolean z10;
-        synchronized (this.f14289b) {
+        synchronized (this.f14334b) {
             try {
-                if (((Looper) this.f14290c) == null) {
-                    if (this.f14288a == 0 && ((HandlerThread) this.d) == null) {
+                if (((Looper) this.f14335c) == null) {
+                    if (this.f14333a == 0 && ((HandlerThread) this.d) == null) {
                         z10 = true;
                     } else {
                         z10 = false;
@@ -145,10 +145,10 @@ public final class l implements OnSuccessListener, ne.k {
                     HandlerThread handlerThread = new HandlerThread("ExoPlayer:Playback", -16);
                     this.d = handlerThread;
                     handlerThread.start();
-                    this.f14290c = ((HandlerThread) this.d).getLooper();
+                    this.f14335c = ((HandlerThread) this.d).getLooper();
                 }
-                this.f14288a++;
-                looper = (Looper) this.f14290c;
+                this.f14333a++;
+                looper = (Looper) this.f14335c;
             } catch (Throwable th2) {
                 throw th2;
             }
@@ -162,33 +162,33 @@ public final class l implements OnSuccessListener, ne.k {
     }
 
     public void f() {
-        float[] fArr = (float[]) this.f14289b;
+        float[] fArr = (float[]) this.f14334b;
         Arrays.fill(fArr, 0.0f);
         Iterator it = ((ne.l) this.d).iterator();
         while (it.hasNext()) {
             ne.g gVar = (ne.g) it.next();
-            fArr[((Integer) gVar.f17393a).intValue()] = gVar.c();
+            fArr[((Integer) gVar.f17456a).intValue()] = gVar.c();
         }
-        ((kg) this.f14290c).run();
+        ((kg) this.f14335c).run();
     }
 
     public void g() {
         boolean z10;
         HandlerThread handlerThread;
-        synchronized (this.f14289b) {
+        synchronized (this.f14334b) {
             try {
-                if (this.f14288a > 0) {
+                if (this.f14333a > 0) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
                 u6.p(z10);
-                int i10 = this.f14288a - 1;
-                this.f14288a = i10;
+                int i10 = this.f14333a - 1;
+                this.f14333a = i10;
                 if (i10 == 0 && (handlerThread = (HandlerThread) this.d) != null) {
                     handlerThread.quit();
                     this.d = null;
-                    this.f14290c = null;
+                    this.f14335c = null;
                 }
             } catch (Throwable th2) {
                 throw th2;
@@ -197,9 +197,9 @@ public final class l implements OnSuccessListener, ne.k {
     }
 
     public void h(int i10, boolean z10, boolean z11) {
-        int numberOfLeadingZeros = 31 - Integer.numberOfLeadingZeros(this.f14288a);
-        int b10 = j6.b(this.f14288a, 1 << i10, z10);
-        this.f14288a = b10;
+        int numberOfLeadingZeros = 31 - Integer.numberOfLeadingZeros(this.f14333a);
+        int b10 = j6.b(this.f14333a, 1 << i10, z10);
+        this.f14333a = b10;
         int numberOfLeadingZeros2 = 31 - Integer.numberOfLeadingZeros(b10);
         if (numberOfLeadingZeros != numberOfLeadingZeros2) {
             ((ne.l) this.d).h(Integer.valueOf(numberOfLeadingZeros2), z11);
@@ -209,13 +209,13 @@ public final class l implements OnSuccessListener, ne.k {
     public void i(Throwable th2) {
         e0 e0Var = (e0) this.d;
         if (th2 instanceof TimeoutException) {
-            e0Var.F(102, 28, h0.f4751p);
+            e0Var.F(102, 28, h0.f4756p);
             u.i("BillingClientTesting", "Asynchronous call to Billing Override Service timed out.", th2);
         } else {
-            e0Var.F(95, 28, h0.f4751p);
+            e0Var.F(95, 28, h0.f4756p);
             u.i("BillingClientTesting", "An error occurred while retrieving billing override.", th2);
         }
-        ((Runnable) this.f14290c).run();
+        ((Runnable) this.f14335c).run();
     }
 
     public synchronized Task k(k kVar) {
@@ -231,7 +231,7 @@ public final class l implements OnSuccessListener, ne.k {
         } catch (Throwable th2) {
             throw th2;
         }
-        return kVar.f14286b.getTask();
+        return kVar.f14331b.getTask();
     }
 
     @Override
@@ -240,22 +240,22 @@ public final class l implements OnSuccessListener, ne.k {
     }
 
     public l(Object obj, Object obj2, Object obj3, int i10) {
-        this.f14289b = obj;
-        this.f14290c = obj2;
+        this.f14334b = obj;
+        this.f14335c = obj2;
         this.d = obj3;
-        this.f14288a = i10;
+        this.f14333a = i10;
     }
 
     public l(int i10, String str, int i11, ArrayList arrayList, byte[] bArr) {
         List unmodifiableList;
-        this.f14289b = str;
-        this.f14288a = i11;
+        this.f14334b = str;
+        this.f14333a = i11;
         if (arrayList == null) {
             unmodifiableList = Collections.EMPTY_LIST;
         } else {
             unmodifiableList = DesugarCollections.unmodifiableList(arrayList);
         }
-        this.f14290c = unmodifiableList;
+        this.f14335c = unmodifiableList;
         this.d = bArr;
     }
 
@@ -270,24 +270,24 @@ public final class l implements OnSuccessListener, ne.k {
                 p6Var.x(AndroidUtilities.bold());
                 paint.setColor(i0.a.o(-16777216, 58));
                 SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-                this.f14289b = spannableStringBuilder;
-                spannableStringBuilder.append((CharSequence) " ").setSpan(new p2(AndroidUtilities.dp(1.0f)), 0, 1, 0);
+                this.f14334b = spannableStringBuilder;
+                spannableStringBuilder.append((CharSequence) " ").setSpan(new o2(AndroidUtilities.dp(1.0f)), 0, 1, 0);
                 SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder();
-                this.f14290c = spannableStringBuilder2;
-                spannableStringBuilder2.append((CharSequence) " ").setSpan(new p2(AndroidUtilities.dp(1.0f)), 0, 1, 0);
+                this.f14335c = spannableStringBuilder2;
+                spannableStringBuilder2.append((CharSequence) " ").setSpan(new o2(AndroidUtilities.dp(1.0f)), 0, 1, 0);
                 return;
             case 6:
             default:
-                this.f14289b = null;
-                this.f14290c = null;
+                this.f14334b = null;
+                this.f14335c = null;
                 this.d = null;
-                this.f14288a = 0;
+                this.f14333a = 0;
                 return;
             case 7:
-                this.f14289b = new Object();
-                this.f14290c = null;
+                this.f14334b = new Object();
+                this.f14335c = null;
                 this.d = null;
-                this.f14288a = 0;
+                this.f14333a = 0;
                 return;
         }
     }

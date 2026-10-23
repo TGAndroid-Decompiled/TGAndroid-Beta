@@ -1,39 +1,42 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.view.ViewGroup;
-import org.telegram.messenger.AndroidUtilities;
-public final class m40 extends org.telegram.ui.ActionBar.k {
-    public final org.telegram.ui.Components.bq f39113u1;
-    public final q50 f39114v1;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.graphics.Paint;
+public final class m40 extends AnimatorListenerAdapter {
+    public final int f39372a;
+    public final u50 f39373b;
 
-    public m40(q50 q50Var, LaunchActivity launchActivity, org.telegram.ui.Components.bq bqVar) {
-        super(launchActivity, null);
-        this.f39114v1 = q50Var;
-        this.f39113u1 = bqVar;
+    public m40(u50 u50Var, int i10) {
+        this.f39372a = i10;
+        this.f39373b = u50Var;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        if (getAdditionalSubtitleTextView().getVisibility() == 0) {
-            canvas.save();
-            canvas.translate(getSubtitleTextView().getLeft(), getSubtitleTextView().getY() - AndroidUtilities.dp(1.0f));
-            org.telegram.ui.Components.bq bqVar = this.f39113u1;
-            bqVar.f25011f = (int) (getAdditionalSubtitleTextView().getAlpha() * 255.0f);
-            bqVar.draw(canvas);
-            canvas.restore();
-            invalidate();
-        }
-    }
-
-    @Override
-    public final void setAlpha(float f7) {
-        ViewGroup viewGroup;
-        if (getAlpha() != f7) {
-            super.setAlpha(f7);
-            viewGroup = ((org.telegram.ui.ActionBar.f3) this.f39114v1).containerView;
-            viewGroup.invalidate();
+    public final void onAnimationEnd(Animator animator) {
+        int i10;
+        switch (this.f39372a) {
+            case 0:
+                u50 u50Var = this.f39373b;
+                u50Var.V.setVisibility(4);
+                u50Var.W.setVisibility(4);
+                u50Var.U.setVisibility(4);
+                return;
+            case 1:
+                this.f39373b.f42200h0 = null;
+                return;
+            default:
+                u50 u50Var2 = this.f39373b;
+                u50Var2.f42201h1 = null;
+                Paint paint = u50Var2.f42197g1;
+                if (u50Var2.T1 == 3) {
+                    i10 = -1163700;
+                } else {
+                    i10 = -12761513;
+                }
+                paint.setColor(i10);
+                u50Var2.f42193f1.invalidate();
+                return;
         }
     }
 }

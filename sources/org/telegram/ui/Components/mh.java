@@ -4,19 +4,19 @@ import android.view.KeyEvent;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 public final class mh implements Utilities.Callback4 {
-    public final int f28519a;
-    public final KeyEvent.Callback f28520b;
+    public final int f28657a;
+    public final KeyEvent.Callback f28658b;
 
     public mh(KeyEvent.Callback callback, int i10) {
-        this.f28519a = i10;
-        this.f28520b = callback;
+        this.f28657a = i10;
+        this.f28658b = callback;
     }
 
     @Override
     public final void run(Object obj, Object obj2, Object obj3, Object obj4) {
-        switch (this.f28519a) {
+        switch (this.f28657a) {
             case 0:
-                ti tiVar = (ti) this.f28520b;
+                ti tiVar = (ti) this.f28658b;
                 CharSequence charSequence = (CharSequence) obj;
                 Integer num = (Integer) obj2;
                 Integer num2 = (Integer) obj3;
@@ -24,10 +24,10 @@ public final class mh implements Utilities.Callback4 {
                 zh zhVar = tiVar.H0;
                 zhVar.setText(charSequence);
                 zhVar.w(charSequence.length(), charSequence.length());
-                tiVar.C1();
+                tiVar.F1();
                 return;
             case 1:
-                ti tiVar2 = (ti) this.f28520b;
+                ti tiVar2 = (ti) this.f28658b;
                 CharSequence charSequence2 = (CharSequence) obj;
                 Integer num3 = (Integer) obj2;
                 Integer num4 = (Integer) obj3;
@@ -35,18 +35,18 @@ public final class mh implements Utilities.Callback4 {
                 ci ciVar = tiVar2.S0;
                 ciVar.setText(charSequence2);
                 ciVar.w(charSequence2.length(), charSequence2.length());
-                tiVar2.C1();
+                tiVar2.F1();
                 return;
             default:
-                kd kdVar = (kd) this.f28520b;
+                kd kdVar = (kd) this.f28658b;
                 Integer num5 = (Integer) obj2;
                 Integer num6 = (Integer) obj3;
                 Boolean bool3 = (Boolean) obj4;
-                ei.g gVar = kdVar.f9399f;
+                ei.g gVar = kdVar.f9410f;
                 gVar.setText((CharSequence) obj);
                 gVar.d();
                 gVar.k(true);
-                ei.e eVar = kdVar.f9396c0;
+                ei.e eVar = kdVar.f9407c0;
                 AndroidUtilities.cancelRunOnUIThread(eVar);
                 eVar.run();
                 return;

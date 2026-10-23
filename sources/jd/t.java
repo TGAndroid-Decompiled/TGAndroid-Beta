@@ -1,34 +1,35 @@
 package jd;
 
+import i2.o1;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.RandomAccess;
 public final class t extends c implements RandomAccess {
-    public final Object[] f14396a;
-    public final int f14397b;
-    public int f14398c;
+    public final Object[] f14441a;
+    public final int f14442b;
+    public int f14443c;
     public int d;
 
     public t(int i10, Object[] objArr) {
-        this.f14396a = objArr;
+        this.f14441a = objArr;
         if (i10 >= 0) {
             if (i10 <= objArr.length) {
-                this.f14397b = objArr.length;
+                this.f14442b = objArr.length;
                 this.d = i10;
                 return;
             }
-            StringBuilder l4 = i2.e.l(i10, "ring buffer filled size: ", " cannot be larger than the buffer size: ");
-            l4.append(objArr.length);
-            throw new IllegalArgumentException(l4.toString().toString());
+            StringBuilder n10 = o1.n(i10, "ring buffer filled size: ", " cannot be larger than the buffer size: ");
+            n10.append(objArr.length);
+            throw new IllegalArgumentException(n10.toString().toString());
         }
-        throw new IllegalArgumentException(i2.e.j(i10, "ring buffer filled size should not be negative but it is ").toString());
+        throw new IllegalArgumentException(o1.k(i10, "ring buffer filled size should not be negative but it is ").toString());
     }
 
     @Override
     public final Object get(int i10) {
         int h = h();
         if (i10 >= 0 && i10 < h) {
-            return this.f14396a[(this.f14398c + i10) % this.f14397b];
+            return this.f14441a[(this.f14443c + i10) % this.f14442b];
         }
         throw new IndexOutOfBoundsException(a1.g.l(i10, h, "index: ", ", size: "));
     }
@@ -45,17 +46,17 @@ public final class t extends c implements RandomAccess {
 
     public final void m() {
         if (20 <= this.d) {
-            int i10 = this.f14398c;
-            int i11 = this.f14397b;
+            int i10 = this.f14443c;
+            int i11 = this.f14442b;
             int i12 = (i10 + 20) % i11;
-            Object[] objArr = this.f14396a;
+            Object[] objArr = this.f14441a;
             if (i10 > i12) {
                 f.e(i10, i11, objArr);
                 f.e(0, i12, objArr);
             } else {
                 f.e(i10, i12, objArr);
             }
-            this.f14398c = i12;
+            this.f14443c = i12;
             this.d -= 20;
             return;
         }
@@ -78,12 +79,12 @@ public final class t extends c implements RandomAccess {
             kotlin.jvm.internal.i.d(array, "copyOf(...)");
         }
         int i11 = this.d;
-        int i12 = this.f14398c;
+        int i12 = this.f14443c;
         int i13 = 0;
         int i14 = 0;
         while (true) {
-            objArr = this.f14396a;
-            if (i14 >= i11 || i12 >= this.f14397b) {
+            objArr = this.f14441a;
+            if (i14 >= i11 || i12 >= this.f14442b) {
                 break;
             }
             array[i14] = objArr[i12];

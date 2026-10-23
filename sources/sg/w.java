@@ -11,35 +11,35 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.xc;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PremiumPreviewFragment;
-import org.telegram.ui.v10;
+import org.telegram.ui.e50;
 public final class w implements Runnable {
-    public final int f46475a;
-    public final k0 f46476b;
+    public final int f46906a;
+    public final j0 f46907b;
 
-    public w(k0 k0Var, int i10) {
-        this.f46475a = i10;
-        this.f46476b = k0Var;
+    public w(j0 j0Var, int i10) {
+        this.f46906a = i10;
+        this.f46907b = j0Var;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f46475a;
-        k0 k0Var = this.f46476b;
+        int i10 = this.f46906a;
+        j0 j0Var = this.f46907b;
         switch (i10) {
             case 0:
                 if (LaunchActivity.R() != null) {
                     ?? obj = new Object();
-                    obj.f21560a = true;
-                    k0Var.K0.showAsSheet(new PremiumPreviewFragment(0, "noncontacts"), obj);
+                    obj.f21636a = true;
+                    j0Var.K0.showAsSheet(new PremiumPreviewFragment(0, "noncontacts"), obj);
                     return;
                 }
                 return;
             case 1:
-                k0Var.f46312x0.e(k0Var.f46291b0, false);
-                k0Var.A1();
+                j0Var.f46728x0.g(j0Var.f46707b0, false);
+                j0Var.D1();
                 return;
             case 2:
-                HashSet hashSet = k0Var.f46313y0;
+                HashSet hashSet = j0Var.f46729y0;
                 xc X = xc.X();
                 if (X != null) {
                     if (hashSet.size() == 1) {
@@ -52,20 +52,20 @@ public final class w implements Runnable {
                 }
                 return;
             case 3:
-                ei.d dVar = k0Var.S0;
-                TLRPC.ChatFull u12 = k0Var.u1();
-                dVar.b(Math.max(u12.boosts_unrestrict - u12.boosts_applied, 0), false);
+                ei.d dVar = j0Var.S0;
+                TLRPC.ChatFull x12 = j0Var.x1();
+                dVar.b(Math.max(x12.boosts_unrestrict - x12.boosts_applied, 0), false);
                 return;
             default:
-                if (ChatObject.hasAdminRights(k0Var.t1())) {
-                    if (k0Var.E0.getParent() != null) {
-                        ((ViewGroup) k0Var.E0.getParent()).removeView(k0Var.E0);
+                if (ChatObject.hasAdminRights(j0Var.w1())) {
+                    if (j0Var.E0.getParent() != null) {
+                        ((ViewGroup) j0Var.E0.getParent()).removeView(j0Var.E0);
                     }
-                    v10 v10Var = k0Var.L0;
-                    if (v10Var != null && v10Var.getParent() != null) {
-                        ((ViewGroup) k0Var.L0.getParent()).removeView(k0Var.L0);
+                    e50 e50Var = j0Var.L0;
+                    if (e50Var != null && e50Var.getParent() != null) {
+                        ((ViewGroup) j0Var.L0.getParent()).removeView(j0Var.L0);
                     }
-                    k0Var.d.setPadding(0, 0, 0, 0);
+                    j0Var.d.setPadding(0, 0, 0, 0);
                     return;
                 }
                 return;

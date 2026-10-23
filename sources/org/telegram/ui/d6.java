@@ -1,30 +1,91 @@
 package org.telegram.ui;
 
+import android.content.Context;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.FrameLayout;
+import java.util.ArrayList;
 import org.telegram.messenger.CacheByChatsController;
-public final class d6 extends pg.a {
-    public final CacheByChatsController.KeepMediaException f36279c;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public class d6 extends org.telegram.ui.ActionBar.o2 {
+    public b6 f36517a;
+    public org.telegram.ui.Components.mm0 f36518b;
+    public final ArrayList f36519c;
+    public ArrayList d;
+    public int e;
 
-    public d6(int i10, CacheByChatsController.KeepMediaException keepMediaException) {
-        super(i10, false);
-        this.f36279c = keepMediaException;
+    public d6(Bundle bundle) {
+        super(bundle);
+        this.f36519c = new ArrayList();
+        this.d = new ArrayList();
     }
 
-    public final boolean equals(Object obj) {
-        CacheByChatsController.KeepMediaException keepMediaException;
-        if (this == obj) {
-            return true;
+    public final void U() {
+        ArrayList arrayList;
+        boolean z10 = this.isPaused;
+        ArrayList arrayList2 = this.f36519c;
+        if (!z10 && this.f36517a != null) {
+            arrayList = new ArrayList();
+            arrayList.addAll(arrayList2);
+        } else {
+            arrayList = null;
         }
-        if (obj == null || d6.class != obj.getClass()) {
-            return false;
+        arrayList2.clear();
+        arrayList2.add(new c6(1, null));
+        ArrayList arrayList3 = this.d;
+        int size = arrayList3.size();
+        boolean z11 = false;
+        int i10 = 0;
+        while (i10 < size) {
+            Object obj = arrayList3.get(i10);
+            i10++;
+            arrayList2.add(new c6(2, (CacheByChatsController.KeepMediaException) obj));
+            z11 = true;
         }
-        d6 d6Var = (d6) obj;
-        if (this.f44300a != d6Var.f44300a) {
-            return false;
+        if (z11) {
+            arrayList2.add(new c6(3, null));
+            arrayList2.add(new c6(4, null));
         }
-        CacheByChatsController.KeepMediaException keepMediaException2 = this.f36279c;
-        if (keepMediaException2 == null || (keepMediaException = d6Var.f36279c) == null || keepMediaException2.dialogId == keepMediaException.dialogId) {
-            return true;
+        arrayList2.add(new c6(3, null));
+        b6 b6Var = this.f36517a;
+        if (b6Var != null) {
+            if (arrayList != null) {
+                b6Var.E(arrayList, arrayList2);
+            } else {
+                b6Var.l();
+            }
         }
-        return false;
+    }
+
+    @Override
+    public final View createView(Context context) {
+        FrameLayout frameLayout = new FrameLayout(context);
+        this.fragmentView = frameLayout;
+        i2.o1.y(false, this.actionBar);
+        this.actionBar.setActionBarMenuOnItemClick(new ah.s(this, 24));
+        this.actionBar.setTitle(LocaleController.getString(R.string.NotificationsExceptions));
+        this.f36518b = new org.telegram.ui.Components.mm0(context, null);
+        s4.k kVar = new s4.k();
+        kVar.C = false;
+        kVar.f46377m = false;
+        this.f36518b.setItemAnimator(kVar);
+        this.f36518b.setLayoutManager(new s4.b0());
+        org.telegram.ui.Components.mm0 mm0Var = this.f36518b;
+        b6 b6Var = new b6(this);
+        this.f36517a = b6Var;
+        mm0Var.setAdapter(b6Var);
+        this.f36518b.setOnItemClickListener(new a1(this, 7));
+        frameLayout.addView(this.f36518b);
+        org.telegram.ui.ActionBar.r6.i(org.telegram.ui.ActionBar.k6.f21125a7, frameLayout, null);
+        U();
+        return this.fragmentView;
+    }
+
+    @Override
+    public final boolean onFragmentCreate() {
+        this.e = getArguments().getInt("type");
+        U();
+        return super.onFragmentCreate();
     }
 }

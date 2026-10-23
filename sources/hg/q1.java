@@ -1,12 +1,12 @@
 package hg;
 
 import java.util.ArrayList;
-import org.telegram.ui.ms;
+import org.telegram.ui.ps;
 public final class q1 implements z1 {
-    public final ms f12022a;
+    public final ps f12052a;
 
-    public q1(ms msVar) {
-        this.f12022a = msVar;
+    public q1(ps psVar) {
+        this.f12052a = psVar;
     }
 
     @Override
@@ -21,15 +21,15 @@ public final class q1 implements z1 {
 
     @Override
     public final void f(int i10) {
-        ms msVar = this.f12022a;
-        msVar.l();
+        ps psVar = this.f12052a;
+        psVar.l();
         if (i10 != 0) {
-            msVar.F();
+            psVar.F();
         }
     }
 
     @Override
-    public final a0.h y() {
+    public final a0.h x() {
         return null;
     }
 

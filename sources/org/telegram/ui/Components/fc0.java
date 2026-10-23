@@ -1,37 +1,37 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import org.telegram.messenger.ChatMessageSharedResources;
-import org.telegram.messenger.MessageObject;
-public final class fc0 extends org.telegram.ui.Cells.u1 {
-    public final hc0 Ge;
+import org.telegram.messenger.NotificationCenter;
+public final class fc0 implements Runnable {
+    public final int f26281a;
+    public final gc0 f26282b;
 
-    public fc0(hc0 hc0Var, Context context, int i10, ChatMessageSharedResources chatMessageSharedResources, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context, i10, false, chatMessageSharedResources, d6Var);
-        this.Ge = hc0Var;
+    public fc0(gc0 gc0Var, int i10) {
+        this.f26281a = i10;
+        this.f26282b = gc0Var;
     }
 
     @Override
-    public final void X3(MessageObject messageObject, MessageObject.GroupedMessages groupedMessages, boolean z10, boolean z11, boolean z12, boolean z13) {
-        super.X3(messageObject, groupedMessages, z10, z11, z12, z13);
-        ic0.b(this.Ge.f26856c, this);
-    }
-
-    @Override
-    public final void invalidate() {
-        super.invalidate();
-        this.Ge.f26856c.f27242f.invalidate();
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        ic0.b(this.Ge.f26856c, this);
-    }
-
-    @Override
-    public final void invalidate(int i10, int i11, int i12, int i13) {
-        super.invalidate(i10, i11, i12, i13);
-        this.Ge.f26856c.f27242f.invalidate();
+    public final void run() {
+        switch (this.f26281a) {
+            case 0:
+                gc0 gc0Var = this.f26282b;
+                if (gc0Var.W != -1) {
+                    NotificationCenter.getInstance(gc0Var.Y.f28340c0.f30150w).onAnimationFinish(gc0Var.W);
+                    gc0Var.W = -1;
+                    return;
+                }
+                return;
+            case 1:
+                this.f26282b.Y.i();
+                return;
+            default:
+                gc0 gc0Var2 = this.f26282b;
+                if (gc0Var2.W != -1) {
+                    NotificationCenter.getInstance(gc0Var2.Y.f28340c0.f30150w).onAnimationFinish(gc0Var2.W);
+                    gc0Var2.W = -1;
+                    return;
+                }
+                return;
+        }
     }
 }

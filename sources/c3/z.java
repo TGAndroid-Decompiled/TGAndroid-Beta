@@ -1,71 +1,168 @@
 package c3;
 
-import e2.m0;
-import v7.u6;
-public final class z implements c0 {
-    public final c5.c0 f4685a;
-    public final c5.c0 f4686b;
-    public long f4687c;
+import b2.w0;
+import java.util.Collections;
+import java.util.List;
+public final class z {
+    public final List f4681a;
+    public final int f4682b;
+    public final int f4683c;
+    public final int d;
+    public final int e;
+    public final int f4684f;
+    public final int f4685g;
+    public final int h;
+    public final int f4686i;
+    public final int f4687j;
+    public final int f4688k;
+    public final float f4689l;
+    public final int f4690m;
+    public final String f4691n;
+    public final qi.e f4692o;
 
-    public z(long j10, long[] jArr, long[] jArr2) {
-        boolean z10;
-        if (jArr.length == jArr2.length) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        u6.g(z10);
-        int length = jArr2.length;
-        if (length > 0 && jArr2[0] > 0) {
-            int i10 = length + 1;
-            c5.c0 c0Var = new c5.c0(i10, 3);
-            this.f4685a = c0Var;
-            c5.c0 c0Var2 = new c5.c0(i10, 3);
-            this.f4686b = c0Var2;
-            c0Var.d(0L);
-            c0Var2.d(0L);
-        } else {
-            this.f4685a = new c5.c0(length, 3);
-            this.f4686b = new c5.c0(length, 3);
-        }
-        this.f4685a.e(jArr);
-        this.f4686b.e(jArr2);
-        this.f4687c = j10;
+    public z(List list, int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17, int i18, int i19, float f7, int i20, String str, qi.e eVar) {
+        this.f4681a = list;
+        this.f4682b = i10;
+        this.f4683c = i11;
+        this.d = i12;
+        this.e = i13;
+        this.f4684f = i14;
+        this.f4685g = i15;
+        this.h = i16;
+        this.f4686i = i17;
+        this.f4687j = i18;
+        this.f4688k = i19;
+        this.f4689l = f7;
+        this.f4690m = i20;
+        this.f4691n = str;
+        this.f4692o = eVar;
     }
 
-    @Override
-    public final boolean d() {
-        if (this.f4686b.f4723b > 0) {
-            return true;
+    public static z a(e2.x xVar, boolean z10, qi.e eVar) {
+        String str;
+        boolean z11;
+        List singletonList;
+        com.google.android.gms.internal.cast.a j10;
+        int i10;
+        int i11 = 4;
+        try {
+            if (z10) {
+                xVar.O(4);
+            } else {
+                xVar.O(21);
+            }
+            int A = xVar.A() & 3;
+            int A2 = xVar.A();
+            int i12 = xVar.f8299b;
+            int i13 = 0;
+            int i14 = 0;
+            int i15 = 0;
+            while (true) {
+                z11 = true;
+                if (i14 >= A2) {
+                    break;
+                }
+                xVar.O(1);
+                int H = xVar.H();
+                for (int i16 = 0; i16 < H; i16++) {
+                    int H2 = xVar.H();
+                    i15 += H2 + 4;
+                    xVar.O(H2);
+                }
+                i14++;
+            }
+            xVar.N(i12);
+            byte[] bArr = new byte[i15];
+            qi.e eVar2 = eVar;
+            int i17 = -1;
+            int i18 = -1;
+            int i19 = -1;
+            int i20 = -1;
+            int i21 = -1;
+            int i22 = -1;
+            int i23 = -1;
+            int i24 = -1;
+            int i25 = -1;
+            int i26 = -1;
+            float f7 = 1.0f;
+            String str2 = null;
+            int i27 = 0;
+            int i28 = 0;
+            while (i27 < A2) {
+                int A3 = xVar.A() & 63;
+                int H3 = xVar.H();
+                int i29 = i13;
+                qi.e eVar3 = eVar2;
+                while (i29 < H3) {
+                    boolean z12 = z11;
+                    int H4 = xVar.H();
+                    int i30 = A;
+                    System.arraycopy(f2.q.f10352a, i13, bArr, i28, i11);
+                    int i31 = i28 + 4;
+                    System.arraycopy(xVar.f8298a, xVar.f8299b, bArr, i31, H4);
+                    if (A3 == 32 && i29 == 0) {
+                        eVar3 = f2.q.l(i31, i31 + H4, bArr);
+                    } else {
+                        if (A3 == 33 && i29 == 0) {
+                            f2.m k10 = f2.q.k(bArr, i31, i31 + H4, eVar3);
+                            i17 = k10.f10321a + 1;
+                            i18 = k10.f10325g;
+                            int i32 = k10.h;
+                            i20 = k10.f10323c + 8;
+                            i21 = k10.d + 8;
+                            int i33 = k10.f10328k;
+                            i19 = i32;
+                            int i34 = k10.f10329l;
+                            int i35 = k10.f10330m;
+                            float f10 = k10.f10326i;
+                            int i36 = k10.f10327j;
+                            f2.j jVar = k10.f10322b;
+                            if (jVar != null) {
+                                i10 = i36;
+                                str2 = e2.g.a(jVar.f10312a, jVar.f10314c, jVar.d, jVar.f10315f, jVar.f10313b, jVar.e);
+                            } else {
+                                i10 = i36;
+                            }
+                            i26 = i10;
+                            f7 = f10;
+                            i24 = i35;
+                            i23 = i34;
+                            i22 = i33;
+                        } else if (A3 == 39 && i29 == 0 && (j10 = f2.q.j(i31, i31 + H4, bArr)) != null && eVar3 != null) {
+                            i13 = 0;
+                            if (j10.f6575a == ((f2.i) ((e9.n0) eVar3.f45176a).get(0)).f10311b) {
+                                i25 = 4;
+                            } else {
+                                i25 = 5;
+                            }
+                        }
+                        i13 = 0;
+                    }
+                    i28 = i31 + H4;
+                    xVar.O(H4);
+                    i29++;
+                    z11 = z12;
+                    A = i30;
+                    i11 = 4;
+                }
+                i27++;
+                eVar2 = eVar3;
+                i11 = 4;
+            }
+            int i37 = A;
+            if (i15 == 0) {
+                singletonList = Collections.EMPTY_LIST;
+            } else {
+                singletonList = Collections.singletonList(bArr);
+            }
+            return new z(singletonList, i37 + 1, i17, i18, i19, i20, i21, i22, i23, i24, i25, f7, i26, str2, eVar2);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            if (z10) {
+                str = "L-HEVC config";
+            } else {
+                str = "HEVC config";
+            }
+            throw w0.a(e, "Error parsing".concat(str));
         }
-        return false;
-    }
-
-    @Override
-    public final boolean e() {
-        return false;
-    }
-
-    @Override
-    public final b0 f(long j10) {
-        c5.c0 c0Var = this.f4686b;
-        if (c0Var.f4723b == 0) {
-            d0 d0Var = d0.f4603c;
-            return new b0(d0Var, d0Var);
-        }
-        int c10 = m0.c(c0Var, j10);
-        long n10 = c0Var.n(c10);
-        c5.c0 c0Var2 = this.f4685a;
-        d0 d0Var2 = new d0(n10, c0Var2.n(c10));
-        if (n10 != j10 && c10 != c0Var.f4723b - 1) {
-            int i10 = c10 + 1;
-            return new b0(d0Var2, new d0(c0Var.n(i10), c0Var2.n(i10)));
-        }
-        return new b0(d0Var2, d0Var2);
-    }
-
-    @Override
-    public final long h() {
-        return this.f4687c;
     }
 }

@@ -1,23 +1,10 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-public final class s4 implements Runnable {
-    public final v4 f41364a;
-
-    public s4(v4 v4Var) {
-        this.f41364a = v4Var;
-    }
-
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class s4 implements RequestDelegate {
     @Override
-    public final void run() {
-        ?? n2Var = new org.telegram.ui.ActionBar.n2(null);
-        n2Var.N = new a0.h();
-        n2Var.O = new ArrayList();
-        n2Var.f33968x = 1;
-        n2Var.G = false;
-        v4 v4Var = this.f41364a;
-        n2Var.R = v4Var.U();
-        n2Var.f33964n = new b1(this, 2);
-        v4Var.presentFragment((org.telegram.ui.ActionBar.n2) n2Var);
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
     }
 }

@@ -5,7 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.view.MotionEvent;
 import android.view.View;
-public final class va extends gd0 {
+public final class va extends id0 {
     public final boolean D0;
     public final boolean E0;
     public final bb F0;
@@ -20,9 +20,9 @@ public final class va extends gd0 {
     @Override
     public final void dispatchDraw(Canvas canvas) {
         bb bbVar = this.F0;
-        bbVar.J(canvas, this);
-        super.dispatchDraw(canvas);
         bbVar.I(canvas, this);
+        super.dispatchDraw(canvas);
+        bbVar.G(canvas, this);
     }
 
     @Override
@@ -31,7 +31,7 @@ public final class va extends gd0 {
         if (motionEvent.getAction() == 0) {
             float y3 = motionEvent.getY();
             bb bbVar = this.F0;
-            drawable = ((org.telegram.ui.ActionBar.f3) bbVar).shadowDrawable;
+            drawable = ((org.telegram.ui.ActionBar.h3) bbVar).shadowDrawable;
             if (y3 < drawable.getBounds().top) {
                 bbVar.dismiss();
             }
@@ -52,7 +52,7 @@ public final class va extends gd0 {
         int size = View.MeasureSpec.getSize(i11);
         bb bbVar = this.F0;
         bbVar.h = size;
-        bbVar.E(i10, i11);
+        bbVar.D(i10, i11);
         if (this.D0) {
             i11 = View.MeasureSpec.makeMeasureSpec(bbVar.h, 1073741824);
         }

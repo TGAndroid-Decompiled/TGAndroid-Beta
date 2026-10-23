@@ -5,8 +5,8 @@ import com.google.android.gms.internal.play_billing.s0;
 import java.util.Arrays;
 import java.util.HashMap;
 public final class s {
-    public static final HashMap f16984b;
-    public final int[] f16985a;
+    public static final HashMap f17047b;
+    public final int[] f17048a;
 
     static {
         HashMap hashMap = new HashMap();
@@ -34,20 +34,20 @@ public final class s {
         a(hashMap, 256, "bold");
         a(hashMap, 512, "italic");
         a(hashMap, 257, "important");
-        f16984b = hashMap;
+        f17047b = hashMap;
     }
 
     public s(String[] strArr) {
-        this.f16985a = new int[strArr.length];
+        this.f17048a = new int[strArr.length];
         for (int i10 = 0; i10 < strArr.length; i10++) {
             int i11 = 0;
             for (String str : strArr[i10].split("\\s+")) {
-                Integer num = (Integer) f16984b.get(str);
+                Integer num = (Integer) f17047b.get(str);
                 if (num != null) {
                     i11 = ((i11 & 255) == 0 ? i11 | (num.intValue() & 255) : i11) | (num.intValue() & (-256));
                 }
             }
-            this.f16985a[i10] = i11;
+            this.f17048a[i10] = i11;
         }
     }
 
@@ -59,7 +59,7 @@ public final class s {
 
     public final int[] b(s0 s0Var) {
         int i10;
-        int[] iArr = (int[]) s0Var.f7208c;
+        int[] iArr = (int[]) s0Var.f7220c;
         int length = iArr.length / 5;
         if (length == 0) {
             return new int[0];
@@ -68,7 +68,7 @@ public final class s {
         int[] iArr3 = new int[length];
         int[] iArr4 = new int[length];
         c0 c0Var = new c0(7, false, false);
-        c0Var.f4724c = new int[48];
+        c0Var.f4729c = new int[48];
         int i11 = -1;
         int i12 = 0;
         int i13 = 0;
@@ -81,12 +81,12 @@ public final class s {
                 if (i17 > i15) {
                     break;
                 }
-                c0Var.c(i13, i17, iArr4[i11]);
+                c0Var.d(i13, i17, iArr4[i11]);
                 i13 = iArr3[i11];
                 i11--;
             }
             if (i11 >= 0) {
-                c0Var.c(i13, i15, iArr4[i11]);
+                c0Var.d(i13, i15, iArr4[i11]);
             }
             int i18 = iArr[i14 + 4];
             if (i18 < 0) {
@@ -95,7 +95,7 @@ public final class s {
                 i10 = iArr2[i18];
             }
             int i19 = iArr[i14 + 2];
-            int[] iArr5 = this.f16985a;
+            int[] iArr5 = this.f17048a;
             int i20 = iArr5[i19];
             int i21 = iArr5[iArr[i14 + 3]];
             int i22 = i21 & 255;
@@ -114,10 +114,10 @@ public final class s {
             i13 = i15;
         }
         while (i11 >= 0) {
-            c0Var.c(i13, iArr3[i11], iArr4[i11]);
+            c0Var.d(i13, iArr3[i11], iArr4[i11]);
             i13 = iArr3[i11];
             i11--;
         }
-        return Arrays.copyOf((int[]) c0Var.f4724c, c0Var.f4723b);
+        return Arrays.copyOf((int[]) c0Var.f4729c, c0Var.f4728b);
     }
 }

@@ -1,36 +1,28 @@
 package z7;
-
-import java.util.Arrays;
 public final class we {
-    public final Boolean f51230a;
-    public final Boolean f51231b;
-    public final Boolean f51232c;
-    public final Boolean d;
-    public final Boolean e;
+    public final String f51692a;
+    public final String f51693b;
+    public final String f51694c;
+    public final String d;
+    public final m e;
+    public final String f51695f;
+    public final Boolean f51696g;
+    public final Boolean h;
+    public final Boolean f51697i;
+    public final Integer f51698j;
+    public final Integer f51699k;
 
-    public we(com.google.android.gms.internal.cast.z5 z5Var) {
-        this.f51230a = (Boolean) z5Var.f6881b;
-        this.f51231b = (Boolean) z5Var.f6882c;
-        this.f51232c = (Boolean) z5Var.f6880a;
-        this.d = (Boolean) z5Var.d;
-        this.e = (Boolean) z5Var.e;
-    }
-
-    public final boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (!(obj instanceof we)) {
-            return false;
-        }
-        we weVar = (we) obj;
-        if (n6.l.l(this.f51230a, weVar.f51230a) && n6.l.l(this.f51231b, weVar.f51231b) && n6.l.l(this.f51232c, weVar.f51232c) && n6.l.l(this.d, weVar.d) && n6.l.l(this.e, weVar.e)) {
-            return true;
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f51230a, this.f51231b, this.f51232c, this.d, this.e});
+    public we(v7.d8 d8Var) {
+        this.f51692a = d8Var.f48440a;
+        this.f51693b = d8Var.f48441b;
+        this.f51694c = d8Var.f48442c;
+        this.d = d8Var.d;
+        this.e = (m) d8Var.f48447k;
+        this.f51695f = d8Var.e;
+        this.f51696g = (Boolean) d8Var.f48443f;
+        this.h = (Boolean) d8Var.f48444g;
+        this.f51697i = (Boolean) d8Var.h;
+        this.f51698j = d8Var.f48445i;
+        this.f51699k = (Integer) d8Var.f48446j;
     }
 }

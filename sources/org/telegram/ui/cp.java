@@ -1,10 +1,14 @@
 package org.telegram.ui;
+public final class cp implements v60 {
+    public final kp f36413a;
 
-import android.view.View;
-import android.widget.FrameLayout;
-public final class cp extends FrameLayout {
+    public cp(kp kpVar) {
+        this.f36413a = kpVar;
+    }
+
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
+    public final void a(w60 w60Var, long j10) {
+        kp kpVar = this.f36413a;
+        kpVar.Y(kpVar.getMessagesController().getChat(Long.valueOf(j10)), w60Var);
     }
 }

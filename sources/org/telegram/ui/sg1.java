@@ -1,102 +1,13 @@
 package org.telegram.ui;
+public final class sg1 {
+    public final org.telegram.ui.ActionBar.o2 f41408a;
+    public boolean f41409b;
+    public boolean f41410c;
+    public boolean d;
+    public boolean e;
+    public float f41411f;
 
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.voip.VoIPService;
-public final class sg1 implements View.OnClickListener {
-    public final int f41468a;
-    public final hh1 f41469b;
-
-    public sg1(hh1 hh1Var, int i10) {
-        this.f41468a = i10;
-        this.f41469b = hh1Var;
-    }
-
-    @Override
-    public final void onClick(View view) {
-        VoIPService sharedInstance;
-        int i10;
-        switch (this.f41468a) {
-            case 0:
-                if (VoIPService.getSharedInstance() != null) {
-                    hh1 hh1Var = this.f41469b;
-                    AndroidUtilities.cancelRunOnUIThread(hh1Var.S0);
-                    hh1Var.R0 = false;
-                    VoIPService.getSharedInstance().hangUp();
-                    return;
-                }
-                return;
-            case 1:
-                hh1 hh1Var2 = this.f41469b;
-                if (hh1Var2.f37664n0 && hh1Var2.m0 && System.currentTimeMillis() - hh1Var2.K0 > 500) {
-                    AndroidUtilities.cancelRunOnUIThread(hh1Var2.S0);
-                    hh1Var2.R0 = false;
-                    hh1Var2.K0 = System.currentTimeMillis();
-                    hh1Var2.Z.setRelativePosition(hh1Var2.Y);
-                    hh1Var2.f37636a0 = true;
-                    hh1Var2.H0 = true;
-                    hh1Var2.f37667q0 = hh1Var2.f37666p0;
-                    hh1Var2.G();
-                    return;
-                }
-                return;
-            case 2:
-                hh1 hh1Var3 = this.f41469b;
-                if (hh1Var3.H0 && System.currentTimeMillis() - hh1Var3.K0 > 500) {
-                    AndroidUtilities.cancelRunOnUIThread(hh1Var3.S0);
-                    hh1Var3.R0 = false;
-                    hh1Var3.K0 = System.currentTimeMillis();
-                    hh1Var3.Y.setRelativePosition(hh1Var3.Z);
-                    hh1Var3.f37636a0 = false;
-                    hh1Var3.H0 = false;
-                    hh1Var3.f37667q0 = hh1Var3.f37666p0;
-                    hh1Var3.G();
-                    return;
-                }
-                return;
-            case 3:
-                long currentTimeMillis = System.currentTimeMillis();
-                hh1 hh1Var4 = this.f41469b;
-                if (currentTimeMillis - hh1Var4.K0 >= 500) {
-                    hh1Var4.K0 = System.currentTimeMillis();
-                    boolean z10 = hh1Var4.C0;
-                    if (!z10 && hh1Var4.B0) {
-                        hh1Var4.l(!z10);
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 4:
-                long currentTimeMillis2 = System.currentTimeMillis();
-                hh1 hh1Var5 = this.f41469b;
-                if (currentTimeMillis2 - hh1Var5.K0 >= 500) {
-                    hh1Var5.K0 = System.currentTimeMillis();
-                    if (hh1Var5.B0) {
-                        hh1Var5.l(!hh1Var5.C0);
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 5:
-                hh1 hh1Var6 = this.f41469b;
-                if (hh1Var6.K.getTag() != null && (sharedInstance = VoIPService.getSharedInstance()) != null) {
-                    hh1Var6.A();
-                    if (sharedInstance.isBluetoothOn()) {
-                        i10 = 2;
-                    } else if (sharedInstance.isSpeakerphoneOn()) {
-                        i10 = 0;
-                    } else {
-                        i10 = 1;
-                    }
-                    sharedInstance.toggleSpeakerphoneOrShowRouteSheet(hh1Var6.f37638b, false, Integer.valueOf(i10));
-                    return;
-                }
-                return;
-            default:
-                this.f41469b.o();
-                return;
-        }
+    public sg1(org.telegram.ui.ActionBar.o2 o2Var) {
+        this.f41408a = o2Var;
     }
 }

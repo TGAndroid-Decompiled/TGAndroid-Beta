@@ -12,11 +12,12 @@ import java.util.Map;
 import javax.net.ssl.HttpsURLConnection;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.telegram.ui.Cells.c1;
+import org.telegram.ui.Cells.b1;
+import si.o0;
 import vc.g;
 import w7.m9;
 public abstract class b {
-    public static final c f49776a = new c();
+    public static final c f50218a = new c();
 
     public static HttpURLConnection a(String str, l lVar) {
         Throwable th2;
@@ -29,7 +30,7 @@ public abstract class b {
         hashMap.put("Accept-Charset", "UTF-8");
         hashMap.put("Accept", "application/json");
         hashMap.put("User-Agent", "Stripe/v1 JavaBindings/3.5.0");
-        String str2 = lVar.f7892a;
+        String str2 = lVar.f7904a;
         hashMap.put("Authorization", "Bearer " + str2);
         String[] strArr = {"os.name", "os.version", "os.arch", "java.version", "java.vendor", "java.vm.version", "java.vm.vendor"};
         HashMap hashMap2 = new HashMap();
@@ -45,7 +46,7 @@ public abstract class b {
             httpURLConnection.setRequestProperty((String) entry.getKey(), (String) entry.getValue());
         }
         if (httpURLConnection instanceof HttpsURLConnection) {
-            ((HttpsURLConnection) httpURLConnection).setSSLSocketFactory(f49776a);
+            ((HttpsURLConnection) httpURLConnection).setSSLSocketFactory(f50218a);
         }
         httpURLConnection.setDoOutput(true);
         httpURLConnection.setRequestMethod("POST");
@@ -77,8 +78,8 @@ public abstract class b {
             if (sb2.length() > 0) {
                 sb2.append("&");
             }
-            String str = aVar.f49774a;
-            String str2 = aVar.f49775b;
+            String str = aVar.f50216a;
+            String str2 = aVar.f50217b;
             if (str == null) {
                 encode = null;
             } else {
@@ -120,7 +121,7 @@ public abstract class b {
         if (obj instanceof List) {
             List<Object> list = (List) obj;
             LinkedList linkedList = new LinkedList();
-            String u10 = r4.c.u(str, "[]");
+            String u10 = o0.u(str, "[]");
             if (list.isEmpty()) {
                 linkedList.add(new a(str, ""));
                 return linkedList;
@@ -139,7 +140,7 @@ public abstract class b {
             linkedList3.add(new a(str, obj.toString()));
             return linkedList3;
         } else {
-            throw new g(c1.k("You cannot set '", str, "' to an empty string. We interpret empty strings as null in requests. You may set '", str, "' to null to delete the property."), null, null);
+            throw new g(b1.l("You cannot set '", str, "' to an empty string. We interpret empty strings as null in requests. You may set '", str, "' to null to delete the property."), null, null);
         }
     }
 

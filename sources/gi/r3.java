@@ -3,7 +3,7 @@ package gi;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -13,40 +13,53 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.ActionBar.h6;
+import org.telegram.messenger.sl;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.ActionBar.n6;
+import org.telegram.ui.ActionBar.r6;
 import org.telegram.ui.Components.w9;
 import w7.z5;
 public final class r3 extends FrameLayout {
-    public final int f11426a;
-    public final d6 f11427b;
-    public final w9 f11428c;
+    public final int f11452a;
+    public final g6 f11453b;
+    public final w9 f11454c;
     public final View d;
     public final View e;
-    public final ImageView f11429f;
+    public final ImageView f11455f;
     public final TextView h;
-    public final TextView f11430n;
-    public final ImageView f11431r;
-    public boolean f11432s;
+    public final TextView f11456n;
+    public final ImageView f11457r;
+    public boolean f11458s;
 
-    public r3(Context context, int i10, d6 d6Var) {
+    public r3(Context context, int i10, g6 g6Var) {
         super(context);
-        this.f11426a = i10;
-        this.f11427b = d6Var;
+        this.f11452a = i10;
+        this.f11453b = g6Var;
         w9 w9Var = new w9(context);
-        this.f11428c = w9Var;
+        this.f11454c = w9Var;
         w9Var.setRoundRadius(AndroidUtilities.dp(46.0f));
         addView(w9Var, z5.d(46, 46.0f, 19, 13.0f, 0.0f, 13.0f, 0.0f));
         View view = new View(context);
         this.d = view;
-        view.setBackground(h6.K(AndroidUtilities.dp(11.0f), h6.w0(h6.f20994d6, d6Var)));
+        int dp = AndroidUtilities.dp(11.0f);
+        int i11 = k6.f21183d6;
+        Drawable K = k6.K(dp, k6.w0(i11, g6Var));
+        n6 O = r6.O(i11);
+        view.setBackground(K);
+        r6.k(view, K, O, null, g6Var);
         addView(view, z5.d(22, 22.0f, 19, 40.0f, 15.0f, 0.0f, 0.0f));
         View view2 = new View(context);
         this.e = view2;
-        view2.setBackground(h6.K(AndroidUtilities.dp(9.665f), h6.w0(h6.uj, d6Var)));
+        int dp2 = AndroidUtilities.dp(9.665f);
+        int i12 = k6.uj;
+        Drawable K2 = k6.K(dp2, k6.w0(i12, g6Var));
+        n6 O2 = r6.O(i12);
+        view2.setBackground(K2);
+        r6.k(view2, K2, O2, null, g6Var);
         addView(view2, z5.b(19.33f, 19.33f, 19, 41.33f, 15.0f, 0.0f, 0.0f));
         ImageView imageView = new ImageView(context);
-        this.f11429f = imageView;
+        this.f11455f = imageView;
         imageView.setScaleX(0.6f);
         imageView.setScaleY(0.6f);
         addView(imageView, z5.b(19.33f, 19.33f, 19, 41.33f, 15.0f, 0.0f, 0.0f));
@@ -61,19 +74,19 @@ public final class r3 extends FrameLayout {
         textView.setEllipsize(truncateAt);
         textView.setTypeface(AndroidUtilities.bold());
         textView.setTextSize(1, 16.0f);
-        textView.setTextColor(h6.w0(h6.G6, d6Var));
+        r6.W(textView, k6.G6, g6Var);
         NotificationCenter.listenEmojiLoading(textView);
-        TextView i11 = com.google.android.gms.internal.play_billing.k3.i(linearLayout, textView, z5.t(-1, -2, 55, 6, 0, 24, 0), context);
-        this.f11430n = i11;
-        i11.setMaxLines(1);
-        i11.setSingleLine(true);
-        i11.setEllipsize(truncateAt);
-        i11.setTextSize(1, 14.0f);
-        i11.setTextColor(h6.w0(h6.f21399z6, d6Var));
-        linearLayout.addView(i11, z5.t(-1, -2, 55, 6, 1, 24, 0));
+        TextView f7 = sl.f(linearLayout, textView, z5.t(-1, -2, 55, 6, 0, 24, 0), context);
+        this.f11456n = f7;
+        f7.setMaxLines(1);
+        f7.setSingleLine(true);
+        f7.setEllipsize(truncateAt);
+        f7.setTextSize(1, 14.0f);
+        r6.W(f7, k6.f21588z6, g6Var);
+        linearLayout.addView(f7, z5.t(-1, -2, 55, 6, 1, 24, 0));
         ImageView imageView2 = new ImageView(context);
-        this.f11431r = imageView2;
-        imageView2.setColorFilter(new PorterDuffColorFilter(h6.w0(h6.M6, d6Var), PorterDuff.Mode.SRC_IN));
+        this.f11457r = imageView2;
+        r6.t(imageView2, k6.M6, g6Var, PorterDuff.Mode.SRC_IN);
         imageView2.setImageResource(R.drawable.msg_arrowright);
         imageView2.setScaleType(ImageView.ScaleType.CENTER);
         addView(imageView2, z5.d(24, 24.0f, 21, 0.0f, 0.0f, 10.0f, 0.0f));
@@ -82,8 +95,8 @@ public final class r3 extends FrameLayout {
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        if (this.f11432s) {
-            canvas.drawRect(AndroidUtilities.dp(72.0f), getHeight() - 1, getWidth(), getHeight(), h6.f21115k0);
+        if (this.f11458s) {
+            canvas.drawRect(AndroidUtilities.dp(72.0f), getHeight() - 1, getWidth(), getHeight(), k6.f21304k0);
         }
     }
 

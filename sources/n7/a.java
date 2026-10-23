@@ -1,5 +1,6 @@
 package n7;
 
+import i2.o1;
 import java.io.IOException;
 import java.math.RoundingMode;
 import java.nio.charset.StandardCharsets;
@@ -12,9 +13,9 @@ import java.util.TreeMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 public abstract class a {
-    public static volatile com.google.firebase.messaging.q f17254b;
-    public static final Object f17253a = new Object();
-    public static final a1 f17255c = new a1("id");
+    public static volatile com.google.firebase.messaging.q f17317b;
+    public static final Object f17316a = new Object();
+    public static final a1 f17318c = new a1("id");
     public static final a1 d = new a1("type");
 
     public static int a(int i10, int i11) {
@@ -25,7 +26,7 @@ public abstract class a {
             int i13 = i10 - (i11 * i12);
             if (i13 != 0) {
                 int i14 = ((i10 ^ i11) >> 31) | 1;
-                switch (n0.f17299a[roundingMode.ordinal()]) {
+                switch (n0.f17362a[roundingMode.ordinal()]) {
                     case 1:
                         throw new ArithmeticException("mode was UNNECESSARY, but rounding was necessary");
                     case 2:
@@ -83,7 +84,7 @@ public abstract class a {
         int length;
         int length2;
         int indexOf;
-        String k10;
+        String l4;
         int i10 = 0;
         int i11 = 0;
         while (true) {
@@ -93,17 +94,17 @@ public abstract class a {
             }
             Object obj = objArr[i11];
             if (obj == null) {
-                k10 = "null";
+                l4 = "null";
             } else {
                 try {
-                    k10 = obj.toString();
+                    l4 = obj.toString();
                 } catch (Exception e) {
-                    String C = a1.g.C(obj.getClass().getName(), "@", Integer.toHexString(System.identityHashCode(obj)));
-                    Logger.getLogger("com.google.common.base.Strings").logp(Level.WARNING, "com.google.common.base.Strings", "lenientToString", "Exception during lenientFormat for ".concat(C), (Throwable) e);
-                    k10 = org.telegram.ui.Cells.c1.k("<", C, " threw ", e.getClass().getName(), ">");
+                    String D = a1.g.D(obj.getClass().getName(), "@", Integer.toHexString(System.identityHashCode(obj)));
+                    Logger.getLogger("com.google.common.base.Strings").logp(Level.WARNING, "com.google.common.base.Strings", "lenientToString", "Exception during lenientFormat for ".concat(D), (Throwable) e);
+                    l4 = org.telegram.ui.Cells.b1.l("<", D, " threw ", e.getClass().getName(), ">");
                 }
             }
-            objArr[i11] = k10;
+            objArr[i11] = l4;
             i11++;
         }
         StringBuilder sb2 = new StringBuilder(str.length() + (length * 16));
@@ -193,7 +194,7 @@ public abstract class a {
         }
         if (i10 >= 0) {
             if (i11 < 0) {
-                throw new IllegalArgumentException(i2.e.j(i11, "negative size: "));
+                throw new IllegalArgumentException(o1.k(i11, "negative size: "));
             }
             c10 = c("%s (%s) must be less than size (%s)", "index", Integer.valueOf(i10), Integer.valueOf(i11));
         } else {
@@ -245,7 +246,7 @@ public abstract class a {
         if (collection instanceof SortedSet) {
             obj = ((SortedSet) collection).comparator();
             if (obj == null) {
-                obj = v.f17317b;
+                obj = v.f17380b;
             }
         } else if (collection instanceof c0) {
             obj = ((s) ((c0) collection)).d;
@@ -282,8 +283,8 @@ public abstract class a {
             if (d10 != null) {
                 try {
                     try {
-                        byte b10 = d10.f17259a;
-                        byte b11 = d10.f17260b;
+                        byte b10 = d10.f17322a;
+                        byte b11 = d10.f17323b;
                         int i10 = 0;
                         if (b10 != Byte.MIN_VALUE) {
                             if (b10 != -96) {
@@ -337,8 +338,8 @@ public abstract class a {
                                 TreeMap treeMap = new TreeMap();
                                 while (i10 < i11) {
                                     n2.e eVar = eVarArr[i10];
-                                    if (!treeMap.containsKey((c1) eVar.f17039b)) {
-                                        treeMap.put((c1) eVar.f17039b, (c1) eVar.f17040c);
+                                    if (!treeMap.containsKey((c1) eVar.f17102b)) {
+                                        treeMap.put((c1) eVar.f17102b, (c1) eVar.f17103c);
                                         i10++;
                                     } else {
                                         throw new IOException("Attempted to add duplicate key to canonical CBOR Map.");
@@ -380,20 +381,20 @@ public abstract class a {
                 if (j10 >= 24) {
                     return;
                 }
-                throw new IOException(r4.c.g(j10, "Integer value ", " after add info could have been represented in 0 additional bytes, but used 1"));
+                throw new IOException(org.telegram.ui.Cells.b1.k(j10, "Integer value ", " after add info could have been represented in 0 additional bytes, but used 1"));
             case 25:
                 if (j10 < 256) {
-                    throw new IOException(r4.c.g(j10, "Integer value ", " after add info could have been represented in 0-1 additional bytes, but used 2"));
+                    throw new IOException(org.telegram.ui.Cells.b1.k(j10, "Integer value ", " after add info could have been represented in 0-1 additional bytes, but used 2"));
                 }
                 return;
             case 26:
                 if (j10 < 65536) {
-                    throw new IOException(r4.c.g(j10, "Integer value ", " after add info could have been represented in 0-2 additional bytes, but used 4"));
+                    throw new IOException(org.telegram.ui.Cells.b1.k(j10, "Integer value ", " after add info could have been represented in 0-2 additional bytes, but used 4"));
                 }
                 return;
             case 27:
                 if (j10 < 4294967296L) {
-                    throw new IOException(r4.c.g(j10, "Integer value ", " after add info could have been represented in 0-4 additional bytes, but used 8"));
+                    throw new IOException(org.telegram.ui.Cells.b1.k(j10, "Integer value ", " after add info could have been represented in 0-4 additional bytes, but used 8"));
                 }
                 return;
             default:
@@ -425,6 +426,6 @@ public abstract class a {
         if (i11 >= 0) {
             return c("%s (%s) must not be greater than size (%s)", str, Integer.valueOf(i10), Integer.valueOf(i11));
         }
-        throw new IllegalArgumentException(i2.e.j(i11, "negative size: "));
+        throw new IllegalArgumentException(o1.k(i11, "negative size: "));
     }
 }

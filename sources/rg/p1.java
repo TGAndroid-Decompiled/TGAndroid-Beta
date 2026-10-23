@@ -1,0 +1,413 @@
+package rg;
+
+import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.RectF;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.R;
+import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.Components.ah;
+import org.telegram.ui.Components.bk0;
+import org.telegram.ui.Components.yj0;
+import w7.z5;
+public final class p1 extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
+    public static final List f46018w = Arrays.asList(new m1(0, 1, 20, 0), new m1(0, 2, 20, 40), new m1(1, 0, 0, 20), new m1(1, 2, 60, 40), new m1(2, 0, 40, 20), new m1(2, 1, 40, 60));
+    public int f46019a;
+    public final bk0 f46020b;
+    public final ImageView f46021c;
+    public final ImageView d;
+    public final View e;
+    public final o1 f46022f;
+    public n1 h;
+    public int f46023n;
+    public int f46024r;
+    public int f46025s;
+    public String v;
+
+    public p1(Context context) {
+        super(context);
+        this.f46019a = 0;
+        setWillNotDraw(false);
+        View view = new View(context);
+        this.e = view;
+        view.setOnClickListener(new View.OnClickListener(this) {
+            public final p1 f45863b;
+
+            {
+                this.f45863b = this;
+            }
+
+            @Override
+            public final void onClick(View view2) {
+                switch (r2) {
+                    case 0:
+                        this.f45863b.h.a();
+                        return;
+                    case 1:
+                        p1 p1Var = this.f45863b;
+                        p1Var.d((p1Var.f46019a + 1) % 3, true);
+                        return;
+                    case 2:
+                        this.f45863b.h.c();
+                        return;
+                    case 3:
+                        this.f45863b.h.s();
+                        return;
+                    default:
+                        this.f45863b.h.C();
+                        return;
+                }
+            }
+        });
+        addView(view, z5.d(24, 24.0f, 48, 0.0f, 0.0f, 16.0f, 0.0f));
+        ?? imageView = new ImageView(context);
+        this.f46020b = imageView;
+        imageView.f(R.raw.photo_text_allign, 24, 24, null);
+        yj0 animatedDrawable = imageView.getAnimatedDrawable();
+        animatedDrawable.h = true;
+        animatedDrawable.P(20);
+        animatedDrawable.M(20);
+        PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
+        imageView.setColorFilter(new PorterDuffColorFilter(-1, mode));
+        imageView.setOnClickListener(new View.OnClickListener(this) {
+            public final p1 f45863b;
+
+            {
+                this.f45863b = this;
+            }
+
+            @Override
+            public final void onClick(View view2) {
+                switch (r2) {
+                    case 0:
+                        this.f45863b.h.a();
+                        return;
+                    case 1:
+                        p1 p1Var = this.f45863b;
+                        p1Var.d((p1Var.f46019a + 1) % 3, true);
+                        return;
+                    case 2:
+                        this.f45863b.h.c();
+                        return;
+                    case 3:
+                        this.f45863b.h.s();
+                        return;
+                    default:
+                        this.f45863b.h.C();
+                        return;
+                }
+            }
+        });
+        imageView.setPadding(AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f));
+        addView((View) imageView, z5.d(28, 28.0f, 16, 0.0f, 0.0f, 16.0f, 0.0f));
+        ImageView imageView2 = new ImageView(context);
+        this.f46021c = imageView2;
+        imageView2.setImageResource(R.drawable.msg_text_outlined);
+        imageView2.setPadding(AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f));
+        imageView2.setOnClickListener(new View.OnClickListener(this) {
+            public final p1 f45863b;
+
+            {
+                this.f45863b = this;
+            }
+
+            @Override
+            public final void onClick(View view2) {
+                switch (r2) {
+                    case 0:
+                        this.f45863b.h.a();
+                        return;
+                    case 1:
+                        p1 p1Var = this.f45863b;
+                        p1Var.d((p1Var.f46019a + 1) % 3, true);
+                        return;
+                    case 2:
+                        this.f45863b.h.c();
+                        return;
+                    case 3:
+                        this.f45863b.h.s();
+                        return;
+                    default:
+                        this.f45863b.h.C();
+                        return;
+                }
+            }
+        });
+        addView(imageView2, z5.d(28, 28.0f, 16, 0.0f, 0.0f, 16.0f, 0.0f));
+        ImageView imageView3 = new ImageView(context);
+        this.d = imageView3;
+        imageView3.setImageResource(R.drawable.msg_add);
+        imageView3.setColorFilter(new PorterDuffColorFilter(-1, mode));
+        imageView3.setBackground(k6.g0(1090519039, 1, -1));
+        imageView3.setOnClickListener(new View.OnClickListener(this) {
+            public final p1 f45863b;
+
+            {
+                this.f45863b = this;
+            }
+
+            @Override
+            public final void onClick(View view2) {
+                switch (r2) {
+                    case 0:
+                        this.f45863b.h.a();
+                        return;
+                    case 1:
+                        p1 p1Var = this.f45863b;
+                        p1Var.d((p1Var.f46019a + 1) % 3, true);
+                        return;
+                    case 2:
+                        this.f45863b.h.c();
+                        return;
+                    case 3:
+                        this.f45863b.h.s();
+                        return;
+                    default:
+                        this.f45863b.h.C();
+                        return;
+                }
+            }
+        });
+        imageView3.setPadding(AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f));
+        addView(imageView3, z5.d(28, 28.0f, 16, 0.0f, 0.0f, 16.0f, 0.0f));
+        o1 o1Var = new o1(context);
+        this.f46022f = o1Var;
+        o1Var.setCurrent(true);
+        o1Var.setOnClickListener(new View.OnClickListener(this) {
+            public final p1 f45863b;
+
+            {
+                this.f45863b = this;
+            }
+
+            @Override
+            public final void onClick(View view2) {
+                switch (r2) {
+                    case 0:
+                        this.f45863b.h.a();
+                        return;
+                    case 1:
+                        p1 p1Var = this.f45863b;
+                        p1Var.d((p1Var.f46019a + 1) % 3, true);
+                        return;
+                    case 2:
+                        this.f45863b.h.c();
+                        return;
+                    case 3:
+                        this.f45863b.h.s();
+                        return;
+                    default:
+                        this.f45863b.h.C();
+                        return;
+                }
+            }
+        });
+        addView(o1Var, z5.o(-2, -2, 0.0f, 21));
+    }
+
+    public final void a(int i10) {
+        if (i10 == 0) {
+            i10 = R.drawable.msg_add;
+        }
+        if (this.f46025s != i10) {
+            this.f46025s = i10;
+            AndroidUtilities.updateImageViewImageAnimated(this.d, i10);
+        }
+    }
+
+    public final void b(RectF rectF) {
+        o1 o1Var = this.f46022f;
+        rectF.set(AndroidUtilities.dp(8.0f) + o1Var.getLeft(), o1Var.getTop(), AndroidUtilities.dp(8.0f) + o1Var.getRight(), o1Var.getBottom());
+    }
+
+    public final void c(View view) {
+        if (view.getVisibility() != 8) {
+            FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) view.getLayoutParams();
+            int i10 = this.f46024r + layoutParams.leftMargin;
+            this.f46024r = i10;
+            view.layout(i10, (getMeasuredHeight() - layoutParams.height) / 2, this.f46024r + layoutParams.width, (getMeasuredHeight() + layoutParams.height) / 2);
+            this.f46024r = layoutParams.width + layoutParams.rightMargin + this.f46024r;
+        }
+    }
+
+    public final void d(int i10, boolean z10) {
+        int i11 = this.f46019a;
+        this.f46019a = i10;
+        List list = f46018w;
+        bk0 bk0Var = this.f46020b;
+        if (i11 == i10) {
+            yj0 animatedDrawable = bk0Var.getAnimatedDrawable();
+            m1 m1Var = (m1) list.get(0);
+            Iterator it = list.iterator();
+            while (true) {
+                if (!it.hasNext()) {
+                    break;
+                }
+                m1 m1Var2 = (m1) it.next();
+                if (this.f46019a == m1Var2.f45922b) {
+                    m1Var = m1Var2;
+                    break;
+                }
+            }
+            animatedDrawable.M(m1Var.d);
+            animatedDrawable.P(m1Var.d);
+            if (z10) {
+                this.h.d(i10);
+                return;
+            }
+            return;
+        }
+        m1 m1Var3 = (m1) list.get(0);
+        Iterator it2 = list.iterator();
+        while (true) {
+            if (!it2.hasNext()) {
+                break;
+            }
+            m1 m1Var4 = (m1) it2.next();
+            if (i11 == m1Var4.f45921a && this.f46019a == m1Var4.f45922b) {
+                m1Var3 = m1Var4;
+                break;
+            }
+        }
+        yj0 animatedDrawable2 = bk0Var.getAnimatedDrawable();
+        animatedDrawable2.M(m1Var3.f45923c);
+        animatedDrawable2.P(m1Var3.d);
+        animatedDrawable2.start();
+        if (z10) {
+            this.h.d(i10);
+        }
+    }
+
+    @Override
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        String str;
+        if (i10 == NotificationCenter.customTypefacesLoaded && (str = this.v) != null) {
+            setTypeface(str);
+            this.v = null;
+        }
+    }
+
+    public final void e(int i10, boolean z10) {
+        int i11;
+        if (this.f46023n == i10) {
+            return;
+        }
+        this.f46023n = i10;
+        if (i10 != 1) {
+            if (i10 != 2) {
+                if (i10 != 3) {
+                    i11 = R.drawable.msg_photo_text_framed;
+                } else {
+                    i11 = R.drawable.msg_photo_text_regular;
+                }
+            } else {
+                i11 = R.drawable.msg_photo_text_framed3;
+            }
+        } else {
+            i11 = R.drawable.msg_photo_text_framed2;
+        }
+        ImageView imageView = this.f46021c;
+        if (z10) {
+            AndroidUtilities.updateImageViewImageAnimated(imageView, i11);
+        } else {
+            imageView.setImageResource(i11);
+        }
+    }
+
+    public View getColorClickableView() {
+        return this.e;
+    }
+
+    public ah getEmojiButton() {
+        return null;
+    }
+
+    public o1 getTypefaceCell() {
+        return this.f46022f;
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.customTypefacesLoaded);
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.customTypefacesLoaded);
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        this.f46024r = getPaddingLeft();
+        c(this.e);
+        c(this.f46020b);
+        c(this.f46021c);
+        c(this.d);
+        int measuredWidth = getMeasuredWidth() - getPaddingRight();
+        o1 o1Var = this.f46022f;
+        o1Var.layout(measuredWidth - o1Var.getMeasuredWidth(), (getMeasuredHeight() - o1Var.getMeasuredHeight()) / 2, getMeasuredWidth() - getPaddingRight(), (o1Var.getMeasuredHeight() + getMeasuredHeight()) / 2);
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        int size = View.MeasureSpec.getSize(i10);
+        int size2 = View.MeasureSpec.getSize(i11);
+        int paddingLeft = (size - getPaddingLeft()) - getPaddingRight();
+        for (int i12 = 0; i12 < getChildCount(); i12++) {
+            View childAt = getChildAt(i12);
+            o1 o1Var = this.f46022f;
+            if (childAt == o1Var) {
+                o1Var.measure(View.MeasureSpec.makeMeasureSpec(paddingLeft, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE));
+            } else {
+                FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) childAt.getLayoutParams();
+                childAt.measure(View.MeasureSpec.makeMeasureSpec(layoutParams.width, 1073741824), View.MeasureSpec.makeMeasureSpec(layoutParams.height, 1073741824));
+                paddingLeft -= (childAt.getMeasuredWidth() + layoutParams.leftMargin) + layoutParams.rightMargin;
+            }
+        }
+        setMeasuredDimension(size, size2);
+    }
+
+    public void setAlignment(int i10) {
+        d(i10, false);
+    }
+
+    public void setDelegate(n1 n1Var) {
+        this.h = n1Var;
+    }
+
+    public void setOutlineType(int i10) {
+        e(i10, false);
+    }
+
+    public void setTypeface(String str) {
+        this.v = str;
+        o1 o1Var = this.f46022f;
+        if (o1Var != null) {
+            for (qg.l0 l0Var : qg.l0.c()) {
+                if (l0Var.f44978a.equals(str)) {
+                    o1Var.setTypeface(l0Var.d());
+                    String str2 = l0Var.f44980c;
+                    if (str2 == null) {
+                        str2 = LocaleController.getString(l0Var.f44979b);
+                    }
+                    o1Var.setText(str2);
+                    return;
+                }
+            }
+        }
+    }
+
+    public void setTypefaceListView(u1 u1Var) {
+    }
+}

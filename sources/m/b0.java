@@ -6,20 +6,20 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.RatingBar;
 public final class b0 extends RatingBar {
-    public final z f16159a;
+    public final z f16222a;
 
     public b0(Context context, AttributeSet attributeSet) {
         super(context, attributeSet, 2130968908);
         c3.a(this, getContext());
         z zVar = new z(this);
-        this.f16159a = zVar;
+        this.f16222a = zVar;
         zVar.b(attributeSet, 2130968908);
     }
 
     @Override
     public final synchronized void onMeasure(int i10, int i11) {
         super.onMeasure(i10, i11);
-        Bitmap bitmap = (Bitmap) this.f16159a.f16394c;
+        Bitmap bitmap = (Bitmap) this.f16222a.f16457c;
         if (bitmap != null) {
             setMeasuredDimension(View.resolveSizeAndState(bitmap.getWidth() * getNumStars(), i10, 0), getMeasuredHeight());
         }

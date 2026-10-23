@@ -1,23 +1,24 @@
 package ci;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class r6 implements RequestDelegate {
-    public final long f5918a;
-    public final Utilities.Callback f5919b;
-    public final i7 f5920c;
+import org.telegram.tgnet.tl.TL_bots;
+import org.telegram.tgnet.tl.TL_stories;
+public final class r6 extends TL_stories.StoryItem {
+    public final s6 f5871a;
 
-    public r6(i7 i7Var, long j10, Utilities.Callback callback) {
-        this.f5920c = i7Var;
-        this.f5918a = j10;
-        this.f5919b = callback;
-    }
-
-    @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        AndroidUtilities.runOnUIThread(new ai.c3(this, tLObject, this.f5918a, this.f5919b, 10));
+    public r6(s6 s6Var, long j10, TL_bots.botPreviewMedia botpreviewmedia) {
+        this.f5871a = s6Var;
+        this.dialogId = j10;
+        TLRPC.MessageMedia messageMedia = botpreviewmedia.media;
+        this.media = messageMedia;
+        TLRPC.Document document = messageMedia.document;
+        if (document != null) {
+            document.date = botpreviewmedia.date;
+            return;
+        }
+        TLRPC.Photo photo = messageMedia.photo;
+        if (photo != null) {
+            photo.date = botpreviewmedia.date;
+        }
     }
 }

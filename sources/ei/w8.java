@@ -3,18 +3,17 @@ package ei;
 import android.content.Context;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import org.telegram.messenger.nk;
 public final class w8 extends LinearLayout {
-    public final TextView f10046a;
-    public final TextView f10047b;
+    public final TextView f10063a;
+    public final TextView f10064b;
 
-    public w8(Context context, org.telegram.ui.ActionBar.d6 d6Var, boolean z10) {
+    public w8(Context context, org.telegram.ui.ActionBar.g6 g6Var, boolean z10) {
         super(context);
         int i10;
         setOrientation(1);
         TextView textView = new TextView(context);
-        this.f10046a = textView;
-        org.telegram.ui.Cells.c1.r(org.telegram.ui.ActionBar.h6.f21100j5, d6Var, textView, 1, 20.0f);
+        this.f10063a = textView;
+        org.telegram.messenger.v0.q(textView, org.telegram.ui.ActionBar.k6.f21289j5, g6Var, 1, 20.0f);
         if (z10) {
             i10 = 4;
         } else {
@@ -22,8 +21,9 @@ public final class w8 extends LinearLayout {
         }
         addView(textView, w7.z5.t(-1, -2, 55, 27, 16, 27, i10));
         TextView textView2 = new TextView(context);
-        this.f10047b = textView2;
-        nk.o(org.telegram.ui.ActionBar.h6.f21231q5, d6Var, textView2, 1, 14.0f);
+        this.f10064b = textView2;
+        org.telegram.ui.ActionBar.r6.W(textView2, org.telegram.ui.ActionBar.k6.f21420q5, g6Var);
+        textView2.setTextSize(1, 14.0f);
         if (z10) {
             addView(textView2, w7.z5.t(-1, -2, 55, 27, 0, 27, 13));
         }

@@ -1,85 +1,102 @@
 package ig;
 
-import android.text.TextUtils;
-import android.view.View;
-import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
+import org.telegram.messenger.sl;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.Components.h61;
-import org.telegram.ui.nc0;
-public final class y0 implements Utilities.Callback5, org.telegram.ui.ActionBar.a2 {
-    public final int f13091a;
-    public final d1 f13092b;
+import org.telegram.ui.Components.xc;
+public final class y0 implements RequestDelegate {
+    public final int f13127a;
+    public final c1 f13128b;
 
-    public y0(d1 d1Var, int i10) {
-        this.f13091a = i10;
-        this.f13092b = d1Var;
+    public y0(c1 c1Var, int i10) {
+        this.f13127a = i10;
+        this.f13128b = c1Var;
     }
 
     @Override
-    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f13091a) {
-            case 1:
-                this.f13092b.W();
-                return;
-            case 2:
-                this.f13092b.finishFragment();
+    public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        switch (this.f13127a) {
+            case 0:
+                final c1 c1Var = this.f13128b;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r4) {
+                            case 0:
+                                c1 c1Var2 = c1Var;
+                                c1Var2.f12876b.a(0.0f);
+                                TLRPC.TL_error tL_error2 = tL_error;
+                                if (tL_error2 != null) {
+                                    xc.d0(tL_error2);
+                                    return;
+                                } else if (tLObject instanceof TLRPC.TL_boolFalse) {
+                                    sl.q(R.string.UnknownError, xc.a0(c1Var2), null);
+                                    return;
+                                } else {
+                                    c1Var2.finishFragment();
+                                    return;
+                                }
+                            default:
+                                c1 c1Var3 = c1Var;
+                                TLRPC.TL_error tL_error3 = tL_error;
+                                if (tL_error3 != null) {
+                                    c1Var3.f12876b.a(0.0f);
+                                    xc.d0(tL_error3);
+                                    return;
+                                } else if (tLObject instanceof TLRPC.TL_boolFalse) {
+                                    c1Var3.f12876b.a(0.0f);
+                                    sl.q(R.string.UnknownError, xc.a0(c1Var3), null);
+                                    return;
+                                } else {
+                                    c1Var3.finishFragment();
+                                    return;
+                                }
+                        }
+                    }
+                });
                 return;
             default:
-                d1 d1Var = this.f13092b;
-                d1Var.f12853b.a(1.0f);
-                TLRPC.UserFull userFull = d1Var.getMessagesController().getUserFull(d1Var.getUserConfig().getClientUserId());
-                TL_account.updateBusinessLocation updatebusinesslocation = new TL_account.updateBusinessLocation();
-                if (userFull != null) {
-                    userFull.business_location = null;
-                    userFull.flags2 &= -3;
-                }
-                d1Var.getConnectionsManager().sendRequest(updatebusinesslocation, new z0(d1Var, 1));
+                final c1 c1Var2 = this.f13128b;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r4) {
+                            case 0:
+                                c1 c1Var22 = c1Var2;
+                                c1Var22.f12876b.a(0.0f);
+                                TLRPC.TL_error tL_error2 = tL_error;
+                                if (tL_error2 != null) {
+                                    xc.d0(tL_error2);
+                                    return;
+                                } else if (tLObject instanceof TLRPC.TL_boolFalse) {
+                                    sl.q(R.string.UnknownError, xc.a0(c1Var22), null);
+                                    return;
+                                } else {
+                                    c1Var22.finishFragment();
+                                    return;
+                                }
+                            default:
+                                c1 c1Var3 = c1Var2;
+                                TLRPC.TL_error tL_error3 = tL_error;
+                                if (tL_error3 != null) {
+                                    c1Var3.f12876b.a(0.0f);
+                                    xc.d0(tL_error3);
+                                    return;
+                                } else if (tLObject instanceof TLRPC.TL_boolFalse) {
+                                    c1Var3.f12876b.a(0.0f);
+                                    sl.q(R.string.UnknownError, xc.a0(c1Var3), null);
+                                    return;
+                                } else {
+                                    c1Var3.finishFragment();
+                                    return;
+                                }
+                        }
+                    }
+                });
                 return;
-        }
-    }
-
-    @Override
-    public void mo0run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        d1 d1Var = this.f13092b;
-        h61 h61Var = (h61) obj;
-        View view = (View) obj2;
-        ((Integer) obj3).getClass();
-        ((Float) obj4).getClass();
-        ((Float) obj5).getClass();
-        int i10 = h61Var.d;
-        if (i10 != 1 && h61Var.f26780c != d1Var.h) {
-            if (i10 == 2) {
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(d1Var.getParentActivity());
-                alertDialog$Builder.f20609a.R = LocaleController.getString(R.string.BusinessLocationClearTitle);
-                alertDialog$Builder.f20609a.T = LocaleController.getString(R.string.BusinessLocationClearMessage);
-                alertDialog$Builder.k(LocaleController.getString(R.string.Remove), new y0(d1Var, 3));
-                alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-                d1Var.showDialog(alertDialog$Builder.f20609a);
-            }
-        } else if (d1Var.f12860x != null && h61Var.f26780c != d1Var.h) {
-            d1Var.f12860x = null;
-            d1Var.f12852a.W2.N(true);
-        } else {
-            nc0 nc0Var = new nc0(8);
-            if (d1Var.f12860x != null) {
-                TLRPC.TL_channelLocation tL_channelLocation = new TLRPC.TL_channelLocation();
-                tL_channelLocation.address = d1Var.f12861y;
-                tL_channelLocation.geo_point = d1Var.f12860x;
-                nc0Var.A0 = tL_channelLocation;
-            }
-            nc0Var.F0 = new ah.h0(18, d1Var, nc0Var);
-            if (d1Var.f12860x == null && !TextUtils.isEmpty(d1Var.f12861y)) {
-                org.telegram.ui.ActionBar.b2 b2Var = new org.telegram.ui.ActionBar.b2(d1Var.getParentActivity(), 3, null);
-                b2Var.f20669g0 = false;
-                b2Var.r(200L);
-                Utilities.searchQueue.postRunnable(new w0(d1Var, nc0Var, b2Var));
-                return;
-            }
-            d1Var.presentFragment(nc0Var);
         }
     }
 }

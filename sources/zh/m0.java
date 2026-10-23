@@ -2,15 +2,15 @@ package zh;
 
 import java.io.IOException;
 public final class m0 implements y2.m {
-    public final Object f52037a;
+    public final Object f52499a;
 
     public m0(Object obj) {
-        this.f52037a = obj;
+        this.f52499a = obj;
     }
 
     @Override
     public void a() {
-        l2.h hVar = (l2.h) this.f52037a;
+        l2.h hVar = (l2.h) this.f52499a;
         hVar.A.a();
         IOException iOException = hVar.C;
         if (iOException == null) {

@@ -1,78 +1,49 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Paint;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import java.util.ArrayList;
-import org.telegram.messenger.MediaController;
-public final class qp0 extends org.telegram.ui.Components.im0 {
-    public final Context f40953c;
-    public final sp0 d;
+import android.text.Editable;
+public final class qp0 implements lq0 {
+    public final vp0 f40903a;
 
-    public qp0(sp0 sp0Var, Context context) {
-        this.d = sp0Var;
-        this.f40953c = context;
+    public qp0(vp0 vp0Var) {
+        this.f40903a = vp0Var;
     }
 
     @Override
-    public final boolean D(s4.b1 b1Var) {
+    public final void a() {
+        vp0 vp0Var = this.f40903a;
+        if (vp0Var.f42805b.size() == 0) {
+            vp0Var.Q.setPivotX(0.0f);
+            vp0Var.Q.setPivotY(0.0f);
+            vp0Var.W(false);
+            return;
+        }
+        vp0Var.Q.invalidate();
+        vp0Var.W(true);
+    }
+
+    @Override
+    public final void b(Editable editable) {
+        vp0 vp0Var = this.f40903a;
+        org.telegram.ui.Components.qu quVar = vp0Var.M;
+        vp0Var.f42804a = editable;
+        quVar.setText(editable);
+    }
+
+    @Override
+    public final boolean e() {
         return true;
     }
 
     @Override
-    public final int h() {
-        sp0 sp0Var = this.d;
-        ArrayList arrayList = sp0Var.d;
-        if (arrayList != null) {
-            return (int) Math.ceil(arrayList.size() / sp0Var.f41513f);
-        }
-        return 0;
-    }
-
-    @Override
-    public final int j(int i10) {
-        return 0;
-    }
-
-    @Override
-    public final void v(s4.b1 b1Var, int i10) {
-        org.telegram.ui.Cells.x5 x5Var = (org.telegram.ui.Cells.x5) b1Var.f45921a;
-        sp0 sp0Var = this.d;
-        x5Var.setAlbumsCount(sp0Var.f41513f);
-        int i11 = 0;
-        while (true) {
-            int i12 = sp0Var.f41513f;
-            if (i11 < i12) {
-                int i13 = (i12 * i10) + i11;
-                if (i13 < sp0Var.d.size()) {
-                    x5Var.a(i11, (MediaController.AlbumEntry) sp0Var.d.get(i13));
-                } else {
-                    x5Var.a(i11, null);
-                }
-                i11++;
-            } else {
-                x5Var.requestLayout();
-                return;
-            }
+    public final void h(int i10, boolean z10, boolean z11) {
+        vp0 vp0Var = this.f40903a;
+        vp0Var.removeSelfFromStack();
+        if (!z10) {
+            vp0Var.V(vp0Var.f42805b, vp0Var.f42806c, z11, i10);
         }
     }
 
     @Override
-    public final s4.b1 x(ViewGroup viewGroup, int i10) {
-        Context context = this.f40953c;
-        ?? frameLayout = new FrameLayout(context);
-        frameLayout.e = new Paint();
-        frameLayout.f23808b = new MediaController.AlbumEntry[4];
-        frameLayout.f23807a = new org.telegram.ui.Cells.v5[4];
-        for (int i11 = 0; i11 < 4; i11++) {
-            frameLayout.f23807a[i11] = new org.telegram.ui.Cells.v5(frameLayout, context);
-            frameLayout.addView(frameLayout.f23807a[i11]);
-            frameLayout.f23807a[i11].setVisibility(4);
-            frameLayout.f23807a[i11].setTag(Integer.valueOf(i11));
-            frameLayout.f23807a[i11].setOnClickListener(new org.telegram.ui.Cells.a(frameLayout, 9));
-        }
-        frameLayout.setDelegate(new pp0(this, 0));
-        return new s4.b1(frameLayout);
+    public final void g() {
     }
 }

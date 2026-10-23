@@ -15,7 +15,7 @@ public final class l extends d implements ListIterator {
         m mVar = this.e;
         boolean isEmpty = mVar.isEmpty();
         c().add(obj);
-        ((p1) mVar.h).f8485f++;
+        ((p1) mVar.h).f8492f++;
         if (isEmpty) {
             mVar.h();
         }
@@ -23,7 +23,7 @@ public final class l extends d implements ListIterator {
 
     public final ListIterator c() {
         a();
-        return (ListIterator) this.f8426b;
+        return (ListIterator) this.f8433b;
     }
 
     @Override
@@ -52,7 +52,7 @@ public final class l extends d implements ListIterator {
     }
 
     public l(m mVar, int i10) {
-        super(mVar, ((List) mVar.f8469c).listIterator(i10));
+        super(mVar, ((List) mVar.f8476c).listIterator(i10));
         this.e = mVar;
     }
 }

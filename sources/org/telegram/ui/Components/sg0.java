@@ -1,62 +1,29 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.MessageObject;
-public final class sg0 extends org.telegram.ui.o4 {
-    public final int h;
-    public final Object f30288n;
+import android.animation.ValueAnimator;
+public final class sg0 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f30491a;
+    public final ug0 f30492b;
 
-    public sg0(Object obj, Context context, int i10) {
-        super(context);
-        this.h = i10;
-        this.f30288n = obj;
+    public sg0(ug0 ug0Var, int i10) {
+        this.f30491a = i10;
+        this.f30492b = ug0Var;
     }
 
     @Override
-    public boolean drawChild(Canvas canvas, View view, long j10) {
-        MessageObject playingMessageObject;
-        switch (this.h) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f30491a) {
             case 0:
-                boolean drawChild = super.drawChild(canvas, view, j10);
-                PipRoundVideoView pipRoundVideoView = (PipRoundVideoView) this.f30288n;
-                if (view == pipRoundVideoView.f24265c && (playingMessageObject = MediaController.getInstance().getPlayingMessageObject()) != null) {
-                    pipRoundVideoView.E.set(AndroidUtilities.dpf2(1.5f), AndroidUtilities.dpf2(1.5f), getMeasuredWidth() - AndroidUtilities.dpf2(1.5f), getMeasuredHeight() - AndroidUtilities.dpf2(1.5f));
-                    canvas.drawArc(pipRoundVideoView.E, -90.0f, playingMessageObject.audioProgress * 360.0f, false, org.telegram.ui.ActionBar.h6.f21117k2);
-                }
-                return drawChild;
-            default:
-                return super.drawChild(canvas, view, j10);
-        }
-    }
-
-    @Override
-    public void onMeasure(int i10, int i11) {
-        switch (this.h) {
-            case 1:
-                super.onMeasure(i10, i11);
-                w91 w91Var = (w91) this.f30288n;
-                if (w91Var.f32029f != null) {
-                    ViewGroup.LayoutParams layoutParams = w91Var.d.getLayoutParams();
-                    layoutParams.width = getMeasuredWidth();
-                    layoutParams.height = getMeasuredHeight();
-                    ImageView imageView = w91Var.e;
-                    if (imageView != null) {
-                        ViewGroup.LayoutParams layoutParams2 = imageView.getLayoutParams();
-                        layoutParams2.width = getMeasuredWidth();
-                        layoutParams2.height = getMeasuredHeight();
-                        return;
-                    }
-                    return;
-                }
+                ug0 ug0Var = this.f30492b;
+                ug0Var.getClass();
+                ug0Var.f31162y = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                ug0Var.invalidate();
                 return;
             default:
-                super.onMeasure(i10, i11);
+                ug0 ug0Var2 = this.f30492b;
+                ug0Var2.getClass();
+                ug0Var2.f31162y = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                ug0Var2.invalidate();
                 return;
         }
     }

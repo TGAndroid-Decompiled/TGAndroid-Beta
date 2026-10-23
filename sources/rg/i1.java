@@ -1,148 +1,38 @@
 package rg;
 
-import ai.wa;
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RectF;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.bs;
-import org.telegram.ui.Components.jm0;
-public abstract class i1 extends jm0 {
-    public static final Paint f45379a3;
-    public static final Paint f45380b3;
-    public static final Path f45381c3;
-    public static final Paint f45382d3;
-    public final Paint V2;
-    public final Paint W2;
-    public int X2;
-    public qg.v0 Y2;
-    public q0.a Z2;
+public final class i1 extends View {
+    public int f45798a;
+    public float f45799b;
+    public final j1 f45800c;
 
-    static {
-        Paint paint = new Paint(1);
-        f45379a3 = paint;
-        Paint paint2 = new Paint(1);
-        f45380b3 = paint2;
-        paint.setColor(-2013265920);
-        paint2.setColor(-1996488705);
-        f45381c3 = new Path();
-        f45382d3 = new Paint(1);
+    public i1(j1 j1Var, Context context) {
+        super(context);
+        this.f45800c = j1Var;
+        setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f));
+        setLayoutParams(new s4.o0(-2, 0));
     }
 
-    public i1(Context context) {
-        super(context, null);
-        this.V2 = new Paint(1);
-        Paint paint = new Paint(1);
-        this.W2 = paint;
-        this.X2 = -1;
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
-        setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
-        setLayoutManager(new s4.s(7));
-        setAdapter(new g1(this, context));
-        setOverScrollMode(2);
-        setOnItemClickListener(new wa(this, 19));
-    }
-
-    public static void x1(Canvas canvas, RectF rectF, int i10) {
-        float f7 = rectF.left;
-        while (f7 <= rectF.right) {
-            float f10 = rectF.top;
-            while (f10 <= rectF.bottom) {
-                float f11 = i10;
-                float f12 = f7 + f11;
-                float f13 = f10 + f11;
-                Paint paint = f45379a3;
-                Canvas canvas2 = canvas;
-                canvas2.drawRect(f7, f10, f12, f13, paint);
-                float f14 = i10 * 2;
-                float f15 = f7 + f14;
-                Paint paint2 = f45380b3;
-                float f16 = f10;
-                canvas2.drawRect(f12, f16, f15, f13, paint2);
-                float f17 = f16 + f14;
-                canvas2.drawRect(f12, f13, f15, f17, paint);
-                canvas2.drawRect(f7, f13, f12, f17, paint2);
-                canvas = canvas2;
-                f10 = f17;
-            }
-            f7 += i10 * 2;
-            canvas = canvas;
+    @Override
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        j1 j1Var = this.f45800c;
+        j1Var.Y2.setColor(this.f45798a);
+        float min = Math.min((getWidth() - getPaddingLeft()) - getPaddingRight(), (getHeight() - getPaddingTop()) - getPaddingBottom()) / 2.0f;
+        if (this.f45799b != 0.0f) {
+            min -= (j1Var.Z2.getStrokeWidth() + AndroidUtilities.dp(3.0f)) * this.f45799b;
         }
-    }
-
-    public static void y1(float f7, float f10, float f11, int i10, Canvas canvas) {
-        Paint paint = f45382d3;
-        paint.setColor(i10);
-        if (paint.getAlpha() != 255) {
-            RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(f7 - f11, f10 - f11, f7 + f11, f10 + f11);
-            paint.setAlpha(255);
-            canvas.drawArc(rectF, -45.0f, -180.0f, true, paint);
-            Path path = f45381c3;
-            path.rewind();
-            path.moveTo(rectF.centerX(), rectF.centerY());
-            path.lineTo((float) i2.e.f(-1.5707963267948966d, rectF.width() / 2.0f, rectF.centerX()), (float) ((Math.sin(-1.5707963267948966d) * (rectF.height() / 2.0f)) + rectF.centerY()));
-            path.moveTo(rectF.centerX(), rectF.centerY());
-            path.lineTo((float) i2.e.f(4.71238898038469d, rectF.width() / 2.0f, rectF.centerX()), (float) ((Math.sin(4.71238898038469d) * (rectF.height() / 2.0f)) + rectF.centerY()));
-            path.addArc(rectF, -45.0f, 180.0f);
-            canvas.save();
-            canvas.clipPath(path);
-            x1(canvas, rectF, AndroidUtilities.dp(4.0f));
-            canvas.restore();
-            paint.setColor(i10);
-            canvas.drawArc(rectF, -45.0f, 180.0f, true, paint);
-            return;
+        float width = ((getWidth() / 2.0f) + getPaddingLeft()) - getPaddingRight();
+        float height = ((getHeight() / 2.0f) + getPaddingTop()) - getPaddingBottom();
+        j1.D1(width, height, min, this.f45798a, canvas);
+        if (this.f45799b != 0.0f) {
+            float min2 = (Math.min((getWidth() - getPaddingLeft()) - getPaddingRight(), (getHeight() - getPaddingTop()) - getPaddingBottom()) / 2.0f) - AndroidUtilities.dp(2.0f);
+            j1Var.Z2.setColor(this.f45798a);
+            j1Var.Z2.setAlpha(255);
+            canvas.drawCircle(width, height, min2, j1Var.Z2);
         }
-        canvas.drawCircle(f7, f10, f11, paint);
-    }
-
-    public int getSelectedColorIndex() {
-        return this.X2;
-    }
-
-    public void setColorListener(q0.a aVar) {
-        this.Z2 = aVar;
-    }
-
-    public void setColorPalette(qg.v0 v0Var) {
-        this.Y2 = v0Var;
-        getAdapter().l();
-    }
-
-    public void setSelectedColorIndex(int i10) {
-        this.X2 = i10;
-        getAdapter().l();
-    }
-
-    public final void z1(float f7, boolean z10) {
-        float interpolation;
-        float f10;
-        if (z10) {
-            interpolation = bs.f25026g.getInterpolation(f7);
-        } else {
-            interpolation = bs.f25027i.getInterpolation(f7);
-        }
-        float childCount = 1.0f / (getChildCount() - 1);
-        for (int i10 = 0; i10 < getChildCount(); i10++) {
-            View childAt = getChildAt(i10);
-            if (i10 == 0) {
-                if (interpolation == 1.0f) {
-                    f10 = 1.0f;
-                } else {
-                    f10 = 0.0f;
-                }
-                childAt.setAlpha(f10);
-            } else {
-                float f11 = i10 * childCount;
-                float min = Math.min(interpolation, f11) / f11;
-                childAt.setScaleX(min);
-                childAt.setScaleY(min);
-            }
-        }
-        invalidate();
     }
 }

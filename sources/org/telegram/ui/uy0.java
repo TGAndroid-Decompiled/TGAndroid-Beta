@@ -1,43 +1,51 @@
 package org.telegram.ui;
 
-import android.content.Context;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Stories.ProfileStoriesView;
-public final class uy0 extends ProfileStoriesView {
-    public final Context f42078t0;
-    public final ProfileActivity f42079u0;
+import org.telegram.ui.Components.UndoView;
+public final class uy0 implements aq {
+    public final TLRPC.Chat f42541a;
+    public final dq f42542b;
+    public final ProfileActivity f42543c;
 
-    public uy0(ProfileActivity profileActivity, Context context, int i10, long j10, boolean z10, m0 m0Var, ry0 ry0Var, org.telegram.ui.ActionBar.d6 d6Var, Context context2) {
-        super(context, i10, j10, z10, m0Var, ry0Var, d6Var);
-        this.f42079u0 = profileActivity;
-        this.f42078t0 = context2;
+    public uy0(ProfileActivity profileActivity, TLRPC.Chat chat, dq dqVar) {
+        this.f42543c = profileActivity;
+        this.f42541a = chat;
+        this.f42542b = dqVar;
     }
 
     @Override
-    public final void e(a4.l lVar) {
-        TL_stories.PeerStories peerStories;
-        TL_stories.PeerStories peerStories2;
-        ProfileActivity profileActivity = this.f42079u0;
-        long a2 = profileActivity.a();
-        ci.i7 storiesController = profileActivity.getMessagesController().getStoriesController();
-        boolean I = storiesController.I(a2);
-        Context context = this.f42078t0;
-        if (!I && !storiesController.K(a2) && !storiesController.N(a2)) {
-            TLRPC.UserFull userFull = profileActivity.f33743w2;
-            if (userFull != null && (peerStories2 = userFull.stories) != null && !peerStories2.stories.isEmpty() && profileActivity.f33624f1 != profileActivity.getUserConfig().clientUserId) {
-                profileActivity.getOrCreateStoryViewer().E(context, profileActivity.f33743w2.stories, lVar);
-                return;
-            }
-            TLRPC.ChatFull chatFull = profileActivity.f33735v2;
-            if (chatFull != null && (peerStories = chatFull.stories) != null && !peerStories.stories.isEmpty()) {
-                profileActivity.getOrCreateStoryViewer().E(context, profileActivity.f33735v2.stories, lVar);
-                return;
-            } else {
-                profileActivity.K3();
-                return;
+    public final void a(TLRPC.User user) {
+        int i10;
+        ProfileActivity profileActivity = this.f42543c;
+        UndoView undoView = profileActivity.M;
+        long j10 = -profileActivity.f33928g1;
+        if (profileActivity.F2.megagroup) {
+            i10 = 10;
+        } else {
+            i10 = 9;
+        }
+        undoView.m(j10, user, i10);
+    }
+
+    @Override
+    public final void b(int i10, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str) {
+        TLRPC.Chat chat;
+        ProfileActivity profileActivity = this.f42543c;
+        profileActivity.removeSelfFromStack();
+        TLRPC.User user = profileActivity.getMessagesController().getUser(Long.valueOf(profileActivity.f33921f1));
+        if (user != null && (chat = this.f42541a) != null && profileActivity.f33921f1 != 0) {
+            dq dqVar = this.f42542b;
+            if (dqVar.R && dqVar.getParentLayout() != null) {
+                for (org.telegram.ui.ActionBar.o2 o2Var : dqVar.getParentLayout().getFragmentStack()) {
+                    if (o2Var instanceof vb) {
+                        vb vbVar = (vb) o2Var;
+                        vbVar.V0();
+                        AndroidUtilities.runOnUIThread(new re0(vbVar, user, chat, 27));
+                        return;
+                    }
+                }
             }
         }
-        profileActivity.getOrCreateStoryViewer().D(context, a2, lVar);
     }
 }

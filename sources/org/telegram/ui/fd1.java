@@ -1,46 +1,25 @@
 package org.telegram.ui;
 
-import android.view.ViewGroup;
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public final class fd1 extends org.telegram.ui.Components.im0 {
-    public final ArrayList f36979c = new ArrayList();
-    public final ArrayList d = new ArrayList();
-    public ed1 e;
-    public int f36980f;
-    public final gd1 h;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class fd1 extends AnimatorListenerAdapter {
+    public final int f37307a;
+    public final gd1 f37308b;
 
-    public fd1(gd1 gd1Var) {
-        this.h = gd1Var;
+    public fd1(gd1 gd1Var, int i10) {
+        this.f37307a = i10;
+        this.f37308b = gd1Var;
     }
 
     @Override
-    public final boolean D(s4.b1 b1Var) {
-        return true;
-    }
-
-    @Override
-    public final int h() {
-        return this.f36979c.size();
-    }
-
-    @Override
-    public final void v(s4.b1 b1Var, int i10) {
-        ArrayList arrayList = this.f36979c;
-        TLRPC.Chat chat = (TLRPC.Chat) arrayList.get(i10);
-        String str = (String) this.d.get(i10);
-        org.telegram.ui.Cells.f4 f4Var = (org.telegram.ui.Cells.f4) b1Var.f45921a;
-        String str2 = chat.title;
-        boolean z10 = true;
-        if (i10 == arrayList.size() - 1) {
-            z10 = false;
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f37307a) {
+            case 0:
+                this.f37308b.f37580s.f39517s.setVisibility(8);
+                return;
+            default:
+                this.f37308b.f37580s.f39511a.setVisibility(8);
+                return;
         }
-        f4Var.e(chat, str2, str, z10);
-        f4Var.c(this.h.f37296w.contains(Long.valueOf(chat.f20280id)), false);
-    }
-
-    @Override
-    public final s4.b1 x(ViewGroup viewGroup, int i10) {
-        return new s4.b1(new org.telegram.ui.Cells.f4(viewGroup.getContext(), 1, 0, false));
     }
 }

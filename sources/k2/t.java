@@ -1,32 +1,41 @@
 package k2;
 public final class t implements Runnable {
-    public final int f14796a;
-    public final qf.b f14797b;
-    public final u0 f14798c;
+    public final int f14839a;
+    public final int f14840b;
+    public final long f14841c;
+    public final long d;
+    public final Object e;
 
-    public t(qf.b bVar, u0 u0Var, int i10) {
-        this.f14796a = i10;
-        this.f14797b = bVar;
-        this.f14798c = u0Var;
+    public t(Object obj, int i10, long j10, long j11, int i11) {
+        this.f14839a = i11;
+        this.e = obj;
+        this.f14840b = i10;
+        this.f14841c = j10;
+        this.d = j11;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f14796a;
-        u0 u0Var = this.f14798c;
-        qf.b bVar = this.f14797b;
+        u2.h0 h0Var;
+        int i10 = this.f14839a;
+        Object obj = this.e;
         switch (i10) {
             case 0:
-                String str = e2.m0.f8252a;
-                j2.f fVar = ((i2.c0) ((u) bVar.f44452c)).f12325a.f12413s;
-                j2.a p5 = fVar.p();
-                fVar.q(p5, 1032, new j2.e(p5, u0Var, 18));
+                String str = e2.m0.f8259a;
+                j2.e eVar = ((i2.b0) ((v) ((qf.b) obj).f44865c)).f12353a.f12442s;
+                j2.a p5 = eVar.p();
+                eVar.q(p5, 1011, new j2.d(p5, this.f14840b, this.f14841c, this.d));
                 return;
             default:
-                String str2 = e2.m0.f8252a;
-                j2.f fVar2 = ((i2.c0) ((u) bVar.f44452c)).f12325a.f12413s;
-                j2.a p9 = fVar2.p();
-                fVar2.q(p9, 1031, new j2.e(p9, u0Var, 1));
+                j2.e eVar2 = ((y2.b) obj).f50342b;
+                com.google.firebase.messaging.l lVar = eVar2.d;
+                if (((e9.n0) lVar.f7658b).isEmpty()) {
+                    h0Var = null;
+                } else {
+                    h0Var = (u2.h0) e9.s.m((e9.n0) lVar.f7658b);
+                }
+                j2.a n10 = eVar2.n(h0Var);
+                eVar2.q(n10, 1006, new j2.c(n10, this.f14840b, this.f14841c, this.d));
                 return;
         }
     }

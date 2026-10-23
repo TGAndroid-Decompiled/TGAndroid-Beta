@@ -3,22 +3,32 @@ package org.telegram.ui.Components;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 public final class xg0 extends AnimatorListenerAdapter {
-    public final int f32423a;
-    public final ah0 f32424b;
+    public final int f32560a;
+    public final PipRoundVideoView f32561b;
 
-    public xg0(ah0 ah0Var, int i10) {
-        this.f32423a = i10;
-        this.f32424b = ah0Var;
+    public xg0(PipRoundVideoView pipRoundVideoView, int i10) {
+        this.f32560a = i10;
+        this.f32561b = pipRoundVideoView;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f32423a) {
+        switch (this.f32560a) {
             case 0:
-                this.f32424b.F = null;
+                PipRoundVideoView pipRoundVideoView = this.f32561b;
+                if (animator.equals(pipRoundVideoView.f24408r)) {
+                    pipRoundVideoView.f24408r = null;
+                    return;
+                }
                 return;
             default:
-                this.f32424b.u();
+                PipRoundVideoView pipRoundVideoView2 = this.f32561b;
+                pipRoundVideoView2.a(false);
+                Runnable runnable = pipRoundVideoView2.f24409s;
+                if (runnable != null) {
+                    runnable.run();
+                    return;
+                }
                 return;
         }
     }

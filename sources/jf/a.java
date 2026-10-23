@@ -3,9 +3,9 @@ package jf;
 import a1.g;
 import java.util.ArrayList;
 public final class a {
-    public String f14402a;
-    public ArrayList f14403b;
-    public ArrayList f14404c;
+    public String f14447a;
+    public ArrayList f14448b;
+    public ArrayList f14449c;
     public ArrayList d;
 
     public final String a(String str) {
@@ -13,11 +13,11 @@ public final class a {
         String str3;
         String str4;
         String str5 = null;
-        if (str.startsWith(this.f14402a)) {
-            str4 = this.f14402a;
+        if (str.startsWith(this.f14447a)) {
+            str4 = this.f14447a;
             str3 = str.substring(str4.length());
         } else {
-            ArrayList arrayList = this.f14403b;
+            ArrayList arrayList = this.f14448b;
             int size = arrayList.size();
             int i10 = 0;
             while (true) {
@@ -65,7 +65,7 @@ public final class a {
             }
         }
         if (str4 != null && str3.length() != 0) {
-            return g.C(str4, " ", str3);
+            return g.D(str4, " ", str3);
         }
         return str;
     }

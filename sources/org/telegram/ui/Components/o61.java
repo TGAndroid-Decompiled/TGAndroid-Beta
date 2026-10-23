@@ -1,34 +1,29 @@
 package org.telegram.ui.Components;
 
+import android.net.Uri;
 import android.text.TextPaint;
-public final class o61 extends l61 {
-    public final int e;
-    public final n11 f28959f;
+import android.text.style.URLSpan;
+import android.view.View;
+public final class o61 extends URLSpan {
+    public final q11 f29103a;
 
-    public o61(String str, int i10, n11 n11Var) {
-        super(str, (n11) null);
-        this.e = i10;
-        this.f28959f = n11Var;
+    public o61(String str, q11 q11Var) {
+        super(str != null ? str.replace((char) 8238, ' ') : str);
+        this.f29103a = q11Var;
+    }
+
+    @Override
+    public final void onClick(View view) {
+        pf.d.o(view.getContext(), Uri.parse(getURL()), true, true);
     }
 
     @Override
     public final void updateDrawState(TextPaint textPaint) {
         super.updateDrawState(textPaint);
-        int i10 = this.e;
-        if (i10 == 3) {
-            textPaint.setColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.J6, false));
-        } else if (i10 == 2) {
-            textPaint.setColor(-1);
-        } else if (i10 == 1) {
-            textPaint.setColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.hc, false));
-        } else {
-            textPaint.setColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21053gc, false));
+        q11 q11Var = this.f29103a;
+        if (q11Var != null) {
+            q11Var.a(textPaint);
         }
-        n11 n11Var = this.f28959f;
-        if (n11Var != null) {
-            n11Var.a(textPaint);
-        } else {
-            textPaint.setUnderlineText(false);
-        }
+        textPaint.setUnderlineText(true);
     }
 }

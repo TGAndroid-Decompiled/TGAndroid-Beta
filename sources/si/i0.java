@@ -1,100 +1,139 @@
 package si;
 
-import android.os.SystemClock;
+import ai.o3;
 import java.io.File;
-import java.io.IOException;
-import org.telegram.ui.Components.cy0;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.Components.qc;
+import org.telegram.ui.Components.xc;
 import w7.m7;
 public final class i0 implements Runnable {
-    public final int f46627a;
-    public final s0 f46628b;
+    public final int f47059a = 1;
+    public final boolean f47060b;
+    public final Object f47061c;
+    public final Object d;
+    public final Object e;
 
-    public i0(s0 s0Var, int i10) {
-        this.f46627a = i10;
-        this.f46628b = s0Var;
+    public i0(xc xcVar, boolean z10, TLRPC.Chat chat, g6 g6Var) {
+        this.f47061c = xcVar;
+        this.f47060b = z10;
+        this.d = chat;
+        this.e = g6Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f46627a) {
+        File file;
+        boolean z10;
+        long j10;
+        int i10;
+        File file2;
+        int i11;
+        String string;
+        int i12;
+        String string2;
+        int i13;
+        switch (this.f47059a) {
             case 0:
-                s0 s0Var = this.f46628b;
-                if (s0Var.W == 3) {
-                    s0Var.p();
-                    return;
-                }
-                return;
-            case 1:
-                s0 s0Var2 = this.f46628b;
-                w wVar = s0Var2.Q;
-                File file = s0Var2.R;
-                if (wVar != null) {
-                    try {
-                        synchronized (wVar) {
-                            wVar.v = true;
-                            try {
-                                wVar.g();
-                            } finally {
-                                wVar.v = false;
-                            }
-                        }
-                    } catch (IOException unused) {
-                    }
-                    m7.c(wVar.f46842a);
-                }
-                if (file != null) {
-                    m7.c(file);
-                    return;
-                }
-                return;
-            case 2:
-                s0 s0Var3 = this.f46628b;
-                int i10 = s0Var3.W;
-                if (i10 == 2 || i10 == 6) {
-                    s0Var3.F = SystemClock.elapsedRealtime();
-                    n nVar = s0Var3.f46775m;
-                    nVar.b("recording started: retainedDurationMs=" + s0Var3.E);
-                    s0Var3.v(3);
-                    long j10 = s0Var3.f46777o - s0Var3.E;
-                    if (j10 <= 0) {
-                        s0Var3.p();
-                        return;
+                u0 u0Var = (u0) this.f47061c;
+                w wVar = (w) this.d;
+                q0 q0Var = (q0) this.e;
+                long nanoTime = System.nanoTime();
+                try {
+                    wVar.g();
+                    long e = m7.e(wVar.f47277a) / 1000;
+                    u0Var.f47258m.b("active output finalized: size=" + file.length() + ", durationMs=" + e + ", elapsedMs=" + u0.f(nanoTime));
+                    u0Var.g();
+                    long j11 = u0Var.f47260o;
+                    if (e > j11) {
+                        z10 = true;
+                        j10 = j11;
+                        i10 = 1;
                     } else {
-                        s0Var3.f46771i.postDelayed(s0Var3.T, j10);
-                        return;
+                        z10 = false;
+                        j10 = j11;
+                        i10 = 1;
                     }
-                }
-                return;
-            default:
-                s0 s0Var4 = this.f46628b;
-                s0Var4.B = false;
-                n nVar2 = s0Var4.f46775m;
-                nVar2.b("recording segment stopped: state=" + r4.c.w(s0Var4.W) + ", retainedDurationMs=" + s0Var4.E);
-                if (s0Var4.A) {
-                    s0Var4.A = false;
-                    s0Var4.i();
-                    return;
-                } else if (s0Var4.f46786y) {
-                    s0Var4.f46786y = false;
-                    boolean z10 = s0Var4.f46787z;
-                    s0Var4.f46772j.execute(new ug.c(s0Var4, s0Var4.Q, z10, s0Var4.P));
-                    return;
-                } else if (s0Var4.W == 4) {
+                    long j12 = j10;
+                    boolean z11 = this.f47060b;
+                    if (z11 && !z10) {
+                        try {
+                            u0Var.f47256k.execute(new g0(u0Var, q0Var, wVar.f47277a, e, true));
+                            return;
+                        } catch (Exception e7) {
+                            e = e7;
+                            u0Var = u0Var;
+                            u0Var.f47254i.post(new e0(u0Var, e, 2));
+                            return;
+                        }
+                    }
+                    File file3 = wVar.f47277a;
                     try {
-                        File d = s0Var4.d("round_video_preview_");
-                        s0Var4.R = d;
-                        s0Var4.J = System.nanoTime();
-                        n nVar3 = s0Var4.f46775m;
-                        nVar3.b("preview snapshot started: file=" + d.getName());
-                        s0Var4.f46772j.execute(new cy0(s0Var4, s0Var4.Q, d, 21));
-                        return;
-                    } catch (IOException e) {
-                        s0Var4.h(e);
-                        return;
+                        long min = Math.min(j12, e);
+                        if (z10) {
+                            i11 = i10;
+                        } else {
+                            i11 = 2;
+                        }
+                        file2 = file3;
+                        try {
+                            u0Var.s(file2, 0L, min, z11, i11);
+                            m7.c(file2);
+                            return;
+                        } catch (Throwable th2) {
+                            th = th2;
+                            m7.c(file2);
+                            throw th;
+                        }
+                    } catch (Throwable th3) {
+                        th = th3;
+                        file2 = file3;
                     }
-                } else {
-                    return;
+                } catch (Exception e10) {
+                    e = e10;
                 }
+            default:
+                xc xcVar = (xc) this.f47061c;
+                TLRPC.Chat chat = (TLRPC.Chat) this.d;
+                g6 g6Var = (g6) this.e;
+                int i14 = R.raw.star_premium_2;
+                boolean z12 = this.f47060b;
+                if (z12) {
+                    string = LocaleController.getString("BoostingGiveawayCreated", R.string.BoostingGiveawayCreated);
+                } else {
+                    string = LocaleController.getString("BoostingAwardsCreated", R.string.BoostingAwardsCreated);
+                }
+                if (z12) {
+                    if (ChatObject.isChannelAndNotMegaGroup(chat)) {
+                        i13 = R.string.BoostingCheckStatistic;
+                    } else {
+                        i13 = R.string.BoostingCheckStatisticGroup;
+                    }
+                    string2 = LocaleController.getString(i13);
+                } else {
+                    if (ChatObject.isChannelAndNotMegaGroup(chat)) {
+                        i12 = R.string.BoostingCheckGiftsStatistic;
+                    } else {
+                        i12 = R.string.BoostingCheckGiftsStatisticGroup;
+                    }
+                    string2 = LocaleController.getString(i12);
+                }
+                qc M = xcVar.M(string, AndroidUtilities.replaceSingleTag(string2, k6.Gi, 0, new o3(chat), g6Var), i14);
+                M.f29832j = 5000;
+                M.j();
+                return;
         }
+    }
+
+    public i0(u0 u0Var, w wVar, boolean z10, q0 q0Var) {
+        this.f47061c = u0Var;
+        this.d = wVar;
+        this.f47060b = z10;
+        this.e = q0Var;
     }
 }

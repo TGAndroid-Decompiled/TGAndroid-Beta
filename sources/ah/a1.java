@@ -4,14 +4,14 @@ import android.content.Context;
 import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.MessageObject;
-import org.telegram.ui.ActionBar.n2;
-import org.telegram.ui.qn;
+import org.telegram.ui.ActionBar.o2;
+import org.telegram.ui.sn;
 public final class a1 extends FrameLayout {
-    public final n2 f649a;
+    public final o2 f649a;
     public final View f650b;
     public final boolean f651c;
     public final MessageObject d;
-    public final qn e;
+    public final sn e;
     public final int f652f;
     public final int h;
     public final boolean f653n;
@@ -21,14 +21,14 @@ public final class a1 extends FrameLayout {
     public final i1 f656w;
     public final d1 f657x;
 
-    public a1(d1 d1Var, Context context, n2 n2Var, View view, boolean z10, MessageObject messageObject, qn qnVar, int i10, int i11, boolean z11, float f7, float f10, float f11, i1 i1Var) {
+    public a1(d1 d1Var, Context context, o2 o2Var, View view, boolean z10, MessageObject messageObject, sn snVar, int i10, int i11, boolean z11, float f7, float f10, float f11, i1 i1Var) {
         super(context);
         this.f657x = d1Var;
-        this.f649a = n2Var;
+        this.f649a = o2Var;
         this.f650b = view;
         this.f651c = z10;
         this.d = messageObject;
-        this.e = qnVar;
+        this.e = snVar;
         this.f652f = i10;
         this.h = i11;
         this.f653n = z11;

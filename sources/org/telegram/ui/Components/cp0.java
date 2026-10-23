@@ -1,10 +1,6 @@
 package org.telegram.ui.Components;
 public interface cp0 {
-    void L(float f7, boolean z10);
+    void a(float f7);
 
-    int Y();
-
-    CharSequence getContentDescription();
-
-    void v();
+    void b(float f7);
 }

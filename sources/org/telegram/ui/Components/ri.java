@@ -15,9 +15,9 @@ public interface ri {
 
     boolean p0();
 
+    void r(gh ghVar);
+
     void r0(ArrayList arrayList, CharSequence charSequence, boolean z10, int i10, int i11, long j10, boolean z11, long j11);
 
-    void u(gh ghVar);
-
-    boolean v();
+    boolean u();
 }

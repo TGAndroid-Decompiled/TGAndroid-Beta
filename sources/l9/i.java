@@ -8,21 +8,21 @@ import com.google.firebase.messaging.q;
 import java.util.concurrent.Executor;
 import r9.r;
 public final class i implements r9.d, s {
-    public static final i f15974b = new i(0);
-    public static final i f15975c = new i(1);
+    public static final i f16037b = new i(0);
+    public static final i f16038c = new i(1);
     public static final i d = new i(2);
     public static final i e = new i(3);
-    public final int f15976a;
+    public final int f16039a;
 
     public i(int i10) {
-        this.f15976a = i10;
+        this.f16039a = i10;
     }
 
     @Override
     public Exception a(Status status) {
-        int i10 = status.f6344a;
-        int i11 = status.f6344a;
-        String str = status.f6345b;
+        int i10 = status.f6356a;
+        int i11 = status.f6356a;
+        String str = status.f6357b;
         if (i10 == 8) {
             if (str == null) {
                 str = x8.j.a(i11);
@@ -37,7 +37,7 @@ public final class i implements r9.d, s {
 
     @Override
     public Object j2(z5 z5Var) {
-        switch (this.f15976a) {
+        switch (this.f16039a) {
             case 0:
                 Object c10 = z5Var.c(new r(n9.a.class, Executor.class));
                 kotlin.jvm.internal.i.d(c10, "c.get(Qualified.qualifie…a, Executor::class.java))");

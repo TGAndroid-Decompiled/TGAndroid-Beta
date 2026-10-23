@@ -1,18 +1,32 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
 import android.view.View;
-public interface cl0 {
-    boolean i();
+import org.telegram.messenger.ImageReceiver;
+public final class cl0 extends ImageReceiver {
+    public final int f25376a;
 
-    boolean m();
+    public cl0(int i10, View view) {
+        super(view);
+        this.f25376a = i10;
+    }
 
-    void o(View view, ah.i1 i1Var, boolean z10, boolean z11);
-
-    void q(Canvas canvas, RectF rectF, float f7, float f10, float f11, int i10, boolean z10);
-
-    void v();
-
-    boolean w();
+    @Override
+    public final boolean setImageBitmapByKey(Drawable drawable, String str, int i10, boolean z10, int i11) {
+        switch (this.f25376a) {
+            case 0:
+                if (drawable instanceof yj0) {
+                    ((yj0) drawable).N(0, false, true);
+                }
+                return super.setImageBitmapByKey(drawable, str, i10, z10, i11);
+            default:
+                boolean imageBitmapByKey = super.setImageBitmapByKey(drawable, str, i10, z10, i11);
+                if (imageBitmapByKey && (drawable instanceof yj0)) {
+                    yj0 yj0Var = (yj0) drawable;
+                    yj0Var.N(0, false, true);
+                    yj0Var.stop();
+                }
+                return imageBitmapByKey;
+        }
+    }
 }

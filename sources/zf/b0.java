@@ -5,22 +5,22 @@ import android.graphics.Canvas;
 import android.view.View;
 import android.view.ViewTreeObserver;
 public final class b0 extends View implements ViewTreeObserver.OnPreDrawListener {
-    public final a0 f51530a;
-    public final boolean f51531b;
-    public int f51532c;
+    public final a0 f51991a;
+    public final boolean f51992b;
+    public int f51993c;
     public ViewTreeObserver d;
 
     public b0(Context context, a0 a0Var) {
         super(context);
-        this.f51532c = 0;
-        this.f51530a = a0Var;
-        this.f51531b = true;
+        this.f51993c = 0;
+        this.f51991a = a0Var;
+        this.f51992b = true;
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        if (this.f51531b) {
+        if (this.f51992b) {
             ViewTreeObserver viewTreeObserver = getViewTreeObserver();
             this.d = viewTreeObserver;
             viewTreeObserver.addOnPreDrawListener(this);
@@ -40,9 +40,9 @@ public final class b0 extends View implements ViewTreeObserver.OnPreDrawListener
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        if (!this.f51531b) {
-            this.f51530a.a(this.f51532c);
-            this.f51532c = 0;
+        if (!this.f51992b) {
+            this.f51991a.a(this.f51993c);
+            this.f51993c = 0;
         }
     }
 
@@ -54,9 +54,9 @@ public final class b0 extends View implements ViewTreeObserver.OnPreDrawListener
     @Override
     public final boolean onPreDraw() {
         int i10;
-        if (this.f51531b && (i10 = this.f51532c) != 0) {
-            this.f51530a.a(i10);
-            this.f51532c = 0;
+        if (this.f51992b && (i10 = this.f51993c) != 0) {
+            this.f51991a.a(i10);
+            this.f51993c = 0;
             return true;
         }
         return true;

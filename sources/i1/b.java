@@ -5,20 +5,20 @@ import android.os.Parcelable;
 import m.m3;
 import m.y2;
 import s4.v0;
-import z4.f;
+import z4.g;
 public final class b implements Parcelable.ClassLoaderCreator {
-    public final int f12303a;
+    public final int f12335a;
 
     public b(int i10) {
-        this.f12303a = i10;
+        this.f12335a = i10;
     }
 
     @Override
     public final Object createFromParcel(Parcel parcel, ClassLoader classLoader) {
-        switch (this.f12303a) {
+        switch (this.f12335a) {
             case 0:
                 if (parcel.readParcelable(classLoader) == null) {
-                    return c.f12304b;
+                    return c.f12336b;
                 }
                 throw new IllegalStateException("superState must be null");
             case 1:
@@ -28,13 +28,13 @@ public final class b implements Parcelable.ClassLoaderCreator {
             case 3:
                 return new v0(parcel, classLoader);
             default:
-                return new f(parcel, classLoader);
+                return new g(parcel, classLoader);
         }
     }
 
     @Override
     public final Object[] newArray(int i10) {
-        switch (this.f12303a) {
+        switch (this.f12335a) {
             case 0:
                 return new c[i10];
             case 1:
@@ -44,16 +44,16 @@ public final class b implements Parcelable.ClassLoaderCreator {
             case 3:
                 return new v0[i10];
             default:
-                return new f[i10];
+                return new g[i10];
         }
     }
 
     @Override
     public final Object createFromParcel(Parcel parcel) {
-        switch (this.f12303a) {
+        switch (this.f12335a) {
             case 0:
                 if (parcel.readParcelable(null) == null) {
-                    return c.f12304b;
+                    return c.f12336b;
                 }
                 throw new IllegalStateException("superState must be null");
             case 1:
@@ -63,7 +63,7 @@ public final class b implements Parcelable.ClassLoaderCreator {
             case 3:
                 return new v0(parcel, null);
             default:
-                return new f(parcel, null);
+                return new g(parcel, null);
         }
     }
 }

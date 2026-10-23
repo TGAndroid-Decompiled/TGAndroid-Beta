@@ -1,106 +1,158 @@
 package org.telegram.ui;
 
-import android.text.TextUtils;
+import android.content.Context;
 import android.view.View;
-import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
-public final class k extends pg.b {
-    public final l d;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+public final class k extends org.telegram.ui.ActionBar.o2 implements NotificationCenter.NotificationCenterDelegate {
+    public org.telegram.ui.Components.mm0 f38733a;
+    public j f38734b;
+    public boolean f38735c;
+    public TLRPC.GlobalPrivacySettings d;
+    public int e;
+    public final ArrayList f38736f;
+    public final ArrayList h;
 
-    public k(l lVar) {
-        this.d = lVar;
+    public k() {
+        super(null);
+        this.f38735c = false;
+        this.e = -3;
+        this.f38736f = new ArrayList();
+        this.h = new ArrayList();
     }
 
-    @Override
-    public final boolean D(s4.b1 b1Var) {
-        int i10 = b1Var.f45924f;
-        if (i10 != 2 && i10 != 0) {
-            return true;
+    public final void U(boolean z10) {
+        ArrayList arrayList = this.f38736f;
+        arrayList.clear();
+        ArrayList arrayList2 = this.h;
+        arrayList.addAll(arrayList2);
+        arrayList2.clear();
+        arrayList2.add(new i(0, 0, LocaleController.getString("ArchiveSettingUnmutedFolders")));
+        arrayList2.add(new i(1, 1, LocaleController.getString("ArchiveSettingUnmutedFoldersCheck")));
+        arrayList2.add(new i(2, 2, LocaleController.getString("ArchiveSettingUnmutedFoldersInfo")));
+        if (getMessagesController().getDialogFilters().size() > 1) {
+            arrayList2.add(new i(0, 3, LocaleController.getString("ArchiveSettingUnmutedChats")));
+            arrayList2.add(new i(1, 4, LocaleController.getString("ArchiveSettingUnmutedChatsCheck")));
+            arrayList2.add(new i(2, 5, LocaleController.getString("ArchiveSettingUnmutedChatsInfo")));
         }
-        return false;
-    }
-
-    @Override
-    public final int h() {
-        return this.d.h.size();
-    }
-
-    @Override
-    public final int j(int i10) {
-        if (i10 >= 0) {
-            l lVar = this.d;
-            if (i10 < lVar.h.size()) {
-                return ((j) lVar.h.get(i10)).f44300a;
-            }
-            return 0;
+        arrayList2.add(new i(0, 6, LocaleController.getString("NewChatsFromNonContacts")));
+        arrayList2.add(new i(1, 7, LocaleController.getString("NewChatsFromNonContactsCheck")));
+        arrayList2.add(new i(2, 8, LocaleController.getString("ArchiveAndMuteInfo")));
+        j jVar = this.f38734b;
+        if (jVar == null) {
+            return;
         }
-        return 0;
-    }
-
-    @Override
-    public final void v(s4.b1 b1Var, int i10) {
-        boolean z10;
-        boolean z11;
-        l lVar = this.d;
-        ArrayList arrayList = lVar.h;
-        if (i10 >= 0 && i10 < arrayList.size()) {
-            j jVar = (j) arrayList.get(i10);
-            int i11 = i10 + 1;
-            int i12 = 0;
-            if (i11 < arrayList.size() && ((j) arrayList.get(i11)).f44300a == jVar.f44300a) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            int i13 = b1Var.f45924f;
-            View view = b1Var.f45921a;
-            if (i13 == 0) {
-                ((org.telegram.ui.Cells.l4) view).setText(jVar.f38141c);
-            } else if (i13 == 2) {
-                org.telegram.ui.Cells.d9 d9Var = (org.telegram.ui.Cells.d9) view;
-                if (TextUtils.isEmpty(jVar.f38141c)) {
-                    d9Var.setFixedSize(12);
-                    d9Var.setText(null);
-                    return;
-                }
-                d9Var.setFixedSize(0);
-                d9Var.setText(jVar.f38141c);
-            } else if (i13 == 1) {
-                org.telegram.ui.Cells.v8 v8Var = (org.telegram.ui.Cells.v8) view;
-                int i14 = jVar.d;
-                if (i14 == 1) {
-                    z11 = lVar.d.keep_archived_unmuted;
-                    v8Var.setCheckBoxIcon(0);
-                } else if (i14 == 4) {
-                    z11 = lVar.d.keep_archived_folders;
-                    v8Var.setCheckBoxIcon(0);
-                } else if (i14 == 7) {
-                    boolean z12 = lVar.d.archive_and_mute_new_noncontact_peers;
-                    if (!lVar.getUserConfig().isPremium() && !lVar.getMessagesController().autoarchiveAvailable) {
-                        i12 = R.drawable.permission_locked;
-                    }
-                    v8Var.setCheckBoxIcon(i12);
-                    z11 = z12;
-                } else {
-                    return;
-                }
-                v8Var.f(jVar.f38141c, z11, z10);
-            }
-        }
-    }
-
-    @Override
-    public final s4.b1 x(ViewGroup viewGroup, int i10) {
-        View d9Var;
-        l lVar = this.d;
-        if (i10 == 0) {
-            d9Var = new org.telegram.ui.Cells.l4(lVar.getParentActivity());
-        } else if (i10 == 1) {
-            d9Var = new org.telegram.ui.Cells.v8(lVar.getParentActivity());
+        if (z10) {
+            jVar.E(arrayList, arrayList2);
         } else {
-            d9Var = new org.telegram.ui.Cells.d9(lVar.getParentActivity());
+            jVar.l();
         }
-        return new s4.b1(d9Var);
+    }
+
+    @Override
+    public final View createView(Context context) {
+        this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
+        this.actionBar.setAllowOverlayTitle(true);
+        this.actionBar.setTitle(LocaleController.getString(R.string.ArchiveSettings));
+        this.actionBar.setActionBarMenuOnItemClick(new ah.s(this, 20));
+        FrameLayout frameLayout = new FrameLayout(context);
+        this.fragmentView = frameLayout;
+        org.telegram.ui.ActionBar.r6.i(org.telegram.ui.ActionBar.k6.f21125a7, frameLayout, null);
+        org.telegram.ui.Components.mm0 mm0Var = new org.telegram.ui.Components.mm0(context, null);
+        this.f38733a = mm0Var;
+        mm0Var.t1();
+        this.actionBar.setAdaptiveBackground(this.f38733a);
+        this.f38733a.setLayoutManager(new hg.a0(1, false, 2));
+        this.f38733a.setVerticalScrollBarEnabled(false);
+        this.f38733a.setLayoutAnimation(null);
+        org.telegram.ui.Components.mm0 mm0Var2 = this.f38733a;
+        j jVar = new j(this);
+        this.f38734b = jVar;
+        mm0Var2.setAdapter(jVar);
+        s4.k kVar = new s4.k();
+        kVar.n(350L);
+        kVar.o(org.telegram.ui.Components.bs.h);
+        kVar.C = false;
+        kVar.f46377m = false;
+        this.f38733a.setItemAnimator(kVar);
+        frameLayout.addView(this.f38733a, w7.z5.c(-1.0f, -1));
+        this.f38733a.setOnItemClickListener(new h(this, 0));
+        getContactsController().loadGlobalPrivacySetting();
+        TLRPC.GlobalPrivacySettings globalPrivacySettings = getContactsController().getGlobalPrivacySettings();
+        this.d = globalPrivacySettings;
+        if (globalPrivacySettings == null) {
+            this.d = new TLRPC.TL_globalPrivacySettings();
+        }
+        U(false);
+        return this.fragmentView;
+    }
+
+    @Override
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        if (i10 == NotificationCenter.privacyRulesUpdated) {
+            TLRPC.GlobalPrivacySettings globalPrivacySettings = getContactsController().getGlobalPrivacySettings();
+            this.d = globalPrivacySettings;
+            if (globalPrivacySettings == null) {
+                this.d = new TLRPC.TL_globalPrivacySettings();
+            }
+            if (this.f38733a != null) {
+                for (int i12 = 0; i12 < this.f38733a.getChildCount(); i12++) {
+                    View childAt = this.f38733a.getChildAt(i12);
+                    this.f38733a.getClass();
+                    int R = RecyclerView.R(childAt);
+                    if (R >= 0) {
+                        ArrayList arrayList = this.h;
+                        if (R < arrayList.size()) {
+                            int i13 = ((i) arrayList.get(R)).d;
+                            if (i13 == 1) {
+                                ((org.telegram.ui.Cells.w8) childAt).setChecked(this.d.keep_archived_unmuted);
+                            } else if (i13 == 4) {
+                                ((org.telegram.ui.Cells.w8) childAt).setChecked(this.d.keep_archived_folders);
+                            } else if (i13 == 7) {
+                                ((org.telegram.ui.Cells.w8) childAt).setChecked(this.d.archive_and_mute_new_noncontact_peers);
+                            }
+                        }
+                    }
+                }
+            }
+            this.f38735c = false;
+        } else if (i10 == NotificationCenter.dialogFiltersUpdated) {
+            U(true);
+        }
+    }
+
+    @Override
+    public final boolean isSupportEdgeToEdge() {
+        return true;
+    }
+
+    @Override
+    public final boolean onFragmentCreate() {
+        getNotificationCenter().addObserver(this, NotificationCenter.privacyRulesUpdated);
+        return super.onFragmentCreate();
+    }
+
+    @Override
+    public final void onFragmentDestroy() {
+        getNotificationCenter().removeObserver(this, NotificationCenter.privacyRulesUpdated);
+        super.onFragmentDestroy();
+        if (this.f38735c) {
+            TL_account.setGlobalPrivacySettings setglobalprivacysettings = new TL_account.setGlobalPrivacySettings();
+            setglobalprivacysettings.settings = this.d;
+            getConnectionsManager().sendRequest(setglobalprivacysettings, new ci.d6(8));
+            this.f38735c = false;
+        }
+    }
+
+    @Override
+    public final void onInsets(int i10, int i11, int i12, int i13) {
+        this.f38733a.setPadding(0, 0, 0, i13);
+        this.f38733a.setClipToPadding(false);
     }
 }

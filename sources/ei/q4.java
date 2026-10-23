@@ -1,30 +1,30 @@
 package ei;
 
 import android.widget.FrameLayout;
-import org.telegram.ui.Components.ib0;
+import org.telegram.ui.Components.jb0;
 public final class q4 implements o1.f {
-    public final int f9640a;
-    public final FrameLayout f9641b;
-    public final boolean f9642c;
+    public final int f9656a;
+    public final FrameLayout f9657b;
+    public final boolean f9658c;
 
     public q4(FrameLayout frameLayout, boolean z10, int i10) {
-        this.f9640a = i10;
-        this.f9641b = frameLayout;
-        this.f9642c = z10;
+        this.f9656a = i10;
+        this.f9657b = frameLayout;
+        this.f9658c = z10;
     }
 
     @Override
     public final void a(o1.h hVar, boolean z10, float f7, float f10) {
         int i10;
-        switch (this.f9640a) {
+        switch (this.f9656a) {
             case 0:
-                f6 f6Var = (f6) this.f9641b;
-                g5 g5Var = f6Var.f9041w1;
+                f6 f6Var = (f6) this.f9657b;
+                g5 g5Var = f6Var.f9052w1;
                 if (hVar == f6Var.C1) {
                     f6Var.C1 = null;
-                    if (!this.f9642c) {
+                    if (!this.f9658c) {
                         g5Var.setVisibility(8);
-                        qg.v0.e(f6Var.F1).g();
+                        qg.u0.e(f6Var.F1).g();
                         g5Var.getAdapter().l();
                         return;
                     }
@@ -32,33 +32,33 @@ public final class q4 implements o1.f {
                 }
                 return;
             case 1:
-                f6 f6Var2 = (f6) this.f9641b;
-                rg.t1 t1Var = f6Var2.f9021m1;
-                if (hVar == f6Var2.f9039v1) {
-                    f6Var2.f9039v1 = null;
-                    if (!this.f9642c) {
-                        t1Var.setVisibility(8);
+                f6 f6Var2 = (f6) this.f9657b;
+                rg.u1 u1Var = f6Var2.f9032m1;
+                if (hVar == f6Var2.f9050v1) {
+                    f6Var2.f9050v1 = null;
+                    if (!this.f9658c) {
+                        u1Var.setVisibility(8);
                     }
-                    t1Var.setMaskProvider(null);
+                    u1Var.setMaskProvider(null);
                     return;
                 }
                 return;
             default:
-                ib0 ib0Var = (ib0) this.f9641b;
+                jb0 jb0Var = (jb0) this.f9657b;
                 if (!z10) {
-                    ib0Var.K = null;
-                    boolean z11 = this.f9642c;
+                    jb0Var.K = null;
+                    boolean z11 = this.f9658c;
                     if (z11) {
                         i10 = 8;
                     } else {
                         i10 = 0;
                     }
-                    ib0Var.setVisibility(i10);
-                    if (ib0Var.N && z11) {
-                        ib0Var.N = false;
-                        ib0Var.f27225b.setLayoutManager(ib0Var.getNeededLayoutManager());
-                        ib0Var.I = true;
-                        ib0Var.o(true);
+                    jb0Var.setVisibility(i10);
+                    if (jb0Var.N && z11) {
+                        jb0Var.N = false;
+                        jb0Var.f27653b.setLayoutManager(jb0Var.getNeededLayoutManager());
+                        jb0Var.I = true;
+                        jb0Var.o(true);
                         return;
                     }
                     return;

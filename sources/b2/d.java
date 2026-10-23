@@ -60,7 +60,7 @@ public abstract class d {
             while (true) {
                 z10 = true;
                 if (i13 < supportedPerformancePoints.size()) {
-                    if (r2.i.c(supportedPerformancePoints.get(i13)).covers(performancePoint)) {
+                    if (r2.i.b(supportedPerformancePoints.get(i13)).covers(performancePoint)) {
                         i12 = 2;
                         break;
                     }
@@ -70,22 +70,22 @@ public abstract class d {
                     break;
                 }
             }
-            if (i12 == 1 && u6.f48846a == null) {
+            if (i12 == 1 && u6.f49284a == null) {
                 int i14 = Build.VERSION.SDK_INT;
                 if (i14 < 37) {
                     int d10 = d(true);
                     if (i14 < 35) {
-                        u6.f48846a = Boolean.valueOf(z10);
+                        u6.f49284a = Boolean.valueOf(z10);
                         if (z10) {
                         }
                     } else {
-                        u6.f48846a = Boolean.valueOf(z10);
+                        u6.f49284a = Boolean.valueOf(z10);
                         if (z10) {
                         }
                     }
                 }
                 z10 = false;
-                u6.f48846a = Boolean.valueOf(z10);
+                u6.f49284a = Boolean.valueOf(z10);
                 if (z10) {
                 }
             }
@@ -100,9 +100,9 @@ public abstract class d {
         List<MediaCodecInfo.VideoCapabilities.PerformancePoint> supportedPerformancePoints;
         try {
             v vVar = new v();
-            vVar.f4075r = v0.n("video/avc");
+            vVar.f4082r = v0.n("video/avc");
             w wVar = new w(vVar);
-            String str = wVar.f4128s;
+            String str = wVar.f4135s;
             if (str != null) {
                 List e7 = r2.w.e(str, z10, false);
                 String c10 = r2.w.c(wVar);
@@ -119,7 +119,7 @@ public abstract class d {
                     if (((r2.o) f7.get(i10)).d != null && (videoCapabilities = ((r2.o) f7.get(i10)).d.getVideoCapabilities()) != null && (supportedPerformancePoints = videoCapabilities.getSupportedPerformancePoints()) != null && !supportedPerformancePoints.isEmpty()) {
                         MediaCodecInfo.VideoCapabilities.PerformancePoint performancePoint = new MediaCodecInfo.VideoCapabilities.PerformancePoint(1280, 720, 60);
                         for (int i11 = 0; i11 < supportedPerformancePoints.size(); i11++) {
-                            if (r2.i.c(supportedPerformancePoints.get(i11)).covers(performancePoint)) {
+                            if (r2.i.b(supportedPerformancePoints.get(i11)).covers(performancePoint)) {
                                 return 2;
                             }
                         }
@@ -135,10 +135,10 @@ public abstract class d {
     public static e9.x1 e(f fVar) {
         e9.k0 t10 = e9.n0.t();
         e9.q0 q0Var = k2.b.h;
-        e9.y0 y0Var = q0Var.f8487b;
+        e9.y0 y0Var = q0Var.f8494b;
         if (y0Var == null) {
             y0Var = q0Var.c();
-            q0Var.f8487b = y0Var;
+            q0Var.f8494b = y0Var;
         }
         m2 it = y0Var.iterator();
         while (it.hasNext()) {

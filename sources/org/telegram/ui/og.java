@@ -11,17 +11,17 @@ import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBarLayout;
-public final class og implements ev0, vx {
-    public final boolean f39887a;
-    public final int f39888b;
-    public final Object f39889c;
+public final class og implements hv0, xx {
+    public final boolean f40152a;
+    public final int f40153b;
+    public final Object f40154c;
     public final Object d;
 
-    public og(qn qnVar, boolean z10, MessageObject messageObject, int i10) {
-        this.f39889c = qnVar;
-        this.f39887a = z10;
+    public og(sn snVar, boolean z10, MessageObject messageObject, int i10) {
+        this.f40154c = snVar;
+        this.f40152a = z10;
         this.d = messageObject;
-        this.f39888b = i10;
+        this.f40153b = i10;
     }
 
     @Override
@@ -30,38 +30,38 @@ public final class og implements ev0, vx {
     }
 
     @Override
-    public boolean J(cy cyVar) {
+    public boolean J(ey eyVar) {
         return false;
     }
 
     @Override
-    public void b(TLRPC.MessageMedia messageMedia) {
+    public void a(TLRPC.MessageMedia messageMedia) {
         int i10;
-        qn qnVar = (qn) this.f39889c;
+        sn snVar = (sn) this.f40154c;
         MessageObject messageObject = (MessageObject) this.d;
-        if (this.f39887a) {
+        if (this.f40152a) {
             TLRPC.TL_messages_appendTodoList tL_messages_appendTodoList = new TLRPC.TL_messages_appendTodoList();
-            tL_messages_appendTodoList.peer = qnVar.getMessagesController().getInputPeer(messageObject.getDialogId());
+            tL_messages_appendTodoList.peer = snVar.getMessagesController().getInputPeer(messageObject.getDialogId());
             tL_messages_appendTodoList.msg_id = messageObject.getId();
             if (messageMedia instanceof TLRPC.TL_messageMediaToDo) {
                 TLRPC.TL_messageMediaToDo tL_messageMediaToDo = (TLRPC.TL_messageMediaToDo) messageMedia;
                 int i11 = 0;
                 int i12 = 0;
                 while (true) {
-                    i10 = this.f39888b;
+                    i10 = this.f40153b;
                     if (i11 >= i10) {
                         break;
                     }
-                    i12 = Math.max(i12, tL_messageMediaToDo.todo.list.get(i11).f20425id);
+                    i12 = Math.max(i12, tL_messageMediaToDo.todo.list.get(i11).f20488id);
                     i11++;
                 }
                 while (i10 < tL_messageMediaToDo.todo.list.size()) {
                     TLRPC.TodoItem todoItem = tL_messageMediaToDo.todo.list.get(i10);
-                    if (todoItem.f20425id <= i12) {
-                        todoItem.f20425id = i12 + 1;
+                    if (todoItem.f20488id <= i12) {
+                        todoItem.f20488id = i12 + 1;
                     }
                     tL_messages_appendTodoList.list.add(todoItem);
-                    i12 = Math.max(i12, todoItem.f20425id);
+                    i12 = Math.max(i12, todoItem.f20488id);
                     i10++;
                 }
                 TLRPC.MessageMedia messageMedia2 = messageObject.messageOwner.media;
@@ -70,7 +70,7 @@ public final class og implements ev0, vx {
                 }
             }
             messageObject.messageOwner.media = messageMedia;
-            qnVar.getConnectionsManager().sendRequest(tL_messages_appendTodoList, null);
+            snVar.getConnectionsManager().sendRequest(tL_messages_appendTodoList, null);
             return;
         }
         if (messageMedia instanceof TLRPC.TL_messageMediaToDo) {
@@ -80,18 +80,18 @@ public final class og implements ev0, vx {
             }
         }
         messageObject.messageOwner.media = messageMedia;
-        qnVar.getSendMessagesHelper().editMessage(messageObject, null, null, null, null, null, null, false, false, null);
+        snVar.getSendMessagesHelper().editMessage(messageObject, null, null, null, null, null, null, false, false, null);
     }
 
     @Override
-    public boolean w(cy cyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, re1 re1Var) {
-        LaunchActivity launchActivity = (LaunchActivity) this.f39889c;
+    public boolean w(ey eyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, ye1 ye1Var) {
+        LaunchActivity launchActivity = (LaunchActivity) this.f40154c;
         String str = (String) this.d;
-        Pattern pattern = LaunchActivity.C1;
+        Pattern pattern = LaunchActivity.E1;
         long j10 = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
         Bundle bundle = new Bundle();
         bundle.putBoolean("scrollToTopOnResume", true);
-        bundle.putBoolean("hasUrl", this.f39887a);
+        bundle.putBoolean("hasUrl", this.f40152a);
         if (DialogObject.isEncryptedDialog(j10)) {
             bundle.putInt("enc_id", DialogObject.getEncryptedChatId(j10));
         } else if (DialogObject.isUserDialog(j10)) {
@@ -99,19 +99,19 @@ public final class og implements ev0, vx {
         } else {
             bundle.putLong("chat_id", -j10);
         }
-        int i12 = this.f39888b;
-        if (MessagesController.getInstance(i12).checkCanOpenChat(bundle, cyVar)) {
+        int i12 = this.f40153b;
+        if (MessagesController.getInstance(i12).checkCanOpenChat(bundle, eyVar)) {
             NotificationCenter.getInstance(i12).lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeChats, new Object[0]);
             MediaDataController.getInstance(i12).saveDraft(j10, 0, str, null, null, false, 0L);
-            ((ActionBarLayout) launchActivity.O()).S(new qn(bundle), true, false);
+            ((ActionBarLayout) launchActivity.O()).T(new sn(bundle), true, false);
         }
         return true;
     }
 
     public og(LaunchActivity launchActivity, boolean z10, int i10, String str) {
-        this.f39889c = launchActivity;
-        this.f39887a = z10;
-        this.f39888b = i10;
+        this.f40154c = launchActivity;
+        this.f40152a = z10;
+        this.f40153b = i10;
         this.d = str;
     }
 }

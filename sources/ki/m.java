@@ -10,24 +10,24 @@ import org.telegram.ui.Components.gh;
 import org.telegram.ui.Components.ri;
 import org.telegram.ui.Components.ti;
 public final class m implements ri {
-    public final ti f15377a;
-    public final q f15378b;
+    public final ti f15437a;
+    public final q f15438b;
 
     public m(q qVar, ti tiVar) {
-        this.f15378b = qVar;
-        this.f15377a = tiVar;
+        this.f15438b = qVar;
+        this.f15437a = tiVar;
     }
 
     @Override
     public final void b0(int i10, boolean z10, boolean z11, int i11, int i12, long j10, boolean z12, boolean z13, long j11) {
-        ti tiVar = this.f15377a;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = tiVar.f30562j0;
-        w3 w3Var = this.f15378b.f15448r;
+        ti tiVar = this.f15437a;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = tiVar.f30742j0;
+        w3 w3Var = this.f15438b.f15508r;
         if (i10 == 7 || i10 == 8) {
             HashMap<Object, Object> selectedPhotos = chatAttachAlertPhotoLayout.getSelectedPhotos();
             ArrayList<Object> selectedPhotosOrder = chatAttachAlertPhotoLayout.getSelectedPhotosOrder();
-            a aVar = w3Var.Z3;
-            w3Var.Z3 = null;
+            a aVar = w3Var.f15648c4;
+            w3Var.f15648c4 = null;
             int i13 = 0;
             while (true) {
                 if (i13 >= selectedPhotosOrder.size()) {
@@ -36,16 +36,16 @@ public final class m implements ri {
                 Object obj = selectedPhotos.get(selectedPhotosOrder.get(i13));
                 if (obj instanceof MediaController.PhotoEntry) {
                     if (aVar != null) {
-                        w3Var.U1(aVar, (MediaController.PhotoEntry) obj);
+                        w3Var.Z1(aVar, (MediaController.PhotoEntry) obj);
                     } else {
-                        w3Var.g2((MediaController.PhotoEntry) obj);
+                        w3Var.l2((MediaController.PhotoEntry) obj);
                     }
                 } else {
                     i13++;
                 }
             }
         }
-        w3Var.Z3 = null;
+        w3Var.f15648c4 = null;
         tiVar.dismiss(true);
     }
 
@@ -55,21 +55,13 @@ public final class m implements ri {
     }
 
     @Override
-    public final void u(gh ghVar) {
-        NotificationCenter.getInstance(this.f15378b.f15447n).doOnIdle(ghVar);
+    public final void r(gh ghVar) {
+        NotificationCenter.getInstance(this.f15438b.f15507n).doOnIdle(ghVar);
     }
 
     @Override
-    public final boolean v() {
+    public final boolean u() {
         return false;
-    }
-
-    @Override
-    public final void E() {
-    }
-
-    @Override
-    public final void J() {
     }
 
     @Override
@@ -78,6 +70,14 @@ public final class m implements ri {
 
     @Override
     public final void X(TLRPC.User user) {
+    }
+
+    @Override
+    public final void E() {
+    }
+
+    @Override
+    public final void J() {
     }
 
     @Override

@@ -2,19 +2,18 @@ package x3;
 
 import b2.v;
 import b2.v0;
-import b2.w;
-import c3.u;
+import c3.w;
 import e2.x;
 import java.util.Arrays;
 import n4.s;
-import u2.a1;
+import u2.b1;
 public final class c extends i {
-    public u f49200n;
-    public a1 f49201o;
+    public w f49642n;
+    public b1 f49643o;
 
     @Override
     public final long b(x xVar) {
-        byte[] bArr = xVar.f8291a;
+        byte[] bArr = xVar.f8298a;
         if (bArr[0] == -1) {
             int i10 = (bArr[2] & 255) >> 4;
             if (i10 == 6 || i10 == 7) {
@@ -30,37 +29,37 @@ public final class c extends i {
 
     @Override
     public final boolean c(x xVar, long j10, n2.e eVar) {
-        byte[] bArr = xVar.f8291a;
-        u uVar = this.f49200n;
-        if (uVar == null) {
-            u uVar2 = new u(bArr, 17);
-            this.f49200n = uVar2;
-            v a2 = uVar2.c(Arrays.copyOfRange(bArr, 9, xVar.f8293c), null).a();
-            a2.f4074q = v0.n("audio/ogg");
-            eVar.f17039b = new w(a2);
+        byte[] bArr = xVar.f8298a;
+        w wVar = this.f49642n;
+        if (wVar == null) {
+            w wVar2 = new w(bArr, 17);
+            this.f49642n = wVar2;
+            v a2 = wVar2.c(Arrays.copyOfRange(bArr, 9, xVar.f8300c), null).a();
+            a2.f4081q = v0.n("audio/ogg");
+            eVar.f17102b = new b2.w(a2);
             return true;
         }
         byte b10 = bArr[0];
         if ((b10 & Byte.MAX_VALUE) == 3) {
             s t10 = c3.b.t(xVar);
-            u uVar3 = new u(uVar.f4659a, uVar.f4660b, uVar.f4661c, uVar.d, uVar.e, uVar.f4663g, uVar.h, uVar.f4665j, t10, uVar.f4667l);
-            this.f49200n = uVar3;
+            w wVar3 = new w(wVar.f4668a, wVar.f4669b, wVar.f4670c, wVar.d, wVar.e, wVar.f4672g, wVar.h, wVar.f4674j, t10, wVar.f4676l);
+            this.f49642n = wVar3;
             ?? obj = new Object();
-            obj.f47261c = uVar3;
+            obj.f47710c = wVar3;
             obj.d = t10;
-            obj.f47259a = -1L;
-            obj.f47260b = -1L;
-            this.f49201o = obj;
+            obj.f47708a = -1L;
+            obj.f47709b = -1L;
+            this.f49643o = obj;
             return true;
         } else if (b10 != -1) {
             return true;
         } else {
-            a1 a1Var = this.f49201o;
-            if (a1Var != null) {
-                a1Var.f47259a = j10;
-                eVar.f17040c = a1Var;
+            b1 b1Var = this.f49643o;
+            if (b1Var != null) {
+                b1Var.f47708a = j10;
+                eVar.f17103c = b1Var;
             }
-            ((w) eVar.f17039b).getClass();
+            ((b2.w) eVar.f17102b).getClass();
             return false;
         }
     }
@@ -69,8 +68,8 @@ public final class c extends i {
     public final void d(boolean z10) {
         super.d(z10);
         if (z10) {
-            this.f49200n = null;
-            this.f49201o = null;
+            this.f49642n = null;
+            this.f49643o = null;
         }
     }
 }

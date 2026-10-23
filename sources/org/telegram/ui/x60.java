@@ -1,55 +1,142 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.widget.LinearLayout;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-public final class x60 extends LinearLayout {
-    public final org.telegram.ui.Components.iu f43112a;
-    public boolean f43113b;
-    public int f43114c;
-    public lt d;
-    public String e;
-    public final w60 f43115f;
-    public final a70 h;
+import org.telegram.tgnet.TLRPC;
+public final class x60 extends org.telegram.ui.Components.lm0 {
+    public final Context f43514c;
+    public final y60 d;
 
-    public x60(a70 a70Var, Context context) {
-        super(context);
-        this.h = a70Var;
-        this.f43115f = new w60(this);
-        TextView f7 = org.telegram.messenger.g0.f(context, 1, 16.0f);
-        f7.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21100j5, false));
-        f7.setText("t.me/addemoji/");
-        org.telegram.ui.Components.iu iuVar = new org.telegram.ui.Components.iu(context, null);
-        this.f43112a = iuVar;
-        iuVar.setLines(1);
-        iuVar.setSingleLine(true);
-        iuVar.setInputType(16384);
-        iuVar.setTextSize(1, 16.0f);
-        iuVar.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.Ud, false));
-        iuVar.setLinkTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.hc, false));
-        iuVar.setHighlightColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21318uf, false));
-        int i10 = org.telegram.ui.ActionBar.h6.Vd;
-        iuVar.setHintColor(org.telegram.ui.ActionBar.h6.x0(null, i10, false));
-        iuVar.setHintTextColor(org.telegram.ui.ActionBar.h6.x0(null, i10, false));
-        iuVar.setCursorColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.Wd, false));
-        iuVar.setHandlesColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21336vf, false));
-        iuVar.setBackground(null);
-        iuVar.setHint(LocaleController.getString(R.string.AddEmojiPackLinkHint));
-        addView(f7, w7.z5.t(-2, -2, 16, 20, 0, 0, 0));
-        addView(iuVar, w7.z5.t(-1, -2, 16, -4, 0, 0, 0));
-        setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20994d6, false));
-        setPadding(0, AndroidUtilities.dp(5.0f), 0, AndroidUtilities.dp(5.0f));
-        setWillNotDraw(false);
+    public x60(y60 y60Var, Context context) {
+        this.d = y60Var;
+        this.f43514c = context;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        if (this.f43113b) {
-            canvas.drawLine(AndroidUtilities.dp(20.0f), getHeight() - 1, getWidth() - getPaddingRight(), getHeight() - 1, org.telegram.ui.ActionBar.h6.f21115k0);
+    public final boolean D(s4.b1 b1Var) {
+        int b10 = b1Var.b();
+        y60 y60Var = this.d;
+        if (b10 != y60Var.f43735r && b10 != y60Var.f43734n && b10 != y60Var.f43736s && b10 != 0) {
+            return false;
         }
+        return true;
+    }
+
+    @Override
+    public final int h() {
+        y60 y60Var = this.d;
+        if (y60Var.e) {
+            return 0;
+        }
+        return y60Var.f43737w;
+    }
+
+    @Override
+    public final int j(int i10) {
+        y60 y60Var = this.d;
+        if (i10 != y60Var.f43734n && i10 != y60Var.f43736s && i10 != y60Var.f43735r) {
+            if (i10 != y60Var.v && i10 != y60Var.h) {
+                if (i10 == 0) {
+                    return 2;
+                }
+                return 0;
+            }
+            return 1;
+        }
+        return 0;
+    }
+
+    @Override
+    public final void v(s4.b1 b1Var, int i10) {
+        String str;
+        int i11 = b1Var.f46346f;
+        View view = b1Var.f46343a;
+        y60 y60Var = this.d;
+        if (i11 != 0) {
+            if (i11 != 1) {
+                if (i11 == 2) {
+                    org.telegram.ui.Cells.p8 p8Var = (org.telegram.ui.Cells.p8) view;
+                    TLRPC.TL_chatInviteExported tL_chatInviteExported = y60Var.f43733f;
+                    if (tL_chatInviteExported != null) {
+                        str = tL_chatInviteExported.link;
+                    } else {
+                        str = "error";
+                    }
+                    p8Var.f22899a.setText(str);
+                    p8Var.setWillNotDraw(true);
+                    return;
+                }
+                return;
+            }
+            org.telegram.ui.Cells.e9 e9Var = (org.telegram.ui.Cells.e9) view;
+            int i12 = y60Var.v;
+            Context context = this.f43514c;
+            if (i10 == i12) {
+                e9Var.setText("");
+                org.telegram.ui.ActionBar.r6.b0(R.drawable.greydivider_bottom, org.telegram.ui.ActionBar.k6.f21145b7, context, e9Var, null);
+                return;
+            } else if (i10 == y60Var.h) {
+                TLRPC.Chat chat = y60Var.getMessagesController().getChat(Long.valueOf(y60Var.d));
+                if (ChatObject.isChannel(chat) && !chat.megagroup) {
+                    e9Var.setText(LocaleController.getString(R.string.ChannelLinkInfo));
+                } else {
+                    e9Var.setText(LocaleController.getString(R.string.LinkInfo));
+                }
+                org.telegram.ui.ActionBar.r6.b0(R.drawable.greydivider, org.telegram.ui.ActionBar.k6.f21145b7, context, e9Var, null);
+                return;
+            } else {
+                return;
+            }
+        }
+        org.telegram.ui.Cells.ca caVar = (org.telegram.ui.Cells.ca) view;
+        if (i10 == y60Var.f43734n) {
+            caVar.b(LocaleController.getString(R.string.CopyLink), true);
+        } else if (i10 == y60Var.f43736s) {
+            caVar.b(LocaleController.getString(R.string.ShareLink), false);
+        } else if (i10 == y60Var.f43735r) {
+            caVar.b(LocaleController.getString(R.string.RevokeLink), true);
+        }
+    }
+
+    @Override
+    public final s4.b1 x(ViewGroup viewGroup, int i10) {
+        FrameLayout frameLayout;
+        int i11;
+        Context context = this.f43514c;
+        if (i10 != 0) {
+            if (i10 != 1) {
+                ?? frameLayout2 = new FrameLayout(context);
+                TextView textView = new TextView(context);
+                frameLayout2.f22899a = textView;
+                org.telegram.ui.ActionBar.r6.W(textView, org.telegram.ui.ActionBar.k6.G6, null);
+                textView.setTextSize(1, 16.0f);
+                int i12 = 3;
+                if (LocaleController.isRTL) {
+                    i11 = 5;
+                } else {
+                    i11 = 3;
+                }
+                textView.setGravity(i11 | 16);
+                if (LocaleController.isRTL) {
+                    i12 = 5;
+                }
+                frameLayout2.addView(textView, w7.z5.d(-1, -2.0f, i12 | 48, 23.0f, 10.0f, 23.0f, 10.0f));
+                org.telegram.ui.ActionBar.r6.i(org.telegram.ui.ActionBar.k6.f21183d6, frameLayout2, null);
+                frameLayout = frameLayout2;
+            } else {
+                frameLayout = new org.telegram.ui.Cells.e9(context);
+            }
+        } else {
+            FrameLayout caVar = new org.telegram.ui.Cells.ca(context);
+            org.telegram.ui.ActionBar.r6.i(org.telegram.ui.ActionBar.k6.f21183d6, caVar, null);
+            frameLayout = caVar;
+        }
+        return new s4.b1(frameLayout);
     }
 }

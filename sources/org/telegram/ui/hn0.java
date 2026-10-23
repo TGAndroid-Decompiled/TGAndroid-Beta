@@ -1,79 +1,63 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.View;
-import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-public final class hn0 extends LinearLayout {
-    public boolean f37698a;
-    public final int f37699b;
-    public final int[] f37700c;
-    public final int[] d;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+public final class hn0 implements Runnable {
+    public final int f37884a;
+    public final io0 f37885b;
+    public final TLRPC.TL_error f37886c;
+    public final TLObject d;
 
-    public hn0(Context context, int i10, int[] iArr, int[] iArr2) {
-        super(context);
-        this.f37699b = i10;
-        this.f37700c = iArr;
-        this.d = iArr2;
+    public hn0(io0 io0Var, TLRPC.TL_error tL_error, TLObject tLObject, int i10) {
+        this.f37884a = i10;
+        this.f37885b = io0Var;
+        this.f37886c = tL_error;
+        this.d = tLObject;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        View childAt;
-        int size = View.MeasureSpec.getSize(i10);
-        this.f37698a = true;
-        int dp = AndroidUtilities.dp(9.0f);
-        int i12 = this.f37699b;
-        int i13 = (i12 - 1) * dp;
-        int[] iArr = this.f37700c;
-        float f7 = 1.0f;
-        if ((iArr[0] * i12) + i13 <= size) {
-            setWeightSum(1.0f);
-            int childCount = getChildCount();
-            for (int i14 = 0; i14 < childCount; i14++) {
-                getChildAt(i14).getLayoutParams().width = 0;
-                ((LinearLayout.LayoutParams) getChildAt(i14).getLayoutParams()).weight = 1.0f / childCount;
-            }
-        } else if (this.d[0] + i13 <= size) {
-            setWeightSum(1.0f);
-            int i15 = size - i13;
-            int childCount2 = getChildCount();
-            for (int i16 = 0; i16 < childCount2; i16++) {
-                LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) getChildAt(i16).getLayoutParams();
-                layoutParams.width = 0;
-                float intValue = ((Integer) childAt.getTag(R.id.width_tag)).intValue() / i15;
-                layoutParams.weight = intValue;
-                f7 -= intValue;
-            }
-            float f10 = f7 / (i12 - 1);
-            if (f10 > 0.0f) {
-                int childCount3 = getChildCount();
-                for (int i17 = 0; i17 < childCount3; i17++) {
-                    View childAt2 = getChildAt(i17);
-                    LinearLayout.LayoutParams layoutParams2 = (LinearLayout.LayoutParams) childAt2.getLayoutParams();
-                    if (((Integer) childAt2.getTag(R.id.width_tag)).intValue() != iArr[0]) {
-                        layoutParams2.weight += f10;
+    public final void run() {
+        switch (this.f37884a) {
+            case 0:
+                io0 io0Var = this.f37885b;
+                io0Var.f38298e0 = false;
+                if (this.f37886c == null) {
+                    TL_account.Password password = (TL_account.Password) this.d;
+                    io0Var.f38288a0 = password;
+                    if (!TwoStepVerificationActivity.i0(password, false)) {
+                        org.telegram.ui.Components.f5.x0(io0Var.getParentActivity(), LocaleController.getString(R.string.UpdateAppAlert), true);
+                        return;
                     }
+                    TLRPC.PaymentForm paymentForm = io0Var.C0;
+                    if (paymentForm != null && io0Var.f38288a0.has_password) {
+                        paymentForm.password_missing = false;
+                        paymentForm.can_save_credentials = true;
+                        io0Var.K0();
+                    }
+                    TwoStepVerificationActivity.m0(io0Var.f38288a0);
+                    io0 io0Var2 = io0Var.f38301f0;
+                    if (io0Var2 != null) {
+                        io0Var2.C0(io0Var.f38288a0);
+                    }
+                    if (!io0Var.f38288a0.has_password && io0Var.f38296d0 == null) {
+                        fn0 fn0Var = new fn0(io0Var, 3);
+                        io0Var.f38296d0 = fn0Var;
+                        AndroidUtilities.runOnUIThread(fn0Var, 5000L);
+                        return;
+                    }
+                    return;
                 }
-            }
-        } else {
-            setWeightSum(0.0f);
-            int childCount4 = getChildCount();
-            for (int i18 = 0; i18 < childCount4; i18++) {
-                getChildAt(i18).getLayoutParams().width = -2;
-                ((LinearLayout.LayoutParams) getChildAt(i18).getLayoutParams()).weight = 0.0f;
-            }
+                return;
+            case 1:
+                io0.V(this.f37885b, this.f37886c, this.d);
+                return;
+            default:
+                io0.X(this.f37885b, this.f37886c, this.d);
+                return;
         }
-        this.f37698a = false;
-        super.onMeasure(i10, i11);
-    }
-
-    @Override
-    public final void requestLayout() {
-        if (this.f37698a) {
-            return;
-        }
-        super.requestLayout();
     }
 }

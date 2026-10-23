@@ -5,17 +5,17 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.widget.EditText;
 import ei.e2;
-import org.telegram.ui.ActionBar.g5;
+import org.telegram.ui.ActionBar.k5;
 public final class h0 implements TextWatcher {
-    public final g5 f51577a;
-    public final EditText f51578b;
-    public String f51579c;
+    public final k5 f52039a;
+    public final EditText f52040b;
+    public String f52041c;
     public boolean d;
     public boolean e;
 
-    public h0(e2 e2Var, g5 g5Var) {
-        this.f51577a = g5Var;
-        this.f51578b = e2Var;
+    public h0(e2 e2Var, k5 k5Var) {
+        this.f52039a = k5Var;
+        this.f52040b = e2Var;
     }
 
     public final void a() {
@@ -25,13 +25,13 @@ public final class h0 implements TextWatcher {
     @Override
     public final void afterTextChanged(Editable editable) {
         String obj = editable.toString();
-        boolean isEmpty = TextUtils.isEmpty(this.f51579c);
+        boolean isEmpty = TextUtils.isEmpty(this.f52041c);
         boolean isEmpty2 = TextUtils.isEmpty(obj);
         if (isEmpty && !isEmpty2) {
             b(true);
         }
-        this.f51579c = obj;
-        this.f51577a.q(this.f51578b);
+        this.f52041c = obj;
+        this.f52039a.q(this.f52040b);
         if (!isEmpty && isEmpty2 && !this.e) {
             b(false);
         }
@@ -39,14 +39,14 @@ public final class h0 implements TextWatcher {
 
     public final void b(boolean z10) {
         if (this.d != z10) {
-            g5 g5Var = this.f51577a;
-            if (!g5Var.c()) {
+            k5 k5Var = this.f52039a;
+            if (!k5Var.c()) {
                 return;
             }
             if (z10) {
-                g5Var.n();
+                k5Var.n();
             } else {
-                g5Var.m();
+                k5Var.m();
             }
             this.d = z10;
         }

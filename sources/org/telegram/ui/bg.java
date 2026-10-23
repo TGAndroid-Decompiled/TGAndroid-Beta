@@ -1,47 +1,27 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.Utilities;
-public final class bg implements Utilities.Callback2 {
-    public final int f35632a;
-    public final qn f35633b;
-    public final String f35634c;
+import org.telegram.tgnet.TLRPC;
+public final class bg implements Runnable {
+    public final int f36075a;
+    public final sn f36076b;
+    public final TLRPC.User f36077c;
 
-    public bg(qn qnVar, String str, int i10) {
-        this.f35632a = i10;
-        this.f35633b = qnVar;
-        this.f35634c = str;
+    public bg(sn snVar, TLRPC.User user, int i10) {
+        this.f36075a = i10;
+        this.f36076b = snVar;
+        this.f36077c = user;
     }
 
     @Override
-    public final void run(Object obj, Object obj2) {
-        Boolean bool = (Boolean) obj;
-        Boolean bool2 = (Boolean) obj2;
-        switch (this.f35632a) {
+    public final void run() {
+        switch (this.f36075a) {
             case 0:
-                if (bool.booleanValue()) {
-                    boolean booleanValue = bool2.booleanValue();
-                    qn qnVar = this.f35633b;
-                    String str = this.f35634c;
-                    if (booleanValue) {
-                        qnVar.getMessagesController().addWebBrowserException(str, false);
-                    }
-                    qnVar.getParentActivity();
-                    pf.d.m(str);
-                    return;
-                }
+                sn snVar = this.f36076b;
+                snVar.getClass();
+                snVar.presentFragment(sn.W9(this.f36077c.f20490id));
                 return;
             default:
-                qn qnVar2 = this.f35633b;
-                qnVar2.getClass();
-                if (bool.booleanValue()) {
-                    boolean booleanValue2 = bool2.booleanValue();
-                    String str2 = this.f35634c;
-                    if (booleanValue2) {
-                        qnVar2.getMessagesController().addWebBrowserException(str2, true);
-                    }
-                    pf.d.l(qnVar2.getParentActivity(), str2, false, null);
-                    return;
-                }
+                this.f36076b.ra(this.f36077c);
                 return;
         }
     }

@@ -1,61 +1,50 @@
 package org.telegram.ui.Components;
 
+import android.view.KeyEvent;
 import android.view.View;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.TLRPC;
-public final class eo0 extends ah.g1 {
-    public final fo0 f25940h0;
+public final class eo0 implements TextView.OnEditorActionListener {
+    public final do0 f26016a;
+    public final int f26017b;
+    public final TLRPC.Reaction f26018c;
+    public final org.telegram.ui.ActionBar.c2[] d;
+    public final View e;
 
-    public eo0(fo0 fo0Var, int i10, View view, TLRPC.TL_reactionCount tL_reactionCount, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(null, i10, view, tL_reactionCount, false, true, d6Var);
-        this.f25940h0 = fo0Var;
+    public eo0(do0 do0Var, int i10, TLRPC.Reaction reaction, org.telegram.ui.ActionBar.c2[] c2VarArr, View view) {
+        this.f26016a = do0Var;
+        this.f26017b = i10;
+        this.f26018c = reaction;
+        this.d = c2VarArr;
+        this.e = view;
     }
 
     @Override
-    public final boolean e() {
-        if (this.f765w <= 0 && !this.f764u && this.F.f26352l == 1.0f) {
+    public final boolean onEditorAction(TextView textView, int i10, KeyEvent keyEvent) {
+        if (i10 != 6) {
             return false;
         }
+        do0 do0Var = this.f26016a;
+        String obj = do0Var.getText().toString();
+        if (obj.length() > 12) {
+            AndroidUtilities.shakeView(do0Var);
+            return true;
+        }
+        MessagesController.getInstance(this.f26017b).renameSavedReactionTag(ah.i1.d(this.f26018c), obj);
+        org.telegram.ui.ActionBar.c2[] c2VarArr = this.d;
+        org.telegram.ui.ActionBar.c2 c2Var = c2VarArr[0];
+        if (c2Var != null) {
+            c2Var.dismiss();
+        }
+        if (c2VarArr[0] == jo0.H) {
+            jo0.H = null;
+        }
+        View view = this.e;
+        if (view != null) {
+            view.requestFocus();
+        }
         return true;
-    }
-
-    @Override
-    public final boolean i() {
-        return !e();
-    }
-
-    @Override
-    public final int j() {
-        return 18;
-    }
-
-    @Override
-    public final void s(float f7) {
-        int i10;
-        int i11;
-        int w02;
-        int i12 = this.f752i;
-        fo0 fo0Var = this.f25940h0;
-        if (fo0Var.e) {
-            i10 = org.telegram.ui.ActionBar.h6.Fj;
-        } else {
-            i10 = org.telegram.ui.ActionBar.h6.f21331va;
-        }
-        this.N = i0.a.f(f7, i12, org.telegram.ui.ActionBar.h6.w0(i10, fo0Var.f26335s.f26620c));
-        int i13 = this.f750g;
-        if (fo0Var.e) {
-            i11 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Cj, fo0Var.f26335s.f26620c);
-        } else {
-            i11 = 0;
-        }
-        int f10 = i0.a.f(f7, i13, i11);
-        this.O = f10;
-        this.N = org.telegram.ui.ActionBar.h6.v(f10, this.N);
-        int i14 = this.h;
-        if (fo0Var.e) {
-            w02 = 1526726655;
-        } else {
-            w02 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21349wa, fo0Var.f26335s.f26620c);
-        }
-        this.P = i0.a.f(f7, i14, w02);
     }
 }

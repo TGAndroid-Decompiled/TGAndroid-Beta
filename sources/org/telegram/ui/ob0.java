@@ -1,275 +1,611 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-import android.content.Context;
+import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
-import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
-import android.text.style.ImageSpan;
-import android.view.View;
-import android.view.ViewPropertyAnimator;
-import android.view.accessibility.AccessibilityEvent;
-import android.view.accessibility.AccessibilityNodeInfo;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import java.math.BigDecimal;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LiteMode;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class ob0 extends FrameLayout {
-    public final org.telegram.ui.Components.y9 f39821a;
-    public final SpannableStringBuilder f39822b;
-    public final org.telegram.ui.Cells.x1 f39823c;
-    public final TextView d;
-    public final org.telegram.ui.Cells.x1 e;
-    public final TextView f39824f;
-    public final org.telegram.ui.Components.dp0 h;
-    public final mb0 f39825n;
-    public boolean f39826r;
-    public float f39827s;
-    public ValueAnimator v;
-    public float f39828w;
-    public ValueAnimator f39829x;
-    public final qb0 f39830y;
+import org.telegram.messenger.BuildVars;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.SharedConfig;
+import org.telegram.messenger.UserConfig;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_aicompose;
+import org.telegram.tgnet.tl.TL_wallet;
+import org.telegram.ui.Wallet.WalletEngine2;
+public final class ob0 {
+    public static final Pattern f40118k = Pattern.compile("^[a-z0-9_]{1,32}$");
+    public final LaunchActivity f40119a;
+    public final int f40120b;
+    public final pf.c f40121c;
+    public final boolean d;
+    public org.telegram.ui.ActionBar.c2 e;
+    public boolean f40122f;
+    public boolean f40123g;
+    public int h = -1;
+    public ai.vb f40124i;
+    public boolean f40125j;
 
-    public ob0(qb0 qb0Var, Context context) {
-        super(context);
-        int i10;
-        int i11;
-        this.f39830y = qb0Var;
-        LinearLayout linearLayout = new LinearLayout(context);
-        if (LocaleController.isRTL) {
-            i10 = 5;
-        } else {
-            i10 = 3;
-        }
-        linearLayout.setGravity(i10);
-        linearLayout.setImportantForAccessibility(4);
-        TextView textView = new TextView(context);
-        com.google.android.gms.internal.play_billing.k3.m(15.0f, 1, textView);
-        int i12 = org.telegram.ui.ActionBar.h6.L6;
-        textView.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, i12, false));
-        if (LocaleController.isRTL) {
-            i11 = 5;
-        } else {
-            i11 = 3;
-        }
-        textView.setGravity(i11);
-        textView.setText(LocaleController.getString("LiteBatteryTitle"));
-        linearLayout.addView(textView, w7.z5.q(-2, -2, 16));
-        org.telegram.ui.Cells.x1 x1Var = new org.telegram.ui.Cells.x1(context, true, false, false);
-        x1Var.v = org.telegram.ui.ActionBar.h6.c0(AndroidUtilities.dp(4.0f), org.telegram.ui.ActionBar.h6.m1(0.15f, org.telegram.ui.ActionBar.h6.x0(null, i12, false)));
-        this.f39823c = x1Var;
-        x1Var.setTypeface(AndroidUtilities.bold());
-        x1Var.setPadding(AndroidUtilities.dp(5.33f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(5.33f), AndroidUtilities.dp(2.0f));
-        x1Var.setTextSize(AndroidUtilities.dp(12.0f));
-        x1Var.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, i12, false));
-        linearLayout.addView(x1Var, w7.z5.t(-2, 17, 16, 6, 1, 0, 0));
-        addView(linearLayout, w7.z5.d(-1, -2.0f, 55, 21.0f, 17.0f, 21.0f, 0.0f));
-        org.telegram.ui.Components.dp0 dp0Var = new org.telegram.ui.Components.dp0(context, null, true);
-        this.h = dp0Var;
-        dp0Var.setReportChanges(true);
-        dp0Var.setDelegate(new g(this, 23));
-        dp0Var.setProgress(LiteMode.getPowerSaverLevel() / 100.0f);
-        dp0Var.setImportantForAccessibility(2);
-        addView(dp0Var, w7.z5.d(-1, 44.0f, 48, 6.0f, 68.0f, 6.0f, 0.0f));
-        FrameLayout frameLayout = new FrameLayout(context);
-        frameLayout.setImportantForAccessibility(4);
-        TextView textView2 = new TextView(context);
-        this.d = textView2;
-        textView2.setTextSize(1, 13.0f);
-        int i13 = org.telegram.ui.ActionBar.h6.f21382y6;
-        com.google.android.gms.internal.play_billing.k3.o(i13, null, false, textView2, 3);
-        textView2.setText(LocaleController.getString(R.string.LiteBatteryDisabled));
-        frameLayout.addView(textView2, w7.z5.e(-2, -2, 19));
-        org.telegram.ui.Cells.x1 x1Var2 = new org.telegram.ui.Cells.x1(this, context);
-        this.e = x1Var2;
-        x1Var2.b(0.45f, 240L, org.telegram.ui.Components.bs.h);
-        x1Var2.setGravity(1);
-        x1Var2.setTextSize(AndroidUtilities.dp(13.0f));
-        x1Var2.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21177n6, false));
-        frameLayout.addView(x1Var2, w7.z5.e(-2, -2, 17));
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("b");
-        this.f39822b = spannableStringBuilder;
-        org.telegram.ui.Components.y9 y9Var = new org.telegram.ui.Components.y9();
-        this.f39821a = y9Var;
-        y9Var.f32594a = x1Var2.getPaint();
-        y9Var.f32597f = AndroidUtilities.dp(1.5f);
-        y9Var.setBounds(AndroidUtilities.dp(3.0f), AndroidUtilities.dp(-20.0f), AndroidUtilities.dp(23.0f), 0);
-        spannableStringBuilder.setSpan(new ImageSpan(y9Var, 0), 0, spannableStringBuilder.length(), 33);
-        TextView textView3 = new TextView(context);
-        this.f39824f = textView3;
-        textView3.setTextSize(1, 13.0f);
-        com.google.android.gms.internal.play_billing.k3.o(i13, null, false, textView3, 5);
-        textView3.setText(LocaleController.getString(R.string.LiteBatteryEnabled));
-        frameLayout.addView(textView3, w7.z5.e(-2, -2, 21));
-        addView(frameLayout, w7.z5.d(-1, -2.0f, 55, 21.0f, 52.0f, 21.0f, 0.0f));
-        this.f39825n = new mb0(this);
-        a();
+    public ob0(LaunchActivity launchActivity, int i10, pf.c cVar, boolean z10) {
+        this.f40119a = launchActivity;
+        this.f40120b = i10;
+        this.f40121c = cVar;
+        this.d = z10;
     }
 
-    public final void a() {
-        int i10;
+    public static org.telegram.ui.Components.xc d() {
+        org.telegram.ui.ActionBar.o2 U = LaunchActivity.U();
+        if (U == null) {
+            return org.telegram.ui.Components.xc.X();
+        }
+        return org.telegram.ui.Components.xc.a0(U);
+    }
+
+    public static boolean p(java.lang.String r2) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ob0.p(java.lang.String):boolean");
+    }
+
+    public static boolean q(java.lang.String r7) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ob0.q(java.lang.String):boolean");
+    }
+
+    public static String r(String str) {
+        if (str == null) {
+            return null;
+        }
+        byte[] bytes = str.getBytes(StandardCharsets.UTF_8);
+        int i10 = 960;
+        if (bytes.length <= 960) {
+            return str;
+        }
+        while ((bytes[i10] & 192) == 128) {
+            i10--;
+        }
+        return new String(bytes, 0, i10, StandardCharsets.UTF_8);
+    }
+
+    public static Uri s(Uri uri) {
+        String schemeSpecificPart;
+        if (uri != null && uri.isOpaque()) {
+            String scheme = uri.getScheme();
+            if (scheme == null || uri.getAuthority() != null || (schemeSpecificPart = uri.getSchemeSpecificPart()) == null) {
+                return uri;
+            }
+            return Uri.parse(scheme + "://" + schemeSpecificPart);
+        }
+        return uri;
+    }
+
+    public final boolean a() {
+        if (!this.f40125j) {
+            LaunchActivity launchActivity = this.f40119a;
+            if (!launchActivity.isFinishing() && !launchActivity.isDestroyed() && LaunchActivity.H1 && !SharedConfig.appLocked && !SharedConfig.isWaitingForPasscodeEnter && UserConfig.selectedAccount == this.f40120b) {
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    public final void b() {
+        this.f40125j = true;
+        ai.vb vbVar = this.f40124i;
+        if (vbVar != null) {
+            AndroidUtilities.cancelRunOnUIThread(vbVar);
+        }
+        if (this.h >= 0) {
+            ConnectionsManager.getInstance(this.f40120b).cancelRequest(this.h, true);
+            this.h = -1;
+        }
+    }
+
+    public final void c() {
+        if (this.f40123g) {
+            return;
+        }
+        org.telegram.ui.ActionBar.c2 c2Var = this.e;
+        if (c2Var != null) {
+            c2Var.dismiss();
+        }
+        pf.c cVar = this.f40121c;
+        if (cVar != null) {
+            cVar.b();
+        }
+        this.f40123g = true;
+    }
+
+    public final org.telegram.ui.ActionBar.h5 e() {
+        return this.f40119a.O();
+    }
+
+    public final UserConfig f() {
+        return UserConfig.getInstance(this.f40120b);
+    }
+
+    public final boolean g(Uri uri) {
+        String str;
+        String str2;
+        String str3;
+        String path;
+        Uri s10;
+        List<String> pathSegments;
+        String str4;
+        Long l4;
+        String str5;
         boolean z10;
-        float f7;
-        float f10;
-        int powerSaverLevel = LiteMode.getPowerSaverLevel();
-        org.telegram.ui.Cells.x1 x1Var = this.e;
-        x1Var.a();
-        if (powerSaverLevel <= 0) {
-            x1Var.c(LocaleController.getString(R.string.LiteBatteryAlwaysDisabled), !LocaleController.isRTL, true);
-        } else if (powerSaverLevel >= 100) {
-            x1Var.c(LocaleController.getString(R.string.LiteBatteryAlwaysEnabled), !LocaleController.isRTL, true);
-        } else {
-            float f11 = powerSaverLevel;
-            this.f39821a.a(f11 / 100.0f, true);
-            x1Var.c(AndroidUtilities.replaceCharSequence("%s", LocaleController.getString(R.string.LiteBatteryWhenBelow), TextUtils.concat(String.format("%d%% ", Integer.valueOf(Math.round(f11))), this.f39822b)), !LocaleController.isRTL, true);
-        }
-        if (LiteMode.isPowerSaverApplied()) {
-            i10 = R.string.LiteBatteryEnabled;
-        } else {
-            i10 = R.string.LiteBatteryDisabled;
-        }
-        String upperCase = LocaleController.getString(i10).toUpperCase();
-        org.telegram.ui.Cells.x1 x1Var2 = this.f39823c;
-        x1Var2.setText(upperCase);
-        if (powerSaverLevel > 0 && powerSaverLevel < 100) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        float f12 = 0.0f;
-        if (z10 != this.f39826r) {
-            this.f39826r = z10;
-            x1Var2.clearAnimation();
-            ViewPropertyAnimator animate = x1Var2.animate();
-            if (z10) {
-                f10 = 1.0f;
+        Uri uri2 = uri;
+        if (uri2 != null) {
+            FileLog.d("link manager handle " + uri2);
+            String scheme = uri2.getScheme();
+            boolean equalsIgnoreCase = "tonsite".equalsIgnoreCase(scheme);
+            LaunchActivity launchActivity = this.f40119a;
+            if (equalsIgnoreCase) {
+                pf.d.o(launchActivity, uri2, true, true);
+                return true;
+            } else if (!"http".equalsIgnoreCase(scheme) && !"https".equalsIgnoreCase(scheme)) {
+                boolean equalsIgnoreCase2 = "tg".equalsIgnoreCase(scheme);
+                int i10 = this.f40120b;
+                if (equalsIgnoreCase2) {
+                    Uri s11 = s(Uri.parse(uri2.toString().replaceFirst("(?i)^tg:(//)?sendgrams&", "tg://sendgrams?")));
+                    List<String> pathSegments2 = s11.getPathSegments();
+                    if (pathSegments2 != null) {
+                        ArrayList arrayList = new ArrayList(pathSegments2);
+                        String authority = s11.getAuthority();
+                        if (!TextUtils.isEmpty(authority)) {
+                            arrayList.add(0, authority);
+                        }
+                        if (!arrayList.isEmpty()) {
+                            String str6 = (String) arrayList.get(0);
+                            if (arrayList.size() > 1) {
+                                str5 = (String) arrayList.get(1);
+                            } else {
+                                str5 = null;
+                            }
+                            if ("sendgrams".equalsIgnoreCase(str6)) {
+                                return l(s11);
+                            }
+                            if ("newbot".equalsIgnoreCase(str6)) {
+                                j(s11.getQueryParameter("manager"), s11.getQueryParameter("username"), s11.getQueryParameter("name"));
+                                return true;
+                            } else if ("resolve".equalsIgnoreCase(str6)) {
+                                List<String> pathSegments3 = s11.getPathSegments();
+                                if (pathSegments3 != null) {
+                                    ArrayList arrayList2 = new ArrayList(pathSegments3);
+                                    String authority2 = s11.getAuthority();
+                                    if (!TextUtils.isEmpty(authority2)) {
+                                        arrayList2.add(0, authority2);
+                                    }
+                                    if (!arrayList2.isEmpty()) {
+                                        arrayList2.remove(0);
+                                        String queryParameter = s11.getQueryParameter("domain");
+                                        String queryParameter2 = s11.getQueryParameter("startapp");
+                                        if ("sendgrams".equalsIgnoreCase(queryParameter)) {
+                                            return l(s11);
+                                        }
+                                        if ("oauth".equalsIgnoreCase(queryParameter) && !TextUtils.isEmpty(queryParameter2)) {
+                                            return k(s11, queryParameter2);
+                                        }
+                                    }
+                                }
+                            } else if ("invoice".equalsIgnoreCase(str6)) {
+                                return i(s11.getQueryParameter("slug"));
+                            } else {
+                                if ("oauth".equalsIgnoreCase(str6)) {
+                                    return k(s11, s11.getQueryParameter("token"));
+                                }
+                                if ("settings".equalsIgnoreCase(str6)) {
+                                    return m(arrayList.subList(1, arrayList.size()));
+                                }
+                                if ("chats".equalsIgnoreCase(str6)) {
+                                    "search".equalsIgnoreCase(str5);
+                                    "edit".equalsIgnoreCase(str5);
+                                    "emoji-status".equalsIgnoreCase(str5);
+                                }
+                                if ("new".equalsIgnoreCase(str6)) {
+                                    if ("group".equalsIgnoreCase(str5)) {
+                                        u(new p60(new Bundle()), false);
+                                        return true;
+                                    } else if ("contact".equalsIgnoreCase(str5)) {
+                                        new rj0(launchActivity, LaunchActivity.U()).show();
+                                        return true;
+                                    } else if ("channel".equalsIgnoreCase(str5)) {
+                                        SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
+                                        if (!BuildVars.DEBUG_VERSION && globalMainSettings.getBoolean("channel_intro", false)) {
+                                            u(new md(org.telegram.ui.Cells.b1.i(0, "step")), false);
+                                            return true;
+                                        }
+                                        u(new g(0), false);
+                                        globalMainSettings.edit().putBoolean("channel_intro", true).commit();
+                                        return true;
+                                    } else {
+                                        u(new ContactsActivity(a1.g.h("destroyAfterSelect", true)), false);
+                                        return true;
+                                    }
+                                } else if ("post".equalsIgnoreCase(str6)) {
+                                    ?? r02 = "video".equalsIgnoreCase(str5);
+                                    if ("live".equalsIgnoreCase(str5)) {
+                                        r02 = -1;
+                                    }
+                                    ei.vb D = ei.vb.D(launchActivity, i10);
+                                    if (D.O1 != r02) {
+                                        D.O1 = r02;
+                                        ?? r42 = D.Q0;
+                                        if (r42 != 0) {
+                                            r42.a(r02);
+                                        }
+                                        if (r02 == 1) {
+                                            z10 = true;
+                                        } else {
+                                            z10 = false;
+                                        }
+                                        D.h0(z10, true);
+                                        ei.y yVar = D.I0;
+                                        if (yVar != null) {
+                                            yVar.a(false, true);
+                                        }
+                                        D.l0(false);
+                                    }
+                                    D.Q(null);
+                                    return true;
+                                } else if ("contacts".equalsIgnoreCase(str6)) {
+                                    if ("new".equalsIgnoreCase(str5)) {
+                                        new rj0(launchActivity, LaunchActivity.U()).show();
+                                        return true;
+                                    }
+                                    Bundle bundle = new Bundle();
+                                    bundle.putBoolean("needPhonebook", true);
+                                    bundle.putBoolean("needFinishFragment", true);
+                                    u(new ContactsActivity(bundle), false);
+                                    "search".equalsIgnoreCase(str5);
+                                    "sort".equalsIgnoreCase(str5);
+                                    if ("invite".equalsIgnoreCase(str5)) {
+                                        x("phonebookRow");
+                                        return true;
+                                    }
+                                    return true;
+                                } else if ("addstyle".equalsIgnoreCase(str6)) {
+                                    return h(s11.getQueryParameter("slug"));
+                                }
+                            }
+                        }
+                    }
+                } else if ("ton".equalsIgnoreCase(scheme)) {
+                    if (MessagesController.getInstance(i10).config.walletAvailable.get() && (pathSegments = (s10 = s(uri2)).getPathSegments()) != null) {
+                        ArrayList arrayList3 = new ArrayList(pathSegments);
+                        String authority3 = s10.getAuthority();
+                        if (!TextUtils.isEmpty(authority3)) {
+                            arrayList3.add(0, authority3);
+                        }
+                        if (!arrayList3.isEmpty()) {
+                            String str7 = (String) arrayList3.get(0);
+                            if (arrayList3.size() > 1) {
+                                str4 = (String) arrayList3.get(1);
+                            } else {
+                                str4 = null;
+                            }
+                            if (!"transfer".equalsIgnoreCase(str7)) {
+                                return false;
+                            }
+                            if (arrayList3.size() == 2 && WalletEngine2.isValidRecipientAddress(str4)) {
+                                try {
+                                    l4 = Long.valueOf(Long.parseLong(s10.getQueryParameter("amount")));
+                                } catch (Throwable unused) {
+                                    l4 = null;
+                                }
+                                String queryParameter3 = s10.getQueryParameter("text");
+                                if (TextUtils.isEmpty(queryParameter3)) {
+                                    queryParameter3 = s10.getQueryParameter("comment");
+                                }
+                                String r10 = r(queryParameter3);
+                                boolean booleanQueryParameter = s10.getBooleanQueryParameter("encrypted", false);
+                                try {
+                                    org.telegram.ui.Wallet.j9 j9Var = new org.telegram.ui.Wallet.j9(str4);
+                                    if (l4 != null && l4.longValue() > 0) {
+                                        j9Var.f34675r = l4.longValue();
+                                    }
+                                    if (!TextUtils.isEmpty(r10)) {
+                                        j9Var.f34663f0 = r10;
+                                        j9Var.f34664g0 = booleanQueryParameter;
+                                    }
+                                    j9Var.f34661e0 = true;
+                                    u(j9Var, false);
+                                    return true;
+                                } catch (Throwable th2) {
+                                    FileLog.e(th2);
+                                    return false;
+                                }
+                            }
+                            return true;
+                        }
+                    }
+                } else if ("tc".equalsIgnoreCase(scheme)) {
+                    return n(uri);
+                }
             } else {
-                f10 = 0.0f;
+                String host = uri2.getHost();
+                if (host != null) {
+                    Matcher matcher = LaunchActivity.E1.matcher(host.toLowerCase());
+                    boolean find = matcher.find();
+                    if ("telegram.me".equalsIgnoreCase(host) || "t.me".equalsIgnoreCase(host) || "telegram.dog".equalsIgnoreCase(host) || find) {
+                        if (find) {
+                            StringBuilder sb2 = new StringBuilder("https://t.me/");
+                            sb2.append(matcher.group(1));
+                            String str8 = "";
+                            if (TextUtils.isEmpty(uri2.getPath())) {
+                                path = "";
+                            } else {
+                                path = uri2.getPath();
+                            }
+                            sb2.append(path);
+                            if (!TextUtils.isEmpty(uri2.getQuery())) {
+                                str8 = "?" + uri2.getQuery();
+                            }
+                            sb2.append(str8);
+                            uri2 = Uri.parse(sb2.toString());
+                        }
+                        String path2 = uri2.getPath();
+                        if (path2 != null && path2.length() > 1) {
+                            String substring = path2.substring(1);
+                            List<String> pathSegments4 = uri2.getPathSegments();
+                            if (pathSegments4 != null && !pathSegments4.isEmpty()) {
+                                String str9 = pathSegments4.get(0);
+                                if (pathSegments4.size() > 1) {
+                                    str = pathSegments4.get(1);
+                                } else {
+                                    str = null;
+                                }
+                                if ("sendgrams".equalsIgnoreCase(str9)) {
+                                    return l(uri2);
+                                }
+                                if ("getpremium".equalsIgnoreCase(str9)) {
+                                    String queryParameter4 = uri2.getQueryParameter("ref");
+                                    if (queryParameter4 != null) {
+                                        String lowerCase = queryParameter4.toLowerCase(Locale.ROOT);
+                                        if (f40118k.matcher(lowerCase).matches()) {
+                                            str3 = si.o0.h("tme_getpremium_", lowerCase);
+                                            u(new PremiumPreviewFragment(0, str3), false);
+                                            return true;
+                                        }
+                                    }
+                                    str3 = "tme_getpremium";
+                                    u(new PremiumPreviewFragment(0, str3), false);
+                                    return true;
+                                } else if ("$".equalsIgnoreCase(str9)) {
+                                    return i(substring.substring(1));
+                                } else {
+                                    if ("invoice".equalsIgnoreCase(str9)) {
+                                        return i(str);
+                                    }
+                                    if ("addstyle".equalsIgnoreCase(str9)) {
+                                        return h(str);
+                                    }
+                                    if ("oauth".equalsIgnoreCase(str9)) {
+                                        return k(uri2, uri2.getQueryParameter("startapp"));
+                                    }
+                                    if ("newbot".equalsIgnoreCase(str9)) {
+                                        if (pathSegments4.size() >= 2) {
+                                            if (pathSegments4.size() >= 3) {
+                                                str2 = pathSegments4.get(2);
+                                            } else {
+                                                str2 = null;
+                                            }
+                                            j(str, str2, uri2.getQueryParameter("name"));
+                                            return true;
+                                        }
+                                        return true;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
-            org.telegram.messenger.nk.t(animate.alpha(f10), org.telegram.ui.Components.bs.h, 220L);
         }
-        if (powerSaverLevel >= 100) {
-            f7 = 1.0f;
+        return false;
+    }
+
+    public final boolean h(String str) {
+        if (TextUtils.isEmpty(str)) {
+            return false;
+        }
+        TL_aicompose.getTone gettone = new TL_aicompose.getTone();
+        TL_aicompose.inputAiComposeToneSlug inputaicomposetoneslug = new TL_aicompose.inputAiComposeToneSlug();
+        inputaicomposetoneslug.slug = str;
+        gettone.tone = inputaicomposetoneslug;
+        o();
+        ConnectionsManager.getInstance(this.f40120b).sendRequestTyped(gettone, new Object(), new f5(this, 14));
+        return true;
+    }
+
+    public final boolean i(String str) {
+        if (TextUtils.isEmpty(str)) {
+            return false;
+        }
+        o();
+        TLRPC.TL_payments_getPaymentForm tL_payments_getPaymentForm = new TLRPC.TL_payments_getPaymentForm();
+        TLRPC.TL_inputInvoiceSlug tL_inputInvoiceSlug = new TLRPC.TL_inputInvoiceSlug();
+        tL_inputInvoiceSlug.slug = str;
+        tL_payments_getPaymentForm.invoice = tL_inputInvoiceSlug;
+        this.h = ConnectionsManager.getInstance(this.f40120b).sendRequest(tL_payments_getPaymentForm, new ca((Object) this, (TLObject) tL_inputInvoiceSlug, str, 18));
+        return true;
+    }
+
+    public final void j(String str, String str2, String str3) {
+        TLRPC.TL_requestPeerTypeCreateBot tL_requestPeerTypeCreateBot = new TLRPC.TL_requestPeerTypeCreateBot();
+        tL_requestPeerTypeCreateBot.bot_managed = true;
+        if (!TextUtils.isEmpty(str3)) {
+            tL_requestPeerTypeCreateBot.flags |= 2;
+            tL_requestPeerTypeCreateBot.suggested_name = str3;
+        }
+        if (!TextUtils.isEmpty(str2)) {
+            tL_requestPeerTypeCreateBot.flags |= 4;
+            tL_requestPeerTypeCreateBot.suggested_username = str2;
+        }
+        org.telegram.ui.ActionBar.o2 U = LaunchActivity.U();
+        if (U != null && U.getContext() != null) {
+            o();
+            TLRPC.User[] userArr = {null};
+            MessagesController.getInstance(this.f40120b).getUserNameResolver().resolve(str, new y(this, userArr, new org.telegram.ui.Components.j90(this, U, userArr, tL_requestPeerTypeCreateBot, 19), 10));
+        }
+    }
+
+    public final boolean k(Uri uri, String str) {
+        if (!this.d) {
+            return true;
+        }
+        if (TextUtils.isEmpty(str)) {
+            return false;
+        }
+        o();
+        TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth = new TLRPC.TL_messages_requestUrlAuth();
+        tL_messages_requestUrlAuth.flags |= 4;
+        tL_messages_requestUrlAuth.url = uri.toString();
+        ConnectionsManager.getInstance(this.f40120b).sendRequestTyped(tL_messages_requestUrlAuth, new Object(), new ai.r5(19, this, tL_messages_requestUrlAuth));
+        return true;
+    }
+
+    public final boolean l(Uri uri) {
+        Uri uri2;
+        long j10;
+        int i10 = this.f40120b;
+        if (!MessagesController.getInstance(i10).config.walletAvailable.get()) {
+            return false;
+        }
+        String queryParameter = uri.getQueryParameter("startapp");
+        if (queryParameter != null && queryParameter.startsWith("tonconnect-")) {
+            String replace = queryParameter.substring(11).replace("--", "%").replace("__", "=").replace("-", "&").replace("%5F", "_").replace("%2D", "-").replace("%2E", ".");
+            uri2 = Uri.parse("tc://connect?" + replace);
         } else {
-            f7 = 0.0f;
+            uri2 = null;
         }
-        if (this.f39827s != f7) {
-            this.f39827s = f7;
-            ValueAnimator valueAnimator = this.v;
-            if (valueAnimator != null) {
-                valueAnimator.cancel();
-                this.v = null;
+        if (uri2 != null) {
+            n(uri2);
+            return true;
+        }
+        String queryParameter2 = uri.getQueryParameter("to");
+        String queryParameter3 = uri.getQueryParameter("amount");
+        String queryParameter4 = uri.getQueryParameter("text");
+        if (TextUtils.isEmpty(queryParameter4)) {
+            queryParameter4 = uri.getQueryParameter("comment");
+        }
+        String r10 = r(queryParameter4);
+        boolean booleanQueryParameter = uri.getBooleanQueryParameter("encrypted", false);
+        if (queryParameter3 != null) {
+            if (!TextUtils.isEmpty(queryParameter2) && queryParameter3.matches("[0-9]+(?:\\.[0-9]+)?")) {
+                try {
+                    j10 = new BigDecimal(queryParameter3).movePointRight(9).longValueExact();
+                } catch (ArithmeticException | NumberFormatException unused) {
+                }
             }
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.f39827s, f7);
-            this.v = ofFloat;
-            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                public final ob0 f38884b;
-
-                {
-                    this.f38884b = this;
-                }
-
-                @Override
-                public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    switch (r2) {
-                        case 0:
-                            ob0 ob0Var = this.f38884b;
-                            TextView textView = ob0Var.f39824f;
-                            int x02 = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21382y6, false);
-                            int x03 = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21177n6, false);
-                            float floatValue = ((Float) valueAnimator2.getAnimatedValue()).floatValue();
-                            ob0Var.f39827s = floatValue;
-                            textView.setTextColor(i0.a.f(floatValue, x02, x03));
-                            return;
-                        default:
-                            ob0 ob0Var2 = this.f38884b;
-                            TextView textView2 = ob0Var2.d;
-                            int x04 = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21382y6, false);
-                            int x05 = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21177n6, false);
-                            float floatValue2 = ((Float) valueAnimator2.getAnimatedValue()).floatValue();
-                            ob0Var2.f39828w = floatValue2;
-                            textView2.setTextColor(i0.a.f(floatValue2, x04, x05));
-                            return;
-                    }
-                }
-            });
-            this.v.addListener(new nb0(this, f7, 0));
-            this.v.setInterpolator(org.telegram.ui.Components.bs.h);
-            this.v.setDuration(320L);
-            this.v.start();
+            return true;
         }
-        if (powerSaverLevel <= 0) {
-            f12 = 1.0f;
+        j10 = 0;
+        long j11 = j10;
+        if (TextUtils.isEmpty(queryParameter2)) {
+            u(new org.telegram.ui.Wallet.o5(), false);
+            return true;
         }
-        if (this.f39828w != f12) {
-            this.f39828w = f12;
-            ValueAnimator valueAnimator2 = this.f39829x;
-            if (valueAnimator2 != null) {
-                valueAnimator2.cancel();
-                this.f39829x = null;
+        if (!queryParameter2.startsWith("@") && !queryParameter2.matches("[a-zA-Z0-9_]{1,32}")) {
+            if (WalletEngine2.isValidRecipientAddress(queryParameter2)) {
+                org.telegram.ui.Wallet.j9 j9Var = new org.telegram.ui.Wallet.j9(queryParameter2);
+                j9Var.f34675r = j11;
+                j9Var.f34663f0 = r10;
+                j9Var.f34664g0 = booleanQueryParameter;
+                j9Var.f34661e0 = true;
+                u(j9Var, false);
+                return true;
             }
-            ValueAnimator ofFloat2 = ValueAnimator.ofFloat(this.f39828w, f12);
-            this.f39829x = ofFloat2;
-            ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                public final ob0 f38884b;
+        } else {
+            if (queryParameter2.startsWith("@")) {
+                queryParameter2 = queryParameter2.substring(1);
+            }
+            if (!TextUtils.isEmpty(queryParameter2)) {
+                TLRPC.TL_contacts_resolveUsername tL_contacts_resolveUsername = new TLRPC.TL_contacts_resolveUsername();
+                tL_contacts_resolveUsername.username = queryParameter2;
+                o();
+                this.h = ConnectionsManager.getInstance(i10).sendRequest(tL_contacts_resolveUsername, new ai.l(this, j11, r10, booleanQueryParameter));
+                return true;
+            }
+        }
+        return true;
+    }
 
-                {
-                    this.f38884b = this;
-                }
+    public final boolean m(java.util.List r27) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ob0.m(java.util.List):boolean");
+    }
 
-                @Override
-                public final void onAnimationUpdate(ValueAnimator valueAnimator22) {
-                    switch (r2) {
-                        case 0:
-                            ob0 ob0Var = this.f38884b;
-                            TextView textView = ob0Var.f39824f;
-                            int x02 = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21382y6, false);
-                            int x03 = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21177n6, false);
-                            float floatValue = ((Float) valueAnimator22.getAnimatedValue()).floatValue();
-                            ob0Var.f39827s = floatValue;
-                            textView.setTextColor(i0.a.f(floatValue, x02, x03));
-                            return;
-                        default:
-                            ob0 ob0Var2 = this.f38884b;
-                            TextView textView2 = ob0Var2.d;
-                            int x04 = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21382y6, false);
-                            int x05 = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21177n6, false);
-                            float floatValue2 = ((Float) valueAnimator22.getAnimatedValue()).floatValue();
-                            ob0Var2.f39828w = floatValue2;
-                            textView2.setTextColor(i0.a.f(floatValue2, x04, x05));
-                            return;
-                    }
+    public final boolean n(android.net.Uri r13) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ob0.n(android.net.Uri):boolean");
+    }
+
+    public final void o() {
+        if (!this.f40122f && !this.f40123g) {
+            pf.c cVar = this.f40121c;
+            if (cVar == null) {
+                if (this.e == null) {
+                    this.e = new org.telegram.ui.ActionBar.c2(this.f40119a, 3, null);
                 }
-            });
-            this.f39829x.addListener(new nb0(this, f12, 1));
-            this.f39829x.setInterpolator(org.telegram.ui.Components.bs.h);
-            this.f39829x.setDuration(320L);
-            this.f39829x.start();
+                this.e.setOnCancelListener(new gg(this, 3));
+                this.e.r(300L);
+            } else {
+                cVar.f44707b = new jb0(this, 0);
+                cVar.d();
+            }
+            this.f40122f = true;
         }
     }
 
-    @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        this.f39825n.onInitializeAccessibilityNodeInfo(this, accessibilityNodeInfo);
+    public final void t(org.telegram.ui.ActionBar.o2 o2Var) {
+        u(o2Var, false);
     }
 
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(112.0f), 1073741824));
+    public final void u(org.telegram.ui.ActionBar.o2 o2Var, boolean z10) {
+        LaunchActivity launchActivity = this.f40119a;
+        launchActivity.v0(o2Var, z10, false);
+        if (AndroidUtilities.isTablet()) {
+            launchActivity.f33487q0.V(true, true);
+            launchActivity.f33491s0.V(true, true);
+        }
     }
 
-    @Override
-    public final void onPopulateAccessibilityEvent(AccessibilityEvent accessibilityEvent) {
-        super.onPopulateAccessibilityEvent(accessibilityEvent);
-        this.f39825n.onPopulateAccessibilityEvent(this, accessibilityEvent);
+    public final void v(String str, int i10, String str2, String str3) {
+        if (!this.f40125j) {
+            LaunchActivity launchActivity = this.f40119a;
+            if (!launchActivity.isFinishing() && !launchActivity.isDestroyed()) {
+                TL_wallet.tonConnectGetPending tonconnectgetpending = new TL_wallet.tonConnectGetPending();
+                tonconnectgetpending.dapp_client_id = str;
+                this.h = ConnectionsManager.getInstance(this.f40120b).sendRequestTyped(tonconnectgetpending, new Object(), new org.telegram.messenger.ih(this, str, str2, str3, i10, 2));
+                return;
+            }
+        }
+        c();
     }
 
-    @Override
-    public final boolean performAccessibilityAction(int i10, Bundle bundle) {
-        return this.f39825n.performAccessibilityAction(this, i10, bundle);
+    public final void w(String str) {
+        LaunchActivity launchActivity = this.f40119a;
+        if (!launchActivity.isFinishing() && !launchActivity.isDestroyed() && !"none".equals(str)) {
+            if ("back".equals(str)) {
+                if (this.d) {
+                    launchActivity.moveTaskToBack(true);
+                    return;
+                }
+                return;
+            }
+            pf.d.t(launchActivity, str);
+        }
+    }
+
+    public final void x(String str) {
+        AndroidUtilities.scrollToFragmentRow(this.f40119a.O(), str);
     }
 }

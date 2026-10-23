@@ -1,27 +1,23 @@
 package org.telegram.ui;
+public final class v91 implements Runnable {
+    public final int f42670a;
+    public final StickersActivity f42671b;
 
-import org.telegram.messenger.MediaDataController;
-import org.telegram.tgnet.TLRPC;
-public final class v91 extends org.telegram.ui.Components.a61 {
-    public final StickersActivity f42156b;
-
-    public v91(StickersActivity stickersActivity) {
-        this.f42156b = stickersActivity;
+    public v91(StickersActivity stickersActivity, int i10) {
+        this.f42670a = i10;
+        this.f42671b = stickersActivity;
     }
 
     @Override
-    public final void g(TLRPC.StickerSetCovered stickerSetCovered, boolean z10) {
-        int i10;
-        StickersActivity stickersActivity = this.f42156b;
-        i10 = ((org.telegram.ui.ActionBar.n2) stickersActivity).currentAccount;
-        MediaDataController.getInstance(i10).toggleStickerSet(stickersActivity.getParentActivity(), stickerSetCovered, 2, stickersActivity, false, false);
-    }
-
-    @Override
-    public final void h(TLRPC.StickerSetCovered stickerSetCovered) {
-        int i10;
-        StickersActivity stickersActivity = this.f42156b;
-        i10 = ((org.telegram.ui.ActionBar.n2) stickersActivity).currentAccount;
-        MediaDataController.getInstance(i10).toggleStickerSet(stickersActivity.getParentActivity(), stickerSetCovered, 0, stickersActivity, false, false);
+    public final void run() {
+        switch (this.f42670a) {
+            case 0:
+                this.f42671b.m0();
+                return;
+            default:
+                StickersActivity stickersActivity = this.f42671b;
+                stickersActivity.f34162r--;
+                return;
+        }
     }
 }

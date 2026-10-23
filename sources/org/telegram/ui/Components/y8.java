@@ -5,22 +5,22 @@ import android.view.View;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-public final class y8 extends org.telegram.ui.x51 {
-    public boolean f32589d2;
-    public final e9 f32590e2;
+public final class y8 extends org.telegram.ui.b61 {
+    public boolean f32827e2;
+    public final e9 f32828f2;
 
     public y8(e9 e9Var, e9 e9Var2, Activity activity, int i10) {
         super(e9Var2, activity, false, null, 4, true, null, 16, i10);
-        this.f32590e2 = e9Var;
-        this.f32589d2 = true;
+        this.f32828f2 = e9Var;
+        this.f32827e2 = true;
     }
 
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
-        if (this.f32589d2) {
-            this.f32589d2 = false;
-            this.f32590e2.f25848b.s(null);
+        if (this.f32827e2) {
+            this.f32827e2 = false;
+            this.f32828f2.f25927b.s(null);
         }
     }
 
@@ -32,18 +32,18 @@ public final class y8 extends org.telegram.ui.x51 {
         long j10;
         int i11;
         boolean z11 = this.R;
-        e9 e9Var = this.f32590e2;
+        e9 e9Var = this.f32828f2;
         if (z11) {
-            i11 = ((org.telegram.ui.ActionBar.n2) e9Var).currentAccount;
+            i11 = ((org.telegram.ui.ActionBar.o2) e9Var).currentAccount;
             tL_emojiList = MediaDataController.getInstance(i11).profileAvatarConstructorDefault;
         } else {
-            i10 = ((org.telegram.ui.ActionBar.n2) e9Var).currentAccount;
+            i10 = ((org.telegram.ui.ActionBar.o2) e9Var).currentAccount;
             tL_emojiList = MediaDataController.getInstance(i10).groupAvatarConstructorDefault;
         }
         long j11 = 0;
         if (tL_emojiList != null) {
             if (document != null) {
-                j10 = document.f20286id;
+                j10 = document.f20349id;
             } else if (l4 != null) {
                 j10 = l4.longValue();
             } else {

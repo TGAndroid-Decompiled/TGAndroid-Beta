@@ -3,16 +3,16 @@ package yh;
 import android.content.Context;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.g6;
 public final class b extends FrameLayout {
-    public static final int f50178c = 0;
-    public final d6 f50179a;
-    public final int f50180b;
+    public static final int f50620c = 0;
+    public final g6 f50621a;
+    public final int f50622b;
 
-    public b(Context context, int i10, d6 d6Var) {
+    public b(Context context, int i10, g6 g6Var) {
         super(context);
-        this.f50180b = i10;
-        this.f50179a = d6Var;
+        this.f50622b = i10;
+        this.f50621a = g6Var;
         setPadding(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(9.0f), AndroidUtilities.dp(18.0f), AndroidUtilities.dp(9.0f));
     }
 }

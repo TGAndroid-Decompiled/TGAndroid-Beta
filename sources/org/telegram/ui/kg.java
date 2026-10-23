@@ -9,12 +9,12 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 import org.telegram.messenger.TranslateController;
 public final class kg implements Runnable {
-    public final int f38604a;
-    public final qn f38605b;
+    public final int f38944a;
+    public final sn f38945b;
 
-    public kg(qn qnVar, int i10) {
-        this.f38604a = i10;
-        this.f38605b = qnVar;
+    public kg(sn snVar, int i10) {
+        this.f38944a = i10;
+        this.f38945b = snVar;
     }
 
     @Override
@@ -22,43 +22,46 @@ public final class kg implements Runnable {
         boolean z10;
         boolean z11;
         ei.x3 x3Var;
-        int i10 = this.f38604a;
+        int i10 = this.f38944a;
         boolean z12 = true;
-        qn qnVar = this.f38605b;
+        sn snVar = this.f38945b;
         switch (i10) {
             case 0:
-                fk fkVar = qnVar.Y;
-                if (fkVar != null && qnVar.Dc != null) {
-                    if (fkVar.r0()) {
-                        qnVar.Y.k0(false);
-                        AndroidUtilities.showKeyboard(qnVar.Dc.f45746a);
-                        qnVar.Dc.f45747b.f45743a.a(false, true);
+                gk gkVar = snVar.Y;
+                if (gkVar != null && snVar.Qc != null) {
+                    if (gkVar.q0()) {
+                        snVar.Y.j0(false);
+                        AndroidUtilities.showKeyboard(snVar.Qc.f46167a);
+                        snVar.Qc.f46168b.f46164a.a(false, true);
                         return;
                     }
-                    qnVar.Y.S0(false, false, false);
-                    qnVar.Y.p1();
-                    qnVar.Dc.f45747b.f45743a.a(true, true);
+                    snVar.Y.S0(false, false, false);
+                    snVar.Y.p1();
+                    snVar.Qc.f46168b.f46164a.a(true, true);
                     return;
                 }
                 return;
             case 1:
-                ArrayList arrayList = qnVar.f40872u6;
-                qnVar.Hb = System.currentTimeMillis();
-                if (qnVar.f40905x0 != null && qnVar.A0 != null) {
+                snVar.xa();
+                return;
+            case 2:
+                ArrayList arrayList = snVar.G6;
+                snVar.Ub = System.currentTimeMillis();
+                if (snVar.f41737x0 != null && snVar.A0 != null) {
                     int i11 = Integer.MAX_VALUE;
                     int i12 = Integer.MIN_VALUE;
-                    for (int i13 = 0; i13 < qnVar.f40905x0.getChildCount(); i13++) {
-                        View childAt = qnVar.f40905x0.getChildAt(i13);
-                        if (childAt instanceof org.telegram.ui.Cells.u1) {
-                            org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) childAt;
-                            if (u1Var.getCurrentMessagesGroup() != null) {
-                                for (int i14 = 0; i14 < u1Var.getCurrentMessagesGroup().messages.size(); i14++) {
-                                    int id2 = u1Var.getCurrentMessagesGroup().messages.get(i14).getId();
+                    for (int i13 = 0; i13 < snVar.f41737x0.getChildCount(); i13++) {
+                        View childAt = snVar.f41737x0.getChildAt(i13);
+                        if (childAt instanceof org.telegram.ui.Cells.t1) {
+                            org.telegram.ui.Cells.t1 t1Var = (org.telegram.ui.Cells.t1) childAt;
+                            if (t1Var.getCurrentMessagesGroup() != null) {
+                                for (int i14 = 0; i14 < t1Var.getCurrentMessagesGroup().messages.size(); i14++) {
+                                    int id2 = t1Var.getCurrentMessagesGroup().messages.get(i14).getId();
                                     i11 = Math.min(i11, id2);
                                     i12 = Math.max(i12, id2);
                                 }
-                            } else if (u1Var.getMessageObject() != null) {
-                                int id3 = u1Var.getMessageObject().getId();
+                            } else if (t1Var.getMessageObject() != null) {
+                                int id3 = t1Var.getMessageObject().getId();
                                 i11 = Math.min(i11, id3);
                                 i12 = Math.max(i12, id3);
                             }
@@ -68,14 +71,14 @@ public final class kg implements Runnable {
                         ArrayList arrayList2 = new ArrayList();
                         for (int i15 = 0; i15 < arrayList.size(); i15++) {
                             MessageObject messageObject = (MessageObject) arrayList.get(i15);
-                            MessageObject.GroupedMessages groupedMessages = (MessageObject.GroupedMessages) qnVar.f40911x6.f(messageObject.getGroupId());
+                            MessageObject.GroupedMessages groupedMessages = (MessageObject.GroupedMessages) snVar.J6.f(messageObject.getGroupId());
                             if (groupedMessages != null) {
                                 if (!arrayList2.contains(Long.valueOf(groupedMessages.groupId))) {
                                     for (int i16 = 0; i16 < groupedMessages.messages.size(); i16++) {
                                         MessageObject messageObject2 = groupedMessages.messages.get(i16);
                                         if (messageObject2 != null) {
                                             int id4 = messageObject2.getId();
-                                            TranslateController translateController = qnVar.getMessagesController().getTranslateController();
+                                            TranslateController translateController = snVar.getMessagesController().getTranslateController();
                                             if (id4 >= i11 - 7 && id4 <= i12 + 7) {
                                                 z11 = true;
                                             } else {
@@ -88,7 +91,7 @@ public final class kg implements Runnable {
                                 }
                             } else {
                                 int id5 = messageObject.getId();
-                                TranslateController translateController2 = qnVar.getMessagesController().getTranslateController();
+                                TranslateController translateController2 = snVar.getMessagesController().getTranslateController();
                                 if (id5 >= i11 - 7 && id5 <= i12 + 7) {
                                     z10 = true;
                                 } else {
@@ -99,116 +102,113 @@ public final class kg implements Runnable {
                         }
                     }
                 }
-                if (qnVar.L4 > 0 && qnVar.J4 != null) {
-                    qnVar.getMessagesController().getTranslateController().checkTranslation((MessageObject) qnVar.J4.get(Integer.valueOf(qnVar.L4)), true);
+                if (snVar.X4 > 0 && snVar.V4 != null) {
+                    snVar.getMessagesController().getTranslateController().checkTranslation((MessageObject) snVar.V4.get(Integer.valueOf(snVar.X4)), true);
                 }
-                qnVar.Zc();
-                return;
-            case 2:
-                qnVar.xa();
+                snVar.bd();
                 return;
             case 3:
-                AndroidUtilities.removeFromParent(qnVar.J0);
+                AndroidUtilities.removeFromParent(snVar.V0);
                 return;
             case 4:
-                qnVar.h9();
-                qnVar.Dc(0, true);
+                snVar.h9();
+                snVar.Fc(0, true);
                 return;
             case 5:
-                qnVar.j8(false, true, 0.0f);
+                snVar.j8(false, true, 0.0f);
                 return;
             case 6:
-                qnVar.X9();
+                snVar.oc(false);
                 return;
             case 7:
-                qnVar.mc(false);
+                snVar.X9();
                 return;
             case 8:
-                qnVar.v9(2);
+                snVar.j8(false, true, 0.0f);
                 return;
             case 9:
-                qnVar.j8(false, true, 0.0f);
+                snVar.v9(2);
                 return;
             case 10:
-                qn.x0(qnVar);
+                sn.x0(snVar);
                 return;
             case 11:
-                qnVar.j8(false, true, 0.0f);
+                snVar.j8(false, true, 0.0f);
                 return;
             case 12:
-                AndroidUtilities.removeFromParent(qnVar.L0);
+                AndroidUtilities.removeFromParent(snVar.X0);
                 return;
             case 13:
-                qnVar.j8(false, true, 0.0f);
+                snVar.j8(false, true, 0.0f);
                 return;
             case 14:
-                qnVar.Q6();
+                snVar.Q6();
                 return;
             case 15:
-                qnVar.f40615a = (qnVar.f40615a + 1) % 3;
+                snVar.f41447a = (snVar.f41447a + 1) % 3;
                 return;
             case 16:
-                qnVar.f40628b = !qnVar.f40628b;
+                snVar.f41460b = !snVar.f41460b;
                 return;
             case 17:
-                qnVar.D7(true);
-                org.telegram.messenger.g0.q(R.string.TranscriptionReportSent, org.telegram.ui.Components.xc.a0(qnVar), R.raw.chats_infotip, 36);
+                snVar.D7(true);
+                org.telegram.messenger.v0.p(R.string.TranscriptionReportSent, org.telegram.ui.Components.xc.a0(snVar), R.raw.chats_infotip, 36);
                 return;
             case 18:
-                qnVar.A0.M.clear();
-                dm dmVar = qnVar.A0;
-                dmVar.L = false;
-                dmVar.O(true);
-                qnVar.Ub(false);
+                snVar.A0.M.clear();
+                em emVar = snVar.A0;
+                emVar.L = false;
+                emVar.O(true);
+                snVar.Vb(false);
                 return;
             case 19:
-                qnVar.t9();
-                qnVar.w9();
-                qnVar.u7();
-                qnVar.w7();
+                snVar.t9();
+                snVar.w9();
+                snVar.u7();
+                snVar.w7();
                 return;
             case 20:
-                qnVar.f40928ya = false;
-                qnVar.zc();
+                snVar.Ka = false;
+                snVar.Bc();
                 return;
             case 21:
-                qnVar.f40727ic = 0;
-                qnVar.f40740jc = false;
-                qnVar.f40905x0.f1();
+                snVar.f41722vc = 0;
+                snVar.f41735wc = false;
+                snVar.f41737x0.g1();
                 return;
             case 22:
-                qnVar.v9(5);
+                snVar.v9(5);
                 return;
             case 23:
-                qnVar.Dc(0, (qnVar.P5 == 0 || SystemClock.elapsedRealtime() < qnVar.P5 + 150) ? false : false);
+                snVar.Fc(0, (snVar.f41467b6 == 0 || SystemClock.elapsedRealtime() < snVar.f41467b6 + 150) ? false : false);
                 return;
             case 24:
-                ik ikVar = qnVar.R2;
-                if ((ikVar == null || ikVar.getVisibility() != 0) && (x3Var = qnVar.f40893w1) != null) {
+                jk jkVar = snVar.f41491d3;
+                if ((jkVar == null || jkVar.getVisibility() != 0) && (x3Var = snVar.I1) != null) {
                     x3Var.u();
                     return;
                 }
                 return;
             case 25:
-                qnVar.n7();
+                snVar.n7();
                 return;
             case 26:
-                qnVar.v9(5);
+                snVar.v9(5);
                 return;
             case 27:
-                qnVar.d7(false);
+                snVar.d7(false);
                 return;
             case 28:
                 FrameLayout.LayoutParams e = w7.z5.e(-1, -2, 87);
-                e.bottomMargin = qnVar.Y.getMeasuredHeight();
-                qnVar.X0.addView(qnVar.f40920y1, e);
-                qnVar.f40920y1.setTranslationY(-AndroidUtilities.navigationBarHeight);
-                qnVar.f40920y1.m(0.0f, qnVar.Y.getEmojiButton().getX() + AndroidUtilities.dp(22.0f));
-                qnVar.f40920y1.u();
+                e.bottomMargin = snVar.Y.getMeasuredHeight();
+                snVar.f41561j1.addView(snVar.K1, e);
+                snVar.K1.setTranslationY(-AndroidUtilities.navigationBarHeight);
+                snVar.K1.m(0.0f, snVar.Y.getEmojiButton().getX() + AndroidUtilities.dp(22.0f));
+                snVar.K1.u();
                 return;
             default:
-                int i17 = qn.Ic;
-                qnVar.c7();
+                int i17 = sn.Vc;
+                snVar.c7();
                 return;
         }
     }

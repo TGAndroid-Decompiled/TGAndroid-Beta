@@ -4,7 +4,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 public abstract class n {
-    public static final int f16643a = 0;
+    public static final int f16706a = 0;
 
     static {
         e9.y0.w("android.media.metadata.TITLE", "android.media.metadata.ARTIST", "android.media.metadata.DURATION", "android.media.metadata.ALBUM", "android.media.metadata.AUTHOR", "android.media.metadata.WRITER", "android.media.metadata.COMPOSER", "android.media.metadata.COMPILATION", "android.media.metadata.DATE", "android.media.metadata.YEAR", "android.media.metadata.GENRE", "android.media.metadata.TRACK_NUMBER", "android.media.metadata.NUM_TRACKS", "android.media.metadata.DISC_NUMBER", "android.media.metadata.ALBUM_ARTIST", "android.media.metadata.ART", "android.media.metadata.ART_URI", "android.media.metadata.ALBUM_ART", "android.media.metadata.ALBUM_ART_URI", "android.media.metadata.USER_RATING", "android.media.metadata.RATING", "android.media.metadata.DISPLAY_TITLE", "android.media.metadata.DISPLAY_SUBTITLE", "android.media.metadata.DISPLAY_DESCRIPTION", "android.media.metadata.DISPLAY_ICON", "android.media.metadata.DISPLAY_ICON_URI", "android.media.metadata.MEDIA_ID", "android.media.metadata.MEDIA_URI", "android.media.metadata.BT_FOLDER_TYPE", "android.media.metadata.ADVERTISEMENT", "android.media.metadata.DOWNLOAD_STATUS", "androidx.media3.session.EXTRAS_KEY_MEDIA_TYPE_COMPAT");
@@ -27,19 +27,19 @@ public abstract class n {
             case 6:
                 return 6L;
             default:
-                throw new IllegalArgumentException(i2.e.j(i10, "Unrecognized FolderType: "));
+                throw new IllegalArgumentException(i2.o1.k(i10, "Unrecognized FolderType: "));
         }
     }
 
     public static n4.i b(b2.r0 r0Var, String str, Uri uri, long j10, Bitmap bitmap) {
         Long l4;
         ?? obj = new Object();
-        obj.f17133a = new Bundle();
+        obj.f17196a = new Bundle();
         obj.f("android.media.metadata.MEDIA_ID", str);
-        CharSequence charSequence = r0Var.f3952a;
+        CharSequence charSequence = r0Var.f3959a;
         Bundle bundle = r0Var.J;
-        Integer num = r0Var.f3965q;
-        Uri uri2 = r0Var.f3962n;
+        Integer num = r0Var.f3972q;
+        Uri uri2 = r0Var.f3969n;
         if (charSequence != null) {
             obj.g(charSequence, "android.media.metadata.TITLE");
         }
@@ -47,19 +47,19 @@ public abstract class n {
         if (charSequence2 != null) {
             obj.g(charSequence2, "android.media.metadata.DISPLAY_TITLE");
         }
-        CharSequence charSequence3 = r0Var.f3955f;
+        CharSequence charSequence3 = r0Var.f3962f;
         if (charSequence3 != null) {
             obj.g(charSequence3, "android.media.metadata.DISPLAY_SUBTITLE");
         }
-        CharSequence charSequence4 = r0Var.f3956g;
+        CharSequence charSequence4 = r0Var.f3963g;
         if (charSequence4 != null) {
             obj.g(charSequence4, "android.media.metadata.DISPLAY_DESCRIPTION");
         }
-        CharSequence charSequence5 = r0Var.f3953b;
+        CharSequence charSequence5 = r0Var.f3960b;
         if (charSequence5 != null) {
             obj.g(charSequence5, "android.media.metadata.ARTIST");
         }
-        CharSequence charSequence6 = r0Var.f3954c;
+        CharSequence charSequence6 = r0Var.f3961c;
         if (charSequence6 != null) {
             obj.g(charSequence6, "android.media.metadata.ALBUM");
         }
@@ -67,7 +67,7 @@ public abstract class n {
         if (charSequence7 != null) {
             obj.g(charSequence7, "android.media.metadata.ALBUM_ARTIST");
         }
-        Integer num2 = r0Var.f3969u;
+        Integer num2 = r0Var.f3976u;
         if (num2 != null) {
             obj.d(num2.intValue(), "android.media.metadata.YEAR");
         }
@@ -101,11 +101,11 @@ public abstract class n {
             j10 = -1;
         }
         obj.d(j10, "android.media.metadata.DURATION");
-        n4.z d = d(r0Var.f3957i);
+        n4.z d = d(r0Var.f3964i);
         if (d != null) {
             obj.e("android.media.metadata.USER_RATING", d);
         }
-        n4.z d10 = d(r0Var.f3958j);
+        n4.z d10 = d(r0Var.f3965j);
         if (d10 != null) {
             obj.e("android.media.metadata.RATING", d10);
         }
@@ -125,13 +125,13 @@ public abstract class n {
                 }
             }
         }
-        return new n4.i((Bundle) obj.f17133a);
+        return new n4.i((Bundle) obj.f17196a);
     }
 
     public static b2.g1 c(n4.z zVar) {
         if (zVar != null) {
-            float f7 = zVar.f17146b;
-            int i10 = zVar.f17145a;
+            float f7 = zVar.f17209b;
+            int i10 = zVar.f17208a;
             boolean z10 = true;
             switch (i10) {
                 case 1:
@@ -196,21 +196,21 @@ public abstract class n {
             float f7 = 0.0f;
             switch (e) {
                 case 1:
-                    if (((b2.y) g1Var).f4143c) {
+                    if (((b2.y) g1Var).f4150c) {
                         f7 = 1.0f;
                     }
                     return new n4.z(1, f7);
                 case 2:
-                    if (((b2.j1) g1Var).f3803c) {
+                    if (((b2.j1) g1Var).f3810c) {
                         f7 = 1.0f;
                     }
                     return new n4.z(2, f7);
                 case 3:
                 case 4:
                 case 5:
-                    return n4.z.d(((b2.h1) g1Var).f3774c, e);
+                    return n4.z.d(((b2.h1) g1Var).f3781c, e);
                 case 6:
-                    return n4.z.c(((b2.x0) g1Var).f4141b);
+                    return n4.z.c(((b2.x0) g1Var).f4148b);
             }
         }
         return null;
@@ -224,7 +224,7 @@ public abstract class n {
             return 2;
         }
         if (g1Var instanceof b2.h1) {
-            int i10 = ((b2.h1) g1Var).f3773b;
+            int i10 = ((b2.h1) g1Var).f3780b;
             int i11 = 3;
             if (i10 != 3) {
                 i11 = 4;

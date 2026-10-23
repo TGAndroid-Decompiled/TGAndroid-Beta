@@ -1,105 +1,228 @@
 package org.telegram.ui.Cells;
 
+import android.animation.ObjectAnimator;
 import android.content.Context;
-import android.graphics.Typeface;
+import android.content.res.ColorStateList;
+import android.graphics.Canvas;
+import android.text.SpannableString;
 import android.text.TextUtils;
+import android.text.method.LinkMovementMethod;
+import android.text.style.AbsoluteSizeSpan;
 import android.view.View;
+import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+import java.util.ArrayList;
+import java.util.HashSet;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
-public final class e9 extends FrameLayout {
-    public final TextView f22211a;
-    public final TextView f22212b;
+import org.telegram.ui.Components.v90;
+import org.telegram.ui.Components.y90;
+public class e9 extends FrameLayout implements org.telegram.ui.ActionBar.b6 {
+    public final x1 f22338a;
+    public final v90 f22339b;
+    public int f22340c;
+    public Integer d;
+    public int e;
+    public int f22341f;
+    public int h;
+    public boolean f22342n;
+    public CharSequence f22343r;
+    public final org.telegram.ui.ActionBar.g6 f22344s;
+    public int v;
 
     public e9(Context context) {
-        super(context);
-        int i10;
-        int i11;
-        int i12;
-        setWillNotDraw(false);
-        TextView textView = new TextView(context);
-        this.f22211a = textView;
-        textView.setTextSize(1, 16.0f);
-        textView.setLines(1);
-        textView.setMaxLines(1);
-        textView.setSingleLine(true);
-        TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
-        textView.setEllipsize(truncateAt);
-        if (LocaleController.isRTL) {
-            i10 = 5;
-        } else {
-            i10 = 3;
-        }
-        textView.setGravity(i10 | 16);
-        if (LocaleController.isRTL) {
-            i11 = 5;
-        } else {
-            i11 = 3;
-        }
-        addView(textView, w7.z5.d(-2, -1.0f, i11 | 48, 21.0f, 0.0f, 21.0f, 0.0f));
-        TextView textView2 = new TextView(context);
-        this.f22212b = textView2;
-        textView2.setTextSize(1, 16.0f);
-        textView2.setTypeface(AndroidUtilities.bold());
-        textView2.setLines(1);
-        textView2.setMaxLines(1);
-        textView2.setSingleLine(true);
-        textView2.setEllipsize(truncateAt);
-        if (LocaleController.isRTL) {
-            i12 = 3;
-        } else {
-            i12 = 5;
-        }
-        textView2.setGravity(i12 | 16);
-        addView(textView2, w7.z5.d(-2, -1.0f, (LocaleController.isRTL ? 3 : 5) | 48, 21.0f, 0.0f, 21.0f, 0.0f));
+        this(context, 24, null);
     }
 
-    public final void a(String str, String str2, boolean z10) {
-        TextView textView = this.f22211a;
-        textView.setText(str);
-        TextView textView2 = this.f22212b;
-        if (str2 != null) {
-            textView2.setText(str2);
-            textView2.setVisibility(0);
-        } else {
-            textView2.setVisibility(4);
+    public final void c(ArrayList arrayList, boolean z10) {
+        float f7 = 0.5f;
+        x1 x1Var = this.f22338a;
+        if (arrayList != null) {
+            if (z10) {
+                f7 = 1.0f;
+            }
+            arrayList.add(ObjectAnimator.ofFloat(x1Var, View.ALPHA, f7));
+            return;
         }
         if (z10) {
-            int i10 = org.telegram.ui.ActionBar.h6.G6;
-            setTag(Integer.valueOf(i10));
-            textView.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, i10, false));
-            textView2.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, i10, false));
-            textView.setTypeface(AndroidUtilities.bold());
-            textView2.setTypeface(AndroidUtilities.bold());
-        } else {
-            int i11 = org.telegram.ui.ActionBar.h6.f21399z6;
-            setTag(Integer.valueOf(i11));
-            textView.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, i11, false));
-            textView2.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, i11, false));
-            Typeface typeface = Typeface.DEFAULT;
-            textView.setTypeface(typeface);
-            textView2.setTypeface(typeface);
+            f7 = 1.0f;
         }
-        requestLayout();
+        x1Var.setAlpha(f7);
+    }
+
+    public int getFixedSize() {
+        return this.h;
+    }
+
+    public CharSequence getText() {
+        return this.f22338a.getText();
+    }
+
+    public y90 getTextView() {
+        return this.f22338a;
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        v90 v90Var = this.f22339b;
+        if (v90Var != null) {
+            canvas.save();
+            x1 x1Var = this.f22338a;
+            canvas.translate(x1Var.getLeft(), x1Var.getTop());
+            if (v90Var.f(canvas)) {
+                invalidate();
+            }
+            canvas.restore();
+        }
+        super.onDraw(canvas);
+    }
+
+    @Override
+    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        accessibilityNodeInfo.setClassName(TextView.class.getName());
+        accessibilityNodeInfo.setText(this.f22343r);
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        setMeasuredDimension(View.MeasureSpec.getSize(i10), AndroidUtilities.dp(40.0f));
-        int measuredWidth = ((getMeasuredWidth() - getPaddingLeft()) - getPaddingRight()) - AndroidUtilities.dp(34.0f);
-        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(measuredWidth / 2, Integer.MIN_VALUE);
-        int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824);
-        TextView textView = this.f22212b;
-        textView.measure(makeMeasureSpec, makeMeasureSpec2);
-        this.f22211a.measure(View.MeasureSpec.makeMeasureSpec((measuredWidth - textView.getMeasuredWidth()) - AndroidUtilities.dp(8.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824));
+        int i12 = this.h;
+        if (i12 == -1) {
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(0, 1073741824));
+        } else if (i12 != 0) {
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(this.h), 1073741824));
+        } else {
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(0, 0));
+        }
+    }
+
+    public void setBottomPadding(int i10) {
+        this.f22341f = i10;
+    }
+
+    public void setFixedSize(int i10) {
+        this.h = i10;
+    }
+
+    public void setLinkTextColorKey(int i10) {
+        this.f22340c = i10;
+    }
+
+    public void setLinkTextRippleColor(Integer num) {
+        this.d = num;
+    }
+
+    public void setText(CharSequence charSequence) {
+        if (!TextUtils.equals(charSequence, this.f22343r)) {
+            this.f22343r = charSequence;
+            x1 x1Var = this.f22338a;
+            if (charSequence == null) {
+                x1Var.setPadding(0, AndroidUtilities.dp(2.0f), 0, 0);
+            } else {
+                x1Var.setPadding(0, AndroidUtilities.dp(this.e), 0, AndroidUtilities.dp(this.f22341f));
+            }
+            SpannableString spannableString = null;
+            if (charSequence != null) {
+                int length = charSequence.length();
+                for (int i10 = 0; i10 < length - 1; i10++) {
+                    if (charSequence.charAt(i10) == '\n') {
+                        int i11 = i10 + 1;
+                        if (charSequence.charAt(i11) == '\n') {
+                            if (spannableString == null) {
+                                spannableString = new SpannableString(charSequence);
+                            }
+                            spannableString.setSpan(new AbsoluteSizeSpan(10, true), i11, i10 + 2, 33);
+                        }
+                    }
+                }
+            }
+            if (spannableString != null) {
+                charSequence = spannableString;
+            }
+            x1Var.setText(charSequence);
+        }
     }
 
     public void setTextColor(int i10) {
-        this.f22211a.setTextColor(i10);
+        x1 x1Var = this.f22338a;
+        ColorStateList linkTextColors = x1Var.getLinkTextColors();
+        org.telegram.ui.ActionBar.r6.r(x1Var);
+        org.telegram.ui.ActionBar.r6.I(x1Var, this.f22340c, this.f22344s);
+        if (linkTextColors != null) {
+            x1Var.setLinkTextColor(linkTextColors);
+        }
+        x1Var.setTextColor(i10);
     }
 
-    public void setTextValueColor(int i10) {
-        this.f22212b.setTextColor(i10);
+    public void setTextColorByKey(int i10) {
+        org.telegram.ui.ActionBar.g6 g6Var = this.f22344s;
+        x1 x1Var = this.f22338a;
+        org.telegram.ui.ActionBar.r6.W(x1Var, i10, g6Var);
+        x1Var.setTag(Integer.valueOf(i10));
+    }
+
+    public void setTextGravity(int i10) {
+        this.f22338a.setGravity(i10);
+    }
+
+    public void setTopPadding(int i10) {
+        this.e = i10;
+    }
+
+    @Override
+    public void updateColors() {
+        try {
+            int w02 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.B6, this.f22344s);
+            x1 x1Var = this.f22338a;
+            if (x1Var != null && w02 != this.v) {
+                this.v = w02;
+                x1Var.setEmojiColor(w02);
+            }
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
+    }
+
+    public e9(Context context, org.telegram.ui.ActionBar.g6 g6Var) {
+        this(context, 24, g6Var);
+    }
+
+    public e9(Context context, int i10, org.telegram.ui.ActionBar.g6 g6Var) {
+        super(context);
+        this.f22340c = org.telegram.ui.ActionBar.k6.J6;
+        this.e = 10;
+        this.f22341f = 17;
+        this.f22344s = g6Var;
+        v90 v90Var = new v90(this);
+        this.f22339b = v90Var;
+        x1 x1Var = new x1(this, context, v90Var, g6Var);
+        this.f22338a = x1Var;
+        x1Var.setTextSize(1, 14.0f);
+        x1Var.setGravity(LocaleController.isRTL ? 5 : 3);
+        x1Var.setPadding(0, AndroidUtilities.dp(10.0f), 0, AndroidUtilities.dp(17.0f));
+        x1Var.setMovementMethod(LinkMovementMethod.getInstance());
+        int i11 = org.telegram.ui.ActionBar.k6.B6;
+        org.telegram.ui.ActionBar.r6.W(x1Var, i11, g6Var);
+        int w02 = org.telegram.ui.ActionBar.k6.w0(i11, g6Var);
+        this.v = w02;
+        x1Var.setEmojiColor(w02);
+        org.telegram.ui.ActionBar.r6.I(x1Var, this.f22340c, g6Var);
+        x1Var.setImportantForAccessibility(2);
+        float f7 = i10;
+        addView(x1Var, w7.z5.d(-1, -2.0f, (LocaleController.isRTL ? 5 : 3) | 48, f7, 0.0f, f7, 0.0f));
+        this.f22342n = LocaleController.isRTL;
+        setWillNotDraw(false);
+    }
+
+    public void a() {
+    }
+
+    @Override
+    public final void addColorKeys(HashSet hashSet) {
+    }
+
+    public void b() {
     }
 }

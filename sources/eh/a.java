@@ -1,6 +1,6 @@
 package eh;
 public interface a {
-    int E();
+    int H();
 
     int a0();
 

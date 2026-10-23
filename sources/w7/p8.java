@@ -7,7 +7,7 @@ public abstract class p8 {
                     if (i10 == 270) {
                         return 3;
                     }
-                    throw new IllegalArgumentException(i2.e.j(i10, "Invalid rotation: "));
+                    throw new IllegalArgumentException(i2.o1.k(i10, "Invalid rotation: "));
                 }
                 return 2;
             }

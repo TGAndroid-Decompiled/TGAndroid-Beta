@@ -1,50 +1,82 @@
 package org.telegram.ui;
 
-import android.graphics.Point;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.NotificationCenter;
-public final class sb1 extends w7.w5 {
-    public final int f41431a;
-    public final NotificationCenter.NotificationCenterDelegate f41432b;
+import android.view.MotionEvent;
+import android.widget.Scroller;
+import org.telegram.messenger.Utilities;
+public final class sb1 implements org.telegram.ui.Components.gp0, org.telegram.ui.Components.r20 {
+    public final qc1 f41346a;
 
-    public sb1(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, int i10) {
-        this.f41431a = i10;
-        this.f41432b = notificationCenterDelegate;
+    public sb1(qc1 qc1Var) {
+        this.f41346a = qc1Var;
     }
 
     @Override
-    public void a() {
-        switch (this.f41431a) {
-            case 1:
-                ((hh1) this.f41432b).v.invalidate();
-                return;
-            default:
-                return;
-        }
+    public void L(float f7, boolean z10) {
+        qc1 qc1Var = this.f41346a;
+        qc1Var.f40750m1 = f7;
+        qc1Var.k1();
     }
 
     @Override
-    public void b(int i10, int i11) {
-        boolean z10;
-        switch (this.f41431a) {
-            case 0:
-                Point point = AndroidUtilities.displaySize;
-                boolean z11 = false;
-                if (point.x <= point.y) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                if (i10 <= i11) {
-                    z11 = true;
-                }
-                if (z10 == z11) {
-                    ((kc1) this.f41432b).f38583x0.invalidate();
-                    return;
-                }
-                return;
-            default:
-                return;
+    public int Y() {
+        return 0;
+    }
+
+    @Override
+    public CharSequence getContentDescription() {
+        return null;
+    }
+
+    @Override
+    public boolean onDown(MotionEvent motionEvent) {
+        Scroller scroller = this.f41346a.f40720c;
+        if (scroller != null) {
+            scroller.abortAnimation();
+            return true;
         }
+        return true;
+    }
+
+    @Override
+    public boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10) {
+        qc1 qc1Var = this.f41346a;
+        Scroller scroller = qc1Var.f40720c;
+        if (scroller != null) {
+            scroller.abortAnimation();
+            qc1Var.f40720c.fling((int) qc1Var.Y1, 0, Math.round(-f7), Math.round(f10), 0, (int) qc1Var.X1, 0, Integer.MAX_VALUE);
+            qc1Var.f40779y0.postInvalidate();
+            return true;
+        }
+        return true;
+    }
+
+    @Override
+    public boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10) {
+        qc1 qc1Var = this.f41346a;
+        Scroller scroller = qc1Var.f40720c;
+        if (scroller != null) {
+            scroller.abortAnimation();
+        }
+        qc1Var.Y1 = Utilities.clamp(qc1Var.Y1 + f7, qc1Var.X1, 0.0f);
+        qc1Var.V0();
+        qc1Var.f40779y0.invalidate();
+        return true;
+    }
+
+    @Override
+    public boolean onSingleTapUp(MotionEvent motionEvent) {
+        return false;
+    }
+
+    @Override
+    public void N0() {
+    }
+
+    @Override
+    public void onLongPress(MotionEvent motionEvent) {
+    }
+
+    @Override
+    public void v() {
     }
 }

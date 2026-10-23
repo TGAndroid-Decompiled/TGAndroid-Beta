@@ -1,65 +1,46 @@
 package org.telegram.ui;
 
-import android.text.TextUtils;
-import android.widget.EditText;
-import org.telegram.messenger.DispatchQueue;
-import org.telegram.messenger.Utilities;
-public final class ad1 extends org.telegram.ui.ActionBar.g5 {
-    public boolean f35355r = false;
-    public final gd1 f35356s;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+import org.telegram.messenger.MessageObject;
+public final class ad1 implements org.telegram.ui.Components.fl0 {
+    public final sn f35653a;
+    public final MessageObject f35654b;
+    public final org.telegram.ui.Components.gl0 f35655c;
+    public final ed1 d;
 
-    public ad1(gd1 gd1Var) {
-        this.f35356s = gd1Var;
+    public ad1(ed1 ed1Var, sn snVar, MessageObject messageObject, org.telegram.ui.Components.gl0 gl0Var) {
+        this.d = ed1Var;
+        this.f35653a = snVar;
+        this.f35654b = messageObject;
+        this.f35655c = gl0Var;
     }
 
     @Override
-    public final void m() {
-        gd1 gd1Var = this.f35356s;
-        if (gd1Var.f37289a.getVisibility() != 0) {
-            gd1Var.f37289a.setVisibility(0);
-            gd1Var.f37289a.setAlpha(0.0f);
-        }
-        gd1Var.f37294r.setVisibility(8);
-        gd1Var.d.l();
-        gd1Var.f37289a.animate().alpha(1.0f).setDuration(150L).setListener(null).start();
-        gd1Var.f37295s.animate().alpha(0.0f).setDuration(150L).setListener(new zc1(this, 0)).start();
-        this.f35355r = false;
+    public final boolean i() {
+        return true;
     }
 
     @Override
-    public final void q(EditText editText) {
-        String obj = editText.getText().toString();
-        fd1 fd1Var = this.f35356s.e;
-        if (fd1Var.e != null) {
-            Utilities.searchQueue.cancelRunnable(fd1Var.e);
-            fd1Var.e = null;
-        }
-        if (TextUtils.isEmpty(obj)) {
-            fd1Var.f36979c.clear();
-            fd1Var.d.clear();
-            fd1Var.l();
-            fd1Var.h.f37294r.setVisibility(8);
-        } else {
-            int i10 = fd1Var.f36980f + 1;
-            fd1Var.f36980f = i10;
-            DispatchQueue dispatchQueue = Utilities.searchQueue;
-            ed1 ed1Var = new ed1(fd1Var, obj, i10, 0);
-            fd1Var.e = ed1Var;
-            dispatchQueue.postRunnable(ed1Var, 300L);
-        }
-        if (!this.f35355r && !TextUtils.isEmpty(obj)) {
-            if (this.f35356s.f37295s.getVisibility() != 0) {
-                this.f35356s.f37295s.setVisibility(0);
-                this.f35356s.f37295s.setAlpha(0.0f);
-            }
-            this.f35356s.f37289a.animate().alpha(0.0f).setDuration(150L).setListener(new zc1(this, 1)).start();
-            this.f35356s.e.d.clear();
-            this.f35356s.e.f36979c.clear();
-            this.f35356s.e.l();
-            this.f35356s.f37295s.animate().setListener(null).alpha(1.0f).setDuration(150L).start();
-            this.f35355r = true;
-        } else if (this.f35355r && TextUtils.isEmpty(obj)) {
-            m();
-        }
+    public final boolean l() {
+        return false;
+    }
+
+    @Override
+    public final void m(android.view.View r13, ah.i1 r14, boolean r15, boolean r16) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ad1.m(android.view.View, ah.i1, boolean, boolean):void");
+    }
+
+    @Override
+    public final boolean w() {
+        return false;
+    }
+
+    @Override
+    public final void u() {
+    }
+
+    @Override
+    public final void s(Canvas canvas, RectF rectF, float f7, float f10, float f11, int i10, boolean z10) {
     }
 }

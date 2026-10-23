@@ -4,20 +4,20 @@ import android.text.TextUtils;
 import v7.s6;
 import v7.u6;
 public final class b {
-    public final int f4158a;
-    public final int f4159b;
-    public final int f4160c;
+    public final int f4165a;
+    public final int f4166b;
+    public final int f4167c;
     public final int d;
     public final int e;
-    public final int f4161f;
+    public final int f4168f;
 
     public b(int i10, int i11, int i12, int i13, int i14, int i15) {
-        this.f4158a = i10;
-        this.f4159b = i11;
-        this.f4160c = i12;
+        this.f4165a = i10;
+        this.f4166b = i11;
+        this.f4167c = i12;
         this.d = i13;
         this.e = i14;
-        this.f4161f = i15;
+        this.f4168f = i15;
     }
 
     public static b a(String str) {

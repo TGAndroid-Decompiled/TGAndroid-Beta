@@ -1,8 +1,8 @@
 package xa;
 public final class e {
-    public final d f49767a;
+    public final d f50209a;
 
     public e(d dVar) {
-        this.f49767a = dVar;
+        this.f50209a = dVar;
     }
 }

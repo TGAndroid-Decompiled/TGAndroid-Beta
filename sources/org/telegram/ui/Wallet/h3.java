@@ -1,40 +1,30 @@
 package org.telegram.ui.Wallet;
 
-import android.view.View;
-public final class h3 implements o1.g {
-    public final int f34286a;
-    public final n3 f34287b;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.ui.Components.d71;
+public final class h3 implements NotificationCenter.NotificationCenterDelegate {
+    public final int f34568a;
+    public final Object f34569b;
 
-    public h3(n3 n3Var, int i10) {
-        this.f34286a = i10;
-        this.f34287b = n3Var;
+    public h3(Object obj, int i10) {
+        this.f34568a = i10;
+        this.f34569b = obj;
     }
 
     @Override
-    public final void a(o1.h hVar, float f7, float f10) {
-        switch (this.f34286a) {
+    public final void didReceivedNotification(int i10, int i11, Object[] objArr) {
+        d71 d71Var;
+        int i12 = this.f34568a;
+        Object obj = this.f34569b;
+        switch (i12) {
             case 0:
-                n3 n3Var = this.f34287b;
-                n3Var.C = f7;
-                n3Var.f34559a.invalidate();
-                return;
-            case 1:
-                n3 n3Var2 = this.f34287b;
-                n3Var2.f34564c0 = f7;
-                org.telegram.ui.Cells.w0 w0Var = n3Var2.f34559a;
-                w0Var.invalidate();
-                if (w0Var.getParent() instanceof View) {
-                    ((View) w0Var.getParent()).invalidate();
-                    return;
-                }
+                ((m3) obj).getClass();
+                int i13 = NotificationCenter.didReceiveNewMessages;
                 return;
             default:
-                n3 n3Var3 = this.f34287b;
-                n3Var3.f34560a0 = f7;
-                org.telegram.ui.Cells.w0 w0Var2 = n3Var3.f34559a;
-                w0Var2.invalidate();
-                if (w0Var2.getParent() instanceof View) {
-                    ((View) w0Var2.getParent()).invalidate();
+                s9 s9Var = (s9) obj;
+                if (!s9Var.f35185n && (d71Var = s9Var.f25907a) != null) {
+                    d71Var.Z2.N(true);
                     return;
                 }
                 return;

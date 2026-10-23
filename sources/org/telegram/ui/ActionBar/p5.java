@@ -1,73 +1,25 @@
 package org.telegram.ui.ActionBar;
 
-import android.util.SparseIntArray;
-import org.telegram.ui.kc1;
-public final class p5 extends f5 {
-    public final int T = 1;
-    public final Object U;
+import org.telegram.tgnet.TLObject;
+public final class p5 implements Runnable {
+    public final int f21778a;
+    public final TLObject f21779b;
+    public final int f21780c;
 
-    public p5(kc1 kc1Var, int i10, boolean z10) {
-        super(i10, true, z10, null);
-        this.U = kc1Var;
+    public p5(int i10, TLObject tLObject) {
+        this.f21778a = 0;
+        this.f21780c = i10;
+        this.f21779b = tLObject;
     }
 
     @Override
-    public int g(int i10) {
-        switch (this.T) {
-            case 0:
-                SparseIntArray sparseIntArray = (SparseIntArray) this.U;
-                int indexOfKey = sparseIntArray.indexOfKey(i10);
-                if (indexOfKey > 0) {
-                    return sparseIntArray.valueAt(indexOfKey);
-                }
-                return h6.ql[i10];
-            default:
-                return super.g(i10);
-        }
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.p5.run():void");
     }
 
-    @Override
-    public int h(int i10) {
-        switch (this.T) {
-            case 0:
-                return ((SparseIntArray) this.U).get(i10);
-            default:
-                return super.h(i10);
-        }
-    }
-
-    @Override
-    public void n(int i10, int i11, int i12) {
-        switch (this.T) {
-            case 1:
-                if (!((kc1) this.U).f38534d2) {
-                    super.n(i10, i11, i12);
-                    return;
-                }
-                return;
-            default:
-                super.n(i10, i11, i12);
-                return;
-        }
-    }
-
-    @Override
-    public void o(int i10, int i11, int i12, int i13, int i14, int i15, boolean z10, boolean z11) {
-        switch (this.T) {
-            case 1:
-                if (!((kc1) this.U).f38534d2) {
-                    super.o(i10, i11, i12, i13, i14, i15, z10, z11);
-                    return;
-                }
-                return;
-            default:
-                super.o(i10, i11, i12, i13, i14, i15, z10, z11);
-                return;
-        }
-    }
-
-    public p5(boolean z10, SparseIntArray sparseIntArray) {
-        super(2, z10, false, null);
-        this.U = sparseIntArray;
+    public p5(int i10, TLObject tLObject, int i11) {
+        this.f21778a = i11;
+        this.f21779b = tLObject;
+        this.f21780c = i10;
     }
 }

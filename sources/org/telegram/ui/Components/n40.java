@@ -5,31 +5,31 @@ import android.text.TextUtils;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.ConnectionsManager;
-public abstract class n40 extends u61 {
-    public final int N;
-    public final ArrayList O;
-    public boolean P;
-    public ci.u6 Q;
+public abstract class n40 extends b71 {
+    public final int P;
+    public final ArrayList Q;
     public boolean R;
-    public boolean S;
-    public int T;
-    public int U;
-    public boolean V;
+    public ci.t6 S;
+    public boolean T;
+    public boolean U;
+    public int V;
     public int W;
-    public String X;
-    public String Y;
-    public int Z;
-    public org.telegram.ui.i4 f28687a0;
-    public final boolean[] f28688b0;
+    public boolean X;
+    public int Y;
+    public String Z;
+    public String f28825a0;
+    public int f28826b0;
+    public org.telegram.ui.h4 f28827c0;
+    public final boolean[] f28828d0;
 
-    public n40(jm0 jm0Var, Context context, int i10) {
-        super(jm0Var, context, i10, 0, false, null, null);
-        this.O = new ArrayList();
-        this.T = 0;
-        this.U = -1;
-        this.f28688b0 = new boolean[1];
-        this.f30866s = new d(this, 16);
-        this.N = i10;
+    public n40(mm0 mm0Var, Context context, int i10) {
+        super(mm0Var, context, i10, 0, false, null, null);
+        this.Q = new ArrayList();
+        this.V = 0;
+        this.W = -1;
+        this.f28828d0 = new boolean[1];
+        this.v = new d(this, 16);
+        this.P = i10;
     }
 
     public static String X(String str, boolean[] zArr) {
@@ -59,27 +59,27 @@ public abstract class n40 extends u61 {
     }
 
     public final void V() {
-        ci.u6 u6Var = this.Q;
-        if (u6Var != null && u6Var.I != 0) {
-            ConnectionsManager.getInstance(u6Var.f5146c).cancelRequest(u6Var.I, true);
-            u6Var.I = 0;
+        ci.t6 t6Var = this.S;
+        if (t6Var != null && t6Var.I != 0) {
+            ConnectionsManager.getInstance(t6Var.f6190c).cancelRequest(t6Var.I, true);
+            t6Var.I = 0;
         }
-        this.P = false;
-        if (this.U >= 0) {
-            ConnectionsManager.getInstance(this.N).cancelRequest(this.U, true);
-            this.U = -1;
+        this.R = false;
+        if (this.W >= 0) {
+            ConnectionsManager.getInstance(this.P).cancelRequest(this.W, true);
+            this.W = -1;
         }
-        AndroidUtilities.cancelRunOnUIThread(this.f28687a0);
-        this.T++;
-        this.S = false;
+        AndroidUtilities.cancelRunOnUIThread(this.f28827c0);
+        this.V++;
+        this.U = false;
     }
 
     public final void W() {
-        jm0 jm0Var;
-        if (!TextUtils.isEmpty(this.X) && !this.V && !this.S && (jm0Var = this.d) != null) {
-            for (int i10 = 0; i10 < jm0Var.getChildCount(); i10++) {
-                if (jm0Var.getChildAt(i10) instanceof b10) {
-                    Y(this.X);
+        mm0 mm0Var;
+        if (!TextUtils.isEmpty(this.Z) && !this.X && !this.U && (mm0Var = this.d) != null) {
+            for (int i10 = 0; i10 < mm0Var.getChildCount(); i10++) {
+                if (mm0Var.getChildAt(i10) instanceof b10) {
+                    Y(this.Z);
                     return;
                 }
             }
@@ -87,25 +87,25 @@ public abstract class n40 extends u61 {
     }
 
     public final void Y(String str) {
-        this.X = str;
-        String X = X(str, this.f28688b0);
-        if (!TextUtils.equals(this.Y, X)) {
-            this.O.clear();
-            this.V = false;
-            this.W = 0;
+        this.Z = str;
+        String X = X(str, this.f28828d0);
+        if (!TextUtils.equals(this.f28825a0, X)) {
+            this.Q.clear();
+            this.X = false;
+            this.Y = 0;
             V();
-        } else if (this.S) {
+        } else if (this.U) {
             return;
         }
-        int i10 = this.T + 1;
-        this.T = i10;
+        int i10 = this.V + 1;
+        this.V = i10;
         if (X == null) {
             return;
         }
-        this.S = true;
+        this.U = true;
         N(true);
-        org.telegram.ui.i4 i4Var = new org.telegram.ui.i4(this, i10, X, 11);
-        this.f28687a0 = i4Var;
-        AndroidUtilities.runOnUIThread(i4Var, 300L);
+        org.telegram.ui.h4 h4Var = new org.telegram.ui.h4(this, i10, X, 11);
+        this.f28827c0 = h4Var;
+        AndroidUtilities.runOnUIThread(h4Var, 300L);
     }
 }

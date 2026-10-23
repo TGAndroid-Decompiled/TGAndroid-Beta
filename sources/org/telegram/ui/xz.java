@@ -1,113 +1,22 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.tl.TL_chatlists;
-public final class xz extends g00 {
-    public final yz E;
-
-    public xz(yz yzVar, Context context, int i10, int i11) {
-        super(context, null, i10, i11);
-        this.E = yzVar;
-    }
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
+import android.text.style.ImageSpan;
+public final class xz extends ImageSpan {
+    public int f43674a;
 
     @Override
-    public final void b(TL_chatlists.TL_exportedChatlistInvite tL_exportedChatlistInvite) {
-        yz yzVar = this.E;
-        yzVar.d.Y.remove(tL_exportedChatlistInvite);
-        yzVar.d.U();
-        yzVar.d.V(true);
-    }
-
-    @Override
-    public final void c() {
-        org.telegram.ui.Components.i80 F = org.telegram.ui.Components.i80.F(this.E.d.container, null, this);
-        F.c(R.drawable.msg_copy, LocaleController.getString(R.string.CopyLink), new Runnable(this) {
-            public final xz f42983b;
-
-            {
-                this.f42983b = this;
-            }
-
-            @Override
-            public final void run() {
-                switch (r2) {
-                    case 0:
-                        xz xzVar = this.f42983b;
-                        String str = xzVar.f37166x;
-                        if (str != null && AndroidUtilities.addToClipboard(str)) {
-                            new org.telegram.ui.Components.xc(xzVar.E.d.Z, null).k(false).j();
-                            return;
-                        }
-                        return;
-                    case 1:
-                        this.f42983b.d();
-                        return;
-                    default:
-                        this.f42983b.a();
-                        return;
-                }
-            }
-        }, false);
-        F.c(R.drawable.msg_qrcode, LocaleController.getString(R.string.GetQRCode), new Runnable(this) {
-            public final xz f42983b;
-
-            {
-                this.f42983b = this;
-            }
-
-            @Override
-            public final void run() {
-                switch (r2) {
-                    case 0:
-                        xz xzVar = this.f42983b;
-                        String str = xzVar.f37166x;
-                        if (str != null && AndroidUtilities.addToClipboard(str)) {
-                            new org.telegram.ui.Components.xc(xzVar.E.d.Z, null).k(false).j();
-                            return;
-                        }
-                        return;
-                    case 1:
-                        this.f42983b.d();
-                        return;
-                    default:
-                        this.f42983b.a();
-                        return;
-                }
-            }
-        }, false);
-        F.c(R.drawable.msg_delete, LocaleController.getString(R.string.DeleteLink), new Runnable(this) {
-            public final xz f42983b;
-
-            {
-                this.f42983b = this;
-            }
-
-            @Override
-            public final void run() {
-                switch (r2) {
-                    case 0:
-                        xz xzVar = this.f42983b;
-                        String str = xzVar.f37166x;
-                        if (str != null && AndroidUtilities.addToClipboard(str)) {
-                            new org.telegram.ui.Components.xc(xzVar.E.d.Z, null).k(false).j();
-                            return;
-                        }
-                        return;
-                    case 1:
-                        this.f42983b.d();
-                        return;
-                    default:
-                        this.f42983b.a();
-                        return;
-                }
-            }
-        }, true);
-        if (LocaleController.isRTL) {
-            F.f27171i = 3;
+    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
+        if (paint.getColor() != this.f43674a && getDrawable() != null) {
+            Drawable drawable = getDrawable();
+            int color = paint.getColor();
+            this.f43674a = color;
+            drawable.setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.MULTIPLY));
         }
-        F.Z();
+        super.draw(canvas, charSequence, i10, i11, f7, i12, i13, i14, paint);
     }
 }

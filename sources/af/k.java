@@ -16,12 +16,12 @@ public final class k extends ff.a {
     @Override
     public final void a(CharSequence charSequence) {
         c0 c0Var = this.d;
-        StringBuilder sb2 = (StringBuilder) c0Var.f4724c;
-        if (c0Var.f4723b != 0) {
+        StringBuilder sb2 = (StringBuilder) c0Var.f4729c;
+        if (c0Var.f4728b != 0) {
             sb2.append('\n');
         }
         sb2.append(charSequence);
-        c0Var.f4723b++;
+        c0Var.f4728b++;
         Pattern pattern = this.f590b;
         if (pattern != null && pattern.matcher(charSequence).find()) {
             this.f591c = true;
@@ -30,7 +30,7 @@ public final class k extends ff.a {
 
     @Override
     public final void d() {
-        this.f589a.f7977g = ((StringBuilder) this.d.f4724c).toString();
+        this.f589a.f7989g = ((StringBuilder) this.d.f4729c).toString();
         this.d = null;
     }
 

@@ -13,11 +13,11 @@ import java.util.List;
 import java.util.TreeSet;
 import v7.c9;
 public abstract class a1 {
-    public static final x1 f14643a = e9.n0.y(12);
+    public static final x1 f14684a = e9.n0.y(12);
 
     public static e9.n0 a(AudioDeviceInfo audioDeviceInfo) {
         List<AudioProfile> audioProfiles = audioDeviceInfo.getAudioProfiles();
-        TreeSet treeSet = new TreeSet(Comparator$EL.reversed(Comparator$CC.comparing(new f(0))));
+        TreeSet treeSet = new TreeSet(Comparator$EL.reversed(Comparator$CC.comparing(new g(0))));
         for (AudioProfile audioProfile : audioProfiles) {
             if (audioProfile.getEncapsulationType() != 1 && e2.m0.M(audioProfile.getFormat())) {
                 for (int i10 : audioProfile.getChannelMasks()) {
@@ -33,7 +33,7 @@ public abstract class a1 {
         e9.n0 n0Var;
         int speakerLayoutChannelMask;
         boolean a2 = c9.a(audioDeviceInfo.getType());
-        x1 x1Var = f14643a;
+        x1 x1Var = f14684a;
         if (!a2) {
             if (audioDeviceInfo.getType() == 1) {
                 return e9.n0.y(4);
@@ -68,7 +68,7 @@ public abstract class a1 {
                             if (i10 >= 34 && audioDescriptors != null) {
                                 ArrayList arrayList = new ArrayList();
                                 for (AudioDescriptor audioDescriptor : audioDescriptors) {
-                                    AudioDescriptor b11 = j2.e.b(audioDescriptor);
+                                    AudioDescriptor b11 = f.b(audioDescriptor);
                                     if (b11.getStandard() == 2) {
                                         byte[] descriptor = b11.getDescriptor();
                                         if (descriptor.length != 3) {
@@ -141,7 +141,7 @@ public abstract class a1 {
                                 List.EL.sort(arrayList, new a4.d(25));
                                 n0Var = e9.n0.u(arrayList);
                             } else {
-                                e9.l0 l0Var = e9.n0.f8474b;
+                                e9.l0 l0Var = e9.n0.f8481b;
                                 n0Var = x1.e;
                             }
                             if (!n0Var.isEmpty()) {

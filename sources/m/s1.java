@@ -12,27 +12,27 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import java.lang.reflect.InvocationTargetException;
 public class s1 extends ListView {
-    public final Rect f16324a;
-    public int f16325b;
-    public int f16326c;
+    public final Rect f16387a;
+    public int f16388b;
+    public int f16389c;
     public int d;
     public int e;
-    public int f16327f;
+    public int f16390f;
     public q1 h;
-    public boolean f16328n;
-    public final boolean f16329r;
-    public boolean f16330s;
+    public boolean f16391n;
+    public final boolean f16392r;
+    public boolean f16393s;
     public u0.d v;
-    public androidx.activity.i f16331w;
+    public androidx.activity.i f16394w;
 
     public s1(Context context, boolean z10) {
         super(context, null, 2130968772);
-        this.f16324a = new Rect();
-        this.f16325b = 0;
-        this.f16326c = 0;
+        this.f16387a = new Rect();
+        this.f16388b = 0;
+        this.f16389c = 0;
         this.d = 0;
         this.e = 0;
-        this.f16329r = z10;
+        this.f16392r = z10;
         setCacheColorHint(0);
     }
 
@@ -89,7 +89,7 @@ public class s1 extends ListView {
     @Override
     public final void dispatchDraw(Canvas canvas) {
         Drawable selector;
-        Rect rect = this.f16324a;
+        Rect rect = this.f16387a;
         if (!rect.isEmpty() && (selector = getSelector()) != null) {
             selector.setBounds(rect);
             selector.draw(canvas);
@@ -99,14 +99,14 @@ public class s1 extends ListView {
 
     @Override
     public final void drawableStateChanged() {
-        if (this.f16331w == null) {
+        if (this.f16394w == null) {
             super.drawableStateChanged();
             q1 q1Var = this.h;
             if (q1Var != null) {
-                q1Var.f16306b = true;
+                q1Var.f16369b = true;
             }
             Drawable selector = getSelector();
-            if (selector != null && this.f16330s && isPressed()) {
+            if (selector != null && this.f16393s && isPressed()) {
                 selector.setState(getDrawableState());
             }
         }
@@ -114,7 +114,7 @@ public class s1 extends ListView {
 
     @Override
     public final boolean hasFocus() {
-        if (!this.f16329r && !super.hasFocus()) {
+        if (!this.f16392r && !super.hasFocus()) {
             return false;
         }
         return true;
@@ -122,7 +122,7 @@ public class s1 extends ListView {
 
     @Override
     public final boolean hasWindowFocus() {
-        if (!this.f16329r && !super.hasWindowFocus()) {
+        if (!this.f16392r && !super.hasWindowFocus()) {
             return false;
         }
         return true;
@@ -130,7 +130,7 @@ public class s1 extends ListView {
 
     @Override
     public final boolean isFocused() {
-        if (!this.f16329r && !super.isFocused()) {
+        if (!this.f16392r && !super.isFocused()) {
             return false;
         }
         return true;
@@ -138,7 +138,7 @@ public class s1 extends ListView {
 
     @Override
     public final boolean isInTouchMode() {
-        if ((this.f16329r && this.f16328n) || super.isInTouchMode()) {
+        if ((this.f16392r && this.f16391n) || super.isInTouchMode()) {
             return true;
         }
         return false;
@@ -146,7 +146,7 @@ public class s1 extends ListView {
 
     @Override
     public final void onDetachedFromWindow() {
-        this.f16331w = null;
+        this.f16394w = null;
         super.onDetachedFromWindow();
     }
 
@@ -157,9 +157,9 @@ public class s1 extends ListView {
             return super.onHoverEvent(motionEvent);
         }
         int actionMasked = motionEvent.getActionMasked();
-        if (actionMasked == 10 && this.f16331w == null) {
-            androidx.activity.i iVar = new androidx.activity.i(this, 24);
-            this.f16331w = iVar;
+        if (actionMasked == 10 && this.f16394w == null) {
+            androidx.activity.i iVar = new androidx.activity.i(this, 26);
+            this.f16394w = iVar;
             post(iVar);
         }
         boolean onHoverEvent = super.onHoverEvent(motionEvent);
@@ -174,9 +174,9 @@ public class s1 extends ListView {
                 requestFocus();
                 if (i10 >= 30 && o1.d) {
                     try {
-                        o1.f16272a.invoke(this, Integer.valueOf(pointToPosition), childAt, Boolean.FALSE, -1, -1);
-                        o1.f16273b.invoke(this, Integer.valueOf(pointToPosition));
-                        o1.f16274c.invoke(this, Integer.valueOf(pointToPosition));
+                        o1.f16335a.invoke(this, Integer.valueOf(pointToPosition), childAt, Boolean.FALSE, -1, -1);
+                        o1.f16336b.invoke(this, Integer.valueOf(pointToPosition));
+                        o1.f16337c.invoke(this, Integer.valueOf(pointToPosition));
                     } catch (IllegalAccessException e) {
                         e.printStackTrace();
                     } catch (InvocationTargetException e7) {
@@ -187,7 +187,7 @@ public class s1 extends ListView {
                 }
             }
             Drawable selector = getSelector();
-            if (selector != null && this.f16330s && isPressed()) {
+            if (selector != null && this.f16393s && isPressed()) {
                 selector.setState(getDrawableState());
             }
         }
@@ -197,19 +197,19 @@ public class s1 extends ListView {
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
         if (motionEvent.getAction() == 0) {
-            this.f16327f = pointToPosition((int) motionEvent.getX(), (int) motionEvent.getY());
+            this.f16390f = pointToPosition((int) motionEvent.getX(), (int) motionEvent.getY());
         }
-        androidx.activity.i iVar = this.f16331w;
+        androidx.activity.i iVar = this.f16394w;
         if (iVar != null) {
-            s1 s1Var = (s1) iVar.f2650b;
-            s1Var.f16331w = null;
+            s1 s1Var = (s1) iVar.f2657b;
+            s1Var.f16394w = null;
             s1Var.removeCallbacks(iVar);
         }
         return super.onTouchEvent(motionEvent);
     }
 
     public void setListSelectionHidden(boolean z10) {
-        this.f16328n = z10;
+        this.f16391n = z10;
     }
 
     @Override
@@ -217,13 +217,13 @@ public class s1 extends ListView {
         q1 q1Var = null;
         if (drawable != 0) {
             ?? drawable2 = new Drawable();
-            Drawable drawable3 = drawable2.f16305a;
+            Drawable drawable3 = drawable2.f16368a;
             if (drawable3 != null) {
                 drawable3.setCallback(null);
             }
-            drawable2.f16305a = drawable;
+            drawable2.f16368a = drawable;
             drawable.setCallback(drawable2);
-            drawable2.f16306b = true;
+            drawable2.f16369b = true;
             q1Var = drawable2;
         }
         this.h = q1Var;
@@ -232,8 +232,8 @@ public class s1 extends ListView {
         if (drawable != 0) {
             drawable.getPadding(rect);
         }
-        this.f16325b = rect.left;
-        this.f16326c = rect.top;
+        this.f16388b = rect.left;
+        this.f16389c = rect.top;
         this.d = rect.right;
         this.e = rect.bottom;
     }

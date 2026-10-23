@@ -1,51 +1,92 @@
 package org.telegram.ui.Components;
 
-import android.os.AsyncTask;
-import java.util.concurrent.CountDownLatch;
-import org.telegram.messenger.BuildVars;
-public final class v91 extends AsyncTask {
-    public final String f31210a;
-    public final CountDownLatch f31211b = new CountDownLatch(1);
-    public final String[] f31212c = new String[2];
-    public String d;
-    public final w91 e;
+import android.graphics.Bitmap;
+import android.view.TextureView;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Bitmaps;
+import org.telegram.messenger.FileLog;
+public final class v91 implements Runnable {
+    public final int f31395a;
+    public final da1 f31396b;
 
-    public v91(w91 w91Var, String str) {
-        this.e = w91Var;
-        this.f31210a = str;
+    public v91(da1 da1Var, int i10) {
+        this.f31395a = i10;
+        this.f31396b = da1Var;
     }
 
     @Override
-    public final java.lang.Object doInBackground(java.lang.Object[] r25) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.v91.doInBackground(java.lang.Object[]):java.lang.Object");
-    }
-
-    @Override
-    public final void onPostExecute(Object obj) {
-        String[] strArr = (String[]) obj;
-        String str = strArr[0];
-        w91 w91Var = this.e;
-        if (str != null) {
-            if (BuildVars.LOGS_ENABLED) {
-                StringBuilder sb2 = new StringBuilder("start play youtube video ");
-                sb2.append(strArr[1]);
-                sb2.append(" ");
-                i2.e.v(strArr[0], sb2);
-            }
-            w91Var.f32039w = true;
-            w91Var.f32040x = strArr[0];
-            String str2 = strArr[1];
-            w91Var.f32041y = str2;
-            if (str2.equals("hls")) {
-                w91Var.H = true;
-            }
-            if (w91Var.f32038s) {
-                w91Var.i();
-            }
-            w91Var.j(false, true);
-            w91Var.f32030f0.d(true, true);
-        } else if (!isCancelled()) {
-            w91Var.h();
+    public final void run() {
+        switch (this.f31395a) {
+            case 0:
+                da1 da1Var = this.f31396b;
+                z91 z91Var = da1Var.f25573f0;
+                j81 j81Var = da1Var.f25564a;
+                if (j81Var != null && j81Var.y()) {
+                    z91Var.c((int) (j81Var.n() / 1000));
+                    z91Var.f33194w = (int) (j81Var.j() / 1000);
+                    z91Var.invalidate();
+                    AndroidUtilities.runOnUIThread(da1Var.f25576i0, 1000L);
+                    return;
+                }
+                return;
+            default:
+                da1 da1Var2 = this.f31396b;
+                z91 z91Var2 = da1Var2.f25573f0;
+                ImageView imageView = da1Var2.e;
+                TextureView textureView = da1Var2.d;
+                da1Var2.W = false;
+                Bitmap bitmap = da1Var2.h;
+                if (bitmap != null) {
+                    bitmap.recycle();
+                    da1Var2.h = null;
+                }
+                da1Var2.S = true;
+                if (imageView != null) {
+                    try {
+                        Bitmap createBitmap = Bitmaps.createBitmap(textureView.getWidth(), textureView.getHeight(), Bitmap.Config.ARGB_8888);
+                        da1Var2.h = createBitmap;
+                        textureView.getBitmap(createBitmap);
+                    } catch (Throwable th2) {
+                        Bitmap bitmap2 = da1Var2.h;
+                        if (bitmap2 != null) {
+                            bitmap2.recycle();
+                            da1Var2.h = null;
+                        }
+                        FileLog.e(th2);
+                    }
+                    if (da1Var2.h != null) {
+                        imageView.setVisibility(0);
+                        imageView.setImageBitmap(da1Var2.h);
+                    } else {
+                        imageView.setImageDrawable(null);
+                    }
+                }
+                da1Var2.U = true;
+                da1Var2.n();
+                da1Var2.o();
+                da1Var2.k();
+                da1Var2.m();
+                ViewGroup viewGroup = (ViewGroup) z91Var2.getParent();
+                if (viewGroup != null) {
+                    viewGroup.removeView(z91Var2);
+                }
+                aa1 aa1Var = da1Var2.v;
+                z91 z91Var3 = da1Var2.f25573f0;
+                boolean z10 = da1Var2.U;
+                int i10 = da1Var2.f25574g0;
+                int i11 = da1Var2.f25575h0;
+                da1Var2.f25568c.getVideoRotation();
+                TextureView f7 = aa1Var.f(z91Var3, z10, i10, i11, da1Var2.I);
+                da1Var2.f25579n = f7;
+                f7.setVisibility(4);
+                ViewGroup viewGroup2 = (ViewGroup) textureView.getParent();
+                if (viewGroup2 != null) {
+                    viewGroup2.removeView(textureView);
+                }
+                z91Var2.d(false, false);
+                return;
         }
     }
 }

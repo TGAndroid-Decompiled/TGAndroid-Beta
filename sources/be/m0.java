@@ -3,11 +3,11 @@ package be;
 import java.util.concurrent.CancellationException;
 import v7.g8;
 public abstract class m0 extends ie.i {
-    public int f4299c;
+    public int f4306c;
 
     public m0(int i10) {
-        super(0L, ie.k.f12803g);
-        this.f4299c = i10;
+        super(0L, ie.k.f12835g);
+        this.f4306c = i10;
     }
 
     public abstract void b(Object obj, CancellationException cancellationException);
@@ -24,7 +24,7 @@ public abstract class m0 extends ie.i {
         if (vVar == null) {
             return null;
         }
-        return vVar.f4328a;
+        return vVar.f4335a;
     }
 
     public final void i(Throwable th2, Throwable th3) {

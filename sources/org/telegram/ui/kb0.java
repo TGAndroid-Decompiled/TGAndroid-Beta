@@ -1,53 +1,61 @@
 package org.telegram.ui;
+public final class kb0 implements Runnable {
+    public final int f38923a;
+    public final ob0 f38924b;
+    public final String f38925c;
 
-import android.text.TextUtils;
-public final class kb0 extends pg.a {
-    public final CharSequence f38508c;
-    public final int d;
-    public final int e;
-    public final int f38509f;
-
-    public kb0(int i10, int i11, CharSequence charSequence, int i12, int i13) {
-        super(i10, false);
-        this.f38508c = charSequence;
-        this.d = i11;
-        this.e = i12;
-        this.f38509f = i13;
+    public kb0(ob0 ob0Var, String str, int i10) {
+        this.f38923a = i10;
+        this.f38924b = ob0Var;
+        this.f38925c = str;
     }
 
-    public static kb0 b(int i10, String str) {
-        return new kb0(4, 0, str, i10, 0);
-    }
-
-    public static kb0 c(int i10, int i11, String str) {
-        return new kb0(3, i10, str, i11, 0);
-    }
-
-    public final boolean equals(Object obj) {
-        if (this != obj) {
-            if (obj instanceof kb0) {
-                kb0 kb0Var = (kb0) obj;
-                int i10 = kb0Var.f44300a;
-                int i11 = this.f44300a;
-                if (i10 == i11) {
-                    if (i11 != 3 || kb0Var.d == this.d) {
-                        if (i11 != 5 || kb0Var.f38509f == this.f38509f) {
-                            if ((i11 != 3 && i11 != 4) || kb0Var.e == this.e) {
-                                if ((i11 == 0 || i11 == 2 || i11 == 3 || i11 == 4 || i11 == 5) && !TextUtils.equals(kb0Var.f38508c, this.f38508c)) {
-                                    return false;
-                                }
-                                return true;
-                            }
-                            return false;
-                        }
-                        return false;
-                    }
-                    return false;
+    @Override
+    public final void run() {
+        switch (this.f38923a) {
+            case 0:
+                ob0 ob0Var = this.f38924b;
+                if (ob0Var.a()) {
+                    ob0Var.w(this.f38925c);
+                    return;
                 }
-                return false;
-            }
-            return false;
+                return;
+            case 1:
+                this.f38924b.w(this.f38925c);
+                return;
+            case 2:
+                ob0 ob0Var2 = this.f38924b;
+                ob0Var2.getClass();
+                String str = this.f38925c;
+                if ("disable".equalsIgnoreCase(str)) {
+                    ob0Var2.x("turnPasswordOffRow");
+                }
+                if ("change".equalsIgnoreCase(str)) {
+                    ob0Var2.x("changePasswordRow");
+                }
+                if ("change-email".equalsIgnoreCase(str)) {
+                    ob0Var2.x("emailRow");
+                    return;
+                }
+                return;
+            default:
+                ob0 ob0Var3 = this.f38924b;
+                ob0Var3.getClass();
+                String str2 = this.f38925c;
+                if ("disable".equalsIgnoreCase(str2)) {
+                    ob0Var3.x("disablePasscodeRow");
+                }
+                if ("change".equalsIgnoreCase(str2)) {
+                    ob0Var3.x("changePasscodeRow");
+                }
+                if ("auto-lock".equalsIgnoreCase(str2)) {
+                    ob0Var3.x("autoLockRow");
+                }
+                if ("fingerprint".equalsIgnoreCase(str2)) {
+                    ob0Var3.x("fingerprintRow");
+                    return;
+                }
+                return;
         }
-        return true;
     }
 }

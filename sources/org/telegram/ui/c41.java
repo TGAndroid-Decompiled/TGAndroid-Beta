@@ -1,43 +1,63 @@
 package org.telegram.ui;
 
 import android.animation.ValueAnimator;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class c41 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f35814a;
-    public final x51 f35815b;
-    public final boolean f35816c;
+    public final int f36243a;
+    public final b61 f36244b;
 
-    public c41(x51 x51Var, boolean z10, int i10) {
-        this.f35814a = i10;
-        this.f35815b = x51Var;
-        this.f35816c = z10;
+    public c41(b61 b61Var, int i10) {
+        this.f36243a = i10;
+        this.f36244b = b61Var;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f35814a) {
+        switch (this.f36243a) {
             case 0:
-                x51 x51Var = this.f35815b;
-                u41 u41Var = x51Var.f43065h0;
-                k41 k41Var = x51Var.f43067i0;
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                if (!this.f35816c) {
-                    floatValue = 1.0f - floatValue;
+                b61 b61Var = this.f36244b;
+                b61Var.getClass();
+                b61Var.E(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
+            case 1:
+                this.f36244b.m();
+                return;
+            case 2:
+                b61 b61Var2 = this.f36244b;
+                View view = b61Var2.f35930t0;
+                if (view != null) {
+                    view.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 }
-                float f7 = 1.0f - floatValue;
-                u41Var.setAlpha(f7);
-                u41Var.setTranslationY(AndroidUtilities.dp(8.0f) * floatValue);
-                k41Var.setAlpha(floatValue);
-                k41Var.setTranslationY(AndroidUtilities.dp(8.0f) * f7);
-                x51Var.f43069j0.setAlpha(k41Var.getAlpha() * floatValue);
+                int v = org.telegram.ui.ActionBar.k6.v(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.G8, b61Var2.Z0), i0.a.o(-16777216, (int) (((Float) valueAnimator.getAnimatedValue()).floatValue() * 255.0f)));
+                View view2 = b61Var2.m0;
+                if (view2 != null) {
+                    view2.getBackground().setColorFilter(new PorterDuffColorFilter(v, PorterDuff.Mode.MULTIPLY));
+                }
+                org.telegram.ui.Components.un unVar = b61Var2.f35916n0;
+                if (unVar != null) {
+                    unVar.getBackground().setColorFilter(new PorterDuffColorFilter(v, PorterDuff.Mode.MULTIPLY));
+                    return;
+                }
                 return;
             default:
-                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                if (!this.f35816c) {
-                    floatValue2 = 1.0f - floatValue2;
+                b61 b61Var3 = this.f36244b;
+                v41 v41Var = b61Var3.f35888a0;
+                float floatValue = 1.0f - ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                b61Var3.setTranslationY((1.0f - floatValue) * AndroidUtilities.dp(8.0f));
+                View view3 = b61Var3.m0;
+                if (view3 != null) {
+                    view3.setAlpha(floatValue);
                 }
-                x51 x51Var2 = this.f35815b;
-                x51Var2.f43069j0.setAlpha(x51Var2.f43067i0.getAlpha() * floatValue2);
+                org.telegram.ui.Components.un unVar2 = b61Var3.f35916n0;
+                if (unVar2 != null) {
+                    unVar2.setAlpha(floatValue * floatValue);
+                }
+                v41Var.setAlpha(floatValue);
+                v41Var.invalidate();
+                b61Var3.invalidate();
                 return;
         }
     }

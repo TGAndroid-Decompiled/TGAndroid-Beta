@@ -6,19 +6,19 @@ import android.graphics.Paint;
 import android.text.style.ReplacementSpan;
 public final class s extends ReplacementSpan {
     public static final int h = 0;
-    public final String f15493a;
-    public final Bitmap f15494b;
-    public final int f15495c;
+    public final String f15553a;
+    public final Bitmap f15554b;
+    public final int f15555c;
     public final int d;
     public final int e;
-    public final Paint f15496f;
+    public final Paint f15556f;
 
     public s(String str, Bitmap bitmap, int i10, int i11, int i12, int i13) {
         Paint paint = new Paint(3);
-        this.f15496f = paint;
-        this.f15493a = str;
-        this.f15494b = bitmap;
-        this.f15495c = i10;
+        this.f15556f = paint;
+        this.f15553a = str;
+        this.f15554b = bitmap;
+        this.f15555c = i10;
         this.d = i11;
         this.e = i13;
         paint.setColor(i12);
@@ -27,19 +27,19 @@ public final class s extends ReplacementSpan {
     public static s a(String str, int i10, float f7) {
         r a2;
         if (str != null && !str.isEmpty() && (a2 = r.a(str, f7, true)) != null) {
-            return new s(str, a2.f15476a, a2.f15477b, a2.f15478c, i10, a2.d);
+            return new s(str, a2.f15536a, a2.f15537b, a2.f15538c, i10, a2.d);
         }
         return null;
     }
 
     @Override
     public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
-        Bitmap bitmap = this.f15494b;
+        Bitmap bitmap = this.f15554b;
         if (bitmap == null) {
             return;
         }
         int color = paint.getColor();
-        Paint paint2 = this.f15496f;
+        Paint paint2 = this.f15556f;
         paint2.setColor(color);
         canvas.drawBitmap(bitmap, f7, i13 - (this.d - this.e), paint2);
     }
@@ -55,6 +55,6 @@ public final class s extends ReplacementSpan {
             fontMetricsInt.descent = i13;
             fontMetricsInt.bottom = i13;
         }
-        return this.f15495c;
+        return this.f15555c;
     }
 }

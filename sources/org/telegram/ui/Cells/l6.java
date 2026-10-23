@@ -1,47 +1,131 @@
 package org.telegram.ui.Cells;
 
+import android.content.Context;
 import android.view.View;
-import org.telegram.ui.Components.jm0;
-import org.telegram.ui.Components.ko;
-import org.telegram.ui.LaunchActivity;
-public final class l6 extends ci.y7 {
-    public final int S = 0;
-    public final View T;
+import android.view.accessibility.AccessibilityNodeInfo;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.sl;
+import org.telegram.ui.Components.RadioButton;
+public final class l6 extends FrameLayout {
+    public final TextView f22679a;
+    public final TextView f22680b;
+    public final RadioButton f22681c;
+    public int d;
 
-    public l6(n6 n6Var, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(d6Var, false);
-        this.T = n6Var;
+    public l6(Context context, org.telegram.ui.ActionBar.g6 g6Var) {
+        super(context);
+        int i10;
+        int i11;
+        int i12;
+        int i13;
+        int i14;
+        int i15;
+        int i16;
+        int i17;
+        this.d = 50;
+        RadioButton radioButton = new RadioButton(context);
+        this.f22681c = radioButton;
+        radioButton.setSize(AndroidUtilities.dp(20.0f));
+        org.telegram.ui.ActionBar.r6.Q(radioButton, org.telegram.ui.ActionBar.k6.D5, org.telegram.ui.ActionBar.k6.E5, g6Var);
+        boolean z10 = LocaleController.isRTL;
+        if (z10) {
+            i10 = 5;
+        } else {
+            i10 = 3;
+        }
+        int i18 = i10 | 48;
+        if (z10) {
+            i11 = 0;
+        } else {
+            i11 = 18;
+        }
+        addView(radioButton, w7.z5.d(22, 22.0f, i18, i11, 14.0f, z10 ? 18 : 0, 0.0f));
+        TextView textView = new TextView(context);
+        this.f22679a = textView;
+        org.telegram.ui.ActionBar.r6.W(textView, org.telegram.ui.ActionBar.k6.f21289j5, g6Var);
+        sl.u(textView, 1, 16.0f, 1, 1);
+        textView.setSingleLine(true);
+        if (LocaleController.isRTL) {
+            i12 = 5;
+        } else {
+            i12 = 3;
+        }
+        textView.setGravity(i12 | 16);
+        boolean z11 = LocaleController.isRTL;
+        if (z11) {
+            i13 = 5;
+        } else {
+            i13 = 3;
+        }
+        int i19 = i13 | 48;
+        if (z11) {
+            i14 = 21;
+        } else {
+            i14 = 51;
+        }
+        float f7 = i14;
+        if (z11) {
+            i15 = 51;
+        } else {
+            i15 = 21;
+        }
+        addView(textView, w7.z5.d(-2, -2.0f, i19, f7, 13.0f, i15, 0.0f));
+        TextView textView2 = new TextView(context);
+        this.f22680b = textView2;
+        org.telegram.ui.ActionBar.r6.W(textView2, org.telegram.ui.ActionBar.k6.f21571y6, g6Var);
+        textView2.setTextSize(1, 14.0f);
+        if (LocaleController.isRTL) {
+            i16 = 5;
+        } else {
+            i16 = 3;
+        }
+        textView2.setGravity(i16 | 16);
+        textView2.setVisibility(8);
+        boolean z12 = LocaleController.isRTL;
+        int i20 = (z12 ? 5 : 3) | 48;
+        if (z12) {
+            i17 = 21;
+        } else {
+            i17 = 51;
+        }
+        addView(textView2, w7.z5.d(-2, -2.0f, i20, i17, 37.0f, z12 ? 51 : 21, 0.0f));
+    }
+
+    public final void a(int i10, int i11) {
+        this.f22681c.b(i10, i11);
+    }
+
+    public final void b(CharSequence charSequence, boolean z10) {
+        this.f22679a.setText(charSequence);
+        this.f22680b.setVisibility(8);
+        this.f22681c.a(z10, false);
     }
 
     @Override
-    public final void f(long j10) {
-        switch (this.S) {
-            case 0:
-                ((n6) this.T).b(j10);
-                return;
-            case 1:
-                va vaVar = (va) this.T;
-                org.telegram.ui.ActionBar.n2 R = LaunchActivity.R();
-                if (R != null) {
-                    R.getOrCreateStoryViewer().getClass();
-                    R.getOrCreateStoryViewer().D(vaVar.getContext(), j10, ci.r7.a((jm0) vaVar.getParent()));
-                    return;
-                }
-                return;
-            default:
-                ko koVar = (ko) this.T;
-                koVar.H.getOrCreateStoryViewer().D(koVar.getContext(), j10, new org.telegram.ui.Components.s(this, 25));
-                return;
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        accessibilityNodeInfo.setClassName("android.widget.RadioButton");
+        accessibilityNodeInfo.setCheckable(true);
+        accessibilityNodeInfo.setChecked(this.f22681c.f24487f);
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        int i12;
+        TextView textView = this.f22680b;
+        if (textView.getVisibility() == 0) {
+            textView.measure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10) - AndroidUtilities.dp(72.0f), 1073741824), i11);
         }
-    }
-
-    public l6(va vaVar) {
-        super(null, false);
-        this.T = vaVar;
-    }
-
-    public l6(ko koVar) {
-        super(null, true);
-        this.T = koVar;
+        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824);
+        int dp = AndroidUtilities.dp(this.d);
+        if (textView.getVisibility() == 0) {
+            i12 = textView.getMeasuredHeight() + AndroidUtilities.dp(4.0f);
+        } else {
+            i12 = 0;
+        }
+        super.onMeasure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec(dp + i12, 1073741824));
     }
 }

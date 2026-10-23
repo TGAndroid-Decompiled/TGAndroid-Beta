@@ -1,21 +1,41 @@
 package org.telegram.ui;
 
-import android.view.ViewGroup;
-public final class s20 extends s4.k {
-    public final q50 F;
+import android.graphics.Rect;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.AndroidUtilities;
+public final class s20 extends s4.m0 {
+    public final u50 f41290a;
 
-    public s20(q50 q50Var) {
-        this.F = q50Var;
+    public s20(u50 u50Var) {
+        this.f41290a = u50Var;
     }
 
     @Override
-    public final void P(s4.b1 b1Var) {
-        ViewGroup viewGroup;
-        q50 q50Var = this.F;
-        q50Var.Q.invalidate();
-        q50Var.a2.invalidate();
-        viewGroup = ((org.telegram.ui.ActionBar.f3) q50Var).containerView;
-        viewGroup.invalidate();
-        q50.K0(q50Var);
+    public final void a(Rect rect, View view, RecyclerView recyclerView, s4.y0 y0Var) {
+        int i10;
+        recyclerView.getClass();
+        int R = RecyclerView.R(view);
+        if (R >= 0) {
+            rect.setEmpty();
+            o50 o50Var = this.f41290a.P;
+            int i11 = o50Var.G;
+            if (R >= i11 && R < o50Var.H) {
+                int i12 = R - i11;
+                if (u50.F3) {
+                    i10 = 6;
+                } else {
+                    i10 = 2;
+                }
+                int i13 = i12 % i10;
+                if (i13 == 0) {
+                    rect.right = AndroidUtilities.dp(2.0f);
+                } else if (i13 == i10 - 1) {
+                    rect.left = AndroidUtilities.dp(2.0f);
+                } else {
+                    rect.left = AndroidUtilities.dp(1.0f);
+                }
+            }
+        }
     }
 }

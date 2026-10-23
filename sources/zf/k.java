@@ -1,15 +1,15 @@
 package zf;
 public final class k {
-    public final int f51588a;
-    public final String f51589b;
+    public final int f52050a;
+    public final String f52051b;
 
     public k(int i10) {
-        this.f51588a = i10;
-        this.f51589b = null;
+        this.f52050a = i10;
+        this.f52051b = null;
     }
 
     public k(String str) {
-        this.f51588a = 1;
-        this.f51589b = str;
+        this.f52050a = 1;
+        this.f52051b = str;
     }
 }

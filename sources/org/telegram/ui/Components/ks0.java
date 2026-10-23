@@ -1,41 +1,165 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.ViewPropertyAnimator;
-import android.widget.TextView;
-public final class ks0 extends yh.p2 {
-    public final uv0 U;
+import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.Utilities;
+public final class ks0 extends s4.v {
+    public pu0 d;
+    public final xv0 e;
 
-    public ks0(int i10, long j10, Context context, org.telegram.ui.ActionBar.n2 n2Var, org.telegram.ui.ActionBar.d6 d6Var, uv0 uv0Var) {
-        super(i10, j10, context, n2Var, d6Var);
-        this.U = uv0Var;
+    public ks0(xv0 xv0Var) {
+        this.e = xv0Var;
     }
 
     @Override
-    public final void p(boolean z10) {
-        float f7;
-        float f10;
-        uv0 uv0Var = this.U;
-        TextView textView = uv0Var.f31062q0;
-        textView.setVisibility(0);
-        ViewPropertyAnimator animate = textView.animate();
-        float f11 = 1.0f;
-        if (z10) {
-            f7 = 1.0f;
+    public final void a(RecyclerView recyclerView, s4.b1 b1Var) {
+        super.a(recyclerView, b1Var);
+        b1Var.f46343a.setPressed(false);
+    }
+
+    @Override
+    public final int e(RecyclerView recyclerView, s4.b1 b1Var) {
+        uv0 uv0Var;
+        s4.g0 adapter = recyclerView.getAdapter();
+        ws0 ws0Var = null;
+        if (adapter instanceof uv0) {
+            uv0Var = (uv0) adapter;
         } else {
-            f7 = 0.0f;
+            uv0Var = null;
         }
-        ViewPropertyAnimator alpha = animate.alpha(f7);
-        if (z10) {
-            f10 = 1.0f;
+        if (k() && uv0Var != null && uv0Var.M(b1Var.b())) {
+            qu0 qu0Var = this.e.f32687k0[0];
+            if (qu0Var != null) {
+                ws0Var = qu0Var.h;
+            }
+            this.d = ws0Var;
+            if (ws0Var != null) {
+                ws0Var.setItemAnimator(qu0Var.d);
+            }
+            return s4.v.l(15, 0);
+        }
+        return s4.v.l(0, 0);
+    }
+
+    @Override
+    public final boolean k() {
+        xv0 xv0Var = this.e;
+        if (!xv0Var.C1) {
+            ss0 ss0Var = xv0Var.W;
+            if (ss0Var == null || !ss0Var.f38040w) {
+                return false;
+            }
+            return true;
+        }
+        return true;
+    }
+
+    @Override
+    public final boolean n(RecyclerView recyclerView, s4.b1 b1Var, s4.b1 b1Var2) {
+        uv0 uv0Var;
+        ci.z6 z6Var;
+        ArrayList arrayList;
+        s4.g0 adapter = recyclerView.getAdapter();
+        if (adapter instanceof uv0) {
+            uv0Var = (uv0) adapter;
         } else {
-            f10 = 0.4f;
+            uv0Var = null;
         }
-        ViewPropertyAnimator scaleX = alpha.scaleX(f10);
-        if (!z10) {
-            f11 = 0.4f;
+        if (uv0Var == null || !uv0Var.M(b1Var.b()) || !uv0Var.M(b1Var2.b())) {
+            return false;
         }
-        scaleX.scaleY(f11).withEndAction(new b60(4, this, z10)).start();
-        uv0Var.s1(true);
+        int b10 = b1Var.b();
+        int b11 = b1Var2.b();
+        ArrayList arrayList2 = uv0Var.f31226y;
+        if (!uv0Var.h && (z6Var = uv0Var.f31223s) != null && b10 >= 0 && b10 < z6Var.f6193i.size() && b11 >= 0 && b11 < uv0Var.f31223s.f6193i.size()) {
+            if (!(uv0Var.f31223s instanceof ci.s6) && uv0Var.f31221n <= 0) {
+                arrayList = new ArrayList(uv0Var.f31223s.f6192g);
+            } else {
+                arrayList = new ArrayList();
+                for (int i10 = 0; i10 < uv0Var.f31223s.f6193i.size(); i10++) {
+                    arrayList.add(Integer.valueOf(((MessageObject) uv0Var.f31223s.f6193i.get(i10)).getId()));
+                }
+            }
+            if (!uv0Var.E) {
+                arrayList2.clear();
+                arrayList2.addAll(arrayList);
+                uv0Var.E = true;
+            }
+            MessageObject messageObject = (MessageObject) uv0Var.f31223s.f6193i.get(b10);
+            MessageObject messageObject2 = (MessageObject) uv0Var.f31223s.f6193i.get(b11);
+            arrayList.remove(Integer.valueOf(messageObject.getId()));
+            arrayList.add(Utilities.clamp(b11, arrayList.size(), 0), Integer.valueOf(messageObject.getId()));
+            uv0Var.f31223s.C(arrayList, false);
+            uv0Var.p(b10, b11);
+        }
+        return true;
+    }
+
+    @Override
+    public final void p(s4.b1 b1Var, int i10) {
+        ci.z6 z6Var;
+        ArrayList arrayList;
+        boolean z10;
+        pu0 pu0Var = this.d;
+        if (pu0Var != null && b1Var != null) {
+            pu0Var.e1(false);
+        }
+        if (i10 == 0) {
+            pu0 pu0Var2 = this.d;
+            if (pu0Var2 != null && (pu0Var2.getAdapter() instanceof uv0)) {
+                uv0 uv0Var = (uv0) this.d.getAdapter();
+                ArrayList arrayList2 = uv0Var.f31226y;
+                if (!uv0Var.h && (z6Var = uv0Var.f31223s) != null && uv0Var.E) {
+                    if (!(z6Var instanceof ci.s6) && uv0Var.f31221n <= 0) {
+                        arrayList = z6Var.f6192g;
+                    } else {
+                        arrayList = new ArrayList();
+                        for (int i11 = 0; i11 < uv0Var.f31223s.f6193i.size(); i11++) {
+                            arrayList.add(Integer.valueOf(((MessageObject) uv0Var.f31223s.f6193i.get(i11)).getId()));
+                        }
+                    }
+                    if (arrayList2.size() != arrayList.size()) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    if (!z10) {
+                        int i12 = 0;
+                        while (true) {
+                            if (i12 >= arrayList2.size()) {
+                                break;
+                            } else if (arrayList2.get(i12) != arrayList.get(i12)) {
+                                z10 = true;
+                                break;
+                            } else {
+                                i12++;
+                            }
+                        }
+                    }
+                    if (z10) {
+                        uv0Var.f31223s.C(arrayList, true);
+                    }
+                    uv0Var.E = false;
+                }
+            }
+            pu0 pu0Var3 = this.d;
+            if (pu0Var3 != null) {
+                pu0Var3.setItemAnimator(null);
+                return;
+            }
+            return;
+        }
+        pu0 pu0Var4 = this.d;
+        if (pu0Var4 != null) {
+            pu0Var4.I0(false);
+        }
+        if (b1Var != null) {
+            b1Var.f46343a.setPressed(true);
+        }
+    }
+
+    @Override
+    public final void q(s4.b1 b1Var) {
     }
 }

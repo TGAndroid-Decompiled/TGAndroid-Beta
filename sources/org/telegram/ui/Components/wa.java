@@ -6,24 +6,24 @@ import android.graphics.drawable.Drawable;
 import android.view.MotionEvent;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-public final class wa extends lw0 {
-    public final boolean f32042w0;
-    public final boolean f32043x0;
-    public final bb f32044y0;
+public final class wa extends ow0 {
+    public final boolean f32207w0;
+    public final boolean f32208x0;
+    public final bb f32209y0;
 
     public wa(bb bbVar, Context context, boolean z10, boolean z11) {
         super(context, null);
-        this.f32044y0 = bbVar;
-        this.f32042w0 = z10;
-        this.f32043x0 = z11;
+        this.f32209y0 = bbVar;
+        this.f32207w0 = z10;
+        this.f32208x0 = z11;
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        bb bbVar = this.f32044y0;
-        bbVar.J(canvas, this);
-        super.dispatchDraw(canvas);
+        bb bbVar = this.f32209y0;
         bbVar.I(canvas, this);
+        super.dispatchDraw(canvas);
+        bbVar.G(canvas, this);
     }
 
     @Override
@@ -31,8 +31,8 @@ public final class wa extends lw0 {
         Drawable drawable;
         if (motionEvent.getAction() == 0) {
             float y3 = motionEvent.getY();
-            bb bbVar = this.f32044y0;
-            drawable = ((org.telegram.ui.ActionBar.f3) bbVar).shadowDrawable;
+            bb bbVar = this.f32209y0;
+            drawable = ((org.telegram.ui.ActionBar.h3) bbVar).shadowDrawable;
             if (y3 < drawable.getBounds().top) {
                 bbVar.dismiss();
             }
@@ -42,8 +42,8 @@ public final class wa extends lw0 {
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j10) {
-        if (!this.f32043x0) {
-            this.f32044y0.getClass();
+        if (!this.f32208x0) {
+            this.f32209y0.getClass();
         }
         return super.drawChild(canvas, view, j10);
     }
@@ -61,10 +61,10 @@ public final class wa extends lw0 {
         int i13;
         qu quVar;
         int size = View.MeasureSpec.getSize(i11);
-        bb bbVar = this.f32044y0;
+        bb bbVar = this.f32209y0;
         bbVar.h = size;
-        bbVar.E(i10, i11);
-        if (this.f32042w0) {
+        bbVar.D(i10, i11);
+        if (this.f32207w0) {
             i11 = View.MeasureSpec.makeMeasureSpec(bbVar.h, 1073741824);
         }
         if (bbVar.Q != null) {
@@ -80,7 +80,7 @@ public final class wa extends lw0 {
             }
             int i14 = 0;
             if (AndroidUtilities.dp(20.0f) >= 0) {
-                z10 = ((org.telegram.ui.ActionBar.f3) bbVar).keyboardVisible;
+                z10 = ((org.telegram.ui.ActionBar.h3) bbVar).keyboardVisible;
                 if (!z10 && (quVar = bbVar.Q) != null) {
                     i13 = quVar.getEmojiPadding();
                 } else {

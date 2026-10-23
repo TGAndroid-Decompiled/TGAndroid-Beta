@@ -26,7 +26,7 @@ public abstract class i implements m {
             }
             return new e(str.charAt(0), 0);
         }
-        return b.f7882f;
+        return b.f7894f;
     }
 
     public abstract boolean c(char c10);

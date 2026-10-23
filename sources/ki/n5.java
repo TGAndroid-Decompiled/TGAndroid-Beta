@@ -5,33 +5,33 @@ import android.view.View;
 import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
 public final class n5 extends ViewGroup {
-    public final int f15407a;
-    public final o5 f15408b;
+    public final int f15467a;
+    public final o5 f15468b;
 
     public n5(o5 o5Var, Context context) {
         super(context);
-        this.f15408b = o5Var;
-        this.f15407a = AndroidUtilities.dp(16.0f);
+        this.f15468b = o5Var;
+        this.f15467a = AndroidUtilities.dp(16.0f);
         setClipChildren(false);
         setClipToPadding(false);
     }
 
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        o5 o5Var = this.f15408b;
+        o5 o5Var = this.f15468b;
         int measuredWidth = o5Var.v.getMeasuredWidth();
         int measuredHeight = o5Var.v.getMeasuredHeight();
         q5 q5Var = o5Var.v;
-        int i14 = this.f15407a;
+        int i14 = this.f15467a;
         q5Var.layout(-i14, 0, measuredWidth - i14, measuredHeight);
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
         int size = View.MeasureSpec.getSize(i10);
-        int i12 = this.f15407a;
+        int i12 = this.f15467a;
         int max = Math.max(0, size + i12);
-        o5 o5Var = this.f15408b;
+        o5 o5Var = this.f15468b;
         o5Var.v.measure(View.MeasureSpec.makeMeasureSpec(max, Integer.MIN_VALUE), i11);
         int measuredWidth = o5Var.v.getMeasuredWidth();
         setMeasuredDimension(Math.max(0, measuredWidth - i12), o5Var.v.getMeasuredHeight());

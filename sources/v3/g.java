@@ -1,15 +1,15 @@
 package v3;
 
-import c3.t;
-public final class g extends t implements h {
+import c3.v;
+public final class g extends v implements h {
     @Override
-    public final long a(long j10) {
-        return 0L;
+    public final long a() {
+        return -1L;
     }
 
     @Override
-    public final long b() {
-        return -1L;
+    public final long b(long j10) {
+        return 0L;
     }
 
     @Override

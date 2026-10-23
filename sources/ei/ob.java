@@ -1,27 +1,27 @@
 package ei;
 
-import org.telegram.ui.oz0;
+import org.telegram.ui.sz0;
 public final class ob extends qb {
-    public final int f9570g;
+    public final int f9584g;
     public final Object h;
 
     public ob(Object obj, int i10) {
-        this.f9570g = i10;
+        this.f9584g = i10;
         this.h = obj;
     }
 
     @Override
     public final void e() {
-        switch (this.f9570g) {
+        switch (this.f9584g) {
             case 0:
-                oz0 oz0Var = (oz0) this.h;
-                oz0Var.Q = false;
-                oz0Var.invalidate();
+                sz0 sz0Var = (sz0) this.h;
+                sz0Var.Q = false;
+                sz0Var.invalidate();
                 return;
             case 1:
-                ci.q4 t10 = ((ci.aa) this.h).t();
+                ci.p4 t10 = ((ci.z9) this.h).t();
                 if (t10 != null) {
-                    t10.m0(true);
+                    t10.l0(true);
                     return;
                 }
                 return;
@@ -34,21 +34,21 @@ public final class ob extends qb {
 
     @Override
     public final void f(boolean z10) {
-        switch (this.f9570g) {
+        switch (this.f9584g) {
             case 0:
-                oz0 oz0Var = (oz0) this.h;
-                oz0Var.Q = true;
-                oz0Var.invalidate();
+                sz0 sz0Var = (sz0) this.h;
+                sz0Var.Q = true;
+                sz0Var.invalidate();
                 return;
             case 1:
-                ci.q4 t10 = ((ci.aa) this.h).t();
+                ci.p4 t10 = ((ci.z9) this.h).t();
                 if (t10 != null) {
-                    t10.m0(false);
+                    t10.l0(false);
                 }
-                ci.r3 r3Var = this.f9666f;
-                if (r3Var != null) {
-                    r3Var.setTranslationX(0.0f);
-                    this.f9666f.setTranslationY(0.0f);
+                ci.q3 q3Var = this.f9682f;
+                if (q3Var != null) {
+                    q3Var.setTranslationX(0.0f);
+                    this.f9682f.setTranslationY(0.0f);
                     return;
                 }
                 return;

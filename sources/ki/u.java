@@ -15,123 +15,124 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.voip.GroupCallMessage;
 import org.telegram.tgnet.TLParseException;
-import org.telegram.ui.Components.cy0;
+import org.telegram.ui.ActionBar.j6;
+import org.telegram.ui.Components.fy0;
 import org.telegram.ui.Components.iu;
-import org.telegram.ui.eo;
-import org.telegram.ui.qn;
-import org.telegram.ui.re1;
+import org.telegram.ui.go;
+import org.telegram.ui.sn;
 import org.telegram.ui.web.HttpGetFileTask;
+import org.telegram.ui.ye1;
 public final class u implements Runnable {
-    public final int f15533a;
-    public final Object f15534b;
+    public final int f15593a;
+    public final Object f15594b;
 
     public u(Object obj, int i10) {
-        this.f15533a = i10;
-        this.f15534b = obj;
+        this.f15593a = i10;
+        this.f15594b = obj;
     }
 
     @Override
     public final void run() {
         long j10;
-        switch (this.f15533a) {
+        switch (this.f15593a) {
             case 0:
-                AndroidUtilities.showKeyboard(((x) this.f15534b).f15632e0.f22406b);
+                AndroidUtilities.showKeyboard(((x) this.f15594b).f15693e0.d);
                 return;
             case 1:
-                ((d0) this.f15534b).invalidate();
+                ((d0) this.f15594b).invalidate();
                 return;
             case 2:
-                m.s3 s3Var = (m.s3) this.f15534b;
-                s3Var.f16336c = null;
+                m.s3 s3Var = (m.s3) this.f15594b;
+                s3Var.f16399c = null;
                 s3Var.d = null;
                 s3Var.e = null;
-                s3Var.f16337f = null;
+                s3Var.f16400f = null;
                 s3Var.e(null);
                 return;
             case 3:
-                ((a2) this.f15534b).invalidateSelf();
+                ((a2) this.f15594b).invalidateSelf();
                 return;
             case 4:
-                ((h2) this.f15534b).c();
+                ((h2) this.f15594b).c();
                 return;
             case 5:
-                ((lh.b) this.f15534b).invalidate();
+                ((lh.b) this.f15594b).invalidate();
                 return;
             case 6:
-                mh.c cVar = (mh.c) this.f15534b;
+                mh.c cVar = (mh.c) this.f15594b;
                 GroupCallMessage groupCallMessage = cVar.H;
                 if (groupCallMessage != null) {
-                    cVar.f16927a.a(groupCallMessage.isSendDelayed(), true);
-                    cVar.f16928b.a(cVar.H.isSendError(), true);
+                    cVar.f16990a.a(groupCallMessage.isSendDelayed(), true);
+                    cVar.f16991b.a(cVar.H.isSendError(), true);
                     return;
                 }
                 return;
             case 7:
-                n2.d dVar = (n2.d) this.f15534b;
-                if (!dVar.f17037c) {
-                    n2.h hVar = dVar.f17036b;
+                n2.d dVar = (n2.d) this.f15594b;
+                if (!dVar.f17100c) {
+                    n2.h hVar = dVar.f17099b;
                     if (hVar != null) {
-                        hVar.a(dVar.f17035a);
+                        hVar.a(dVar.f17098a);
                     }
-                    dVar.d.f17049x.remove(dVar);
-                    dVar.f17037c = true;
+                    dVar.d.f17112x.remove(dVar);
+                    dVar.f17100c = true;
                     return;
                 }
                 return;
             case 8:
-                ((n2.b) this.f15534b).a(null);
+                ((n2.b) this.f15594b).a(null);
                 return;
             case 9:
-                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needSetDayNightTheme, (org.telegram.ui.ActionBar.g6) this.f15534b, Boolean.TRUE, null, -1);
+                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needSetDayNightTheme, (j6) this.f15594b, Boolean.TRUE, null, -1);
                 return;
             case 10:
-                ((le.b) this.f15534b).d();
+                ((le.b) this.f15594b).d();
                 return;
             case 11:
-                re1 re1Var = (re1) this.f15534b;
-                if (re1Var.getParentLayout() != null) {
-                    re1Var.H = true;
+                ye1 ye1Var = (ye1) this.f15594b;
+                if (ye1Var.getParentLayout() != null) {
+                    ye1Var.H = true;
                     Bundle bundle = new Bundle();
-                    bundle.putLong("chat_id", re1Var.f41152a);
-                    qn qnVar = new qn(bundle);
-                    qnVar.f40738ja = true;
-                    re1Var.presentFragment(qnVar);
+                    bundle.putLong("chat_id", ye1Var.f43792a);
+                    sn snVar = new sn(bundle);
+                    snVar.f41720va = true;
+                    ye1Var.presentFragment(snVar);
                     return;
                 }
                 return;
             case 12:
-                TLParseException.lambda$doThrowOrLog$0((TLParseException) this.f15534b);
+                TLParseException.lambda$doThrowOrLog$0((TLParseException) this.f15594b);
                 return;
             case 13:
-                org.telegram.ui.Components.voip.l0 l0Var = (org.telegram.ui.Components.voip.l0) this.f15534b;
+                org.telegram.ui.Components.voip.l0 l0Var = (org.telegram.ui.Components.voip.l0) this.f15594b;
                 l0Var.P0 = null;
                 l0Var.setVisibleParticipant(true);
                 return;
             case 14:
-                org.telegram.ui.Components.voip.h1 h1Var = (org.telegram.ui.Components.voip.h1) this.f15534b;
+                org.telegram.ui.Components.voip.h1 h1Var = (org.telegram.ui.Components.voip.h1) this.f15594b;
                 h1Var.K = false;
                 h1Var.o(false);
                 h1Var.W = false;
                 return;
             case 15:
-                org.telegram.ui.Components.voip.h1 h1Var2 = (org.telegram.ui.Components.voip.h1) ((mg.b) this.f15534b).f16858b;
+                org.telegram.ui.Components.voip.h1 h1Var2 = (org.telegram.ui.Components.voip.h1) ((mg.b) this.f15594b).f16921b;
                 h1Var2.e.invalidate();
                 if (!h1Var2.e.isInLayout()) {
                     h1Var2.e.requestLayout();
                     h1Var2.d.requestLayout();
-                    h1Var2.f31450f.requestLayout();
+                    h1Var2.f31631f.requestLayout();
                     return;
                 }
                 return;
             case 16:
-                ((org.telegram.ui.Components.voip.g1) this.f15534b).f31426a.i(false);
+                ((org.telegram.ui.Components.voip.g1) this.f15594b).f31607a.i(false);
                 return;
             case 17:
-                org.telegram.ui.Components.voip.f2 f2Var = (org.telegram.ui.Components.voip.f2) this.f15534b;
+                org.telegram.ui.Components.voip.f2 f2Var = (org.telegram.ui.Components.voip.f2) this.f15594b;
                 f2Var.e = false;
-                HashMap hashMap = f2Var.f31413a;
-                ArrayList arrayList = f2Var.f31415c;
-                ArrayList arrayList2 = f2Var.f31414b;
+                HashMap hashMap = f2Var.f31594a;
+                ArrayList arrayList = f2Var.f31596c;
+                ArrayList arrayList2 = f2Var.f31595b;
                 if (!arrayList2.isEmpty() || !arrayList.isEmpty()) {
                     if (f2Var.getParent() != null) {
                         TransitionManager.beginDelayedTransition(f2Var, f2Var.d);
@@ -143,7 +144,7 @@ public final class u implements Runnable {
                         while (true) {
                             if (i11 >= arrayList.size()) {
                                 break;
-                            } else if (e2Var.f31401a.equals(((org.telegram.ui.Components.voip.e2) arrayList.get(i11)).f31401a)) {
+                            } else if (e2Var.f31582a.equals(((org.telegram.ui.Components.voip.e2) arrayList.get(i11)).f31582a)) {
                                 arrayList2.remove(i10);
                                 arrayList.remove(i11);
                                 i10--;
@@ -162,7 +163,7 @@ public final class u implements Runnable {
                     hashMap.clear();
                     for (int i14 = 0; i14 < f2Var.getChildCount(); i14++) {
                         org.telegram.ui.Components.voip.e2 e2Var2 = (org.telegram.ui.Components.voip.e2) f2Var.getChildAt(i14);
-                        hashMap.put(e2Var2.f31401a, e2Var2);
+                        hashMap.put(e2Var2.f31582a, e2Var2);
                     }
                     arrayList2.clear();
                     arrayList.clear();
@@ -177,58 +178,58 @@ public final class u implements Runnable {
                 }
                 return;
             case 18:
-                TextView[] textViewArr = ((org.telegram.ui.Components.voip.n2) this.f15534b).f31588a;
+                TextView[] textViewArr = ((org.telegram.ui.Components.voip.n2) this.f15594b).f31769a;
                 TextView textView = textViewArr[0];
                 textViewArr[0] = textViewArr[1];
                 textViewArr[1] = textView;
                 return;
             case 19:
-                TextView[] textViewArr2 = ((org.telegram.ui.Components.voip.n2) ((hg.j0) this.f15534b).e).f31588a;
+                TextView[] textViewArr2 = ((org.telegram.ui.Components.voip.n2) ((hg.j0) this.f15594b).e).f31769a;
                 TextView textView2 = textViewArr2[0];
                 textViewArr2[0] = textViewArr2[1];
                 textViewArr2[1] = textView2;
                 return;
             case 20:
-                org.telegram.ui.Components.voip.r2 r2Var = (org.telegram.ui.Components.voip.r2) this.f15534b;
+                org.telegram.ui.Components.voip.r2 r2Var = (org.telegram.ui.Components.voip.r2) this.f15594b;
                 if (r2Var.getVisibility() == 0) {
                     r2Var.a();
                     return;
                 }
                 return;
             case 21:
-                org.telegram.ui.Components.voip.v2 v2Var = (org.telegram.ui.Components.voip.v2) this.f15534b;
+                org.telegram.ui.Components.voip.v2 v2Var = (org.telegram.ui.Components.voip.v2) this.f15594b;
                 v2Var.e = Bitmap.createBitmap(v2Var.getMeasuredWidth(), v2Var.getMeasuredHeight(), Bitmap.Config.ARGB_8888);
-                new Canvas(v2Var.e).drawText(v2Var.d, v2Var.getMeasuredWidth() / 2, (int) ((v2Var.getMeasuredHeight() / 2) - ((v2Var.f31800a.ascent() + v2Var.f31800a.descent()) / 2.0f)), v2Var.f31800a);
+                new Canvas(v2Var.e).drawText(v2Var.d, v2Var.getMeasuredWidth() / 2, (int) ((v2Var.getMeasuredHeight() / 2) - ((v2Var.f31981a.ascent() + v2Var.f31981a.descent()) / 2.0f)), v2Var.f31981a);
                 v2Var.postInvalidate();
                 return;
             case 22:
-                ((org.telegram.ui.web.k) this.f15534b).f42705w.W2.N(true);
+                ((org.telegram.ui.web.l) this.f15594b).f43184w.Z2.N(true);
                 return;
             case 23:
-                org.telegram.ui.web.i iVar = ((org.telegram.ui.web.o) this.f15534b).f42743s.e;
-                if (iVar != null) {
-                    iVar.d();
+                org.telegram.ui.web.j jVar = ((org.telegram.ui.web.o) this.f15594b).f43213s.e;
+                if (jVar != null) {
+                    jVar.d();
                     return;
                 }
                 return;
             case 24:
-                ((iu) this.f15534b).requestFocus();
+                ((iu) this.f15594b).requestFocus();
                 return;
             case 25:
-                pf.d.r(((org.telegram.ui.web.t0) this.f15534b).f42788b.e.getContext(), "https://play.google.com/store/apps/details?id=com.google.android.webview");
+                pf.d.r(((org.telegram.ui.web.u0) this.f15594b).f43267b.e.getContext(), "https://play.google.com/store/apps/details?id=com.google.android.webview");
                 return;
             case 26:
-                org.telegram.ui.web.e1 e1Var = (org.telegram.ui.web.e1) this.f15534b;
-                Utilities.searchQueue.postRunnable(new cy0(e1Var, new ArrayList(e1Var.f42631s.e), e1Var.f42631s.f42638n));
+                org.telegram.ui.web.f1 f1Var = (org.telegram.ui.web.f1) this.f15594b;
+                Utilities.searchQueue.postRunnable(new fy0(f1Var, new ArrayList(f1Var.f43110s.e), f1Var.f43110s.f43117n));
                 return;
             case 27:
-                HttpGetFileTask.a((HttpGetFileTask) this.f15534b);
+                HttpGetFileTask.a((HttpGetFileTask) this.f15594b);
                 return;
             case 28:
-                ((org.telegram.ui.Cells.o1) this.f15534b).invalidateSelf();
+                ((org.telegram.ui.Cells.n1) this.f15594b).invalidateSelf();
                 return;
             default:
-                org.telegram.ui.web.x1 x1Var = (org.telegram.ui.web.x1) this.f15534b;
+                org.telegram.ui.web.y1 y1Var = (org.telegram.ui.web.y1) this.f15594b;
                 File databasePath = ApplicationLoader.applicationContext.getDatabasePath("webview.db");
                 long j11 = 0;
                 if (databasePath != null && databasePath.exists()) {
@@ -242,17 +243,17 @@ public final class u implements Runnable {
                 }
                 File file = new File(ApplicationLoader.applicationContext.getApplicationInfo().dataDir, "app_webview");
                 if (file.exists()) {
-                    j10 += org.telegram.ui.web.x1.Z(file, Boolean.FALSE);
+                    j10 += org.telegram.ui.web.y1.Z(file, Boolean.FALSE);
                 }
                 File file2 = new File(ApplicationLoader.applicationContext.getApplicationInfo().dataDir, "cache/WebView");
                 if (file2.exists()) {
-                    j10 += org.telegram.ui.web.x1.Z(file2, null);
+                    j10 += org.telegram.ui.web.y1.Z(file2, null);
                 }
                 File file3 = new File(ApplicationLoader.applicationContext.getApplicationInfo().dataDir, "app_webview");
                 if (file3.exists()) {
-                    j11 = org.telegram.ui.web.x1.Z(file3, Boolean.TRUE);
+                    j11 = org.telegram.ui.web.y1.Z(file3, Boolean.TRUE);
                 }
-                AndroidUtilities.runOnUIThread(new eo(x1Var, j10, j11, 1));
+                AndroidUtilities.runOnUIThread(new go(y1Var, j10, j11, 1));
                 return;
         }
     }

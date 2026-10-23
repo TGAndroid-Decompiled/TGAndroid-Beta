@@ -1,30 +1,30 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.R;
-public final class dk implements Runnable {
-    public final qn f36414a;
+import android.content.Context;
+public final class dk extends org.telegram.ui.Components.dp {
+    public final sn f36649f;
 
-    public dk(qn qnVar) {
-        this.f36414a = qnVar;
+    public dk(sn snVar, Context context) {
+        super(context);
+        this.f36649f = snVar;
     }
 
     @Override
-    public final void run() {
-        String formatPluralString;
-        qn qnVar = this.f36414a;
-        MessageObject messageObject = qnVar.f40661d5;
-        if (messageObject != null && qnVar.T8 != null) {
-            int max = Math.max(0, messageObject.messageOwner.ttl_period - (qnVar.getConnectionsManager().getCurrentTime() - qnVar.f40661d5.messageOwner.date));
-            if (max < 86400) {
-                formatPluralString = AndroidUtilities.formatDuration(max, false, true);
-            } else {
-                formatPluralString = LocaleController.formatPluralString("Days", Math.round(max / 86400.0f), new Object[0]);
-            }
-            qnVar.T8.setSubtext(LocaleController.formatString(R.string.AutoDeleteIn, formatPluralString));
-            AndroidUtilities.runOnUIThread(qnVar.U8, 1000L);
+    public final void a(boolean z10) {
+        sn snVar = this.f36649f;
+        snVar.w7();
+        snVar.u7();
+        snVar.x7();
+        snVar.y7();
+        wk wkVar = snVar.f41621nb;
+        if (wkVar != null) {
+            wkVar.setTranslationY(snVar.I9 + getCurrentHeight());
         }
+        if (z10) {
+            snVar.P9 = true;
+            snVar.qc();
+            return;
+        }
+        snVar.t9();
     }
 }

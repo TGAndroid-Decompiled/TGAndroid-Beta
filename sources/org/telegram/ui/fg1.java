@@ -1,50 +1,47 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-public final class fg1 extends LinearLayout {
-    public final org.telegram.ui.ActionBar.d6 f37003a;
-    public final ImageView f37004b;
-    public final LinearLayout f37005c;
-    public final TextView d;
-    public final TextView e;
-    public final ImageView f37006f;
-    public boolean h;
-    public boolean f37007n;
+import org.telegram.messenger.R;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+public final class fg1 implements Utilities.Callback {
+    public final int f37333a;
+    public final UserInfoActivity f37334b;
 
-    public fg1(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context);
-        setOrientation(0);
-        this.f37003a = d6Var;
-        ImageView imageView = new ImageView(context);
-        this.f37004b = imageView;
-        ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
-        imageView.setScaleType(scaleType);
-        addView(imageView, w7.z5.t(40, 40, 19, 12, 0, 12, 0));
-        LinearLayout linearLayout = new LinearLayout(context);
-        this.f37005c = linearLayout;
-        linearLayout.setOrientation(1);
-        linearLayout.setPadding(0, AndroidUtilities.dp(10.0f), 0, AndroidUtilities.dp(10.0f));
-        addView(linearLayout, w7.z5.p(0, -2, 1.0f, 23, 0, 0, 32, 0));
-        TextView textView = new TextView(context);
-        this.d = textView;
-        textView.setTextSize(1, 16.0f);
-        TextView i10 = com.google.android.gms.internal.play_billing.k3.i(linearLayout, textView, w7.z5.t(-1, -2, 7, 0, 0, 0, 0), context);
-        this.e = i10;
-        i10.setTextSize(1, 13.0f);
-        linearLayout.addView(i10, w7.z5.r(-1, -2, 7, 0.0f, 4.33f, 0.0f, 0.0f));
-        ImageView imageView2 = new ImageView(context);
-        this.f37006f = imageView2;
-        imageView2.setScaleType(scaleType);
-        addView(imageView2, w7.z5.t(40, 40, 21, 12, 0, 12, 0));
+    public fg1(UserInfoActivity userInfoActivity, int i10) {
+        this.f37333a = i10;
+        this.f37334b = userInfoActivity;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
+    public final void run(Object obj) {
+        switch (this.f37333a) {
+            case 0:
+                UserInfoActivity userInfoActivity = this.f37334b;
+                userInfoActivity.K = (TL_account.TL_birthday) obj;
+                org.telegram.ui.Components.d71 d71Var = userInfoActivity.f34256y;
+                if (d71Var != null) {
+                    d71Var.Z2.N(true);
+                }
+                userInfoActivity.b0(true);
+                return;
+            default:
+                TLRPC.Chat chat = (TLRPC.Chat) obj;
+                UserInfoActivity userInfoActivity2 = this.f37334b;
+                if (userInfoActivity2.L != chat) {
+                    userInfoActivity2.L = chat;
+                    if (chat != null) {
+                        org.telegram.messenger.v0.p(R.string.EditProfileChannelSet, org.telegram.ui.Components.xc.a0(userInfoActivity2), R.raw.contact_check, 36);
+                    }
+                    userInfoActivity2.b0(true);
+                    org.telegram.ui.Components.d71 d71Var2 = userInfoActivity2.f34256y;
+                    if (d71Var2 != null) {
+                        d71Var2.Z2.N(true);
+                        return;
+                    }
+                    return;
+                }
+                return;
+        }
     }
 }

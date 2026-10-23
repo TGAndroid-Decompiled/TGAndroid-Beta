@@ -2,87 +2,114 @@ package org.telegram.ui.Cells;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.view.View;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import android.text.Layout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.UserObject;
-import org.telegram.messenger.nk;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.f11;
-import org.telegram.ui.Components.y21;
-public abstract class b0 extends View {
-    public final org.telegram.ui.ActionBar.d6 f22033a;
-    public final c0 f22034b;
-    public final y21 f22035c;
-    public int d;
-    public float e;
+import org.telegram.ui.Components.i11;
+public final class b0 extends Drawable {
+    public final RectF f22119a = new RectF();
+    public final int f22120b;
+    public final org.telegram.ui.ActionBar.g6 f22121c;
+    public final i11 d;
+    public final i11 e;
+    public final Drawable f22122f;
+    public final Drawable f22123g;
+    public int h;
+    public int f22124i;
+    public final Paint f22125j;
 
-    public b0(Context context, int i10, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context);
-        this.f22033a = d6Var;
-        this.f22034b = new c0(context, i10, d6Var);
-        y21 y21Var = new y21(i10, this, d6Var, true);
-        this.f22035c = y21Var;
-        y21Var.e = new f11("", 14.0f, AndroidUtilities.bold());
+    public b0(Context context, int i10, org.telegram.ui.ActionBar.g6 g6Var) {
+        Paint paint = new Paint(1);
+        this.f22125j = paint;
+        this.f22120b = i10;
+        this.f22121c = g6Var;
+        i11 i11Var = new i11(LocaleController.getString(R.string.BotForumAskForStartNewChatTitle), 14.0f, AndroidUtilities.bold());
+        this.d = i11Var;
+        Layout.Alignment alignment = Layout.Alignment.ALIGN_CENTER;
+        i11Var.a();
+        i11 i11Var2 = new i11("", 13.0f, null);
+        this.e = i11Var2;
+        i11Var2.n(4);
+        i11Var2.a();
+        Drawable mutate = context.getResources().getDrawable(R.drawable.filled_topic_new_24).mutate();
+        this.f22122f = mutate;
+        PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
+        mutate.setColorFilter(new PorterDuffColorFilter(-1, mode));
+        Drawable mutate2 = context.getResources().getDrawable(R.drawable.arrow_more).mutate();
+        this.f22123g = mutate2;
+        mutate2.setColorFilter(new PorterDuffColorFilter(-1, mode));
+        mutate2.setAlpha(153);
+        paint.setColor(-16777216);
+        paint.setAlpha(30);
     }
 
-    public final void a(float f7, int i10) {
-        this.d = i10;
-        this.e = f7;
+    @Override
+    public final void draw(Canvas canvas) {
+        boolean c12;
+        org.telegram.ui.ActionBar.g6 g6Var = this.f22121c;
+        Paint V0 = org.telegram.ui.ActionBar.k6.V0("paintChatActionBackground", g6Var);
+        RectF rectF = this.f22119a;
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), V0);
+        if (g6Var != null) {
+            c12 = g6Var.f();
+        } else {
+            c12 = org.telegram.ui.ActionBar.k6.c1();
+        }
+        if (c12) {
+            canvas.drawRoundRect(rectF, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), org.telegram.ui.ActionBar.k6.V0("paintChatActionBackgroundDarken", g6Var));
+        }
+        canvas.save();
+        canvas.translate(0.0f, rectF.top + AndroidUtilities.dp(17.0f));
+        canvas.drawCircle(rectF.centerX(), AndroidUtilities.dp(35.0f), AndroidUtilities.dp(35.0f), this.f22125j);
+        int centerX = (int) (rectF.centerX() - AndroidUtilities.dp(20.0f));
+        int dp = AndroidUtilities.dp(15.0f);
+        Drawable drawable = this.f22122f;
+        drawable.setBounds(centerX, dp, AndroidUtilities.dp(40.0f) + centerX, AndroidUtilities.dp(40.0f) + dp);
+        drawable.draw(canvas);
+        canvas.translate(0.0f, AndroidUtilities.dp(70.0f));
+        canvas.translate(0.0f, AndroidUtilities.dp(14.0f));
+        float centerX2 = rectF.centerX();
+        i11 i11Var = this.d;
+        this.d.c(centerX2 - (i11Var.l() / 2.0f), i11Var.j() / 2.0f, 1.0f, -1, canvas);
+        canvas.translate(0.0f, i11Var.j());
+        canvas.translate(0.0f, AndroidUtilities.dp(4.0f));
+        float centerX3 = rectF.centerX();
+        i11 i11Var2 = this.e;
+        this.e.c(centerX3 - (i11Var2.l() / 2.0f), 0.0f, 1.0f, -1, canvas);
+        canvas.translate(0.0f, i11Var2.j());
+        canvas.translate(0.0f, AndroidUtilities.dp(2.0f));
+        int centerX4 = (int) (rectF.centerX() + AndroidUtilities.dp(10.0f));
+        int dp2 = AndroidUtilities.dp(20.0f);
+        Drawable drawable2 = this.f22123g;
+        drawable2.setBounds((int) (rectF.centerX() - AndroidUtilities.dp(10.0f)), 0, centerX4, dp2);
+        drawable2.draw(canvas);
+        canvas.restore();
     }
 
-    public int getSideMenuWidth() {
+    @Override
+    public final int getOpacity() {
         return 0;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        int sideMenuWidth = getSideMenuWidth();
-        int measuredWidth = getMeasuredWidth();
-        c0 c0Var = this.f22034b;
-        int i10 = ((measuredWidth - c0Var.h) + sideMenuWidth) / 2;
-        int dp = AndroidUtilities.dp(34.0f);
-        int measuredWidth2 = getMeasuredWidth();
-        float f7 = sideMenuWidth;
-        float f10 = f7 / 2.0f;
-        org.telegram.ui.ActionBar.d6 d6Var = this.f22033a;
-        if (d6Var != null) {
-            d6Var.d(f10, this.e, measuredWidth2, this.d);
-        } else {
-            org.telegram.ui.ActionBar.h6.q(f10, this.e, measuredWidth2, this.d);
-        }
-        this.f22035c.c(canvas, getWidth(), f7, 0.0f, 1.0f, 1.0f, false);
-        c0Var.setBounds(i10, dp, c0Var.h + i10, c0Var.f22084i + dp);
-        c0Var.draw(canvas);
+    public final void onBoundsChange(Rect rect) {
+        super.onBoundsChange(rect);
+        this.f22119a.set(rect);
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), nk.C(40.0f, this.f22034b.f22084i, 1073741824));
+    public final void setAlpha(int i10) {
     }
 
-    public void setDialogId(long j10) {
-        c0 c0Var = this.f22034b;
-        f11 f11Var = c0Var.d;
-        TLRPC.User user = MessagesController.getInstance(c0Var.f22080b).getUser(Long.valueOf(j10));
-        f11 f11Var2 = c0Var.e;
-        f11Var2.n(1);
-        f11Var2.q(9999.0f);
-        f11Var2.r(LocaleController.formatString(R.string.BotForumAskForStartNewChat, UserObject.getUserName(user)));
-        float b10 = (f11Var2.b() / 2.0f) * 1.2f;
-        f11Var2.n(4);
-        float f7 = (int) (AndroidUtilities.displaySize.x * 0.95f);
-        f11Var2.q(Math.min(f7, b10));
-        if (f11Var2.f26024b.getLineCount() > 2) {
-            f11Var2.q(Math.min(f7, b10 * 1.2f));
-        }
-        float min = Math.min(Math.max(Math.max(0.0f, f11Var2.b()), f11Var.b()) + AndroidUtilities.dp(32.0f), f7);
-        float j11 = f11Var.j();
-        float j12 = f11Var2.j();
-        c0Var.h = (int) min;
-        c0Var.f22084i = (int) (j12 + j11 + AndroidUtilities.dp(17.0f) + 0.0f + AndroidUtilities.dp(70.0f) + AndroidUtilities.dp(14.0f) + AndroidUtilities.dp(4.0f) + AndroidUtilities.dp(2.0f) + AndroidUtilities.dp(20.0f) + AndroidUtilities.dp(5.0f));
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

@@ -1,48 +1,36 @@
 package org.telegram.ui.Components;
 
-import android.view.ViewGroup;
-public final class it0 extends g.o {
-    public final int f27340c;
-    public final Object d;
-    public final ViewGroup e;
+import android.content.Context;
+import java.util.ArrayList;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.MessageObject;
+public final class it0 extends org.telegram.ui.Cells.j7 {
+    public final xv0 f27448l0;
 
-    public it0(ViewGroup viewGroup, Object obj, int i10) {
-        this.f27340c = i10;
-        this.e = viewGroup;
-        this.d = obj;
+    public it0(xv0 xv0Var, Context context) {
+        super(context);
+        this.f27448l0 = xv0Var;
     }
 
     @Override
-    public final int i(int i10) {
-        int i11;
-        switch (this.f27340c) {
-            case 0:
-                nu0 nu0Var = (nu0) this.d;
-                s4.g0 adapter = nu0Var.f28885r.getAdapter();
-                uv0 uv0Var = (uv0) this.e;
-                ov0 ov0Var = uv0Var.I;
-                if (adapter == ov0Var) {
-                    if (ov0Var.j(i10) != 2) {
-                        return 1;
-                    }
-                    return nu0Var.f28886s.J;
-                } else if (uv0.p(uv0Var, adapter) == -1) {
-                    return 1;
-                } else {
-                    ((rv0) adapter).getClass();
-                    return 1;
-                }
-            default:
-                di.h hVar = (di.h) this.d;
-                u61 u61Var = ((c71) this.e).W2;
-                if (u61Var == null) {
-                    return hVar.J;
-                }
-                h61 G = u61Var.G(i10);
-                if (G == null || (i11 = G.f26795u) == -1) {
-                    return hVar.J;
-                }
-                return i11;
+    public final boolean d(MessageObject messageObject) {
+        ArrayList<MessageObject> arrayList;
+        boolean isVoice = messageObject.isVoice();
+        xv0 xv0Var = this.f27448l0;
+        if (!isVoice && !messageObject.isRoundVideo()) {
+            if (!messageObject.isMusic()) {
+                return false;
+            }
+            return MediaController.getInstance().setPlaylist(xv0Var.f32707t1[4].f28757a, messageObject, xv0Var.f32667c1);
         }
+        boolean playMessage = MediaController.getInstance().playMessage(messageObject);
+        MediaController mediaController = MediaController.getInstance();
+        if (playMessage) {
+            arrayList = xv0Var.f32707t1[4].f28757a;
+        } else {
+            arrayList = null;
+        }
+        mediaController.setVoiceMessagesPlaylist(arrayList, false);
+        return playMessage;
     }
 }

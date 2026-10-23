@@ -1,10 +1,10 @@
 package n2;
 public final class w {
-    public final byte[] f17075a;
-    public final u2.u f17076b;
+    public final byte[] f17138a;
+    public final u2.v f17139b;
 
     public w(mi.q qVar) {
-        this.f17075a = (byte[]) qVar.f16973b;
-        this.f17076b = (u2.u) qVar.f16974c;
+        this.f17138a = (byte[]) qVar.f17036b;
+        this.f17139b = (u2.v) qVar.f17037c;
     }
 }

@@ -1,326 +1,549 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.text.Layout;
+import android.util.Pair;
 import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.tl.TL_iv;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
 public final class yz0 {
-    public a01 f32773a;
-    public xz0 f32774b;
-    public TL_iv.pageTableCell f32775c;
-    public final int d;
-    public int e;
-    public int f32776f;
-    public int f32777g;
-    public int h;
-    public int f32778i;
-    public int f32779j;
-    public int f32780k;
-    public int f32781l;
-    public int f32782m;
-    public int f32783n;
-    public int f32784o;
-    public int f32785p;
-    public int f32786q;
-    public int f32787r = -1;
-    public final f01 f32788s;
+    public final boolean f33069a;
+    public m.g3 d;
+    public m.g3 f33072f;
+    public m.g3 h;
+    public int[] f33075j;
+    public int[] f33077l;
+    public wz0[] f33079n;
+    public int[] f33081p;
+    public boolean f33083r;
+    public int[] f33085t;
+    public final i01 f33088x;
+    public int f33070b = Integer.MIN_VALUE;
+    public int f33071c = Integer.MIN_VALUE;
+    public boolean e = false;
+    public boolean f33073g = false;
+    public boolean f33074i = false;
+    public boolean f33076k = false;
+    public boolean f33078m = false;
+    public boolean f33080o = false;
+    public boolean f33082q = false;
+    public boolean f33084s = false;
+    public boolean f33086u = true;
+    public final e01 v = new e01(0);
+    public final e01 f33087w = new e01(-100000);
 
-    public yz0(f01 f01Var, int i10) {
-        this.f32788s = f01Var;
-        this.d = i10;
+    public yz0(i01 i01Var, boolean z10) {
+        this.f33088x = i01Var;
+        this.f33069a = z10;
     }
 
-    public final void a(Canvas canvas, View view, boolean z10) {
-        boolean z11;
-        boolean z12;
-        boolean z13;
-        boolean z14;
+    public static void j(ArrayList arrayList, c01 c01Var, e01 e01Var, boolean z10) {
+        if (c01Var.a() != 0) {
+            if (z10) {
+                int size = arrayList.size();
+                int i10 = 0;
+                while (i10 < size) {
+                    Object obj = arrayList.get(i10);
+                    i10++;
+                    if (((wz0) obj).f32385a.equals(c01Var)) {
+                        return;
+                    }
+                }
+            }
+            arrayList.add(new wz0(c01Var, e01Var));
+        }
+    }
+
+    public static boolean m(int[] iArr, wz0 wz0Var) {
+        if (wz0Var.f32387c) {
+            c01 c01Var = wz0Var.f32385a;
+            int i10 = c01Var.f25190a;
+            int i11 = c01Var.f25191b;
+            int i12 = iArr[i10] + wz0Var.f32386b.f25803a;
+            if (i12 > iArr[i11]) {
+                iArr[i11] = i12;
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    public final void a(m.g3 g3Var, boolean z10) {
+        for (e01 e01Var : (e01[]) ((Object[]) g3Var.d)) {
+            e01Var.f25803a = Integer.MIN_VALUE;
+        }
+        zz0[] zz0VarArr = (zz0[]) ((Object[]) f().d);
+        for (int i10 = 0; i10 < zz0VarArr.length; i10++) {
+            int d = zz0VarArr[i10].d(z10);
+            e01 e01Var2 = (e01) ((Object[]) g3Var.d)[((int[]) g3Var.f16265b)[i10]];
+            int i11 = e01Var2.f25803a;
+            if (!z10) {
+                d = -d;
+            }
+            e01Var2.f25803a = Math.max(i11, d);
+        }
+    }
+
+    public final void b(boolean z10) {
+        int[] iArr;
+        f01 f01Var;
+        int i10;
+        if (z10) {
+            iArr = this.f33075j;
+        } else {
+            iArr = this.f33077l;
+        }
+        i01 i01Var = this.f33088x;
+        int childCount = i01Var.getChildCount();
+        for (int i11 = 0; i11 < childCount; i11++) {
+            b01 d = i01Var.d(i11);
+            d01 d01Var = d.f24898a;
+            boolean z11 = this.f33069a;
+            if (z11) {
+                f01Var = d01Var.f25477b;
+            } else {
+                f01Var = d01Var.f25476a;
+            }
+            c01 c01Var = f01Var.f26119b;
+            if (z10) {
+                i10 = c01Var.f25190a;
+            } else {
+                i10 = c01Var.f25191b;
+            }
+            iArr[i10] = Math.max(iArr[i10], i01Var.f(d, z11, z10));
+        }
+    }
+
+    public final m.g3 c(boolean z10) {
+        c01 c01Var;
+        xz0 xz0Var = new xz0(c01.class, e01.class);
+        f01[] f01VarArr = (f01[]) ((Object[]) f().f16266c);
+        int length = f01VarArr.length;
+        for (int i10 = 0; i10 < length; i10++) {
+            if (z10) {
+                c01Var = f01VarArr[i10].f26119b;
+            } else {
+                c01 c01Var2 = f01VarArr[i10].f26119b;
+                c01Var = new c01(c01Var2.f25191b, c01Var2.f25190a);
+            }
+            ?? obj = new Object();
+            obj.f25803a = Integer.MIN_VALUE;
+            xz0Var.add(Pair.create(c01Var, obj));
+        }
+        return xz0Var.h();
+    }
+
+    public final wz0[] d() {
+        if (this.f33079n == null) {
+            ArrayList arrayList = new ArrayList();
+            ArrayList arrayList2 = new ArrayList();
+            if (this.f33072f == null) {
+                this.f33072f = c(true);
+            }
+            if (!this.f33073g) {
+                a(this.f33072f, true);
+                this.f33073g = true;
+            }
+            m.g3 g3Var = this.f33072f;
+            int i10 = 0;
+            while (true) {
+                c01[] c01VarArr = (c01[]) ((Object[]) g3Var.f16266c);
+                if (i10 >= c01VarArr.length) {
+                    break;
+                }
+                j(arrayList, c01VarArr[i10], ((e01[]) ((Object[]) g3Var.d))[i10], false);
+                i10++;
+            }
+            if (this.h == null) {
+                this.h = c(false);
+            }
+            if (!this.f33074i) {
+                a(this.h, false);
+                this.f33074i = true;
+            }
+            m.g3 g3Var2 = this.h;
+            int i11 = 0;
+            while (true) {
+                c01[] c01VarArr2 = (c01[]) ((Object[]) g3Var2.f16266c);
+                if (i11 >= c01VarArr2.length) {
+                    break;
+                }
+                j(arrayList2, c01VarArr2[i11], ((e01[]) ((Object[]) g3Var2.d))[i11], false);
+                i11++;
+            }
+            if (this.f33086u) {
+                int i12 = 0;
+                while (i12 < e()) {
+                    int i13 = i12 + 1;
+                    j(arrayList, new c01(i12, i13), new e01(0), true);
+                    i12 = i13;
+                }
+            }
+            int e = e();
+            j(arrayList, new c01(0, e), this.v, false);
+            j(arrayList2, new c01(e, 0), this.f33087w, false);
+            wz0[] q6 = q(arrayList);
+            wz0[] q10 = q(arrayList2);
+            Object[] objArr = (Object[]) Array.newInstance(wz0[].class.getComponentType(), q6.length + q10.length);
+            System.arraycopy(q6, 0, objArr, 0, q6.length);
+            System.arraycopy(q10, 0, objArr, q6.length, q10.length);
+            this.f33079n = (wz0[]) objArr;
+        }
+        if (!this.f33080o) {
+            if (this.f33072f == null) {
+                this.f33072f = c(true);
+            }
+            if (!this.f33073g) {
+                a(this.f33072f, true);
+                this.f33073g = true;
+            }
+            if (this.h == null) {
+                this.h = c(false);
+            }
+            if (!this.f33074i) {
+                a(this.h, false);
+                this.f33074i = true;
+            }
+            this.f33080o = true;
+        }
+        return this.f33079n;
+    }
+
+    public final int e() {
+        int max = Math.max(this.f33070b, h());
+        if (max <= 1024) {
+            return max;
+        }
+        i01.g("Table grid count out of bounds");
+        throw null;
+    }
+
+    public final m.g3 f() {
+        f01 f01Var;
         int i10;
         int i11;
         int i12;
-        Paint paint;
-        int i13;
-        Paint paint2;
-        int i14;
-        float f7;
-        float f10;
-        float f11;
-        float f12;
-        RectF rectF;
-        int i15;
-        int i16;
-        int i17;
-        org.telegram.ui.Cells.n9 n9Var;
-        Canvas canvas2 = canvas;
-        if (this.f32775c != null) {
-            int i18 = this.f32785p + this.f32780k;
-            f01 f01Var = this.f32788s;
-            int i19 = f01Var.f26018y;
-            Path path = f01Var.L;
-            e01 e01Var = f01Var.O;
-            float[] fArr = f01Var.N;
-            RectF rectF2 = f01Var.M;
-            if (i18 == i19) {
-                z11 = true;
-            } else {
-                z11 = false;
+        f01 f01Var2;
+        zz0 zz0Var;
+        m.g3 g3Var = this.d;
+        boolean z10 = this.f33069a;
+        i01 i01Var = this.f33088x;
+        if (g3Var == null) {
+            xz0 xz0Var = new xz0(f01.class, zz0.class);
+            int childCount = i01Var.getChildCount();
+            for (int i13 = 0; i13 < childCount; i13++) {
+                d01 d01Var = i01Var.d(i13).f24898a;
+                if (z10) {
+                    f01Var2 = d01Var.f25477b;
+                } else {
+                    f01Var2 = d01Var.f25476a;
+                }
+                switch (f01.a(f01Var2, z10).f31257a) {
+                    case 3:
+                        zz0Var = new zz0();
+                        break;
+                    default:
+                        zz0Var = new zz0();
+                        break;
+                }
+                xz0Var.add(Pair.create(f01Var2, zz0Var));
             }
-            if (this.f32786q + this.f32781l == f01Var.E) {
-                z12 = true;
-            } else {
-                z12 = false;
+            this.d = xz0Var.h();
+        }
+        if (!this.e) {
+            for (zz0 zz0Var2 : (zz0[]) ((Object[]) this.d.d)) {
+                zz0Var2.c();
             }
-            int dp = AndroidUtilities.dp(8.0f);
-            boolean z15 = this.f32775c.header;
-            if (z15 || (f01Var.H && this.f32773a.f24434a.f25085b.f33078a % 2 == 0)) {
-                int i20 = this.f32785p;
-                if (i20 == 0 && this.f32786q == 0) {
-                    float f13 = dp;
-                    fArr[1] = f13;
-                    fArr[0] = f13;
-                    z13 = true;
+            int childCount2 = i01Var.getChildCount();
+            for (int i14 = 0; i14 < childCount2; i14++) {
+                b01 d = i01Var.d(i14);
+                d01 d01Var2 = d.f24898a;
+                if (z10) {
+                    f01Var = d01Var2.f25477b;
                 } else {
-                    fArr[1] = 0.0f;
-                    fArr[0] = 0.0f;
-                    z13 = false;
+                    f01Var = d01Var2.f25476a;
                 }
-                if (z11 && this.f32786q == 0) {
-                    float f14 = dp;
-                    fArr[3] = f14;
-                    fArr[2] = f14;
-                    z13 = true;
+                if (z10) {
+                    i10 = d.f24905k;
                 } else {
-                    fArr[3] = 0.0f;
-                    fArr[2] = 0.0f;
+                    i10 = d.f24906l;
                 }
-                if (z11 && z12) {
-                    float f15 = dp;
-                    fArr[5] = f15;
-                    fArr[4] = f15;
-                    z13 = true;
+                int e = i01Var.e(d, z10, false) + i01Var.e(d, z10, true) + i10;
+                float f7 = f01Var.d;
+                if (f7 == 0.0f) {
+                    i11 = 0;
                 } else {
-                    fArr[5] = 0.0f;
-                    fArr[4] = 0.0f;
+                    i11 = this.f33085t[i14];
                 }
-                if (i20 == 0 && z12) {
-                    float f16 = dp;
-                    fArr[7] = f16;
-                    fArr[6] = f16;
-                    z14 = true;
+                int i15 = e + i11;
+                m.g3 g3Var2 = this.d;
+                zz0 zz0Var3 = (zz0) ((Object[]) g3Var2.d)[((int[]) g3Var2.f16265b)[i14]];
+                int i16 = zz0Var3.f33376c;
+                if (f01Var.f26120c == i01.R && f7 == 0.0f) {
+                    i12 = 0;
                 } else {
-                    fArr[7] = 0.0f;
-                    fArr[6] = 0.0f;
-                    z14 = z13;
+                    i12 = 2;
                 }
-                if (z14) {
-                    rectF2.set(i20, this.f32786q, i20 + this.f32780k, i12 + this.f32781l);
-                    path.reset();
-                    path.addRoundRect(rectF2, fArr, Path.Direction.CW);
-                    if (this.f32775c.header) {
-                        canvas2.drawPath(path, e01Var.getHeaderPaint());
+                zz0Var3.f33376c = i12 & i16;
+                int a2 = f01.a(f01Var, z10).a(d, i15);
+                zz0Var3.b(a2, i15 - a2);
+            }
+            this.e = true;
+        }
+        return this.d;
+    }
+
+    public final int[] g() {
+        f01 f01Var;
+        boolean z10;
+        f01 f01Var2;
+        if (this.f33081p == null) {
+            this.f33081p = new int[e() + 1];
+        }
+        if (!this.f33082q) {
+            int[] iArr = this.f33081p;
+            boolean z11 = this.f33084s;
+            float f7 = 0.0f;
+            boolean z12 = this.f33069a;
+            i01 i01Var = this.f33088x;
+            if (!z11) {
+                int childCount = i01Var.getChildCount();
+                int i10 = 0;
+                while (true) {
+                    if (i10 < childCount) {
+                        d01 d01Var = i01Var.d(i10).f24898a;
+                        if (z12) {
+                            f01Var2 = d01Var.f25477b;
+                        } else {
+                            f01Var2 = d01Var.f25476a;
+                        }
+                        if (f01Var2.d != 0.0f) {
+                            z10 = true;
+                            break;
+                        }
+                        i10++;
                     } else {
-                        canvas2.drawPath(path, e01Var.getStripPaint());
+                        z10 = false;
+                        break;
                     }
-                } else if (z15) {
-                    canvas2.drawRect(i20, this.f32786q, i20 + this.f32780k, i11 + this.f32781l, e01Var.getHeaderPaint());
-                    canvas2 = canvas;
-                } else {
-                    canvas2 = canvas;
-                    canvas2.drawRect(i20, this.f32786q, this.f32780k + i20, i10 + this.f32781l, e01Var.getStripPaint());
+                }
+                this.f33083r = z10;
+                this.f33084s = true;
+            }
+            if (!this.f33083r) {
+                p(d(), iArr, true);
+            } else {
+                if (this.f33085t == null) {
+                    this.f33085t = new int[i01Var.getChildCount()];
+                }
+                Arrays.fill(this.f33085t, 0);
+                p(d(), iArr, true);
+                int childCount2 = (i01Var.getChildCount() * this.v.f25803a) + 1;
+                if (childCount2 >= 2) {
+                    int childCount3 = i01Var.getChildCount();
+                    for (int i11 = 0; i11 < childCount3; i11++) {
+                        d01 d01Var2 = i01Var.d(i11).f24898a;
+                        if (z12) {
+                            f01Var = d01Var2.f25477b;
+                        } else {
+                            f01Var = d01Var2.f25476a;
+                        }
+                        f7 += f01Var.d;
+                    }
+                    int i12 = -1;
+                    boolean z13 = true;
+                    int i13 = 0;
+                    while (i13 < childCount2) {
+                        int i14 = (int) ((i13 + childCount2) / 2);
+                        l();
+                        o(f7, i14);
+                        boolean p5 = p(d(), iArr, false);
+                        if (p5) {
+                            i13 = i14 + 1;
+                            i12 = i14;
+                        } else {
+                            childCount2 = i14;
+                        }
+                        z13 = p5;
+                    }
+                    if (i12 > 0 && !z13) {
+                        l();
+                        o(f7, i12);
+                        p(d(), iArr, true);
+                    }
                 }
             }
-            if (z10 && this.f32774b != null) {
-                canvas2.save();
-                canvas2.translate(b(), c());
-                if (this.f32787r >= 0 && (n9Var = f01Var.f26009a) != null) {
-                    n9Var.Z(canvas2, (org.telegram.ui.Cells.m9) f01Var.getParent().getParent(), this.f32787r);
-                }
-                this.f32774b.draw(canvas2, view);
-                canvas2.restore();
-            }
-            if (f01Var.G) {
-                Paint linePaint = e01Var.getLinePaint();
-                Paint linePaint2 = e01Var.getLinePaint();
-                float strokeWidth = linePaint.getStrokeWidth() / 2.0f;
-                float strokeWidth2 = linePaint2.getStrokeWidth() / 2.0f;
-                int i21 = this.f32785p;
-                if (i21 == 0) {
-                    int i22 = this.f32786q;
-                    float f17 = i22;
-                    float f18 = this.f32781l + i22;
-                    if (i22 == 0) {
-                        f17 += dp;
-                    }
-                    float f19 = f17;
-                    if (f18 == f01Var.E) {
-                        f18 -= dp;
-                    }
-                    float f20 = i21 + strokeWidth;
-                    canvas2.drawLine(f20, f19, f20, f18, linePaint);
-                    paint = linePaint;
-                    paint2 = linePaint2;
-                } else {
-                    paint = linePaint;
-                    float f21 = i21 - strokeWidth2;
-                    paint2 = linePaint2;
-                    canvas.drawLine(f21, this.f32786q, f21, i13 + this.f32781l, paint2);
-                }
-                int i23 = this.f32786q;
-                if (i23 == 0) {
-                    int i24 = this.f32785p;
-                    float f22 = i24;
-                    float f23 = this.f32780k + i24;
-                    if (i24 == 0) {
-                        f22 += dp;
-                    }
-                    float f24 = f22;
-                    if (f23 == f01Var.f26018y) {
-                        f23 -= dp;
-                    }
-                    float f25 = i23 + strokeWidth;
-                    canvas.drawLine(f24, f25, f23, f25, paint);
-                } else {
-                    float f26 = i23 - strokeWidth2;
-                    canvas.drawLine(this.f32785p, f26, i14 + this.f32780k, f26, paint2);
-                }
-                if (z11 && (i17 = this.f32786q) == 0) {
-                    f7 = i17 + dp;
-                } else {
-                    f7 = this.f32786q - strokeWidth;
-                }
-                float f27 = f7;
-                if (z11 && z12) {
-                    f10 = (this.f32786q + this.f32781l) - dp;
-                } else {
-                    f10 = (this.f32786q + this.f32781l) - strokeWidth;
-                }
-                float f28 = (this.f32785p + this.f32780k) - strokeWidth;
-                Paint paint3 = paint;
-                canvas.drawLine(f28, f27, f28, f10, paint3);
-                int i25 = this.f32785p;
-                if (i25 == 0 && z12) {
-                    f11 = i25 + dp;
-                } else {
-                    f11 = i25 - strokeWidth;
-                }
-                if (z11 && z12) {
-                    f12 = (i25 + this.f32780k) - dp;
-                } else {
-                    f12 = (i25 + this.f32780k) - strokeWidth;
-                }
-                float f29 = (this.f32786q + this.f32781l) - strokeWidth;
-                canvas.drawLine(f11, f29, f12, f29, paint3);
-                int i26 = this.f32785p;
-                if (i26 == 0 && (i16 = this.f32786q) == 0) {
-                    float f30 = i26 + strokeWidth;
-                    float f31 = i16 + strokeWidth;
-                    float f32 = dp * 2;
-                    rectF2.set(f30, f31, f30 + f32, f32 + f31);
-                    rectF = rectF2;
-                    canvas.drawArc(rectF, -180.0f, 90.0f, false, paint3);
-                } else {
-                    rectF = rectF2;
-                }
-                if (z11 && (i15 = this.f32786q) == 0) {
-                    float f33 = (this.f32785p + this.f32780k) - strokeWidth;
-                    float f34 = dp * 2;
-                    float f35 = i15 + strokeWidth;
-                    rectF.set(f33 - f34, f35, f33, f34 + f35);
-                    canvas.drawArc(rectF, 0.0f, -90.0f, false, paint3);
-                }
-                int i27 = this.f32785p;
-                if (i27 == 0 && z12) {
-                    float f36 = i27 + strokeWidth;
-                    float f37 = (this.f32786q + this.f32781l) - strokeWidth;
-                    float f38 = dp * 2;
-                    rectF.set(f36, f37 - f38, f38 + f36, f37);
-                    canvas.drawArc(rectF, 180.0f, -90.0f, false, paint3);
-                }
-                if (z11 && z12) {
-                    float f39 = (this.f32785p + this.f32780k) - strokeWidth;
-                    float f40 = dp * 2;
-                    float f41 = (this.f32786q + this.f32781l) - strokeWidth;
-                    rectF.set(f39 - f40, f41 - f40, f39, f41);
-                    canvas.drawArc(rectF, 0.0f, 90.0f, false, paint3);
+            if (!this.f33086u) {
+                int i15 = iArr[0];
+                int length = iArr.length;
+                for (int i16 = 0; i16 < length; i16++) {
+                    iArr[i16] = iArr[i16] - i15;
                 }
             }
+            this.f33082q = true;
         }
+        return this.f33081p;
     }
 
-    public final int b() {
-        return this.f32785p + this.f32777g;
-    }
-
-    public final int c() {
-        return this.f32786q + this.h;
-    }
-
-    public final void d(int r3, int r4, boolean r5) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.yz0.d(int, int, boolean):void");
-    }
-
-    public final void e(xz0 xz0Var) {
-        Layout layout;
-        int min;
-        this.f32774b = xz0Var;
-        if (xz0Var != null) {
-            layout = xz0Var.getLayout();
-        } else {
-            layout = null;
-        }
-        if (layout != null) {
-            this.e = 0;
-            this.f32778i = 0;
-            int lineCount = layout.getLineCount();
-            for (int i10 = 0; i10 < lineCount; i10++) {
-                float lineLeft = layout.getLineLeft(i10);
-                if (i10 == 0) {
-                    min = (int) Math.ceil(lineLeft);
+    public final int h() {
+        f01 f01Var;
+        int i10 = Integer.MIN_VALUE;
+        if (this.f33071c == Integer.MIN_VALUE) {
+            i01 i01Var = this.f33088x;
+            int childCount = i01Var.getChildCount();
+            int i11 = -1;
+            for (int i12 = 0; i12 < childCount; i12++) {
+                d01 d01Var = i01Var.d(i12).f24898a;
+                if (this.f33069a) {
+                    f01Var = d01Var.f25477b;
                 } else {
-                    min = Math.min(this.f32778i, (int) Math.ceil(lineLeft));
+                    f01Var = d01Var.f25476a;
                 }
-                this.f32778i = min;
-                this.e = (int) Math.ceil(Math.max(layout.getLineWidth(i10), this.e));
+                c01 c01Var = f01Var.f26119b;
+                i11 = Math.max(Math.max(Math.max(i11, c01Var.f25190a), c01Var.f25191b), c01Var.a());
             }
-            this.f32776f = layout.getHeight();
-            return;
+            if (i11 != -1) {
+                i10 = i11;
+            }
+            this.f33071c = Math.max(0, i10);
         }
-        this.f32778i = 0;
-        this.e = 0;
-        this.f32776f = 0;
+        return this.f33071c;
     }
 
-    public final void f() {
-        int i10 = -this.f32778i;
-        this.f32777g = i10;
-        TL_iv.pageTableCell pagetablecell = this.f32775c;
-        boolean z10 = pagetablecell.align_right;
-        f01 f01Var = this.f32788s;
-        if (z10) {
-            this.f32777g = ((this.f32780k - this.e) - f01Var.v) + i10;
-        } else if (pagetablecell.align_center) {
-            this.f32777g = Math.round((this.f32780k - this.e) / 2.0f) + i10;
-        } else {
-            this.f32777g = i10 + f01Var.v;
+    public final int i(int i10) {
+        int mode = View.MeasureSpec.getMode(i10);
+        int size = View.MeasureSpec.getSize(i10);
+        e01 e01Var = this.f33087w;
+        e01 e01Var2 = this.v;
+        if (mode != Integer.MIN_VALUE) {
+            if (mode != 0) {
+                if (mode != 1073741824) {
+                    return 0;
+                }
+                e01Var2.f25803a = size;
+                e01Var.f25803a = -size;
+                this.f33082q = false;
+                return g()[e()];
+            }
+            e01Var2.f25803a = 0;
+            e01Var.f25803a = -100000;
+            this.f33082q = false;
+            return g()[e()];
+        }
+        e01Var2.f25803a = 0;
+        e01Var.f25803a = -size;
+        this.f33082q = false;
+        return g()[e()];
+    }
+
+    public final void k() {
+        this.f33071c = Integer.MIN_VALUE;
+        this.d = null;
+        this.f33072f = null;
+        this.h = null;
+        this.f33075j = null;
+        this.f33077l = null;
+        this.f33079n = null;
+        this.f33081p = null;
+        this.f33085t = null;
+        this.f33084s = false;
+        l();
+    }
+
+    public final void l() {
+        this.e = false;
+        this.f33073g = false;
+        this.f33074i = false;
+        this.f33076k = false;
+        this.f33078m = false;
+        this.f33080o = false;
+        this.f33082q = false;
+    }
+
+    public final void n(int i10) {
+        String str;
+        if (i10 != Integer.MIN_VALUE && i10 < h()) {
+            if (this.f33069a) {
+                str = "column";
+            } else {
+                str = "row";
+            }
+            i01.g(str.concat("Count must be greater than or equal to the maximum of all grid indices (and spans) defined in the LayoutParams of each child"));
+            throw null;
+        }
+        this.f33070b = i10;
+    }
+
+    public final void o(float f7, int i10) {
+        f01 f01Var;
+        Arrays.fill(this.f33085t, 0);
+        i01 i01Var = this.f33088x;
+        int childCount = i01Var.getChildCount();
+        for (int i11 = 0; i11 < childCount; i11++) {
+            d01 d01Var = i01Var.d(i11).f24898a;
+            if (this.f33069a) {
+                f01Var = d01Var.f25477b;
+            } else {
+                f01Var = d01Var.f25476a;
+            }
+            float f10 = f01Var.d;
+            if (f10 != 0.0f) {
+                int round = Math.round((i10 * f10) / f7);
+                this.f33085t[i11] = round;
+                i10 -= round;
+                f7 -= f10;
+            }
         }
     }
 
-    public final void g() {
-        TL_iv.pageTableCell pagetablecell = this.f32775c;
-        if (pagetablecell.valign_middle) {
-            this.h = (this.f32781l - this.f32776f) / 2;
-            return;
+    public final boolean p(wz0[] wz0VarArr, int[] iArr, boolean z10) {
+        int e = e() + 1;
+        loop0: for (int i10 = 0; i10 < wz0VarArr.length; i10++) {
+            Arrays.fill(iArr, 0);
+            for (int i11 = 0; i11 < e; i11++) {
+                boolean z11 = false;
+                for (wz0 wz0Var : wz0VarArr) {
+                    z11 |= m(iArr, wz0Var);
+                }
+                if (!z11) {
+                    break loop0;
+                }
+            }
+            if (!z10) {
+                return false;
+            }
+            boolean[] zArr = new boolean[wz0VarArr.length];
+            for (int i12 = 0; i12 < e; i12++) {
+                int length = wz0VarArr.length;
+                for (int i13 = 0; i13 < length; i13++) {
+                    zArr[i13] = zArr[i13] | m(iArr, wz0VarArr[i13]);
+                }
+            }
+            int i14 = 0;
+            while (true) {
+                if (i14 >= wz0VarArr.length) {
+                    break;
+                }
+                if (zArr[i14]) {
+                    wz0 wz0Var2 = wz0VarArr[i14];
+                    c01 c01Var = wz0Var2.f32385a;
+                    if (c01Var.f25190a >= c01Var.f25191b) {
+                        wz0Var2.f32387c = false;
+                        break;
+                    }
+                }
+                i14++;
+            }
         }
-        boolean z10 = pagetablecell.valign_bottom;
-        f01 f01Var = this.f32788s;
-        if (z10) {
-            this.h = (this.f32781l - this.f32776f) - f01Var.f26015s;
-        } else {
-            this.h = f01Var.f26014r;
+        return true;
+    }
+
+    public final wz0[] q(ArrayList arrayList) {
+        e0.f0 f0Var = new e0.f0(this, (wz0[]) arrayList.toArray(new wz0[0]));
+        int length = ((wz0[][]) f0Var.d).length;
+        for (int i10 = 0; i10 < length; i10++) {
+            f0Var.f(i10);
         }
+        return (wz0[]) f0Var.f8103c;
     }
 }

@@ -6,15 +6,15 @@ import java.util.ArrayList;
 import java.util.List;
 import v7.r8;
 public final class x implements eb.v {
-    public final qf.b f11769a;
-    public final gb.f f11770b;
-    public final j f11771c;
+    public final qf.b f11796a;
+    public final gb.f f11797b;
+    public final j f11798c;
     public final ArrayList d;
 
     public x(qf.b bVar, gb.f fVar, j jVar, ArrayList arrayList) {
-        this.f11769a = bVar;
-        this.f11770b = fVar;
-        this.f11771c = jVar;
+        this.f11796a = bVar;
+        this.f11797b = fVar;
+        this.f11798c = jVar;
         this.d = arrayList;
     }
 
@@ -29,16 +29,16 @@ public final class x implements eb.v {
     public final boolean c(Field field, boolean z10) {
         List<eb.a> list;
         boolean z11;
-        gb.f fVar = this.f11770b;
+        gb.f fVar = this.f11797b;
         fVar.getClass();
         if ((136 & field.getModifiers()) != 0 || field.isSynthetic() || fVar.b(field.getType(), z10)) {
             z11 = true;
             break;
         }
         if (z10) {
-            list = fVar.f10957a;
+            list = fVar.f10976a;
         } else {
-            list = fVar.f10958b;
+            list = fVar.f10977b;
         }
         if (!list.isEmpty()) {
             eb.b bVar = new eb.b(field);
@@ -55,18 +55,18 @@ public final class x implements eb.v {
 
     @Override
     public final eb.u create(eb.g gVar, lb.a aVar) {
-        Class cls = aVar.f15994a;
+        Class cls = aVar.f16057a;
         if (!Object.class.isAssignableFrom(cls)) {
             return null;
         }
-        r8 r8Var = jb.c.f14370a;
+        r8 r8Var = jb.c.f14415a;
         if (!Modifier.isStatic(cls.getModifiers()) && (cls.isAnonymousClass() || cls.isLocalClass())) {
             return new eb.d(2);
         }
         gb.d.f(this.d);
-        if (jb.c.f14370a.d(cls)) {
+        if (jb.c.f14415a.d(cls)) {
             return new w(cls, b(gVar, aVar, cls, true));
         }
-        return new u(this.f11769a.W(aVar), b(gVar, aVar, cls, false));
+        return new u(this.f11796a.W(aVar), b(gVar, aVar, cls, false));
     }
 }

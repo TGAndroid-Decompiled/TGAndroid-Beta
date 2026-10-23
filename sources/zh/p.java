@@ -14,34 +14,34 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.bs;
 import org.telegram.ui.Components.r5;
 public final class p extends View {
-    public final r5 f52073a;
-    public final Drawable f52074b;
-    public float f52075c;
+    public final r5 f52535a;
+    public final Drawable f52536b;
+    public float f52537c;
     public boolean d;
 
     public p(k0 k0Var, Context context, int i10, TLRPC.Document document) {
         super(context);
         int i11;
         if (document != null) {
-            this.f52073a = r5.m(k0Var.f52087a, 5, document);
-            this.f52074b = null;
+            this.f52535a = r5.m(k0Var.f52549a, 5, document);
+            this.f52536b = null;
             return;
         }
-        this.f52073a = null;
+        this.f52535a = null;
         if (i10 == 0) {
             i11 = R.drawable.emoji_tabs_faves;
         } else {
             i11 = R.drawable.msg_emoji_recent;
         }
         Drawable mutate = context.getDrawable(i11).mutate();
-        this.f52074b = mutate;
+        this.f52536b = mutate;
         mutate.setColorFilter(new PorterDuffColorFilter(-1711276033, PorterDuff.Mode.SRC_IN));
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        r5 r5Var = this.f52073a;
+        r5 r5Var = this.f52535a;
         if (r5Var != null) {
             r5Var.a(this);
         }
@@ -50,7 +50,7 @@ public final class p extends View {
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        r5 r5Var = this.f52073a;
+        r5 r5Var = this.f52535a;
         if (r5Var != null) {
             r5Var.o(this);
         }
@@ -64,22 +64,22 @@ public final class p extends View {
         } else {
             f7 = 0.0f;
         }
-        float f10 = this.f52075c;
+        float f10 = this.f52537c;
         if (f10 != f7) {
             if (Math.abs(f10 - f7) >= 0.02f) {
-                float f11 = this.f52075c;
+                float f11 = this.f52537c;
                 f7 = k3.y(f7, f11, 0.35f, f11);
             }
-            this.f52075c = f7;
+            this.f52537c = f7;
             invalidate();
         }
-        float interpolation = (1.0f - (bs.f25026g.getInterpolation(this.f52075c) * 0.15f)) * AndroidUtilities.dp(26.0f);
+        float interpolation = (1.0f - (bs.f25134g.getInterpolation(this.f52537c) * 0.15f)) * AndroidUtilities.dp(26.0f);
         float f12 = interpolation / 2.0f;
         int width = (int) ((getWidth() / 2.0f) - f12);
         int height = (int) ((getHeight() / 2.0f) - f12);
-        Drawable drawable = this.f52073a;
+        Drawable drawable = this.f52535a;
         if (drawable == null) {
-            drawable = this.f52074b;
+            drawable = this.f52536b;
         }
         if (drawable != null) {
             drawable.setBounds(width, height, (int) (width + interpolation), (int) (height + interpolation));

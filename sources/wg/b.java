@@ -2,7 +2,6 @@ package wg;
 
 import android.content.Context;
 import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -10,44 +9,45 @@ import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.nk;
-import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.ActionBar.j5;
-import org.telegram.ui.Components.zq;
+import org.telegram.messenger.sl;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.ActionBar.n5;
+import org.telegram.ui.ActionBar.r6;
+import org.telegram.ui.Components.yq;
 public final class b extends FrameLayout {
-    public final j5 f48957a;
-    public final ImageView f48958b;
+    public final n5 f49395a;
+    public final ImageView f49396b;
 
-    public b(Context context, d6 d6Var) {
+    public b(Context context, g6 g6Var) {
         super(context);
         int i10;
-        j5 j5Var = new j5(context);
-        this.f48957a = j5Var;
-        j5Var.setTextSize(16);
+        n5 n5Var = new n5(context);
+        this.f49395a = n5Var;
+        n5Var.setTextSize(16);
         if (LocaleController.isRTL) {
             i10 = 5;
         } else {
             i10 = 3;
         }
-        j5Var.setGravity(i10);
-        int i11 = h6.L6;
-        j5Var.setTextColor(h6.w0(i11, d6Var));
-        j5Var.setTag(Integer.valueOf(i11));
-        addView(j5Var);
+        n5Var.setGravity(i10);
+        int i11 = k6.L6;
+        r6.Z(n5Var, i11, g6Var);
+        n5Var.setTag(Integer.valueOf(i11));
+        addView(n5Var);
         ImageView imageView = new ImageView(context);
-        this.f48958b = imageView;
+        this.f49396b = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         addView(imageView);
-        j5Var.k(LocaleController.getString(R.string.BoostingAddChannelOrGroup));
+        n5Var.k(LocaleController.getString(R.string.BoostingAddChannelOrGroup));
         Drawable drawable = getResources().getDrawable(R.drawable.poll_add_circle);
         Drawable drawable2 = getResources().getDrawable(R.drawable.poll_add_plus);
-        int w02 = h6.w0(h6.N6, d6Var);
+        int i12 = k6.N6;
         PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
-        drawable.setColorFilter(new PorterDuffColorFilter(w02, mode));
-        drawable2.setColorFilter(new PorterDuffColorFilter(h6.w0(h6.f21122k7, d6Var), mode));
-        imageView.setImageDrawable(new zq(drawable, drawable2));
-        setBackgroundColor(h6.w0(h6.f21065h5, d6Var));
+        r6.z(this, drawable, i12, g6Var, mode);
+        r6.z(this, drawable2, k6.f21311k7, g6Var, mode);
+        imageView.setImageDrawable(new yq(drawable, drawable2));
+        r6.i(k6.f21254h5, this, g6Var);
     }
 
     @Override
@@ -55,13 +55,13 @@ public final class b extends FrameLayout {
         int dp;
         int measuredWidth;
         int i14 = i12 - i10;
-        j5 j5Var = this.f48957a;
-        int textHeight = ((i13 - i11) - j5Var.getTextHeight()) / 2;
+        n5 n5Var = this.f49395a;
+        int textHeight = ((i13 - i11) - n5Var.getTextHeight()) / 2;
         boolean z11 = LocaleController.isRTL;
         float f7 = 23.0f;
-        ImageView imageView = this.f48958b;
+        ImageView imageView = this.f49396b;
         if (z11) {
-            int measuredWidth2 = getMeasuredWidth() - j5Var.getMeasuredWidth();
+            int measuredWidth2 = getMeasuredWidth() - n5Var.getMeasuredWidth();
             if (imageView.getVisibility() == 0) {
                 f7 = 68.0f;
             }
@@ -72,7 +72,7 @@ public final class b extends FrameLayout {
             }
             dp = AndroidUtilities.dp(f7);
         }
-        j5Var.layout(dp, textHeight, j5Var.getMeasuredWidth() + dp, j5Var.getMeasuredHeight() + textHeight);
+        n5Var.layout(dp, textHeight, n5Var.getMeasuredWidth() + dp, n5Var.getMeasuredHeight() + textHeight);
         if (!LocaleController.isRTL) {
             measuredWidth = AndroidUtilities.dp(24.0f);
         } else {
@@ -84,8 +84,8 @@ public final class b extends FrameLayout {
     @Override
     public final void onMeasure(int i10, int i11) {
         int size = View.MeasureSpec.getSize(i10);
-        this.f48957a.measure(nk.c(94.0f, size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(20.0f), 1073741824));
-        this.f48958b.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f), 1073741824));
+        this.f49395a.measure(sl.c(94.0f, size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(20.0f), 1073741824));
+        this.f49396b.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f), 1073741824));
         setMeasuredDimension(size, AndroidUtilities.dp(50.0f));
     }
 }

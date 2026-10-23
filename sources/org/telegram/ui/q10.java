@@ -1,89 +1,65 @@
 package org.telegram.ui;
-public final class q10 implements org.telegram.ui.Components.cp0 {
-    public final int f40352a;
-    public final tg.g f40353b;
 
-    public q10(tg.g gVar, int i10) {
-        this.f40352a = i10;
-        this.f40353b = gVar;
+import android.graphics.Canvas;
+import android.view.View;
+import android.view.accessibility.AccessibilityNodeInfo;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import java.util.HashSet;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLog;
+import org.telegram.tgnet.TLRPC;
+public final class q10 extends FrameLayout implements org.telegram.ui.ActionBar.b6 {
+    public TextView f40605a;
+    public TextView f40606b;
+    public org.telegram.ui.Components.xi0 f40607c;
+    public boolean d;
+    public TLRPC.TL_dialogFilterSuggested e;
+
+    public TLRPC.TL_dialogFilterSuggested getSuggestedFilter() {
+        return this.e;
     }
 
     @Override
-    public final void L(float f7, boolean z10) {
-        switch (this.f40352a) {
-            case 0:
-                tg.o oVar = this.f40353b.f47077c;
-                if (oVar != null) {
-                    oVar.B = f7 * 2.0f;
-                    return;
-                }
-                return;
-            case 1:
-                tg.o oVar2 = this.f40353b.f47077c;
-                if (oVar2 != null) {
-                    oVar2.C = f7 * 2.0f;
-                    return;
-                }
-                return;
-            case 2:
-                tg.o oVar3 = this.f40353b.f47077c;
-                if (oVar3 != null) {
-                    oVar3.D = f7;
-                    return;
-                }
-                return;
-            default:
-                tg.o oVar4 = this.f40353b.f47077c;
-                if (oVar4 != null) {
-                    oVar4.G = f7 * 2.0f;
-                    return;
-                }
-                return;
+    public final void onDraw(Canvas canvas) {
+        if (this.d) {
+            canvas.drawLine(0.0f, getHeight() - 1, getWidth() - getPaddingRight(), getHeight() - 1, org.telegram.ui.ActionBar.k6.f21304k0);
         }
     }
 
     @Override
-    public final int Y() {
-        switch (this.f40352a) {
-            case 0:
-                return 0;
-            case 1:
-                return 0;
-            case 2:
-                return 0;
-            default:
-                return 0;
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        accessibilityNodeInfo.setEnabled(true);
+        accessibilityNodeInfo.setText(this.f40607c.getText());
+        accessibilityNodeInfo.setClassName("android.widget.Button");
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        setMeasuredDimension(View.MeasureSpec.getSize(i10), AndroidUtilities.dp(64.0f));
+        measureChildWithMargins(this.f40607c, i10, 0, i11, 0);
+        TextView textView = this.f40605a;
+        org.telegram.ui.Components.xi0 xi0Var = this.f40607c;
+        measureChildWithMargins(textView, i10, xi0Var.getMeasuredWidth(), i11, 0);
+        measureChildWithMargins(this.f40606b, i10, xi0Var.getMeasuredWidth(), i11, 0);
+    }
+
+    public void setAddOnClickListener(View.OnClickListener onClickListener) {
+        this.f40607c.setOnClickListener(onClickListener);
+    }
+
+    @Override
+    public final void updateColors() {
+        try {
+            this.f40607c.setProgressColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.Nh, false));
+            invalidate();
+        } catch (Exception e) {
+            FileLog.e(e);
         }
     }
 
     @Override
-    public final CharSequence getContentDescription() {
-        switch (this.f40352a) {
-            case 0:
-                return null;
-            case 1:
-                return null;
-            case 2:
-                return null;
-            default:
-                return null;
-        }
-    }
-
-    @Override
-    public final void v() {
-        int i10 = this.f40352a;
-    }
-
-    private final void a() {
-    }
-
-    private final void b() {
-    }
-
-    private final void c() {
-    }
-
-    private final void d() {
+    public final void addColorKeys(HashSet hashSet) {
     }
 }

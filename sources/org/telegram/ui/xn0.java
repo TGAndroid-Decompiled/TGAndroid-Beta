@@ -1,90 +1,25 @@
 package org.telegram.ui;
 
-import android.content.ActivityNotFoundException;
-import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
-import android.webkit.RenderProcessGoneDetail;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class xn0 extends WebViewClient {
-    public final Context f43256a;
-    public final eo0 f43257b;
+public final class xn0 {
+    public final io0 f43625a;
 
-    public xn0(eo0 eo0Var, Context context) {
-        this.f43257b = eo0Var;
-        this.f43256a = context;
+    public xn0(io0 io0Var) {
+        this.f43625a = io0Var;
     }
 
-    @Override
-    public final void onPageFinished(WebView webView, String str) {
-        super.onPageFinished(webView, str);
-        eo0 eo0Var = this.f43257b;
-        eo0Var.f36743z0 = false;
-        eo0Var.H0(true, false);
-        eo0Var.K0();
-    }
-
-    @Override
-    public final boolean onRenderProcessGone(WebView webView, RenderProcessGoneDetail renderProcessGoneDetail) {
-        eo0 eo0Var = this.f43257b;
-        try {
-            if (!AndroidUtilities.isSafeToShow(eo0Var.getParentActivity())) {
-                return true;
-            }
-            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(eo0Var.getParentActivity(), 0, eo0Var.Y0);
-            alertDialog$Builder.f20609a.R = LocaleController.getString(R.string.ChromeCrashTitle);
-            alertDialog$Builder.f20609a.T = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ChromeCrashMessage), new ck0(this, 10));
-            alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
-            alertDialog$Builder.o();
-            return true;
-        } catch (Exception e) {
-            FileLog.e(e);
-            return false;
+    public final void a(Exception exc) {
+        io0 io0Var = this.f43625a;
+        if (io0Var.Q0) {
+            return;
         }
-    }
-
-    @Override
-    public final boolean shouldOverrideUrlLoading(WebView webView, String str) {
-        Uri parse;
-        boolean z10;
-        eo0 eo0Var = this.f43257b;
-        eo0Var.f36741y = !str.equals(eo0Var.f36739x);
-        try {
-            parse = Uri.parse(str);
-        } catch (Exception unused) {
+        io0Var.H0(true, false);
+        io0Var.D0(false);
+        if (!(exc instanceof vc.a) && !(exc instanceof vc.b)) {
+            org.telegram.ui.Components.f5.w0(io0Var, exc.getMessage());
+        } else {
+            org.telegram.ui.Components.f5.w0(io0Var, LocaleController.getString(R.string.PaymentConnectionFailed));
         }
-        if ("t.me".equals(parse.getHost())) {
-            eo0Var.t0();
-            return true;
-        }
-        if (!eo0.f36702h1.contains(parse.getScheme())) {
-            if (!eo0.f36701g1.contains(parse.getScheme())) {
-                try {
-                    if (eo0Var.getParentActivity() != null) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                    if (z10) {
-                        eo0Var.getParentActivity().startActivityForResult(new Intent("android.intent.action.VIEW", parse), 210);
-                        return true;
-                    }
-                } catch (ActivityNotFoundException unused2) {
-                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(this.f43256a);
-                    alertDialog$Builder.f20609a.R = eo0Var.f36728p0;
-                    alertDialog$Builder.f20609a.T = LocaleController.getString(R.string.PaymentAppNotFoundForDeeplink);
-                    alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
-                    alertDialog$Builder.o();
-                }
-            }
-            return super.shouldOverrideUrlLoading(webView, str);
-        }
-        return true;
     }
 }

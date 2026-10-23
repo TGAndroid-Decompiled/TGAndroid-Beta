@@ -1,5 +1,6 @@
 package org.telegram.messenger.video;
 
+import i2.o1;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.ShortBuffer;
@@ -13,10 +14,10 @@ public class AudioBufferConverter {
     private void checkChannels(int i10, int i11) {
         if (i10 != 6 || (i11 != 1 && i11 != 2)) {
             if (i10 != 1 && i10 != 2) {
-                throw new UnsupportedOperationException(i2.e.k(i10, "Input channel count (", ") not supported."));
+                throw new UnsupportedOperationException(o1.l(i10, "Input channel count (", ") not supported."));
             }
             if (i11 != 1 && i11 != 2) {
-                throw new UnsupportedOperationException(i2.e.k(i11, "Output channel count (", ") not supported."));
+                throw new UnsupportedOperationException(o1.l(i11, "Output channel count (", ") not supported."));
             }
         }
     }
@@ -40,7 +41,7 @@ public class AudioBufferConverter {
         this.mRemixer.P0(shortBuffer, i11, createBuffer, i13);
         createBuffer.rewind();
         ShortBuffer createBuffer2 = createBuffer(((int) Math.ceil((E1 * i12) / i10)) + 10);
-        this.mResampler.C(createBuffer, i10, createBuffer2, i12, i13);
+        this.mResampler.z(createBuffer, i10, createBuffer2, i12, i13);
         createBuffer2.limit(createBuffer2.position());
         createBuffer2.rewind();
         return createBuffer2;

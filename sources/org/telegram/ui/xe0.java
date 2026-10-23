@@ -1,38 +1,30 @@
 package org.telegram.ui;
 
-import android.os.Bundle;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class xe0 implements RequestDelegate {
-    public final int f43203a;
-    public final hf0 f43204b;
-    public final Bundle f43205c;
+import android.content.Intent;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.NotificationCenter;
+public final class xe0 implements NotificationCenter.NotificationCenterDelegate {
+    public final ye0 f43588a;
 
-    public xe0(hf0 hf0Var, Bundle bundle, int i10) {
-        this.f43203a = i10;
-        this.f43204b = hf0Var;
-        this.f43205c = bundle;
+    public xe0(ye0 ye0Var) {
+        this.f43588a = ye0Var;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f43203a) {
-            case 0:
-                hf0 hf0Var = this.f43204b;
-                if (tLObject != null) {
-                    AndroidUtilities.runOnUIThread(new ve0(hf0Var, this.f43205c, tLObject, 2));
-                    return;
-                } else if (tL_error != null && tL_error.text != null) {
-                    AndroidUtilities.runOnUIThread(new z70(23, hf0Var, tL_error));
-                    return;
-                } else {
-                    return;
-                }
-            default:
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.i90(this.f43204b, tL_error, this.f43205c, tLObject));
-                return;
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        ye0 ye0Var = this.f43588a;
+        int intValue = ((Integer) objArr[0]).intValue();
+        ((Integer) objArr[1]).getClass();
+        Intent intent = (Intent) objArr[2];
+        NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.onActivityResultReceived);
+        if (intValue == 200) {
+            try {
+                ye0Var.f43790y = (GoogleSignInAccount) w7.b9.b(intent).getResult(com.google.android.gms.common.api.f.class);
+                ye0Var.h(null);
+            } catch (com.google.android.gms.common.api.f e) {
+                FileLog.e(e);
+            }
         }
     }
 }

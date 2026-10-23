@@ -22,10 +22,10 @@ import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.nk;
+import org.telegram.messenger.sl;
 import org.telegram.ui.Components.bs;
 import org.telegram.ui.Components.p31;
-import org.telegram.ui.Components.wc0;
+import org.telegram.ui.Components.yc0;
 import org.webrtc.RendererCommon;
 import w7.z5;
 public class q2 extends FrameLayout {
@@ -48,26 +48,26 @@ public class q2 extends FrameLayout {
     public float U;
     public float V;
     public float W;
-    public final boolean f31648a;
-    public int f31649a0;
-    public float f31650b;
-    public ValueAnimator f31651b0;
-    public boolean f31652c;
-    public boolean f31653c0;
+    public final boolean f31829a;
+    public int f31830a0;
+    public float f31831b;
+    public ValueAnimator f31832b0;
+    public boolean f31833c;
+    public boolean f31834c0;
     public final p2 d;
-    public float f31654d0;
+    public float f31835d0;
     public final TextureView e;
-    public boolean f31655e0;
-    public final ImageView f31656f;
-    public boolean f31657f0;
+    public boolean f31836e0;
+    public final ImageView f31837f;
+    public boolean f31838f0;
     public final View h;
-    public View f31658n;
-    public final FrameLayout f31659r;
-    public final ImageView f31660s;
+    public View f31839n;
+    public final FrameLayout f31840r;
+    public final ImageView f31841s;
     public final TextView v;
-    public Bitmap f31661w;
-    public final Bitmap f31662x;
-    public float f31663y;
+    public Bitmap f31842w;
+    public final Bitmap f31843x;
+    public float f31844y;
 
     public q2(Context context, boolean z10, boolean z11) {
         this(context, z10, z11, true, false);
@@ -77,7 +77,7 @@ public class q2 extends FrameLayout {
         if (!this.E && getMeasuredHeight() != 0 && getMeasuredWidth() != 0) {
             this.H = getMeasuredHeight();
             this.I = getMeasuredWidth();
-            if (this.f31657f0 && getParent() != null) {
+            if (this.f31838f0 && getParent() != null) {
                 View view = (View) getParent();
                 this.J = view.getY();
                 this.K = view.getX();
@@ -123,17 +123,17 @@ public class q2 extends FrameLayout {
 
     public final void d(float f7, boolean z10) {
         float f10;
-        if (!this.f31652c) {
+        if (!this.f31833c) {
             return;
         }
         float scaleX = ((View) getParent()).getScaleX();
         this.v.setAlpha(1.0f - f7);
         if (!z10) {
-            f10 = nk.x(0.4f, scaleX, f7, 1.0f / scaleX);
+            f10 = sl.x(0.4f, scaleX, f7, 1.0f / scaleX);
         } else {
             f10 = 1.0f - (0.4f * f7);
         }
-        ImageView imageView = this.f31660s;
+        ImageView imageView = this.f31841s;
         imageView.setScaleX(f10);
         imageView.setScaleY(f10);
         imageView.setTranslationY(AndroidUtilities.dp(60.0f) * f7);
@@ -167,17 +167,17 @@ public class q2 extends FrameLayout {
                 canvas.restore();
             }
         }
-        ImageView imageView = this.f31656f;
+        ImageView imageView = this.f31837f;
         if (imageView.getVisibility() == 0 && p2Var.isFirstFrameRendered()) {
-            float f7 = this.f31663y - 0.10666667f;
-            this.f31663y = f7;
+            float f7 = this.f31844y - 0.10666667f;
+            this.f31844y = f7;
             if (f7 <= 0.0f) {
-                this.f31663y = 0.0f;
+                this.f31844y = 0.0f;
                 imageView.setVisibility(8);
                 return;
             }
             invalidate();
-            imageView.setAlpha(this.f31663y);
+            imageView.setAlpha(this.f31844y);
         }
     }
 
@@ -200,12 +200,12 @@ public class q2 extends FrameLayout {
     }
 
     public View getPlaceholderView() {
-        if (this.f31658n == null) {
+        if (this.f31839n == null) {
             View view = new View(getContext());
-            this.f31658n = view;
+            this.f31839n = view;
             addView(view, z5.g());
         }
-        return this.f31658n;
+        return this.f31839n;
     }
 
     @Override
@@ -217,12 +217,12 @@ public class q2 extends FrameLayout {
         if (textureView != null) {
             this.U = Math.max(getMeasuredHeight() / textureView.getMeasuredHeight(), getMeasuredWidth() / textureView.getMeasuredWidth());
         }
-        boolean z11 = this.f31648a;
+        boolean z11 = this.f31829a;
         p2 p2Var = this.d;
         if (!z11) {
             p2Var.updateRotation();
         }
-        if (this.f31649a0 == 3) {
+        if (this.f31830a0 == 3) {
             if (textureView != null) {
                 textureView.setScaleX(this.U);
                 textureView.setScaleY(this.U);
@@ -231,7 +231,7 @@ public class q2 extends FrameLayout {
             return;
         }
         if (p2Var.getMeasuredHeight() != 0 && p2Var.getMeasuredWidth() != 0 && getMeasuredHeight() != 0 && getMeasuredWidth() != 0) {
-            int i14 = this.f31649a0;
+            int i14 = this.f31830a0;
             if (i14 == 0) {
                 this.T = Math.max(getMeasuredHeight() / p2Var.getMeasuredHeight(), getMeasuredWidth() / p2Var.getMeasuredWidth());
             } else if (i14 == 2) {
@@ -244,7 +244,7 @@ public class q2 extends FrameLayout {
                 }
             } else if (i14 == 1) {
                 this.T = Math.min(getMeasuredHeight() / p2Var.getMeasuredHeight(), getMeasuredWidth() / p2Var.getMeasuredWidth());
-                if (this.f31653c0 && !this.f31657f0 && this.f31651b0 == null && !this.E) {
+                if (this.f31834c0 && !this.f31838f0 && this.f31832b0 == null && !this.E) {
                     this.O = (getMeasuredWidth() - p2Var.getMeasuredWidth()) / 2.0f;
                     this.N = (getMeasuredHeight() - p2Var.getMeasuredHeight()) / 2.0f;
                     invalidateOutline();
@@ -252,19 +252,19 @@ public class q2 extends FrameLayout {
             }
         } else {
             this.T = 1.0f;
-            if (this.f31651b0 == null && !this.E) {
+            if (this.f31832b0 == null && !this.E) {
                 this.O = 0.0f;
                 this.N = 0.0f;
             }
         }
-        if (this.f31661w != null) {
-            this.V = Math.max(getMeasuredWidth() / this.f31661w.getWidth(), getMeasuredHeight() / this.f31661w.getHeight());
+        if (this.f31842w != null) {
+            this.V = Math.max(getMeasuredWidth() / this.f31842w.getWidth(), getMeasuredHeight() / this.f31842w.getHeight());
         }
         if (this.E) {
             this.P /= p2Var.getMeasuredWidth() / this.S;
             this.Q /= p2Var.getMeasuredWidth() / this.S;
             this.E = false;
-            if (this.f31657f0 && getParent() != null) {
+            if (this.f31838f0 && getParent() != null) {
                 View view = (View) getParent();
                 top = this.J - view.getTop();
                 left = this.K - view.getLeft();
@@ -287,10 +287,10 @@ public class q2 extends FrameLayout {
             }
             setTranslationY(f7);
             setTranslationX(left);
-            ValueAnimator valueAnimator = this.f31651b0;
+            ValueAnimator valueAnimator = this.f31832b0;
             if (valueAnimator != null) {
                 valueAnimator.removeAllListeners();
-                this.f31651b0.cancel();
+                this.f31832b0.cancel();
             }
             p2Var.setScaleX(this.P);
             p2Var.setScaleY(this.P);
@@ -306,14 +306,14 @@ public class q2 extends FrameLayout {
             final float f11 = this.Q;
             final float f12 = this.R;
             ValueAnimator ofFloat = ValueAnimator.ofFloat(1.0f, 0.0f);
-            this.f31651b0 = ofFloat;
+            this.f31832b0 = ofFloat;
             ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
                     float floatValue = ((Float) valueAnimator2.getAnimatedValue()).floatValue();
                     float f13 = 1.0f - floatValue;
                     q2 q2Var = q2.this;
-                    q2Var.f31654d0 = f13;
+                    q2Var.f31835d0 = f13;
                     q2Var.N = q2Var.L * floatValue;
                     q2Var.O = q2Var.M * floatValue;
                     q2Var.invalidateOutline();
@@ -335,13 +335,13 @@ public class q2 extends FrameLayout {
             });
             long j10 = this.F;
             if (j10 != 0) {
-                this.f31651b0.setDuration(j10);
+                this.f31832b0.setDuration(j10);
             } else {
-                this.f31651b0.setDuration(350L);
+                this.f31832b0.setDuration(350L);
             }
-            this.f31651b0.setInterpolator(bs.f25025f);
-            this.f31651b0.addListener(new p31(this, 14));
-            this.f31651b0.start();
+            this.f31832b0.setInterpolator(bs.f25133f);
+            this.f31832b0.addListener(new p31(this, 15));
+            this.f31832b0.start();
             ArrayList arrayList = this.G;
             if (!arrayList.isEmpty()) {
                 for (int i15 = 0; i15 < arrayList.size(); i15++) {
@@ -350,7 +350,7 @@ public class q2 extends FrameLayout {
             }
             arrayList.clear();
             this.F = 0L;
-        } else if (this.f31651b0 == null) {
+        } else if (this.f31832b0 == null) {
             p2Var.setScaleX(this.T);
             p2Var.setScaleY(this.T);
             if (textureView != null) {
@@ -363,12 +363,12 @@ public class q2 extends FrameLayout {
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        boolean z10 = this.f31648a;
+        boolean z10 = this.f31829a;
         p2 p2Var = this.d;
         if (!z10) {
-            this.f31655e0 = true;
+            this.f31836e0 = true;
             p2Var.setScreenRotation(((WindowManager) getContext().getSystemService("window")).getDefaultDisplay().getRotation());
-            this.f31655e0 = false;
+            this.f31836e0 = false;
         }
         super.onMeasure(i10, i11);
         e();
@@ -378,7 +378,7 @@ public class q2 extends FrameLayout {
 
     @Override
     public void requestLayout() {
-        if (this.f31655e0) {
+        if (this.f31836e0) {
             return;
         }
         super.requestLayout();
@@ -389,19 +389,19 @@ public class q2 extends FrameLayout {
     }
 
     public void setAnimateWithParent(boolean z10) {
-        this.f31657f0 = z10;
+        this.f31838f0 = z10;
     }
 
     public void setIsScreencast(boolean z10) {
         int i10;
-        this.f31652c = z10;
+        this.f31833c = z10;
         if (z10) {
             i10 = 0;
         } else {
             i10 = 8;
         }
-        this.f31659r.setVisibility(i10);
-        boolean z11 = this.f31652c;
+        this.f31840r.setVisibility(i10);
+        boolean z11 = this.f31833c;
         TextureView textureView = this.e;
         p2 p2Var = this.d;
         if (z11) {
@@ -409,7 +409,7 @@ public class q2 extends FrameLayout {
             if (textureView != null) {
                 textureView.setVisibility(8);
             }
-            this.f31656f.setVisibility(8);
+            this.f31837f.setVisibility(8);
             return;
         }
         p2Var.setVisibility(0);
@@ -419,43 +419,43 @@ public class q2 extends FrameLayout {
     }
 
     public void setRoundCorners(float f7) {
-        if (this.f31650b != f7) {
-            this.f31650b = f7;
+        if (this.f31831b != f7) {
+            this.f31831b = f7;
             invalidateOutline();
         }
     }
 
     public void setStub(q2 q2Var) {
-        if (this.f31652c) {
+        if (this.f31833c) {
             return;
         }
         Bitmap bitmap = q2Var.d.getBitmap();
-        ImageView imageView = this.f31656f;
+        ImageView imageView = this.f31837f;
         if (bitmap != null && bitmap.getPixel(0, 0) != 0) {
             imageView.setImageBitmap(bitmap);
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
         } else {
-            imageView.setImageDrawable(q2Var.f31656f.getDrawable());
+            imageView.setImageDrawable(q2Var.f31837f.getDrawable());
         }
-        this.f31663y = 1.0f;
+        this.f31844y = 1.0f;
         imageView.setVisibility(0);
         imageView.setAlpha(1.0f);
     }
 
     public void setThumb(Bitmap bitmap) {
-        this.f31661w = bitmap;
+        this.f31842w = bitmap;
     }
 
     public q2(Context context, boolean z10, boolean z11, boolean z12, boolean z13) {
         super(context);
-        this.f31663y = 1.0f;
+        this.f31844y = 1.0f;
         this.G = new ArrayList();
         this.P = 1.0f;
         this.Q = 1.0f;
         this.R = 1.0f;
-        this.f31648a = z11;
+        this.f31829a = z11;
         ImageView imageView = new ImageView(context);
-        this.f31656f = imageView;
+        this.f31837f = imageView;
         p2 p2Var = new p2(this, context);
         this.d = p2Var;
         p2Var.setFpsReduction(30.0f);
@@ -495,12 +495,12 @@ public class q2 extends FrameLayout {
             textureView4.setOpaque(false);
         }
         FrameLayout frameLayout = new FrameLayout(getContext());
-        this.f31659r = frameLayout;
-        frameLayout.setBackground(new wc0(true, -14602694, -13935795, -14395293, -14203560));
+        this.f31840r = frameLayout;
+        frameLayout.setBackground(new yc0(true, -14602694, -13935795, -14395293, -14203560));
         addView(frameLayout, z5.c(-1.0f, -1));
         frameLayout.setVisibility(8);
         ImageView imageView2 = new ImageView(getContext());
-        this.f31660s = imageView2;
+        this.f31841s = imageView2;
         imageView2.setScaleType(ImageView.ScaleType.CENTER);
         imageView2.setImageResource(R.drawable.screencast_big);
         frameLayout.addView(imageView2, z5.d(82, 82.0f, 17, 0.0f, 0.0f, 0.0f, 60.0f));
@@ -509,20 +509,22 @@ public class q2 extends FrameLayout {
         textView.setText(LocaleController.getString(R.string.VoipVideoScreenSharing));
         textView.setGravity(17);
         textView.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
-        org.telegram.messenger.g0.m(15.0f, -1, 1, textView);
+        textView.setTextColor(-1);
+        textView.setTextSize(1, 15.0f);
+        textView.setTypeface(AndroidUtilities.bold());
         frameLayout.addView(textView, z5.d(-1, -2.0f, 17, 21.0f, 28.0f, 21.0f, 0.0f));
         if (z12) {
             setOutlineProvider(new dh.b(this, 5));
             setClipToOutline(true);
         }
-        if (z10 && this.f31662x == null) {
+        if (z10 && this.f31843x == null) {
             try {
                 Bitmap decodeFile = BitmapFactory.decodeFile(new File(ApplicationLoader.getFilesDirFixed(), "voip_icthumb.jpg").getAbsolutePath());
-                this.f31662x = decodeFile;
+                this.f31843x = decodeFile;
                 if (decodeFile == null) {
-                    this.f31662x = BitmapFactory.decodeFile(new File(ApplicationLoader.getFilesDirFixed(), "icthumb.jpg").getAbsolutePath());
+                    this.f31843x = BitmapFactory.decodeFile(new File(ApplicationLoader.getFilesDirFixed(), "icthumb.jpg").getAbsolutePath());
                 }
-                imageView.setImageBitmap(this.f31662x);
+                imageView.setImageBitmap(this.f31843x);
                 imageView.setScaleType(ImageView.ScaleType.FIT_XY);
             } catch (Throwable unused) {
             }

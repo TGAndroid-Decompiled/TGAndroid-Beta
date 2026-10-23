@@ -5,18 +5,18 @@ import android.animation.AnimatorListenerAdapter;
 import android.os.Build;
 import org.telegram.messenger.NotificationCenter;
 public final class q extends AnimatorListenerAdapter {
-    public final int f847a;
-    public final a0 f848b;
+    public final int f848a;
+    public final a0 f849b;
 
     public q(a0 a0Var, int i10) {
-        this.f847a = i10;
-        this.f848b = a0Var;
+        this.f848a = i10;
+        this.f849b = a0Var;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        int i10 = this.f847a;
-        a0 a0Var = this.f848b;
+        int i10 = this.f848a;
+        a0 a0Var = this.f849b;
         switch (i10) {
             case 0:
                 NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 512);

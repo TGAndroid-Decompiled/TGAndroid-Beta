@@ -4,17 +4,17 @@ import android.graphics.drawable.Drawable;
 import ei.i6;
 import org.telegram.ui.Components.bs;
 import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.ft0;
-public final class v0 implements qg.e1 {
-    public final w0 f45672a;
+import org.telegram.ui.it0;
+public final class v0 implements qg.d1 {
+    public final w0 f46097a;
 
     public v0(w0 w0Var) {
-        this.f45672a = w0Var;
+        this.f46097a = w0Var;
     }
 
     @Override
     public final void a() {
-        w0 w0Var = this.f45672a;
+        w0 w0Var = this.f46097a;
         w0Var.e.animate().alpha(1.0f).setDuration(320L).setUpdateListener(new i6(w0Var, 16)).setInterpolator(bs.h);
     }
 
@@ -25,17 +25,17 @@ public final class v0 implements qg.e1 {
 
     @Override
     public final void e() {
-        w0 w0Var = this.f45672a;
-        w0Var.f45684b.f44699a.e();
-        w0Var.f45690w.setViewHidden(false);
-        PhotoViewer photoViewer = ((ft0) w0Var).K;
+        w0 w0Var = this.f46097a;
+        w0Var.f46102b.f45105a.e();
+        w0Var.f46108w.setViewHidden(false);
+        PhotoViewer photoViewer = ((it0) w0Var).K;
         Drawable[] drawableArr = PhotoViewer.U8;
         photoViewer.Z2(true, true);
     }
 
     @Override
     public final void f() {
-        this.f45672a.f45690w.setViewHidden(true);
+        this.f46097a.f46108w.setViewHidden(true);
     }
 
     @Override

@@ -6,18 +6,18 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.bs;
 public final class l implements Runnable {
-    public final int f821a;
-    public final a0 f822b;
+    public final int f822a;
+    public final a0 f823b;
 
     public l(a0 a0Var, int i10) {
-        this.f821a = i10;
-        this.f822b = a0Var;
+        this.f822a = i10;
+        this.f823b = a0Var;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f821a;
-        a0 a0Var = this.f822b;
+        int i10 = this.f822a;
+        a0 a0Var = this.f823b;
         switch (i10) {
             case 0:
                 a0Var.f643n.requestFocus();
@@ -37,7 +37,7 @@ public final class l implements Runnable {
                     x xVar = a0Var.f641c;
                     xVar.setTranslationY(xVar.getMeasuredHeight());
                     a0Var.f641c.animate().setListener(null).cancel();
-                    a0Var.f641c.animate().translationY(0.0f).withLayer().setDuration(350L).setInterpolator(bs.f25025f).setUpdateListener(new n(a0Var, 0)).setListener(new z(0)).start();
+                    a0Var.f641c.animate().translationY(0.0f).withLayer().setDuration(350L).setInterpolator(bs.f25133f).setUpdateListener(new n(a0Var, 0)).setListener(new z(0)).start();
                     return;
                 }
                 return;

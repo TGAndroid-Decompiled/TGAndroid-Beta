@@ -1,78 +1,44 @@
 package org.telegram.ui;
-public final class us0 extends org.telegram.ui.Components.c81 {
-    public final PhotoViewer m0;
 
-    public us0(PhotoViewer photoViewer) {
-        this.m0 = photoViewer;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class us0 extends org.telegram.ui.Components.c10 {
+    public final cs0 e;
+    public final PhotoViewer f42498f;
+
+    public us0(PhotoViewer photoViewer, cs0 cs0Var) {
+        super(false);
+        this.f42498f = photoViewer;
+        this.e = cs0Var;
     }
 
     @Override
-    public final void B() {
-        super.B();
-        PhotoViewer photoViewer = this.m0;
-        if (photoViewer.f33428u4 == 0) {
-            PhotoViewer.Z(photoViewer, false);
-        }
-        if (!photoViewer.O8) {
-            b5.d.D(n());
-            b5.d.x(false);
-        }
+    public final CharSequence d() {
+        StringBuilder sb2 = new StringBuilder();
+        PhotoViewer photoViewer = this.f42498f;
+        int[] iArr = photoViewer.f33651m3;
+        sb2.append(LocaleController.formatPluralString("Minutes", iArr[0], new Object[0]));
+        sb2.append(' ');
+        sb2.append(LocaleController.formatPluralString("Seconds", iArr[1], new Object[0]));
+        String sb3 = sb2.toString();
+        StringBuilder sb4 = new StringBuilder();
+        int[] iArr2 = photoViewer.f33661n3;
+        sb4.append(LocaleController.formatPluralString("Minutes", iArr2[0], new Object[0]));
+        sb4.append(' ');
+        sb4.append(LocaleController.formatPluralString("Seconds", iArr2[1], new Object[0]));
+        return LocaleController.formatString("AccDescrPlayerDuration", R.string.AccDescrPlayerDuration, sb3, sb4.toString());
     }
 
     @Override
-    public final void C() {
-        super.C();
-        PhotoViewer photoViewer = this.m0;
-        PhotoViewer.Z(photoViewer, true);
-        if (!photoViewer.O8) {
-            b5.d.D(n());
-            b5.d.x(true);
-        }
+    public final float k() {
+        return this.f42498f.f33687q3.c();
     }
 
     @Override
-    public final void K(long j10) {
-        L(j10, false);
-        PhotoViewer photoViewer = this.m0;
-        if (photoViewer.f33397r1) {
-            PhotoViewer.a0(photoViewer, j10);
-        }
-        if (!photoViewer.O8) {
-            b5.d.D(j10);
-        }
-    }
-
-    @Override
-    public final void Q(float f7) {
-        super.Q(f7);
-        if (!this.m0.O8) {
-            b5.d.z(f7);
-        }
-    }
-
-    @Override
-    public final void onRenderedFirstFrame() {
-        b2.z0 h;
-        super.onRenderedFirstFrame();
-        PhotoViewer photoViewer = this.m0;
-        boolean z10 = true;
-        photoViewer.R = true;
-        if (photoViewer.D2) {
-            photoViewer.f33283e0.invalidate();
-        }
-        photoViewer.B3();
-        if (!b5.d.u() && !photoViewer.f33395r) {
-            z10 = false;
-        }
-        O(z10);
-        if (!photoViewer.O8) {
-            b5.d.D(n());
-            i2.i0 i0Var = this.d;
-            float f7 = 1.0f;
-            if (i0Var != null && (h = i0Var.h()) != null) {
-                f7 = h.f4152a;
-            }
-            b5.d.z(f7);
-        }
+    public final void l(float f7) {
+        this.e.a(f7);
+        PhotoViewer photoViewer = this.f42498f;
+        photoViewer.f33687q3.h(f7, false);
+        photoViewer.f33696r3.invalidate();
     }
 }

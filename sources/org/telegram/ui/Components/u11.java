@@ -1,45 +1,27 @@
 package org.telegram.ui.Components;
+public final class u11 implements Runnable {
+    public final int f31058a;
+    public final w11 f31059b;
+    public final v11 f31060c;
 
-import android.graphics.Bitmap;
-import android.graphics.Matrix;
-import android.view.View;
-import java.util.ArrayList;
-public final class u11 {
-    public final View f30818a;
-    public final ArrayList f30819b;
-    public final Runnable f30820c;
-    public Runnable d;
-    public final Bitmap e;
-    public final Matrix f30821f;
-    public float f30822g;
-
-    public u11(View view, Runnable runnable) {
-        this.f30822g = 1.0f;
-        this.f30818a = view;
-        this.f30819b = null;
-        this.f30820c = null;
-        this.d = runnable;
-        this.e = null;
-        this.f30821f = null;
+    public u11(w11 w11Var, v11 v11Var, int i10) {
+        this.f31058a = i10;
+        this.f31059b = w11Var;
+        this.f31060c = v11Var;
     }
 
-    public u11(ArrayList arrayList, ig.e2 e2Var) {
-        this.f30822g = 1.0f;
-        this.f30818a = null;
-        this.f30819b = arrayList;
-        this.f30820c = null;
-        this.d = e2Var;
-        this.e = null;
-        this.f30821f = null;
-    }
-
-    public u11(Matrix matrix, Bitmap bitmap, Runnable runnable, Runnable runnable2) {
-        this.f30822g = 1.0f;
-        this.f30818a = null;
-        this.f30819b = null;
-        this.f30820c = runnable;
-        this.d = runnable2;
-        this.f30821f = matrix;
-        this.e = bitmap;
+    @Override
+    public final void run() {
+        switch (this.f31058a) {
+            case 0:
+                this.f31059b.b(this.f31060c);
+                return;
+            case 1:
+                this.f31059b.b(this.f31060c);
+                return;
+            default:
+                this.f31059b.b(this.f31060c);
+                return;
+        }
     }
 }

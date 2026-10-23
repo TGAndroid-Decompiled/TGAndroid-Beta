@@ -1,80 +1,54 @@
 package org.telegram.ui.Components;
 
-import android.app.Activity;
-import android.content.Context;
-import android.graphics.Point;
-import android.graphics.Rect;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public abstract class mw0 extends lw0 {
-    public Activity f28619w0;
-    public final Rect f28620x0;
-    public int f28621y0;
-    public boolean f28622z0;
-
-    public mw0(Context context, Activity activity) {
-        super(context, null);
-        this.f28620x0 = new Rect();
-        setActivity(activity);
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.Region;
+import android.graphics.text.MeasuredText;
+public final class mw0 extends Canvas {
+    @Override
+    public final boolean clipPath(Path path) {
+        return false;
     }
 
     @Override
-    public int R() {
-        View rootView = getRootView();
-        Rect rect = this.f28620x0;
-        getWindowVisibleDisplayFrame(rect);
-        int i10 = 0;
-        if (this.f28622z0) {
-            int height = rootView.getHeight();
-            if (rect.top != 0) {
-                i10 = AndroidUtilities.statusBarHeight;
-            }
-            return ((height - i10) - AndroidUtilities.getViewInset(rootView)) - (rect.bottom - rect.top);
-        }
-        int height2 = (this.f28619w0.getWindow().getDecorView().getHeight() - AndroidUtilities.getViewInset(rootView)) - rootView.getBottom();
-        if (height2 <= Math.max(AndroidUtilities.dp(10.0f), AndroidUtilities.statusBarHeight)) {
-            return 0;
-        }
-        return height2;
+    public final void drawText(CharSequence charSequence, int i10, int i11, float f7, float f10, Paint paint) {
     }
 
     @Override
-    public void S() {
-        boolean z10;
-        if (this.f28308n == null && this.f28313r.isEmpty()) {
-            return;
-        }
-        this.f28621y0 = R();
-        Point point = AndroidUtilities.displaySize;
-        if (point.x > point.y) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        post(new b60(7, this, z10));
+    public final void drawTextOnPath(String str, Path path, float f7, float f10, Paint paint) {
     }
 
     @Override
-    public int[] getColorKeys() {
-        return null;
+    public final void drawTextRun(MeasuredText measuredText, int i10, int i11, int i12, int i13, float f7, float f10, boolean z10, Paint paint) {
     }
 
     @Override
-    public int getKeyboardHeight() {
-        return this.f28621y0;
+    public final boolean clipPath(Path path, Region.Op op) {
+        return false;
     }
 
     @Override
-    public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        S();
+    public final void drawText(String str, float f7, float f10, Paint paint) {
     }
 
-    public void setActivity(Activity activity) {
-        this.f28619w0 = activity;
+    @Override
+    public final void drawTextOnPath(char[] cArr, int i10, int i11, Path path, float f7, float f10, Paint paint) {
     }
 
-    public void setWithoutWindow(boolean z10) {
-        this.f28622z0 = z10;
+    @Override
+    public final void drawTextRun(CharSequence charSequence, int i10, int i11, int i12, int i13, float f7, float f10, boolean z10, Paint paint) {
+    }
+
+    @Override
+    public final void drawText(String str, int i10, int i11, float f7, float f10, Paint paint) {
+    }
+
+    @Override
+    public final void drawTextRun(char[] cArr, int i10, int i11, int i12, int i13, float f7, float f10, boolean z10, Paint paint) {
+    }
+
+    @Override
+    public final void drawText(char[] cArr, int i10, int i11, float f7, float f10, Paint paint) {
     }
 }

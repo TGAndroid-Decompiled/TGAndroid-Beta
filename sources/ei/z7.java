@@ -1,11 +1,11 @@
 package ei;
 public final class z7 {
-    public int f10240a;
-    public int f10241b;
+    public int f10257a;
+    public int f10258b;
 
     public final int a() {
-        if (this.f10240a == 6) {
-            int i10 = this.f10241b;
+        if (this.f10257a == 6) {
+            int i10 = this.f10258b;
             if (i10 == 7) {
                 return 1;
             }

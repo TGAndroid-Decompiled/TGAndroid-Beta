@@ -2,172 +2,77 @@ package org.telegram.ui.Cells;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.text.Editable;
 import android.text.TextUtils;
+import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.bs;
-public class i3 extends FrameLayout {
-    public boolean f22405a;
-    public final g3 f22406b;
-    public final int f22407c;
-    public boolean d;
-    public int e;
-    public boolean f22408f;
-    public boolean h;
-    public boolean f22409n;
-    public final org.telegram.ui.Components.i5 f22410r;
-    public int f22411s;
-    public final org.telegram.ui.Components.p6 v;
-    public boolean f22412w;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class i3 extends FrameLayout {
+    public final EditTextBoldCursor f22488a;
+    public boolean f22489b;
 
-    public i3(Context context, String str, boolean z10, boolean z11, int i10, org.telegram.ui.ActionBar.d6 d6Var) {
+    public i3(Context context) {
         super(context);
-        int i11;
-        int i12;
-        this.e = -1;
-        this.f22410r = new org.telegram.ui.Components.i5(this);
-        org.telegram.ui.Components.p6 p6Var = new org.telegram.ui.Components.p6(false, true, true);
-        this.v = p6Var;
-        p6Var.n(0.2f, 160L, bs.h);
-        p6Var.w(AndroidUtilities.dp(15.33f));
-        p6Var.f29230b = 5;
-        this.f22407c = i10;
-        g3 g3Var = new g3(this, context, d6Var, i10, d6Var, z11);
-        this.f22406b = g3Var;
-        p6Var.setCallback(g3Var);
-        g3Var.setTextSize(1, 17.0f);
-        g3Var.setHintTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.H6, d6Var));
-        int i13 = org.telegram.ui.ActionBar.h6.G6;
-        g3Var.setTextColor(org.telegram.ui.ActionBar.h6.w0(i13, d6Var));
-        g3Var.setBackground(null);
-        if (z10) {
-            g3Var.setMaxLines(5);
-            g3Var.setSingleLine(false);
-        } else {
-            g3Var.setMaxLines(1);
-            g3Var.setSingleLine(true);
-        }
-        int dp = AndroidUtilities.dp(21.0f);
-        int dp2 = AndroidUtilities.dp(15.0f);
-        if (i10 > 0) {
-            i11 = 42;
-        } else {
-            i11 = 0;
-        }
-        g3Var.setPadding(dp, dp2, AndroidUtilities.dp(i11 + 21), AndroidUtilities.dp(15.0f));
-        g3Var.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
-        if (z10) {
-            i12 = 131072;
-        } else {
-            i12 = 0;
-        }
-        g3Var.setInputType(i12 | 573441);
-        g3Var.setRawInputType((z10 ? 131072 : 0) | 573441);
-        g3Var.setHint(str);
-        g3Var.setCursorColor(org.telegram.ui.ActionBar.h6.w0(i13, d6Var));
-        g3Var.setCursorSize(AndroidUtilities.dp(19.0f));
-        g3Var.setCursorWidth(1.5f);
-        g3Var.addTextChangedListener(new h3(this, i10, z10));
-        g3Var.setOnFocusChangeListener(new m.s2(this, 2));
-        addView(g3Var, w7.z5.e(-1, -1, 48));
-        c();
-    }
-
-    public final void c() {
         int i10;
-        if (this.f22406b == null) {
-            return;
+        EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context);
+        this.f22488a = editTextBoldCursor;
+        org.telegram.ui.ActionBar.r6.W(editTextBoldCursor, org.telegram.ui.ActionBar.k6.G6, null);
+        org.telegram.ui.ActionBar.r6.F(editTextBoldCursor, org.telegram.ui.ActionBar.k6.H6, null);
+        editTextBoldCursor.setTextSize(1, 16.0f);
+        editTextBoldCursor.setLines(1);
+        editTextBoldCursor.setMaxLines(1);
+        editTextBoldCursor.setSingleLine(true);
+        editTextBoldCursor.setEllipsize(TextUtils.TruncateAt.END);
+        if (LocaleController.isRTL) {
+            i10 = 5;
+        } else {
+            i10 = 3;
         }
-        this.f22411s = this.f22407c - getText().length();
-        String str = "";
-        if ((!TextUtils.isEmpty(getText()) || this.d) && ((!this.f22408f || (this.f22409n && !this.h)) && ((i10 = this.e) == -1 || this.f22411s <= i10))) {
-            str = "" + this.f22411s;
-        }
-        this.v.t(str, true, true);
+        editTextBoldCursor.setGravity(i10 | 16);
+        editTextBoldCursor.setBackgroundDrawable(null);
+        editTextBoldCursor.setPadding(0, 0, 0, 0);
+        editTextBoldCursor.setInputType(editTextBoldCursor.getInputType() | 16384);
+        addView(editTextBoldCursor, w7.z5.d(-1, -1.0f, (LocaleController.isRTL ? 5 : 3) | 48, 21.0f, 0.0f, 21.0f, 0.0f));
     }
 
-    public CharSequence getText() {
-        return this.f22406b.getText();
+    public String getText() {
+        return this.f22488a.getText().toString();
     }
 
-    public TLRPC.TL_textWithEntities getTextWithEntities() {
-        TLRPC.TL_textWithEntities tL_textWithEntities = new TLRPC.TL_textWithEntities();
-        CharSequence[] charSequenceArr = {getText()};
-        tL_textWithEntities.entities = MediaDataController.getInstance(UserConfig.selectedAccount).getEntities(charSequenceArr, true);
-        tL_textWithEntities.text = charSequenceArr[0].toString();
-        return tL_textWithEntities;
+    public EditTextBoldCursor getTextView() {
+        return this.f22488a;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         float dp;
         int i10;
-        super.onDraw(canvas);
-        if (this.f22412w) {
+        if (this.f22489b) {
             if (LocaleController.isRTL) {
                 dp = 0.0f;
             } else {
-                dp = AndroidUtilities.dp(22.0f);
+                dp = AndroidUtilities.dp(20.0f);
             }
             float f7 = dp;
             float measuredHeight = getMeasuredHeight() - 1;
             int measuredWidth = getMeasuredWidth();
             if (LocaleController.isRTL) {
-                i10 = AndroidUtilities.dp(22.0f);
+                i10 = AndroidUtilities.dp(20.0f);
             } else {
                 i10 = 0;
             }
-            canvas.drawLine(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.h6.f21115k0);
+            canvas.drawLine(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.k6.f21304k0);
         }
     }
 
-    public void setDivider(boolean z10) {
-        this.f22412w = z10;
-        setWillNotDraw(!z10);
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        setMeasuredDimension(View.MeasureSpec.getSize(i10), AndroidUtilities.dp(50.0f) + (this.f22489b ? 1 : 0));
+        this.f22488a.measure(View.MeasureSpec.makeMeasureSpec(((getMeasuredWidth() - getPaddingLeft()) - getPaddingRight()) - AndroidUtilities.dp(42.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824));
     }
 
-    public void setShowLimitOnFocus(boolean z10) {
-        this.f22408f = z10;
-    }
-
-    public void setShowLimitWhenEmpty(boolean z10) {
-        this.d = z10;
-        if (z10) {
-            c();
-        }
-    }
-
-    public void setShowLimitWhenNear(int i10) {
-        this.e = i10;
-        c();
-    }
-
-    public void setText(CharSequence charSequence) {
-        this.f22405a = true;
-        g3 g3Var = this.f22406b;
-        g3Var.setText(charSequence);
-        g3Var.setSelection(g3Var.getText().length());
-        this.f22405a = false;
-    }
-
-    public void setText(TLRPC.TL_textWithEntities tL_textWithEntities) {
-        this.f22405a = true;
-        CharSequence formatTextWithEntities = MessageObject.formatTextWithEntities(tL_textWithEntities, false);
-        g3 g3Var = this.f22406b;
-        g3Var.setText(formatTextWithEntities);
-        g3Var.setSelection(g3Var.getText().length());
-        this.f22405a = false;
-    }
-
-    public void a(boolean z10) {
-    }
-
-    public void b(Editable editable) {
+    public void setTextColor(int i10) {
+        this.f22488a.setTextColor(i10);
     }
 }

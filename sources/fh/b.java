@@ -1,10 +1,11 @@
 package fh;
 
 import android.content.pm.ShortcutManager;
-import android.graphics.Bitmap;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
+import android.view.View;
 import android.window.OnBackInvokedDispatcher;
 import b2.d1;
-import b2.z0;
 import com.google.android.gms.internal.cast.z5;
 import com.google.firebase.datatransport.TransportRegistrar;
 import d9.k;
@@ -21,29 +22,32 @@ import eh.d;
 import gi.d3;
 import gi.e4;
 import gi.z3;
-import i2.n;
+import i2.m;
+import i5.f;
 import j$.util.Objects;
-import j2.f;
+import j2.e;
 import java.util.Collection;
 import org.telegram.messenger.GenericProvider;
 import org.telegram.messenger.LiteMode;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.ActionBar.a2;
-import org.telegram.ui.ActionBar.b2;
-import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.cw0;
-import org.telegram.ui.Components.dw0;
-import org.telegram.ui.Components.ew0;
+import org.telegram.ui.ActionBar.c2;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.ActionBar.o6;
+import org.telegram.ui.ActionBar.p6;
+import org.telegram.ui.ActionBar.z1;
+import org.telegram.ui.Components.fw0;
+import org.telegram.ui.Components.gw0;
+import org.telegram.ui.Components.hw0;
+import org.telegram.ui.Components.yq;
 import v7.u6;
-public final class b implements d, cw0, dw0, GenericProvider, k, r9.d, o, a2, hh.b {
-    public final int f10596a;
+public final class b implements d, fw0, gw0, GenericProvider, k, r9.d, p6, o6, o, z1 {
+    public final int f10613a;
 
     public b(int i10) {
-        this.f10596a = i10;
+        this.f10613a = i10;
     }
 
-    public static ShortcutManager d(Object obj) {
+    public static ShortcutManager c(Object obj) {
         return (ShortcutManager) obj;
     }
 
@@ -56,41 +60,15 @@ public final class b implements d, cw0, dw0, GenericProvider, k, r9.d, o, a2, hh
     }
 
     @Override
-    public Object a(Bitmap bitmap) {
-        switch (this.f10596a) {
-            case 26:
-                if (bitmap != null && !bitmap.isRecycled()) {
-                    Bitmap stackBlurBitmapWithScaleFactor = Utilities.stackBlurBitmapWithScaleFactor(bitmap, Math.max(bitmap.getWidth() / 90.0f, bitmap.getHeight() / 120.0f));
-                    stackBlurBitmapWithScaleFactor.setHasAlpha(false);
-                    return stackBlurBitmapWithScaleFactor;
-                }
-                return null;
-            case 27:
-                int i10 = 0;
-                if (bitmap != null && !bitmap.isRecycled()) {
-                    int height = bitmap.getHeight();
-                    i10 = Utilities.averageBitmapColor(bitmap, 0, (height * 9) / 10, bitmap.getWidth(), height);
-                }
-                return Integer.valueOf(i10);
-            default:
-                int i11 = 0;
-                if (bitmap != null && !bitmap.isRecycled()) {
-                    i11 = Utilities.averageBitmapColor(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight() / 10);
-                }
-                return Integer.valueOf(i11);
-        }
-    }
-
-    @Override
     public Object apply(Object obj) {
         int i10;
         u1 u1Var;
         int i11 = 0;
         boolean z10 = true;
-        switch (this.f10596a) {
-            case 14:
+        switch (this.f10613a) {
+            case 16:
                 String str = (String) obj;
-                d9.a aVar = h9.a.f11698g;
+                d9.a aVar = h9.a.f11725g;
                 aVar.getClass();
                 int length = str.length() - 1;
                 while (true) {
@@ -117,7 +95,7 @@ public final class b implements d, cw0, dw0, GenericProvider, k, r9.d, o, a2, hh
                     return sb2.toString();
                 }
                 return str;
-            case 15:
+            case 17:
                 Collection<Object> collection = (Collection) obj;
                 int i12 = w0.d;
                 if (collection instanceof w0) {
@@ -130,10 +108,10 @@ public final class b implements d, cw0, dw0, GenericProvider, k, r9.d, o, a2, hh
                     i10 = 11;
                 }
                 ?? obj2 = new Object();
-                obj2.f8510b = false;
+                obj2.f8517b = false;
                 ?? obj3 = new Object();
                 obj3.d(i10);
-                obj2.f8509a = obj3;
+                obj2.f8516a = obj3;
                 if (z11) {
                     r1 r1Var = (r1) collection;
                     if (r1Var instanceof d2) {
@@ -142,27 +120,27 @@ public final class b implements d, cw0, dw0, GenericProvider, k, r9.d, o, a2, hh
                         u1Var = null;
                     }
                     if (u1Var != null) {
-                        obj3.a(Math.max(obj3.f8513c, u1Var.f8513c));
-                        if (u1Var.f8513c == 0) {
+                        obj3.a(Math.max(obj3.f8520c, u1Var.f8520c));
+                        if (u1Var.f8520c == 0) {
                             i11 = -1;
                         }
                         while (i11 >= 0) {
-                            u6.j(i11, u1Var.f8513c);
-                            Object obj4 = u1Var.f8511a[i11];
-                            u6.j(i11, u1Var.f8513c);
-                            obj2.c(u1Var.f8512b[i11], obj4);
+                            u6.j(i11, u1Var.f8520c);
+                            Object obj4 = u1Var.f8518a[i11];
+                            u6.j(i11, u1Var.f8520c);
+                            obj2.c(u1Var.f8519b[i11], obj4);
                             i11++;
-                            if (i11 >= u1Var.f8513c) {
+                            if (i11 >= u1Var.f8520c) {
                                 i11 = -1;
                             }
                         }
                     } else {
                         w0 w0Var = (w0) r1Var;
                         y0 t10 = w0Var.t();
-                        u1 u1Var2 = obj2.f8509a;
-                        u1Var2.a(Math.max(u1Var2.f8513c, t10.size()));
+                        u1 u1Var2 = obj2.f8516a;
+                        u1Var2.a(Math.max(u1Var2.f8520c, t10.size()));
                         for (t1 t1Var : w0Var.t()) {
-                            obj2.c(t1Var.a(), t1Var.f8504a);
+                            obj2.c(t1Var.a(), t1Var.f8511a);
                         }
                     }
                 } else {
@@ -170,43 +148,97 @@ public final class b implements d, cw0, dw0, GenericProvider, k, r9.d, o, a2, hh
                         obj2.a(obj5);
                     }
                 }
-                Objects.requireNonNull(obj2.f8509a);
-                if (obj2.f8509a.f8513c == 0) {
-                    return d2.f8430n;
+                Objects.requireNonNull(obj2.f8516a);
+                if (obj2.f8516a.f8520c == 0) {
+                    return d2.f8437n;
                 }
-                obj2.f8510b = true;
-                return new d2(obj2.f8509a);
+                obj2.f8517b = true;
+                return new d2(obj2.f8516a);
             default:
-                return new f((g0) obj);
+                return new e((g0) obj);
         }
     }
 
     @Override
     public void b(Object obj, float f7) {
-        switch (this.f10596a) {
-            case 8:
+        switch (this.f10613a) {
+            case 10:
                 d3 d3Var = (d3) obj;
-                d3Var.f11136b = f7;
-                d3Var.e.invalidate();
-                d3Var.W.setAlpha(f7);
+                d3Var.f11160c = f7;
+                d3Var.f11164f.invalidate();
+                d3Var.X.setAlpha(f7);
                 d3Var.F();
                 d3Var.D();
                 return;
-            case 9:
+            case 11:
             default:
                 ((e4) obj).setSwipeOffsetY(f7);
                 return;
-            case 10:
+            case 12:
                 ((z3) obj).setLoadProgress(f7);
                 return;
         }
     }
 
     @Override
-    public int f(d6 d6Var, boolean z10) {
+    public void d(int i10, View view) {
+        Drawable background = view.getBackground();
+        if (background instanceof yq) {
+            Drawable drawable = ((yq) background).f33012a;
+            if (drawable instanceof ColorDrawable) {
+                ((ColorDrawable) drawable).setColor(i10);
+                view.invalidate();
+            }
+        }
+    }
+
+    @Override
+    public int f(View view) {
+        Drawable background = view.getBackground();
+        if (background instanceof yq) {
+            Drawable drawable = ((yq) background).f33012a;
+            if (drawable instanceof ColorDrawable) {
+                return ((ColorDrawable) drawable).getColor();
+            }
+            return 0;
+        }
+        return 0;
+    }
+
+    @Override
+    public void g(c2 c2Var, int i10) {
+        switch (this.f10613a) {
+            case 28:
+                c2Var.dismiss();
+                return;
+            default:
+                c2Var.dismiss();
+                return;
+        }
+    }
+
+    @Override
+    public float get(Object obj) {
+        switch (this.f10613a) {
+            case 9:
+                return ((d3) obj).f11160c;
+            case 10:
+            default:
+                return ((e4) obj).getSwipeOffsetY();
+            case 11:
+                return ((z3) obj).f11610c;
+        }
+    }
+
+    @Override
+    public int i(g6 g6Var, boolean z10) {
         float f7;
-        switch (this.f10596a) {
+        switch (this.f10613a) {
             case 0:
+                return k6.o1(0.78f, k6.w0(k6.f21254h5, g6Var));
+            case 1:
+                return k6.o1(0.7f, k6.w0(k6.f21183d6, g6Var));
+            case 2:
                 LiteMode.isEnabled(262144);
                 return 0;
             default:
@@ -215,53 +247,26 @@ public final class b implements d, cw0, dw0, GenericProvider, k, r9.d, o, a2, hh
                 } else {
                     f7 = 0.76f;
                 }
-                return h6.m1(f7, h6.w0(h6.f20994d6, d6Var));
-        }
-    }
-
-    @Override
-    public void g(b2 b2Var, int i10) {
-        switch (this.f10596a) {
-            case 24:
-                b2Var.dismiss();
-                return;
-            default:
-                b2Var.dismiss();
-                return;
-        }
-    }
-
-    @Override
-    public float get(Object obj) {
-        switch (this.f10596a) {
-            case 7:
-                return ((d3) obj).f11136b;
-            case 8:
-            default:
-                return ((e4) obj).getSwipeOffsetY();
-            case 9:
-                return ((z3) obj).f11583c;
+                return k6.o1(f7, k6.w0(k6.f21183d6, g6Var));
         }
     }
 
     @Override
     public void invoke(Object obj) {
-        switch (this.f10596a) {
-            case 22:
-                ((d1) obj).onPlayerError(new n(2, new RuntimeException("Player release timed out."), 1003));
-                return;
-            case 23:
-                ((d1) obj).onRenderedFirstFrame();
+        d1 d1Var = (d1) obj;
+        switch (this.f10613a) {
+            case 26:
+                d1Var.onPlayerError(new m(2, new RuntimeException("Player release timed out."), 1003));
                 return;
             default:
-                ((j2.b) obj).getClass();
+                d1Var.onRenderedFirstFrame();
                 return;
         }
     }
 
     @Override
     public Object j2(z5 z5Var) {
-        i5.f lambda$getComponents$0;
+        f lambda$getComponents$0;
         lambda$getComponents$0 = TransportRegistrar.lambda$getComponents$0(z5Var);
         return lambda$getComponents$0;
     }
@@ -269,11 +274,7 @@ public final class b implements d, cw0, dw0, GenericProvider, k, r9.d, o, a2, hh
     @Override
     public Object provide(Object obj) {
         Void r12 = (Void) obj;
-        ew0 ew0Var = e4.f11180b0;
+        hw0 hw0Var = e4.f11202b0;
         return Boolean.FALSE;
-    }
-
-    public b(j2.a aVar, z0 z0Var) {
-        this.f10596a = 29;
     }
 }

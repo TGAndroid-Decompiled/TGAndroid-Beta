@@ -1,63 +1,22 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-import org.telegram.messenger.LocaleController;
-public final class qa0 implements org.telegram.ui.Components.e5, org.telegram.ui.ActionBar.a2, org.telegram.ui.Components.ow0 {
-    public final int f40520a;
-    public final ab0 f40521b;
+import android.view.View;
+public final class qa0 implements View.OnAttachStateChangeListener {
+    public final LaunchActivity f40684a;
 
-    public qa0(ab0 ab0Var, int i10) {
-        this.f40520a = i10;
-        this.f40521b = ab0Var;
+    public qa0(LaunchActivity launchActivity) {
+        this.f40684a = launchActivity;
     }
 
     @Override
-    public void C(int i10, int i11, boolean z10) {
-        this.f40521b.V(i10);
+    public final void onViewAttachedToWindow(View view) {
+        LaunchActivity launchActivity = this.f40684a;
+        launchActivity.getWindowManager().addCrossWindowBlurEnabledListener(launchActivity.f33466e1);
     }
 
     @Override
-    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        ab0 ab0Var = this.f40521b;
-        ab0Var.T.a(ab0Var.e);
-        ab0Var.finishFragment();
-    }
-
-    @Override
-    public void h(int i10) {
-        switch (this.f40520a) {
-            case 2:
-                ab0 ab0Var = this.f40521b;
-                ArrayList arrayList = ab0Var.P;
-                if (i10 < arrayList.size()) {
-                    ab0Var.f35339w.setText(LocaleController.formatDateAudio(ab0Var.getConnectionsManager().getCurrentTime() + ((Integer) arrayList.get(i10)).intValue(), false));
-                    return;
-                }
-                ab0Var.f35339w.setText("");
-                return;
-            default:
-                ab0 ab0Var2 = this.f40521b;
-                ab0Var2.F.clearFocus();
-                ab0Var2.O = true;
-                ArrayList arrayList2 = ab0Var2.R;
-                if (i10 < arrayList2.size()) {
-                    ab0Var2.F.setText(((Integer) arrayList2.get(i10)).toString());
-                } else {
-                    ab0Var2.F.setText("");
-                }
-                ab0Var2.O = false;
-                return;
-        }
-    }
-
-    @Override
-    public void m() {
-        int i10 = this.f40520a;
-    }
-
-    private final void a() {
-    }
-
-    private final void b() {
+    public final void onViewDetachedFromWindow(View view) {
+        LaunchActivity launchActivity = this.f40684a;
+        launchActivity.getWindowManager().removeCrossWindowBlurEnabledListener(launchActivity.f33466e1);
     }
 }

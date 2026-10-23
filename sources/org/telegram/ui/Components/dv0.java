@@ -1,35 +1,45 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import androidx.recyclerview.widget.RecyclerView;
-import java.util.ArrayList;
-import org.telegram.messenger.SavedMessagesController;
-public final class dv0 extends org.telegram.ui.Cells.r2 {
-    public final ev0 f25646a5;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ChatMessageSharedResources;
+public final class dv0 extends org.telegram.ui.Cells.t1 {
+    public final int Ge = 1;
 
-    public dv0(ev0 ev0Var, Context context) {
-        super(context, true);
-        this.f25646a5 = ev0Var;
+    public dv0(Context context, int i10) {
+        super(context, i10);
     }
 
     @Override
-    public final boolean Q() {
-        return false;
-    }
-
-    @Override
-    public final boolean getIsPinned() {
-        ev0 ev0Var = this.f25646a5;
-        ArrayList arrayList = ev0Var.f25981f;
-        mu0 mu0Var = ev0Var.f25984s;
-        if (mu0Var != null && mu0Var.getAdapter() == ev0Var) {
-            ev0Var.f25984s.getClass();
-            int R = RecyclerView.R(this);
-            if (R >= 0 && R < arrayList.size()) {
-                return ((SavedMessagesController.SavedDialog) arrayList.get(R)).pinned;
-            }
-            return false;
+    public int getParentWidth() {
+        int i10;
+        int dp;
+        switch (this.Ge) {
+            case 1:
+                if (getMeasuredWidth() != 0) {
+                    i10 = getMeasuredWidth();
+                    dp = AndroidUtilities.dp(24.0f);
+                } else {
+                    i10 = AndroidUtilities.displaySize.x;
+                    dp = AndroidUtilities.dp(24.0f);
+                }
+                return i10 - dp;
+            default:
+                return super.getParentWidth();
         }
-        return false;
+    }
+
+    @Override
+    public final boolean isPressed() {
+        switch (this.Ge) {
+            case 0:
+                return false;
+            default:
+                return false;
+        }
+    }
+
+    public dv0(Context context, int i10, boolean z10, ChatMessageSharedResources chatMessageSharedResources, org.telegram.ui.ActionBar.g6 g6Var) {
+        super(context, i10, z10, chatMessageSharedResources, g6Var);
     }
 }

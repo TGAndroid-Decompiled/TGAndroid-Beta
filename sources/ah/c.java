@@ -11,8 +11,8 @@ import android.text.style.ReplacementSpan;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.k6;
 public final class c extends ReplacementSpan {
     public final TextPaint f662a;
     public final RectF f663b;
@@ -20,13 +20,15 @@ public final class c extends ReplacementSpan {
     public float d;
     public float e;
     public int f665f;
+    public final g6 h;
 
-    public c(d6 d6Var) {
+    public c(g6 g6Var) {
         TextPaint textPaint = new TextPaint(1);
         this.f662a = textPaint;
         this.f663b = new RectF();
+        this.h = g6Var;
         textPaint.setTextSize(AndroidUtilities.dp(15.0f));
-        textPaint.setColor(h6.w0(h6.C6, d6Var));
+        textPaint.setColor(k6.w0(k6.C6, g6Var));
     }
 
     public final void a() {
@@ -49,6 +51,7 @@ public final class c extends ReplacementSpan {
     @Override
     public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
         a();
+        this.f662a.setColor(k6.w0(k6.C6, this.h));
         Rect clipBounds = canvas.getClipBounds();
         RectF rectF = this.f663b;
         rectF.set(clipBounds);

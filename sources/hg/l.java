@@ -3,12 +3,12 @@ package hg;
 import android.content.Context;
 import android.widget.FrameLayout;
 public final class l extends FrameLayout {
-    public boolean f11962a;
-    public final m f11963b;
+    public boolean f11990a;
+    public final m f11991b;
 
     public l(m mVar, Context context) {
         super(context);
-        this.f11963b = mVar;
+        this.f11991b = mVar;
     }
 
     @Override

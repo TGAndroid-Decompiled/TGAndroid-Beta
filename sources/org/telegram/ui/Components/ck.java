@@ -4,51 +4,51 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.view.MotionEvent;
-public final class ck extends jm0 {
-    public final int V2;
-    public final Paint W2;
-    public final nk X2;
+public final class ck extends mm0 {
+    public final int Y2;
+    public final Paint Z2;
+    public final nk f25351a3;
 
-    public ck(nk nkVar, Context context, org.telegram.ui.ActionBar.d6 d6Var, int i10) {
-        super(context, d6Var);
-        this.V2 = i10;
+    public ck(nk nkVar, Context context, org.telegram.ui.ActionBar.g6 g6Var, int i10) {
+        super(context, g6Var);
+        this.Y2 = i10;
         switch (i10) {
             case 1:
-                this.X2 = nkVar;
-                super(context, d6Var);
-                this.W2 = new Paint();
+                this.f25351a3 = nkVar;
+                super(context, g6Var);
+                this.Z2 = new Paint();
                 return;
             default:
-                this.X2 = nkVar;
-                this.W2 = new Paint();
+                this.f25351a3 = nkVar;
+                this.Z2 = new Paint();
                 return;
         }
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        switch (this.V2) {
+        switch (this.Y2) {
             case 0:
-                if (this.X2.f28826n == 2 && getChildCount() > 0) {
+                if (this.f25351a3.f28976n == 2 && getChildCount() > 0) {
                     float f7 = 2.1474836E9f;
                     for (int i10 = 0; i10 < getChildCount(); i10++) {
                         if (getChildAt(i10).getY() < f7) {
                             f7 = getChildAt(i10).getY();
                         }
                     }
-                    this.W2.setColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21065h5, false));
+                    this.Z2.setColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f21254h5, false));
                 }
                 super.dispatchDraw(canvas);
                 return;
             default:
-                if (this.X2.f28826n == 1 && getChildCount() > 0) {
+                if (this.f25351a3.f28976n == 1 && getChildCount() > 0) {
                     float f10 = 2.1474836E9f;
                     for (int i11 = 0; i11 < getChildCount(); i11++) {
                         if (getChildAt(i11).getY() < f10) {
                             f10 = getChildAt(i11).getY();
                         }
                     }
-                    this.W2.setColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21065h5, false));
+                    this.Z2.setColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f21254h5, false));
                 }
                 super.dispatchDraw(canvas);
                 return;
@@ -57,9 +57,9 @@ public final class ck extends jm0 {
 
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.V2) {
+        switch (this.Y2) {
             case 0:
-                if (this.X2.f28826n != 0) {
+                if (this.f25351a3.f28976n != 0) {
                     return false;
                 }
                 return super.onTouchEvent(motionEvent);

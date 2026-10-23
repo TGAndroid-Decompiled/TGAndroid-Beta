@@ -1,17 +1,29 @@
 package u2;
-public final class j0 implements Runnable {
-    public final int f47341a;
-    public final Object f47342b;
-    public final Object f47343c;
+public final class j0 implements e2.j {
+    public final int f47786a;
+    public final a5.a f47787b;
+    public final v f47788c;
+    public final d0 d;
 
-    public j0(int i10, Object obj, Object obj2) {
-        this.f47341a = i10;
-        this.f47342b = obj;
-        this.f47343c = obj2;
+    public j0(a5.a aVar, v vVar, d0 d0Var, int i10) {
+        this.f47786a = i10;
+        this.f47787b = aVar;
+        this.f47788c = vVar;
+        this.d = d0Var;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: u2.j0.run():void");
+    public final void accept(Object obj) {
+        m0 m0Var = (m0) obj;
+        switch (this.f47786a) {
+            case 0:
+                a5.a aVar = this.f47787b;
+                m0Var.f(aVar.f281b, (h0) aVar.f282c, this.f47788c, this.d);
+                return;
+            default:
+                a5.a aVar2 = this.f47787b;
+                m0Var.k(aVar2.f281b, (h0) aVar2.f282c, this.f47788c, this.d);
+                return;
+        }
     }
 }

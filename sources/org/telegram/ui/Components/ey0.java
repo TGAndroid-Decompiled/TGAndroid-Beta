@@ -1,86 +1,33 @@
 package org.telegram.ui.Components;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.widget.TextView;
-import java.io.Serializable;
-import java.util.HashMap;
-import org.telegram.messenger.NotificationCenter;
-public final class ey0 implements TextWatcher {
-    public final int f25998a = 0;
-    public final EditTextBoldCursor f25999b;
-    public final Serializable f26000c;
-    public final Object d;
-    public final NotificationCenter.NotificationCenterDelegate e;
+import org.telegram.messenger.MessagesController;
+public final class ey0 implements Runnable {
+    public final int f26098a;
+    public final ty0 f26099b;
 
-    public ey0(qy0 qy0Var, int[] iArr, TextView textView, EditTextBoldCursor editTextBoldCursor) {
-        this.e = qy0Var;
-        this.f26000c = iArr;
-        this.d = textView;
-        this.f25999b = editTextBoldCursor;
+    public ey0(ty0 ty0Var, int i10) {
+        this.f26098a = i10;
+        this.f26099b = ty0Var;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        boolean z10;
-        switch (this.f25998a) {
+    public final void run() {
+        switch (this.f26098a) {
             case 0:
+                this.f26099b.d.l();
+                return;
+            case 1:
+                this.f26099b.d.l();
+                return;
+            case 2:
+                ty0.v(this.f26099b);
+                return;
+            case 3:
+                MessagesController.getInstance(r0.currentAccount).openByUserName("stickers", this.f26099b.L, 1);
                 return;
             default:
-                org.telegram.ui.vm0 vm0Var = (org.telegram.ui.vm0) this.e;
-                String str = (String) this.f26000c;
-                if (((HashMap) this.d) == vm0Var.f42329t1) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                EditTextBoldCursor editTextBoldCursor = this.f25999b;
-                org.telegram.ui.vm0.I0(vm0Var, editTextBoldCursor, str, editable, z10);
-                int intValue = ((Integer) editTextBoldCursor.getTag()).intValue();
-                EditTextBoldCursor editTextBoldCursor2 = vm0Var.Y[intValue];
-                if (intValue == 6) {
-                    vm0Var.X0(true);
-                    return;
-                }
+                ty0.u(this.f26099b);
                 return;
         }
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        int i13 = this.f25998a;
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        switch (this.f25998a) {
-            case 0:
-                if (((int[]) this.f26000c)[0] == 2) {
-                    ((qy0) this.e).n0((TextView) this.d, this.f25999b.getText().toString(), false);
-                    return;
-                }
-                return;
-            default:
-                return;
-        }
-    }
-
-    public ey0(org.telegram.ui.vm0 vm0Var, EditTextBoldCursor editTextBoldCursor, String str, HashMap hashMap) {
-        this.e = vm0Var;
-        this.f25999b = editTextBoldCursor;
-        this.f26000c = str;
-        this.d = hashMap;
-    }
-
-    private final void a(Editable editable) {
-    }
-
-    private final void b(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void c(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void d(int i10, int i11, int i12, CharSequence charSequence) {
     }
 }

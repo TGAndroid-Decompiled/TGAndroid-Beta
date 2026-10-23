@@ -3,7 +3,7 @@ package c3;
 import android.util.Base64;
 import b2.t0;
 import b2.w0;
-import e2.m0;
+import i2.o1;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -36,7 +36,7 @@ public abstract class b {
     public static final int[] f4585x = {32000, 40000, 48000, 56000, 64000, 80000, 96000, 112000, 128000, 160000, 192000, 224000, 256000, 320000};
     public static final int[] f4586y = {8000, 16000, 24000, 32000, 40000, 48000, 56000, 64000, 80000, 96000, 112000, 128000, 144000, 160000};
 
-    public static boolean a(e2.x xVar, u uVar, int i10, s sVar) {
+    public static boolean a(e2.x xVar, w wVar, int i10, u uVar) {
         boolean z10;
         boolean z11;
         boolean z12;
@@ -60,27 +60,27 @@ public abstract class b {
             z11 = false;
         }
         if (i13 <= 7) {
-            if (i13 != uVar.f4663g - 1) {
+            if (i13 != wVar.f4672g - 1) {
                 return false;
             }
-        } else if (i13 > 10 || uVar.f4663g != 2) {
+        } else if (i13 > 10 || wVar.f4672g != 2) {
             return false;
         }
-        if ((i14 != 0 && i14 != uVar.f4664i) || z11) {
+        if ((i14 != 0 && i14 != wVar.f4673i) || z11) {
             return false;
         }
         try {
             long I = xVar.I();
             if (!z10) {
-                I *= uVar.f4660b;
+                I *= wVar.f4669b;
             }
-            long j11 = uVar.f4665j;
+            long j11 = wVar.f4674j;
             if (j11 != 0 && I > j11) {
                 return false;
             }
-            sVar.f4655a = I;
+            uVar.f4664a = I;
             int s10 = s(i11, xVar);
-            long j12 = uVar.f4665j;
+            long j12 = wVar.f4674j;
             if (j12 != 0 && I + s10 < j12) {
                 z12 = false;
             } else {
@@ -89,13 +89,13 @@ public abstract class b {
             if (s10 == -1) {
                 return false;
             }
-            if ((!z12 && s10 < uVar.f4659a) || s10 > uVar.f4660b) {
+            if ((!z12 && s10 < wVar.f4668a) || s10 > wVar.f4669b) {
                 return false;
             }
-            int i15 = uVar.e;
+            int i15 = wVar.e;
             if (i12 != 0) {
                 if (i12 <= 11) {
-                    if (i12 != uVar.f4662f) {
+                    if (i12 != wVar.f4671f) {
                         return false;
                     }
                 } else if (i12 == 12) {
@@ -115,14 +115,14 @@ public abstract class b {
                 }
             }
             int A = xVar.A();
-            int i16 = xVar.f8292b;
-            byte[] bArr = xVar.f8291a;
+            int i16 = xVar.f8299b;
+            byte[] bArr = xVar.f8298a;
             int i17 = i16 - 1;
             int i18 = 0;
-            for (int i19 = xVar.f8292b; i19 < i17; i19++) {
-                i18 = m0.f8260l[i18 ^ (bArr[i19] & 255)];
+            for (int i19 = xVar.f8299b; i19 < i17; i19++) {
+                i18 = e2.m0.f8267l[i18 ^ (bArr[i19] & 255)];
             }
-            String str = m0.f8252a;
+            String str = e2.m0.f8259a;
             if (A != i18) {
                 return false;
             }
@@ -150,7 +150,7 @@ public abstract class b {
         throw w0.a(null, str);
     }
 
-    public static void c(long j10, e2.x xVar, j0[] j0VarArr) {
+    public static void c(long j10, e2.x xVar, l0[] l0VarArr) {
         int i10;
         int i11;
         boolean z10;
@@ -182,7 +182,7 @@ public abstract class b {
                         break;
                     }
                 }
-                int i14 = xVar.f8292b + i13;
+                int i14 = xVar.f8299b + i13;
                 if (i13 != -1 && i13 <= xVar.a()) {
                     if (i10 == 4 && i13 >= 8) {
                         int A3 = xVar.A();
@@ -208,12 +208,12 @@ public abstract class b {
                             z10 &= z11;
                         }
                         if (z10) {
-                            d(j10, xVar, j0VarArr);
+                            d(j10, xVar, l0VarArr);
                         }
                     }
                 } else {
                     e2.a.l("CeaUtil", "Skipping remainder of malformed SEI NAL unit.");
-                    i14 = xVar.f8293c;
+                    i14 = xVar.f8300c;
                 }
                 xVar.N(i14);
             } else {
@@ -222,23 +222,23 @@ public abstract class b {
         }
     }
 
-    public static void d(long j10, e2.x xVar, j0[] j0VarArr) {
+    public static void d(long j10, e2.x xVar, l0[] l0VarArr) {
         boolean z10;
         int A = xVar.A();
         if ((A & 64) != 0) {
             xVar.O(1);
             int i10 = (A & 31) * 3;
-            int i11 = xVar.f8292b;
-            for (j0 j0Var : j0VarArr) {
+            int i11 = xVar.f8299b;
+            for (l0 l0Var : l0VarArr) {
                 xVar.N(i11);
-                j0Var.d(i10, xVar);
+                l0Var.d(i10, xVar);
                 if (j10 != -9223372036854775807L) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
                 u6.p(z10);
-                j0Var.c(j10, 1, i10, 0, null);
+                l0Var.c(j10, 1, i10, 0, null);
             }
         }
     }
@@ -261,7 +261,7 @@ public abstract class b {
 
     public static void f(int i10, e2.x xVar) {
         xVar.K(7);
-        byte[] bArr = xVar.f8291a;
+        byte[] bArr = xVar.f8298a;
         bArr[0] = -84;
         bArr[1] = 64;
         bArr[2] = -1;
@@ -451,7 +451,7 @@ public abstract class b {
         }
         int l4 = l(gVar);
         int g11 = gVar.g(4);
-        String j10 = i2.e.j(g10, "mp4a.40.");
+        String k10 = o1.k(g10, "mp4a.40.");
         if (g10 == 5 || g10 == 29) {
             l4 = l(gVar);
             int g12 = gVar.g(5);
@@ -515,9 +515,9 @@ public abstract class b {
         int i10 = f4567b[g11];
         if (i10 != -1) {
             ?? obj = new Object();
-            obj.f4559b = l4;
-            obj.f4560c = i10;
-            obj.f4558a = j10;
+            obj.f4563b = l4;
+            obj.f4564c = i10;
+            obj.f4562a = k10;
             return obj;
         }
         throw w0.a(null, null);
@@ -534,8 +534,8 @@ public abstract class b {
         }
         if (gVar.f()) {
             int g11 = gVar.g(3);
-            if (cVar.f4590b == -1 && g10 >= 0 && g10 <= 15 && (g11 == 0 || g11 == 1)) {
-                cVar.f4590b = g10;
+            if (cVar.f4591b == -1 && g10 >= 0 && g10 <= 15 && (g11 == 0 || g11 == 1)) {
+                cVar.f4591b = g10;
             }
             if (gVar.f()) {
                 v(gVar);
@@ -559,7 +559,7 @@ public abstract class b {
                     if (!gVar.f()) {
                         gVar.o(4);
                     }
-                    cVar.f4591c = gVar.g(6) + 1;
+                    cVar.f4592c = gVar.g(6) + 1;
                 }
                 gVar.o(4);
             }
@@ -588,7 +588,7 @@ public abstract class b {
         ArrayList arrayList = new ArrayList();
         for (int i10 = 0; i10 < list.size(); i10++) {
             String str = (String) list.get(i10);
-            String str2 = m0.f8252a;
+            String str2 = e2.m0.f8259a;
             String[] split = str.split("=", 2);
             if (split.length != 2) {
                 e2.a.l("VorbisUtil", "Failed to parse Vorbis comment: ".concat(str));
@@ -638,7 +638,7 @@ public abstract class b {
     public static n4.s t(e2.x xVar) {
         xVar.O(1);
         int D = xVar.D();
-        long j10 = xVar.f8292b + D;
+        long j10 = xVar.f8299b + D;
         int i10 = D / 18;
         long[] jArr = new long[i10];
         long[] jArr2 = new long[i10];
@@ -658,11 +658,11 @@ public abstract class b {
             xVar.O(2);
             i11++;
         }
-        xVar.O((int) (j10 - xVar.f8292b));
+        xVar.O((int) (j10 - xVar.f8299b));
         return new n4.s(8, jArr, jArr2);
     }
 
-    public static l0 u(e2.x xVar, boolean z10, boolean z11) {
+    public static n0 u(e2.x xVar, boolean z10, boolean z11) {
         if (z10) {
             w(3, xVar, false);
         }
@@ -675,7 +675,7 @@ public abstract class b {
         if (z11 && (xVar.A() & 1) == 0) {
             throw w0.a(null, "framing bit expected to be set");
         }
-        return new l0(strArr);
+        return new n0(strArr);
     }
 
     public static void v(a4.g gVar) {

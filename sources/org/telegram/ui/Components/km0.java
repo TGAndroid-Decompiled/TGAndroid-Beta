@@ -1,12 +1,6 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-public interface km0 {
-    void a(boolean z10);
-
-    boolean b(int i10);
-
-    void c(View view, boolean z10);
-
-    boolean d(int i10);
+import java.util.ArrayList;
+public abstract class km0 {
+    public static final ArrayList f28063a = new ArrayList();
 }

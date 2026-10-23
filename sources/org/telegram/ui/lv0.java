@@ -1,70 +1,65 @@
 package org.telegram.ui;
 
-import android.os.Bundle;
-import android.view.View;
-import android.widget.LinearLayout;
 import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.SharedConfig;
-import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class lv0 implements View.OnClickListener {
-    public final qh0 f39038a;
-    public final qn f39039b;
-    public final org.telegram.ui.Components.jm0 f39040c;
-    public final LinearLayout d;
-    public final org.telegram.ui.Components.i80 e;
-    public final org.telegram.ui.Components.i80 f39041f;
-    public final qv0 h;
+public final class lv0 implements Runnable {
+    public final int f39332a = 1;
+    public final uv0 f39333b;
+    public final boolean f39334c;
+    public final TLRPC.PollAnswer d;
+    public final org.telegram.ui.ActionBar.o2 e;
+    public final ArrayList f39335f;
 
-    public lv0(qv0 qv0Var, qh0 qh0Var, qn qnVar, org.telegram.ui.Components.jm0 jm0Var, LinearLayout linearLayout, org.telegram.ui.Components.i80 i80Var, org.telegram.ui.Components.i80 i80Var2) {
-        this.h = qv0Var;
-        this.f39038a = qh0Var;
-        this.f39039b = qnVar;
-        this.f39040c = jm0Var;
-        this.d = linearLayout;
-        this.e = i80Var;
-        this.f39041f = i80Var2;
+    public lv0(uv0 uv0Var, boolean z10, TLRPC.PollAnswer pollAnswer, org.telegram.ui.ActionBar.o2 o2Var, ArrayList arrayList) {
+        this.f39333b = uv0Var;
+        this.f39334c = z10;
+        this.d = pollAnswer;
+        this.e = o2Var;
+        this.f39335f = arrayList;
     }
 
     @Override
-    public final void onClick(View view) {
-        qh0 qh0Var = this.f39038a;
-        ArrayList arrayList = qh0Var.f40582b;
-        ArrayList arrayList2 = qh0Var.f40583c;
-        if (!arrayList2.isEmpty()) {
-            int size = arrayList2.size();
-            qv0 qv0Var = this.h;
-            qn qnVar = this.f39039b;
-            if (size == 1 && (arrayList.size() <= 0 || ((Integer) arrayList.get(0)).intValue() <= 0)) {
-                TLObject tLObject = (TLObject) arrayList2.get(0);
-                if (tLObject == null) {
-                    return;
+    public final void run() {
+        switch (this.f39332a) {
+            case 0:
+                uv0 uv0Var = this.f39333b;
+                uv0Var.getClass();
+                boolean z10 = this.f39334c;
+                org.telegram.ui.ActionBar.o2 o2Var = this.e;
+                if (!z10) {
+                    o2Var.getSendMessagesHelper().sendVote(uv0Var.H, null, null);
+                } else {
+                    ArrayList<TLRPC.PollAnswer> arrayList = this.f39335f;
+                    arrayList.remove(this.d);
+                    o2Var.getSendMessagesHelper().sendVote(uv0Var.H, arrayList, null);
                 }
-                Bundle bundle = new Bundle();
-                if (tLObject instanceof TLRPC.User) {
-                    bundle.putLong("user_id", ((TLRPC.User) tLObject).f20427id);
-                } else if (tLObject instanceof TLRPC.Chat) {
-                    bundle.putLong("chat_id", ((TLRPC.Chat) tLObject).f20280id);
-                }
-                qnVar.presentFragment(new ProfileActivity(bundle, null));
-                qv0Var.c(false);
+                uv0Var.c(true);
                 return;
-            }
-            if (SharedConfig.messageSeenHintCount > 0 && qnVar.X0.getKeyboardHeight() < AndroidUtilities.dp(20.0f)) {
-                org.telegram.ui.Components.qc t10 = new org.telegram.ui.Components.xc(org.telegram.ui.Components.lb.a(qv0Var.getContext()), qv0Var.f40985b).t(AndroidUtilities.replaceTags(LocaleController.getString(R.string.MessageSeenTooltipMessage)), null);
-                qnVar.f40779n1 = t10;
-                t10.f29535j = 4000;
-                t10.j();
-                SharedConfig.updateMessageSeenHintCount(SharedConfig.messageSeenHintCount - 1);
-            }
-            org.telegram.ui.Components.jm0 jm0Var = this.f39040c;
-            jm0Var.requestLayout();
-            this.d.requestLayout();
-            jm0Var.getAdapter().l();
-            this.e.K(this.f39041f);
+            default:
+                uv0 uv0Var2 = this.f39333b;
+                uv0Var2.getClass();
+                boolean z11 = this.f39334c;
+                TLRPC.PollAnswer pollAnswer = this.d;
+                org.telegram.ui.ActionBar.o2 o2Var2 = this.e;
+                if (!z11) {
+                    ArrayList<TLRPC.PollAnswer> arrayList2 = new ArrayList<>(1);
+                    arrayList2.add(pollAnswer);
+                    o2Var2.getSendMessagesHelper().sendVote(uv0Var2.H, arrayList2, null);
+                } else {
+                    ArrayList<TLRPC.PollAnswer> arrayList3 = this.f39335f;
+                    arrayList3.add(pollAnswer);
+                    o2Var2.getSendMessagesHelper().sendVote(uv0Var2.H, arrayList3, null);
+                }
+                uv0Var2.c(true);
+                return;
         }
+    }
+
+    public lv0(uv0 uv0Var, boolean z10, org.telegram.ui.ActionBar.o2 o2Var, ArrayList arrayList, TLRPC.PollAnswer pollAnswer) {
+        this.f39333b = uv0Var;
+        this.f39334c = z10;
+        this.e = o2Var;
+        this.f39335f = arrayList;
+        this.d = pollAnswer;
     }
 }

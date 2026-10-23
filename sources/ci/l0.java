@@ -1,7 +1,7 @@
 package ci;
 public final class l0 extends b {
     @Override
-    public final void b() {
-        this.f5232b.append(org.telegram.ui.ActionBar.h6.f21065h5, -14671840);
+    public final void j() {
+        this.f5161b.append(org.telegram.ui.ActionBar.k6.f21254h5, -14671840);
     }
 }

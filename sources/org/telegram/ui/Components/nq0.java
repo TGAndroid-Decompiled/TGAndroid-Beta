@@ -1,74 +1,87 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
+import android.animation.ValueAnimator;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.text.TextUtils;
 import android.widget.FrameLayout;
-public final class nq0 extends AnimatorListenerAdapter {
-    public final int f28868a;
-    public final boolean f28869b;
-    public final fr0 f28870c;
+public final class nq0 extends qu {
+    public boolean V;
+    public int W;
+    public int f28999a0;
+    public ValueAnimator f29000b0;
+    public final ir0 f29001c0;
 
-    public nq0(fr0 fr0Var, boolean z10, int i10) {
-        this.f28868a = i10;
-        this.f28870c = fr0Var;
-        this.f28869b = z10;
+    public nq0(ir0 ir0Var, Context context, tq0 tq0Var, org.telegram.ui.ActionBar.g6 g6Var) {
+        super(context, tq0Var, null, 1, true, g6Var);
+        this.f29001c0 = ir0Var;
     }
 
     @Override
-    public final void onAnimationCancel(Animator animator) {
-        switch (this.f28868a) {
-            case 0:
-                AnimatorSet[] animatorSetArr = this.f28870c.U;
-                AnimatorSet animatorSet = animatorSetArr[0];
-                if (animatorSet != null && animatorSet.equals(animator)) {
-                    animatorSetArr[0] = null;
-                    return;
-                }
-                return;
-            default:
-                fr0 fr0Var = this.f28870c;
-                if (animator.equals(fr0Var.E)) {
-                    fr0Var.E = null;
-                    return;
-                }
-                return;
+    public final void c(float f7) {
+        this.f29001c0.e1();
+    }
+
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        if (this.V) {
+            iu editText = this.f29001c0.d.getEditText();
+            editText.setOffsetY(editText.getOffsetY() - ((this.f28999a0 - editText.getScrollY()) + (this.W - editText.getMeasuredHeight())));
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(editText.getOffsetY(), 0.0f);
+            ofFloat.addUpdateListener(new d80(editText, 19));
+            ValueAnimator valueAnimator = this.f29000b0;
+            if (valueAnimator != null) {
+                valueAnimator.cancel();
+            }
+            this.f29000b0 = ofFloat;
+            ofFloat.setDuration(200L);
+            ofFloat.setInterpolator(bs.f25133f);
+            ofFloat.start();
+            this.V = false;
+        }
+        super.dispatchDraw(canvas);
+    }
+
+    @Override
+    public final void f() {
+        super.f();
+        tz emojiView = getEmojiView();
+        ir0 ir0Var = this.f29001c0;
+        if (emojiView != null) {
+            emojiView.f31028w0 = false;
+            emojiView.f31034x2 = false;
+            emojiView.setShouldDrawBackground(false);
+            emojiView.setBottomInset(ir0Var.H0.d);
+        }
+        FrameLayout frameLayout = ir0Var.f27414d0;
+        if (frameLayout != null) {
+            frameLayout.bringToFront();
+        }
+        mq0 mq0Var = ir0Var.f27411c;
+        if (mq0Var != null) {
+            mq0Var.bringToFront();
+        }
+        mq0 mq0Var2 = ir0Var.f27416f;
+        if (mq0Var2 != null) {
+            mq0Var2.bringToFront();
         }
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f28868a) {
-            case 0:
-                fr0 fr0Var = this.f28870c;
-                AnimatorSet[] animatorSetArr = fr0Var.U;
-                AnimatorSet animatorSet = animatorSetArr[0];
-                if (animatorSet != null && animatorSet.equals(animator)) {
-                    if (!this.f28869b) {
-                        fr0Var.T[0].setVisibility(4);
-                    }
-                    animatorSetArr[0] = null;
-                    return;
-                }
-                return;
-            default:
-                fr0 fr0Var2 = this.f28870c;
-                FrameLayout frameLayout = fr0Var2.h;
-                if (animator.equals(fr0Var2.E)) {
-                    if (!this.f28869b) {
-                        fr0Var2.f26371c.setVisibility(4);
-                        FrameLayout frameLayout2 = fr0Var2.f26373d0;
-                        if (frameLayout2 != null && frameLayout == null) {
-                            frameLayout2.setVisibility(4);
-                        }
-                        fr0Var2.f26375f.setVisibility(4);
-                    } else if (frameLayout != null) {
-                        frameLayout.setVisibility(4);
-                    }
-                    fr0Var2.E = null;
-                    return;
-                }
-                return;
+    public final void q(int i10, int i11) {
+        ir0 ir0Var = this.f29001c0;
+        mq0 mq0Var = ir0Var.f27411c;
+        if (!TextUtils.isEmpty(getEditText().getText())) {
+            this.V = true;
+            this.W = getEditText().getMeasuredHeight();
+            this.f28999a0 = getEditText().getScrollY();
+            invalidate();
+        } else {
+            getEditText().animate().cancel();
+            getEditText().setOffsetY(0.0f);
+            this.V = false;
         }
+        ir0Var.f27437w0 = mq0Var.getTop() + ir0Var.f27435v0;
+        mq0Var.invalidate();
     }
 }

@@ -8,9 +8,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import v7.u6;
 public abstract class q {
-    public static final byte[] f10335a = {0, 0, 0, 1};
-    public static final float[] f10336b = {1.0f, 1.0f, 1.0909091f, 0.90909094f, 1.4545455f, 1.2121212f, 2.1818182f, 1.8181819f, 2.909091f, 2.4242425f, 1.6363636f, 1.3636364f, 1.939394f, 1.6161616f, 1.3333334f, 1.5f, 2.0f};
-    public static final Object f10337c = new Object();
+    public static final byte[] f10352a = {0, 0, 0, 1};
+    public static final float[] f10353b = {1.0f, 1.0f, 1.0909091f, 0.90909094f, 1.4545455f, 1.2121212f, 2.1818182f, 1.8181819f, 2.909091f, 2.4242425f, 1.6363636f, 1.3636364f, 1.939394f, 1.6161616f, 1.3333334f, 1.5f, 2.0f};
+    public static final Object f10354c = new Object();
     public static int[] d = new int[10];
 
     public static ArrayList a(byte[] bArr) {
@@ -87,8 +87,8 @@ public abstract class q {
     }
 
     public static String d(b2.w wVar) {
-        String str = wVar.f4128s;
-        String str2 = wVar.f4120k;
+        String str = wVar.f4135s;
+        String str2 = wVar.f4127k;
         if (Objects.equals(str, "video/dolby-vision") && str2 != null) {
             if (!str2.startsWith("dva1") && !str2.startsWith("dvav")) {
                 if (str2.startsWith("dvh1") || str2.startsWith("dvhe")) {
@@ -98,7 +98,7 @@ public abstract class q {
                 return "video/avc";
             }
         }
-        return wVar.f4128s;
+        return wVar.f4135s;
     }
 
     public static long e(byte b10, byte b11) {
@@ -130,12 +130,12 @@ public abstract class q {
 
     public static boolean f(byte[] bArr, int i10, b2.w wVar) {
         int i11;
-        if (Objects.equals(wVar.f4128s, "video/avc")) {
+        if (Objects.equals(wVar.f4135s, "video/avc")) {
             byte b10 = bArr[4];
             if (((b10 & 96) >> 5) == 0 && ((i11 = b10 & 31) == 1 || i11 == 9 || i11 == 14)) {
                 return false;
             }
-        } else if (Objects.equals(wVar.f4128s, "video/hevc")) {
+        } else if (Objects.equals(wVar.f4135s, "video/hevc")) {
             a3.l h = h(new u(bArr, 4, i10 + 4));
             int i12 = h.f139a;
             if (i12 != 35) {
@@ -314,7 +314,7 @@ public abstract class q {
 
     public static int p(int i10, byte[] bArr) {
         int i11;
-        synchronized (f10337c) {
+        synchronized (f10354c) {
             int i12 = 0;
             int i13 = 0;
             while (i12 < i10) {

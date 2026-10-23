@@ -7,18 +7,20 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.ActionBar.r6;
 import org.telegram.ui.Components.og;
 import org.telegram.ui.Components.q6;
-import org.telegram.ui.gn;
-import org.telegram.ui.tf1;
+import org.telegram.ui.in;
+import org.telegram.ui.ve1;
 public final class g0 implements og {
-    public final TL_stars.TL_starGiftUnique f50256a;
-    public final i0 f50257b;
+    public final TL_stars.TL_starGiftUnique f50700a;
+    public final i0 f50701b;
 
     public g0(i0 i0Var, TL_stars.TL_starGiftUnique tL_starGiftUnique) {
-        this.f50257b = i0Var;
-        this.f50256a = tL_starGiftUnique;
+        this.f50701b = i0Var;
+        this.f50700a = tL_starGiftUnique;
     }
 
     @Override
@@ -40,11 +42,13 @@ public final class g0 implements og {
         int i10;
         int i11;
         boolean z10;
-        i0 i0Var = this.f50257b;
-        q6 q6Var = i0Var.f50303w;
-        y4 y4Var = i0Var.f50297b;
-        i10 = ((org.telegram.ui.ActionBar.f3) i0Var).currentAccount;
-        y4Var.a(this.f50256a, UserConfig.getInstance(i10).getClientUserId(), i0Var.f50300n.getTextWithEntities(), LocaleController.getString(R.string.GiftMessageSendNow), true);
+        g6 g6Var;
+        g6 g6Var2;
+        i0 i0Var = this.f50701b;
+        q6 q6Var = i0Var.f50755w;
+        y4 y4Var = i0Var.f50749b;
+        i10 = ((org.telegram.ui.ActionBar.h3) i0Var).currentAccount;
+        y4Var.a(this.f50700a, UserConfig.getInstance(i10).getClientUserId(), i0Var.f50752n.getTextWithEntities(), LocaleController.getString(R.string.GiftMessageSendNow), true);
         int codePointCount = Character.codePointCount(charSequence, 0, charSequence.length());
         i0Var.F = codePointCount;
         int i12 = i0Var.E;
@@ -68,14 +72,17 @@ public final class g0 implements og {
             q6Var.animate().setListener(null).cancel();
             q6Var.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(100L).start();
             if (i11 < 0) {
-                q6Var.setTextColor(i0Var.getThemedColor(h6.f21215p7));
-                return;
-            } else {
-                q6Var.setTextColor(i0Var.getThemedColor(h6.f21382y6));
+                int i13 = k6.f21404p7;
+                g6Var2 = ((org.telegram.ui.ActionBar.h3) i0Var).resourcesProvider;
+                r6.a0(q6Var, i13, g6Var2);
                 return;
             }
+            int i14 = k6.f21571y6;
+            g6Var = ((org.telegram.ui.ActionBar.h3) i0Var).resourcesProvider;
+            r6.a0(q6Var, i14, g6Var);
+            return;
         }
-        q6Var.animate().alpha(0.0f).scaleX(0.5f).scaleY(0.5f).setDuration(100L).setListener(new tf1(this, 22));
+        q6Var.animate().alpha(0.0f).scaleX(0.5f).scaleY(0.5f).setDuration(100L).setListener(new ve1(this, 23));
     }
 
     @Override
@@ -109,7 +116,7 @@ public final class g0 implements og {
     }
 
     @Override
-    public final gn p0() {
+    public final in p0() {
         return null;
     }
 
@@ -138,6 +145,26 @@ public final class g0 implements og {
     }
 
     @Override
+    public final void V1(int i10) {
+    }
+
+    @Override
+    public final void X0(int i10) {
+    }
+
+    @Override
+    public final void Z1(boolean z10) {
+    }
+
+    @Override
+    public final void a0(boolean z10) {
+    }
+
+    @Override
+    public final void z(float f7) {
+    }
+
+    @Override
     public final void F0() {
     }
 
@@ -158,27 +185,11 @@ public final class g0 implements og {
     }
 
     @Override
-    public final void V1(int i10) {
-    }
-
-    @Override
-    public final void X0(int i10) {
-    }
-
-    @Override
     public final void Y() {
     }
 
     @Override
     public final void Y1() {
-    }
-
-    @Override
-    public final void Z1(boolean z10) {
-    }
-
-    @Override
-    public final void a0(boolean z10) {
     }
 
     @Override
@@ -235,10 +246,6 @@ public final class g0 implements og {
 
     @Override
     public final void y1() {
-    }
-
-    @Override
-    public final void z(float f7) {
     }
 
     @Override

@@ -1,17 +1,91 @@
 package org.telegram.ui;
 
-import androidx.recyclerview.widget.RecyclerView;
-public final class le1 extends s4.r0 {
-    public final int f38911a;
+import android.app.Activity;
+import android.view.View;
+import java.util.HashMap;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+public final class le1 extends View {
+    public final HashMap f39232a;
+    public final me1 f39233b;
+
+    public le1(me1 me1Var, Activity activity) {
+        super(activity);
+        this.f39233b = me1Var;
+        this.f39232a = new HashMap();
+    }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        int i12 = this.f38911a;
-    }
-
-    private final void c(RecyclerView recyclerView, int i10, int i11) {
-    }
-
-    private final void d(RecyclerView recyclerView, int i10, int i11) {
+    public final void onMeasure(int i10, int i11) {
+        int i12;
+        int i13;
+        float f7;
+        int i14;
+        int dp;
+        boolean z10;
+        int i15;
+        me1 me1Var = this.f39233b;
+        ye1 ye1Var = me1Var.d;
+        int size = View.MeasureSpec.getSize(i10);
+        int dp2 = AndroidUtilities.dp(64.0f);
+        int i16 = 0;
+        int i17 = 0;
+        for (int i18 = 0; i18 < me1Var.F().size(); i18++) {
+            if (me1Var.F().get(i18) != null && ((oe1) me1Var.F().get(i18)).f40146c != null) {
+                String str = ((oe1) me1Var.F().get(i18)).f40146c.title;
+                HashMap hashMap = this.f39232a;
+                Boolean bool = (Boolean) hashMap.get(str);
+                if (bool == null) {
+                    int i19 = 50;
+                    if (!LocaleController.isRTL) {
+                        if (ye1Var.isInPreviewMode()) {
+                            i15 = 11;
+                        } else {
+                            i15 = 50;
+                        }
+                        f7 = i15 + 4;
+                    } else {
+                        f7 = 18.0f;
+                    }
+                    int dp3 = AndroidUtilities.dp(f7);
+                    if (!LocaleController.isRTL) {
+                        i14 = size - dp3;
+                        dp = AndroidUtilities.dp(22.0f);
+                    } else {
+                        i14 = size - dp3;
+                        if (ye1Var.isInPreviewMode()) {
+                            i19 = 11;
+                        }
+                        dp = AndroidUtilities.dp(i19 + 13);
+                    }
+                    if (org.telegram.ui.ActionBar.k6.B0[0].measureText(str) <= (i14 - dp) - ((int) Math.ceil(org.telegram.ui.ActionBar.k6.I0.measureText("00:00")))) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    bool = Boolean.valueOf(z10);
+                    hashMap.put(str, bool);
+                }
+                if (!bool.booleanValue()) {
+                    i13 = 20;
+                } else {
+                    i13 = 0;
+                }
+                int dp4 = AndroidUtilities.dp(i13 + 64);
+                if (((oe1) me1Var.F().get(i18)).f40146c.f20395id == 1) {
+                    dp2 = dp4;
+                }
+                if (((oe1) me1Var.F().get(i18)).f40146c.hidden) {
+                    i16++;
+                }
+                i17 += dp4;
+            }
+        }
+        if (i16 > 0) {
+            i12 = (((ye1Var.N.getMeasuredHeight() - ye1Var.N.getPaddingTop()) - ye1Var.N.getPaddingBottom()) - i17) + dp2;
+        } else {
+            i12 = 0;
+        }
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(Math.max(0, i12), 1073741824));
     }
 }

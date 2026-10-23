@@ -7,12 +7,12 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.tl.TL_bots;
 import org.telegram.tgnet.tl.TL_payments;
 public final class e implements Runnable {
-    public final int f11169a;
-    public final l f11170b;
+    public final int f11191a;
+    public final l f11192b;
 
     public e(l lVar, int i10) {
-        this.f11169a = i10;
-        this.f11170b = lVar;
+        this.f11191a = i10;
+        this.f11192b = lVar;
     }
 
     @Override
@@ -20,26 +20,26 @@ public final class e implements Runnable {
         int i10;
         String f7;
         int i11;
-        switch (this.f11169a) {
+        switch (this.f11191a) {
             case 0:
-                l lVar = this.f11170b;
-                ai.v vVar = lVar.T;
-                if (lVar.Y.end_date == 0) {
+                l lVar = this.f11192b;
+                ai.v vVar = lVar.V;
+                if (lVar.f11328a0.end_date == 0) {
                     f7 = null;
                 } else {
                     f7 = yg.k.f((i10 - lVar.getConnectionsManager().getCurrentTime()) * 1000);
                 }
-                vVar.f(f7, true);
-                if (lVar.Y.end_date != 0 && lVar.f11307b0) {
-                    AndroidUtilities.runOnUIThread(lVar.V, 1000L);
+                vVar.g(f7, true);
+                if (lVar.f11328a0.end_date != 0 && lVar.f11331d0) {
+                    AndroidUtilities.runOnUIThread(lVar.X, 1000L);
                     return;
                 }
                 return;
             case 1:
                 TL_bots.updateStarRefProgram updatestarrefprogram = new TL_bots.updateStarRefProgram();
-                l lVar2 = this.f11170b;
-                updatestarrefprogram.bot = lVar2.getMessagesController().getInputUser(lVar2.P);
-                TL_payments.starRefProgram starrefprogram = lVar2.Y;
+                l lVar2 = this.f11192b;
+                updatestarrefprogram.bot = lVar2.getMessagesController().getInputUser(lVar2.R);
+                TL_payments.starRefProgram starrefprogram = lVar2.f11328a0;
                 updatestarrefprogram.commission_permille = starrefprogram.commission_permille;
                 int i12 = starrefprogram.duration_months;
                 updatestarrefprogram.duration_months = i12;
@@ -50,14 +50,14 @@ public final class e implements Runnable {
                     updatestarrefprogram.flags &= -2;
                     starrefprogram.duration_months = i12 & (-2);
                 }
-                org.telegram.ui.ActionBar.b2 b2Var = new org.telegram.ui.ActionBar.b2(lVar2.getParentActivity(), 3, null);
-                b2Var.r(150L);
-                lVar2.getConnectionsManager().sendRequest(updatestarrefprogram, new b(lVar2, b2Var, 1));
+                org.telegram.ui.ActionBar.c2 c2Var = new org.telegram.ui.ActionBar.c2(lVar2.getParentActivity(), 3, null);
+                c2Var.r(150L);
+                lVar2.getConnectionsManager().sendRequest(updatestarrefprogram, new b(lVar2, c2Var, 1));
                 return;
             default:
-                l lVar3 = this.f11170b;
+                l lVar3 = this.f11192b;
                 Activity parentActivity = lVar3.getParentActivity();
-                if (!lVar3.W && lVar3.Y.end_date == 0) {
+                if (!lVar3.Y && lVar3.f11328a0.end_date == 0) {
                     i11 = R.string.AffiliateProgramStartInfoLink;
                 } else {
                     i11 = R.string.AffiliateProgramUpdateInfoLink;

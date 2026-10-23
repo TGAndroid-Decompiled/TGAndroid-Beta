@@ -1,7 +1,7 @@
 package ai;
 public abstract class o6 {
-    public String f1936a;
-    public int f1937b;
+    public String f1937a;
+    public int f1938b;
 
     public boolean b() {
         return true;

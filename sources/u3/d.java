@@ -1,23 +1,23 @@
 package u3;
 
 import android.util.SparseArray;
-import c3.b0;
-import c3.c0;
 import c3.d0;
+import c3.e0;
+import c3.f0;
 import c3.j;
 import java.util.Arrays;
 import java.util.List;
-public final class d implements c0 {
-    public final j f47521a;
-    public final SparseArray f47522b;
-    public final long f47523c;
+public final class d implements e0 {
+    public final j f47961a;
+    public final SparseArray f47962b;
+    public final long f47963c;
     public final int d;
 
     public d(SparseArray sparseArray, long j10, int i10, long j11, long j12) {
         j jVar;
         int i11;
-        this.f47522b = sparseArray;
-        this.f47523c = j10;
+        this.f47962b = sparseArray;
+        this.f47963c = j10;
         this.d = i10;
         List list = (List) sparseArray.get(i10);
         if (list != null && !list.isEmpty()) {
@@ -29,8 +29,8 @@ public final class d implements c0 {
             int i12 = 0;
             for (int i13 = 0; i13 < size; i13++) {
                 c cVar = (c) list.get(i13);
-                jArr3[i13] = cVar.f47518a;
-                jArr[i13] = cVar.f47519b;
+                jArr3[i13] = cVar.f47958a;
+                jArr[i13] = cVar.f47959b;
             }
             while (true) {
                 i11 = size - 1;
@@ -60,12 +60,12 @@ public final class d implements c0 {
         } else {
             jVar = null;
         }
-        this.f47521a = jVar;
+        this.f47961a = jVar;
     }
 
     @Override
     public final boolean d() {
-        List list = (List) this.f47522b.get(this.d);
+        List list = (List) this.f47962b.get(this.d);
         if (list != null && !list.isEmpty()) {
             return true;
         }
@@ -78,17 +78,17 @@ public final class d implements c0 {
     }
 
     @Override
-    public final b0 f(long j10) {
-        j jVar = this.f47521a;
+    public final d0 f(long j10) {
+        j jVar = this.f47961a;
         if (jVar != null) {
             return jVar.f(j10);
         }
-        d0 d0Var = d0.f4603c;
-        return new b0(d0Var, d0Var);
+        f0 f0Var = f0.f4620c;
+        return new d0(f0Var, f0Var);
     }
 
     @Override
     public final long h() {
-        return this.f47523c;
+        return this.f47963c;
     }
 }

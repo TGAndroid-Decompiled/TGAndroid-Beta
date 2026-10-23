@@ -2,12 +2,12 @@ package ee;
 
 import kotlin.jvm.internal.p;
 public final class g implements c {
-    public final c f8625a;
-    public final p f8626b;
+    public final c f8632a;
+    public final p f8633b;
 
     public g(c cVar, p pVar) {
-        this.f8625a = cVar;
-        this.f8626b = pVar;
+        this.f8632a = cVar;
+        this.f8633b = pVar;
     }
 
     @Override

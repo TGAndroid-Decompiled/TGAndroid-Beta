@@ -1,23 +1,23 @@
 package org.telegram.ui;
+public final class bf0 implements org.telegram.ui.ActionBar.z1 {
+    public final int f36072a;
+    public final mf0 f36073b;
 
-import android.content.DialogInterface;
-public final class bf0 implements DialogInterface.OnDismissListener {
-    public final int f35627a;
-    public final hf0 f35628b;
-
-    public bf0(hf0 hf0Var, int i10) {
-        this.f35627a = i10;
-        this.f35628b = hf0Var;
+    public bf0(mf0 mf0Var, int i10) {
+        this.f36072a = i10;
+        this.f36073b = mf0Var;
     }
 
     @Override
-    public final void onDismiss(DialogInterface dialogInterface) {
-        switch (this.f35627a) {
+    public final void g(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
+        switch (this.f36072a) {
             case 0:
-                this.f35628b.f37621s0.finishFragment();
+                mf0 mf0Var = this.f36073b;
+                mf0Var.c(true);
+                mf0Var.f39562u0.y1(0, true, null, true);
                 return;
             default:
-                this.f35628b.f37621s0.finishFragment();
+                this.f36073b.f39562u0.y1(0, true, null, true);
                 return;
         }
     }

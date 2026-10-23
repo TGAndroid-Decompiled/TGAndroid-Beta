@@ -10,11 +10,11 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.nk;
+import org.telegram.messenger.sl;
 public abstract class c5 extends FrameLayout {
-    public TextView f22092a;
-    public TextView f22093b;
-    public j0 f22094c;
+    public TextView f22203a;
+    public TextView f22204b;
+    public i0 f22205c;
     public long d;
 
     public final void a(ArrayList arrayList, boolean z10) {
@@ -22,9 +22,9 @@ public abstract class c5 extends FrameLayout {
         float f10;
         float f11;
         float f12;
-        TextView textView = this.f22093b;
-        j0 j0Var = this.f22094c;
-        TextView textView2 = this.f22092a;
+        TextView textView = this.f22204b;
+        i0 i0Var = this.f22205c;
+        TextView textView2 = this.f22203a;
         super.setEnabled(z10);
         float f13 = 0.5f;
         if (arrayList != null) {
@@ -39,7 +39,7 @@ public abstract class c5 extends FrameLayout {
             } else {
                 f12 = 0.5f;
             }
-            arrayList.add(ObjectAnimator.ofFloat(j0Var, "alpha", f12));
+            arrayList.add(ObjectAnimator.ofFloat(i0Var, "alpha", f12));
             if (z10) {
                 f13 = 1.0f;
             }
@@ -57,7 +57,7 @@ public abstract class c5 extends FrameLayout {
         } else {
             f10 = 0.5f;
         }
-        j0Var.setAlpha(f10);
+        i0Var.setAlpha(f10);
         if (z10) {
             f13 = 1.0f;
         }
@@ -93,7 +93,7 @@ public abstract class c5 extends FrameLayout {
         } else {
             i10 = 0;
         }
-        canvas.drawLine(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.h6.f21115k0);
+        canvas.drawLine(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.k6.f21304k0);
     }
 
     @Override
@@ -109,10 +109,10 @@ public abstract class c5 extends FrameLayout {
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(80.0f), 1073741824));
         setMeasuredDimension(View.MeasureSpec.getSize(i10), AndroidUtilities.dp(80.0f));
         int measuredWidth = getMeasuredWidth() - AndroidUtilities.dp(42.0f);
-        TextView textView = this.f22093b;
+        TextView textView = this.f22204b;
         textView.measure(View.MeasureSpec.makeMeasureSpec(measuredWidth, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(30.0f), 1073741824));
-        this.f22092a.measure(View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.b(8.0f, measuredWidth - textView.getMeasuredWidth(), AndroidUtilities.dp(10.0f)), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(30.0f), 1073741824));
-        this.f22094c.measure(nk.c(20.0f, getMeasuredWidth(), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(30.0f), 1073741824));
+        this.f22203a.measure(View.MeasureSpec.makeMeasureSpec(i2.o1.g(8.0f, measuredWidth - textView.getMeasuredWidth(), AndroidUtilities.dp(10.0f)), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(30.0f), 1073741824));
+        this.f22205c.measure(sl.c(20.0f, getMeasuredWidth(), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(30.0f), 1073741824));
     }
 
     @Override
@@ -128,7 +128,7 @@ public abstract class c5 extends FrameLayout {
         float f7;
         float f10;
         this.d = j10;
-        this.f22093b.setText(LocaleController.formatString("AutodownloadSizeLimitUpTo", R.string.AutodownloadSizeLimitUpTo, AndroidUtilities.formatFileSize(j10)));
+        this.f22204b.setText(LocaleController.formatString("AutodownloadSizeLimitUpTo", R.string.AutodownloadSizeLimitUpTo, AndroidUtilities.formatFileSize(j10)));
         long j11 = j10 - 512000;
         if (j11 < 536576) {
             f10 = Math.max(0.0f, ((float) j11) / 536576.0f) * 0.25f;
@@ -148,10 +148,10 @@ public abstract class c5 extends FrameLayout {
                 f10 = max + f7;
             }
         }
-        this.f22094c.setProgress(Math.min(1.0f, f10));
+        this.f22205c.setProgress(Math.min(1.0f, f10));
     }
 
     public void setText(String str) {
-        this.f22092a.setText(str);
+        this.f22203a.setText(str);
     }
 }

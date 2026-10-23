@@ -1,83 +1,32 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.view.View;
-import android.widget.FrameLayout;
-import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagePreviewParams;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.tl.TL_stars;
-public final class vb0 implements View.OnClickListener {
-    public final int f31213a;
-    public final boolean f31214b;
-    public final FrameLayout f31215c;
-    public final Object d;
-    public final Object e;
-    public final Object f31216f;
+public final class vb0 implements Runnable {
+    public final int f31400a;
+    public final lc0 f31401b;
+    public final Context f31402c;
 
-    public vb0(FrameLayout frameLayout, boolean z10, Object obj, Object obj2, Object obj3, int i10) {
-        this.f31213a = i10;
-        this.f31215c = frameLayout;
-        this.f31214b = z10;
-        this.d = obj;
-        this.e = obj2;
-        this.f31216f = obj3;
+    public vb0(lc0 lc0Var, Context context, int i10) {
+        this.f31400a = i10;
+        this.f31401b = lc0Var;
+        this.f31402c = context;
     }
 
     @Override
-    public final void onClick(View view) {
-        int i10 = this.f31213a;
-        Object obj = this.f31216f;
-        Object obj2 = this.e;
-        Object obj3 = this.d;
-        boolean z10 = this.f31214b;
-        FrameLayout frameLayout = this.f31215c;
-        switch (i10) {
+    public final void run() {
+        switch (this.f31400a) {
             case 0:
-                ic0 ic0Var = (ic0) frameLayout;
-                Context context = (Context) obj3;
-                nc0 nc0Var = (nc0) obj2;
-                nc0 nc0Var2 = (nc0) obj;
-                oc0 oc0Var = ic0Var.f27241c0;
-                MessagePreviewParams messagePreviewParams = oc0Var.d;
-                if (!z10) {
-                    new xc(oc0Var, oc0Var.F).Q(R.raw.star_premium_2, 36, AndroidUtilities.replaceSingleTag("Subscribe to **Telegram Premium** to forward formatted messages without the sender’s name.", new tb0(ic0Var, context, 0))).j();
-                    return;
-                }
-                boolean z11 = messagePreviewParams.hideForwardSendersName;
-                messagePreviewParams.hideForwardSendersName = !z11;
-                oc0Var.f28998x = false;
-                if (z11) {
-                    messagePreviewParams.hideCaption = false;
-                    if (nc0Var != null) {
-                        nc0Var.a(false, true);
-                    }
-                }
-                nc0Var2.a(messagePreviewParams.hideForwardSendersName, true);
-                ic0Var.i();
-                ic0Var.l(true);
+                lc0 lc0Var = this.f31401b;
+                lc0Var.f28340c0.a(false);
+                AndroidUtilities.runOnUIThread(new vb0(lc0Var, this.f31402c, 1));
                 return;
             default:
-                TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) obj3;
-                TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) obj2;
-                i80 i80Var = (i80) obj;
-                ks0 ks0Var = ((yh.l2) frameLayout).f50369a;
-                if (!z10) {
-                    ai.v9 v9Var = ks0Var.e;
-                    int i11 = tL_starGiftCollection.collection_id;
-                    v9Var.getClass();
-                    ArrayList arrayList = new ArrayList();
-                    arrayList.add(savedStarGift);
-                    v9Var.a(i11, arrayList);
-                    xc.a0(ks0Var.f50467a).R(savedStarGift.gift.getDocument(), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2AddedToCollection, ai.l7.Y1(savedStarGift.gift), tL_starGiftCollection.title))).j();
-                } else {
-                    ks0Var.e.k(tL_starGiftCollection.collection_id, savedStarGift);
-                    xc.a0(ks0Var.f50467a).R(savedStarGift.gift.getDocument(), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2RemovedFromCollection, ai.l7.Y1(savedStarGift.gift), tL_starGiftCollection.title))).j();
+                Context context = this.f31402c;
+                if (AndroidUtilities.isContextSafe(context)) {
+                    new sg.y0(context, 43, this.f31401b.f28340c0.F).show();
+                    return;
                 }
-                i80Var.u();
-                ks0Var.n();
                 return;
         }
     }

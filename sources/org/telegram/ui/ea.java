@@ -14,19 +14,19 @@ import android.widget.FrameLayout;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
 public final class ea extends org.telegram.ui.ActionBar.j {
-    public final int f36615a;
-    public final Object f36616b;
+    public final int f36885a;
+    public final Object f36886b;
 
     public ea(Object obj, int i10) {
-        this.f36615a = i10;
-        this.f36616b = obj;
+        this.f36885a = i10;
+        this.f36886b = obj;
     }
 
     @Override
     public final void b(int i10) {
         Runnable runnable;
-        int i11 = this.f36615a;
-        Object obj = this.f36616b;
+        int i11 = this.f36885a;
+        Object obj = this.f36886b;
         switch (i11) {
             case 0:
                 sa saVar = (sa) obj;
@@ -49,8 +49,8 @@ public final class ea extends org.telegram.ui.ActionBar.j {
             case 2:
                 bd bdVar = (bd) obj;
                 if (i10 == -1) {
-                    if (bdVar.f35579b >= bdVar.S0() && bdVar.Q0()) {
-                        bdVar.V0();
+                    if (bdVar.f36019b >= bdVar.U0() && bdVar.S0()) {
+                        bdVar.X0();
                         return;
                     } else {
                         bdVar.finishFragment();
@@ -78,14 +78,14 @@ public final class ea extends org.telegram.ui.ActionBar.j {
                     lc lcVar = new lc(bdVar, bdVar.getParentActivity(), canvas, (bdVar.L.getMeasuredWidth() / 2.0f) + f7, (bdVar.L.getMeasuredHeight() / 2.0f) + f10, max, paint, createBitmap, paint2, f7, f10, 0);
                     bdVar.m0 = lcVar;
                     lcVar.setOnTouchListener(new di.d(2));
-                    bdVar.f35594n0 = 0.0f;
+                    bdVar.f36034n0 = 0.0f;
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                    bdVar.f35595o0 = ofFloat;
+                    bdVar.f36035o0 = ofFloat;
                     ofFloat.addUpdateListener(new ei.eb(bdVar, 1));
-                    bdVar.f35595o0.addListener(new m.a(bdVar, 22));
-                    bdVar.f35595o0.setDuration(400L);
-                    bdVar.f35595o0.setInterpolator(org.telegram.ui.Components.st.e);
-                    bdVar.f35595o0.start();
+                    bdVar.f36035o0.addListener(new m.a(bdVar, 22));
+                    bdVar.f36035o0.setDuration(400L);
+                    bdVar.f36035o0.setInterpolator(org.telegram.ui.Components.st.e);
+                    bdVar.f36035o0.start();
                     frameLayout.addView(bdVar.m0, new ViewGroup.LayoutParams(-1, -1));
                     AndroidUtilities.runOnUIThread(new gc(bdVar, 0));
                     return;
@@ -93,28 +93,28 @@ public final class ea extends org.telegram.ui.ActionBar.j {
                     return;
                 }
             case 3:
-                io ioVar = (io) obj;
+                ko koVar = (ko) obj;
                 if (i10 == -1) {
-                    if (ioVar.e0(true)) {
-                        ioVar.finishFragment();
+                    if (koVar.e0(true)) {
+                        koVar.finishFragment();
                         return;
                     }
                     return;
                 } else if (i10 == 1) {
-                    ioVar.j0();
+                    koVar.j0();
                     return;
                 } else {
                     return;
                 }
             case 4:
-                wo woVar = (wo) obj;
+                yo yoVar = (yo) obj;
                 if (i10 == -1) {
-                    woVar.finishFragment();
+                    yoVar.finishFragment();
                     return;
                 } else if (i10 == 1) {
-                    org.telegram.ui.Components.as asVar = woVar.f42931r;
-                    if (asVar == null || asVar.f24711c <= 0.0f) {
-                        woVar.Y();
+                    org.telegram.ui.Components.as asVar = yoVar.f43933r;
+                    if (asVar == null || asVar.f24834c <= 0.0f) {
+                        yoVar.Z();
                         return;
                     }
                     return;
@@ -123,40 +123,40 @@ public final class ea extends org.telegram.ui.ActionBar.j {
                 }
             case 5:
                 if (i10 == -1) {
-                    ((ip) obj).finishFragment();
+                    ((kp) obj).finishFragment();
                     return;
                 }
                 return;
             case 6:
                 if (i10 == -1) {
-                    ((pp) obj).finishFragment();
+                    ((rp) obj).finishFragment();
                     return;
                 }
                 return;
             case 7:
-                bq bqVar = (bq) obj;
+                dq dqVar = (dq) obj;
                 if (i10 == -1) {
-                    if (bqVar.m0(true)) {
-                        bqVar.finishFragment();
+                    if (dqVar.m0(true)) {
+                        dqVar.finishFragment();
                         return;
                     }
                     return;
                 } else if (i10 == 1) {
-                    bqVar.r0(true);
+                    dqVar.r0(true);
                     return;
                 } else {
                     return;
                 }
             case 8:
-                hr hrVar = (hr) obj;
+                jr jrVar = (jr) obj;
                 if (i10 == -1) {
-                    if (hrVar.g0(true)) {
-                        hrVar.finishFragment();
+                    if (jrVar.g0(true)) {
+                        jrVar.finishFragment();
                         return;
                     }
                     return;
                 } else if (i10 == 1) {
-                    hrVar.u0();
+                    jrVar.u0();
                     return;
                 } else {
                     return;
@@ -167,7 +167,7 @@ public final class ea extends org.telegram.ui.ActionBar.j {
                     k8Var.dismiss();
                     return;
                 } else {
-                    k8Var.u0(i10);
+                    k8Var.A0(i10);
                     return;
                 }
             case 10:
@@ -194,23 +194,23 @@ public final class ea extends org.telegram.ui.ActionBar.j {
                 }
                 return;
             case 13:
-                if (i10 == -1 && (runnable = ((org.telegram.ui.Components.eg0) obj).f25905r) != null) {
+                if (i10 == -1 && (runnable = ((org.telegram.ui.Components.ig0) obj).f27318r) != null) {
                     AndroidUtilities.runOnUIThread(runnable);
                     return;
                 }
                 return;
             case 14:
                 if (i10 == -1) {
-                    ((org.telegram.ui.Components.lh0) obj).dismiss();
+                    ((org.telegram.ui.Components.oh0) obj).dismiss();
                     return;
                 }
                 return;
             case 15:
-                ((org.telegram.ui.Components.fr0) obj).onBackPressed();
+                ((org.telegram.ui.Components.ir0) obj).onBackPressed();
                 return;
             case 16:
                 if (i10 == -1) {
-                    ((org.telegram.ui.Components.x61) obj).finishFragment();
+                    ((org.telegram.ui.Components.e71) obj).finishFragment();
                     return;
                 }
                 return;
@@ -222,13 +222,13 @@ public final class ea extends org.telegram.ui.ActionBar.j {
                 return;
             case 18:
                 if (i10 == -1) {
-                    ((ah1) obj).a(false, false);
+                    ((hh1) obj).a(false, false);
                     return;
                 }
                 return;
             case 19:
                 if (i10 == -1) {
-                    ((ot) obj).finishFragment();
+                    ((rt) obj).finishFragment();
                     return;
                 }
                 return;
@@ -246,41 +246,41 @@ public final class ea extends org.telegram.ui.ActionBar.j {
                 return;
             case 22:
                 if (i10 == -1) {
-                    ((lu) obj).finishFragment();
+                    ((ou) obj).finishFragment();
                     return;
                 }
                 return;
             case 23:
                 if (i10 == -1) {
-                    ((av) obj).finishFragment();
+                    ((cv) obj).finishFragment();
                     return;
                 }
                 return;
             case 24:
                 if (i10 == -1) {
-                    ((uy) obj).finishFragment();
+                    ((wy) obj).finishFragment();
                     return;
                 }
                 return;
             case 25:
-                lz lzVar = (lz) obj;
+                oz ozVar = (oz) obj;
                 if (i10 == -1) {
-                    if (lzVar.W(true)) {
-                        lzVar.finishFragment();
+                    if (ozVar.W(true)) {
+                        ozVar.finishFragment();
                         return;
                     }
                     return;
                 } else if (i10 == 1) {
-                    if (Math.abs(lzVar.T - 1.0f) < 0.1f) {
-                        lzVar.c0();
+                    if (Math.abs(ozVar.U - 1.0f) < 0.1f) {
+                        ozVar.c0();
                         return;
-                    } else if (Math.abs(lzVar.T - 0.5f) < 0.1f) {
-                        for (int i12 = 0; i12 < lzVar.f39059a.getChildCount(); i12++) {
-                            View childAt = lzVar.f39059a.getChildAt(i12);
-                            lzVar.f39059a.getClass();
-                            if (RecyclerView.R(childAt) == lzVar.L && (childAt instanceof org.telegram.ui.Components.h10)) {
-                                int i13 = -lzVar.f39065s;
-                                lzVar.f39065s = i13;
+                    } else if (Math.abs(ozVar.U - 0.5f) < 0.1f) {
+                        for (int i12 = 0; i12 < ozVar.f40303a.getChildCount(); i12++) {
+                            View childAt = ozVar.f40303a.getChildAt(i12);
+                            ozVar.f40303a.getClass();
+                            if (RecyclerView.R(childAt) == ozVar.M && (childAt instanceof org.telegram.ui.Components.h10)) {
+                                int i13 = -ozVar.v;
+                                ozVar.v = i13;
                                 AndroidUtilities.shakeViewSpring(childAt, i13);
                                 return;
                             }
@@ -293,15 +293,15 @@ public final class ea extends org.telegram.ui.ActionBar.j {
                     return;
                 }
             case 26:
-                n00 n00Var = (n00) obj;
+                q00 q00Var = (q00) obj;
                 if (i10 == -1) {
-                    if (n00Var.h0(true)) {
-                        n00Var.finishFragment();
+                    if (q00Var.h0(true)) {
+                        q00Var.finishFragment();
                         return;
                     }
                     return;
                 } else if (i10 == 1) {
-                    n00Var.q0();
+                    q00Var.q0();
                     return;
                 } else {
                     return;
@@ -314,20 +314,20 @@ public final class ea extends org.telegram.ui.ActionBar.j {
                 return;
             case 28:
                 if (i10 == -1) {
-                    ((y10) obj).finishFragment();
+                    ((b20) obj).finishFragment();
                     return;
                 }
                 return;
             default:
-                l60 l60Var = (l60) obj;
+                p60 p60Var = (p60) obj;
                 if (i10 == -1) {
-                    if (l60Var.f0(true)) {
-                        l60Var.finishFragment();
+                    if (p60Var.f0(true)) {
+                        p60Var.finishFragment();
                         return;
                     }
                     return;
                 } else if (i10 == 1) {
-                    l60Var.o0();
+                    p60Var.o0();
                     return;
                 } else {
                     return;

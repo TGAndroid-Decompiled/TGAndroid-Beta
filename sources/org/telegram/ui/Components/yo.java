@@ -4,11 +4,11 @@ public interface yo {
 
     void m();
 
-    void n();
-
     void o();
+
+    void p();
 
     void t();
 
-    void x(int i10);
+    void v(int i10);
 }

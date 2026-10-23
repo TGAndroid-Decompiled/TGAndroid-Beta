@@ -1,51 +1,33 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.AndroidUtilities;
-public final class db0 {
-    public final org.telegram.ui.ActionBar.n2 f25440a;
-    public final ib0 f25441b;
+import org.telegram.tgnet.TLRPC;
+public final class db0 extends g.o {
+    public final jb0 f25587c;
 
-    public db0(ib0 ib0Var, org.telegram.ui.ActionBar.n2 n2Var) {
-        this.f25441b = ib0Var;
-        this.f25440a = n2Var;
+    public db0(jb0 jb0Var) {
+        this.f25587c = jb0Var;
     }
 
-    public final void a(boolean z10) {
-        ib0 ib0Var = this.f25441b;
-        boolean z11 = false;
-        if (ib0Var.getNeededLayoutManager() != ib0Var.getCurrentLayoutManager() && ib0Var.a()) {
-            if (ib0Var.f27227f.M0 > 0) {
-                ib0Var.N = true;
-                ib0Var.o(false);
-                return;
+    @Override
+    public final int i(int i10) {
+        jb0 jb0Var = this.f25587c;
+        hg.j1 j1Var = jb0Var.f27655f;
+        if (i10 != 0) {
+            int i11 = i10 - 1;
+            Object J = j1Var.J(i11);
+            if (J instanceof TLRPC.TL_inlineBotSwitchPM) {
+                return 100;
             }
-            ib0Var.f27225b.setLayoutManager(ib0Var.getNeededLayoutManager());
-        }
-        if (z10 && !ib0Var.a()) {
-            z10 = false;
-        }
-        if (!z10 || ib0Var.f27227f.K() > 0) {
-            z11 = z10;
-        }
-        ib0Var.o(z11);
-    }
-
-    public final void b(boolean z10) {
-        this.f25441b.l(z10);
-    }
-
-    public final void c() {
-        long j10;
-        ib0 ib0Var = this.f25441b;
-        hq hqVar = ib0Var.J;
-        if (ib0Var.f27225b.getLayoutManager() != ib0Var.d && ib0Var.I) {
-            AndroidUtilities.cancelRunOnUIThread(hqVar);
-            if (this.f25440a.getFragmentBeginToShow()) {
-                j10 = 0;
-            } else {
-                j10 = 100;
+            if (J instanceof TLRPC.Document) {
+                return 20;
             }
-            AndroidUtilities.runOnUIThread(hqVar, j10);
+            if (j1Var.I() != null || j1Var.U != null) {
+                i10 = i11;
+            }
+            cb0 cb0Var = jb0Var.d;
+            cb0Var.B1();
+            return cb0Var.R.get(i10);
         }
+        return 100;
     }
 }

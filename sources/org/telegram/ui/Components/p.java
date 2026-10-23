@@ -11,7 +11,7 @@ public final class p extends s4.k {
     @Override
     public final void P(s4.b1 b1Var) {
         ViewGroup viewGroup;
-        viewGroup = ((org.telegram.ui.ActionBar.f3) this.F).containerView;
+        viewGroup = ((org.telegram.ui.ActionBar.h3) this.F).containerView;
         viewGroup.invalidate();
     }
 }

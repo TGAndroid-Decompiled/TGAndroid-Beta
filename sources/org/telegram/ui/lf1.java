@@ -1,35 +1,12 @@
 package org.telegram.ui;
-public final class lf1 implements org.telegram.ui.ActionBar.a2 {
-    public final int f38917a;
-    public final vf1 f38918b;
 
-    public lf1(vf1 vf1Var, int i10) {
-        this.f38917a = i10;
-        this.f38918b = vf1Var;
-    }
-
+import android.view.ViewGroup;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.RadialProgressView;
+public final class lf1 extends RadialProgressView {
     @Override
-    public final void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f38917a) {
-            case 0:
-                this.f38918b.finishFragment();
-                return;
-            case 1:
-                vf1 vf1Var = this.f38918b;
-                vf1Var.B0();
-                vf1Var.finishFragment();
-                return;
-            case 2:
-                vf1 vf1Var2 = this.f38918b;
-                vf1Var2.R = "";
-                vf1Var2.E0(false);
-                return;
-            case 3:
-                vf1.a0(this.f38918b);
-                return;
-            default:
-                vf1.X(this.f38918b);
-                return;
-        }
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, i11);
+        ((ViewGroup.MarginLayoutParams) getLayoutParams()).topMargin = AndroidUtilities.statusBarHeight / 2;
     }
 }

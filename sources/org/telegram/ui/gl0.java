@@ -1,115 +1,55 @@
 package org.telegram.ui;
 
-import android.view.KeyEvent;
-import android.view.MotionEvent;
-import android.widget.TextView;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class gl0 implements TextView.OnEditorActionListener {
-    public final int f37355a;
-    public final vm0 f37356b;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.tl.TL_account;
+public final class gl0 implements Utilities.Callback2 {
+    public final int f37629a;
+    public final PasskeysActivity f37630b;
 
-    public gl0(vm0 vm0Var, int i10) {
-        this.f37355a = i10;
-        this.f37356b = vm0Var;
+    public gl0(PasskeysActivity passkeysActivity, int i10) {
+        this.f37629a = i10;
+        this.f37630b = passkeysActivity;
     }
 
     @Override
-    public final boolean onEditorAction(TextView textView, int i10, KeyEvent keyEvent) {
-        switch (this.f37355a) {
+    public final void run(Object obj, Object obj2) {
+        int i10 = this.f37629a;
+        PasskeysActivity passkeysActivity = this.f37630b;
+        switch (i10) {
             case 0:
-                vm0 vm0Var = this.f37356b;
-                if (i10 == 5) {
-                    vm0Var.Y[2].requestFocus();
-                    return true;
-                } else if (i10 == 6) {
-                    vm0Var.L.callOnClick();
-                    return true;
-                } else {
-                    vm0Var.getClass();
-                    return false;
+                ArrayList arrayList = (ArrayList) obj;
+                org.telegram.ui.Components.b71 b71Var = (org.telegram.ui.Components.b71) obj2;
+                ArrayList arrayList2 = passkeysActivity.f33538b;
+                passkeysActivity.addPasskeyRow = -1;
+                String string = LocaleController.getString(R.string.PasskeyTopInfo);
+                int i11 = R.raw.passkey;
+                org.telegram.ui.Components.m61 m61Var = new org.telegram.ui.Components.m61(2);
+                m61Var.f28559l = string;
+                m61Var.f28558k = i11;
+                arrayList.add(m61Var);
+                for (int i12 = 0; i12 < arrayList2.size(); i12++) {
+                    w50 w50Var = new w50(passkeysActivity, 15);
+                    int i13 = hl0.f37875a;
+                    org.telegram.ui.Components.m61 J = org.telegram.ui.Components.m61.J(hl0.class);
+                    J.G = (TL_account.Passkey) arrayList2.get(i12);
+                    J.D = w50Var;
+                    arrayList.add(J);
                 }
-            case 1:
-                vm0 vm0Var2 = this.f37356b;
-                vm0Var2.getClass();
-                if (i10 == 5) {
-                    int intValue = ((Integer) textView.getTag()).intValue() + 1;
-                    EditTextBoldCursor[] editTextBoldCursorArr = vm0Var2.Y;
-                    if (intValue >= editTextBoldCursorArr.length) {
-                        return true;
-                    }
-                    if (editTextBoldCursorArr[intValue].isFocusable()) {
-                        vm0Var2.Y[intValue].requestFocus();
-                        return true;
-                    }
-                    vm0Var2.Y[intValue].dispatchTouchEvent(MotionEvent.obtain(0L, 0L, 1, 0.0f, 0.0f, 0));
-                    textView.clearFocus();
-                    AndroidUtilities.hideKeyboard(textView);
-                    return true;
+                if (arrayList2.size() + 1 <= passkeysActivity.getMessagesController().config.passkeysAccountPasskeysMax.get()) {
+                    passkeysActivity.addPasskeyRow = arrayList.size();
+                    org.telegram.ui.Components.m61 c10 = org.telegram.ui.Components.m61.c(-1, R.drawable.menu_passkey_add, LocaleController.getString(R.string.PasskeyAdd));
+                    c10.f28564q = true;
+                    arrayList.add(c10);
                 }
-                return false;
-            case 2:
-                vm0 vm0Var3 = this.f37356b;
-                vm0Var3.getClass();
-                if (i10 == 5) {
-                    int intValue2 = ((Integer) textView.getTag()).intValue() + 1;
-                    EditTextBoldCursor[] editTextBoldCursorArr2 = vm0Var3.f42286a0;
-                    if (intValue2 >= editTextBoldCursorArr2.length) {
-                        return true;
-                    }
-                    if (editTextBoldCursorArr2[intValue2].isFocusable()) {
-                        vm0Var3.f42286a0[intValue2].requestFocus();
-                        return true;
-                    }
-                    vm0Var3.f42286a0[intValue2].dispatchTouchEvent(MotionEvent.obtain(0L, 0L, 1, 0.0f, 0.0f, 0));
-                    textView.clearFocus();
-                    AndroidUtilities.hideKeyboard(textView);
-                    return true;
-                }
-                return false;
-            case 3:
-                vm0 vm0Var4 = this.f37356b;
-                vm0Var4.getClass();
-                if (i10 != 6 && i10 != 5) {
-                    return false;
-                }
-                vm0Var4.L.callOnClick();
-                return true;
-            case 4:
-                vm0 vm0Var5 = this.f37356b;
-                vm0Var5.getClass();
-                if (i10 == 5) {
-                    int intValue3 = ((Integer) textView.getTag()).intValue() + 1;
-                    EditTextBoldCursor[] editTextBoldCursorArr3 = vm0Var5.Y;
-                    if (intValue3 >= editTextBoldCursorArr3.length) {
-                        return true;
-                    }
-                    if (editTextBoldCursorArr3[intValue3].isFocusable()) {
-                        vm0Var5.Y[intValue3].requestFocus();
-                        return true;
-                    }
-                    vm0Var5.Y[intValue3].dispatchTouchEvent(MotionEvent.obtain(0L, 0L, 1, 0.0f, 0.0f, 0));
-                    textView.clearFocus();
-                    AndroidUtilities.hideKeyboard(textView);
-                    return true;
-                }
-                return false;
-            case 5:
-                vm0 vm0Var6 = this.f37356b;
-                vm0Var6.getClass();
-                if (i10 != 5 && i10 != 6) {
-                    return false;
-                }
-                vm0Var6.L.callOnClick();
-                return true;
+                arrayList.add(org.telegram.ui.Components.m61.B(AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.PasskeyInfo), new oj0(passkeysActivity, 3)), true)));
+                return;
             default:
-                vm0 vm0Var7 = this.f37356b;
-                vm0Var7.getClass();
-                if (i10 != 6 && i10 != 5) {
-                    return false;
-                }
-                vm0Var7.L.callOnClick();
-                return true;
+                PasskeysActivity.U(passkeysActivity, (TL_account.Passkey) obj, (String) obj2);
+                return;
         }
     }
 }

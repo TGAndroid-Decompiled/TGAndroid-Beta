@@ -11,16 +11,16 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import r4.c;
+import si.o0;
 import z3.d;
 import z3.l;
 import z3.m;
 public final class a implements m {
     public static final Pattern d = Pattern.compile("\\s*((?:(\\d+):)?(\\d+):(\\d+)(?:,(\\d{3}))?)\\s*-->\\s*((?:(\\d+):)?(\\d+):(\\d+)(?:,(\\d{3}))?)\\s*");
     public static final Pattern e = Pattern.compile("\\{\\\\.*?\\}");
-    public final StringBuilder f8334a = new StringBuilder();
-    public final ArrayList f8335b = new ArrayList();
-    public final x f8336c = new x();
+    public final StringBuilder f8341a = new StringBuilder();
+    public final ArrayList f8342b = new ArrayList();
+    public final x f8343c = new x();
 
     public static d2.b b(android.text.Spanned r21, java.lang.String r22) {
         throw new UnsupportedOperationException("Method not decompiled: e4.a.b(android.text.Spanned, java.lang.String):d2.b");
@@ -49,7 +49,7 @@ public final class a implements m {
 
     @Override
     public final d a(int i10, int i11, byte[] bArr) {
-        return c.a(this, bArr, i11);
+        return o0.a(this, bArr, i11);
     }
 
     @Override
@@ -63,8 +63,8 @@ public final class a implements m {
         String n10;
         String str;
         a aVar = this;
-        long j10 = lVar.f50665a;
-        x xVar = aVar.f8336c;
+        long j10 = lVar.f51124a;
+        x xVar = aVar.f8343c;
         xVar.L(i10 + i11, bArr);
         xVar.N(i10);
         Charset J = xVar.J();
@@ -72,7 +72,7 @@ public final class a implements m {
             J = StandardCharsets.UTF_8;
         }
         long j11 = -9223372036854775807L;
-        if (j10 != -9223372036854775807L && lVar.f50666b) {
+        if (j10 != -9223372036854775807L && lVar.f51125b) {
             arrayList = new ArrayList();
         } else {
             arrayList = null;
@@ -96,10 +96,10 @@ public final class a implements m {
                 if (matcher.matches()) {
                     long d10 = d(matcher, 1);
                     long d11 = d(matcher, 6);
-                    StringBuilder sb2 = aVar.f8334a;
+                    StringBuilder sb2 = aVar.f8341a;
                     sb2.setLength(0);
                     long j12 = j11;
-                    ArrayList arrayList2 = aVar.f8335b;
+                    ArrayList arrayList2 = aVar.f8342b;
                     arrayList2.clear();
                     for (String n12 = xVar.n(J); !TextUtils.isEmpty(n12); n12 = xVar.n(J)) {
                         if (sb2.length() > 0) {

@@ -3,33 +3,33 @@ package u2;
 import java.util.Arrays;
 import java.util.HashMap;
 public class c implements ka.a {
-    public final int f47272a;
-    public Object f47273b;
-    public Object f47274c;
+    public final int f47711a;
+    public Object f47712b;
+    public Object f47713c;
     public Object d;
 
     public c(int i10, boolean z10) {
-        this.f47272a = i10;
+        this.f47711a = i10;
     }
 
     @Override
     public ka.a a(Class cls, ja.d dVar) {
-        switch (this.f47272a) {
+        switch (this.f47711a) {
             case 1:
-                ((HashMap) this.f47273b).put(cls, dVar);
-                ((HashMap) this.f47274c).remove(cls);
+                ((HashMap) this.f47712b).put(cls, dVar);
+                ((HashMap) this.f47713c).remove(cls);
                 return this;
             case 6:
-                ((HashMap) this.f47273b).put(cls, dVar);
-                ((HashMap) this.f47274c).remove(cls);
+                ((HashMap) this.f47712b).put(cls, dVar);
+                ((HashMap) this.f47713c).remove(cls);
                 return this;
             case 9:
-                ((HashMap) this.f47273b).put(cls, dVar);
-                ((HashMap) this.f47274c).remove(cls);
+                ((HashMap) this.f47712b).put(cls, dVar);
+                ((HashMap) this.f47713c).remove(cls);
                 return this;
             default:
-                ((HashMap) this.f47273b).put(cls, dVar);
-                ((HashMap) this.f47274c).remove(cls);
+                ((HashMap) this.f47712b).put(cls, dVar);
+                ((HashMap) this.f47713c).remove(cls);
                 return this;
         }
     }
@@ -42,22 +42,22 @@ public class c implements ka.a {
         return -1L;
     }
 
-    public void c(g2.h r8, android.net.Uri r9, java.util.Map r10, long r11, long r13, u2.x0 r15) {
-        throw new UnsupportedOperationException("Method not decompiled: u2.c.c(g2.h, android.net.Uri, java.util.Map, long, long, u2.x0):void");
+    public void c(g2.h r8, android.net.Uri r9, java.util.Map r10, long r11, long r13, u2.y0 r15) {
+        throw new UnsupportedOperationException("Method not decompiled: u2.c.c(g2.h, android.net.Uri, java.util.Map, long, long, u2.y0):void");
     }
 
     public String toString() {
         String str = "";
-        switch (this.f47272a) {
+        switch (this.f47711a) {
             case 3:
                 StringBuilder sb2 = new StringBuilder(32);
-                sb2.append((String) this.f47273b);
+                sb2.append((String) this.f47712b);
                 sb2.append('{');
-                c cVar = (c) ((c) this.f47274c).d;
+                c cVar = (c) ((c) this.f47713c).d;
                 while (cVar != null) {
-                    Object obj = cVar.f47274c;
+                    Object obj = cVar.f47713c;
                     sb2.append(str);
-                    String str2 = (String) cVar.f47273b;
+                    String str2 = (String) cVar.f47712b;
                     if (str2 != null) {
                         sb2.append(str2);
                         sb2.append('=');
@@ -75,13 +75,13 @@ public class c implements ka.a {
                 return sb2.toString();
             case 14:
                 StringBuilder sb3 = new StringBuilder(32);
-                sb3.append((String) this.f47273b);
+                sb3.append((String) this.f47712b);
                 sb3.append('{');
-                c cVar2 = (c) ((c) this.f47274c).d;
+                c cVar2 = (c) ((c) this.f47713c).d;
                 while (cVar2 != null) {
-                    Object obj2 = cVar2.f47274c;
+                    Object obj2 = cVar2.f47713c;
                     sb3.append(str);
-                    String str3 = (String) cVar2.f47273b;
+                    String str3 = (String) cVar2.f47712b;
                     if (str3 != null) {
                         sb3.append(str3);
                         sb3.append('=');
@@ -103,58 +103,58 @@ public class c implements ka.a {
     }
 
     public c(int i10) {
-        this.f47272a = i10;
+        this.f47711a = i10;
         switch (i10) {
             case 6:
-                this.f47273b = new HashMap();
-                this.f47274c = new HashMap();
-                this.d = w7.e.f48633c;
+                this.f47712b = new HashMap();
+                this.f47713c = new HashMap();
+                this.d = w7.e.f49071c;
                 return;
             case 9:
-                this.f47273b = new HashMap();
-                this.f47274c = new HashMap();
-                this.d = x7.d0.f49346c;
+                this.f47712b = new HashMap();
+                this.f47713c = new HashMap();
+                this.d = x7.d0.f49788c;
                 return;
             case 15:
-                this.f47273b = new HashMap();
-                this.f47274c = new HashMap();
-                this.d = z7.x.f51234c;
+                this.f47712b = new HashMap();
+                this.f47713c = new HashMap();
+                this.d = z7.x.f51710c;
                 return;
             default:
-                this.f47273b = new HashMap();
-                this.f47274c = new HashMap();
-                this.d = v7.i.f48054c;
+                this.f47712b = new HashMap();
+                this.f47713c = new HashMap();
+                this.d = v7.i.f48492c;
                 return;
         }
     }
 
     public c(String str, int i10) {
-        this.f47272a = i10;
+        this.f47711a = i10;
         switch (i10) {
             case 14:
                 c cVar = new c(13, false);
-                this.f47274c = cVar;
+                this.f47713c = cVar;
                 this.d = cVar;
-                this.f47273b = str;
+                this.f47712b = str;
                 return;
             default:
                 c cVar2 = new c(2, false);
-                this.f47274c = cVar2;
+                this.f47713c = cVar2;
                 this.d = cVar2;
-                this.f47273b = str;
+                this.f47712b = str;
                 return;
         }
     }
 
     public c(String str, Boolean bool, wc.a aVar, String str2) {
-        this.f47272a = 8;
-        this.f47273b = str;
-        this.f47274c = str2;
+        this.f47711a = 8;
+        this.f47712b = str;
+        this.f47713c = str2;
         this.d = aVar;
     }
 
-    public c(c3.r rVar) {
-        this.f47272a = 0;
-        this.f47273b = rVar;
+    public c(c3.t tVar) {
+        this.f47711a = 0;
+        this.f47712b = tVar;
     }
 }

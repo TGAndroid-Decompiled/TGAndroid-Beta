@@ -10,22 +10,22 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
 public final class h extends eb.u {
-    public static final e f11719c = new e();
-    public final g f11720a;
-    public final ArrayList f11721b;
+    public static final e f11746c = new e();
+    public final g f11747a;
+    public final ArrayList f11748b;
 
     public h(g gVar) {
         ArrayList arrayList = new ArrayList();
-        this.f11721b = arrayList;
+        this.f11748b = arrayList;
         Objects.requireNonNull(gVar);
-        this.f11720a = gVar;
+        this.f11747a = gVar;
         Locale locale = Locale.US;
         arrayList.add(DateFormat.getDateTimeInstance(2, 2, locale));
         if (!Locale.getDefault().equals(locale)) {
             arrayList.add(DateFormat.getDateTimeInstance(2, 2));
         }
-        if (gb.g.f10959a >= 9) {
-            arrayList.add(new SimpleDateFormat(a1.g.C("MMM d, yyyy", " ", "h:mm:ss a"), locale));
+        if (gb.g.f10978a >= 9) {
+            arrayList.add(new SimpleDateFormat(a1.g.D("MMM d, yyyy", " ", "h:mm:ss a"), locale));
         }
     }
 
@@ -39,9 +39,9 @@ public final class h extends eb.u {
             return null;
         }
         String v = aVar.v();
-        synchronized (this.f11721b) {
+        synchronized (this.f11748b) {
             try {
-                ArrayList arrayList = this.f11721b;
+                ArrayList arrayList = this.f11748b;
                 int size = arrayList.size();
                 int i10 = 0;
                 while (true) {
@@ -68,11 +68,11 @@ public final class h extends eb.u {
             } finally {
             }
         }
-        return this.f11720a.a(b10);
+        return this.f11747a.a(b10);
     }
 
     public final String toString() {
-        DateFormat dateFormat = (DateFormat) this.f11721b.get(0);
+        DateFormat dateFormat = (DateFormat) this.f11748b.get(0);
         if (dateFormat instanceof SimpleDateFormat) {
             return "DefaultDateTypeAdapter(" + ((SimpleDateFormat) dateFormat).toPattern() + ')';
         }
@@ -87,8 +87,8 @@ public final class h extends eb.u {
             bVar.i();
             return;
         }
-        DateFormat dateFormat = (DateFormat) this.f11721b.get(0);
-        synchronized (this.f11721b) {
+        DateFormat dateFormat = (DateFormat) this.f11748b.get(0);
+        synchronized (this.f11748b) {
             format = dateFormat.format(date);
         }
         bVar.r(format);

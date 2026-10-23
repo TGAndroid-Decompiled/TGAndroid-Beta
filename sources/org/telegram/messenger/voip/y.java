@@ -1,38 +1,38 @@
 package org.telegram.messenger.voip;
 public final class y implements Runnable {
-    public final int f19949a;
-    public final VoIPService f19950b;
-    public final int f19951c;
+    public final int f20014a;
+    public final VoIPService f20015b;
+    public final int f20016c;
 
     public y(VoIPService voIPService, int i10, int i11) {
-        this.f19949a = i11;
-        this.f19950b = voIPService;
-        this.f19951c = i10;
+        this.f20014a = i11;
+        this.f20015b = voIPService;
+        this.f20016c = i10;
     }
 
     @Override
     public final void run() {
-        switch (this.f19949a) {
+        switch (this.f20014a) {
             case 0:
-                this.f19950b.lambda$onSignalBarCountChanged$122(this.f19951c);
+                this.f20015b.lambda$onSignalBarCountChanged$122(this.f20016c);
                 return;
             case 1:
-                this.f19950b.lambda$onConnectionStateChanged$119(this.f19951c);
+                this.f20015b.lambda$onConnectionStateChanged$119(this.f20016c);
                 return;
             case 2:
-                this.f19950b.lambda$startConferenceGroupCall$36(this.f19951c);
+                this.f20015b.lambda$startConferenceGroupCall$36(this.f20016c);
                 return;
             case 3:
-                this.f19950b.lambda$startGroupCall$25(this.f19951c);
+                this.f20015b.lambda$startGroupCall$25(this.f20016c);
                 return;
             case 4:
-                this.f19950b.lambda$createGroupInstance$72(this.f19951c);
+                this.f20015b.lambda$createGroupInstance$72(this.f20016c);
                 return;
             case 5:
-                this.f19950b.lambda$startScreenCapture$57(this.f19951c);
+                this.f20015b.lambda$startScreenCapture$57(this.f20016c);
                 return;
             default:
-                this.f19950b.lambda$updateConnectionState$81(this.f19951c);
+                this.f20015b.lambda$updateConnectionState$81(this.f20016c);
                 return;
         }
     }

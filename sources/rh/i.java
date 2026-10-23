@@ -2,6 +2,7 @@ package rh;
 
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
+import i2.o1;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.DialogObject;
@@ -106,7 +107,7 @@ public abstract class i {
                     } else {
                         i11 = R.string.PollV2ToastOnlyUsersFromCountriesCanVoteOther;
                     }
-                    return AndroidUtilities.replaceTags(LocaleController.formatString(i11, stringBuffer, i2.e.h(1, arrayList)));
+                    return AndroidUtilities.replaceTags(LocaleController.formatString(i11, stringBuffer, o1.i(1, arrayList)));
                 } else if (j6.a(i10, 1)) {
                     TLRPC.MessageFwdHeader messageFwdHeader = message.fwd_from;
                     if (messageFwdHeader != null) {

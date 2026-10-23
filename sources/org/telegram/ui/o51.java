@@ -1,153 +1,24 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-import android.view.View;
-import android.view.ViewTreeObserver;
-import android.view.WindowManager;
-import android.widget.PopupWindow;
-import java.lang.reflect.Field;
 import org.telegram.messenger.AndroidUtilities;
-public abstract class o51 extends PopupWindow {
-    public static final Field f39782c;
-    public static final org.telegram.ui.ActionBar.f1 d = new org.telegram.ui.ActionBar.f1(2);
-    public final ViewTreeObserver.OnScrollChangedListener f39783a;
-    public ViewTreeObserver f39784b;
+public final class o51 implements Runnable {
+    public final int f40076a;
+    public final org.telegram.ui.Cells.c6 f40077b;
 
-    static {
-        Field field = null;
-        try {
-            field = PopupWindow.class.getDeclaredField("mOnScrollChangedListener");
-            field.setAccessible(true);
-        } catch (NoSuchFieldException unused) {
-        }
-        f39782c = field;
-    }
-
-    public o51(x51 x51Var) {
-        super(x51Var, -2, -2);
-        setFocusable(true);
-        setAnimationStyle(0);
-        setOutsideTouchable(true);
-        setClippingEnabled(true);
-        setInputMethodMode(0);
-        setSoftInputMode(4);
-        Field field = f39782c;
-        if (field != null) {
-            try {
-                this.f39783a = (ViewTreeObserver.OnScrollChangedListener) field.get(this);
-                field.set(this, d);
-            } catch (Exception unused) {
-                this.f39783a = null;
-            }
-        }
-    }
-
-    public final void b() {
-        View rootView = getContentView().getRootView();
-        WindowManager.LayoutParams layoutParams = (WindowManager.LayoutParams) rootView.getLayoutParams();
-        layoutParams.flags |= 2;
-        layoutParams.dimAmount = 0.2f;
-        ((WindowManager) getContentView().getContext().getSystemService("window")).updateViewLayout(rootView, layoutParams);
-    }
-
-    public final void c(View view) {
-        ViewTreeObserver viewTreeObserver;
-        if (getContentView() instanceof x51) {
-            ((x51) getContentView()).s(new n51(this, 1));
-        }
-        if (this.f39783a != null) {
-            if (view.getWindowToken() != null) {
-                viewTreeObserver = view.getViewTreeObserver();
-            } else {
-                viewTreeObserver = null;
-            }
-            ViewTreeObserver viewTreeObserver2 = this.f39784b;
-            if (viewTreeObserver != viewTreeObserver2) {
-                if (viewTreeObserver2 != null && viewTreeObserver2.isAlive()) {
-                    this.f39784b.removeOnScrollChangedListener(this.f39783a);
-                }
-                this.f39784b = viewTreeObserver;
-                if (viewTreeObserver != null) {
-                    viewTreeObserver.addOnScrollChangedListener(this.f39783a);
-                }
-            }
-        }
+    public o51(org.telegram.ui.Cells.c6 c6Var, int i10) {
+        this.f40076a = i10;
+        this.f40077b = c6Var;
     }
 
     @Override
-    public void dismiss() {
-        if (getContentView() instanceof x51) {
-            x51 x51Var = (x51) getContentView();
-            n51 n51Var = new n51(this, 0);
-            Integer num = x51Var.Y1;
-            if (num != null) {
-                x51.f43046c2.put(num, x51Var.f43085r0.e0());
-            }
-            ValueAnimator valueAnimator = x51Var.V1;
-            if (valueAnimator != null) {
-                valueAnimator.cancel();
-                x51Var.V1 = null;
-            }
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-            x51Var.V1 = ofFloat;
-            ofFloat.addUpdateListener(new y31(x51Var, 3));
-            x51Var.V1.addListener(new org.telegram.ui.Components.nl0(15, x51Var, n51Var));
-            x51Var.V1.setDuration(200L);
-            x51Var.V1.setInterpolator(org.telegram.ui.Components.bs.h);
-            x51Var.V1.start();
-            o41 o41Var = x51Var.f43061f0;
-            if (o41Var != null) {
-                AndroidUtilities.hideKeyboard(o41Var.h);
-            }
-            View rootView = getContentView().getRootView();
-            WindowManager windowManager = (WindowManager) getContentView().getContext().getSystemService("window");
-            if (rootView.getLayoutParams() != null && (rootView.getLayoutParams() instanceof WindowManager.LayoutParams)) {
-                WindowManager.LayoutParams layoutParams = (WindowManager.LayoutParams) rootView.getLayoutParams();
-                try {
-                    int i10 = layoutParams.flags;
-                    if ((i10 & 2) != 0) {
-                        layoutParams.flags = i10 & (-3);
-                        layoutParams.dimAmount = 0.0f;
-                        windowManager.updateViewLayout(rootView, layoutParams);
-                        return;
-                    }
-                    return;
-                } catch (Exception unused) {
-                    return;
-                }
-            }
-            return;
+    public final void run() {
+        switch (this.f40076a) {
+            case 0:
+                AndroidUtilities.showKeyboard(((s41) this.f40077b.d).h);
+                return;
+            default:
+                this.f40077b.requestFocus();
+                return;
         }
-        super.dismiss();
-    }
-
-    @Override
-    public final void showAsDropDown(View view) {
-        super.showAsDropDown(view);
-        c(view);
-    }
-
-    @Override
-    public final void showAtLocation(View view, int i10, int i11, int i12) {
-        ViewTreeObserver viewTreeObserver;
-        super.showAtLocation(view, i10, i11, i12);
-        if (this.f39783a != null && (viewTreeObserver = this.f39784b) != null) {
-            if (viewTreeObserver.isAlive()) {
-                this.f39784b.removeOnScrollChangedListener(this.f39783a);
-            }
-            this.f39784b = null;
-        }
-    }
-
-    @Override
-    public final void showAsDropDown(View view, int i10, int i11) {
-        super.showAsDropDown(view, i10, i11);
-        c(view);
-    }
-
-    @Override
-    public final void showAsDropDown(View view, int i10, int i11, int i12) {
-        super.showAsDropDown(view, i10, i11, i12);
-        c(view);
     }
 }

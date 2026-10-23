@@ -1,142 +1,96 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.RectF;
-import android.view.View;
-import android.view.accessibility.AccessibilityEvent;
-import android.view.accessibility.AccessibilityNodeInfo;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
 import org.telegram.messenger.R;
-public final class oz0 extends FrameLayout {
-    public int E;
-    public int F;
-    public hr0 G;
-    public Paint f29167a;
-    public Paint f29168b;
-    public Paint f29169c;
-    public Paint d;
-    public RectF e;
-    public nz0 f29170f;
-    public String[] h;
-    public int[] f29171n;
-    public vj0[] f29172r;
-    public int f29173s;
-    public yj0[] v;
-    public float f29174w;
-    public float f29175x;
-    public int f29176y;
+public final class oz0 extends Drawable {
+    public boolean f29368a;
+    public final f6 f29369b;
+    public final Drawable f29370c;
+    public final Drawable d;
+    public int e = 255;
 
-    public final vj0 a(int i10) {
-        int i11;
-        vj0[] vj0VarArr = this.f29172r;
-        if (vj0VarArr[i10] == null) {
-            if (i10 != 1) {
-                if (i10 != 2) {
-                    if (i10 != 3) {
-                        if (i10 != 4) {
-                            if (i10 != 5) {
-                                i11 = R.raw.swipe_pin;
-                            } else {
-                                i11 = R.raw.swipe_disabled;
-                            }
-                        } else {
-                            i11 = R.raw.swipe_delete;
-                        }
-                    } else {
-                        i11 = R.raw.swipe_mute;
-                    }
-                } else {
-                    i11 = R.raw.chats_archive;
-                }
-            } else {
-                i11 = R.raw.swipe_read;
-            }
-            vj0VarArr[i10] = new vj0(i11, AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), true, null);
-            c(i10);
-        }
-        return vj0VarArr[i10];
-    }
-
-    public final void b() {
-        int value;
-        yj0[] yj0VarArr = this.v;
-        if (this.G == null && this.F != (value = this.f29170f.getValue())) {
-            this.F = value;
-            int i10 = (this.f29173s + 1) % 2;
-            vj0 a2 = a(value);
-            if (a2 != null) {
-                if (yj0VarArr[i10].getVisibility() != 0) {
-                    a2.N(0, false, false);
-                }
-                yj0VarArr[i10].setAnimation(a2);
-                yj0VarArr[i10].d();
-            } else {
-                yj0VarArr[i10].a();
-            }
-            AndroidUtilities.updateViewVisibilityAnimated(yj0VarArr[this.f29173s], false, 0.5f, true);
-            AndroidUtilities.updateViewVisibilityAnimated(yj0VarArr[i10], true, 0.5f, true);
-            this.f29173s = i10;
-            hr0 hr0Var = new hr0(this, 12);
-            this.G = hr0Var;
-            AndroidUtilities.runOnUIThread(hr0Var, 150L);
-        }
-    }
-
-    public final void c(int i10) {
-        vj0[] vj0VarArr = this.f29172r;
-        if (vj0VarArr[i10] != null) {
-            int f7 = i0.a.f(0.9f, org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20994d6, false), org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20978c9, false));
-            int x02 = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21013e9, false);
-            if (i10 == 2) {
-                vj0VarArr[i10].Q(f7, "Arrow");
-                vj0VarArr[i10].Q(x02, "Box2");
-                vj0VarArr[i10].Q(x02, "Box1");
-                return;
-            }
-            vj0VarArr[i10].setColorFilter(new PorterDuffColorFilter(x02, PorterDuff.Mode.SRC_IN));
-        }
+    public oz0(org.telegram.ui.Cells.t1 t1Var) {
+        this.f29369b = new f6(t1Var, 420L, bs.h);
+        this.f29370c = t1Var.getContext().getResources().getDrawable(R.drawable.summary_arrow);
+        this.d = t1Var.getContext().getResources().getDrawable(R.drawable.summary_stars);
     }
 
     @Override
-    public final void onDraw(android.graphics.Canvas r22) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.oz0.onDraw(android.graphics.Canvas):void");
-    }
-
-    @Override
-    public final void onInitializeAccessibilityEvent(AccessibilityEvent accessibilityEvent) {
-        nz0 nz0Var = this.f29170f;
-        super.onInitializeAccessibilityEvent(accessibilityEvent);
-        if (accessibilityEvent.getEventType() == 1) {
-            int value = nz0Var.getValue() + 1;
-            setContentDescription(this.h[(value > nz0Var.getMaxValue() || value < 0) ? 0 : 0]);
-            nz0Var.a(true);
+    public final void draw(Canvas canvas) {
+        Rect bounds = getBounds();
+        Drawable drawable = this.d;
+        drawable.setBounds(bounds);
+        drawable.setAlpha(this.e);
+        drawable.draw(canvas);
+        float e = this.f29369b.e(this.f29368a);
+        float centerX = getBounds().centerX();
+        float centerY = getBounds().centerY();
+        float width = getBounds().width();
+        canvas.save();
+        if (e < 0.5f) {
+            float abs = Math.abs(e - 0.5f) + 0.5f;
+            canvas.scale(abs, abs, centerX, centerY);
         }
-    }
-
-    @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        accessibilityNodeInfo.setEnabled(true);
-        accessibilityNodeInfo.setContentDescription(this.h[this.f29170f.getValue()]);
-        accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(16, null));
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(102.0f), 1073741824));
-    }
-
-    @Override
-    public void setBackgroundColor(int i10) {
-        nz0 nz0Var = this.f29170f;
-        super.setBackgroundColor(i10);
-        for (int i11 = 0; i11 < this.f29172r.length; i11++) {
-            c(i11);
+        canvas.save();
+        int i10 = (e > 0.5f ? 1 : (e == 0.5f ? 0 : -1));
+        if (i10 > 0) {
+            float abs2 = Math.abs(e - 0.5f) + 0.5f;
+            float f7 = -abs2;
+            float f10 = width * 0.32f;
+            canvas.scale(f7, f7, getBounds().left + f10, getBounds().bottom - f10);
+            float f11 = 1.0f - abs2;
+            canvas.translate((-width) * f11 * 0.4f, f11 * width * 0.4f);
         }
-        nz0Var.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21100j5, false));
-        nz0Var.invalidate();
+        Rect bounds2 = getBounds();
+        Drawable drawable2 = this.f29370c;
+        drawable2.setBounds(bounds2);
+        drawable2.setAlpha(this.e);
+        drawable2.draw(canvas);
+        canvas.restore();
+        canvas.save();
+        if (i10 > 0) {
+            float f12 = -(Math.abs(e - 0.5f) + 0.5f);
+            float f13 = 0.32f * width;
+            canvas.scale(f12, f12, getBounds().right - f13, getBounds().top + f13);
+        }
+        canvas.rotate(180.0f, centerX, centerY);
+        if (i10 > 0) {
+            float abs3 = 1.0f - (Math.abs(e - 0.5f) + 0.5f);
+            canvas.translate((-width) * abs3 * 0.4f, width * abs3 * 0.4f);
+        }
+        drawable2.setBounds(getBounds());
+        drawable2.setAlpha(this.e);
+        drawable2.draw(canvas);
+        canvas.restore();
+        canvas.restore();
+    }
+
+    @Override
+    public final int getIntrinsicHeight() {
+        return this.f29370c.getIntrinsicHeight();
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        return this.f29370c.getIntrinsicWidth();
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+        this.e = i10;
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        this.f29370c.setColorFilter(colorFilter);
+        this.d.setColorFilter(colorFilter);
     }
 }

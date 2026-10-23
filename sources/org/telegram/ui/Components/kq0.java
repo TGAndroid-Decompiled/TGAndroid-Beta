@@ -1,47 +1,54 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class kq0 implements hg.f0 {
-    public final fr0 f27918a;
+import android.os.Build;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+public final class kq0 extends s4.r0 {
+    public final int f28126a;
+    public final ir0 f28127b;
 
-    public kq0(fr0 fr0Var) {
-        this.f27918a = fr0Var;
+    public kq0(ir0 ir0Var, int i10) {
+        this.f28126a = i10;
+        this.f28127b = ir0Var;
     }
 
     @Override
-    public final void b(a0.h hVar, ArrayList arrayList) {
-        int i10;
-        int i11;
-        int i12;
-        int i13 = 0;
-        while (i13 < arrayList.size()) {
-            TLObject tLObject = ((hg.g0) arrayList.get(i13)).f11866a;
-            if ((tLObject instanceof TLRPC.Chat) && !ChatObject.canWriteToChat((TLRPC.Chat) tLObject)) {
-                arrayList.remove(i13);
-                i13--;
-            }
-            i13++;
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        bh.f fVar;
+        ub ubVar;
+        switch (this.f28126a) {
+            case 0:
+                if (i11 != 0) {
+                    ir0 ir0Var = this.f28127b;
+                    ir0.z0(ir0Var);
+                    ir0Var.f27430r0 = ir0Var.f27428q0;
+                    return;
+                }
+                return;
+            case 1:
+                ir0 ir0Var2 = this.f28127b;
+                if (i11 != 0) {
+                    ir0.z0(ir0Var2);
+                    ir0Var2.f27430r0 = ir0Var2.f27428q0;
+                }
+                qc qcVar = qc.f29825w;
+                if (qcVar != null && (ubVar = qcVar.e) != null && (ubVar.getParent() instanceof View) && ((View) qc.f29825w.e.getParent()).getParent() == ir0Var2.f27438x) {
+                    qc.e();
+                }
+                if (Build.VERSION.SDK_INT >= 31 && (fVar = ir0Var2.P0) != null) {
+                    fVar.f(i10, i11);
+                    ir0.J0(ir0Var2);
+                    return;
+                }
+                return;
+            default:
+                if (i11 != 0) {
+                    ir0 ir0Var3 = this.f28127b;
+                    ir0.z0(ir0Var3);
+                    ir0Var3.f27430r0 = ir0Var3.f27428q0;
+                    return;
+                }
+                return;
         }
-        fr0 fr0Var = this.f27918a;
-        fr0Var.F0 = arrayList;
-        for (int i14 = 0; i14 < fr0Var.F0.size(); i14++) {
-            hg.g0 g0Var = (hg.g0) fr0Var.F0.get(i14);
-            TLObject tLObject2 = g0Var.f11866a;
-            if (tLObject2 instanceof TLRPC.User) {
-                i12 = ((org.telegram.ui.ActionBar.f3) fr0Var).currentAccount;
-                MessagesController.getInstance(i12).putUser((TLRPC.User) g0Var.f11866a, true);
-            } else if (tLObject2 instanceof TLRPC.Chat) {
-                i11 = ((org.telegram.ui.ActionBar.f3) fr0Var).currentAccount;
-                MessagesController.getInstance(i11).putChat((TLRPC.Chat) g0Var.f11866a, true);
-            } else if (tLObject2 instanceof TLRPC.EncryptedChat) {
-                i10 = ((org.telegram.ui.ActionBar.f3) fr0Var).currentAccount;
-                MessagesController.getInstance(i10).putEncryptedChat((TLRPC.EncryptedChat) g0Var.f11866a, true);
-            }
-        }
-        fr0Var.N.l();
     }
 }

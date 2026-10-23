@@ -1,83 +1,102 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.graphics.Canvas;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.view.KeyEvent;
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.AnimationNotificationsLocker;
 import org.telegram.messenger.voip.VoIPService;
-import org.telegram.messenger.voip.VoIPServiceState;
-import org.webrtc.OrientationHelper;
-public final class zg1 extends org.telegram.ui.Components.voip.u2 {
-    public final Path f43757s;
-    public final RectF v;
-    public final hh1 f43758w;
+public final class zg1 implements View.OnClickListener {
+    public final int f44143a;
+    public final oh1 f44144b;
 
-    public zg1(Activity activity, boolean z10, hh1 hh1Var) {
-        super(activity);
-        this.f43758w = hh1Var;
-        this.f31778c = new AnimationNotificationsLocker();
-        this.f31776a = activity;
-        setSystemUiVisibility(1792);
-        AndroidUtilities.lockOrientation(activity, 1);
-        OrientationHelper.cameraRotationDisabled = true;
-        if (!z10) {
-            this.e = true;
-        }
-        this.f43757s = new Path();
-        this.v = new RectF();
+    public zg1(oh1 oh1Var, int i10) {
+        this.f44143a = i10;
+        this.f44144b = oh1Var;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        hh1 hh1Var = this.f43758w;
-        if (hh1Var.E0 && getAlpha() != 0.0f) {
-            float scaleX = hh1Var.f37642c0.getScaleX() * hh1Var.f37642c0.getWidth();
-            float scaleY = hh1Var.f37642c0.getScaleY() * hh1Var.f37642c0.getHeight();
-            float x10 = hh1Var.f37642c0.getX() + ((hh1Var.f37642c0.getWidth() - scaleX) / 2.0f);
-            float y3 = hh1Var.f37642c0.getY() + ((hh1Var.f37642c0.getHeight() - scaleY) / 2.0f);
-            canvas.save();
-            Path path = this.f43757s;
-            path.rewind();
-            RectF rectF = this.v;
-            rectF.set(x10, y3, scaleX + x10, scaleY + y3);
-            float dp = AndroidUtilities.dp(4.0f);
-            path.addRoundRect(rectF, dp, dp, Path.Direction.CW);
-            path.close();
-            canvas.clipPath(path);
-            super.dispatchDraw(canvas);
-            canvas.restore();
-            return;
+    public final void onClick(View view) {
+        VoIPService sharedInstance;
+        int i10;
+        switch (this.f44143a) {
+            case 0:
+                if (VoIPService.getSharedInstance() != null) {
+                    oh1 oh1Var = this.f44144b;
+                    AndroidUtilities.cancelRunOnUIThread(oh1Var.S0);
+                    oh1Var.R0 = false;
+                    VoIPService.getSharedInstance().hangUp();
+                    return;
+                }
+                return;
+            case 1:
+                oh1 oh1Var2 = this.f44144b;
+                if (oh1Var2.f40192n0 && oh1Var2.m0 && System.currentTimeMillis() - oh1Var2.K0 > 500) {
+                    AndroidUtilities.cancelRunOnUIThread(oh1Var2.S0);
+                    oh1Var2.R0 = false;
+                    oh1Var2.K0 = System.currentTimeMillis();
+                    oh1Var2.Z.setRelativePosition(oh1Var2.Y);
+                    oh1Var2.f40164a0 = true;
+                    oh1Var2.H0 = true;
+                    oh1Var2.f40195q0 = oh1Var2.f40194p0;
+                    oh1Var2.G();
+                    return;
+                }
+                return;
+            case 2:
+                oh1 oh1Var3 = this.f44144b;
+                if (oh1Var3.H0 && System.currentTimeMillis() - oh1Var3.K0 > 500) {
+                    AndroidUtilities.cancelRunOnUIThread(oh1Var3.S0);
+                    oh1Var3.R0 = false;
+                    oh1Var3.K0 = System.currentTimeMillis();
+                    oh1Var3.Y.setRelativePosition(oh1Var3.Z);
+                    oh1Var3.f40164a0 = false;
+                    oh1Var3.H0 = false;
+                    oh1Var3.f40195q0 = oh1Var3.f40194p0;
+                    oh1Var3.G();
+                    return;
+                }
+                return;
+            case 3:
+                long currentTimeMillis = System.currentTimeMillis();
+                oh1 oh1Var4 = this.f44144b;
+                if (currentTimeMillis - oh1Var4.K0 >= 500) {
+                    oh1Var4.K0 = System.currentTimeMillis();
+                    boolean z10 = oh1Var4.C0;
+                    if (!z10 && oh1Var4.B0) {
+                        oh1Var4.l(!z10);
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 4:
+                long currentTimeMillis2 = System.currentTimeMillis();
+                oh1 oh1Var5 = this.f44144b;
+                if (currentTimeMillis2 - oh1Var5.K0 >= 500) {
+                    oh1Var5.K0 = System.currentTimeMillis();
+                    if (oh1Var5.B0) {
+                        oh1Var5.l(!oh1Var5.C0);
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 5:
+                oh1 oh1Var6 = this.f44144b;
+                if (oh1Var6.K.getTag() != null && (sharedInstance = VoIPService.getSharedInstance()) != null) {
+                    oh1Var6.A();
+                    if (sharedInstance.isBluetoothOn()) {
+                        i10 = 2;
+                    } else if (sharedInstance.isSpeakerphoneOn()) {
+                        i10 = 0;
+                    } else {
+                        i10 = 1;
+                    }
+                    sharedInstance.toggleSpeakerphoneOrShowRouteSheet(oh1Var6.f40166b, false, Integer.valueOf(i10));
+                    return;
+                }
+                return;
+            default:
+                this.f44144b.o();
+                return;
         }
-        super.dispatchDraw(canvas);
-    }
-
-    @Override
-    public final boolean dispatchKeyEvent(KeyEvent keyEvent) {
-        VoIPServiceState sharedState;
-        hh1 hh1Var = this.f43758w;
-        if (!hh1Var.G0 && !hh1Var.E0) {
-            int keyCode = keyEvent.getKeyCode();
-            if (keyCode == 4 && keyEvent.getAction() == 1) {
-                hh1Var.o();
-                return true;
-            } else if ((keyCode == 25 || keyCode == 24) && hh1Var.f37666p0 == 15 && (sharedState = VoIPService.getSharedState()) != null) {
-                sharedState.stopRinging();
-                return true;
-            } else {
-                return super.dispatchKeyEvent(keyEvent);
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public final void draw(Canvas canvas) {
-        if (this.f43758w.f37662m1) {
-            return;
-        }
-        super.draw(canvas);
     }
 }

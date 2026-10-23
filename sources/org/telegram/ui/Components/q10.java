@@ -15,23 +15,23 @@ import android.text.StaticLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.SharedConfig;
 public final class q10 {
-    public static float f29458i;
-    public static float f29459j;
-    public int f29460a;
-    public final Object f29461b;
-    public final Object f29462c;
+    public static float f29747i;
+    public static float f29748j;
+    public int f29749a;
+    public final Object f29750b;
+    public final Object f29751c;
     public final Object d;
     public final Object e;
-    public final Object f29463f;
-    public Object f29464g;
+    public final Object f29752f;
+    public Object f29753g;
     public Object h;
 
-    public q10(org.telegram.ui.Cells.u1 u1Var) {
-        this.f29462c = new Path();
+    public q10(org.telegram.ui.Cells.t1 t1Var) {
+        this.f29751c = new Path();
         this.d = new Rect();
-        this.f29463f = new RectF();
-        this.f29461b = u1Var;
-        this.e = new yc(u1Var, 0.8f, 1.4f);
+        this.f29752f = new RectF();
+        this.f29750b = t1Var;
+        this.e = new yc(t1Var, 0.8f, 1.4f);
     }
 
     public void a(Canvas canvas, RectF rectF, float f7, int i10, float f10) {
@@ -41,20 +41,20 @@ public final class q10 {
         float f13;
         int i12;
         Path path;
-        Path path2 = (Path) this.f29462c;
+        Path path2 = (Path) this.f29751c;
         SweepGradient[] sweepGradientArr = (SweepGradient[]) this.e;
-        Matrix matrix = (Matrix) this.f29464g;
+        Matrix matrix = (Matrix) this.f29753g;
         RectF rectF2 = (RectF) this.h;
         Paint paint = (Paint) this.d;
-        Paint paint2 = (Paint) this.f29461b;
-        RectF rectF3 = (RectF) this.f29463f;
+        Paint paint2 = (Paint) this.f29750b;
+        RectF rectF3 = (RectF) this.f29752f;
         if (f10 > 0.004f && !zh.t.a(canvas, rectF, f7, i10, f10)) {
-            int i13 = this.f29460a;
-            float[][] fArr = zh.d1.f51974a;
+            int i13 = this.f29749a;
+            float[][] fArr = zh.d1.f52436a;
             int i14 = 4;
             int i15 = 1;
             if (i13 != 1) {
-                this.f29460a = 1;
+                this.f29749a = 1;
                 int i16 = 0;
                 while (i16 < i14) {
                     float[] fArr2 = fArr[i16];
@@ -100,8 +100,8 @@ public final class q10 {
             int i24 = i14;
             int i25 = 0;
             float[] fArr5 = fArr[i10];
-            float f15 = f29458i;
-            float f16 = f29459j;
+            float f15 = f29747i;
+            float f16 = f29748j;
             float dpf2 = AndroidUtilities.dpf2(fArr5[8]);
             rectF3.set(rectF);
             rectF3.inset(dpf2, dpf2);
@@ -185,41 +185,41 @@ public final class q10 {
     public void b(Canvas canvas, boolean z10) {
         Rect rect = (Rect) this.d;
         canvas.save();
-        Path path = (Path) this.f29462c;
+        Path path = (Path) this.f29751c;
         canvas.clipPath(path);
-        org.telegram.ui.Cells.z zVar = (org.telegram.ui.Cells.z) this.f29464g;
-        if (zVar != null) {
-            zVar.setBounds(rect);
-            ((org.telegram.ui.Cells.z) this.f29464g).draw(canvas);
+        org.telegram.ui.Cells.y yVar = (org.telegram.ui.Cells.y) this.f29753g;
+        if (yVar != null) {
+            yVar.setBounds(rect);
+            ((org.telegram.ui.Cells.y) this.f29753g).draw(canvas);
         }
         if (z10) {
-            ba0 ba0Var = (ba0) this.h;
-            if (ba0Var == null) {
-                ba0 ba0Var2 = new ba0();
-                this.h = ba0Var2;
-                ba0Var2.D = true;
-            } else if (ba0Var.c() || ((ba0) this.h).d()) {
-                ba0 ba0Var3 = (ba0) this.h;
-                ba0Var3.f24862b = -1L;
-                ba0Var3.f24863c = -1L;
+            ca0 ca0Var = (ca0) this.h;
+            if (ca0Var == null) {
+                ca0 ca0Var2 = new ca0();
+                this.h = ca0Var2;
+                ca0Var2.D = true;
+            } else if (ca0Var.c() || ((ca0) this.h).d()) {
+                ca0 ca0Var3 = (ca0) this.h;
+                ca0Var3.f25279b = -1L;
+                ca0Var3.f25280c = -1L;
             }
         } else {
-            ba0 ba0Var4 = (ba0) this.h;
-            if (ba0Var4 != null && !ba0Var4.d() && !((ba0) this.h).c()) {
-                ((ba0) this.h).a();
+            ca0 ca0Var4 = (ca0) this.h;
+            if (ca0Var4 != null && !ca0Var4.d() && !((ca0) this.h).c()) {
+                ((ca0) this.h).a();
             }
         }
         canvas.restore();
-        ba0 ba0Var5 = (ba0) this.h;
-        if (ba0Var5 != null && !ba0Var5.c()) {
-            ba0 ba0Var6 = (ba0) this.h;
-            ba0Var6.f24881y = path;
-            ba0Var6.g(org.telegram.ui.ActionBar.h6.m1(0.7f, this.f29460a), org.telegram.ui.ActionBar.h6.m1(1.3f, this.f29460a), org.telegram.ui.ActionBar.h6.m1(1.5f, this.f29460a), org.telegram.ui.ActionBar.h6.m1(2.0f, this.f29460a));
-            ((ba0) this.h).setBounds(rect);
+        ca0 ca0Var5 = (ca0) this.h;
+        if (ca0Var5 != null && !ca0Var5.c()) {
+            ca0 ca0Var6 = (ca0) this.h;
+            ca0Var6.f25298y = path;
+            ca0Var6.g(org.telegram.ui.ActionBar.k6.o1(0.7f, this.f29749a), org.telegram.ui.ActionBar.k6.o1(1.3f, this.f29749a), org.telegram.ui.ActionBar.k6.o1(1.5f, this.f29749a), org.telegram.ui.ActionBar.k6.o1(2.0f, this.f29749a));
+            ((ca0) this.h).setBounds(rect);
             canvas.save();
-            ((ba0) this.h).draw(canvas);
+            ((ca0) this.h).draw(canvas);
             canvas.restore();
-            ((org.telegram.ui.Cells.u1) this.f29461b).invalidate();
+            ((org.telegram.ui.Cells.t1) this.f29750b).invalidate();
         }
     }
 
@@ -227,8 +227,8 @@ public final class q10 {
         float d;
         float f7;
         float dp;
-        RectF rectF = (RectF) this.f29463f;
-        int textSize = (((int) org.telegram.ui.ActionBar.h6.X2.getTextSize()) * 2) + AndroidUtilities.dp(4.0f);
+        RectF rectF = (RectF) this.f29752f;
+        int textSize = (((int) org.telegram.ui.ActionBar.k6.X2.getTextSize()) * 2) + AndroidUtilities.dp(4.0f);
         float max = Math.max(0, Math.min(6, SharedConfig.bubbleRadius) - 1);
         float min = Math.min(9, SharedConfig.bubbleRadius);
         float min2 = Math.min(3, SharedConfig.bubbleRadius);
@@ -237,7 +237,7 @@ public final class q10 {
         float dp2 = AndroidUtilities.dp(5.0f) + textSize;
         float lineWidth = staticLayoutArr[0].getLineWidth(0) + AndroidUtilities.dp(d);
         float lineWidth2 = staticLayoutArr[1].getLineWidth(0) + AndroidUtilities.dp(d);
-        Path path = (Path) this.f29462c;
+        Path path = (Path) this.f29751c;
         path.rewind();
         if (!z10) {
             max = SharedConfig.bubbleRadius / 2.0f;
@@ -294,57 +294,57 @@ public final class q10 {
     }
 
     public void d(int i10) {
-        if (this.f29460a != i10) {
-            org.telegram.ui.Cells.z zVar = (org.telegram.ui.Cells.z) this.f29464g;
-            if (zVar == null) {
-                this.f29464g = org.telegram.ui.ActionBar.h6.g0(i10, 2, -1);
+        if (this.f29749a != i10) {
+            org.telegram.ui.Cells.y yVar = (org.telegram.ui.Cells.y) this.f29753g;
+            if (yVar == null) {
+                this.f29753g = org.telegram.ui.ActionBar.k6.g0(i10, 2, -1);
             } else {
-                org.telegram.ui.ActionBar.h6.C1(zVar, i10, true);
+                org.telegram.ui.ActionBar.k6.E1(yVar, i10, true);
             }
-            ((org.telegram.ui.Cells.z) this.f29464g).setCallback((org.telegram.ui.Cells.u1) this.f29461b);
-            this.f29460a = i10;
+            ((org.telegram.ui.Cells.y) this.f29753g).setCallback((org.telegram.ui.Cells.t1) this.f29750b);
+            this.f29749a = i10;
         }
     }
 
     public void e(boolean z10) {
-        org.telegram.ui.Cells.z zVar;
+        org.telegram.ui.Cells.y yVar;
         Rect rect = (Rect) this.d;
         float centerX = rect.centerX();
         float centerY = rect.centerY();
         ((yc) this.e).c(z10);
-        if (z10 && (zVar = (org.telegram.ui.Cells.z) this.f29464g) != null) {
-            zVar.setHotspot(centerX, centerY);
+        if (z10 && (yVar = (org.telegram.ui.Cells.y) this.f29753g) != null) {
+            yVar.setHotspot(centerX, centerY);
         }
-        org.telegram.ui.Cells.z zVar2 = (org.telegram.ui.Cells.z) this.f29464g;
-        if (zVar2 != null) {
-            zVar2.setState(z10 ? new int[]{16842910, 16842919} : new int[0]);
+        org.telegram.ui.Cells.y yVar2 = (org.telegram.ui.Cells.y) this.f29753g;
+        if (yVar2 != null) {
+            yVar2.setState(z10 ? new int[]{16842910, 16842919} : new int[0]);
         }
-        ((org.telegram.ui.Cells.u1) this.f29461b).invalidate();
+        ((org.telegram.ui.Cells.t1) this.f29750b).invalidate();
     }
 
     public q10(int i10) {
         switch (i10) {
             case 2:
-                this.f29461b = new Paint(1);
+                this.f29750b = new Paint(1);
                 Paint paint = new Paint(1);
                 this.d = paint;
                 this.e = new SweepGradient[4];
-                this.f29460a = -1;
-                this.f29464g = new Matrix();
-                this.f29462c = new Path();
-                this.f29463f = new RectF();
+                this.f29749a = -1;
+                this.f29753g = new Matrix();
+                this.f29751c = new Path();
+                this.f29752f = new RectF();
                 this.h = new RectF();
                 paint.setStyle(Paint.Style.STROKE);
                 return;
             default:
                 Paint paint2 = new Paint();
-                this.f29461b = paint2;
+                this.f29750b = paint2;
                 Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-                this.f29462c = new ad0(tileMode);
-                this.d = new ad0(tileMode);
-                this.e = new ad0(Shader.TileMode.REPEAT);
-                this.f29463f = new Object();
-                this.f29464g = new Object();
+                this.f29751c = new cd0(tileMode);
+                this.d = new cd0(tileMode);
+                this.e = new cd0(Shader.TileMode.REPEAT);
+                this.f29752f = new Object();
+                this.f29753g = new Object();
                 this.h = new float[4];
                 paint2.setFilterBitmap(true);
                 paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC));

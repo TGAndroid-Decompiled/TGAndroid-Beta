@@ -1,79 +1,132 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MessagesStorage;
+import android.content.Context;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import java.util.ArrayList;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-public final class qp implements org.telegram.ui.ActionBar.a2, MessagesController.ErrorDelegate, MessagesStorage.LongCallback {
-    public final int f40951a;
-    public final bq f40952b;
+public final class qp extends s4.g0 {
+    public final Context f40902c;
+    public final rp d;
 
-    public qp(bq bqVar, int i10) {
-        this.f40951a = i10;
-        this.f40952b = bqVar;
+    public qp(rp rpVar, Context context) {
+        this.d = rpVar;
+        this.f40902c = context;
     }
 
     @Override
-    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        TLRPC.TL_chatAdminRights o02;
-        switch (this.f40951a) {
-            case 0:
-                this.f40952b.r0(true);
-                return;
-            case 1:
-                bq bqVar = this.f40952b;
-                bqVar.t0(true);
-                tp tpVar = new tp(bqVar, 0);
-                if (!bqVar.K && !bqVar.L) {
-                    bqVar.getMessagesController().addUserToChat(bqVar.f35719w.f20280id, bqVar.v, 0, bqVar.Y0, bqVar, true, tpVar, new qp(bqVar, 3));
+    public final int h() {
+        rp rpVar = this.d;
+        ArrayList arrayList = rpVar.f41211r;
+        int i10 = 0;
+        if (rpVar.G) {
+            if (!rpVar.d.isEmpty()) {
+                i10 = arrayList.size() + 1;
+            }
+            return i10 + 1;
+        }
+        if (!rpVar.d.isEmpty()) {
+            i10 = arrayList.size() + 1;
+        }
+        return i10 + 2;
+    }
+
+    @Override
+    public final int j(int i10) {
+        if (this.d.G) {
+            if (i10 == 0) {
+                return 0;
+            }
+            if (i10 != 1) {
+                return 2;
+            }
+            return 1;
+        } else if (i10 == 0) {
+            return 3;
+        } else {
+            if (i10 == 1) {
+                return 0;
+            }
+            if (i10 != 2) {
+                return 2;
+            }
+            return 1;
+        }
+    }
+
+    @Override
+    public final void v(s4.b1 b1Var, int i10) {
+        String string;
+        int i11;
+        View view = b1Var.f46343a;
+        int j10 = j(i10);
+        int i12 = 2;
+        rp rpVar = this.d;
+        if (j10 != 0) {
+            if (j10 != 1) {
+                if (j10 == 2) {
+                    org.telegram.ui.Cells.x xVar = (org.telegram.ui.Cells.x) view;
+                    ArrayList arrayList = rpVar.f41211r;
+                    if (!rpVar.G) {
+                        i12 = 3;
+                    }
+                    TLRPC.TL_availableReaction tL_availableReaction = (TLRPC.TL_availableReaction) arrayList.get(i10 - i12);
+                    boolean contains = rpVar.d.contains(tL_availableReaction.reaction);
+                    i11 = ((org.telegram.ui.ActionBar.o2) rpVar).currentAccount;
+                    xVar.a(tL_availableReaction, contains, i11);
                     return;
                 }
-                MessagesController messagesController = bqVar.getMessagesController();
-                long j10 = bqVar.f35719w.f20280id;
-                TLRPC.User user = bqVar.v;
-                if (bqVar.K) {
-                    o02 = bqVar.M;
-                } else {
-                    o02 = bq.o0(false);
+                return;
+            }
+            org.telegram.ui.Cells.l4 l4Var = (org.telegram.ui.Cells.l4) view;
+            l4Var.setText(LocaleController.getString(R.string.OnlyAllowThisReactions));
+            org.telegram.ui.ActionBar.r6.i(org.telegram.ui.ActionBar.k6.f21183d6, l4Var, null);
+            return;
+        }
+        org.telegram.ui.Cells.e9 e9Var = (org.telegram.ui.Cells.e9) view;
+        org.telegram.ui.ActionBar.r6.W(e9Var.getTextView(), org.telegram.ui.ActionBar.k6.B6, null);
+        if (rpVar.G) {
+            if (ChatObject.isChannelAndNotMegaGroup(rpVar.f41206a)) {
+                string = LocaleController.getString(R.string.EnableReactionsChannelInfo);
+            } else {
+                string = LocaleController.getString(R.string.EnableReactionsGroupInfo);
+            }
+            e9Var.setText(string);
+            return;
+        }
+        int i13 = rpVar.v;
+        if (i13 == 1) {
+            e9Var.setText(LocaleController.getString(R.string.EnableSomeReactionsInfo));
+        } else if (i13 == 0) {
+            e9Var.setText(LocaleController.getString(R.string.EnableAllReactionsInfo));
+        } else if (i13 == 2) {
+            e9Var.setText(LocaleController.getString(R.string.DisableReactionsInfo));
+        }
+    }
+
+    @Override
+    public final s4.b1 x(ViewGroup viewGroup, int i10) {
+        Context context = this.f40902c;
+        if (i10 != 0) {
+            if (i10 != 1) {
+                if (i10 != 3) {
+                    return new s4.b1(new org.telegram.ui.Cells.x(context, false, false));
                 }
-                messagesController.setUserAdminRole(j10, user, o02, bqVar.S, false, bqVar, bqVar.Z0, bqVar.K, bqVar.Y0, tpVar, new qp(bqVar, 2));
-                return;
-            case 2:
-            case 3:
-            default:
-                bq bqVar2 = this.f40952b;
-                bqVar2.getClass();
-                bqVar2.presentFragment(new vf1(6, null));
-                return;
-            case 4:
-                this.f40952b.finishFragment();
-                return;
-            case 5:
-                TwoStepVerificationActivity twoStepVerificationActivity = new TwoStepVerificationActivity();
-                bq bqVar3 = this.f40952b;
-                m4.w0 w0Var = new m4.w0(23, bqVar3, twoStepVerificationActivity);
-                twoStepVerificationActivity.Z = 0;
-                twoStepVerificationActivity.f33943b0 = w0Var;
-                bqVar3.presentFragment(twoStepVerificationActivity);
-                return;
+                FrameLayout frameLayout = new FrameLayout(context);
+                rp rpVar = this.d;
+                if (rpVar.f41212s.getParent() != null) {
+                    ((ViewGroup) rpVar.f41212s.getParent()).removeView(rpVar.f41212s);
+                }
+                frameLayout.addView(rpVar.f41212s);
+                frameLayout.setLayoutParams(new s4.o0(-1, -2));
+                return new s4.b1(frameLayout);
+            }
+            return new s4.b1(new org.telegram.ui.Cells.l4(context, 23));
         }
-    }
-
-    @Override
-    public void run(long j10) {
-        bq.U(this.f40952b, j10);
-    }
-
-    @Override
-    public boolean run(TLRPC.TL_error tL_error) {
-        switch (this.f40951a) {
-            case 2:
-                this.f40952b.t0(false);
-                return true;
-            case 3:
-                this.f40952b.t0(false);
-                return true;
-            default:
-                return bq.W(this.f40952b, tL_error);
-        }
+        return new s4.b1(new org.telegram.ui.Cells.e9(context));
     }
 }

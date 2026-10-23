@@ -1,37 +1,51 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class o4 extends od0 {
-    public final int[] f28945w0;
+import android.graphics.Point;
+import android.widget.LinearLayout;
+import org.telegram.messenger.AndroidUtilities;
+public final class o4 extends LinearLayout {
+    public boolean f29091a;
+    public final qd0 f29092b;
+    public final qd0 f29093c;
+    public final qd0 d;
 
-    public o4(Context context, org.telegram.ui.ActionBar.d6 d6Var, int[] iArr) {
-        super(context, d6Var);
-        this.f28945w0 = iArr;
+    public o4(Context context, qd0 qd0Var, qd0 qd0Var2, qd0 qd0Var3) {
+        super(context);
+        this.f29092b = qd0Var;
+        this.f29093c = qd0Var2;
+        this.d = qd0Var3;
+        this.f29091a = false;
     }
 
     @Override
-    public final CharSequence d(int i10) {
-        int i11 = this.f28945w0[i10];
-        if (i11 == 0) {
-            return LocaleController.getString(R.string.MuteNever);
+    public final void onMeasure(int i10, int i11) {
+        int i12;
+        this.f29091a = true;
+        Point point = AndroidUtilities.displaySize;
+        if (point.x > point.y) {
+            i12 = 3;
+        } else {
+            i12 = 5;
         }
-        if (i11 < 60) {
-            return LocaleController.formatPluralString("Minutes", i11, new Object[0]);
+        qd0 qd0Var = this.f29092b;
+        qd0Var.setItemCount(i12);
+        qd0 qd0Var2 = this.f29093c;
+        qd0Var2.setItemCount(i12);
+        qd0 qd0Var3 = this.d;
+        qd0Var3.setItemCount(i12);
+        qd0Var.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i12;
+        qd0Var2.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i12;
+        qd0Var3.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i12;
+        this.f29091a = false;
+        super.onMeasure(i10, i11);
+    }
+
+    @Override
+    public final void requestLayout() {
+        if (this.f29091a) {
+            return;
         }
-        if (i11 < 1440) {
-            return LocaleController.formatPluralString("Hours", i11 / 60, new Object[0]);
-        }
-        if (i11 < 10080) {
-            return LocaleController.formatPluralString("Days", i11 / 1440, new Object[0]);
-        }
-        if (i11 < 44640) {
-            return LocaleController.formatPluralString("Weeks", i11 / 10080, new Object[0]);
-        }
-        if (i11 < 525600) {
-            return LocaleController.formatPluralString("Months", i11 / 44640, new Object[0]);
-        }
-        return LocaleController.formatPluralString("Years", i11 / 525600, new Object[0]);
+        super.requestLayout();
     }
 }

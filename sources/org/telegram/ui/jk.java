@@ -1,28 +1,82 @@
 package org.telegram.ui;
 
 import android.content.Context;
-public final class jk extends kh.e {
-    public final qn L;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import org.telegram.messenger.AndroidUtilities;
+public final class jk extends FrameLayout {
+    public final int f38594a;
+    public final sn f38595b;
 
-    public jk(qn qnVar, Context context, org.telegram.ui.ActionBar.d6 d6Var, bj bjVar, bh.b bVar) {
-        super(context, bVar, bjVar, d6Var);
-        this.L = qnVar;
+    public jk(sn snVar, Context context, int i10) {
+        super(context);
+        this.f38594a = i10;
+        this.f38595b = snVar;
     }
 
     @Override
-    public final void setVisibility(int i10) {
+    public void measureChildWithMargins(View view, int i10, int i11, int i12, int i13) {
+        int i14;
+        switch (this.f38594a) {
+            case 1:
+                sn snVar = this.f38595b;
+                if (view == snVar.f41527g3) {
+                    ImageView imageView = snVar.f41503e3;
+                    if (imageView != null && imageView.getVisibility() != 8) {
+                        i14 = 66;
+                    } else {
+                        i14 = 18;
+                    }
+                    ImageView imageView2 = snVar.f41516f3;
+                    if (imageView2 != null && imageView2.getVisibility() != 8) {
+                        i14 += 48;
+                    }
+                    ((ViewGroup.MarginLayoutParams) view.getLayoutParams()).leftMargin = AndroidUtilities.dp(i14);
+                }
+                super.measureChildWithMargins(view, i10, i11, i12, i13);
+                return;
+            default:
+                super.measureChildWithMargins(view, i10, i11, i12, i13);
+                return;
+        }
+    }
+
+    @Override
+    public void setTranslationY(float f7) {
+        switch (this.f38594a) {
+            case 2:
+                super.setTranslationY(f7);
+                this.f38595b.f41561j1.invalidate();
+                return;
+            default:
+                super.setTranslationY(f7);
+                return;
+        }
+    }
+
+    @Override
+    public void setVisibility(int i10) {
         boolean z10;
-        super.setVisibility(i10);
-        j6.l lVar = this.L.Cc;
-        boolean z11 = false;
-        if (i10 == 0) {
-            z10 = true;
-        } else {
-            z10 = false;
+        switch (this.f38594a) {
+            case 0:
+                super.setVisibility(i10);
+                j6.l lVar = this.f38595b.Pc;
+                boolean z11 = false;
+                if (i10 == 0) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                if (getMeasuredWidth() > 0) {
+                    z11 = true;
+                }
+                lVar.h(2, z10, z11);
+                return;
+            default:
+                super.setVisibility(i10);
+                return;
         }
-        if (getMeasuredWidth() > 0) {
-            z11 = true;
-        }
-        lVar.h(3, z10, z11);
     }
 }

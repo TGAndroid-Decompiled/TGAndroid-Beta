@@ -1,98 +1,156 @@
 package ih;
 
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Rect;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
-import org.telegram.ui.Components.wc0;
-import org.telegram.ui.tn;
-public final class k {
-    public static final Rect f13147f = new Rect();
-    public final gh.c f13148a = new gh.c();
-    public final gh.b f13149b = new gh.b();
-    public final androidx.biometric.e f13150c = new androidx.biometric.e(new fh.b(26));
-    public final androidx.biometric.e d = new androidx.biometric.e(new fh.b(27));
-    public final androidx.biometric.e e = new androidx.biometric.e(new fh.b(28));
+import android.graphics.PointF;
+import android.graphics.RectF;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewParent;
+import android.view.ViewTreeObserver;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.WeakHashMap;
+public final class k implements ViewTreeObserver.OnPreDrawListener, View.OnAttachStateChangeListener {
+    public static final int[] f13185f = new int[2];
+    public static final RectF h = new RectF();
+    public final View f13186a;
+    public ViewTreeObserver f13187b;
+    public boolean f13188c;
+    public final WeakHashMap d = new WeakHashMap();
+    public final RectF e = new RectF();
 
-    public final int a(gh.a aVar) {
-        if (aVar instanceof gh.c) {
-            return ((gh.c) aVar).f11055a.getColor();
+    public k(View view) {
+        this.f13186a = view;
+        view.addOnAttachStateChangeListener(this);
+        a();
+    }
+
+    public static boolean b(View view, ViewGroup viewGroup, PointF pointF) {
+        RectF rectF = h;
+        boolean c10 = c(view, viewGroup, rectF);
+        if (c10) {
+            pointF.x = rectF.left;
+            pointF.y = rectF.top;
         }
-        if (aVar instanceof gh.b) {
-            return ((Integer) this.d.m(((gh.b) aVar).d)).intValue();
-        } else if (aVar instanceof gh.e) {
-            return a(((gh.e) aVar).f11063a);
-        } else {
-            return 0;
+        return c10;
+    }
+
+    public static boolean c(View view, View view2, RectF rectF) {
+        float f7 = 0.0f;
+        View view3 = view;
+        float f10 = 0.0f;
+        while (view3 != null && view3 != view2) {
+            float x10 = view3.getX() + f7;
+            float y3 = view3.getY() + f10;
+            ViewParent parent = view3.getParent();
+            if (!(parent instanceof View)) {
+                return false;
+            }
+            view3 = (View) parent;
+            f10 = y3 - view3.getScrollY();
+            f7 = x10 - view3.getScrollX();
+        }
+        if (view3 != view2) {
+            return false;
+        }
+        rectF.set(f7, f10, view.getWidth() + f7, view.getHeight() + f10);
+        return true;
+    }
+
+    public final void a() {
+        ViewTreeObserver viewTreeObserver;
+        View view = this.f13186a;
+        if (view.isAttachedToWindow() && (viewTreeObserver = view.getViewTreeObserver()) != null && viewTreeObserver.isAlive()) {
+            this.f13187b = viewTreeObserver;
+            if (!this.f13188c) {
+                viewTreeObserver.addOnPreDrawListener(this);
+                this.f13188c = true;
+            }
         }
     }
 
-    public final int b(gh.a aVar) {
-        if (aVar instanceof gh.c) {
-            return ((gh.c) aVar).f11055a.getColor();
+    public final void d(View view, ViewGroup viewGroup, i iVar, boolean z10) {
+        j jVar = new j(viewGroup, iVar);
+        jVar.d = z10;
+        WeakHashMap weakHashMap = this.d;
+        List list = (List) weakHashMap.get(view);
+        if (list == null) {
+            list = new ArrayList(1);
+            weakHashMap.put(view, list);
         }
-        if (aVar instanceof gh.b) {
-            return ((Integer) this.e.m(((gh.b) aVar).d)).intValue();
-        } else if (aVar instanceof gh.e) {
-            return b(((gh.e) aVar).f11063a);
-        } else {
-            return 0;
+        list.add(jVar);
+        RectF rectF = this.e;
+        c(view, viewGroup, rectF);
+        jVar.f13184c.set(rectF);
+        if (!this.f13188c) {
+            a();
         }
-    }
-
-    public final gh.a c(Drawable drawable) {
-        boolean z10 = drawable instanceof ColorDrawable;
-        gh.c cVar = this.f13148a;
         if (z10) {
-            cVar.a(((ColorDrawable) drawable).getColor());
-            return cVar;
+            new androidx.biometric.e(view, this);
         }
-        boolean z11 = drawable instanceof wc0;
-        gh.b bVar = this.f13149b;
-        if (z11) {
-            wc0 wc0Var = (wc0) drawable;
-            if (wc0Var.f32086q < 0) {
-                cVar.a(-16777216);
-                return cVar;
+    }
+
+    @Override
+    public final boolean onPreDraw() {
+        ViewTreeObserver viewTreeObserver = this.f13186a.getViewTreeObserver();
+        ViewTreeObserver viewTreeObserver2 = this.f13187b;
+        if (viewTreeObserver != viewTreeObserver2) {
+            if (this.f13188c && viewTreeObserver2 != null && viewTreeObserver2.isAlive()) {
+                this.f13187b.removeOnPreDrawListener(this);
             }
-            bVar.a(wc0Var.f32080k);
-            return bVar;
+            this.f13188c = false;
+            this.f13187b = null;
+            a();
         }
-        boolean z12 = drawable instanceof BitmapDrawable;
-        androidx.biometric.e eVar = this.f13150c;
-        if (z12) {
-            bVar.a((Bitmap) eVar.m(((BitmapDrawable) drawable).getBitmap()));
-            return bVar;
-        } else if (drawable instanceof tn) {
-            return c(((tn) drawable).c(false));
-        } else {
-            if (drawable != null) {
-                bVar.getClass();
-                float f7 = 120;
-                float f10 = f7 / 1.0f;
-                int round = Math.round(f10);
-                int round2 = Math.round(f10);
-                Bitmap bitmap = bVar.f11053f;
-                if (bitmap != null && !bitmap.isRecycled() && bVar.f11053f.getWidth() == round2 && bVar.f11053f.getHeight() == round2) {
-                    bVar.f11053f.eraseColor(0);
-                } else {
-                    bVar.f11053f = Bitmap.createBitmap(round, round2, Bitmap.Config.ARGB_8888);
+        WeakHashMap weakHashMap = this.d;
+        if (!weakHashMap.isEmpty()) {
+            for (Map.Entry entry : weakHashMap.entrySet()) {
+                View view = (View) entry.getKey();
+                List<j> list = (List) entry.getValue();
+                if (view != null && list != null) {
+                    for (j jVar : list) {
+                        boolean z10 = jVar.d;
+                        RectF rectF = jVar.f13184c;
+                        ViewGroup viewGroup = jVar.f13182a;
+                        RectF rectF2 = this.e;
+                        if (z10) {
+                            int[] iArr = f13185f;
+                            view.getLocationOnScreen(iArr);
+                            int i10 = iArr[0];
+                            rectF2.set(i10, iArr[1], view.getWidth() + i10, view.getHeight() + iArr[1]);
+                            viewGroup.getLocationOnScreen(iArr);
+                            rectF2.offset(-iArr[0], -iArr[1]);
+                        } else if (!c(view, viewGroup, rectF2)) {
+                        }
+                        if (!jVar.e || !rectF2.equals(rectF)) {
+                            rectF.set(rectF2);
+                            jVar.e = true;
+                            try {
+                                jVar.f13183b.j(new RectF(rectF2), view);
+                            } catch (Throwable unused) {
+                            }
+                        }
+                    }
                 }
-                Canvas canvas = new Canvas(bVar.f11053f);
-                canvas.scale(f7 / round, 160 / round2);
-                Rect bounds = drawable.getBounds();
-                Rect rect = f13147f;
-                rect.set(bounds);
-                drawable.setBounds(0, 0, 120, 160);
-                drawable.draw(canvas);
-                drawable.setBounds(rect);
-                bVar.a(bVar.f11053f);
-                bVar.f11053f = null;
-                bVar.a((Bitmap) eVar.m(bVar.d));
             }
-            return bVar;
+        }
+        return true;
+    }
+
+    @Override
+    public final void onViewAttachedToWindow(View view) {
+        a();
+    }
+
+    @Override
+    public final void onViewDetachedFromWindow(View view) {
+        ViewTreeObserver viewTreeObserver;
+        if (view == this.f13186a) {
+            if (this.f13188c && (viewTreeObserver = this.f13187b) != null && viewTreeObserver.isAlive()) {
+                this.f13187b.removeOnPreDrawListener(this);
+            }
+            this.f13188c = false;
+            this.f13187b = null;
         }
     }
 }

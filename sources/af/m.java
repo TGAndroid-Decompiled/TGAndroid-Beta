@@ -34,7 +34,7 @@ public final class m implements ef.a {
     public m(qf.b bVar) {
         HashMap hashMap = new HashMap();
         c(Arrays.asList(new bf.a(0), new bf.a(1)), hashMap);
-        c((List) bVar.f44451b, hashMap);
+        c((List) bVar.f44864b, hashMap);
         this.f609c = hashMap;
         Set<Character> keySet = hashMap.keySet();
         BitSet bitSet = new BitSet();
@@ -95,13 +95,13 @@ public final class m implements ef.a {
     public static void e(df.s sVar, df.s sVar2, int i10) {
         if (sVar != null && sVar2 != null && sVar != sVar2) {
             StringBuilder sb2 = new StringBuilder(i10);
-            sb2.append(sVar.f7988g);
-            df.p pVar = (df.p) sVar2.f7986f;
-            for (df.p pVar2 = (df.p) sVar.f7986f; pVar2 != pVar; pVar2 = (df.p) pVar2.f7986f) {
-                sb2.append(((df.s) pVar2).f7988g);
+            sb2.append(sVar.f8000g);
+            df.p pVar = (df.p) sVar2.f7998f;
+            for (df.p pVar2 = (df.p) sVar.f7998f; pVar2 != pVar; pVar2 = (df.p) pVar2.f7998f) {
+                sb2.append(((df.s) pVar2).f8000g);
                 pVar2.g();
             }
-            sVar.f7988g = sb2.toString();
+            sVar.f8000g = sb2.toString();
         }
     }
 
@@ -115,7 +115,7 @@ public final class m implements ef.a {
                 if (sVar == null) {
                     sVar = sVar2;
                 }
-                i10 = sVar2.f7988g.length() + i10;
+                i10 = sVar2.f8000g.length() + i10;
             } else {
                 e(sVar, sVar2, i10);
                 sVar = null;
@@ -125,7 +125,7 @@ public final class m implements ef.a {
             if (pVar == pVar2) {
                 break;
             }
-            pVar = (df.p) pVar.f7986f;
+            pVar = (df.p) pVar.f7998f;
         }
         e(sVar, sVar2, i10);
     }
@@ -201,15 +201,15 @@ public final class m implements ef.a {
                     df.s sVar2 = fVar4.f562a;
                     fVar4.f566g -= i10;
                     fVar2.f566g -= i10;
-                    sVar2.f7988g = k3.j(i10, 0, sVar2.f7988g);
-                    sVar.f7988g = k3.j(i10, 0, sVar.f7988g);
+                    sVar2.f8000g = k3.i(i10, 0, sVar2.f8000g);
+                    sVar.f8000g = k3.i(i10, 0, sVar.f8000g);
                     f fVar5 = fVar2.e;
                     while (fVar5 != null && fVar5 != fVar4) {
                         f fVar6 = fVar5.e;
                         i(fVar5);
                         fVar5 = fVar6;
                     }
-                    if (sVar2 != sVar && (pVar = (df.p) sVar2.f7986f) != sVar) {
+                    if (sVar2 != sVar && (pVar = (df.p) sVar2.f7998f) != sVar) {
                         f(pVar, (df.p) sVar.e);
                     }
                     aVar.b(sVar2, sVar, i10);

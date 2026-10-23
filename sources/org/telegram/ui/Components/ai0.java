@@ -1,97 +1,92 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.drawable.Drawable;
-import java.math.BigDecimal;
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
-import java.util.Locale;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-public final class ai0 extends si0 {
-    public final Drawable T;
-    public final Drawable U;
-    public final f11 V;
-    public f11 W;
-    public final Paint f24628a0;
-    public final Path f24629b0;
-    public float f24630c0;
-    public final DecimalFormat f24631d0;
+public final class ai0 {
+    public static final ai0 E;
+    public static final ai0 F;
+    public static final ai0 G;
+    public static final ai0 H;
+    public static final ai0 I;
+    public static final ai0 J;
+    public static final ai0 K;
+    public static final ai0[] L;
+    public static final ai0 d;
+    public static final ai0 e;
+    public static final ai0 f24724f;
+    public static final ai0 h;
+    public static final ai0 f24725n;
+    public static final ai0 f24726r;
+    public static final ai0 f24727s;
+    public static final ai0 v;
+    public static final ai0 f24728w;
+    public static final ai0 f24729x;
+    public static final ai0 f24730y;
+    public final int f24731a;
+    public final int f24732b;
+    public final int f24733c;
 
-    public ai0(Context context) {
-        super(context);
-        Paint paint = new Paint(1);
-        this.f24628a0 = paint;
-        Path path = new Path();
-        this.f24629b0 = path;
-        this.f24631d0 = new DecimalFormat("#,##0.#########", new DecimalFormatSymbols(Locale.US));
-        this.T = context.getResources().getDrawable(R.drawable.profile_balance_gram).mutate();
-        this.U = context.getResources().getDrawable(R.drawable.profile_balance_gram_color).mutate();
-        this.V = new f11(LocaleController.getString(R.string.StarsBalance) + ":", 11.0f, null);
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        paint.setStrokeJoin(Paint.Join.ROUND);
-        paint.setStrokeWidth(AndroidUtilities.dpf2(1.16f));
-        path.moveTo(0.0f, -AndroidUtilities.dpf2(3.33f));
-        path.lineTo(AndroidUtilities.dpf2(3.16f), 0.0f);
-        path.lineTo(0.0f, AndroidUtilities.dpf2(3.33f));
-        setBalance(0L);
+    static {
+        int i10 = R.string.ProfileActionsMessage;
+        int i11 = R.drawable.filled_profile_message_24;
+        int i12 = R.drawable.outline_profile_message_24;
+        ai0 ai0Var = new ai0("MESSAGE", 0, i10, i11, i12);
+        d = ai0Var;
+        ai0 ai0Var2 = new ai0("NOTIFICATION_MUTE", 1, R.string.ProfileButtonMute, R.drawable.filled_profile_mute_24, R.drawable.outline_profile_mute_24);
+        e = ai0Var2;
+        ai0 ai0Var3 = new ai0("NOTIFICATION_UNMUTE", 2, R.string.ProfileButtonUnmute, R.drawable.filled_profile_unmute_24, R.drawable.outline_profile_unmute_24);
+        f24724f = ai0Var3;
+        ai0 ai0Var4 = new ai0("DISCUSS", 3, R.string.ProfileActionsDiscuss, i11, i12);
+        h = ai0Var4;
+        ai0 ai0Var5 = new ai0("GIFT", 4, R.string.ProfileActionsGift, R.drawable.gift, R.drawable.input_gift_s);
+        f24725n = ai0Var5;
+        ai0 ai0Var6 = new ai0("SHARE", 5, R.string.ProfileActionsShare, R.drawable.action_share, R.drawable.msg_share);
+        f24726r = ai0Var6;
+        ai0 ai0Var7 = new ai0("CALL", 6, R.string.ProfileActionsCall, R.drawable.filled_profile_call_24, R.drawable.outline_profile_call_24);
+        f24727s = ai0Var7;
+        ai0 ai0Var8 = new ai0("VIDEO", 7, R.string.ProfileActionsVideo, R.drawable.filled_profile_video_24, R.drawable.outline_profile_video_24);
+        v = ai0Var8;
+        ai0 ai0Var9 = new ai0("JOIN", 8, R.string.ProfileActionsJoin, R.drawable.filled_profile_member_24, R.drawable.outline_profile_member_24);
+        f24728w = ai0Var9;
+        ai0 ai0Var10 = new ai0("REPORT", 9, R.string.ProfileActionsReport, R.drawable.report, R.drawable.msg_report);
+        f24729x = ai0Var10;
+        int i13 = R.string.ProfileActionsLeave;
+        int i14 = R.drawable.leave;
+        ai0 ai0Var11 = new ai0("LEAVE", 10, i13, i14, i14);
+        f24730y = ai0Var11;
+        int i15 = R.string.ProfileActionsVoiceChat;
+        int i16 = R.drawable.live_stream;
+        ai0 ai0Var12 = new ai0("VOICE_CHAT", 11, i15, i16, i16);
+        E = ai0Var12;
+        ai0 ai0Var13 = new ai0("STREAM", 12, R.string.ProfileActionsLiveStream, i16, i16);
+        F = ai0Var13;
+        ai0 ai0Var14 = new ai0("STORY", 13, R.string.ProfileActionsAddStory, R.drawable.filled_profile_story, R.drawable.outline_profile_story);
+        G = ai0Var14;
+        ai0 ai0Var15 = new ai0("STOP", 14, R.string.ProfileActionsStop, R.drawable.filled_profile_stop_24, R.drawable.outline_profile_stop_24);
+        H = ai0Var15;
+        ai0 ai0Var16 = new ai0("SET_PHOTO", 15, R.string.ProfileActionsEditPhoto2, R.drawable.filled_profile_photo, R.drawable.outline_profile_photo);
+        I = ai0Var16;
+        int i17 = R.string.ProfileActionsEditUsername;
+        int i18 = R.drawable.filled_profile_edit_24;
+        int i19 = R.drawable.outline_profile_edit_24;
+        ai0 ai0Var17 = new ai0("EDIT_USERNAME", 16, i17, i18, i19);
+        ai0 ai0Var18 = new ai0("EDIT_INFO", 17, R.string.ProfileActionsEditInfo, i18, i19);
+        J = ai0Var18;
+        ai0 ai0Var19 = new ai0("SETTINGS", 18, R.string.Settings, R.drawable.filled_profile_settings, R.drawable.outline_profile_settings);
+        K = ai0Var19;
+        L = new ai0[]{ai0Var, ai0Var2, ai0Var3, ai0Var4, ai0Var5, ai0Var6, ai0Var7, ai0Var8, ai0Var9, ai0Var10, ai0Var11, ai0Var12, ai0Var13, ai0Var14, ai0Var15, ai0Var16, ai0Var17, ai0Var18, ai0Var19};
     }
 
-    @Override
-    public final void b(Canvas canvas, float f7) {
-        Drawable drawable;
-        float height = getHeight() / 2.0f;
-        canvas.translate(0.0f, (-AndroidUtilities.dp(20.0f)) * this.f24630c0);
-        float f10 = f7 * 0.85f;
-        this.V.c(0.0f, height, f10, this.F, canvas);
-        canvas.translate(this.V.l() + AndroidUtilities.dp(4.0f), 0.0f);
-        if (!this.G && this.H < 0.8f) {
-            drawable = this.T;
-        } else {
-            drawable = this.U;
-        }
-        int dp = AndroidUtilities.dp(13.0f);
-        int i10 = ((int) height) - (dp / 2);
-        drawable.setBounds(0, i10, dp, i10 + dp);
-        drawable.setAlpha((int) (255.0f * f7));
-        drawable.draw(canvas);
-        canvas.translate(AndroidUtilities.dp(2.0f) + dp, 0.0f);
-        this.W.c(0.0f, height, f7, this.F, canvas);
-        canvas.translate(AndroidUtilities.dpf2(4.8f) + this.W.l(), height);
-        int m12 = org.telegram.ui.ActionBar.h6.m1(f10, this.F);
-        Paint paint = this.f24628a0;
-        paint.setColor(m12);
-        canvas.drawPath(this.f24629b0, paint);
+    public ai0(String str, int i10, int i11, int i12, int i13) {
+        this.f24731a = i11;
+        this.f24732b = i12;
+        this.f24733c = i13;
     }
 
-    @Override
-    public final float e(float f7) {
-        f11 f11Var = this.V;
-        f11Var.f26035p = -1.0f;
-        this.W.f26035p = -1.0f;
-        float max = Math.max(0.0f, f7 - AndroidUtilities.dp(43.0f));
-        f11Var.f26035p = Math.max(0.0f, max - this.W.l());
-        this.W.f26035p = Math.max(0.0f, max - f11Var.l());
-        return this.W.l() + f11Var.l() + AndroidUtilities.dp(27.0f);
+    public static ai0 valueOf(String str) {
+        return (ai0) Enum.valueOf(ai0.class, str);
     }
 
-    public void setBalance(long j10) {
-        String format = this.f24631d0.format(new BigDecimal(org.telegram.ui.Wallet.m0.o(j10, false)));
-        this.W = new f11(format, 11.0f, AndroidUtilities.bold());
-        setContentDescription(LocaleController.getString(R.string.StarsBalance) + ": " + format);
-        invalidate();
-    }
-
-    public void setEjectProgress(float f7) {
-        if (this.f24630c0 == f7) {
-            return;
-        }
-        this.f24630c0 = f7;
-        invalidate();
+    public static ai0[] values() {
+        return (ai0[]) L.clone();
     }
 }

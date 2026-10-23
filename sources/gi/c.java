@@ -10,24 +10,24 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_wallet;
-import org.telegram.ui.Cells.d9;
-import org.telegram.ui.Cells.z6;
+import org.telegram.ui.Cells.b7;
+import org.telegram.ui.Cells.e9;
+import org.telegram.ui.Components.b71;
 import org.telegram.ui.Components.bs;
-import org.telegram.ui.Components.u61;
 import org.telegram.ui.Wallet.o5;
-import org.telegram.ui.Wallet.r9;
-import org.telegram.ui.i10;
+import org.telegram.ui.Wallet.s9;
+import org.telegram.ui.m10;
 public final class c implements Utilities.CallbackReturn {
-    public final int f11100a;
+    public final int f11119a;
 
     public c(int i10) {
-        this.f11100a = i10;
+        this.f11119a = i10;
     }
 
     @Override
     public final Object run(Object obj) {
         boolean z10 = true;
-        switch (this.f11100a) {
+        switch (this.f11119a) {
             case 0:
                 return String.format(Locale.US, "%.1f%%", Float.valueOf(((Integer) obj).intValue() / 10.0f));
             case 1:
@@ -48,12 +48,12 @@ public final class c implements Utilities.CallbackReturn {
                 return LocaleController.formatPluralString("Minutes", ((Integer) obj).intValue(), new Object[0]);
             case 5:
                 View view = (View) obj;
-                if ((view instanceof d9) || (view instanceof z6) || (view instanceof i10) || (view instanceof org.telegram.ui.Cells.u3) || (view instanceof org.telegram.ui.Cells.b2) || Objects.equals(view.getTag(), -33024)) {
+                if ((view instanceof e9) || (view instanceof b7) || (view instanceof m10) || (view instanceof org.telegram.ui.Cells.u3) || (view instanceof org.telegram.ui.Cells.a2) || Objects.equals(view.getTag(), -33024)) {
                     z10 = false;
                 }
                 return Boolean.valueOf(z10);
             case 6:
-                return Boolean.valueOf(u61.K(((Integer) obj).intValue()));
+                return Boolean.valueOf(b71.K(((Integer) obj).intValue()));
             case 7:
                 TL_wallet.disableBackup disablebackup = new TL_wallet.disableBackup();
                 disablebackup.password = (TLRPC.InputCheckPasswordSRP) obj;
@@ -68,9 +68,9 @@ public final class c implements Utilities.CallbackReturn {
                 replacewallet.password = (TLRPC.InputCheckPasswordSRP) obj;
                 return replacewallet;
             case 10:
-                return Boolean.valueOf(o5.x0(o5.V0((String) obj)));
+                return Boolean.valueOf(o5.x0(o5.W0((String) obj)));
             case 11:
-                if (r9.g0((String) obj) == null) {
+                if (s9.g0((String) obj) == null) {
                     z10 = false;
                 }
                 return Boolean.valueOf(z10);
@@ -82,7 +82,7 @@ public final class c implements Utilities.CallbackReturn {
                 return Boolean.valueOf(z10);
             default:
                 String str2 = (String) obj;
-                bs bsVar = zh.b0.f51652z0;
+                bs bsVar = zh.b0.f52114z0;
                 if (TextUtils.isEmpty(str2) || (!str2.startsWith("tg:") && !pf.d.e(Uri.parse(str2), false, null))) {
                     z10 = false;
                 }

@@ -1,16 +1,33 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.MessageObject;
-import org.telegram.tgnet.TLRPC;
-public final class kl extends zt0 {
-    public final qn f38640a;
+import android.content.Intent;
+import java.util.ArrayList;
+import org.telegram.messenger.FileLog;
+public final class kl implements up0 {
+    public final sn f38967a;
 
-    public kl(qn qnVar) {
-        this.f38640a = qnVar;
+    public kl(sn snVar) {
+        this.f38967a = snVar;
     }
 
     @Override
-    public final ju0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
-        return qn.E1(this.f38640a, messageObject, fileLocation, i10, z10, false);
+    public final void b() {
+        try {
+            Intent intent = new Intent();
+            intent.setType("video/*");
+            intent.setAction("android.intent.action.GET_CONTENT");
+            intent.putExtra("android.intent.extra.sizeLimit", 2097152000L);
+            Intent intent2 = new Intent("android.intent.action.PICK");
+            intent2.setType("image/*");
+            Intent createChooser = Intent.createChooser(intent2, null);
+            createChooser.putExtra("android.intent.extra.INITIAL_INTENTS", new Intent[]{intent});
+            this.f38967a.startActivityForResult(createChooser, 1);
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
+    }
+
+    @Override
+    public final void a(ArrayList arrayList) {
     }
 }

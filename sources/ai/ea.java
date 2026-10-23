@@ -1,25 +1,25 @@
 package ai;
 public final class ea implements Runnable {
-    public final int f1231a;
-    public final fa f1232b;
-    public final long f1233c;
+    public final int f1224a;
+    public final fa f1225b;
+    public final long f1226c;
 
     public ea(fa faVar, long j10, int i10) {
-        this.f1231a = i10;
-        this.f1232b = faVar;
-        this.f1233c = j10;
+        this.f1224a = i10;
+        this.f1225b = faVar;
+        this.f1226c = j10;
     }
 
     @Override
     public final void run() {
-        switch (this.f1231a) {
+        switch (this.f1224a) {
             case 0:
-                fa faVar = this.f1232b;
-                faVar.f1318q.d0(faVar.f1306b, faVar.f1307c, this.f1233c, true, true, faVar.f1315n);
+                fa faVar = this.f1225b;
+                faVar.f1321q.d0(faVar.f1309b, faVar.f1310c, this.f1226c, true, true, faVar.f1318n);
                 return;
             default:
-                fa faVar2 = this.f1232b;
-                faVar2.f1318q.d0(faVar2.f1306b, faVar2.f1307c, this.f1233c, true, true, faVar2.f1315n);
+                fa faVar2 = this.f1225b;
+                faVar2.f1321q.d0(faVar2.f1309b, faVar2.f1310c, this.f1226c, true, true, faVar2.f1318n);
                 return;
         }
     }

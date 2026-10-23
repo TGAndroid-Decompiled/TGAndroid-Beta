@@ -78,7 +78,7 @@ public abstract class h7 {
             }
             throw new IOException("Invalid " + str2 + ": " + parseInt);
         } catch (NumberFormatException e) {
-            throw new IOException(com.google.android.gms.internal.play_billing.k3.k("Invalid ", str2, ": ", str), e);
+            throw new IOException(com.google.android.gms.internal.play_billing.k3.j("Invalid ", str2, ": ", str), e);
         }
     }
 
@@ -112,9 +112,9 @@ public abstract class h7 {
                 createBitmap.copyPixelsFromBuffer(wrap);
                 return createBitmap;
             }
-            throw new IOException(i2.e.j(c12, "Only 8-bit PGM supported (maxval=255), got: "));
+            throw new IOException(i2.o1.k(c12, "Only 8-bit PGM supported (maxval=255), got: "));
         }
-        throw new IOException(r4.c.h("Not a binary PGM (P5), got: ", b10));
+        throw new IOException(si.o0.h("Not a binary PGM (P5), got: ", b10));
     }
 
     public static void e(Bitmap bitmap, GZIPOutputStream gZIPOutputStream, List list) {

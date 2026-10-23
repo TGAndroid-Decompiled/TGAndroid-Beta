@@ -11,21 +11,13 @@ public final class q5 implements ri {
     }
 
     @Override
-    public final void u(gh ghVar) {
+    public final void r(gh ghVar) {
         ghVar.run();
     }
 
     @Override
-    public final boolean v() {
+    public final boolean u() {
         return false;
-    }
-
-    @Override
-    public final void E() {
-    }
-
-    @Override
-    public final void J() {
     }
 
     @Override
@@ -34,6 +26,14 @@ public final class q5 implements ri {
 
     @Override
     public final void X(TLRPC.User user) {
+    }
+
+    @Override
+    public final void E() {
+    }
+
+    @Override
+    public final void J() {
     }
 
     @Override

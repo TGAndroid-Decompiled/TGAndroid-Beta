@@ -7,46 +7,46 @@ import android.graphics.Paint;
 import android.graphics.Shader;
 import org.telegram.messenger.Utilities;
 public final class we implements Utilities.Callback2 {
-    public final int f42548a;
-    public final qn f42549b;
+    public final int f43014a;
+    public final sn f43015b;
 
-    public we(qn qnVar, int i10) {
-        this.f42548a = i10;
-        this.f42549b = qnVar;
+    public we(sn snVar, int i10) {
+        this.f43014a = i10;
+        this.f43015b = snVar;
     }
 
     @Override
     public final void run(Object obj, Object obj2) {
-        switch (this.f42548a) {
+        switch (this.f43014a) {
             case 0:
-                qn.z1(this.f42549b, (Integer) obj, (Boolean) obj2);
+                sn.z1(this.f43015b, (Integer) obj, (Boolean) obj2);
                 return;
             case 1:
-                qn.p1(this.f42549b, (Long) obj, (Boolean) obj2);
+                sn.s1(this.f43015b, (Long) obj, (Boolean) obj2);
                 return;
             case 2:
                 Bitmap bitmap = (Bitmap) obj;
-                qn qnVar = this.f42549b;
-                gh.b bVar = qnVar.f40938z8;
+                sn snVar = this.f43015b;
+                gh.b bVar = snVar.L8;
                 bVar.a((Bitmap) obj2);
-                hh.d.c(bVar, qnVar.fragmentView);
-                qnVar.A8.d();
+                hh.d.c(bVar, snVar.fragmentView);
+                snVar.M8.d();
                 return;
             default:
-                qn qnVar2 = this.f42549b;
-                qnVar2.B8 = (Bitmap) obj;
+                sn snVar2 = this.f43015b;
+                snVar2.N8 = (Bitmap) obj;
                 Paint paint = new Paint(1);
-                qnVar2.D8 = paint;
-                Bitmap bitmap2 = qnVar2.B8;
+                snVar2.P8 = paint;
+                Bitmap bitmap2 = snVar2.N8;
                 Shader.TileMode tileMode = Shader.TileMode.CLAMP;
                 BitmapShader bitmapShader = new BitmapShader(bitmap2, tileMode, tileMode);
-                qnVar2.C8 = bitmapShader;
+                snVar2.O8 = bitmapShader;
                 paint.setShader(bitmapShader);
-                qnVar2.E8 = new Matrix();
-                gh.b bVar2 = qnVar2.f40938z8;
+                snVar2.Q8 = new Matrix();
+                gh.b bVar2 = snVar2.L8;
                 bVar2.a((Bitmap) obj2);
-                hh.d.c(bVar2, qnVar2.fragmentView);
-                qnVar2.A8.d();
+                hh.d.c(bVar2, snVar2.fragmentView);
+                snVar2.M8.d();
                 return;
         }
     }

@@ -1,48 +1,26 @@
 package org.telegram.ui;
 
-import java.util.concurrent.CountDownLatch;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.NotificationCenter;
-public final class q5 implements Runnable {
-    public final int f40377a;
-    public final z5 f40378b;
+import org.telegram.messenger.ChannelBoostsController;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.tl.TL_stories;
+public final class q5 implements Utilities.Callback {
+    public final int f40622a;
+    public final y5 f40623b;
 
-    public q5(z5 z5Var, int i10) {
-        this.f40377a = i10;
-        this.f40378b = z5Var;
+    public q5(y5 y5Var, int i10) {
+        this.f40622a = i10;
+        this.f40623b = y5Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f40377a) {
+    public final void run(Object obj) {
+        switch (this.f40622a) {
             case 0:
-                z5 z5Var = this.f40378b;
-                z5Var.f43639e0 = false;
-                z5Var.H0(true);
-                return;
-            case 1:
-                CountDownLatch countDownLatch = new CountDownLatch(2);
-                z5 z5Var2 = this.f40378b;
-                z5Var2.D0(countDownLatch, null);
-                z5Var2.E0(countDownLatch, null);
-                try {
-                    countDownLatch.await();
-                } catch (InterruptedException unused) {
-                }
-                NotificationCenter.getInstance(z5Var2.Q).doOnIdle(new q5(z5Var2, 4));
-                return;
-            case 2:
-                z5 z5Var3 = this.f40378b;
-                z5Var3.f43639e0 = false;
-                z5Var3.H0(true);
-                return;
-            case 3:
-                z5 z5Var4 = this.f40378b;
-                z5Var4.f43639e0 = false;
-                z5Var4.H0(true);
+                this.f40623b.U = (ChannelBoostsController.CanApplyBoost) obj;
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new q5(this.f40378b, 0));
+                AndroidUtilities.runOnUIThread(new h0(3, this.f40623b, (TL_stories.TL_premium_boostsStatus) obj));
                 return;
         }
     }

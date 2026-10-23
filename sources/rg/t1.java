@@ -1,72 +1,36 @@
 package rg;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Path;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.nk;
-import org.telegram.ui.Components.jm0;
-public final class t1 extends jm0 implements NotificationCenter.NotificationCenterDelegate {
-    public final Path V2;
-    public q0.a W2;
-
-    public t1(Context context) {
-        super(context, null);
-        this.V2 = new Path();
-        setWillNotDraw(false);
-        setLayoutManager(new s4.b0());
-        setAdapter(new s4.g0());
-        setPadding(0, AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f));
-        setClipToPadding(false);
+import android.view.ViewGroup;
+import org.telegram.messenger.LocaleController;
+import org.telegram.ui.Components.lm0;
+public final class t1 extends lm0 {
+    @Override
+    public final boolean D(s4.b1 b1Var) {
+        return true;
     }
 
     @Override
-    public final Integer W0(int i10) {
-        return 285212671;
+    public final int h() {
+        return qg.l0.c().size();
     }
 
     @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        if (i10 == NotificationCenter.customTypefacesLoaded) {
-            getAdapter().l();
+    public final void v(s4.b1 b1Var, int i10) {
+        o1 o1Var = (o1) b1Var.f46343a;
+        qg.l0 l0Var = (qg.l0) qg.l0.c().get(i10);
+        o1Var.getClass();
+        o1Var.setTypeface(l0Var.d());
+        String str = l0Var.f44980c;
+        if (str == null) {
+            str = LocaleController.getString(l0Var.f44979b);
         }
+        o1Var.setText(str);
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        q0.a aVar = this.W2;
-        if (aVar != null) {
-            Path path = this.V2;
-            aVar.accept(path);
-            canvas.save();
-            canvas.clipPath(path);
-        }
-        super.draw(canvas);
-        if (this.W2 != null) {
-            canvas.restore();
-        }
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.customTypefacesLoaded);
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.customTypefacesLoaded);
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, nk.C(16.0f, AndroidUtilities.dp(48.0f) * Math.min(qg.m0.c().size(), 6), 1073741824));
-    }
-
-    public void setMaskProvider(q0.a aVar) {
-        this.W2 = aVar;
-        invalidate();
+    public final s4.b1 x(ViewGroup viewGroup, int i10) {
+        o1 o1Var = new o1(viewGroup.getContext());
+        o1Var.setLayoutParams(new s4.o0(-1, -2));
+        return new s4.b1(o1Var);
     }
 }

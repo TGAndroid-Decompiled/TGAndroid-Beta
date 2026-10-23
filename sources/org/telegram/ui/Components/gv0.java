@@ -1,56 +1,35 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import org.telegram.messenger.SharedConfig;
-public abstract class gv0 extends ScrollSlidingTextTabStrip {
-    public Paint f26673p0;
-    public int f26674q0;
-    public final Rect f26675r0;
-    public final uv0 f26676s0;
+import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
+import org.telegram.messenger.SavedMessagesController;
+public final class gv0 extends org.telegram.ui.Cells.q2 {
+    public final hv0 f26724a5;
 
-    public gv0(uv0 uv0Var, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context, d6Var);
-        this.f26676s0 = uv0Var;
-        this.f26674q0 = 0;
-        this.f26675r0 = new Rect();
+    public gv0(hv0 hv0Var, Context context) {
+        super(context, true);
+        this.f26724a5 = hv0Var;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        if (this.f26674q0 != 0) {
-            if (this.f26673p0 == null) {
-                this.f26673p0 = new Paint();
+    public final boolean P() {
+        return false;
+    }
+
+    @Override
+    public final boolean getIsPinned() {
+        hv0 hv0Var = this.f26724a5;
+        ArrayList arrayList = hv0Var.f27058f;
+        pu0 pu0Var = hv0Var.f27061s;
+        if (pu0Var != null && pu0Var.getAdapter() == hv0Var) {
+            hv0Var.f27061s.getClass();
+            int R = RecyclerView.R(this);
+            if (R >= 0 && R < arrayList.size()) {
+                return ((SavedMessagesController.SavedDialog) arrayList.get(R)).pinned;
             }
-            this.f26673p0.setColor(this.f26674q0);
-            int measuredWidth = getMeasuredWidth();
-            int measuredHeight = getMeasuredHeight();
-            Rect rect = this.f26675r0;
-            rect.set(0, 0, measuredWidth, measuredHeight);
-            canvas.save();
-            canvas.translate(getScrollX(), 0.0f);
-            canvas.clipPath(this.f24358f0);
-            if (SharedConfig.chatBlurEnabled()) {
-                this.f26676s0.P(canvas, getY(), rect, this.f26673p0);
-            } else {
-                canvas.drawPaint(this.f26673p0);
-            }
-            canvas.translate(-getScrollX(), 0.0f);
-            canvas.restore();
+            return false;
         }
-        super.dispatchDraw(canvas);
-    }
-
-    @Override
-    public int[] getColorKeys() {
-        return null;
-    }
-
-    @Override
-    public void setBackgroundColor(int i10) {
-        this.f26674q0 = i10;
-        invalidate();
+        return false;
     }
 }

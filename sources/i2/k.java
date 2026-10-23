@@ -1,68 +1,22 @@
 package i2;
-public final class k implements w0 {
-    public final t1 f12466a;
-    public final r0 f12467b;
-    public b f12468c;
-    public w0 d;
-    public boolean e = true;
-    public boolean f12469f;
 
-    public k(r0 r0Var, e2.g0 g0Var) {
-        this.f12467b = r0Var;
-        this.f12466a = new t1(g0Var);
+import android.content.Context;
+import ci.o4;
+public class k {
+    public final Context f12500a;
+    public final k0.b f12501b;
+    public int f12502c = 0;
+
+    public k(Context context) {
+        this.f12500a = context;
+        this.f12501b = new k0.b(context);
     }
 
-    @Override
-    public final long a() {
-        if (this.e) {
-            return this.f12466a.a();
-        }
-        w0 w0Var = this.d;
-        w0Var.getClass();
-        return w0Var.a();
+    public k2.t0 a(Context context) {
+        return new o4(context, 1).a();
     }
 
-    @Override
-    public final boolean b() {
-        if (this.e) {
-            this.f12466a.getClass();
-            return false;
-        }
-        w0 w0Var = this.d;
-        w0Var.getClass();
-        return w0Var.b();
-    }
-
-    public final void c(b bVar) {
-        w0 w0Var;
-        w0 i10 = bVar.i();
-        if (i10 != null && i10 != (w0Var = this.d)) {
-            if (w0Var == null) {
-                this.d = i10;
-                this.f12468c = bVar;
-                i10.f((b2.z0) this.f12466a.e);
-                return;
-            }
-            throw new n(2, new IllegalStateException("Multiple renderer media clocks enabled."), 1000);
-        }
-    }
-
-    @Override
-    public final void f(b2.z0 z0Var) {
-        w0 w0Var = this.d;
-        if (w0Var != null) {
-            w0Var.f(z0Var);
-            z0Var = this.d.h();
-        }
-        this.f12466a.f(z0Var);
-    }
-
-    @Override
-    public final b2.z0 h() {
-        w0 w0Var = this.d;
-        if (w0Var != null) {
-            return w0Var.h();
-        }
-        return (b2.z0) this.f12466a.e;
+    public final i2.b[] b(android.os.Handler r23, i2.b0 r24, i2.b0 r25, i2.b0 r26, i2.b0 r27) {
+        throw new UnsupportedOperationException("Method not decompiled: i2.k.b(android.os.Handler, i2.b0, i2.b0, i2.b0, i2.b0):i2.b[]");
     }
 }

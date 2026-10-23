@@ -8,25 +8,25 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessageObject;
 public final class jb extends sb {
-    public final ih.k f38226x0;
-    public final vb f38227y0;
+    public final ih.m f38517x0;
+    public final vb f38518y0;
 
     public jb(vb vbVar, Context context) {
         super(vbVar, context);
-        this.f38227y0 = vbVar;
-        this.f38226x0 = new ih.k();
+        this.f38518y0 = vbVar;
+        this.f38517x0 = new ih.m();
     }
 
     @Override
-    public final void U(Drawable drawable) {
-        if (drawable instanceof org.telegram.ui.Components.wc0) {
-            ((org.telegram.ui.Components.wc0) drawable).p();
+    public final void T(Drawable drawable) {
+        if (drawable instanceof org.telegram.ui.Components.yc0) {
+            ((org.telegram.ui.Components.yc0) drawable).p();
         }
-        ih.k kVar = this.f38226x0;
-        gh.a c10 = kVar.c(drawable);
-        AndroidUtilities.computePerceivedBrightness(kVar.a(c10));
-        vb vbVar = this.f38227y0;
-        vbVar.f42164a.f11063a = c10;
+        ih.m mVar = this.f38517x0;
+        gh.a c10 = mVar.c(drawable);
+        AndroidUtilities.computePerceivedBrightness(mVar.a(c10));
+        vb vbVar = this.f38518y0;
+        vbVar.f42678a.f11082a = c10;
         kh.f fVar = vbVar.W;
         if (fVar != null) {
             fVar.invalidate();
@@ -36,10 +36,10 @@ public final class jb extends sb {
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
         c2.b bVar = c2.b.e;
-        if (bVar != null && bVar.f4489a) {
-            x4 x4Var = (x4) c2.b.m().d;
-            if (x4Var != null) {
-                x4Var.onTouchEvent(motionEvent);
+        if (bVar != null && bVar.f4493a) {
+            w4 w4Var = (w4) c2.b.m().d;
+            if (w4Var != null) {
+                w4Var.onTouchEvent(motionEvent);
                 return true;
             }
             return true;
@@ -53,9 +53,9 @@ public final class jb extends sb {
         MessageObject playingMessageObject = MediaController.getInstance().getPlayingMessageObject();
         if (playingMessageObject != null && playingMessageObject.isRoundVideo() && playingMessageObject.eventId != 0) {
             long dialogId = playingMessageObject.getDialogId();
-            vb vbVar = this.f38227y0;
-            if (dialogId == (-vbVar.f42172f.f20280id)) {
-                MediaController.getInstance().setTextureView(vbVar.Q0(false), vbVar.f42171e0, vbVar.f42170d0, true);
+            vb vbVar = this.f38518y0;
+            if (dialogId == (-vbVar.f42686f.f20343id)) {
+                MediaController.getInstance().setTextureView(vbVar.Q0(false), vbVar.f42685e0, vbVar.f42684d0, true);
             }
         }
     }
@@ -69,8 +69,8 @@ public final class jb extends sb {
     public final void onMeasure(int i10, int i11) {
         int size = View.MeasureSpec.getSize(i10);
         int size2 = View.MeasureSpec.getSize(i11);
-        vb vbVar = this.f38227y0;
-        gh.a aVar = vbVar.f42164a.f11063a;
+        vb vbVar = this.f38518y0;
+        gh.a aVar = vbVar.f42678a.f11082a;
         if (aVar instanceof gh.b) {
             ((gh.b) aVar).c(size, size2);
         }
@@ -85,7 +85,7 @@ public final class jb extends sb {
         for (int i12 = 0; i12 < childCount; i12++) {
             View childAt = getChildAt(i12);
             if (childAt != null && childAt.getVisibility() != 8 && childAt != vb.d0(vbVar)) {
-                if (childAt != vbVar.v && childAt != vbVar.f42180n) {
+                if (childAt != vbVar.v && childAt != vbVar.f42694n) {
                     if (childAt == vbVar.H) {
                         childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(paddingTop, 1073741824));
                     } else {

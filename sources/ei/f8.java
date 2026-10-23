@@ -1,12 +1,12 @@
 package ei;
 
-import org.telegram.ui.Components.u61;
-public final class f8 extends u61 {
+import org.telegram.ui.Components.b71;
+public final class f8 extends b71 {
     @Override
     public final int I(int i10) {
-        if (i10 == org.telegram.ui.ActionBar.h6.f21082i5) {
+        if (i10 == org.telegram.ui.ActionBar.k6.f21271i5) {
             return -15921907;
         }
-        return org.telegram.ui.ActionBar.h6.w0(i10, this.v);
+        return org.telegram.ui.ActionBar.k6.w0(i10, this.f24974w);
     }
 }

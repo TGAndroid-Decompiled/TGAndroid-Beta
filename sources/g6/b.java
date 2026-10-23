@@ -5,32 +5,32 @@ import android.text.TextUtils;
 import android.util.Log;
 import java.util.Locale;
 public final class b {
-    public final String f10842a;
-    public final boolean f10843b;
-    public final String f10844c;
+    public final String f10861a;
+    public final boolean f10862b;
+    public final String f10863c;
 
     public b(String str, String str2) {
         boolean z10;
         String p5;
         n6.l.g(str, "The log tag cannot be null or empty.");
-        this.f10842a = str;
+        this.f10861a = str;
         if (str.length() <= 23) {
             z10 = true;
         } else {
             z10 = false;
         }
-        this.f10843b = z10;
+        this.f10862b = z10;
         if (TextUtils.isEmpty(str2)) {
             p5 = null;
         } else {
             p5 = a1.g.p("[", str2, "] ");
         }
-        this.f10844c = p5;
+        this.f10863c = p5;
     }
 
     public final void a(Exception exc, String str, Object... objArr) {
-        if (!Build.TYPE.equals("user") && this.f10843b) {
-            String str2 = this.f10842a;
+        if (!Build.TYPE.equals("user") && this.f10862b) {
+            String str2 = this.f10861a;
             if (Log.isLoggable(str2, 3)) {
                 Log.d(str2, d(str, objArr), exc);
             }
@@ -38,8 +38,8 @@ public final class b {
     }
 
     public final void b(String str, Object... objArr) {
-        if (!Build.TYPE.equals("user") && this.f10843b) {
-            String str2 = this.f10842a;
+        if (!Build.TYPE.equals("user") && this.f10862b) {
+            String str2 = this.f10861a;
             if (Log.isLoggable(str2, 3)) {
                 Log.d(str2, d(str, objArr));
             }
@@ -47,14 +47,14 @@ public final class b {
     }
 
     public final void c(Object... objArr) {
-        Log.e(this.f10842a, d("Bundle is null", objArr));
+        Log.e(this.f10861a, d("Bundle is null", objArr));
     }
 
     public final String d(String str, Object... objArr) {
         if (objArr.length != 0) {
             str = String.format(Locale.ROOT, str, objArr);
         }
-        String str2 = this.f10844c;
+        String str2 = this.f10863c;
         if (!TextUtils.isEmpty(str2)) {
             return String.valueOf(str2).concat(String.valueOf(str));
         }

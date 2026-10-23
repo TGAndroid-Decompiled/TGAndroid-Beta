@@ -7,48 +7,49 @@ import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.ActionBar.r6;
 import w7.z5;
 public final class a extends FrameLayout {
-    public final ei.d f48951a;
-    public final View f48952b;
-    public final d6 f48953c;
+    public final ei.d f49389a;
+    public final View f49390b;
+    public final g6 f49391c;
     public final Paint d;
     public boolean e;
 
-    public a(Context context, d6 d6Var) {
+    public a(Context context, g6 g6Var) {
         super(context);
         this.d = new Paint(1);
-        this.f48953c = d6Var;
+        this.f49391c = g6Var;
         View view = new View(context);
-        this.f48952b = view;
+        this.f49390b = view;
         addView(view, z5.n(-1, -1));
-        ei.d dVar = new ei.d(context, d6Var, true);
-        this.f48951a = dVar;
+        ei.d dVar = new ei.d(context, g6Var, true);
+        this.f49389a = dVar;
         addView(dVar, z5.d(-1, 48.0f, 17, 14.0f, 0.0f, 14.0f, 0.0f));
     }
 
     public final void a(int i10, boolean z10) {
         this.e = true;
-        ei.d dVar = this.f48951a;
+        ei.d dVar = this.f49389a;
         dVar.k();
         dVar.setShowZero(true);
         dVar.setEnabled(true);
         dVar.b(i10, z10);
-        dVar.g(LocaleController.getString(R.string.BoostingStartGiveaway), z10, true);
-        this.f48952b.setBackgroundColor(h6.w0(h6.f21065h5, this.f48953c));
+        dVar.i(LocaleController.getString(R.string.BoostingStartGiveaway), z10, true);
+        r6.i(k6.f21254h5, this.f49390b, this.f49391c);
     }
 
     public final void b(boolean z10) {
-        this.f48951a.setLoading(z10);
+        this.f49389a.setLoading(z10);
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
         if (this.e) {
-            int w02 = h6.w0(h6.f20936a7, this.f48953c);
+            int w02 = k6.w0(k6.f21125a7, this.f49391c);
             Paint paint = this.d;
             paint.setColor(w02);
             paint.setAlpha(255);
@@ -58,17 +59,17 @@ public final class a extends FrameLayout {
 
     public void setCloseStyle(boolean z10) {
         this.e = false;
-        ei.d dVar = this.f48951a;
+        ei.d dVar = this.f49389a;
         dVar.setShowZero(false);
         dVar.setEnabled(true);
-        dVar.g(LocaleController.formatString("Close", R.string.Close, new Object[0]), false, true);
+        dVar.i(LocaleController.formatString("Close", R.string.Close, new Object[0]), false, true);
         this.e = z10;
     }
 
     public void setOkStyle(boolean z10) {
         String formatString;
         this.e = false;
-        ei.d dVar = this.f48951a;
+        ei.d dVar = this.f49389a;
         dVar.setShowZero(false);
         dVar.setEnabled(true);
         if (z10) {
@@ -76,11 +77,11 @@ public final class a extends FrameLayout {
         } else {
             formatString = LocaleController.formatString("OK", R.string.OK, new Object[0]);
         }
-        dVar.g(formatString, false, true);
+        dVar.i(formatString, false, true);
     }
 
     @Override
     public void setOnClickListener(View.OnClickListener onClickListener) {
-        this.f48951a.setOnClickListener(onClickListener);
+        this.f49389a.setOnClickListener(onClickListener);
     }
 }

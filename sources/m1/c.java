@@ -8,17 +8,17 @@ import k1.z;
 import k2.w0;
 import td.l;
 public final class c {
-    public final String f16403a;
-    public final l f16404b;
-    public final c0 f16405c;
+    public final String f16466a;
+    public final l f16467b;
+    public final c0 f16468c;
     public final Object d;
     public volatile w0 e;
 
     public c(String name, l lVar, c0 c0Var) {
         kotlin.jvm.internal.i.e(name, "name");
-        this.f16403a = name;
-        this.f16404b = lVar;
-        this.f16405c = c0Var;
+        this.f16466a = name;
+        this.f16467b = lVar;
+        this.f16468c = c0Var;
         this.d = new Object();
     }
 
@@ -33,10 +33,10 @@ public final class c {
                 try {
                     if (this.e == null) {
                         Context applicationContext = thisRef.getApplicationContext();
-                        l lVar = this.f16404b;
+                        l lVar = this.f16467b;
                         kotlin.jvm.internal.i.d(applicationContext, "applicationContext");
                         List migrations = (List) lVar.invoke(applicationContext);
-                        c0 c0Var = this.f16405c;
+                        c0 c0Var = this.f16468c;
                         b bVar = new b(applicationContext, this);
                         kotlin.jvm.internal.i.e(migrations, "migrations");
                         this.e = new w0(new z(new k0(bVar, 2), jd.h.b(new ab.l(migrations, null, 4)), new rb.b(12), c0Var), 6);

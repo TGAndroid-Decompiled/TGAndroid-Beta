@@ -5,10 +5,10 @@ import android.content.Context;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.ui.LaunchActivity;
-public final class o4 extends org.telegram.ui.ActionBar.n2 {
+public final class o4 extends org.telegram.ui.ActionBar.o2 {
     @Override
     public final Context getContext() {
-        return AndroidUtilities.findActivity(LaunchActivity.H1);
+        return AndroidUtilities.findActivity(LaunchActivity.J1);
     }
 
     @Override
@@ -20,7 +20,7 @@ public final class o4 extends org.telegram.ui.ActionBar.n2 {
     public final Activity getParentActivity() {
         Activity findActivity = AndroidUtilities.findActivity(ApplicationLoader.applicationContext);
         if (findActivity == null) {
-            return LaunchActivity.H1;
+            return LaunchActivity.J1;
         }
         return findActivity;
     }

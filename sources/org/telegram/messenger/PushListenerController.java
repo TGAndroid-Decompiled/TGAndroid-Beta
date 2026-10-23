@@ -44,13 +44,13 @@ public class PushListenerController {
             try {
                 SharedConfig.pushStringGetTimeStart = SystemClock.elapsedRealtime();
                 l9.h.f(ApplicationLoader.applicationContext);
-                a6.i iVar = FirebaseMessaging.f7590l;
+                a6.i iVar = FirebaseMessaging.f7602l;
                 synchronized (FirebaseMessaging.class) {
                     firebaseMessaging = FirebaseMessaging.getInstance(l9.h.c());
                 }
                 firebaseMessaging.getClass();
                 TaskCompletionSource taskCompletionSource = new TaskCompletionSource();
-                firebaseMessaging.f7596f.execute(new ci.v7(8, firebaseMessaging, taskCompletionSource));
+                firebaseMessaging.f7608f.execute(new ci.u7(8, firebaseMessaging, taskCompletionSource));
                 taskCompletionSource.getTask().addOnCompleteListener(new d0(this, 11));
             } catch (Throwable th2) {
                 FileLog.e(th2);
@@ -72,7 +72,7 @@ public class PushListenerController {
             boolean z10;
             if (this.hasServices == null) {
                 try {
-                    if (k6.d.d.d(ApplicationLoader.applicationContext, k6.e.f14972a) == 0) {
+                    if (k6.d.d.d(ApplicationLoader.applicationContext, k6.e.f15018a) == 0) {
                         z10 = true;
                     } else {
                         z10 = false;

@@ -1,27 +1,15 @@
 package org.telegram.ui.ActionBar;
 
-import android.view.View;
-public final class l4 implements View.OnClickListener {
-    public final int f21567a;
-    public final v4 f21568b;
+import java.util.Comparator;
+public final class l4 implements Comparator {
+    public final int f21606a;
 
-    public l4(v4 v4Var, int i10) {
-        this.f21567a = i10;
-        this.f21568b = v4Var;
+    public l4(int i10) {
+        this.f21606a = i10;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f21567a) {
-            case 0:
-                this.f21568b.g();
-                return;
-            case 1:
-                this.f21568b.g();
-                return;
-            default:
-                this.f21568b.g();
-                return;
-        }
+    public final int compare(java.lang.Object r14, java.lang.Object r15) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.l4.compare(java.lang.Object, java.lang.Object):int");
     }
 }

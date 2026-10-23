@@ -2,9 +2,9 @@ package b5;
 
 import org.chromium.support_lib_boundary.WebViewProviderBoundaryInterface;
 public final class o {
-    public final WebViewProviderBoundaryInterface f4209a;
+    public final WebViewProviderBoundaryInterface f4216a;
 
     public o(WebViewProviderBoundaryInterface webViewProviderBoundaryInterface) {
-        this.f4209a = webViewProviderBoundaryInterface;
+        this.f4216a = webViewProviderBoundaryInterface;
     }
 }

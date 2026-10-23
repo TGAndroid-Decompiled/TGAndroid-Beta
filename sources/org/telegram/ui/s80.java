@@ -1,48 +1,107 @@
 package org.telegram.ui;
 
-import android.os.Bundle;
-import org.telegram.tgnet.TLObject;
-public final class s80 implements Runnable {
-    public final int f41400a = 1;
-    public final LaunchActivity f41401b;
-    public final byte[] f41402c;
-    public final int d;
-    public final Integer e;
-    public final String f41403f;
-    public final int h;
-    public final long f41404n;
-    public final Object f41405r;
-    public final Object f41406s;
-    public final Object v;
+import java.util.regex.Pattern;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.R;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.tl.TL_stories;
+public final class s80 implements Utilities.Callback {
+    public final int f41321a;
+    public final LaunchActivity f41322b;
+    public final f80 f41323c;
+    public final Long d;
 
-    public s80(LaunchActivity launchActivity, Bundle bundle, byte[] bArr, int i10, Integer num, String str, int i11, long j10, l0 l0Var, org.telegram.ui.ActionBar.n2 n2Var) {
-        this.f41401b = launchActivity;
-        this.f41405r = bundle;
-        this.f41402c = bArr;
-        this.d = i10;
-        this.e = num;
-        this.f41403f = str;
-        this.h = i11;
-        this.f41404n = j10;
-        this.f41406s = l0Var;
-        this.v = n2Var;
+    public s80(LaunchActivity launchActivity, f80 f80Var, Long l4, int i10) {
+        this.f41321a = i10;
+        this.f41322b = launchActivity;
+        this.f41323c = f80Var;
+        this.d = l4;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.s80.run():void");
-    }
-
-    public s80(LaunchActivity launchActivity, TLObject tLObject, Integer num, Integer num2, byte[] bArr, long j10, Runnable runnable, String str, int i10, int i11) {
-        this.f41401b = launchActivity;
-        this.f41405r = tLObject;
-        this.e = num;
-        this.f41406s = num2;
-        this.f41402c = bArr;
-        this.f41404n = j10;
-        this.v = runnable;
-        this.f41403f = str;
-        this.d = i10;
-        this.h = i11;
+    public final void run(Object obj) {
+        org.telegram.ui.Components.xc X;
+        int i10;
+        int i11;
+        org.telegram.ui.Components.xc X2;
+        int i12;
+        int i13;
+        int i14 = this.f41321a;
+        Long l4 = this.d;
+        f80 f80Var = this.f41323c;
+        LaunchActivity launchActivity = this.f41322b;
+        TL_stories.StoryItem storyItem = (TL_stories.StoryItem) obj;
+        switch (i14) {
+            case 0:
+                Pattern pattern = LaunchActivity.E1;
+                try {
+                    f80Var.run();
+                } catch (Exception e) {
+                    FileLog.e(e);
+                }
+                org.telegram.ui.ActionBar.o2 R = LaunchActivity.R();
+                if (storyItem == null) {
+                    X = org.telegram.ui.Components.xc.X();
+                    if (X != null) {
+                        i10 = R.raw.story_bomb2;
+                        i11 = R.string.StoryNotFound;
+                    } else {
+                        return;
+                    }
+                } else if (storyItem instanceof TL_stories.TL_storyItemDeleted) {
+                    X = org.telegram.ui.Components.xc.X();
+                    if (X != null) {
+                        i10 = R.raw.story_bomb1;
+                        i11 = R.string.StoryNotFound;
+                    } else {
+                        return;
+                    }
+                } else if (R != null) {
+                    storyItem.dialogId = l4.longValue();
+                    ci.z9 createOverlayStoryViewer = R.createOverlayStoryViewer();
+                    createOverlayStoryViewer.v();
+                    createOverlayStoryViewer.F(launchActivity, storyItem, null);
+                    return;
+                } else {
+                    return;
+                }
+                org.telegram.messenger.v0.p(i11, X, i10, 36);
+                return;
+            default:
+                Pattern pattern2 = LaunchActivity.E1;
+                try {
+                    f80Var.run();
+                } catch (Exception e7) {
+                    FileLog.e(e7);
+                }
+                org.telegram.ui.ActionBar.o2 R2 = LaunchActivity.R();
+                if (storyItem == null) {
+                    X2 = org.telegram.ui.Components.xc.X();
+                    if (X2 != null) {
+                        i12 = R.raw.story_bomb2;
+                        i13 = R.string.StoryNotFound;
+                    } else {
+                        return;
+                    }
+                } else if (storyItem instanceof TL_stories.TL_storyItemDeleted) {
+                    X2 = org.telegram.ui.Components.xc.X();
+                    if (X2 != null) {
+                        i12 = R.raw.story_bomb1;
+                        i13 = R.string.StoryNotFound;
+                    } else {
+                        return;
+                    }
+                } else if (R2 != null) {
+                    storyItem.dialogId = l4.longValue();
+                    ci.z9 createOverlayStoryViewer2 = R2.createOverlayStoryViewer();
+                    createOverlayStoryViewer2.v();
+                    createOverlayStoryViewer2.F(launchActivity, storyItem, null);
+                    return;
+                } else {
+                    return;
+                }
+                org.telegram.messenger.v0.p(i13, X2, i12, 36);
+                return;
+        }
     }
 }

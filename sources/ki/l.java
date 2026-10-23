@@ -1,8 +1,8 @@
 package ki;
 public final class l {
-    public final q f15368a;
+    public final q f15428a;
 
     public l(q qVar) {
-        this.f15368a = qVar;
+        this.f15428a = qVar;
     }
 }

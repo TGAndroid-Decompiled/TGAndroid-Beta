@@ -1,41 +1,38 @@
 package org.telegram.ui;
-public final class o20 extends g.o {
-    public final q50 f39749c;
 
-    public o20(q50 q50Var) {
-        this.f39749c = q50Var;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+public final class o20 implements Utilities.Callback2 {
+    public final int f40052a;
+    public final u50 f40053b;
+
+    public o20(u50 u50Var, int i10) {
+        this.f40052a = i10;
+        this.f40053b = u50Var;
     }
 
     @Override
-    public final int i(int i10) {
-        int i11;
-        k50 k50Var;
-        int i12;
-        int i13;
-        int i14;
-        if (q50.F3) {
-            i11 = 6;
-        } else {
-            i11 = 2;
-        }
-        if (!q50.G3 && i10 >= (i12 = (k50Var = this.f39749c.P).G) && i10 < (i13 = k50Var.H)) {
-            int i15 = i13 - i12;
-            if (i10 == i13 - 1 && (q50.F3 || i15 % 2 != 0)) {
-                i14 = 2;
-            } else {
-                i14 = 1;
-            }
-            if (q50.F3) {
-                if (i15 == 1) {
-                    return 6;
+    public final void run(Object obj, Object obj2) {
+        TLRPC.Updates updates = (TLRPC.Updates) obj;
+        TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
+        switch (this.f40052a) {
+            case 0:
+                u50 u50Var = this.f40053b;
+                if (updates != null) {
+                    u50Var.d.getMessagesController().lambda$processUpdates$377(updates, false);
                 }
-                if (i15 != 2) {
-                    return 2;
+                AndroidUtilities.runOnUIThread(new f20(u50Var, 10));
+                return;
+            default:
+                u50 u50Var2 = this.f40053b;
+                if (updates != null) {
+                    u50Var2.d.getMessagesController().lambda$processUpdates$377(updates, false);
+                    return;
+                } else {
+                    u50Var2.getClass();
+                    return;
                 }
-                return 3;
-            }
-            return i14;
         }
-        return i11;
     }
 }

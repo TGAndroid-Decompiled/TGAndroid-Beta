@@ -1,42 +1,33 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
+import android.content.Context;
+import android.graphics.Point;
+import android.view.View;
+import android.widget.FrameLayout;
+import java.util.HashMap;
+import java.util.Map;
 import org.telegram.messenger.AndroidUtilities;
-public final class pc0 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f40192a;
-    public final dg0 f40193b;
+import org.telegram.messenger.IMapsProvider;
+public final class pc0 extends FrameLayout {
+    public final HashMap f40449a;
+    public final sc0 f40450b;
 
-    public pc0(dg0 dg0Var, int i10) {
-        this.f40192a = i10;
-        this.f40193b = dg0Var;
+    public pc0(sc0 sc0Var, Context context) {
+        super(context);
+        this.f40450b = sc0Var;
+        this.f40449a = new HashMap();
     }
 
-    @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f40192a) {
-            case 0:
-                dg0 dg0Var = this.f40193b;
-                dg0Var.getClass();
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                dg0Var.f36375c.setAlpha(floatValue);
-                dg0Var.f36375c.setTranslationY((1.0f - floatValue) * AndroidUtilities.dp(230.0f));
-                return;
-            case 1:
-                dg0 dg0Var2 = this.f40193b;
-                dg0Var2.getClass();
-                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                float f7 = (0.9f * floatValue2) + 0.1f;
-                dg0Var2.V.setScaleX(f7);
-                dg0Var2.V.setScaleY(f7);
-                dg0Var2.V.setAlpha(floatValue2);
-                return;
-            default:
-                dg0 dg0Var3 = this.f40193b;
-                dg0Var3.getClass();
-                float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                dg0Var3.f36375c.setAlpha(floatValue3);
-                dg0Var3.f36375c.setTranslationY((1.0f - floatValue3) * AndroidUtilities.dp(230.0f));
-                return;
+    public final void a() {
+        IMapsProvider.IMap iMap = this.f40450b.I;
+        if (iMap != null) {
+            IMapsProvider.IProjection projection = iMap.getProjection();
+            for (Map.Entry entry : this.f40449a.entrySet()) {
+                View view = (View) entry.getValue();
+                Point screenLocation = projection.toScreenLocation(((IMapsProvider.IMarker) entry.getKey()).getPosition());
+                view.setTranslationX(screenLocation.x - (view.getMeasuredWidth() / 2));
+                view.setTranslationY(AndroidUtilities.dp(22.0f) + (screenLocation.y - view.getMeasuredHeight()));
+            }
         }
     }
 }

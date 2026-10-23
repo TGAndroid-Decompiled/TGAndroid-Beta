@@ -3,22 +3,22 @@ package ei;
 import android.animation.ValueAnimator;
 import android.view.MotionEvent;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.fa1;
 import org.telegram.ui.Components.u20;
-import org.telegram.ui.Components.y91;
 public final class sb extends u20 {
-    public final ub f9821a;
+    public final ub f9837a;
 
     public sb(ub ubVar) {
-        this.f9821a = ubVar;
+        this.f9837a = ubVar;
     }
 
     @Override
     public final boolean a() {
         ya yaVar;
-        vb vbVar = this.f9821a.E0;
-        if (vbVar.f9965f0 == 0 && (yaVar = vbVar.B0) != null && !vbVar.S1 && yaVar.isInited() && !vbVar.P1 && !vbVar.O0.f10236x0) {
+        vb vbVar = this.f9837a.E0;
+        if (vbVar.f9982f0 == 0 && (yaVar = vbVar.B0) != null && !vbVar.S1 && yaVar.isInited() && !vbVar.P1 && !vbVar.O0.f10253x0) {
             j7 j7Var = vbVar.D0;
-            if ((j7Var == null || (!j7Var.f9265x.f32636i && !j7Var.L)) && !vbVar.I() && vbVar.f9996p2 == null) {
+            if ((j7Var == null || (!j7Var.f9276x.f32872i && !j7Var.L)) && !vbVar.I() && vbVar.f10013p2 == null) {
                 return true;
             }
             return false;
@@ -28,17 +28,17 @@ public final class sb extends u20 {
 
     @Override
     public final boolean onDoubleTap(MotionEvent motionEvent) {
-        vb vbVar = this.f9821a.E0;
+        vb vbVar = this.f9837a.E0;
         ya yaVar = vbVar.B0;
-        if (yaVar != null && !vbVar.S1 && !vbVar.P1 && yaVar.isInited() && vbVar.f9965f0 == 0 && vbVar.O1 != -1) {
+        if (yaVar != null && !vbVar.S1 && !vbVar.P1 && yaVar.isInited() && vbVar.f9982f0 == 0 && vbVar.O1 != -1) {
             vbVar.B0.switchCamera();
             vbVar.O0.d(180.0f);
             vb.Z(vbVar.B0.isFrontface());
             if (vbVar.p0()) {
-                vbVar.f10004s.c(null);
+                vbVar.f10021s.c(null);
                 return true;
             }
-            vbVar.f10004s.d();
+            vbVar.f10021s.d();
             return true;
         }
         return false;
@@ -46,7 +46,7 @@ public final class sb extends u20 {
 
     @Override
     public final boolean onDoubleTapEvent(MotionEvent motionEvent) {
-        ya yaVar = this.f9821a.E0.B0;
+        ya yaVar = this.f9837a.E0.B0;
         if (yaVar != null) {
             yaVar.N = null;
             yaVar.K = -1L;
@@ -57,7 +57,7 @@ public final class sb extends u20 {
 
     @Override
     public final boolean onDown(MotionEvent motionEvent) {
-        ub ubVar = this.f9821a;
+        ub ubVar = this.f9837a;
         ubVar.C0 = 0.0f;
         ubVar.D0 = 0.0f;
         return false;
@@ -67,20 +67,20 @@ public final class sb extends u20 {
     public final boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10) {
         j7 j7Var;
         ya yaVar;
-        y91 y91Var;
+        fa1 fa1Var;
         ib ibVar;
         boolean z10;
         boolean z11;
-        ub ubVar = this.f9821a;
+        ub ubVar = this.f9837a;
         vb vbVar = ubVar.E0;
         ValueAnimator valueAnimator = vbVar.E;
-        if ((valueAnimator != null && valueAnimator.isRunning()) || (((j7Var = vbVar.D0) != null && (j7Var.f9265x.f32636i || j7Var.L)) || vbVar.O0.f10236x0 || (((yaVar = vbVar.B0) != null && yaVar.f8813s) || ubVar.A0 || (((y91Var = vbVar.V0) != null && (y91Var.F || y91Var.G)) || vbVar.H())))) {
+        if ((valueAnimator != null && valueAnimator.isRunning()) || (((j7Var = vbVar.D0) != null && (j7Var.f9276x.f32872i || j7Var.L)) || vbVar.O0.f10253x0 || (((yaVar = vbVar.B0) != null && yaVar.f8822s) || ubVar.A0 || (((fa1Var = vbVar.V0) != null && (fa1Var.F || fa1Var.G)) || vbVar.H())))) {
             return false;
         }
         boolean z12 = true;
-        ubVar.f9917y0 = true;
+        ubVar.f9933y0 = true;
         if (vbVar.W) {
-            if (Math.abs(vbVar.f10000r.f9529a) >= AndroidUtilities.dp(1.0f)) {
+            if (Math.abs(vbVar.f10017r.f9540a) >= AndroidUtilities.dp(1.0f)) {
                 if ((f10 > 0.0f && Math.abs(f10) > 2000.0f && Math.abs(f10) > Math.abs(f7)) || vbVar.K > 0.4f) {
                     vbVar.p(true);
                 } else {
@@ -128,7 +128,7 @@ public final class sb extends u20 {
 
     @Override
     public final boolean onSingleTapConfirmed(MotionEvent motionEvent) {
-        ya yaVar = this.f9821a.E0.B0;
+        ya yaVar = this.f9837a.E0.B0;
         if (yaVar != null) {
             b1 b1Var = yaVar.N;
             if (b1Var != null) {
@@ -143,7 +143,7 @@ public final class sb extends u20 {
 
     @Override
     public final boolean onSingleTapUp(MotionEvent motionEvent) {
-        vb vbVar = this.f9821a.E0;
+        vb vbVar = this.f9837a.E0;
         vbVar.W = false;
         vbVar.X = false;
         if (!a() && onSingleTapConfirmed(motionEvent)) {

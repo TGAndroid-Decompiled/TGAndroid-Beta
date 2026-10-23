@@ -1,31 +1,53 @@
 package k2;
-public final class g {
-    public static final g d = new Object().a();
-    public final boolean f14683a;
-    public final boolean f14684b;
-    public final boolean f14685c;
 
-    public g(bc.d dVar) {
-        this.f14683a = dVar.f4246a;
-        this.f14684b = dVar.f4247b;
-        this.f14685c = dVar.f4248c;
+import j$.util.function.Function$CC;
+import java.util.function.Function;
+import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.MessageObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.lt;
+public final class g implements Function {
+    public final int f14728a;
+
+    public g(int i10) {
+        this.f14728a = i10;
     }
 
-    public final boolean equals(Object obj) {
-        if (this != obj) {
-            if (obj != null && g.class == obj.getClass()) {
-                g gVar = (g) obj;
-                if (this.f14683a == gVar.f14683a && this.f14684b == gVar.f14684b && this.f14685c == gVar.f14685c) {
-                    return true;
+    public Function andThen(Function function) {
+        int i10 = this.f14728a;
+        return Function$CC.$default$andThen(this, function);
+    }
+
+    @Override
+    public final Object apply(Object obj) {
+        switch (this.f14728a) {
+            case 0:
+                return Integer.valueOf(Integer.bitCount(((Integer) obj).intValue()));
+            case 1:
+                return Long.valueOf(DialogObject.getPeerDialogId((TLRPC.Peer) obj));
+            case 2:
+                return Long.valueOf(((MessageObject) obj).getFromChatId());
+            case 3:
+                return Integer.valueOf(((MessageObject) obj).getId());
+            case 4:
+                TLRPC.ChannelParticipant channelParticipant = (TLRPC.ChannelParticipant) obj;
+                if (channelParticipant == null) {
+                    return null;
                 }
-                return false;
-            }
-            return false;
+                return channelParticipant.banned_rights;
+            case 5:
+                return Long.valueOf(DialogObject.getPeerDialogId(((TLRPC.GroupCallParticipant) obj).peer));
+            case 6:
+                return Long.valueOf(DialogObject.getPeerDialogId(((TLRPC.GroupCallParticipant) obj).peer));
+            case 7:
+                return ((lt) obj).f39322a;
+            default:
+                return ((lt) obj).f39322a;
         }
-        return true;
     }
 
-    public final int hashCode() {
-        return ((this.f14683a ? 1 : 0) << 2) + ((this.f14684b ? 1 : 0) << 1) + (this.f14685c ? 1 : 0);
+    public Function compose(Function function) {
+        int i10 = this.f14728a;
+        return Function$CC.$default$compose(this, function);
     }
 }

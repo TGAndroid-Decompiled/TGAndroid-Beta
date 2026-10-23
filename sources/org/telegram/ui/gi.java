@@ -1,14 +1,14 @@
 package org.telegram.ui;
-public final class gi implements org.telegram.ui.Components.am0 {
-    public final qn f37339a;
+public final class gi implements org.telegram.ui.Components.dm0 {
+    public final sn f37608a;
 
-    public gi(qn qnVar) {
-        this.f37339a = qnVar;
+    public gi(sn snVar) {
+        this.f37608a = snVar;
     }
 
     @Override
-    public final boolean mo17d(float r11, float r12, int r13, android.view.View r14) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.gi.mo17d(float, float, int, android.view.View):boolean");
+    public final boolean mo17c(float r11, float r12, int r13, android.view.View r14) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.gi.mo17c(float, float, int, android.view.View):boolean");
     }
 
     @Override

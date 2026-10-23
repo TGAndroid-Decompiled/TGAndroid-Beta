@@ -1,28 +1,38 @@
 package org.telegram.ui;
 
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class bd0 implements RequestDelegate {
-    public final int f35611a;
-    public final md0 f35612b;
-    public final String f35613c;
+public final class bd0 implements org.telegram.ui.Components.nw0 {
+    public final int f36051a;
+    public final org.telegram.ui.ActionBar.o2 f36052b;
 
-    public bd0(md0 md0Var, String str, int i10) {
-        this.f35611a = i10;
-        this.f35612b = md0Var;
-        this.f35613c = str;
+    public bd0(int i10, org.telegram.ui.ActionBar.o2 o2Var) {
+        this.f36051a = i10;
+        this.f36052b = o2Var;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f35611a) {
+    public final void G(int i10, boolean z10) {
+        xf0 xf0Var;
+        al0 al0Var;
+        switch (this.f36051a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new dd0(this.f35612b, tL_error, this.f35613c, tLObject));
+                ig0 ig0Var = (ig0) this.f36052b;
+                if (i10 > AndroidUtilities.dp(20.0f) && ig0Var.l1()) {
+                    AndroidUtilities.hideKeyboard(ig0Var.fragmentView);
+                }
+                if (i10 <= AndroidUtilities.dp(20.0f) && (xf0Var = ig0Var.T) != null) {
+                    xf0Var.run();
+                    ig0Var.T = null;
+                    return;
+                }
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new dd0(this.f35612b, tL_error, tLObject, this.f35613c));
+                PasscodeActivity passcodeActivity = (PasscodeActivity) this.f36052b;
+                if (i10 >= AndroidUtilities.dp(20.0f) && (al0Var = passcodeActivity.T) != null) {
+                    al0Var.run();
+                    passcodeActivity.T = null;
+                    return;
+                }
                 return;
         }
     }

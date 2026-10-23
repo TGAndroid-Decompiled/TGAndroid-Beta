@@ -1,80 +1,106 @@
 package c3;
 
-import java.io.Serializable;
-public final class a0 {
-    public int f4561a;
-    public int f4562b;
-    public int f4563c;
-    public int d;
-    public int e;
-    public int f4564f;
-    public Serializable f4565g;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.regex.Pattern;
+import si.o0;
+import v7.u6;
+public final class a0 implements z3.m {
+    public final e2.x f4565a;
 
-    public boolean a(int i10) {
-        int i11;
-        int i12;
-        int i13;
-        int i14;
-        int i15;
-        int i16;
-        if ((i10 & (-2097152)) != -2097152 || (i11 = (i10 >>> 19) & 3) == 1 || (i12 = (i10 >>> 17) & 3) == 0 || (i13 = (i10 >>> 12) & 15) == 0 || i13 == 15 || (i14 = (i10 >>> 10) & 3) == 3) {
-            return false;
+    public a0(int i10) {
+        switch (i10) {
+            case 1:
+                this.f4565a = new e2.x();
+                return;
+            default:
+                this.f4565a = new e2.x(10);
+                return;
         }
-        this.f4561a = i11;
-        this.f4565g = b.f4581s[3 - i12];
-        int i17 = b.f4582t[i14];
-        this.f4563c = i17;
-        int i18 = 2;
-        if (i11 == 2) {
-            this.f4563c = i17 / 2;
-        } else if (i11 == 0) {
-            this.f4563c = i17 / 4;
-        }
-        int i19 = (i10 >>> 9) & 1;
-        int i20 = 1152;
-        if (i12 != 1) {
-            if (i12 != 2) {
-                if (i12 == 3) {
-                    i20 = 384;
-                } else {
-                    throw new IllegalArgumentException();
-                }
-            }
-        } else if (i11 != 3) {
-            i20 = 576;
-        }
-        this.f4564f = i20;
-        if (i12 == 3) {
-            if (i11 == 3) {
-                i16 = b.f4583u[i13 - 1];
+    }
+
+    @Override
+    public z3.d a(int i10, int i11, byte[] bArr) {
+        return o0.a(this, bArr, i11);
+    }
+
+    public b2.t0 b(c3.r r12, q3.g r13, int r14) {
+        throw new UnsupportedOperationException("Method not decompiled: c3.a0.b(c3.r, q3.g, int):b2.t0");
+    }
+
+    @Override
+    public int c() {
+        return 2;
+    }
+
+    @Override
+    public void f(byte[] bArr, int i10, int i11, z3.l lVar, e2.j jVar) {
+        boolean z10;
+        d2.b a2;
+        boolean z11;
+        e2.x xVar = this.f4565a;
+        xVar.L(i10 + i11, bArr);
+        xVar.N(i10);
+        ArrayList arrayList = new ArrayList();
+        while (xVar.a() > 0) {
+            if (xVar.a() >= 8) {
+                z10 = true;
             } else {
-                i16 = b.v[i13 - 1];
+                z10 = false;
             }
-            this.e = i16;
-            this.f4562b = (((i16 * 12) / this.f4563c) + i19) * 4;
-        } else {
-            int i21 = 144;
-            if (i11 == 3) {
-                if (i12 == 2) {
-                    i15 = b.f4584w[i13 - 1];
+            u6.f("Incomplete Mp4Webvtt Top Level box header found.", z10);
+            int m10 = xVar.m();
+            if (xVar.m() == 1987343459) {
+                int i12 = m10 - 8;
+                CharSequence charSequence = null;
+                d2.a aVar = null;
+                while (i12 > 0) {
+                    if (i12 >= 8) {
+                        z11 = true;
+                    } else {
+                        z11 = false;
+                    }
+                    u6.f("Incomplete vtt cue box header found.", z11);
+                    int m11 = xVar.m();
+                    int m12 = xVar.m();
+                    int i13 = m11 - 8;
+                    byte[] bArr2 = xVar.f8298a;
+                    int i14 = xVar.f8299b;
+                    String str = e2.m0.f8259a;
+                    String str2 = new String(bArr2, i14, i13, StandardCharsets.UTF_8);
+                    xVar.O(i13);
+                    i12 = (i12 - 8) - i13;
+                    if (m12 == 1937011815) {
+                        i4.g gVar = new i4.g();
+                        i4.h.e(str2, gVar);
+                        aVar = gVar.a();
+                    } else if (m12 == 1885436268) {
+                        charSequence = i4.h.f(null, str2.trim(), Collections.EMPTY_LIST);
+                    }
+                }
+                if (charSequence == null) {
+                    charSequence = "";
+                }
+                if (aVar != null) {
+                    aVar.f7744a = charSequence;
+                    aVar.f7745b = null;
+                    a2 = aVar.a();
                 } else {
-                    i15 = b.f4585x[i13 - 1];
+                    Pattern pattern = i4.h.f12731a;
+                    i4.g gVar2 = new i4.g();
+                    gVar2.f12725c = charSequence;
+                    a2 = gVar2.a().a();
                 }
-                this.e = i15;
-                this.f4562b = ((i15 * 144) / this.f4563c) + i19;
+                arrayList.add(a2);
             } else {
-                int i22 = b.f4586y[i13 - 1];
-                this.e = i22;
-                if (i12 == 1) {
-                    i21 = 72;
-                }
-                this.f4562b = ((i21 * i22) / this.f4563c) + i19;
+                xVar.O(m10 - 8);
             }
         }
-        if (((i10 >> 6) & 3) == 3) {
-            i18 = 1;
-        }
-        this.d = i18;
-        return true;
+        jVar.accept(new z3.a(-9223372036854775807L, -9223372036854775807L, arrayList));
+    }
+
+    @Override
+    public void reset() {
     }
 }

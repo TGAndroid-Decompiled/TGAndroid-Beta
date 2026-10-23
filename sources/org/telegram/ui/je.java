@@ -5,67 +5,67 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.support.LongSparseIntArray;
 public final class je implements Runnable {
-    public final int f38241a;
-    public final qn f38242b;
-    public final long f38243c;
+    public final int f38536a;
+    public final sn f38537b;
+    public final long f38538c;
 
-    public je(long j10, qn qnVar) {
-        this.f38241a = 7;
-        this.f38243c = j10;
-        this.f38242b = qnVar;
+    public je(long j10, sn snVar) {
+        this.f38536a = 7;
+        this.f38538c = j10;
+        this.f38537b = snVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f38241a) {
+        switch (this.f38536a) {
             case 0:
-                r0.getMediaDataController().loadBotInfo(this.f38243c, r1, true, this.f38242b.classGuid);
+                r0.getMediaDataController().loadBotInfo(this.f38538c, r1, true, this.f38537b.classGuid);
                 return;
             case 1:
-                this.f38242b.getMessagesController().loadFullChat(this.f38243c, 0, true);
+                this.f38537b.getMessagesController().loadFullChat(this.f38538c, 0, true);
                 return;
             case 2:
-                qn qnVar = this.f38242b;
-                LongSparseIntArray longSparseIntArray = qnVar.M5;
-                long j10 = this.f38243c;
+                sn snVar = this.f38537b;
+                LongSparseIntArray longSparseIntArray = snVar.Y5;
+                long j10 = this.f38538c;
                 longSparseIntArray.put(j10, 0);
-                org.telegram.ui.Components.s31 s31Var = qnVar.R1;
-                if (s31Var != null) {
-                    s31Var.setAllTopicsHidden(false);
+                org.telegram.ui.Components.w31 w31Var = snVar.f41490d2;
+                if (w31Var != null) {
+                    w31Var.setAllTopicsHidden(false);
                 }
-                if (j10 == qnVar.f40660d4) {
-                    qnVar.A0.O(false);
+                if (j10 == snVar.f41638p4) {
+                    snVar.A0.O(false);
                     return;
                 }
                 return;
             case 3:
-                qn qnVar2 = this.f38242b;
-                qnVar2.getClass();
-                qnVar2.presentFragment(qn.W9(this.f38243c));
-                return;
-            case 4:
-                qn qnVar3 = this.f38242b;
-                qnVar3.getClass();
-                qnVar3.presentFragment(ProfileActivity.m4(this.f38243c));
-                return;
-            case 5:
-                qn qnVar4 = this.f38242b;
-                org.telegram.ui.Components.qc v = org.telegram.ui.Components.xc.v(qnVar4.getParentActivity(), qnVar4, null, 1, this.f38243c, 1, qnVar4.getThemedColor(org.telegram.ui.ActionBar.h6.Fi), qnVar4.getThemedColor(org.telegram.ui.ActionBar.h6.Hi), 5000, true, null);
-                v.f29536k = true;
+                sn snVar2 = this.f38537b;
+                org.telegram.ui.Components.qc v = org.telegram.ui.Components.xc.v(snVar2.getParentActivity(), snVar2, null, 1, this.f38538c, 1, snVar2.getThemedColor(org.telegram.ui.ActionBar.k6.Fi), snVar2.getThemedColor(org.telegram.ui.ActionBar.k6.Hi), 5000, true, null);
+                v.f29833k = true;
                 v.k(true);
                 return;
+            case 4:
+                sn snVar3 = this.f38537b;
+                snVar3.getClass();
+                snVar3.presentFragment(sn.W9(this.f38538c));
+                return;
+            case 5:
+                sn snVar4 = this.f38537b;
+                snVar4.getClass();
+                snVar4.presentFragment(ProfileActivity.o4(this.f38538c));
+                return;
             case 6:
-                org.telegram.ui.Components.xc.a0(this.f38242b).M(LocaleController.getString(R.string.StarsGiveawaySentPopup), AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("StarsGiveawaySentPopupInfo", (int) this.f38243c)), R.raw.stars_topup).k(true);
+                org.telegram.ui.Components.xc.a0(this.f38537b).M(LocaleController.getString(R.string.StarsGiveawaySentPopup), AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("StarsGiveawaySentPopupInfo", (int) this.f38538c)), R.raw.stars_topup).k(true);
                 return;
             default:
-                this.f38242b.presentFragment(new ProfileActivity(zf.d0.b(this.f38243c, "user_id"), null));
+                this.f38537b.presentFragment(new ProfileActivity(si.o0.e(this.f38538c, "user_id"), null));
                 return;
         }
     }
 
-    public je(qn qnVar, long j10, int i10) {
-        this.f38241a = i10;
-        this.f38242b = qnVar;
-        this.f38243c = j10;
+    public je(sn snVar, long j10, int i10) {
+        this.f38536a = i10;
+        this.f38537b = snVar;
+        this.f38538c = j10;
     }
 }

@@ -1,9 +1,9 @@
 package ci;
 
-import ai.ie;
+import ai.je;
 import android.content.Context;
 import org.telegram.messenger.Utilities;
-public final class t extends ie {
+public final class t extends je {
     public final Utilities.Callback[] m0;
 
     public t(Context context, b bVar, Utilities.Callback[] callbackArr) {

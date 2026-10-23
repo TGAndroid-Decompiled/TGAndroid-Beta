@@ -9,14 +9,14 @@ import java.util.concurrent.Executor;
 import v0.i;
 public final class a extends d {
     public final Context e;
-    public i f10276f;
-    public Executor f10277g;
+    public i f10293f;
+    public Executor f10294g;
     public CancellationSignal h;
-    public final c1.d f10278i;
+    public final c1.d f10295i;
 
     public a(Context context) {
         kotlin.jvm.internal.i.e(context, "context");
         this.e = context;
-        this.f10278i = new c1.d(this, new Handler(Looper.getMainLooper()), 3);
+        this.f10295i = new c1.d(this, new Handler(Looper.getMainLooper()), 3);
     }
 }

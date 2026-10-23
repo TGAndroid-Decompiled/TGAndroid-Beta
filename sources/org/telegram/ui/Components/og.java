@@ -74,7 +74,7 @@ public interface og {
 
     void o1(View view, CharSequence charSequence, boolean z10);
 
-    org.telegram.ui.gn p0();
+    org.telegram.ui.in p0();
 
     void q1(CharSequence charSequence);
 

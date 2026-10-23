@@ -1,15 +1,15 @@
 package yh;
 
-import ai.ie;
+import ai.je;
 import android.content.Context;
 import android.view.MotionEvent;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.d6;
-public final class h extends ie {
+import org.telegram.ui.ActionBar.g6;
+public final class h extends je {
     public final m m0;
 
-    public h(m mVar, Context context, d6 d6Var) {
-        super(context, d6Var);
+    public h(m mVar, Context context, g6 g6Var) {
+        super(context, g6Var);
         this.m0 = mVar;
     }
 
@@ -18,7 +18,7 @@ public final class h extends ie {
         if (getProgress() <= 0.99d && f7 <= getMeasuredWidth() * 0.9f) {
             return false;
         }
-        m.V(this.m0);
+        m.U(this.m0);
         return true;
     }
 
@@ -33,12 +33,12 @@ public final class h extends ie {
 
     @Override
     public final void e(int i10) {
-        m.U(this.m0, i10);
+        m.T(this.m0, i10);
     }
 
     @Override
     public final void setValue(int i10) {
         super.setValue(i10);
-        m.U(this.m0, i10);
+        m.T(this.m0, i10);
     }
 }

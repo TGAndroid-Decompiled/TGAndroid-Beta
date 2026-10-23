@@ -12,20 +12,20 @@ import w7.la;
 import x7.ba;
 import x7.ca;
 import x7.fa;
-import z7.tf;
-import z7.vf;
-import z7.xf;
+import z7.sf;
+import z7.uf;
+import z7.wf;
 public final class r extends c1 {
-    public final int f46906b;
+    public final int f47341b;
 
     public r(int i10) {
         super(6);
-        this.f46906b = i10;
+        this.f47341b = i10;
     }
 
     @Override
     public final Object Q0(Object obj) {
-        switch (this.f46906b) {
+        switch (this.f47341b) {
             case 0:
                 rb.g c10 = rb.g.c();
                 Context b10 = rb.g.c().b();
@@ -41,7 +41,7 @@ public final class r extends c1 {
             case 1:
                 v8 v8Var = (v8) obj;
                 rb.g c11 = rb.g.c();
-                return new y8(c11.b(), (rb.k) c11.a(rb.k.class), new w8(rb.g.c().b(), v8Var), v8Var.f48174a);
+                return new y8(c11.b(), (rb.k) c11.a(rb.k.class), new w8(rb.g.c().b(), v8Var), v8Var.f48612a);
             case 2:
                 rb.g c12 = rb.g.c();
                 return new la(c12.b(), (rb.k) c12.a(rb.k.class), new ka(rb.g.c().b(), (ia) obj));
@@ -50,7 +50,7 @@ public final class r extends c1 {
                 return new fa(c13.b(), (rb.k) c13.a(rb.k.class), new ca(rb.g.c().b(), (ba) obj));
             default:
                 rb.g c14 = rb.g.c();
-                return new xf(c14.b(), (rb.k) c14.a(rb.k.class), new vf(rb.g.c().b(), (tf) obj));
+                return new wf(c14.b(), (rb.k) c14.a(rb.k.class), new uf(rb.g.c().b(), (sf) obj));
         }
     }
 }

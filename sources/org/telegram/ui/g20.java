@@ -1,33 +1,31 @@
 package org.telegram.ui;
 
-import android.content.DialogInterface;
-public final class g20 implements DialogInterface.OnDismissListener {
-    public final int f37175a;
-    public final q50 f37176b;
+import android.view.View;
+public final class g20 implements View.OnClickListener {
+    public final int f37469a;
+    public final org.telegram.ui.Cells.z1[] f37470b;
 
-    public g20(q50 q50Var, int i10) {
-        this.f37175a = i10;
-        this.f37176b = q50Var;
+    public g20(org.telegram.ui.Cells.z1[] z1VarArr, int i10) {
+        this.f37469a = i10;
+        this.f37470b = z1VarArr;
     }
 
     @Override
-    public final void onDismiss(DialogInterface dialogInterface) {
-        switch (this.f37175a) {
+    public final void onClick(View view) {
+        switch (this.f37469a) {
             case 0:
-                org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
-                if (this.f37176b.f40476x0 && (U instanceof qn)) {
-                    ((qn) U).Y9(true, true);
-                    return;
-                }
+                Integer num = (Integer) view.getTag();
+                int intValue = num.intValue();
+                org.telegram.ui.Cells.z1[] z1VarArr = this.f37470b;
+                z1VarArr[intValue].c(!z1VarArr[num.intValue()].b(), true);
                 return;
             case 1:
-                this.f37176b.dismiss();
-                return;
-            case 2:
-                this.f37176b.E1 = null;
+                org.telegram.ui.Cells.z1 z1Var = this.f37470b[0];
+                z1Var.c(!z1Var.b(), true);
                 return;
             default:
-                this.f37176b.f40449r0 = null;
+                org.telegram.ui.Cells.z1 z1Var2 = this.f37470b[0];
+                z1Var2.c(!z1Var2.b(), true);
                 return;
         }
     }

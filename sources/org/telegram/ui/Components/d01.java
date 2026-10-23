@@ -1,88 +1,35 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Rect;
-import java.util.ArrayList;
-import org.telegram.tgnet.tl.TL_iv;
-public final class d01 extends j1.b {
-    public final Rect f25303o;
-    public final f01 f25304p;
+import android.view.ViewGroup;
+public final class d01 extends ViewGroup.MarginLayoutParams {
+    public f01 f25476a;
+    public f01 f25477b;
 
-    public d01(f01 f01Var, f01 f01Var2) {
-        super(f01Var2);
-        this.f25304p = f01Var;
-        this.f25303o = new Rect();
+    public d01() {
+        super(-2, -2);
+        f01 f01Var = f01.e;
+        this.f25476a = f01Var;
+        this.f25477b = f01Var;
+        setMargins(Integer.MIN_VALUE, Integer.MIN_VALUE, Integer.MIN_VALUE, Integer.MIN_VALUE);
+        this.f25476a = f01Var;
+        this.f25477b = f01Var;
     }
 
-    @Override
-    public final int g(float f7, float f10) {
-        int i10;
-        f01 f01Var = this.f25304p;
-        int childCount = f01Var.getChildCount();
-        for (int i11 = 0; i11 < childCount; i11++) {
-            yz0 d = f01Var.d(i11);
-            int i12 = d.f32780k;
-            if (i12 > 0 && (i10 = d.f32781l) > 0) {
-                int i13 = d.f32785p;
-                if (f7 >= i13 && f7 < i13 + i12) {
-                    int i14 = d.f32786q;
-                    if (f10 >= i14 && f10 < i14 + i10) {
-                        return i11;
-                    }
-                }
-            }
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
         }
-        return Integer.MIN_VALUE;
-    }
-
-    @Override
-    public final void h(ArrayList arrayList) {
-        f01 f01Var = this.f25304p;
-        int childCount = f01Var.getChildCount();
-        for (int i10 = 0; i10 < childCount; i10++) {
-            yz0 d = f01Var.d(i10);
-            if (d.f32780k > 0 && d.f32781l > 0) {
-                arrayList.add(Integer.valueOf(i10));
-            }
+        if (obj == null || d01.class != obj.getClass()) {
+            return false;
         }
-    }
-
-    @Override
-    public final boolean k(int i10, int i11) {
+        d01 d01Var = (d01) obj;
+        if (this.f25477b.equals(d01Var.f25477b) && this.f25476a.equals(d01Var.f25476a)) {
+            return true;
+        }
         return false;
     }
 
-    @Override
-    public final void l(int i10, s0.c cVar) {
-        String str;
-        Rect rect = this.f25303o;
-        if (i10 >= 0) {
-            f01 f01Var = this.f25304p;
-            if (i10 < f01Var.getChildCount()) {
-                yz0 d = f01Var.d(i10);
-                int i11 = d.f32785p;
-                int i12 = d.f32786q;
-                rect.set(i11, i12, d.f32780k + i11, d.f32781l + i12);
-                cVar.h(rect);
-                cVar.i("android.widget.TextView");
-                cVar.f45878a.setEnabled(true);
-                xz0 xz0Var = d.f32774b;
-                if (xz0Var != null) {
-                    str = xz0Var.getText();
-                } else {
-                    str = null;
-                }
-                cVar.o((str == null || str.length() == 0) ? " " : " ");
-                TL_iv.pageTableCell pagetablecell = d.f32775c;
-                if (pagetablecell != null && pagetablecell.header) {
-                    cVar.k(true);
-                    return;
-                }
-                return;
-            }
-        }
-        rect.set(0, 0, 1, 1);
-        cVar.h(rect);
-        cVar.p(false);
-        cVar.j("");
+    public final int hashCode() {
+        return this.f25477b.hashCode() + (this.f25476a.hashCode() * 31);
     }
 }

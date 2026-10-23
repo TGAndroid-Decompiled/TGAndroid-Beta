@@ -3,35 +3,35 @@ package ei;
 import android.text.TextUtils;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.tx0;
+import org.telegram.ui.Components.wx0;
 public final class g3 extends p3 {
-    public final q3 f9064x;
+    public final q3 f9074x;
 
     public g3(q3 q3Var) {
         super(q3Var);
-        this.f9064x = q3Var;
+        this.f9074x = q3Var;
     }
 
     @Override
     public final void F(boolean z10) {
-        q3 q3Var = this.f9064x;
+        q3 q3Var = this.f9074x;
         org.telegram.ui.ActionBar.u0 u0Var = q3Var.G;
         if (u0Var != null) {
             u0Var.setShowSearchProgress(z10);
         }
-        q3Var.f9636s.e(z10, true);
+        q3Var.f9652s.e(z10, true);
     }
 
     @Override
     public final void l() {
-        tx0 tx0Var = this.f9064x.f9636s;
+        wx0 wx0Var = this.f9074x.f9652s;
         super.l();
-        if (TextUtils.isEmpty(this.f9583f)) {
-            tx0Var.setStickerType(11);
-            tx0Var.d.setText(LocaleController.getString(R.string.SearchImagesType));
+        if (TextUtils.isEmpty(this.f9597f)) {
+            wx0Var.setStickerType(11);
+            wx0Var.d.setText(LocaleController.getString(R.string.SearchImagesType));
             return;
         }
-        tx0Var.setStickerType(1);
-        tx0Var.d.setText(LocaleController.formatString(R.string.NoResultFoundFor, this.f9583f));
+        wx0Var.setStickerType(1);
+        wx0Var.d.setText(LocaleController.formatString(R.string.NoResultFoundFor, this.f9597f));
     }
 }

@@ -1,26 +1,28 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class rz implements RequestDelegate {
-    public final int f41307a;
-    public final n00 f41308b;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.tl.TL_chatlists;
+public final class rz implements Utilities.Callback {
+    public final int f41268a;
+    public final q00 f41269b;
 
-    public rz(n00 n00Var, int i10) {
-        this.f41307a = i10;
-        this.f41308b = n00Var;
+    public rz(q00 q00Var, int i10) {
+        this.f41268a = i10;
+        this.f41269b = q00Var;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f41307a) {
+    public final void run(Object obj) {
+        switch (this.f41268a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new lt(15, this.f41308b, tLObject));
+                Boolean bool = (Boolean) obj;
+                this.f41269b.finishFragment();
+                return;
+            case 1:
+                this.f41269b.m0((TL_chatlists.TL_exportedChatlistInvite) obj);
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new jq(this.f41308b, tL_error, tLObject, 6));
+                this.f41269b.l0((TL_chatlists.TL_exportedChatlistInvite) obj);
                 return;
         }
     }

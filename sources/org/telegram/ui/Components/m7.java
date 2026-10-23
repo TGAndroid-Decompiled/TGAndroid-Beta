@@ -1,21 +1,21 @@
 package org.telegram.ui.Components;
 public final class m7 implements Runnable {
-    public final int f28444a;
-    public final k8 f28445b;
+    public final int f28573a;
+    public final k8 f28574b;
 
     public m7(k8 k8Var, int i10) {
-        this.f28444a = i10;
-        this.f28445b = k8Var;
+        this.f28573a = i10;
+        this.f28574b = k8Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f28444a) {
+        switch (this.f28573a) {
             case 0:
-                k8.o(this.f28445b);
+                k8.t(this.f28574b);
                 return;
             default:
-                k8.G(this.f28445b);
+                k8.v(this.f28574b);
                 return;
         }
     }

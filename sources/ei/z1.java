@@ -24,26 +24,26 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.nk;
+import org.telegram.messenger.sl;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_payments;
 import org.telegram.ui.Components.AnimatedFileNative;
-import org.telegram.ui.Components.db0;
-import org.telegram.ui.Components.r51;
+import org.telegram.ui.Components.eb0;
+import org.telegram.ui.Components.w51;
 import org.telegram.ui.Components.xc;
 public final class z1 implements Runnable {
-    public final int f10193a;
-    public final Object f10194b;
-    public final Object f10195c;
+    public final int f10210a;
+    public final Object f10211b;
+    public final Object f10212c;
     public final Object d;
 
     public z1(Object obj, Object obj2, Object obj3, int i10) {
-        this.f10193a = i10;
-        this.f10195c = obj;
-        this.f10194b = obj2;
+        this.f10210a = i10;
+        this.f10212c = obj;
+        this.f10211b = obj2;
         this.d = obj3;
     }
 
@@ -59,37 +59,37 @@ public final class z1 implements Runnable {
         int i12;
         int i13;
         ArrayList arrayList;
-        int i14 = this.f10193a;
+        int i14 = this.f10210a;
         int[] iArr2 = null;
         boolean z11 = false;
         Object obj = this.d;
-        Object obj2 = this.f10194b;
-        Object obj3 = this.f10195c;
+        Object obj2 = this.f10211b;
+        Object obj3 = this.f10212c;
         switch (i14) {
             case 0:
                 a2 a2Var = (a2) obj3;
                 TLObject tLObject = (TLObject) obj;
                 ArrayList arrayList2 = a2Var.v;
                 b2 b2Var = a2Var.N;
-                ArrayList arrayList3 = a2Var.f8681s;
+                ArrayList arrayList3 = a2Var.f8690s;
                 if (TextUtils.equals((String) obj2, a2Var.H)) {
-                    a2Var.f8683x = 0;
+                    a2Var.f8692x = 0;
                     arrayList3.clear();
                     arrayList2.clear();
-                    a2Var.f8684y.clear();
-                    a2Var.f8679n.clear();
-                    a2Var.f8683x++;
+                    a2Var.f8693y.clear();
+                    a2Var.f8688n.clear();
+                    a2Var.f8692x++;
                     arrayList3.add(null);
                     arrayList2.add(0L);
                     if (tLObject instanceof TLRPC.TL_messages_stickers) {
                         TLRPC.TL_messages_stickers tL_messages_stickers = (TLRPC.TL_messages_stickers) tLObject;
                         arrayList3.addAll(tL_messages_stickers.stickers);
-                        a2Var.f8683x = tL_messages_stickers.stickers.size() + a2Var.f8683x;
+                        a2Var.f8692x = tL_messages_stickers.stickers.size() + a2Var.f8692x;
                     }
                     a2Var.I = a2Var.H;
                     a2Var.l();
-                    o1.x1(b2Var.f8769b, 0, 0);
-                    b2Var.f8771f.c(false);
+                    o1.C1(b2Var.f8778b, 0, 0);
+                    b2Var.f8780f.c(false);
                     b2Var.e.n(false);
                     return;
                 }
@@ -150,8 +150,8 @@ public final class z1 implements Runnable {
                 ?? r22 = m3Var2.d;
                 if (bitmap != null) {
                     if (str2 != null) {
-                        m3.f9449f0.put(str2, bitmap);
-                        HashMap hashMap = m3.f9448e0;
+                        m3.f9460f0.put(str2, bitmap);
+                        HashMap hashMap = m3.f9459e0;
                         Integer num = (Integer) hashMap.get(str2);
                         if (num != null) {
                             hashMap.put(str2, Integer.valueOf(num.intValue() + 1));
@@ -163,7 +163,7 @@ public final class z1 implements Runnable {
                         m3.d(str2);
                         return;
                     }
-                    m3Var2.f9450a = bitmap;
+                    m3Var2.f9461a = bitmap;
                     if (iArr3 == null) {
                         r22.setShader(null);
                         m3Var2.e = null;
@@ -181,13 +181,13 @@ public final class z1 implements Runnable {
                 p3 p3Var = (p3) obj3;
                 TLObject tLObject2 = (TLObject) obj;
                 MessagesController messagesController = (MessagesController) obj2;
-                p3Var.f9585r = true;
+                p3Var.f9599r = true;
                 p3Var.d = false;
                 if (tLObject2 instanceof TLRPC.TL_contacts_resolvedPeer) {
                     TLRPC.TL_contacts_resolvedPeer tL_contacts_resolvedPeer = (TLRPC.TL_contacts_resolvedPeer) tLObject2;
                     messagesController.putUsers(tL_contacts_resolvedPeer.users, false);
                     messagesController.putChats(tL_contacts_resolvedPeer.chats, false);
-                    MessagesStorage.getInstance(p3Var.f9587w.f9621a).putUsersAndChats(tL_contacts_resolvedPeer.users, tL_contacts_resolvedPeer.chats, true, true);
+                    MessagesStorage.getInstance(p3Var.f9601w.f9637a).putUsersAndChats(tL_contacts_resolvedPeer.users, tL_contacts_resolvedPeer.chats, true, true);
                     p3Var.E();
                     return;
                 }
@@ -215,11 +215,11 @@ public final class z1 implements Runnable {
                 r9 r9Var = k9Var.W;
                 k9Var.v.setLoading(false);
                 if (tLObject3 != null) {
-                    int i17 = r9.f9742d0;
+                    int i17 = r9.f9758d0;
                     ArrayList i18 = r9Var.i1();
                     for (int i19 = 0; i19 < i18.size(); i19++) {
                         TLRPC.User user = (TLRPC.User) i18.get(i19);
-                        if (user != null && (contains = k9Var.f9327c.contains(Long.valueOf(user.f20427id))) != user.close_friend) {
+                        if (user != null && (contains = k9Var.f9338c.contains(Long.valueOf(user.f20490id))) != user.close_friend) {
                             user.close_friend = contains;
                             if (contains) {
                                 i11 = user.flags2 | 4;
@@ -233,17 +233,17 @@ public final class z1 implements Runnable {
                 }
                 r9Var.g1();
                 if (r9Var.Z) {
-                    r9Var.h1(new p9(1, r9.G(r9Var), (ArrayList) null), new ci.e4(r9Var, 1), false);
+                    r9Var.h1(new p9(1, r9.F(r9Var), (ArrayList) null), new ci.d4(r9Var, 1), false);
                     return;
                 }
                 r9Var.g1();
-                r9Var.f9744b.D(0);
+                r9Var.f9760b.D(0);
                 return;
             case 7:
                 ((a8) obj2).O0 = (File) obj;
-                ma maVar = ((vb) obj3).f9959d1;
+                ma maVar = ((vb) obj3).f9976d1;
                 if (maVar != null) {
-                    maVar.f9365b.W2.N(false);
+                    maVar.f9376b.Z2.N(false);
                     return;
                 }
                 return;
@@ -278,15 +278,15 @@ public final class z1 implements Runnable {
                 ArrayList arrayList5 = new ArrayList();
                 for (int i20 = 0; i20 < arrayList4.size(); i20++) {
                     TLRPC.User user2 = (TLRPC.User) arrayList4.get(i20);
-                    Boolean bool = (Boolean) hashMap2.get(Long.valueOf(user2.f20427id));
+                    Boolean bool = (Boolean) hashMap2.get(Long.valueOf(user2.f20490id));
                     if (bool != null && bool.booleanValue()) {
                         z10 = false;
                     } else {
                         z10 = true;
                     }
                     ?? obj4 = new Object();
-                    obj4.f11386a = user2;
-                    obj4.f11387b = z10;
+                    obj4.f11412a = user2;
+                    obj4.f11413b = z10;
                     arrayList5.add(obj4);
                 }
                 callback.run(arrayList5);
@@ -303,12 +303,12 @@ public final class z1 implements Runnable {
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
                 gi.d3 d3Var = ((gi.y2) obj3).d;
                 if (((TLObject) obj) instanceof TLRPC.TL_boolTrue) {
-                    gi.v2 v2Var = d3Var.f11164x;
+                    gi.v2 v2Var = d3Var.f11188y;
                     v2Var.getClass();
-                    v2Var.y("emoji_status_access_requested", org.telegram.ui.web.a1.A("cancelled", "status"));
+                    v2Var.y("emoji_status_access_requested", org.telegram.ui.web.b1.A("cancelled", "status"));
                     return;
                 }
-                new xc(d3Var.f11153p0, d3Var.E).Y(tL_error).k(true);
+                new xc(d3Var.f11176q0, d3Var.F).Y(tL_error).k(true);
                 return;
             case 12:
                 TL_payments.connectedBotStarRef connectedbotstarref = (TL_payments.connectedBotStarRef) obj2;
@@ -316,14 +316,14 @@ public final class z1 implements Runnable {
                 xc.a0((gi.u3) obj3).M(LocaleController.getString(R.string.AffiliateProgramLinkCopiedTitle), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.AffiliateProgramLinkCopiedText, gi.l.H0(connectedbotstarref.commission_permille), UserObject.getUserName((TLRPC.User) obj))), R.raw.copy).j();
                 return;
             case 13:
-                gi.u3.B0((gi.u3) obj3, (TLObject) obj, (org.telegram.ui.ActionBar.b2) obj2);
+                gi.u3.B0((gi.u3) obj3, (TLObject) obj, (org.telegram.ui.ActionBar.c2) obj2);
                 return;
             case 14:
-                ((hg.f0) obj3).b((a0.h) obj, (ArrayList) obj2);
+                ((hg.f0) obj3).a((a0.h) obj, (ArrayList) obj2);
                 return;
             case 15:
                 hg.t tVar = (hg.t) obj;
-                int i21 = ((hg.h0) obj3).f11894s0;
+                int i21 = ((hg.h0) obj3).f11921s0;
                 MessagesController messagesController3 = MessagesController.getInstance(i21);
                 Iterator it = ((HashSet) obj2).iterator();
                 while (it.hasNext()) {
@@ -360,14 +360,14 @@ public final class z1 implements Runnable {
                     } else {
                         i13 = 0;
                     }
-                    if (!j1Var.f11935o0 && (arrayList = j1Var.A0) != null && !arrayList.isEmpty()) {
+                    if (!j1Var.f11963o0 && (arrayList = j1Var.A0) != null && !arrayList.isEmpty()) {
                         j1Var.H();
-                        db0 db0Var = j1Var.V;
+                        eb0 eb0Var = j1Var.V;
                         if (j1Var.K() > 0) {
                             z11 = true;
                         }
-                        db0Var.a(z11);
-                        j1Var.f11935o0 = true;
+                        eb0Var.a(z11);
+                        j1Var.f11963o0 = true;
                     }
                     if (i12 != i13) {
                         j1Var.l();
@@ -378,72 +378,72 @@ public final class z1 implements Runnable {
                 return;
             case 17:
                 hg.j1 j1Var2 = (hg.j1) obj3;
-                j1Var2.f11936p0 = null;
+                j1Var2.f11964p0 = null;
                 j1Var2.Y((a0.h) obj, (ArrayList) obj2, true);
                 return;
             case 18:
                 hg.a2 a2Var2 = (hg.a2) obj3;
                 ArrayList arrayList8 = (ArrayList) obj2;
-                a2Var2.f11805q = arrayList8;
-                a2Var2.f11806r = (HashMap) obj;
-                a2Var2.f11807s = true;
-                a2Var2.f11792a.S(arrayList8);
+                a2Var2.f11832q = arrayList8;
+                a2Var2.f11833r = (HashMap) obj;
+                a2Var2.f11834s = true;
+                a2Var2.f11819a.S(arrayList8);
                 return;
             case 19:
                 hg.c2 c2Var = (hg.c2) obj3;
                 TLRPC.TL_messages_foundStickerSets tL_messages_foundStickerSets = (TLRPC.TL_messages_foundStickerSets) obj;
-                String str5 = ((TLRPC.TL_messages_searchStickerSets) obj2).f20392q;
-                hg.e2 e2Var = c2Var.f11827a;
+                String str5 = ((TLRPC.TL_messages_searchStickerSets) obj2).f20455q;
+                hg.e2 e2Var = c2Var.f11854a;
                 String str6 = e2Var.R;
-                r51 r51Var = e2Var.e;
+                w51 w51Var = e2Var.e;
                 if (str5.equals(str6)) {
                     c2Var.a();
-                    r51Var.f29852b.h.getProgressDrawable().e = false;
+                    w51Var.f32164b.h.getProgressDrawable().e = false;
                     e2Var.N = 0;
-                    r51Var.b(true);
+                    w51Var.b(true);
                     e2Var.E.addAll(tL_messages_foundStickerSets.sets);
                     e2Var.l();
                     return;
                 }
                 return;
             case 20:
-                u2.g0 g0Var = (u2.g0) obj;
-                j2.f fVar = ((i2.z0) obj3).f12630c;
+                u2.h0 h0Var = (u2.h0) obj;
+                j2.e eVar = ((i2.y0) obj3).f12659c;
                 e9.x1 f10 = ((e9.k0) obj2).f();
-                com.google.firebase.messaging.l lVar = fVar.d;
-                b2.f1 f1Var = fVar.h;
+                com.google.firebase.messaging.l lVar = eVar.d;
+                b2.f1 f1Var = eVar.h;
                 f1Var.getClass();
                 lVar.getClass();
-                lVar.f7646b = e9.n0.u(f10);
+                lVar.f7658b = e9.n0.u(f10);
                 if (!f10.isEmpty()) {
-                    lVar.e = (u2.g0) f10.get(0);
-                    g0Var.getClass();
-                    lVar.f7648f = g0Var;
+                    lVar.e = (u2.h0) f10.get(0);
+                    h0Var.getClass();
+                    lVar.f7660f = h0Var;
                 }
-                if (((u2.g0) lVar.d) == null) {
-                    lVar.d = com.google.firebase.messaging.l.t(f1Var, (e9.n0) lVar.f7646b, (u2.g0) lVar.e, (b2.l1) lVar.f7645a);
+                if (((u2.h0) lVar.d) == null) {
+                    lVar.d = com.google.firebase.messaging.l.n(f1Var, (e9.n0) lVar.f7658b, (u2.h0) lVar.e, (b2.l1) lVar.f7657a);
                 }
-                lVar.M(f1Var.y0());
+                lVar.D(f1Var.y0());
                 return;
             case 21:
                 Pair pair3 = (Pair) obj2;
-                ((i2.f1) obj3).f12353b.h.c(((Integer) pair3.first).intValue(), (u2.g0) pair3.second, (oa.d) obj);
+                ((i2.e1) obj3).f12382b.h.c(((Integer) pair3.first).intValue(), (u2.h0) pair3.second, (oa.d) obj);
                 return;
             case 22:
                 Pair pair4 = (Pair) obj2;
-                ((i2.f1) obj3).f12353b.h.b(((Integer) pair4.first).intValue(), (u2.g0) pair4.second, (Exception) obj);
+                ((i2.e1) obj3).f12382b.h.b(((Integer) pair4.first).intValue(), (u2.h0) pair4.second, (Exception) obj);
                 return;
             case 23:
                 ig.c cVar = (ig.c) obj3;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
                 TLObject tLObject5 = (TLObject) obj;
                 if (tL_error2 != null) {
-                    cVar.f12834a.a(0.0f);
+                    cVar.f12864a.a(0.0f);
                     xc.d0(tL_error2);
                     return;
                 } else if (tLObject5 instanceof TLRPC.TL_boolFalse) {
-                    cVar.f12834a.a(0.0f);
-                    nk.q(R.string.UnknownError, xc.a0(cVar), null);
+                    cVar.f12864a.a(0.0f);
+                    sl.q(R.string.UnknownError, xc.a0(cVar), null);
                     return;
                 } else {
                     cVar.finishFragment();
@@ -459,10 +459,10 @@ public final class z1 implements Runnable {
                     return;
                 } else if (tLObject6 instanceof TLRPC.TL_boolFalse) {
                     mVar.e.a(0.0f);
-                    nk.q(R.string.UnknownError, xc.a0(mVar), null);
+                    sl.q(R.string.UnknownError, xc.a0(mVar), null);
                     return;
                 } else {
-                    if (mVar.E != null) {
+                    if (mVar.H != null) {
                         mVar.getMessagesController().loadFullUser(mVar.getUserConfig().getCurrentUser(), 0, true);
                     }
                     mVar.finishFragment();
@@ -471,11 +471,11 @@ public final class z1 implements Runnable {
             case 25:
                 ig.y yVar = (ig.y) obj3;
                 TL_account.TL_businessChatLink tL_businessChatLink = (TL_account.TL_businessChatLink) obj2;
-                ArrayList arrayList9 = yVar.f13089b;
+                ArrayList arrayList9 = yVar.f13125b;
                 if (((TLObject) obj) instanceof TLRPC.TL_boolTrue) {
                     if (arrayList9.contains(tL_businessChatLink)) {
                         arrayList9.remove(tL_businessChatLink);
-                        NotificationCenter.getInstance(yVar.f13088a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.businessLinksUpdated, new Object[0]);
+                        NotificationCenter.getInstance(yVar.f13124a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.businessLinksUpdated, new Object[0]);
                     }
                     yVar.f();
                     return;
@@ -486,44 +486,44 @@ public final class z1 implements Runnable {
                 ig.y yVar2 = (ig.y) obj3;
                 TL_account.deleteBusinessChatLink deletebusinesschatlink = new TL_account.deleteBusinessChatLink();
                 deletebusinesschatlink.slug = (String) obj2;
-                ConnectionsManager.getInstance(yVar2.f13088a).sendRequest(deletebusinesschatlink, new ai.g(20, yVar2, (TL_account.TL_businessChatLink) obj));
+                ConnectionsManager.getInstance(yVar2.f13124a).sendRequest(deletebusinesschatlink, new ai.g(20, yVar2, (TL_account.TL_businessChatLink) obj));
                 return;
             case 27:
-                ig.k0.Q((ig.k0) obj3, (TL_account.TL_connectedBot) obj2, (TL_account.TL_businessBotRecipients) obj);
+                ig.j0.P((ig.j0) obj3, (TL_account.TL_connectedBot) obj2, (TL_account.TL_businessBotRecipients) obj);
                 return;
             case 28:
-                ig.v0 v0Var = (ig.v0) obj3;
+                ig.u0 u0Var = (ig.u0) obj3;
                 TLRPC.TL_error tL_error4 = (TLRPC.TL_error) obj2;
                 TLObject tLObject7 = (TLObject) obj;
                 if (tL_error4 != null) {
-                    v0Var.f13055a.a(0.0f);
+                    u0Var.f13085a.a(0.0f);
                     xc.d0(tL_error4);
                     return;
                 } else if (tLObject7 instanceof TLRPC.TL_boolFalse) {
-                    v0Var.f13055a.a(0.0f);
-                    nk.q(R.string.UnknownError, xc.a0(v0Var), null);
+                    u0Var.f13085a.a(0.0f);
+                    sl.q(R.string.UnknownError, xc.a0(u0Var), null);
                     return;
                 } else {
-                    v0Var.finishFragment();
+                    u0Var.finishFragment();
                     return;
                 }
             default:
-                ig.f1.U((ig.f1) obj3, (TLRPC.TL_error) obj2, (TLObject) obj);
+                ig.e1.U((ig.e1) obj3, (TLRPC.TL_error) obj2, (TLObject) obj);
                 return;
         }
     }
 
     public z1(Object obj, Object obj2, Object obj3, boolean z10, int i10) {
-        this.f10193a = i10;
-        this.f10195c = obj;
+        this.f10210a = i10;
+        this.f10212c = obj;
         this.d = obj2;
-        this.f10194b = obj3;
+        this.f10211b = obj3;
     }
 
     public z1(String str, int[][] iArr, ai.y0 y0Var) {
-        this.f10193a = 5;
-        this.f10194b = str;
-        this.f10195c = iArr;
+        this.f10210a = 5;
+        this.f10211b = str;
+        this.f10212c = iArr;
         this.d = y0Var;
     }
 }

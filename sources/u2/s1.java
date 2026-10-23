@@ -1,68 +1,19 @@
 package u2;
+public final class s1 extends t {
+    public final b2.o0 f47884f;
 
-import e9.x1;
-public final class s1 {
-    public static final s1 d = new s1(new b2.p1[0]);
-    public static final String e;
-    public final int f47434a;
-    public final x1 f47435b;
-    public int f47436c;
-
-    static {
-        String str = e2.m0.f8252a;
-        e = Integer.toString(0, 36);
+    public s1(b2.o1 o1Var, b2.o0 o0Var) {
+        super(o1Var);
+        this.f47884f = o0Var;
     }
 
-    public s1(b2.p1... p1VarArr) {
-        x1 v = e9.n0.v(p1VarArr);
-        this.f47435b = v;
-        this.f47434a = p1VarArr.length;
-        int i10 = 0;
-        while (i10 < v.d) {
-            int i11 = i10 + 1;
-            for (int i12 = i11; i12 < v.d; i12++) {
-                if (((b2.p1) v.get(i10)).equals(v.get(i12))) {
-                    e2.a.d("TrackGroupArray", "", new IllegalArgumentException("Multiple identical TrackGroups added to one TrackGroupArray."));
-                }
-            }
-            i10 = i11;
-        }
-    }
-
-    public final b2.p1 a(int i10) {
-        return (b2.p1) this.f47435b.get(i10);
-    }
-
-    public final int b(b2.p1 p1Var) {
-        int indexOf = this.f47435b.indexOf(p1Var);
-        if (indexOf >= 0) {
-            return indexOf;
-        }
-        return -1;
-    }
-
-    public final boolean equals(Object obj) {
-        if (this != obj) {
-            if (obj != null && s1.class == obj.getClass()) {
-                s1 s1Var = (s1) obj;
-                if (this.f47434a == s1Var.f47434a && this.f47435b.equals(s1Var.f47435b)) {
-                    return true;
-                }
-                return false;
-            }
-            return false;
-        }
-        return true;
-    }
-
-    public final int hashCode() {
-        if (this.f47436c == 0) {
-            this.f47436c = this.f47435b.hashCode();
-        }
-        return this.f47436c;
-    }
-
-    public final String toString() {
-        return this.f47435b.toString();
+    @Override
+    public final b2.n1 m(int i10, b2.n1 n1Var, long j10) {
+        super.m(i10, n1Var, j10);
+        b2.o0 o0Var = this.f47884f;
+        n1Var.f3876c = o0Var;
+        b2.j0 j0Var = o0Var.f3894b;
+        n1Var.f3875b = null;
+        return n1Var;
     }
 }

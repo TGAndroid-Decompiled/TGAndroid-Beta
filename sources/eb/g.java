@@ -23,75 +23,75 @@ import java.util.concurrent.atomic.AtomicLongArray;
 import org.telegram.tgnet.TLObject;
 public final class g {
     public static final c h = c.d;
-    public static final p f8565i = t.f8576a;
-    public static final q f8566j = t.f8577b;
-    public final ThreadLocal f8567a = new ThreadLocal();
-    public final ConcurrentHashMap f8568b = new ConcurrentHashMap();
-    public final qf.b f8569c;
+    public static final p f8572i = t.f8583a;
+    public static final q f8573j = t.f8584b;
+    public final ThreadLocal f8574a = new ThreadLocal();
+    public final ConcurrentHashMap f8575b = new ConcurrentHashMap();
+    public final qf.b f8576c;
     public final hb.j d;
     public final List e;
-    public final boolean f8570f;
-    public final c f8571g;
+    public final boolean f8577f;
+    public final c f8578g;
 
     public g(gb.f fVar, HashMap hashMap, c cVar, ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, t tVar, t tVar2, ArrayList arrayList4) {
         hb.p pVar;
         hb.p pVar2;
         qf.b bVar = new qf.b(20, hashMap, arrayList4);
-        this.f8569c = bVar;
-        this.f8570f = true;
-        this.f8571g = cVar;
+        this.f8576c = bVar;
+        this.f8577f = true;
+        this.f8578g = cVar;
         ArrayList arrayList5 = new ArrayList();
         arrayList5.add(h1.A);
-        if (tVar == t.f8576a) {
-            pVar = hb.r.f11754c;
+        if (tVar == t.f8583a) {
+            pVar = hb.r.f11781c;
         } else {
             pVar = new hb.p(tVar, 1);
         }
         arrayList5.add(pVar);
         arrayList5.add(fVar);
         arrayList5.addAll(arrayList3);
-        arrayList5.add(h1.f11734p);
-        arrayList5.add(h1.f11726g);
+        arrayList5.add(h1.f11761p);
+        arrayList5.add(h1.f11753g);
         arrayList5.add(h1.d);
         arrayList5.add(h1.e);
-        arrayList5.add(h1.f11725f);
-        c0 c0Var = h1.f11729k;
+        arrayList5.add(h1.f11752f);
+        c0 c0Var = h1.f11756k;
         arrayList5.add(new y0(Long.TYPE, Long.class, c0Var));
         arrayList5.add(new y0(Double.TYPE, Double.class, new d(0)));
         arrayList5.add(new y0(Float.TYPE, Float.class, new d(1)));
-        if (tVar2 == t.f8577b) {
-            pVar2 = hb.q.f11752b;
+        if (tVar2 == t.f8584b) {
+            pVar2 = hb.q.f11779b;
         } else {
             pVar2 = new hb.p(new hb.q(tVar2), 0);
         }
         arrayList5.add(pVar2);
         arrayList5.add(h1.h);
-        arrayList5.add(h1.f11727i);
+        arrayList5.add(h1.f11754i);
         arrayList5.add(new x0(AtomicLong.class, new e(c0Var, 0).nullSafe(), 0));
         arrayList5.add(new x0(AtomicLongArray.class, new e(c0Var, 1).nullSafe(), 0));
-        arrayList5.add(h1.f11728j);
-        arrayList5.add(h1.f11730l);
-        arrayList5.add(h1.f11735q);
-        arrayList5.add(h1.f11736r);
-        arrayList5.add(new x0(BigDecimal.class, h1.f11731m, 0));
-        arrayList5.add(new x0(BigInteger.class, h1.f11732n, 0));
-        arrayList5.add(new x0(gb.h.class, h1.f11733o, 0));
-        arrayList5.add(h1.f11737s);
-        arrayList5.add(h1.f11738t);
+        arrayList5.add(h1.f11755j);
+        arrayList5.add(h1.f11757l);
+        arrayList5.add(h1.f11762q);
+        arrayList5.add(h1.f11763r);
+        arrayList5.add(new x0(BigDecimal.class, h1.f11758m, 0));
+        arrayList5.add(new x0(BigInteger.class, h1.f11759n, 0));
+        arrayList5.add(new x0(gb.h.class, h1.f11760o, 0));
+        arrayList5.add(h1.f11764s);
+        arrayList5.add(h1.f11765t);
         arrayList5.add(h1.v);
-        arrayList5.add(h1.f11740w);
-        arrayList5.add(h1.f11742y);
-        arrayList5.add(h1.f11739u);
-        arrayList5.add(h1.f11723b);
-        arrayList5.add(hb.h.f11719c);
-        arrayList5.add(h1.f11741x);
-        if (kb.f.f15005a) {
-            arrayList5.add(kb.f.f15007c);
-            arrayList5.add(kb.f.f15006b);
+        arrayList5.add(h1.f11767w);
+        arrayList5.add(h1.f11769y);
+        arrayList5.add(h1.f11766u);
+        arrayList5.add(h1.f11750b);
+        arrayList5.add(hb.h.f11746c);
+        arrayList5.add(h1.f11768x);
+        if (kb.f.f15051a) {
+            arrayList5.add(kb.f.f15053c);
+            arrayList5.add(kb.f.f15052b);
             arrayList5.add(kb.f.d);
         }
-        arrayList5.add(hb.b.f11709c);
-        arrayList5.add(h1.f11722a);
+        arrayList5.add(hb.b.f11736c);
+        arrayList5.add(h1.f11749a);
         arrayList5.add(new hb.d(bVar, 0));
         arrayList5.add(new hb.d(bVar, 1));
         hb.j jVar = new hb.j(bVar);
@@ -112,12 +112,12 @@ public final class g {
     public final u b(lb.a aVar) {
         boolean z10;
         Objects.requireNonNull(aVar, "type must not be null");
-        ConcurrentHashMap concurrentHashMap = this.f8568b;
+        ConcurrentHashMap concurrentHashMap = this.f8575b;
         u uVar = (u) concurrentHashMap.get(aVar);
         if (uVar != null) {
             return uVar;
         }
-        ThreadLocal threadLocal = this.f8567a;
+        ThreadLocal threadLocal = this.f8574a;
         Map map = (Map) threadLocal.get();
         if (map == null) {
             map = new HashMap();
@@ -141,8 +141,8 @@ public final class g {
                 }
                 uVar3 = ((v) it.next()).create(this, aVar);
                 if (uVar3 != null) {
-                    if (fVar.f8564a == null) {
-                        fVar.f8564a = uVar3;
+                    if (fVar.f8571a == null) {
+                        fVar.f8571a = uVar3;
                         map.put(aVar, uVar3);
                     } else {
                         throw new AssertionError("Delegate is already set");
@@ -173,8 +173,8 @@ public final class g {
 
     public final mb.b d(Writer writer) {
         mb.b bVar = new mb.b(writer);
-        bVar.k(this.f8571g);
-        bVar.f16844r = this.f8570f;
+        bVar.k(this.f8578g);
+        bVar.f16907r = this.f8577f;
         bVar.l(2);
         bVar.v = false;
         return bVar;
@@ -202,13 +202,13 @@ public final class g {
 
     public final void f(Object obj, Class cls, mb.b bVar) {
         u b10 = b(new lb.a(cls));
-        int i10 = bVar.f16843n;
+        int i10 = bVar.f16906n;
         if (i10 == 2) {
-            bVar.f16843n = 1;
+            bVar.f16906n = 1;
         }
-        boolean z10 = bVar.f16844r;
+        boolean z10 = bVar.f16907r;
         boolean z11 = bVar.v;
-        bVar.f16844r = this.f8570f;
+        bVar.f16907r = this.f8577f;
         bVar.v = false;
         try {
             try {
@@ -220,20 +220,20 @@ public final class g {
             }
         } finally {
             bVar.l(i10);
-            bVar.f16844r = z10;
+            bVar.f16907r = z10;
             bVar.v = z11;
         }
     }
 
     public final void g(mb.b bVar) {
-        k kVar = k.f8573a;
-        int i10 = bVar.f16843n;
-        boolean z10 = bVar.f16844r;
+        k kVar = k.f8580a;
+        int i10 = bVar.f16906n;
+        boolean z10 = bVar.f16907r;
         boolean z11 = bVar.v;
-        bVar.f16844r = this.f8570f;
+        bVar.f16907r = this.f8577f;
         bVar.v = false;
         if (i10 == 2) {
-            bVar.f16843n = 1;
+            bVar.f16906n = 1;
         }
         try {
             try {
@@ -247,12 +247,12 @@ public final class g {
             }
         } finally {
             bVar.l(i10);
-            bVar.f16844r = z10;
+            bVar.f16907r = z10;
             bVar.v = z11;
         }
     }
 
     public final String toString() {
-        return "{serializeNulls:false,factories:" + this.e + ",instanceCreators:" + this.f8569c + "}";
+        return "{serializeNulls:false,factories:" + this.e + ",instanceCreators:" + this.f8576c + "}";
     }
 }

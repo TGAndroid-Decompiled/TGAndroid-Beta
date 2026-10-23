@@ -5,28 +5,28 @@ import com.google.android.gms.internal.play_billing.k3;
 import v7.b8;
 import v7.u6;
 public final class d {
-    public final String f7817a;
-    public final int f7818b;
-    public final Integer f7819c;
+    public final String f7829a;
+    public final int f7830b;
+    public final Integer f7831c;
     public final Integer d;
     public final float e;
-    public final boolean f7820f;
-    public final boolean f7821g;
+    public final boolean f7832f;
+    public final boolean f7833g;
     public final boolean h;
-    public final boolean f7822i;
-    public final int f7823j;
+    public final boolean f7834i;
+    public final int f7835j;
 
     public d(String str, int i10, Integer num, Integer num2, float f7, boolean z10, boolean z11, boolean z12, boolean z13, int i11) {
-        this.f7817a = str;
-        this.f7818b = i10;
-        this.f7819c = num;
+        this.f7829a = str;
+        this.f7830b = i10;
+        this.f7831c = num;
         this.d = num2;
         this.e = f7;
-        this.f7820f = z10;
-        this.f7821g = z11;
+        this.f7832f = z10;
+        this.f7833g = z11;
         this.h = z12;
-        this.f7822i = z13;
-        this.f7823j = i11;
+        this.f7834i = z13;
+        this.f7835j = i11;
     }
 
     public static int a(String str) {
@@ -54,7 +54,7 @@ public final class d {
             }
         } catch (NumberFormatException unused) {
         }
-        k3.r("Ignoring unknown alignment: ", str, "SsaStyle");
+        k3.q("Ignoring unknown alignment: ", str, "SsaStyle");
         return -1;
     }
 

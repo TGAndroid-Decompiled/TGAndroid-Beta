@@ -2,7 +2,6 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,29 +12,29 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-public final class ty extends im0 {
+public final class ty extends lm0 {
     public boolean E;
     public final tz F;
-    public final my f30710c;
+    public final my f30918c;
     public long d;
     public TLRPC.StickerSet e;
-    public ArrayList f30711f;
+    public ArrayList f30919f;
     public final ArrayList h = new ArrayList();
-    public final ArrayList f30712n = new ArrayList();
-    public final ArrayList f30713r = new ArrayList();
-    public final ArrayList f30714s = new ArrayList();
+    public final ArrayList f30920n = new ArrayList();
+    public final ArrayList f30921r = new ArrayList();
+    public final ArrayList f30922s = new ArrayList();
     public String v;
-    public String f30715w;
-    public sy f30716x;
-    public boolean f30717y;
+    public String f30923w;
+    public sy f30924x;
+    public boolean f30925y;
 
     public ty(tz tzVar, Context context) {
         this.F = tzVar;
-        ?? aVar = new oh.a(context, tzVar.f30727c1, new d(this, 11), new tv(this, 1), tzVar.Z1);
-        this.f30710c = aVar;
+        ?? aVar = new oh.a(context, tzVar.f30966c1, new d(this, 11), new tv(this, 1), tzVar.Z1);
+        this.f30918c = aVar;
         aVar.setPadding(AndroidUtilities.dp(10.0f), 0, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(5.0f));
         aVar.setClipToPadding(false);
-        aVar.W2.f30865r = false;
+        aVar.Z2.f24972r = false;
         aVar.setNestedScrollingEnabled(false);
         aVar.setDrawSelection(false);
         aVar.setOnTouchListener(new m.d2(this, 1));
@@ -55,12 +54,12 @@ public final class ty extends im0 {
         if (str3 == null) {
             return;
         }
-        MediaDataController.getInstance(tzVar.f30727c1).searchStickers(true, str2, str3, new ci.z2((Object) tyVar, str3, arrayList, (Object) runnable, 9), z10);
+        MediaDataController.getInstance(tzVar.f30966c1).searchStickers(true, str2, str3, new ci.y2((Object) tyVar, str3, arrayList, (Object) runnable, 9), z10);
     }
 
     @Override
     public final boolean D(s4.b1 b1Var) {
-        int i10 = b1Var.f45924f;
+        int i10 = b1Var.f46346f;
         if (i10 != 0 && i10 != 4) {
             return false;
         }
@@ -77,24 +76,24 @@ public final class ty extends im0 {
             ay ayVar = tzVar.R;
             if (adapter != ayVar) {
                 eyVar.setAdapter(ayVar);
-                this.f30717y = false;
+                this.f30925y = false;
             }
             this.d = 0L;
-            tzVar.f30721b.a(false, true);
+            tzVar.f30960b.a(false, true);
             l();
         } else {
             this.v = str.toLowerCase();
         }
-        sy syVar = this.f30716x;
+        sy syVar = this.f30924x;
         if (syVar != null) {
             AndroidUtilities.cancelRunOnUIThread(syVar);
         }
         if (!TextUtils.isEmpty(this.v)) {
-            this.f30712n.clear();
+            this.f30920n.clear();
             this.E = false;
             tzVar.V.e(true);
             sy syVar2 = new sy(this);
-            this.f30716x = syVar2;
+            this.f30924x = syVar2;
             if (z10) {
                 j10 = 300;
             }
@@ -105,13 +104,13 @@ public final class ty extends im0 {
     @Override
     public final int h() {
         if (this.d != 0) {
-            return this.f30711f.size() + 4;
+            return this.f30919f.size() + 4;
         }
         ArrayList arrayList = this.h;
         boolean isEmpty = arrayList.isEmpty();
-        ArrayList arrayList2 = this.f30714s;
-        ArrayList arrayList3 = this.f30713r;
-        if (isEmpty && arrayList3.isEmpty() && arrayList2.isEmpty() && !this.f30717y) {
+        ArrayList arrayList2 = this.f30922s;
+        ArrayList arrayList3 = this.f30921r;
+        if (isEmpty && arrayList3.isEmpty() && arrayList2.isEmpty() && !this.f30925y) {
             return this.F.getRecentEmoji().size() + 1;
         }
         int i10 = 2;
@@ -137,7 +136,7 @@ public final class ty extends im0 {
 
     @Override
     public final void l() {
-        this.f30710c.W2.N(false);
+        this.f30918c.Z2.N(false);
         super.l();
     }
 
@@ -150,6 +149,7 @@ public final class ty extends im0 {
     public final s4.b1 x(ViewGroup viewGroup, int i10) {
         ah.x xVar;
         tz tzVar = this.F;
+        org.telegram.ui.ActionBar.g6 g6Var = tzVar.Z1;
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 != 3) {
@@ -157,14 +157,14 @@ public final class ty extends im0 {
                         if (i10 != 5) {
                             ah.x xVar2 = new ah.x(this, tzVar.getContext(), 16);
                             TextView textView = new TextView(tzVar.getContext());
-                            org.telegram.messenger.nk.j(16.0f, R.string.NoEmojiFound, 1, textView);
-                            int i11 = org.telegram.ui.ActionBar.h6.Le;
-                            textView.setTextColor(tzVar.A(i11));
+                            org.telegram.messenger.sl.n(R.string.NoEmojiFound, textView, 1, 16.0f);
+                            int i11 = org.telegram.ui.ActionBar.k6.Le;
+                            org.telegram.ui.ActionBar.r6.W(textView, i11, g6Var);
                             xVar2.addView(textView, w7.z5.d(-2, -2.0f, 49, 0.0f, 10.0f, 0.0f, 0.0f));
                             ImageView imageView = new ImageView(tzVar.getContext());
                             imageView.setScaleType(ImageView.ScaleType.CENTER);
                             imageView.setImageResource(R.drawable.msg_emoji_question);
-                            imageView.setColorFilter(new PorterDuffColorFilter(tzVar.A(i11), PorterDuff.Mode.MULTIPLY));
+                            org.telegram.ui.ActionBar.r6.t(imageView, i11, g6Var, PorterDuff.Mode.MULTIPLY);
                             xVar2.addView(imageView, w7.z5.e(48, 48, 85));
                             imageView.setOnClickListener(new oy(this));
                             xVar2.setLayoutParams(new s4.o0(-1, -2));
@@ -176,16 +176,16 @@ public final class ty extends im0 {
                         }
                     } else {
                         ViewGroup.LayoutParams o0Var = new s4.o0(-1, AndroidUtilities.dp(79.0f));
-                        View view2 = this.f30710c;
+                        View view2 = this.f30918c;
                         view2.setLayoutParams(o0Var);
                         xVar = view2;
                     }
                 } else {
-                    xVar = new org.telegram.ui.Cells.n8(tzVar.getContext(), true, false, tzVar.Z1, tzVar.f30747i2);
+                    xVar = new org.telegram.ui.Cells.o8(tzVar.getContext(), true, false, tzVar.Z1, tzVar.f30986i2);
                 }
             } else {
                 View view3 = new View(tzVar.getContext());
-                view3.setLayoutParams(new s4.o0(-1, tzVar.f30723b1));
+                view3.setLayoutParams(new s4.o0(-1, tzVar.f30962b1));
                 xVar = view3;
             }
         } else {

@@ -19,17 +19,18 @@ import java.util.zip.GZIPOutputStream;
 import n6.l;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.telegram.ui.Cells.c1;
+import org.telegram.ui.Cells.b1;
+import si.o0;
 public final class c {
     public static final Pattern d = Pattern.compile("[0-9]+s");
     public static final Charset e = Charset.forName("UTF-8");
-    public final Context f46929a;
-    public final qa.b f46930b;
-    public final d f46931c = new d();
+    public final Context f47364a;
+    public final qa.b f47365b;
+    public final d f47366c = new d();
 
     public c(Context context, qa.b bVar) {
-        this.f46929a = context;
-        this.f46930b = bVar;
+        this.f47364a = context;
+        this.f47365b = bVar;
     }
 
     public static URL a(String str) {
@@ -75,9 +76,9 @@ public final class c {
             if (TextUtils.isEmpty(str)) {
                 h = "";
             } else {
-                h = r4.c.h(", ", str);
+                h = o0.h(", ", str);
             }
-            Log.w("Firebase-Installations", c1.k("Firebase options used while communicating with Firebase server APIs: ", str2, ", ", str3, h));
+            Log.w("Firebase-Installations", b1.l("Firebase options used while communicating with Firebase server APIs: ", str2, ", ", str3, h));
         }
     }
 

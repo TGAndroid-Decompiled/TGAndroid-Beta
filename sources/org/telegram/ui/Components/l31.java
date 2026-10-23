@@ -1,59 +1,88 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
 import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.TLRPC;
-public final class l31 extends g61 {
-    public static final int f28016a = 0;
+import org.telegram.messenger.R;
+public final class l31 extends j71 {
+    public final org.telegram.ui.w10 f28206g3;
+    public final f6 f28207h3;
+    public Drawable f28208i3;
+    public int f28209j3;
+    public final Paint f28210k3;
 
-    static {
-        g61.setup(new g61());
+    public l31(Context context, int i10, i31 i31Var, d31 d31Var, d31 d31Var2, org.telegram.ui.ActionBar.g6 g6Var) {
+        super(context, i10, 0, false, i31Var, d31Var, d31Var2, g6Var);
+        this.f28206g3 = new org.telegram.ui.w10();
+        this.f28207h3 = new f6(this, 320L, bs.h);
+        this.f28210k3 = new Paint(1);
     }
 
     @Override
-    public final void bindView(View view, h61 h61Var, boolean z10, u61 u61Var, c71 c71Var) {
-        boolean z11;
-        int i10;
-        m31 m31Var = (m31) view;
-        boolean z12 = false;
-        if (h61Var.f26792r) {
-            m31Var.f();
+    public final void dispatchDraw(Canvas canvas) {
+        Canvas canvas2;
+        float e = this.f28207h3.e(canScrollVertically(-1));
+        int i10 = (e > 0.0f ? 1 : (e == 0.0f ? 0 : -1));
+        if (i10 > 0) {
+            canvas2 = canvas;
+            canvas2.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
         } else {
-            Object obj = h61Var.G;
-            if (obj == null) {
-                if (h61Var.d == -2) {
-                    m31Var.c();
-                } else {
-                    if ((h61Var.f26798y & 1) != 0) {
-                        z11 = true;
-                    } else {
-                        z11 = false;
+            canvas2 = canvas;
+        }
+        float height = getHeight();
+        float f7 = 0.0f;
+        for (int i11 = 0; i11 < getChildCount(); i11++) {
+            View childAt = getChildAt(i11);
+            if (childAt instanceof v31) {
+                v31 v31Var = (v31) childAt;
+                if (v31Var.E) {
+                    if (height > v31Var.getY()) {
+                        height = v31Var.getY();
+                        RecyclerView.R(v31Var);
                     }
-                    m31Var.d(z11, h61Var.f26791q, h61Var.e);
-                }
-            } else if (obj instanceof TLRPC.TL_forumTopic) {
-                if (!h61Var.I) {
-                    m31Var.g(h61Var.f26797x, (TLRPC.TL_forumTopic) obj, h61Var.e);
-                } else {
-                    m31Var.b(h61Var.f26797x, (TLRPC.TL_forumTopic) obj, h61Var.e);
+                    if (f7 < v31Var.getY() + v31Var.getHeight()) {
+                        f7 = v31Var.getY() + v31Var.getHeight();
+                        RecyclerView.R(v31Var);
+                    }
                 }
             }
         }
-        if (w7.j6.a(h61Var.f26798y, 8)) {
-            i10 = AndroidUtilities.dp(10.0f);
-        } else {
-            i10 = 0;
+        if (f7 > height) {
+            int i12 = org.telegram.ui.ActionBar.k6.f21463s9;
+            org.telegram.ui.ActionBar.g6 g6Var = this.f28705n2;
+            int w02 = org.telegram.ui.ActionBar.k6.w0(i12, g6Var);
+            Paint paint = this.f28210k3;
+            paint.setColor(w02);
+            RectF rectF = AndroidUtilities.rectTmp;
+            rectF.set((getWidth() - AndroidUtilities.dp(56.0f)) / 2.0f, height, (AndroidUtilities.dp(56.0f) + getWidth()) / 2.0f, f7);
+            canvas2.drawRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), paint);
+            if (this.f28208i3 == null) {
+                this.f28208i3 = getContext().getResources().getDrawable(R.drawable.msg_limit_pin).mutate();
+            }
+            int w03 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f21147b9, g6Var);
+            if (this.f28209j3 != w03) {
+                Drawable drawable = this.f28208i3;
+                this.f28209j3 = w03;
+                drawable.setColorFilter(new PorterDuffColorFilter(w03, PorterDuff.Mode.SRC_IN));
+            }
+            this.f28208i3.setBounds((int) (rectF.left + AndroidUtilities.dp(4.0f)), (int) (rectF.top + AndroidUtilities.dp(2.66f)), (int) (rectF.left + AndroidUtilities.dp(13.66f)), (int) (rectF.top + AndroidUtilities.dp(12.32f)));
+            this.f28208i3.draw(canvas2);
         }
-        m31Var.L = i10;
-        if (c71Var != null && c71Var.f25122a3 && m31Var.f28379s) {
-            z12 = true;
+        super.dispatchDraw(canvas2);
+        if (i10 > 0) {
+            canvas2.save();
+            RectF rectF2 = AndroidUtilities.rectTmp;
+            rectF2.set(0.0f, 0.0f, getWidth(), AndroidUtilities.dp(12.0f));
+            this.f28206g3.b(canvas2, rectF2, 1, e);
+            canvas2.restore();
+            canvas2.restore();
         }
-        m31Var.setReorder(z12);
-    }
-
-    @Override
-    public final View createView(Context context, jm0 jm0Var, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var) {
-        return new m31(context, i10, d6Var);
     }
 }

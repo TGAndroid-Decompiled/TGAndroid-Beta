@@ -1,19 +1,19 @@
 package m;
 public final class z0 extends ki.t1 {
-    public final a1 f16395c;
+    public final a1 f16458c;
 
     public z0(a1 a1Var) {
         super(a1Var, 5);
-        this.f16395c = a1Var;
+        this.f16458c = a1Var;
     }
 
     @Override
-    public final void m(int i10) {
+    public final void n(int i10) {
         super/*android.widget.TextView*/.setLastBaselineToBottomHeight(i10);
     }
 
     @Override
-    public final void q(int i10) {
+    public final void s(int i10) {
         super/*android.widget.TextView*/.setFirstBaselineToTopHeight(i10);
     }
 }

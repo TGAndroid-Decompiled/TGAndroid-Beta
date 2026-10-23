@@ -4,26 +4,26 @@ import android.text.TextUtils;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.MrzRecognizer;
-import org.telegram.ui.ActionBar.n2;
-import org.telegram.ui.df0;
+import org.telegram.ui.ActionBar.o2;
+import org.telegram.ui.if0;
 import org.telegram.ui.n9;
 import org.telegram.ui.v9;
 public final class i0 implements v9 {
-    public final int f52025a;
-    public final n2 f52026b;
+    public final int f52487a;
+    public final o2 f52488b;
 
-    public i0(int i10, n2 n2Var) {
-        this.f52025a = i10;
-        this.f52026b = n2Var;
+    public i0(int i10, o2 o2Var) {
+        this.f52487a = i10;
+        this.f52488b = o2Var;
     }
 
     @Override
     public final void E(String str) {
         String b10 = pf.d.b(str);
         if (TextUtils.isEmpty(b10)) {
-            AndroidUtilities.runOnUIThread(new df0(25));
+            AndroidUtilities.runOnUIThread(new if0(25));
         } else {
-            MessagesController.getInstance(this.f52025a).getUserNameResolver().resolve(b10, new g(this.f52026b, 1));
+            MessagesController.getInstance(this.f52487a).getUserNameResolver().resolve(b10, new g(this.f52488b, 1));
         }
     }
 

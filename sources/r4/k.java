@@ -1,30 +1,12 @@
 package r4;
+public final class k {
+    public final int f45432a;
+    public final byte[] f45433b;
+    public final boolean f45434c;
 
-import android.content.Context;
-import android.content.pm.PackageManager;
-import android.os.Build;
-import c0.m;
-public abstract class k {
-    public static final m f45017a = new Object();
-    public static final Object f45018b = new Object();
-    public static rb.b f45019c = null;
-
-    public static long a(Context context) {
-        PackageManager packageManager = context.getApplicationContext().getPackageManager();
-        if (Build.VERSION.SDK_INT >= 33) {
-            return i.a(packageManager, context).lastUpdateTime;
-        }
-        return packageManager.getPackageInfo(context.getPackageName(), 0).lastUpdateTime;
-    }
-
-    public static rb.b b() {
-        rb.b bVar = new rb.b(21);
-        f45019c = bVar;
-        f45017a.k(bVar);
-        return f45019c;
-    }
-
-    public static void c(android.content.Context r18, boolean r19) {
-        throw new UnsupportedOperationException("Method not decompiled: r4.k.c(android.content.Context, boolean):void");
+    public k(int i10, boolean z10, byte[] bArr) {
+        this.f45432a = i10;
+        this.f45433b = bArr;
+        this.f45434c = z10;
     }
 }

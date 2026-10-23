@@ -17,7 +17,7 @@ import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class a40 extends l71 {
+public final class a40 extends s71 {
     public final z30 T;
     public int U;
     public final TLRPC.Chat V;
@@ -25,53 +25,53 @@ public final class a40 extends l71 {
     public final ArrayList X;
     public final ArrayList Y;
     public boolean Z;
-    public final a0.h f24488a0;
-    public final a0.h f24489b0;
-    public boolean f24490c0;
-    public boolean f24491d0;
-    public final a0.h f24492e0;
-    public final HashSet f24493f0;
-    public org.telegram.ui.q20 f24494g0;
-    public boolean f24495h0;
-    public int f24496i0;
-    public int f24497j0;
-    public int f24498k0;
-    public int f24499l0;
+    public final a0.h f24625a0;
+    public final a0.h f24626b0;
+    public boolean f24627c0;
+    public boolean f24628d0;
+    public final a0.h f24629e0;
+    public final HashSet f24630f0;
+    public org.telegram.ui.t20 f24631g0;
+    public boolean f24632h0;
+    public int f24633i0;
+    public int f24634j0;
+    public int f24635k0;
+    public int f24636l0;
     public int m0;
-    public int f24500n0;
-    public int f24501o0;
-    public int f24502p0;
-    public int f24503q0;
-    public int f24504r0;
+    public int f24637n0;
+    public int f24638o0;
+    public int f24639p0;
+    public int f24640q0;
+    public int f24641r0;
 
     public a40(Context context, int i10, TLRPC.Chat chat, TLRPC.ChatFull chatFull, a0.h hVar, HashSet hashSet) {
         super(context, i10, null);
         this.X = new ArrayList();
         this.Y = new ArrayList();
-        this.f24488a0 = new a0.h();
-        this.f24489b0 = new a0.h();
+        this.f24625a0 = new a0.h();
+        this.f24626b0 = new a0.h();
         setDimBehindAlpha(75);
         this.V = chat;
         this.W = chatFull;
-        this.f24492e0 = hVar;
-        this.f24493f0 = hashSet;
+        this.f24629e0 = hVar;
+        this.f24630f0 = hashSet;
         this.d.setOnItemClickListener(new j(this, 9));
         z30 z30Var = new z30(this, context);
         this.T = z30Var;
         this.e = z30Var;
         ai.u1 u1Var = this.d;
         w30 w30Var = new w30(this, context);
-        this.f28094f = w30Var;
+        this.f30404f = w30Var;
         u1Var.setAdapter(w30Var);
-        if (!this.f24490c0) {
+        if (!this.f24627c0) {
             this.Z = false;
-            U();
+            T();
         }
-        V();
-        I(0.0f);
+        U();
+        G(0.0f);
     }
 
-    public static int N(a40 a40Var, int i10, TLObject tLObject, TLObject tLObject2) {
+    public static int M(a40 a40Var, int i10, TLObject tLObject, TLObject tLObject2) {
         int i11;
         int i12;
         TLRPC.UserStatus userStatus;
@@ -129,15 +129,15 @@ public final class a40 extends l71 {
         return 0;
     }
 
-    public static void O(a40 a40Var, TLRPC.TL_error tL_error, TLObject tLObject, TLRPC.TL_channels_getParticipants tL_channels_getParticipants) {
+    public static void N(a40 a40Var, TLRPC.TL_error tL_error, TLObject tLObject, TLRPC.TL_channels_getParticipants tL_channels_getParticipants) {
         int i10;
         a0.h hVar;
         ArrayList arrayList;
         a0.h hVar2;
         boolean z10;
-        tx0 tx0Var = a40Var.f28097s;
-        a0.h hVar3 = a40Var.f24488a0;
-        a0.h hVar4 = a40Var.f24489b0;
+        wx0 wx0Var = a40Var.f30407s;
+        a0.h hVar3 = a40Var.f24625a0;
+        a0.h hVar4 = a40Var.f24626b0;
         ArrayList arrayList2 = a40Var.X;
         if (tL_error == null) {
             TLRPC.TL_channels_channelParticipants tL_channels_channelParticipants = (TLRPC.TL_channels_channelParticipants) tLObject;
@@ -174,7 +174,7 @@ public final class a40 extends l71 {
             int i13 = 0;
             while (i13 < size2) {
                 long peerId = MessageObject.getPeerId(((TLRPC.ChannelParticipant) arrayList2.get(i13)).peer);
-                if (hVar4.f(peerId) != null || ((hVar2 = a40Var.f24492e0) != null && hVar2.h(peerId) >= 0)) {
+                if (hVar4.f(peerId) != null || ((hVar2 = a40Var.f24629e0) != null && hVar2.h(peerId) >= 0)) {
                     z10 = true;
                 } else {
                     z10 = false;
@@ -193,62 +193,62 @@ public final class a40 extends l71 {
             }
             try {
                 if (a40Var.W.participants_count <= 200) {
-                    Collections.sort(arrayList, new org.telegram.ui.kq(a40Var, ConnectionsManager.getInstance(a40Var.currentAccount).getCurrentTime(), 1));
+                    Collections.sort(arrayList, new org.telegram.ui.mq(a40Var, ConnectionsManager.getInstance(a40Var.currentAccount).getCurrentTime(), 1));
                 }
             } catch (Exception e) {
                 FileLog.e(e);
             }
         }
         if (a40Var.U <= 0) {
-            a40Var.f24490c0 = false;
-            a40Var.f24491d0 = true;
-            if (a40Var.f24503q0 == 1) {
+            a40Var.f24627c0 = false;
+            a40Var.f24628d0 = true;
+            if (a40Var.f24640q0 == 1) {
                 i10 = 1;
             } else {
-                im0 im0Var = a40Var.f28094f;
-                if (im0Var != null) {
-                    i10 = im0Var.h() - 1;
+                lm0 lm0Var = a40Var.f30404f;
+                if (lm0Var != null) {
+                    i10 = lm0Var.h() - 1;
                 } else {
                     i10 = 0;
                 }
             }
-            a40Var.K(i10);
+            a40Var.J(i10);
             if (arrayList2.isEmpty()) {
-                a40Var.f24495h0 = true;
-                a40Var.T();
+                a40Var.f24632h0 = true;
+                a40Var.S();
             }
         }
-        a40Var.V();
-        im0 im0Var2 = a40Var.f28094f;
-        if (im0Var2 != null) {
-            im0Var2.l();
-            if (tx0Var != null && a40Var.f28094f.h() == 0 && a40Var.f24491d0) {
-                tx0Var.e(false, true);
+        a40Var.U();
+        lm0 lm0Var2 = a40Var.f30404f;
+        if (lm0Var2 != null) {
+            lm0Var2.l();
+            if (wx0Var != null && a40Var.f30404f.h() == 0 && a40Var.f24628d0) {
+                wx0Var.e(false, true);
             }
         }
     }
 
-    public static int S(a40 a40Var) {
+    public static int R(a40 a40Var) {
         return a40Var.currentAccount;
     }
 
     @Override
-    public final void E(MotionEvent motionEvent, ei.e2 e2Var) {
-        org.telegram.ui.q50 q50Var = this.f24494g0.f40357a;
-        if (!q50Var.f40471w0) {
+    public final void D(MotionEvent motionEvent, ei.e2 e2Var) {
+        org.telegram.ui.u50 u50Var = this.f24631g0.f41861a;
+        if (!u50Var.f42262w0) {
             if (motionEvent.getX() > e2Var.getLeft() && motionEvent.getX() < e2Var.getRight() && motionEvent.getY() > e2Var.getTop() && motionEvent.getY() < e2Var.getBottom()) {
-                q50Var.t1(q50Var.E1, null, e2Var, true);
+                u50Var.s1(u50Var.E1, null, e2Var, true);
             } else {
-                q50Var.t1(q50Var.E1, null, e2Var, false);
+                u50Var.s1(u50Var.E1, null, e2Var, false);
             }
         }
     }
 
     @Override
-    public final void G(String str) {
+    public final void F(String str) {
         z30 z30Var = this.T;
         hg.a2 a2Var = z30Var.d;
-        a40 a40Var = z30Var.f32831w;
+        a40 a40Var = z30Var.f33136w;
         x30 x30Var = z30Var.e;
         if (x30Var != null) {
             AndroidUtilities.cancelRunOnUIThread(x30Var);
@@ -257,47 +257,47 @@ public final class a40 extends l71 {
         a2Var.f(null, null);
         TLRPC.Chat chat = a40Var.V;
         ai.u1 u1Var = a40Var.d;
-        a2Var.g(null, true, false, true, false, chat.f20280id, false, 2, -1);
+        a2Var.g(null, true, false, true, false, chat.f20343id, false, 2, -1);
         if (!TextUtils.isEmpty(str)) {
-            a40Var.f28097s.e(true, true);
+            a40Var.f30407s.e(true, true);
             u1Var.W1 = false;
             u1Var.X1 = 0;
             z30Var.l();
             u1Var.W1 = true;
             u1Var.X1 = 0;
             z30Var.h = true;
-            int i10 = z30Var.f32828n + 1;
-            z30Var.f32828n = i10;
+            int i10 = z30Var.f33133n + 1;
+            z30Var.f33133n = i10;
             x30 x30Var2 = new x30(z30Var, str, i10, 0);
             z30Var.e = x30Var2;
             AndroidUtilities.runOnUIThread(x30Var2, 300L);
             s4.g0 adapter = u1Var.getAdapter();
-            im0 im0Var = a40Var.e;
-            if (adapter != im0Var) {
-                u1Var.setAdapter(im0Var);
+            lm0 lm0Var = a40Var.e;
+            if (adapter != lm0Var) {
+                u1Var.setAdapter(lm0Var);
                 return;
             }
             return;
         }
-        z30Var.f32828n = -1;
+        z30Var.f33133n = -1;
     }
 
     @Override
-    public final void L() {
-        this.I = org.telegram.ui.ActionBar.h6.Pg;
-        this.J = org.telegram.ui.ActionBar.h6.f21020eg;
-        int i10 = org.telegram.ui.ActionBar.h6.f20929a;
-        this.K = org.telegram.ui.ActionBar.h6.fg;
-        this.L = org.telegram.ui.ActionBar.h6.f21300tg;
-        this.M = org.telegram.ui.ActionBar.h6.f21187ng;
-        this.N = org.telegram.ui.ActionBar.h6.f21205og;
-        this.O = org.telegram.ui.ActionBar.h6.f21148lg;
-        this.P = org.telegram.ui.ActionBar.h6.f21261rg;
-        this.Q = org.telegram.ui.ActionBar.h6.f21167mg;
+    public final void K() {
+        this.I = org.telegram.ui.ActionBar.k6.Pg;
+        this.J = org.telegram.ui.ActionBar.k6.f21209eg;
+        int i10 = org.telegram.ui.ActionBar.k6.f21118a;
+        this.K = org.telegram.ui.ActionBar.k6.fg;
+        this.L = org.telegram.ui.ActionBar.k6.f21489tg;
+        this.M = org.telegram.ui.ActionBar.k6.f21376ng;
+        this.N = org.telegram.ui.ActionBar.k6.f21394og;
+        this.O = org.telegram.ui.ActionBar.k6.f21337lg;
+        this.P = org.telegram.ui.ActionBar.k6.f21450rg;
+        this.Q = org.telegram.ui.ActionBar.k6.f21356mg;
     }
 
-    public final void T() {
-        if (!this.f24495h0) {
+    public final void S() {
+        if (!this.f24632h0) {
             return;
         }
         ArrayList<TLRPC.TL_contact> arrayList = ContactsController.getInstance(this.currentAccount).contacts;
@@ -310,7 +310,7 @@ public final class a40 extends l71 {
             TLObject tLObject = (TLObject) arrayList2.get(i10);
             if (tLObject instanceof TLRPC.TL_contact) {
                 long j11 = ((TLRPC.TL_contact) tLObject).user_id;
-                if (j11 == j10 || this.f24492e0.h(j11) >= 0 || this.f24493f0.contains(Long.valueOf(j11))) {
+                if (j11 == j10 || this.f24629e0.h(j11) >= 0 || this.f24630f0.contains(Long.valueOf(j11))) {
                     arrayList2.remove(i10);
                     i10--;
                     size--;
@@ -321,26 +321,26 @@ public final class a40 extends l71 {
         Collections.sort(arrayList2, new hg.d(MessagesController.getInstance(this.currentAccount), ConnectionsManager.getInstance(this.currentAccount).getCurrentTime(), 2));
     }
 
-    public final void U() {
+    public final void T() {
         a0.h hVar;
         TLRPC.Chat chat = this.V;
         boolean isChannel = ChatObject.isChannel(chat);
         TLRPC.ChatFull chatFull = this.W;
         if (!isChannel) {
-            this.f24490c0 = false;
+            this.f24627c0 = false;
             ArrayList arrayList = this.X;
             arrayList.clear();
             this.Y.clear();
-            a0.h hVar2 = this.f24488a0;
+            a0.h hVar2 = this.f24625a0;
             hVar2.b();
-            this.f24489b0.b();
+            this.f24626b0.b();
             if (chatFull != null) {
                 long j10 = UserConfig.getInstance(this.currentAccount).clientUserId;
                 int size = chatFull.participants.participants.size();
                 for (int i10 = 0; i10 < size; i10++) {
                     TLRPC.ChatParticipant chatParticipant = chatFull.participants.participants.get(i10);
                     long j11 = chatParticipant.user_id;
-                    if (j11 != j10 && ((hVar = this.f24492e0) == null || hVar.h(j11) < 0)) {
+                    if (j11 != j10 && ((hVar = this.f24629e0) == null || hVar.h(j11) < 0)) {
                         TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(chatParticipant.user_id));
                         if (!UserObject.isDeleted(user) && !user.bot) {
                             arrayList.add(chatParticipant);
@@ -349,26 +349,26 @@ public final class a40 extends l71 {
                     }
                 }
                 if (arrayList.isEmpty()) {
-                    this.f24495h0 = true;
-                    T();
+                    this.f24632h0 = true;
+                    S();
                 }
             }
-            V();
-            im0 im0Var = this.f28094f;
-            if (im0Var != null) {
-                im0Var.l();
+            U();
+            lm0 lm0Var = this.f30404f;
+            if (lm0Var != null) {
+                lm0Var.l();
                 return;
             }
             return;
         }
-        this.f24490c0 = true;
-        tx0 tx0Var = this.f28097s;
-        if (tx0Var != null) {
-            tx0Var.e(true, false);
+        this.f24627c0 = true;
+        wx0 wx0Var = this.f30407s;
+        if (wx0Var != null) {
+            wx0Var.e(true, false);
         }
-        im0 im0Var2 = this.f28094f;
-        if (im0Var2 != null) {
-            im0Var2.l();
+        lm0 lm0Var2 = this.f30404f;
+        if (lm0Var2 != null) {
+            lm0Var2.l();
         }
         TLRPC.TL_channels_getParticipants tL_channels_getParticipants = new TLRPC.TL_channels_getParticipants();
         tL_channels_getParticipants.channel = MessagesController.getInputChannel(chat);
@@ -378,68 +378,68 @@ public final class a40 extends l71 {
             this.U = 2;
             tL_channels_getParticipants.filter = new TLRPC.TL_channelParticipantsContacts();
             this.Z = true;
-            U();
+            T();
         } else {
             tL_channels_getParticipants.filter = new TLRPC.TL_channelParticipantsRecent();
         }
-        tL_channels_getParticipants.filter.f20279q = "";
+        tL_channels_getParticipants.filter.f20342q = "";
         tL_channels_getParticipants.offset = 0;
         tL_channels_getParticipants.limit = 200;
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_channels_getParticipants, new org.telegram.ui.vc(17, this, tL_channels_getParticipants));
     }
 
-    public final void V() {
-        this.f24496i0 = -1;
-        this.f24498k0 = -1;
-        this.f24499l0 = -1;
+    public final void U() {
+        this.f24633i0 = -1;
+        this.f24635k0 = -1;
+        this.f24636l0 = -1;
         this.m0 = -1;
-        this.f24500n0 = -1;
-        this.f24501o0 = -1;
-        this.f24502p0 = -1;
-        this.f24497j0 = -1;
+        this.f24637n0 = -1;
+        this.f24638o0 = -1;
+        this.f24639p0 = -1;
+        this.f24634j0 = -1;
         boolean z10 = true;
-        this.f24504r0 = 1;
+        this.f24641r0 = 1;
         TLRPC.Chat chat = this.V;
         if (ChatObject.isPublic(chat) || ChatObject.canUserDoAdminAction(chat, 3)) {
-            int i10 = this.f24504r0;
-            this.f24504r0 = i10 + 1;
-            this.f24496i0 = i10;
+            int i10 = this.f24641r0;
+            this.f24641r0 = i10 + 1;
+            this.f24633i0 = i10;
         }
-        if (!this.f24490c0 || this.f24491d0) {
+        if (!this.f24627c0 || this.f24628d0) {
             ArrayList arrayList = this.Y;
             if (!arrayList.isEmpty()) {
-                int i11 = this.f24504r0;
+                int i11 = this.f24641r0;
                 int i12 = i11 + 1;
-                this.f24504r0 = i12;
+                this.f24641r0 = i12;
                 this.m0 = i11;
-                this.f24500n0 = i12;
+                this.f24637n0 = i12;
                 int size = arrayList.size() + i12;
-                this.f24504r0 = size;
-                this.f24501o0 = size;
+                this.f24641r0 = size;
+                this.f24638o0 = size;
             } else {
                 z10 = false;
             }
             ArrayList arrayList2 = this.X;
             if (!arrayList2.isEmpty()) {
                 if (z10) {
-                    int i13 = this.f24504r0;
-                    this.f24504r0 = i13 + 1;
-                    this.f24502p0 = i13;
+                    int i13 = this.f24641r0;
+                    this.f24641r0 = i13 + 1;
+                    this.f24639p0 = i13;
                 }
-                int i14 = this.f24504r0;
-                this.f24498k0 = i14;
+                int i14 = this.f24641r0;
+                this.f24635k0 = i14;
                 int size2 = arrayList2.size() + i14;
-                this.f24504r0 = size2;
-                this.f24499l0 = size2;
+                this.f24641r0 = size2;
+                this.f24636l0 = size2;
             }
         }
-        if (this.f24490c0) {
-            int i15 = this.f24504r0;
-            this.f24504r0 = i15 + 1;
-            this.f24503q0 = i15;
+        if (this.f24627c0) {
+            int i15 = this.f24641r0;
+            this.f24641r0 = i15 + 1;
+            this.f24640q0 = i15;
         }
-        int i16 = this.f24504r0;
-        this.f24504r0 = i16 + 1;
-        this.f24497j0 = i16;
+        int i16 = this.f24641r0;
+        this.f24641r0 = i16 + 1;
+        this.f24634j0 = i16;
     }
 }

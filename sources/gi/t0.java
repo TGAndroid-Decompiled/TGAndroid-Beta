@@ -13,25 +13,26 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.Components.bk0;
 import org.telegram.ui.Components.h9;
 import org.telegram.ui.Components.y6;
-import org.telegram.ui.Components.yj0;
 public final class t0 extends Drawable implements y6 {
-    public final Paint f11454a;
-    public final Paint f11455b;
-    public final Paint f11456c;
+    public final Paint f11480a;
+    public final Paint f11481b;
+    public final Paint f11482c;
     public final ImageReceiver d;
     public final ImageReceiver e;
-    public final Drawable f11457f;
+    public final Drawable f11483f;
+    public int h;
 
     public t0(Context context, TLRPC.User user, TLRPC.User user2) {
         Paint paint = new Paint(1);
-        this.f11454a = paint;
-        this.f11455b = new Paint(1);
+        this.f11480a = paint;
+        this.f11481b = new Paint(1);
         Paint paint2 = new Paint(1);
-        this.f11456c = paint2;
+        this.f11482c = paint2;
         ImageReceiver imageReceiver = new ImageReceiver();
         this.d = imageReceiver;
         ImageReceiver imageReceiver2 = new ImageReceiver();
@@ -44,22 +45,24 @@ public final class t0 extends Drawable implements y6 {
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint2.setColor(-1);
         Drawable mutate = context.getResources().getDrawable(R.drawable.filled_location).mutate();
-        this.f11457f = mutate;
-        mutate.setColorFilter(new PorterDuffColorFilter(h6.x0(null, h6.L5, false), PorterDuff.Mode.SRC_IN));
-        h9 h9Var = new h9((d6) null);
+        this.f11483f = mutate;
+        int x02 = k6.x0(null, k6.L5, false);
+        this.h = x02;
+        mutate.setColorFilter(new PorterDuffColorFilter(x02, PorterDuff.Mode.SRC_IN));
+        h9 h9Var = new h9((g6) null);
         h9Var.r(user);
         imageReceiver.setForUserOrChat(user, h9Var);
         imageReceiver.setRoundRadius(AndroidUtilities.dp(25.0f));
-        h9 h9Var2 = new h9((d6) null);
+        h9 h9Var2 = new h9((g6) null);
         h9Var2.r(user2);
         imageReceiver2.setForUserOrChat(user2, h9Var2);
         imageReceiver2.setRoundRadius(AndroidUtilities.dp(25.0f));
     }
 
     @Override
-    public final void a(yj0 yj0Var) {
-        this.e.setParentView(yj0Var);
-        this.d.setParentView(yj0Var);
+    public final void a(bk0 bk0Var) {
+        this.e.setParentView(bk0Var);
+        this.d.setParentView(bk0Var);
     }
 
     @Override
@@ -77,8 +80,9 @@ public final class t0 extends Drawable implements y6 {
     @Override
     public final void draw(Canvas canvas) {
         Rect bounds = getBounds();
-        int x02 = h6.x0(null, h6.L5, false);
-        Paint paint = this.f11455b;
+        int i10 = k6.L5;
+        int x02 = k6.x0(null, i10, false);
+        Paint paint = this.f11481b;
         paint.setColor(x02);
         float dp = AndroidUtilities.dp(136.0f) / 2.0f;
         ImageReceiver imageReceiver = this.d;
@@ -87,13 +91,18 @@ public final class t0 extends Drawable implements y6 {
         float centerX = (bounds.centerX() - dp) + AndroidUtilities.dp(41.0f);
         float dp2 = AndroidUtilities.dp(16.0f) + bounds.centerY();
         canvas.drawCircle(centerX, dp2, AndroidUtilities.dp(14.0f), paint);
-        canvas.drawCircle(centerX, dp2, AndroidUtilities.dp(12.0f), this.f11456c);
-        int dp3 = (int) (dp2 + AndroidUtilities.dp(9.0f));
-        Drawable drawable = this.f11457f;
-        drawable.setBounds((int) (centerX - AndroidUtilities.dp(9.0f)), (int) (dp2 - AndroidUtilities.dp(9.0f)), (int) (centerX + AndroidUtilities.dp(9.0f)), dp3);
+        canvas.drawCircle(centerX, dp2, AndroidUtilities.dp(12.0f), this.f11482c);
+        int x03 = k6.x0(null, i10, false);
+        int i11 = this.h;
+        Drawable drawable = this.f11483f;
+        if (x03 != i11) {
+            this.h = x03;
+            drawable.setColorFilter(new PorterDuffColorFilter(x03, PorterDuff.Mode.SRC_IN));
+        }
+        drawable.setBounds((int) (centerX - AndroidUtilities.dp(9.0f)), (int) (dp2 - AndroidUtilities.dp(9.0f)), (int) (centerX + AndroidUtilities.dp(9.0f)), (int) (dp2 + AndroidUtilities.dp(9.0f)));
         drawable.draw(canvas);
         int centerX2 = bounds.centerX();
-        Paint paint2 = this.f11454a;
+        Paint paint2 = this.f11480a;
         canvas.drawLine(bounds.centerX() - AndroidUtilities.dp(3.33f), bounds.centerY() - AndroidUtilities.dp(7.0f), AndroidUtilities.dp(3.33f) + centerX2, bounds.centerY(), paint2);
         canvas.drawLine(bounds.centerX() - AndroidUtilities.dp(3.33f), AndroidUtilities.dp(7.0f) + bounds.centerY(), AndroidUtilities.dp(3.33f) + bounds.centerX(), bounds.centerY(), paint2);
         ImageReceiver imageReceiver2 = this.e;

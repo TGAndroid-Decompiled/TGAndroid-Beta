@@ -2,22 +2,22 @@ package p2;
 
 import java.io.File;
 public final class b implements Runnable {
-    public final int f43927a;
-    public final Object f43928b;
-    public final Object f43929c;
+    public final int f44342a;
+    public final Object f44343b;
+    public final Object f44344c;
 
     public b(int i10, Object obj, Object obj2) {
-        this.f43927a = i10;
-        this.f43928b = obj;
-        this.f43929c = obj2;
+        this.f44342a = i10;
+        this.f44343b = obj;
+        this.f44344c = obj2;
     }
 
     private final void a() {
-        r2.c cVar = (r2.c) this.f43928b;
-        b bVar = (b) this.f43929c;
-        cVar.f44914c.n();
-        r2.f fVar = cVar.f44913b;
-        synchronized (fVar.f44924a) {
+        r2.c cVar = (r2.c) this.f44343b;
+        b bVar = (b) this.f44344c;
+        cVar.f45326c.p();
+        r2.f fVar = cVar.f45325b;
+        synchronized (fVar.f45336a) {
             fVar.b();
             bVar.run();
         }
@@ -25,13 +25,13 @@ public final class b implements Runnable {
 
     private final void b() {
         qa.a aVar;
-        r9.p pVar = (r9.p) this.f43928b;
-        qa.b bVar = (qa.b) this.f43929c;
-        if (pVar.f45161b == r9.p.d) {
+        r9.p pVar = (r9.p) this.f44343b;
+        qa.b bVar = (qa.b) this.f44344c;
+        if (pVar.f45573b == r9.p.d) {
             synchronized (pVar) {
-                aVar = pVar.f45160a;
-                pVar.f45160a = null;
-                pVar.f45161b = bVar;
+                aVar = pVar.f45572a;
+                pVar.f45572a = null;
+                pVar.f45573b = bVar;
             }
             aVar.h(bVar);
             return;
@@ -40,14 +40,14 @@ public final class b implements Runnable {
     }
 
     private final void c() {
-        r9.o oVar = (r9.o) this.f43928b;
-        qa.b bVar = (qa.b) this.f43929c;
+        r9.o oVar = (r9.o) this.f44343b;
+        qa.b bVar = (qa.b) this.f44344c;
         synchronized (oVar) {
             try {
-                if (oVar.f45158b == null) {
-                    oVar.f45157a.add(bVar);
+                if (oVar.f45570b == null) {
+                    oVar.f45569a.add(bVar);
                 } else {
-                    oVar.f45158b.add(bVar.get());
+                    oVar.f45570b.add(bVar.get());
                 }
             } catch (Throwable th2) {
                 throw th2;
@@ -56,12 +56,12 @@ public final class b implements Runnable {
     }
 
     private final void d() {
-        ri.o oVar = (ri.o) this.f43928b;
-        File file = (File) this.f43929c;
-        synchronized (oVar.f45845m) {
-            for (int i10 = 0; i10 < oVar.f45845m.size(); i10++) {
+        ri.o oVar = (ri.o) this.f44343b;
+        File file = (File) this.f44344c;
+        synchronized (oVar.f46266m) {
+            for (int i10 = 0; i10 < oVar.f46266m.size(); i10++) {
                 try {
-                    File file2 = (File) oVar.f45845m.get(i10);
+                    File file2 = (File) oVar.f46266m.get(i10);
                     if (file != null && file.equals(file2)) {
                     }
                     if (file2.exists() && !file2.delete()) {
@@ -72,7 +72,7 @@ public final class b implements Runnable {
                     throw th2;
                 }
             }
-            oVar.f45845m.clear();
+            oVar.f46266m.clear();
         }
     }
 

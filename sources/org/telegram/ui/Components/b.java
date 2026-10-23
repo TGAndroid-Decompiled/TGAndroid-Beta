@@ -4,70 +4,70 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.tl.TL_iv;
 public final class b implements View.OnClickListener {
-    public final int f24760a;
-    public final e0 f24761b;
+    public final int f24890a;
+    public final e0 f24891b;
 
     public b(e0 e0Var, int i10) {
-        this.f24760a = i10;
-        this.f24761b = e0Var;
+        this.f24890a = i10;
+        this.f24891b = e0Var;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f24760a) {
+        switch (this.f24890a) {
             case 0:
-                this.f24761b.dismiss();
+                this.f24891b.dismiss();
                 return;
             case 1:
-                e0 e0Var = this.f24761b;
-                org.telegram.ui.Cells.i3 i3Var = e0Var.A0;
-                AndroidUtilities.hideKeyboard(i3Var.f22406b);
-                e0Var.I0 = i3Var.getText().toString();
-                e0Var.r0();
-                e0Var.q0(true);
-                e0Var.l0();
+                e0 e0Var = this.f24891b;
+                org.telegram.ui.Cells.h3 h3Var = e0Var.A0;
+                AndroidUtilities.hideKeyboard(h3Var.d);
+                e0Var.I0 = h3Var.getText().toString();
+                e0Var.q0();
+                e0Var.p0(true);
+                e0Var.k0();
                 return;
             case 2:
-                e0 e0Var2 = this.f24761b;
-                if (e0Var2.f25666k0 != null) {
-                    TL_iv.RichMessage h02 = e0Var2.h0();
-                    if (h02 != null) {
-                        e0Var2.f25666k0.run(h02);
+                e0 e0Var2 = this.f24891b;
+                if (e0Var2.f25774k0 != null) {
+                    TL_iv.RichMessage g02 = e0Var2.g0();
+                    if (g02 != null) {
+                        e0Var2.f25774k0.run(g02);
                     }
-                } else if (e0Var2.f25665j0 != null && e0Var2.i0() != null) {
-                    e0Var2.f25665j0.run(e0Var2.i0());
+                } else if (e0Var2.f25773j0 != null && e0Var2.h0() != null) {
+                    e0Var2.f25773j0.run(e0Var2.h0());
                 }
                 e0Var2.dismiss();
                 return;
             case 3:
-                this.f24761b.dismiss();
+                this.f24891b.dismiss();
                 return;
             case 4:
-                e0 e0Var3 = this.f24761b;
+                e0 e0Var3 = this.f24891b;
                 e0Var3.P0 = false;
-                e0Var3.K();
+                e0Var3.J();
                 e0Var3.O0.N(true);
-                e0Var3.u();
+                e0Var3.t();
                 return;
             case 5:
-                e0.Z(this.f24761b, view);
+                e0.Y(this.f24891b, view);
                 return;
             case 6:
-                e0.S(this.f24761b, view);
+                e0.R(this.f24891b, view);
                 return;
             case 7:
-                e0 e0Var4 = this.f24761b;
+                e0 e0Var4 = this.f24891b;
                 if (!e0Var4.R0) {
-                    AndroidUtilities.addToClipboard(e0Var4.i0());
+                    AndroidUtilities.addToClipboard(e0Var4.h0());
                     return;
                 }
                 return;
             case 8:
-                this.f24761b.dismiss();
+                this.f24891b.dismiss();
                 return;
             default:
-                e0 e0Var5 = this.f24761b;
-                e0Var5.m0(0, 0, true);
+                e0 e0Var5 = this.f24891b;
+                e0Var5.l0(0, 0, true);
                 e0Var5.dismiss();
                 return;
         }

@@ -18,47 +18,47 @@ import r0.i0;
 import r0.l0;
 import v7.i7;
 public final class a0 extends i7 implements m.c {
-    public static final AccelerateInterpolator f10617x = new AccelerateInterpolator();
-    public static final DecelerateInterpolator f10618y = new DecelerateInterpolator();
-    public Context f10619a;
-    public Context f10620b;
-    public ActionBarOverlayLayout f10621c;
+    public static final AccelerateInterpolator f10636x = new AccelerateInterpolator();
+    public static final DecelerateInterpolator f10637y = new DecelerateInterpolator();
+    public Context f10638a;
+    public Context f10639b;
+    public ActionBarOverlayLayout f10640c;
     public ActionBarContainer d;
     public l1 e;
-    public ActionBarContextView f10622f;
-    public final View f10623g;
+    public ActionBarContextView f10641f;
+    public final View f10642g;
     public boolean h;
-    public z f10624i;
-    public z f10625j;
-    public n4.s f10626k;
-    public boolean f10627l;
-    public final ArrayList f10628m;
-    public int f10629n;
-    public boolean f10630o;
-    public boolean f10631p;
-    public boolean f10632q;
-    public boolean f10633r;
-    public cc.d f10634s;
-    public boolean f10635t;
-    public final y f10636u;
+    public z f10643i;
+    public z f10644j;
+    public n4.s f10645k;
+    public boolean f10646l;
+    public final ArrayList f10647m;
+    public int f10648n;
+    public boolean f10649o;
+    public boolean f10650p;
+    public boolean f10651q;
+    public boolean f10652r;
+    public cc.d f10653s;
+    public boolean f10654t;
+    public final y f10655u;
     public final y v;
-    public final a4.l f10637w;
+    public final a4.l f10656w;
 
     public a0(Activity activity, boolean z10) {
         new ArrayList();
-        this.f10628m = new ArrayList();
-        this.f10629n = 0;
-        this.f10630o = true;
-        this.f10633r = true;
-        this.f10636u = new y(this, 0);
+        this.f10647m = new ArrayList();
+        this.f10648n = 0;
+        this.f10649o = true;
+        this.f10652r = true;
+        this.f10655u = new y(this, 0);
         this.v = new y(this, 1);
-        this.f10637w = new a4.l(this, 19);
+        this.f10656w = new a4.l(this, 19);
         View decorView = activity.getWindow().getDecorView();
         b(decorView);
         if (z10) {
             return;
         }
-        this.f10623g = decorView.findViewById(16908290);
+        this.f10642g = decorView.findViewById(16908290);
     }
 
     public final void a(boolean z10) {
@@ -66,62 +66,62 @@ public final class a0 extends i7 implements m.c {
         l0 l0Var;
         long j10;
         if (z10) {
-            if (!this.f10632q) {
-                this.f10632q = true;
-                ActionBarOverlayLayout actionBarOverlayLayout = this.f10621c;
+            if (!this.f10651q) {
+                this.f10651q = true;
+                ActionBarOverlayLayout actionBarOverlayLayout = this.f10640c;
                 if (actionBarOverlayLayout != null) {
                     actionBarOverlayLayout.setShowingForActionMode(true);
                 }
                 d(false);
             }
-        } else if (this.f10632q) {
-            this.f10632q = false;
-            ActionBarOverlayLayout actionBarOverlayLayout2 = this.f10621c;
+        } else if (this.f10651q) {
+            this.f10651q = false;
+            ActionBarOverlayLayout actionBarOverlayLayout2 = this.f10640c;
             if (actionBarOverlayLayout2 != null) {
                 actionBarOverlayLayout2.setShowingForActionMode(false);
             }
             d(false);
         }
         ActionBarContainer actionBarContainer = this.d;
-        WeakHashMap weakHashMap = i0.f44830a;
+        WeakHashMap weakHashMap = i0.f45242a;
         if (actionBarContainer.isLaidOut()) {
             if (z10) {
                 o3 o3Var = (o3) this.e;
-                i10 = i0.a(o3Var.f16275a);
+                i10 = i0.a(o3Var.f16338a);
                 i10.a(0.0f);
                 i10.c(100L);
                 i10.d(new k.i(o3Var, 4));
-                l0Var = this.f10622f.i(0, 200L);
+                l0Var = this.f10641f.i(0, 200L);
             } else {
                 o3 o3Var2 = (o3) this.e;
-                l0 a2 = i0.a(o3Var2.f16275a);
+                l0 a2 = i0.a(o3Var2.f16338a);
                 a2.a(1.0f);
                 a2.c(200L);
                 a2.d(new k.i(o3Var2, 0));
-                i10 = this.f10622f.i(8, 100L);
+                i10 = this.f10641f.i(8, 100L);
                 l0Var = a2;
             }
             cc.d dVar = new cc.d();
-            ArrayList arrayList = (ArrayList) dVar.f5089c;
+            ArrayList arrayList = (ArrayList) dVar.f5094c;
             arrayList.add(i10);
-            View view = (View) i10.f44840a.get();
+            View view = (View) i10.f45252a.get();
             if (view != null) {
                 j10 = view.animate().getDuration();
             } else {
                 j10 = 0;
             }
-            View view2 = (View) l0Var.f44840a.get();
+            View view2 = (View) l0Var.f45252a.get();
             if (view2 != null) {
                 view2.animate().setStartDelay(j10);
             }
             arrayList.add(l0Var);
             dVar.b();
         } else if (z10) {
-            ((o3) this.e).f16275a.setVisibility(4);
-            this.f10622f.setVisibility(0);
+            ((o3) this.e).f16338a.setVisibility(4);
+            this.f10641f.setVisibility(0);
         } else {
-            ((o3) this.e).f16275a.setVisibility(0);
-            this.f10622f.setVisibility(8);
+            ((o3) this.e).f16338a.setVisibility(0);
+            this.f10641f.setVisibility(8);
         }
     }
 
@@ -130,7 +130,7 @@ public final class a0 extends i7 implements m.c {
         l1 wrapper;
         boolean z10;
         ActionBarOverlayLayout actionBarOverlayLayout = (ActionBarOverlayLayout) view.findViewById(2131296411);
-        this.f10621c = actionBarOverlayLayout;
+        this.f10640c = actionBarOverlayLayout;
         if (actionBarOverlayLayout != null) {
             actionBarOverlayLayout.setActionBarVisibilityCallback(this);
         }
@@ -148,14 +148,14 @@ public final class a0 extends i7 implements m.c {
             throw new IllegalStateException("Can't make a decor toolbar out of ".concat(str));
         }
         this.e = wrapper;
-        this.f10622f = (ActionBarContextView) view.findViewById(2131296311);
+        this.f10641f = (ActionBarContextView) view.findViewById(2131296311);
         ActionBarContainer actionBarContainer = (ActionBarContainer) view.findViewById(2131296305);
         this.d = actionBarContainer;
         l1 l1Var = this.e;
-        if (l1Var != null && this.f10622f != null && actionBarContainer != null) {
-            Context context = ((o3) l1Var).f16275a.getContext();
-            this.f10619a = context;
-            if ((((o3) this.e).f16276b & 4) != 0) {
+        if (l1Var != null && this.f10641f != null && actionBarContainer != null) {
+            Context context = ((o3) l1Var).f16338a.getContext();
+            this.f10638a = context;
+            if ((((o3) this.e).f16339b & 4) != 0) {
                 z10 = true;
             } else {
                 z10 = false;
@@ -173,13 +173,13 @@ public final class a0 extends i7 implements m.c {
                 ((o3) this.e).getClass();
             }
             this.e.getClass();
-            ((o3) this.e).f16275a.setCollapsible(false);
-            this.f10621c.setHasNonEmbeddedTabs(false);
-            TypedArray obtainStyledAttributes = this.f10619a.obtainStyledAttributes(null, f.a.f10249a, 2130968581, 0);
+            ((o3) this.e).f16338a.setCollapsible(false);
+            this.f10640c.setHasNonEmbeddedTabs(false);
+            TypedArray obtainStyledAttributes = this.f10638a.obtainStyledAttributes(null, f.a.f10266a, 2130968581, 0);
             if (obtainStyledAttributes.getBoolean(14, false)) {
-                ActionBarOverlayLayout actionBarOverlayLayout2 = this.f10621c;
-                if (actionBarOverlayLayout2.f2749n) {
-                    this.f10635t = true;
+                ActionBarOverlayLayout actionBarOverlayLayout2 = this.f10640c;
+                if (actionBarOverlayLayout2.f2756n) {
+                    this.f10654t = true;
                     actionBarOverlayLayout2.setHideOnContentScrollEnabled(true);
                 } else {
                     throw new IllegalStateException("Action bar must be in overlay mode (Window.FEATURE_OVERLAY_ACTION_BAR) to enable hide on content scroll");
@@ -188,7 +188,7 @@ public final class a0 extends i7 implements m.c {
             int dimensionPixelSize = obtainStyledAttributes.getDimensionPixelSize(12, 0);
             if (dimensionPixelSize != 0) {
                 ActionBarContainer actionBarContainer2 = this.d;
-                WeakHashMap weakHashMap = i0.f44830a;
+                WeakHashMap weakHashMap = i0.f45242a;
                 r0.a0.h(actionBarContainer2, dimensionPixelSize);
             }
             obtainStyledAttributes.recycle();
@@ -206,7 +206,7 @@ public final class a0 extends i7 implements m.c {
                 i10 = 0;
             }
             o3 o3Var = (o3) this.e;
-            int i11 = o3Var.f16276b;
+            int i11 = o3Var.f16339b;
             this.h = true;
             o3Var.a((i10 & 4) | (i11 & (-5)));
         }
@@ -215,25 +215,25 @@ public final class a0 extends i7 implements m.c {
     public final void d(boolean z10) {
         int[] iArr;
         int[] iArr2;
-        boolean z11 = this.f10631p;
-        boolean z12 = this.f10632q;
+        boolean z11 = this.f10650p;
+        boolean z12 = this.f10651q;
         ah.l0 l0Var = null;
-        a4.l lVar = this.f10637w;
-        View view = this.f10623g;
+        a4.l lVar = this.f10656w;
+        View view = this.f10642g;
         if (!z12 && z11) {
-            if (this.f10633r) {
-                this.f10633r = false;
-                cc.d dVar = this.f10634s;
+            if (this.f10652r) {
+                this.f10652r = false;
+                cc.d dVar = this.f10653s;
                 if (dVar != null) {
                     dVar.a();
                 }
-                int i10 = this.f10629n;
-                y yVar = this.f10636u;
+                int i10 = this.f10648n;
+                y yVar = this.f10655u;
                 if (i10 == 0 && z10) {
                     this.d.setAlpha(1.0f);
                     this.d.setTransitioning(true);
                     cc.d dVar2 = new cc.d();
-                    ArrayList arrayList = (ArrayList) dVar2.f5089c;
+                    ArrayList arrayList = (ArrayList) dVar2.f5094c;
                     float f7 = -this.d.getHeight();
                     if (z10) {
                         this.d.getLocationInWindow(new int[]{0, 0});
@@ -241,47 +241,47 @@ public final class a0 extends i7 implements m.c {
                     }
                     l0 a2 = i0.a(this.d);
                     a2.e(f7);
-                    View view2 = (View) a2.f44840a.get();
+                    View view2 = (View) a2.f45252a.get();
                     if (view2 != null) {
                         if (lVar != null) {
                             l0Var = new ah.l0(27, lVar, view2);
                         }
                         view2.animate().setUpdateListener(l0Var);
                     }
-                    if (!dVar2.f5088b) {
+                    if (!dVar2.f5093b) {
                         arrayList.add(a2);
                     }
-                    if (this.f10630o && view != null) {
+                    if (this.f10649o && view != null) {
                         l0 a10 = i0.a(view);
                         a10.e(f7);
-                        if (!dVar2.f5088b) {
+                        if (!dVar2.f5093b) {
                             arrayList.add(a10);
                         }
                     }
-                    boolean z13 = dVar2.f5088b;
+                    boolean z13 = dVar2.f5093b;
                     if (!z13) {
-                        dVar2.d = f10617x;
+                        dVar2.d = f10636x;
                     }
                     if (!z13) {
-                        dVar2.f5087a = 250L;
+                        dVar2.f5092a = 250L;
                     }
                     if (!z13) {
                         dVar2.e = yVar;
                     }
-                    this.f10634s = dVar2;
+                    this.f10653s = dVar2;
                     dVar2.b();
                     return;
                 }
                 yVar.c();
             }
-        } else if (!this.f10633r) {
-            this.f10633r = true;
-            cc.d dVar3 = this.f10634s;
+        } else if (!this.f10652r) {
+            this.f10652r = true;
+            cc.d dVar3 = this.f10653s;
             if (dVar3 != null) {
                 dVar3.a();
             }
             this.d.setVisibility(0);
-            int i11 = this.f10629n;
+            int i11 = this.f10648n;
             y yVar2 = this.v;
             if (i11 == 0 && z10) {
                 this.d.setTranslationY(0.0f);
@@ -292,50 +292,50 @@ public final class a0 extends i7 implements m.c {
                 }
                 this.d.setTranslationY(f10);
                 cc.d dVar4 = new cc.d();
-                ArrayList arrayList2 = (ArrayList) dVar4.f5089c;
+                ArrayList arrayList2 = (ArrayList) dVar4.f5094c;
                 l0 a11 = i0.a(this.d);
                 a11.e(0.0f);
-                View view3 = (View) a11.f44840a.get();
+                View view3 = (View) a11.f45252a.get();
                 if (view3 != null) {
                     if (lVar != null) {
                         l0Var = new ah.l0(27, lVar, view3);
                     }
                     view3.animate().setUpdateListener(l0Var);
                 }
-                if (!dVar4.f5088b) {
+                if (!dVar4.f5093b) {
                     arrayList2.add(a11);
                 }
-                if (this.f10630o && view != null) {
+                if (this.f10649o && view != null) {
                     view.setTranslationY(f10);
                     l0 a12 = i0.a(view);
                     a12.e(0.0f);
-                    if (!dVar4.f5088b) {
+                    if (!dVar4.f5093b) {
                         arrayList2.add(a12);
                     }
                 }
-                boolean z14 = dVar4.f5088b;
+                boolean z14 = dVar4.f5093b;
                 if (!z14) {
-                    dVar4.d = f10618y;
+                    dVar4.d = f10637y;
                 }
                 if (!z14) {
-                    dVar4.f5087a = 250L;
+                    dVar4.f5092a = 250L;
                 }
                 if (!z14) {
                     dVar4.e = yVar2;
                 }
-                this.f10634s = dVar4;
+                this.f10653s = dVar4;
                 dVar4.b();
             } else {
                 this.d.setAlpha(1.0f);
                 this.d.setTranslationY(0.0f);
-                if (this.f10630o && view != null) {
+                if (this.f10649o && view != null) {
                     view.setTranslationY(0.0f);
                 }
                 yVar2.c();
             }
-            ActionBarOverlayLayout actionBarOverlayLayout = this.f10621c;
+            ActionBarOverlayLayout actionBarOverlayLayout = this.f10640c;
             if (actionBarOverlayLayout != null) {
-                WeakHashMap weakHashMap = i0.f44830a;
+                WeakHashMap weakHashMap = i0.f45242a;
                 r0.y.c(actionBarOverlayLayout);
             }
         }
@@ -343,13 +343,13 @@ public final class a0 extends i7 implements m.c {
 
     public a0(t tVar) {
         new ArrayList();
-        this.f10628m = new ArrayList();
-        this.f10629n = 0;
-        this.f10630o = true;
-        this.f10633r = true;
-        this.f10636u = new y(this, 0);
+        this.f10647m = new ArrayList();
+        this.f10648n = 0;
+        this.f10649o = true;
+        this.f10652r = true;
+        this.f10655u = new y(this, 0);
         this.v = new y(this, 1);
-        this.f10637w = new a4.l(this, 19);
+        this.f10656w = new a4.l(this, 19);
         b(tVar.getWindow().getDecorView());
     }
 }

@@ -1,55 +1,39 @@
 package org.telegram.ui;
 
-import android.widget.EditText;
+import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.ConnectionsManager;
-public final class aq0 extends org.telegram.ui.ActionBar.g5 {
-    public final ck0 f35410r = new ck0(this, 12);
-    public final jq0 f35411s;
+public final class aq0 extends s4.r0 {
+    public final mq0 f35767a;
 
-    public aq0(jq0 jq0Var) {
-        this.f35411s = jq0Var;
+    public aq0(mq0 mq0Var) {
+        this.f35767a = mq0Var;
     }
 
     @Override
-    public final boolean b() {
-        this.f35411s.finishFragment();
-        return false;
-    }
-
-    @Override
-    public final void p(ei.e2 e2Var) {
-        this.f35411s.b0(e2Var);
-    }
-
-    @Override
-    public final void q(EditText editText) {
-        int i10;
-        if (editText.getText().length() == 0) {
-            jq0 jq0Var = this.f35411s;
-            jq0Var.f38313f.clear();
-            jq0Var.h.clear();
-            jq0Var.v = null;
-            jq0Var.f38328s = true;
-            jq0Var.f38326r = false;
-            if (jq0Var.f38335x != 0) {
-                i10 = ((org.telegram.ui.ActionBar.n2) jq0Var).currentAccount;
-                ConnectionsManager.getInstance(i10).cancelRequest(jq0Var.f38335x, true);
-                jq0Var.f38335x = 0;
-            }
-            jq0Var.N.d.setText(LocaleController.getString(R.string.NoRecentSearches));
-            jq0Var.N.e(false, true);
-            jq0Var.j0();
-            return;
+    public final void a(RecyclerView recyclerView, int i10) {
+        if (i10 == 1) {
+            AndroidUtilities.hideKeyboard(this.f35767a.getParentActivity().getCurrentFocus());
         }
-        ck0 ck0Var = this.f35410r;
-        AndroidUtilities.cancelRunOnUIThread(ck0Var);
-        AndroidUtilities.runOnUIThread(ck0Var, 1200L);
     }
 
     @Override
-    public final void n() {
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        int abs;
+        mq0 mq0Var = this.f35767a;
+        if (mq0Var.J == null) {
+            int L0 = mq0Var.M.L0();
+            boolean z10 = false;
+            if (L0 == -1) {
+                abs = 0;
+            } else {
+                abs = Math.abs(mq0Var.M.N0() - L0) + 1;
+            }
+            if (abs > 0 && L0 + abs > mq0Var.M.B() - 2 && !mq0Var.f39664r && !mq0Var.f39666s) {
+                if (mq0Var.f39643a == 1) {
+                    z10 = true;
+                }
+                mq0Var.d0(mq0Var.v, mq0Var.f39671w, z10, true);
+            }
+        }
     }
 }

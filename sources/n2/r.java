@@ -6,6 +6,8 @@ import java.util.Map;
 public interface r {
     boolean B0(String str, byte[] bArr);
 
+    h2.b C(byte[] bArr);
+
     byte[] H();
 
     void U(byte[] bArr, byte[] bArr2);
@@ -16,7 +18,7 @@ public interface r {
 
     byte[] g0(byte[] bArr, byte[] bArr2);
 
-    void h(byte[] bArr, j2.k kVar);
+    void h(byte[] bArr, j2.j jVar);
 
     void j0(byte[] bArr);
 
@@ -25,8 +27,6 @@ public interface r {
     int m0();
 
     q o();
-
-    h2.b r(byte[] bArr);
 
     void release();
 

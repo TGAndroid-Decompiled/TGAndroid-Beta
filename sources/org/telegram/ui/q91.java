@@ -1,23 +1,19 @@
 package org.telegram.ui;
-public final class q91 implements Runnable {
-    public final int f40515a;
-    public final StickersActivity f40516b;
-
-    public q91(StickersActivity stickersActivity, int i10) {
-        this.f40515a = i10;
-        this.f40516b = stickersActivity;
-    }
-
-    @Override
-    public final void run() {
-        switch (this.f40515a) {
-            case 0:
-                this.f40516b.m0();
-                return;
-            default:
-                StickersActivity stickersActivity = this.f40516b;
-                stickersActivity.f33865r--;
-                return;
-        }
-    }
+public final class q91 {
+    public String f40668a;
+    public String f40669b;
+    public String f40670c;
+    public boolean d;
+    public String e;
+    public String f40671f;
+    public String f40672g;
+    public boolean h;
+    public String f40673i;
+    public String f40674j;
+    public String f40675k;
+    public boolean f40676l;
+    public String f40677m;
+    public String f40678n;
+    public String f40679o;
+    public boolean f40680p;
 }

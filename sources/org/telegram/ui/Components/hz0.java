@@ -1,105 +1,43 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import android.view.animation.OvershootInterpolator;
-import org.telegram.messenger.AndroidUtilities;
-public final class hz0 extends View {
-    public String f27017a;
-    public Drawable f27018b;
-    public boolean f27019c;
-    public int d;
-    public final f6 e;
-    public final iz0 f27020f;
+import android.view.MotionEvent;
+public final class hz0 extends mm0 {
+    public boolean Y2;
+    public boolean Z2;
+    public final lz0 f27076a3;
 
-    public hz0(iz0 iz0Var, Context context) {
-        super(context);
-        this.f27020f = iz0Var;
-        this.d = 0;
-        this.e = new f6(this, 350L, new OvershootInterpolator(5.0f));
+    public hz0(lz0 lz0Var, Context context) {
+        super(context, null);
+        this.f27076a3 = lz0Var;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        float f7;
-        if (isPressed()) {
-            f7 = 1.0f;
-        } else {
-            f7 = 0.0f;
+    public final void k0(int i10, int i11) {
+        boolean canScrollHorizontally = canScrollHorizontally(-1);
+        boolean canScrollHorizontally2 = canScrollHorizontally(1);
+        if (this.Y2 == canScrollHorizontally && this.Z2 == canScrollHorizontally2) {
+            return;
         }
-        float d = ((1.0f - this.e.d(f7, false)) * 0.2f) + 0.8f;
-        if (this.f27018b != null) {
-            int height = getHeight() - getPaddingBottom();
-            this.f27018b.setBounds(getPaddingLeft(), getPaddingTop(), getWidth() - getPaddingRight(), getHeight() - getPaddingBottom());
-            canvas.scale(d, d, getWidth() / 2, (getPaddingTop() + height) / 2);
-            Drawable drawable = this.f27018b;
-            if (drawable instanceof r5) {
-                ((r5) drawable).q(System.currentTimeMillis());
-            }
-            this.f27018b.draw(canvas);
+        ah.x xVar = this.f27076a3.d;
+        if (xVar != null) {
+            xVar.invalidate();
         }
+        this.Y2 = canScrollHorizontally;
+        this.Z2 = canScrollHorizontally2;
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        Drawable drawable = this.f27018b;
-        if (drawable instanceof r5) {
-            ((r5) drawable).a(this);
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        org.telegram.ui.ft previewDelegate;
+        org.telegram.ui.ht o10 = org.telegram.ui.ht.o();
+        lz0 lz0Var = this.f27076a3;
+        hz0 hz0Var = lz0Var.e;
+        previewDelegate = lz0Var.getPreviewDelegate();
+        boolean p5 = o10.p(motionEvent, hz0Var, previewDelegate, this.f28705n2);
+        if (!super.onInterceptTouchEvent(motionEvent) && !p5) {
+            return false;
         }
-        this.f27019c = true;
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        Drawable drawable = this.f27018b;
-        if (drawable instanceof r5) {
-            ((r5) drawable).o(this);
-        }
-        this.f27019c = false;
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        float f7;
-        int dp = AndroidUtilities.dp(3.0f);
-        float f10 = 6.66f;
-        if (this.d == 0) {
-            f7 = 0.0f;
-        } else {
-            f7 = 6.66f;
-        }
-        int dp2 = AndroidUtilities.dp(f7 + 3.0f);
-        int dp3 = AndroidUtilities.dp(3.0f);
-        if (this.d != 0) {
-            f10 = 0.0f;
-        }
-        setPadding(dp, dp2, dp3, AndroidUtilities.dp(f10 + 3.0f));
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(44.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(52.0f), 1073741824));
-    }
-
-    public void setDirection(int i10) {
-        this.d = i10;
-        invalidate();
-    }
-
-    public void setImageDrawable(Drawable drawable) {
-        Drawable drawable2 = this.f27018b;
-        if (drawable2 instanceof r5) {
-            ((r5) drawable2).o(this);
-        }
-        this.f27018b = drawable;
-        if ((drawable instanceof r5) && this.f27019c) {
-            ((r5) drawable).a(this);
-        }
-    }
-
-    @Override
-    public void setPressed(boolean z10) {
-        super.setPressed(z10);
-        invalidate();
+        return true;
     }
 }

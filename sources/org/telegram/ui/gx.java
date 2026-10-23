@@ -1,75 +1,60 @@
 package org.telegram.ui;
 
-import android.app.Activity;
+import android.content.Context;
+import android.graphics.Rect;
+import android.view.View;
+import android.widget.ScrollView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.UndoView;
-public final class gx extends UndoView {
-    public final cy f37434f0;
+public final class gx extends ScrollView {
+    public final int f37673a;
 
-    public gx(cy cyVar, Activity activity) {
-        super(activity);
-        this.f37434f0 = cyVar;
+    public gx(Context context, int i10) {
+        super(context);
+        this.f37673a = i10;
     }
 
     @Override
-    public final boolean a() {
-        int i10 = 0;
-        while (true) {
-            ay[] ayVarArr = this.f37434f0.f36096e0;
-            if (i10 < ayVarArr.length) {
-                if (ayVarArr[i10].f35455x.k()) {
-                    return false;
-                }
-                i10++;
-            } else {
-                return true;
-            }
+    public void onMeasure(int i10, int i11) {
+        switch (this.f37673a) {
+            case 0:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec((int) Math.min(View.MeasureSpec.getSize(i11), Math.min(AndroidUtilities.displaySize.y * 0.35f, AndroidUtilities.dp(400.0f))), View.MeasureSpec.getMode(i11)));
+                return;
+            case 1:
+            default:
+                super.onMeasure(i10, i11);
+                return;
+            case 2:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i11), AndroidUtilities.dp(320.0f)), Integer.MIN_VALUE));
+                return;
+            case 3:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i11), AndroidUtilities.dp(360.0f)), Integer.MIN_VALUE));
+                return;
+            case 4:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.dp(260.0f), View.MeasureSpec.getSize(i11)), View.MeasureSpec.getMode(i11)));
+                return;
         }
     }
 
     @Override
-    public final void h(int i10, long j10) {
-        if (i10 != 1 && i10 != 27) {
-            return;
+    public boolean onRequestFocusInDescendants(int i10, Rect rect) {
+        switch (this.f37673a) {
+            case 1:
+                return false;
+            default:
+                return super.onRequestFocusInDescendants(i10, rect);
         }
-        cy cyVar = this.f37434f0;
-        cyVar.f36205z3 = 1;
-        cyVar.y4(true, true);
-        if (cyVar.R1 != null) {
-            int i11 = 0;
-            while (true) {
-                if (i11 < cyVar.R1.size()) {
-                    if (((TLRPC.Dialog) cyVar.R1.get(i11)).f20284id == j10) {
-                        break;
-                    }
-                    i11++;
-                } else {
-                    i11 = -1;
-                    break;
-                }
-            }
-            if (i11 >= 0) {
-                cyVar.f36096e0[0].d.l();
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.y31(this, i11, (TLRPC.Dialog) cyVar.R1.remove(i11), 1));
-            } else {
-                cyVar.y4(false, true);
-            }
-        }
-        cyVar.m3();
     }
 
     @Override
-    public final void setTranslationY(float f7) {
-        super.setTranslationY(f7);
-        cy cyVar = this.f37434f0;
-        UndoView[] undoViewArr = cyVar.f36199y0;
-        if (this == undoViewArr[0]) {
-            UndoView undoView = undoViewArr[1];
-            if (undoView == null || undoView.getVisibility() != 0) {
-                cyVar.f36178u1 = Math.max(0.0f, (AndroidUtilities.dp(8.0f) + getMeasuredHeight()) - f7);
-                cyVar.V4();
-            }
+    public boolean requestChildRectangleOnScreen(View view, Rect rect, boolean z10) {
+        switch (this.f37673a) {
+            case 1:
+                rect.offset(view.getLeft() - view.getScrollX(), view.getTop() - view.getScrollY());
+                rect.top = AndroidUtilities.dp(20.0f) + rect.top;
+                rect.bottom = AndroidUtilities.dp(50.0f) + rect.bottom;
+                return super.requestChildRectangleOnScreen(view, rect, z10);
+            default:
+                return super.requestChildRectangleOnScreen(view, rect, z10);
         }
     }
 }

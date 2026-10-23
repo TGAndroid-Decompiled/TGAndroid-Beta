@@ -1,43 +1,53 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public final class y51 implements oy0 {
-    public final TLRPC.InputStickerSet f32579a;
-    public final d61 f32580b;
+import android.content.Context;
+import android.view.MotionEvent;
+import org.telegram.messenger.AndroidUtilities;
+public final class y51 extends mm0 {
+    public final f61 Y2;
+    public final i61 Z2;
 
-    public y51(d61 d61Var, TLRPC.InputStickerSet inputStickerSet) {
-        this.f32580b = d61Var;
-        this.f32579a = inputStickerSet;
+    public y51(i61 i61Var, Context context, f61 f61Var) {
+        super(context, null);
+        this.Z2 = i61Var;
+        this.Y2 = f61Var;
     }
 
     @Override
-    public final void a() {
-        d61 d61Var = this.f32580b;
-        s4.g0 adapter = d61Var.f25355n.getAdapter();
-        c61 c61Var = d61Var.f25357s;
-        TLRPC.InputStickerSet inputStickerSet = this.f32579a;
-        int i10 = 0;
-        if (adapter == c61Var) {
-            while (i10 < c61Var.e.size()) {
-                TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) c61Var.e.get(i10);
-                if (stickerSetCovered.set.f20307id == inputStickerSet.f20300id) {
-                    c61Var.F(stickerSetCovered, null);
-                    return;
-                }
-                i10++;
-            }
-            return;
+    public final boolean E0(float f7) {
+        if (f7 >= AndroidUtilities.dp(58.0f) + this.Z2.E) {
+            return true;
         }
-        hg.e2 e2Var = d61Var.v;
-        ArrayList arrayList = e2Var.E;
-        while (i10 < arrayList.size()) {
-            TLRPC.StickerSetCovered stickerSetCovered2 = (TLRPC.StickerSetCovered) arrayList.get(i10);
-            if (stickerSetCovered2.set.f20307id == inputStickerSet.f20300id) {
-                e2Var.F(stickerSetCovered2, null);
-                return;
-            }
-            i10++;
+        return false;
+    }
+
+    @Override
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        this.Z2.F = true;
+        return super.dispatchTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        boolean d = this.Y2.d(this, motionEvent);
+        if (!super.onInterceptTouchEvent(motionEvent) && !d) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        if (this.Z2.L != null) {
+            return false;
+        }
+        return super.onTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final void requestLayout() {
+        if (!this.Z2.H) {
+            super.requestLayout();
         }
     }
 }

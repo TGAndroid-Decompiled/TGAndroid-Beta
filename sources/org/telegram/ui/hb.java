@@ -4,20 +4,20 @@ import android.view.View;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
-public final class hb extends zt0 {
-    public final vb f37571a;
+public final class hb extends cu0 {
+    public final vb f37813a;
 
     public hb(vb vbVar) {
-        this.f37571a = vbVar;
+        this.f37813a = vbVar;
     }
 
     @Override
-    public final ju0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
-        org.telegram.ui.Cells.w0 w0Var;
+    public final mu0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
+        org.telegram.ui.Cells.v0 v0Var;
         MessageObject messageObject2;
-        org.telegram.ui.Cells.u1 u1Var;
+        org.telegram.ui.Cells.t1 t1Var;
         MessageObject messageObject3;
-        vb vbVar = this.f37571a;
+        vb vbVar = this.f37813a;
         int childCount = vbVar.v.getChildCount();
         int i11 = 0;
         while (true) {
@@ -26,14 +26,14 @@ public final class hb extends zt0 {
                 return null;
             }
             View childAt = vbVar.v.getChildAt(i11);
-            if (childAt instanceof org.telegram.ui.Cells.u1) {
-                if (messageObject != null && (messageObject3 = (u1Var = (org.telegram.ui.Cells.u1) childAt).getMessageObject()) != null && messageObject3.getId() == messageObject.getId()) {
-                    imageReceiver = u1Var.getPhotoImage();
+            if (childAt instanceof org.telegram.ui.Cells.t1) {
+                if (messageObject != null && (messageObject3 = (t1Var = (org.telegram.ui.Cells.t1) childAt).getMessageObject()) != null && messageObject3.getId() == messageObject.getId()) {
+                    imageReceiver = t1Var.getPhotoImage();
                 }
-            } else if ((childAt instanceof org.telegram.ui.Cells.w0) && (messageObject2 = (w0Var = (org.telegram.ui.Cells.w0) childAt).getMessageObject()) != null) {
+            } else if ((childAt instanceof org.telegram.ui.Cells.v0) && (messageObject2 = (v0Var = (org.telegram.ui.Cells.v0) childAt).getMessageObject()) != null) {
                 if (messageObject != null) {
                     if (messageObject2.getId() == messageObject.getId()) {
-                        imageReceiver = w0Var.getPhotoImage();
+                        imageReceiver = v0Var.getPhotoImage();
                     }
                 } else if (fileLocation != null && messageObject2.photoThumbs != null) {
                     int i12 = 0;
@@ -43,7 +43,7 @@ public final class hb extends zt0 {
                         }
                         TLRPC.FileLocation fileLocation2 = messageObject2.photoThumbs.get(i12).location;
                         if (fileLocation2.volume_id == fileLocation.volume_id && fileLocation2.local_id == fileLocation.local_id) {
-                            imageReceiver = w0Var.getPhotoImage();
+                            imageReceiver = v0Var.getPhotoImage();
                             break;
                         }
                         i12++;
@@ -53,15 +53,15 @@ public final class hb extends zt0 {
             if (imageReceiver != null) {
                 int[] iArr = new int[2];
                 childAt.getLocationInWindow(iArr);
-                ju0 ju0Var = new ju0();
-                ju0Var.f38356b = iArr[0];
-                ju0Var.f38357c = iArr[1];
-                ju0Var.d = vbVar.v;
-                ju0Var.f38355a = imageReceiver;
-                ju0Var.e = imageReceiver.getBitmapSafe();
-                ju0Var.h = imageReceiver.getRoundRadius(true);
-                ju0Var.f38363l = true;
-                return ju0Var;
+                mu0 mu0Var = new mu0();
+                mu0Var.f39693b = iArr[0];
+                mu0Var.f39694c = iArr[1];
+                mu0Var.d = vbVar.v;
+                mu0Var.f39692a = imageReceiver;
+                mu0Var.e = imageReceiver.getBitmapSafe();
+                mu0Var.h = imageReceiver.getRoundRadius(true);
+                mu0Var.f39700l = true;
+                return mu0Var;
             }
             i11++;
         }

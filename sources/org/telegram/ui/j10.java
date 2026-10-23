@@ -1,74 +1,33 @@
 package org.telegram.ui;
+public final class j10 implements Runnable {
+    public final int f38434a;
+    public final FiltersSetupActivity f38435b;
 
-import android.text.TextUtils;
-import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.TLRPC;
-public final class j10 extends pg.a {
-    public CharSequence f38147c;
-    public MessagesController.DialogFilter d;
-    public TLRPC.TL_dialogFilterSuggested e;
+    public j10(FiltersSetupActivity filtersSetupActivity, int i10) {
+        this.f38434a = i10;
+        this.f38435b = filtersSetupActivity;
+    }
 
-    public final boolean equals(Object obj) {
-        boolean z10;
-        boolean z11;
-        boolean z12;
-        boolean z13;
-        if (obj == this) {
-            return true;
+    @Override
+    public final void run() {
+        switch (this.f38434a) {
+            case 0:
+                FiltersSetupActivity filtersSetupActivity = this.f38435b;
+                filtersSetupActivity.getClass();
+                filtersSetupActivity.presentFragment(new PremiumPreviewFragment(0, "settings"));
+                return;
+            case 1:
+                FiltersSetupActivity filtersSetupActivity2 = this.f38435b;
+                filtersSetupActivity2.f33442a.f1(new xt(filtersSetupActivity2, 9), 700, true);
+                return;
+            case 2:
+                FiltersSetupActivity filtersSetupActivity3 = this.f38435b;
+                filtersSetupActivity3.getClass();
+                filtersSetupActivity3.showDialog(new sg.y0((org.telegram.ui.ActionBar.o2) filtersSetupActivity3, 9, true));
+                return;
+            default:
+                this.f38435b.getMessagesController().loadRemoteFilters(true);
+                return;
         }
-        if (!(obj instanceof j10)) {
-            return false;
-        }
-        j10 j10Var = (j10) obj;
-        int i10 = j10Var.f44300a;
-        int i11 = this.f44300a;
-        if (i10 != i11) {
-            return false;
-        }
-        if ((i11 == 0 || i11 == 4 || i11 == 3 || i11 == 6) && !TextUtils.equals(this.f38147c, j10Var.f38147c)) {
-            return false;
-        }
-        int i12 = this.f44300a;
-        if (i12 == 2) {
-            MessagesController.DialogFilter dialogFilter = this.d;
-            if (dialogFilter == null) {
-                z12 = true;
-            } else {
-                z12 = false;
-            }
-            MessagesController.DialogFilter dialogFilter2 = j10Var.d;
-            if (dialogFilter2 == null) {
-                z13 = true;
-            } else {
-                z13 = false;
-            }
-            if (z12 != z13) {
-                return false;
-            }
-            if (dialogFilter != null && dialogFilter.f17799id != dialogFilter2.f17799id) {
-                return false;
-            }
-        }
-        if (i12 == 5) {
-            TLRPC.TL_dialogFilterSuggested tL_dialogFilterSuggested = this.e;
-            if (tL_dialogFilterSuggested == null) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            TLRPC.TL_dialogFilterSuggested tL_dialogFilterSuggested2 = j10Var.e;
-            if (tL_dialogFilterSuggested2 == null) {
-                z11 = true;
-            } else {
-                z11 = false;
-            }
-            if (z10 != z11) {
-                return false;
-            }
-            if (tL_dialogFilterSuggested != null && tL_dialogFilterSuggested.filter.f20285id != tL_dialogFilterSuggested2.filter.f20285id) {
-                return false;
-            }
-        }
-        return true;
     }
 }

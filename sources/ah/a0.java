@@ -1,5 +1,6 @@
 package ah;
 
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.text.Editable;
 import android.text.Layout;
@@ -23,21 +24,22 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.ActionBar.a2;
-import org.telegram.ui.ActionBar.b2;
-import org.telegram.ui.ActionBar.d5;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.ActionBar.n2;
-import org.telegram.ui.Cells.v8;
+import org.telegram.ui.ActionBar.c2;
+import org.telegram.ui.ActionBar.h5;
+import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.ActionBar.o2;
+import org.telegram.ui.ActionBar.r6;
+import org.telegram.ui.ActionBar.z1;
+import org.telegram.ui.Cells.w8;
 import org.telegram.ui.Cells.y7;
 import org.telegram.ui.Components.a6;
+import org.telegram.ui.Components.bp0;
 import org.telegram.ui.Components.bs;
 import org.telegram.ui.Components.r5;
 import org.telegram.ui.Components.xc;
-import org.telegram.ui.Components.xo0;
-import org.telegram.ui.w41;
+import org.telegram.ui.a51;
 import w7.z5;
-public final class a0 extends n2 implements NotificationCenter.NotificationCenterDelegate {
+public final class a0 extends o2 implements NotificationCenter.NotificationCenterDelegate {
     public final LinkedHashMap E;
     public final ArrayList F;
     public final LinkedHashMap G;
@@ -59,16 +61,16 @@ public final class a0 extends n2 implements NotificationCenter.NotificationCente
     public y f640b;
     public x f641c;
     public i d;
-    public v8 e;
+    public w8 e;
     public LinearLayout f642f;
     public ai.r h;
     public w f643n;
     public y7 f644r;
-    public v8 f645s;
+    public w8 f645s;
     public m1 v;
     public FrameLayout f646w;
     public ImageView f647x;
-    public xo0 f648y;
+    public bp0 f648y;
 
     public a0(long j10, TLRPC.ChatFull chatFull) {
         super(null);
@@ -116,47 +118,47 @@ public final class a0 extends n2 implements NotificationCenter.NotificationCente
         }
         if (z10 && z11) {
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getParentActivity(), 0, getResourceProvider());
-            alertDialog$Builder.f20609a.R = LocaleController.getString("UnsavedChanges", R.string.UnsavedChanges);
-            alertDialog$Builder.f20609a.T = LocaleController.getString("ReactionApplyChangesDialog", R.string.ReactionApplyChangesDialog);
-            alertDialog$Builder.k(LocaleController.getString("ApplyTheme", R.string.ApplyTheme), new a2(this) {
-                public final a0 f814b;
+            alertDialog$Builder.f20678a.R = LocaleController.getString("UnsavedChanges", R.string.UnsavedChanges);
+            alertDialog$Builder.f20678a.T = LocaleController.getString("ReactionApplyChangesDialog", R.string.ReactionApplyChangesDialog);
+            alertDialog$Builder.k(LocaleController.getString("ApplyTheme", R.string.ApplyTheme), new z1(this) {
+                public final a0 f815b;
 
                 {
-                    this.f814b = this;
+                    this.f815b = this;
                 }
 
                 @Override
-                public final void g(b2 b2Var, int i10) {
+                public final void g(c2 c2Var, int i10) {
                     switch (r2) {
                         case 0:
-                            this.f814b.v.performClick();
+                            this.f815b.v.performClick();
                             return;
                         default:
-                            this.f814b.finishFragment();
+                            this.f815b.finishFragment();
                             return;
                     }
                 }
             });
-            alertDialog$Builder.h(LocaleController.getString(R.string.Discard), new a2(this) {
-                public final a0 f814b;
+            alertDialog$Builder.h(LocaleController.getString(R.string.Discard), new z1(this) {
+                public final a0 f815b;
 
                 {
-                    this.f814b = this;
+                    this.f815b = this;
                 }
 
                 @Override
-                public final void g(b2 b2Var, int i10) {
+                public final void g(c2 c2Var, int i10) {
                     switch (r2) {
                         case 0:
-                            this.f814b.v.performClick();
+                            this.f815b.v.performClick();
                             return;
                         default:
-                            this.f814b.finishFragment();
+                            this.f815b.finishFragment();
                             return;
                     }
                 }
             });
-            alertDialog$Builder.o();
+            alertDialog$Builder.p();
         }
         return z11;
     }
@@ -177,7 +179,7 @@ public final class a0 extends n2 implements NotificationCenter.NotificationCente
             this.v.setLvlRequiredState(this.R);
             return;
         }
-        this.v.f(null, true);
+        this.v.g(null, true);
     }
 
     public final void Z() {
@@ -194,7 +196,7 @@ public final class a0 extends n2 implements NotificationCenter.NotificationCente
             this.f648y.setLayoutParams(marginLayoutParams);
             NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, 512);
             this.f641c.animate().setListener(null).cancel();
-            this.f641c.animate().translationY(this.f641c.getMeasuredHeight()).setDuration(350L).withLayer().setInterpolator(bs.f25025f).setUpdateListener(new n(this, 1)).setListener(new q(this, 0)).start();
+            this.f641c.animate().translationY(this.f641c.getMeasuredHeight()).setDuration(350L).withLayer().setInterpolator(bs.f25133f).setUpdateListener(new n(this, 1)).setListener(new q(this, 0)).start();
         }
     }
 
@@ -235,7 +237,7 @@ public final class a0 extends n2 implements NotificationCenter.NotificationCente
                         Object obj2 = arrayList4.get(i11);
                         i11++;
                         TLRPC.TL_availableReaction tL_availableReaction = (TLRPC.TL_availableReaction) obj2;
-                        if (l4.longValue() == tL_availableReaction.activate_animation.f20286id) {
+                        if (l4.longValue() == tL_availableReaction.activate_animation.f20349id) {
                             TLRPC.TL_reactionEmoji tL_reactionEmoji = new TLRPC.TL_reactionEmoji();
                             tL_reactionEmoji.emoticon = tL_availableReaction.reaction;
                             arrayList.add(tL_reactionEmoji);
@@ -260,6 +262,7 @@ public final class a0 extends n2 implements NotificationCenter.NotificationCente
     public final void c0(int i10, boolean z10, boolean z11) {
         boolean z12;
         int i11;
+        int i12;
         if (this.S != i10 || this.f639a != z10) {
             this.f639a = z10;
             if (i10 != 1 && i10 != 0 && !z10) {
@@ -269,11 +272,11 @@ public final class a0 extends n2 implements NotificationCenter.NotificationCente
             }
             this.e.setChecked(z12);
             if (z12) {
-                i11 = h6.f21030f6;
+                i11 = k6.f21219f6;
             } else {
-                i11 = h6.f21011e6;
+                i11 = k6.f21200e6;
             }
-            int x02 = h6.x0(null, i11, false);
+            int x02 = k6.x0(null, i11, false);
             if (z11) {
                 if (z12) {
                     this.e.b(x02, true);
@@ -281,7 +284,13 @@ public final class a0 extends n2 implements NotificationCenter.NotificationCente
                     this.e.setBackgroundColorAnimatedReverse(x02);
                 }
             } else {
-                this.e.setBackgroundColor(x02);
+                w8 w8Var = this.e;
+                if (z12) {
+                    i12 = k6.f21219f6;
+                } else {
+                    i12 = k6.f21200e6;
+                }
+                r6.i(i12, w8Var, null);
             }
             this.S = i10;
             if (i10 != 1 && i10 != 0 && !z10) {
@@ -290,7 +299,7 @@ public final class a0 extends n2 implements NotificationCenter.NotificationCente
                     this.f646w.animate().setListener(null).cancel();
                     this.f642f.animate().setListener(null).cancel();
                     ViewPropertyAnimator duration = this.f646w.animate().alpha(0.0f).setDuration(350L);
-                    bs bsVar = bs.f25025f;
+                    bs bsVar = bs.f25133f;
                     duration.setInterpolator(bsVar).setListener(new q(this, 2)).start();
                     this.f642f.animate().alpha(0.0f).setDuration(350L).setInterpolator(bsVar).setListener(new q(this, 3)).start();
                     return;
@@ -305,7 +314,7 @@ public final class a0 extends n2 implements NotificationCenter.NotificationCente
                 this.f646w.animate().setListener(null).cancel();
                 this.f642f.animate().setListener(null).cancel();
                 ViewPropertyAnimator duration2 = this.f642f.animate().alpha(1.0f).setDuration(350L);
-                bs bsVar2 = bs.f25025f;
+                bs bsVar2 = bs.f25133f;
                 duration2.setInterpolator(bsVar2).setListener(new q(this, 1)).start();
                 this.f646w.animate().alpha(1.0f).setDuration(350L).setInterpolator(bsVar2).start();
                 LinkedHashMap linkedHashMap = this.E;
@@ -315,22 +324,22 @@ public final class a0 extends n2 implements NotificationCenter.NotificationCente
                     SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
                     ArrayList arrayList = this.H;
                     int size = arrayList.size();
-                    int i12 = 0;
                     int i13 = 0;
-                    while (i13 < size) {
-                        int i14 = i13 + 1;
-                        l1.a((TLRPC.TL_availableReaction) arrayList.get(i13), linkedHashMap, this.F, spannableStringBuilder, this.f640b, this.f643n.getFontMetricsInt());
-                        i12++;
-                        if (i12 >= this.J) {
+                    int i14 = 0;
+                    while (i14 < size) {
+                        int i15 = i14 + 1;
+                        l1.a((TLRPC.TL_availableReaction) arrayList.get(i14), linkedHashMap, this.F, spannableStringBuilder, this.f640b, this.f643n.getFontMetricsInt());
+                        i13++;
+                        if (i13 >= this.J) {
                             break;
                         }
-                        i13 = i14;
+                        i14 = i15;
                     }
                     this.f643n.append(spannableStringBuilder);
                     this.f643n.m();
-                    w41 w41Var = this.f640b.f43080p0;
-                    if (w41Var != null) {
-                        w41Var.l();
+                    a51 a51Var = this.f640b.f35920p0;
+                    if (a51Var != null) {
+                        a51Var.l();
                     }
                     Y(false);
                 }
@@ -347,18 +356,18 @@ public final class a0 extends n2 implements NotificationCenter.NotificationCente
     }
 
     @Override
-    public final android.view.View createView(android.content.Context r26) {
+    public final android.view.View createView(android.content.Context r25) {
         throw new UnsupportedOperationException("Method not decompiled: ah.a0.createView(android.content.Context):android.view.View");
     }
 
     public final void d0() {
-        v8 v8Var = this.f645s;
-        boolean z10 = v8Var.e.h;
+        w8 w8Var = this.f645s;
+        boolean z10 = w8Var.e.h;
         int i10 = this.J;
         LinkedHashMap linkedHashMap = this.E;
         ArrayList arrayList = this.F;
         if (z10) {
-            v8Var.setChecked(false);
+            w8Var.setChecked(false);
             arrayList.remove((Object) (-1L));
             a6 a6Var = (a6) linkedHashMap.remove(-1L);
             if (a6Var != null) {
@@ -370,7 +379,7 @@ public final class a0 extends n2 implements NotificationCenter.NotificationCente
             this.f643n.setMaxLength(i10);
             c0(this.S, this.f639a, true);
         } else {
-            v8Var.setChecked(true);
+            w8Var.setChecked(true);
             try {
                 this.f643n.setMaxLength(i10 + 1);
                 SpannableString spannableString = new SpannableString("b");
@@ -395,8 +404,8 @@ public final class a0 extends n2 implements NotificationCenter.NotificationCente
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         if (i10 == NotificationCenter.dialogDeleted && ((Long) objArr[0]).longValue() == (-this.M)) {
-            d5 d5Var = this.parentLayout;
-            if (d5Var != null && d5Var.getLastFragment() == this) {
+            h5 h5Var = this.parentLayout;
+            if (h5Var != null && h5Var.getLastFragment() == this) {
                 finishFragment();
             } else {
                 removeSelfFromStack();
@@ -474,6 +483,26 @@ public final class a0 extends n2 implements NotificationCenter.NotificationCente
     }
 
     @Override
+    public final void onThemeColorsChanged() {
+        int i10;
+        try {
+            super.onThemeColorsChanged();
+            w8 w8Var = this.e;
+            if (w8Var != null && (w8Var.getBackground() instanceof ColorDrawable)) {
+                w8 w8Var2 = this.e;
+                if (w8Var2.e.h) {
+                    i10 = k6.f21219f6;
+                } else {
+                    i10 = k6.f21200e6;
+                }
+                w8Var2.setBackgroundColor(k6.x0(null, i10, false));
+            }
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
+    }
+
+    @Override
     public final void onTransitionAnimationEnd(boolean z10, boolean z11) {
         super.onTransitionAnimationEnd(z10, z11);
         if (z10 && this.S != 2) {
@@ -481,11 +510,11 @@ public final class a0 extends n2 implements NotificationCenter.NotificationCente
         }
         if (z10 && !z11) {
             if (this.f640b == null) {
-                y yVar = new y(this, this, getParentActivity(), getResourceProvider(), h6.w0(h6.G6, getResourceProvider()));
+                y yVar = new y(this, this, getParentActivity(), getResourceProvider(), k6.w0(k6.G6, getResourceProvider()));
                 this.f640b = yVar;
                 yVar.setAnimationsEnabled(false);
                 this.f640b.setClipChildren(false);
-                this.f640b.setBackgroundColor(h6.x0(null, h6.f20994d6, false));
+                r6.i(k6.f21183d6, this.f640b, null);
                 this.f641c.addView(this.f640b, z5.e(-1, -2, 80));
                 i iVar = new i(getParentActivity(), getResourceProvider());
                 this.d = iVar;

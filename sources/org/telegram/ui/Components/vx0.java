@@ -1,13 +1,28 @@
 package org.telegram.ui.Components;
 
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.LaunchActivity;
-public final class vx0 extends mc {
-    public vx0(LaunchActivity launchActivity, int i10, TLRPC.Document document) {
-        this(launchActivity, null, 1, i10, document, null);
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class vx0 extends AnimatorListenerAdapter {
+    public final int f32072a;
+    public final wx0 f32073b;
+
+    public vx0(wx0 wx0Var, int i10) {
+        this.f32072a = i10;
+        this.f32073b = wx0Var;
     }
 
-    public vx0(android.content.Context r14, org.telegram.tgnet.TLObject r15, int r16, int r17, org.telegram.tgnet.TLRPC.Document r18, org.telegram.ui.ActionBar.d6 r19) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.vx0.<init>(android.content.Context, org.telegram.tgnet.TLObject, int, int, org.telegram.tgnet.TLRPC$Document, org.telegram.ui.ActionBar.d6):void");
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f32072a) {
+            case 0:
+                this.f32073b.f32376s.setVisibility(8);
+                return;
+            case 1:
+                this.f32073b.f32376s.setVisibility(8);
+                return;
+            default:
+                this.f32073b.f32376s.setVisibility(8);
+                return;
+        }
     }
 }

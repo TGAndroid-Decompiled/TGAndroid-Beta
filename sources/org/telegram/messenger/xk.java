@@ -1,34 +1,63 @@
 package org.telegram.messenger;
 
-import org.telegram.messenger.Utilities;
-public final class xk implements Utilities.Callback2 {
-    public final int f20109a;
-    public final TranslateController f20110b;
-    public final Utilities.Callback4 f20111c;
-    public final boolean d;
-    public final int e;
-    public final String f20112f;
-    public final long f20113g;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.TranslateController;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class xk implements RequestDelegate {
+    public final int f20174a;
+    public final BaseController f20175b;
+    public final long f20176c;
+    public final Object d;
 
-    public xk(TranslateController translateController, Utilities.Callback4 callback4, boolean z10, int i10, String str, long j10, int i11) {
-        this.f20109a = i11;
-        this.f20110b = translateController;
-        this.f20111c = callback4;
-        this.d = z10;
-        this.e = i10;
-        this.f20112f = str;
-        this.f20113g = j10;
+    public xk(BaseController baseController, long j10, Object obj, int i10) {
+        this.f20174a = i10;
+        this.f20175b = baseController;
+        this.f20176c = j10;
+        this.d = obj;
     }
 
     @Override
-    public final void run(Object obj, Object obj2) {
-        switch (this.f20109a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f20174a) {
             case 0:
-                this.f20110b.lambda$pushToTranslate$21(this.f20111c, this.d, this.e, this.f20112f, this.f20113g, (String) obj, (Boolean) obj2);
+                ((TranslateController) this.f20175b).lambda$pushPollToTranslate$26((TranslateController.PendingPollTranslation) this.d, this.f20176c, tLObject, tL_error);
+                return;
+            case 1:
+                ((TranslateController) this.f20175b).lambda$pushRichMessageToTranslate$29((TranslateController.PendingRichTranslation) this.d, this.f20176c, tLObject, tL_error);
+                return;
+            case 2:
+                ((MediaDataController) this.f20175b).lambda$loadPinnedMessageInternal$165(this.f20176c, (TLRPC.TL_messages_getMessages) this.d, tLObject, tL_error);
+                return;
+            case 3:
+                ((MessagesController) this.f20175b).lambda$updateTimerProc$154(this.f20176c, (TLRPC.TL_messages_getMessagesViews) this.d, tLObject, tL_error);
+                return;
+            case 4:
+                ((MessagesController) this.f20175b).lambda$reloadMentionsCountForChannel$220((TLRPC.InputPeer) this.d, this.f20176c, tLObject, tL_error);
+                return;
+            case 5:
+                ((MessagesController) this.f20175b).lambda$getGroupCall$62(this.f20176c, (Runnable) this.d, tLObject, tL_error);
+                return;
+            case 6:
+                ((MessagesController) this.f20175b).lambda$getSponsoredMessages$443(this.f20176c, (MessagesController.SponsoredMessagesInfo) this.d, tLObject, tL_error);
+                return;
+            case 7:
+                ((MessagesController) this.f20175b).lambda$loadUnknownChannel$329(this.f20176c, (TLRPC.TL_channel) this.d, tLObject, tL_error);
+                return;
+            case 8:
+                ((MessagesController) this.f20175b).lambda$setChatReactions$474(this.f20176c, (TLRPC.TL_messages_setChatAvailableReactions) this.d, tLObject, tL_error);
                 return;
             default:
-                this.f20110b.lambda$pushToTranslate$20(this.f20111c, this.d, this.e, this.f20112f, this.f20113g, (String) obj, (Boolean) obj2);
+                ((MessagesController) this.f20175b).lambda$checkLastDialogMessage$226((TLRPC.Dialog) this.d, this.f20176c, tLObject, tL_error);
                 return;
         }
+    }
+
+    public xk(BaseController baseController, Object obj, long j10, int i10) {
+        this.f20174a = i10;
+        this.f20175b = baseController;
+        this.d = obj;
+        this.f20176c = j10;
     }
 }

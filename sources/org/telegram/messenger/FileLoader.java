@@ -239,8 +239,8 @@ public class FileLoader extends BaseController {
         public void saveFilePath(FilePathDatabase.PathData pathData, File file) {
             String str;
             FilePathDatabase fileDatabase = FileLoader.this.getFileDatabase();
-            long j10 = pathData.f17790id;
-            int i10 = pathData.f17789dc;
+            long j10 = pathData.f17853id;
+            int i10 = pathData.f17852dc;
             int i11 = pathData.type;
             if (file != null) {
                 str = file.toString();
@@ -306,7 +306,7 @@ public class FileLoader extends BaseController {
                 int i12 = i11 + 1;
                 sb2.append(i12);
                 fileLoaderPriorityQueueArr[i11] = new FileLoaderPriorityQueue(i10, sb2.toString(), 0, fileLoaderQueue);
-                this.largeFilesQueue[i11] = new FileLoaderPriorityQueue(i10, i2.e.j(i12, "largeFilesQueue dc"), 1, fileLoaderQueue);
+                this.largeFilesQueue[i11] = new FileLoaderPriorityQueue(i10, i2.o1.k(i12, "largeFilesQueue dc"), 1, fileLoaderQueue);
                 i11 = i12;
             } else {
                 dumpFilesQueue();
@@ -706,7 +706,7 @@ public class FileLoader extends BaseController {
 
     public static long getPhotoId(TLObject tLObject) {
         if (tLObject instanceof TLRPC.Photo) {
-            return ((TLRPC.Photo) tLObject).f20304id;
+            return ((TLRPC.Photo) tLObject).f20367id;
         }
         if (tLObject instanceof TLRPC.ChatPhoto) {
             return ((TLRPC.ChatPhoto) tLObject).photo_id;
@@ -846,7 +846,7 @@ public class FileLoader extends BaseController {
             sb2.append(" position in queue ");
             sb2.append(fileLoadOperation.getPositionInQueue());
             sb2.append(" account=");
-            g0.o(this.currentAccount, sb2);
+            v0.n(this.currentAccount, sb2);
         }
     }
 
@@ -1407,7 +1407,7 @@ public class FileLoader extends BaseController {
         if (fileLocation == null) {
             return;
         }
-        fileLoaderQueue.postRunnable(new h0(this, fileLocation, str, 22));
+        fileLoaderQueue.postRunnable(new g0(this, fileLocation, str, 22));
     }
 
     public void setLoadingVideo(TLRPC.Document document, boolean z10, boolean z11) {
@@ -1475,7 +1475,7 @@ public class FileLoader extends BaseController {
                 }
             }
             int i11 = i10;
-            this.filePathDatabase.putPath(document.f20286id, document.dc_id, i11, 1, str);
+            this.filePathDatabase.putPath(document.f20349id, document.dc_id, i11, 1, str);
         } else if (tLObject instanceof TLRPC.PhotoSize) {
             TLRPC.PhotoSize photoSize = (TLRPC.PhotoSize) tLObject;
             if (!(photoSize instanceof TLRPC.TL_photoStrippedSize) && !(photoSize instanceof TLRPC.TL_photoPathSize)) {
@@ -1491,7 +1491,7 @@ public class FileLoader extends BaseController {
     }
 
     public void startVideoStream(TLRPC.Document document, Object obj) {
-        fileLoaderQueue.postRunnable(new h0(this, document, obj, 23));
+        fileLoaderQueue.postRunnable(new g0(this, document, obj, 23));
     }
 
     public void uploadFile(String str, boolean z10, boolean z11, int i10) {
@@ -1499,7 +1499,7 @@ public class FileLoader extends BaseController {
     }
 
     public void checkDownloadQueue(FileLoadOperation fileLoadOperation, FileLoaderPriorityQueue fileLoaderPriorityQueue, long j10) {
-        fileLoaderQueue.postRunnable(new h0(this, fileLoaderPriorityQueue, fileLoadOperation, 24), j10);
+        fileLoaderQueue.postRunnable(new g0(this, fileLoaderPriorityQueue, fileLoadOperation, 24), j10);
     }
 
     public static boolean copyFile(InputStream inputStream, File file, int i10) {
@@ -1540,7 +1540,7 @@ public class FileLoader extends BaseController {
     }
 
     public void checkUploadNewDataAvailable(String str, boolean z10, long j10, long j11, Float f7) {
-        fileLoaderQueue.postRunnable(new ci.o6(this, z10, str, j10, j11, f7));
+        fileLoaderQueue.postRunnable(new ci.n6(this, z10, str, j10, j11, f7));
     }
 
     public File getPathToAttach(TLObject tLObject, boolean z10) {
@@ -1589,21 +1589,21 @@ public class FileLoader extends BaseController {
                 StringBuilder sb2 = new StringBuilder();
                 sb2.append(document.dc_id);
                 sb2.append("_");
-                return a1.g.r(sb2, document.f20286id, substring);
+                return a1.g.r(sb2, document.f20349id, substring);
             }
-            return document.dc_id + "_" + document.f20286id;
+            return document.dc_id + "_" + document.f20349id;
         } else if (tLObject instanceof SecureDocument) {
             SecureDocument secureDocument = (SecureDocument) tLObject;
             StringBuilder sb3 = new StringBuilder();
             sb3.append(secureDocument.secureFile.dc_id);
             sb3.append("_");
-            return a1.g.r(sb3, secureDocument.secureFile.f20415id, ".jpg");
+            return a1.g.r(sb3, secureDocument.secureFile.f20478id, ".jpg");
         } else if (tLObject instanceof TLRPC.TL_secureFile) {
             TLRPC.TL_secureFile tL_secureFile = (TLRPC.TL_secureFile) tLObject;
             StringBuilder sb4 = new StringBuilder();
             sb4.append(tL_secureFile.dc_id);
             sb4.append("_");
-            return a1.g.r(sb4, tL_secureFile.f20415id, ".jpg");
+            return a1.g.r(sb4, tL_secureFile.f20478id, ".jpg");
         } else if (tLObject instanceof WebFile) {
             WebFile webFile = (WebFile) tLObject;
             return Utilities.MD5(webFile.url) + "." + ImageLoader.getHttpUrlExtension(webFile.url, getMimeTypePart(webFile.mime_type));
@@ -1895,7 +1895,7 @@ public class FileLoader extends BaseController {
                     return true;
                 }
             }
-            if ((-fileLocation.volume_id) == photo.f20304id) {
+            if ((-fileLocation.volume_id) == photo.f20367id) {
                 return true;
             }
         }

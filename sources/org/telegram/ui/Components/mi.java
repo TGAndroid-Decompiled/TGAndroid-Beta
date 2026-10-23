@@ -5,47 +5,47 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLRPC;
 public final class mi extends oi {
-    public TLRPC.User f28528b;
-    public TLRPC.TL_attachMenuBot f28529c;
+    public TLRPC.User f28662b;
+    public TLRPC.TL_attachMenuBot f28663c;
     public final ti d;
 
     public mi(ti tiVar, Context context) {
         super(context);
-        org.telegram.ui.ActionBar.d6 d6Var;
+        org.telegram.ui.ActionBar.g6 g6Var;
         this.d = tiVar;
         setWillNotDraw(false);
         setFocusable(true);
         setFocusableInTouchMode(true);
-        d6Var = ((org.telegram.ui.ActionBar.f3) tiVar).resourcesProvider;
+        g6Var = ((org.telegram.ui.ActionBar.h3) tiVar).resourcesProvider;
         ph.b bVar = new ph.b(context);
-        bVar.d = d6Var;
+        bVar.d = g6Var;
         bVar.Q = true;
-        TextView textView = bVar.f44313a;
+        TextView textView = bVar.f44726a;
         textView.setTextSize(1, 11.0f);
         textView.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), 0);
-        bVar.f44314b.setVisibility(8);
-        bVar.a(false);
+        bVar.f44727b.setVisibility(8);
+        bVar.b(false);
         w9 w9Var = new w9(context);
-        bVar.f44315c = w9Var;
+        bVar.f44728c = w9Var;
         bVar.addView(w9Var, w7.z5.d(24, 24.0f, 49, 0.0f, 4.0f, 0.0f, 0.0f));
-        bVar.f44320w = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.cl, d6Var);
-        bVar.f44319s = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.al, d6Var);
-        bVar.v = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.bl, d6Var);
-        bVar.f();
-        this.f29055a = bVar;
-        bVar.getBackupImageView().f31997a.setDelegate(new k2(12));
-        addView(this.f29055a, w7.z5.c(-1.0f, -1));
+        bVar.f44733w = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.cl, g6Var);
+        bVar.f44732s = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.al, g6Var);
+        bVar.v = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.bl, g6Var);
+        bVar.a();
+        this.f29184a = bVar;
+        bVar.getBackupImageView().f32195a.setDelegate(new e2(18));
+        addView(this.f29184a, w7.z5.c(-1.0f, -1));
     }
 
     public final void a(boolean z10) {
         boolean z11;
-        if (this.f28529c != null && (-this.f28528b.f20427id) == this.d.Z0) {
+        if (this.f28663c != null && (-this.f28662b.f20490id) == this.d.Z0) {
             z11 = true;
         } else {
             z11 = false;
         }
-        this.f29055a.e(z11, z10);
-        vj0 lottieAnimation = this.f29055a.getBackupImageView().getImageReceiver().getLottieAnimation();
+        this.f29184a.f(z11, z10);
+        yj0 lottieAnimation = this.f29184a.getBackupImageView().getImageReceiver().getLottieAnimation();
         if (z10) {
             if (z11 && lottieAnimation != null) {
                 lottieAnimation.K(0);

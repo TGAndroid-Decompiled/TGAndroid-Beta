@@ -1,69 +1,111 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.text.TextUtils;
 import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.tl.TL_account;
-public final class el0 extends org.telegram.ui.Components.g61 {
-    public static final int f36690a = 0;
+import android.view.ViewGroup;
+public final class el0 extends org.telegram.ui.Components.lm0 {
+    public final Context f36985c;
+    public final PasscodeActivity d;
 
-    static {
-        org.telegram.ui.Components.g61.setup(new org.telegram.ui.Components.g61());
+    public el0(PasscodeActivity passcodeActivity, Context context) {
+        this.d = passcodeActivity;
+        this.f36985c = context;
     }
 
     @Override
-    public final void bindView(View view, org.telegram.ui.Components.h61 h61Var, boolean z10, org.telegram.ui.Components.u61 u61Var, org.telegram.ui.Components.c71 c71Var) {
-        fl0 fl0Var = (fl0) view;
-        TL_account.Passkey passkey = (TL_account.Passkey) h61Var.G;
-        View.OnClickListener onClickListener = h61Var.D;
-        TextView textView = fl0Var.f37036f;
-        TextView textView2 = fl0Var.e;
-        org.telegram.ui.ActionBar.d6 d6Var = fl0Var.f37034b;
-        FrameLayout frameLayout = fl0Var.f37035c;
-        org.telegram.ui.Components.w9 w9Var = fl0Var.d;
-        fl0Var.f37038r = passkey.f20482id;
-        long j10 = passkey.software_emoji_id;
-        if (j10 != 0) {
-            w9Var.setAnimatedEmojiDrawable(org.telegram.ui.Components.r5.n(fl0Var.f37033a, j10, null, 3));
-            frameLayout.setBackground(null);
-            w9Var.setColorFilter(null);
-            w9Var.setScaleX(1.0f);
-            w9Var.setScaleY(1.0f);
-        } else {
-            int dp = AndroidUtilities.dp(4.0f);
-            int i10 = org.telegram.ui.ActionBar.h6.G6;
-            frameLayout.setBackground(org.telegram.ui.ActionBar.h6.c0(dp, org.telegram.ui.ActionBar.h6.m1(0.04f, org.telegram.ui.ActionBar.h6.w0(i10, d6Var))));
-            w9Var.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.m1(0.3f, org.telegram.ui.ActionBar.h6.w0(i10, d6Var)), PorterDuff.Mode.SRC_IN));
-            w9Var.setImageResource(R.drawable.msg2_permissions);
-            w9Var.setScaleX(0.666f);
-            w9Var.setScaleY(0.666f);
-            w9Var.setAnimatedEmojiDrawable(null);
+    public final boolean D(s4.b1 b1Var) {
+        int i10;
+        int i11;
+        int i12;
+        int i13;
+        int b10 = b1Var.b();
+        PasscodeActivity passcodeActivity = this.d;
+        i10 = passcodeActivity.fingerprintRow;
+        if (b10 != i10) {
+            i11 = passcodeActivity.autoLockRow;
+            if (b10 != i11 && b10 != passcodeActivity.N) {
+                i12 = passcodeActivity.changePasscodeRow;
+                if (b10 != i12) {
+                    i13 = passcodeActivity.disablePasscodeRow;
+                    if (b10 != i13 && b10 != passcodeActivity.J && b10 != passcodeActivity.K) {
+                        return false;
+                    }
+                    return true;
+                }
+                return true;
+            }
+            return true;
         }
-        if (TextUtils.isEmpty(passkey.name)) {
-            textView2.setText(LocaleController.getString(R.string.PasskeyUnknown));
-        } else {
-            textView2.setText(passkey.name);
-        }
-        int i11 = passkey.last_usage_date;
-        if (i11 != 0) {
-            textView.setText(LocaleController.formatString(R.string.PasskeyLastUsedOn, LocaleController.formatDateTime(i11, false)));
-        } else {
-            textView.setText(LocaleController.formatString(R.string.PasskeyCreatedOn, LocaleController.formatDateTime(passkey.date, false)));
-        }
-        fl0Var.h.setOnClickListener(onClickListener);
-        fl0Var.f37037n = z10;
-        fl0Var.setWillNotDraw(!z10);
+        return true;
     }
 
     @Override
-    public final View createView(Context context, org.telegram.ui.Components.jm0 jm0Var, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var) {
-        return new fl0(context, i10, d6Var);
+    public final int h() {
+        return this.d.P;
+    }
+
+    @Override
+    public final int j(int i10) {
+        int i11;
+        int i12;
+        int i13;
+        int i14;
+        PasscodeActivity passcodeActivity = this.d;
+        i11 = passcodeActivity.fingerprintRow;
+        if (i10 != i11 && i10 != passcodeActivity.N && i10 != passcodeActivity.K && i10 != passcodeActivity.J) {
+            i12 = passcodeActivity.changePasscodeRow;
+            if (i10 != i12) {
+                i13 = passcodeActivity.autoLockRow;
+                if (i10 != i13) {
+                    i14 = passcodeActivity.disablePasscodeRow;
+                    if (i10 != i14) {
+                        if (i10 != passcodeActivity.H && i10 != passcodeActivity.O && i10 != passcodeActivity.G && i10 != passcodeActivity.L) {
+                            if (i10 != passcodeActivity.M && i10 != passcodeActivity.I) {
+                                if (i10 == 0) {
+                                    return 4;
+                                }
+                                return 0;
+                            }
+                            return 3;
+                        }
+                        return 2;
+                    }
+                    return 1;
+                }
+                return 1;
+            }
+            return 1;
+        }
+        return 0;
+    }
+
+    @Override
+    public final void v(s4.b1 r8, int r9) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.el0.v(s4.b1, int):void");
+    }
+
+    @Override
+    public final s4.b1 x(ViewGroup viewGroup, int i10) {
+        View w8Var;
+        Context context = this.f36985c;
+        if (i10 != 0) {
+            if (i10 != 1) {
+                if (i10 != 3) {
+                    if (i10 != 4) {
+                        w8Var = new org.telegram.ui.Cells.e9(context);
+                    } else {
+                        w8Var = new fl0(context);
+                        w8Var.setTag(-33024);
+                    }
+                } else {
+                    w8Var = new org.telegram.ui.Cells.l4(context);
+                }
+            } else {
+                w8Var = new org.telegram.ui.Cells.ca(context);
+            }
+        } else {
+            w8Var = new org.telegram.ui.Cells.w8(context);
+        }
+        return new s4.b1(w8Var);
     }
 }

@@ -1,11 +1,19 @@
 package org.telegram.ui.ActionBar;
 
-import android.view.animation.Interpolator;
-public final class t4 implements Interpolator {
-    public final float f21730a = 1.0f / ((float) (1.0d - Math.pow(100, -1.0f)));
+import android.view.MenuItem;
+import android.view.View;
+public final class t4 implements View.OnClickListener {
+    public final y4 f21857a;
+
+    public t4(y4 y4Var) {
+        this.f21857a = y4Var;
+    }
 
     @Override
-    public final float getInterpolation(float f7) {
-        return 1.0f - (((float) (1.0d - Math.pow(100, -(1.0f - f7)))) * this.f21730a);
+    public final void onClick(View view) {
+        MenuItem.OnMenuItemClickListener onMenuItemClickListener;
+        if ((view.getTag() instanceof MenuItem) && (onMenuItemClickListener = this.f21857a.K) != null) {
+            onMenuItemClickListener.onMenuItemClick((MenuItem) view.getTag());
+        }
     }
 }

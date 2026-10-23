@@ -1,28 +1,57 @@
 package i2;
-public final class x implements e2.p, e2.o {
-    public final int f12601a;
-    public final i0 f12602b;
 
-    public x(i0 i0Var, int i10) {
-        this.f12601a = i10;
-        this.f12602b = i0Var;
+import android.os.Bundle;
+import org.telegram.messenger.GenericProvider;
+import org.telegram.ui.Components.qc;
+import org.telegram.ui.Components.xc;
+import org.telegram.ui.rg0;
+public final class x implements e2.o, e2.j, p.a, GenericProvider {
+    public final int f12645a;
+    public final boolean f12646b;
+
+    public x(int i10, boolean z10) {
+        this.f12645a = i10;
+        this.f12646b = z10;
     }
 
     @Override
-    public void c(Object obj, b2.u uVar) {
-        ((b2.d1) obj).onEvents(this.f12602b.f12389f, new b2.c1(uVar));
+    public void accept(Object obj) {
+        switch (this.f12645a) {
+            case 2:
+                ((m4.m1) obj).X(this.f12646b);
+                return;
+            case 3:
+                ((m4.m1) obj).q0(this.f12646b);
+                return;
+            default:
+                ((m4.m1) obj).w(this.f12646b);
+                return;
+        }
+    }
+
+    @Override
+    public qc c(xc xcVar) {
+        return xcVar.k(this.f12646b);
     }
 
     @Override
     public void invoke(Object obj) {
-        b2.d1 d1Var = (b2.d1) obj;
-        switch (this.f12601a) {
-            case 3:
-                d1Var.onAvailableCommandsChanged(this.f12602b.P);
+        switch (this.f12645a) {
+            case 0:
+                ((b2.d1) obj).onShuffleModeEnabledChanged(this.f12646b);
                 return;
             default:
-                d1Var.onPlaylistMetadataChanged(this.f12602b.R);
+                ((b2.d1) obj).onSkipSilenceEnabledChanged(this.f12646b);
                 return;
         }
+    }
+
+    @Override
+    public Object provide(Object obj) {
+        Void r22 = (Void) obj;
+        Bundle h = a1.g.h("afterSignup", this.f12646b);
+        rg0 rg0Var = new rg0();
+        rg0Var.l0(h);
+        return rg0Var;
     }
 }

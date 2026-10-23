@@ -1,8 +1,10 @@
 package hg;
 
 import android.content.Context;
+import android.graphics.drawable.ShapeDrawable;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+import java.util.HashSet;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.ImageReceiver;
@@ -10,91 +12,73 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.b6;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.Components.w9;
-import org.telegram.ui.Components.zq;
+import org.telegram.ui.Components.yq;
 import w7.z5;
-public final class n0 extends FrameLayout {
-    public static final int f11987f = 0;
-    public final d6 f11988a;
-    public final w9 f11989b;
-    public final TextView f11990c;
-    public zq d;
+public final class n0 extends FrameLayout implements b6 {
+    public final g6 f12015a;
+    public final w9 f12016b;
+    public final TextView f12017c;
+    public yq d;
     public o0 e;
 
-    public n0(Context context, d6 d6Var) {
+    public n0(Context context, g6 g6Var) {
         super(context);
-        this.f11988a = d6Var;
+        this.f12015a = g6Var;
         w9 w9Var = new w9(context);
-        this.f11989b = w9Var;
+        this.f12016b = w9Var;
         addView(w9Var, z5.c(30.0f, 30));
         TextView textView = new TextView(context);
-        this.f11990c = textView;
+        this.f12017c = textView;
         textView.setTextSize(1, 14.0f);
         addView(textView, z5.d(-2, -2.0f, 16, 36.0f, 0.0f, 14.0f, 0.0f));
-        a();
-    }
-
-    public final void a() {
-        int dp = AndroidUtilities.dp(28.0f);
-        int i10 = h6.f20987ci;
-        d6 d6Var = this.f11988a;
-        setBackground(h6.c0(dp, h6.w0(i10, d6Var)));
-        this.f11990c.setTextColor(h6.w0(h6.G6, d6Var));
-        zq zqVar = this.d;
-        if (zqVar != null) {
-            if (this.e.d == 7) {
-                h6.w1(zqVar, h6.w0(h6.Oh, d6Var), false);
-                h6.w1(this.d, h6.w0(h6.Sh, d6Var), true);
-                return;
-            }
-            h6.w1(zqVar, h6.w0(h6.Oh, d6Var), false);
-            h6.w1(this.d, h6.w0(h6.Sh, d6Var), true);
-        }
+        updateColors();
     }
 
     public void setData(o0 o0Var) {
         float f7;
         this.e = o0Var;
-        w9 w9Var = this.f11989b;
+        w9 w9Var = this.f12016b;
         w9Var.getImageReceiver().clearImage();
         int i10 = o0Var.d;
-        String str = o0Var.f12003c;
-        TextView textView = this.f11990c;
-        d6 d6Var = this.f11988a;
+        String str = o0Var.f12030c;
+        TextView textView = this.f12017c;
+        g6 g6Var = this.f12015a;
         if (i10 == 7) {
-            zq M = h6.M(AndroidUtilities.dp(32.0f), R.drawable.chats_archive);
+            yq M = k6.M(AndroidUtilities.dp(32.0f), R.drawable.chats_archive);
             this.d = M;
             int dp = AndroidUtilities.dp(16.0f);
             int dp2 = AndroidUtilities.dp(16.0f);
             M.e = dp;
-            M.f33024f = dp2;
-            h6.w1(this.d, h6.w0(h6.Oh, d6Var), false);
-            h6.w1(this.d, h6.w0(h6.Sh, d6Var), true);
+            M.f33015f = dp2;
+            k6.y1(this.d, k6.w0(k6.Oh, g6Var), false);
+            k6.y1(this.d, k6.w0(k6.Sh, g6Var), true);
             w9Var.setImageDrawable(this.d);
             textView.setText(str);
             return;
         }
-        zq M2 = h6.M(AndroidUtilities.dp(32.0f), o0Var.f12001a);
+        yq M2 = k6.M(AndroidUtilities.dp(32.0f), o0Var.f12028a);
         this.d = M2;
-        int i11 = h6.Oh;
-        h6.w1(M2, h6.w0(i11, d6Var), false);
-        zq zqVar = this.d;
-        int i12 = h6.Sh;
-        h6.w1(zqVar, h6.w0(i12, d6Var), true);
+        int i11 = k6.Oh;
+        k6.y1(M2, k6.w0(i11, g6Var), false);
+        yq yqVar = this.d;
+        int i12 = k6.Sh;
+        k6.y1(yqVar, k6.w0(i12, g6Var), true);
         if (o0Var.d == 4) {
-            TLObject tLObject = o0Var.f12004f;
+            TLObject tLObject = o0Var.f12031f;
             if (tLObject instanceof TLRPC.User) {
                 TLRPC.User user = (TLRPC.User) tLObject;
-                if (UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser().f20427id == user.f20427id) {
-                    zq M3 = h6.M(AndroidUtilities.dp(32.0f), R.drawable.chats_saved);
+                if (UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser().f20490id == user.f20490id) {
+                    yq M3 = k6.M(AndroidUtilities.dp(32.0f), R.drawable.chats_saved);
                     int dp3 = AndroidUtilities.dp(16.0f);
                     int dp4 = AndroidUtilities.dp(16.0f);
                     M3.e = dp3;
-                    M3.f33024f = dp4;
-                    h6.w1(M3, h6.w0(i11, d6Var), false);
-                    h6.w1(M3, h6.w0(i12, d6Var), true);
+                    M3.f33015f = dp4;
+                    k6.y1(M3, k6.w0(i11, g6Var), false);
+                    k6.y1(M3, k6.w0(i12, g6Var), true);
                     w9Var.setImageDrawable(M3);
                 } else {
                     w9Var.getImageReceiver().setRoundRadius(AndroidUtilities.dp(16.0f));
@@ -115,5 +99,36 @@ public final class n0 extends FrameLayout {
             w9Var.setImageDrawable(this.d);
         }
         textView.setText(str);
+    }
+
+    @Override
+    public final void updateColors() {
+        o0 o0Var;
+        boolean z10 = getBackground() instanceof ShapeDrawable;
+        g6 g6Var = this.f12015a;
+        if (z10) {
+            k6.z1(k6.w0(k6.f21176ci, g6Var), getBackground());
+            invalidate();
+        } else {
+            setBackground(k6.c0(AndroidUtilities.dp(28.0f), k6.w0(k6.f21176ci, g6Var)));
+        }
+        TextView textView = this.f12017c;
+        if (textView != null) {
+            textView.setTextColor(k6.w0(k6.G6, g6Var));
+        }
+        yq yqVar = this.d;
+        if (yqVar != null && (o0Var = this.e) != null) {
+            if (o0Var.d == 7) {
+                k6.y1(yqVar, k6.w0(k6.Oh, g6Var), false);
+                k6.y1(this.d, k6.w0(k6.Sh, g6Var), true);
+                return;
+            }
+            k6.y1(yqVar, k6.w0(k6.Oh, g6Var), false);
+            k6.y1(this.d, k6.w0(k6.Sh, g6Var), true);
+        }
+    }
+
+    @Override
+    public final void addColorKeys(HashSet hashSet) {
     }
 }

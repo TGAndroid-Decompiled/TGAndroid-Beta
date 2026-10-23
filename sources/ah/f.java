@@ -5,17 +5,18 @@ import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.view.View;
-import ci.p1;
+import ci.o1;
 import ei.c4;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.voip.VoIPService;
-import org.telegram.ui.ActionBar.n2;
+import org.telegram.ui.ActionBar.o2;
+import org.telegram.ui.Cells.z1;
 import org.telegram.ui.Components.FragmentContextView;
-import org.telegram.ui.Components.ah0;
 import org.telegram.ui.Components.cv;
+import org.telegram.ui.Components.dh0;
 import org.telegram.ui.Components.fs;
 import org.telegram.ui.Components.voip.k2;
 import org.telegram.ui.Components.wq;
@@ -24,25 +25,25 @@ import org.telegram.ui.ExternalActionActivity;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.PremiumPreviewFragment;
-import org.telegram.ui.Wallet.z2;
+import org.telegram.ui.Wallet.y2;
 public final class f implements View.OnClickListener {
-    public final int f722a;
+    public final int f723a;
 
     public f(int i10) {
-        this.f722a = i10;
+        this.f723a = i10;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f722a) {
+        switch (this.f723a) {
             case 0:
                 int i10 = i.e;
                 return;
             case 1:
-                int i11 = a2.D0;
+                int i11 = a2.F0;
                 return;
             case 2:
-                p1.j();
+                o1.j();
                 return;
             case 3:
                 int i12 = c4.d;
@@ -51,7 +52,7 @@ public final class f implements View.OnClickListener {
                 PhotoViewer.u1().k0(1.0f, 0.0f, 0.0f, false);
                 return;
             case 5:
-                int i13 = gi.n.f11341n;
+                int i13 = gi.n.f11366n;
                 return;
             case 6:
                 int i14 = kh.c.e;
@@ -59,10 +60,10 @@ public final class f implements View.OnClickListener {
             case 7:
                 return;
             case 8:
-                int i15 = org.telegram.ui.Cells.x.L;
+                int i15 = org.telegram.ui.Cells.w.L;
                 return;
             case 9:
-                n2 R = LaunchActivity.R();
+                o2 R = LaunchActivity.R();
                 if (R != null) {
                     R.presentFragment(new PremiumPreviewFragment(0, "contact"));
                     return;
@@ -80,35 +81,35 @@ public final class f implements View.OnClickListener {
                 }
                 return;
             case 11:
-                int i16 = wq.f32228e0;
+                int i16 = wq.f32314f0;
                 return;
             case 12:
-                int i17 = fs.f26402s;
+                int i17 = fs.f26443w;
                 return;
             case 13:
-                float[] fArr = FragmentContextView.Q0;
+                float[] fArr = FragmentContextView.W0;
                 MediaController.getInstance().updateSilent(false);
                 return;
             case 14:
-                ah0 ah0Var = ah0.f24602p0;
-                cv cvVar = ah0Var.U;
+                dh0 dh0Var = dh0.f25631p0;
+                cv cvVar = dh0Var.U;
                 if (cvVar != null) {
-                    cvVar.G();
+                    cvVar.F();
                 } else {
-                    PhotoViewer photoViewer = ah0Var.V;
+                    PhotoViewer photoViewer = dh0Var.V;
                     if (photoViewer != null) {
                         photoViewer.R0();
                         MediaController.getInstance().tryResumePausedAudio();
                     }
                 }
-                ah0.j(false);
+                dh0.j(false);
                 return;
             case 15:
                 org.telegram.ui.Components.voip.h1.j();
                 return;
             case 16:
-                org.telegram.ui.Cells.a2 a2Var = (org.telegram.ui.Cells.a2) view;
-                a2Var.c(!a2Var.b(), true);
+                z1 z1Var = (z1) view;
+                z1Var.c(!z1Var.b(), true);
                 return;
             case 17:
                 VoIPService sharedInstance = VoIPService.getSharedInstance();
@@ -120,15 +121,15 @@ public final class f implements View.OnClickListener {
                     return;
                 }
             case 18:
-                ug.m1.f0(0, null);
+                ug.l1.e0(0, null);
                 return;
             case 19:
-                ArrayList arrayList = ExternalActionActivity.f33135x;
+                ArrayList arrayList = ExternalActionActivity.f33432x;
                 return;
             case 20:
                 return;
             case 21:
-                Pattern pattern = LaunchActivity.C1;
+                Pattern pattern = LaunchActivity.E1;
                 return;
             case 22:
                 return;
@@ -141,7 +142,7 @@ public final class f implements View.OnClickListener {
                     return;
                 }
             case 24:
-                int i18 = z2.W;
+                int i18 = y2.W;
                 return;
             case 25:
                 PhotoViewer.u1().k0(1.0f, 0.0f, 0.0f, false);
@@ -158,16 +159,16 @@ public final class f implements View.OnClickListener {
                 int i19 = yh.m.A0;
                 return;
             case 28:
-                zc[] zcVarArr = yh.v.f50544p0;
+                zc[] zcVarArr = yh.v.f51001p0;
                 return;
             default:
-                int i20 = yh.c0.f50186f0;
+                int i20 = yh.c0.f50628g0;
                 return;
         }
     }
 
     public f(Object obj, int i10) {
-        this.f722a = i10;
+        this.f723a = i10;
     }
 
     private final void a(View view) {

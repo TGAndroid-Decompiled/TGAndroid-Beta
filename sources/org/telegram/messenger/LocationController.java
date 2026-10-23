@@ -20,7 +20,7 @@ import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_update;
-import org.telegram.ui.Components.xe0;
+import org.telegram.ui.Components.af0;
 public class LocationController extends BaseController implements NotificationCenter.NotificationCenterDelegate, ILocationServiceProvider.IAPIConnectionCallbacks, ILocationServiceProvider.IAPIOnConnectionFailedListener {
     private static final int BACKGROUD_UPDATE_TIME = 30000;
     private static final long FASTEST_INTERVAL = 1000;
@@ -145,7 +145,7 @@ public class LocationController extends BaseController implements NotificationCe
                     }
                     TLRPC.TL_messages_editMessage tL_messages_editMessage = new TLRPC.TL_messages_editMessage();
                     tL_messages_editMessage.peer = getMessagesController().getInputPeer(sharingLocationInfo.did);
-                    tL_messages_editMessage.f20363id = sharingLocationInfo.mid;
+                    tL_messages_editMessage.f20426id = sharingLocationInfo.mid;
                     tL_messages_editMessage.flags |= 16384;
                     TLRPC.TL_inputMediaGeoLive tL_inputMediaGeoLive = new TLRPC.TL_inputMediaGeoLive();
                     tL_messages_editMessage.media = tL_inputMediaGeoLive;
@@ -429,7 +429,7 @@ public class LocationController extends BaseController implements NotificationCe
             FileLog.e(e);
         }
         if (!arrayList.isEmpty()) {
-            AndroidUtilities.runOnUIThread(new ok(this, arrayList2, arrayList3, arrayList, 9));
+            AndroidUtilities.runOnUIThread(new nk(this, arrayList2, arrayList3, arrayList, 9));
         }
     }
 
@@ -501,7 +501,7 @@ public class LocationController extends BaseController implements NotificationCe
             SharingLocationInfo sharingLocationInfo = this.sharingLocations.get(i10);
             TLRPC.TL_messages_editMessage tL_messages_editMessage = new TLRPC.TL_messages_editMessage();
             tL_messages_editMessage.peer = getMessagesController().getInputPeer(sharingLocationInfo.did);
-            tL_messages_editMessage.f20363id = sharingLocationInfo.mid;
+            tL_messages_editMessage.f20426id = sharingLocationInfo.mid;
             tL_messages_editMessage.flags |= 16384;
             TLRPC.TL_inputMediaGeoLive tL_inputMediaGeoLive = new TLRPC.TL_inputMediaGeoLive();
             tL_messages_editMessage.media = tL_inputMediaGeoLive;
@@ -538,7 +538,7 @@ public class LocationController extends BaseController implements NotificationCe
         if (sharingLocationInfo != null) {
             TLRPC.TL_messages_editMessage tL_messages_editMessage = new TLRPC.TL_messages_editMessage();
             tL_messages_editMessage.peer = getMessagesController().getInputPeer(sharingLocationInfo.did);
-            tL_messages_editMessage.f20363id = sharingLocationInfo.mid;
+            tL_messages_editMessage.f20426id = sharingLocationInfo.mid;
             tL_messages_editMessage.flags |= 16384;
             TLRPC.TL_inputMediaGeoLive tL_inputMediaGeoLive = new TLRPC.TL_inputMediaGeoLive();
             tL_messages_editMessage.media = tL_inputMediaGeoLive;
@@ -706,7 +706,7 @@ public class LocationController extends BaseController implements NotificationCe
 
     private void startService() {
         try {
-            if (!xe0.d("android.permission.ACCESS_COARSE_LOCATION") && !xe0.d("android.permission.ACCESS_FINE_LOCATION")) {
+            if (!af0.d("android.permission.ACCESS_COARSE_LOCATION") && !af0.d("android.permission.ACCESS_FINE_LOCATION")) {
                 return;
             }
             ApplicationLoader.applicationContext.startService(new Intent(ApplicationLoader.applicationContext, LocationSharingService.class));
@@ -739,7 +739,7 @@ public class LocationController extends BaseController implements NotificationCe
     public void addSharingLocation(TLRPC.Message message) {
         SharingLocationInfo sharingLocationInfo = new SharingLocationInfo();
         sharingLocationInfo.did = message.dialog_id;
-        sharingLocationInfo.mid = message.f20301id;
+        sharingLocationInfo.mid = message.f20364id;
         TLRPC.MessageMedia messageMedia = message.media;
         sharingLocationInfo.period = messageMedia.period;
         int i10 = messageMedia.proximity_notification_radius;
@@ -761,7 +761,7 @@ public class LocationController extends BaseController implements NotificationCe
         this.sharingLocations.add(sharingLocationInfo);
         saveSharingLocation(sharingLocationInfo, 0);
         this.lastLocationSendTime = SystemClock.elapsedRealtime() - 25000;
-        AndroidUtilities.runOnUIThread(new h0(this, sharingLocationInfo2, sharingLocationInfo, 27));
+        AndroidUtilities.runOnUIThread(new g0(this, sharingLocationInfo2, sharingLocationInfo, 27));
     }
 
     public void cleanup() {
@@ -895,7 +895,7 @@ public class LocationController extends BaseController implements NotificationCe
         TLRPC.TL_messages_getRecentLocations tL_messages_getRecentLocations = new TLRPC.TL_messages_getRecentLocations();
         tL_messages_getRecentLocations.peer = getMessagesController().getInputPeer(j10);
         tL_messages_getRecentLocations.limit = 100;
-        getConnectionsManager().sendRequest(tL_messages_getRecentLocations, new ci.k6(this, j10, 2));
+        getConnectionsManager().sendRequest(tL_messages_getRecentLocations, new ci.j6(this, j10, 2));
     }
 
     public void markLiveLoactionsAsRead(long j10) {
@@ -913,7 +913,7 @@ public class LocationController extends BaseController implements NotificationCe
                         tL_messages_readMessageContents = new TLRPC.TL_channels_readMessageContents();
                         int size = arrayList.size();
                         while (i10 < size) {
-                            i10 = com.google.android.gms.internal.play_billing.k3.f(((TLRPC.Message) arrayList.get(i10)).f20301id, i10, 1, tL_messages_readMessageContents.f20319id);
+                            i10 = com.google.android.gms.internal.play_billing.k3.f(((TLRPC.Message) arrayList.get(i10)).f20364id, i10, 1, tL_messages_readMessageContents.f20382id);
                         }
                         tL_messages_readMessageContents.channel = getMessagesController().getInputChannel(j11);
                         getConnectionsManager().sendRequest(tL_messages_readMessageContents, new w5(this, 2));
@@ -922,7 +922,7 @@ public class LocationController extends BaseController implements NotificationCe
                 tL_messages_readMessageContents = new TLRPC.TL_messages_readMessageContents();
                 int size2 = arrayList.size();
                 while (i10 < size2) {
-                    i10 = com.google.android.gms.internal.play_billing.k3.f(((TLRPC.Message) arrayList.get(i10)).f20301id, i10, 1, tL_messages_readMessageContents.f20383id);
+                    i10 = com.google.android.gms.internal.play_billing.k3.f(((TLRPC.Message) arrayList.get(i10)).f20364id, i10, 1, tL_messages_readMessageContents.f20446id);
                 }
                 getConnectionsManager().sendRequest(tL_messages_readMessageContents, new w5(this, 2));
             }
@@ -989,7 +989,7 @@ public class LocationController extends BaseController implements NotificationCe
         if (sharingLocationInfo != null) {
             sharingLocationInfo.proximityMeters = i10;
         }
-        getMessagesStorage().getStorageQueue().postRunnable(new ai.zb(this, i10, j10, 2));
+        getMessagesStorage().getStorageQueue().postRunnable(new ai.ac(this, i10, j10, 2));
         if (z10) {
             Utilities.stageQueue.postRunnable(new v5(this, 1));
         }
@@ -1060,9 +1060,9 @@ public class LocationController extends BaseController implements NotificationCe
         Locale locale = systemDefaultLocale;
         Locale locale2 = locale.getLanguage().contains("en") ? locale : Locale.US;
         DispatchQueue dispatchQueue = Utilities.globalQueue;
-        ai.ub ubVar = new ai.ub(locale, location, i10, locale2, locationFetchCallback, 7);
-        dispatchQueue.postRunnable(ubVar, 300L);
-        callbacks.put(locationFetchCallback, ubVar);
+        ai.vb vbVar = new ai.vb(locale, location, i10, locale2, locationFetchCallback, 7);
+        dispatchQueue.postRunnable(vbVar, 300L);
+        callbacks.put(locationFetchCallback, vbVar);
     }
 
     public class GpsLocationListener implements LocationListener {

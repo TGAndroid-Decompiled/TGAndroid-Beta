@@ -1,29 +1,35 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class n71 implements RequestDelegate {
-    public final int f39450a;
-    public final x71 f39451b;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+public final class n71 implements Runnable {
+    public final int f39810a;
+    public final c81 f39811b;
 
-    public n71(x71 x71Var, int i10) {
-        this.f39450a = i10;
-        this.f39451b = x71Var;
+    public n71(c81 c81Var, int i10) {
+        this.f39810a = i10;
+        this.f39811b = c81Var;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f39450a) {
+    public final void run() {
+        switch (this.f39810a) {
             case 0:
-                TLRPC.TL_help_dismissSuggestion tL_help_dismissSuggestion = new TLRPC.TL_help_dismissSuggestion();
-                tL_help_dismissSuggestion.suggestion = "VALIDATE_PASSWORD";
-                tL_help_dismissSuggestion.peer = new TLRPC.TL_inputPeerEmpty();
-                x71 x71Var = this.f39451b;
-                x71Var.getConnectionsManager().sendRequest(tL_help_dismissSuggestion, new n71(x71Var, 1));
+                MessagesController.getInstance(this.f39811b.currentAccount).deleteUserPhoto(null);
+                return;
+            case 1:
+                this.f39811b.f36294c.Z2.N(true);
+                return;
+            case 2:
+                pf.d.r(this.f39811b.getParentActivity(), LocaleController.getString(R.string.CheckPhoneNumberLearnMoreUrl));
+                return;
+            case 3:
+                c81 c81Var = this.f39811b;
+                c81Var.f36294c.postOnAnimation(new n71(c81Var, 4));
                 return;
             default:
-                this.f39451b.getMessagesController().loadAppConfig();
+                this.f39811b.k0();
                 return;
         }
     }

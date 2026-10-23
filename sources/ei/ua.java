@@ -6,27 +6,27 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.Utilities;
 public final class ua extends q3 {
-    public final vb f9914k0;
+    public final vb f9930k0;
 
     public ua(vb vbVar, int i10, Context context, ci.b bVar, MediaController.AlbumEntry albumEntry, boolean z10, boolean z11, boolean z12) {
         super(i10, context, bVar, albumEntry, z10, 1.39f, z11, z12);
-        this.f9914k0 = vbVar;
+        this.f9930k0 = vbVar;
     }
 
     @Override
     public final void a() {
-        vb vbVar = this.f9914k0;
-        vbVar.M0.setTranslationY(vbVar.f9987n.getMeasuredHeight() - vbVar.M0.g());
-        da daVar = vbVar.f9999q2;
+        vb vbVar = this.f9930k0;
+        vbVar.M0.setTranslationY(vbVar.f10004n.getMeasuredHeight() - vbVar.M0.g());
+        da daVar = vbVar.f10016q2;
         if (daVar != null) {
             daVar.run();
-            vbVar.f9999q2 = null;
+            vbVar.f10016q2 = null;
         }
     }
 
     @Override
     public final void c(boolean z10) {
-        if (this.f9914k0.f9965f0 == 0 && z10) {
+        if (this.f9930k0.f9982f0 == 0 && z10) {
             AndroidUtilities.runOnUIThread(new com.google.firebase.messaging.s(this, 24));
         }
     }
@@ -34,7 +34,7 @@ public final class ua extends q3 {
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
         if (motionEvent.getAction() == 0 && motionEvent.getY() < g()) {
-            vb vbVar = this.f9914k0;
+            vb vbVar = this.f9930k0;
             vbVar.L0 = true;
             vbVar.e(false);
             return true;
@@ -45,12 +45,12 @@ public final class ua extends q3 {
     @Override
     public final void setTranslationY(float f7) {
         super.setTranslationY(f7);
-        vb vbVar = this.f9914k0;
-        if (vbVar.f9982k2) {
-            float clamp = Utilities.clamp(1.0f - (f7 / (vbVar.f9987n.getMeasuredHeight() - vbVar.M0.g())), 1.0f, 0.0f);
-            vbVar.f10000r.b(AndroidUtilities.dp(-32.0f) * clamp);
-            vbVar.f10000r.setAlpha(1.0f - (0.6f * clamp));
-            vbVar.f9974i0.setAlpha(1.0f - clamp);
+        vb vbVar = this.f9930k0;
+        if (vbVar.f9999k2) {
+            float clamp = Utilities.clamp(1.0f - (f7 / (vbVar.f10004n.getMeasuredHeight() - vbVar.M0.g())), 1.0f, 0.0f);
+            vbVar.f10017r.b(AndroidUtilities.dp(-32.0f) * clamp);
+            vbVar.f10017r.setAlpha(1.0f - (0.6f * clamp));
+            vbVar.f9991i0.setAlpha(1.0f - clamp);
         }
     }
 }

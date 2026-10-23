@@ -1,18 +1,19 @@
 package hb;
 
+import i2.o1;
 import java.io.Serializable;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 public final class r extends eb.u {
-    public static final p f11754c = new p(eb.t.f8576a, 1);
-    public final eb.g f11755a;
-    public final eb.t f11756b;
+    public static final p f11781c = new p(eb.t.f8583a, 1);
+    public final eb.g f11782a;
+    public final eb.t f11783b;
 
     public r(eb.g gVar, eb.t tVar) {
-        this.f11755a = gVar;
-        this.f11756b = tVar;
+        this.f11782a = gVar;
+        this.f11783b = tVar;
     }
 
     public final Serializable a(mb.a aVar, int i10) {
@@ -24,11 +25,11 @@ public final class r extends eb.u {
                         aVar.t();
                         return null;
                     }
-                    throw new IllegalStateException("Unexpected token: ".concat(i2.e.E(i10)));
+                    throw new IllegalStateException("Unexpected token: ".concat(o1.E(i10)));
                 }
                 return Boolean.valueOf(aVar.n());
             }
-            return this.f11756b.a(aVar);
+            return this.f11783b.a(aVar);
         }
         return aVar.v();
     }
@@ -114,7 +115,7 @@ public final class r extends eb.u {
             return;
         }
         Class<?> cls = obj.getClass();
-        eb.g gVar = this.f11755a;
+        eb.g gVar = this.f11782a;
         gVar.getClass();
         eb.u b10 = gVar.b(new lb.a(cls));
         if (b10 instanceof r) {

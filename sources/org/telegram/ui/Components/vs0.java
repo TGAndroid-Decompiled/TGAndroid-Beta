@@ -1,22 +1,15 @@
 package org.telegram.ui.Components;
-public final class vs0 extends s4.s {
-    public final uv0 Q;
+public final class vs0 extends g.o {
+    public final ts0 f32048c;
+    public final xv0 d;
 
-    public vs0(uv0 uv0Var) {
-        super(3);
-        this.Q = uv0Var;
+    public vs0(xv0 xv0Var, ts0 ts0Var) {
+        this.d = xv0Var;
+        this.f32048c = ts0Var;
     }
 
     @Override
-    public final int o0(int i10, qf.e eVar, s4.y0 y0Var) {
-        if (this.Q.f31059o1) {
-            i10 = 0;
-        }
-        return super.o0(i10, eVar, y0Var);
-    }
-
-    @Override
-    public final boolean y0() {
-        return false;
+    public final int i(int r9) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.vs0.i(int):int");
     }
 }

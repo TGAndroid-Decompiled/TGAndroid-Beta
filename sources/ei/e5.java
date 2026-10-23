@@ -11,36 +11,36 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.tl.TL_aicompose;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.Components.i80;
-import org.telegram.ui.Components.jm0;
+import org.telegram.ui.Components.j80;
+import org.telegram.ui.Components.mm0;
 import org.telegram.ui.Components.xc;
 import org.telegram.ui.eh;
 public final class e5 implements Utilities.CallbackReturn {
-    public final int f8955a;
-    public final Object f8956b;
-    public final Object f8957c;
+    public final int f8966a;
+    public final Object f8967b;
+    public final Object f8968c;
     public final Object d;
 
     public e5(Object obj, Object obj2, Object obj3, int i10) {
-        this.f8955a = i10;
-        this.f8956b = obj;
-        this.f8957c = obj2;
+        this.f8966a = i10;
+        this.f8967b = obj;
+        this.f8968c = obj2;
         this.d = obj3;
     }
 
     @Override
     public final Object run(Object obj) {
-        switch (this.f8955a) {
+        switch (this.f8966a) {
             case 0:
-                f6 f6Var = (f6) this.f8956b;
-                boolean[] zArr = (boolean[]) this.f8957c;
+                f6 f6Var = (f6) this.f8967b;
+                boolean[] zArr = (boolean[]) this.f8968c;
                 o5 o5Var = (o5) this.d;
                 Integer num = (Integer) obj;
                 z5 z5Var = f6Var.R0;
                 t5 t5Var = f6Var.G1;
                 if (num.intValue() == 0) {
                     zArr[0] = false;
-                    f6Var.K0(null, new ai.q(f6Var, 16));
+                    f6Var.J0(null, new ai.q(f6Var, 16));
                     return Boolean.TRUE;
                 } else if (num.intValue() == 5) {
                     zArr[0] = false;
@@ -49,7 +49,7 @@ public final class e5 implements Utilities.CallbackReturn {
                 } else if (num.intValue() == 2) {
                     o5Var.dismiss();
                     vb vbVar = ((xa) f6Var).A2;
-                    vbVar.f9956c1.L.b(true);
+                    vbVar.f9973c1.L.b(true);
                     vbVar.v();
                     vbVar.s(true);
                     vbVar.e(true);
@@ -61,8 +61,8 @@ public final class e5 implements Utilities.CallbackReturn {
                     s7Var.show();
                     return Boolean.TRUE;
                 } else if (num.intValue() == 3) {
-                    f6Var.f9020l2 = true;
-                    f6Var.d0(f6Var.k0(true));
+                    f6Var.f9031l2 = true;
+                    f6Var.c0(f6Var.j0(true));
                     return Boolean.TRUE;
                 } else if (num.intValue() == 4) {
                     if (!UserConfig.getInstance(f6Var.F1).isPremium()) {
@@ -84,22 +84,22 @@ public final class e5 implements Utilities.CallbackReturn {
                         return Boolean.FALSE;
                     }
                     zArr[0] = false;
-                    f6Var.J0(null);
+                    f6Var.I0(null);
                     o5Var.dismiss();
                     return Boolean.TRUE;
                 } else {
                     return Boolean.FALSE;
                 }
             case 1:
-                final org.telegram.ui.Components.e0 e0Var = (org.telegram.ui.Components.e0) this.f8956b;
-                final org.telegram.ui.ActionBar.d6 d6Var = (org.telegram.ui.ActionBar.d6) this.f8957c;
+                final org.telegram.ui.Components.e0 e0Var = (org.telegram.ui.Components.e0) this.f8967b;
+                final org.telegram.ui.ActionBar.g6 g6Var = (org.telegram.ui.ActionBar.g6) this.f8968c;
                 Context context = (Context) this.d;
                 org.telegram.ui.Components.c0 c0Var = (org.telegram.ui.Components.c0) obj;
                 TL_aicompose.AiComposeTone aiComposeTone = c0Var.e;
                 if (aiComposeTone instanceof TL_aicompose.TL_aiComposeTone) {
                     final TL_aicompose.TL_aiComposeTone tL_aiComposeTone = (TL_aicompose.TL_aiComposeTone) aiComposeTone;
-                    i80 F = i80.F(e0Var.container, d6Var, c0Var);
-                    F.W(org.telegram.ui.ActionBar.h6.c0(AndroidUtilities.dp(12.0f), org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20994d6, d6Var)));
+                    j80 F = j80.F(e0Var.container, g6Var, c0Var);
+                    F.W(org.telegram.ui.ActionBar.k6.c0(AndroidUtilities.dp(12.0f), org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f21183d6, g6Var)));
                     F.l(R.drawable.msg_edit, LocaleController.getString(R.string.AIEditorEditStyle), new Runnable() {
                         @Override
                         public final void run() {
@@ -107,40 +107,40 @@ public final class e5 implements Utilities.CallbackReturn {
                             switch (r4) {
                                 case 0:
                                     e0 e0Var2 = e0Var;
-                                    y yVar = new y(e0Var2.getContext(), d6Var);
+                                    y yVar = new y(e0Var2.getContext(), g6Var);
                                     TL_aicompose.TL_aiComposeTone tL_aiComposeTone2 = tL_aiComposeTone;
-                                    yVar.f32523j0 = tL_aiComposeTone2;
-                                    yVar.f32521h0 = Long.valueOf(tL_aiComposeTone2.emoji_id);
-                                    yVar.Y();
-                                    yVar.f32514a0.setText(yVar.f32523j0.title);
-                                    yVar.f32515b0.setText(yVar.f32523j0.prompt);
-                                    if (yVar.f32523j0.author_id != 0) {
+                                    yVar.f32744j0 = tL_aiComposeTone2;
+                                    yVar.f32742h0 = Long.valueOf(tL_aiComposeTone2.emoji_id);
+                                    yVar.X();
+                                    yVar.f32735a0.setText(yVar.f32744j0.title);
+                                    yVar.f32736b0.setText(yVar.f32744j0.prompt);
+                                    if (yVar.f32744j0.author_id != 0) {
                                         z10 = true;
                                     } else {
                                         z10 = false;
                                     }
-                                    yVar.f32517d0.a(z10, false);
+                                    yVar.f32738d0.a(z10, false);
                                     yVar.e.setTitle(LocaleController.getString(R.string.AIEditorEditStyle));
-                                    yVar.f32520g0.setText(LocaleController.getString(R.string.AIEditorStyleEdit));
-                                    yVar.X();
-                                    yVar.m0.N(false);
-                                    yVar.f32525l0 = new e(e0Var2, 2);
+                                    yVar.f32741g0.setText(LocaleController.getString(R.string.AIEditorStyleEdit));
+                                    yVar.W();
+                                    yVar.f32747n0.N(false);
+                                    yVar.f32746l0 = new e(e0Var2, 2);
                                     yVar.show();
                                     return;
                                 default:
                                     e0 e0Var3 = e0Var;
-                                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(e0Var3.getContext(), 0, d6Var);
-                                    alertDialog$Builder.f20609a.R = LocaleController.getString(R.string.AIEditorDeleteStyle);
-                                    alertDialog$Builder.f20609a.T = LocaleController.getString(R.string.AIEditorDeleteStyleText);
+                                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(e0Var3.getContext(), 0, g6Var);
+                                    alertDialog$Builder.f20678a.R = LocaleController.getString(R.string.AIEditorDeleteStyle);
+                                    alertDialog$Builder.f20678a.T = LocaleController.getString(R.string.AIEditorDeleteStyleText);
                                     alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
                                     alertDialog$Builder.k(LocaleController.getString(R.string.Delete), new m4.w0(24, e0Var3, tL_aiComposeTone));
                                     alertDialog$Builder.d(-1);
-                                    alertDialog$Builder.o();
+                                    alertDialog$Builder.p();
                                     return;
                             }
                         }
                     }, tL_aiComposeTone.creator);
-                    F.c(R.drawable.msg_share, LocaleController.getString(R.string.AIEditorShareStyle), new org.telegram.messenger.camera.i(e0Var, tL_aiComposeTone, context, d6Var, 19), false);
+                    F.c(R.drawable.msg_share, LocaleController.getString(R.string.AIEditorShareStyle), new org.telegram.messenger.camera.i(e0Var, tL_aiComposeTone, context, g6Var, 19), false);
                     F.m(!tL_aiComposeTone.creator, R.drawable.msg_delete, LocaleController.getString(R.string.AIEditorRemoveStyle), true, new eh(22, e0Var, tL_aiComposeTone));
                     F.m(tL_aiComposeTone.creator, R.drawable.msg_delete, LocaleController.getString(R.string.AIEditorDeleteStyle), true, new Runnable() {
                         @Override
@@ -149,35 +149,35 @@ public final class e5 implements Utilities.CallbackReturn {
                             switch (r4) {
                                 case 0:
                                     e0 e0Var2 = e0Var;
-                                    y yVar = new y(e0Var2.getContext(), d6Var);
+                                    y yVar = new y(e0Var2.getContext(), g6Var);
                                     TL_aicompose.TL_aiComposeTone tL_aiComposeTone2 = tL_aiComposeTone;
-                                    yVar.f32523j0 = tL_aiComposeTone2;
-                                    yVar.f32521h0 = Long.valueOf(tL_aiComposeTone2.emoji_id);
-                                    yVar.Y();
-                                    yVar.f32514a0.setText(yVar.f32523j0.title);
-                                    yVar.f32515b0.setText(yVar.f32523j0.prompt);
-                                    if (yVar.f32523j0.author_id != 0) {
+                                    yVar.f32744j0 = tL_aiComposeTone2;
+                                    yVar.f32742h0 = Long.valueOf(tL_aiComposeTone2.emoji_id);
+                                    yVar.X();
+                                    yVar.f32735a0.setText(yVar.f32744j0.title);
+                                    yVar.f32736b0.setText(yVar.f32744j0.prompt);
+                                    if (yVar.f32744j0.author_id != 0) {
                                         z10 = true;
                                     } else {
                                         z10 = false;
                                     }
-                                    yVar.f32517d0.a(z10, false);
+                                    yVar.f32738d0.a(z10, false);
                                     yVar.e.setTitle(LocaleController.getString(R.string.AIEditorEditStyle));
-                                    yVar.f32520g0.setText(LocaleController.getString(R.string.AIEditorStyleEdit));
-                                    yVar.X();
-                                    yVar.m0.N(false);
-                                    yVar.f32525l0 = new e(e0Var2, 2);
+                                    yVar.f32741g0.setText(LocaleController.getString(R.string.AIEditorStyleEdit));
+                                    yVar.W();
+                                    yVar.f32747n0.N(false);
+                                    yVar.f32746l0 = new e(e0Var2, 2);
                                     yVar.show();
                                     return;
                                 default:
                                     e0 e0Var3 = e0Var;
-                                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(e0Var3.getContext(), 0, d6Var);
-                                    alertDialog$Builder.f20609a.R = LocaleController.getString(R.string.AIEditorDeleteStyle);
-                                    alertDialog$Builder.f20609a.T = LocaleController.getString(R.string.AIEditorDeleteStyleText);
+                                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(e0Var3.getContext(), 0, g6Var);
+                                    alertDialog$Builder.f20678a.R = LocaleController.getString(R.string.AIEditorDeleteStyle);
+                                    alertDialog$Builder.f20678a.T = LocaleController.getString(R.string.AIEditorDeleteStyleText);
                                     alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
                                     alertDialog$Builder.k(LocaleController.getString(R.string.Delete), new m4.w0(24, e0Var3, tL_aiComposeTone));
                                     alertDialog$Builder.d(-1);
-                                    alertDialog$Builder.o();
+                                    alertDialog$Builder.p();
                                     return;
                             }
                         }
@@ -188,22 +188,22 @@ public final class e5 implements Utilities.CallbackReturn {
                 return Boolean.FALSE;
             case 2:
                 View view = (View) obj;
-                MessageObject messageObject = ((sh.g) this.d).f46552b;
-                return sh.c.d(view, (String) this.f8956b, (String) this.f8957c, messageObject.getDocument(), messageObject);
+                MessageObject messageObject = ((sh.g) this.d).f46984b;
+                return sh.c.d(view, (String) this.f8967b, (String) this.f8968c, messageObject.getDocument(), messageObject);
             default:
-                jm0 jm0Var = (jm0) this.f8956b;
-                Utilities.CallbackReturn callbackReturn = (Utilities.CallbackReturn) this.f8957c;
+                mm0 mm0Var = (mm0) this.f8967b;
+                Utilities.CallbackReturn callbackReturn = (Utilities.CallbackReturn) this.f8968c;
                 SparseIntArray sparseIntArray = (SparseIntArray) this.d;
                 View view2 = (View) obj;
                 try {
-                    if (view2.getParent() != jm0Var) {
+                    if (view2.getParent() != mm0Var) {
                         return Boolean.FALSE;
                     }
                     Boolean bool = (Boolean) callbackReturn.run(view2);
                     boolean booleanValue = bool.booleanValue();
-                    s4.b1 T = jm0Var.T(view2);
+                    s4.b1 T = mm0Var.T(view2);
                     if (T != null) {
-                        sparseIntArray.put(T.f45924f, booleanValue ? 1 : 0);
+                        sparseIntArray.put(T.f46346f, booleanValue ? 1 : 0);
                     }
                     return bool;
                 } catch (Exception unused2) {

@@ -3,7 +3,7 @@ public abstract class y5 {
     public static void a(int i10, Object[] objArr) {
         for (int i11 = 0; i11 < i10; i11++) {
             if (objArr[i11] == null) {
-                throw new NullPointerException(i2.e.j(i11, "at index "));
+                throw new NullPointerException(i2.o1.k(i11, "at index "));
             }
         }
     }

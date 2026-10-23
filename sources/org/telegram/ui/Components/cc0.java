@@ -1,37 +1,40 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.NotificationCenter;
-public final class cc0 implements Runnable {
-    public final int f25175a;
-    public final dc0 f25176b;
+import android.content.Context;
+import android.view.MotionEvent;
+public final class cc0 extends org.telegram.ui.ActionBar.e1 {
+    public final int V;
 
-    public cc0(dc0 dc0Var, int i10) {
-        this.f25175a = i10;
-        this.f25176b = dc0Var;
+    public cc0(int i10, int i11, Context context, org.telegram.ui.ActionBar.g6 g6Var, boolean z10, boolean z11) {
+        super(i10, context, g6Var, z10, z11);
+        this.V = i11;
     }
 
     @Override
-    public final void run() {
-        switch (this.f25175a) {
+    public final void l() {
+        switch (this.V) {
             case 0:
-                dc0 dc0Var = this.f25176b;
-                if (dc0Var.W != -1) {
-                    NotificationCenter.getInstance(dc0Var.Y.f27241c0.f28997w).onAnimationFinish(dc0Var.W);
-                    dc0Var.W = -1;
-                    return;
-                }
-                return;
-            case 1:
-                this.f25176b.Y.i();
+                setBackground(null);
                 return;
             default:
-                dc0 dc0Var2 = this.f25176b;
-                if (dc0Var2.W != -1) {
-                    NotificationCenter.getInstance(dc0Var2.Y.f27241c0.f28997w).onAnimationFinish(dc0Var2.W);
-                    dc0Var2.W = -1;
-                    return;
-                }
+                setBackground(null);
                 return;
+        }
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        switch (this.V) {
+            case 0:
+                if (getVisibility() == 0 && getAlpha() >= 0.5f) {
+                    return super.onTouchEvent(motionEvent);
+                }
+                return false;
+            default:
+                if (getVisibility() == 0 && getAlpha() >= 0.5f) {
+                    return super.onTouchEvent(motionEvent);
+                }
+                return false;
         }
     }
 }

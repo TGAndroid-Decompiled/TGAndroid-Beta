@@ -6,11 +6,11 @@ import android.graphics.Matrix;
 import android.graphics.RectF;
 import android.view.View;
 import android.view.ViewGroup;
-import ih.j;
+import ih.k;
 public abstract class d {
-    public static final Matrix f12119a = new Matrix();
-    public static final RectF f12120b = new RectF();
-    public static final RectF f12121c = new RectF();
+    public static final Matrix f12149a = new Matrix();
+    public static final RectF f12150b = new RectF();
+    public static final RectF f12151c = new RectF();
 
     public static void a(ch.a aVar, Canvas canvas, RectF rectF, View view, ViewGroup viewGroup) {
         b(aVar, canvas, rectF, view, viewGroup, 255);
@@ -19,11 +19,11 @@ public abstract class d {
     public static void b(ch.a aVar, Canvas canvas, RectF rectF, View view, ViewGroup viewGroup, int i10) {
         boolean z10;
         if (i10 > 0 && aVar != null) {
-            RectF rectF2 = f12121c;
-            if (j.c(view, viewGroup, rectF2)) {
+            RectF rectF2 = f12151c;
+            if (k.c(view, viewGroup, rectF2)) {
                 float f7 = rectF2.left;
                 float f10 = rectF2.top;
-                RectF rectF3 = f12120b;
+                RectF rectF3 = f12150b;
                 rectF3.set(rectF);
                 rectF3.offset(-f7, -f10);
                 boolean z11 = true;
@@ -56,10 +56,10 @@ public abstract class d {
     public static void c(gh.b bVar, View view) {
         Bitmap bitmap;
         if (bVar != null && view != null && view.getWidth() != 0 && view.getHeight() != 0 && (bitmap = bVar.d) != null && !bitmap.isRecycled() && bitmap.getWidth() != 0 && bitmap.getHeight() != 0) {
-            Matrix matrix = f12119a;
+            Matrix matrix = f12149a;
             matrix.reset();
             matrix.setScale(view.getWidth() / bitmap.getWidth(), view.getHeight() / bitmap.getHeight());
-            bVar.f11051b.set(matrix);
+            bVar.f11070b.set(matrix);
         }
     }
 

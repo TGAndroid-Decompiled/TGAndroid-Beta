@@ -77,9 +77,9 @@ public abstract class e0 {
 
     public static e9.n0 b(List list) {
         if (Build.VERSION.SDK_INT >= 31 && list != null) {
-            TreeSet treeSet = new TreeSet(Comparator$EL.reversed(Comparator$CC.comparing(new k2.f(0))));
+            TreeSet treeSet = new TreeSet(Comparator$EL.reversed(Comparator$CC.comparing(new k2.g(0))));
             for (Object obj : list) {
-                AudioDescriptor b10 = j2.e.b(obj);
+                AudioDescriptor b10 = k2.f.b(obj);
                 if (b10.getStandard() == 1) {
                     byte[] descriptor = b10.getDescriptor();
                     if (descriptor.length != 3) {
@@ -95,7 +95,7 @@ public abstract class e0 {
             }
             return e9.n0.u(treeSet);
         }
-        e9.l0 l0Var = e9.n0.f8474b;
+        e9.l0 l0Var = e9.n0.f8481b;
         return x1.e;
     }
 
@@ -114,9 +114,9 @@ public abstract class e0 {
         builder.setAuthenticationRequired(false);
     }
 
-    public static void f(MediaDrm mediaDrm, byte[] bArr, j2.k kVar) {
+    public static void f(MediaDrm mediaDrm, byte[] bArr, j2.j jVar) {
         LogSessionId logSessionId;
-        LogSessionId a2 = kVar.a();
+        LogSessionId a2 = jVar.a();
         logSessionId = LogSessionId.LOG_SESSION_ID_NONE;
         if (!a2.equals(logSessionId)) {
             MediaDrm.PlaybackComponent playbackComponent = mediaDrm.getPlaybackComponent(bArr);
@@ -125,18 +125,18 @@ public abstract class e0 {
         }
     }
 
-    public static void g(com.google.firebase.messaging.l lVar, j2.k kVar) {
+    public static void g(com.google.firebase.messaging.l lVar, j2.j jVar) {
         LogSessionId logSessionId;
-        LogSessionId a2 = kVar.a();
+        LogSessionId a2 = jVar.a();
         logSessionId = LogSessionId.LOG_SESSION_ID_NONE;
         if (!a2.equals(logSessionId)) {
-            ((MediaFormat) lVar.f7646b).setString("log-session-id", a2.getStringId());
+            ((MediaFormat) lVar.f7658b).setString("log-session-id", a2.getStringId());
         }
     }
 
     public static void h(n4.s sVar, ComponentName componentName) {
         try {
-            MediaSession mediaSession = ((n4.n) sVar.f17125b).f17108a;
+            MediaSession mediaSession = ((n4.n) sVar.f17188b).f17171a;
             mediaSession.getClass();
             mediaSession.setMediaButtonBroadcastReceiver(componentName);
         } catch (IllegalArgumentException e) {

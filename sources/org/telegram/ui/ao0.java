@@ -1,81 +1,91 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
+import android.text.Editable;
+import android.text.TextWatcher;
+import java.util.HashMap;
 import org.telegram.messenger.LocaleController;
-public final class ao0 extends FrameLayout {
-    public final Paint f35402a;
-    public float f35403b;
-    public o1.k f35404c;
-    public final eo0 d;
+import org.telegram.messenger.R;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class ao0 implements TextWatcher {
+    public final io0 f35763a;
 
-    public ao0(eo0 eo0Var, Context context) {
-        super(context);
-        this.d = eo0Var;
-        this.f35402a = new Paint(1);
-        setWillNotDraw(false);
-    }
-
-    public final void a(boolean z10, boolean z11) {
-        float f7;
-        float f10;
-        o1.k kVar = this.f35404c;
-        if (kVar != null) {
-            kVar.c();
-        }
-        if (z10) {
-            f7 = 1.0f;
-        } else {
-            f7 = 0.0f;
-        }
-        if (z11) {
-            float f11 = this.f35403b;
-            if (f11 == f7) {
-                return;
-            }
-            o1.k kVar2 = new o1.k(new o1.j(f11 * 100.0f));
-            o1.l lVar = new o1.l(f7 * 100.0f);
-            if (z10) {
-                f10 = 500.0f;
-            } else {
-                f10 = 650.0f;
-            }
-            lVar.b(f10);
-            lVar.a(1.0f);
-            kVar2.f17559u = lVar;
-            this.f35404c = kVar2;
-            kVar2.b(new yc0(this, 1));
-            this.f35404c.a(new p9(this, 1));
-            this.f35404c.h();
-            return;
-        }
-        this.f35403b = f7;
-        TextView textView = this.d.U;
-        if (textView != null) {
-            textView.setAlpha((f7 * 0.2f) + 0.8f);
-        }
-        invalidate();
+    public ao0(io0 io0Var) {
+        this.f35763a = io0Var;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        int dp;
-        super.onDraw(canvas);
-        int i10 = org.telegram.ui.ActionBar.h6.O6;
-        eo0 eo0Var = this.d;
-        canvas.drawColor(eo0Var.getThemedColor(i10));
-        int themedColor = eo0Var.getThemedColor(org.telegram.ui.ActionBar.h6.f21022ei);
-        Paint paint = this.f35402a;
-        paint.setColor(themedColor);
-        if (LocaleController.isRTL) {
-            dp = getWidth() - AndroidUtilities.dp(28.0f);
-        } else {
-            dp = AndroidUtilities.dp(28.0f);
+    public final void afterTextChanged(Editable editable) {
+        boolean z10;
+        String str;
+        String str2;
+        io0 io0Var = this.f35763a;
+        HashMap hashMap = io0Var.f38293c;
+        if (io0Var.m0) {
+            return;
         }
-        canvas.drawCircle(dp, -AndroidUtilities.dp(28.0f), Math.max(getWidth(), getHeight()) * this.f35403b, paint);
+        io0Var.m0 = true;
+        String d = jf.b.d(io0Var.f38300f[8].getText().toString(), false);
+        io0Var.f38300f[8].setText(d);
+        org.telegram.ui.Components.o40 o40Var = (org.telegram.ui.Components.o40) io0Var.f38300f[9];
+        if (d.length() == 0) {
+            o40Var.setHintText((String) null);
+            o40Var.setHint(LocaleController.getString(R.string.PaymentShippingPhoneNumber));
+        } else {
+            int i10 = 4;
+            if (d.length() > 4) {
+                while (true) {
+                    if (i10 >= 1) {
+                        String substring = d.substring(0, i10);
+                        if (((String) hashMap.get(substring)) != null) {
+                            io0Var.f38300f[8].setText(substring);
+                            str = d.substring(i10) + io0Var.f38300f[9].getText().toString();
+                            d = substring;
+                            z10 = true;
+                            break;
+                        }
+                        i10--;
+                    } else {
+                        z10 = false;
+                        str = null;
+                        break;
+                    }
+                }
+                if (!z10) {
+                    str = d.substring(1) + io0Var.f38300f[9].getText().toString();
+                    EditTextBoldCursor editTextBoldCursor = io0Var.f38300f[8];
+                    d = d.substring(0, 1);
+                    editTextBoldCursor.setText(d);
+                }
+            } else {
+                z10 = false;
+                str = null;
+            }
+            String str3 = (String) hashMap.get(d);
+            if (str3 != null && io0Var.f38287a.indexOf(str3) != -1 && (str2 = (String) io0Var.d.get(d)) != null) {
+                o40Var.setHintText(str2.replace('X', (char) 8211));
+                o40Var.setHint((CharSequence) null);
+            } else {
+                o40Var.setHintText((String) null);
+                o40Var.setHint(LocaleController.getString(R.string.PaymentShippingPhoneNumber));
+            }
+            if (!z10) {
+                EditTextBoldCursor editTextBoldCursor2 = io0Var.f38300f[8];
+                editTextBoldCursor2.setSelection(editTextBoldCursor2.getText().length());
+            }
+            if (str != null) {
+                o40Var.requestFocus();
+                o40Var.setText(str);
+                o40Var.setSelection(o40Var.length());
+            }
+        }
+        io0Var.m0 = false;
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

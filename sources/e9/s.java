@@ -15,7 +15,7 @@ import java.util.SortedSet;
 import v7.b8;
 import v7.u6;
 public abstract class s {
-    public final int f8495a = 2;
+    public final int f8502a = 2;
 
     public static int c(int i10) {
         if (i10 < 3) {
@@ -31,7 +31,7 @@ public abstract class s {
     public static void d(int i10, Object[] objArr) {
         for (int i11 = 0; i11 < i10; i11++) {
             if (objArr[i11] == null) {
-                throw new NullPointerException(i2.e.j(i11, "at index "));
+                throw new NullPointerException(i2.o1.k(i11, "at index "));
             }
         }
     }
@@ -63,7 +63,7 @@ public abstract class s {
             }
             return new int[i10];
         }
-        throw new IllegalArgumentException(i2.e.j(i10, "must be power of 2 between 2^1 and 2^30: "));
+        throw new IllegalArgumentException(i2.o1.k(i10, "must be power of 2 between 2^1 and 2^30: "));
     }
 
     public static boolean i(Map map, Object obj) {
@@ -102,16 +102,16 @@ public abstract class s {
             SortedSet sortedSet = (SortedSet) set;
             if (sortedSet instanceof h2) {
                 h2 h2Var = (h2) sortedSet;
-                d9.m mVar2 = h2Var.f8455b;
+                d9.m mVar2 = h2Var.f8462b;
                 mVar2.getClass();
-                return new h2((SortedSet) h2Var.f8454a, new d9.n(Arrays.asList(mVar2, mVar)));
+                return new h2((SortedSet) h2Var.f8461a, new d9.n(Arrays.asList(mVar2, mVar)));
             }
             return new h2(sortedSet, mVar);
         } else if (set instanceof h2) {
             h2 h2Var2 = (h2) set;
-            d9.m mVar3 = h2Var2.f8455b;
+            d9.m mVar3 = h2Var2.f8462b;
             mVar3.getClass();
-            return new h2(h2Var2.f8454a, new d9.n(Arrays.asList(mVar3, mVar)));
+            return new h2(h2Var2.f8461a, new d9.n(Arrays.asList(mVar3, mVar)));
         } else {
             set.getClass();
             return new h2(set, mVar);
@@ -131,7 +131,7 @@ public abstract class s {
         if (iterable instanceof List) {
             List list = (List) iterable;
             if (!list.isEmpty()) {
-                return r4.c.f(1, list);
+                return si.o0.g(1, list);
             }
             throw new NoSuchElementException();
         }
@@ -233,7 +233,7 @@ public abstract class s {
     public abstract Object h();
 
     public String toString() {
-        switch (this.f8495a) {
+        switch (this.f8502a) {
             case 2:
                 return h().toString();
             default:

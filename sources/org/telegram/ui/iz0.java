@@ -1,29 +1,82 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.tgnet.TLRPC;
-public final class iz0 implements yp {
-    public final cy f38139a;
-    public final jz0 f38140b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
+public final class iz0 extends AnimatorListenerAdapter {
+    public final int f38418a;
+    public final ProfileActivity f38419b;
 
-    public iz0(jz0 jz0Var, cy cyVar) {
-        this.f38140b = jz0Var;
-        this.f38139a = cyVar;
+    public iz0(ProfileActivity profileActivity, int i10) {
+        this.f38418a = i10;
+        this.f38419b = profileActivity;
     }
 
     @Override
-    public final void b(int i10, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str) {
-        jz0 jz0Var = this.f38140b;
-        jz0Var.f38384b.O1 = true;
-        this.f38139a.removeSelfFromStack();
-        NotificationCenter notificationCenter = jz0Var.f38384b.getNotificationCenter();
-        ProfileActivity profileActivity = jz0Var.f38384b;
-        int i11 = NotificationCenter.closeChats;
-        notificationCenter.removeObserver(profileActivity, i11);
-        jz0Var.f38384b.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(i11, new Object[0]);
+    public void onAnimationCancel(Animator animator) {
+        switch (this.f38418a) {
+            case 2:
+                ProfileActivity profileActivity = this.f38419b;
+                profileActivity.P1 = false;
+                profileActivity.f33882a.O0 = true;
+                return;
+            default:
+                super.onAnimationCancel(animator);
+                return;
+        }
     }
 
     @Override
-    public final void a(TLRPC.User user) {
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f38418a) {
+            case 0:
+                super.onAnimationEnd(animator);
+                this.f38419b.m4(true);
+                return;
+            case 1:
+                ProfileActivity profileActivity = this.f38419b;
+                AnimatorSet animatorSet = profileActivity.f34037w;
+                if (animatorSet != null && animatorSet.equals(animator)) {
+                    profileActivity.f34037w = null;
+                    return;
+                }
+                return;
+            case 2:
+                ProfileActivity profileActivity2 = this.f38419b;
+                profileActivity2.P1 = false;
+                profileActivity2.f33882a.O0 = true;
+                profileActivity2.f33957k2.removeListener(this);
+                profileActivity2.f33913e1.setBackgroundColor(-16777216);
+                profileActivity2.Y.setVisibility(8);
+                profileActivity2.f33981o0.setVisibility(0);
+                profileActivity2.f33981o0.setAlpha(1.0f);
+                return;
+            case 3:
+                ProfileActivity profileActivity3 = this.f38419b;
+                profileActivity3.f33957k2.removeListener(this);
+                profileActivity3.f33981o0.setVisibility(8);
+                profileActivity3.f33981o0.setAlpha(1.0f);
+                return;
+            default:
+                ProfileActivity profileActivity4 = this.f38419b;
+                profileActivity4.f34046x0 = null;
+                profileActivity4.fragmentView.invalidate();
+                return;
+        }
+    }
+
+    @Override
+    public void onAnimationStart(Animator animator) {
+        switch (this.f38418a) {
+            case 2:
+                ProfileActivity profileActivity = this.f38419b;
+                ProfileActivity.t3(profileActivity, false);
+                profileActivity.f33981o0.setAnimatedFileMaybe(profileActivity.f33920f0.getImageReceiver().getAnimation());
+                profileActivity.f33981o0.L();
+                return;
+            default:
+                super.onAnimationStart(animator);
+                return;
+        }
     }
 }

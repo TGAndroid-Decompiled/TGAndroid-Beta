@@ -1,43 +1,25 @@
 package org.telegram.ui;
 
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class af1 implements Runnable {
-    public final int f35370a;
-    public final TwoStepVerificationActivity f35371b;
+import org.telegram.tgnet.TLRPC;
+public final class af1 implements c11 {
+    public final TLRPC.TL_forumTopic f35670a;
+    public final bf1 f35671b;
 
-    public af1(TwoStepVerificationActivity twoStepVerificationActivity, int i10) {
-        this.f35370a = i10;
-        this.f35371b = twoStepVerificationActivity;
+    public af1(bf1 bf1Var, TLRPC.TL_forumTopic tL_forumTopic) {
+        this.f35671b = bf1Var;
+        this.f35670a = tL_forumTopic;
     }
 
     @Override
-    public final void run() {
-        EditTextBoldCursor editTextBoldCursor;
-        switch (this.f35370a) {
-            case 0:
-                TwoStepVerificationActivity twoStepVerificationActivity = this.f35371b;
-                if (!twoStepVerificationActivity.isFinishing() && !twoStepVerificationActivity.H && (editTextBoldCursor = twoStepVerificationActivity.f33949s) != null) {
-                    editTextBoldCursor.requestFocus();
-                    AndroidUtilities.showKeyboard(twoStepVerificationActivity.f33949s);
-                    return;
-                }
-                return;
-            case 1:
-                TwoStepVerificationActivity twoStepVerificationActivity2 = this.f35371b;
-                twoStepVerificationActivity2.U = false;
-                twoStepVerificationActivity2.v.a(0.0f);
-                return;
-            case 2:
-                this.f35371b.y0();
-                return;
-            default:
-                TwoStepVerificationActivity twoStepVerificationActivity3 = this.f35371b;
-                af1 af1Var = twoStepVerificationActivity3.V;
-                AndroidUtilities.cancelRunOnUIThread(af1Var);
-                AndroidUtilities.runOnUIThread(af1Var, 1500L);
-                twoStepVerificationActivity3.U = true;
-                return;
-        }
+    public final void O() {
+        ef1 ef1Var = this.f35671b.f36074a;
+        TLRPC.TL_forumTopic tL_forumTopic = this.f35670a;
+        ef1.U(ef1Var, tL_forumTopic.f20395id);
+        AndroidUtilities.runOnUIThread(new o71(14, this, tL_forumTopic), 300L);
+    }
+
+    @Override
+    public final void r(ik0 ik0Var) {
     }
 }

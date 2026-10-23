@@ -8,26 +8,26 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SvgHelper;
 public final class t30 extends z4.a {
-    public final org.telegram.ui.p40 f30430c;
+    public final org.telegram.ui.s40 f30630c;
 
-    public t30(org.telegram.ui.p40 p40Var) {
-        this.f30430c = p40Var;
+    public t30(org.telegram.ui.s40 s40Var) {
+        this.f30630c = s40Var;
     }
 
     @Override
-    public final void a(z4.g gVar, Object obj) {
-        gVar.removeView((View) obj);
+    public final void a(z4.h hVar, Object obj) {
+        hVar.removeView((View) obj);
     }
 
     @Override
     public final int b() {
-        return this.f30430c.e.length;
+        return this.f30630c.e.length;
     }
 
     @Override
-    public final Object e(z4.g gVar, int i10) {
+    public final Object e(z4.h hVar, int i10) {
         int i11;
-        s30 s30Var = new s30(this, this.f30430c.getContext(), i10, 0);
+        s30 s30Var = new s30(this, this.f30630c.getContext(), i10, 0);
         s30Var.setOnClickListener(new ai.n1(this, i10, 12));
         s30Var.setFocusable(true);
         s30Var.setTag(Integer.valueOf(i10));
@@ -54,7 +54,7 @@ public final class t30 extends z4.a {
         if (s30Var.getParent() != null) {
             ((ViewGroup) s30Var.getParent()).removeView(s30Var);
         }
-        gVar.addView(s30Var, 0);
+        hVar.addView(s30Var, 0);
         return s30Var;
     }
 

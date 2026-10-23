@@ -10,12 +10,12 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class aa extends View {
-    public Bitmap f24562a;
-    public Bitmap f24563b;
-    public Paint f24564c;
+    public Bitmap f24671a;
+    public Bitmap f24672b;
+    public Paint f24673c;
     public int d;
     public int e;
-    public z9 f24565f;
+    public z9 f24674f;
 
     public int getRating() {
         return this.e;
@@ -25,18 +25,18 @@ public final class aa extends View {
     public final void onDraw(Canvas canvas) {
         int i10;
         Bitmap bitmap;
-        Paint paint = this.f24564c;
+        Paint paint = this.f24673c;
         for (int i11 = 0; i11 < this.d; i11++) {
             if (i11 < this.e) {
-                i10 = org.telegram.ui.ActionBar.h6.f21156m5;
+                i10 = org.telegram.ui.ActionBar.k6.f21345m5;
             } else {
-                i10 = org.telegram.ui.ActionBar.h6.f21289t5;
+                i10 = org.telegram.ui.ActionBar.k6.f21478t5;
             }
-            paint.setColor(org.telegram.ui.ActionBar.h6.x0(null, i10, false));
+            paint.setColor(org.telegram.ui.ActionBar.k6.x0(null, i10, false));
             if (i11 < this.e) {
-                bitmap = this.f24562a;
+                bitmap = this.f24671a;
             } else {
-                bitmap = this.f24563b;
+                bitmap = this.f24672b;
             }
             canvas.drawBitmap(bitmap, AndroidUtilities.dp(48.0f) * i11, 0.0f, paint);
         }
@@ -45,7 +45,7 @@ public final class aa extends View {
     @Override
     public final void onMeasure(int i10, int i11) {
         int i12 = this.d;
-        setMeasuredDimension(org.telegram.messenger.g0.D(16.0f, i12 - 1, AndroidUtilities.dp(32.0f) * i12), AndroidUtilities.dp(32.0f));
+        setMeasuredDimension(org.telegram.messenger.v0.D(16.0f, i12 - 1, AndroidUtilities.dp(32.0f) * i12), AndroidUtilities.dp(32.0f));
     }
 
     @Override
@@ -57,9 +57,9 @@ public final class aa extends View {
         for (int i12 = 0; i12 < this.d; i12++) {
             if (motionEvent.getX() > dp && motionEvent.getX() < AndroidUtilities.dp(48.0f) + dp && this.e != (i10 = i12 + 1)) {
                 this.e = i10;
-                z9 z9Var = this.f24565f;
+                z9 z9Var = this.f24674f;
                 if (z9Var != null) {
-                    View view = ((ne.a) z9Var).f17380a;
+                    View view = ((ne.a) z9Var).f17443a;
                     if (i10 > 0) {
                         z10 = true;
                     }
@@ -81,6 +81,6 @@ public final class aa extends View {
     }
 
     public void setOnRatingChangeListener(z9 z9Var) {
-        this.f24565f = z9Var;
+        this.f24674f = z9Var;
     }
 }

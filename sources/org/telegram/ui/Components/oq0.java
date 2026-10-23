@@ -1,85 +1,47 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.AndroidUtilities;
-public final class oq0 extends org.telegram.ui.ActionBar.o1 {
-    public final pq0 f29127x;
+import java.util.ArrayList;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.MessagesController;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class oq0 implements hg.f0 {
+    public final ir0 f29293a;
 
-    public oq0(pq0 pq0Var, pq0 pq0Var2) {
-        super(pq0Var2);
-        this.f29127x = pq0Var;
+    public oq0(ir0 ir0Var) {
+        this.f29293a = ir0Var;
     }
 
     @Override
-    public final boolean b() {
-        fr0 fr0Var = this.f29127x.H0;
-        if (!fr0Var.isDismissed() && fr0Var.Z) {
-            return !fr0Var.d.m();
-        }
-        return false;
-    }
-
-    @Override
-    public final void e(float r9, float r10, boolean r11) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.oq0.e(float, float, boolean):void");
-    }
-
-    @Override
-    public final void f() {
-        fr0 fr0Var = this.f29127x.H0;
-        jq0 jq0Var = fr0Var.d;
-        if (jq0Var == null || !jq0Var.m()) {
-            int i10 = fr0Var.O0;
-            AndroidUtilities.dp(20.0f);
-        }
-        fr0Var.f26391s0 = false;
-        int i11 = fr0Var.f26387q0;
-        fr0Var.f26389r0 = i11;
-        fr0Var.G.setTopGlowOffset(i11);
-        fr0Var.f26369b.setTranslationY(fr0Var.f26387q0);
-        fr0Var.R.setTranslationY(fr0Var.f26387q0);
-        fr0Var.G.setTranslationY(0.0f);
-        fr0Var.H.setTranslationY(0.0f);
-        fr0Var.a1();
-    }
-
-    @Override
-    public final void g(int i10, boolean z10) {
+    public final void a(a0.h hVar, ArrayList arrayList) {
+        int i10;
         int i11;
-        pq0 pq0Var = this.f29127x;
-        fr0 fr0Var = pq0Var.H0;
-        int i12 = fr0Var.f26389r0;
-        int i13 = fr0Var.f26387q0;
-        if (i12 != i13) {
-            pq0Var.B0 = i12;
-            pq0Var.C0 = i13;
-            fr0Var.f26391s0 = true;
-            fr0Var.f26387q0 = i12;
-        } else {
-            pq0Var.B0 = -1;
-        }
-        int i14 = pq0Var.f29366z0;
-        int i15 = pq0Var.A0;
-        if (i14 != i15) {
-            pq0Var.D0 = 0;
-            pq0Var.E0 = 0;
-            fr0Var.f26391s0 = true;
-            if (!z10) {
-                pq0Var.E0 = 0 - (i14 - i15);
-            } else {
-                pq0Var.E0 = i14 - i15;
+        int i12;
+        int i13 = 0;
+        while (i13 < arrayList.size()) {
+            TLObject tLObject = ((hg.g0) arrayList.get(i13)).f11893a;
+            if ((tLObject instanceof TLRPC.Chat) && !ChatObject.canWriteToChat((TLRPC.Chat) tLObject)) {
+                arrayList.remove(i13);
+                i13--;
             }
-            if (z10) {
-                i11 = pq0Var.B0;
-            } else {
-                i11 = pq0Var.C0;
-            }
-            fr0Var.f26387q0 = i11;
-        } else {
-            pq0Var.D0 = -1;
+            i13++;
         }
-        fr0Var.G.setTopGlowOffset((int) (fr0Var.f26393u0 + fr0Var.f26387q0));
-        fr0Var.f26369b.setTranslationY(fr0Var.f26393u0 + fr0Var.f26387q0);
-        fr0Var.R.setTranslationY(fr0Var.f26393u0 + fr0Var.f26387q0);
-        pq0Var.invalidate();
+        ir0 ir0Var = this.f29293a;
+        ir0Var.F0 = arrayList;
+        for (int i14 = 0; i14 < ir0Var.F0.size(); i14++) {
+            hg.g0 g0Var = (hg.g0) ir0Var.F0.get(i14);
+            TLObject tLObject2 = g0Var.f11893a;
+            if (tLObject2 instanceof TLRPC.User) {
+                i12 = ((org.telegram.ui.ActionBar.h3) ir0Var).currentAccount;
+                MessagesController.getInstance(i12).putUser((TLRPC.User) g0Var.f11893a, true);
+            } else if (tLObject2 instanceof TLRPC.Chat) {
+                i11 = ((org.telegram.ui.ActionBar.h3) ir0Var).currentAccount;
+                MessagesController.getInstance(i11).putChat((TLRPC.Chat) g0Var.f11893a, true);
+            } else if (tLObject2 instanceof TLRPC.EncryptedChat) {
+                i10 = ((org.telegram.ui.ActionBar.h3) ir0Var).currentAccount;
+                MessagesController.getInstance(i10).putEncryptedChat((TLRPC.EncryptedChat) g0Var.f11893a, true);
+            }
+        }
+        ir0Var.N.l();
     }
 }

@@ -1,8 +1,12 @@
 package l2;
 public interface i {
-    long a(long j10);
+    long A(long j10);
 
-    long d(long j10, long j11);
+    long B(long j10, long j11);
+
+    long b(long j10);
+
+    long c(long j10, long j11);
 
     long e(long j10, long j11);
 
@@ -10,13 +14,9 @@ public interface i {
 
     m2.j g(long j10);
 
-    long p(long j10, long j11);
+    long n(long j10, long j11);
 
     boolean s();
 
-    long u();
-
-    long w(long j10);
-
-    long y(long j10, long j11);
+    long w();
 }

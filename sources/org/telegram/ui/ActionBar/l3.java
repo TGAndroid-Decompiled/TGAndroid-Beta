@@ -1,132 +1,106 @@
 package org.telegram.ui.ActionBar;
 
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.text.TextUtils;
-import java.util.ArrayList;
-import org.telegram.messenger.LocaleController;
+import android.app.Dialog;
+import android.graphics.Paint;
+import android.os.Build;
+import android.os.Bundle;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowInsets;
+import android.view.WindowManager;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLog;
 import org.telegram.messenger.R;
-public final class l3 extends j1.b {
-    public static final int f21563r = 0;
-    public final RectF f21564o;
-    public final Rect f21565p;
-    public final n3 f21566q;
+import org.telegram.ui.LaunchActivity;
+public final class l3 extends Dialog {
+    public final w3 f21603a;
+    public final k3 f21604b;
+    public final j3 f21605c;
+    public final Paint d;
+    public boolean e;
 
-    public l3(n3 n3Var, n3 n3Var2) {
-        super(n3Var2);
-        this.f21566q = n3Var;
-        this.f21564o = new RectF();
-        this.f21565p = new Rect();
+    public l3(w3 w3Var) {
+        super(w3Var.mo36getWindowView().getContext(), R.style.TransparentDialog);
+        Paint paint = new Paint(1);
+        this.d = paint;
+        this.f21603a = w3Var;
+        x3 mo36getWindowView = w3Var.mo36getWindowView();
+        j3 j3Var = new j3(this, getContext());
+        this.f21605c = j3Var;
+        paint.setColor(k6.x0(null, k6.f21125a7, false));
+        k3 k3Var = new k3(mo36getWindowView);
+        this.f21604b = k3Var;
+        setContentView(k3Var, new ViewGroup.LayoutParams(-1, -1));
+        k3Var.addView(j3Var, w7.z5.e(-1, -2, 80));
+        k3Var.setClipToPadding(false);
     }
 
-    @Override
-    public final int g(float f7, float f10) {
-        k3 c10;
-        n3 n3Var = this.f21566q;
-        if (n3Var.f21618b) {
-            ArrayList<m3> tabs = n3Var.getTabs();
-            if (!tabs.isEmpty() && (c10 = n3Var.c(tabs.get(0))) != null) {
-                float c11 = c10.c();
-                RectF rectF = this.f21564o;
-                n3Var.d(rectF, c11);
-                Rect bounds = c10.f21536l.getBounds();
-                if (!bounds.isEmpty() && bounds.contains((int) (f7 - rectF.left), (int) (f10 - rectF.centerY()))) {
-                    return 2;
-                }
-                if (rectF.contains(f7, f10)) {
-                    return 1;
-                }
-                return -1;
-            }
-            return -1;
+    public static WindowInsets a(View view, WindowInsets windowInsets) {
+        view.setPadding(0, 0, 0, windowInsets.getSystemWindowInsetBottom());
+        if (Build.VERSION.SDK_INT >= 30) {
+            return WindowInsets.CONSUMED;
         }
-        return -1;
+        return windowInsets.consumeSystemWindowInsets();
     }
 
-    @Override
-    public final void h(ArrayList arrayList) {
-        n3 n3Var = this.f21566q;
-        if (n3Var.f21618b) {
-            ArrayList<m3> tabs = n3Var.getTabs();
-            if (tabs.isEmpty() || n3Var.c(tabs.get(0)) == null) {
-                return;
-            }
-            arrayList.add(1);
-            arrayList.add(2);
-        }
-    }
-
-    @Override
-    public final boolean k(int i10, int i11) {
-        if (i11 == 16) {
-            n3 n3Var = this.f21566q;
-            ArrayList<m3> tabs = n3Var.getTabs();
-            if (!tabs.isEmpty()) {
-                m3 m3Var = tabs.get(0);
-                if (i10 == 1) {
-                    n3Var.b();
-                    return true;
-                } else if (i10 == 2) {
-                    n3Var.g(m3Var, new ci.e(7));
-                    return true;
+    public static void b(w3 w3Var) {
+        o2 U = LaunchActivity.U();
+        if (U != null) {
+            if (AndroidUtilities.isTablet() || w3Var.b() || AndroidUtilities.hasDialogOnTop(U)) {
+                l3 l3Var = new l3(w3Var);
+                if (w3Var.c(l3Var)) {
+                    k3 k3Var = l3Var.f21604b;
+                    View view = (View) k3Var.f21096a;
+                    AndroidUtilities.removeFromParent(view);
+                    k3Var.addView(view, w7.z5.e(-1, -1, 119));
                 }
             }
         }
-        return false;
     }
 
-    @Override
-    public final void l(int i10, s0.c cVar) {
-        m3 m3Var;
-        String str;
-        String str2;
-        n3 n3Var = this.f21566q;
-        ArrayList<m3> tabs = n3Var.getTabs();
-        k3 k3Var = null;
-        if (tabs.isEmpty()) {
-            m3Var = null;
-        } else {
-            m3Var = tabs.get(0);
-        }
-        if (m3Var != null) {
-            k3Var = n3Var.c(m3Var);
-        }
-        cVar.i("android.widget.Button");
-        cVar.b(s0.b.f45872c);
-        String str3 = "";
-        Rect rect = this.f21565p;
-        if (k3Var == null) {
-            rect.set(0, 0, 1, 1);
-            cVar.h(rect);
-            cVar.j("");
-            cVar.p(false);
+    public final void c() {
+        this.f21603a.c(null);
+        if (!this.e) {
             return;
         }
-        float c10 = k3Var.c();
-        RectF rectF = this.f21564o;
-        n3Var.d(rectF, c10);
-        if (m3Var.b() != null) {
-            str3 = m3Var.b();
+        this.e = false;
+        try {
+            super.dismiss();
+        } catch (Exception e) {
+            FileLog.e(e);
         }
-        if (i10 == 2) {
-            Rect bounds = k3Var.f21536l.getBounds();
-            rect.set((int) (rectF.left + bounds.left), (int) (rectF.centerY() + bounds.top), (int) (rectF.left + bounds.right), (int) (rectF.centerY() + bounds.bottom));
-            cVar.h(rect);
-            if (TextUtils.isEmpty(str3)) {
-                str2 = LocaleController.getString(R.string.Close);
-            } else {
-                str2 = LocaleController.getString(R.string.Close) + ", " + str3;
-            }
-            cVar.j(str2);
-            return;
-        }
-        rect.set((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
-        cVar.h(rect);
-        if (TextUtils.isEmpty(str3)) {
-            str = LocaleController.getString(R.string.Open);
+    }
+
+    @Override
+    public final void dismiss() {
+        this.f21603a.dismiss(false);
+    }
+
+    @Override
+    public final void onCreate(Bundle bundle) {
+        super.onCreate(bundle);
+        Window window = getWindow();
+        if (Build.VERSION.SDK_INT >= 30) {
+            window.addFlags(-2147483392);
         } else {
-            str = LocaleController.getString(R.string.Open) + ", " + str3;
+            window.addFlags(-2147417856);
         }
-        cVar.j(str);
+        window.setWindowAnimations(R.style.DialogNoAnimation);
+        WindowManager.LayoutParams attributes = window.getAttributes();
+        attributes.width = -1;
+        attributes.gravity = 51;
+        attributes.dimAmount = 0.0f;
+        attributes.flags &= -3;
+        attributes.softInputMode = 16;
+        attributes.height = -1;
+        AndroidUtilities.applyEdgeToEdgeLayoutParams(attributes);
+        window.setAttributes(attributes);
+        window.setStatusBarColor(0);
+        k3 k3Var = this.f21604b;
+        k3Var.setFitsSystemWindows(true);
+        k3Var.setSystemUiVisibility(1792);
+        k3Var.setPadding(0, 0, 0, 0);
+        k3Var.setOnApplyWindowInsetsListener(new i3(0));
     }
 }

@@ -1,156 +1,189 @@
 package org.telegram.ui.ActionBar;
 
-import android.graphics.Color;
+import ai.y7;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Point;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.util.SparseIntArray;
 import java.io.File;
-import java.util.Locale;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.tgnet.TLRPC;
-public final class f6 {
-    public int f20836a;
-    public g6 f20837b;
-    public int f20838c;
-    public int d;
-    public int e;
-    public int f20839f;
-    public int f20840g;
-    public int h;
-    public boolean f20841i;
-    public long f20842j;
-    public long f20843k;
-    public long f20844l;
-    public long f20845m;
-    public float f20848p;
-    public boolean f20849q;
-    public TLRPC.TL_theme f20850r;
-    public TLRPC.TL_wallPaper f20851s;
-    public int f20852t;
-    public String f20853u;
-    public String v;
-    public TLRPC.InputFile f20854w;
-    public TLRPC.InputFile f20855x;
-    public a6 f20856y;
-    public boolean f20857z;
-    public int f20846n = 45;
-    public String f20847o = "";
-    public final float[] A = new float[3];
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.SvgHelper;
+import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.Utilities;
+import org.telegram.ui.Components.v9;
+import org.telegram.ui.Components.yc0;
+public final class f6 implements NotificationCenter.NotificationCenterDelegate {
+    public static f6 f20892c;
+    public int f20893a;
+    public HashMap f20894b;
 
-    public static int a(SparseIntArray sparseIntArray, int... iArr) {
-        int i10 = 0;
-        int i11 = 0;
-        int i12 = 0;
-        int i13 = 0;
-        for (int i14 = 0; i14 < iArr.length; i14++) {
-            if (sparseIntArray.indexOfKey(iArr[i14]) >= 0) {
-                try {
-                    int i15 = sparseIntArray.get(iArr[i14]);
-                    i11 += Color.red(i15);
-                    i12 += Color.green(i15);
-                    i13 += Color.blue(i15);
-                    i10++;
-                } catch (Exception unused) {
+    public static void a(boolean z10) {
+        String str;
+        ArrayList arrayList;
+        if (f20892c != null && !z10) {
+            return;
+        }
+        ArrayList arrayList2 = null;
+        for (int i10 = 0; i10 < 5; i10++) {
+            if (i10 != 0) {
+                if (i10 != 1) {
+                    if (i10 != 2) {
+                        if (i10 != 3) {
+                            str = "Night";
+                        } else {
+                            str = "Day";
+                        }
+                    } else {
+                        str = "Arctic Blue";
+                    }
+                } else {
+                    str = "Dark Blue";
+                }
+            } else {
+                str = "Blue";
+            }
+            j6 j6Var = (j6) k6.H.get(str);
+            if (j6Var != null && (arrayList = j6Var.f21022b0) != null && !arrayList.isEmpty()) {
+                int size = j6Var.f21022b0.size();
+                for (int i11 = 0; i11 < size; i11++) {
+                    i6 i6Var = (i6) j6Var.f21022b0.get(i11);
+                    if (i6Var.f20964a != k6.f21359n && !TextUtils.isEmpty(i6Var.f20975o)) {
+                        if (arrayList2 == null) {
+                            arrayList2 = new ArrayList();
+                        }
+                        arrayList2.add(i6Var);
+                    }
                 }
             }
         }
-        if (i10 == 0) {
-            return 0;
+        ?? obj = new Object();
+        obj.f20893a = UserConfig.selectedAccount;
+        if (arrayList2 != null) {
+            Utilities.globalQueue.postRunnable(new m4.z(26, obj, arrayList2));
         }
-        return Color.argb(255, i11 / i10, i12 / i10, i13 / i10);
+        f20892c = obj;
     }
 
-    public static void g(SparseIntArray sparseIntArray) {
-        for (int i10 = h6.f21403za; i10 < h6.Ga; i10++) {
-            sparseIntArray.delete(i10);
-            sparseIntArray.put(i10, h6.ql[i10]);
-        }
-        for (int i11 = h6.Ha; i11 < h6.Tb; i11++) {
-            sparseIntArray.delete(i11);
-            sparseIntArray.put(i11, h6.ql[i11]);
-        }
-        for (int i12 = h6.Ub; i12 < h6.f20981cc; i12++) {
-            sparseIntArray.delete(i12);
-            sparseIntArray.put(i12, h6.ql[i12]);
-        }
-    }
-
-    public final int b(int i10, int i11) {
-        float[] fArr = this.A;
-        Color.colorToHSV(i11, fArr);
-        float f7 = fArr[0];
-        Color.colorToHSV(i10, fArr);
-        float f10 = fArr[1];
-        if (f10 <= 0.0f) {
-            fArr[0] = f7;
-        }
-        fArr[1] = Math.max(0.0f, Math.min(1.0f, f10 + 0.6f));
-        fArr[2] = Math.max(0.0f, Math.min(1.0f, fArr[2] - 0.05f));
-        return Color.HSVToColor(30, fArr);
-    }
-
-    public final boolean c(android.util.SparseIntArray r22, android.util.SparseIntArray r23) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.f6.c(android.util.SparseIntArray, android.util.SparseIntArray):boolean");
-    }
-
-    public final File d() {
-        if (this.f20836a < 100) {
-            if (TextUtils.isEmpty(this.f20847o)) {
+    public static Bitmap b(Bitmap bitmap, boolean z10, File file, i6 i6Var) {
+        Bitmap bitmap2;
+        int patternColor;
+        Bitmap l1;
+        int i10;
+        int i11;
+        int i12;
+        try {
+            File d = i6Var.d();
+            Drawable drawable = null;
+            if (d == null) {
                 return null;
             }
-            File filesDirFixed = ApplicationLoader.getFilesDirFixed();
-            Locale locale = Locale.US;
-            String m10 = this.f20837b.m();
-            int i10 = this.f20836a;
-            String str = this.f20847o;
-            return new File(filesDirFixed, m10 + "_" + i10 + "_" + str + "_v5.jpg");
-        } else if (TextUtils.isEmpty(this.f20847o)) {
-            return null;
-        } else {
-            File filesDirFixed2 = ApplicationLoader.getFilesDirFixed();
-            Locale locale2 = Locale.US;
-            String m11 = this.f20837b.m();
-            int i11 = this.f20836a;
-            String str2 = this.f20847o;
-            return new File(filesDirFixed2, m11 + "_" + i11 + "_" + str2 + "_v8_debug.jpg");
+            j6 j6Var = i6Var.f20965b;
+            SparseIntArray S0 = k6.S0(null, j6Var.d, null);
+            k6.G(S0, j6Var);
+            int i13 = i6Var.f20966c;
+            int i14 = (int) i6Var.f20970j;
+            long j10 = i6Var.f20971k;
+            int i15 = (int) j10;
+            if (i15 == 0 && j10 == 0) {
+                if (i14 != 0) {
+                    i13 = i14;
+                }
+                int i16 = S0.get(k6.Od);
+                if (i16 != 0) {
+                    i15 = k6.B(j6Var, i13, i16);
+                }
+            } else {
+                i13 = 0;
+            }
+            long j11 = i6Var.f20972l;
+            int i17 = (int) j11;
+            if (i17 == 0 && j11 == 0 && (i12 = S0.get(k6.Pd)) != 0) {
+                i17 = k6.B(j6Var, i13, i12);
+            }
+            long j12 = i6Var.f20973m;
+            int i18 = (int) j12;
+            if (i18 == 0 && j12 == 0 && (i11 = S0.get(k6.Qd)) != 0) {
+                i18 = k6.B(j6Var, i13, i11);
+            }
+            if (i14 == 0 && (i10 = S0.get(k6.Nd)) != 0) {
+                i14 = k6.B(j6Var, i13, i10);
+            }
+            if (i17 != 0) {
+                patternColor = yc0.g(i14, i15, i17, i18);
+            } else if (i15 != 0) {
+                Drawable v9Var = new v9(v9.d(i6Var.f20974n), new int[]{i14, i15});
+                patternColor = AndroidUtilities.getPatternColor(AndroidUtilities.getAverageColor(i14, i15));
+                drawable = v9Var;
+            } else {
+                drawable = new ColorDrawable(i14);
+                patternColor = AndroidUtilities.getPatternColor(i14);
+            }
+            if (bitmap == null) {
+                Point point = AndroidUtilities.displaySize;
+                int min = Math.min(point.x, point.y);
+                Point point2 = AndroidUtilities.displaySize;
+                int max = Math.max(point2.x, point2.y);
+                if (z10) {
+                    l1 = SvgHelper.getBitmap(file, min, max, false, SvgHelper.ScaleMode.ByWidth);
+                } else {
+                    l1 = k6.l1(new FileInputStream(file), 0);
+                }
+                bitmap2 = l1;
+            } else {
+                bitmap2 = bitmap;
+            }
+            try {
+                if (drawable != null) {
+                    Bitmap createBitmap = Bitmap.createBitmap(bitmap2.getWidth(), bitmap2.getHeight(), Bitmap.Config.ARGB_8888);
+                    Canvas canvas = new Canvas(createBitmap);
+                    drawable.setBounds(0, 0, bitmap2.getWidth(), bitmap2.getHeight());
+                    drawable.draw(canvas);
+                    Paint paint = new Paint(2);
+                    paint.setColorFilter(new PorterDuffColorFilter(patternColor, PorterDuff.Mode.SRC_IN));
+                    paint.setAlpha((int) (Math.abs(i6Var.f20976p) * 255.0f));
+                    canvas.drawBitmap(bitmap2, 0.0f, 0.0f, paint);
+                    createBitmap.compress(Bitmap.CompressFormat.JPEG, 87, new FileOutputStream(d));
+                    return bitmap2;
+                }
+                FileOutputStream fileOutputStream = new FileOutputStream(d);
+                bitmap2.compress(Bitmap.CompressFormat.PNG, 87, fileOutputStream);
+                fileOutputStream.close();
+                return bitmap2;
+            } catch (Throwable th2) {
+                th = th2;
+                FileLog.e(th);
+                return bitmap2;
+            }
+        } catch (Throwable th3) {
+            th = th3;
+            bitmap2 = bitmap;
         }
     }
 
-    public final int e(int i10, int i11, boolean z10) {
-        int f7 = i0.a.f(0.25f, i10, i11);
-        float[] fArr = this.A;
-        Color.colorToHSV(f7, fArr);
-        float f10 = 0.1f;
-        fArr[1] = Math.max(0.0f, Math.min(1.0f, fArr[1] - 0.1f));
-        float f11 = fArr[2];
-        if (!z10) {
-            f10 = 0.0f;
-        }
-        fArr[2] = Math.max(0.0f, Math.min(1.0f, f11 + f10));
-        return Color.HSVToColor(51, fArr);
-    }
-
-    public final int f(int i10, float f7, boolean z10) {
-        if (z10) {
-            return 520093695;
-        }
-        float[] fArr = this.A;
-        Color.colorToHSV(i10, fArr);
-        if (fArr[1] > 0.0f) {
-            float f10 = fArr[2];
-            if (f10 < 1.0f && f10 > 0.0f) {
-                fArr[0] = w7.r.a(fArr[0] + 0.22f, 0.0f, 1.0f);
-                fArr[1] = w7.r.a(fArr[1] - 0.35f, 0.0f, 1.0f);
-                fArr[2] = w7.r.a(fArr[2] - 0.65f, 0.0f, 1.0f);
-                return Color.HSVToColor(90, fArr);
+    @Override
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        HashMap hashMap = this.f20894b;
+        if (hashMap != null) {
+            if (i10 == NotificationCenter.fileLoaded) {
+                e6 e6Var = (e6) hashMap.remove((String) objArr[0]);
+                if (e6Var != null) {
+                    Utilities.globalQueue.postRunnable(new m4.z(27, this, e6Var));
+                }
+            } else if (i10 == NotificationCenter.fileLoadFailed && hashMap.remove((String) objArr[0]) != null) {
+                AndroidUtilities.runOnUIThread(new y7((Object) this, (Object) null, false, 13));
             }
         }
-        fArr[0] = f7;
-        fArr[1] = 0.2f;
-        fArr[2] = w7.r.a(fArr[2] - 0.65f, 0.0f, 1.0f);
-        return Color.HSVToColor(90, fArr);
-    }
-
-    public final int h(int r7, int r8) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.f6.h(int, int):int");
     }
 }

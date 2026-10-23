@@ -1,48 +1,109 @@
 package org.telegram.messenger;
 
+import android.content.Context;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.concurrent.CountDownLatch;
+import org.telegram.messenger.BirthdayController;
+import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class i0 implements RequestDelegate {
-    public final int f18572a;
-    public final Object f18573b;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.tgnet.tl.TL_bots;
+public final class i0 implements Runnable {
+    public final int f18639a;
+    public final int f18640b;
+    public final Object f18641c;
+    public final Object d;
+    public final Object e;
 
-    public i0(Object obj, int i10) {
-        this.f18572a = i10;
-        this.f18573b = obj;
+    public i0(Object obj, int i10, Object obj2, Object obj3, int i11) {
+        this.f18639a = i11;
+        this.f18641c = obj;
+        this.f18640b = i10;
+        this.d = obj2;
+        this.e = obj3;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f18572a) {
+    public final void run() {
+        switch (this.f18639a) {
             case 0:
-                BirthdayController.d((BirthdayController) this.f18573b, tLObject, tL_error);
+                BirthdayController.b((BirthdayController) this.f18641c, this.f18640b, (ArrayList) this.d, (BirthdayController.TL_birthdays) this.e);
                 return;
             case 1:
-                ((DownloadController) this.f18573b).lambda$loadAutoDownloadConfig$2(tLObject, tL_error);
+                ((MessagesController) this.f18641c).lambda$checkChatlistFolderUpdate$480((TLObject) this.d, this.f18640b, (MessagesController.ChatlistUpdatesStat) this.e);
                 return;
             case 2:
-                ((FileLoadOperation) this.f18573b).lambda$requestFileOffsets$22(tLObject, tL_error);
+                ((ContactsController) this.f18641c).lambda$loadPrivacySettings$64((TLRPC.TL_error) this.d, (TLObject) this.e, this.f18640b);
                 return;
             case 3:
-                MessagesController.lambda$unblockPeer$110((Runnable) this.f18573b, tLObject, tL_error);
+                ((ContactsController) this.f18641c).lambda$processLoadedContacts$37((ArrayList) this.d, this.f18640b, (ArrayList) this.e);
                 return;
             case 4:
-                MessagesController.lambda$checkIsInChat$476((MessagesController.IsInChatCheckedCallback) this.f18573b, tLObject, tL_error);
+                ((ImageLoader) this.f18641c).lambda$fileDidLoaded$11((String) this.d, this.f18640b, (File) this.e);
                 return;
             case 5:
-                ((MessagesController.SavedMusicIds) this.f18573b).lambda$load$1(tLObject, tL_error);
+                ((LocaleController) this.f18641c).lambda$applyLanguage$7((LocaleController.LocaleInfo) this.d, this.f18640b, (Runnable) this.e);
                 return;
             case 6:
-                ((MessagesController.SavedMusicList) this.f18573b).lambda$load$1(tLObject, tL_error);
+                ((MediaDataController) this.f18641c).lambda$loadArchivedStickersCount$71((TLRPC.TL_error) this.d, (TLObject) this.e, this.f18640b);
                 return;
             case 7:
-                ((TopicsController) this.f18573b).lambda$toggleViewForumAsMessages$18(tLObject, tL_error);
+                ((MediaDataController) this.f18641c).lambda$loadBotInfo$198((Utilities.Callback) this.d, (TL_bots.BotInfo) this.e, this.f18640b);
+                return;
+            case 8:
+                ((MediaDataController) this.f18641c).lambda$putDiceStickersToCache$90((TLRPC.TL_messages_stickerSet) this.d, (String) this.e, this.f18640b);
+                return;
+            case 9:
+                ((MessagesController) this.f18641c).lambda$loadMessagesInternal$176(this.f18640b, (TLRPC.TL_messages_getSavedHistory) this.d, (TLRPC.TL_error) this.e);
+                return;
+            case 10:
+                ((MessagesController) this.f18641c).lambda$processLoadedDeleteTask$87((a0.h) this.d, (a0.h) this.e, this.f18640b);
+                return;
+            case 11:
+                ((MessagesController) this.f18641c).lambda$loadFullUser$69((TLRPC.UserFull) this.d, (TLRPC.User) this.e, this.f18640b);
+                return;
+            case 12:
+                ((MessagesController) this.f18641c).lambda$loadMessagesInternal$181(this.f18640b, (TLRPC.TL_messages_getPeerDialogs) this.d, (TLRPC.TL_error) this.e);
+                return;
+            case 13:
+                ((MessagesController) this.f18641c).lambda$loadMessagesInternal$178(this.f18640b, (TLRPC.TL_messages_getReplies) this.d, (TLRPC.TL_error) this.e);
+                return;
+            case 14:
+                ((MessagesController) this.f18641c).lambda$loadMessagesInternal$183(this.f18640b, (TLRPC.TL_messages_getHistory) this.d, (TLRPC.TL_error) this.e);
+                return;
+            case 15:
+                ((MessagesStorage) this.f18641c).lambda$hasAuthMessage$176(this.f18640b, (boolean[]) this.d, (CountDownLatch) this.e);
+                return;
+            case 16:
+                ((MessagesStorage) this.f18641c).lambda$getBotCache$127(this.f18640b, (String) this.d, (RequestDelegate) this.e);
+                return;
+            case 17:
+                PasskeysController.lambda$create$6((Context) this.f18641c, this.f18640b, (TL_account.registerPasskey) this.d, (Utilities.Callback2) this.e);
                 return;
             default:
-                ((UserConfig) this.f18573b).lambda$loadGlobalTTl$4(tLObject, tL_error);
+                ((SecretChatHelper) this.f18641c).lambda$performSendEncryptedRequest$5((TLRPC.Message) this.d, (TLRPC.messages_SentEncryptedMessage) this.e, this.f18640b);
                 return;
         }
+    }
+
+    public i0(Object obj, Object obj2, int i10, Object obj3, int i11) {
+        this.f18639a = i11;
+        this.f18641c = obj;
+        this.d = obj2;
+        this.f18640b = i10;
+        this.e = obj3;
+    }
+
+    public i0(BaseController baseController, Object obj, Object obj2, int i10, int i11) {
+        this.f18639a = i11;
+        this.f18641c = baseController;
+        this.d = obj;
+        this.e = obj2;
+        this.f18640b = i10;
     }
 }

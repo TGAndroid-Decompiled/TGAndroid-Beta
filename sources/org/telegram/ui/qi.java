@@ -5,16 +5,16 @@ import org.telegram.messenger.AndroidUtilities;
 public final class qi extends pf.c {
     public final int d;
     public final int e;
-    public final org.telegram.ui.Cells.u1 f40589f;
-    public final qn f40590g;
+    public final org.telegram.ui.Cells.t1 f40816f;
+    public final sn f40817g;
     public final Object h;
 
-    public qi(qn qnVar, int i10, Object obj, org.telegram.ui.Cells.u1 u1Var, int i11) {
+    public qi(sn snVar, int i10, Object obj, org.telegram.ui.Cells.t1 t1Var, int i11) {
         this.d = i11;
-        this.f40590g = qnVar;
+        this.f40817g = snVar;
         this.e = i10;
         this.h = obj;
-        this.f40589f = u1Var;
+        this.f40816f = t1Var;
     }
 
     @Override
@@ -40,19 +40,19 @@ public final class qi extends pf.c {
         switch (this.d) {
             case 0:
                 int i10 = this.e;
-                qn qnVar = this.f40590g;
-                qnVar.f40902wb = i10;
-                qnVar.f40916xb = 1;
-                qnVar.f40929yb = (CharacterStyle) this.h;
-                this.f40589f.invalidate();
+                sn snVar = this.f40817g;
+                snVar.Jb = i10;
+                snVar.Kb = 1;
+                snVar.Lb = (CharacterStyle) this.h;
+                this.f40816f.invalidate();
                 return;
             default:
                 int i11 = this.e;
-                qn qnVar2 = this.f40590g;
-                qnVar2.f40902wb = i11;
-                qnVar2.f40916xb = 3;
-                qnVar2.f40941zb = (String) this.h;
-                this.f40589f.invalidate();
+                sn snVar2 = this.f40817g;
+                snVar2.Jb = i11;
+                snVar2.Kb = 3;
+                snVar2.Mb = (String) this.h;
+                this.f40816f.invalidate();
                 return;
         }
     }

@@ -1,75 +1,48 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.text.TextUtils;
-import android.view.MotionEvent;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.DialogObject;
-import org.telegram.ui.Components.ChatActivityEnterView;
-public final class mw extends ChatActivityEnterView {
-    public final cy f39363o5;
+import android.view.View;
+public final class mw extends org.telegram.ui.Components.s6 {
+    public final int f39713b;
+    public final ey f39714c;
 
-    public mw(cy cyVar, Activity activity, ux uxVar) {
-        super(activity, uxVar, null, false, null);
-        this.f39363o5 = cyVar;
+    public mw(ey eyVar, int i10) {
+        super("animationValue", 0);
+        this.f39713b = i10;
+        switch (i10) {
+            case 1:
+                this.f39714c = eyVar;
+                super("viewPagerTranslation", 0);
+                return;
+            default:
+                this.f39714c = eyVar;
+                return;
+        }
     }
 
     @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        int i10;
-        if (motionEvent.getAction() == 0) {
-            cy cyVar = this.f39363o5;
-            Activity parentActivity = cyVar.getParentActivity();
-            i10 = ((org.telegram.ui.ActionBar.n2) cyVar).classGuid;
-            AndroidUtilities.requestAdjustResize(parentActivity, i10);
+    public final void c(Object obj, float f7) {
+        switch (this.f39713b) {
+            case 0:
+                ((ey) obj).A4(f7);
+                return;
+            default:
+                ey eyVar = this.f39714c;
+                eyVar.I0 = f7;
+                ((View) obj).setTranslationY(eyVar.J0 + f7);
+                eyVar.D3();
+                return;
         }
-        return super.dispatchTouchEvent(motionEvent);
     }
 
     @Override
-    public final int getMessagesCount() {
-        CharSequence fieldText;
-        cy cyVar = this.f39363o5;
-        int i10 = cyVar.S0;
-        mw mwVar = cyVar.B1;
-        if (mwVar == null) {
-            fieldText = "";
-        } else {
-            fieldText = mwVar.getFieldText();
+    public final Object get(Object obj) {
+        switch (this.f39713b) {
+            case 0:
+                ey eyVar = (ey) obj;
+                return Float.valueOf(this.f39714c.N);
+            default:
+                View view = (View) obj;
+                return Float.valueOf(this.f39714c.I0);
         }
-        return Math.max(1, i10 + (!TextUtils.isEmpty(fieldText) ? 1 : 0));
-    }
-
-    @Override
-    public final long getStarsPrice() {
-        cy cyVar = this.f39363o5;
-        ArrayList arrayList = cyVar.I2;
-        if (arrayList == null) {
-            return 0L;
-        }
-        int size = arrayList.size();
-        int i10 = 0;
-        long j10 = 0;
-        while (i10 < size) {
-            Object obj = arrayList.get(i10);
-            i10++;
-            long longValue = ((Long) obj).longValue();
-            long sendPaidMessagesStars = cyVar.getMessagesController().getSendPaidMessagesStars(longValue);
-            if (sendPaidMessagesStars <= 0 && longValue > 0) {
-                sendPaidMessagesStars = DialogObject.getMessagesStarsPrice(cyVar.getMessagesController().isUserContactBlocked(longValue));
-            }
-            j10 += sendPaidMessagesStars;
-        }
-        return j10;
-    }
-
-    @Override
-    public final void y0(float f7) {
-        cy cyVar = this.f39363o5;
-        cyVar.f36200y1.setInputBubbleHeight(f7);
-        cyVar.q3();
-        cyVar.j3();
-        cyVar.r3();
     }
 }

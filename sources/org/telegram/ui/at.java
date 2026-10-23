@@ -1,13 +1,34 @@
 package org.telegram.ui;
-public final class at implements Runnable {
-    public final et f35420a;
 
-    public at(et etVar) {
-        this.f35420a = etVar;
+import android.view.View;
+import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
+public final class at extends org.telegram.ui.ActionBar.m1 {
+    public final dt f35776o;
+
+    public at(dt dtVar, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout) {
+        super(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
+        this.f35776o = dtVar;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.at.run():void");
+    public final void dismiss() {
+        d(true);
+        ht htVar = this.f35776o.f36729a;
+        htVar.f37944k = null;
+        htVar.K = false;
+        if (htVar.R) {
+            htVar.l();
+        }
+        View view = htVar.h;
+        if (view != null) {
+            if (view instanceof org.telegram.ui.Cells.e8) {
+                ((org.telegram.ui.Cells.e8) view).setScaled(false);
+            } else if (view instanceof org.telegram.ui.Cells.c8) {
+                ((org.telegram.ui.Cells.c8) view).setScaled(false);
+            } else if (view instanceof org.telegram.ui.Cells.e2) {
+                ((org.telegram.ui.Cells.e2) view).setScaled(false);
+            }
+            htVar.h = null;
+        }
     }
 }

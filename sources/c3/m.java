@@ -1,140 +1,219 @@
 package c3;
 
-import e9.n0;
-import e9.x1;
-import java.util.ArrayList;
-public final class m implements r {
-    public static final int[] h = {5, 4, 12, 8, 3, 10, 9, 11, 6, 2, 0, 1, 7, 16, 15, 14, 17, 18, 19, 20, 21};
-    public static final qf.b f4647n = new qf.b(new aa.a(27));
-    public static final qf.b f4648r = new qf.b(new aa.a(28));
-    public x1 f4649a;
-    public int e;
-    public int f4652f;
-    public t7.u f4651c = new t7.u(28);
-    public boolean f4650b = true;
-    public int d = 3;
+import android.view.WindowManager;
+import ci.o1;
+import com.google.android.gms.internal.cast.z5;
+import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.messaging.FirebaseMessagingRegistrar;
+import ei.q3;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.lang.reflect.Constructor;
+import java.nio.charset.Charset;
+import m.g3;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.GenericProvider;
+import org.telegram.messenger.LiteMode;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.Utilities;
+import org.telegram.messenger.voip.NativeInstance;
+import org.telegram.ui.ActionBar.c2;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.ActionBar.z1;
+import org.telegram.ui.Components.fw0;
+import org.telegram.ui.Components.gw0;
+import z9.e2;
+public final class m implements n, NativeInstance.AudioLevelsCallback, fw0, gw0, z1, Continuation, r9.d, i5.e, d9.k, GenericProvider, Utilities.Callback2Return, eh.d {
+    public final int f4649a;
 
-    public final void a(int i10, ArrayList arrayList) {
-        int i11;
-        int i12 = 2;
-        int i13 = 0;
-        switch (i10) {
-            case 0:
-                arrayList.add(new j4.a());
-                return;
-            case 1:
-                arrayList.add(new j4.c());
-                return;
-            case 2:
-                arrayList.add(new j4.d(1));
-                return;
-            case 3:
-                arrayList.add(new d3.a(1));
-                return;
-            case 4:
-                o X = f4647n.X(0);
-                if (X != null) {
-                    arrayList.add(X);
-                    return;
-                } else {
-                    arrayList.add(new h3.b());
-                    return;
-                }
-            case 5:
-                arrayList.add(new i3.b());
-                return;
-            case 6:
-                t7.u uVar = this.f4651c;
-                if (this.f4650b) {
-                    i12 = 0;
-                }
-                arrayList.add(new u3.f(uVar, i12));
-                return;
-            case 7:
-                arrayList.add(new v3.d(1));
-                return;
-            case 8:
-                t7.u uVar2 = this.f4651c;
-                int g10 = w3.h.g(this.d);
-                int i14 = 32;
-                if (this.f4650b) {
-                    i11 = 0;
-                } else {
-                    i11 = 32;
-                }
-                int i15 = g10 | i11;
-                e9.l0 l0Var = n0.f8474b;
-                arrayList.add(new w3.h(uVar2, i15, null, x1.e, null));
-                t7.u uVar3 = this.f4651c;
-                int i16 = this.d;
-                if ((i16 & 1) == 0) {
-                    i14 = 0;
-                }
-                if ((2 & i16) != 0) {
-                    i14 |= 128;
-                }
-                if (!this.f4650b) {
-                    i13 = 16;
-                }
-                arrayList.add(new w3.l(uVar3, i14 | i13));
-                return;
-            case 9:
-                arrayList.add(new Object());
-                return;
-            case 10:
-                arrayList.add(new j4.z());
-                return;
-            case 11:
-                if (this.f4649a == null) {
-                    e9.l0 l0Var2 = n0.f8474b;
-                    this.f4649a = x1.e;
-                }
-                arrayList.add(new j4.d0(1, !this.f4650b ? 1 : 0, this.f4651c, new e2.k0(0L), new j4.f(0, this.f4649a)));
-                return;
-            case 12:
-                ?? obj = new Object();
-                obj.f14893c = 0;
-                obj.d = -1L;
-                obj.f14894f = -1;
-                obj.f14895g = -1L;
-                arrayList.add(obj);
-                return;
+    public m(int i10) {
+        this.f4649a = i10;
+    }
+
+    @Override
+    public Constructor a() {
+        return Class.forName("androidx.media3.decoder.midi.MidiExtractor").asSubclass(q.class).getConstructor(null);
+    }
+
+    @Override
+    public Object apply(Object obj) {
+        switch (this.f4649a) {
             case 13:
-            default:
-                return;
-            case 14:
-                arrayList.add(new k3.a(this.e));
-                return;
-            case 15:
-                o X2 = f4648r.X(new Object[0]);
-                if (X2 != null) {
-                    arrayList.add(X2);
-                    return;
+                xa.e eVar = (xa.e) obj;
+                eVar.getClass();
+                g3 g3Var = com.google.firebase.messaging.o.f7667a;
+                g3Var.getClass();
+                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                try {
+                    g3Var.z(eVar, byteArrayOutputStream);
+                } catch (IOException unused) {
                 }
+                return byteArrayOutputStream.toByteArray();
+            case 14:
+                return Integer.valueOf(((d2.b) obj).f7779r);
+            default:
+                da.a.f7918b.getClass();
+                return aa.b.f361a.M((e2) obj).getBytes(Charset.forName("UTF-8"));
+        }
+    }
+
+    @Override
+    public void b(Object obj, float f7) {
+        o1 o1Var = (o1) obj;
+        switch (this.f4649a) {
+            case 3:
+                WindowManager.LayoutParams layoutParams = o1Var.f5619c;
+                o1Var.N = f7;
+                layoutParams.x = (int) f7;
+                AndroidUtilities.updateViewLayout(o1Var.f5618b, o1Var.d, layoutParams);
                 return;
-            case 16:
-                arrayList.add(new e3.b(!this.f4650b ? 1 : 0, this.f4651c));
-                return;
-            case 17:
-                arrayList.add(new g3.a(1));
-                return;
-            case 18:
-                arrayList.add(new f3.a(1));
-                return;
-            case 19:
-                arrayList.add(new g3.a(0));
-                return;
-            case 20:
-                arrayList.add(new j3.b(this.f4652f));
-                return;
-            case 21:
-                arrayList.add(new f3.a(0));
+            default:
+                WindowManager.LayoutParams layoutParams2 = o1Var.f5619c;
+                o1Var.O = f7;
+                layoutParams2.y = (int) f7;
+                AndroidUtilities.updateViewLayout(o1Var.f5618b, o1Var.d, layoutParams2);
                 return;
         }
     }
 
     @Override
-    public final synchronized c3.o[] e(android.net.Uri r7, java.util.Map r8) {
-        throw new UnsupportedOperationException("Method not decompiled: c3.m.e(android.net.Uri, java.util.Map):c3.o[]");
+    public void g(c2 c2Var, int i10) {
+        switch (this.f4649a) {
+            case 6:
+                c2Var.dismiss();
+                return;
+            default:
+                c2Var.dismiss();
+                return;
+        }
+    }
+
+    @Override
+    public float get(Object obj) {
+        o1 o1Var = (o1) obj;
+        switch (this.f4649a) {
+            case 2:
+                return o1Var.N;
+            default:
+                return o1Var.O;
+        }
+    }
+
+    @Override
+    public int i(g6 g6Var, boolean z10) {
+        float f7;
+        float f10;
+        float f11;
+        float f12;
+        float f13;
+        float f14;
+        float f15;
+        switch (this.f4649a) {
+            case 19:
+                if (LiteMode.isEnabled(262144)) {
+                    f7 = 0.85f;
+                } else {
+                    f7 = 0.76f;
+                }
+                return fh.c.m(f7, k6.w0(k6.f21183d6, g6Var), k6.w0(k6.Sd, g6Var));
+            case 20:
+                if (!LiteMode.isEnabled(256)) {
+                    return k6.x0(null, k6.G8, false);
+                }
+                int x02 = k6.x0(null, k6.G8, false);
+                if (z10) {
+                    f10 = 0.85f;
+                } else {
+                    f10 = 0.825f;
+                }
+                return k6.o1(f10, x02);
+            case 21:
+                if (LiteMode.isEnabled(262144)) {
+                    f11 = 0.85f;
+                } else {
+                    f11 = 0.76f;
+                }
+                return fh.c.m(f11, k6.w0(k6.f21183d6, g6Var), k6.w0(k6.Zk, g6Var));
+            case 22:
+                if (LiteMode.isEnabled(262144)) {
+                    f12 = 0.85f;
+                } else {
+                    f12 = 0.76f;
+                }
+                return k6.o1(f12, k6.w0(k6.Fi, g6Var));
+            case 23:
+                return 855638016;
+            case 24:
+                return 1073741824;
+            case 25:
+                return k6.o1(0.075f, -16777216);
+            case 26:
+                return k6.o1(0.88f, k6.w0(k6.f21183d6, g6Var));
+            case 27:
+                int x03 = k6.x0(null, k6.G8, false);
+                if (z10) {
+                    f13 = 0.85f;
+                } else {
+                    f13 = 0.825f;
+                }
+                return k6.o1(f13, x03);
+            case 28:
+                if (LiteMode.isEnabled(262144)) {
+                    f14 = 0.85f;
+                } else {
+                    f14 = 0.76f;
+                }
+                return fh.c.m(f14, k6.w0(k6.f21183d6, g6Var), k6.w0(k6.Yk, g6Var));
+            default:
+                if (LiteMode.isEnabled(262144)) {
+                    f15 = 0.85f;
+                } else {
+                    f15 = 0.76f;
+                }
+                return k6.o1(f15, k6.w0(k6.f21183d6, g6Var));
+        }
+    }
+
+    @Override
+    public Object j2(z5 z5Var) {
+        return FirebaseMessagingRegistrar.a(z5Var);
+    }
+
+    @Override
+    public Object provide(Object obj) {
+        Integer num = (Integer) obj;
+        MediaController.AlbumEntry albumEntry = q3.f9636j0;
+        return 0;
+    }
+
+    @Override
+    public void run(int[] iArr, float[] fArr, boolean[] zArr) {
+    }
+
+    @Override
+    public Object then(Task task) {
+        int i10;
+        switch (this.f4649a) {
+            case 9:
+                i10 = 403;
+                break;
+            default:
+                i10 = -1;
+                break;
+        }
+        return Integer.valueOf(i10);
+    }
+
+    @Override
+    public Object run(Object obj, Object obj2) {
+        Integer num = (Integer) obj2;
+        if (((Integer) obj).intValue() == 0) {
+            return num.intValue() == 0 ? LocaleController.getString(R.string.LiveStoryPricePerCommentFree) : LocaleController.formatPluralStringComma("Stars", num.intValue());
+        }
+        return "" + num;
     }
 }

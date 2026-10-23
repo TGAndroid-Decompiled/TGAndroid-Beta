@@ -1,155 +1,97 @@
 package org.telegram.ui;
 
-import android.text.TextUtils;
-import java.io.File;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.ImageLoader;
+import java.util.HashMap;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.R;
 import org.telegram.messenger.SecureDocument;
-import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-public final class zl0 implements mm0 {
-    public final TLRPC.SecureValueType f43779a;
-    public final boolean f43780b;
-    public final int f43781c;
-    public final vm0 d;
+public final class zl0 extends cu0 {
+    public final an0 f44172a;
 
-    public zl0(vm0 vm0Var, TLRPC.SecureValueType secureValueType, boolean z10, int i10) {
-        this.d = vm0Var;
-        this.f43779a = secureValueType;
-        this.f43780b = z10;
-        this.f43781c = i10;
+    public zl0(an0 an0Var) {
+        this.f44172a = an0Var;
     }
 
-    public static void a(zl0 zl0Var, SecureDocument secureDocument, TLRPC.TL_secureFile tL_secureFile) {
-        zl0Var.getClass();
-        File pathToAttach = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(secureDocument);
-        File pathToAttach2 = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(tL_secureFile);
-        pathToAttach.renameTo(pathToAttach2);
-        ImageLoader.getInstance().replaceImageInCache(secureDocument.secureFile.dc_id + "_" + secureDocument.secureFile.f20415id, tL_secureFile.dc_id + "_" + tL_secureFile.f20415id, null, false);
-    }
-
-    public static TLRPC.InputSecureFile b(SecureDocument secureDocument) {
-        if (secureDocument.inputFile != null) {
-            TLRPC.TL_inputSecureFileUploaded tL_inputSecureFileUploaded = new TLRPC.TL_inputSecureFileUploaded();
-            TLRPC.TL_inputFile tL_inputFile = secureDocument.inputFile;
-            tL_inputSecureFileUploaded.f20348id = tL_inputFile.f20294id;
-            tL_inputSecureFileUploaded.parts = tL_inputFile.parts;
-            tL_inputSecureFileUploaded.md5_checksum = tL_inputFile.md5_checksum;
-            tL_inputSecureFileUploaded.file_hash = secureDocument.fileHash;
-            tL_inputSecureFileUploaded.secret = secureDocument.fileSecret;
-            return tL_inputSecureFileUploaded;
-        }
-        TLRPC.TL_inputSecureFile tL_inputSecureFile = new TLRPC.TL_inputSecureFile();
-        TLRPC.TL_secureFile tL_secureFile = secureDocument.secureFile;
-        tL_inputSecureFile.f20347id = tL_secureFile.f20415id;
-        tL_inputSecureFile.access_hash = tL_secureFile.access_hash;
-        return tL_inputSecureFile;
-    }
-
-    public final void c(TLRPC.TL_secureRequiredType tL_secureRequiredType, String str, String str2, TLRPC.TL_secureRequiredType tL_secureRequiredType2, String str3, ArrayList arrayList, SecureDocument secureDocument, ArrayList arrayList2, SecureDocument secureDocument2, SecureDocument secureDocument3, Runnable runnable, mi.q qVar) {
-        TLRPC.TL_inputSecureValue tL_inputSecureValue;
-        TLRPC.TL_securePlainPhone tL_securePlainPhone;
-        TLRPC.TL_inputSecureValue tL_inputSecureValue2;
-        int i10;
-        boolean isEmpty = TextUtils.isEmpty(str2);
-        vm0 vm0Var = this.d;
-        if (!isEmpty) {
-            tL_inputSecureValue = new TLRPC.TL_inputSecureValue();
-            tL_inputSecureValue.type = tL_secureRequiredType.type;
-            tL_inputSecureValue.flags |= 1;
-            com.google.android.gms.internal.cast.z5 j12 = vm0Var.j1(AndroidUtilities.getStringBytes(str2));
-            TLRPC.TL_secureData tL_secureData = new TLRPC.TL_secureData();
-            tL_inputSecureValue.data = tL_secureData;
-            tL_secureData.data = (byte[]) j12.f6880a;
-            tL_secureData.data_hash = (byte[]) j12.d;
-            tL_secureData.secret = (byte[]) j12.f6881b;
-        } else if (!TextUtils.isEmpty(str)) {
-            TLRPC.SecureValueType secureValueType = this.f43779a;
-            if (secureValueType instanceof TLRPC.TL_secureValueTypeEmail) {
-                TLRPC.TL_securePlainEmail tL_securePlainEmail = new TLRPC.TL_securePlainEmail();
-                tL_securePlainEmail.email = str;
-                tL_securePlainPhone = tL_securePlainEmail;
-            } else if (secureValueType instanceof TLRPC.TL_secureValueTypePhone) {
-                TLRPC.TL_securePlainPhone tL_securePlainPhone2 = new TLRPC.TL_securePlainPhone();
-                tL_securePlainPhone2.phone = str;
-                tL_securePlainPhone = tL_securePlainPhone2;
-            } else {
-                return;
-            }
-            TLRPC.TL_inputSecureValue tL_inputSecureValue3 = new TLRPC.TL_inputSecureValue();
-            tL_inputSecureValue3.type = tL_secureRequiredType.type;
-            tL_inputSecureValue3.flags |= 32;
-            tL_inputSecureValue3.plain_data = tL_securePlainPhone;
-            tL_inputSecureValue = tL_inputSecureValue3;
+    @Override
+    public final void B(int i10) {
+        SecureDocument secureDocument;
+        an0 an0Var = this.f44172a;
+        int i11 = an0Var.S0;
+        if (i11 == 1) {
+            secureDocument = an0Var.f35724j1;
+        } else if (i11 == 4) {
+            secureDocument = (SecureDocument) an0Var.f35726k1.get(i10);
+        } else if (i11 == 2) {
+            secureDocument = an0Var.l1;
+        } else if (i11 == 3) {
+            secureDocument = an0Var.f35728m1;
         } else {
-            tL_inputSecureValue = null;
+            secureDocument = (SecureDocument) an0Var.f35722i1.get(i10);
         }
-        boolean z10 = this.f43780b;
-        if (!z10 && tL_inputSecureValue == null) {
-            if (qVar != null) {
-                qVar.p(null, null);
-                return;
-            }
+        ym0 ym0Var = (ym0) an0Var.f35731n1.remove(secureDocument);
+        if (ym0Var == null) {
             return;
         }
-        if (tL_secureRequiredType2 != null) {
-            TLRPC.TL_inputSecureValue tL_inputSecureValue4 = new TLRPC.TL_inputSecureValue();
-            tL_inputSecureValue4.type = tL_secureRequiredType2.type;
-            if (!TextUtils.isEmpty(str3)) {
-                tL_inputSecureValue4.flags |= 1;
-                com.google.android.gms.internal.cast.z5 j13 = vm0Var.j1(AndroidUtilities.getStringBytes(str3));
-                TLRPC.TL_secureData tL_secureData2 = new TLRPC.TL_secureData();
-                tL_inputSecureValue4.data = tL_secureData2;
-                tL_secureData2.data = (byte[]) j13.f6880a;
-                tL_secureData2.data_hash = (byte[]) j13.d;
-                tL_secureData2.secret = (byte[]) j13.f6881b;
+        String m12 = an0.m1(secureDocument);
+        int i12 = an0Var.S0;
+        String str = null;
+        if (i12 == 1) {
+            an0Var.f35724j1 = null;
+            str = si.o0.h("selfie", m12);
+        } else if (i12 == 4) {
+            str = si.o0.h("translation", m12);
+        } else if (i12 == 2) {
+            an0Var.l1 = null;
+            str = si.o0.h("front", m12);
+        } else if (i12 == 3) {
+            an0Var.f35728m1 = null;
+            str = si.o0.h("reverse", m12);
+        } else if (i12 == 0) {
+            str = si.o0.h("files", m12);
+        }
+        if (str != null) {
+            HashMap hashMap = an0Var.f35755x1;
+            if (hashMap != null) {
+                hashMap.remove(str);
             }
-            if (secureDocument2 != null) {
-                tL_inputSecureValue4.front_side = b(secureDocument2);
-                tL_inputSecureValue4.flags |= 2;
-            }
-            if (secureDocument3 != null) {
-                tL_inputSecureValue4.reverse_side = b(secureDocument3);
-                tL_inputSecureValue4.flags |= 4;
-            }
-            if (secureDocument != null) {
-                tL_inputSecureValue4.selfie = b(secureDocument);
-                tL_inputSecureValue4.flags |= 8;
-            }
-            if (arrayList2 != null && !arrayList2.isEmpty()) {
-                tL_inputSecureValue4.flags |= 64;
-                int size = arrayList2.size();
-                for (int i11 = 0; i11 < size; i11++) {
-                    tL_inputSecureValue4.translation.add(b((SecureDocument) arrayList2.get(i11)));
-                }
-            }
-            if (arrayList != null && !arrayList.isEmpty()) {
-                tL_inputSecureValue4.flags |= 16;
-                int size2 = arrayList.size();
-                for (int i12 = 0; i12 < size2; i12++) {
-                    tL_inputSecureValue4.files.add(b((SecureDocument) arrayList.get(i12)));
-                }
-            }
-            if (z10) {
-                tL_inputSecureValue = tL_inputSecureValue4;
-            } else {
-                tL_inputSecureValue2 = tL_inputSecureValue4;
-                TL_account.saveSecureValue savesecurevalue = new TL_account.saveSecureValue();
-                savesecurevalue.value = tL_inputSecureValue;
-                savesecurevalue.secure_secret_id = vm0Var.f42290b1;
-                i10 = ((org.telegram.ui.ActionBar.n2) vm0Var).currentAccount;
-                ConnectionsManager.getInstance(i10).sendRequest(savesecurevalue, new yl0(this, qVar, str, savesecurevalue, tL_secureRequiredType2, tL_secureRequiredType, arrayList, secureDocument, secureDocument2, secureDocument3, arrayList2, str2, str3, runnable, this, tL_inputSecureValue2));
+            HashMap hashMap2 = an0Var.f35758y1;
+            if (hashMap2 != null) {
+                hashMap2.remove(str);
             }
         }
-        tL_inputSecureValue2 = null;
-        TL_account.saveSecureValue savesecurevalue2 = new TL_account.saveSecureValue();
-        savesecurevalue2.value = tL_inputSecureValue;
-        savesecurevalue2.secure_secret_id = vm0Var.f42290b1;
-        i10 = ((org.telegram.ui.ActionBar.n2) vm0Var).currentAccount;
-        ConnectionsManager.getInstance(i10).sendRequest(savesecurevalue2, new yl0(this, qVar, str, savesecurevalue2, tL_secureRequiredType2, tL_secureRequiredType, arrayList, secureDocument, secureDocument2, secureDocument3, arrayList2, str2, str3, runnable, this, tL_inputSecureValue2));
+        an0Var.S1(an0Var.S0);
+        an0Var.f35721i0.removeView(ym0Var);
+    }
+
+    @Override
+    public final mu0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
+        if (i10 >= 0) {
+            an0 an0Var = this.f44172a;
+            if (i10 < an0Var.f35721i0.getChildCount()) {
+                ym0 ym0Var = (ym0) an0Var.f35721i0.getChildAt(i10);
+                int[] iArr = new int[2];
+                ym0Var.f43904c.getLocationInWindow(iArr);
+                mu0 mu0Var = new mu0();
+                mu0Var.f39693b = iArr[0];
+                mu0Var.f39694c = iArr[1];
+                mu0Var.d = an0Var.f35721i0;
+                ImageReceiver imageReceiver = ym0Var.f43904c.getImageReceiver();
+                mu0Var.f39692a = imageReceiver;
+                mu0Var.e = imageReceiver.getBitmapSafe();
+                return mu0Var;
+            }
+            return null;
+        }
+        return null;
+    }
+
+    @Override
+    public final String b0() {
+        if (this.f44172a.S0 == 1) {
+            return LocaleController.formatString("PassportDeleteSelfieAlert", R.string.PassportDeleteSelfieAlert, new Object[0]);
+        }
+        return LocaleController.formatString("PassportDeleteScanAlert", R.string.PassportDeleteScanAlert, new Object[0]);
     }
 }

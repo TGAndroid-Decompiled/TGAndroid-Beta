@@ -7,8 +7,8 @@ import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.e91;
-public final class i5 extends e91 {
+import org.telegram.ui.Components.l91;
+public final class i5 extends l91 {
     public final l7 T;
 
     public i5(l7 l7Var, Context context) {
@@ -31,7 +31,7 @@ public final class i5 extends e91 {
         }
         float clamp = Utilities.clamp(f7 / getMeasuredWidth(), 1.0f, -1.0f);
         l7 l7Var = this.T;
-        i10 = ((org.telegram.ui.ActionBar.f3) l7Var).backgroundPaddingLeft;
+        i10 = ((org.telegram.ui.ActionBar.h3) l7Var).backgroundPaddingLeft;
         view.setTranslationX(((-clamp) * 2.0f * i10) + f7);
         float f10 = 0.0f;
         if (clamp <= 0.0f) {
@@ -45,15 +45,15 @@ public final class i5 extends e91 {
             FrameLayout frameLayout = (FrameLayout) view;
             if (frameLayout.getChildCount() > 0) {
                 view2 = frameLayout.getChildAt(0);
-                k2Var = l7Var.f1722c0;
-                if (k2Var != null && view2 == k2Var.Y && (l5Var3 = k2Var.f1726e0) != null) {
+                k2Var = l7Var.f1714c0;
+                if (k2Var != null && view2 == k2Var.Y && (l5Var3 = k2Var.f1718e0) != null) {
                     l5Var3.invalidate();
                 }
-                if (view2 == l7Var.Y && (l5Var2 = l7Var.f1726e0) != null) {
+                if (view2 == l7Var.Y && (l5Var2 = l7Var.f1718e0) != null) {
                     l5Var2.invalidate();
                 }
-                k2Var2 = l7Var.f1724d0;
-                if (k2Var2 == null && view2 == k2Var2.Y && (l5Var = k2Var2.f1726e0) != null) {
+                k2Var2 = l7Var.f1716d0;
+                if (k2Var2 == null && view2 == k2Var2.Y && (l5Var = k2Var2.f1718e0) != null) {
                     l5Var.invalidate();
                     return;
                 }
@@ -61,14 +61,14 @@ public final class i5 extends e91 {
             }
         }
         view2 = null;
-        k2Var = l7Var.f1722c0;
+        k2Var = l7Var.f1714c0;
         if (k2Var != null) {
             l5Var3.invalidate();
         }
         if (view2 == l7Var.Y) {
             l5Var2.invalidate();
         }
-        k2Var2 = l7Var.f1724d0;
+        k2Var2 = l7Var.f1716d0;
         if (k2Var2 == null) {
         }
     }
@@ -76,11 +76,11 @@ public final class i5 extends e91 {
     @Override
     public final void F() {
         super.F();
-        int i10 = this.f25866b;
+        int i10 = this.f28307b;
         l7 l7Var = this.T;
         boolean z10 = false;
-        if (i10 != l7Var.g2(false)) {
-            if (this.f25866b > l7Var.g2(false)) {
+        if (i10 != l7Var.f2(false)) {
+            if (this.f28307b > l7Var.f2(false)) {
                 z10 = true;
             }
             AndroidUtilities.runOnUIThread(new ah.t(3, this, z10));
@@ -93,9 +93,9 @@ public final class i5 extends e91 {
         int i11;
         canvas.save();
         l7 l7Var = this.T;
-        i10 = ((org.telegram.ui.ActionBar.f3) l7Var).backgroundPaddingLeft;
+        i10 = ((org.telegram.ui.ActionBar.h3) l7Var).backgroundPaddingLeft;
         int width = getWidth();
-        i11 = ((org.telegram.ui.ActionBar.f3) l7Var).backgroundPaddingLeft;
+        i11 = ((org.telegram.ui.ActionBar.h3) l7Var).backgroundPaddingLeft;
         canvas.clipRect(i10, -getHeight(), width - i11, getHeight() * 2);
         super.dispatchDraw(canvas);
         canvas.restore();
@@ -105,13 +105,13 @@ public final class i5 extends e91 {
     public final float getAvailableTranslationX() {
         int i10;
         int measuredWidth = getMeasuredWidth();
-        i10 = ((org.telegram.ui.ActionBar.f3) this.T).backgroundPaddingLeft;
+        i10 = ((org.telegram.ui.ActionBar.h3) this.T).backgroundPaddingLeft;
         return Math.max(1, measuredWidth - (i10 * 2));
     }
 
     @Override
     public final boolean i(MotionEvent motionEvent) {
-        h6 h6Var = this.T.f1721b1;
+        h6 h6Var = this.T.f1713b1;
         if (h6Var != null && !h6Var.c(0)) {
             return false;
         }

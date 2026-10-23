@@ -1,118 +1,25 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.text.SpannableStringBuilder;
-import android.text.TextUtils;
-import android.text.style.ForegroundColorSpan;
-import android.view.View;
-import android.view.ViewGroup;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.ThemeEditorView;
-public final class j21 extends im0 {
-    public final Context f27389c;
-    public int d;
-    public ArrayList e = new ArrayList();
-    public ArrayList f27390f = new ArrayList();
-    public org.telegram.ui.i4 h;
-    public String f27391n;
-    public final ThemeEditorView.EditorAlert f27392r;
+import android.text.TextWatcher;
+public final class j21 implements TextWatcher {
+    public final int f27494a;
+    public final k21 f27495b;
 
-    public j21(ThemeEditorView.EditorAlert editorAlert, Context context) {
-        this.f27392r = editorAlert;
-        this.f27389c = context;
-    }
-
-    public static CharSequence E(String str, String str2) {
-        if (TextUtils.isEmpty(str)) {
-            return "";
-        }
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-        String trim = str.trim();
-        String lowerCase = trim.toLowerCase();
-        int i10 = 0;
-        while (true) {
-            int indexOf = lowerCase.indexOf(str2, i10);
-            if (indexOf == -1) {
-                break;
-            }
-            int length = str2.length() + indexOf;
-            if (i10 != 0 && i10 != indexOf + 1) {
-                spannableStringBuilder.append((CharSequence) trim.substring(i10, indexOf));
-            } else if (i10 == 0 && indexOf != 0) {
-                spannableStringBuilder.append((CharSequence) trim.substring(0, indexOf));
-            }
-            String substring = trim.substring(indexOf, Math.min(trim.length(), length));
-            if (substring.startsWith(" ")) {
-                spannableStringBuilder.append((CharSequence) " ");
-            }
-            String trim2 = substring.trim();
-            int length2 = spannableStringBuilder.length();
-            spannableStringBuilder.append((CharSequence) trim2);
-            spannableStringBuilder.setSpan(new ForegroundColorSpan(-11697229), length2, trim2.length() + length2, 33);
-            i10 = length;
-        }
-        if (i10 != -1 && i10 < trim.length()) {
-            spannableStringBuilder.append((CharSequence) trim.substring(i10));
-        }
-        return spannableStringBuilder;
+    public j21(k21 k21Var, int i10) {
+        this.f27495b = k21Var;
+        this.f27494a = i10;
     }
 
     @Override
-    public final boolean D(s4.b1 b1Var) {
-        return true;
+    public final void afterTextChanged(android.text.Editable r9) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.j21.afterTextChanged(android.text.Editable):void");
     }
 
     @Override
-    public final int h() {
-        if (this.e.isEmpty()) {
-            return 0;
-        }
-        return this.e.size() + 1;
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 
     @Override
-    public final int j(int i10) {
-        if (i10 == 0) {
-            return 1;
-        }
-        return 0;
-    }
-
-    @Override
-    public final void v(s4.b1 b1Var, int i10) {
-        int c10;
-        if (b1Var.f45924f == 0) {
-            boolean z10 = true;
-            int i11 = i10 - 1;
-            org.telegram.ui.ActionBar.j6 j6Var = (org.telegram.ui.ActionBar.j6) ((ArrayList) this.e.get(i11)).get(0);
-            if (j6Var.f21463f == org.telegram.ui.ActionBar.h6.Nd) {
-                c10 = 0;
-            } else {
-                c10 = j6Var.c();
-            }
-            org.telegram.ui.Cells.y8 y8Var = (org.telegram.ui.Cells.y8) b1Var.f45921a;
-            y8Var.f23858a.setText((CharSequence) this.f27390f.get(i11));
-            y8Var.f23859b = c10;
-            if (c10 != 0) {
-                z10 = false;
-            }
-            y8Var.setWillNotDraw(z10);
-            y8Var.invalidate();
-        }
-    }
-
-    @Override
-    public final s4.b1 x(ViewGroup viewGroup, int i10) {
-        View y8Var;
-        Context context = this.f27389c;
-        if (i10 != 0) {
-            y8Var = new View(context);
-            y8Var.setLayoutParams(new s4.o0(-1, AndroidUtilities.dp(56.0f)));
-        } else {
-            y8Var = new org.telegram.ui.Cells.y8(context);
-            y8Var.setLayoutParams(new s4.o0(-1, -2));
-        }
-        return new s4.b1(y8Var);
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

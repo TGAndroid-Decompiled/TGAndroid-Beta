@@ -1,77 +1,130 @@
 package ig;
 
-import android.graphics.Rect;
+import android.content.Context;
 import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.ui.Components.dk;
-import org.telegram.ui.Components.jl;
-import org.telegram.ui.Components.jm0;
-import org.telegram.ui.Components.li;
-import org.telegram.ui.Components.mj;
-import org.telegram.ui.Components.rl;
-import org.telegram.ui.Components.sn;
-import org.telegram.ui.Components.yz;
-public final class e0 extends yz {
-    public final int U;
-    public final li V;
+import android.view.ViewGroup;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.UserConfig;
+import org.telegram.ui.Components.im0;
+import org.telegram.ui.Components.mm0;
+public final class e0 extends im0 {
+    public final ArrayList f12907r;
+    public final int f12908s;
+    public final Context v;
+    public final h0 f12909w;
 
-    public e0(li liVar, int i10, jm0 jm0Var, int i11) {
-        super(i10, 0, jm0Var);
-        this.U = i11;
-        this.V = liVar;
+    public e0(h0 h0Var, Context context) {
+        this.f12909w = h0Var;
+        ArrayList arrayList = new ArrayList();
+        this.f12907r = arrayList;
+        int i10 = UserConfig.selectedAccount;
+        this.f12908s = i10;
+        this.v = context;
+        arrayList.addAll(z1.f(i10).e());
     }
 
     @Override
-    public int[] t(View view, Rect rect) {
-        switch (this.U) {
-            case 4:
-                int C = this.f46023n - C();
-                int top = (view.getTop() + rect.top) - view.getScrollY();
-                int min = Math.min(0, top);
-                int max = Math.max(0, (rect.height() + top) - C);
-                if (min == 0) {
-                    min = Math.min(top, max);
-                }
-                return new int[]{0, min};
-            default:
-                return super.t(view, rect);
+    public final String F(int i10) {
+        return null;
+    }
+
+    @Override
+    public final void G(mm0 mm0Var, float f7, int[] iArr) {
+        iArr[0] = 0;
+        iArr[1] = 0;
+    }
+
+    @Override
+    public final int M(int i10) {
+        if (i10 != 0 && i10 != 2) {
+            return this.f12907r.size();
+        }
+        return 1;
+    }
+
+    @Override
+    public final Object O(int i10, int i11) {
+        if (i10 != 0 && i11 >= 0) {
+            ArrayList arrayList = this.f12907r;
+            if (i11 < arrayList.size()) {
+                return arrayList.get(i11);
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public final int P(int i10, int i11) {
+        if (i10 == 0) {
+            return 1;
+        }
+        if (i10 == 2) {
+            return 2;
+        }
+        return 0;
+    }
+
+    @Override
+    public final int R() {
+        return 3;
+    }
+
+    @Override
+    public final View T(int i10, View view) {
+        return null;
+    }
+
+    @Override
+    public final boolean V(int i10, int i11, s4.b1 b1Var) {
+        if (i10 != 0 && i10 != 2 && i11 < this.f12907r.size()) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final void W(int i10, int i11, s4.b1 b1Var) {
+        if (b1Var.f46346f == 0) {
+            v1 v1Var = (v1) b1Var.f46343a;
+            Object O = O(i10, i11);
+            boolean z10 = true;
+            if (i10 == 1 && i11 == M(i10) - 1) {
+                z10 = false;
+            }
+            if (O instanceof y1) {
+                y1 y1Var = (y1) O;
+                v1Var.a(y1Var, null, z10);
+                v1Var.d.a(this.f12909w.f12944w.contains(Integer.valueOf(y1Var.f13129a)), false);
+            }
         }
     }
 
     @Override
-    public final void v0(RecyclerView recyclerView, s4.y0 y0Var, int i10) {
-        switch (this.U) {
-            case 0:
-                d0 d0Var = new d0(this, recyclerView.getContext());
-                d0Var.f46062a = i10;
-                w0(d0Var);
-                return;
-            case 1:
-                mj mjVar = new mj(this, recyclerView.getContext());
-                mjVar.f46062a = i10;
-                w0(mjVar);
-                return;
-            case 2:
-                dk dkVar = new dk(this, recyclerView.getContext());
-                dkVar.f46062a = i10;
-                w0(dkVar);
-                return;
-            case 3:
-                jl jlVar = new jl(this, recyclerView.getContext());
-                jlVar.f46062a = i10;
-                w0(jlVar);
-                return;
-            default:
-                sn snVar = new sn(this, recyclerView.getContext());
-                snVar.f46062a = i10;
-                w0(snVar);
-                return;
-        }
+    public final void l() {
+        ArrayList arrayList = this.f12907r;
+        arrayList.clear();
+        arrayList.addAll(z1.f(this.f12908s).e());
+        X(false);
+        this.f12909w.O();
     }
 
-    public e0(rl rlVar, ai.u1 u1Var) {
-        super(0, 0, u1Var);
-        this.U = 3;
-        this.V = rlVar;
+    @Override
+    public final s4.b1 x(ViewGroup viewGroup, int i10) {
+        View v1Var;
+        Context context = this.v;
+        if (i10 != 0) {
+            if (i10 != 1) {
+                v1Var = new View(context);
+                v1Var.setTag(-33024);
+            } else {
+                v1Var = new View(context);
+                v1Var.setLayoutParams(new s4.o0(-1, AndroidUtilities.dp(56.0f)));
+                v1Var.setTag(-33024);
+            }
+        } else {
+            v1Var = new v1(context, this.f12909w.f28365a, false);
+        }
+        return new s4.b1(v1Var);
     }
 }

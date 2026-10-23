@@ -1,23 +1,22 @@
 package org.telegram.ui;
-public final class k70 implements Runnable {
-    public final int f38439a;
-    public final r70 f38440b;
 
-    public k70(r70 r70Var, int i10) {
-        this.f38439a = i10;
-        this.f38440b = r70Var;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.NotificationCenter;
+public final class k70 implements NotificationCenter.NotificationCenterDelegate {
+    public final org.telegram.ui.ActionBar.c2 f38841a;
+    public final n70 f38842b;
+
+    public k70(n70 n70Var, org.telegram.ui.ActionBar.c2 c2Var) {
+        this.f38842b = n70Var;
+        this.f38841a = c2Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f38439a) {
-            case 0:
-                r70 r70Var = this.f38440b;
-                r70Var.h.postOnAnimation(new k70(r70Var, 1));
-                return;
-            default:
-                this.f38440b.Y();
-                return;
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        if (i10 == NotificationCenter.reloadInterface) {
+            this.f38841a.dismiss();
+            NotificationCenter.getGlobalInstance().removeObserver(this, i10);
+            AndroidUtilities.runOnUIThread(new fz(this, 13), 100L);
         }
     }
 }

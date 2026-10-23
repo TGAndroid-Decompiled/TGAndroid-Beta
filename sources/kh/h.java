@@ -8,38 +8,38 @@ import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.Components.bs;
-import org.telegram.ui.Components.gr;
+import org.telegram.ui.Components.fr;
 import w7.b6;
 import w7.z5;
 public final class h extends FrameLayout implements ne.d {
-    public static final int[] f15086s;
-    public final String[] f15087a;
-    public final d6 f15088b;
-    public final eh.a f15089c;
+    public static final int[] f15132s;
+    public final String[] f15133a;
+    public final g6 f15134b;
+    public final eh.a f15135c;
     public final bh.b d;
     public final androidx.biometric.e[] e;
-    public final l[] f15090f;
+    public final l[] f15136f;
     public a h;
-    public b f15091n;
-    public int f15092r;
+    public b f15137n;
+    public int f15138r;
 
     static {
         int i10 = R.drawable.msg_input_attach2;
         int i11 = R.drawable.pagedown;
-        f15086s = new int[]{i10, i11, R.drawable.mentionbutton, R.drawable.reactionbutton, R.drawable.menu_poll_notify, i11, i11};
+        f15132s = new int[]{i10, i11, R.drawable.mentionbutton, R.drawable.reactionbutton, R.drawable.menu_poll_notify, i11, i11};
     }
 
-    public h(Context context, d6 d6Var, eh.b bVar, bh.b bVar2) {
+    public h(Context context, g6 g6Var, eh.b bVar, bh.b bVar2) {
         super(context);
-        this.f15087a = new String[]{LocaleController.getString(R.string.AttachMenu), LocaleController.getString(R.string.AccDescrPageDown), LocaleController.getString(R.string.AccDescrMentionDown), LocaleController.getString(R.string.AccDescrReactionMentionDown), LocaleController.getString(R.string.AccDescrPollVotesMentionDown), LocaleController.getString(R.string.AccDescrSearchPrev), LocaleController.getString(R.string.AccDescrSearchNext)};
+        this.f15133a = new String[]{LocaleController.getString(R.string.AttachMenu), LocaleController.getString(R.string.AccDescrPageDown), LocaleController.getString(R.string.AccDescrMentionDown), LocaleController.getString(R.string.AccDescrReactionMentionDown), LocaleController.getString(R.string.AccDescrPollVotesMentionDown), LocaleController.getString(R.string.AccDescrSearchPrev), LocaleController.getString(R.string.AccDescrSearchNext)};
         this.e = new androidx.biometric.e[7];
-        this.f15090f = new l[7];
-        this.f15092r = 83;
+        this.f15136f = new l[7];
+        this.f15138r = 83;
         this.d = bVar2;
-        this.f15089c = bVar;
-        this.f15088b = d6Var;
+        this.f15135c = bVar;
+        this.f15134b = g6Var;
     }
 
     public final void a() {
@@ -51,8 +51,8 @@ public final class h extends FrameLayout implements ne.d {
             if (i11 < eVarArr.length) {
                 androidx.biometric.e eVar = eVarArr[i11];
                 if (eVar != null) {
-                    jh.b bVar = (jh.b) eVar.f2815b;
-                    float f10 = ((ne.b) eVar.f2816c).e;
+                    jh.b bVar = (jh.b) eVar.f2822b;
+                    float f10 = ((ne.b) eVar.f2823c).e;
                     float f11 = ((ne.b) eVar.d).e;
                     if (f10 > 0.0f) {
                         i10 = 0;
@@ -76,7 +76,7 @@ public final class h extends FrameLayout implements ne.d {
     }
 
     public final l b(int i10) {
-        l[] lVarArr = this.f15090f;
+        l[] lVarArr = this.f15136f;
         if (lVarArr[i10] == 0) {
             ?? obj = new Object();
             obj.f592a = 0;
@@ -92,7 +92,7 @@ public final class h extends FrameLayout implements ne.d {
         b(i10).f592a = i11;
         androidx.biometric.e eVar = this.e[i10];
         if (eVar != null) {
-            ((jh.b) eVar.f2815b).a(i11, z10);
+            ((jh.b) eVar.f2822b).a(i11, z10);
             ne.b bVar = (ne.b) eVar.d;
             if (i11 > 0) {
                 z11 = true;
@@ -107,7 +107,7 @@ public final class h extends FrameLayout implements ne.d {
         b(1).f593b = z10;
         androidx.biometric.e eVar = this.e[1];
         if (eVar != null) {
-            ((jh.b) eVar.f2815b).c(z10, true);
+            ((jh.b) eVar.f2822b).c(z10, true);
         }
     }
 
@@ -129,7 +129,7 @@ public final class h extends FrameLayout implements ne.d {
             if (i10 == 0) {
                 interpolator = bs.h;
             } else {
-                interpolator = me.a.f16853a;
+                interpolator = me.a.f16916a;
             }
             if (i10 == 0) {
                 j10 = 300;
@@ -141,7 +141,7 @@ public final class h extends FrameLayout implements ne.d {
             if (i10 == 0) {
                 interpolator2 = bs.h;
             } else {
-                interpolator2 = me.a.f16853a;
+                interpolator2 = me.a.f16916a;
             }
             Interpolator interpolator3 = interpolator2;
             if (i10 == 0) {
@@ -159,11 +159,11 @@ public final class h extends FrameLayout implements ne.d {
             }
             int i16 = i12;
             Context context = getContext();
-            int i17 = f15086s[i10];
-            d6 d6Var = this.f15088b;
-            jh.b bVar3 = new jh.b(context, d6Var);
-            jh.a d = jh.a.d(context, this.d, this.f15089c, d6Var, i17, i16);
-            bVar3.f14515b = d;
+            int i17 = f15132s[i10];
+            g6 g6Var = this.f15134b;
+            jh.b bVar3 = new jh.b(context, g6Var);
+            jh.a d = jh.a.d(context, this.d, this.f15135c, g6Var, i17, i16);
+            bVar3.f14561b = d;
             bVar3.addView(d, z5.e(i11, i11, 80));
             d.setIconPadding(AndroidUtilities.dp(2.0f));
             b6.b(bVar3, 0.13f, 2.0f);
@@ -171,25 +171,25 @@ public final class h extends FrameLayout implements ne.d {
             bVar3.setPivotX(AndroidUtilities.dp(f7));
             bVar3.setPivotY(AndroidUtilities.dp(f7 + 8.0f));
             bVar3.setVisibility(8);
-            bVar3.setContentDescription(this.f15087a[i10]);
+            bVar3.setContentDescription(this.f15133a[i10]);
             bVar3.setOnClickListener(new n1(this, i10, 5));
             bVar3.setOnLongClickListener(new g(this, i10, 0));
             if (i10 == 6) {
-                jh.a aVar = bVar3.f14515b;
+                jh.a aVar = bVar3.f14561b;
                 aVar.h = -1.0f;
                 aVar.a();
             }
             boolean z12 = true;
             if (i10 == 1) {
                 bVar3.d = true;
-                gr grVar = bVar3.f14516c;
-                if (grVar != null) {
-                    grVar.setReverse(true);
+                fr frVar = bVar3.f14562c;
+                if (frVar != null) {
+                    frVar.setReverse(true);
                 }
             }
-            addView(bVar3, z5.e(i11, i11 + 8, this.f15092r));
+            addView(bVar3, z5.e(i11, i11 + 8, this.f15138r));
             eVarArr[i10] = new androidx.biometric.e(bVar3, bVar, bVar2, 27);
-            l lVar = this.f15090f[i10];
+            l lVar = this.f15136f[i10];
             if (lVar != null) {
                 bVar3.a(lVar.f592a, false);
                 bVar.a(false, false);
@@ -202,7 +202,7 @@ public final class h extends FrameLayout implements ne.d {
             }
             a();
         }
-        ((ne.b) eVarArr[i10].f2816c).a(z10, z11);
+        ((ne.b) eVarArr[i10].f2823c).a(z10, z11);
     }
 
     @Override
@@ -211,7 +211,7 @@ public final class h extends FrameLayout implements ne.d {
     }
 
     @Override
-    public final void r(int i10, float f7, float f10, ne.e eVar) {
+    public final void o(int i10, float f7, float f10, ne.e eVar) {
         int i11 = i10 >> 16;
         int i12 = i10 & 65535;
         if (i11 >= 0) {
@@ -225,7 +225,7 @@ public final class h extends FrameLayout implements ne.d {
     }
 
     public void setGravity(int i10) {
-        this.f15092r = i10;
+        this.f15138r = i10;
     }
 
     public void setOnClickListener(a aVar) {
@@ -233,7 +233,7 @@ public final class h extends FrameLayout implements ne.d {
     }
 
     public void setOnLongClickListener(b bVar) {
-        this.f15091n = bVar;
+        this.f15137n = bVar;
     }
 
     @Override

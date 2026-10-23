@@ -4,26 +4,26 @@ import android.text.SpannableStringBuilder;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.nk;
-import org.telegram.ui.Components.yq;
+import org.telegram.messenger.sl;
+import org.telegram.ui.Components.xq;
 public final class d implements Runnable {
-    public final int f1121a;
-    public final x f1122b;
+    public final int f1115a;
+    public final x f1116b;
 
     public d(x xVar, int i10) {
-        this.f1121a = i10;
-        this.f1122b = xVar;
+        this.f1115a = i10;
+        this.f1116b = xVar;
     }
 
     @Override
     public final void run() {
         boolean z10;
         String formatPluralStringSpaced;
-        int i10 = this.f1121a;
-        x xVar = this.f1122b;
+        int i10 = this.f1115a;
+        x xVar = this.f1116b;
         switch (i10) {
             case 0:
-                d dVar = xVar.f2414n0;
+                d dVar = xVar.f2417n0;
                 int currentTime = xVar.getConnectionsManager().getCurrentTime();
                 v vVar = xVar.R;
                 if (xVar.P <= 0 && xVar.G <= currentTime) {
@@ -33,35 +33,35 @@ public final class d implements Runnable {
                 }
                 vVar.setEnabled(z10);
                 if (currentTime < xVar.G) {
-                    xVar.R.g(LocaleController.getString(R.string.BotStarsButtonWithdrawShortUntil), true, true);
+                    xVar.R.i(LocaleController.getString(R.string.BotStarsButtonWithdrawShortUntil), true, true);
                     if (xVar.m0 == null) {
                         xVar.m0 = new SpannableStringBuilder("l");
-                        yq yqVar = new yq(R.drawable.mini_switch_lock, 0);
-                        yqVar.setTopOffset(1);
-                        xVar.m0.setSpan(yqVar, 0, 1, 33);
+                        xq xqVar = new xq(R.drawable.mini_switch_lock, 0);
+                        xqVar.setTopOffset(1);
+                        xVar.m0.setSpan(xqVar, 0, 1, 33);
                     }
                     SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
                     spannableStringBuilder.append((CharSequence) xVar.m0).append((CharSequence) x.j0(xVar.G - currentTime));
-                    xVar.R.f(spannableStringBuilder, true);
-                    org.telegram.ui.Components.qc qcVar = xVar.f2398a0;
+                    xVar.R.g(spannableStringBuilder, true);
+                    org.telegram.ui.Components.qc qcVar = xVar.f2401a0;
                     if (qcVar != null) {
                         org.telegram.ui.Components.ub ubVar = qcVar.e;
                         if ((ubVar instanceof org.telegram.ui.Components.yb) && ubVar.isAttachedToWindow()) {
-                            nk.r(R.string.BotStarsWithdrawalToast, new Object[]{x.j0(xVar.G - currentTime)}, ((org.telegram.ui.Components.yb) xVar.f2398a0.e).f32629b);
+                            sl.r(R.string.BotStarsWithdrawalToast, new Object[]{x.j0(xVar.G - currentTime)}, ((org.telegram.ui.Components.yb) xVar.f2401a0.e).f32863b);
                         }
                     }
                     AndroidUtilities.cancelRunOnUIThread(dVar);
                     AndroidUtilities.runOnUIThread(dVar, 1000L);
                     return;
                 }
-                xVar.R.f(null, true);
+                xVar.R.g(null, true);
                 v vVar2 = xVar.R;
                 if (xVar.O) {
                     formatPluralStringSpaced = LocaleController.getString(R.string.BotStarsButtonWithdrawShortAll);
                 } else {
                     formatPluralStringSpaced = LocaleController.formatPluralStringSpaced("BotStarsButtonWithdrawShort", (int) xVar.P);
                 }
-                vVar2.g(md.W0(false, formatPluralStringSpaced, xVar.T), true, true);
+                vVar2.i(nd.W0(false, formatPluralStringSpaced, xVar.T), true, true);
                 return;
             case 1:
                 x.U(xVar);

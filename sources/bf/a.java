@@ -5,7 +5,7 @@ import df.g;
 import df.p;
 import df.s;
 public final class a implements gf.a {
-    public final char f4343a;
+    public final char f4350a;
 
     public a(int i10) {
         this('*');
@@ -20,32 +20,32 @@ public final class a implements gf.a {
 
     @Override
     public final char a() {
-        return this.f4343a;
+        return this.f4350a;
     }
 
     @Override
     public final void b(s sVar, s sVar2, int i10) {
         g gVar;
-        String.valueOf(this.f4343a);
+        String.valueOf(this.f4350a);
         if (i10 == 1) {
             gVar = new g(0);
         } else {
             gVar = new g(3);
         }
-        for (p pVar = (p) sVar.f7986f; pVar != null && pVar != sVar2; pVar = (p) pVar.f7986f) {
+        for (p pVar = (p) sVar.f7998f; pVar != null && pVar != sVar2; pVar = (p) pVar.f7998f) {
             gVar.b(pVar);
         }
         gVar.g();
-        p pVar2 = (p) sVar.f7986f;
-        gVar.f7986f = pVar2;
+        p pVar2 = (p) sVar.f7998f;
+        gVar.f7998f = pVar2;
         if (pVar2 != null) {
             pVar2.e = gVar;
         }
         gVar.e = sVar;
-        sVar.f7986f = gVar;
-        p pVar3 = (p) sVar.f7984b;
-        gVar.f7984b = pVar3;
-        if (((p) gVar.f7986f) == null) {
+        sVar.f7998f = gVar;
+        p pVar3 = (p) sVar.f7996b;
+        gVar.f7996b = pVar3;
+        if (((p) gVar.f7998f) == null) {
             pVar3.d = gVar;
         }
     }
@@ -71,10 +71,10 @@ public final class a implements gf.a {
 
     @Override
     public final char e() {
-        return this.f4343a;
+        return this.f4350a;
     }
 
     public a(char c10) {
-        this.f4343a = c10;
+        this.f4350a = c10;
     }
 }

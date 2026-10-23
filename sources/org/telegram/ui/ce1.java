@@ -1,27 +1,23 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import java.util.ArrayList;
-public final class ce1 extends pe1 {
-    public final re1 f35955g3;
+import android.view.View;
+import org.telegram.messenger.NotificationCenter;
+public final class ce1 implements View.OnClickListener {
+    public final ye1 f36346a;
 
-    public ce1(re1 re1Var, Context context) {
-        super(re1Var, context);
-        this.f35955g3 = re1Var;
+    public ce1(ye1 ye1Var) {
+        this.f36346a = ye1Var;
     }
 
     @Override
-    public final boolean S0() {
-        ArrayList arrayList = this.f35955g3.f41155b;
-        if (getAdapter() == null || this.V1 || (arrayList == null || arrayList.size() != 1 || arrayList.get(0) == null || ((ie1) arrayList.get(0)).f37963c == null || ((ie1) arrayList.get(0)).f37963c.f20332id != 1 ? getAdapter().h() > 1 : getAdapter().h() > 2)) {
-            return false;
+    public final void onClick(View view) {
+        ye1 ye1Var = this.f36346a;
+        if (ye1Var.M == 1) {
+            org.telegram.ui.Components.f5.j0(ye1Var, -ye1Var.f43792a, null, ye1Var.g(), null, false, ye1Var.J, new va(this, 5), ye1Var.getResourceProvider());
+            return;
         }
-        return true;
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        this.f35955g3.y0();
+        ye1Var.getMessagesController().addUserToChat(ye1Var.f43792a, ye1Var.getUserConfig().getCurrentUser(), 0, null, ye1Var, false, new vd1(ye1Var, 2), new wd1(ye1Var));
+        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeSearchByActiveAction, new Object[0]);
+        ye1Var.N0(false);
     }
 }

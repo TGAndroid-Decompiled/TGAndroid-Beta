@@ -1,8 +1,8 @@
 package org.telegram.ui.ActionBar;
 
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public final class b6 {
-    public TLRPC.TL_wallPaper f20713a;
-    public ArrayList f20714b;
+import java.util.HashSet;
+public interface b6 {
+    void addColorKeys(HashSet hashSet);
+
+    void updateColors();
 }

@@ -2,10 +2,10 @@ package ra;
 
 import com.google.android.gms.tasks.TaskCompletionSource;
 public final class g implements i {
-    public final TaskCompletionSource f45181a;
+    public final TaskCompletionSource f45593a;
 
     public g(TaskCompletionSource taskCompletionSource) {
-        this.f45181a = taskCompletionSource;
+        this.f45593a = taskCompletionSource;
     }
 
     @Override
@@ -15,9 +15,9 @@ public final class g implements i {
 
     @Override
     public final boolean b(sa.a aVar) {
-        int i10 = aVar.f46158b;
+        int i10 = aVar.f46580b;
         if (i10 == 3 || i10 == 4 || i10 == 5) {
-            this.f45181a.trySetResult(aVar.f46157a);
+            this.f45593a.trySetResult(aVar.f46579a);
             return true;
         }
         return false;

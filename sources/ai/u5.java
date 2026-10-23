@@ -29,21 +29,21 @@ public final class u5 implements Comparator {
         int indexOf2;
         switch (this.f2251a) {
             case 0:
-                float[] fArr = ((x5) this.f2252b).f2440r;
+                float[] fArr = ((x5) this.f2252b).f2443r;
                 return Float.compare(fArr[((Integer) obj).intValue()], fArr[((Integer) obj2).intValue()]);
             case 1:
-                ci.i7 i7Var = (ci.i7) this.f2252b;
-                int i11 = i7Var.f5491a;
+                ci.h7 h7Var = (ci.h7) this.f2252b;
+                int i11 = h7Var.f5399a;
                 TL_stories.PeerStories peerStories = (TL_stories.PeerStories) obj;
                 TL_stories.PeerStories peerStories2 = (TL_stories.PeerStories) obj2;
                 long peerDialogId = DialogObject.getPeerDialogId(peerStories.peer);
                 long peerDialogId2 = DialogObject.getPeerDialogId(peerStories2.peer);
-                boolean K = i7Var.K(peerDialogId);
-                boolean K2 = i7Var.K(peerDialogId2);
-                boolean J = i7Var.J(peerDialogId);
-                boolean J2 = i7Var.J(peerDialogId2);
-                boolean F = i7Var.F(peerDialogId);
-                boolean F2 = i7Var.F(peerDialogId2);
+                boolean K = h7Var.K(peerDialogId);
+                boolean K2 = h7Var.K(peerDialogId2);
+                boolean J = h7Var.J(peerDialogId);
+                boolean J2 = h7Var.J(peerDialogId2);
+                boolean F = h7Var.F(peerDialogId);
+                boolean F2 = h7Var.F(peerDialogId2);
                 if (F != F2) {
                     return (F2 ? 1 : 0) - (F ? 1 : 0);
                 }
@@ -69,10 +69,10 @@ public final class u5 implements Comparator {
                                 if (peerStories.stories.isEmpty()) {
                                     i10 = 0;
                                 } else {
-                                    i10 = ((TL_stories.StoryItem) i2.e.h(1, peerStories.stories)).date;
+                                    i10 = ((TL_stories.StoryItem) i2.o1.i(1, peerStories.stories)).date;
                                 }
                                 if (!peerStories2.stories.isEmpty()) {
-                                    i12 = ((TL_stories.StoryItem) i2.e.h(1, peerStories2.stories)).date;
+                                    i12 = ((TL_stories.StoryItem) i2.o1.i(1, peerStories2.stories)).date;
                                 }
                                 return i12 - i10;
                             }
@@ -109,7 +109,7 @@ public final class u5 implements Comparator {
                 return Integer.compare(g6Var.a(pagetablecell), g6Var.a(pagetablecell2));
             case 4:
                 r2.v vVar = (r2.v) this.f2252b;
-                return vVar.b(obj2) - vVar.b(obj);
+                return vVar.d(obj2) - vVar.d(obj);
             case 5:
                 SparseIntArray sparseIntArray = (SparseIntArray) this.f2252b;
                 return sparseIntArray.get(((sg.h) obj).e, Integer.MAX_VALUE) - sparseIntArray.get(((sg.h) obj2).e, Integer.MAX_VALUE);

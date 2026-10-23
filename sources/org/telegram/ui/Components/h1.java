@@ -1,40 +1,26 @@
 package org.telegram.ui.Components;
 
-import android.content.Intent;
-import android.net.Uri;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.FileLog;
-import org.telegram.ui.LanguageSelectActivity;
-import org.telegram.ui.LaunchActivity;
-public final class h1 implements org.telegram.ui.ActionBar.a2 {
-    public final int f26711a;
-    public final LaunchActivity f26712b;
+import android.view.View;
+public final class h1 implements View.OnClickListener {
+    public final int f26756a;
+    public final org.telegram.ui.Cells.z1 f26757b;
 
-    public h1(LaunchActivity launchActivity, int i10) {
-        this.f26711a = i10;
-        this.f26712b = launchActivity;
+    public h1(org.telegram.ui.Cells.z1 z1Var, int i10) {
+        this.f26756a = i10;
+        this.f26757b = z1Var;
     }
 
     @Override
-    public final void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f26711a) {
+    public final void onClick(View view) {
+        switch (this.f26756a) {
             case 0:
-                this.f26712b.t0(new LanguageSelectActivity());
-                return;
-            case 1:
-                this.f26712b.t0(new org.telegram.ui.c7());
+                org.telegram.ui.Cells.z1 z1Var = this.f26757b;
+                z1Var.c(!z1Var.b(), true);
                 return;
             default:
-                LaunchActivity launchActivity = this.f26712b;
-                try {
-                    Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-                    intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
-                    launchActivity.startActivity(intent);
-                    return;
-                } catch (Exception e) {
-                    FileLog.e(e);
-                    return;
-                }
+                org.telegram.ui.Cells.z1 z1Var2 = this.f26757b;
+                z1Var2.c(!z1Var2.b(), true);
+                return;
         }
     }
 }

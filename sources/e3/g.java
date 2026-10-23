@@ -2,10 +2,10 @@ package e3;
 
 import b2.w;
 public final class g implements a {
-    public final w f8332a;
+    public final w f8339a;
 
     public g(w wVar) {
-        this.f8332a = wVar;
+        this.f8339a = wVar;
     }
 
     @Override

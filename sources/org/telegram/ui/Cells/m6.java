@@ -1,34 +1,47 @@
 package org.telegram.ui.Cells;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.MotionEvent;
-import org.telegram.ui.Components.uc0;
-public final class m6 extends org.telegram.ui.Components.w9 {
-    public final int G;
-    public final n6 H;
+import android.view.View;
+import org.telegram.ui.Components.ko;
+import org.telegram.ui.Components.mm0;
+import org.telegram.ui.LaunchActivity;
+public final class m6 extends ci.x7 {
+    public final int S = 0;
+    public final View T;
 
-    public m6(n6 n6Var, Context context, int i10) {
-        super(context);
-        this.H = n6Var;
-        this.G = i10;
+    public m6(wa waVar) {
+        super(null, false);
+        this.T = waVar;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        n6 n6Var = this.H;
-        l6 l6Var = n6Var.E;
-        uc0 uc0Var = n6.H;
-        if (this.G == 1) {
-            l6Var.F.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-            ci.d8.h(n6Var.f22653y, canvas, getImageReceiver(), l6Var);
-            return;
+    public final void f(long j10) {
+        switch (this.S) {
+            case 0:
+                ((o6) this.T).b(j10);
+                return;
+            case 1:
+                wa waVar = (wa) this.T;
+                org.telegram.ui.ActionBar.o2 R = LaunchActivity.R();
+                if (R != null) {
+                    R.getOrCreateStoryViewer().getClass();
+                    R.getOrCreateStoryViewer().D(waVar.getContext(), j10, ci.q7.a((mm0) waVar.getParent()));
+                    return;
+                }
+                return;
+            default:
+                ko koVar = (ko) this.T;
+                koVar.H.getOrCreateStoryViewer().D(koVar.getContext(), j10, new org.telegram.ui.Components.s(this, 25));
+                return;
         }
-        super.onDraw(canvas);
     }
 
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        return this.H.E.a(motionEvent, this);
+    public m6(o6 o6Var, org.telegram.ui.ActionBar.g6 g6Var) {
+        super(g6Var, false);
+        this.T = o6Var;
+    }
+
+    public m6(ko koVar) {
+        super(null, true);
+        this.T = koVar;
     }
 }

@@ -6,15 +6,15 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.qn;
-public final class p5 extends qn {
-    public final Utilities.Callback2 Rc;
-    public final f6 Sc;
+import org.telegram.ui.sn;
+public final class p5 extends sn {
+    public final Utilities.Callback2 f9606ed;
+    public final f6 f9607fd;
 
     public p5(f6 f6Var, Utilities.Callback2 callback2) {
         super(null);
-        this.Sc = f6Var;
-        this.Rc = callback2;
+        this.f9607fd = f6Var;
+        this.f9606ed = callback2;
     }
 
     @Override
@@ -50,24 +50,24 @@ public final class p5 extends qn {
                 if (tL_geoPointAddress != null) {
                     tL_mediaAreaGeoPoint3.flags |= 1;
                 }
-                Utilities.globalQueue.postRunnable(new ci.v7(27, messageMedia, tL_mediaAreaGeoPoint3));
+                Utilities.globalQueue.postRunnable(new ci.u7(27, messageMedia, tL_mediaAreaGeoPoint3));
                 tL_mediaAreaGeoPoint = tL_mediaAreaGeoPoint3;
             }
             tL_mediaAreaGeoPoint2 = tL_mediaAreaGeoPoint;
         } else {
             return;
         }
-        this.Rc.run(messageMedia, tL_mediaAreaGeoPoint2);
+        this.f9606ed.run(messageMedia, tL_mediaAreaGeoPoint2);
     }
 
     @Override
     public final Activity getParentActivity() {
-        return AndroidUtilities.findActivity(this.Sc.getContext());
+        return AndroidUtilities.findActivity(this.f9607fd.getContext());
     }
 
     @Override
-    public final org.telegram.ui.ActionBar.d6 getResourceProvider() {
-        return this.Sc.G1;
+    public final org.telegram.ui.ActionBar.g6 getResourceProvider() {
+        return this.f9607fd.G1;
     }
 
     @Override

@@ -7,41 +7,41 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.nk;
+import org.telegram.messenger.sl;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.LaunchActivity;
 public final class d5 implements Utilities.Callback {
-    public final int f1136a;
-    public final int f1137b;
-    public final String f1138c;
+    public final int f1130a;
+    public final int f1131b;
+    public final String f1132c;
     public final Object d;
     public final Object e;
-    public final Object f1139f;
+    public final Object f1133f;
 
     public d5(Object obj, Object obj2, Object obj3, int i10, String str, int i11) {
-        this.f1136a = i11;
+        this.f1130a = i11;
         this.d = obj;
         this.e = obj2;
-        this.f1139f = obj3;
-        this.f1137b = i10;
-        this.f1138c = str;
+        this.f1133f = obj3;
+        this.f1131b = i10;
+        this.f1132c = str;
     }
 
     @Override
     public final void run(Object obj) {
         TLRPC.User user;
-        int i10 = this.f1136a;
-        Object obj2 = this.f1139f;
+        int i10 = this.f1130a;
+        Object obj2 = this.f1133f;
         Object obj3 = this.e;
         Object obj4 = this.d;
         switch (i10) {
             case 0:
                 Context context = (Context) obj3;
-                org.telegram.ui.ActionBar.d6 d6Var = (org.telegram.ui.ActionBar.d6) obj2;
+                org.telegram.ui.ActionBar.g6 g6Var = (org.telegram.ui.ActionBar.g6) obj2;
                 ArrayList arrayList = (ArrayList) obj;
                 ((boolean[]) obj4)[0] = false;
                 if (arrayList != null) {
-                    new a2(context, d6Var, this.f1137b, this.f1138c, arrayList, false).show();
+                    new a2(context, g6Var, this.f1131b, this.f1132c, arrayList, false).show();
                     return;
                 }
                 return;
@@ -50,27 +50,27 @@ public final class d5 implements Utilities.Callback {
                 MessagesController messagesController = (MessagesController) obj3;
                 pf.c cVar = (pf.c) obj2;
                 Long l4 = (Long) obj;
-                Pattern pattern = LaunchActivity.C1;
+                Pattern pattern = LaunchActivity.E1;
                 if (l4 != null && l4.longValue() > 0 && l4.longValue() != Long.MAX_VALUE) {
                     user = messagesController.getUser(l4);
                 } else {
                     user = null;
                 }
-                int i11 = this.f1137b;
+                int i11 = this.f1131b;
                 if (user != null && !UserObject.isUserSelf(user)) {
-                    launchActivity.Z(i11, user, this.f1138c, cVar);
+                    launchActivity.Z(i11, user, this.f1132c, cVar);
                     return;
                 }
                 if (cVar != null) {
                     cVar.b();
                 }
                 if (user != null) {
-                    launchActivity.m0(i11, user.f20427id, null);
+                    launchActivity.n0(i11, user.f20490id, null);
                     return;
                 }
-                org.telegram.ui.ActionBar.n2 R = LaunchActivity.R();
+                org.telegram.ui.ActionBar.o2 R = LaunchActivity.R();
                 if (R != null) {
-                    nk.q(R.string.NoUsernameFound, org.telegram.ui.Components.xc.a0(R), null);
+                    sl.q(R.string.NoUsernameFound, org.telegram.ui.Components.xc.a0(R), null);
                     return;
                 }
                 return;

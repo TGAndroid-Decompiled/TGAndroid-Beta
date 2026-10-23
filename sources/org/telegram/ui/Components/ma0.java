@@ -1,158 +1,307 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.LinearGradient;
-import android.graphics.Matrix;
-import android.graphics.Shader;
-import android.os.SystemClock;
-import android.view.View;
-import android.widget.TextView;
+import android.text.TextUtils;
+import j$.util.DesugarCollections;
+import java.io.File;
+import java.io.FileInputStream;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
+import java.util.regex.Pattern;
 import org.telegram.messenger.AndroidUtilities;
-public final class ma0 extends TextView {
-    public final Matrix f28473a;
-    public LinearGradient f28474b;
-    public int f28475c;
-    public boolean d;
-    public boolean e;
-    public float f28476f;
-    public long h;
-    public final hq f28477n;
-    public boolean f28478r;
-    public int f28479s;
+import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.MessageObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_iv;
+public abstract class ma0 {
+    public static final Pattern f28627a = Pattern.compile("^\\[\\^([^\\]]+)\\]:[ \\t]*(.*)$");
+    public static final Pattern f28628b = Pattern.compile("\\[\\^([^\\]]+)\\]");
+    public static final Pattern f28629c = Pattern.compile("^(\\d+)[.)]\\s");
 
-    public ma0(Context context) {
-        super(context);
-        this.f28473a = new Matrix();
-        this.f28477n = new hq(this, 26);
+    public static TL_iv.RichText a(df.p pVar, TL_iv.PageBlock pageBlock) {
+        ja0 ja0Var = new ja0(pageBlock);
+        pVar.a(ja0Var);
+        return g(h(ja0.x(ja0Var.f27649c)));
     }
 
-    public final void a() {
-        float min = Math.min(AndroidUtilities.dp(10.0f) / this.f28475c, 0.49f);
-        int currentTextColor = getCurrentTextColor();
-        int i10 = 1048575 & currentTextColor;
-        this.f28474b = new LinearGradient(0.0f, 0.0f, this.f28475c, 0.0f, new int[]{i10, currentTextColor, currentTextColor, i10}, new float[]{0.0f, min, 1.0f - min, 1.0f}, Shader.TileMode.CLAMP);
-        if (this.d) {
-            getPaint().setShader(this.f28474b);
-        } else {
-            getPaint().setShader(null);
+    public static List b(TL_iv.RichText richText) {
+        int i10;
+        if (richText == null) {
+            return Collections.singletonList(j(""));
         }
-        this.f28474b.setLocalMatrix(this.f28473a);
-        invalidate();
+        if (k(richText) <= 8192) {
+            return Collections.singletonList(richText);
+        }
+        String l4 = l(richText);
+        ArrayList arrayList = new ArrayList();
+        int i11 = 0;
+        while (i11 < l4.length()) {
+            if (l4.length() - i11 <= 8192) {
+                arrayList.add(j(l4.substring(i11)));
+                return arrayList;
+            }
+            int i12 = i11 + 8192;
+            int i13 = i11 + 8191;
+            int lastIndexOf = l4.lastIndexOf(10, i13);
+            if (lastIndexOf <= i11) {
+                lastIndexOf = l4.lastIndexOf(32, i13);
+            }
+            if (lastIndexOf <= i11) {
+                i10 = 0;
+            } else {
+                i10 = 1;
+                i12 = lastIndexOf;
+            }
+            arrayList.add(j(l4.substring(i11, i12)));
+            i11 = i12 + i10;
+        }
+        return arrayList;
     }
 
-    @Override
-    public final void onDraw(Canvas canvas) {
-        float f7;
-        boolean z10;
-        long j10;
-        boolean z11;
-        int measuredWidth = getMeasuredWidth();
-        int dp = AndroidUtilities.dp(40.0f);
-        float f10 = this.f28476f;
-        float f11 = measuredWidth;
-        if (f10 < f11) {
-            f7 = w7.r.a(f10 / AndroidUtilities.dp(10.0f), 0.0f, 1.0f);
+    public static TL_iv.textMath c(String str) {
+        String trim;
+        TL_iv.textMath textmath = new TL_iv.textMath();
+        if (str == null) {
+            trim = "";
         } else {
-            f7 = 0.0f;
+            trim = str.trim();
         }
-        Matrix matrix = this.f28473a;
-        matrix.reset();
-        float f12 = this.f28475c;
-        matrix.postScale(com.google.android.gms.internal.play_billing.k3.y(1.0f, f7, AndroidUtilities.dp(10.0f) / f12, 1.0f), 1.0f, f12, 0.0f);
-        matrix.postScale(1.0f - (this.f28479s / this.f28475c), 1.0f, 0.0f, 0.0f);
-        matrix.postTranslate(this.f28476f, 0.0f);
-        this.f28474b.setLocalMatrix(matrix);
-        canvas.save();
-        canvas.translate(-this.f28476f, 0.0f);
-        super.onDraw(canvas);
-        canvas.restore();
-        if (measuredWidth > 0) {
-            float f13 = this.f28476f;
-            if (f13 > 0.0f && f13 + getWidth() > f11 && this.d && this.e) {
-                float f14 = -this.f28476f;
-                float f15 = dp;
-                matrix.postTranslate(f14 - ((f14 + f11) + f15), 0.0f);
-                this.f28474b.setLocalMatrix(matrix);
-                canvas.save();
-                canvas.translate((-this.f28476f) + f11 + f15, 0.0f);
-                super.onDraw(canvas);
-                canvas.restore();
+        textmath.source = trim;
+        textmath.tried = true;
+        ki.r a2 = ki.r.a(trim, AndroidUtilities.dp(20.0f), true);
+        if (a2 != null) {
+            textmath.f20565w = a2.f15537b;
+            textmath.h = a2.f15538c;
+            textmath.depth = a2.d;
+            textmath.bitmap = a2.f15536a;
+        }
+        return textmath;
+    }
+
+    public static TL_iv.RichText d(TL_iv.RichText richText) {
+        if (richText == null) {
+            return null;
+        }
+        if (k(richText) <= 8192) {
+            return richText;
+        }
+        String l4 = l(richText);
+        return j(l4.substring(0, Math.min(l4.length(), 8192)));
+    }
+
+    public static void e(ArrayList arrayList, List list) {
+        List unmodifiableList;
+        Iterator it = list.iterator();
+        while (it.hasNext()) {
+            cd.a aVar = (cd.a) it.next();
+            arrayList.add(aVar);
+            ArrayList arrayList2 = aVar.f5105f;
+            if (arrayList2 == null) {
+                unmodifiableList = Collections.EMPTY_LIST;
+            } else {
+                unmodifiableList = DesugarCollections.unmodifiableList(arrayList2);
+            }
+            e(arrayList, unmodifiableList);
+        }
+    }
+
+    public static TLRPC.TL_webPage f(MessageObject messageObject) {
+        TLRPC.Document document;
+        File file;
+        String str;
+        String str2;
+        if (messageObject.messageOwner != null && (document = messageObject.getDocument()) != null) {
+            if (!TextUtils.isEmpty(messageObject.messageOwner.attachPath)) {
+                file = new File(messageObject.messageOwner.attachPath);
+            } else {
+                file = null;
+            }
+            if (file == null || !file.exists()) {
+                file = FileLoader.getInstance(messageObject.currentAccount).getPathToMessage(messageObject.messageOwner, true);
+            }
+            if (file == null || !file.exists()) {
+                file = FileLoader.getInstance(messageObject.currentAccount).getPathToMessage(messageObject.messageOwner, true, true);
+            }
+            if (file != null && file.exists() && file.length() <= 65536) {
+                TLRPC.TL_documentAttributeFilename tL_documentAttributeFilename = (TLRPC.TL_documentAttributeFilename) AndroidUtilities.find(document.attributes, TLRPC.TL_documentAttributeFilename.class);
+                if (tL_documentAttributeFilename != null) {
+                    str = tL_documentAttributeFilename.file_name;
+                } else {
+                    str = null;
+                }
+                TLRPC.TL_webPage tL_webPage = new TLRPC.TL_webPage();
+                String str3 = "";
+                if (str == null) {
+                    str2 = "";
+                } else {
+                    str2 = str;
+                }
+                tL_webPage.url = str2;
+                if (str != null) {
+                    str3 = str;
+                }
+                tL_webPage.display_url = str3;
+                if (!TextUtils.isEmpty(str)) {
+                    tL_webPage.flags |= 4;
+                    tL_webPage.title = str;
+                }
+                TL_iv.TL_page tL_page = new TL_iv.TL_page();
+                tL_page.local = file;
+                tL_page.url = tL_webPage.url;
+                try {
+                    FileInputStream fileInputStream = new FileInputStream(file);
+                    byte[] bArr = new byte[(int) file.length()];
+                    fileInputStream.read(bArr);
+                    String str4 = new String(bArr, StandardCharsets.UTF_8);
+                    fileInputStream.close();
+                    if (str4.length() <= 65536) {
+                        String i10 = i(str4, tL_page.blocks);
+                        if (!TextUtils.isEmpty(i10)) {
+                            tL_webPage.flags |= 4;
+                            tL_webPage.title = i10;
+                        }
+                        tL_webPage.flags |= 1024;
+                        tL_webPage.cached_page = tL_page;
+                        return tL_webPage;
+                    }
+                } catch (Exception e) {
+                    FileLog.e(e);
+                }
             }
         }
-        if (this.f28476f < 1.0E-4d) {
-            z10 = true;
-        } else {
-            z10 = false;
+        return null;
+    }
+
+    public static TL_iv.RichText g(TL_iv.RichText richText) {
+        if (richText == null) {
+            return null;
         }
-        long uptimeMillis = SystemClock.uptimeMillis();
-        long j11 = this.h;
-        if (j11 != 0 && !z10) {
-            j10 = Math.min(uptimeMillis - j11, 120L);
-        } else {
-            j10 = 16;
-        }
-        this.h = uptimeMillis;
-        boolean z12 = this.d;
-        hq hqVar = this.f28477n;
-        if ((z12 && this.e) || !z10) {
-            float d = a1.g.d((float) j10, 1000.0f, AndroidUtilities.dp(60.0f), this.f28476f);
-            this.f28476f = d;
-            if (d > measuredWidth + dp) {
-                AndroidUtilities.cancelRunOnUIThread(hqVar);
-                this.f28478r = false;
-                this.e = false;
-                this.f28476f = 0.0f;
+        if (richText instanceof TL_iv.textConcat) {
+            TL_iv.textConcat textconcat = (TL_iv.textConcat) richText;
+            for (int i10 = 0; i10 < textconcat.texts.size(); i10++) {
+                ArrayList<TL_iv.RichText> arrayList = textconcat.texts;
+                arrayList.set(i10, g(arrayList.get(i10)));
             }
-            invalidate();
-        }
-        if (this.d && !this.e && !(z11 = this.f28478r) && !z11) {
-            this.f28478r = true;
-            AndroidUtilities.runOnUIThread(hqVar, 1500L);
-        }
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        boolean z10 = false;
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(0, 0), i11);
-        this.f28475c = View.MeasureSpec.getSize(i10);
-        if (getMeasuredWidth() > this.f28475c - this.f28479s) {
-            z10 = true;
-        }
-        this.d = z10;
-        a();
-    }
-
-    public void setCustomPaddingRight(int i10) {
-        boolean z10;
-        this.f28479s = i10;
-        if (getMeasuredWidth() > this.f28475c - this.f28479s) {
-            z10 = true;
+            return textconcat;
+        } else if (richText instanceof la0) {
+            la0 la0Var = (la0) richText;
+            TL_iv.textStrike g10 = g(la0Var.text);
+            int i11 = la0Var.f28319a;
+            if ((i11 & 4) != 0) {
+                TL_iv.textFixed textfixed = new TL_iv.textFixed();
+                textfixed.text = g10;
+                g10 = textfixed;
+            }
+            if ((i11 & 32) != 0) {
+                TL_iv.textStrike textstrike = new TL_iv.textStrike();
+                textstrike.text = g10;
+                g10 = textstrike;
+            }
+            if ((i11 & 16) != 0) {
+                TL_iv.textUnderline textunderline = new TL_iv.textUnderline();
+                textunderline.text = g10;
+                g10 = textunderline;
+            }
+            if ((i11 & 64) != 0) {
+                TL_iv.textMarked textmarked = new TL_iv.textMarked();
+                textmarked.text = g10;
+                g10 = textmarked;
+            }
+            if ((i11 & 128) != 0) {
+                TL_iv.textSubscript textsubscript = new TL_iv.textSubscript();
+                textsubscript.text = g10;
+                g10 = textsubscript;
+            }
+            if ((i11 & 256) != 0) {
+                TL_iv.textSuperscript textsuperscript = new TL_iv.textSuperscript();
+                textsuperscript.text = g10;
+                g10 = textsuperscript;
+            }
+            if ((i11 & 2) != 0) {
+                TL_iv.textItalic textitalic = new TL_iv.textItalic();
+                textitalic.text = g10;
+                g10 = textitalic;
+            }
+            if ((i11 & 1) != 0) {
+                TL_iv.textBold textbold = new TL_iv.textBold();
+                textbold.text = g10;
+                return textbold;
+            }
+            return g10;
         } else {
-            z10 = false;
+            TL_iv.RichText richText2 = richText.text;
+            if (richText2 != null) {
+                richText.text = g(richText2);
+            }
+            return richText;
         }
-        this.d = z10;
-        if (z10) {
-            getPaint().setShader(this.f28474b);
+    }
+
+    public static org.telegram.tgnet.tl.TL_iv.RichText h(org.telegram.tgnet.tl.TL_iv.RichText r17) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ma0.h(org.telegram.tgnet.tl.TL_iv$RichText):org.telegram.tgnet.tl.TL_iv$RichText");
+    }
+
+    public static java.lang.String i(java.lang.String r23, java.util.ArrayList r24) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ma0.i(java.lang.String, java.util.ArrayList):java.lang.String");
+    }
+
+    public static TL_iv.textPlain j(String str) {
+        TL_iv.textPlain textplain = new TL_iv.textPlain();
+        if (str == null) {
+            str = "";
+        }
+        textplain.text = str;
+        return textplain;
+    }
+
+    public static int k(TL_iv.RichText richText) {
+        int i10 = 0;
+        if (richText == null || (richText instanceof TL_iv.textEmpty)) {
+            return 0;
+        }
+        if (richText instanceof TL_iv.textPlain) {
+            String str = ((TL_iv.textPlain) richText).text;
+            if (str == null) {
+                return 0;
+            }
+            return str.length();
+        } else if (richText instanceof TL_iv.textConcat) {
+            ArrayList<TL_iv.RichText> arrayList = richText.texts;
+            int size = arrayList.size();
+            int i11 = 0;
+            while (i11 < size) {
+                TL_iv.RichText richText2 = arrayList.get(i11);
+                i11++;
+                i10 += k(richText2);
+            }
+            return i10;
         } else {
-            getPaint().setShader(null);
+            return k(richText.text);
         }
-        invalidate();
     }
 
-    @Override
-    public final void setText(CharSequence charSequence, TextView.BufferType bufferType) {
-        super.setText(charSequence, bufferType);
-        AndroidUtilities.cancelRunOnUIThread(this.f28477n);
-        this.f28478r = false;
-        this.e = false;
-        this.f28476f = 0.0f;
-    }
-
-    @Override
-    public void setTextColor(int i10) {
-        super.setTextColor(i10);
-        a();
+    public static String l(TL_iv.RichText richText) {
+        if (richText != null && !(richText instanceof TL_iv.textEmpty)) {
+            if (richText instanceof TL_iv.textPlain) {
+                return ((TL_iv.textPlain) richText).text;
+            }
+            if (richText instanceof TL_iv.textConcat) {
+                StringBuilder sb2 = new StringBuilder();
+                ArrayList<TL_iv.RichText> arrayList = richText.texts;
+                int size = arrayList.size();
+                int i10 = 0;
+                while (i10 < size) {
+                    TL_iv.RichText richText2 = arrayList.get(i10);
+                    i10++;
+                    sb2.append(l(richText2));
+                }
+                return sb2.toString();
+            }
+            return l(richText.text);
+        }
+        return "";
     }
 }

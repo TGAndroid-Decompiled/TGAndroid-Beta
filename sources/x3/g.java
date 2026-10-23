@@ -1,11 +1,11 @@
 package x3;
 
-import c3.c0;
-import c3.p;
+import c3.e0;
+import c3.r;
 public interface g {
     void X(long j10);
 
-    long k(p pVar);
+    long k(r rVar);
 
-    c0 x();
+    e0 x();
 }

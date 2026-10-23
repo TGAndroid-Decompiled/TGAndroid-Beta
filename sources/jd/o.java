@@ -1,5 +1,6 @@
 package jd;
 
+import i2.o1;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Iterator;
@@ -7,7 +8,7 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.RandomAccess;
 public final class o implements List, Serializable, RandomAccess {
-    public static final o f14390a = new Object();
+    public static final o f14435a = new Object();
 
     @Override
     public final void add(int i10, Object obj) {
@@ -65,7 +66,7 @@ public final class o implements List, Serializable, RandomAccess {
 
     @Override
     public final Iterator iterator() {
-        return n.f14389a;
+        return n.f14434a;
     }
 
     @Override
@@ -75,7 +76,7 @@ public final class o implements List, Serializable, RandomAccess {
 
     @Override
     public final ListIterator listIterator() {
-        return n.f14389a;
+        return n.f14434a;
     }
 
     @Override
@@ -133,9 +134,9 @@ public final class o implements List, Serializable, RandomAccess {
     @Override
     public final ListIterator listIterator(int i10) {
         if (i10 == 0) {
-            return n.f14389a;
+            return n.f14434a;
         }
-        throw new IndexOutOfBoundsException(i2.e.j(i10, "Index: "));
+        throw new IndexOutOfBoundsException(o1.k(i10, "Index: "));
     }
 
     @Override

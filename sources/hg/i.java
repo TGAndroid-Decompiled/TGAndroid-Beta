@@ -5,63 +5,63 @@ import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.SystemClock;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Cells.d9;
-public final class i extends d9 {
+import org.telegram.ui.Cells.e9;
+public final class i extends e9 {
     public int E;
-    public final m F;
-    public int v;
-    public float f11908w;
-    public long f11909x;
-    public int f11910y;
+    public int F;
+    public final m G;
+    public int f11936w;
+    public float f11937x;
+    public long f11938y;
 
     public i(m mVar, Context context) {
         super(context);
-        this.F = mVar;
+        this.G = mVar;
     }
 
     @Override
     public final void a() {
-        m mVar = this.F;
+        m mVar = this.G;
         Drawable drawable = mVar.O;
         if (drawable != null) {
             Rect bounds = drawable.getBounds();
             Drawable drawable2 = mVar.O;
-            int i10 = this.f11910y;
-            drawable2.setBounds(i10, this.E, bounds.width() + i10, bounds.height() + this.E);
+            int i10 = this.E;
+            drawable2.setBounds(i10, this.F, bounds.width() + i10, bounds.height() + this.F);
         }
     }
 
     @Override
     public final void b() {
-        m mVar = this.F;
+        m mVar = this.G;
         Drawable drawable = mVar.O;
         if (drawable != null) {
             Rect bounds = drawable.getBounds();
-            int dp = (int) (this.f11908w * AndroidUtilities.dp(3.0f));
+            int dp = (int) (this.f11937x * AndroidUtilities.dp(3.0f));
             int i10 = bounds.left;
-            this.f11910y = i10;
+            this.E = i10;
             int i11 = bounds.top;
-            this.E = i11;
-            mVar.O.setBounds(i10 + dp, AndroidUtilities.dp(1.0f) + i11, bounds.width() + this.f11910y + dp, bounds.height() + AndroidUtilities.dp(1.0f) + this.E);
+            this.F = i11;
+            mVar.O.setBounds(i10 + dp, AndroidUtilities.dp(1.0f) + i11, bounds.width() + this.E + dp, bounds.height() + AndroidUtilities.dp(1.0f) + this.F);
             long elapsedRealtime = SystemClock.elapsedRealtime();
-            long j10 = elapsedRealtime - this.f11909x;
+            long j10 = elapsedRealtime - this.f11938y;
             if (j10 > 17) {
                 j10 = 17;
             }
-            this.f11909x = elapsedRealtime;
-            if (this.v == 0) {
-                float f7 = (((float) j10) / 664.0f) + this.f11908w;
-                this.f11908w = f7;
+            this.f11938y = elapsedRealtime;
+            if (this.f11936w == 0) {
+                float f7 = (((float) j10) / 664.0f) + this.f11937x;
+                this.f11937x = f7;
                 if (f7 >= 1.0f) {
-                    this.v = 1;
-                    this.f11908w = 1.0f;
+                    this.f11936w = 1;
+                    this.f11937x = 1.0f;
                 }
             } else {
-                float f10 = this.f11908w - (((float) j10) / 664.0f);
-                this.f11908w = f10;
+                float f10 = this.f11937x - (((float) j10) / 664.0f);
+                this.f11937x = f10;
                 if (f10 <= 0.0f) {
-                    this.v = 0;
-                    this.f11908w = 0.0f;
+                    this.f11936w = 0;
+                    this.f11937x = 0.0f;
                 }
             }
             getTextView().invalidate();

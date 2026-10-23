@@ -1,34 +1,112 @@
 package org.telegram.ui.Cells;
 
-import android.content.Context;
-import android.view.View;
-import org.telegram.messenger.MessagesController;
-import org.telegram.ui.Components.c71;
-import org.telegram.ui.Components.g61;
-import org.telegram.ui.Components.h61;
-import org.telegram.ui.Components.jm0;
-import org.telegram.ui.Components.u61;
-import org.telegram.ui.l01;
-public final class u6 extends g61 {
-    public static final int f23602a = 0;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
+public final class u6 extends Drawable {
+    public final int f23736a;
+    public int f23737b;
+    public Object f23738c;
 
-    static {
-        g61.setup(new g61());
-    }
-
-    @Override
-    public final void bindView(View view, h61 h61Var, boolean z10, u61 u61Var, c71 c71Var) {
-        Object obj = h61Var.G;
-        if (obj instanceof l01) {
-            l01 l01Var = (l01) obj;
-            ((w6) view).b(h61Var.f26786l, l01Var.d, l01Var.e, z10);
-        } else if (obj instanceof MessagesController.FaqSearchResult) {
-            ((w6) view).a(h61Var.f26786l, ((MessagesController.FaqSearchResult) obj).path, true, z10);
+    public u6(int i10) {
+        this.f23736a = i10;
+        switch (i10) {
+            case 1:
+                this.f23737b = 255;
+                return;
+            default:
+                return;
         }
     }
 
     @Override
-    public final View createView(Context context, jm0 jm0Var, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var) {
-        return new w6(context);
+    public final void draw(Canvas canvas) {
+        switch (this.f23736a) {
+            case 0:
+                canvas.drawCircle(getBounds().centerX(), getBounds().centerY(), Math.min(getBounds().width(), getBounds().height()) / 2.0f, (Paint) this.f23738c);
+                return;
+            default:
+                return;
+        }
+    }
+
+    @Override
+    public int getAlpha() {
+        switch (this.f23736a) {
+            case 1:
+                return this.f23737b;
+            default:
+                return super.getAlpha();
+        }
+    }
+
+    @Override
+    public ColorFilter getColorFilter() {
+        switch (this.f23736a) {
+            case 1:
+                return (ColorFilter) this.f23738c;
+            default:
+                return super.getColorFilter();
+        }
+    }
+
+    @Override
+    public int getIntrinsicHeight() {
+        switch (this.f23736a) {
+            case 0:
+                return this.f23737b;
+            default:
+                return super.getIntrinsicHeight();
+        }
+    }
+
+    @Override
+    public int getIntrinsicWidth() {
+        switch (this.f23736a) {
+            case 0:
+                return this.f23737b;
+            default:
+                return super.getIntrinsicWidth();
+        }
+    }
+
+    @Override
+    public final int getOpacity() {
+        switch (this.f23736a) {
+            case 0:
+                return -2;
+            default:
+                return -1;
+        }
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+        switch (this.f23736a) {
+            case 0:
+                ((Paint) this.f23738c).setAlpha(i10);
+                return;
+            default:
+                this.f23737b = i10;
+                return;
+        }
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        switch (this.f23736a) {
+            case 0:
+                return;
+            default:
+                this.f23738c = colorFilter;
+                return;
+        }
+    }
+
+    private final void a(Canvas canvas) {
+    }
+
+    private final void b(ColorFilter colorFilter) {
     }
 }

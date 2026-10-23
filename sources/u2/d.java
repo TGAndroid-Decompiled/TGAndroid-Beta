@@ -1,22 +1,22 @@
 package u2;
-public final class d implements e1 {
-    public final e1 f47280a;
-    public boolean f47281b;
-    public final e f47282c;
+public final class d implements f1 {
+    public final f1 f47724a;
+    public boolean f47725b;
+    public final e f47726c;
 
-    public d(e eVar, e1 e1Var) {
-        this.f47282c = eVar;
-        this.f47280a = e1Var;
+    public d(e eVar, f1 f1Var) {
+        this.f47726c = eVar;
+        this.f47724a = f1Var;
     }
 
     @Override
     public final void a() {
-        this.f47280a.a();
+        this.f47724a.a();
     }
 
     @Override
     public final boolean f() {
-        if (!this.f47282c.b() && this.f47280a.f()) {
+        if (!this.f47726c.e() && this.f47724a.f()) {
             return true;
         }
         return false;
@@ -24,23 +24,23 @@ public final class d implements e1 {
 
     @Override
     public final int g(qf.b bVar, h2.h hVar, int i10) {
-        e eVar = this.f47282c;
-        if (eVar.b()) {
+        e eVar = this.f47726c;
+        if (eVar.e()) {
             return -3;
         }
-        if (this.f47281b) {
+        if (this.f47725b) {
             hVar.setFlags(4);
             return -4;
         }
         long s10 = eVar.s();
-        int g10 = this.f47280a.g(bVar, hVar, i10);
+        int g10 = this.f47724a.g(bVar, hVar, i10);
         if (eVar.e != -9223372036854775807L && g10 != -3) {
             eVar.e = -9223372036854775807L;
         }
         if (g10 == -5) {
-            long j10 = eVar.f47308f;
+            long j10 = eVar.f47735f;
             long j11 = eVar.h;
-            b2.w wVar = (b2.w) bVar.f44452c;
+            b2.w wVar = (b2.w) bVar.f44865c;
             wVar.getClass();
             int i11 = wVar.O;
             int i12 = wVar.N;
@@ -54,7 +54,7 @@ public final class d implements e1 {
                 b2.v a2 = wVar.a();
                 a2.M = i12;
                 a2.N = i11;
-                bVar.f44452c = new b2.w(a2);
+                bVar.f44865c = new b2.w(a2);
             }
             return -5;
         }
@@ -62,7 +62,7 @@ public final class d implements e1 {
         if (j12 != Long.MIN_VALUE && ((g10 == -4 && hVar.e >= j12) || (g10 == -3 && s10 == Long.MIN_VALUE && !hVar.d))) {
             hVar.clear();
             hVar.setFlags(4);
-            this.f47281b = true;
+            this.f47725b = true;
             return -4;
         }
         return g10;
@@ -70,9 +70,9 @@ public final class d implements e1 {
 
     @Override
     public final int m(long j10) {
-        if (this.f47282c.b()) {
+        if (this.f47726c.e()) {
             return -3;
         }
-        return this.f47280a.m(j10);
+        return this.f47724a.m(j10);
     }
 }

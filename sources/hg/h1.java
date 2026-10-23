@@ -1,91 +1,101 @@
 package hg;
 
 import android.content.Context;
+import android.graphics.drawable.ShapeDrawable;
 import android.text.SpannableStringBuilder;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import com.google.android.gms.internal.play_billing.k3;
+import java.util.HashSet;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.b6;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.ActionBar.n6;
+import org.telegram.ui.ActionBar.r6;
 import org.telegram.ui.Components.h9;
 import org.telegram.ui.Components.w9;
-import org.telegram.ui.Components.zq;
-import org.telegram.ui.l00;
+import org.telegram.ui.Components.yq;
+import org.telegram.ui.o00;
 import w7.z5;
-public final class h1 extends LinearLayout {
-    public final d6 f11905a;
-    public final w9 f11906b;
-    public final h9 f11907c;
-    public final TextView d;
+public final class h1 extends LinearLayout implements b6 {
+    public ShapeDrawable f11932a;
+    public final g6 f11933b;
+    public final w9 f11934c;
+    public final h9 d;
     public final TextView e;
+    public final TextView f11935f;
 
-    public h1(Context context, d6 d6Var, boolean z10) {
+    public h1(Context context, g6 g6Var, boolean z10) {
         super(context);
-        int w02;
-        this.f11907c = new h9((d6) null);
-        this.f11905a = d6Var;
+        n6 O;
+        this.d = new h9((g6) null);
+        this.f11933b = g6Var;
         setOrientation(0);
         w9 w9Var = new w9(context);
-        this.f11906b = w9Var;
+        this.f11934c = w9Var;
         w9Var.setRoundRadius(AndroidUtilities.dp(28.0f));
         addView(w9Var, z5.t(28, 28, 19, 12, 0, 12, 0));
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
         addView(linearLayout, z5.t(-1, -2, 55, 0, 4, 12, 4));
         TextView textView = new TextView(context);
-        this.d = textView;
+        this.e = textView;
         textView.setTextSize(1, 15.0f);
-        int i10 = h6.G6;
-        textView.setTextColor(h6.w0(i10, d6Var));
-        TextView i11 = k3.i(linearLayout, textView, z5.n(-1, -2), context);
-        this.e = i11;
-        i11.setTextSize(1, 13.0f);
+        int i10 = k6.G6;
+        r6.W(textView, i10, g6Var);
+        linearLayout.addView(textView, z5.n(-1, -2));
+        TextView textView2 = new TextView(context);
+        this.f11935f = textView2;
+        textView2.setTextSize(1, 13.0f);
         if (z10) {
-            w02 = h6.m1(0.5f, h6.w0(i10, d6Var));
+            O = r6.M(0.5f, i10);
         } else {
-            w02 = h6.w0(h6.f21399z6, d6Var);
+            O = r6.O(k6.f21588z6);
         }
-        i11.setTextColor(w02);
-        linearLayout.addView(i11, z5.n(-1, -2));
+        r6.X(textView2, O, g6Var);
+        linearLayout.addView(textView2, z5.n(-1, -2));
     }
 
     public final void a(int i10, String str, TLRPC.Chat chat) {
         if (str == null) {
             return;
         }
-        TextView textView = this.e;
-        TextView textView2 = this.d;
-        w9 w9Var = this.f11906b;
+        TextView textView = this.f11935f;
+        TextView textView2 = this.e;
+        w9 w9Var = this.f11934c;
         if (i10 == 0) {
-            zq zqVar = new zq(h6.c0(AndroidUtilities.dp(28.0f), h6.w0(h6.Oh, this.f11905a)), getContext().getResources().getDrawable(R.drawable.menu_hashtag).mutate());
-            zqVar.f33027s = AndroidUtilities.dp(-0.66f);
-            zqVar.v = 0;
+            ShapeDrawable c02 = k6.c0(AndroidUtilities.dp(28.0f), k6.w0(k6.Oh, this.f11933b));
+            this.f11932a = c02;
+            yq yqVar = new yq(c02, getContext().getResources().getDrawable(R.drawable.menu_hashtag).mutate());
+            yqVar.f33018s = AndroidUtilities.dp(-0.66f);
+            yqVar.v = 0;
             int dp = AndroidUtilities.dp(20.0f);
             int dp2 = AndroidUtilities.dp(20.0f);
-            zqVar.e = dp;
-            zqVar.f33024f = dp2;
-            w9Var.setImageDrawable(zqVar);
+            yqVar.e = dp;
+            yqVar.f33015f = dp2;
+            w9Var.setImageDrawable(yqVar);
             textView2.setText(LocaleController.formatString(R.string.HashtagSuggestion1Title, str));
             textView.setText(LocaleController.getString(R.string.HashtagSuggestion1Text));
             return;
         }
-        h9 h9Var = this.f11907c;
+        h9 h9Var = this.d;
         h9Var.q(chat);
         w9Var.e(chat, h9Var);
         int i11 = R.string.HashtagSuggestion2Title;
-        StringBuilder i12 = r4.c.i(str, "@");
+        StringBuilder i12 = si.o0.i(str, "@");
         i12.append(ChatObject.getPublicUsername(chat));
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(LocaleController.formatString(i11, i12.toString()));
         spannableStringBuilder.append((CharSequence) "  d");
-        l00 l00Var = new l00(8);
-        l00Var.f38715f = h6.x0(null, h6.Lj, false);
-        spannableStringBuilder.setSpan(l00Var, spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 0);
+        o00 o00Var = new o00(8);
+        o00Var.f40033f = k6.x0(null, k6.Lj, false);
+        o00Var.f40034n = false;
+        spannableStringBuilder.setSpan(o00Var, spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 0);
         textView2.setText(spannableStringBuilder);
         textView.setText(LocaleController.getString(R.string.HashtagSuggestion2Text));
     }
@@ -93,5 +103,25 @@ public final class h1 extends LinearLayout {
     @Override
     public final void onMeasure(int i10, int i11) {
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
+    }
+
+    @Override
+    public final void updateColors() {
+        try {
+            ShapeDrawable shapeDrawable = this.f11932a;
+            if (shapeDrawable != null) {
+                k6.z1(k6.w0(k6.Oh, this.f11933b), shapeDrawable);
+                w9 w9Var = this.f11934c;
+                if (w9Var != null) {
+                    w9Var.invalidate();
+                }
+            }
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
+    }
+
+    @Override
+    public final void addColorKeys(HashSet hashSet) {
     }
 }

@@ -9,12 +9,12 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.tl.TL_stars;
 public final class p5 implements View.OnClickListener {
-    public final int f1998a;
-    public final e6 f1999b;
+    public final int f1989a;
+    public final e6 f1990b;
 
     public p5(e6 e6Var, int i10) {
-        this.f1998a = i10;
-        this.f1999b = e6Var;
+        this.f1989a = i10;
+        this.f1990b = e6Var;
     }
 
     @Override
@@ -23,19 +23,19 @@ public final class p5 implements View.OnClickListener {
         TL_stars.StarGift starGift2;
         TL_stars.StarGift starGift3;
         c6 c6Var;
-        int i10 = this.f1998a;
+        int i10 = this.f1989a;
         boolean z10 = true;
-        e6 e6Var = this.f1999b;
+        e6 e6Var = this.f1990b;
         switch (i10) {
             case 0:
                 if (e6Var.P.getAlpha() >= 1.0f) {
-                    e6Var.f1212g0.run();
+                    e6Var.f1205g0.run();
                     return;
                 }
                 return;
             case 1:
                 if (e6Var.P.getAlpha() >= 1.0f) {
-                    e6Var.f1212g0.run();
+                    e6Var.f1205g0.run();
                     return;
                 }
                 return;
@@ -48,12 +48,12 @@ public final class p5 implements View.OnClickListener {
                 e6Var.b((s5) view);
                 return;
             case 4:
-                e6 e6Var2 = this.f1999b;
+                e6 e6Var2 = this.f1990b;
                 LinearLayout linearLayout = e6Var2.G;
-                c6[] c6VarArr = e6Var2.f1218n;
-                if (e6Var2.getAlpha() >= 1.0f && !e6Var2.f1213h0) {
-                    if (e6Var2.f1215j0) {
-                        e6Var2.a(e6Var2.W, e6Var2.f1203a0, e6Var2.f1205b0, e6Var2.f1207c0);
+                c6[] c6VarArr = e6Var2.f1211n;
+                if (e6Var2.getAlpha() >= 1.0f && !e6Var2.f1206h0) {
+                    if (e6Var2.f1208j0) {
+                        e6Var2.a(e6Var2.W, e6Var2.f1196a0, e6Var2.f1198b0, e6Var2.f1200c0);
                         return;
                     }
                     ArrayList arrayList = new ArrayList();
@@ -73,10 +73,10 @@ public final class p5 implements View.OnClickListener {
                             }
                         }
                     }
-                    if (!arrayList.isEmpty() && e6Var2.f1209e0 != null) {
+                    if (!arrayList.isEmpty() && e6Var2.f1202e0 != null) {
                         TextView textView = e6Var2.K;
-                        e6Var2.f1213h0 = true;
-                        e6Var2.f1215j0 = false;
+                        e6Var2.f1206h0 = true;
+                        e6Var2.f1208j0 = false;
                         ei.x3 x3Var = e6Var2.T;
                         if (x3Var != null) {
                             x3Var.e(true);
@@ -139,7 +139,7 @@ public final class p5 implements View.OnClickListener {
                                 arrayList2.add(starGift7);
                             }
                         }
-                        e6Var2.f1209e0.run(arrayList2, new r5(0, e6Var2, arrayList2), new a3.d(e6Var2, 14));
+                        e6Var2.f1202e0.run(arrayList2, new r5(0, e6Var2, arrayList2), new a3.d(e6Var2, 14));
                         return;
                     }
                     AndroidUtilities.shakeViewSpring(linearLayout);
@@ -152,14 +152,14 @@ public final class p5 implements View.OnClickListener {
                 if (starGift8 == null) {
                     starGift8 = null;
                 }
-                if (starGift8 != null && !c6Var7.f1084n) {
+                if (starGift8 != null && !c6Var7.f1086n) {
                     c6Var7.a(null, true);
                     e6Var.d(true);
                     return;
                 }
                 int i13 = 0;
                 while (true) {
-                    c6[] c6VarArr2 = e6Var.f1218n;
+                    c6[] c6VarArr2 = e6Var.f1211n;
                     if (i13 < c6VarArr2.length && (c6Var = c6VarArr2[i13]) != view) {
                         if (c6Var != null) {
                             TL_stars.StarGift starGift9 = c6Var.h;
@@ -173,7 +173,7 @@ public final class p5 implements View.OnClickListener {
                         i13++;
                     }
                 }
-                e6Var.f1211f0.run(new o2(3, e6Var, c6Var7), Boolean.valueOf(z10));
+                e6Var.f1204f0.run(new o2(3, e6Var, c6Var7), Boolean.valueOf(z10));
                 return;
         }
     }

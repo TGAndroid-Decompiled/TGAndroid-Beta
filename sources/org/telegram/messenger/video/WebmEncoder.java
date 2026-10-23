@@ -16,6 +16,7 @@ import android.text.TextUtils;
 import android.util.Pair;
 import android.view.View;
 import com.google.android.gms.internal.play_billing.k3;
+import i2.o1;
 import java.io.File;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
@@ -30,7 +31,7 @@ import org.telegram.ui.Components.RLottieNative;
 import org.telegram.ui.Components.a6;
 import org.telegram.ui.Components.b6;
 import org.telegram.ui.Components.e6;
-import qg.m0;
+import qg.l0;
 public class WebmEncoder {
 
     public static class FrameDrawer {
@@ -130,7 +131,7 @@ public class WebmEncoder {
                     canvas.drawBitmap(mediaEntity.bitmap, mediaEntity.matrix, this.bitmapPaint);
                     float f7 = mediaEntity.currentFrame + mediaEntity.framesPerDraw;
                     mediaEntity.currentFrame = f7;
-                    if (f7 >= mediaEntity.lottieNative.f24305a[0]) {
+                    if (f7 >= mediaEntity.lottieNative.f24447a[0]) {
                         mediaEntity.currentFrame = 0.0f;
                     }
                 }
@@ -144,7 +145,7 @@ public class WebmEncoder {
                 }
                 b6 b6Var = mediaEntity.animatedFileDrawable.v;
                 if (b6Var != null) {
-                    bitmap = b6Var.f24813b;
+                    bitmap = b6Var.f24959b;
                 } else {
                     bitmap = null;
                 }
@@ -197,7 +198,7 @@ public class WebmEncoder {
                     RLottieNative a2 = RLottieNative.a(mediaEntity.text, null, null, null, 0, null);
                     mediaEntity.lottieNative = a2;
                     if (a2 != null) {
-                        f7 = a2.f24305a[1] / this.fps;
+                        f7 = a2.f24447a[1] / this.fps;
                     } else {
                         f7 = 0.0f;
                     }
@@ -231,10 +232,10 @@ public class WebmEncoder {
                     Pair<Integer, Integer> imageOrientation = AndroidUtilities.getImageOrientation(mediaEntity.text);
                     mediaEntity.rotation = (float) (mediaEntity.rotation - Math.toRadians(((Integer) imageOrientation.first).intValue()));
                     if ((((Integer) imageOrientation.first).intValue() / 90) % 2 == 1) {
-                        float f10 = mediaEntity.f17822x;
+                        float f10 = mediaEntity.f17885x;
                         float f11 = mediaEntity.width;
                         float f12 = (f11 / 2.0f) + f10;
-                        float f13 = mediaEntity.f17823y;
+                        float f13 = mediaEntity.f17886y;
                         float f14 = mediaEntity.height;
                         float f15 = (f14 / 2.0f) + f13;
                         float f16 = this.W;
@@ -243,8 +244,8 @@ public class WebmEncoder {
                         float f19 = (f14 * f17) / f16;
                         mediaEntity.width = f19;
                         mediaEntity.height = f18;
-                        mediaEntity.f17822x = f12 - (f19 / 2.0f);
-                        mediaEntity.f17823y = f15 - (f18 / 2.0f);
+                        mediaEntity.f17885x = f12 - (f19 / 2.0f);
+                        mediaEntity.f17886y = f15 - (f18 / 2.0f);
                     }
                     applyRoundRadius(mediaEntity, mediaEntity.bitmap, 0);
                 } else if (decodeFile != null) {
@@ -252,12 +253,12 @@ public class WebmEncoder {
                     if (width > 1.0f) {
                         float f20 = mediaEntity.height;
                         float f21 = f20 / width;
-                        mediaEntity.f17823y = k3.z(f20, f21, 2.0f, mediaEntity.f17823y);
+                        mediaEntity.f17886y = k3.z(f20, f21, 2.0f, mediaEntity.f17886y);
                         mediaEntity.height = f21;
                     } else if (width < 1.0f) {
                         float f22 = mediaEntity.width;
                         float f23 = width * f22;
-                        mediaEntity.f17822x = k3.z(f22, f23, 2.0f, mediaEntity.f17822x);
+                        mediaEntity.f17885x = k3.z(f22, f23, 2.0f, mediaEntity.f17885x);
                         mediaEntity.width = f23;
                     }
                 }
@@ -276,8 +277,8 @@ public class WebmEncoder {
             bVar.drawAnimatedEmojiDrawables = false;
             bVar.setBackgroundColor(0);
             bVar.setPadding(AndroidUtilities.dp(7.0f), AndroidUtilities.dp(7.0f), AndroidUtilities.dp(7.0f), AndroidUtilities.dp(7.0f));
-            m0 m0Var = mediaEntity.textTypeface;
-            if (m0Var != null && (d = m0Var.d()) != null) {
+            l0 l0Var = mediaEntity.textTypeface;
+            if (l0Var != null && (d = l0Var.d()) != null) {
                 bVar.setTypeface(d);
             }
             bVar.setTextSize(0, mediaEntity.fontSize);
@@ -298,19 +299,19 @@ public class WebmEncoder {
                         public void draw(Canvas canvas, CharSequence charSequence, int i15, int i16, float f7, int i17, int i18, int i19, Paint paint) {
                             super.draw(canvas, charSequence, i15, i16, f7, i17, i18, i19, paint);
                             VideoEditedInfo.MediaEntity mediaEntity3 = mediaEntity;
-                            float paddingLeft = ((((this.measuredSize / 2.0f) + (bVar.getPaddingLeft() + f7)) / mediaEntity3.viewWidth) * mediaEntity3.width) + mediaEntity.f17822x;
-                            float f10 = mediaEntity3.f17823y;
+                            float paddingLeft = ((((this.measuredSize / 2.0f) + (bVar.getPaddingLeft() + f7)) / mediaEntity3.viewWidth) * mediaEntity3.width) + mediaEntity.f17885x;
+                            float f10 = mediaEntity3.f17886y;
                             VideoEditedInfo.MediaEntity mediaEntity4 = mediaEntity;
                             float f11 = mediaEntity4.height;
                             float paddingTop = (((((i19 - i17) / 2.0f) + (bVar.getPaddingTop() + i17)) / mediaEntity4.viewHeight) * f11) + f10;
                             if (mediaEntity4.rotation != 0.0f) {
-                                float f12 = (mediaEntity4.width / 2.0f) + mediaEntity4.f17822x;
-                                float f13 = (f11 / 2.0f) + mediaEntity4.f17823y;
+                                float f12 = (mediaEntity4.width / 2.0f) + mediaEntity4.f17885x;
+                                float f13 = (f11 / 2.0f) + mediaEntity4.f17886y;
                                 float f14 = FrameDrawer.this.W / FrameDrawer.this.H;
                                 double d10 = paddingLeft - f12;
                                 double d11 = (paddingTop - f13) / f14;
                                 paddingLeft = ((float) ((Math.cos(-mediaEntity.rotation) * d10) - (Math.sin(-mediaEntity.rotation) * d11))) + f12;
-                                paddingTop = (((float) i2.e.f(-mediaEntity.rotation, d11, Math.sin(-mediaEntity.rotation) * d10)) * f14) + f13;
+                                paddingTop = (((float) o1.f(-mediaEntity.rotation, d11, Math.sin(-mediaEntity.rotation) * d10)) * f14) + f13;
                             }
                             VideoEditedInfo.MediaEntity mediaEntity5 = emojiEntity.entity;
                             int i20 = this.measuredSize;
@@ -319,8 +320,8 @@ public class WebmEncoder {
                             mediaEntity5.width = f15;
                             float f16 = (i20 / mediaEntity6.viewHeight) * mediaEntity6.height;
                             mediaEntity5.height = f16;
-                            mediaEntity5.f17822x = paddingLeft - (f15 / 2.0f);
-                            mediaEntity5.f17823y = paddingTop - (f16 / 2.0f);
+                            mediaEntity5.f17885x = paddingLeft - (f15 / 2.0f);
+                            mediaEntity5.f17886y = paddingTop - (f16 / 2.0f);
                             mediaEntity5.rotation = mediaEntity6.rotation;
                             if (mediaEntity5.bitmap == null) {
                                 FrameDrawer.this.initStickerEntity(mediaEntity5);
@@ -407,7 +408,7 @@ public class WebmEncoder {
             Bitmap bitmap = mediaEntity.bitmap;
             if (bitmap == null && (e6Var = mediaEntity.animatedFileDrawable) != null) {
                 b6 b6Var = e6Var.v;
-                bitmap = b6Var != null ? b6Var.f24813b : null;
+                bitmap = b6Var != null ? b6Var.f24959b : null;
             }
             if (bitmap != null) {
                 matrix.postScale(1.0f / bitmap.getWidth(), 1.0f / bitmap.getHeight());
@@ -416,8 +417,8 @@ public class WebmEncoder {
                 mediaEntity.matrix.postScale(-1.0f, 1.0f, 0.5f, 0.5f);
             }
             mediaEntity.matrix.postScale(mediaEntity.width * this.W, mediaEntity.height * this.H);
-            mediaEntity.matrix.postTranslate(mediaEntity.f17822x * this.W, mediaEntity.f17823y * this.H);
-            mediaEntity.matrix.postRotate((float) (((-mediaEntity.rotation) / 3.141592653589793d) * 180.0d), ((mediaEntity.width / 2.0f) + mediaEntity.f17822x) * this.W, ((mediaEntity.height / 2.0f) + mediaEntity.f17823y) * this.H);
+            mediaEntity.matrix.postTranslate(mediaEntity.f17885x * this.W, mediaEntity.f17886y * this.H);
+            mediaEntity.matrix.postRotate((float) (((-mediaEntity.rotation) / 3.141592653589793d) * 180.0d), ((mediaEntity.width / 2.0f) + mediaEntity.f17885x) * this.W, ((mediaEntity.height / 2.0f) + mediaEntity.f17886y) * this.H);
         }
 
         public void draw(Canvas canvas, int i10) {

@@ -1,26 +1,58 @@
 package ci;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class s2 extends AnimatorListenerAdapter {
-    public final int f5953a;
-    public final View f5954b;
+import android.util.SparseIntArray;
+public final class s2 extends org.telegram.ui.ActionBar.f5 {
+    public final int d;
 
-    public s2(int i10, View view) {
-        this.f5953a = i10;
-        this.f5954b = view;
+    public s2(int i10, org.telegram.ui.ActionBar.g6 g6Var) {
+        super(g6Var);
+        this.d = i10;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f5953a) {
+    public final void j() {
+        switch (this.d) {
             case 0:
-                AndroidUtilities.removeFromParent(this.f5954b);
+                SparseIntArray sparseIntArray = this.f20890b;
+                sparseIntArray.append(org.telegram.ui.ActionBar.k6.f21254h5, -14737633);
+                sparseIntArray.append(org.telegram.ui.ActionBar.k6.f21125a7, -13421773);
+                return;
+            case 1:
+                this.f20890b.put(org.telegram.ui.ActionBar.k6.He, -1071635414);
+                return;
+            case 2:
+                SparseIntArray sparseIntArray2 = this.f20890b;
+                sparseIntArray2.put(org.telegram.ui.ActionBar.k6.He, i0.a.f(0.2f, -16777216, -1));
+                sparseIntArray2.put(org.telegram.ui.ActionBar.k6.Xd, i0.a.f(0.5f, -16777216, -1));
+                return;
+            case 3:
+                this.f20890b.put(org.telegram.ui.ActionBar.k6.He, i0.a.o(-1, 30));
+                return;
+            case 4:
+                this.f20890b.put(org.telegram.ui.ActionBar.k6.He, i0.a.o(-1, 30));
+                return;
+            case 5:
+                SparseIntArray sparseIntArray3 = this.f20890b;
+                sparseIntArray3.append(org.telegram.ui.ActionBar.k6.f21254h5, -14803426);
+                sparseIntArray3.append(org.telegram.ui.ActionBar.k6.f21125a7, -16777216);
+                return;
+            case 6:
+                this.f20890b.put(org.telegram.ui.ActionBar.k6.He, i0.a.o(-1, 30));
+                return;
+            case 7:
+                SparseIntArray sparseIntArray4 = this.f20890b;
+                sparseIntArray4.append(org.telegram.ui.ActionBar.k6.f21254h5, -14737633);
+                sparseIntArray4.append(org.telegram.ui.ActionBar.k6.f21125a7, -13421773);
+                return;
+            case 8:
+                SparseIntArray sparseIntArray5 = this.f20890b;
+                sparseIntArray5.append(org.telegram.ui.ActionBar.k6.f21254h5, -14803426);
+                sparseIntArray5.append(org.telegram.ui.ActionBar.k6.f21125a7, -16777216);
                 return;
             default:
-                AndroidUtilities.removeFromParent(this.f5954b);
+                SparseIntArray sparseIntArray6 = this.f20890b;
+                sparseIntArray6.append(org.telegram.ui.ActionBar.k6.f21254h5, -14803426);
+                sparseIntArray6.append(org.telegram.ui.ActionBar.k6.f21125a7, -16777216);
                 return;
         }
     }

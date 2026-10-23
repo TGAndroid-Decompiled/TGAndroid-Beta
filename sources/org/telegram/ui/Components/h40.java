@@ -5,12 +5,12 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.util.SparseArray;
-public final class h40 extends uv0 {
-    public final k40 f26752f2;
+public final class h40 extends xv0 {
+    public final k40 f26785i2;
 
-    public h40(k40 k40Var, Context context, mv0 mv0Var, k40 k40Var2, g40 g40Var, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context, 0L, mv0Var, 0, null, null, null, 8, 0, k40Var2, g40Var, 0, d6Var, null);
-        this.f26752f2 = k40Var;
+    public h40(k40 k40Var, Context context, pv0 pv0Var, k40 k40Var2, g40 g40Var, org.telegram.ui.ActionBar.g6 g6Var) {
+        super(context, 0L, pv0Var, 0, null, null, null, 8, 0, k40Var2, g40Var, 0, g6Var, null);
+        this.f26785i2 = k40Var;
     }
 
     @Override
@@ -20,44 +20,44 @@ public final class h40 extends uv0 {
 
     @Override
     public final String getStoriesHashtag() {
-        return this.f26752f2.f27743b;
+        return this.f26785i2.f27857b;
     }
 
     @Override
     public final String getStoriesHashtagUsername() {
-        return this.f26752f2.f27744c;
+        return this.f26785i2.f27858c;
     }
 
     @Override
-    public final boolean v0() {
+    public final boolean w0() {
         return true;
     }
 
     @Override
-    public final void F0(SparseArray sparseArray) {
+    public final void G0(SparseArray sparseArray) {
     }
 
     @Override
-    public final void M0(boolean z10) {
+    public final void N0(boolean z10) {
     }
 
     @Override
-    public final void O0(float f7) {
+    public final void P0(float f7) {
     }
 
     @Override
-    public final void P0(boolean z10) {
+    public final void Q0(boolean z10) {
     }
 
     @Override
-    public final void d1(boolean z10) {
+    public final void e1(boolean z10) {
     }
 
     @Override
-    public final void p0() {
+    public final void q0() {
     }
 
     @Override
-    public final void P(Canvas canvas, float f7, Rect rect, Paint paint) {
+    public final void Q(Canvas canvas, float f7, Rect rect, Paint paint) {
     }
 }

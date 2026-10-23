@@ -1,27 +1,15 @@
 package org.telegram.ui.Components;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-public final class mr implements TextWatcher {
-    public final ee f28595a;
-    public final kr f28596b;
-
-    public mr(ee eeVar, kr krVar) {
-        this.f28595a = eeVar;
-        this.f28596b = krVar;
+import android.widget.LinearLayout;
+import java.util.HashSet;
+public final class mr extends LinearLayout implements org.telegram.ui.ActionBar.b6 {
+    @Override
+    public final void addColorKeys(HashSet hashSet) {
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.k6.f21125a7));
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.k6.H6));
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        this.f28595a.run();
-        this.f28596b.run();
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public final void updateColors() {
     }
 }

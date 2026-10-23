@@ -1,29 +1,16 @@
 package org.telegram.ui;
 
-import org.json.JSONObject;
-public final class rn0 extends JSONObject {
-    public rn0(eo0 eo0Var, int i10) {
-        switch (i10) {
-            case 3:
-                put("type", "PAYMENT_GATEWAY");
-                Object obj = eo0Var.M0;
-                if (obj != null) {
-                    put("parameters", obj);
-                    return;
-                }
-                JSONObject jSONObject = new JSONObject();
-                jSONObject.put("gateway", "stripe");
-                jSONObject.put("stripe:publishableKey", eo0Var.f36722j0);
-                jSONObject.put("stripe:version", "3.5.0");
-                put("parameters", jSONObject);
-                return;
-            default:
-                put("type", "DIRECT");
-                JSONObject jSONObject2 = new JSONObject();
-                jSONObject2.put("protocolVersion", "ECv2");
-                jSONObject2.put("publicKey", eo0Var.K0);
-                put("parameters", jSONObject2);
-                return;
-        }
+import android.content.Context;
+import android.view.MotionEvent;
+import android.webkit.WebView;
+public final class rn0 extends WebView {
+    public rn0(Context context) {
+        super(context);
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        getParent().requestDisallowInterceptTouchEvent(true);
+        return super.onTouchEvent(motionEvent);
     }
 }

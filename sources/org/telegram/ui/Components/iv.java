@@ -15,11 +15,11 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class iv implements org.telegram.ui.ct {
-    public final aw f27343a;
+public final class iv implements org.telegram.ui.ft {
+    public final aw f27453a;
 
     public iv(aw awVar) {
-        this.f27343a = awVar;
+        this.f27453a = awVar;
     }
 
     @Override
@@ -34,12 +34,12 @@ public final class iv implements org.telegram.ui.ct {
 
     @Override
     public final void C(TLRPC.Document document) {
-        aw awVar = this.f27343a;
-        org.telegram.ui.ActionBar.n2 n2Var = awVar.f24730c;
-        if (n2Var instanceof org.telegram.ui.qn) {
-            ((org.telegram.ui.qn) n2Var).fb(document);
+        aw awVar = this.f27453a;
+        org.telegram.ui.ActionBar.o2 o2Var = awVar.f24855c;
+        if (o2Var instanceof org.telegram.ui.sn) {
+            ((org.telegram.ui.sn) o2Var).gb(document);
         }
-        awVar.Z();
+        awVar.i0();
         awVar.dismiss();
     }
 
@@ -64,14 +64,14 @@ public final class iv implements org.telegram.ui.ct {
     @Override
     public final void H(TLRPC.Document document) {
         ViewGroup viewGroup;
-        org.telegram.ui.ActionBar.d6 d6Var;
+        org.telegram.ui.ActionBar.g6 g6Var;
         SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(MessageObject.findAnimatedEmojiEmoticon(document));
         valueOf.setSpan(new a6(document, (Paint.FontMetricsInt) null), 0, valueOf.length(), 33);
         if (AndroidUtilities.addToClipboard(valueOf)) {
-            aw awVar = this.f27343a;
-            viewGroup = ((org.telegram.ui.ActionBar.f3) awVar).containerView;
-            d6Var = ((org.telegram.ui.ActionBar.f3) awVar).resourcesProvider;
-            org.telegram.messenger.nk.p(R.string.EmojiCopied, new xc((FrameLayout) viewGroup, d6Var));
+            aw awVar = this.f27453a;
+            viewGroup = ((org.telegram.ui.ActionBar.h3) awVar).containerView;
+            g6Var = ((org.telegram.ui.ActionBar.h3) awVar).resourcesProvider;
+            org.telegram.messenger.sl.p(R.string.EmojiCopied, new xc((FrameLayout) viewGroup, g6Var));
         }
     }
 
@@ -98,7 +98,7 @@ public final class iv implements org.telegram.ui.ct {
             return null;
         }
         Long emojiStatusDocumentId = UserObject.getEmojiStatusDocumentId(currentUser);
-        if (document != null && (emojiStatusDocumentId == null || emojiStatusDocumentId.longValue() != document.f20286id)) {
+        if (document != null && (emojiStatusDocumentId == null || emojiStatusDocumentId.longValue() != document.f20349id)) {
             z10 = true;
         } else {
             z10 = false;
@@ -123,9 +123,9 @@ public final class iv implements org.telegram.ui.ct {
 
     @Override
     public final boolean c() {
-        org.telegram.ui.ActionBar.n2 n2Var = this.f27343a.f24730c;
-        if (n2Var instanceof org.telegram.ui.qn) {
-            return ((org.telegram.ui.qn) n2Var).c();
+        org.telegram.ui.ActionBar.o2 o2Var = this.f27453a.f24855c;
+        if (o2Var instanceof org.telegram.ui.sn) {
+            return ((org.telegram.ui.sn) o2Var).c();
         }
         return false;
     }
@@ -162,11 +162,11 @@ public final class iv implements org.telegram.ui.ct {
 
     @Override
     public final boolean k(int i10) {
-        aw awVar = this.f27343a;
-        org.telegram.ui.ActionBar.n2 n2Var = awVar.f24730c;
-        if ((n2Var instanceof org.telegram.ui.qn) && ((org.telegram.ui.qn) n2Var).H6()) {
+        aw awVar = this.f27453a;
+        org.telegram.ui.ActionBar.o2 o2Var = awVar.f24855c;
+        if ((o2Var instanceof org.telegram.ui.sn) && ((org.telegram.ui.sn) o2Var).H6()) {
             if (!UserConfig.getInstance(UserConfig.selectedAccount).isPremium()) {
-                if (((org.telegram.ui.qn) awVar.f24730c).i() != null && UserObject.isUserSelf(((org.telegram.ui.qn) awVar.f24730c).i())) {
+                if (((org.telegram.ui.sn) awVar.f24855c).i() != null && UserObject.isUserSelf(((org.telegram.ui.sn) awVar.f24855c).i())) {
                     return true;
                 }
                 return false;
@@ -182,7 +182,7 @@ public final class iv implements org.telegram.ui.ct {
     }
 
     @Override
-    public final i80 u(ah.v vVar) {
+    public final j80 u(ah.v vVar) {
         return null;
     }
 
@@ -192,15 +192,15 @@ public final class iv implements org.telegram.ui.ct {
         Object obj;
         int i10;
         ViewGroup viewGroup;
-        org.telegram.ui.ActionBar.d6 d6Var;
-        org.telegram.ui.ActionBar.d6 d6Var2;
-        org.telegram.ui.ActionBar.d6 d6Var3;
+        org.telegram.ui.ActionBar.g6 g6Var;
+        org.telegram.ui.ActionBar.g6 g6Var2;
+        org.telegram.ui.ActionBar.g6 g6Var3;
         ViewGroup viewGroup2;
         if (document == null) {
             emojiStatus = new TLRPC.TL_emojiStatusEmpty();
         } else {
             TLRPC.TL_emojiStatus tL_emojiStatus = new TLRPC.TL_emojiStatus();
-            tL_emojiStatus.document_id = document.f20286id;
+            tL_emojiStatus.document_id = document.f20349id;
             emojiStatus = tL_emojiStatus;
         }
         TLRPC.User currentUser = UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser();
@@ -209,27 +209,27 @@ public final class iv implements org.telegram.ui.ct {
         } else {
             obj = currentUser.emoji_status;
         }
-        aw awVar = this.f27343a;
-        i10 = ((org.telegram.ui.ActionBar.f3) awVar).currentAccount;
+        aw awVar = this.f27453a;
+        i10 = ((org.telegram.ui.ActionBar.h3) awVar).currentAccount;
         MessagesController.getInstance(i10).updateEmojiStatus(emojiStatus);
         yt ytVar = new yt(1, this, obj);
         if (document != null) {
-            viewGroup = ((org.telegram.ui.ActionBar.f3) awVar).containerView;
-            d6Var = ((org.telegram.ui.ActionBar.f3) awVar).resourcesProvider;
-            new xc((FrameLayout) viewGroup, d6Var).r(document, LocaleController.getString(R.string.SetAsEmojiStatusInfo), LocaleController.getString(R.string.UndoNoCaps), ytVar).j();
+            viewGroup = ((org.telegram.ui.ActionBar.h3) awVar).containerView;
+            g6Var = ((org.telegram.ui.ActionBar.h3) awVar).resourcesProvider;
+            new xc((FrameLayout) viewGroup, g6Var).r(document, LocaleController.getString(R.string.SetAsEmojiStatusInfo), LocaleController.getString(R.string.UndoNoCaps), ytVar).j();
             return;
         }
         Context context = awVar.getContext();
-        d6Var2 = ((org.telegram.ui.ActionBar.f3) awVar).resourcesProvider;
-        ic icVar = new ic(context, d6Var2);
-        icVar.f27235b.setText(LocaleController.getString(R.string.RemoveStatusInfo));
-        icVar.f27234a.setImageResource(R.drawable.msg_settings_premium);
+        g6Var2 = ((org.telegram.ui.ActionBar.h3) awVar).resourcesProvider;
+        ic icVar = new ic(context, g6Var2);
+        icVar.f27279b.setText(LocaleController.getString(R.string.RemoveStatusInfo));
+        icVar.f27278a.setImageResource(R.drawable.msg_settings_premium);
         Context context2 = awVar.getContext();
-        d6Var3 = ((org.telegram.ui.ActionBar.f3) awVar).resourcesProvider;
-        oc ocVar = new oc(context2, d6Var3, true);
-        ocVar.f28987a = ytVar;
+        g6Var3 = ((org.telegram.ui.ActionBar.h3) awVar).resourcesProvider;
+        oc ocVar = new oc(context2, g6Var3, true);
+        ocVar.f29152b = ytVar;
         icVar.setButton(ocVar);
-        viewGroup2 = ((org.telegram.ui.ActionBar.f3) awVar).containerView;
+        viewGroup2 = ((org.telegram.ui.ActionBar.h3) awVar).containerView;
         qc.f((FrameLayout) viewGroup2, icVar, 1500).j();
     }
 

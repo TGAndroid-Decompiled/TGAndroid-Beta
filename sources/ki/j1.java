@@ -9,17 +9,17 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.Components.i80;
+import org.telegram.ui.Components.j80;
 import org.telegram.ui.Components.tz;
 import org.telegram.ui.Components.yg;
-import org.telegram.ui.mi0;
+import org.telegram.ui.qi0;
 public final class j1 implements View.OnClickListener {
-    public final int f15339a;
-    public final d2 f15340b;
+    public final int f15399a;
+    public final d2 f15400b;
 
     public j1(d2 d2Var, int i10) {
-        this.f15339a = i10;
-        this.f15340b = d2Var;
+        this.f15399a = i10;
+        this.f15400b = d2Var;
     }
 
     @Override
@@ -29,45 +29,45 @@ public final class j1 implements View.OnClickListener {
         boolean z12;
         boolean z13;
         boolean z14;
-        o5 S2;
-        r5 o10;
+        o5 X2;
+        r5 n10;
         String str;
-        switch (this.f15339a) {
+        switch (this.f15399a) {
             case 0:
-                this.f15340b.r0();
+                this.f15400b.r0();
                 return;
             case 1:
-                d2 d2Var = this.f15340b;
-                if (!d2Var.P.G2()) {
+                d2 d2Var = this.f15400b;
+                if (!d2Var.P.L2()) {
                     d2Var.finishFragment();
                     return;
                 }
                 return;
             case 2:
-                h2 h2Var = this.f15340b.P.H3;
+                h2 h2Var = this.f15400b.P.K3;
                 if (h2Var != null) {
                     h2Var.k();
                     return;
                 }
                 return;
             case 3:
-                h2 h2Var2 = this.f15340b.P.H3;
+                h2 h2Var2 = this.f15400b.P.K3;
                 if (h2Var2 != null) {
                     h2Var2.i();
                     return;
                 }
                 return;
             case 4:
-                d2.U(this.f15340b);
+                d2.U(this.f15400b);
                 return;
             case 5:
-                d2 d2Var2 = this.f15340b;
+                d2 d2Var2 = this.f15400b;
                 if (d2Var2.B0) {
                     d2Var2.k0(true);
-                    h1 Q2 = d2Var2.P.Q2();
-                    if (Q2 != null) {
-                        Q2.r();
-                        AndroidUtilities.showKeyboard(Q2);
+                    h1 V2 = d2Var2.P.V2();
+                    if (V2 != null) {
+                        V2.r();
+                        AndroidUtilities.showKeyboard(V2);
                         return;
                     }
                     return;
@@ -77,9 +77,9 @@ public final class j1 implements View.OnClickListener {
                     d2Var2.A0 = tzVar;
                     tzVar.setVisibility(8);
                     tz tzVar2 = d2Var2.A0;
-                    tzVar2.f30791w2 = false;
+                    tzVar2.f31034x2 = false;
                     tzVar2.setDelegate(new u1(d2Var2));
-                    int indexOfChild = d2Var2.O.indexOfChild(d2Var2.f15197a0);
+                    int indexOfChild = d2Var2.O.indexOfChild(d2Var2.f15255a0);
                     if (indexOfChild < 0) {
                         indexOfChild = d2Var2.O.getChildCount();
                     }
@@ -99,48 +99,48 @@ public final class j1 implements View.OnClickListener {
                 d2Var2.A0.setVisibility(0);
                 d2Var2.B0 = true;
                 d2Var2.D0 = j02 + d2Var2.T0;
-                h1 Q22 = d2Var2.P.Q2();
-                if (Q22 != null) {
-                    AndroidUtilities.hideKeyboard(Q22);
+                h1 V22 = d2Var2.P.V2();
+                if (V22 != null) {
+                    AndroidUtilities.hideKeyboard(V22);
                 }
                 d2Var2.h0();
-                d2Var2.f15199b0.j(yg.d, true);
+                d2Var2.f15257b0.j(yg.d, true);
                 return;
             case 6:
-                final d2 d2Var3 = this.f15340b;
-                i80 i80Var = d2Var3.f15227x0;
-                if (i80Var != null) {
-                    i80Var.u();
-                    d2Var3.f15227x0 = null;
+                final d2 d2Var3 = this.f15400b;
+                j80 j80Var = d2Var3.f15285x0;
+                if (j80Var != null) {
+                    j80Var.u();
+                    d2Var3.f15285x0 = null;
                 }
-                final i80 H = i80.H(d2Var3, view);
+                final j80 H = j80.H(d2Var3, view);
                 H.Q = true;
-                a R2 = d2Var3.P.R2();
-                if (R2 != null && R2.b()) {
+                a W2 = d2Var3.P.W2();
+                if (W2 != null && W2.b()) {
                     z10 = false;
                 } else {
                     z10 = true;
                 }
-                H.j(z10, R.drawable.field_carret_empty, null, LocaleController.getString(R.string.ArticleNone), new m1(d2Var3, R2, 5));
-                if (R2 != null && R2.b() && !R2.a() && !R2.c()) {
+                H.j(z10, R.drawable.field_carret_empty, null, LocaleController.getString(R.string.ArticleNone), new m1(d2Var3, W2, 5));
+                if (W2 != null && W2.b() && !W2.a() && !W2.c()) {
                     z11 = true;
                 } else {
                     z11 = false;
                 }
-                H.j(z11, R.drawable.iv_list, null, LocaleController.getString(R.string.ArticleListBulletedList), new m1(d2Var3, R2, 6));
-                if (R2 != null && R2.b() && !R2.a() && R2.c()) {
+                H.j(z11, R.drawable.iv_list, null, LocaleController.getString(R.string.ArticleListBulletedList), new m1(d2Var3, W2, 6));
+                if (W2 != null && W2.b() && !W2.a() && W2.c()) {
                     z12 = true;
                 } else {
                     z12 = false;
                 }
-                H.j(z12, R.drawable.iv_ordered_list, null, LocaleController.getString(R.string.ArticleListNumberedList), new m1(d2Var3, R2, 7));
-                if (R2 != null && R2.b() && R2.a() && !R2.c()) {
+                H.j(z12, R.drawable.iv_ordered_list, null, LocaleController.getString(R.string.ArticleListNumberedList), new m1(d2Var3, W2, 7));
+                if (W2 != null && W2.b() && W2.a() && !W2.c()) {
                     z13 = true;
                 } else {
                     z13 = false;
                 }
-                H.j(z13, R.drawable.iv_todo, null, LocaleController.getString(R.string.ArticleListChecklist), new m1(d2Var3, R2, 8));
-                if (R2 != null && (R2.f15095b instanceof TL_iv.pageBlockDetails)) {
+                H.j(z13, R.drawable.iv_todo, null, LocaleController.getString(R.string.ArticleListChecklist), new m1(d2Var3, W2, 8));
+                if (W2 != null && (W2.f15141b instanceof TL_iv.pageBlockDetails)) {
                     z14 = true;
                 } else {
                     z14 = false;
@@ -150,38 +150,38 @@ public final class j1 implements View.OnClickListener {
                 w3 w3Var = d2Var3.P;
                 Objects.requireNonNull(w3Var);
                 H.j(z14, i10, null, string, new b(w3Var, 1));
-                boolean n22 = d2Var3.P.n2();
-                boolean q22 = d2Var3.P.q2();
-                if (n22 || q22) {
+                boolean s22 = d2Var3.P.s2();
+                boolean v22 = d2Var3.P.v2();
+                if (s22 || v22) {
                     H.k();
-                    if (n22) {
+                    if (s22) {
                         H.c(R.drawable.iv_list_tab, LocaleController.getString(R.string.ArticleIndent), new Runnable() {
                             @Override
                             public final void run() {
                                 switch (r3) {
                                     case 0:
-                                        d2Var3.P.s3(false);
+                                        d2Var3.P.x3(false);
                                         H.u();
                                         return;
                                     default:
-                                        d2Var3.P.s3(true);
+                                        d2Var3.P.x3(true);
                                         H.u();
                                         return;
                                 }
                             }
                         }, false);
                     }
-                    if (q22) {
+                    if (v22) {
                         H.c(R.drawable.iv_list_untab, LocaleController.getString(R.string.ArticleOutdent), new Runnable() {
                             @Override
                             public final void run() {
                                 switch (r3) {
                                     case 0:
-                                        d2Var3.P.s3(false);
+                                        d2Var3.P.x3(false);
                                         H.u();
                                         return;
                                     default:
-                                        d2Var3.P.s3(true);
+                                        d2Var3.P.x3(true);
                                         H.u();
                                         return;
                                 }
@@ -191,50 +191,50 @@ public final class j1 implements View.OnClickListener {
                 }
                 H.U = true;
                 H.Z();
-                d2Var3.f15227x0 = H;
+                d2Var3.f15285x0 = H;
                 return;
             case 7:
-                d2 d2Var4 = this.f15340b;
-                i80 i80Var2 = d2Var4.f15227x0;
+                d2 d2Var4 = this.f15400b;
+                j80 j80Var2 = d2Var4.f15285x0;
                 TL_iv.pageTableCell pagetablecell = null;
-                if (i80Var2 != null) {
-                    i80Var2.u();
-                    d2Var4.f15227x0 = null;
+                if (j80Var2 != null) {
+                    j80Var2.u();
+                    d2Var4.f15285x0 = null;
                 }
                 w3 w3Var2 = d2Var4.P;
-                o5 o5Var = w3Var2.f15595g4;
-                if (o5Var == null && (S2 = w3Var2.S2()) != null && S2.getModel() != null) {
+                o5 o5Var = w3Var2.f15659j4;
+                if (o5Var == null && (X2 = w3Var2.X2()) != null && X2.getModel() != null) {
                     View findFocus = d2Var4.P.findFocus();
-                    if ((findFocus instanceof h1) && (o10 = S2.o((h1) findFocus)) != null) {
-                        pagetablecell = o10.f15492b;
+                    if ((findFocus instanceof h1) && (n10 = X2.n((h1) findFocus)) != null) {
+                        pagetablecell = n10.f15552b;
                     }
                     if (pagetablecell != null) {
-                        d2Var4.P.h2(S2);
-                        if (S2.H.add(pagetablecell)) {
-                            S2.v.invalidate();
-                            S2.t();
+                        d2Var4.P.m2(X2);
+                        if (X2.H.add(pagetablecell)) {
+                            X2.v.invalidate();
+                            X2.s();
                         }
-                        o5Var = S2;
+                        o5Var = X2;
                     }
                 }
                 if (o5Var != null && o5Var.getModel() != null && !o5Var.H.isEmpty()) {
-                    d2Var4.P.G4(o5Var);
+                    d2Var4.P.L4(o5Var);
                     return;
                 } else {
-                    d2Var4.P.S1(c6.u(2, 2));
+                    d2Var4.P.X1(c6.t(2, 2));
                     return;
                 }
             case 8:
-                d2 d2Var5 = this.f15340b;
-                i80 i80Var3 = d2Var5.f15227x0;
+                d2 d2Var5 = this.f15400b;
+                j80 j80Var3 = d2Var5.f15285x0;
                 TL_iv.pageBlockMath pageblockmath = null;
-                if (i80Var3 != null) {
-                    i80Var3.u();
-                    d2Var5.f15227x0 = null;
+                if (j80Var3 != null) {
+                    j80Var3.u();
+                    d2Var5.f15285x0 = null;
                 }
-                a R22 = d2Var5.P.R2();
-                if (R22 != null) {
-                    TL_iv.PageBlock pageBlock = R22.f15095b;
+                a W22 = d2Var5.P.W2();
+                if (W22 != null) {
+                    TL_iv.PageBlock pageBlock = W22.f15141b;
                     if (pageBlock instanceof TL_iv.pageBlockMath) {
                         pageblockmath = (TL_iv.pageBlockMath) pageBlock;
                     }
@@ -248,39 +248,39 @@ public final class j1 implements View.OnClickListener {
                 q.X(parentActivity, str, new ai.o2(27, d2Var5, pageblockmath), d2Var5.getResourceProvider());
                 return;
             case 9:
-                d2 d2Var6 = this.f15340b;
-                d2Var6.P.Z3 = null;
+                d2 d2Var6 = this.f15400b;
+                d2Var6.P.f15648c4 = null;
                 d2Var6.o0(90, 0);
                 return;
             case 10:
-                d2 d2Var7 = this.f15340b;
+                d2 d2Var7 = this.f15400b;
                 d2Var7.r0();
-                mi0 mi0Var = d2Var7.O0;
-                if (mi0Var != null) {
-                    mi0Var.g(true);
+                qi0 qi0Var = d2Var7.O0;
+                if (qi0Var != null) {
+                    qi0Var.g(true);
                     d2Var7.O0 = null;
                     return;
                 }
                 return;
             case 11:
-                d2 d2Var8 = this.f15340b;
-                d2Var8.P.R4();
+                d2 d2Var8 = this.f15400b;
+                d2Var8.P.W4();
                 d2Var8.y0();
                 return;
             case 12:
-                this.f15340b.P.a4(view);
+                this.f15400b.P.f4(view);
                 return;
             case 13:
-                this.f15340b.P.b4();
+                this.f15400b.P.g4();
                 return;
             case 14:
-                this.f15340b.P.Y3();
+                this.f15400b.P.d4();
                 return;
             case 15:
-                this.f15340b.P.c4();
+                this.f15400b.P.h4();
                 return;
             default:
-                this.f15340b.n0();
+                this.f15400b.n0();
                 return;
         }
     }

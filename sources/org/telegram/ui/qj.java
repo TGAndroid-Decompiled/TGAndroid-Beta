@@ -8,11 +8,11 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MessageObject;
 public final class qj extends s4.t {
     public boolean S;
-    public final qn T;
+    public final sn T;
 
-    public qj(qn qnVar, boolean z10) {
+    public qj(sn snVar, boolean z10) {
         super(z10);
-        this.T = qnVar;
+        this.T = snVar;
     }
 
     @Override
@@ -21,10 +21,10 @@ public final class qj extends s4.t {
         MessageObject messageObject;
         MessageObject.GroupedMessages c92;
         byte b10;
-        qn qnVar = this.T;
-        dm dmVar = qnVar.A0;
-        int i12 = dmVar.J;
-        if (i10 >= i12 && i10 < dmVar.K && (i11 = i10 - i12) >= 0 && i11 < dmVar.L().size() && (c92 = qnVar.c9((messageObject = (MessageObject) qnVar.A0.L().get(i11)))) != null) {
+        sn snVar = this.T;
+        em emVar = snVar.A0;
+        int i12 = emVar.J;
+        if (i10 >= i12 && i10 < emVar.K && (i11 = i10 - i12) >= 0 && i11 < emVar.L().size() && (c92 = snVar.c9((messageObject = (MessageObject) snVar.A0.L().get(i11)))) != null) {
             MessageObject.GroupedMessagePosition position = c92.getPosition(messageObject);
             if (position.minX != position.maxX && (b10 = position.minY) == position.maxY && b10 != 0) {
                 int size = c92.posArray.size();
@@ -45,8 +45,8 @@ public final class qj extends s4.t {
 
     @Override
     public final boolean C1(View view) {
-        if (view instanceof org.telegram.ui.Cells.u1) {
-            return !((org.telegram.ui.Cells.u1) view).getMessageObject().isOutOwner();
+        if (view instanceof org.telegram.ui.Cells.t1) {
+            return !((org.telegram.ui.Cells.t1) view).getMessageObject().isOutOwner();
         }
         return false;
     }
@@ -54,7 +54,7 @@ public final class qj extends s4.t {
     @Override
     public final int G() {
         if (this.S) {
-            return (int) this.T.f40849s9;
+            return (int) this.T.E9;
         }
         return 0;
     }
@@ -62,7 +62,7 @@ public final class qj extends s4.t {
     @Override
     public final int J() {
         if (this.S) {
-            return (int) this.T.f40849s9;
+            return (int) this.T.E9;
         }
         return F();
     }
@@ -70,14 +70,14 @@ public final class qj extends s4.t {
     @Override
     public final int K() {
         if (this.S) {
-            return (int) ((this.f46023n - this.T.f40849s9) - C());
+            return (int) ((this.f46445n - this.T.E9) - C());
         }
         return super.K();
     }
 
     @Override
     public final int X0() {
-        return (int) this.T.f40849s9;
+        return (int) this.T.E9;
     }
 
     @Override
@@ -97,7 +97,7 @@ public final class qj extends s4.t {
     @Override
     public final void i1(int i10, int i11, boolean z10) {
         if (!z10) {
-            i11 = (int) ((i11 - F()) + this.T.f40849s9);
+            i11 = (int) ((i11 - F()) + this.T.E9);
         }
         super.i1(i10, i11, z10);
     }
@@ -133,9 +133,9 @@ public final class qj extends s4.t {
 
     @Override
     public final void v0(RecyclerView recyclerView, s4.y0 y0Var, int i10) {
-        this.T.f40850sa = false;
+        this.T.Ea = false;
         li.n nVar = new li.n(recyclerView.getContext(), 0);
-        nVar.f46062a = i10;
+        nVar.f46484a = i10;
         w0(nVar);
     }
 

@@ -5,34 +5,34 @@ import android.text.SpannableStringBuilder;
 import android.view.MotionEvent;
 import android.view.View;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.d91;
-import org.telegram.ui.Components.e91;
-import org.telegram.ui.Components.ks0;
-import org.telegram.ui.Components.yq;
+import org.telegram.ui.Components.k91;
+import org.telegram.ui.Components.l91;
+import org.telegram.ui.Components.ns0;
+import org.telegram.ui.Components.xq;
 import org.telegram.ui.ProfileActivity;
-public final class u1 extends e91 {
-    public final org.telegram.ui.ActionBar.n2 T;
-    public final ks0 U;
+public final class u1 extends l91 {
+    public final org.telegram.ui.ActionBar.o2 T;
+    public final ns0 U;
 
-    public u1(ks0 ks0Var, Context context, org.telegram.ui.ActionBar.n2 n2Var) {
+    public u1(ns0 ns0Var, Context context, org.telegram.ui.ActionBar.o2 o2Var) {
         super(context, null);
-        this.U = ks0Var;
-        this.T = n2Var;
+        this.U = ns0Var;
+        this.T = o2Var;
     }
 
     @Override
     public final void h() {
-        ks0 ks0Var = this.U;
-        d91 d91Var = ks0Var.f50471n;
-        if (ks0Var.b() && d91Var != null) {
-            if (ks0Var.J == null) {
-                SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(org.telegram.messenger.g0.g(R.string.Gift2NewCollection, new StringBuilder("+ ")));
-                yq yqVar = new yq(R.drawable.poll_add_plus, 0);
-                yqVar.spaceScaleX = 0.8f;
-                spannableStringBuilder.setSpan(yqVar, 0, 1, 33);
-                ks0Var.J = spannableStringBuilder;
+        ns0 ns0Var = this.U;
+        k91 k91Var = ns0Var.f50928n;
+        if (ns0Var.b() && k91Var != null) {
+            if (ns0Var.J == null) {
+                SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(org.telegram.messenger.v0.h(R.string.Gift2NewCollection, new StringBuilder("+ ")));
+                xq xqVar = new xq(R.drawable.poll_add_plus, 0);
+                xqVar.spaceScaleX = 0.8f;
+                spannableStringBuilder.setSpan(xqVar, 0, 1, 33);
+                ns0Var.J = spannableStringBuilder;
             }
-            d91Var.a(-1, ks0Var.J);
+            k91Var.a(-1, ns0Var.J);
         }
     }
 
@@ -43,25 +43,25 @@ public final class u1 extends e91 {
 
     @Override
     public final void w(boolean z10) {
-        ks0 ks0Var = this.U;
-        ks0Var.l();
-        org.telegram.ui.ActionBar.n2 n2Var = this.T;
-        if (n2Var instanceof ProfileActivity) {
-            ((ProfileActivity) n2Var).R();
-            View fragmentView = n2Var.getFragmentView();
+        ns0 ns0Var = this.U;
+        ns0Var.l();
+        org.telegram.ui.ActionBar.o2 o2Var = this.T;
+        if (o2Var instanceof ProfileActivity) {
+            ((ProfileActivity) o2Var).R();
+            View fragmentView = o2Var.getFragmentView();
             if (fragmentView != null) {
                 fragmentView.invalidate();
             }
         }
-        ks0Var.o();
+        ns0Var.o();
     }
 
     @Override
     public final void z(int i10) {
         this.U.l();
-        org.telegram.ui.ActionBar.n2 n2Var = this.T;
-        if (n2Var instanceof ProfileActivity) {
-            ((ProfileActivity) n2Var).R();
+        org.telegram.ui.ActionBar.o2 o2Var = this.T;
+        if (o2Var instanceof ProfileActivity) {
+            ((ProfileActivity) o2Var).R();
         }
     }
 }

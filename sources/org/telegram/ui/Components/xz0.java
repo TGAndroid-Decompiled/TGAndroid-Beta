@@ -1,19 +1,25 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.view.View;
-public interface xz0 extends org.telegram.ui.Cells.y9 {
-    void attach(View view);
+import android.util.Pair;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+public final class xz0 extends ArrayList {
+    public final Class f32733a;
+    public final Class f32734b;
 
-    void detach(View view);
+    public xz0(Class cls, Class cls2) {
+        this.f32733a = cls;
+        this.f32734b = cls2;
+    }
 
-    void draw(Canvas canvas, View view);
-
-    int getEmojiOnlyCount();
-
-    void setRow(int i10);
-
-    void setX(int i10);
-
-    void setY(int i10);
+    public final m.g3 h() {
+        int size = size();
+        Object[] objArr = (Object[]) Array.newInstance(this.f32733a, size);
+        Object[] objArr2 = (Object[]) Array.newInstance(this.f32734b, size);
+        for (int i10 = 0; i10 < size; i10++) {
+            objArr[i10] = ((Pair) get(i10)).first;
+            objArr2[i10] = ((Pair) get(i10)).second;
+        }
+        return new m.g3(objArr, objArr2);
+    }
 }

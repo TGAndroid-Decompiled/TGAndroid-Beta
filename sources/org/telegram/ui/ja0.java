@@ -1,13 +1,42 @@
 package org.telegram.ui;
-public final class ja0 extends org.telegram.ui.Components.z00 {
-    @Override
-    public final void b() {
-        setVisibility(8);
+
+import org.telegram.messenger.AccountInstance;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.MessagesController;
+import org.telegram.tgnet.TLRPC;
+public final class ja0 implements Runnable {
+    public final int f38508a;
+    public final ka0 f38509b;
+    public final AccountInstance f38510c;
+    public final long d;
+    public final org.telegram.ui.ActionBar.o2 e;
+
+    public ja0(ka0 ka0Var, AccountInstance accountInstance, long j10, org.telegram.ui.ActionBar.o2 o2Var, int i10) {
+        this.f38508a = i10;
+        this.f38509b = ka0Var;
+        this.f38510c = accountInstance;
+        this.d = j10;
+        this.e = o2Var;
     }
 
     @Override
-    public final void c(boolean z10) {
-        setVisibility(0);
-        super.c(z10);
+    public final void run() {
+        switch (this.f38508a) {
+            case 0:
+                AndroidUtilities.runOnUIThread(new ja0(this.f38509b, this.f38510c, this.d, this.e, 1));
+                return;
+            default:
+                AccountInstance accountInstance = this.f38510c;
+                MessagesController messagesController = accountInstance.getMessagesController();
+                long j10 = this.d;
+                long j11 = -j10;
+                boolean z10 = false;
+                ChatObject.Call groupCall = messagesController.getGroupCall(j11, false);
+                TLRPC.Chat chat = accountInstance.getMessagesController().getChat(Long.valueOf(j11));
+                accountInstance.getMessagesController().getInputPeer(j10);
+                org.telegram.ui.Components.voip.d2.l(chat, null, false, Boolean.valueOf((groupCall == null || !groupCall.call.rtmp_stream) ? true : true), this.f38509b.f38917g, this.e, accountInstance);
+                return;
+        }
     }
 }

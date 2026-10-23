@@ -1,68 +1,45 @@
 package org.telegram.ui.Components;
 
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-public final class tp implements org.telegram.ui.ActionBar.i6 {
-    public boolean f30644a = false;
-    public final wp f30645b;
+import android.widget.Toast;
+import java.util.List;
+import org.telegram.messenger.ChatThemeController;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.tgnet.ResultCallback;
+import org.telegram.tgnet.TLRPC;
+public final class tp implements ResultCallback {
+    public final ChatThemeController f30883a;
+    public final wp f30884b;
 
-    public tp(wp wpVar) {
-        this.f30645b = wpVar;
+    public tp(wp wpVar, ChatThemeController chatThemeController) {
+        this.f30884b = wpVar;
+        this.f30883a = chatThemeController;
     }
 
     @Override
-    public final void a(float f7) {
-        ArrayList arrayList;
-        wp wpVar = this.f30645b;
-        up upVar = wpVar.h;
-        if (f7 == 0.0f && !this.f30644a) {
-            if (upVar != null && (arrayList = upVar.d) != null) {
-                int size = arrayList.size();
-                int i10 = 0;
-                while (i10 < size) {
-                    Object obj = arrayList.get(i10);
-                    i10++;
-                    ((vp) obj).f31856c = wpVar.N ? 1 : 0;
-                }
-            }
-            if (!wpVar.P) {
-                for (int i11 = 0; i11 < upVar.h(); i11++) {
-                    ((vp) upVar.d.get(i11)).getClass();
-                }
-            }
-            this.f30644a = true;
+    public final void onComplete(Object obj) {
+        int i10;
+        int i11;
+        Void r62 = (Void) obj;
+        ChatThemeController chatThemeController = this.f30883a;
+        if (chatThemeController.isGiftThemesFullyLoaded()) {
+            i10 = 2;
+        } else {
+            i10 = 0;
         }
-        vj0 vj0Var = wpVar.F;
-        int i12 = org.telegram.ui.ActionBar.h6.Oh;
-        vj0Var.setColorFilter(new PorterDuffColorFilter(wpVar.getThemedColor(i12), PorterDuff.Mode.MULTIPLY));
-        wpVar.setOverlayNavBarColor(wpVar.getThemedColor(org.telegram.ui.ActionBar.h6.f20936a7));
-        if (wpVar.P) {
-            for (int i13 = 0; i13 < upVar.h(); i13++) {
-                ((vp) upVar.d.get(i13)).getClass();
-            }
-        }
-        if (f7 == 1.0f && this.f30644a) {
-            wpVar.P = false;
-            this.f30644a = false;
-        }
-        wpVar.E();
-        ah.v vVar = wpVar.Z;
-        if (vVar != null) {
-            int dp = AndroidUtilities.dp(0.0f);
-            int themedColor = wpVar.getThemedColor(org.telegram.ui.ActionBar.h6.f20994d6);
-            int o10 = i0.a.o(wpVar.getThemedColor(i12), 76);
-            vVar.setBackground(org.telegram.ui.ActionBar.h6.j0(dp, dp, dp, dp, themedColor, o10, o10));
-        }
-        q6 q6Var = wpVar.f32208a0;
-        if (q6Var != null) {
-            q6Var.setTextColor(wpVar.getThemedColor(i12));
-        }
-        wpVar.setBackgroundColor(wpVar.getThemedColor(org.telegram.ui.ActionBar.h6.f21065h5));
+        List<org.telegram.ui.ActionBar.f4> emojiThemes = chatThemeController.getEmojiThemes(i10 | 5);
+        wp wpVar = this.f30884b;
+        i11 = ((org.telegram.ui.ActionBar.h3) wpVar).currentAccount;
+        NotificationCenter.getInstance(i11).doOnIdle(new ee(22, this, emojiThemes));
+        wpVar.f32283a0 = false;
     }
 
     @Override
-    public final void b() {
+    public final void onError(Throwable th2) {
+        org.telegram.tgnet.k.a(this, th2);
+    }
+
+    @Override
+    public final void onError(TLRPC.TL_error tL_error) {
+        Toast.makeText(this.f30884b.getContext(), tL_error.text, 0).show();
     }
 }

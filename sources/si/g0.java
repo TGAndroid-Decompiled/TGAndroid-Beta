@@ -3,92 +3,92 @@ package si;
 import java.io.File;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.VideoEditedInfo;
-import org.telegram.ui.Components.a11;
-import org.telegram.ui.Components.k60;
+import org.telegram.ui.Components.b11;
+import org.telegram.ui.Components.c11;
+import org.telegram.ui.Components.d11;
 import org.telegram.ui.Components.l60;
-import org.telegram.ui.Components.y01;
-import org.telegram.ui.Components.z01;
+import org.telegram.ui.Components.m60;
 public final class g0 implements Runnable {
-    public final int f46607a = 1;
-    public final s0 f46608b;
-    public final o0 f46609c;
+    public final int f47039a = 1;
+    public final u0 f47040b;
+    public final q0 f47041c;
     public final long d;
     public final File e;
-    public final boolean f46610f;
+    public final boolean f47042f;
 
-    public g0(s0 s0Var, o0 o0Var, long j10, File file, boolean z10) {
-        this.f46608b = s0Var;
-        this.f46609c = o0Var;
+    public g0(u0 u0Var, q0 q0Var, long j10, File file, boolean z10) {
+        this.f47040b = u0Var;
+        this.f47041c = q0Var;
         this.d = j10;
         this.e = file;
-        this.f46610f = z10;
+        this.f47042f = z10;
     }
 
     private final void a() {
-        s0 s0Var = this.f46608b;
-        o0 o0Var = this.f46609c;
+        u0 u0Var = this.f47040b;
+        q0 q0Var = this.f47041c;
         File file = this.e;
         long j10 = this.d;
-        boolean z10 = this.f46610f;
-        synchronized (s0Var.f46770g) {
-            if (!s0Var.D && !o0Var.d && !o0Var.e) {
-                o0Var.e = true;
-                ((a11) s0Var.e).b(o0Var.f46748a, file.length(), file);
-                s0Var.f46771i.post(new g0(s0Var, o0Var, j10, file, z10));
+        boolean z10 = this.f47042f;
+        synchronized (u0Var.f47253g) {
+            if (!u0Var.D && !q0Var.d && !q0Var.e) {
+                q0Var.e = true;
+                ((d11) u0Var.e).b(q0Var.f47189a, file.length(), file);
+                u0Var.f47254i.post(new g0(u0Var, q0Var, j10, file, z10));
             }
         }
     }
 
     @Override
     public final void run() {
-        z01 z01Var;
-        z01 z01Var2;
-        switch (this.f46607a) {
+        c11 c11Var;
+        c11 c11Var2;
+        switch (this.f47039a) {
             case 0:
                 a();
                 return;
             default:
-                s0 s0Var = this.f46608b;
-                o0 o0Var = this.f46609c;
+                u0 u0Var = this.f47040b;
+                q0 q0Var = this.f47041c;
                 long j10 = this.d;
                 File file = this.e;
-                boolean z10 = this.f46610f;
-                int i10 = s0Var.W;
+                boolean z10 = this.f47042f;
+                int i10 = u0Var.W;
                 if (i10 != 10 && i10 != 9) {
-                    s0Var.v(8);
-                    s0Var.f46775m.b("output completed: generation=" + o0Var.f46748a + ", durationMs=" + j10 + ", size=" + file.length() + ", hasAudio=" + z10);
-                    s0Var.m("completed");
-                    l2.f fVar = s0Var.d;
-                    long j11 = o0Var.f46748a;
-                    l60 l60Var = (l60) fVar.f15843b;
-                    k60 k60Var = l60Var.V;
-                    if (k60Var != null) {
-                        l60Var.V = null;
-                        l60Var.f28044j0 = true;
-                        a11 a11Var = l60Var.T;
-                        if (a11Var == null) {
-                            z01Var2 = null;
+                    u0Var.v(8);
+                    u0Var.f47258m.b("output completed: generation=" + q0Var.f47189a + ", durationMs=" + j10 + ", size=" + file.length() + ", hasAudio=" + z10);
+                    u0Var.m("completed");
+                    l2.f fVar = u0Var.d;
+                    long j11 = q0Var.f47189a;
+                    m60 m60Var = (m60) fVar.f15906b;
+                    l60 l60Var = m60Var.V;
+                    if (l60Var != null) {
+                        m60Var.V = null;
+                        m60Var.f28531j0 = true;
+                        d11 d11Var = m60Var.T;
+                        if (d11Var == null) {
+                            c11Var2 = null;
                         } else {
-                            synchronized (a11Var) {
-                                y01 y01Var = (y01) a11Var.f24465c.get(Long.valueOf(j11));
-                                if (y01Var != null && !y01Var.e) {
-                                    z01Var = new z01(Math.max(y01Var.f32538c, file.length()), y01Var.f32539f, y01Var.f32540g, y01Var.h, y01Var.f32541i);
+                            synchronized (d11Var) {
+                                b11 b11Var = (b11) d11Var.f25485c.get(Long.valueOf(j11));
+                                if (b11Var != null && !b11Var.e) {
+                                    c11Var = new c11(Math.max(b11Var.f24928c, file.length()), b11Var.f24929f, b11Var.f24930g, b11Var.h, b11Var.f24931i);
                                 }
-                                z01Var = new z01(file.length(), null, null, null, null);
+                                c11Var = new c11(file.length(), null, null, null, null);
                             }
-                            z01Var2 = z01Var;
+                            c11Var2 = c11Var;
                         }
-                        VideoEditedInfo r10 = l60Var.r(file, j10, z01Var2);
+                        VideoEditedInfo r10 = m60Var.r(file, j10, c11Var2);
                         r10.muted = !z10;
                         MediaController.PhotoEntry photoEntry = new MediaController.PhotoEntry(0, 0, 0L, file.getAbsolutePath(), 0, true, 0, 0, 0L);
-                        photoEntry.ttl = k60Var.f27770c;
-                        photoEntry.effectId = k60Var.d;
-                        l60Var.f28039f.s(photoEntry, r10, k60Var.f27768a, k60Var.f27769b, 0, false, k60Var.e);
-                        a11 a11Var2 = l60Var.T;
-                        if (a11Var2 != null) {
-                            a11Var2.d(false);
+                        photoEntry.ttl = l60Var.f28233c;
+                        photoEntry.effectId = l60Var.d;
+                        m60Var.f28526f.s(photoEntry, r10, l60Var.f28231a, l60Var.f28232b, 0, false, l60Var.e);
+                        d11 d11Var2 = m60Var.T;
+                        if (d11Var2 != null) {
+                            d11Var2.d(false);
                         }
-                        l60Var.T = null;
+                        m60Var.T = null;
                         MediaController.getInstance().requestRecordAudioFocus(false);
                         return;
                     }
@@ -98,11 +98,11 @@ public final class g0 implements Runnable {
         }
     }
 
-    public g0(s0 s0Var, o0 o0Var, File file, long j10, boolean z10) {
-        this.f46608b = s0Var;
-        this.f46609c = o0Var;
+    public g0(u0 u0Var, q0 q0Var, File file, long j10, boolean z10) {
+        this.f47040b = u0Var;
+        this.f47041c = q0Var;
         this.e = file;
         this.d = j10;
-        this.f46610f = z10;
+        this.f47042f = z10;
     }
 }

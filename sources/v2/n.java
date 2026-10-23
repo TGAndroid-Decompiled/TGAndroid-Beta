@@ -1,9 +1,9 @@
 package v2;
 
 import b2.w;
-import c3.j0;
+import c3.l0;
 import g2.b0;
-import u2.d1;
+import u2.e1;
 import v7.k7;
 public final class n extends a {
     public final int E;
@@ -19,28 +19,28 @@ public final class n extends a {
 
     @Override
     public final void a() {
-        d1[] d1VarArr;
-        b0 b0Var = this.f47900r;
-        n2.e eVar = this.f47877x;
+        e1[] e1VarArr;
+        b0 b0Var = this.f48338r;
+        n2.e eVar = this.f48315x;
         eVar.getClass();
-        for (d1 d1Var : (d1[]) eVar.f17040c) {
-            if (d1Var.H != 0) {
-                d1Var.H = 0L;
-                d1Var.B = true;
+        for (e1 e1Var : (e1[]) eVar.f17103c) {
+            if (e1Var.H != 0) {
+                e1Var.H = 0L;
+                e1Var.B = true;
             }
         }
-        j0 r02 = eVar.r0(this.E);
-        r02.b(this.F);
+        l0 V = eVar.V(this.E);
+        V.b(this.F);
         try {
-            long open = b0Var.open(this.f47896b.b(this.G));
+            long open = b0Var.open(this.f48334b.b(this.G));
             if (open != -1) {
                 open += this.G;
             }
-            c3.l lVar = new c3.l(this.f47900r, this.G, open);
-            for (int i10 = 0; i10 != -1; i10 = r02.a(lVar, Integer.MAX_VALUE, true)) {
+            c3.l lVar = new c3.l(this.f48338r, this.G, open);
+            for (int i10 = 0; i10 != -1; i10 = V.a(lVar, Integer.MAX_VALUE, true)) {
                 this.G += i10;
             }
-            r02.c(this.h, 1, (int) this.G, 0, null);
+            V.c(this.h, 1, (int) this.G, 0, null);
             k7.a(b0Var);
             this.H = true;
         } catch (Throwable th2) {

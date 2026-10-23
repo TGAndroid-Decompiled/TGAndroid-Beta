@@ -1,52 +1,35 @@
 package org.telegram.ui;
+public final class sf1 implements org.telegram.ui.ActionBar.z1 {
+    public final int f41403a;
+    public final bg1 f41404b;
 
-import android.widget.TextView;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class sf1 extends org.telegram.ui.ActionBar.j {
-    public final vf1 f41462a;
-
-    public sf1(vf1 vf1Var) {
-        this.f41462a = vf1Var;
+    public sf1(bg1 bg1Var, int i10) {
+        this.f41403a = i10;
+        this.f41404b = bg1Var;
     }
 
     @Override
-    public final void b(int i10) {
-        String string;
-        org.telegram.ui.ActionBar.d5 d5Var;
-        vf1 vf1Var = this.f41462a;
-        if (i10 == -1) {
-            if (vf1Var.G >= 0) {
-                d5Var = ((org.telegram.ui.ActionBar.n2) vf1Var).parentLayout;
-                if (d5Var.getFragmentStack().size() == 1) {
-                    vf1Var.I0();
-                    return;
-                }
-            }
-            vf1Var.finishFragment();
-        } else if (i10 == 1) {
-            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(vf1Var.getParentActivity());
-            TL_account.Password password = vf1Var.U;
-            if (password != null && password.has_password) {
-                string = LocaleController.getString(R.string.CancelEmailQuestion);
-            } else {
-                string = LocaleController.getString(R.string.CancelPasswordQuestion);
-            }
-            String string2 = LocaleController.getString(R.string.CancelEmailQuestionTitle);
-            String string3 = LocaleController.getString(R.string.Abort);
-            org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20609a;
-            b2Var.T = string;
-            b2Var.R = string2;
-            alertDialog$Builder.k(string3, new pp0(this, 23));
-            alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-            org.telegram.ui.ActionBar.b2 b2Var2 = alertDialog$Builder.f20609a;
-            vf1Var.showDialog(b2Var2);
-            TextView textView = (TextView) b2Var2.d(-1);
-            if (textView != null) {
-                textView.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21232q7, false));
-            }
+    public final void g(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
+        switch (this.f41403a) {
+            case 0:
+                this.f41404b.finishFragment();
+                return;
+            case 1:
+                bg1 bg1Var = this.f41404b;
+                bg1Var.B0();
+                bg1Var.finishFragment();
+                return;
+            case 2:
+                bg1 bg1Var2 = this.f41404b;
+                bg1Var2.R = "";
+                bg1Var2.E0(false);
+                return;
+            case 3:
+                bg1.a0(this.f41404b);
+                return;
+            default:
+                bg1.X(this.f41404b);
+                return;
         }
     }
 }

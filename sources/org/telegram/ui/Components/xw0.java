@@ -1,103 +1,58 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.text.Layout;
-import android.text.Spanned;
-import android.text.TextPaint;
-import android.text.style.CharacterStyle;
+import android.content.Context;
+import android.graphics.PointF;
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-public final class xw0 extends CharacterStyle {
-    public final Paint f32494a;
-    public final Path f32495b;
+public class xw0 extends s4.c0 {
+    public final bs f32723r;
+    public int f32724s;
+    public float f32725t;
 
-    public xw0() {
-        Paint paint = new Paint(1);
-        this.f32494a = paint;
-        this.f32495b = new Path();
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        paint.setStrokeJoin(Paint.Join.ROUND);
-    }
-
-    public static void a(Canvas canvas, Layout layout) {
-        CharSequence text;
-        int lineStart;
-        int lineEnd;
-        Layout layout2 = layout;
-        if (layout2 != null && (text = layout2.getText()) != null && (text instanceof Spanned)) {
-            Spanned spanned = (Spanned) text;
-            xw0[] xw0VarArr = (xw0[]) spanned.getSpans(0, spanned.length(), xw0.class);
-            if (xw0VarArr != null && xw0VarArr.length != 0) {
-                int i10 = 0;
-                while (i10 < xw0VarArr.length) {
-                    xw0 xw0Var = xw0VarArr[i10];
-                    int spanStart = spanned.getSpanStart(xw0Var);
-                    int spanEnd = spanned.getSpanEnd(xw0Var);
-                    int lineForOffset = layout2.getLineForOffset(spanStart);
-                    int lineForOffset2 = layout2.getLineForOffset(spanEnd);
-                    int i11 = lineForOffset;
-                    while (i11 <= lineForOffset2) {
-                        float lineBottom = layout2.getLineBottom(i11) - AndroidUtilities.dp(1.0f);
-                        if (i11 == lineForOffset) {
-                            lineStart = spanStart;
-                        } else {
-                            lineStart = layout2.getLineStart(i11);
-                        }
-                        float primaryHorizontal = layout2.getPrimaryHorizontal(lineStart);
-                        if (i11 == lineForOffset2) {
-                            lineEnd = spanEnd;
-                        } else {
-                            lineEnd = layout2.getLineEnd(i11) - 1;
-                        }
-                        float primaryHorizontal2 = layout2.getPrimaryHorizontal(lineEnd);
-                        xw0Var.getClass();
-                        float dp = AndroidUtilities.dp(1.33f);
-                        float dp2 = AndroidUtilities.dp(10.0f);
-                        float dp3 = AndroidUtilities.dp(2.0f);
-                        Paint paint = xw0Var.f32494a;
-                        Spanned spanned2 = spanned;
-                        xw0[] xw0VarArr2 = xw0VarArr;
-                        int i12 = i10;
-                        paint.setColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.Oh, false));
-                        paint.setStrokeWidth(dp);
-                        Path path = xw0Var.f32495b;
-                        path.rewind();
-                        path.moveTo(primaryHorizontal, lineBottom);
-                        float f7 = primaryHorizontal;
-                        while (f7 < primaryHorizontal2) {
-                            float f10 = f7;
-                            float f11 = dp2;
-                            path.quadTo((dp2 / 4.0f) + f7, lineBottom - dp3, (dp2 / 2.0f) + f10, lineBottom);
-                            float f12 = f10 + f11;
-                            path.quadTo(((f11 * 3.0f) / 4.0f) + f10, lineBottom + dp3, f12, lineBottom);
-                            f7 = f12;
-                            dp2 = f11;
-                        }
-                        if (f7 > primaryHorizontal2) {
-                            canvas.save();
-                            float f13 = dp / 2.0f;
-                            canvas.clipRect(primaryHorizontal - f13, (lineBottom - dp3) - f13, primaryHorizontal2 + f13, lineBottom + dp3 + f13);
-                            canvas.drawPath(path, paint);
-                            canvas.restore();
-                        } else {
-                            canvas.drawPath(path, paint);
-                        }
-                        i11++;
-                        layout2 = layout;
-                        spanned = spanned2;
-                        xw0VarArr = xw0VarArr2;
-                        i10 = i12;
-                    }
-                    i10++;
-                    layout2 = layout;
-                }
-            }
-        }
+    public xw0(Context context) {
+        super(context);
+        this.f32723r = bs.f25133f;
+        this.f32725t = 1.0f;
     }
 
     @Override
-    public final void updateDrawState(TextPaint textPaint) {
+    public final void g(View view, s4.w0 w0Var) {
+        int j10 = j(o(), view);
+        int k10 = k(p(), view);
+        int m10 = m((int) Math.sqrt((k10 * k10) + (j10 * j10)));
+        if (m10 > 0) {
+            w0Var.b(-j10, -k10, m10, this.f32723r);
+        }
+        AndroidUtilities.runOnUIThread(new kr0(this, 9), Math.max(0, m10));
+    }
+
+    @Override
+    public final int k(int i10, View view) {
+        return super.k(i10, view) - this.f32724s;
+    }
+
+    @Override
+    public final int m(int i10) {
+        return Math.round(Math.min(super.m(i10), 500) * this.f32725t);
+    }
+
+    @Override
+    public final int n(int i10) {
+        return Math.round(Math.min(super.n(i10), 150) * this.f32725t);
+    }
+
+    @Override
+    public final void q(s4.w0 w0Var) {
+        PointF a2 = a(this.f46484a);
+        if (a2 != null && (a2.x != 0.0f || a2.y != 0.0f)) {
+            s4.x0.b(a2);
+            this.f46366k = a2;
+            this.f46370o = (int) (a2.x * 10000.0f);
+            this.f46371p = (int) (a2.y * 10000.0f);
+            w0Var.b((int) (this.f46370o * 1.2f), (int) (this.f46371p * 1.2f), (int) (n(10000) * 1.2f), this.f32723r);
+            return;
+        }
+        w0Var.d = this.f46484a;
+        h();
     }
 }

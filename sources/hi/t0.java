@@ -14,8 +14,8 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_communities;
-import org.telegram.ui.ActionBar.b2;
-import org.telegram.ui.ActionBar.n2;
+import org.telegram.ui.ActionBar.c2;
+import org.telegram.ui.ActionBar.o2;
 import org.telegram.ui.Components.xc;
 public abstract class t0 {
     public static SpannableStringBuilder a(MessageObject messageObject, String str, String str2, boolean z10, boolean z11) {
@@ -130,7 +130,7 @@ public abstract class t0 {
                 TL_communities.CommunityPeer communityPeer2 = communityPeer;
                 if (DialogObject.getPeerDialogId(communityPeer2.peer) == j10) {
                     if (user != null) {
-                        dialog = MessagesController.getInstance(i10).getDialog(user.f20427id);
+                        dialog = MessagesController.getInstance(i10).getDialog(user.f20490id);
                     }
                     return c(communityPeer2, chat, user, dialog);
                 }
@@ -164,24 +164,24 @@ public abstract class t0 {
         }
     }
 
-    public static void d(org.telegram.ui.ActionBar.n2 r8, long r9, int r11) {
-        throw new UnsupportedOperationException("Method not decompiled: hi.t0.d(org.telegram.ui.ActionBar.n2, long, int):void");
+    public static void d(org.telegram.ui.ActionBar.o2 r8, long r9, int r11) {
+        throw new UnsupportedOperationException("Method not decompiled: hi.t0.d(org.telegram.ui.ActionBar.o2, long, int):void");
     }
 
-    public static void e(final b2[] b2VarArr, n2 n2Var, final int i10, TLRPC.Chat chat) {
-        if (b2VarArr[0] != null) {
+    public static void e(final c2[] c2VarArr, o2 o2Var, final int i10, TLRPC.Chat chat) {
+        if (c2VarArr[0] != null) {
             return;
         }
-        final int fetchChatsToAddToCommunity = MessagesController.getInstance(i10).fetchChatsToAddToCommunity(new u0(b2VarArr, n2Var, i10, chat));
-        ConnectionsManager.getInstance(i10).bindRequestToGuid(fetchChatsToAddToCommunity, n2Var.getClassGuid());
-        b2 b2Var = new b2(n2Var.getContext(), 3, null);
-        b2VarArr[0] = b2Var;
-        b2Var.r(500L);
-        b2VarArr[0].setOnCancelListener(new DialogInterface.OnCancelListener() {
+        final int fetchChatsToAddToCommunity = MessagesController.getInstance(i10).fetchChatsToAddToCommunity(new u0(c2VarArr, o2Var, i10, chat));
+        ConnectionsManager.getInstance(i10).bindRequestToGuid(fetchChatsToAddToCommunity, o2Var.getClassGuid());
+        c2 c2Var = new c2(o2Var.getContext(), 3, null);
+        c2VarArr[0] = c2Var;
+        c2Var.r(500L);
+        c2VarArr[0].setOnCancelListener(new DialogInterface.OnCancelListener() {
             @Override
             public final void onCancel(DialogInterface dialogInterface) {
                 ConnectionsManager.getInstance(i10).cancelRequest(fetchChatsToAddToCommunity, true);
-                b2VarArr[0] = null;
+                c2VarArr[0] = null;
             }
         });
     }

@@ -4,18 +4,18 @@ import android.content.Intent;
 import android.net.Uri;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLog;
-import org.telegram.ui.ActionBar.a2;
-import org.telegram.ui.ActionBar.b2;
-public final class c0 implements a2 {
-    public final n0 f51707a;
+import org.telegram.ui.ActionBar.c2;
+import org.telegram.ui.ActionBar.z1;
+public final class c0 implements z1 {
+    public final n0 f52169a;
 
     public c0(n0 n0Var) {
-        this.f51707a = n0Var;
+        this.f52169a = n0Var;
     }
 
     @Override
-    public void g(b2 b2Var, int i10) {
-        n0 n0Var = this.f51707a;
+    public void g(c2 c2Var, int i10) {
+        n0 n0Var = this.f52169a;
         n0Var.getClass();
         try {
             Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");

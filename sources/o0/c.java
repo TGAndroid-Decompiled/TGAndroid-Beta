@@ -18,8 +18,8 @@ import java.util.List;
 import ki.t1;
 import w7.d8;
 public abstract class c {
-    public static final a0.j f17513a = new a0.j(2);
-    public static final a4.d f17514b = new a4.d(28);
+    public static final a0.j f17576a = new a0.j(2);
+    public static final a4.d f17577b = new a4.d(28);
 
     public static j4.f a(Context context, List list) {
         d8.a("FontProvider.getFontFamilyResult");
@@ -40,20 +40,20 @@ public abstract class c {
     }
 
     public static ProviderInfo b(PackageManager packageManager, d dVar, Resources resources) {
-        a4.d dVar2 = f17514b;
-        a0.j jVar = f17513a;
+        a4.d dVar2 = f17577b;
+        a0.j jVar = f17576a;
         d8.a("FontProvider.getProvider");
         try {
             List list = dVar.d;
-            String str = dVar.f17515a;
-            String str2 = dVar.f17516b;
+            String str = dVar.f17578a;
+            String str2 = dVar.f17579b;
             if (list == null) {
                 list = h0.b.h(resources, 0);
             }
             ?? obj = new Object();
-            obj.f17510a = str;
-            obj.f17511b = str2;
-            obj.f17512c = list;
+            obj.f17573a = str;
+            obj.f17574b = str2;
+            obj.f17575c = list;
             ProviderInfo providerInfo = (ProviderInfo) jVar.a(obj);
             if (providerInfo != null) {
                 return providerInfo;
@@ -110,39 +110,39 @@ public abstract class c {
             }
             String[] strArr = {"_id", "file_id", "font_ttc_index", "font_variation_settings", "font_weight", "font_italic", "result_code"};
             d8.a("ContentQueryWrapper.query");
-            Cursor u10 = bVar.u(build, strArr, new String[]{dVar.f17517c});
+            Cursor r10 = bVar.r(build, strArr, new String[]{dVar.f17580c});
             Trace.endSection();
-            if (u10 != null && u10.getCount() > 0) {
-                int columnIndex = u10.getColumnIndex("result_code");
+            if (r10 != null && r10.getCount() > 0) {
+                int columnIndex = r10.getColumnIndex("result_code");
                 ArrayList arrayList2 = new ArrayList();
-                int columnIndex2 = u10.getColumnIndex("_id");
-                int columnIndex3 = u10.getColumnIndex("file_id");
-                int columnIndex4 = u10.getColumnIndex("font_ttc_index");
-                int columnIndex5 = u10.getColumnIndex("font_weight");
-                int columnIndex6 = u10.getColumnIndex("font_italic");
-                while (u10.moveToNext()) {
+                int columnIndex2 = r10.getColumnIndex("_id");
+                int columnIndex3 = r10.getColumnIndex("file_id");
+                int columnIndex4 = r10.getColumnIndex("font_ttc_index");
+                int columnIndex5 = r10.getColumnIndex("font_weight");
+                int columnIndex6 = r10.getColumnIndex("font_italic");
+                while (r10.moveToNext()) {
                     if (columnIndex != -1) {
-                        i10 = u10.getInt(columnIndex);
+                        i10 = r10.getInt(columnIndex);
                     } else {
                         i10 = 0;
                     }
                     if (columnIndex4 != -1) {
-                        i11 = u10.getInt(columnIndex4);
+                        i11 = r10.getInt(columnIndex4);
                     } else {
                         i11 = 0;
                     }
                     if (columnIndex3 == -1) {
-                        withAppendedId = ContentUris.withAppendedId(build, u10.getLong(columnIndex2));
+                        withAppendedId = ContentUris.withAppendedId(build, r10.getLong(columnIndex2));
                     } else {
-                        withAppendedId = ContentUris.withAppendedId(build2, u10.getLong(columnIndex3));
+                        withAppendedId = ContentUris.withAppendedId(build2, r10.getLong(columnIndex3));
                     }
                     Uri uri = withAppendedId;
                     if (columnIndex5 != -1) {
-                        i12 = u10.getInt(columnIndex5);
+                        i12 = r10.getInt(columnIndex5);
                     } else {
                         i12 = 400;
                     }
-                    if (columnIndex6 != -1 && u10.getInt(columnIndex6) == 1) {
+                    if (columnIndex6 != -1 && r10.getInt(columnIndex6) == 1) {
                         z10 = true;
                     } else {
                         z10 = false;
@@ -151,8 +151,8 @@ public abstract class c {
                 }
                 arrayList = arrayList2;
             }
-            if (u10 != null) {
-                u10.close();
+            if (r10 != null) {
+                r10.close();
             }
             bVar.close();
             return (h[]) arrayList.toArray(new h[0]);

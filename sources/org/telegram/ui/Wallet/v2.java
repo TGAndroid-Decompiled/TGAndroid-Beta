@@ -1,43 +1,30 @@
 package org.telegram.ui.Wallet;
-public final class v2 implements Runnable {
-    public final int f35019a;
-    public final z2 f35020b;
 
-    public v2(z2 z2Var, int i10) {
-        this.f35019a = i10;
-        this.f35020b = z2Var;
+import android.animation.ValueAnimator;
+public final class v2 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f35317a;
+    public final y2 f35318b;
+
+    public v2(y2 y2Var, int i10) {
+        this.f35317a = i10;
+        this.f35318b = y2Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f35019a) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f35317a) {
             case 0:
-                z2 z2Var = this.f35020b;
-                if (!z2Var.S && !z2Var.R) {
-                    z2Var.a(1.0f);
-                    return;
-                }
+                y2 y2Var = this.f35318b;
+                y2Var.getClass();
+                y2Var.I = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                y2Var.e();
                 return;
             default:
-                z2 z2Var2 = this.f35020b;
-                if (!z2Var2.S && !z2Var2.R) {
-                    hh.d.c(z2Var2.E, z2Var2.h);
-                    z2Var2.F.d();
-                    x5 x5Var = z2Var2.f35178r;
-                    v2 v2Var = new v2(z2Var2, 0);
-                    s5 s5Var = x5Var.f35119y;
-                    if (s5Var != null) {
-                        if (s5Var.f34847b != null) {
-                            v2Var.run();
-                            return;
-                        } else {
-                            s5Var.d = v2Var;
-                            return;
-                        }
-                    }
-                    v2Var.run();
-                    return;
-                }
+                y2 y2Var2 = this.f35318b;
+                y2Var2.getClass();
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                y2Var2.Q = floatValue;
+                y2Var2.f35436r.setUseGyroscope(floatValue);
                 return;
         }
     }

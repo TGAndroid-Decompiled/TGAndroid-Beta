@@ -1,14 +1,11 @@
 package qg;
 public final class k1 {
-    public double f44556a;
-    public double f44557b;
+    public double f44971a;
+    public double f44972b;
+    public double f44973c;
+    public double d;
 
-    public k1(double d, double d10) {
-        this.f44556a = d;
-        this.f44557b = d10;
-    }
-
-    public final double a(double d, double d10) {
-        return Math.sqrt(Math.pow(d10 - this.f44557b, 2.0d) + Math.pow(d - this.f44556a, 2.0d));
+    public final String toString() {
+        return "RectD{left=" + this.f44971a + ", top=" + this.f44972b + ", right=" + this.f44973c + ", bottom=" + this.d + '}';
     }
 }

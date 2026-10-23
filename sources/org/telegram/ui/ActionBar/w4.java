@@ -1,8 +1,11 @@
 package org.telegram.ui.ActionBar;
-public interface w4 {
-    void addStyle(int i10, int i11, int i12);
 
-    int getCurrentStyle(int i10, int i11);
+import android.view.animation.Interpolator;
+public final class w4 implements Interpolator {
+    public final float f21939a = 1.0f / ((float) (1.0d - Math.pow(100, -1.0f)));
 
-    void removeStyle(int i10, int i11, int i12);
+    @Override
+    public final float getInterpolation(float f7) {
+        return 1.0f - (((float) (1.0d - Math.pow(100, -(1.0f - f7)))) * this.f21939a);
+    }
 }

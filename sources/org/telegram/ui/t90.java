@@ -1,58 +1,50 @@
 package org.telegram.ui;
 
-import android.content.Intent;
+import android.graphics.Point;
+import android.os.SystemClock;
+import android.view.View;
+import android.view.ViewTreeObserver;
 import java.util.regex.Pattern;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.NotificationsController;
-import org.telegram.messenger.SharedConfig;
-import org.telegram.messenger.UserConfig;
-import org.telegram.ui.ActionBar.ActionBarLayout;
-public final class t90 implements org.telegram.ui.Components.ke0, org.telegram.ui.ActionBar.a2 {
-    public final LaunchActivity f41627a;
+import org.telegram.messenger.BuildVars;
+public final class t90 implements ViewTreeObserver.OnGlobalLayoutListener {
+    public final int f41928a;
+    public final Object f41929b;
 
-    public t90(LaunchActivity launchActivity) {
-        this.f41627a = launchActivity;
+    public t90(Object obj, int i10) {
+        this.f41928a = i10;
+        this.f41929b = obj;
     }
 
     @Override
-    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        Pattern pattern = LaunchActivity.C1;
-        MessagesController.getInstance(this.f41627a.O).performLogout(2);
-    }
-
-    @Override
-    public void j(org.telegram.ui.Components.me0 me0Var) {
-        Pattern pattern = LaunchActivity.C1;
-        SharedConfig.isWaitingForPasscodeEnter = false;
-        LaunchActivity launchActivity = this.f41627a;
-        Intent intent = launchActivity.L0;
-        if (intent != null) {
-            launchActivity.X(intent, launchActivity.M0, launchActivity.N0, true, null, false, true);
-            launchActivity.L0 = null;
-        }
-        launchActivity.f33190q0.getView().setVisibility(0);
-        launchActivity.f33190q0.U(true, true);
-        ActionBarLayout actionBarLayout = launchActivity.f33190q0;
-        org.telegram.ui.ActionBar.n2 lastFragment = actionBarLayout.getLastFragment();
-        if (lastFragment != null) {
-            lastFragment.setTitleOverlayText(actionBarLayout.G0, actionBarLayout.H0, actionBarLayout.I0);
-        }
-        if (AndroidUtilities.isTablet()) {
-            launchActivity.f33192r0.U(true, true);
-            launchActivity.f33194s0.U(true, true);
-            if (launchActivity.f33192r0.getView().getVisibility() == 4) {
-                launchActivity.f33192r0.getView().setVisibility(0);
-            }
-            launchActivity.f33194s0.getView().setVisibility(0);
-        }
-        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.passcodeDismissed, me0Var);
-        try {
-            NotificationsController.getInstance(UserConfig.selectedAccount).showNotifications();
-        } catch (Exception e) {
-            FileLog.e(e);
+    public final void onGlobalLayout() {
+        int i10 = this.f41928a;
+        Object obj = this.f41929b;
+        switch (i10) {
+            case 0:
+                Pattern pattern = LaunchActivity.E1;
+                int measuredHeight = ((View) obj).getMeasuredHeight();
+                org.telegram.messenger.v0.n(AndroidUtilities.displaySize.y, i2.o1.n(measuredHeight, "height = ", " displayHeight = "));
+                int i11 = (measuredHeight - AndroidUtilities.navigationBarHeight) - AndroidUtilities.statusBarHeight;
+                if (i11 > AndroidUtilities.dp(100.0f) && i11 < AndroidUtilities.displaySize.y) {
+                    int dp = AndroidUtilities.dp(100.0f) + i11;
+                    Point point = AndroidUtilities.displaySize;
+                    if (dp > point.y) {
+                        point.y = i11;
+                        if (BuildVars.LOGS_ENABLED) {
+                            org.telegram.messenger.v0.n(AndroidUtilities.displaySize.y, new StringBuilder("fix display size y to "));
+                            return;
+                        }
+                        return;
+                    }
+                    return;
+                }
+                return;
+            default:
+                qc1 qc1Var = (qc1) obj;
+                qc1Var.Q = SystemClock.elapsedRealtime() + 1500;
+                qc1Var.f40749l0.invalidate();
+                return;
         }
     }
 }

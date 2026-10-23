@@ -14,33 +14,33 @@ import m.w0;
 import m.x0;
 import v7.u6;
 public class j0 {
-    public int f8238a;
-    public int f8239b;
-    public Object f8240c;
+    public int f8245a;
+    public int f8246b;
+    public Object f8247c;
     public Object d;
 
     public j0(int[] iArr) {
-        SecureRandom secureRandom = tc.k.f46956a;
+        SecureRandom secureRandom = tc.k.f47391a;
         int i10 = Integer.MAX_VALUE;
         for (int i11 : iArr) {
             if (i11 < i10) {
                 i10 = i11;
             }
         }
-        this.f8238a = Math.max(i10, 1);
+        this.f8245a = Math.max(i10, 1);
         int i12 = Integer.MIN_VALUE;
         for (int i13 : iArr) {
             if (i12 < i13) {
                 i12 = i13;
             }
         }
-        this.f8239b = i12;
+        this.f8246b = i12;
         int i14 = i12 + 1;
         int[] iArr2 = new int[i14];
         for (int i15 : iArr) {
             iArr2[i15] = iArr2[i15] + 1;
         }
-        int i16 = this.f8239b + 1;
+        int i16 = this.f8246b + 1;
         int[] iArr3 = new int[i16];
         for (int i17 = 0; i17 < i16; i17++) {
             iArr3[i17] = -1;
@@ -56,7 +56,7 @@ public class j0 {
             iArr3[i20] = i18;
         }
         Object[] objArr = {iArr4, Integer.valueOf(i18)};
-        this.f8240c = iArr3;
+        this.f8247c = iArr3;
         int[] iArr5 = (int[]) objArr[0];
         int[] iArr6 = new int[((Integer) objArr[1]).intValue() + 1];
         for (int i21 = 0; i21 < iArr.length; i21++) {
@@ -71,20 +71,20 @@ public class j0 {
     }
 
     public synchronized void a(Object obj, long j10) {
-        int i10 = this.f8239b;
+        int i10 = this.f8246b;
         if (i10 > 0) {
-            if (j10 <= ((long[]) this.f8240c)[((this.f8238a + i10) - 1) % ((Object[]) this.d).length]) {
+            if (j10 <= ((long[]) this.f8247c)[((this.f8245a + i10) - 1) % ((Object[]) this.d).length]) {
                 c();
             }
         }
         d();
-        int i11 = this.f8238a;
-        int i12 = this.f8239b;
+        int i11 = this.f8245a;
+        int i12 = this.f8246b;
         Object[] objArr = (Object[]) this.d;
         int length = (i11 + i12) % objArr.length;
-        ((long[]) this.f8240c)[length] = j10;
+        ((long[]) this.f8247c)[length] = j10;
         objArr[length] = obj;
-        this.f8239b = i12 + 1;
+        this.f8246b = i12 + 1;
     }
 
     public void b() {
@@ -92,38 +92,38 @@ public class j0 {
     }
 
     public synchronized void c() {
-        this.f8238a = 0;
-        this.f8239b = 0;
+        this.f8245a = 0;
+        this.f8246b = 0;
         Arrays.fill((Object[]) this.d, (Object) null);
     }
 
     public void d() {
         int length = ((Object[]) this.d).length;
-        if (this.f8239b < length) {
+        if (this.f8246b < length) {
             return;
         }
         int i10 = length * 2;
         long[] jArr = new long[i10];
         Object[] objArr = new Object[i10];
-        int i11 = this.f8238a;
+        int i11 = this.f8245a;
         int i12 = length - i11;
-        System.arraycopy((long[]) this.f8240c, i11, jArr, 0, i12);
-        System.arraycopy((Object[]) this.d, this.f8238a, objArr, 0, i12);
-        int i13 = this.f8238a;
+        System.arraycopy((long[]) this.f8247c, i11, jArr, 0, i12);
+        System.arraycopy((Object[]) this.d, this.f8245a, objArr, 0, i12);
+        int i13 = this.f8245a;
         if (i13 > 0) {
-            System.arraycopy((long[]) this.f8240c, 0, jArr, i12, i13);
-            System.arraycopy((Object[]) this.d, 0, objArr, i12, this.f8238a);
+            System.arraycopy((long[]) this.f8247c, 0, jArr, i12, i13);
+            System.arraycopy((Object[]) this.d, 0, objArr, i12, this.f8245a);
         }
-        this.f8240c = jArr;
+        this.f8247c = jArr;
         this.d = objArr;
-        this.f8238a = 0;
+        this.f8245a = 0;
     }
 
     public void e(Typeface typeface) {
         int i10;
         boolean z10;
-        if (Build.VERSION.SDK_INT >= 28 && (i10 = this.f8238a) != -1) {
-            if ((this.f8239b & 2) != 0) {
+        if (Build.VERSION.SDK_INT >= 28 && (i10 = this.f8245a) != -1) {
+            if ((this.f8246b & 2) != 0) {
                 z10 = true;
             } else {
                 z10 = false;
@@ -131,16 +131,16 @@ public class j0 {
             typeface = w0.a(typeface, i10, z10);
         }
         x0 x0Var = (x0) this.d;
-        WeakReference weakReference = (WeakReference) this.f8240c;
-        if (x0Var.f16375m) {
-            x0Var.f16374l = typeface;
+        WeakReference weakReference = (WeakReference) this.f8247c;
+        if (x0Var.f16438m) {
+            x0Var.f16437l = typeface;
             TextView textView = (TextView) weakReference.get();
             if (textView != null) {
-                WeakHashMap weakHashMap = r0.i0.f44830a;
+                WeakHashMap weakHashMap = r0.i0.f45242a;
                 if (textView.isAttachedToWindow()) {
-                    textView.post(new androidx.activity.g(textView, typeface, x0Var.f16372j, 4));
+                    textView.post(new androidx.activity.g(textView, typeface, x0Var.f16435j, 4));
                 } else {
-                    textView.setTypeface(typeface, x0Var.f16372j);
+                    textView.setTypeface(typeface, x0Var.f16435j);
                 }
             }
         }
@@ -148,7 +148,7 @@ public class j0 {
 
     public synchronized Object f() {
         Object h;
-        if (this.f8239b == 0) {
+        if (this.f8246b == 0) {
             h = null;
         } else {
             h = h();
@@ -159,7 +159,7 @@ public class j0 {
     public synchronized Object g(long j10) {
         Object obj;
         obj = null;
-        while (this.f8239b > 0 && j10 - ((long[]) this.f8240c)[this.f8238a] >= 0) {
+        while (this.f8246b > 0 && j10 - ((long[]) this.f8247c)[this.f8245a] >= 0) {
             obj = h();
         }
         return obj;
@@ -167,27 +167,27 @@ public class j0 {
 
     public Object h() {
         boolean z10;
-        if (this.f8239b > 0) {
+        if (this.f8246b > 0) {
             z10 = true;
         } else {
             z10 = false;
         }
         u6.p(z10);
         Object[] objArr = (Object[]) this.d;
-        int i10 = this.f8238a;
+        int i10 = this.f8245a;
         Object obj = objArr[i10];
         objArr[i10] = null;
-        this.f8238a = (i10 + 1) % objArr.length;
-        this.f8239b--;
+        this.f8245a = (i10 + 1) % objArr.length;
+        this.f8246b--;
         return obj;
     }
 
     public int i(c5.c0 c0Var, int[] iArr) {
-        int i10 = this.f8238a;
+        int i10 = this.f8245a;
         while (true) {
             int i11 = 1;
-            if (i10 <= this.f8239b) {
-                int i12 = ((int[]) this.f8240c)[i10];
+            if (i10 <= this.f8246b) {
+                int i12 = ((int[]) this.f8247c)[i10];
                 if (i12 >= 0) {
                     int i13 = iArr[0];
                     int i14 = i10 - 1;
@@ -213,11 +213,11 @@ public class j0 {
     }
 
     public synchronized int j() {
-        return this.f8239b;
+        return this.f8246b;
     }
 
     public j0() {
-        this.f8240c = new long[10];
+        this.f8247c = new long[10];
         this.d = new Object[10];
     }
 }

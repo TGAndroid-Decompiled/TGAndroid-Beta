@@ -7,30 +7,30 @@ public final class kx extends aw {
     public final TLRPC.StickerSet W;
     public final tz X;
 
-    public kx(tz tzVar, org.telegram.ui.ActionBar.n2 n2Var, Context context, org.telegram.ui.ActionBar.d6 d6Var, ArrayList arrayList, TLRPC.StickerSet stickerSet) {
-        super(n2Var, context, d6Var, arrayList);
+    public kx(tz tzVar, org.telegram.ui.ActionBar.o2 o2Var, Context context, org.telegram.ui.ActionBar.g6 g6Var, ArrayList arrayList, TLRPC.StickerSet stickerSet) {
+        super(o2Var, context, g6Var, arrayList);
         this.X = tzVar;
         this.W = stickerSet;
     }
 
     @Override
-    public final void Y(boolean z10) {
-        tz tzVar = this.X;
-        ArrayList arrayList = tzVar.f30766p1;
-        TLRPC.StickerSet stickerSet = this.W;
-        if (z10) {
-            if (!arrayList.contains(Long.valueOf(stickerSet.f20307id))) {
-                arrayList.add(Long.valueOf(stickerSet.f20307id));
-            }
-        } else {
-            arrayList.remove(Long.valueOf(stickerSet.f20307id));
-        }
-        tzVar.T();
+    public final void dismiss() {
+        this.X.f31030w2 = false;
+        super.dismiss();
     }
 
     @Override
-    public final void dismiss() {
-        this.X.f30787v2 = false;
-        super.dismiss();
+    public final void h0(boolean z10) {
+        tz tzVar = this.X;
+        ArrayList arrayList = tzVar.f31005p1;
+        TLRPC.StickerSet stickerSet = this.W;
+        if (z10) {
+            if (!arrayList.contains(Long.valueOf(stickerSet.f20370id))) {
+                arrayList.add(Long.valueOf(stickerSet.f20370id));
+            }
+        } else {
+            arrayList.remove(Long.valueOf(stickerSet.f20370id));
+        }
+        tzVar.T();
     }
 }

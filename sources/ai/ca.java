@@ -1,53 +1,54 @@
 package ai;
 
 import android.content.Context;
+import android.view.View;
 import java.util.ArrayList;
 import java.util.HashSet;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class ca {
-    public final org.telegram.ui.ActionBar.n2 f1091a;
-    public final long f1092b;
-    public final org.telegram.ui.Components.qc f1093c;
+    public final org.telegram.ui.ActionBar.o2 f1093a;
+    public final long f1094b;
+    public final org.telegram.ui.Components.qc f1095c;
     public final org.telegram.ui.Components.kc d;
     public final org.telegram.ui.Components.oc e;
-    public final org.telegram.ui.Components.jc f1094f;
-    public int f1095g;
+    public final ga f1096f;
+    public int f1097g;
     public long h;
-    public y8 f1096i;
-    public final ArrayList f1097j = new ArrayList();
-    public final HashSet f1098k = new HashSet();
-    public final long f1099l = System.currentTimeMillis();
-    public boolean f1100m = true;
-    public boolean f1101n;
-    public boolean f1102o;
-    public final ba f1103p;
+    public y8 f1098i;
+    public final ArrayList f1099j = new ArrayList();
+    public final HashSet f1100k = new HashSet();
+    public final long f1101l = System.currentTimeMillis();
+    public boolean f1102m = true;
+    public boolean f1103n;
+    public boolean f1104o;
+    public final ba f1105p;
 
-    public ca(org.telegram.ui.ActionBar.n2 n2Var, long j10) {
+    public ca(org.telegram.ui.ActionBar.o2 o2Var, long j10) {
         ?? r22 = new Runnable(this) {
-            public final ca f1050b;
+            public final ca f1046b;
 
             {
-                this.f1050b = this;
+                this.f1046b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        this.f1050b.a();
+                        this.f1046b.a();
                         return;
                     default:
-                        ca caVar = this.f1050b;
-                        if (!caVar.f1101n && !caVar.f1102o && caVar.f1100m) {
-                            caVar.f1101n = true;
-                            y8 y8Var = caVar.f1096i;
+                        ca caVar = this.f1046b;
+                        if (!caVar.f1103n && !caVar.f1104o && caVar.f1102m) {
+                            caVar.f1103n = true;
+                            y8 y8Var = caVar.f1098i;
                             if (y8Var != null) {
-                                y8Var.run(caVar.f1098k);
+                                y8Var.run(caVar.f1100k);
                             }
                             if (caVar.e != null) {
-                                caVar.f1093c.b();
+                                caVar.f1095c.b();
                                 return;
                             }
                             return;
@@ -56,43 +57,54 @@ public final class ca {
                 }
             }
         };
-        this.f1103p = r22;
-        this.f1091a = n2Var;
-        this.f1092b = j10;
-        Context t10 = ga.t(n2Var);
-        org.telegram.ui.Components.kc kcVar = new org.telegram.ui.Components.kc(t10, n2Var.getResourceProvider());
+        this.f1105p = r22;
+        this.f1093a = o2Var;
+        this.f1094b = j10;
+        Context t10 = ha.t(o2Var);
+        org.telegram.ui.Components.kc kcVar = new org.telegram.ui.Components.kc(t10, o2Var.getResourceProvider());
         this.d = kcVar;
         kcVar.c(R.raw.stars_topup, new String[0]);
-        org.telegram.ui.Components.jc jcVar = new org.telegram.ui.Components.jc(t10, n2Var.getResourceProvider());
-        this.f1094f = jcVar;
-        jcVar.f27496b = 3000L;
-        jcVar.setColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Gi, n2Var.getResourceProvider()));
-        org.telegram.ui.Components.oc ocVar = new org.telegram.ui.Components.oc(t10, n2Var.getResourceProvider(), true, false);
+        ?? jcVar = new org.telegram.ui.Components.jc(t10, o2Var.getResourceProvider());
+        this.f1096f = jcVar;
+        jcVar.f27663b = 3000L;
+        int i10 = org.telegram.ui.ActionBar.k6.Gi;
+        org.telegram.ui.ActionBar.g6 resourceProvider = o2Var.getResourceProvider();
+        aa.a aVar = new aa.a(15);
+        aa.a aVar2 = new aa.a(16);
+        int R = org.telegram.ui.ActionBar.r6.R(i10, -1, 0, 0.0f, resourceProvider);
+        aVar2.d(R, jcVar);
+        org.telegram.ui.ActionBar.l6 y3 = org.telegram.ui.ActionBar.r6.y(101, jcVar);
+        y3.c(i10, -1, 0, 0.0f, resourceProvider);
+        y3.f21619n = aVar;
+        y3.f21620o = aVar2;
+        y3.f21618m = false;
+        y3.f21613g = R;
+        org.telegram.ui.Components.oc ocVar = new org.telegram.ui.Components.oc(t10, o2Var.getResourceProvider(), true, false);
         this.e = ocVar;
         ocVar.e(LocaleController.getString(R.string.StarsSentUndo));
-        ocVar.f28987a = new Runnable(this) {
-            public final ca f1050b;
+        ocVar.f29152b = new Runnable(this) {
+            public final ca f1046b;
 
             {
-                this.f1050b = this;
+                this.f1046b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        this.f1050b.a();
+                        this.f1046b.a();
                         return;
                     default:
-                        ca caVar = this.f1050b;
-                        if (!caVar.f1101n && !caVar.f1102o && caVar.f1100m) {
-                            caVar.f1101n = true;
-                            y8 y8Var = caVar.f1096i;
+                        ca caVar = this.f1046b;
+                        if (!caVar.f1103n && !caVar.f1104o && caVar.f1102m) {
+                            caVar.f1103n = true;
+                            y8 y8Var = caVar.f1098i;
                             if (y8Var != null) {
-                                y8Var.run(caVar.f1098k);
+                                y8Var.run(caVar.f1100k);
                             }
                             if (caVar.e != null) {
-                                caVar.f1093c.b();
+                                caVar.f1095c.b();
                                 return;
                             }
                             return;
@@ -101,36 +113,36 @@ public final class ca {
                 }
             }
         };
-        ocVar.addView(jcVar, w7.z5.d(20, 20.0f, 21, 0.0f, 0.0f, 12.0f, 0.0f));
-        ocVar.d.setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(30.0f), AndroidUtilities.dp(8.0f));
+        ocVar.addView((View) jcVar, w7.z5.d(20, 20.0f, 21, 0.0f, 0.0f, 12.0f, 0.0f));
+        ocVar.e.setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(30.0f), AndroidUtilities.dp(8.0f));
         kcVar.setButton(ocVar);
-        org.telegram.ui.Components.qc b10 = org.telegram.ui.Components.xc.a0(n2Var).b(kcVar, -1);
-        this.f1093c = b10;
-        b10.f29543r = false;
+        org.telegram.ui.Components.qc b10 = org.telegram.ui.Components.xc.a0(o2Var).b(kcVar, -1);
+        this.f1095c = b10;
+        b10.f29840r = false;
         b10.k(true);
         b10.v = new Runnable(this) {
-            public final ca f1050b;
+            public final ca f1046b;
 
             {
-                this.f1050b = this;
+                this.f1046b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        this.f1050b.a();
+                        this.f1046b.a();
                         return;
                     default:
-                        ca caVar = this.f1050b;
-                        if (!caVar.f1101n && !caVar.f1102o && caVar.f1100m) {
-                            caVar.f1101n = true;
-                            y8 y8Var = caVar.f1096i;
+                        ca caVar = this.f1046b;
+                        if (!caVar.f1103n && !caVar.f1104o && caVar.f1102m) {
+                            caVar.f1103n = true;
+                            y8 y8Var = caVar.f1098i;
                             if (y8Var != null) {
-                                y8Var.run(caVar.f1098k);
+                                y8Var.run(caVar.f1100k);
                             }
                             if (caVar.e != null) {
-                                caVar.f1093c.b();
+                                caVar.f1095c.b();
                                 return;
                             }
                             return;
@@ -144,9 +156,9 @@ public final class ca {
     }
 
     public final void a() {
-        if (!this.f1101n && !this.f1102o) {
-            this.f1102o = true;
-            ArrayList arrayList = this.f1097j;
+        if (!this.f1103n && !this.f1104o) {
+            this.f1104o = true;
+            ArrayList arrayList = this.f1099j;
             int size = arrayList.size();
             int i10 = 0;
             while (i10 < size) {
@@ -155,7 +167,7 @@ public final class ca {
                 ((Runnable) obj).run();
             }
             if (this.e != null) {
-                this.f1093c.b();
+                this.f1095c.b();
             }
         }
     }

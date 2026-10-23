@@ -1,46 +1,10 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import org.telegram.messenger.ChatObject;
-import org.telegram.tgnet.TLRPC;
-public final class ep extends org.telegram.ui.Components.e90 {
-    public final TLRPC.Chat f36744w;
-    public final fp f36745x;
-
-    public ep(fp fpVar, Context context, TLRPC.Chat chat, TLRPC.Chat chat2) {
-        super(context, chat);
-        this.f36745x = fpVar;
-        this.f36744w = chat2;
-    }
-
+import android.view.View;
+import android.widget.FrameLayout;
+public final class ep extends FrameLayout {
     @Override
-    public final boolean a(boolean z10, org.telegram.ui.Components.c90 c90Var) {
-        ip ipVar = this.f36745x.d;
-        if (ipVar.P) {
-            return false;
-        }
-        ipVar.P = true;
-        e(new eh(18, this, c90Var), new ai.x9(this, this.f36744w, z10, c90Var, 15));
-        return true;
-    }
-
-    @Override
-    public final boolean b(boolean z10, org.telegram.ui.Components.d90 d90Var) {
-        ip ipVar = this.f36745x.d;
-        if (ipVar.O) {
-            return false;
-        }
-        ipVar.O = true;
-        e(new eh(18, this, d90Var), new ai.x9(this, this.f36744w, z10, d90Var, 14));
-        return true;
-    }
-
-    public final void e(eh ehVar, Runnable runnable) {
-        ip ipVar = this.f36745x.d;
-        if (!ChatObject.isChannel(ipVar.f38077f)) {
-            ipVar.getMessagesController().convertToMegaGroup(ipVar.getParentActivity(), this.f36744w.f20280id, ipVar, new m4.w0(22, this, runnable), ehVar);
-        } else {
-            runnable.run();
-        }
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
     }
 }

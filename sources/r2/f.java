@@ -4,108 +4,108 @@ import android.media.MediaCodec;
 import android.media.MediaFormat;
 import android.os.Handler;
 import android.os.HandlerThread;
-import i2.l0;
+import i2.k0;
 import java.util.ArrayDeque;
 public final class f extends MediaCodec.Callback {
-    public final HandlerThread f44925b;
-    public Handler f44926c;
+    public final HandlerThread f45337b;
+    public Handler f45338c;
     public MediaFormat h;
-    public MediaFormat f44929i;
-    public MediaCodec.CodecException f44930j;
-    public MediaCodec.CryptoException f44931k;
-    public long f44932l;
-    public boolean f44933m;
-    public IllegalStateException f44934n;
-    public l2.f f44935o;
-    public final Object f44924a = new Object();
+    public MediaFormat f45341i;
+    public MediaCodec.CodecException f45342j;
+    public MediaCodec.CryptoException f45343k;
+    public long f45344l;
+    public boolean f45345m;
+    public IllegalStateException f45346n;
+    public l2.f f45347o;
+    public final Object f45336a = new Object();
     public final e2.f d = new e2.f();
     public final e2.f e = new e2.f();
-    public final ArrayDeque f44927f = new ArrayDeque();
-    public final ArrayDeque f44928g = new ArrayDeque();
+    public final ArrayDeque f45339f = new ArrayDeque();
+    public final ArrayDeque f45340g = new ArrayDeque();
 
     public f(HandlerThread handlerThread) {
-        this.f44925b = handlerThread;
+        this.f45337b = handlerThread;
     }
 
     public final void a() {
-        ArrayDeque arrayDeque = this.f44928g;
+        ArrayDeque arrayDeque = this.f45340g;
         if (!arrayDeque.isEmpty()) {
-            this.f44929i = (MediaFormat) arrayDeque.getLast();
+            this.f45341i = (MediaFormat) arrayDeque.getLast();
         }
         e2.f fVar = this.d;
-        fVar.f8222b = fVar.f8221a;
+        fVar.f8229b = fVar.f8228a;
         e2.f fVar2 = this.e;
-        fVar2.f8222b = fVar2.f8221a;
-        this.f44927f.clear();
+        fVar2.f8229b = fVar2.f8228a;
+        this.f45339f.clear();
         arrayDeque.clear();
     }
 
     public final void b() {
-        IllegalStateException illegalStateException = this.f44934n;
+        IllegalStateException illegalStateException = this.f45346n;
         if (illegalStateException == null) {
-            MediaCodec.CodecException codecException = this.f44930j;
+            MediaCodec.CodecException codecException = this.f45342j;
             if (codecException == null) {
-                MediaCodec.CryptoException cryptoException = this.f44931k;
+                MediaCodec.CryptoException cryptoException = this.f45343k;
                 if (cryptoException == null) {
                     return;
                 }
-                this.f44931k = null;
+                this.f45343k = null;
                 throw cryptoException;
             }
-            this.f44930j = null;
+            this.f45342j = null;
             throw codecException;
         }
-        this.f44934n = null;
+        this.f45346n = null;
         throw illegalStateException;
     }
 
     public final void c(IllegalStateException illegalStateException) {
-        synchronized (this.f44924a) {
-            this.f44934n = illegalStateException;
+        synchronized (this.f45336a) {
+            this.f45346n = illegalStateException;
         }
     }
 
     public final void onCryptoError(MediaCodec mediaCodec, MediaCodec.CryptoException cryptoException) {
-        synchronized (this.f44924a) {
-            this.f44931k = cryptoException;
+        synchronized (this.f45336a) {
+            this.f45343k = cryptoException;
         }
     }
 
     @Override
     public final void onError(MediaCodec mediaCodec, MediaCodec.CodecException codecException) {
-        synchronized (this.f44924a) {
-            this.f44930j = codecException;
+        synchronized (this.f45336a) {
+            this.f45342j = codecException;
         }
     }
 
     @Override
     public final void onInputBufferAvailable(MediaCodec mediaCodec, int i10) {
-        l0 l0Var;
-        synchronized (this.f44924a) {
+        k0 k0Var;
+        synchronized (this.f45336a) {
             this.d.a(i10);
-            l2.f fVar = this.f44935o;
-            if (fVar != null && (l0Var = ((r) fVar.f15843b).Y) != null) {
-                l0Var.a();
+            l2.f fVar = this.f45347o;
+            if (fVar != null && (k0Var = ((r) fVar.f15906b).Y) != null) {
+                k0Var.a();
             }
         }
     }
 
     @Override
     public final void onOutputBufferAvailable(MediaCodec mediaCodec, int i10, MediaCodec.BufferInfo bufferInfo) {
-        l0 l0Var;
-        synchronized (this.f44924a) {
+        k0 k0Var;
+        synchronized (this.f45336a) {
             try {
-                MediaFormat mediaFormat = this.f44929i;
+                MediaFormat mediaFormat = this.f45341i;
                 if (mediaFormat != null) {
                     this.e.a(-2);
-                    this.f44928g.add(mediaFormat);
-                    this.f44929i = null;
+                    this.f45340g.add(mediaFormat);
+                    this.f45341i = null;
                 }
                 this.e.a(i10);
-                this.f44927f.add(bufferInfo);
-                l2.f fVar = this.f44935o;
-                if (fVar != null && (l0Var = ((r) fVar.f15843b).Y) != null) {
-                    l0Var.a();
+                this.f45339f.add(bufferInfo);
+                l2.f fVar = this.f45347o;
+                if (fVar != null && (k0Var = ((r) fVar.f15906b).Y) != null) {
+                    k0Var.a();
                 }
             } catch (Throwable th2) {
                 throw th2;
@@ -115,10 +115,10 @@ public final class f extends MediaCodec.Callback {
 
     @Override
     public final void onOutputFormatChanged(MediaCodec mediaCodec, MediaFormat mediaFormat) {
-        synchronized (this.f44924a) {
+        synchronized (this.f45336a) {
             this.e.a(-2);
-            this.f44928g.add(mediaFormat);
-            this.f44929i = null;
+            this.f45340g.add(mediaFormat);
+            this.f45341i = null;
         }
     }
 }

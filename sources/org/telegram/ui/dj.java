@@ -3,44 +3,44 @@ package org.telegram.ui;
 import org.telegram.messenger.MessagesStorage;
 import org.telegram.tgnet.TLRPC;
 public final class dj implements MessagesStorage.IntCallback {
-    public final int f36411a;
-    public final boolean f36412b;
-    public final Object f36413c;
+    public final int f36645a;
+    public final boolean f36646b;
+    public final Object f36647c;
 
     public dj(int i10, Object obj, boolean z10) {
-        this.f36411a = i10;
-        this.f36413c = obj;
-        this.f36412b = z10;
+        this.f36645a = i10;
+        this.f36647c = obj;
+        this.f36646b = z10;
     }
 
     @Override
     public final void run(int i10) {
         org.telegram.ui.Components.wc wcVar;
-        switch (this.f36411a) {
+        switch (this.f36645a) {
             case 0:
-                qn qnVar = ((fj) this.f36413c).f37024b;
-                if (i10 > 0 && qnVar.getParentActivity() != null) {
-                    org.telegram.ui.Components.xc a02 = org.telegram.ui.Components.xc.a0(qnVar);
-                    if (this.f36412b) {
+                sn snVar = ((fj) this.f36647c).f37343b;
+                if (i10 > 0 && snVar.getParentActivity() != null) {
+                    org.telegram.ui.Components.xc a02 = org.telegram.ui.Components.xc.a0(snVar);
+                    if (this.f36646b) {
                         wcVar = org.telegram.ui.Components.wc.G;
                     } else {
                         wcVar = org.telegram.ui.Components.wc.I;
                     }
-                    a02.m(wcVar, i10, 0, 0, qnVar.f40677ea).j();
+                    a02.m(wcVar, i10, 0, 0, snVar.f41654qa).j();
                     return;
                 }
                 return;
             default:
-                ej ejVar = (ej) this.f36413c;
-                qn qnVar2 = ejVar.f36673b.f37024b;
+                ej ejVar = (ej) this.f36647c;
+                sn snVar2 = ejVar.f36980b.f37343b;
                 if (i10 >= 50) {
-                    TLRPC.Chat chat = qnVar2.e;
-                    TLRPC.User user = qnVar2.f40680f;
-                    boolean z10 = this.f36412b;
-                    org.telegram.ui.Components.f5.r(qnVar2, true, chat, user, false, false, false, z10, new b1(ejVar, z10));
+                    TLRPC.Chat chat = snVar2.e;
+                    TLRPC.User user = snVar2.f41512f;
+                    boolean z10 = this.f36646b;
+                    org.telegram.ui.Components.f5.s(snVar2, true, chat, user, false, false, false, z10, new a1(ejVar, z10));
                     return;
                 }
-                qnVar2.va(qnVar2.f40660d4, true);
+                snVar2.va(snVar2.f41638p4, true);
                 return;
         }
     }

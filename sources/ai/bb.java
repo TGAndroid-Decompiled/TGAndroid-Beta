@@ -1,93 +1,36 @@
 package ai;
 
-import android.content.DialogInterface;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class bb implements DialogInterface.OnDismissListener {
-    public final int f1051a;
-    public final Object f1052b;
+import android.view.View;
+import org.telegram.ui.LaunchActivity;
+public final class bb implements View.OnClickListener {
+    public final int f1047a;
+    public final bd f1048b;
 
-    public bb(Object obj, int i10) {
-        this.f1051a = i10;
-        this.f1052b = obj;
+    public bb(bd bdVar, int i10) {
+        this.f1047a = i10;
+        this.f1048b = bdVar;
     }
 
     @Override
-    public final void onDismiss(DialogInterface dialogInterface) {
-        org.telegram.ui.web.g0 g0Var;
-        switch (this.f1051a) {
+    public final void onClick(View view) {
+        org.telegram.ui.ActionBar.o2 R;
+        org.telegram.ui.ActionBar.o2 R2;
+        switch (this.f1047a) {
             case 0:
-                ((x8) this.f1052b).run();
-                return;
-            case 1:
-                AndroidUtilities.hideKeyboard((EditTextBoldCursor) this.f1052b);
-                return;
-            case 2:
-                ((a1.f) this.f1052b).run();
-                return;
-            case 3:
-                ((androidx.fragment.app.d) this.f1052b).run();
-                return;
-            case 4:
-                ci.aa aaVar = (ci.aa) this.f1052b;
-                if (dialogInterface == aaVar.f5219u0) {
-                    aaVar.f5219u0 = null;
-                    aaVar.P();
+                if (this.f1048b.f1055f > 0 && (R = LaunchActivity.R()) != 0) {
+                    ?? obj = new Object();
+                    obj.f21636a = true;
+                    R.showAsSheet(new nd(), obj);
                     return;
                 }
-                return;
-            case 5:
-                AndroidUtilities.hideKeyboard((ig.s) this.f1052b);
-                return;
-            case 6:
-                AndroidUtilities.hideKeyboard((ig.q1) this.f1052b);
-                return;
-            case 7:
-                ((ki.q) this.f1052b).O = null;
-                return;
-            case 8:
-                ((ki.d2) this.f1052b).O0 = null;
-                return;
-            case 9:
-                Runnable[] runnableArr = (Runnable[]) this.f1052b;
-                Runnable runnable = runnableArr[0];
-                if (runnable != null) {
-                    runnable.run();
-                    runnableArr[0] = null;
-                    return;
-                }
-                return;
-            case 10:
-                org.telegram.ui.web.a1 a1Var = ((org.telegram.ui.web.m0) this.f1052b).e.Q;
-                if (a1Var != null && (g0Var = a1Var.f42569c) != null) {
-                    g0Var.y();
-                    return;
-                }
-                return;
-            case 11:
-                org.telegram.ui.web.g0 g0Var2 = ((org.telegram.ui.web.t0) this.f1052b).f42788b.e.Q.f42569c;
-                if (g0Var2 != null) {
-                    g0Var2.y();
-                    return;
-                }
-                return;
-            case 12:
-                sg.k0 k0Var = (sg.k0) this.f1052b;
-                k0Var.f46295f0 = false;
-                k0Var.f46312x0.f24290d0 = true;
-                k0Var.E0.invalidate();
-                k0Var.f46312x0.invalidate();
-                return;
-            case 13:
-                sg.m1 m1Var = (sg.m1) this.f1052b;
-                zd zdVar = m1Var.f46347r0;
-                if (zdVar != null) {
-                    zdVar.setDialogVisible(false);
-                }
-                m1Var.f46346q0.setPaused(false);
                 return;
             default:
-                ((xh.k) this.f1052b).f49882s = null;
+                if (this.f1048b.f1055f > 0 && (R2 = LaunchActivity.R()) != 0) {
+                    ?? obj2 = new Object();
+                    obj2.f21636a = true;
+                    R2.showAsSheet(new nd(), obj2);
+                    return;
+                }
                 return;
         }
     }

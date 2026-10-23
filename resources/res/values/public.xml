@@ -2960,37 +2960,39 @@
     <public type="id" name="textTitle" id="0x7f0901c2" />
     <public type="id" name="text_list_view" id="0x7f0901c3" />
     <public type="id" name="text_wrap" id="0x7f0901c4" />
-    <public type="id" name="thing_proto" id="0x7f0901c5" />
-    <public type="id" name="time" id="0x7f0901c6" />
-    <public type="id" name="timeout_callback" id="0x7f0901c7" />
-    <public type="id" name="title" id="0x7f0901c8" />
-    <public type="id" name="titleDividerNoCustom" id="0x7f0901c9" />
-    <public type="id" name="title_template" id="0x7f0901ca" />
-    <public type="id" name="title_view" id="0x7f0901cb" />
-    <public type="id" name="toolbar" id="0x7f0901cc" />
-    <public type="id" name="tooltip" id="0x7f0901cd" />
-    <public type="id" name="tooltip_container" id="0x7f0901ce" />
-    <public type="id" name="top" id="0x7f0901cf" />
-    <public type="id" name="topPanel" id="0x7f0901d0" />
-    <public type="id" name="unchecked" id="0x7f0901d1" />
-    <public type="id" name="uniform" id="0x7f0901d2" />
-    <public type="id" name="up" id="0x7f0901d3" />
-    <public type="id" name="url" id="0x7f0901d4" />
-    <public type="id" name="useLogo" id="0x7f0901d5" />
-    <public type="id" name="view_tree_disjoint_parent" id="0x7f0901d6" />
-    <public type="id" name="view_tree_lifecycle_owner" id="0x7f0901d7" />
-    <public type="id" name="view_tree_on_back_pressed_dispatcher_owner" id="0x7f0901d8" />
-    <public type="id" name="view_tree_saved_state_registry_owner" id="0x7f0901d9" />
-    <public type="id" name="view_tree_view_model_store_owner" id="0x7f0901da" />
-    <public type="id" name="visible_removing_fragment_view_tag" id="0x7f0901db" />
-    <public type="id" name="volume_item_container" id="0x7f0901dc" />
-    <public type="id" name="wide" id="0x7f0901dd" />
-    <public type="id" name="widget_deleted_text" id="0x7f0901de" />
-    <public type="id" name="widget_edititem" id="0x7f0901df" />
-    <public type="id" name="widget_edititem_text" id="0x7f0901e0" />
-    <public type="id" name="width_tag" id="0x7f0901e1" />
-    <public type="id" name="withText" id="0x7f0901e2" />
-    <public type="id" name="wrap_content" id="0x7f0901e3" />
+    <public type="id" name="theme_bind" id="0x7f0901c5" />
+    <public type="id" name="theme_generation" id="0x7f0901c6" />
+    <public type="id" name="thing_proto" id="0x7f0901c7" />
+    <public type="id" name="time" id="0x7f0901c8" />
+    <public type="id" name="timeout_callback" id="0x7f0901c9" />
+    <public type="id" name="title" id="0x7f0901ca" />
+    <public type="id" name="titleDividerNoCustom" id="0x7f0901cb" />
+    <public type="id" name="title_template" id="0x7f0901cc" />
+    <public type="id" name="title_view" id="0x7f0901cd" />
+    <public type="id" name="toolbar" id="0x7f0901ce" />
+    <public type="id" name="tooltip" id="0x7f0901cf" />
+    <public type="id" name="tooltip_container" id="0x7f0901d0" />
+    <public type="id" name="top" id="0x7f0901d1" />
+    <public type="id" name="topPanel" id="0x7f0901d2" />
+    <public type="id" name="unchecked" id="0x7f0901d3" />
+    <public type="id" name="uniform" id="0x7f0901d4" />
+    <public type="id" name="up" id="0x7f0901d5" />
+    <public type="id" name="url" id="0x7f0901d6" />
+    <public type="id" name="useLogo" id="0x7f0901d7" />
+    <public type="id" name="view_tree_disjoint_parent" id="0x7f0901d8" />
+    <public type="id" name="view_tree_lifecycle_owner" id="0x7f0901d9" />
+    <public type="id" name="view_tree_on_back_pressed_dispatcher_owner" id="0x7f0901da" />
+    <public type="id" name="view_tree_saved_state_registry_owner" id="0x7f0901db" />
+    <public type="id" name="view_tree_view_model_store_owner" id="0x7f0901dc" />
+    <public type="id" name="visible_removing_fragment_view_tag" id="0x7f0901dd" />
+    <public type="id" name="volume_item_container" id="0x7f0901de" />
+    <public type="id" name="wide" id="0x7f0901df" />
+    <public type="id" name="widget_deleted_text" id="0x7f0901e0" />
+    <public type="id" name="widget_edititem" id="0x7f0901e1" />
+    <public type="id" name="widget_edititem_text" id="0x7f0901e2" />
+    <public type="id" name="width_tag" id="0x7f0901e3" />
+    <public type="id" name="withText" id="0x7f0901e4" />
+    <public type="id" name="wrap_content" id="0x7f0901e5" />
     <public type="integer" name="abc_config_activityDefaultDur" id="0x7f0a0000" />
     <public type="integer" name="abc_config_activityShortDur" id="0x7f0a0001" />
     <public type="integer" name="config_tooltipAnimTime" id="0x7f0a0004" />
