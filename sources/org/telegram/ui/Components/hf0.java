@@ -8,9 +8,9 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 public final class hf0 extends FrameLayout {
-    public TextView f26886a;
-    public TextView f26887b;
-    public ImageView f26888c;
+    public TextView f26887a;
+    public TextView f26888b;
+    public ImageView f26889c;
     public Switch d;
     public boolean e;
 
@@ -41,25 +41,25 @@ public final class hf0 extends FrameLayout {
             } else {
                 i10 = 0;
             }
-            canvas.drawLine(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.h6.f21114k0);
+            canvas.drawLine(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.h6.f21115k0);
         }
     }
 
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
-        int dp = AndroidUtilities.dp(13.0f) + this.f26886a.getMeasuredHeight();
-        TextView textView = this.f26887b;
+        int dp = AndroidUtilities.dp(13.0f) + this.f26887a.getMeasuredHeight();
+        TextView textView = this.f26888b;
         textView.layout(textView.getLeft(), dp, textView.getRight(), textView.getMeasuredHeight() + dp);
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        TextView textView = this.f26886a;
+        TextView textView = this.f26887a;
         measureChildWithMargins(textView, i10, 0, i11, 0);
-        TextView textView2 = this.f26887b;
+        TextView textView2 = this.f26888b;
         measureChildWithMargins(textView2, i10, 0, i11, 0);
-        measureChildWithMargins(this.f26888c, i10, 0, i11, 0);
+        measureChildWithMargins(this.f26889c, i10, 0, i11, 0);
         Switch r72 = this.d;
         if (r72 != null) {
             measureChildWithMargins(r72, i10, 0, i11, 0);

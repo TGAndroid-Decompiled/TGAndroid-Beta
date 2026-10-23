@@ -48,7 +48,7 @@ public final class fe implements ValueAnimator.AnimatorUpdateListener {
                 z20Var.M = i0.a.f(((Float) valueAnimator.getAnimatedValue()).floatValue(), i12, i11);
                 z20Var.F.setColorFilter(new PorterDuffColorFilter(z20Var.L, PorterDuff.Mode.MULTIPLY));
                 z20Var.E.setColor(z20Var.L);
-                z20Var.f32816r.setColor(z20Var.M);
+                z20Var.f32817r.setColor(z20Var.M);
                 z20Var.J.d(i0.a.o(z20Var.M, 38));
                 z20Var.invalidate();
                 return;

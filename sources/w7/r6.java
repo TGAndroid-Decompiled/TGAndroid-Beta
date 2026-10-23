@@ -10,16 +10,16 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.WeakHashMap;
 public abstract class r6 {
-    public static boolean f48821a = false;
-    public static Method f48822b = null;
-    public static boolean f48823c = false;
+    public static boolean f48822a = false;
+    public static Method f48823b = null;
+    public static boolean f48824c = false;
     public static Field d;
 
     public static boolean a(View view, KeyEvent keyEvent) {
         ArrayList arrayList;
         int size;
         int indexOfKey;
-        WeakHashMap weakHashMap = r0.i0.f44829a;
+        WeakHashMap weakHashMap = r0.i0.f44830a;
         if (Build.VERSION.SDK_INT < 28) {
             ArrayList arrayList2 = r0.h0.d;
             r0.h0 h0Var = (r0.h0) view.getTag(2131296694);
@@ -27,19 +27,19 @@ public abstract class r6 {
             r0.h0 h0Var2 = h0Var;
             if (h0Var == null) {
                 ?? obj = new Object();
-                obj.f44823a = null;
-                obj.f44824b = null;
-                obj.f44825c = null;
+                obj.f44824a = null;
+                obj.f44825b = null;
+                obj.f44826c = null;
                 view.setTag(2131296694, obj);
                 h0Var2 = obj;
             }
-            WeakReference weakReference2 = h0Var2.f44825c;
+            WeakReference weakReference2 = h0Var2.f44826c;
             if (weakReference2 == null || weakReference2.get() != keyEvent) {
-                h0Var2.f44825c = new WeakReference(keyEvent);
-                if (h0Var2.f44824b == null) {
-                    h0Var2.f44824b = new SparseArray();
+                h0Var2.f44826c = new WeakReference(keyEvent);
+                if (h0Var2.f44825b == null) {
+                    h0Var2.f44825b = new SparseArray();
                 }
-                SparseArray sparseArray = h0Var2.f44824b;
+                SparseArray sparseArray = h0Var2.f44825b;
                 if (keyEvent.getAction() == 1 && (indexOfKey = sparseArray.indexOfKey(keyEvent.getKeyCode())) >= 0) {
                     weakReference = (WeakReference) sparseArray.valueAt(indexOfKey);
                     sparseArray.removeAt(indexOfKey);

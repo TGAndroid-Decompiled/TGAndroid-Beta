@@ -197,7 +197,7 @@ public abstract class e extends fm0 {
             ?? frameLayout = new FrameLayout(this.f11838s);
             frameLayout.setLayoutParams(new ViewGroup.LayoutParams(AndroidUtilities.dp(76.0f), AndroidUtilities.dp(64.0f)));
             TextView textView = new TextView(frameLayout.getContext());
-            frameLayout.f22781a = textView;
+            frameLayout.f22782a = textView;
             k3.m(22.0f, 1, textView);
             k3.o(h6.B6, null, false, textView, 17);
             frameLayout.addView(textView, z5.d(-1, -1.0f, 119, 12.0f, 0.0f, 0.0f, 0.0f));
@@ -296,8 +296,8 @@ public abstract class e extends fm0 {
         int i12;
         ArrayList<TLRPC.TL_contact> arrayList2;
         float f7;
-        int i13 = b1Var.f45923f;
-        View view = b1Var.f45920a;
+        int i13 = b1Var.f45924f;
+        View view = b1Var.f45921a;
         int i14 = 7;
         boolean z10 = this.E;
         int i15 = this.f11837r;
@@ -311,7 +311,7 @@ public abstract class e extends fm0 {
                                 o4 o4Var = (o4) view;
                                 int i16 = i11 - 2;
                                 if (i16 >= 0 && i16 < ContactsController.getInstance(i15).phoneBookContacts.size()) {
-                                    o4Var.f22729f = ContactsController.getInstance(i15).phoneBookContacts.get(i16);
+                                    o4Var.f22730f = ContactsController.getInstance(i15).phoneBookContacts.get(i16);
                                     o4Var.h = null;
                                     o4Var.a();
                                     return;
@@ -433,7 +433,7 @@ public abstract class e extends fm0 {
         }
         TLRPC.User user = MessagesController.getInstance(i15).getUser(Long.valueOf(arrayList2.get(i11).user_id));
         vaVar.e(user, null, null, false);
-        if (this.f11840x.h(user.f20426id) < 0) {
+        if (this.f11840x.h(user.f20427id) < 0) {
             z11 = false;
         }
         vaVar.c(z11, false);

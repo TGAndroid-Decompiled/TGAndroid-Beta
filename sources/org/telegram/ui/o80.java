@@ -12,22 +12,22 @@ import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 public final class o80 implements vx {
-    public final int f39797a = 0;
-    public final LaunchActivity f39798b;
-    public final TLRPC.User f39799c;
+    public final int f39798a = 0;
+    public final LaunchActivity f39799b;
+    public final TLRPC.User f39800c;
     public final String d;
     public final int e;
 
     public o80(LaunchActivity launchActivity, String str, int i10, TLRPC.User user) {
-        this.f39798b = launchActivity;
+        this.f39799b = launchActivity;
         this.d = str;
         this.e = i10;
-        this.f39799c = user;
+        this.f39800c = user;
     }
 
     @Override
     public final boolean D() {
-        switch (this.f39797a) {
+        switch (this.f39798a) {
             case 0:
                 return false;
             default:
@@ -37,7 +37,7 @@ public final class o80 implements vx {
 
     @Override
     public final boolean J(cy cyVar) {
-        switch (this.f39797a) {
+        switch (this.f39798a) {
             case 0:
                 return false;
             default:
@@ -47,18 +47,18 @@ public final class o80 implements vx {
 
     @Override
     public final boolean w(cy cyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, re1 re1Var) {
-        int i12 = this.f39797a;
+        int i12 = this.f39798a;
         int i13 = this.e;
         String str = this.d;
-        TLRPC.User user = this.f39799c;
-        LaunchActivity launchActivity = this.f39798b;
+        TLRPC.User user = this.f39800c;
+        LaunchActivity launchActivity = this.f39799b;
         switch (i12) {
             case 0:
                 Pattern pattern = LaunchActivity.C1;
                 long j10 = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
                 TLRPC.TL_inputMediaGame tL_inputMediaGame = new TLRPC.TL_inputMediaGame();
                 TLRPC.TL_inputGameShortName tL_inputGameShortName = new TLRPC.TL_inputGameShortName();
-                tL_inputMediaGame.f20341id = tL_inputGameShortName;
+                tL_inputMediaGame.f20342id = tL_inputGameShortName;
                 tL_inputGameShortName.short_name = str;
                 tL_inputGameShortName.bot_id = MessagesController.getInstance(i13).getInputUser(user);
                 SendMessagesHelper.getInstance(i13).sendGame(MessagesController.getInstance(i13).getInputPeer(j10), tL_inputMediaGame, 0L, 0L);
@@ -99,8 +99,8 @@ public final class o80 implements vx {
     }
 
     public o80(LaunchActivity launchActivity, TLRPC.User user, String str, int i10) {
-        this.f39798b = launchActivity;
-        this.f39799c = user;
+        this.f39799b = launchActivity;
+        this.f39800c = user;
         this.d = str;
         this.e = i10;
     }

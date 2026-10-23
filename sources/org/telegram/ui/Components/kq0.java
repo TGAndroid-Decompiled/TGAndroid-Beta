@@ -6,10 +6,10 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class kq0 implements hg.f0 {
-    public final fr0 f27917a;
+    public final fr0 f27918a;
 
     public kq0(fr0 fr0Var) {
-        this.f27917a = fr0Var;
+        this.f27918a = fr0Var;
     }
 
     @Override
@@ -26,7 +26,7 @@ public final class kq0 implements hg.f0 {
             }
             i13++;
         }
-        fr0 fr0Var = this.f27917a;
+        fr0 fr0Var = this.f27918a;
         fr0Var.F0 = arrayList;
         for (int i14 = 0; i14 < fr0Var.F0.size(); i14++) {
             hg.g0 g0Var = (hg.g0) fr0Var.F0.get(i14);

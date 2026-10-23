@@ -4,9 +4,9 @@ import android.content.Context;
 import android.view.View;
 import android.widget.FrameLayout;
 public final class c5 extends FrameLayout {
-    public View f34078a;
-    public float f34079b;
-    public int f34080c;
+    public View f34079a;
+    public float f34080b;
+    public int f34081c;
     public final a5 d;
     public final o5 e;
 

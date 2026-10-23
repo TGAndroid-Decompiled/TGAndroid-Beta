@@ -2,26 +2,26 @@ package org.telegram.ui.Wallet;
 
 import android.view.View;
 public final class h3 implements o1.g {
-    public final int f34285a;
-    public final n3 f34286b;
+    public final int f34286a;
+    public final n3 f34287b;
 
     public h3(n3 n3Var, int i10) {
-        this.f34285a = i10;
-        this.f34286b = n3Var;
+        this.f34286a = i10;
+        this.f34287b = n3Var;
     }
 
     @Override
     public final void a(o1.h hVar, float f7, float f10) {
-        switch (this.f34285a) {
+        switch (this.f34286a) {
             case 0:
-                n3 n3Var = this.f34286b;
+                n3 n3Var = this.f34287b;
                 n3Var.C = f7;
-                n3Var.f34558a.invalidate();
+                n3Var.f34559a.invalidate();
                 return;
             case 1:
-                n3 n3Var2 = this.f34286b;
-                n3Var2.f34563c0 = f7;
-                org.telegram.ui.Cells.w0 w0Var = n3Var2.f34558a;
+                n3 n3Var2 = this.f34287b;
+                n3Var2.f34564c0 = f7;
+                org.telegram.ui.Cells.w0 w0Var = n3Var2.f34559a;
                 w0Var.invalidate();
                 if (w0Var.getParent() instanceof View) {
                     ((View) w0Var.getParent()).invalidate();
@@ -29,9 +29,9 @@ public final class h3 implements o1.g {
                 }
                 return;
             default:
-                n3 n3Var3 = this.f34286b;
-                n3Var3.f34559a0 = f7;
-                org.telegram.ui.Cells.w0 w0Var2 = n3Var3.f34558a;
+                n3 n3Var3 = this.f34287b;
+                n3Var3.f34560a0 = f7;
+                org.telegram.ui.Cells.w0 w0Var2 = n3Var3.f34559a;
                 w0Var2.invalidate();
                 if (w0Var2.getParent() instanceof View) {
                     ((View) w0Var2.getParent()).invalidate();

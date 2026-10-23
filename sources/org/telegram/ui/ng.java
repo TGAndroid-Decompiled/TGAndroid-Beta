@@ -2,19 +2,19 @@ package org.telegram.ui;
 
 import org.telegram.messenger.AndroidUtilities;
 public final class ng implements Runnable {
-    public final int f39591a;
-    public final org.telegram.ui.ActionBar.b2[] f39592b;
+    public final int f39592a;
+    public final org.telegram.ui.ActionBar.b2[] f39593b;
 
     public ng(org.telegram.ui.ActionBar.b2[] b2VarArr, int i10) {
-        this.f39591a = i10;
-        this.f39592b = b2VarArr;
+        this.f39592a = i10;
+        this.f39593b = b2VarArr;
     }
 
     @Override
     public final void run() {
-        switch (this.f39591a) {
+        switch (this.f39592a) {
             case 0:
-                org.telegram.ui.ActionBar.b2[] b2VarArr = this.f39592b;
+                org.telegram.ui.ActionBar.b2[] b2VarArr = this.f39593b;
                 try {
                     b2VarArr[0].dismiss();
                 } catch (Throwable unused) {
@@ -22,7 +22,7 @@ public final class ng implements Runnable {
                 b2VarArr[0] = null;
                 return;
             case 1:
-                org.telegram.ui.ActionBar.b2[] b2VarArr2 = this.f39592b;
+                org.telegram.ui.ActionBar.b2[] b2VarArr2 = this.f39593b;
                 try {
                     b2VarArr2[0].dismiss();
                 } catch (Throwable unused2) {
@@ -30,16 +30,16 @@ public final class ng implements Runnable {
                 b2VarArr2[0] = null;
                 return;
             case 2:
-                AndroidUtilities.runOnUIThread(new ng(this.f39592b, 4));
+                AndroidUtilities.runOnUIThread(new ng(this.f39593b, 4));
                 return;
             case 3:
-                AndroidUtilities.runOnUIThread(new ng(this.f39592b, 5));
+                AndroidUtilities.runOnUIThread(new ng(this.f39593b, 5));
                 return;
             case 4:
-                this.f39592b[0].dismiss();
+                this.f39593b[0].dismiss();
                 return;
             default:
-                this.f39592b[0].dismiss();
+                this.f39593b[0].dismiss();
                 return;
         }
     }

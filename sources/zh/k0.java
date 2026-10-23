@@ -15,13 +15,13 @@ public final class k0 extends r {
     public final void dispatchDraw(Canvas canvas) {
         n0 n0Var = this.M;
         float min = Math.min(getHeight(), n0Var.v - (getTranslationY() + getTop()));
-        c cVar = n0Var.f52065x;
+        c cVar = n0Var.f52066x;
         if (cVar != null) {
             cVar.G = min;
         }
         n0Var.K = min;
         if (cVar != null) {
-            cVar.U = n0Var.f52063s - cVar.getLeft();
+            cVar.U = n0Var.f52064s - cVar.getLeft();
         }
         super.dispatchDraw(canvas);
     }
@@ -30,7 +30,7 @@ public final class k0 extends r {
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
         n0 n0Var = this.M;
         c1 c1Var = n0Var.d;
-        if (c1Var != null && (c1Var.l1 > 0.5f || c1Var.f51809k1 > 0.5f)) {
+        if (c1Var != null && (c1Var.l1 > 0.5f || c1Var.f51810k1 > 0.5f)) {
             if (motionEvent.getActionMasked() == 1) {
                 c1 c1Var2 = n0Var.d;
                 c1Var2.l1 = 0.0f;

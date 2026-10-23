@@ -53,10 +53,10 @@ public final class l implements Runnable {
                     Object obj = arrayList.get(i10);
                     i10++;
                     s4.j jVar = (s4.j) obj;
-                    mVar2.T(jVar.f45980a, jVar, this.f535b);
+                    mVar2.T(jVar.f45981a, jVar, this.f535b);
                 }
                 arrayList.clear();
-                mVar2.f45989u.remove(arrayList);
+                mVar2.f45990u.remove(arrayList);
                 return;
             default:
                 ActionBarLayout actionBarLayout = (ActionBarLayout) this.d;

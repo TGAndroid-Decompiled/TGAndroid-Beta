@@ -4,19 +4,19 @@ import android.content.Context;
 import android.graphics.Canvas;
 import org.telegram.messenger.AndroidUtilities;
 public final class nz0 extends od0 {
-    public final oz0 f28902w0;
+    public final oz0 f28903w0;
 
     public nz0(oz0 oz0Var, Context context) {
         super(context, 13, null);
-        this.f28902w0 = oz0Var;
+        this.f28903w0 = oz0Var;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         float dp = AndroidUtilities.dp(31.0f);
-        oz0 oz0Var = this.f28902w0;
-        oz0Var.d.setColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21066h7, false));
+        oz0 oz0Var = this.f28903w0;
+        oz0Var.d.setColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21067h7, false));
         canvas.drawLine(AndroidUtilities.dp(2.0f), dp, getMeasuredWidth() - AndroidUtilities.dp(2.0f), dp, oz0Var.d);
         float measuredHeight = getMeasuredHeight() - AndroidUtilities.dp(31.0f);
         canvas.drawLine(AndroidUtilities.dp(2.0f), measuredHeight, getMeasuredWidth() - AndroidUtilities.dp(2.0f), measuredHeight, oz0Var.d);

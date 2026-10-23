@@ -3,16 +3,16 @@ package org.telegram.ui.Components;
 import android.animation.ValueAnimator;
 import org.telegram.messenger.AndroidUtilities;
 public final class z8 implements ValueAnimator.AnimatorUpdateListener {
-    public final float f32861a;
-    public final float f32862b;
-    public final boolean f32863c;
+    public final float f32862a;
+    public final float f32863b;
+    public final boolean f32864c;
     public final e9 d;
 
     public z8(e9 e9Var, float f7, float f10, boolean z10) {
         this.d = e9Var;
-        this.f32861a = f7;
-        this.f32862b = f10;
-        this.f32863c = z10;
+        this.f32862a = f7;
+        this.f32863b = f10;
+        this.f32864c = z10;
     }
 
     @Override
@@ -22,14 +22,14 @@ public final class z8 implements ValueAnimator.AnimatorUpdateListener {
         float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         e9 e9Var = this.d;
         e9Var.N = floatValue;
-        float lerp = AndroidUtilities.lerp(this.f32861a, this.f32862b, floatValue);
+        float lerp = AndroidUtilities.lerp(this.f32862a, this.f32863b, floatValue);
         kVar = ((org.telegram.ui.ActionBar.n2) e9Var).actionBar;
         kVar.getTitleTextView().setAlpha(e9Var.N);
-        if (e9Var.F && !this.f32863c) {
+        if (e9Var.F && !this.f32864c) {
             e9Var.i0(1.0f - e9Var.N, false);
         }
-        e9Var.f25852r.setTranslationY(lerp);
-        e9Var.f25855x.setTranslationY(lerp);
+        e9Var.f25853r.setTranslationY(lerp);
+        e9Var.f25856x.setTranslationY(lerp);
         e9Var.fragmentView.invalidate();
         kVar2 = ((org.telegram.ui.ActionBar.n2) e9Var).actionBar;
         kVar2.invalidate();

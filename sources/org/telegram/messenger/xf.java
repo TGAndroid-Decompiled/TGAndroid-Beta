@@ -1,33 +1,41 @@
 package org.telegram.messenger;
 
-import java.util.concurrent.CountDownLatch;
+import java.util.ArrayList;
 public final class xf implements Runnable {
-    public final int f20083a;
-    public final MessagesStorage f20084b;
-    public final long f20085c;
-    public final boolean[] d;
-    public final CountDownLatch e;
+    public final int f20085a;
+    public final MessagesStorage f20086b;
+    public final ArrayList f20087c;
+    public final int d;
 
-    public xf(int i10, long j10, CountDownLatch countDownLatch, MessagesStorage messagesStorage, boolean[] zArr) {
-        this.f20083a = i10;
-        this.f20084b = messagesStorage;
-        this.f20085c = j10;
-        this.d = zArr;
-        this.e = countDownLatch;
+    public xf(int i10, ArrayList arrayList, MessagesStorage messagesStorage) {
+        this.f20085a = 1;
+        this.f20086b = messagesStorage;
+        this.f20087c = arrayList;
+        this.d = i10;
     }
 
     @Override
     public final void run() {
-        switch (this.f20083a) {
+        switch (this.f20085a) {
             case 0:
-                this.f20084b.lambda$checkMessageByRandomId$153(this.f20085c, this.d, this.e);
+                this.f20086b.lambda$putWallpapers$78(this.d, this.f20087c);
                 return;
             case 1:
-                this.f20084b.lambda$isMigratedChat$141(this.f20085c, this.d, this.e);
+                this.f20086b.lambda$unpinAllDialogsExceptNew$247(this.f20087c, this.d);
+                return;
+            case 2:
+                this.f20086b.lambda$getDownloadQueue$185(this.d, this.f20087c);
                 return;
             default:
-                this.f20084b.lambda$hasInviteMeMessage$143(this.f20085c, this.d, this.e);
+                this.f20086b.lambda$putWidgetDialogs$166(this.d, this.f20087c);
                 return;
         }
+    }
+
+    public xf(MessagesStorage messagesStorage, int i10, ArrayList arrayList, int i11) {
+        this.f20085a = i11;
+        this.f20086b = messagesStorage;
+        this.d = i10;
+        this.f20087c = arrayList;
     }
 }

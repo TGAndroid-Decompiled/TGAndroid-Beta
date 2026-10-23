@@ -13,15 +13,15 @@ import org.telegram.ui.Components.qc;
 import org.telegram.ui.Components.xc;
 import w7.m7;
 public final class c implements Runnable {
-    public final int f47660a = 0;
-    public final boolean f47661b;
-    public final Object f47662c;
+    public final int f47661a = 0;
+    public final boolean f47662b;
+    public final Object f47663c;
     public final Object d;
     public final Object e;
 
     public c(xc xcVar, boolean z10, TLRPC.Chat chat, d6 d6Var) {
-        this.f47662c = xcVar;
-        this.f47661b = z10;
+        this.f47663c = xcVar;
+        this.f47662b = z10;
         this.d = chat;
         this.e = d6Var;
     }
@@ -38,13 +38,13 @@ public final class c implements Runnable {
         int i12;
         File file2;
         int i13;
-        switch (this.f47660a) {
+        switch (this.f47661a) {
             case 0:
-                xc xcVar = (xc) this.f47662c;
+                xc xcVar = (xc) this.f47663c;
                 TLRPC.Chat chat = (TLRPC.Chat) this.d;
                 d6 d6Var = (d6) this.e;
                 int i14 = R.raw.star_premium_2;
-                boolean z11 = this.f47661b;
+                boolean z11 = this.f47662b;
                 if (z11) {
                     string = LocaleController.getString("BoostingGiveawayCreated", R.string.BoostingGiveawayCreated);
                 } else {
@@ -66,20 +66,20 @@ public final class c implements Runnable {
                     string2 = LocaleController.getString(i10);
                 }
                 qc M = xcVar.M(string, AndroidUtilities.replaceSingleTag(string2, h6.Gi, 0, new o3(chat), d6Var), i14);
-                M.f29534j = 5000;
+                M.f29535j = 5000;
                 M.j();
                 return;
             default:
-                si.s0 s0Var = (si.s0) this.f47662c;
+                si.s0 s0Var = (si.s0) this.f47663c;
                 si.w wVar = (si.w) this.d;
                 si.o0 o0Var = (si.o0) this.e;
                 long nanoTime = System.nanoTime();
                 try {
                     wVar.g();
-                    long e = m7.e(wVar.f46841a) / 1000;
-                    s0Var.f46774m.b("active output finalized: size=" + file.length() + ", durationMs=" + e + ", elapsedMs=" + si.s0.f(nanoTime));
+                    long e = m7.e(wVar.f46842a) / 1000;
+                    s0Var.f46775m.b("active output finalized: size=" + file.length() + ", durationMs=" + e + ", elapsedMs=" + si.s0.f(nanoTime));
                     s0Var.g();
-                    long j11 = s0Var.f46776o;
+                    long j11 = s0Var.f46777o;
                     if (e > j11) {
                         z10 = true;
                         j10 = j11;
@@ -90,19 +90,19 @@ public final class c implements Runnable {
                         i12 = 1;
                     }
                     long j12 = j10;
-                    boolean z12 = this.f47661b;
+                    boolean z12 = this.f47662b;
                     if (z12 && !z10) {
                         try {
-                            s0Var.f46772k.execute(new si.g0(s0Var, o0Var, wVar.f46841a, e, true));
+                            s0Var.f46773k.execute(new si.g0(s0Var, o0Var, wVar.f46842a, e, true));
                             return;
                         } catch (Exception e7) {
                             e = e7;
                             s0Var = s0Var;
-                            s0Var.f46770i.post(new si.e0(s0Var, e, 2));
+                            s0Var.f46771i.post(new si.e0(s0Var, e, 2));
                             return;
                         }
                     }
-                    File file3 = wVar.f46841a;
+                    File file3 = wVar.f46842a;
                     try {
                         long min = Math.min(j12, e);
                         if (z10) {
@@ -131,9 +131,9 @@ public final class c implements Runnable {
     }
 
     public c(si.s0 s0Var, si.w wVar, boolean z10, si.o0 o0Var) {
-        this.f47662c = s0Var;
+        this.f47663c = s0Var;
         this.d = wVar;
-        this.f47661b = z10;
+        this.f47662b = z10;
         this.e = o0Var;
     }
 }

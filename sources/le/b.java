@@ -97,8 +97,8 @@ public final class b implements OnCompleteListener, l, d, o0.a, f1, l1, h, s71, 
         i0.b defaultWindowInsets = AndroidUtilities.getDefaultWindowInsets(k1Var, false);
         zm0 zm0Var = (zm0) this.f16009b;
         zm0Var.v.setPadding(defaultWindowInsets.f12283a, defaultWindowInsets.f12284b, defaultWindowInsets.f12285c, defaultWindowInsets.d);
-        zm0Var.f32978s.requestLayout();
-        return k1.f44837b;
+        zm0Var.f32979s.requestLayout();
+        return k1.f44838b;
     }
 
     @Override
@@ -137,7 +137,7 @@ public final class b implements OnCompleteListener, l, d, o0.a, f1, l1, h, s71, 
         fa faVar = (fa) this.f16009b;
         g gVar = faVar.v;
         if (faVar.a()) {
-            faVar.f22276s = 2;
+            faVar.f22277s = 2;
             AndroidUtilities.cancelRunOnUIThread(gVar);
             AndroidUtilities.runOnUIThread(gVar, 5000L);
         }
@@ -145,7 +145,7 @@ public final class b implements OnCompleteListener, l, d, o0.a, f1, l1, h, s71, 
 
     @Override
     public void J(bh.a aVar) {
-        aVar.a(((ti) this.f16009b).getThemedColor(h6.f20993d6));
+        aVar.a(((ti) this.f16009b).getThemedColor(h6.f20994d6));
         aVar.b(SharedConfig.chatBlurEnabled());
     }
 
@@ -164,7 +164,7 @@ public final class b implements OnCompleteListener, l, d, o0.a, f1, l1, h, s71, 
         fa faVar = (fa) this.f16009b;
         g gVar = faVar.v;
         if (faVar.a()) {
-            faVar.f22276s = 2;
+            faVar.f22277s = 2;
             u1Var.invalidate();
             AndroidUtilities.cancelRunOnUIThread(gVar);
             AndroidUtilities.runOnUIThread(gVar, 5000L);
@@ -211,7 +211,7 @@ public final class b implements OnCompleteListener, l, d, o0.a, f1, l1, h, s71, 
         fa faVar = (fa) this.f16009b;
         g gVar = faVar.v;
         if (faVar.a()) {
-            faVar.f22276s = 0;
+            faVar.f22277s = 0;
             u1Var.invalidate();
             AndroidUtilities.cancelRunOnUIThread(gVar);
             AndroidUtilities.runOnUIThread(gVar, 5000L);
@@ -252,7 +252,7 @@ public final class b implements OnCompleteListener, l, d, o0.a, f1, l1, h, s71, 
     public p0 W0(Class cls, v1.b bVar) {
         m0 m0Var = null;
         for (c cVar : (c[]) this.f16009b) {
-            if (cVar.f47874a.equals(cls)) {
+            if (cVar.f47875a.equals(cls)) {
                 m0Var = new m0();
             }
         }
@@ -274,7 +274,7 @@ public final class b implements OnCompleteListener, l, d, o0.a, f1, l1, h, s71, 
 
     @Override
     public boolean Z0(int i10, u1 u1Var) {
-        if (i10 == ((fa) this.f16009b).f22276s) {
+        if (i10 == ((fa) this.f16009b).f22277s) {
             return true;
         }
         return false;
@@ -314,7 +314,7 @@ public final class b implements OnCompleteListener, l, d, o0.a, f1, l1, h, s71, 
     @Override
     public void b(Canvas canvas) {
         ti tiVar = (ti) this.f16009b;
-        canvas.drawColor(tiVar.getThemedColor(h6.f20993d6));
+        canvas.drawColor(tiVar.getThemedColor(h6.f20994d6));
         if (SharedConfig.chatBlurEnabled()) {
             tiVar.F2.b(canvas, -2);
         }
@@ -361,13 +361,13 @@ public final class b implements OnCompleteListener, l, d, o0.a, f1, l1, h, s71, 
         int i11 = 0;
         for (q qVar : kVar.J) {
             qVar.f();
-            i11 += qVar.Y.f47433a;
+            i11 += qVar.Y.f47434a;
         }
         p1[] p1VarArr = new p1[i11];
         int i12 = 0;
         for (q qVar2 : kVar.J) {
             qVar2.f();
-            int i13 = qVar2.Y.f47433a;
+            int i13 = qVar2.Y.f47434a;
             int i14 = 0;
             while (i14 < i13) {
                 qVar2.f();
@@ -449,7 +449,7 @@ public final class b implements OnCompleteListener, l, d, o0.a, f1, l1, h, s71, 
     public void o(Object obj) {
         com.google.android.gms.common.api.internal.n nVar;
         g8.c cVar = (g8.c) obj;
-        androidx.activity.o oVar = ((r7.i) this.f16009b).f45051b;
+        androidx.activity.o oVar = ((r7.i) this.f16009b).f45052b;
         synchronized (oVar) {
             oVar.f2667a = false;
             nVar = ((p) oVar.f2668b).f6477c;
@@ -484,12 +484,12 @@ public final class b implements OnCompleteListener, l, d, o0.a, f1, l1, h, s71, 
     public void onDismiss() {
         a1 a1Var = (a1) this.f16009b;
         a1Var.y("scan_qr_popup_closed", null);
-        a1Var.f42575h0 = false;
+        a1Var.f42576h0 = false;
     }
 
     @Override
     public String p0() {
-        return ((a1) this.f16009b).f42576i0;
+        return ((a1) this.f16009b).f42577i0;
     }
 
     @Override

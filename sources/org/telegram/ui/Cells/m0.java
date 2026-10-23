@@ -5,15 +5,15 @@ import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 public final class m0 extends Drawable {
-    public final int f22560a;
-    public Object f22561b;
-    public int f22562c;
+    public final int f22561a;
+    public Object f22562b;
+    public int f22563c;
 
     public m0(int i10) {
-        this.f22560a = i10;
+        this.f22561a = i10;
         switch (i10) {
             case 2:
-                this.f22562c = 255;
+                this.f22563c = 255;
                 return;
             default:
                 return;
@@ -22,12 +22,12 @@ public final class m0 extends Drawable {
 
     @Override
     public final void draw(Canvas canvas) {
-        switch (this.f22560a) {
+        switch (this.f22561a) {
             case 0:
-                canvas.drawCircle(getBounds().centerX(), getBounds().centerY(), getBounds().width() / 2.0f, (Paint) this.f22561b);
+                canvas.drawCircle(getBounds().centerX(), getBounds().centerY(), getBounds().width() / 2.0f, (Paint) this.f22562b);
                 return;
             case 1:
-                canvas.drawCircle(getBounds().centerX(), getBounds().centerY(), Math.min(getBounds().width(), getBounds().height()) / 2.0f, (Paint) this.f22561b);
+                canvas.drawCircle(getBounds().centerX(), getBounds().centerY(), Math.min(getBounds().width(), getBounds().height()) / 2.0f, (Paint) this.f22562b);
                 return;
             default:
                 return;
@@ -36,9 +36,9 @@ public final class m0 extends Drawable {
 
     @Override
     public int getAlpha() {
-        switch (this.f22560a) {
+        switch (this.f22561a) {
             case 2:
-                return this.f22562c;
+                return this.f22563c;
             default:
                 return super.getAlpha();
         }
@@ -46,9 +46,9 @@ public final class m0 extends Drawable {
 
     @Override
     public ColorFilter getColorFilter() {
-        switch (this.f22560a) {
+        switch (this.f22561a) {
             case 2:
-                return (ColorFilter) this.f22561b;
+                return (ColorFilter) this.f22562b;
             default:
                 return super.getColorFilter();
         }
@@ -56,9 +56,9 @@ public final class m0 extends Drawable {
 
     @Override
     public int getIntrinsicHeight() {
-        switch (this.f22560a) {
+        switch (this.f22561a) {
             case 1:
-                return this.f22562c;
+                return this.f22563c;
             default:
                 return super.getIntrinsicHeight();
         }
@@ -66,9 +66,9 @@ public final class m0 extends Drawable {
 
     @Override
     public int getIntrinsicWidth() {
-        switch (this.f22560a) {
+        switch (this.f22561a) {
             case 1:
-                return this.f22562c;
+                return this.f22563c;
             default:
                 return super.getIntrinsicWidth();
         }
@@ -76,7 +76,7 @@ public final class m0 extends Drawable {
 
     @Override
     public final int getOpacity() {
-        switch (this.f22560a) {
+        switch (this.f22561a) {
             case 0:
                 return -2;
             case 1:
@@ -88,37 +88,37 @@ public final class m0 extends Drawable {
 
     @Override
     public final void setAlpha(int i10) {
-        switch (this.f22560a) {
+        switch (this.f22561a) {
             case 0:
-                ((Paint) this.f22561b).setAlpha(org.telegram.ui.ActionBar.h6.m1(i10 / 255.0f, this.f22562c));
+                ((Paint) this.f22562b).setAlpha(org.telegram.ui.ActionBar.h6.m1(i10 / 255.0f, this.f22563c));
                 return;
             case 1:
-                ((Paint) this.f22561b).setAlpha(i10);
+                ((Paint) this.f22562b).setAlpha(i10);
                 return;
             default:
-                this.f22562c = i10;
+                this.f22563c = i10;
                 return;
         }
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        switch (this.f22560a) {
+        switch (this.f22561a) {
             case 0:
-                ((Paint) this.f22561b).setColorFilter(colorFilter);
+                ((Paint) this.f22562b).setColorFilter(colorFilter);
                 return;
             case 1:
                 return;
             default:
-                this.f22561b = colorFilter;
+                this.f22562b = colorFilter;
                 return;
         }
     }
 
     public m0(Paint paint, int i10) {
-        this.f22560a = 0;
-        this.f22561b = paint;
-        this.f22562c = i10;
+        this.f22561a = 0;
+        this.f22562b = paint;
+        this.f22563c = i10;
     }
 
     private final void a(Canvas canvas) {

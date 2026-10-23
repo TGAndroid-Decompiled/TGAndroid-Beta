@@ -97,7 +97,7 @@ public final class v9 implements View.OnClickListener {
                         valueAnimator2.setDuration(j10);
                         ValueAnimator valueAnimator3 = vbVar2.E2;
                         if (z12) {
-                            bsVar = bs.f25026i;
+                            bsVar = bs.f25027i;
                         } else {
                             bsVar = bs.h;
                         }

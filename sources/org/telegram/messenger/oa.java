@@ -1,38 +1,72 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.TLRPC;
+import java.util.ArrayList;
 public final class oa implements Runnable {
-    public final int f19120a;
-    public final MessagesController f19121b;
-    public final TLRPC.Chat f19122c;
+    public final int f19122a;
+    public final MessagesController f19123b;
+    public final long f19124c;
+    public final long d;
+    public final int e;
+    public final ArrayList f19125f;
 
-    public oa(MessagesController messagesController, TLRPC.Chat chat, int i10) {
-        this.f19120a = i10;
-        this.f19121b = messagesController;
-        this.f19122c = chat;
+    public oa(MessagesController messagesController, long j10, int i10, long j11, ArrayList arrayList, int i11) {
+        this.f19122a = i11;
+        this.f19123b = messagesController;
+        this.f19124c = j10;
+        this.e = i10;
+        this.d = j11;
+        this.f19125f = arrayList;
     }
 
     @Override
     public final void run() {
-        switch (this.f19120a) {
+        switch (this.f19122a) {
             case 0:
-                this.f19121b.lambda$processUpdateArray$416(this.f19122c);
+                long j10 = this.d;
+                ArrayList arrayList = this.f19125f;
+                int i10 = this.e;
+                this.f19123b.lambda$checkUnreadReactionsInternal2$425(this.f19124c, i10, j10, arrayList);
                 return;
             case 1:
-                this.f19121b.lambda$processLoadedDialogs$217(this.f19122c);
+                int i11 = this.e;
+                ArrayList arrayList2 = this.f19125f;
+                this.f19123b.lambda$checkUnreadPollVotesInternal2$436(this.f19124c, this.d, i11, arrayList2);
                 return;
             case 2:
-                this.f19121b.lambda$addOrRemoveActiveVoiceChat$60(this.f19122c);
+                int i12 = this.e;
+                ArrayList arrayList3 = this.f19125f;
+                this.f19123b.lambda$checkUnreadReactionsInternal2$427(this.f19124c, this.d, i12, arrayList3);
                 return;
             case 3:
-                this.f19121b.lambda$putChat$57(this.f19122c);
+                int i13 = this.e;
+                ArrayList arrayList4 = this.f19125f;
+                this.f19123b.lambda$checkUnreadPollVotesInternal2$438(this.f19124c, this.d, i13, arrayList4);
                 return;
             case 4:
-                this.f19121b.lambda$putChat$58(this.f19122c);
+                long j11 = this.d;
+                ArrayList arrayList5 = this.f19125f;
+                int i14 = this.e;
+                this.f19123b.lambda$checkUnreadPollVotesInternal2$432(this.f19124c, i14, j11, arrayList5);
+                return;
+            case 5:
+                int i15 = this.e;
+                ArrayList arrayList6 = this.f19125f;
+                this.f19123b.lambda$checkUnreadReactionsInternal2$431(this.f19124c, this.d, i15, arrayList6);
                 return;
             default:
-                this.f19121b.lambda$putChat$59(this.f19122c);
+                int i16 = this.e;
+                ArrayList arrayList7 = this.f19125f;
+                this.f19123b.lambda$checkUnreadReactionsInternal2$429(this.f19124c, this.d, i16, arrayList7);
                 return;
         }
+    }
+
+    public oa(MessagesController messagesController, long j10, long j11, int i10, ArrayList arrayList, int i11) {
+        this.f19122a = i11;
+        this.f19123b = messagesController;
+        this.f19124c = j10;
+        this.d = j11;
+        this.e = i10;
+        this.f19125f = arrayList;
     }
 }

@@ -9,22 +9,22 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
 public final class qd implements View.OnClickListener {
-    public final int f40549a = 1;
-    public final int f40550b;
-    public final long f40551c;
+    public final int f40550a = 1;
+    public final int f40551b;
+    public final long f40552c;
     public final FrameLayout d;
     public final Object e;
 
     public qd(int i10, ei.d dVar, org.telegram.ui.ActionBar.f3 f3Var, long j10) {
-        this.f40550b = i10;
+        this.f40551b = i10;
         this.d = dVar;
         this.e = f3Var;
-        this.f40551c = j10;
+        this.f40552c = j10;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f40549a) {
+        switch (this.f40550a) {
             case 0:
                 ie ieVar = (ie) this.d;
                 Context context = (Context) this.e;
@@ -33,8 +33,8 @@ public final class qd implements View.OnClickListener {
                     if (!dVar.N) {
                         dVar.setLoading(true);
                         TLRPC.TL_payments_getStarsRevenueAdsAccountUrl tL_payments_getStarsRevenueAdsAccountUrl = new TLRPC.TL_payments_getStarsRevenueAdsAccountUrl();
-                        int i10 = this.f40550b;
-                        tL_payments_getStarsRevenueAdsAccountUrl.peer = MessagesController.getInstance(i10).getInputPeer(this.f40551c);
+                        int i10 = this.f40551b;
+                        tL_payments_getStarsRevenueAdsAccountUrl.peer = MessagesController.getInstance(i10).getInputPeer(this.f40552c);
                         ConnectionsManager.getInstance(i10).sendRequest(tL_payments_getStarsRevenueAdsAccountUrl, new vc(1, ieVar, context));
                         return;
                     }
@@ -46,16 +46,16 @@ public final class qd implements View.OnClickListener {
                 org.telegram.ui.ActionBar.f3 f3Var = (org.telegram.ui.ActionBar.f3) this.e;
                 TL_phone.createConferenceCall createconferencecall = new TL_phone.createConferenceCall();
                 createconferencecall.random_id = Utilities.random.nextInt();
-                int i11 = this.f40550b;
-                ConnectionsManager.getInstance(i11).sendRequest(createconferencecall, new ai.c0(i11, dVar2, f3Var, this.f40551c));
+                int i11 = this.f40551b;
+                ConnectionsManager.getInstance(i11).sendRequest(createconferencecall, new ai.c0(i11, dVar2, f3Var, this.f40552c));
                 return;
         }
     }
 
     public qd(ie ieVar, int i10, long j10, Context context) {
         this.d = ieVar;
-        this.f40550b = i10;
-        this.f40551c = j10;
+        this.f40551b = i10;
+        this.f40552c = j10;
         this.e = context;
     }
 }

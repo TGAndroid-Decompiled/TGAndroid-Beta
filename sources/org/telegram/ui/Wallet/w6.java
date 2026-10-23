@@ -10,18 +10,18 @@ import org.telegram.tgnet.tl.TL_wallet;
 import org.telegram.ui.Components.i80;
 import org.telegram.ui.Wallet.WalletEngine2;
 public final class w6 implements Runnable {
-    public final int f35070a;
-    public final Object f35071b;
-    public final Object f35072c;
+    public final int f35071a;
+    public final Object f35072b;
+    public final Object f35073c;
     public final Object d;
     public final Object e;
 
     public w6(Object obj, Object obj2, Object obj3, Object obj4, int i10) {
-        this.f35070a = i10;
-        this.f35071b = obj;
+        this.f35071a = i10;
+        this.f35072b = obj;
         this.d = obj2;
         this.e = obj3;
-        this.f35072c = obj4;
+        this.f35073c = obj4;
     }
 
     @Override
@@ -30,30 +30,30 @@ public final class w6 implements Runnable {
         byte[] bArr;
         String h;
         JSONObject jSONObject;
-        switch (this.f35070a) {
+        switch (this.f35071a) {
             case 0:
-                ((WalletEngine2) this.f35071b).lambda$prepareRotateKey$34((Utilities.Callback4) this.d, (WalletEngine2.PreparedRotation) this.e, (String) this.f35072c);
+                ((WalletEngine2) this.f35072b).lambda$prepareRotateKey$34((Utilities.Callback4) this.d, (WalletEngine2.PreparedRotation) this.e, (String) this.f35073c);
                 return;
             case 1:
-                ((WalletEngine2) this.f35071b).lambda$rotateKey$52((WalletEngine2.RotationCallbacks) this.d, (byte[]) this.e, (String) this.f35072c);
+                ((WalletEngine2) this.f35072b).lambda$rotateKey$52((WalletEngine2.RotationCallbacks) this.d, (byte[]) this.e, (String) this.f35073c);
                 return;
             case 2:
-                ((WalletEngine2.SendCallbacks) this.f35071b).lambda$dispatch$0((WalletEngine2.SendPhase) this.d, (String) this.f35072c, (String) this.e);
+                ((WalletEngine2.SendCallbacks) this.f35072b).lambda$dispatch$0((WalletEngine2.SendPhase) this.d, (String) this.f35073c, (String) this.e);
                 return;
             case 3:
-                m0 m0Var = (m0) this.f35071b;
+                m0 m0Var = (m0) this.f35072b;
                 TL_wallet.walletTransaction wallettransaction = (TL_wallet.walletTransaction) this.d;
                 TL_wallet.nftItem nftitem = (TL_wallet.nftItem) this.e;
-                l0 l0Var = (l0) this.f35072c;
+                l0 l0Var = (l0) this.f35073c;
                 m0Var.getClass();
-                if (wallettransaction.pending || wallettransaction.failed || TextUtils.isEmpty(wallettransaction.f20538id)) {
+                if (wallettransaction.pending || wallettransaction.failed || TextUtils.isEmpty(wallettransaction.f20539id)) {
                     wallettransaction.pending = false;
                     wallettransaction.failed = true;
-                    Utilities.Callback callback = (Utilities.Callback) m0Var.f34493q.remove(wallettransaction);
+                    Utilities.Callback callback = (Utilities.Callback) m0Var.f34494q.remove(wallettransaction);
                     if (callback != null) {
                         callback.run(Boolean.FALSE);
                     }
-                    if (nftitem != null && (e0Var = m0Var.f34491o) != null) {
+                    if (nftitem != null && (e0Var = m0Var.f34492o) != null) {
                         e0.a(e0Var, wallettransaction);
                     }
                     l0Var.k();
@@ -64,12 +64,12 @@ public final class w6 implements Runnable {
                 }
                 return;
             case 4:
-                m0 m0Var2 = (m0) this.f35071b;
+                m0 m0Var2 = (m0) this.f35072b;
                 boolean[] zArr = (boolean[]) this.d;
                 ai.q qVar = (ai.q) this.e;
-                e2 e2Var = (e2) this.f35072c;
+                e2 e2Var = (e2) this.f35073c;
                 if (!zArr[0]) {
-                    WalletEngine2 walletEngine2 = m0Var2.f34481b;
+                    WalletEngine2 walletEngine2 = m0Var2.f34482b;
                     if (walletEngine2 == null) {
                         qVar.run(null, "NULL_ENGINE");
                         return;
@@ -81,7 +81,7 @@ public final class w6 implements Runnable {
                 return;
             case 5:
                 TL_wallet.walletTransaction wallettransaction2 = (TL_wallet.walletTransaction) this.e;
-                l0 l0Var2 = (l0) this.f35072c;
+                l0 l0Var2 = (l0) this.f35073c;
                 ((j0) this.d).close();
                 m0.F("disable backup: fail!");
                 wallettransaction2.pending = false;
@@ -89,14 +89,14 @@ public final class w6 implements Runnable {
                 l0Var2.k();
                 l0Var2.i();
                 l0Var2.g();
-                ((m0) this.f35071b).Q();
+                ((m0) this.f35072b).Q();
                 return;
             case 6:
-                f2 f2Var = (f2) this.f35071b;
+                f2 f2Var = (f2) this.f35072b;
                 a2 a2Var = (a2) this.d;
                 l lVar = (l) this.e;
-                TL_wallet.tonConnectSession tonconnectsession = (TL_wallet.tonConnectSession) this.f35072c;
-                m0 m0Var3 = f2Var.f34199b;
+                TL_wallet.tonConnectSession tonconnectsession = (TL_wallet.tonConnectSession) this.f35073c;
+                m0 m0Var3 = f2Var.f34200b;
                 String s10 = m0Var3.s();
                 byte[] x10 = m0Var3.x();
                 if (x10 == null) {
@@ -114,12 +114,12 @@ public final class w6 implements Runnable {
                     return;
                 }
             case 7:
-                f2.a((f2) this.f35071b, (TL_wallet.tonConnectSession) this.d, (String) this.f35072c, (l) this.e);
+                f2.a((f2) this.f35072b, (TL_wallet.tonConnectSession) this.d, (String) this.f35073c, (l) this.e);
                 return;
             case 8:
-                byte[] bArr3 = (byte[]) this.f35071b;
+                byte[] bArr3 = (byte[]) this.f35072b;
                 x xVar2 = (x) this.d;
-                String str = (String) this.f35072c;
+                String str = (String) this.f35073c;
                 ai.r3 r3Var = (ai.r3) this.e;
                 if (bArr3 == null) {
                     xVar2.run(str);
@@ -129,12 +129,12 @@ public final class w6 implements Runnable {
                     return;
                 }
             case 9:
-                f2 f2Var2 = (f2) this.f35071b;
+                f2 f2Var2 = (f2) this.f35072b;
                 j0 j0Var = (j0) this.d;
                 b2 b2Var = (b2) this.e;
-                x xVar3 = (x) this.f35072c;
+                x xVar3 = (x) this.f35073c;
                 try {
-                    jSONObject = WalletEngine2.signData(j0Var, b2Var.f34019a, b2Var.h, b2Var.f34023g, new JSONObject(b2Var.f34026k), f2.l(b2Var.f34019a.manifest.url), f2Var2.f34201f.getCurrentTime());
+                    jSONObject = WalletEngine2.signData(j0Var, b2Var.f34020a, b2Var.h, b2Var.f34024g, new JSONObject(b2Var.f34027k), f2.l(b2Var.f34020a.manifest.url), f2Var2.f34202f.getCurrentTime());
                     h = null;
                 } catch (Exception e) {
                     h = f2.h("sign data", e);
@@ -143,13 +143,13 @@ public final class w6 implements Runnable {
                 AndroidUtilities.runOnUIThread(new ai.g3(f2Var2, b2Var, j0Var, xVar3, jSONObject, h, 23));
                 return;
             case 10:
-                o5.f0((o5) this.f35071b, (LinearLayout) this.d, (m0) this.e, (i80) this.f35072c);
+                o5.f0((o5) this.f35072b, (LinearLayout) this.d, (m0) this.e, (i80) this.f35073c);
                 return;
             case 11:
                 boolean[] zArr2 = (boolean[]) this.d;
                 org.telegram.ui.ActionBar.e1 e1Var = (org.telegram.ui.ActionBar.e1) this.e;
-                w6 w6Var = (w6) this.f35072c;
-                f fVar = ((m0) this.f35071b).h;
+                w6 w6Var = (w6) this.f35073c;
+                f fVar = ((m0) this.f35072b).h;
                 if (fVar.f() != null && !zArr2[0]) {
                     e1Var.setSubtext(fVar.i());
                     w6Var.run();
@@ -158,41 +158,41 @@ public final class w6 implements Runnable {
                 }
                 return;
             case 12:
-                ((WalletEngine2) this.f35071b).lambda$decryptTransactionComment$45((String) this.f35072c, (byte[]) this.d, (Utilities.Callback2) this.e);
+                ((WalletEngine2) this.f35072b).lambda$decryptTransactionComment$45((String) this.f35073c, (byte[]) this.d, (Utilities.Callback2) this.e);
                 return;
             case 13:
-                ((WalletEngine2) this.f35071b).lambda$signMessage$10((Utilities.Callback2) this.d, (String) this.f35072c, (String) this.e);
+                ((WalletEngine2) this.f35072b).lambda$signMessage$10((Utilities.Callback2) this.d, (String) this.f35073c, (String) this.e);
                 return;
             case 14:
-                ((WalletEngine2) this.f35071b).lambda$prepareRotateKey$35((byte[]) this.e, (String) this.f35072c, (Utilities.Callback4) this.d);
+                ((WalletEngine2) this.f35072b).lambda$prepareRotateKey$35((byte[]) this.e, (String) this.f35073c, (Utilities.Callback4) this.d);
                 return;
             default:
-                WalletEngine2.lambda$emulateSend$15((AtomicBoolean) this.f35071b, (Utilities.Callback2) this.d, (TL_wallet.walletTransaction) this.e, (String) this.f35072c);
+                WalletEngine2.lambda$emulateSend$15((AtomicBoolean) this.f35072b, (Utilities.Callback2) this.d, (TL_wallet.walletTransaction) this.e, (String) this.f35073c);
                 return;
         }
     }
 
     public w6(Object obj, Object obj2, String str, Object obj3, int i10) {
-        this.f35070a = i10;
-        this.f35071b = obj;
+        this.f35071a = i10;
+        this.f35072b = obj;
         this.d = obj2;
-        this.f35072c = str;
+        this.f35073c = str;
         this.e = obj3;
     }
 
     public w6(WalletEngine2 walletEngine2, String str, byte[] bArr, Utilities.Callback2 callback2) {
-        this.f35070a = 12;
-        this.f35071b = walletEngine2;
-        this.f35072c = str;
+        this.f35071a = 12;
+        this.f35072b = walletEngine2;
+        this.f35073c = str;
         this.d = bArr;
         this.e = callback2;
     }
 
     public w6(WalletEngine2 walletEngine2, byte[] bArr, String str, Utilities.Callback4 callback4) {
-        this.f35070a = 14;
-        this.f35071b = walletEngine2;
+        this.f35071a = 14;
+        this.f35072b = walletEngine2;
         this.e = bArr;
-        this.f35072c = str;
+        this.f35073c = str;
         this.d = callback4;
     }
 }

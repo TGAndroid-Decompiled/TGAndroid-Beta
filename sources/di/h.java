@@ -32,8 +32,8 @@ public final class h extends wz {
         switch (this.X) {
             case 0:
                 fw0 fw0Var = (fw0) this.Y;
-                fw0Var.f26432b = 100.0f;
-                fw0Var.f26431a = 100.0f;
+                fw0Var.f26433b = 100.0f;
+                fw0Var.f26432a = 100.0f;
                 return fw0Var;
             default:
                 return super.D1(i10);
@@ -46,7 +46,7 @@ public final class h extends wz {
         switch (this.X) {
             case 0:
                 super.U(eVar, y0Var, view, cVar);
-                AccessibilityNodeInfo accessibilityNodeInfo = cVar.f45877a;
+                AccessibilityNodeInfo accessibilityNodeInfo = cVar.f45878a;
                 AccessibilityNodeInfo.CollectionItemInfo collectionItemInfo = accessibilityNodeInfo.getCollectionItemInfo();
                 if (collectionItemInfo != null) {
                     cVar2 = new n5.c(collectionItemInfo);

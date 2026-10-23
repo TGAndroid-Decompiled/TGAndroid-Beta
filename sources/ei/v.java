@@ -52,7 +52,7 @@ public final class v extends jm0 {
                 canvas.restore();
                 return;
             case 1:
-                HashSet hashSet = org.telegram.ui.l4.f38738b1;
+                HashSet hashSet = org.telegram.ui.l4.f38739b1;
                 ((org.telegram.ui.l4) obj).n();
                 super.dispatchDraw(canvas);
                 return;
@@ -60,7 +60,7 @@ public final class v extends jm0 {
                 Paint paint = (Paint) obj;
                 aw awVar = (aw) callback;
                 org.telegram.ui.Components.f6 f6Var = awVar.M;
-                if (f6Var != null && awVar.K >= 0 && awVar.L >= 0 && awVar.f24731n != null && this.G) {
+                if (f6Var != null && awVar.K >= 0 && awVar.L >= 0 && awVar.f24732n != null && this.G) {
                     float d = f6Var.d(0.0f, false);
                     if (d > 0.0f) {
                         int i11 = Integer.MAX_VALUE;
@@ -74,7 +74,7 @@ public final class v extends jm0 {
                             }
                         }
                         if (i11 < i12) {
-                            paint.setColor(org.telegram.ui.ActionBar.h6.m1(d, org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Ld, this.f27582n2)));
+                            paint.setColor(org.telegram.ui.ActionBar.h6.m1(d, org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Ld, this.f27583n2)));
                             canvas.drawRect(0.0f, i11, getMeasuredWidth(), i12, paint);
                         }
                         invalidate();
@@ -114,14 +114,14 @@ public final class v extends jm0 {
         switch (this.V2) {
             case 1:
                 org.telegram.ui.x3 x3Var = ((org.telegram.ui.l4) this.W2).K;
-                if (x3Var != null && (w3Var = x3Var.f43014c) != null) {
+                if (x3Var != null && (w3Var = x3Var.f43015c) != null) {
                     w3Var.invalidate();
                     return;
                 }
                 return;
             case 2:
                 aw awVar = (aw) this.X2;
-                awVar.f24730f.a();
+                awVar.f24731f.a();
                 aw.t(awVar).invalidate();
                 return;
             default:
@@ -135,7 +135,7 @@ public final class v extends jm0 {
             case 2:
                 super.onDetachedFromWindow();
                 aw awVar = (aw) this.X2;
-                org.telegram.ui.Components.a6.release(aw.u(awVar), awVar.f24728b);
+                org.telegram.ui.Components.a6.release(aw.u(awVar), awVar.f24729b);
                 return;
             default:
                 super.onDetachedFromWindow();
@@ -156,13 +156,13 @@ public final class v extends jm0 {
                 return false;
             case 1:
                 org.telegram.ui.l4 l4Var = (org.telegram.ui.l4) this.W2;
-                if (l4Var.d != null && l4Var.f35526b == null && (((m1Var = l4Var.H) == null || !m1Var.isShowing()) && (motionEvent.getAction() == 1 || motionEvent.getAction() == 3))) {
-                    l4Var.f35526b = null;
+                if (l4Var.d != null && l4Var.f35527b == null && (((m1Var = l4Var.H) == null || !m1Var.isShowing()) && (motionEvent.getAction() == 1 || motionEvent.getAction() == 3))) {
+                    l4Var.f35527b = null;
                     l4Var.d = null;
-                    l4Var.f35528f = null;
-                } else if (l4Var.d != null && l4Var.f35526b != null && motionEvent.getAction() == 1 && (getAdapter() instanceof org.telegram.ui.j4)) {
+                    l4Var.f35529f = null;
+                } else if (l4Var.d != null && l4Var.f35527b != null && motionEvent.getAction() == 1 && (getAdapter() instanceof org.telegram.ui.j4)) {
                     motionEvent2 = motionEvent;
-                    org.telegram.ui.l4.l(l4Var, (org.telegram.ui.j4) getAdapter(), motionEvent2, l4Var.f35528f, l4Var.d, 0, 0);
+                    org.telegram.ui.l4.l(l4Var, (org.telegram.ui.j4) getAdapter(), motionEvent2, l4Var.f35529f, l4Var.d, 0, 0);
                     return super.onInterceptTouchEvent(motionEvent2);
                 }
                 motionEvent2 = motionEvent;
@@ -170,7 +170,7 @@ public final class v extends jm0 {
             default:
                 et q6 = et.q();
                 aw awVar = (aw) this.X2;
-                boolean r10 = q6.r(motionEvent, awVar.h, awVar.N, this.f27582n2);
+                boolean r10 = q6.r(motionEvent, awVar.h, awVar.N, this.f27583n2);
                 if (!super.onInterceptTouchEvent(motionEvent) && !r10) {
                     return false;
                 }
@@ -187,7 +187,7 @@ public final class v extends jm0 {
                 return;
             case 2:
                 super.onLayout(z10, i10, i11, i12, i13);
-                ((aw) this.X2).f24730f.a();
+                ((aw) this.X2).f24731f.a();
                 return;
             default:
                 super.onLayout(z10, i10, i11, i12, i13);
@@ -200,7 +200,7 @@ public final class v extends jm0 {
         switch (this.V2) {
             case 2:
                 View.MeasureSpec.getSize(i10);
-                ((aw) this.X2).f24736y.y1(40);
+                ((aw) this.X2).f24737y.y1(40);
                 super.onMeasure(i10, i11);
                 return;
             default:
@@ -215,10 +215,10 @@ public final class v extends jm0 {
         switch (this.V2) {
             case 1:
                 org.telegram.ui.l4 l4Var = (org.telegram.ui.l4) this.W2;
-                if (l4Var.d != null && l4Var.f35526b == null && (((m1Var = l4Var.H) == null || !m1Var.isShowing()) && (motionEvent.getAction() == 1 || motionEvent.getAction() == 3))) {
-                    l4Var.f35526b = null;
+                if (l4Var.d != null && l4Var.f35527b == null && (((m1Var = l4Var.H) == null || !m1Var.isShowing()) && (motionEvent.getAction() == 1 || motionEvent.getAction() == 3))) {
+                    l4Var.f35527b = null;
                     l4Var.d = null;
-                    l4Var.f35528f = null;
+                    l4Var.f35529f = null;
                 }
                 return super.onTouchEvent(motionEvent);
             default:

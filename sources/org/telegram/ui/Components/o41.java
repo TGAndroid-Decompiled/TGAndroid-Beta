@@ -17,15 +17,15 @@ import org.telegram.messenger.TranslateController;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 public final class o41 implements View.OnClickListener {
-    public final int f28947a;
-    public final KeyEvent.Callback f28948b;
-    public final Object f28949c;
+    public final int f28948a;
+    public final KeyEvent.Callback f28949b;
+    public final Object f28950c;
     public final Object d;
 
     public o41(KeyEvent.Callback callback, Object obj, Object obj2, int i10) {
-        this.f28947a = i10;
-        this.f28948b = callback;
-        this.f28949c = obj;
+        this.f28948a = i10;
+        this.f28949b = callback;
+        this.f28950c = obj;
         this.d = obj2;
     }
 
@@ -33,15 +33,15 @@ public final class o41 implements View.OnClickListener {
     public final void onClick(View view) {
         View view2;
         String string;
-        int i10 = this.f28947a;
+        int i10 = this.f28948a;
         Object obj = this.d;
-        Object obj2 = this.f28949c;
-        KeyEvent.Callback callback = this.f28948b;
+        Object obj2 = this.f28950c;
+        KeyEvent.Callback callback = this.f28949b;
         switch (i10) {
             case 0:
                 r41 r41Var = (r41) callback;
                 LocaleController.LocaleInfo localeInfo = (LocaleController.LocaleInfo) obj;
-                t41 t41Var = r41Var.f29827n;
+                t41 t41Var = r41Var.f29828n;
                 Runnable runnable = ((Runnable[]) obj2)[0];
                 if (runnable != null) {
                     runnable.run();
@@ -50,17 +50,17 @@ public final class o41 implements View.OnClickListener {
                 s41 s41Var = t41Var.I;
                 if (!TextUtils.equals(str, localeInfo.pluralLangCode)) {
                     View view3 = s41Var.d;
-                    if (view3 == t41Var.E || view3 == t41Var.f30436r) {
-                        t41Var.f30438w = t41Var.v;
+                    if (view3 == t41Var.E || view3 == t41Var.f30437r) {
+                        t41Var.f30439w = t41Var.v;
                     }
                     p41 p41Var = r41Var.e;
                     String str2 = localeInfo.pluralLangCode;
                     t41Var.v = str2;
                     p41Var.setText(t41.A(t41.E(str2, null, null)));
                     if (t41Var.h != null) {
-                        view2 = t41Var.f30435n;
+                        view2 = t41Var.f30436n;
                     } else {
-                        view2 = t41Var.f30440y;
+                        view2 = t41Var.f30441y;
                     }
                     s41Var.D(view2);
                     t41.J(t41Var.v);
@@ -72,9 +72,9 @@ public final class o41 implements View.OnClickListener {
                 org.telegram.ui.rk rkVar = (org.telegram.ui.rk) callback;
                 TranslateController translateController = (TranslateController) obj2;
                 org.telegram.ui.ActionBar.m1 m1Var = (org.telegram.ui.ActionBar.m1) obj;
-                long j10 = rkVar.f27759b;
+                long j10 = rkVar.f27760b;
                 translateController.setHideTranslateDialog(j10, true);
-                TLRPC.Chat chat = MessagesController.getInstance(rkVar.f27758a).getChat(Long.valueOf(-j10));
+                TLRPC.Chat chat = MessagesController.getInstance(rkVar.f27759a).getChat(Long.valueOf(-j10));
                 if (chat != null && ChatObject.isChannelAndNotMegaGroup(chat)) {
                     string = LocaleController.getString(R.string.TranslationBarHiddenForChannel);
                 } else if (chat != null) {
@@ -82,7 +82,7 @@ public final class o41 implements View.OnClickListener {
                 } else {
                     string = LocaleController.getString(R.string.TranslationBarHiddenForChat);
                 }
-                xc.a0(rkVar.f27760c).J(R.raw.msg_translate, AndroidUtilities.replaceTags(string), LocaleController.getString(R.string.UndoNoCaps), new ho0(18, rkVar, translateController)).j();
+                xc.a0(rkVar.f27761c).J(R.raw.msg_translate, AndroidUtilities.replaceTags(string), LocaleController.getString(R.string.UndoNoCaps), new ho0(18, rkVar, translateController)).j();
                 m1Var.d(true);
                 return;
             case 2:
@@ -91,8 +91,8 @@ public final class o41 implements View.OnClickListener {
                 Bitmap bitmap = (Bitmap) obj;
                 if (gt0Var.L1) {
                     qg.y yVar = new qg.y(context, gt0Var.Q1);
-                    yVar.n(gt0Var.K1.f44660a, 2);
-                    yVar.f44712n = new rg.u(gt0Var, bitmap);
+                    yVar.n(gt0Var.K1.f44661a, 2);
+                    yVar.f44713n = new rg.u(gt0Var, bitmap);
                     yVar.h = new rg.m(gt0Var, 1);
                     yVar.show();
                     return;
@@ -122,7 +122,7 @@ public final class o41 implements View.OnClickListener {
             default:
                 yh.l2 l2Var = (yh.l2) callback;
                 ((i80) obj2).u();
-                ks0 ks0Var = l2Var.f50368a;
+                ks0 ks0Var = l2Var.f50369a;
                 yh.d2 d2Var = new yh.d2(l2Var, (TL_stars.SavedStarGift) obj, 0);
                 HashMap hashMap = yh.p2.T;
                 ks0Var.h(null, d2Var);

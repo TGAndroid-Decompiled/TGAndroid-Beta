@@ -11,14 +11,14 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
 public final class eu0 extends im0 {
-    public final Context f25972c;
+    public final Context f25973c;
     public TLRPC.ChatFull d;
     public ArrayList e;
-    public final uv0 f25973f;
+    public final uv0 f25974f;
 
     public eu0(uv0 uv0Var, Context context) {
-        this.f25973f = uv0Var;
-        this.f25972c = context;
+        this.f25974f = uv0Var;
+        this.f25973c = context;
     }
 
     @Override
@@ -60,9 +60,9 @@ public final class eu0 extends im0 {
         boolean z15;
         boolean z16;
         boolean z17;
-        uv0 uv0Var = this.f25973f;
-        org.telegram.ui.ActionBar.n2 n2Var = uv0Var.f31074v1;
-        View view = b1Var.f45920a;
+        uv0 uv0Var = this.f25974f;
+        org.telegram.ui.ActionBar.n2 n2Var = uv0Var.f31075v1;
+        View view = b1Var.f45921a;
         if (view instanceof org.telegram.ui.Cells.va) {
             org.telegram.ui.Cells.va vaVar = (org.telegram.ui.Cells.va) view;
             if (!this.e.isEmpty()) {
@@ -134,7 +134,7 @@ public final class eu0 extends im0 {
                     }
                 }
                 TLRPC.User user = n2Var.getMessagesController().getUser(Long.valueOf(chatParticipant.user_id));
-                if (UserObject.isUserSelf(user) && ChatObject.canManageMyTag(n2Var.getMessagesController().getChat(Long.valueOf(-uv0Var.f31049j1)))) {
+                if (UserObject.isUserSelf(user) && ChatObject.canManageMyTag(n2Var.getMessagesController().getChat(Long.valueOf(-uv0Var.f31050j1)))) {
                     z14 = true;
                 } else {
                     z14 = false;
@@ -150,13 +150,13 @@ public final class eu0 extends im0 {
 
     @Override
     public final s4.b1 x(ViewGroup viewGroup, int i10) {
-        uv0 uv0Var = this.f25973f;
+        uv0 uv0Var = this.f25974f;
         if (i10 == 20) {
-            hu0 M = uv0.M(7, uv0Var.f31049j1, this.f25972c, uv0Var.F1);
+            hu0 M = uv0.M(7, uv0Var.f31050j1, this.f25973c, uv0Var.F1);
             M.setLayoutParams(new s4.o0(-1, -1));
             return new s4.b1(M);
         }
-        org.telegram.ui.Cells.va vaVar = new org.telegram.ui.Cells.va(9, 0, this.f25972c, uv0Var.F1, true, false);
+        org.telegram.ui.Cells.va vaVar = new org.telegram.ui.Cells.va(9, 0, this.f25973c, uv0Var.F1, true, false);
         vaVar.setLayoutParams(new s4.o0(-1, -2));
         return new s4.b1(vaVar);
     }

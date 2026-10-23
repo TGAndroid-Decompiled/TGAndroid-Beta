@@ -35,20 +35,20 @@ public final class ci0 extends View {
     public final iw0[] N;
     public final f6 O;
     public final ci.x5 P;
-    public boolean f25198a;
-    public final Object f25199b;
-    public final qi0[] f25200c;
+    public boolean f25199a;
+    public final Object f25200b;
+    public final qi0[] f25201c;
     public final qi0[] d;
     public volatile boolean e;
-    public final Paint[] f25201f;
+    public final Paint[] f25202f;
     public li0 h;
-    public int f25202n;
-    public int f25203r;
-    public final bi0 f25204s;
+    public int f25203n;
+    public int f25204r;
+    public final bi0 f25205s;
     public final bi0 v;
-    public int f25205w;
-    public int f25206x;
-    public int f25207y;
+    public int f25206w;
+    public int f25207x;
+    public int f25208y;
 
     public ci0(Context context) {
         super(context);
@@ -58,26 +58,26 @@ public final class ci0 extends View {
         } else {
             z10 = false;
         }
-        this.f25198a = z10;
-        this.f25199b = new Object();
-        this.f25200c = new qi0[3];
+        this.f25199a = z10;
+        this.f25200b = new Object();
+        this.f25201c = new qi0[3];
         this.d = new qi0[3];
         this.e = false;
         Paint[] paintArr = {new Paint(), new Paint()};
-        this.f25201f = paintArr;
-        this.f25204s = new bi0(this, 0);
+        this.f25202f = paintArr;
+        this.f25205s = new bi0(this, 0);
         this.v = new bi0(this, 1);
-        this.f25205w = -1;
+        this.f25206w = -1;
         this.F = false;
         this.G = false;
         this.H = false;
         this.N = new iw0[3];
-        f6 f6Var = new f6(this, 0L, 350L, bs.f25024f);
+        f6 f6Var = new f6(this, 0L, 350L, bs.f25025f);
         this.O = f6Var;
         this.P = new ci.x5(this, 3);
         f6Var.d(1.0f, true);
-        boolean z11 = this.f25198a & SharedConfig.useNewBlur;
-        this.f25198a = z11;
+        boolean z11 = this.f25199a & SharedConfig.useNewBlur;
+        this.f25199a = z11;
         if (z11) {
             setLayerType(2, null);
             return;
@@ -87,9 +87,9 @@ public final class ci0 extends View {
     }
 
     public static void a(ci0 ci0Var, int i10, int i11, int i12) {
-        synchronized (ci0Var.f25199b) {
+        synchronized (ci0Var.f25200b) {
             try {
-                qi0[] qi0VarArr = ci0Var.f25200c;
+                qi0[] qi0VarArr = ci0Var.f25201c;
                 qi0 qi0Var = qi0VarArr[i10];
                 qi0VarArr[i10] = qi0VarArr[i11];
                 qi0VarArr[i11] = qi0Var;
@@ -98,21 +98,21 @@ public final class ci0 extends View {
                 qi0VarArr2[i10] = qi0VarArr2[i11];
                 qi0VarArr2[i11] = qi0Var2;
                 if (i10 == 2) {
-                    if (qi0Var2.f29615f) {
-                        ci0Var.b(qi0Var2.f29613b, i11);
+                    if (qi0Var2.f29616f) {
+                        ci0Var.b(qi0Var2.f29614b, i11);
                     }
                 } else {
-                    Paint[] paintArr = ci0Var.f25201f;
+                    Paint[] paintArr = ci0Var.f25202f;
                     Paint paint = paintArr[i10];
                     paintArr[i10] = paintArr[i11];
                     paintArr[i11] = paint;
                 }
                 if (i12 != -1) {
-                    ci0Var.f25201f[i12].setShader(null);
-                    qi0 qi0Var3 = ci0Var.f25200c[i12];
+                    ci0Var.f25202f[i12].setShader(null);
+                    qi0 qi0Var3 = ci0Var.f25201c[i12];
                     if (qi0Var3 != null && !qi0Var3.e && !qi0Var3.d) {
-                        qi0Var3.f29615f = false;
-                        qi0Var3.f29613b.eraseColor(0);
+                        qi0Var3.f29616f = false;
+                        qi0Var3.f29614b.eraseColor(0);
                     }
                 }
             } finally {
@@ -156,9 +156,9 @@ public final class ci0 extends View {
 
     public final void b(Bitmap bitmap, int i10) {
         if (i10 < 2 && bitmap != null && !bitmap.isRecycled()) {
-            LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, this.f25203r / 6.0f, new int[]{0, -1}, new float[]{0.0f, AndroidUtilities.dpf2(56.0f) / this.f25203r}, Shader.TileMode.CLAMP);
+            LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, this.f25204r / 6.0f, new int[]{0, -1}, new float[]{0.0f, AndroidUtilities.dpf2(56.0f) / this.f25204r}, Shader.TileMode.CLAMP);
             Shader.TileMode tileMode = Shader.TileMode.MIRROR;
-            this.f25201f[i10].setShader(new ComposeShader(new BitmapShader(bitmap, tileMode, tileMode), linearGradient, PorterDuff.Mode.DST_IN));
+            this.f25202f[i10].setShader(new ComposeShader(new BitmapShader(bitmap, tileMode, tileMode), linearGradient, PorterDuff.Mode.DST_IN));
         }
     }
 
@@ -188,7 +188,7 @@ public final class ci0 extends View {
             return;
         }
         float renderNodeScale = getRenderNodeScale() * f10 * 8.0f;
-        this.M.setPosition(0, 0, (int) Math.ceil(f7 / renderNodeScale), (int) Math.ceil((this.f25202n + f11) / renderNodeScale));
+        this.M.setPosition(0, 0, (int) Math.ceil(f7 / renderNodeScale), (int) Math.ceil((this.f25203n + f11) / renderNodeScale));
         RecordingCanvas beginRecording = this.M.beginRecording();
         beginRecording.scale(0.125f, 0.125f);
         beginRecording.drawRenderNode(this.L);
@@ -197,15 +197,15 @@ public final class ci0 extends View {
         zh0 zh0Var2 = this.I;
         if (zh0Var2 != null) {
             if (oz0Var != null) {
-                zh0Var2.f32916w = this.M;
-                zh0Var2.f32914r = oz0Var;
-                zh0Var2.f32915s = renderNodeScale / f10;
+                zh0Var2.f32917w = this.M;
+                zh0Var2.f32915r = oz0Var;
+                zh0Var2.f32916s = renderNodeScale / f10;
                 zh0Var2.v = -f11;
                 zh0Var2.invalidate();
             } else {
-                zh0Var2.f32916w = this.M;
-                zh0Var2.f32914r = null;
-                zh0Var2.f32915s = renderNodeScale;
+                zh0Var2.f32917w = this.M;
+                zh0Var2.f32915r = null;
+                zh0Var2.f32916s = renderNodeScale;
                 zh0Var2.v = -f11;
                 zh0Var2.invalidate();
             }
@@ -228,14 +228,14 @@ public final class ci0 extends View {
         li0 li0Var = this.h;
         if (li0Var != null) {
             ci.x5 x5Var = this.P;
-            ArrayList arrayList = li0Var.f50700k0;
+            ArrayList arrayList = li0Var.f50701k0;
             if (arrayList != null) {
                 arrayList.remove(x5Var);
             }
             this.h = null;
         }
         this.e = false;
-        ri0.f29940a.cancelRunnable(this.f25204s);
+        ri0.f29941a.cancelRunnable(this.f25205s);
         if (Build.VERSION.SDK_INT >= 29) {
             RenderNode renderNode = this.L;
             if (renderNode != null) {
@@ -250,13 +250,13 @@ public final class ci0 extends View {
         }
         this.I = null;
         this.J = null;
-        synchronized (this.f25199b) {
+        synchronized (this.f25200b) {
             for (int i10 = 0; i10 < 3; i10++) {
                 try {
-                    qi0 qi0Var = this.f25200c[i10];
+                    qi0 qi0Var = this.f25201c[i10];
                     if (qi0Var != null) {
                         qi0Var.a();
-                        this.f25200c[i10] = null;
+                        this.f25201c[i10] = null;
                     }
                     qi0 qi0Var2 = this.d[i10];
                     if (qi0Var2 != null) {
@@ -272,8 +272,8 @@ public final class ci0 extends View {
                     throw th2;
                 }
             }
-            this.f25201f[0].setShader(null);
-            this.f25201f[1].setShader(null);
+            this.f25202f[0].setShader(null);
+            this.f25202f[1].setShader(null);
         }
     }
 
@@ -285,7 +285,7 @@ public final class ci0 extends View {
         Canvas canvas2 = canvas;
         li0 li0Var = this.h;
         if (li0Var != null && li0Var.isAttachedToWindow() && this.h.getVisibility() != 8) {
-            if (this.f25198a && Build.VERSION.SDK_INT >= 31) {
+            if (this.f25199a && Build.VERSION.SDK_INT >= 31) {
                 if (canvas2.isHardwareAccelerated()) {
                     if (oz0Var == null && getVisibility() == 0 && getAlpha() > 0.0f) {
                         j();
@@ -299,17 +299,17 @@ public final class ci0 extends View {
                             iw0Var2.g(null);
                         }
                         float renderNodeScale = getRenderNodeScale();
-                        this.L.setPosition(0, 0, (int) Math.ceil(f7 / renderNodeScale), (int) Math.ceil((this.f25203r + this.f25202n) / renderNodeScale));
+                        this.L.setPosition(0, 0, (int) Math.ceil(f7 / renderNodeScale), (int) Math.ceil((this.f25204r + this.f25203n) / renderNodeScale));
                         RecordingCanvas beginRecording = this.L.beginRecording();
                         float f15 = 1.0f / renderNodeScale;
                         beginRecording.scale(f15, f15);
                         beginRecording.save();
-                        beginRecording.translate(-this.f25206x, 0.0f);
+                        beginRecording.translate(-this.f25207x, 0.0f);
                         i(beginRecording, 0);
                         beginRecording.restore();
-                        if (this.f25206x != 0) {
+                        if (this.f25207x != 0) {
                             beginRecording.save();
-                            beginRecording.translate((-this.f25206x) + f7, 0.0f);
+                            beginRecording.translate((-this.f25207x) + f7, 0.0f);
                             i(beginRecording, 1);
                             beginRecording.restore();
                         }
@@ -320,28 +320,28 @@ public final class ci0 extends View {
                         canvas2.drawRenderNode(this.L);
                         canvas2.restore();
                         if (getVisibility() == 0 && getAlpha() > 0.0f) {
-                            c(f7, null, 1.0f, this.f25203r);
+                            c(f7, null, 1.0f, this.f25204r);
                             return;
                         }
                         return;
                     } else if (oz0Var != null) {
                         float measuredWidth = f7 / this.h.getMeasuredWidth();
-                        float f16 = this.f25203r * (1.0f - f11);
+                        float f16 = this.f25204r * (1.0f - f11);
                         float f17 = f16 * measuredWidth;
                         float renderNodeScale2 = getRenderNodeScale() * measuredWidth;
                         j();
-                        this.L.setPosition(0, 0, (int) Math.ceil(f7 / renderNodeScale2), (int) Math.ceil((this.f25202n + f16) / renderNodeScale2));
+                        this.L.setPosition(0, 0, (int) Math.ceil(f7 / renderNodeScale2), (int) Math.ceil((this.f25203n + f16) / renderNodeScale2));
                         RecordingCanvas beginRecording2 = this.L.beginRecording();
                         float f18 = 1.0f / renderNodeScale2;
                         beginRecording2.scale(f18, f18);
                         r5 r5Var = oz0Var.e;
                         if (r5Var != null) {
-                            imageReceiver = r5Var.f29841k;
+                            imageReceiver = r5Var.f29842k;
                         } else {
-                            imageReceiver = oz0Var.f31996a;
+                            imageReceiver = oz0Var.f31997a;
                         }
                         g(imageReceiver, beginRecording2, f17, f10);
-                        if (oz0Var.f40018a0 && oz0Var.V > 0.0f) {
+                        if (oz0Var.f40019a0 && oz0Var.V > 0.0f) {
                             g(oz0Var.U, beginRecording2, f17, f10);
                         }
                         this.L.endRecording();
@@ -357,9 +357,9 @@ public final class ci0 extends View {
                 }
                 f13 = 1.0f;
                 if (oz0Var == null && !AndroidUtilities.makingGlobalBlurBitmap) {
-                    this.f25198a = false;
-                    setLayerType(1, this.f25201f[0]);
-                    setLayerType(1, this.f25201f[1]);
+                    this.f25199a = false;
+                    setLayerType(1, this.f25202f[0]);
+                    setLayerType(1, this.f25202f[1]);
                 } else {
                     return;
                 }
@@ -374,56 +374,56 @@ public final class ci0 extends View {
             if (si0Var != null) {
                 si0Var.c();
             }
-            if (this.H || this.G || this.F || (this.f25201f[0].getShader() == null && this.f25201f[1].getShader() == null && !this.e)) {
+            if (this.H || this.G || this.F || (this.f25202f[0].getShader() == null && this.f25202f[1].getShader() == null && !this.e)) {
                 boolean d = d();
                 if (!this.e && d) {
                     this.e = true;
-                    DispatchQueue dispatchQueue = ri0.f29940a;
-                    dispatchQueue.cancelRunnable(this.f25204s);
-                    dispatchQueue.postRunnable(this.f25204s);
+                    DispatchQueue dispatchQueue = ri0.f29941a;
+                    dispatchQueue.cancelRunnable(this.f25205s);
+                    dispatchQueue.postRunnable(this.f25205s);
                 }
             }
-            if (this.f25201f[0].getShader() != null || this.f25201f[1].getShader() != null) {
-                synchronized (this.f25199b) {
+            if (this.f25202f[0].getShader() != null || this.f25202f[1].getShader() != null) {
+                synchronized (this.f25200b) {
                     try {
-                        float f19 = f7 / this.f25207y;
+                        float f19 = f7 / this.f25208y;
                         if (z10) {
                             canvas2.translate(0.0f, (-f19) * this.E);
                         }
                         canvas2.scale(f19, f19);
-                        float f20 = this.f25202n / f19;
-                        if (this.f25201f[0].getShader() != null) {
+                        float f20 = this.f25203n / f19;
+                        if (this.f25202f[0].getShader() != null) {
                             canvas2.save();
-                            canvas2.translate((-this.f25206x) / f19, 0.0f);
+                            canvas2.translate((-this.f25207x) / f19, 0.0f);
                             canvas2.save();
                             canvas2.scale(f13, 2.0f, 0.0f, this.E);
                             float f21 = this.E;
                             c10 = 1;
                             f14 = 2.0f;
-                            canvas2.drawRect(0.0f, f21, this.f25207y, f21 + f20, this.f25201f[0]);
+                            canvas2.drawRect(0.0f, f21, this.f25208y, f21 + f20, this.f25202f[0]);
                             canvas.restore();
-                            this.f25201f[0].setAlpha((int) (f12 * 255.0f));
+                            this.f25202f[0].setAlpha((int) (f12 * 255.0f));
                             float f22 = this.E;
                             canvas2 = canvas;
-                            canvas2.drawRect(0.0f, f22 * f11, this.f25207y, f22, this.f25201f[0]);
-                            this.f25201f[0].setAlpha(255);
+                            canvas2.drawRect(0.0f, f22 * f11, this.f25208y, f22, this.f25202f[0]);
+                            this.f25202f[0].setAlpha(255);
                             canvas2.restore();
                         } else {
                             c10 = 1;
                             f14 = 2.0f;
                         }
-                        if (this.f25206x != 0 && this.f25201f[c10].getShader() != null) {
+                        if (this.f25207x != 0 && this.f25202f[c10].getShader() != null) {
                             canvas2.save();
-                            canvas2.translate(((-this.f25206x) + f7) / f19, 0.0f);
+                            canvas2.translate(((-this.f25207x) + f7) / f19, 0.0f);
                             canvas2.save();
                             canvas2.scale(1.0f, f14, 0.0f, this.E);
                             float f23 = this.E;
-                            canvas2.drawRect(0.0f, f23, this.f25207y, f23 + f20, this.f25201f[c10]);
+                            canvas2.drawRect(0.0f, f23, this.f25208y, f23 + f20, this.f25202f[c10]);
                             canvas.restore();
-                            this.f25201f[c10].setAlpha((int) (f12 * 255.0f));
+                            this.f25202f[c10].setAlpha((int) (f12 * 255.0f));
                             float f24 = this.E;
-                            canvas.drawRect(0.0f, f24 * f11, this.f25207y, f24, this.f25201f[c10]);
-                            this.f25201f[c10].setAlpha(255);
+                            canvas.drawRect(0.0f, f24 * f11, this.f25208y, f24, this.f25202f[c10]);
+                            this.f25202f[c10].setAlpha(255);
                             canvas.restore();
                         }
                     } catch (Throwable th2) {
@@ -435,17 +435,17 @@ public final class ci0 extends View {
     }
 
     public final void h(int i10, View view) {
-        qi0 qi0Var = this.f25200c[i10];
+        qi0 qi0Var = this.f25201c[i10];
         if (view != null && !qi0Var.e) {
-            Canvas canvas = qi0Var.f29612a;
+            Canvas canvas = qi0Var.f29613a;
             canvas.save();
             canvas.scale(0.16666667f, 0.16666667f);
-            canvas.translate(0.0f, this.f25203r - view.getMeasuredHeight());
+            canvas.translate(0.0f, this.f25204r - view.getMeasuredHeight());
             view.draw(canvas);
             canvas.restore();
-            qi0Var.f29615f = true;
+            qi0Var.f29616f = true;
         }
-        if (i10 != 0 && (this.f25206x == 0 || i10 != 1)) {
+        if (i10 != 0 && (this.f25207x == 0 || i10 != 1)) {
             return;
         }
         boolean z10 = view instanceof iw0;
@@ -458,16 +458,16 @@ public final class ci0 extends View {
     }
 
     public final void i(Canvas canvas, int i10) {
-        View E = this.h.E(this.f25205w + i10);
+        View E = this.h.E(this.f25206w + i10);
         if (E != null) {
             int measuredHeight = E.getMeasuredHeight();
             canvas.save();
-            canvas.translate(0.0f, this.f25203r - measuredHeight);
+            canvas.translate(0.0f, this.f25204r - measuredHeight);
             E.draw(canvas);
             canvas.restore();
             canvas.save();
             canvas.scale(1.0f, -1.0f);
-            canvas.translate(0.0f, (-measuredHeight) - this.f25203r);
+            canvas.translate(0.0f, (-measuredHeight) - this.f25204r);
             canvas.scale(1.0f, 2.0f, 0.0f, measuredHeight);
             E.draw(canvas);
             canvas.restore();
@@ -487,9 +487,9 @@ public final class ci0 extends View {
         if (this.L == null) {
             float renderNodeScale = getRenderNodeScale();
             this.L = new RenderNode("profileBlurNode");
-            float[] fArr = {0.0f, AndroidUtilities.dpf2(56.0f) / this.f25203r};
+            float[] fArr = {0.0f, AndroidUtilities.dpf2(56.0f) / this.f25204r};
             Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-            LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, this.f25203r / renderNodeScale, new int[]{0, -1}, fArr, tileMode);
+            LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, this.f25204r / renderNodeScale, new int[]{0, -1}, fArr, tileMode);
             float blurRadius = getBlurRadius();
             this.L.setRenderEffect(RenderEffect.createBlendModeEffect(RenderEffect.createBlurEffect(blurRadius, blurRadius, tileMode), RenderEffect.createShaderEffect(linearGradient), BlendMode.DST_IN));
         }
@@ -502,7 +502,7 @@ public final class ci0 extends View {
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        setMeasuredDimension(View.MeasureSpec.getSize(i10), this.f25203r + this.f25202n);
+        setMeasuredDimension(View.MeasureSpec.getSize(i10), this.f25204r + this.f25203n);
     }
 
     public void setActionsView(zh0 zh0Var) {
@@ -512,7 +512,7 @@ public final class ci0 extends View {
     @Override
     public void setAlpha(float f7) {
         super.setAlpha(f7);
-        if (f7 != 0.0f && this.f25198a) {
+        if (f7 != 0.0f && this.f25199a) {
             invalidate();
         }
     }
@@ -522,18 +522,18 @@ public final class ci0 extends View {
     }
 
     public void setSize(int i10) {
-        if (this.f25202n != i10) {
+        if (this.f25203n != i10) {
             invalidate();
         }
-        this.f25202n = i10;
-        this.f25203r = (int) (AndroidUtilities.dp(64.0f) * 1.5f);
+        this.f25203n = i10;
+        this.f25204r = (int) (AndroidUtilities.dp(64.0f) * 1.5f);
     }
 
     public void setView(li0 li0Var) {
         e();
         this.h = li0Var;
-        this.f25205w = li0Var.getCurrentItem();
-        this.f25206x = 0;
+        this.f25206w = li0Var.getCurrentItem();
+        this.f25207x = 0;
         li0Var.b(this.P);
     }
 

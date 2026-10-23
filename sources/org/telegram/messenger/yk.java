@@ -1,34 +1,63 @@
 package org.telegram.messenger;
 
-import org.telegram.messenger.Utilities;
-public final class yk implements Utilities.Callback2 {
-    public final int f20182a;
-    public final TranslateController f20183b;
-    public final Utilities.Callback4 f20184c;
-    public final boolean d;
-    public final int e;
-    public final String f20185f;
-    public final long f20186g;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.TranslateController;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class yk implements RequestDelegate {
+    public final int f20201a;
+    public final BaseController f20202b;
+    public final long f20203c;
+    public final Object d;
 
-    public yk(TranslateController translateController, Utilities.Callback4 callback4, boolean z10, int i10, String str, long j10, int i11) {
-        this.f20182a = i11;
-        this.f20183b = translateController;
-        this.f20184c = callback4;
-        this.d = z10;
-        this.e = i10;
-        this.f20185f = str;
-        this.f20186g = j10;
+    public yk(BaseController baseController, long j10, Object obj, int i10) {
+        this.f20201a = i10;
+        this.f20202b = baseController;
+        this.f20203c = j10;
+        this.d = obj;
     }
 
     @Override
-    public final void run(Object obj, Object obj2) {
-        switch (this.f20182a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f20201a) {
             case 0:
-                this.f20183b.lambda$pushToTranslate$21(this.f20184c, this.d, this.e, this.f20185f, this.f20186g, (String) obj, (Boolean) obj2);
+                ((TranslateController) this.f20202b).lambda$pushPollToTranslate$26((TranslateController.PendingPollTranslation) this.d, this.f20203c, tLObject, tL_error);
+                return;
+            case 1:
+                ((TranslateController) this.f20202b).lambda$pushRichMessageToTranslate$29((TranslateController.PendingRichTranslation) this.d, this.f20203c, tLObject, tL_error);
+                return;
+            case 2:
+                ((MediaDataController) this.f20202b).lambda$loadPinnedMessageInternal$165(this.f20203c, (TLRPC.TL_messages_getMessages) this.d, tLObject, tL_error);
+                return;
+            case 3:
+                ((MessagesController) this.f20202b).lambda$updateTimerProc$154(this.f20203c, (TLRPC.TL_messages_getMessagesViews) this.d, tLObject, tL_error);
+                return;
+            case 4:
+                ((MessagesController) this.f20202b).lambda$reloadMentionsCountForChannel$220((TLRPC.InputPeer) this.d, this.f20203c, tLObject, tL_error);
+                return;
+            case 5:
+                ((MessagesController) this.f20202b).lambda$getGroupCall$62(this.f20203c, (Runnable) this.d, tLObject, tL_error);
+                return;
+            case 6:
+                ((MessagesController) this.f20202b).lambda$getSponsoredMessages$443(this.f20203c, (MessagesController.SponsoredMessagesInfo) this.d, tLObject, tL_error);
+                return;
+            case 7:
+                ((MessagesController) this.f20202b).lambda$loadUnknownChannel$329(this.f20203c, (TLRPC.TL_channel) this.d, tLObject, tL_error);
+                return;
+            case 8:
+                ((MessagesController) this.f20202b).lambda$setChatReactions$474(this.f20203c, (TLRPC.TL_messages_setChatAvailableReactions) this.d, tLObject, tL_error);
                 return;
             default:
-                this.f20183b.lambda$pushToTranslate$20(this.f20184c, this.d, this.e, this.f20185f, this.f20186g, (String) obj, (Boolean) obj2);
+                ((MessagesController) this.f20202b).lambda$checkLastDialogMessage$226((TLRPC.Dialog) this.d, this.f20203c, tLObject, tL_error);
                 return;
         }
+    }
+
+    public yk(BaseController baseController, Object obj, long j10, int i10) {
+        this.f20201a = i10;
+        this.f20202b = baseController;
+        this.d = obj;
+        this.f20203c = j10;
     }
 }

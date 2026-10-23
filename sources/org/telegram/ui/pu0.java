@@ -24,7 +24,7 @@ public final class pu0 extends org.telegram.ui.Components.jm0 {
         ou0 ou0Var = new ou0(this);
         setItemAnimator(ou0Var);
         ou0Var.C = false;
-        ou0Var.f45954m = false;
+        ou0Var.f45955m = false;
         setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(6.0f));
         paint.setColor(2130706432);
         this.V2 = context.getResources().getDrawable(R.drawable.photo_tooltip2).mutate();

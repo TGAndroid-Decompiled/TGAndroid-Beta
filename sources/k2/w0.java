@@ -113,7 +113,7 @@ public final class w0 implements x, ki.j0, g1, l.w, l.i, k1.f, e5, bh.h, z71, oe
     public void I(Exception exc) {
         e2.a.d("MediaCodecAudioRenderer", "Audio sink error", exc);
         qf.b bVar = ((x0) this.f14830b).f14831a1;
-        Handler handler = (Handler) bVar.f44450b;
+        Handler handler = (Handler) bVar.f44451b;
         if (handler != null) {
             handler.post(new q(bVar, exc, 1));
         }
@@ -123,11 +123,11 @@ public final class w0 implements x, ki.j0, g1, l.w, l.i, k1.f, e5, bh.h, z71, oe
     public void J(bh.a aVar) {
         switch (this.f14829a) {
             case 11:
-                aVar.a(((ti) this.f14830b).getThemedColor(h6.f20993d6));
+                aVar.a(((ti) this.f14830b).getThemedColor(h6.f20994d6));
                 aVar.b(SharedConfig.chatBlurEnabled());
                 return;
             default:
-                aVar.a(((fr0) this.f14830b).getThemedColor(h6.f20993d6));
+                aVar.a(((fr0) this.f14830b).getThemedColor(h6.f20994d6));
                 aVar.b(SharedConfig.chatBlurEnabled());
                 return;
         }
@@ -179,7 +179,7 @@ public final class w0 implements x, ki.j0, g1, l.w, l.i, k1.f, e5, bh.h, z71, oe
     @Override
     public void Q(u0 u0Var) {
         qf.b bVar = ((x0) this.f14830b).f14831a1;
-        Handler handler = (Handler) bVar.f44450b;
+        Handler handler = (Handler) bVar.f44451b;
         if (handler != null) {
             handler.post(new t(bVar, u0Var, 1));
         }
@@ -198,7 +198,7 @@ public final class w0 implements x, ki.j0, g1, l.w, l.i, k1.f, e5, bh.h, z71, oe
     @Override
     public void T(u0 u0Var) {
         qf.b bVar = ((x0) this.f14830b).f14831a1;
-        Handler handler = (Handler) bVar.f44450b;
+        Handler handler = (Handler) bVar.f44451b;
         if (handler != null) {
             handler.post(new t(bVar, u0Var, 0));
         }
@@ -227,7 +227,7 @@ public final class w0 implements x, ki.j0, g1, l.w, l.i, k1.f, e5, bh.h, z71, oe
         x0 x0Var = (x0) this.f14830b;
         x0Var.f14842m1 = true;
         qf.b bVar = x0Var.f14831a1;
-        Handler handler = (Handler) bVar.f44450b;
+        Handler handler = (Handler) bVar.f44451b;
         if (handler != null) {
             handler.post(new v3(bVar, j10, 13));
         }
@@ -278,7 +278,7 @@ public final class w0 implements x, ki.j0, g1, l.w, l.i, k1.f, e5, bh.h, z71, oe
         switch (this.f14829a) {
             case 11:
                 ti tiVar = (ti) this.f14830b;
-                canvas.drawColor(tiVar.getThemedColor(h6.f20993d6));
+                canvas.drawColor(tiVar.getThemedColor(h6.f20994d6));
                 if (SharedConfig.chatBlurEnabled()) {
                     tiVar.F2.b(canvas, -3);
                     return;
@@ -286,7 +286,7 @@ public final class w0 implements x, ki.j0, g1, l.w, l.i, k1.f, e5, bh.h, z71, oe
                 return;
             default:
                 fr0 fr0Var = (fr0) this.f14830b;
-                canvas.drawColor(fr0Var.getThemedColor(h6.f20993d6));
+                canvas.drawColor(fr0Var.getThemedColor(h6.f20994d6));
                 if (SharedConfig.chatBlurEnabled()) {
                     fr0Var.P0.b(canvas, -2);
                     return;
@@ -371,15 +371,15 @@ public final class w0 implements x, ki.j0, g1, l.w, l.i, k1.f, e5, bh.h, z71, oe
 
     public void i(p4.p pVar, p4.m mVar, Collection collection) {
         p4.e eVar = (p4.e) this.f14830b;
-        if (pVar == eVar.f44120y && mVar != null) {
-            p4.u uVar = eVar.f44119x.f44211a;
+        if (pVar == eVar.f44121y && mVar != null) {
+            p4.u uVar = eVar.f44120x.f44212a;
             String d = mVar.d();
             p4.v vVar = new p4.v(uVar, d, eVar.b(uVar, d), false);
             vVar.i(mVar);
             if (eVar.d != vVar) {
-                eVar.h(eVar, vVar, eVar.f44120y, 3, eVar.f44119x, collection);
-                eVar.f44119x = null;
-                eVar.f44120y = null;
+                eVar.h(eVar, vVar, eVar.f44121y, 3, eVar.f44120x, collection);
+                eVar.f44120x = null;
+                eVar.f44121y = null;
             }
         } else if (pVar == eVar.e) {
             if (mVar != null) {
@@ -479,10 +479,10 @@ public final class w0 implements x, ki.j0, g1, l.w, l.i, k1.f, e5, bh.h, z71, oe
         int dp = AndroidUtilities.dp(9.0f);
         e71 e71Var = (e71) this.f14830b;
         float f11 = -dp;
-        e71Var.f25793g.inset(f11, f11);
-        boolean contains = e71Var.f25793g.contains(f7, f10);
+        e71Var.f25794g.inset(f11, f11);
+        boolean contains = e71Var.f25794g.contains(f7, f10);
         float f12 = dp;
-        e71Var.f25793g.inset(f12, f12);
+        e71Var.f25794g.inset(f12, f12);
         return contains;
     }
 
@@ -499,7 +499,7 @@ public final class w0 implements x, ki.j0, g1, l.w, l.i, k1.f, e5, bh.h, z71, oe
             jVar.d(i10);
         }
         qf.b bVar = x0Var.f14831a1;
-        Handler handler = (Handler) bVar.f44450b;
+        Handler handler = (Handler) bVar.f44451b;
         if (handler != null) {
             handler.post(new ah.g(bVar, i10, 14));
         }
@@ -507,7 +507,7 @@ public final class w0 implements x, ki.j0, g1, l.w, l.i, k1.f, e5, bh.h, z71, oe
 
     @Override
     public void onClickAt(View view, float f7, float f10) {
-        Runnable runnable = ((e71) this.f14830b).f25795j;
+        Runnable runnable = ((e71) this.f14830b).f25796j;
         if (runnable != null) {
             runnable.run();
         }
@@ -555,7 +555,7 @@ public final class w0 implements x, ki.j0, g1, l.w, l.i, k1.f, e5, bh.h, z71, oe
     @Override
     public void onSkipSilenceEnabledChanged(boolean z10) {
         qf.b bVar = ((x0) this.f14830b).f14831a1;
-        Handler handler = (Handler) bVar.f44450b;
+        Handler handler = (Handler) bVar.f44451b;
         if (handler != null) {
             handler.post(new ah.t(12, bVar, z10));
         }
@@ -615,7 +615,7 @@ public final class w0 implements x, ki.j0, g1, l.w, l.i, k1.f, e5, bh.h, z71, oe
     @Override
     public void t(int i10, long j10, long j11) {
         qf.b bVar = ((x0) this.f14830b).f14831a1;
-        Handler handler = (Handler) bVar.f44450b;
+        Handler handler = (Handler) bVar.f44451b;
         if (handler != null) {
             handler.post(new s(bVar, i10, j10, j11, 0));
         }

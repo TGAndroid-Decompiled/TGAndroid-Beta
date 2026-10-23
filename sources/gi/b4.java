@@ -63,7 +63,7 @@ public final class b4 implements o1.f {
             case 3:
                 ti tiVar = (ti) ((c5) this.f11098b).d;
                 tiVar.C0.setTranslationY(0.0f);
-                tiVar.C0.l(tiVar.f30577o2);
+                tiVar.C0.l(tiVar.f30578o2);
                 viewGroup = ((org.telegram.ui.ActionBar.f3) tiVar).containerView;
                 viewGroup.invalidate();
                 ((gh) this.f11099c).run();

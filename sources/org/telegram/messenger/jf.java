@@ -1,33 +1,25 @@
 package org.telegram.messenger;
 
-import org.telegram.messenger.MessagesStorage;
+import org.telegram.tgnet.TLRPC;
 public final class jf implements Runnable {
-    public final int f18702a;
-    public final MessagesStorage f18703b;
-    public final long f18704c;
-    public final MessagesStorage.IntCallback d;
+    public final int f18706a;
+    public final MessagesStorage f18707b;
+    public final TLRPC.TL_chatFull f18708c;
 
-    public jf(MessagesStorage messagesStorage, long j10, MessagesStorage.IntCallback intCallback, int i10) {
-        this.f18702a = i10;
-        this.f18703b = messagesStorage;
-        this.f18704c = j10;
-        this.d = intCallback;
+    public jf(MessagesStorage messagesStorage, TLRPC.TL_chatFull tL_chatFull, int i10) {
+        this.f18706a = i10;
+        this.f18707b = messagesStorage;
+        this.f18708c = tL_chatFull;
     }
 
     @Override
     public final void run() {
-        switch (this.f18702a) {
+        switch (this.f18706a) {
             case 0:
-                this.f18703b.lambda$getDialogMaxMessageId$255(this.f18704c, this.d);
-                return;
-            case 1:
-                this.f18703b.lambda$getDialogFolderId$243(this.f18704c, this.d);
-                return;
-            case 2:
-                this.f18703b.lambda$getMessagesCount$158(this.f18704c, this.d);
+                this.f18707b.lambda$updateChatParticipants$121(this.f18708c);
                 return;
             default:
-                this.f18703b.lambda$getSavedDialogMaxMessageId$53(this.f18704c, this.d);
+                this.f18707b.lambda$updateChatInfo$139(this.f18708c);
                 return;
         }
     }

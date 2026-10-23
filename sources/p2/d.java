@@ -8,69 +8,69 @@ import e9.y0;
 import java.util.HashMap;
 import v7.u6;
 public final class d {
-    public final x f43938a;
-    public final HashMap f43939b;
-    public final e f43940c;
+    public final x f43939a;
+    public final HashMap f43940b;
+    public final e f43941c;
 
     public d(e eVar, x xVar) {
-        this.f43940c = eVar;
-        this.f43938a = xVar;
+        this.f43941c = eVar;
+        this.f43939a = xVar;
         HashMap hashMap = new HashMap();
-        m2 it = y0.u(xVar.f44080b.keySet()).iterator();
+        m2 it = y0.u(xVar.f44081b.keySet()).iterator();
         while (it.hasNext()) {
             String str = (String) it.next();
-            Uri uri = (Uri) xVar.f44080b.get(str);
+            Uri uri = (Uri) xVar.f44081b.get(str);
             uri.getClass();
-            hashMap.put(uri, new c(this.f43940c, uri, str));
+            hashMap.put(uri, new c(this.f43941c, uri, str));
         }
-        this.f43939b = hashMap;
+        this.f43940b = hashMap;
     }
 
     public static n a(d dVar, Uri uri) {
-        c cVar = (c) i2.e.i(dVar.f43939b, uri, uri);
+        c cVar = (c) i2.e.i(dVar.f43940b, uri, uri);
         cVar.getClass();
         return cVar.e;
     }
 
     public static void b(d dVar, Uri uri, boolean z10) {
         Uri uri2;
-        c cVar = (c) i2.e.i(dVar.f43939b, uri, uri);
+        c cVar = (c) i2.e.i(dVar.f43940b, uri, uri);
         cVar.getClass();
         if (z10) {
             uri2 = cVar.a();
         } else {
-            uri2 = cVar.f43929a;
+            uri2 = cVar.f43930a;
         }
         cVar.c(uri2);
     }
 
     public static boolean c(d dVar, Uri uri, long j10) {
-        HashMap hashMap = dVar.f43939b;
+        HashMap hashMap = dVar.f43940b;
         c cVar = (c) i2.e.i(hashMap, uri, uri);
         cVar.getClass();
-        cVar.f43934r = SystemClock.elapsedRealtime() + j10;
-        e eVar = dVar.f43940c;
-        x xVar = dVar.f43938a;
+        cVar.f43935r = SystemClock.elapsedRealtime() + j10;
+        e eVar = dVar.f43941c;
+        x xVar = dVar.f43939a;
         long elapsedRealtime = SystemClock.elapsedRealtime();
         for (c cVar2 : hashMap.values()) {
-            if (!cVar2.f43930b.equals(xVar.d) && elapsedRealtime > cVar2.f43934r) {
+            if (!cVar2.f43931b.equals(xVar.d) && elapsedRealtime > cVar2.f43935r) {
                 Uri c10 = xVar.c();
-                String str = cVar2.f43930b;
-                u6.p(xVar.f44080b.containsKey(str));
+                String str = cVar2.f43931b;
+                u6.p(xVar.f44081b.containsKey(str));
                 xVar.d = str;
                 if (c10.equals(eVar.F)) {
-                    eVar.i(cVar2.f43929a);
+                    eVar.i(cVar2.f43930a);
                 }
                 c cVar3 = (c) hashMap.get(c10);
                 cVar3.getClass();
-                cVar2.f43936w = cVar3.f43936w;
-                cVar3.f43936w = false;
+                cVar2.f43937w = cVar3.f43937w;
+                cVar3.f43937w = false;
                 return true;
             }
         }
         Uri uri2 = eVar.F;
         if (uri2 == null || uri.equals(uri2)) {
-            n0 n0Var = eVar.f43948w;
+            n0 n0Var = eVar.f43949w;
             long elapsedRealtime2 = SystemClock.elapsedRealtime();
             boolean z10 = false;
             int i10 = 0;
@@ -81,10 +81,10 @@ public final class d {
                 Uri c11 = ((x) n0Var.get(i10)).c();
                 d dVar2 = (d) eVar.d.get(c11);
                 dVar2.getClass();
-                HashMap hashMap2 = dVar2.f43939b;
+                HashMap hashMap2 = dVar2.f43940b;
                 c cVar4 = (c) i2.e.i(hashMap2, c11, c11);
                 cVar4.getClass();
-                if (elapsedRealtime2 <= cVar4.f43934r) {
+                if (elapsedRealtime2 <= cVar4.f43935r) {
                     i10++;
                 } else {
                     eVar.F = c11;

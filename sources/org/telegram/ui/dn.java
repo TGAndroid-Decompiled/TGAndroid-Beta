@@ -4,13 +4,13 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessageObject;
 public final class dn extends w7.a6 {
-    public MessageObject f36425a;
-    public int f36426b = 0;
-    public boolean f36427c = true;
+    public MessageObject f36426a;
+    public int f36427b = 0;
+    public boolean f36428c = true;
     public int d = 0;
     public int e;
-    public boolean f36428f;
-    public int f36429g;
+    public boolean f36429f;
+    public int f36430g;
     public final qn h;
 
     public dn(qn qnVar) {
@@ -19,20 +19,20 @@ public final class dn extends w7.a6 {
 
     @Override
     public final void a() {
-        MessageObject messageObject = this.f36425a;
+        MessageObject messageObject = this.f36426a;
         qn qnVar = this.h;
         if (messageObject != null) {
             qnVar.A0.T();
-            int indexOf = qnVar.f40871u6.indexOf(this.f36425a) + qnVar.A0.J;
+            int indexOf = qnVar.f40872u6.indexOf(this.f36426a) + qnVar.A0.J;
             if (indexOf >= 0) {
-                qnVar.f40929z0.i1(indexOf, (int) ((this.e + this.f36429g) - qnVar.f40848s9), this.f36428f);
+                qnVar.f40930z0.i1(indexOf, (int) ((this.e + this.f36430g) - qnVar.f40849s9), this.f36429f);
             }
         } else {
             qnVar.A0.T();
-            qnVar.f40929z0.i1(this.f36426b, this.d, this.f36427c);
+            qnVar.f40930z0.i1(this.f36427b, this.d, this.f36428c);
         }
-        this.f36425a = null;
-        qnVar.f40766m3 = true;
+        this.f36426a = null;
+        qnVar.f40767m3 = true;
         qnVar.bd(false);
         AndroidUtilities.runOnUIThread(new ti(this, 9));
     }
@@ -41,8 +41,8 @@ public final class dn extends w7.a6 {
     public final void c() {
         qn qnVar = this.h;
         qnVar.I9 = qnVar.getNotificationCenter().setAnimationInProgress(qnVar.I9, qn.Oc);
-        ok okVar = qnVar.f40900wa;
-        if (okVar.f42391n) {
+        ok okVar = qnVar.f40901wa;
+        if (okVar.f42392n) {
             okVar.d();
         }
     }

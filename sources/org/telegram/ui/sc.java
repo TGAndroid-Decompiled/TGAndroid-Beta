@@ -16,7 +16,7 @@ public final class sc extends gp0 {
         tc tcVar = this.F;
         TextView textView = tcVar.d;
         if (textView != null) {
-            textView.setTextColor(tcVar.f41640b.h.getTextColor());
+            textView.setTextColor(tcVar.f41641b.h.getTextColor());
         }
     }
 }

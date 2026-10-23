@@ -13,7 +13,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.ok;
+import org.telegram.messenger.nk;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Components.a6;
@@ -50,7 +50,7 @@ public abstract class w extends FrameLayout {
         setWillNotDraw(false);
         paint2.setColor(h6.m1(0.1f, -16777216));
         a5.a aVar2 = this.e;
-        int w02 = h6.w0(h6.f20993d6, d6Var);
+        int w02 = h6.w0(h6.f20994d6, d6Var);
         aVar2.f281b = w02;
         paint.setColor(w02);
         u[] uVarArr = {new u(this), new u(this)};
@@ -62,7 +62,7 @@ public abstract class w extends FrameLayout {
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
             spannableStringBuilder.append((CharSequence) "* ");
             spannableStringBuilder.append((CharSequence) vVar.e);
-            spannableStringBuilder.setSpan(new a6(vVar.f11506f, 1.4f, p6Var.f29227a.getFontMetricsInt()), 0, 1, 33);
+            spannableStringBuilder.setSpan(new a6(vVar.f11506f, 1.4f, p6Var.f29228a.getFontMetricsInt()), 0, 1, 33);
             p6Var.t(spannableStringBuilder, z10, true);
             return;
         }
@@ -121,7 +121,7 @@ public abstract class w extends FrameLayout {
         String str2 = ((v) this.e.d).f11508i;
         u[] uVarArr = this.f11519f;
         int i14 = 1;
-        if (uVarArr[1].f11481b.f26089c < uVarArr[0].f11481b.f26089c) {
+        if (uVarArr[1].f11481b.f26090c < uVarArr[0].f11481b.f26090c) {
             i10 = 1;
         } else {
             i10 = 0;
@@ -160,7 +160,7 @@ public abstract class w extends FrameLayout {
             RectF rectF = uVar.f11480a;
             float e = f6Var.e(vVar.f11503a);
             if (!vVar.f11503a) {
-                d = f6Var4.f26089c;
+                d = f6Var4.f26090c;
                 p6Var = p6Var2;
             } else {
                 a5.a aVar2 = this.e;
@@ -178,7 +178,7 @@ public abstract class w extends FrameLayout {
                 d = f6Var4.d(f7, false);
             }
             if (!vVar.f11503a) {
-                d10 = f6Var3.f26089c;
+                d10 = f6Var3.f26090c;
             } else {
                 a5.a aVar3 = this.e;
                 if (((v) aVar3.d).f11503a && ((v) aVar3.f282c).f11503a) {
@@ -194,7 +194,7 @@ public abstract class w extends FrameLayout {
                 d10 = f6Var3.d(f10, false);
             }
             if (!vVar.f11503a) {
-                d11 = f6Var2.f26089c;
+                d11 = f6Var2.f26090c;
             } else {
                 a5.a aVar4 = this.e;
                 if (((v) aVar4.d).f11503a && ((v) aVar4.f282c).f11503a && ("left".equalsIgnoreCase(str2) || "right".equalsIgnoreCase(str2))) {
@@ -228,7 +228,7 @@ public abstract class w extends FrameLayout {
                 if (p6Var3.Z != m12) {
                     p6Var3.Z = m12;
                     str = str2;
-                    p6Var3.f29228a0 = new PorterDuffColorFilter(m12, PorterDuff.Mode.SRC_IN);
+                    p6Var3.f29229a0 = new PorterDuffColorFilter(m12, PorterDuff.Mode.SRC_IN);
                 } else {
                     str = str2;
                 }
@@ -288,7 +288,7 @@ public abstract class w extends FrameLayout {
     }
 
     public float getAnimatedTotalHeight() {
-        return this.f11518c.f26089c;
+        return this.f11518c.f26090c;
     }
 
     public int getTotalHeight() {
@@ -317,7 +317,7 @@ public abstract class w extends FrameLayout {
 
     @Override
     public void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), ok.C(109.0f, 1, 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), nk.C(109.0f, 1, 1073741824));
     }
 
     @Override

@@ -9,37 +9,37 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.ok;
+import org.telegram.messenger.nk;
 import org.telegram.ui.Components.f90;
 import org.telegram.ui.Components.zq;
 public final class f7 extends FrameLayout {
-    public final org.telegram.ui.Components.w9 f22258a;
-    public final c7 f22259b;
-    public final TextView f22260c;
+    public final org.telegram.ui.Components.w9 f22259a;
+    public final c7 f22260b;
+    public final TextView f22261c;
     public long d;
     public long e;
-    public final int f22261f;
+    public final int f22262f;
     public final org.telegram.ui.ActionBar.d6 h;
 
     public f7(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
-        this.f22261f = UserConfig.selectedAccount;
+        this.f22262f = UserConfig.selectedAccount;
         this.h = d6Var;
         setWillNotDraw(false);
         org.telegram.ui.Components.w9 w9Var = new org.telegram.ui.Components.w9(context);
-        this.f22258a = w9Var;
+        this.f22259a = w9Var;
         w9Var.setRoundRadius(AndroidUtilities.dp(28.0f));
         addView(w9Var, w7.z5.d(56, 56.0f, 49, 0.0f, 7.0f, 0.0f, 0.0f));
         TextView textView = new TextView(context);
-        this.f22260c = textView;
-        ok.o(org.telegram.ui.ActionBar.h6.f21099j5, d6Var, textView, 1, 12.0f);
+        this.f22261c = textView;
+        nk.o(org.telegram.ui.ActionBar.h6.f21100j5, d6Var, textView, 1, 12.0f);
         textView.setMaxLines(2);
         textView.setGravity(49);
         textView.setLines(2);
         textView.setEllipsize(TextUtils.TruncateAt.END);
         addView(textView, w7.z5.d(-1, -2.0f, 51, 6.0f, 66.0f, 6.0f, 0.0f));
-        this.f22259b = new c7(this, d6Var, 1);
-        setBackground(org.telegram.ui.ActionBar.h6.Z(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21082i6, false), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f)));
+        this.f22260b = new c7(this, d6Var, 1);
+        setBackground(org.telegram.ui.ActionBar.h6.Z(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21083i6, false), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f)));
     }
 
     public long getCurrentDialog() {
@@ -62,15 +62,15 @@ public final class f7 extends FrameLayout {
         } else {
             i10 = R.string.ShareSendToOffTopic;
         }
-        this.f22260c.setText(LocaleController.getString(i10));
-        org.telegram.ui.Components.w9 w9Var = this.f22258a;
+        this.f22261c.setText(LocaleController.getString(i10));
+        org.telegram.ui.Components.w9 w9Var = this.f22259a;
         w9Var.setAnimatedEmojiDrawable(null);
         og.a aVar = new og.a(og.a.f17730k[0]);
         f90 f90Var = new f90(1, null);
         f90Var.a("");
-        f90Var.f26157i = 1.8f;
+        f90Var.f26158i = 1.8f;
         zq zqVar = new zq(aVar, f90Var, 0, 0);
-        zqVar.f33027w = true;
+        zqVar.f33028w = true;
         w9Var.setImageDrawable(zqVar);
     }
 }

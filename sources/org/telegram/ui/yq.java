@@ -3,25 +3,25 @@ package org.telegram.ui;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class yq implements g60 {
-    public final l60 f43540a;
-    public final hr f43541b;
+    public final l60 f43541a;
+    public final hr f43542b;
 
     public yq(hr hrVar, l60 l60Var) {
-        this.f43541b = hrVar;
-        this.f43540a = l60Var;
+        this.f43542b = hrVar;
+        this.f43541a = l60Var;
     }
 
     @Override
     public final void h(TLRPC.User user) {
-        this.f43541b.t0(user.f20426id, null, null, null, "", true, 0, false);
+        this.f43542b.t0(user.f20427id, null, null, null, "", true, 0, false);
     }
 
     @Override
     public final void i(int i10, ArrayList arrayList) {
-        if (this.f43540a.getParentActivity() == null) {
+        if (this.f43541a.getParentActivity() == null) {
             return;
         }
-        hr hrVar = this.f43541b;
-        hrVar.getMessagesController().addUsersToChat(hrVar.f37756r, hrVar, arrayList, i10, new j3(this, 2), new xq(0), null);
+        hr hrVar = this.f43542b;
+        hrVar.getMessagesController().addUsersToChat(hrVar.f37757r, hrVar, arrayList, i10, new j3(this, 2), new xq(0), null);
     }
 }

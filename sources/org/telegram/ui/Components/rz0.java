@@ -1,13 +1,13 @@
 package org.telegram.ui.Components;
 public final class rz0 {
-    public final int f30063a;
+    public final int f30064a;
 
     public rz0(int i10) {
-        this.f30063a = i10;
+        this.f30064a = i10;
     }
 
     public final int a(yz0 yz0Var, int i10) {
-        switch (this.f30063a) {
+        switch (this.f30064a) {
             case 0:
                 return Integer.MIN_VALUE;
             case 1:
@@ -22,7 +22,7 @@ public final class rz0 {
     }
 
     public final int b(yz0 yz0Var, int i10) {
-        switch (this.f30063a) {
+        switch (this.f30064a) {
             case 0:
                 return Integer.MIN_VALUE;
             case 1:
@@ -37,7 +37,7 @@ public final class rz0 {
     }
 
     public int c(int i10, int i11) {
-        switch (this.f30063a) {
+        switch (this.f30064a) {
             case 4:
                 return i11;
             default:

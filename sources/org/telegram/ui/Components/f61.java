@@ -8,26 +8,26 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.UserConfig;
 public final class f61 extends hx0 {
-    public final int f26130a = UserConfig.selectedAccount;
-    public boolean f26131b = false;
-    public final float[] f26132c = new float[3];
+    public final int f26131a = UserConfig.selectedAccount;
+    public boolean f26132b = false;
+    public final float[] f26133c = new float[3];
     public final float[] d = {0.0f, 150.0f, 300.0f};
     public final float[] e = {0.0f, 0.0f, 0.0f};
-    public long f26133f = 0;
-    public boolean f26134g = false;
+    public long f26134f = 0;
+    public boolean f26135g = false;
     public final DecelerateInterpolator h = new DecelerateInterpolator();
-    public boolean f26135i;
-    public final Paint f26136j;
+    public boolean f26136i;
+    public final Paint f26137j;
 
     public f61(boolean z10) {
         if (z10) {
-            this.f26136j = new Paint(1);
+            this.f26137j = new Paint(1);
         }
     }
 
     @Override
     public final void b(int i10) {
-        Paint paint = this.f26136j;
+        Paint paint = this.f26137j;
         if (paint != null) {
             paint.setColor(i10);
         }
@@ -35,13 +35,13 @@ public final class f61 extends hx0 {
 
     @Override
     public final void c(boolean z10) {
-        this.f26131b = z10;
+        this.f26132b = z10;
     }
 
     @Override
     public final void d() {
-        this.f26133f = System.currentTimeMillis();
-        this.f26134g = true;
+        this.f26134f = System.currentTimeMillis();
+        this.f26135g = true;
         invalidateSelf();
     }
 
@@ -50,7 +50,7 @@ public final class f61 extends hx0 {
         int dp;
         int i10;
         int i11 = getBounds().left;
-        if (this.f26131b) {
+        if (this.f26132b) {
             dp = AndroidUtilities.dp(8.5f);
             i10 = getBounds().top;
         } else {
@@ -58,13 +58,13 @@ public final class f61 extends hx0 {
             i10 = getBounds().top;
         }
         int i12 = dp + i10;
-        Paint paint = this.f26136j;
+        Paint paint = this.f26137j;
         if (paint == null) {
-            paint = org.telegram.ui.ActionBar.h6.f20970c2;
+            paint = org.telegram.ui.ActionBar.h6.f20971c2;
             paint.setAlpha(255);
         }
         float f7 = i12;
-        float[] fArr = this.f26132c;
+        float[] fArr = this.f26133c;
         canvas.drawCircle(AndroidUtilities.dp(3.0f) + i11, f7, fArr[0] * AndroidUtilities.density, paint);
         canvas.drawCircle(AndroidUtilities.dp(9.0f) + i11, f7, fArr[1] * AndroidUtilities.density, paint);
         canvas.drawCircle(AndroidUtilities.dp(15.0f) + i11, f7, fArr[2] * AndroidUtilities.density, paint);
@@ -75,24 +75,24 @@ public final class f61 extends hx0 {
     public final void e() {
         for (int i10 = 0; i10 < 3; i10++) {
             this.e[i10] = 0.0f;
-            this.f26132c[i10] = 1.33f;
+            this.f26133c[i10] = 1.33f;
         }
         float[] fArr = this.d;
         fArr[0] = 0.0f;
         fArr[1] = 150.0f;
         fArr[2] = 300.0f;
-        this.f26134g = false;
+        this.f26135g = false;
     }
 
     public final void f() {
-        if (this.f26134g) {
-            if (NotificationCenter.getInstance(this.f26130a).isAnimationInProgress() && !this.f26135i) {
+        if (this.f26135g) {
+            if (NotificationCenter.getInstance(this.f26131a).isAnimationInProgress() && !this.f26136i) {
                 AndroidUtilities.runOnUIThread(new hr0(this, 26), 100L);
                 return;
             }
             long currentTimeMillis = System.currentTimeMillis();
-            long j10 = currentTimeMillis - this.f26133f;
-            this.f26133f = currentTimeMillis;
+            long j10 = currentTimeMillis - this.f26134f;
+            this.f26134f = currentTimeMillis;
             if (j10 > 50) {
                 j10 = 50;
             }
@@ -103,7 +103,7 @@ public final class f61 extends hx0 {
                 float[] fArr2 = this.d;
                 float f10 = f7 - fArr2[i10];
                 int i11 = (f10 > 0.0f ? 1 : (f10 == 0.0f ? 0 : -1));
-                float[] fArr3 = this.f26132c;
+                float[] fArr3 = this.f26133c;
                 if (i11 > 0) {
                     int i12 = (f10 > 320.0f ? 1 : (f10 == 320.0f ? 0 : -1));
                     DecelerateInterpolator decelerateInterpolator = this.h;
@@ -143,7 +143,7 @@ public final class f61 extends hx0 {
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        Paint paint = this.f26136j;
+        Paint paint = this.f26137j;
         if (paint != null) {
             paint.setColorFilter(colorFilter);
         }

@@ -154,7 +154,7 @@ public final class f {
             this.f14427c = Bitmap.createBitmap(i11, i10, Bitmap.Config.ARGB_8888);
             this.d = new Canvas((Bitmap) this.f14427c);
             rectF.set(0.0f, 0.0f, i11, i10);
-            ((Canvas) this.d).drawColor(h6.w0(h6.f20993d6, (d6) this.f14429g));
+            ((Canvas) this.d).drawColor(h6.w0(h6.f20994d6, (d6) this.f14429g));
             ((Canvas) this.d).drawRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), (Paint) this.f14428f);
         }
         return (Bitmap) this.f14427c;

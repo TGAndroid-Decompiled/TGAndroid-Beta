@@ -3,19 +3,19 @@ package q3;
 import j$.util.Objects;
 import java.util.Arrays;
 public final class d extends i {
-    public final String f44369b;
-    public final boolean f44370c;
+    public final String f44370b;
+    public final boolean f44371c;
     public final boolean d;
     public final String[] e;
-    public final i[] f44371f;
+    public final i[] f44372f;
 
     public d(String str, boolean z10, boolean z11, String[] strArr, i[] iVarArr) {
         super("CTOC");
-        this.f44369b = str;
-        this.f44370c = z10;
+        this.f44370b = str;
+        this.f44371c = z10;
         this.d = z11;
         this.e = strArr;
-        this.f44371f = iVarArr;
+        this.f44372f = iVarArr;
     }
 
     public final boolean equals(Object obj) {
@@ -24,7 +24,7 @@ public final class d extends i {
         }
         if (obj != null && d.class == obj.getClass()) {
             d dVar = (d) obj;
-            if (this.f44370c == dVar.f44370c && this.d == dVar.d && Objects.equals(this.f44369b, dVar.f44369b) && Arrays.equals(this.e, dVar.e) && Arrays.equals(this.f44371f, dVar.f44371f)) {
+            if (this.f44371c == dVar.f44371c && this.d == dVar.d && Objects.equals(this.f44370b, dVar.f44370b) && Arrays.equals(this.e, dVar.e) && Arrays.equals(this.f44372f, dVar.f44372f)) {
                 return true;
             }
         }
@@ -33,8 +33,8 @@ public final class d extends i {
 
     public final int hashCode() {
         int i10;
-        int i11 = (((527 + (this.f44370c ? 1 : 0)) * 31) + (this.d ? 1 : 0)) * 31;
-        String str = this.f44369b;
+        int i11 = (((527 + (this.f44371c ? 1 : 0)) * 31) + (this.d ? 1 : 0)) * 31;
+        String str = this.f44370b;
         if (str != null) {
             i10 = str.hashCode();
         } else {

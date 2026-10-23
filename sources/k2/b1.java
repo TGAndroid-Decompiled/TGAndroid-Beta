@@ -24,12 +24,12 @@ public final class b1 extends c2.o {
         String str = e2.m0.f8252a;
         ByteBuffer order = byteBuffer.asReadOnlyBuffer().order(byteBuffer.order());
         b81 b81Var = this.f14655i;
-        float[] fArr = b81Var.f24830b;
-        ByteBuffer byteBuffer2 = b81Var.f24831c;
-        FourierTransform.FFT fft = b81Var.f24829a;
-        c81 c81Var = b81Var.f24832f;
+        float[] fArr = b81Var.f24831b;
+        ByteBuffer byteBuffer2 = b81Var.f24832c;
+        FourierTransform.FFT fft = b81Var.f24830a;
+        c81 c81Var = b81Var.f24833f;
         v71 v71Var = c81Var.K;
-        Handler handler = c81Var.f25131a0;
+        Handler handler = c81Var.f25132a0;
         if (v71Var != null) {
             if (order != c2.n.f4518a && c81Var.I) {
                 if (v71Var.needUpdate()) {

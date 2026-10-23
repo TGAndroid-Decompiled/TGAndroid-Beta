@@ -27,13 +27,13 @@ public final class i1 {
         new Matrix();
         this.f1476l = new RectF();
         this.f1477m = new org.telegram.ui.Components.yc(j1Var);
-        this.f1468a = tL_starGiftUnique.f20503id;
+        this.f1468a = tL_starGiftUnique.f20504id;
         TLRPC.Document document = tL_starGiftUnique.getDocument();
         this.f1469b = document;
         if (document == null) {
             j10 = 0;
         } else {
-            j10 = document.f20285id;
+            j10 = document.f20286id;
         }
         this.f1470c = j10;
         this.d = ((TL_stars.starGiftAttributeBackdrop) ga.l(tL_starGiftUnique.attributes, TL_stars.starGiftAttributeBackdrop.class)).center_color | (-16777216);

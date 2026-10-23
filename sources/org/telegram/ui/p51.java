@@ -5,27 +5,27 @@ import java.util.List;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.tgnet.TLRPC;
 public final class p51 implements Runnable {
-    public final int f40076a;
-    public final t51 f40077b;
-    public final Integer f40078c;
+    public final int f40077a;
+    public final t51 f40078b;
+    public final Integer f40079c;
 
     public p51(t51 t51Var, Integer num, int i10) {
-        this.f40076a = i10;
-        this.f40077b = t51Var;
-        this.f40078c = num;
+        this.f40077a = i10;
+        this.f40078b = t51Var;
+        this.f40079c = num;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f40076a;
-        t51 t51Var = this.f40077b;
+        int i10 = this.f40077a;
+        t51 t51Var = this.f40078b;
         switch (i10) {
             case 0:
-                t51.a(t51Var, this.f40078c);
+                t51.a(t51Var, this.f40079c);
                 return;
             default:
                 t51Var.getClass();
-                Integer num = this.f40078c;
+                Integer num = this.f40079c;
                 if (num != null) {
                     try {
                         t51Var.P.performHapticFeedback(0, 1);

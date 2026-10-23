@@ -6,20 +6,20 @@ import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.xc;
 import org.telegram.ui.qn;
 public final class r8 implements Runnable {
-    public final int f34816a;
-    public final i9 f34817b;
+    public final int f34817a;
+    public final i9 f34818b;
 
     public r8(i9 i9Var, int i10) {
-        this.f34816a = i10;
-        this.f34817b = i9Var;
+        this.f34817a = i10;
+        this.f34818b = i9Var;
     }
 
     @Override
     public final void run() {
         EditTextBoldCursor editTextBoldCursor;
-        switch (this.f34816a) {
+        switch (this.f34817a) {
             case 0:
-                i9 i9Var = this.f34817b;
+                i9 i9Var = this.f34818b;
                 if (i9Var.F && (editTextBoldCursor = i9Var.E) != null && editTextBoldCursor.isAttachedToWindow() && i9Var.E.hasWindowFocus()) {
                     i9Var.E.requestFocus();
                     if (AndroidUtilities.showKeyboard(i9Var.E)) {
@@ -30,7 +30,7 @@ public final class r8 implements Runnable {
                 }
                 return;
             case 1:
-                i9 i9Var2 = this.f34817b;
+                i9 i9Var2 = this.f34818b;
                 float f7 = i9Var2.Y;
                 if (f7 < 1.0f && i9Var2.X == null) {
                     o1.k kVar = new o1.k(new o1.j(f7));
@@ -47,20 +47,20 @@ public final class r8 implements Runnable {
                 }
                 return;
             case 2:
-                this.f34817b.f34348a0.setLoading(false);
+                this.f34818b.f34349a0.setLoading(false);
                 return;
             case 3:
-                this.f34817b.f34348a0.setLoading(false);
+                this.f34818b.f34349a0.setLoading(false);
                 return;
             case 4:
-                this.f34817b.q0();
+                this.f34818b.q0();
                 return;
             case 5:
-                i9 i9Var3 = this.f34817b;
-                i9Var3.presentFragment(qn.W9(i9Var3.e.f20426id));
+                i9 i9Var3 = this.f34818b;
+                i9Var3.presentFragment(qn.W9(i9Var3.e.f20427id));
                 return;
             default:
-                org.telegram.messenger.g0.q(R.string.WalletAddressCopiedBulletin, xc.a0(this.f34817b), R.raw.copy, 36);
+                org.telegram.messenger.g0.q(R.string.WalletAddressCopiedBulletin, xc.a0(this.f34818b), R.raw.copy, 36);
                 return;
         }
     }

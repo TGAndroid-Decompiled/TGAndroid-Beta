@@ -9,16 +9,16 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.tgnet.TLRPC;
 public final class p10 extends URLSpan {
     public static final int e = 0;
-    public final String f29190a;
-    public final TLRPC.TL_messageEntityFormattedDate f29191b;
-    public final n11 f29192c;
+    public final String f29191a;
+    public final TLRPC.TL_messageEntityFormattedDate f29192b;
+    public final n11 f29193c;
     public final boolean d;
 
     public p10(String str, n11 n11Var, TLRPC.TL_messageEntityFormattedDate tL_messageEntityFormattedDate) {
         super(str);
-        this.f29190a = str;
-        this.f29191b = tL_messageEntityFormattedDate;
-        this.f29192c = n11Var;
+        this.f29191a = str;
+        this.f29192b = tL_messageEntityFormattedDate;
+        this.f29193c = n11Var;
         this.d = false;
     }
 
@@ -32,7 +32,7 @@ public final class p10 extends URLSpan {
             ?? r42 = 0;
             while (i10 < length) {
                 p10 p10Var = p10VarArr[i10];
-                TLRPC.TL_messageEntityFormattedDate tL_messageEntityFormattedDate = p10Var.f29191b;
+                TLRPC.TL_messageEntityFormattedDate tL_messageEntityFormattedDate = p10Var.f29192b;
                 if (tL_messageEntityFormattedDate.flags != 0 && (p10Var.d != z10 || (z10 && tL_messageEntityFormattedDate.relative))) {
                     if (r42 == 0) {
                         charSequence = new SpannableStringBuilder(spanned);
@@ -41,9 +41,9 @@ public final class p10 extends URLSpan {
                     int spanStart = r42.getSpanStart(p10Var);
                     int spanEnd = r42.getSpanEnd(p10Var);
                     if (z10) {
-                        str = LocaleController.formatEntityFormattedDate(p10Var.f29191b);
+                        str = LocaleController.formatEntityFormattedDate(p10Var.f29192b);
                     } else {
-                        str = p10Var.f29190a;
+                        str = p10Var.f29191a;
                     }
                     r42.removeSpan(p10Var);
                     r42.replace(spanStart, spanEnd, str);
@@ -66,7 +66,7 @@ public final class p10 extends URLSpan {
         int i10 = textPaint.linkColor;
         int color = textPaint.getColor();
         super.updateDrawState(textPaint);
-        n11 n11Var = this.f29192c;
+        n11 n11Var = this.f29193c;
         if (n11Var != null) {
             n11Var.a(textPaint);
         }
@@ -79,10 +79,10 @@ public final class p10 extends URLSpan {
     }
 
     public p10(p10 p10Var, boolean z10) {
-        super(p10Var.f29190a);
-        this.f29190a = p10Var.f29190a;
-        this.f29191b = p10Var.f29191b;
-        this.f29192c = p10Var.f29192c;
+        super(p10Var.f29191a);
+        this.f29191a = p10Var.f29191a;
+        this.f29192b = p10Var.f29192b;
+        this.f29193c = p10Var.f29193c;
         this.d = z10;
     }
 

@@ -77,7 +77,7 @@ public final class k0 extends bb {
         this.e.setTitle(UserObject.getUserName(user));
         TextView textView2 = new TextView(activity);
         textView2.setTextSize(1, 14.0f);
-        textView2.setTextColor(getThemedColor(h6.f21381y6));
+        textView2.setTextColor(getThemedColor(h6.f21382y6));
         textView2.setGravity(17);
         textView2.setText(LocaleController.getString(R.string.SessionBot));
         linearLayout.addView(textView2, z5.r(-1, -2, 1, 32.0f, 0.0f, 32.0f, 3.66f));
@@ -85,12 +85,12 @@ public final class k0 extends bb {
         if (!TextUtils.isEmpty(publicUsername)) {
             TextView textView3 = new TextView(activity);
             textView3.setTextSize(1, 14.0f);
-            textView3.setTextColor(getThemedColor(h6.f21052gc));
+            textView3.setTextColor(getThemedColor(h6.f21053gc));
             textView3.setText("@" + publicUsername);
             textView3.setGravity(17);
             linearLayout.addView(textView3, z5.t(-1, -2, 1, 32, 0, 32, 18));
         }
-        int i10 = h6.f20935a7;
+        int i10 = h6.f20936a7;
         setBackgroundColor(getThemedColor(i10));
         fixNavigationBar(getThemedColor(i10));
         jm0 jm0Var = this.d;
@@ -122,7 +122,7 @@ public final class k0 extends bb {
         e.rightMargin += i13;
         this.containerView.addView(frameLayout, e);
         s4.k kVar = new s4.k();
-        kVar.f45954m = false;
+        kVar.f45955m = false;
         kVar.C = false;
         kVar.o(bs.h);
         kVar.n(350L);
@@ -388,7 +388,7 @@ public final class k0 extends bb {
     public final im0 x(jm0 jm0Var) {
         u61 u61Var = new u61(jm0Var, getContext(), this.currentAccount, 0, true, new hg.o(this, 4), this.resourcesProvider);
         this.f12946d0 = u61Var;
-        u61Var.f30864r = false;
+        u61Var.f30865r = false;
         return u61Var;
     }
 }

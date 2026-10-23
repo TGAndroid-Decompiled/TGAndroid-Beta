@@ -1,11 +1,11 @@
 package zh;
 public final class a1 {
-    public int f51643a;
-    public int f51644b;
-    public int f51645c;
+    public int f51644a;
+    public int f51645b;
+    public int f51646c;
     public int d;
     public int e;
-    public int f51646f;
-    public int f51647g;
+    public int f51647f;
+    public int f51648g;
     public int h;
 }

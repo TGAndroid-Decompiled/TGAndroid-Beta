@@ -1,14 +1,14 @@
 package u2;
 public final class r0 extends c3.v {
-    public final x0 f47428b;
+    public final x0 f47429b;
 
     public r0(x0 x0Var, c3.c0 c0Var) {
         super(c0Var);
-        this.f47428b = x0Var;
+        this.f47429b = x0Var;
     }
 
     @Override
     public final long h() {
-        return this.f47428b.T;
+        return this.f47429b.T;
     }
 }

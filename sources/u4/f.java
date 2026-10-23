@@ -18,22 +18,22 @@ import x9.m;
 import x9.o;
 import x9.r;
 public final class f implements Callable {
-    public final int f47599a;
-    public final Object f47600b;
-    public final Object f47601c;
+    public final int f47600a;
+    public final Object f47601b;
+    public final Object f47602c;
 
     public f(int i10, Object obj, Object obj2) {
-        this.f47599a = i10;
-        this.f47601c = obj;
-        this.f47600b = obj2;
+        this.f47600a = i10;
+        this.f47602c = obj;
+        this.f47601b = obj2;
     }
 
     @Override
     public final Object call() {
         ha haVar;
-        int i10 = this.f47599a;
-        Object obj = this.f47601c;
-        Object obj2 = this.f47600b;
+        int i10 = this.f47600a;
+        Object obj = this.f47602c;
+        Object obj2 = this.f47601b;
         switch (i10) {
             case 0:
                 return (g) ((ShortcutInfoCompatSaverImpl) obj).f3639b.get((String) obj2);
@@ -45,21 +45,21 @@ public final class f implements Callable {
                     if (Log.isLoggable("FirebaseCrashlytics", 2)) {
                         Log.v("FirebaseCrashlytics", "Deleting cached crash reports...", null);
                     }
-                    for (File file : ca.c.e(mVar.f49702g.f5046b.listFiles(m.f49697r))) {
+                    for (File file : ca.c.e(mVar.f49703g.f5046b.listFiles(m.f49698r))) {
                         file.delete();
                     }
-                    ca.c cVar = ((ca.b) mVar.f49707m.f7646b).f5043b;
+                    ca.c cVar = ((ca.b) mVar.f49708m.f7646b).f5043b;
                     ca.b.a(ca.c.e(cVar.d.listFiles()));
                     ca.b.a(ca.c.e(cVar.e.listFiles()));
                     ca.b.a(ca.c.e(cVar.f5048f.listFiles()));
-                    mVar.f49711q.trySetResult(null);
+                    mVar.f49712q.trySetResult(null);
                     return Tasks.forResult(null);
                 }
                 if (Log.isLoggable("FirebaseCrashlytics", 3)) {
                     Log.d("FirebaseCrashlytics", "Sending cached crash reports...", null);
                 }
                 boolean booleanValue = bool.booleanValue();
-                r rVar = mVar.f49699b;
+                r rVar = mVar.f49700b;
                 if (booleanValue) {
                     rVar.h.trySetResult(null);
                     Executor executor = (Executor) mVar.e.f7660b;
@@ -75,14 +75,14 @@ public final class f implements Callable {
             default:
                 MobileVisionBase mobileVisionBase = (MobileVisionBase) obj2;
                 wb.a aVar = (wb.a) obj;
-                HashMap hashMap = ha.f48713f;
+                HashMap hashMap = ha.f48714f;
                 pa.b();
-                int i11 = oa.f48796a;
+                int i11 = oa.f48797a;
                 pa.b();
                 if (!Boolean.parseBoolean("")) {
                     haVar = ga.h;
                 } else {
-                    HashMap hashMap2 = ha.f48713f;
+                    HashMap hashMap2 = ha.f48714f;
                     if (hashMap2.get("detectorTaskWithResource#run") == null) {
                         hashMap2.put("detectorTaskWithResource#run", new ha("detectorTaskWithResource#run"));
                     }
@@ -108,8 +108,8 @@ public final class f implements Callable {
     }
 
     public f(MobileVisionBase mobileVisionBase, wb.a aVar) {
-        this.f47599a = 4;
-        this.f47600b = mobileVisionBase;
-        this.f47601c = aVar;
+        this.f47600a = 4;
+        this.f47601b = mobileVisionBase;
+        this.f47602c = aVar;
     }
 }

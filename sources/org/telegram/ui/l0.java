@@ -6,13 +6,13 @@ import org.telegram.messenger.MessageObject;
 public final class l0 extends pf.c {
     public final int d = 1;
     public final Object e;
-    public final Object f38709f;
-    public final Object f38710g;
+    public final Object f38710f;
+    public final Object f38711g;
 
     public l0(l4 l4Var, d3 d3Var, org.telegram.ui.Components.y90 y90Var) {
         this.e = l4Var;
-        this.f38709f = d3Var;
-        this.f38710g = y90Var;
+        this.f38710f = d3Var;
+        this.f38711g = y90Var;
     }
 
     @Override
@@ -20,8 +20,8 @@ public final class l0 extends pf.c {
         switch (this.d) {
             case 0:
                 l4 l4Var = (l4) this.e;
-                l4Var.f35527c.l(l4Var.v, true);
-                View view = l4Var.f35531s;
+                l4Var.f35528c.l(l4Var.v, true);
+                View view = l4Var.f35532s;
                 if (view != null) {
                     view.invalidate();
                 }
@@ -38,7 +38,7 @@ public final class l0 extends pf.c {
         switch (this.d) {
             case 1:
                 if (!z10) {
-                    AndroidUtilities.runOnUIThread(new tj(((cn) this.f38710g).f36014a, 10), 250L);
+                    AndroidUtilities.runOnUIThread(new tj(((cn) this.f38711g).f36015a, 10), 250L);
                     return;
                 }
                 return;
@@ -53,45 +53,45 @@ public final class l0 extends pf.c {
         View view;
         switch (this.d) {
             case 0:
-                org.telegram.ui.Components.y90 y90Var = (org.telegram.ui.Components.y90) this.f38710g;
+                org.telegram.ui.Components.y90 y90Var = (org.telegram.ui.Components.y90) this.f38711g;
                 l4 l4Var = (l4) this.e;
-                org.telegram.ui.Components.u90 u90Var = l4Var.f35527c;
-                d3 d3Var = (d3) this.f38709f;
+                org.telegram.ui.Components.u90 u90Var = l4Var.f35528c;
+                d3 d3Var = (d3) this.f38710f;
                 if (d3Var != null) {
-                    view = d3Var.f36240b;
+                    view = d3Var.f36241b;
                 } else {
                     view = null;
                 }
-                l4Var.f35531s = view;
-                org.telegram.ui.Components.j11 j11Var = (org.telegram.ui.Components.j11) y90Var.f32605i;
+                l4Var.f35532s = view;
+                org.telegram.ui.Components.j11 j11Var = (org.telegram.ui.Components.j11) y90Var.f32606i;
                 u90Var.l(l4Var.v, true);
                 if (d3Var != null) {
-                    l4Var.v = org.telegram.ui.Components.u90.i(d3Var.d, y90Var.f32605i, 0.0f);
+                    l4Var.v = org.telegram.ui.Components.u90.i(d3Var.d, y90Var.f32606i, 0.0f);
                     int x02 = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.Ld, false);
                     l4Var.v.g(org.telegram.ui.ActionBar.h6.m1(0.8f, x02), org.telegram.ui.ActionBar.h6.m1(1.3f, x02), org.telegram.ui.ActionBar.h6.m1(1.0f, x02), org.telegram.ui.ActionBar.h6.m1(4.0f, x02));
-                    l4Var.v.f24879x.setStrokeWidth(AndroidUtilities.dpf2(1.25f));
+                    l4Var.v.f24880x.setStrokeWidth(AndroidUtilities.dpf2(1.25f));
                     u90Var.b(l4Var.v, d3Var);
                 }
-                View view2 = l4Var.f35531s;
+                View view2 = l4Var.f35532s;
                 if (view2 != null) {
                     view2.invalidate();
                 }
                 super.d();
                 return;
             default:
-                cn cnVar = (cn) this.f38710g;
-                cnVar.f36014a.f40901wb = ((MessageObject) this.e).getId();
-                qn qnVar = cnVar.f36014a;
-                qnVar.f40915xb = 0;
-                qnVar.f40928yb = null;
-                ((org.telegram.ui.Cells.u1) this.f38709f).invalidate();
+                cn cnVar = (cn) this.f38711g;
+                cnVar.f36015a.f40902wb = ((MessageObject) this.e).getId();
+                qn qnVar = cnVar.f36015a;
+                qnVar.f40916xb = 0;
+                qnVar.f40929yb = null;
+                ((org.telegram.ui.Cells.u1) this.f38710f).invalidate();
                 return;
         }
     }
 
     public l0(cn cnVar, MessageObject messageObject, org.telegram.ui.Cells.u1 u1Var) {
-        this.f38710g = cnVar;
+        this.f38711g = cnVar;
         this.e = messageObject;
-        this.f38709f = u1Var;
+        this.f38710f = u1Var;
     }
 }

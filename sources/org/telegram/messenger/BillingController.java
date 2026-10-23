@@ -233,7 +233,7 @@ public class BillingController implements r, c5.d {
                 SerializedData serializedData = new SerializedData(Utilities.hexToBytes(str2));
                 zf.a a2 = zf.a.a(serializedData, serializedData.readInt32(true));
                 SerializedData serializedData2 = new SerializedData(8);
-                serializedData2.writeInt64(a2.f51527b);
+                serializedData2.writeInt64(a2.f51528b);
                 String bytesToHex = Utilities.bytesToHex(serializedData2.toByteArray());
                 serializedData2.cleanup();
                 FileLog.d("BillingUtilities.clearPurpose: id_hex = " + bytesToHex);
@@ -471,7 +471,7 @@ public class BillingController implements r, c5.d {
                 }
                 if (hashSet.size() <= 1) {
                     com.google.android.gms.internal.play_billing.r t10 = com.google.android.gms.internal.play_billing.r.t(list);
-                    dVar.f50124b = t10;
+                    dVar.f50125b = t10;
                     if (t10 != null) {
                         bVar.c(new a6.i(dVar), new d0(productDetailsResponseListenerLegacy, 0));
                         return;
@@ -570,17 +570,17 @@ public class BillingController implements r, c5.d {
         serializedData.cleanup();
         FileLog.d("BillingUtilities.savePurpose id_hex=" + bytesToHex + " paymentPurpose=" + inputStorePaymentPurpose);
         ?? tLObject = new TLObject();
-        tLObject.f51527b = nextLong;
-        tLObject.f51526a = 1;
-        tLObject.f51528c = inputStorePaymentPurpose;
+        tLObject.f51528b = nextLong;
+        tLObject.f51527a = 1;
+        tLObject.f51529c = inputStorePaymentPurpose;
         SerializedData serializedData2 = new SerializedData(tLObject.getObjectSize());
         tLObject.serializeToStream(serializedData2);
         String bytesToHex2 = Utilities.bytesToHex(serializedData2.toByteArray());
         serializedData2.cleanup();
         if (tLObject.getObjectSize() > 28) {
             FileLog.d("BillingUtilities.savePurpose: sending short version, original size is " + tLObject.getObjectSize() + " bytes");
-            tLObject.f51526a = 0;
-            tLObject.f51528c = null;
+            tLObject.f51527a = 0;
+            tLObject.f51529c = null;
         }
         SerializedData serializedData3 = new SerializedData(tLObject.getObjectSize());
         tLObject.serializeToStream(serializedData3);

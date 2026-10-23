@@ -7,7 +7,7 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.ok;
+import org.telegram.messenger.nk;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.LaunchActivity;
 public final class d5 implements Utilities.Callback {
@@ -65,12 +65,12 @@ public final class d5 implements Utilities.Callback {
                     cVar.b();
                 }
                 if (user != null) {
-                    launchActivity.m0(i11, user.f20426id, null);
+                    launchActivity.m0(i11, user.f20427id, null);
                     return;
                 }
                 org.telegram.ui.ActionBar.n2 R = LaunchActivity.R();
                 if (R != null) {
-                    ok.q(R.string.NoUsernameFound, org.telegram.ui.Components.xc.a0(R), null);
+                    nk.q(R.string.NoUsernameFound, org.telegram.ui.Components.xc.a0(R), null);
                     return;
                 }
                 return;

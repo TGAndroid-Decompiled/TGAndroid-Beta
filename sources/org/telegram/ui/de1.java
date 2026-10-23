@@ -1,18 +1,18 @@
 package org.telegram.ui;
 public final class de1 implements Runnable {
-    public final int f36358a;
-    public final ee1 f36359b;
+    public final int f36359a;
+    public final ee1 f36360b;
 
     public de1(ee1 ee1Var, int i10) {
-        this.f36358a = i10;
-        this.f36359b = ee1Var;
+        this.f36359a = i10;
+        this.f36360b = ee1Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f36358a) {
+        switch (this.f36359a) {
             case 0:
-                ee1 ee1Var = this.f36359b;
+                ee1 ee1Var = this.f36360b;
                 ee1Var.F = null;
                 if (ee1Var.G != -1) {
                     ee1Var.H.getNotificationCenter().onAnimationFinish(ee1Var.G);
@@ -21,7 +21,7 @@ public final class de1 implements Runnable {
                 }
                 return;
             default:
-                ee1 ee1Var2 = this.f36359b;
+                ee1 ee1Var2 = this.f36360b;
                 ee1Var2.F = null;
                 if (ee1Var2.G != -1) {
                     ee1Var2.H.getNotificationCenter().onAnimationFinish(ee1Var2.G);

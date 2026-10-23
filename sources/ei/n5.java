@@ -55,19 +55,19 @@ public final class n5 extends AnimatorListenerAdapter {
                 qn qnVar2 = (qn) this.f9514c;
                 qnVar2.U9 = 0.0f;
                 qnVar2.fragmentView.invalidate();
-                qnVar2.f40904x0.invalidate();
+                qnVar2.f40905x0.invalidate();
                 qnVar2.T9 = null;
                 qnVar.fragmentView.setAlpha(1.0f);
                 ((Runnable) this.d).run();
-                qnVar.f40616a1.setTranslationY(0.0f);
-                qnVar2.f40616a1.setTranslationY(0.0f);
-                qnVar2.f40616a1.getAvatarImageView().setTranslationY(0.0f);
-                qnVar.f40616a1.getAvatarImageView().setScaleX(1.0f);
-                qnVar.f40616a1.getAvatarImageView().setScaleY(1.0f);
-                qnVar.f40616a1.getAvatarImageView().setAlpha(1.0f);
-                qnVar2.f40616a1.getAvatarImageView().setScaleX(1.0f);
-                qnVar2.f40616a1.getAvatarImageView().setScaleY(1.0f);
-                qnVar2.f40616a1.getAvatarImageView().setAlpha(1.0f);
+                qnVar.f40617a1.setTranslationY(0.0f);
+                qnVar2.f40617a1.setTranslationY(0.0f);
+                qnVar2.f40617a1.getAvatarImageView().setTranslationY(0.0f);
+                qnVar.f40617a1.getAvatarImageView().setScaleX(1.0f);
+                qnVar.f40617a1.getAvatarImageView().setScaleY(1.0f);
+                qnVar.f40617a1.getAvatarImageView().setAlpha(1.0f);
+                qnVar2.f40617a1.getAvatarImageView().setScaleX(1.0f);
+                qnVar2.f40617a1.getAvatarImageView().setScaleY(1.0f);
+                qnVar2.f40617a1.getAvatarImageView().setAlpha(1.0f);
                 ch chVar = qnVar2.M0;
                 if (chVar != null) {
                     chVar.setAlpha(1.0f);
@@ -76,15 +76,15 @@ public final class n5 extends AnimatorListenerAdapter {
                 return;
             default:
                 rg.m0 m0Var = (rg.m0) this.e;
-                m0Var.f45487g1 = m0Var.f45489h1;
-                m0Var.f45489h1 = -1;
-                m0Var.f45485f1.invalidate();
+                m0Var.f45488g1 = m0Var.f45490h1;
+                m0Var.f45490h1 = -1;
+                m0Var.f45486f1.invalidate();
                 View view2 = (View) this.f9514c;
                 if (view2 != null && ((View) this.d) != null) {
                     view2.setVisibility(8);
                 }
-                if (animator == m0Var.f45493j1) {
-                    m0Var.f45493j1 = null;
+                if (animator == m0Var.f45494j1) {
+                    m0Var.f45494j1 = null;
                     return;
                 }
                 return;

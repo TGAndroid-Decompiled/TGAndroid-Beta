@@ -4,22 +4,22 @@ import android.content.Context;
 import android.os.SystemClock;
 import android.view.TextureView;
 public final class i60 extends TextureView {
-    public final int f27140a;
-    public final Object f27141b;
+    public final int f27141a;
+    public final Object f27142b;
 
     public i60(Object obj, Context context, int i10) {
         super(context);
-        this.f27140a = i10;
-        this.f27141b = obj;
+        this.f27141a = i10;
+        this.f27142b = obj;
     }
 
     @Override
     public void invalidate() {
         si.r0 r0Var;
-        switch (this.f27140a) {
+        switch (this.f27141a) {
             case 0:
-                l60 l60Var = (l60) this.f27141b;
-                if (!l60Var.H0 && (r0Var = l60Var.R) != null && r0Var.f46761a == 3) {
+                l60 l60Var = (l60) this.f27142b;
+                if (!l60Var.H0 && (r0Var = l60Var.R) != null && r0Var.f46762a == 3) {
                     l60Var.H0 = true;
                     try {
                         l60Var.F0 = SystemClock.elapsedRealtimeNanos();
@@ -38,10 +38,10 @@ public final class i60 extends TextureView {
 
     @Override
     public void onMeasure(int i10, int i11) {
-        switch (this.f27140a) {
+        switch (this.f27141a) {
             case 1:
-                wh.f fVar = (wh.f) this.f27141b;
-                setMeasuredDimension(fVar.f49049g, fVar.h);
+                wh.f fVar = (wh.f) this.f27142b;
+                setMeasuredDimension(fVar.f49050g, fVar.h);
                 return;
             default:
                 super.onMeasure(i10, i11);

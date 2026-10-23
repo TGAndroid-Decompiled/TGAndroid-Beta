@@ -21,58 +21,58 @@ import org.telegram.tgnet.tl.TL_stories;
 public final class j9 {
     public float A;
     public boolean B;
-    public boolean f27451a;
+    public boolean f27452a;
     public boolean d;
-    public ValueAnimator f27454f;
-    public boolean f27455g;
-    public Runnable f27457j;
-    public int f27458k;
-    public boolean f27459l;
-    public final boolean f27460m;
-    public int f27461n;
-    public int f27462o;
-    public int f27463p;
-    public final View f27465r;
-    public int f27466s;
-    public boolean f27469w;
-    public boolean f27470x;
-    public ci.j7 f27471y;
-    public final Random f27472z;
-    public final i9[] f27452b = new i9[3];
-    public final i9[] f27453c = new i9[3];
+    public ValueAnimator f27455f;
+    public boolean f27456g;
+    public Runnable f27458j;
+    public int f27459k;
+    public boolean f27460l;
+    public final boolean f27461m;
+    public int f27462n;
+    public int f27463o;
+    public int f27464p;
+    public final View f27466r;
+    public int f27467s;
+    public boolean f27470w;
+    public boolean f27471x;
+    public ci.j7 f27472y;
+    public final Random f27473z;
+    public final i9[] f27453b = new i9[3];
+    public final i9[] f27454c = new i9[3];
     public float e = 1.0f;
     public final Paint h = new Paint(1);
-    public final Paint f27456i = new Paint(1);
-    public int f27464q = AndroidUtilities.dp(1.67f);
-    public float f27467t = 0.8f;
-    public float f27468u = 1.0f;
+    public final Paint f27457i = new Paint(1);
+    public int f27465q = AndroidUtilities.dp(1.67f);
+    public float f27468t = 0.8f;
+    public float f27469u = 1.0f;
     public long v = 220;
 
     public j9(View view, boolean z10) {
-        bs bsVar = bs.f25024f;
-        this.f27472z = new Random();
-        this.f27465r = view;
+        bs bsVar = bs.f25025f;
+        this.f27473z = new Random();
+        this.f27466r = view;
         for (int i10 = 0; i10 < 3; i10++) {
-            i9[] i9VarArr = this.f27452b;
+            i9[] i9VarArr = this.f27453b;
             ?? obj = new Object();
             i9VarArr[i10] = obj;
             obj.e = new ImageReceiver(view);
-            this.f27452b[i10].e.setInvalidateAll(true);
-            this.f27452b[i10].e.setRoundRadius(AndroidUtilities.dp(12.0f));
-            this.f27452b[i10].f27198a = new h9((org.telegram.ui.ActionBar.d6) null);
-            this.f27452b[i10].f27198a.u(AndroidUtilities.dp(12.0f));
-            i9[] i9VarArr2 = this.f27453c;
+            this.f27453b[i10].e.setInvalidateAll(true);
+            this.f27453b[i10].e.setRoundRadius(AndroidUtilities.dp(12.0f));
+            this.f27453b[i10].f27199a = new h9((org.telegram.ui.ActionBar.d6) null);
+            this.f27453b[i10].f27199a.u(AndroidUtilities.dp(12.0f));
+            i9[] i9VarArr2 = this.f27454c;
             ?? obj2 = new Object();
             i9VarArr2[i10] = obj2;
             obj2.e = new ImageReceiver(view);
-            this.f27453c[i10].e.setInvalidateAll(true);
-            this.f27453c[i10].e.setRoundRadius(AndroidUtilities.dp(12.0f));
-            this.f27453c[i10].f27198a = new h9((org.telegram.ui.ActionBar.d6) null);
-            this.f27453c[i10].f27198a.u(AndroidUtilities.dp(12.0f));
+            this.f27454c[i10].e.setInvalidateAll(true);
+            this.f27454c[i10].e.setRoundRadius(AndroidUtilities.dp(12.0f));
+            this.f27454c[i10].f27199a = new h9((org.telegram.ui.ActionBar.d6) null);
+            this.f27454c[i10].f27199a.u(AndroidUtilities.dp(12.0f));
         }
-        this.f27460m = z10;
-        this.f27456i.setColor(0);
-        this.f27456i.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+        this.f27461m = z10;
+        this.f27457i.setColor(0);
+        this.f27457i.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
     }
 
     public final void a() {
@@ -87,16 +87,16 @@ public final class j9 {
             int i10 = 0;
             boolean z12 = false;
             while (true) {
-                i9VarArr = this.f27452b;
-                i9VarArr2 = this.f27453c;
+                i9VarArr = this.f27453b;
+                i9VarArr2 = this.f27454c;
                 if (i10 >= 3) {
                     break;
                 }
                 i9VarArr3[i10] = i9VarArr[i10];
                 i9 i9Var = i9VarArr[i10];
-                long j10 = i9Var.f27202g;
+                long j10 = i9Var.f27203g;
                 i9 i9Var2 = i9VarArr2[i10];
-                if (j10 != i9Var2.f27202g) {
+                if (j10 != i9Var2.f27203g) {
                     z12 = true;
                 } else {
                     i9Var.d = i9Var2.d;
@@ -111,25 +111,25 @@ public final class j9 {
                 int i12 = 0;
                 while (true) {
                     if (i12 < 3) {
-                        if (i9VarArr[i12].f27202g == i9VarArr2[i11].f27202g) {
+                        if (i9VarArr[i12].f27203g == i9VarArr2[i11].f27203g) {
                             i9VarArr3[i12] = null;
                             if (i11 == i12) {
                                 i9 i9Var3 = i9VarArr2[i11];
-                                i9Var3.f27203i = -1;
-                                org.telegram.ui.Cells.b4 b4Var = i9Var3.f27199b;
+                                i9Var3.f27204i = -1;
+                                org.telegram.ui.Cells.b4 b4Var = i9Var3.f27200b;
                                 i9 i9Var4 = i9VarArr[i11];
-                                i9Var3.f27199b = i9Var4.f27199b;
-                                i9Var4.f27199b = b4Var;
+                                i9Var3.f27200b = i9Var4.f27200b;
+                                i9Var4.f27200b = b4Var;
                             } else {
                                 i9 i9Var5 = i9VarArr2[i11];
-                                i9Var5.f27203i = 2;
-                                i9Var5.f27204j = i12;
+                                i9Var5.f27204i = 2;
+                                i9Var5.f27205j = i12;
                             }
                         } else {
                             i12++;
                         }
                     } else {
-                        i9VarArr2[i11].f27203i = 0;
+                        i9VarArr2[i11].f27204i = 0;
                         break;
                     }
                 }
@@ -137,29 +137,29 @@ public final class j9 {
             for (int i13 = 0; i13 < 3; i13++) {
                 i9 i9Var6 = i9VarArr3[i13];
                 if (i9Var6 != null) {
-                    i9Var6.f27203i = 1;
+                    i9Var6.f27204i = 1;
                 }
             }
-            ValueAnimator valueAnimator = this.f27454f;
+            ValueAnimator valueAnimator = this.f27455f;
             if (valueAnimator != null) {
                 valueAnimator.removeAllListeners();
-                this.f27454f.cancel();
-                if (this.f27469w) {
+                this.f27455f.cancel();
+                if (this.f27470w) {
                     n();
-                    this.f27469w = false;
+                    this.f27470w = false;
                 }
             }
             this.e = 0.0f;
             if (z11) {
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                this.f27454f = ofFloat;
+                this.f27455f = ofFloat;
                 ofFloat.addUpdateListener(new l6(this, 4));
-                this.f27454f.addListener(new org.telegram.ui.nq(this, 6));
-                this.f27454f.setDuration(this.v);
-                this.f27454f.setInterpolator(bs.f25024f);
-                this.f27454f.start();
+                this.f27455f.addListener(new org.telegram.ui.nq(this, 6));
+                this.f27455f.setDuration(this.v);
+                this.f27455f.setInterpolator(bs.f25025f);
+                this.f27455f.start();
             } else {
-                this.f27469w = true;
+                this.f27470w = true;
             }
             f();
             return;
@@ -174,11 +174,11 @@ public final class j9 {
 
     public final int d() {
         float f7;
-        int i10 = this.f27466s;
+        int i10 = this.f27467s;
         if (i10 != 0) {
             return i10;
         }
-        int i11 = this.f27458k;
+        int i11 = this.f27459k;
         if (i11 != 4 && i11 != 10) {
             f7 = 24.0f;
         } else {
@@ -191,7 +191,7 @@ public final class j9 {
         boolean z10;
         float f7;
         int dp;
-        int i10 = this.f27458k;
+        int i10 = this.f27459k;
         int i11 = 0;
         if (i10 != 4 && i10 != 10) {
             z10 = false;
@@ -201,9 +201,9 @@ public final class j9 {
         if (i10 == 11) {
             dp = AndroidUtilities.dp(12.0f);
         } else {
-            int i12 = this.f27466s;
+            int i12 = this.f27467s;
             if (i12 != 0) {
-                dp = (int) (i12 * this.f27467t);
+                dp = (int) (i12 * this.f27468t);
             } else {
                 if (z10) {
                     f7 = 24.0f;
@@ -215,7 +215,7 @@ public final class j9 {
         }
         int i13 = 0;
         for (int i14 = 0; i14 < 3; i14++) {
-            if (this.f27452b[i14].f27202g != 0) {
+            if (this.f27453b[i14].f27203g != 0) {
                 i13++;
             }
         }
@@ -227,7 +227,7 @@ public final class j9 {
     }
 
     public final void f() {
-        View view = this.f27465r;
+        View view = this.f27466r;
         if (view != null) {
             view.invalidate();
         }
@@ -237,8 +237,8 @@ public final class j9 {
         if (!this.B) {
             this.B = true;
             for (int i10 = 0; i10 < 3; i10++) {
-                this.f27452b[i10].e.onAttachedToWindow();
-                this.f27453c[i10].e.onAttachedToWindow();
+                this.f27453b[i10].e.onAttachedToWindow();
+                this.f27454c[i10].e.onAttachedToWindow();
             }
         }
     }
@@ -248,10 +248,10 @@ public final class j9 {
             this.B = false;
             this.d = false;
             for (int i10 = 0; i10 < 3; i10++) {
-                this.f27452b[i10].e.onDetachedFromWindow();
-                this.f27453c[i10].e.onDetachedFromWindow();
+                this.f27453b[i10].e.onDetachedFromWindow();
+                this.f27454c[i10].e.onDetachedFromWindow();
             }
-            if (this.f27458k == 3) {
+            if (this.f27459k == 3) {
                 org.telegram.ui.ActionBar.h6.E0().a(0.0f);
             }
         }
@@ -265,20 +265,20 @@ public final class j9 {
         h9 h9Var;
         h9 h9Var2;
         for (int i11 = 0; i11 < 3; i11++) {
-            i9 i9Var = this.f27452b[i11];
-            if (i9Var != null && (h9Var2 = i9Var.f27198a) != null) {
+            i9 i9Var = this.f27453b[i11];
+            if (i9Var != null && (h9Var2 = i9Var.f27199a) != null) {
                 h9Var2.u(i10);
             }
-            i9 i9Var2 = this.f27453c[i11];
-            if (i9Var2 != null && (h9Var = i9Var2.f27198a) != null) {
+            i9 i9Var2 = this.f27454c[i11];
+            if (i9Var2 != null && (h9Var = i9Var2.f27199a) != null) {
                 h9Var.u(i10);
             }
         }
     }
 
     public final void k(int i10) {
-        this.f27461n = i10;
-        View view = this.f27465r;
+        this.f27462n = i10;
+        View view = this.f27466r;
         if (view != null) {
             view.requestLayout();
         }
@@ -287,10 +287,10 @@ public final class j9 {
     public final void l(int i10, TLObject tLObject, int i11) {
         TLRPC.User user;
         TLRPC.Chat chat;
-        i9[] i9VarArr = this.f27453c;
+        i9[] i9VarArr = this.f27454c;
         i9 i9Var = i9VarArr[i10];
-        i9Var.f27202g = 0L;
-        i9Var.f27201f = null;
+        i9Var.f27203g = 0L;
+        i9Var.f27202f = null;
         if (tLObject == null) {
             i9Var.e.setImageBitmap((Drawable) null);
             f();
@@ -300,22 +300,22 @@ public final class j9 {
         i9Var.h = tLObject;
         if (tLObject instanceof TLRPC.GroupCallParticipant) {
             TLRPC.GroupCallParticipant groupCallParticipant = (TLRPC.GroupCallParticipant) tLObject;
-            i9Var.f27201f = groupCallParticipant;
+            i9Var.f27202f = groupCallParticipant;
             long peerId = MessageObject.getPeerId(groupCallParticipant.peer);
             if (DialogObject.isUserDialog(peerId)) {
                 user = MessagesController.getInstance(i11).getUser(Long.valueOf(peerId));
-                i9VarArr[i10].f27198a.m(i11, user);
+                i9VarArr[i10].f27199a.m(i11, user);
                 chat = null;
             } else {
                 TLRPC.Chat chat2 = MessagesController.getInstance(i11).getChat(Long.valueOf(-peerId));
-                i9VarArr[i10].f27198a.k(i11, chat2);
+                i9VarArr[i10].f27199a.k(i11, chat2);
                 chat = chat2;
                 user = null;
             }
-            if (this.f27458k == 4) {
+            if (this.f27459k == 4) {
                 if (peerId == AccountInstance.getInstance(i11).getUserConfig().getClientUserId()) {
                     i9VarArr[i10].d = 0L;
-                } else if (this.f27460m) {
+                } else if (this.f27461m) {
                     i9VarArr[i10].d = groupCallParticipant.lastActiveDate;
                 } else {
                     i9VarArr[i10].d = groupCallParticipant.active_date;
@@ -323,28 +323,28 @@ public final class j9 {
             } else {
                 i9VarArr[i10].d = groupCallParticipant.active_date;
             }
-            i9VarArr[i10].f27202g = peerId;
+            i9VarArr[i10].f27203g = peerId;
         } else if (tLObject instanceof TLRPC.User) {
             TLRPC.User user2 = (TLRPC.User) tLObject;
-            if (user2.self && this.f27451a) {
-                i9Var.f27198a.g(1);
-                i9VarArr[i10].f27198a.f26825p = 0.6f;
+            if (user2.self && this.f27452a) {
+                i9Var.f27199a.g(1);
+                i9VarArr[i10].f27199a.f26826p = 0.6f;
             } else {
-                i9Var.f27198a.g(0);
-                h9 h9Var = i9VarArr[i10].f27198a;
-                h9Var.f26825p = 1.0f;
+                i9Var.f27199a.g(0);
+                h9 h9Var = i9VarArr[i10].f27199a;
+                h9Var.f26826p = 1.0f;
                 h9Var.m(i11, user2);
             }
-            i9VarArr[i10].f27202g = user2.f20426id;
+            i9VarArr[i10].f27203g = user2.f20427id;
             user = user2;
             chat = null;
         } else if (tLObject instanceof TLRPC.Chat) {
             chat = (TLRPC.Chat) tLObject;
-            i9Var.f27198a.g(0);
-            h9 h9Var2 = i9VarArr[i10].f27198a;
-            h9Var2.f26825p = 1.0f;
+            i9Var.f27199a.g(0);
+            h9 h9Var2 = i9VarArr[i10].f27199a;
+            h9Var2.f26826p = 1.0f;
             h9Var2.k(i11, chat);
-            i9VarArr[i10].f27202g = -chat.f20279id;
+            i9VarArr[i10].f27203g = -chat.f20280id;
             user = null;
         } else {
             user = null;
@@ -353,7 +353,7 @@ public final class j9 {
         int d = d();
         if (tLObject instanceof TL_stories.StoryItem) {
             TL_stories.StoryItem storyItem = (TL_stories.StoryItem) tLObject;
-            i9VarArr[i10].f27202g = storyItem.f20513id;
+            i9VarArr[i10].f27203g = storyItem.f20514id;
             TLRPC.MessageMedia messageMedia = storyItem.media;
             TLRPC.Document document = messageMedia.document;
             if (document != null) {
@@ -367,16 +367,16 @@ public final class j9 {
                 }
             }
         } else if (user != null) {
-            if (user.self && this.f27451a) {
+            if (user.self && this.f27452a) {
                 i9 i9Var2 = i9VarArr[i10];
-                i9Var2.e.setImageBitmap(i9Var2.f27198a);
+                i9Var2.e.setImageBitmap(i9Var2.f27199a);
             } else {
                 i9 i9Var3 = i9VarArr[i10];
-                i9Var3.e.setForUserOrChat(user, i9Var3.f27198a);
+                i9Var3.e.setForUserOrChat(user, i9Var3.f27199a);
             }
         } else {
             i9 i9Var4 = i9VarArr[i10];
-            i9Var4.e.setForUserOrChat(chat, i9Var4.f27198a);
+            i9Var4.e.setForUserOrChat(chat, i9Var4.f27199a);
         }
         i9VarArr[i10].e.setRoundRadius(d / 2);
         float f7 = d;
@@ -385,14 +385,14 @@ public final class j9 {
     }
 
     public final void m(int i10) {
-        this.f27466s = i10;
+        this.f27467s = i10;
     }
 
     public final void n() {
         for (int i10 = 0; i10 < 3; i10++) {
-            i9[] i9VarArr = this.f27452b;
+            i9[] i9VarArr = this.f27453b;
             i9 i9Var = i9VarArr[i10];
-            i9[] i9VarArr2 = this.f27453c;
+            i9[] i9VarArr2 = this.f27454c;
             i9VarArr[i10] = i9VarArr2[i10];
             i9VarArr2[i10] = i9Var;
         }

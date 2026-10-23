@@ -26,54 +26,54 @@ public class zo0 {
     public static Path G;
     public TextPaint A;
     public long C;
-    public float f32994a;
-    public int f32997f;
-    public int f32998g;
+    public float f32995a;
+    public int f32998f;
+    public int f32999g;
     public yo0 h;
-    public int f32999i;
-    public int f33000j;
-    public int f33001k;
-    public int f33002l;
-    public int f33003m;
-    public boolean f33006p;
-    public float f33007q;
-    public float f33008r;
-    public View f33009s;
-    public ArrayList f33011u;
+    public int f33000i;
+    public int f33001j;
+    public int f33002k;
+    public int f33003l;
+    public int f33004m;
+    public boolean f33007p;
+    public float f33008q;
+    public float f33009r;
+    public View f33010s;
+    public ArrayList f33012u;
     public CharSequence v;
-    public long f33012w;
-    public StaticLayout[] f33015z;
-    public int f32995b = 0;
-    public int f32996c = 0;
+    public long f33013w;
+    public StaticLayout[] f33016z;
+    public int f32996b = 0;
+    public int f32997c = 0;
     public int d = 0;
     public boolean e = false;
-    public final RectF f33004n = new RectF();
-    public final int f33005o = AndroidUtilities.dp(2.0f);
-    public float f33010t = 1.0f;
-    public float f33013x = 0.0f;
-    public int f33014y = -1;
+    public final RectF f33005n = new RectF();
+    public final int f33006o = AndroidUtilities.dp(2.0f);
+    public float f33011t = 1.0f;
+    public float f33014x = 0.0f;
+    public int f33015y = -1;
     public float B = 1.0f;
 
     public zo0(View view) {
         if (D == null) {
             D = new Paint(1);
         }
-        this.f33009s = view;
+        this.f33010s = view;
         E = AndroidUtilities.dp(24.0f);
-        this.f33008r = AndroidUtilities.dp(6.0f);
+        this.f33009r = AndroidUtilities.dp(6.0f);
     }
 
     public final void a() {
-        this.f33011u = null;
-        this.f33014y = -1;
-        this.f33013x = 0.0f;
-        StaticLayout[] staticLayoutArr = this.f33015z;
+        this.f33012u = null;
+        this.f33015y = -1;
+        this.f33014x = 0.0f;
+        StaticLayout[] staticLayoutArr = this.f33016z;
         if (staticLayoutArr != null) {
             staticLayoutArr[1] = null;
             staticLayoutArr[0] = null;
         }
         this.v = null;
-        this.f33012w = -1L;
+        this.f33013w = -1L;
     }
 
     public final void b(Canvas canvas) {
@@ -88,102 +88,102 @@ public class zo0 {
         float f10;
         int i16;
         int i17;
-        float f11 = this.f33010t;
+        float f11 = this.f33011t;
         if (f11 > 0.0f) {
             if (f11 < 1.0f) {
                 canvas2 = canvas;
-                canvas2.saveLayerAlpha(0.0f, 0.0f, this.f32997f, this.f32998g, (int) (f11 * 255.0f), 31);
+                canvas2.saveLayerAlpha(0.0f, 0.0f, this.f32998f, this.f32999g, (int) (f11 * 255.0f), 31);
             } else {
                 canvas2 = canvas;
             }
             int i18 = E / 2;
-            int i19 = this.f32998g / 2;
-            int i20 = this.f33005o / 2;
-            RectF rectF = this.f33004n;
-            rectF.set(i18, i19 - i20, this.f32997f - i18, i19 + i20);
+            int i19 = this.f32999g / 2;
+            int i20 = this.f33006o / 2;
+            RectF rectF = this.f33005n;
+            rectF.set(i18, i19 - i20, this.f32998f - i18, i19 + i20);
             Paint paint = D;
-            if (this.f33006p) {
-                i10 = this.f33003m;
+            if (this.f33007p) {
+                i10 = this.f33004m;
             } else {
-                i10 = this.f32999i;
+                i10 = this.f33000i;
             }
             paint.setColor(i10);
             c(canvas2, rectF, D);
-            if (this.f33007q > 0.0f) {
+            if (this.f33008q > 0.0f) {
                 Paint paint2 = D;
-                if (this.f33006p) {
-                    i16 = this.f33003m;
+                if (this.f33007p) {
+                    i16 = this.f33004m;
                 } else {
-                    i16 = this.f33000j;
+                    i16 = this.f33001j;
                 }
                 paint2.setColor(i16);
                 float f12 = E / 2;
-                int i21 = this.f32998g / 2;
-                rectF.set(f12, i21 - i20, (this.f33007q * (this.f32997f - i17)) + f12, i21 + i20);
+                int i21 = this.f32999g / 2;
+                rectF.set(f12, i21 - i20, (this.f33008q * (this.f32998f - i17)) + f12, i21 + i20);
                 c(canvas2, rectF, D);
             }
             float f13 = E / 2;
-            float f14 = (this.f32998g / 2) - i20;
+            float f14 = (this.f32999g / 2) - i20;
             if (this.e) {
-                i13 = this.f32996c;
+                i13 = this.f32997c;
             } else {
-                i13 = this.f32995b;
+                i13 = this.f32996b;
             }
             rectF.set(f13, f14, i11 + i13, i20 + i12);
-            D.setColor(this.f33002l);
+            D.setColor(this.f33003l);
             c(canvas2, rectF, D);
-            D.setColor(this.f33001k);
+            D.setColor(this.f33002k);
             if (this.e) {
                 f7 = 8.0f;
             } else {
                 f7 = 6.0f;
             }
             float dp = AndroidUtilities.dp(f7);
-            if (this.f33008r != dp) {
+            if (this.f33009r != dp) {
                 long elapsedRealtime = SystemClock.elapsedRealtime();
                 if (elapsedRealtime > 18) {
                     elapsedRealtime = 16;
                 }
-                float f15 = this.f33008r;
+                float f15 = this.f33009r;
                 if (f15 < dp) {
                     float d = a1.g.d((float) elapsedRealtime, 60.0f, AndroidUtilities.dp(1.0f), f15);
-                    this.f33008r = d;
+                    this.f33009r = d;
                     if (d > dp) {
-                        this.f33008r = dp;
+                        this.f33009r = dp;
                     }
                 } else {
-                    float x10 = org.telegram.messenger.ok.x((float) elapsedRealtime, 60.0f, AndroidUtilities.dp(1.0f), f15);
-                    this.f33008r = x10;
+                    float x10 = org.telegram.messenger.nk.x((float) elapsedRealtime, 60.0f, AndroidUtilities.dp(1.0f), f15);
+                    this.f33009r = x10;
                     if (x10 < dp) {
-                        this.f33008r = dp;
+                        this.f33009r = dp;
                     }
                 }
-                View view = this.f33009s;
+                View view = this.f33010s;
                 if (view != null) {
                     view.invalidate();
                 }
             }
             if (this.e) {
-                i14 = this.f32996c;
+                i14 = this.f32997c;
             } else {
-                i14 = this.f32995b;
+                i14 = this.f32996b;
             }
-            canvas2.drawCircle((E / 2) + i14, this.f32998g / 2, this.f33008r, D);
-            if (this.f33010t < 1.0f) {
+            canvas2.drawCircle((E / 2) + i14, this.f32999g / 2, this.f33009r, D);
+            if (this.f33011t < 1.0f) {
                 canvas2.restore();
             }
-            ArrayList arrayList = this.f33011u;
+            ArrayList arrayList = this.f33012u;
             if (arrayList != null && !arrayList.isEmpty()) {
                 if (this.e) {
-                    i15 = this.f32996c;
+                    i15 = this.f32997c;
                 } else {
-                    i15 = this.f32995b;
+                    i15 = this.f32996b;
                 }
-                float f16 = i15 / (this.f32997f - E);
-                int size = this.f33011u.size() - 1;
+                float f16 = i15 / (this.f32998f - E);
+                int size = this.f33012u.size() - 1;
                 while (true) {
                     if (size >= 0) {
-                        if (((Float) ((Pair) this.f33011u.get(size)).first).floatValue() - 0.001f <= f16) {
+                        if (((Float) ((Pair) this.f33012u.get(size)).first).floatValue() - 0.001f <= f16) {
                             break;
                         }
                         size--;
@@ -192,38 +192,38 @@ public class zo0 {
                         break;
                     }
                 }
-                if (this.f33015z == null) {
-                    this.f33015z = new StaticLayout[2];
+                if (this.f33016z == null) {
+                    this.f33016z = new StaticLayout[2];
                 }
                 float f17 = E / 2.0f;
-                Math.abs(f17 - (this.f32997f - f17));
+                Math.abs(f17 - (this.f32998f - f17));
                 AndroidUtilities.dp(66.0f);
-                if (size != this.f33014y) {
+                if (size != this.f33015y) {
                     if (this.e) {
-                        AndroidUtilities.vibrateCursor(this.f33009s);
+                        AndroidUtilities.vibrateCursor(this.f33010s);
                     }
-                    this.f33014y = size;
-                    if (size >= 0 && size < this.f33011u.size()) {
-                        e((l61) ((Pair) this.f33011u.get(this.f33014y)).second);
+                    this.f33015y = size;
+                    if (size >= 0 && size < this.f33012u.size()) {
+                        e((l61) ((Pair) this.f33012u.get(this.f33015y)).second);
                     }
                 }
                 if (this.B < 1.0f) {
                     long min = Math.min(17L, Math.abs(SystemClock.elapsedRealtime() - this.C));
-                    if (this.f33011u.size() > 8) {
+                    if (this.f33012u.size() > 8) {
                         f10 = 160.0f;
                     } else {
                         f10 = 220.0f;
                     }
                     this.B = Math.min((((float) min) / f10) + this.B, 1.0f);
-                    View view2 = this.f33009s;
+                    View view2 = this.f33010s;
                     if (view2 != null) {
                         view2.invalidate();
                     }
                     this.C = SystemClock.elapsedRealtime();
                 }
-                if (this.f33013x < 1.0f) {
-                    this.f33013x = Math.min((((float) Math.min(17L, Math.abs(SystemClock.elapsedRealtime() - this.C))) / 200.0f) + this.f33013x, 1.0f);
-                    View view3 = this.f33009s;
+                if (this.f33014x < 1.0f) {
+                    this.f33014x = Math.min((((float) Math.min(17L, Math.abs(SystemClock.elapsedRealtime() - this.C))) / 200.0f) + this.f33014x, 1.0f);
+                    View view3 = this.f33010s;
                     if (view3 != null) {
                         view3.invalidate();
                     }
@@ -238,34 +238,34 @@ public class zo0 {
     }
 
     public final int d() {
-        return this.f32997f - E;
+        return this.f32998f - E;
     }
 
     public final boolean f(float f7, float f10, int i10) {
         yo0 yo0Var;
         if (i10 == 0) {
-            int i11 = this.f32998g;
+            int i11 = this.f32999g;
             int i12 = E;
             int i13 = (i11 - i12) / 2;
             if (f7 >= (-i13)) {
-                int i14 = this.f32997f;
+                int i14 = this.f32998f;
                 if (f7 <= i14 + i13 && f10 >= 0.0f && f10 <= i11) {
-                    int i15 = this.f32995b;
+                    int i15 = this.f32996b;
                     if (i15 - i13 > f7 || f7 > i15 + i12 + i13) {
                         int i16 = ((int) f7) - (i12 / 2);
-                        this.f32995b = i16;
+                        this.f32996b = i16;
                         if (i16 < 0) {
-                            this.f32995b = 0;
+                            this.f32996b = 0;
                         } else {
                             int i17 = i14 - i12;
                             if (i16 > i17) {
-                                this.f32995b = i17;
+                                this.f32996b = i17;
                             }
                         }
                     }
                     this.e = true;
-                    int i18 = this.f32995b;
-                    this.f32996c = i18;
+                    int i18 = this.f32996b;
+                    this.f32997c = i18;
                     this.d = (int) (f7 - i18);
                     return true;
                 }
@@ -273,26 +273,26 @@ public class zo0 {
         } else if (i10 != 1 && i10 != 3) {
             if (i10 == 2 && this.e) {
                 int i19 = (int) (f7 - this.d);
-                this.f32996c = i19;
+                this.f32997c = i19;
                 if (i19 < 0) {
-                    this.f32996c = 0;
+                    this.f32997c = 0;
                 } else {
-                    int i20 = this.f32997f - E;
+                    int i20 = this.f32998f - E;
                     if (i19 > i20) {
-                        this.f32996c = i20;
+                        this.f32997c = i20;
                     }
                 }
                 yo0 yo0Var2 = this.h;
                 if (yo0Var2 != null) {
-                    yo0Var2.c(this.f32996c / (this.f32997f - E));
+                    yo0Var2.c(this.f32997c / (this.f32998f - E));
                 }
                 return true;
             }
         } else if (this.e) {
-            int i21 = this.f32996c;
-            this.f32995b = i21;
+            int i21 = this.f32997c;
+            this.f32996b = i21;
             if (i10 == 1 && (yo0Var = this.h) != null) {
-                yo0Var.b(i21 / (this.f32997f - E));
+                yo0Var.b(i21 / (this.f32998f - E));
             }
             this.e = false;
             return true;
@@ -301,39 +301,39 @@ public class zo0 {
     }
 
     public final void g(float f7) {
-        this.f33010t = f7;
+        this.f33011t = f7;
     }
 
     public final void h(int i10, int i11, int i12, int i13, int i14) {
-        this.f32999i = i10;
-        this.f33000j = i11;
-        this.f33001k = i13;
-        this.f33002l = i12;
-        this.f33003m = i14;
+        this.f33000i = i10;
+        this.f33001j = i11;
+        this.f33002k = i13;
+        this.f33003l = i12;
+        this.f33004m = i14;
     }
 
     public final void i(float f7) {
-        this.f32994a = f7;
-        int ceil = (int) Math.ceil((this.f32997f - E) * f7);
-        this.f32995b = ceil;
+        this.f32995a = f7;
+        int ceil = (int) Math.ceil((this.f32998f - E) * f7);
+        this.f32996b = ceil;
         if (ceil < 0) {
-            this.f32995b = 0;
+            this.f32996b = 0;
             return;
         }
-        int i10 = this.f32997f;
+        int i10 = this.f32998f;
         int i11 = E;
         if (ceil > i10 - i11) {
-            this.f32995b = i10 - i11;
+            this.f32996b = i10 - i11;
         }
     }
 
     public final void j(int i10, int i11) {
-        if (this.f32997f == i10 && this.f32998g == i11) {
+        if (this.f32998f == i10 && this.f32999g == i11) {
             return;
         }
-        this.f32997f = i10;
-        this.f32998g = i11;
-        i(this.f32994a);
+        this.f32998f = i10;
+        this.f32999g = i11;
+        i(this.f32995a);
     }
 
     public final void k(MessageObject messageObject) {
@@ -356,14 +356,14 @@ public class zo0 {
             }
             charSequence = messageObject.youtubeDescription;
         }
-        if (charSequence != this.v || this.f33012w != valueOf.longValue()) {
+        if (charSequence != this.v || this.f33013w != valueOf.longValue()) {
             this.v = charSequence;
-            this.f33012w = valueOf.longValue();
+            this.f33013w = valueOf.longValue();
             if (!(charSequence instanceof Spanned)) {
-                this.f33011u = null;
-                this.f33014y = -1;
-                this.f33013x = 0.0f;
-                StaticLayout[] staticLayoutArr = this.f33015z;
+                this.f33012u = null;
+                this.f33015y = -1;
+                this.f33014x = 0.0f;
+                StaticLayout[] staticLayoutArr = this.f33016z;
                 if (staticLayoutArr != null) {
                     staticLayoutArr[1] = null;
                     staticLayoutArr[0] = null;
@@ -374,8 +374,8 @@ public class zo0 {
             Spanned spanned = (Spanned) charSequence;
             try {
                 l61[] l61VarArr = (l61[]) spanned.getSpans(0, spanned.length(), l61.class);
-                this.f33011u = new ArrayList();
-                this.f33013x = 0.0f;
+                this.f33012u = new ArrayList();
+                this.f33014x = 0.0f;
                 if (this.A == null) {
                     TextPaint textPaint = new TextPaint(1);
                     this.A = textPaint;
@@ -387,19 +387,19 @@ public class zo0 {
                         if (l61Var != null && l61Var.getURL() != null && l61Var.d != null && l61Var.getURL().startsWith("audio?") && (parseInt = Utilities.parseInt((CharSequence) l61Var.getURL().substring(6))) != null && parseInt.intValue() >= 0) {
                             float intValue = ((float) (parseInt.intValue() * 1000)) / ((float) valueOf.longValue());
                             Emoji.replaceEmoji(new SpannableStringBuilder(l61Var.d), this.A.getFontMetricsInt(), false);
-                            this.f33011u.add(new Pair(Float.valueOf(intValue), l61Var));
+                            this.f33012u.add(new Pair(Float.valueOf(intValue), l61Var));
                         }
                     } catch (Exception e) {
                         FileLog.e(e);
                     }
                 }
-                Collections.sort(this.f33011u, new org.telegram.ui.ActionBar.i4(21));
+                Collections.sort(this.f33012u, new org.telegram.ui.ActionBar.i4(21));
             } catch (Exception e7) {
                 FileLog.e(e7);
-                this.f33011u = null;
-                this.f33014y = -1;
-                this.f33013x = 0.0f;
-                StaticLayout[] staticLayoutArr2 = this.f33015z;
+                this.f33012u = null;
+                this.f33015y = -1;
+                this.f33014x = 0.0f;
+                StaticLayout[] staticLayoutArr2 = this.f33016z;
                 if (staticLayoutArr2 != null) {
                     staticLayoutArr2[1] = null;
                     staticLayoutArr2[0] = null;

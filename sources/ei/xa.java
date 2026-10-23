@@ -32,7 +32,7 @@ public final class xa extends f6 {
         vbVar.f10015v1.N0(false);
         vbVar.f9956c1.clearAnimation();
         ViewPropertyAnimator duration = vbVar.f9956c1.animate().alpha(0.0f).setDuration(180L);
-        bs bsVar = bs.f25025g;
+        bs bsVar = bs.f25026g;
         duration.setInterpolator(bsVar).start();
         if (vbVar.f9968g0 != 2) {
             vbVar.Y0.clearAnimation();
@@ -48,12 +48,12 @@ public final class xa extends f6 {
             vbVar.f9995p1.setVisibility(0);
             vbVar.f9995p1.setAlpha(0.0f);
             vbVar.f9995p1.clearAnimation();
-            vbVar.f9995p1.animate().alpha(1.0f).setDuration(180L).setInterpolator(bs.f25025g).start();
+            vbVar.f9995p1.animate().alpha(1.0f).setDuration(180L).setInterpolator(bs.f25026g).start();
             return;
         }
         vbVar.f9995p1.a(false, z11);
         vbVar.f9995p1.clearAnimation();
-        ViewPropertyAnimator interpolator = vbVar.f9995p1.animate().alpha(0.0f).withEndAction(new com.google.firebase.messaging.s(this, 25)).setDuration(180L).setInterpolator(bs.f25025g);
+        ViewPropertyAnimator interpolator = vbVar.f9995p1.animate().alpha(0.0f).withEndAction(new com.google.firebase.messaging.s(this, 25)).setDuration(180L).setInterpolator(bs.f25026g);
         if (z11) {
             j10 = 500;
         } else {
@@ -93,7 +93,7 @@ public final class xa extends f6 {
             f7 = 0.0f;
         }
         ViewPropertyAnimator duration = animate.alpha(f7).setDuration(180L);
-        bs bsVar = bs.f25025g;
+        bs bsVar = bs.f25026g;
         duration.setInterpolator(bsVar).start();
         vbVar.Y0.clearAnimation();
         ViewPropertyAnimator animate2 = vbVar.Y0.animate();

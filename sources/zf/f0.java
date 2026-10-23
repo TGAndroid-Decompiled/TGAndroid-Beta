@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import org.telegram.ui.jg0;
 public abstract class f0 {
-    public static final jg0 f51567a = new jg0(29);
+    public static final jg0 f51568a = new jg0(29);
 
     public static int a(ArrayList arrayList, int i10, ArrayList arrayList2) {
         boolean z10;
@@ -83,7 +83,7 @@ public abstract class f0 {
             rectF5.top = Float.MAX_VALUE;
             rectF5.left = Float.MAX_VALUE;
         }
-        Collections.sort(arrayList2, f51567a);
+        Collections.sort(arrayList2, f51568a);
         return i10;
     }
 

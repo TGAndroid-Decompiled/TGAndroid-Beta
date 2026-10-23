@@ -1,105 +1,83 @@
 package org.telegram.messenger;
 public final class w9 implements Runnable {
-    public final int f19982a;
-    public final MessagesController f19983b;
+    public final int f19987a;
+    public final MessagesController f19988b;
+    public final long f19989c;
 
-    public w9(MessagesController messagesController, int i10) {
-        this.f19982a = i10;
-        this.f19983b = messagesController;
+    public w9(MessagesController messagesController, long j10, int i10) {
+        this.f19987a = i10;
+        this.f19988b = messagesController;
+        this.f19989c = j10;
     }
 
     @Override
     public final void run() {
-        switch (this.f19982a) {
+        switch (this.f19987a) {
             case 0:
-                this.f19983b.requestIsUserContactBlocked();
+                this.f19988b.lambda$setDefaultBannedRole$96(this.f19989c);
                 return;
             case 1:
-                this.f19983b.lambda$new$508();
+                this.f19988b.lambda$setChatReactions$473(this.f19989c);
                 return;
             case 2:
-                this.f19983b.lambda$registerForPush$322();
+                this.f19988b.lambda$deleteParticipantFromChat$311(this.f19989c);
                 return;
             case 3:
-                this.f19983b.lambda$updateTimerProc$157();
+                this.f19988b.lambda$setBoostsToUnblockRestrictions$94(this.f19989c);
                 return;
             case 4:
-                this.f19983b.lambda$updateTimerProc$160();
+                this.f19988b.lambda$deleteDialog$139(this.f19989c);
                 return;
             case 5:
-                this.f19983b.lambda$applyAppConfig$35();
+                this.f19988b.lambda$addUserToChat$297(this.f19989c);
                 return;
             case 6:
-                this.f19983b.lambda$applyAppConfig$36();
+                this.f19988b.lambda$addUserToChat$308(this.f19989c);
                 return;
             case 7:
-                this.f19983b.lambda$processUpdateArray$412();
+                this.f19988b.lambda$addUserToChat$306(this.f19989c);
                 return;
             case 8:
-                this.f19983b.lambda$processUpdateArray$413();
+                this.f19988b.lambda$processUpdateArray$386(this.f19989c);
                 return;
             case 9:
-                this.f19983b.lambda$processUpdateArray$414();
+                this.f19988b.lambda$getSavedReactionTags$491(this.f19989c);
                 return;
             case 10:
-                this.f19983b.lambda$loadRemoteFilters$26();
+                this.f19988b.lambda$getChannelDifference$333(this.f19989c);
                 return;
             case 11:
-                this.f19983b.lambda$loadRemoteFilters$27();
+                this.f19988b.lambda$getChannelDifference$334(this.f19989c);
                 return;
             case 12:
-                this.f19983b.lambda$loadRemoteFilters$28();
+                this.f19988b.lambda$getChannelDifference$335(this.f19989c);
                 return;
             case 13:
-                this.f19983b.lambda$loadRemoteFilters$29();
+                this.f19988b.lambda$getChannelDifference$336(this.f19989c);
                 return;
             case 14:
-                this.f19983b.lambda$migrateDialogs$214();
+                this.f19988b.lambda$setChannelSlowMode$92(this.f19989c);
                 return;
             case 15:
-                this.f19983b.lambda$addWebBrowserException$515();
+                this.f19988b.lambda$deleteParticipantFromChat$314(this.f19989c);
                 return;
             case 16:
-                this.f19983b.lambda$processUpdates$383();
+                this.f19988b.lambda$deleteDialog$138(this.f19989c);
                 return;
             case 17:
-                this.f19983b.lambda$migrateDialogs$212();
+                this.f19988b.lambda$removeDialog$133(this.f19989c);
                 return;
             case 18:
-                this.f19983b.lambda$cleanup$51();
+                this.f19988b.lambda$setParticipantBannedRole$89(this.f19989c);
                 return;
             case 19:
-                this.f19983b.lambda$cleanup$52();
+                this.f19988b.lambda$getChannelDifference$343(this.f19989c);
                 return;
             case 20:
-                this.f19983b.lambda$cleanup$53();
-                return;
-            case 21:
-                this.f19983b.lambda$processLoadedDeleteTask$86();
-                return;
-            case 22:
-                this.f19983b.lambda$didReceivedNotification$41();
-                return;
-            case 23:
-                this.f19983b.lambda$removeWebBrowserException$517();
-                return;
-            case 24:
-                this.f19983b.lambda$scheduleTranscriptionUpdate$37();
-                return;
-            case 25:
-                this.f19983b.lambda$toggleChannelForum$284();
-                return;
-            case 26:
-                this.f19983b.lambda$toggleChannelSignatures$282();
-                return;
-            case 27:
-                this.f19983b.lambda$updateEmojiStatusUntil$477();
-                return;
-            case 28:
-                this.f19983b.lambda$checkPromoInfoInternal$165();
+                this.f19988b.lambda$getChannelDifference$344(this.f19989c);
                 return;
             default:
-                this.f19983b.lambda$markAllTopicsAsRead$5();
+                this.f19988b.lambda$getChannelDifference$342(this.f19989c);
                 return;
         }
     }

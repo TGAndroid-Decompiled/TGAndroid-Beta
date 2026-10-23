@@ -7,33 +7,33 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_payments;
 public final class h1 implements Utilities.Callback2 {
-    public final int f18478a;
-    public final Object f18479b;
-    public final Object f18480c;
+    public final int f18497a;
+    public final Object f18498b;
+    public final Object f18499c;
 
     public h1(int i10, Object obj, Object obj2) {
-        this.f18478a = i10;
-        this.f18479b = obj;
-        this.f18480c = obj2;
+        this.f18497a = i10;
+        this.f18498b = obj;
+        this.f18499c = obj2;
     }
 
     @Override
     public final void run(Object obj, Object obj2) {
-        switch (this.f18478a) {
+        switch (this.f18497a) {
             case 0:
-                ((ChatThemeController) this.f18479b).lambda$requestNextChatThemes$21((ResultCallback) this.f18480c, (TL_account.ChatThemes) obj, (TLRPC.TL_error) obj2);
+                ((ChatThemeController) this.f18498b).lambda$requestNextChatThemes$21((ResultCallback) this.f18499c, (TL_account.ChatThemes) obj, (TLRPC.TL_error) obj2);
                 return;
             case 1:
-                ((GiftAuctionController) this.f18479b).lambda$requestGiftAuctionInternal$4((Utilities.Callback2) this.f18480c, (TL_payments.TL_StarGiftAuctionState) obj, (TLRPC.TL_error) obj2);
+                ((GiftAuctionController) this.f18498b).lambda$requestGiftAuctionInternal$4((Utilities.Callback2) this.f18499c, (TL_payments.TL_StarGiftAuctionState) obj, (TLRPC.TL_error) obj2);
                 return;
             case 2:
-                ((MessagesController) this.f18479b).lambda$fetchJoinedCommunities$250((Utilities.Callback) this.f18480c, (TLRPC.messages_Chats) obj, (TLRPC.TL_error) obj2);
+                ((MessagesController) this.f18498b).lambda$fetchJoinedCommunities$250((Utilities.Callback) this.f18499c, (TLRPC.messages_Chats) obj, (TLRPC.TL_error) obj2);
                 return;
             case 3:
-                PasskeysController.lambda$create$4((org.telegram.ui.ActionBar.b2) this.f18479b, (Utilities.Callback2) this.f18480c, (TL_account.Passkey) obj, (TLRPC.TL_error) obj2);
+                PasskeysController.lambda$create$4((org.telegram.ui.ActionBar.b2) this.f18498b, (Utilities.Callback2) this.f18499c, (TL_account.Passkey) obj, (TLRPC.TL_error) obj2);
                 return;
             default:
-                ((UnconfirmedAuthController.UnconfirmedAuth) this.f18479b).lambda$confirm$0((Utilities.Callback) this.f18480c, (TLRPC.Bool) obj, (TLRPC.TL_error) obj2);
+                ((UnconfirmedAuthController.UnconfirmedAuth) this.f18498b).lambda$confirm$0((Utilities.Callback) this.f18499c, (TLRPC.Bool) obj, (TLRPC.TL_error) obj2);
                 return;
         }
     }

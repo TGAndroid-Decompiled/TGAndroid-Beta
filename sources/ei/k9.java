@@ -89,7 +89,7 @@ public final class k9 extends FrameLayout implements View.OnClickListener, Notif
         d6Var2 = ((org.telegram.ui.ActionBar.f3) r9Var).resourcesProvider;
         d9 d9Var = new d9(this, context, d6Var2, new a9(this, 4));
         this.f9333x = d9Var;
-        int i12 = org.telegram.ui.ActionBar.h6.f21064h5;
+        int i12 = org.telegram.ui.ActionBar.h6.f21065h5;
         d9Var.setBackgroundColor(r9Var.getThemedColor(i12));
         d9Var.setOnSearchTextChange(new b9(this, 3));
         d6Var3 = ((org.telegram.ui.ActionBar.f3) r9Var).resourcesProvider;
@@ -121,7 +121,7 @@ public final class k9 extends FrameLayout implements View.OnClickListener, Notif
         f9Var.n(350L);
         f9Var.o(bs.h);
         f9Var.C = false;
-        f9Var.f45954m = false;
+        f9Var.f45955m = false;
         jm0Var.setItemAnimator(f9Var);
         frameLayout.addView(d9Var, w7.z5.e(-1, -2, 55));
         frameLayout.addView(u3Var, w7.z5.e(-1, 32, 55));
@@ -206,7 +206,7 @@ public final class k9 extends FrameLayout implements View.OnClickListener, Notif
             arrayList.addAll(r9Var.J);
         } else if (i10 == 1) {
             ArrayList K0 = r9.K0(r9Var);
-            for (int i12 = 0; i12 < K0.size(); i12 = com.google.android.gms.internal.play_billing.k3.h(((TLRPC.User) K0.get(i12)).f20426id, arrayList, i12, 1)) {
+            for (int i12 = 0; i12 < K0.size(); i12 = com.google.android.gms.internal.play_billing.k3.h(((TLRPC.User) K0.get(i12)).f20427id, arrayList, i12, 1)) {
             }
         } else if (i10 == 2) {
             arrayList.addAll(r9Var.h);
@@ -278,7 +278,7 @@ public final class k9 extends FrameLayout implements View.OnClickListener, Notif
                 long j11 = chatParticipants.participants.get(i13).user_id;
                 i10 = ((org.telegram.ui.ActionBar.f3) r9Var).currentAccount;
                 TLRPC.User user = MessagesController.getInstance(i10).getUser(Long.valueOf(j11));
-                if (user != null && !UserObject.isUserSelf(user) && !user.bot && user.f20426id != 777000 && j11 != 0) {
+                if (user != null && !UserObject.isUserSelf(user) && !user.bot && user.f20427id != 777000 && j11 != 0) {
                     if (z10 && !user.contact) {
                         arrayList2.add(Long.valueOf(j11));
                     } else {
@@ -293,7 +293,7 @@ public final class k9 extends FrameLayout implements View.OnClickListener, Notif
                 Context context = getContext();
                 d6Var2 = ((org.telegram.ui.ActionBar.f3) r9Var).resourcesProvider;
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, d6Var2);
-                alertDialog$Builder.f20608a.T = "All group members are not in your contact list.";
+                alertDialog$Builder.f20609a.T = "All group members are not in your contact list.";
                 alertDialog$Builder.h("Cancel", null);
                 alertDialog$Builder.o();
                 return;
@@ -301,7 +301,7 @@ public final class k9 extends FrameLayout implements View.OnClickListener, Notif
             Context context2 = getContext();
             d6Var = ((org.telegram.ui.ActionBar.f3) r9Var).resourcesProvider;
             AlertDialog$Builder alertDialog$Builder2 = new AlertDialog$Builder(context2, 0, d6Var);
-            alertDialog$Builder2.f20608a.T = arrayList2.size() + " members are not in your contact list";
+            alertDialog$Builder2.f20609a.T = arrayList2.size() + " members are not in your contact list";
             alertDialog$Builder2.k("Add " + arrayList.size() + " contacts", new ai.f(this, j10, arrayList, 2));
             alertDialog$Builder2.h("Cancel", null);
             alertDialog$Builder2.o();
@@ -324,11 +324,11 @@ public final class k9 extends FrameLayout implements View.OnClickListener, Notif
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         TLRPC.ChatFull chatFull;
         org.telegram.ui.ActionBar.b2 b2Var;
-        if (i10 == NotificationCenter.chatInfoDidLoad && (chatFull = (TLRPC.ChatFull) objArr[0]) != null && (b2Var = this.G) != null && this.H == chatFull.f20280id) {
+        if (i10 == NotificationCenter.chatInfoDidLoad && (chatFull = (TLRPC.ChatFull) objArr[0]) != null && (b2Var = this.G) != null && this.H == chatFull.f20281id) {
             b2Var.c(350L);
             this.G = null;
             this.H = -1L;
-            d(chatFull.f20280id, chatFull.participants);
+            d(chatFull.f20281id, chatFull.participants);
         }
     }
 
@@ -504,16 +504,16 @@ public final class k9 extends FrameLayout implements View.OnClickListener, Notif
                 } else {
                     TLRPC.User user = y8Var.f10137g;
                     if (user != null) {
-                        boolean contains = arrayList6.contains(Long.valueOf(user.f20426id));
+                        boolean contains = arrayList6.contains(Long.valueOf(user.f20427id));
                         y8Var.f10140k = contains;
-                        if (contains || !m12.contains(Long.valueOf(y8Var.f10137g.f20426id))) {
+                        if (contains || !m12.contains(Long.valueOf(y8Var.f10137g.f20427id))) {
                             z12 = false;
                         }
                         y8Var.f10141l = z12;
                     } else {
                         TLRPC.Chat chat = y8Var.h;
                         if (chat != null) {
-                            y8Var.f10140k = hashMap3.containsKey(Long.valueOf(chat.f20279id));
+                            y8Var.f10140k = hashMap3.containsKey(Long.valueOf(chat.f20280id));
                             y8Var.f10141l = false;
                         }
                     }
@@ -571,7 +571,7 @@ public final class k9 extends FrameLayout implements View.OnClickListener, Notif
         } else if (z10) {
             u3Var.setRightText(null);
         } else {
-            org.telegram.ui.Cells.t3 t3Var = u3Var.f23594b;
+            org.telegram.ui.Cells.t3 t3Var = u3Var.f23595b;
             t3Var.c(null, false, true);
             t3Var.setOnClickListener(null);
             t3Var.setVisibility(0);
@@ -788,7 +788,7 @@ public final class k9 extends FrameLayout implements View.OnClickListener, Notif
             return;
         }
         v30 v30Var = (v30) view;
-        if (v30Var.f31139y) {
+        if (v30Var.f31140y) {
             d9Var.e = null;
             n9 n9Var = d9Var.f9560c;
             o9 o9Var = (o9) n9Var.f9527n;
@@ -894,7 +894,7 @@ public final class k9 extends FrameLayout implements View.OnClickListener, Notif
             z11 = ((org.telegram.ui.ActionBar.f3) r9Var).keyboardVisible;
             if (z11 && c10 + Math.min(AndroidUtilities.dp(150.0f), this.f9333x.J) > jm0Var.getPaddingTop()) {
                 li.n nVar = new li.n(getContext(), 2, 0.7f);
-                nVar.f46061a = 1;
+                nVar.f46062a = 1;
                 nVar.f16144p = -AndroidUtilities.dp(56.0f);
                 this.h.w0(nVar);
             }
@@ -933,7 +933,7 @@ public final class k9 extends FrameLayout implements View.OnClickListener, Notif
                 i9Var.d.addListener(new ah.b(i9Var, 24));
                 i9Var.d.setDuration(250L);
                 ValueAnimator valueAnimator2 = i9Var.d;
-                bs bsVar = org.telegram.ui.ActionBar.o1.f21635w;
+                bs bsVar = org.telegram.ui.ActionBar.o1.f21636w;
                 valueAnimator2.setInterpolator(bsVar);
                 i9Var.d.start();
                 z13 = ((org.telegram.ui.ActionBar.f3) r9Var).keyboardVisible;

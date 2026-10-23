@@ -279,14 +279,14 @@ public class SharedConfig {
         }
 
         public void toSerializedData(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeString(this.settings.f44752b);
-            outputSerializedData.writeInt32(this.settings.f44753c);
+            outputSerializedData.writeString(this.settings.f44753b);
+            outputSerializedData.writeInt32(this.settings.f44754c);
             outputSerializedData.writeString(this.settings.d);
             outputSerializedData.writeString(this.settings.e);
-            outputSerializedData.writeString(this.settings.f44754f);
+            outputSerializedData.writeString(this.settings.f44755f);
             outputSerializedData.writeInt64(this.ping);
             outputSerializedData.writeInt64(this.availableCheckTime);
-            int c10 = m1.j.c(this.settings.f44751a);
+            int c10 = m1.j.c(this.settings.f44752a);
             int i10 = 1;
             if (c10 != 1) {
                 i10 = 2;
@@ -911,10 +911,10 @@ public class SharedConfig {
             ImageLoader.getInstance().checkMediaPaths(new z1(20));
             readOnlyStorageDirAlertShowed = true;
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(R.getParentActivity());
-            alertDialog$Builder.f20608a.R = LocaleController.getString(R.string.SdCardError);
-            alertDialog$Builder.f20608a.S = LocaleController.getString(R.string.SdCardErrorDescription);
-            alertDialog$Builder.k(LocaleController.getString(R.string.DoNotUseSDCard), new xg(3));
-            org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20608a;
+            alertDialog$Builder.f20609a.R = LocaleController.getString(R.string.SdCardError);
+            alertDialog$Builder.f20609a.S = LocaleController.getString(R.string.SdCardErrorDescription);
+            alertDialog$Builder.k(LocaleController.getString(R.string.DoNotUseSDCard), new wg(3));
+            org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20609a;
             b2Var.setCanceledOnTouchOutside(false);
             b2Var.show();
         }
@@ -1211,7 +1211,7 @@ public class SharedConfig {
 
     public static void saveProxyList() {
         ArrayList arrayList = new ArrayList(proxyList);
-        Collections.sort(arrayList, new zh(4));
+        Collections.sort(arrayList, new yh(4));
         SerializedData serializedData = new SerializedData();
         serializedData.writeInt32(-1);
         serializedData.writeByte(3);

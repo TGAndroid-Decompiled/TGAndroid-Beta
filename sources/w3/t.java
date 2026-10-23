@@ -3,16 +3,16 @@ package w3;
 import e2.m0;
 import v7.u6;
 public final class t {
-    public final q f48583a;
-    public final int f48584b;
-    public final long[] f48585c;
+    public final q f48584a;
+    public final int f48585b;
+    public final long[] f48586c;
     public final int[] d;
     public final int e;
-    public final long[] f48586f;
-    public final int[] f48587g;
+    public final long[] f48587f;
+    public final int[] f48588g;
     public final int[] h;
-    public final long f48588i;
-    public final boolean f48589j;
+    public final long f48589i;
+    public final boolean f48590j;
 
     public t(q qVar, long[] jArr, int[] iArr, int i10, long[] jArr2, int[] iArr2, int[] iArr3, boolean z10, long j10, int i11) {
         boolean z11;
@@ -30,16 +30,16 @@ public final class t {
         }
         u6.g(z12);
         u6.g(iArr2.length == jArr2.length);
-        this.f48583a = qVar;
-        this.f48585c = jArr;
+        this.f48584a = qVar;
+        this.f48586c = jArr;
         this.d = iArr;
         this.e = i10;
-        this.f48586f = jArr2;
-        this.f48587g = iArr2;
+        this.f48587f = jArr2;
+        this.f48588g = iArr2;
         this.h = iArr3;
-        this.f48589j = z10;
-        this.f48588i = j10;
-        this.f48584b = i11;
+        this.f48590j = z10;
+        this.f48589i = j10;
+        this.f48585b = i11;
         if (iArr2.length > 0) {
             int length = iArr2.length - 1;
             iArr2[length] = iArr2[length] | 536870912;
@@ -47,12 +47,12 @@ public final class t {
     }
 
     public final int a(long j10) {
-        long[] jArr = this.f48586f;
+        long[] jArr = this.f48587f;
         if (jArr.length <= 0) {
             return -1;
         }
         int i10 = 0;
-        if (this.f48589j) {
+        if (this.f48590j) {
             return m0.f(jArr, j10, false);
         }
         int[] iArr = this.h;
@@ -80,11 +80,11 @@ public final class t {
     }
 
     public final int b(long j10) {
-        long[] jArr = this.f48586f;
+        long[] jArr = this.f48587f;
         if (jArr.length <= 0) {
             return -1;
         }
-        if (this.f48589j) {
+        if (this.f48590j) {
             return m0.b(jArr, j10, true);
         }
         int[] iArr = this.h;

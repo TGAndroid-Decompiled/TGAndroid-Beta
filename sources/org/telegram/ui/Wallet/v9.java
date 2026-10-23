@@ -17,38 +17,38 @@ import org.telegram.ui.Components.ti;
 import org.telegram.ui.Components.u61;
 import org.telegram.ui.Components.w61;
 public final class v9 {
-    public final ti f35033a;
-    public final ViewGroup f35034b;
-    public final View f35035c;
+    public final ti f35034a;
+    public final ViewGroup f35035b;
+    public final View f35036c;
     public final m6 d;
     public final o5 e;
-    public final TL_wallet.walletTransaction f35036f;
-    public final Runnable f35037g;
+    public final TL_wallet.walletTransaction f35037f;
+    public final Runnable f35038g;
     public final t9 h;
-    public final m6 f35038i;
-    public final k9 f35039j = new k9();
-    public final PathInterpolator f35040k = new PathInterpolator(0.3f, 0.0f, 0.8f, 0.15f);
-    public final float f35041l;
-    public final AnimatorSet f35042m;
-    public final RectF f35043n;
-    public final RectF f35044o;
-    public g3 f35045p;
-    public boolean f35046q;
-    public boolean f35047r;
-    public boolean f35048s;
-    public final long f35049t;
-    public final s9 f35050u;
+    public final m6 f35039i;
+    public final k9 f35040j = new k9();
+    public final PathInterpolator f35041k = new PathInterpolator(0.3f, 0.0f, 0.8f, 0.15f);
+    public final float f35042l;
+    public final AnimatorSet f35043m;
+    public final RectF f35044n;
+    public final RectF f35045o;
+    public g3 f35046p;
+    public boolean f35047q;
+    public boolean f35048r;
+    public boolean f35049s;
+    public final long f35050t;
+    public final s9 f35051u;
 
     public v9(ViewGroup viewGroup, View view, m6 m6Var, o5 o5Var, TL_wallet.walletTransaction wallettransaction, Runnable runnable, ti tiVar) {
         AnimatorSet animatorSet = new AnimatorSet();
-        this.f35042m = animatorSet;
-        this.f35044o = new RectF();
-        this.f35049t = SystemClock.uptimeMillis();
-        this.f35050u = new Runnable(this) {
-            public final v9 f34896b;
+        this.f35043m = animatorSet;
+        this.f35045o = new RectF();
+        this.f35050t = SystemClock.uptimeMillis();
+        this.f35051u = new Runnable(this) {
+            public final v9 f34897b;
 
             {
-                this.f34896b = this;
+                this.f34897b = this;
             }
 
             @Override
@@ -57,19 +57,19 @@ public final class v9 {
                 TL_wallet.walletTransaction wallettransaction2;
                 switch (r2) {
                     case 0:
-                        v9 v9Var = this.f34896b;
+                        v9 v9Var = this.f34897b;
                         m6 m6Var2 = v9Var.d;
-                        ViewGroup viewGroup2 = v9Var.f35034b;
-                        AnimatorSet animatorSet2 = v9Var.f35042m;
-                        m6 m6Var3 = v9Var.f35038i;
-                        RectF rectF = v9Var.f35044o;
-                        RectF rectF2 = v9Var.f35043n;
-                        if (!v9Var.f35048s && !v9Var.f35047r) {
+                        ViewGroup viewGroup2 = v9Var.f35035b;
+                        AnimatorSet animatorSet2 = v9Var.f35043m;
+                        m6 m6Var3 = v9Var.f35039i;
+                        RectF rectF = v9Var.f35045o;
+                        RectF rectF2 = v9Var.f35044n;
+                        if (!v9Var.f35049s && !v9Var.f35048r) {
                             v9Var.e();
                             v9Var.c(rectF2.centerX(), rectF2.centerY(), rectF2.width());
                             o5 o5Var2 = v9Var.e;
-                            TL_wallet.walletTransaction wallettransaction3 = v9Var.f35036f;
-                            c71 c71Var = o5Var2.f34662q0[0];
+                            TL_wallet.walletTransaction wallettransaction3 = v9Var.f35037f;
+                            c71 c71Var = o5Var2.f34663q0[0];
                             g3 g3Var2 = null;
                             if (c71Var != null) {
                                 int i10 = 0;
@@ -85,33 +85,33 @@ public final class v9 {
                                 }
                             }
                             if (g3Var2 != null && g3Var2.getWidth() > 0) {
-                                g3 g3Var3 = v9Var.f35045p;
+                                g3 g3Var3 = v9Var.f35046p;
                                 if (g3Var3 != g3Var2) {
                                     if (g3Var3 != null) {
                                         g3Var3.g(false);
                                     }
-                                    v9Var.f35045p = g3Var2;
+                                    v9Var.f35046p = g3Var2;
                                     g3Var2.g(true);
                                 }
-                                m6 pendingDiamond = v9Var.f35045p.getPendingDiamond();
-                                if (v9Var.f35046q && pendingDiamond != null && pendingDiamond.getWidth() > 0 && !v9Var.f35045p.isLayoutRequested()) {
+                                m6 pendingDiamond = v9Var.f35046p.getPendingDiamond();
+                                if (v9Var.f35047q && pendingDiamond != null && pendingDiamond.getWidth() > 0 && !v9Var.f35046p.isLayoutRequested()) {
                                     rectF.set(v9Var.d(pendingDiamond));
                                     if (rectF.centerY() > 0.0f && rectF.centerY() < viewGroup2.getHeight()) {
-                                        v9Var.f35047r = true;
+                                        v9Var.f35048r = true;
                                         m6Var3.f(m6Var2);
                                         m6Var3.setAlpha(1.0f);
                                         m6Var2.setAlpha(0.0f);
-                                        v9Var.f35039j.b(rectF2.centerX(), rectF2.centerY());
+                                        v9Var.f35040j.b(rectF2.centerX(), rectF2.centerY());
                                         animatorSet2.start();
                                         return;
                                     }
                                 }
                             }
-                            if (SystemClock.uptimeMillis() - v9Var.f35049t <= 450 && viewGroup2.isAttachedToWindow()) {
-                                v9Var.h.postOnAnimation(v9Var.f35050u);
+                            if (SystemClock.uptimeMillis() - v9Var.f35050t <= 450 && viewGroup2.isAttachedToWindow()) {
+                                v9Var.h.postOnAnimation(v9Var.f35051u);
                                 return;
                             }
-                            v9Var.f35047r = true;
+                            v9Var.f35048r = true;
                             m6Var3.setAlpha(0.0f);
                             animatorSet2.setDuration(180L);
                             animatorSet2.start();
@@ -119,28 +119,28 @@ public final class v9 {
                         }
                         return;
                     default:
-                        this.f34896b.f35046q = true;
+                        this.f34897b.f35047q = true;
                         return;
                 }
             }
         };
-        this.f35033a = tiVar;
-        this.f35034b = viewGroup;
-        this.f35035c = view;
+        this.f35034a = tiVar;
+        this.f35035b = viewGroup;
+        this.f35036c = view;
         this.d = m6Var;
-        this.f35041l = m6Var.getAlpha();
+        this.f35042l = m6Var.getAlpha();
         this.e = o5Var;
-        this.f35036f = wallettransaction;
-        this.f35037g = runnable;
+        this.f35037f = wallettransaction;
+        this.f35038g = runnable;
         RectF a2 = a(viewGroup, m6Var);
-        this.f35043n = a2;
+        this.f35044n = a2;
         t9 t9Var = new t9(this, viewGroup.getContext());
         this.h = t9Var;
         t9Var.setClipChildren(false);
         t9Var.setClipToPadding(false);
         t9Var.setClickable(true);
         m6 m6Var2 = new m6(60, viewGroup.getContext(), true);
-        this.f35038i = m6Var2;
+        this.f35039i = m6Var2;
         m6Var2.setContinuousRotation(540.0f);
         m6Var2.f(m6Var);
         m6Var2.setAlpha(0.0f);
@@ -148,10 +148,10 @@ public final class v9 {
         viewGroup.addView(t9Var, new ViewGroup.LayoutParams(-1, -1));
         c(a2.centerX(), a2.centerY(), a2.width());
         m6Var2.l(new Runnable(this) {
-            public final v9 f34896b;
+            public final v9 f34897b;
 
             {
-                this.f34896b = this;
+                this.f34897b = this;
             }
 
             @Override
@@ -160,19 +160,19 @@ public final class v9 {
                 TL_wallet.walletTransaction wallettransaction2;
                 switch (r2) {
                     case 0:
-                        v9 v9Var = this.f34896b;
+                        v9 v9Var = this.f34897b;
                         m6 m6Var22 = v9Var.d;
-                        ViewGroup viewGroup2 = v9Var.f35034b;
-                        AnimatorSet animatorSet2 = v9Var.f35042m;
-                        m6 m6Var3 = v9Var.f35038i;
-                        RectF rectF = v9Var.f35044o;
-                        RectF rectF2 = v9Var.f35043n;
-                        if (!v9Var.f35048s && !v9Var.f35047r) {
+                        ViewGroup viewGroup2 = v9Var.f35035b;
+                        AnimatorSet animatorSet2 = v9Var.f35043m;
+                        m6 m6Var3 = v9Var.f35039i;
+                        RectF rectF = v9Var.f35045o;
+                        RectF rectF2 = v9Var.f35044n;
+                        if (!v9Var.f35049s && !v9Var.f35048r) {
                             v9Var.e();
                             v9Var.c(rectF2.centerX(), rectF2.centerY(), rectF2.width());
                             o5 o5Var2 = v9Var.e;
-                            TL_wallet.walletTransaction wallettransaction3 = v9Var.f35036f;
-                            c71 c71Var = o5Var2.f34662q0[0];
+                            TL_wallet.walletTransaction wallettransaction3 = v9Var.f35037f;
+                            c71 c71Var = o5Var2.f34663q0[0];
                             g3 g3Var2 = null;
                             if (c71Var != null) {
                                 int i10 = 0;
@@ -188,33 +188,33 @@ public final class v9 {
                                 }
                             }
                             if (g3Var2 != null && g3Var2.getWidth() > 0) {
-                                g3 g3Var3 = v9Var.f35045p;
+                                g3 g3Var3 = v9Var.f35046p;
                                 if (g3Var3 != g3Var2) {
                                     if (g3Var3 != null) {
                                         g3Var3.g(false);
                                     }
-                                    v9Var.f35045p = g3Var2;
+                                    v9Var.f35046p = g3Var2;
                                     g3Var2.g(true);
                                 }
-                                m6 pendingDiamond = v9Var.f35045p.getPendingDiamond();
-                                if (v9Var.f35046q && pendingDiamond != null && pendingDiamond.getWidth() > 0 && !v9Var.f35045p.isLayoutRequested()) {
+                                m6 pendingDiamond = v9Var.f35046p.getPendingDiamond();
+                                if (v9Var.f35047q && pendingDiamond != null && pendingDiamond.getWidth() > 0 && !v9Var.f35046p.isLayoutRequested()) {
                                     rectF.set(v9Var.d(pendingDiamond));
                                     if (rectF.centerY() > 0.0f && rectF.centerY() < viewGroup2.getHeight()) {
-                                        v9Var.f35047r = true;
+                                        v9Var.f35048r = true;
                                         m6Var3.f(m6Var22);
                                         m6Var3.setAlpha(1.0f);
                                         m6Var22.setAlpha(0.0f);
-                                        v9Var.f35039j.b(rectF2.centerX(), rectF2.centerY());
+                                        v9Var.f35040j.b(rectF2.centerX(), rectF2.centerY());
                                         animatorSet2.start();
                                         return;
                                     }
                                 }
                             }
-                            if (SystemClock.uptimeMillis() - v9Var.f35049t <= 450 && viewGroup2.isAttachedToWindow()) {
-                                v9Var.h.postOnAnimation(v9Var.f35050u);
+                            if (SystemClock.uptimeMillis() - v9Var.f35050t <= 450 && viewGroup2.isAttachedToWindow()) {
+                                v9Var.h.postOnAnimation(v9Var.f35051u);
                                 return;
                             }
-                            v9Var.f35047r = true;
+                            v9Var.f35048r = true;
                             m6Var3.setAlpha(0.0f);
                             animatorSet2.setDuration(180L);
                             animatorSet2.start();
@@ -222,7 +222,7 @@ public final class v9 {
                         }
                         return;
                     default:
-                        this.f34896b.f35046q = true;
+                        this.f34897b.f35047q = true;
                         return;
                 }
             }
@@ -235,23 +235,23 @@ public final class v9 {
         animatorSet.addListener(new u9(this, tiVar, m6Var));
         o5Var.J0();
         o5Var.R0(false);
-        w61 w61Var = o5Var.f32359a;
+        w61 w61Var = o5Var.f32360a;
         if (w61Var != null) {
             w61Var.B0();
-            o5Var.f32359a.V2.h1(0, 0);
-            c71 c71Var = o5Var.f34662q0[0];
+            o5Var.f32360a.V2.h1(0, 0);
+            c71 c71Var = o5Var.f34663q0[0];
             if (c71Var != null) {
                 u61 u61Var = c71Var.W2;
                 c71Var.B0();
                 u61Var.N(false);
-                for (int i10 = 0; i10 < u61Var.f30867x.size(); i10++) {
+                for (int i10 = 0; i10 < u61Var.f30868x.size(); i10++) {
                     h61 G = u61Var.G(i10);
                     if (G != null) {
                         Object obj = G.G;
                         if (obj instanceof TL_wallet.walletTransaction) {
                             TL_wallet.walletTransaction wallettransaction2 = (TL_wallet.walletTransaction) obj;
-                            int i11 = e3.f34152a;
-                            if ((wallettransaction2 instanceof d3 ? ((d3) wallettransaction2).f34103a : wallettransaction2) == wallettransaction || m0.f0((TL_wallet.walletTransaction) obj, wallettransaction)) {
+                            int i11 = e3.f34153a;
+                            if ((wallettransaction2 instanceof d3 ? ((d3) wallettransaction2).f34104a : wallettransaction2) == wallettransaction || m0.f0((TL_wallet.walletTransaction) obj, wallettransaction)) {
                                 c71Var.V2.h1(i10, 0);
                                 break;
                             }
@@ -262,7 +262,7 @@ public final class v9 {
                 }
             }
         }
-        this.h.post(this.f35050u);
+        this.h.post(this.f35051u);
     }
 
     public static RectF a(ViewGroup viewGroup, View view) {
@@ -303,26 +303,26 @@ public final class v9 {
 
     public final void b() {
         TL_wallet.walletTransaction wallettransaction;
-        if (this.f35048s) {
+        if (this.f35049s) {
             return;
         }
-        this.f35048s = true;
-        s9 s9Var = this.f35050u;
+        this.f35049s = true;
+        s9 s9Var = this.f35051u;
         t9 t9Var = this.h;
         t9Var.removeCallbacks(s9Var);
-        m6 m6Var = this.f35038i;
+        m6 m6Var = this.f35039i;
         m6Var.l(null);
-        g3 g3Var = this.f35045p;
-        if (g3Var != null && (wallettransaction = g3Var.R) != null && e3.a(wallettransaction, this.f35036f)) {
-            m6 pendingDiamond = this.f35045p.getPendingDiamond();
+        g3 g3Var = this.f35046p;
+        if (g3Var != null && (wallettransaction = g3Var.R) != null && e3.a(wallettransaction, this.f35037f)) {
+            m6 pendingDiamond = this.f35046p.getPendingDiamond();
             if (pendingDiamond != null) {
                 pendingDiamond.f(m6Var);
             }
-            this.f35045p.g(false);
-            RectF rectF = this.f35044o;
+            this.f35046p.g(false);
+            RectF rectF = this.f35045o;
             if (!rectF.isEmpty()) {
-                float centerY = (((rectF.centerY() - (Math.min(this.f35043n.centerY(), rectF.centerY()) - AndroidUtilities.dp(150.0f))) * 2.0f) / 0.6f) / AndroidUtilities.density;
-                g3 g3Var2 = this.f35045p;
+                float centerY = (((rectF.centerY() - (Math.min(this.f35044n.centerY(), rectF.centerY()) - AndroidUtilities.dp(150.0f))) * 2.0f) / 0.6f) / AndroidUtilities.density;
+                g3 g3Var2 = this.f35046p;
                 g3Var2.e();
                 o1.k kVar = new o1.k(new o1.j(0.0f));
                 g3Var2.H = kVar;
@@ -339,15 +339,15 @@ public final class v9 {
         m6Var.setPaused(true);
         t9Var.removeView(m6Var);
         t9Var.setClickable(false);
-        this.d.setAlpha(this.f35041l);
-        ti tiVar = this.f35033a;
+        this.d.setAlpha(this.f35042l);
+        ti tiVar = this.f35034a;
         if (tiVar == null) {
-            this.f35035c.setTranslationY(0.0f);
+            this.f35036c.setTranslationY(0.0f);
         } else {
             tiVar.M1(1.0f);
         }
-        ViewGroup viewGroup = this.f35034b;
-        if (tiVar != null && this.f35039j.d()) {
+        ViewGroup viewGroup = this.f35035b;
+        if (tiVar != null && this.f35040j.d()) {
             o5 o5Var = this.e;
             if (o5Var.getParentLayout() != null) {
                 ViewGroup view = o5Var.getParentLayout().getView();
@@ -364,7 +364,7 @@ public final class v9 {
                 }
             }
         }
-        this.f35037g.run();
+        this.f35038g.run();
         AndroidUtilities.runOnUIThread(new z3(16, this, viewGroup), 650L);
     }
 
@@ -372,7 +372,7 @@ public final class v9 {
         float dp = AndroidUtilities.dp(60.0f);
         t9 t9Var = this.h;
         float f12 = dp / 2.0f;
-        m6 m6Var = this.f35038i;
+        m6 m6Var = this.f35039i;
         m6Var.setTranslationX((f7 - t9Var.getLeft()) - f12);
         m6Var.setTranslationY((f10 - t9Var.getTop()) - f12);
         float f13 = f11 / dp;
@@ -381,8 +381,8 @@ public final class v9 {
     }
 
     public final RectF d(m6 m6Var) {
-        ti tiVar = this.f35033a;
-        ViewGroup viewGroup = this.f35034b;
+        ti tiVar = this.f35034a;
+        ViewGroup viewGroup = this.f35035b;
         if (tiVar == null) {
             return a(viewGroup, m6Var);
         }
@@ -397,15 +397,15 @@ public final class v9 {
     }
 
     public final void e() {
-        RectF rectF = this.f35043n;
-        ViewGroup viewGroup = this.f35034b;
+        RectF rectF = this.f35044n;
+        ViewGroup viewGroup = this.f35035b;
         m6 m6Var = this.d;
-        ti tiVar = this.f35033a;
+        ti tiVar = this.f35034a;
         if (tiVar == null) {
-            f(m6Var, this.f35035c, viewGroup, rectF);
+            f(m6Var, this.f35036c, viewGroup, rectF);
         } else if (m6Var.isAttachedToWindow() && m6Var.getRootView() == viewGroup.getRootView()) {
             rectF.set(a(viewGroup, m6Var));
-            rectF.offset(0.0f, tiVar.f30577o2 - tiVar.f30610y0);
+            rectF.offset(0.0f, tiVar.f30578o2 - tiVar.f30611y0);
         }
     }
 }

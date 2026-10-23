@@ -5,13 +5,13 @@ import android.text.Layout;
 import android.text.StaticLayout;
 import android.text.TextPaint;
 public abstract class j {
-    public static StaticLayout f48722a;
+    public static StaticLayout f48723a;
 
     public static ki.b0 a(int i10, int i11, int i12, int i13) {
         Rect rect = new Rect(i10, i11, i12, i13);
-        if (f48722a == null) {
-            f48722a = new StaticLayout(" ", new TextPaint(), 1, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+        if (f48723a == null) {
+            f48723a = new StaticLayout(" ", new TextPaint(), 1, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
         }
-        return new ki.b0(f48722a, rect);
+        return new ki.b0(f48723a, rect);
     }
 }

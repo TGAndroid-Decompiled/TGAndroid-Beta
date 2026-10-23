@@ -7,21 +7,21 @@ import p7.m;
 import w7.f0;
 public final class b extends o6.a {
     public static final Parcelable.Creator<b> CREATOR = new m(2);
-    public final String f44430a;
-    public final String f44431b;
-    public final String f44432c;
+    public final String f44431a;
+    public final String f44432b;
+    public final String f44433c;
     public final String d;
     public final a e;
-    public final String f44433f;
+    public final String f44434f;
     public final Bundle h;
 
     public b(String str, String str2, String str3, String str4, a aVar, String str5, Bundle bundle) {
-        this.f44430a = str;
-        this.f44431b = str2;
-        this.f44432c = str3;
+        this.f44431a = str;
+        this.f44432b = str2;
+        this.f44433c = str3;
         this.d = str4;
         this.e = aVar;
-        this.f44433f = str5;
+        this.f44434f = str5;
         if (bundle != null) {
             this.h = bundle;
         } else {
@@ -39,11 +39,11 @@ public final class b extends o6.a {
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("ActionImpl { { actionType: '");
-        sb2.append(this.f44430a);
+        sb2.append(this.f44431a);
         sb2.append("' } { objectName: '");
-        sb2.append(this.f44431b);
+        sb2.append(this.f44432b);
         sb2.append("' } { objectUrl: '");
-        sb2.append(this.f44432c);
+        sb2.append(this.f44433c);
         sb2.append("' } ");
         String str = this.d;
         if (str != null) {
@@ -57,7 +57,7 @@ public final class b extends o6.a {
             sb2.append(aVar.toString());
             sb2.append("' } ");
         }
-        String str2 = this.f44433f;
+        String str2 = this.f44434f;
         if (str2 != null) {
             sb2.append("{ actionStatus: '");
             sb2.append(str2);
@@ -76,12 +76,12 @@ public final class b extends o6.a {
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         int q6 = f0.q(parcel, 20293);
-        f0.l(parcel, 1, this.f44430a);
-        f0.l(parcel, 2, this.f44431b);
-        f0.l(parcel, 3, this.f44432c);
+        f0.l(parcel, 1, this.f44431a);
+        f0.l(parcel, 2, this.f44432b);
+        f0.l(parcel, 3, this.f44433c);
         f0.l(parcel, 4, this.d);
         f0.k(parcel, 5, this.e, i10);
-        f0.l(parcel, 6, this.f44433f);
+        f0.l(parcel, 6, this.f44434f);
         f0.b(parcel, 7, this.h);
         f0.r(parcel, q6);
     }

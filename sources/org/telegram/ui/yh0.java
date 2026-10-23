@@ -17,14 +17,14 @@ public final class yh0 extends oy {
         mi0 mi0Var = this.O;
         fi0 fi0Var = mi0Var.J;
         if (nyVar != null) {
-            if (mi0Var.f39272k0 != null) {
-                nyVar.f39709c = true;
+            if (mi0Var.f39273k0 != null) {
+                nyVar.f39710c = true;
                 float f7 = (oy.f() * AndroidUtilities.density) / 1.3f;
                 float f10 = f7 / 3.0f;
                 nyVar.d = f10;
                 nyVar.e = f10;
-                nyVar.f39707a = Utilities.clamp(mi0Var.f39272k0.right - (0.75f * f7), AndroidUtilities.displaySize.x - f7, 0.0f);
-                nyVar.f39708b = mi0Var.f39272k0.bottom - (f7 / 2.0f);
+                nyVar.f39708a = Utilities.clamp(mi0Var.f39273k0.right - (0.75f * f7), AndroidUtilities.displaySize.x - f7, 0.0f);
+                nyVar.f39709b = mi0Var.f39273k0.bottom - (f7 / 2.0f);
                 return;
             }
             org.telegram.ui.Cells.u1 u1Var = mi0Var.P;
@@ -32,14 +32,14 @@ public final class yh0 extends oy {
                 org.telegram.ui.Cells.u1 u1Var2 = mi0Var.P;
                 int[] iArr = this.N;
                 u1Var2.getLocationOnScreen(iArr);
-                nyVar.f39709c = true;
+                nyVar.f39710c = true;
                 float f11 = (oy.f() * AndroidUtilities.density) / 1.3f;
                 float f12 = f11 / 3.0f;
                 nyVar.d = f12;
                 nyVar.e = f12;
                 float f13 = f11 / 2.0f;
-                nyVar.f39707a = Utilities.clamp(((fi0Var.getScaleX() * mi0Var.P.getTimeX()) + iArr[0]) - f13, AndroidUtilities.displaySize.x - f11, 0.0f);
-                nyVar.f39708b = ((fi0Var.getScaleY() * mi0Var.P.getTimeY()) + iArr[1]) - f13;
+                nyVar.f39708a = Utilities.clamp(((fi0Var.getScaleX() * mi0Var.P.getTimeX()) + iArr[0]) - f13, AndroidUtilities.displaySize.x - f11, 0.0f);
+                nyVar.f39709b = ((fi0Var.getScaleY() * mi0Var.P.getTimeY()) + iArr[1]) - f13;
             }
         }
     }

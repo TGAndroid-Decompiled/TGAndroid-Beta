@@ -10,7 +10,7 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.R;
 import org.telegram.messenger.XiaomiUtilities;
 public final class lu extends iu {
-    public Drawable f28279c;
+    public Drawable f28280c;
     public final int d;
     public final qu e;
 
@@ -18,7 +18,7 @@ public final class lu extends iu {
         super(context, d6Var);
         this.e = quVar;
         this.d = i10;
-        this.f28279c = null;
+        this.f28280c = null;
     }
 
     @Override
@@ -61,7 +61,7 @@ public final class lu extends iu {
         boolean z10;
         super.onSelectionChanged(i10, i11);
         qu quVar = this.e;
-        om0 om0Var = quVar.f29715c;
+        om0 om0Var = quVar.f29716c;
         if (om0Var != null) {
             boolean z11 = false;
             if (i11 != i10) {
@@ -73,15 +73,15 @@ public final class lu extends iu {
                 XiaomiUtilities.isMIUI();
                 z11 = true;
             }
-            if (quVar.f29717n != z11) {
-                quVar.f29717n = z11;
+            if (quVar.f29718n != z11) {
+                quVar.f29718n = z11;
                 if (z11) {
-                    this.f28279c = om0Var.d;
+                    this.f28280c = om0Var.d;
                     om0Var.a(R.drawable.msg_edit, true);
                     return;
                 }
-                om0Var.b(this.f28279c, true);
-                this.f28279c = null;
+                om0Var.b(this.f28280c, true);
+                this.f28280c = null;
             }
         }
     }
@@ -93,9 +93,9 @@ public final class lu extends iu {
         qu quVar = this.e;
         if (quVar.e && motionEvent.getAction() == 0) {
             quVar.u();
-            if (quVar.f29721x && (muVar = quVar.d) != null) {
+            if (quVar.f29722x && (muVar = quVar.d) != null) {
                 muVar.u(false);
-                quVar.f29721x = false;
+                quVar.f29722x = false;
                 quVar.k(true);
                 AndroidUtilities.showKeyboard(this);
             } else {

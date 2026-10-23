@@ -7,11 +7,11 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.ok;
+import org.telegram.messenger.nk;
 public final class g2 extends FrameLayout {
-    public final org.telegram.ui.ActionBar.j5 f22287a;
-    public final ImageView f22288b;
-    public boolean f22289c;
+    public final org.telegram.ui.ActionBar.j5 f22288a;
+    public final ImageView f22289b;
+    public boolean f22290c;
     public int d;
 
     public g2(Context context, int i10, org.telegram.ui.ActionBar.d6 d6Var) {
@@ -19,7 +19,7 @@ public final class g2 extends FrameLayout {
         int i11;
         this.d = i10;
         org.telegram.ui.ActionBar.j5 j5Var = new org.telegram.ui.ActionBar.j5(context);
-        this.f22287a = j5Var;
+        this.f22288a = j5Var;
         j5Var.setTextSize(16);
         if (LocaleController.isRTL) {
             i11 = 5;
@@ -27,12 +27,12 @@ public final class g2 extends FrameLayout {
             i11 = 3;
         }
         j5Var.setGravity(i11);
-        int i12 = org.telegram.ui.ActionBar.h6.f21196o6;
+        int i12 = org.telegram.ui.ActionBar.h6.f21197o6;
         j5Var.setTextColor(org.telegram.ui.ActionBar.h6.w0(i12, d6Var));
         j5Var.setTag(Integer.valueOf(i12));
         addView(j5Var);
         ImageView imageView = new ImageView(context);
-        this.f22288b = imageView;
+        this.f22289b = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         addView(imageView);
         setWillNotDraw(false);
@@ -41,8 +41,8 @@ public final class g2 extends FrameLayout {
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        if (this.f22289c) {
-            canvas.drawLine(AndroidUtilities.dp(this.d), getMeasuredHeight() - 1, AndroidUtilities.dp(23.0f) + getMeasuredWidth(), getMeasuredHeight(), org.telegram.ui.ActionBar.h6.f21114k0);
+        if (this.f22290c) {
+            canvas.drawLine(AndroidUtilities.dp(this.d), getMeasuredHeight() - 1, AndroidUtilities.dp(23.0f) + getMeasuredWidth(), getMeasuredHeight(), org.telegram.ui.ActionBar.h6.f21115k0);
         }
     }
 
@@ -53,10 +53,10 @@ public final class g2 extends FrameLayout {
         int measuredWidth;
         float f10;
         int i14 = i12 - i10;
-        org.telegram.ui.ActionBar.j5 j5Var = this.f22287a;
+        org.telegram.ui.ActionBar.j5 j5Var = this.f22288a;
         int textHeight = ((i13 - i11) - j5Var.getTextHeight()) / 2;
         boolean z11 = LocaleController.isRTL;
-        ImageView imageView = this.f22288b;
+        ImageView imageView = this.f22289b;
         if (z11) {
             int measuredWidth2 = getMeasuredWidth() - j5Var.getMeasuredWidth();
             if (imageView.getVisibility() == 0) {
@@ -86,8 +86,8 @@ public final class g2 extends FrameLayout {
     public final void onMeasure(int i10, int i11) {
         int size = View.MeasureSpec.getSize(i10);
         AndroidUtilities.dp(48.0f);
-        this.f22287a.measure(ok.c(94.0f, size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(20.0f), 1073741824));
-        this.f22288b.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f), 1073741824));
+        this.f22288a.measure(nk.c(94.0f, size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(20.0f), 1073741824));
+        this.f22289b.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f), 1073741824));
         setMeasuredDimension(size, AndroidUtilities.dp(50.0f));
     }
 }

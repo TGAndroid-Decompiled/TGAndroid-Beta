@@ -9,7 +9,7 @@ import org.telegram.ui.Components.h61;
 import org.telegram.ui.Components.jm0;
 import org.telegram.ui.Components.u61;
 public final class e3 extends g61 {
-    public static final int f34152a = 0;
+    public static final int f34153a = 0;
 
     static {
         g61.setup(new g61());
@@ -19,12 +19,12 @@ public final class e3 extends g61 {
         TL_wallet.walletTransaction wallettransaction3;
         TL_wallet.walletTransaction wallettransaction4;
         if (wallettransaction instanceof d3) {
-            wallettransaction3 = ((d3) wallettransaction).f34103a;
+            wallettransaction3 = ((d3) wallettransaction).f34104a;
         } else {
             wallettransaction3 = wallettransaction;
         }
         if (wallettransaction2 instanceof d3) {
-            wallettransaction4 = ((d3) wallettransaction2).f34103a;
+            wallettransaction4 = ((d3) wallettransaction2).f34104a;
         } else {
             wallettransaction4 = wallettransaction2;
         }

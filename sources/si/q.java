@@ -4,21 +4,21 @@ import android.graphics.SurfaceTexture;
 import android.util.Size;
 import java.util.concurrent.CountDownLatch;
 public final class q implements Runnable {
-    public final int f46752a;
-    public final t f46753b;
-    public final Size f46754c;
+    public final int f46753a;
+    public final t f46754b;
+    public final Size f46755c;
     public final int d;
     public final boolean e;
-    public final RuntimeException[] f46755f;
+    public final RuntimeException[] f46756f;
     public final CountDownLatch h;
 
     public q(t tVar, Size size, int i10, boolean z10, RuntimeException[] runtimeExceptionArr, CountDownLatch countDownLatch, int i11) {
-        this.f46752a = i11;
-        this.f46753b = tVar;
-        this.f46754c = size;
+        this.f46753a = i11;
+        this.f46754b = tVar;
+        this.f46755c = size;
         this.d = i10;
         this.e = z10;
-        this.f46755f = runtimeExceptionArr;
+        this.f46756f = runtimeExceptionArr;
         this.h = countDownLatch;
     }
 
@@ -27,21 +27,21 @@ public final class q implements Runnable {
         CountDownLatch countDownLatch;
         String str;
         String str2;
-        switch (this.f46752a) {
+        switch (this.f46753a) {
             case 0:
-                Size size = this.f46754c;
+                Size size = this.f46755c;
                 int i10 = this.d;
                 boolean z10 = this.e;
-                RuntimeException[] runtimeExceptionArr = this.f46755f;
+                RuntimeException[] runtimeExceptionArr = this.f46756f;
                 countDownLatch = this.h;
-                t tVar = this.f46753b;
+                t tVar = this.f46754b;
                 tVar.getClass();
                 try {
                     try {
-                        tVar.f46791c = size;
-                        tVar.f46806l = i10;
-                        tVar.f46811o = z10;
-                        SurfaceTexture surfaceTexture = tVar.f46828x;
+                        tVar.f46792c = size;
+                        tVar.f46807l = i10;
+                        tVar.f46812o = z10;
+                        SurfaceTexture surfaceTexture = tVar.f46829x;
                         if (surfaceTexture != null) {
                             surfaceTexture.setDefaultBufferSize(size.getWidth(), size.getHeight());
                         }
@@ -49,13 +49,13 @@ public final class q implements Runnable {
                         if (i11 != 0) {
                             tVar.k(i11, i10);
                         }
-                        n nVar = tVar.f46800i;
+                        n nVar = tVar.f46801i;
                         StringBuilder sb2 = new StringBuilder("GL secondary input configured: input=");
                         sb2.append(size);
                         sb2.append(", crop=");
                         sb2.append(i10);
                         sb2.append(", filter=");
-                        if (i10 == tVar.f46797g) {
+                        if (i10 == tVar.f46798g) {
                             str = "NEAREST";
                         } else {
                             str = "LINEAR";
@@ -72,52 +72,52 @@ public final class q implements Runnable {
                 } finally {
                 }
             default:
-                t tVar2 = this.f46753b;
-                Size size2 = this.f46754c;
+                t tVar2 = this.f46754b;
+                Size size2 = this.f46755c;
                 int i12 = this.d;
                 boolean z11 = this.e;
-                RuntimeException[] runtimeExceptionArr2 = this.f46755f;
+                RuntimeException[] runtimeExceptionArr2 = this.f46756f;
                 countDownLatch = this.h;
                 try {
                     try {
-                        tVar2.f46787a = size2;
-                        tVar2.f46789b = size2;
-                        tVar2.f46791c = size2;
-                        tVar2.f46802j = i12;
-                        tVar2.f46804k = i12;
-                        tVar2.f46806l = i12;
-                        tVar2.f46808m = z11;
-                        tVar2.f46809n = z11;
-                        tVar2.f46811o = z11;
+                        tVar2.f46788a = size2;
+                        tVar2.f46790b = size2;
+                        tVar2.f46792c = size2;
+                        tVar2.f46803j = i12;
+                        tVar2.f46805k = i12;
+                        tVar2.f46807l = i12;
+                        tVar2.f46809m = z11;
+                        tVar2.f46810n = z11;
+                        tVar2.f46812o = z11;
                         SurfaceTexture surfaceTexture2 = tVar2.v;
                         if (surfaceTexture2 != null) {
                             surfaceTexture2.setDefaultBufferSize(size2.getWidth(), size2.getHeight());
                         }
-                        SurfaceTexture surfaceTexture3 = tVar2.f46828x;
+                        SurfaceTexture surfaceTexture3 = tVar2.f46829x;
                         if (surfaceTexture3 != null) {
                             surfaceTexture3.setDefaultBufferSize(size2.getWidth(), size2.getHeight());
                         }
-                        tVar2.k(tVar2.D, tVar2.f46804k);
+                        tVar2.k(tVar2.D, tVar2.f46805k);
                         int i13 = tVar2.E;
                         if (i13 != 0) {
-                            tVar2.k(i13, tVar2.f46806l);
+                            tVar2.k(i13, tVar2.f46807l);
                         }
                         d0 d0Var = tVar2.N;
                         if (d0Var != null) {
-                            d0Var.f46575c = size2;
+                            d0Var.f46576c = size2;
                             d0Var.d = i12;
-                            d0Var.f46586q = d0.j(size2, i12, false);
-                            d0Var.f46587r = d0.j(size2, i12, true);
+                            d0Var.f46587q = d0.j(size2, i12, false);
+                            d0Var.f46588r = d0.j(size2, i12, true);
                             d0Var.A = false;
-                            d0Var.f46594z = 0L;
+                            d0Var.f46595z = 0L;
                         }
-                        n nVar2 = tVar2.f46800i;
+                        n nVar2 = tVar2.f46801i;
                         StringBuilder sb3 = new StringBuilder("GL input updated: input=");
                         sb3.append(size2);
                         sb3.append(", crop=");
                         sb3.append(i12);
                         sb3.append(", filter=");
-                        if (tVar2.f46802j == tVar2.f46797g) {
+                        if (tVar2.f46803j == tVar2.f46798g) {
                             str2 = "NEAREST";
                         } else {
                             str2 = "LINEAR";

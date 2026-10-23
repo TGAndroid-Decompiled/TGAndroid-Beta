@@ -69,7 +69,7 @@ public class ChatMessagesMetadataController {
             }
             TL_stories.StoryItem storyItem2 = storyItem;
             storyItem2.lastUpdateTime = System.currentTimeMillis();
-            storyItem2.f20513id = i10;
+            storyItem2.f20514id = i10;
             AndroidUtilities.runOnUIThread(new x0(this, messageObject, j10, storyItem2, 0));
         }
     }
@@ -97,8 +97,8 @@ public class ChatMessagesMetadataController {
                 }
                 long j11 = storyItem.dialogId;
                 tL_stories_getStoriesByID.peer = this.chatActivity.getMessagesController().getInputPeer(j11);
-                tL_stories_getStoriesByID.f20520id.add(Integer.valueOf(storyItem.f20513id));
-                this.extendedMediaRequests.add(Integer.valueOf(this.chatActivity.getConnectionsManager().sendRequest(tL_stories_getStoriesByID, new ai.c0(this, storyItem.f20513id, messageObject, j11, 3))));
+                tL_stories_getStoriesByID.f20521id.add(Integer.valueOf(storyItem.f20514id));
+                this.extendedMediaRequests.add(Integer.valueOf(this.chatActivity.getConnectionsManager().sendRequest(tL_stories_getStoriesByID, new ai.c0(this, storyItem.f20514id, messageObject, j11, 3))));
             }
             if (this.extendedMediaRequests.size() > 10) {
                 this.chatActivity.getConnectionsManager().cancelRequest(this.extendedMediaRequests.remove(0).intValue(), false);
@@ -157,7 +157,7 @@ public class ChatMessagesMetadataController {
             TLRPC.TL_messages_getExtendedMedia tL_messages_getExtendedMedia = new TLRPC.TL_messages_getExtendedMedia();
             tL_messages_getExtendedMedia.peer = this.chatActivity.getMessagesController().getInputPeer(j10);
             for (int i10 = 0; i10 < arrayList.size(); i10++) {
-                tL_messages_getExtendedMedia.f20368id.add(Integer.valueOf(arrayList.get(i10).getId()));
+                tL_messages_getExtendedMedia.f20369id.add(Integer.valueOf(arrayList.get(i10).getId()));
             }
             this.extendedMediaRequests.add(Integer.valueOf(this.chatActivity.getConnectionsManager().sendRequest(tL_messages_getExtendedMedia, new w0(this, 0))));
             if (this.extendedMediaRequests.size() > 10) {
@@ -171,7 +171,7 @@ public class ChatMessagesMetadataController {
             TLRPC.TL_messages_getMessagesReactions tL_messages_getMessagesReactions = new TLRPC.TL_messages_getMessagesReactions();
             tL_messages_getMessagesReactions.peer = this.chatActivity.getMessagesController().getInputPeer(j10);
             for (int i10 = 0; i10 < arrayList.size(); i10++) {
-                tL_messages_getMessagesReactions.f20374id.add(Integer.valueOf(arrayList.get(i10).getId()));
+                tL_messages_getMessagesReactions.f20375id.add(Integer.valueOf(arrayList.get(i10).getId()));
             }
             this.reactionsRequests.add(Integer.valueOf(this.chatActivity.getConnectionsManager().sendRequest(tL_messages_getMessagesReactions, new w0(this, 1))));
             if (this.reactionsRequests.size() > 5) {

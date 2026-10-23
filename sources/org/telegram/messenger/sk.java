@@ -1,23 +1,21 @@
 package org.telegram.messenger;
 public final class sk implements Runnable {
-    public final int f19543a;
-    public final TopicsController f19544b;
-    public final long f19545c;
+    public final int f19558a;
+    public final TopicsController f19559b;
 
-    public sk(TopicsController topicsController, long j10, int i10) {
-        this.f19543a = i10;
-        this.f19544b = topicsController;
-        this.f19545c = j10;
+    public sk(TopicsController topicsController, int i10) {
+        this.f19558a = i10;
+        this.f19559b = topicsController;
     }
 
     @Override
     public final void run() {
-        switch (this.f19543a) {
+        switch (this.f19558a) {
             case 0:
-                TopicsController.o(this.f19544b, this.f19545c);
+                this.f19559b.lambda$applyPinnedOrder$17();
                 return;
             default:
-                TopicsController.y(this.f19544b, this.f19545c);
+                this.f19559b.lambda$databaseCleared$25();
                 return;
         }
     }

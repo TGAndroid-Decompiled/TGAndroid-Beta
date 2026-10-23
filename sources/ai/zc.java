@@ -7,7 +7,7 @@ import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ok;
+import org.telegram.messenger.nk;
 import org.telegram.ui.b00;
 public final class zc extends org.telegram.ui.Components.q6 {
     public final int f2555s = 0;
@@ -28,14 +28,14 @@ public final class zc extends org.telegram.ui.Components.q6 {
                 Drawable drawable = (Drawable) this.v;
                 if (!((ad) this.f2556w).d) {
                     int measuredWidth = (int) ((getMeasuredWidth() - getDrawable().c()) - AndroidUtilities.dp(20.0f));
-                    drawable.setBounds(measuredWidth, ok.A(17.0f, getMeasuredHeight(), 2), AndroidUtilities.dp(17.0f) + measuredWidth, (AndroidUtilities.dp(17.0f) + getMeasuredHeight()) / 2);
+                    drawable.setBounds(measuredWidth, nk.A(17.0f, getMeasuredHeight(), 2), AndroidUtilities.dp(17.0f) + measuredWidth, (AndroidUtilities.dp(17.0f) + getMeasuredHeight()) / 2);
                     drawable.draw(canvas);
                 }
                 super.dispatchDraw(canvas);
                 return;
             default:
                 b00 b00Var = (b00) this.f2556w;
-                int a2 = b00Var.f35469w.a(b00Var.v, false);
+                int a2 = b00Var.f35470w.a(b00Var.v, false);
                 setTextColor(a2);
                 Paint paint = (Paint) this.v;
                 if (org.telegram.ui.ActionBar.h6.I.q()) {

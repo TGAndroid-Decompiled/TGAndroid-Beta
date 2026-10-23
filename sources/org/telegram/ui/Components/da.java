@@ -15,24 +15,24 @@ import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.TLRPC;
 public final class da extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
-    public TextView f25421a;
-    public TextView f25422b;
-    public ah.x f25423c;
+    public TextView f25422a;
+    public TextView f25423b;
+    public ah.x f25424c;
     public ah.x d;
     public zj0 e;
-    public ScrollView f25424f;
+    public ScrollView f25425f;
     public AnimatorSet h;
-    public TLRPC.TL_help_appUpdate f25425n;
-    public String f25426r;
-    public int f25427s;
+    public TLRPC.TL_help_appUpdate f25426n;
+    public String f25427r;
+    public int f25428s;
     public int v;
-    public GradientDrawable f25428w;
-    public GradientDrawable f25429x;
+    public GradientDrawable f25429w;
+    public GradientDrawable f25430x;
 
     public final void a(boolean z10) {
         ah.x xVar = this.d;
-        TextView textView = this.f25422b;
-        ah.x xVar2 = this.f25423c;
+        TextView textView = this.f25423b;
+        ah.x xVar2 = this.f25424c;
         AnimatorSet animatorSet = this.h;
         if (animatorSet != null) {
             animatorSet.cancel();
@@ -59,20 +59,20 @@ public final class da extends FrameLayout implements NotificationCenter.Notifica
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         if (i10 == NotificationCenter.fileLoaded) {
             String str = (String) objArr[0];
-            String str2 = this.f25426r;
+            String str2 = this.f25427r;
             if (str2 != null && str2.equals(str)) {
                 a(false);
-                ApplicationLoader.applicationLoaderInstance.openApkInstall((Activity) getContext(), this.f25425n.document);
+                ApplicationLoader.applicationLoaderInstance.openApkInstall((Activity) getContext(), this.f25426n.document);
             }
         } else if (i10 == NotificationCenter.fileLoadFailed) {
             String str3 = (String) objArr[0];
-            String str4 = this.f25426r;
+            String str4 = this.f25427r;
             if (str4 != null && str4.equals(str3)) {
                 a(false);
             }
         } else if (i10 == NotificationCenter.fileLoadProgressChanged) {
             String str5 = (String) objArr[0];
-            String str6 = this.f25426r;
+            String str6 = this.f25427r;
             if (str6 != null && str6.equals(str5)) {
                 this.e.e(Math.min(1.0f, ((float) ((Long) objArr[1]).longValue()) / ((float) ((Long) objArr[2]).longValue())), true);
             }
@@ -82,11 +82,11 @@ public final class da extends FrameLayout implements NotificationCenter.Notifica
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        GradientDrawable gradientDrawable = this.f25428w;
-        ScrollView scrollView = this.f25424f;
+        GradientDrawable gradientDrawable = this.f25429w;
+        ScrollView scrollView = this.f25425f;
         gradientDrawable.setBounds(scrollView.getLeft(), scrollView.getTop(), scrollView.getRight(), AndroidUtilities.dp(16.0f) + scrollView.getTop());
         gradientDrawable.draw(canvas);
-        GradientDrawable gradientDrawable2 = this.f25429x;
+        GradientDrawable gradientDrawable2 = this.f25430x;
         gradientDrawable2.setBounds(scrollView.getLeft(), scrollView.getBottom() - AndroidUtilities.dp(18.0f), scrollView.getRight(), scrollView.getBottom());
         gradientDrawable2.draw(canvas);
     }
@@ -95,9 +95,9 @@ public final class da extends FrameLayout implements NotificationCenter.Notifica
     public void setVisibility(int i10) {
         super.setVisibility(i10);
         if (i10 == 8) {
-            NotificationCenter.getInstance(this.f25427s).removeObserver(this, NotificationCenter.fileLoaded);
-            NotificationCenter.getInstance(this.f25427s).removeObserver(this, NotificationCenter.fileLoadFailed);
-            NotificationCenter.getInstance(this.f25427s).removeObserver(this, NotificationCenter.fileLoadProgressChanged);
+            NotificationCenter.getInstance(this.f25428s).removeObserver(this, NotificationCenter.fileLoaded);
+            NotificationCenter.getInstance(this.f25428s).removeObserver(this, NotificationCenter.fileLoadFailed);
+            NotificationCenter.getInstance(this.f25428s).removeObserver(this, NotificationCenter.fileLoadProgressChanged);
         }
     }
 }

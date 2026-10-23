@@ -56,8 +56,8 @@ public final class a implements b {
             }
         }
         int i10 = aVar.e;
-        int i11 = aVar.f48907b;
-        int i12 = aVar.f48908c;
+        int i11 = aVar.f48908b;
+        int i12 = aVar.f48909c;
         int a2 = p8.a(aVar.d);
         long elapsedRealtime = SystemClock.elapsedRealtime();
         int i13 = aVar.e;
@@ -74,12 +74,12 @@ public final class a implements b {
             l.h(null);
             throw null;
         }
-        Bitmap bitmap = aVar.f48906a;
+        Bitmap bitmap = aVar.f48907a;
         l.h(bitmap);
         bVar = new x6.b(bitmap);
         try {
             Parcel N0 = jaVar.N0();
-            int i14 = y.f49637a;
+            int i14 = y.f49638a;
             N0.writeStrongBinder(bVar);
             N0.writeInt(1);
             int q6 = f0.q(N0, 20293);
@@ -104,7 +104,7 @@ public final class a implements b {
                 Object obj = createTypedArrayList.get(i15);
                 i15++;
                 na naVar = (na) obj;
-                arrayList.add(new yb.a(naVar.f49495b, naVar.d, naVar.f49494a, naVar.f49496c));
+                arrayList.add(new yb.a(naVar.f49496b, naVar.d, naVar.f49495a, naVar.f49497c));
             }
             return arrayList;
         } catch (RemoteException e7) {
@@ -140,8 +140,8 @@ public final class a implements b {
             return;
         }
         try {
-            IBinder b10 = y6.e.c(context, y6.e.f49958b, "com.google.android.gms.vision.ica").b("com.google.android.gms.vision.label.mlkit.ImageLabelerCreator");
-            int i10 = la.f49459b;
+            IBinder b10 = y6.e.c(context, y6.e.f49959b, "com.google.android.gms.vision.ica").b("com.google.android.gms.vision.label.mlkit.ImageLabelerCreator");
+            int i10 = la.f49460b;
             if (b10 == null) {
                 aVar = null;
             } else {
@@ -152,7 +152,7 @@ public final class a implements b {
                     aVar = new a9.a(b10, "com.google.mlkit.vision.label.aidls.IImageLabelerCreator", 10);
                 }
             }
-            this.e = ((ka) aVar).V0(new x6.b(context), new oa(((zb.a) this.d).f50128a, -1));
+            this.e = ((ka) aVar).V0(new x6.b(context), new oa(((zb.a) this.d).f50129a, -1));
         } catch (RemoteException e) {
             throw new nb.a("Failed to create thin image labeler.", e);
         } catch (y6.b unused) {

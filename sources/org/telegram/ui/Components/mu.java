@@ -30,15 +30,15 @@ public final class mu extends tz {
         qu quVar = this.S2;
         if (quVar.b()) {
             int i15 = i13 - i11;
-            if (!this.Q2 && quVar.f29721x) {
+            if (!this.Q2 && quVar.f29722x) {
                 this.R2 = true;
             }
             if (this.R2 && (i14 = this.P2) > 0 && i15 > 0 && i15 != i14) {
                 setTranslationY(i15 - i14);
-                org.telegram.messenger.ok.t(animate().translationY(0.0f), org.telegram.ui.ActionBar.o1.f21635w, 250L);
+                org.telegram.messenger.nk.t(animate().translationY(0.0f), org.telegram.ui.ActionBar.o1.f21636w, 250L);
                 this.R2 = false;
             }
-            this.Q2 = quVar.f29721x;
+            this.Q2 = quVar.f29722x;
             this.P2 = i15;
         }
     }

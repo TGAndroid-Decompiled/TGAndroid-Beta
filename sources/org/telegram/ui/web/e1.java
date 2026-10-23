@@ -8,11 +8,11 @@ import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.g5;
 import org.telegram.ui.Components.w61;
 public final class e1 extends g5 {
-    public final ki.u f42629r = new ki.u(this, 26);
-    public final f1 f42630s;
+    public final ki.u f42630r = new ki.u(this, 26);
+    public final f1 f42631s;
 
     public e1(f1 f1Var) {
-        this.f42630s = f1Var;
+        this.f42631s = f1Var;
     }
 
     public static boolean w(String str, String str2) {
@@ -35,17 +35,17 @@ public final class e1 extends g5 {
     @Override
     public final void m() {
         int i10;
-        f1 f1Var = this.f42630s;
-        f1Var.f42637n = null;
+        f1 f1Var = this.f42631s;
+        f1Var.f42638n = null;
         f1Var.h = false;
-        AndroidUtilities.cancelRunOnUIThread(this.f42629r);
-        w61 w61Var = f1Var.f32359a;
+        AndroidUtilities.cancelRunOnUIThread(this.f42630r);
+        w61 w61Var = f1Var.f32360a;
         if (w61Var != null) {
             w61Var.W2.N(true);
-            f1Var.f32359a.V2.h1(0, 0);
+            f1Var.f32360a.V2.h1(0, 0);
         }
-        wh.n nVar = f1Var.f42640w.d;
-        if (TextUtils.isEmpty(f1Var.f42637n)) {
+        wh.n nVar = f1Var.f42641w.d;
+        if (TextUtils.isEmpty(f1Var.f42638n)) {
             i10 = R.string.WebNoHistory;
         } else {
             i10 = R.string.WebNoSearchedHistory;
@@ -56,16 +56,16 @@ public final class e1 extends g5 {
     @Override
     public final void q(EditText editText) {
         int i10;
-        f1 f1Var = this.f42630s;
-        boolean z10 = !TextUtils.isEmpty(f1Var.f42637n);
+        f1 f1Var = this.f42631s;
+        boolean z10 = !TextUtils.isEmpty(f1Var.f42638n);
         String obj = editText.getText().toString();
-        if (!TextUtils.equals(f1Var.f42637n, obj)) {
-            f1Var.f42637n = obj;
+        if (!TextUtils.equals(f1Var.f42638n, obj)) {
+            f1Var.f42638n = obj;
             f1Var.h = true;
-            ki.u uVar = this.f42629r;
+            ki.u uVar = this.f42630r;
             AndroidUtilities.cancelRunOnUIThread(uVar);
             AndroidUtilities.runOnUIThread(uVar, 500L);
-            wh.n nVar = f1Var.f42640w.d;
+            wh.n nVar = f1Var.f42641w.d;
             if (TextUtils.isEmpty(obj)) {
                 i10 = R.string.WebNoHistory;
             } else {
@@ -73,11 +73,11 @@ public final class e1 extends g5 {
             }
             nVar.setText(LocaleController.getString(i10));
         }
-        w61 w61Var = f1Var.f32359a;
+        w61 w61Var = f1Var.f32360a;
         if (w61Var != null) {
             w61Var.W2.N(true);
             if (z10 != (!TextUtils.isEmpty(obj))) {
-                f1Var.f32359a.V2.h1(0, 0);
+                f1Var.f32360a.V2.h1(0, 0);
             }
         }
     }

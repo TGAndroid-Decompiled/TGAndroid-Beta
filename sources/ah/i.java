@@ -41,9 +41,9 @@ public final class i extends FrameLayout {
         hVar.setFocusable(true);
         hVar.setOnClickListener(new f(0));
         addView(hVar, z5.e(36, 36, 17));
-        int x04 = h6.x0(null, h6.f21082i6, false);
+        int x04 = h6.x0(null, h6.f21083i6, false);
         int dp = AndroidUtilities.dp(36.0f);
-        int i11 = h6.f20993d6;
+        int i11 = h6.f20994d6;
         if (d6Var != null) {
             x03 = d6Var.w(i11);
         } else {

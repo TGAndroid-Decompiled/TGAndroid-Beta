@@ -1,18 +1,18 @@
 package org.telegram.ui;
 public final class zk implements Runnable {
-    public final int f43773a;
-    public final al f43774b;
+    public final int f43774a;
+    public final al f43775b;
 
     public zk(al alVar, int i10) {
-        this.f43773a = i10;
-        this.f43774b = alVar;
+        this.f43774a = i10;
+        this.f43775b = alVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f43773a) {
+        switch (this.f43774a) {
             case 0:
-                fk fkVar = this.f43774b.H.Y;
+                fk fkVar = this.f43775b.H.Y;
                 if (fkVar != null) {
                     fkVar.T0 = false;
                     org.telegram.ui.Components.dg dgVar = fkVar.U0;
@@ -24,7 +24,7 @@ public final class zk implements Runnable {
                 }
                 return;
             default:
-                fk fkVar2 = this.f43774b.H.Y;
+                fk fkVar2 = this.f43775b.H.Y;
                 if (fkVar2 != null) {
                     fkVar2.F0();
                     return;

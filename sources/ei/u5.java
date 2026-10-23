@@ -99,8 +99,8 @@ public final class u5 implements uy {
     public final void n() {
         f6 f6Var = this.f9891a;
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(f6Var.getContext(), 0, f6Var.G1);
-        alertDialog$Builder.f20608a.R = LocaleController.getString(R.string.ClearRecentEmojiTitle);
-        alertDialog$Builder.f20608a.T = LocaleController.getString(R.string.ClearRecentEmojiText);
+        alertDialog$Builder.f20609a.R = LocaleController.getString(R.string.ClearRecentEmojiTitle);
+        alertDialog$Builder.f20609a.T = LocaleController.getString(R.string.ClearRecentEmojiText);
         alertDialog$Builder.k(LocaleController.getString(R.string.ClearButton), new e1.c(this, 7));
         i2.e.r(R.string.Cancel, alertDialog$Builder, null);
     }
@@ -122,7 +122,7 @@ public final class u5 implements uy {
             try {
                 SpannableString spannableString = new SpannableString(str);
                 if (document != null) {
-                    a6Var = new org.telegram.ui.Components.a6(document.f20285id, 1.0f, editText.getPaint().getFontMetricsInt());
+                    a6Var = new org.telegram.ui.Components.a6(document.f20286id, 1.0f, editText.getPaint().getFontMetricsInt());
                     a6Var.document = document;
                 } else {
                     a6Var = new org.telegram.ui.Components.a6(j10, 1.0f, editText.getPaint().getFontMetricsInt());

@@ -109,7 +109,7 @@ public final class f implements hf1, org.telegram.ui.ActionBar.a2, ChatObject.Ca
 
     @Override
     public void didSetImageBitmap(int i10, String str, Drawable drawable) {
-        org.telegram.messenger.n5.a(this, i10, str, drawable);
+        org.telegram.messenger.m5.a(this, i10, str, drawable);
     }
 
     @Override
@@ -139,7 +139,7 @@ public final class f implements hf1, org.telegram.ui.ActionBar.a2, ChatObject.Ca
             case 4:
             default:
                 q50 q50Var = (q50) this.f1244c;
-                q50Var.d.getMessagesController().addUserToChat(q50Var.j1(), (TLRPC.User) this.d, 0, null, (org.telegram.ui.ActionBar.n2) q50Var.f40412i0.O().getFragmentStack().get(q50Var.f40412i0.O().getFragmentStack().size() - 1), new v3(q50Var, this.f1243b, 28));
+                q50Var.d.getMessagesController().addUserToChat(q50Var.j1(), (TLRPC.User) this.d, 0, null, (org.telegram.ui.ActionBar.n2) q50Var.f40413i0.O().getFragmentStack().get(q50Var.f40413i0.O().getFragmentStack().size() - 1), new v3(q50Var, this.f1243b, 28));
                 return;
             case 5:
                 xr.R((xr) this.f1244c, (ei.d) this.d, this.f1243b);
@@ -169,7 +169,7 @@ public final class f implements hf1, org.telegram.ui.ActionBar.a2, ChatObject.Ca
 
     @Override
     public void onAnimationReady(ImageReceiver imageReceiver) {
-        org.telegram.messenger.n5.b(this, imageReceiver);
+        org.telegram.messenger.m5.b(this, imageReceiver);
     }
 
     @Override

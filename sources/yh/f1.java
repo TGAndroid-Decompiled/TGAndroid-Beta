@@ -24,7 +24,7 @@ import org.telegram.ui.Components.u61;
 import org.telegram.ui.Components.w9;
 import org.telegram.ui.Components.yq;
 public final class f1 extends g61 {
-    public static final int f50239a = 0;
+    public static final int f50240a = 0;
 
     static {
         g61.setup(new g61());
@@ -32,14 +32,14 @@ public final class f1 extends g61 {
 
     public static h61 a(int i10, TL_stars.StarGift starGift, boolean z10, boolean z11, boolean z12, boolean z13, boolean z14) {
         h61 J = h61.J(f1.class);
-        J.f26794u = 1;
-        J.f26798z = i10;
+        J.f26795u = 1;
+        J.f26799z = i10;
         J.G = starGift;
         J.e = z10;
         J.H = Boolean.valueOf(z11);
-        J.f26791r = z13;
-        J.f26790q = z12;
-        J.f26793t = z14;
+        J.f26792r = z13;
+        J.f26791q = z12;
+        J.f26794t = z14;
         return J;
     }
 
@@ -62,11 +62,11 @@ public final class f1 extends g61 {
             TextView textView = g1Var.I;
             TextView textView2 = g1Var.H;
             d1 d1Var = g1Var.e;
-            w9 w9Var = g1Var.f50279y;
+            w9 w9Var = g1Var.f50280y;
             TextView textView3 = g1Var.L;
             TextView textView4 = g1Var.M;
             int d = kVar.d();
-            if (g1Var.f50271j0 != kVar) {
+            if (g1Var.f50272j0 != kVar) {
                 fb d12 = md.d1(w9Var, w9Var.getImageReceiver(), d);
                 g1Var.N = d12;
                 d12.run();
@@ -80,9 +80,9 @@ public final class f1 extends g61 {
             textView2.setVisibility(0);
             textView.setVisibility(0);
             w9Var.setTranslationY(-AndroidUtilities.dp(8.0f));
-            g1Var.f50274n.setVisibility(8);
+            g1Var.f50275n.setVisibility(8);
             g1Var.F.setVisibility(8);
-            if (kVar.f46286c == null && kVar.d == null) {
+            if (kVar.f46287c == null && kVar.d == null) {
                 textView4.setVisibility(8);
             } else {
                 if (h6.I.q()) {
@@ -108,15 +108,15 @@ public final class f1 extends g61 {
             textView3.setTextColor(-13397548);
             ((ViewGroup.MarginLayoutParams) x1Var.getLayoutParams()).topMargin = AndroidUtilities.dp(130.0f);
             ((FrameLayout.LayoutParams) x1Var.getLayoutParams()).gravity = 49;
-            g1Var.f50271j0 = kVar;
-            g1Var.f50272k0 = null;
-            g1Var.f50259a0 = kVar;
-            g1Var.f50261b0 = null;
-            g1Var.f50264d0 = false;
-            g1Var.f50265e0 = null;
-            g1Var.f50267f0 = false;
-            g1Var.f50268g0 = false;
-            g1Var.f50269h0 = false;
+            g1Var.f50272j0 = kVar;
+            g1Var.f50273k0 = null;
+            g1Var.f50260a0 = kVar;
+            g1Var.f50262b0 = null;
+            g1Var.f50265d0 = false;
+            g1Var.f50266e0 = null;
+            g1Var.f50268f0 = false;
+            g1Var.f50269g0 = false;
+            g1Var.f50270h0 = false;
             g1Var.Q = null;
             g1Var.R = null;
             g1Var.c(false, false);
@@ -130,24 +130,24 @@ public final class f1 extends g61 {
             } else {
                 z11 = false;
             }
-            g1Var.g(starGift, z13, z11, h61Var.f26790q, h61Var.f26791r, h61Var.f26793t);
+            g1Var.g(starGift, z13, z11, h61Var.f26791q, h61Var.f26792r, h61Var.f26794t);
         } else if (obj instanceof TL_stars.SavedStarGift) {
-            z12 = g1Var.h((TL_stars.SavedStarGift) obj, h61Var.f26790q, h61Var.f26791r);
+            z12 = g1Var.h((TL_stars.SavedStarGift) obj, h61Var.f26791q, h61Var.f26792r);
         }
-        if (h61Var.f26780f) {
+        if (h61Var.f26781f) {
             g1Var.b(h61Var.e, z12);
         }
         g1Var.d(h61Var.h, z12);
         FrameLayout frameLayout = g1Var.d;
         float f10 = 1.0f;
-        if (h61Var.f26781g) {
+        if (h61Var.f26782g) {
             f7 = 1.0f;
         } else {
             f7 = 0.65f;
         }
         frameLayout.setAlpha(f7);
-        h1 h1Var = g1Var.f50266f;
-        if (!h61Var.f26781g) {
+        h1 h1Var = g1Var.f50267f;
+        if (!h61Var.f26782g) {
             f10 = 0.5f;
         }
         h1Var.setAlpha(f10);
@@ -160,7 +160,7 @@ public final class f1 extends g61 {
 
     @Override
     public final boolean equals(h61 h61Var, h61 h61Var2) {
-        if (h61Var.f26790q == h61Var2.f26790q) {
+        if (h61Var.f26791q == h61Var2.f26791q) {
             Object obj = h61Var.G;
             if (obj != null || h61Var2.G != null) {
                 if (obj instanceof sg.k) {
@@ -172,7 +172,7 @@ public final class f1 extends g61 {
                 if (obj instanceof TL_stars.StarGift) {
                     Object obj2 = h61Var2.G;
                     if (obj2 instanceof TL_stars.StarGift) {
-                        if (((TL_stars.StarGift) obj).f20503id == ((TL_stars.StarGift) obj2).f20503id) {
+                        if (((TL_stars.StarGift) obj).f20504id == ((TL_stars.StarGift) obj2).f20504id) {
                             return true;
                         }
                         return false;
@@ -183,14 +183,14 @@ public final class f1 extends g61 {
                     if (obj3 instanceof TL_stars.SavedStarGift) {
                         TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) obj;
                         TL_stars.SavedStarGift savedStarGift2 = (TL_stars.SavedStarGift) obj3;
-                        if (savedStarGift.gift.f20503id == savedStarGift2.gift.f20503id && savedStarGift.date == savedStarGift2.date && savedStarGift.saved_id == savedStarGift2.saved_id) {
+                        if (savedStarGift.gift.f20504id == savedStarGift2.gift.f20504id && savedStarGift.date == savedStarGift2.date && savedStarGift.saved_id == savedStarGift2.saved_id) {
                             return true;
                         }
                         return false;
                     }
                 }
             }
-            if (h61Var.f26798z == h61Var2.f26798z && h61Var.e == h61Var2.e && h61Var.B == h61Var2.B && TextUtils.equals(h61Var.f26785l, h61Var2.f26785l)) {
+            if (h61Var.f26799z == h61Var2.f26799z && h61Var.e == h61Var2.e && h61Var.B == h61Var2.B && TextUtils.equals(h61Var.f26786l, h61Var2.f26786l)) {
                 return true;
             }
             return false;

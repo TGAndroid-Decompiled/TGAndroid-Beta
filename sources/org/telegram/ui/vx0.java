@@ -7,32 +7,32 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class vx0 implements Utilities.Callback {
-    public final int f42411a;
-    public final ProfileActivity f42412b;
+    public final int f42412a;
+    public final ProfileActivity f42413b;
 
     public vx0(ProfileActivity profileActivity, int i10) {
-        this.f42411a = i10;
-        this.f42412b = profileActivity;
+        this.f42412a = i10;
+        this.f42413b = profileActivity;
     }
 
     @Override
     public final void run(Object obj) {
-        switch (this.f42411a) {
+        switch (this.f42412a) {
             case 0:
                 View view = (View) obj;
                 if (view instanceof org.telegram.ui.Cells.b9) {
                     org.telegram.ui.Cells.b9 b9Var = (org.telegram.ui.Cells.b9) view;
-                    wh.n nVar = b9Var.f22062a;
-                    ProfileActivity profileActivity = this.f42412b;
-                    nVar.setLoading(profileActivity.f33662k5);
-                    b9Var.f22063b.setLoading(profileActivity.f33662k5);
+                    wh.n nVar = b9Var.f22063a;
+                    ProfileActivity profileActivity = this.f42413b;
+                    nVar.setLoading(profileActivity.f33663k5);
+                    b9Var.f22064b.setLoading(profileActivity.f33663k5);
                     return;
                 }
                 return;
             case 1:
                 View view2 = (View) obj;
                 boolean z10 = view2 instanceof org.telegram.ui.Cells.l4;
-                ProfileActivity profileActivity2 = this.f42412b;
+                ProfileActivity profileActivity2 = this.f42413b;
                 if (z10) {
                     ((org.telegram.ui.Cells.l4) view2).setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.L6, profileActivity2.A0));
                 } else if (view2 instanceof org.telegram.ui.Cells.b9) {
@@ -40,14 +40,14 @@ public final class vx0 implements Utilities.Callback {
                 } else if (view2 instanceof org.telegram.ui.Cells.q8) {
                     ((org.telegram.ui.Cells.q8) view2).v();
                 } else if (view2 instanceof org.telegram.ui.Cells.j) {
-                    org.telegram.ui.ActionBar.h6.P1.linkColor = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21052gc, ((org.telegram.ui.Cells.j) view2).I);
+                    org.telegram.ui.ActionBar.h6.P1.linkColor = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21053gc, ((org.telegram.ui.Cells.j) view2).I);
                 } else if (view2 instanceof org.telegram.ui.Cells.i5) {
                     ((org.telegram.ui.Cells.i5) view2).getCheckBox().invalidate();
                 } else if (view2 instanceof ig.i1) {
                     ig.i1 i1Var = (ig.i1) view2;
                     org.telegram.ui.Components.nq nqVar = i1Var.f12926r;
                     int dp = AndroidUtilities.dp(8.0f);
-                    int i10 = org.telegram.ui.ActionBar.h6.f21196o6;
+                    int i10 = org.telegram.ui.ActionBar.h6.f21197o6;
                     org.telegram.ui.ActionBar.d6 d6Var = i1Var.f12921a;
                     int w02 = org.telegram.ui.ActionBar.h6.w0(i10, d6Var);
                     i1Var.a(w02);
@@ -63,16 +63,16 @@ public final class vx0 implements Utilities.Callback {
                     ((org.telegram.ui.Cells.g6) view2).d();
                 }
                 b01 b01Var = profileActivity2.d;
-                profileActivity2.f33584a.getClass();
+                profileActivity2.f33585a.getClass();
                 RecyclerView.R(view2);
                 b01Var.getClass();
                 profileActivity2.d.getClass();
                 return;
             case 2:
-                ProfileActivity.m0(this.f42412b, (Boolean) obj);
+                ProfileActivity.m0(this.f42413b, (Boolean) obj);
                 return;
             default:
-                ProfileActivity profileActivity3 = this.f42412b;
+                ProfileActivity profileActivity3 = this.f42413b;
                 profileActivity3.getClass();
                 ArrayList arrayList = new ArrayList(1);
                 arrayList.add((TLRPC.InputStickerSet) obj);

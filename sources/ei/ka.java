@@ -54,7 +54,7 @@ public final class ka implements Utilities.Callback2 {
                                 xaVar2.f9020l2 = true;
                                 z5 z5Var = xaVar2.R0;
                                 if ((tLObject instanceof TLRPC.Photo) && (closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(((TLRPC.Photo) tLObject).sizes, 1000)) != null) {
-                                    f7 = closestPhotoSizeWithSize.f20304w / closestPhotoSizeWithSize.h;
+                                    f7 = closestPhotoSizeWithSize.f20305w / closestPhotoSizeWithSize.h;
                                 } else {
                                     f7 = 1.0f;
                                 }
@@ -162,7 +162,7 @@ public final class ka implements Utilities.Callback2 {
                         if (intValue == 1) {
                             xc.l(null, profileActivity, z12).j();
                         } else if (num.intValue() == 2) {
-                            xc.l(DialogObject.getShortName(profileActivity.f33623f1), profileActivity, z12).j();
+                            xc.l(DialogObject.getShortName(profileActivity.f33624f1), profileActivity, z12).j();
                         } else if (tL_error != null) {
                             xc.d0(tL_error);
                         }
@@ -179,11 +179,11 @@ public final class ka implements Utilities.Callback2 {
                 org.telegram.ui.Wallet.e0 e0Var = (org.telegram.ui.Wallet.e0) this.f9337c;
                 TL_wallet.nftItems nftitems = (TL_wallet.nftItems) obj;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
-                ArrayList arrayList = e0Var.f34137b;
-                ArrayList arrayList2 = e0Var.f34138c;
-                e0Var.f34144l = -1;
-                e0Var.f34142j = false;
-                e0Var.f34141i = false;
+                ArrayList arrayList = e0Var.f34138b;
+                ArrayList arrayList2 = e0Var.f34139c;
+                e0Var.f34145l = -1;
+                e0Var.f34143j = false;
+                e0Var.f34142i = false;
                 boolean z13 = this.f9336b;
                 if (nftitems != null) {
                     if (z13) {
@@ -210,9 +210,9 @@ public final class ka implements Utilities.Callback2 {
                         }
                     }
                     String str2 = nftitems.next_offset;
-                    e0Var.f34139f = str2;
+                    e0Var.f34140f = str2;
                     boolean isEmpty = TextUtils.isEmpty(str2);
-                    e0Var.f34140g = isEmpty;
+                    e0Var.f34141g = isEmpty;
                     e0Var.h = true;
                     if (isEmpty) {
                         for (int size2 = arrayList2.size() - 1; size2 >= 0; size2--) {
@@ -225,7 +225,7 @@ public final class ka implements Utilities.Callback2 {
                     e0Var.h();
                 } else {
                     if (z13) {
-                        e0Var.f34140g = false;
+                        e0Var.f34141g = false;
                         e0Var.h = false;
                     }
                     if (tL_error2 == null) {
@@ -233,7 +233,7 @@ public final class ka implements Utilities.Callback2 {
                     } else {
                         str = tL_error2.text;
                     }
-                    e0Var.f34143k = str;
+                    e0Var.f34144k = str;
                 }
                 e0Var.g();
                 return;

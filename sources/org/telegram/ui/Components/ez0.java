@@ -34,7 +34,7 @@ public final class ez0 extends jm0 {
         iz0 iz0Var = this.X2;
         ez0 ez0Var = iz0Var.e;
         previewDelegate = iz0Var.getPreviewDelegate();
-        boolean r10 = q6.r(motionEvent, ez0Var, previewDelegate, this.f27582n2);
+        boolean r10 = q6.r(motionEvent, ez0Var, previewDelegate, this.f27583n2);
         if (!super.onInterceptTouchEvent(motionEvent) && !r10) {
             return false;
         }

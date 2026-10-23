@@ -23,11 +23,11 @@ public final class ld extends LinearLayout implements NotificationCenter.Notific
         e91Var.setAdapter(kdVar);
         View n10 = e91Var.n(3, true);
         View view = new View(context);
-        view.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20994d7, d6Var));
+        view.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20995d7, d6Var));
         addView(n10, w7.z5.n(-1, 48));
         addView(view, new LinearLayout.LayoutParams(w7.z5.z(-1.0f), w7.z5.z(1.0f / AndroidUtilities.density)));
         addView(e91Var, w7.z5.n(-1, -1));
-        setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21064h5, d6Var));
+        setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21065h5, d6Var));
     }
 
     @Override

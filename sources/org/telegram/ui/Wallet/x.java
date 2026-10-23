@@ -7,7 +7,7 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.jh;
+import org.telegram.messenger.ih;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
@@ -16,22 +16,22 @@ import org.telegram.ui.Components.cy0;
 import org.telegram.ui.Components.ks0;
 import org.telegram.ui.Components.xc;
 public final class x implements Utilities.Callback {
-    public final int f35085a;
-    public final Object f35086b;
-    public final Object f35087c;
+    public final int f35086a;
+    public final Object f35087b;
+    public final Object f35088c;
 
     public x(int i10, Object obj, Object obj2) {
-        this.f35085a = i10;
-        this.f35086b = obj;
-        this.f35087c = obj2;
+        this.f35086a = i10;
+        this.f35087b = obj;
+        this.f35088c = obj2;
     }
 
     @Override
     public final void run(Object obj) {
-        switch (this.f35085a) {
+        switch (this.f35086a) {
             case 0:
-                h0 h0Var = (h0) this.f35086b;
-                z7 z7Var = (z7) this.f35087c;
+                h0 h0Var = (h0) this.f35087b;
+                z7 z7Var = (z7) this.f35088c;
                 String str = (String) obj;
                 if (str != null) {
                     h0Var.close();
@@ -43,32 +43,32 @@ public final class x implements Utilities.Callback {
                 z7Var.run(h0Var, null);
                 return;
             case 1:
-                ((f2) this.f35086b).h = false;
-                ((jh) this.f35087c).run(null, (String) obj);
+                ((f2) this.f35087b).h = false;
+                ((ih) this.f35088c).run(null, (String) obj);
                 return;
             case 2:
-                ((j0) this.f35086b).close();
-                ((p) this.f35087c).run((String) obj);
+                ((j0) this.f35087b).close();
+                ((p) this.f35088c).run((String) obj);
                 return;
             case 3:
-                ((j0) this.f35086b).close();
-                ((p) this.f35087c).run((String) obj);
+                ((j0) this.f35087b).close();
+                ((p) this.f35088c).run((String) obj);
                 return;
             case 4:
-                AndroidUtilities.runOnUIThread(new h((a2) this.f35086b, (l) this.f35087c, (String) obj, 7));
+                AndroidUtilities.runOnUIThread(new h((a2) this.f35087b, (l) this.f35088c, (String) obj, 7));
                 return;
             case 5:
-                ((j0) this.f35086b).close();
-                ((x) this.f35087c).run((String) obj);
+                ((j0) this.f35087b).close();
+                ((x) this.f35088c).run((String) obj);
                 return;
             case 6:
-                o5 o5Var = (o5) this.f35086b;
-                m0 m0Var = (m0) this.f35087c;
+                o5 o5Var = (o5) this.f35087b;
+                m0 m0Var = (m0) this.f35088c;
                 String str2 = (String) obj;
                 o5Var.B0.setLoading(false);
                 if ("NO_LOCAL_BACKUP".equalsIgnoreCase(str2)) {
                     w7 w7Var = new w7();
-                    w7Var.f35079s = m0Var.x();
+                    w7Var.f35080s = m0Var.x();
                     o5Var.presentFragment(w7Var);
                     return;
                 } else if (str2 != null) {
@@ -79,8 +79,8 @@ public final class x implements Utilities.Callback {
                     return;
                 }
             case 7:
-                w7 w7Var2 = (w7) this.f35086b;
-                m0 m0Var2 = (m0) this.f35087c;
+                w7 w7Var2 = (w7) this.f35087b;
+                m0 m0Var2 = (m0) this.f35088c;
                 String str3 = (String) obj;
                 w7Var2.d.setLoading(false);
                 if (str3 != null) {
@@ -91,8 +91,8 @@ public final class x implements Utilities.Callback {
                 m0Var2.J();
                 return;
             case 8:
-                h8 h8Var = (h8) this.f35086b;
-                h hVar = (h) this.f35087c;
+                h8 h8Var = (h8) this.f35087b;
+                h hVar = (h) this.f35088c;
                 String str4 = (String) obj;
                 if (str4 != null) {
                     xc.a0(h8Var).e0(str4, false);
@@ -102,8 +102,8 @@ public final class x implements Utilities.Callback {
                     return;
                 }
             case 9:
-                h8 h8Var2 = (h8) this.f35086b;
-                org.telegram.ui.ActionBar.n2 n2Var = (org.telegram.ui.ActionBar.n2) this.f35087c;
+                h8 h8Var2 = (h8) this.f35087b;
+                org.telegram.ui.ActionBar.n2 n2Var = (org.telegram.ui.ActionBar.n2) this.f35088c;
                 String str5 = (String) obj;
                 if (str5 != null) {
                     xc.a0(h8Var2).e0(str5, false);
@@ -116,14 +116,14 @@ public final class x implements Utilities.Callback {
                 }
                 return;
             case 10:
-                ((h8) this.f35086b).f32359a.W2.N(true);
-                ((Utilities.Callback) this.f35087c).run((String) obj);
+                ((h8) this.f35087b).f32360a.W2.N(true);
+                ((Utilities.Callback) this.f35088c).run((String) obj);
                 return;
             case 11:
-                r9 r9Var = (r9) this.f35086b;
+                r9 r9Var = (r9) this.f35087b;
                 String str6 = (String) obj;
-                ((Utilities.Callback) this.f35087c).run(str6);
-                if (str6 == null && !r9Var.f34819n) {
+                ((Utilities.Callback) this.f35088c).run(str6);
+                if (str6 == null && !r9Var.f34820n) {
                     if (r9Var.getParentLayout() != null) {
                         for (org.telegram.ui.ActionBar.n2 n2Var2 : r9Var.getParentLayout().getFragmentStack()) {
                             if (n2Var2 instanceof o5) {
@@ -136,29 +136,29 @@ public final class x implements Utilities.Callback {
                 }
                 return;
             case 12:
-                ca.Y((ca) this.f35086b, (TL_wallet.tonConnectSession) this.f35087c, (Utilities.Callback) obj);
+                ca.Y((ca) this.f35087b, (TL_wallet.tonConnectSession) this.f35088c, (Utilities.Callback) obj);
                 return;
             case 13:
-                org.telegram.ui.web.x1 x1Var = (org.telegram.ui.web.x1) this.f35086b;
+                org.telegram.ui.web.x1 x1Var = (org.telegram.ui.web.x1) this.f35087b;
                 org.telegram.ui.web.b1 b1Var = (org.telegram.ui.web.b1) obj;
                 x1Var.getClass();
-                ((org.telegram.ui.web.f1[]) this.f35087c)[0].finishFragment();
+                ((org.telegram.ui.web.f1[]) this.f35088c)[0].finishFragment();
                 Utilities.Callback callback = x1Var.e;
                 if (callback != null) {
                     x1Var.finishFragment();
                     callback.run(b1Var);
                     return;
                 }
-                pf.d.r(x1Var.getParentActivity(), b1Var.f42611c);
+                pf.d.r(x1Var.getParentActivity(), b1Var.f42612c);
                 return;
             case 14:
-                org.telegram.ui.web.h2 h2Var = (org.telegram.ui.web.h2) this.f35086b;
+                org.telegram.ui.web.h2 h2Var = (org.telegram.ui.web.h2) this.f35087b;
                 h2Var.getClass();
-                AndroidUtilities.runOnUIThread(new cy0(h2Var, (org.telegram.ui.web.g2) this.f35087c, (Bitmap) obj, 11));
+                AndroidUtilities.runOnUIThread(new cy0(h2Var, (org.telegram.ui.web.g2) this.f35088c, (Bitmap) obj, 11));
                 return;
             case 15:
-                yh.o1 o1Var = (yh.o1) this.f35086b;
-                Utilities.Callback callback2 = (Utilities.Callback) this.f35087c;
+                yh.o1 o1Var = (yh.o1) this.f35087b;
+                Utilities.Callback callback2 = (Utilities.Callback) this.f35088c;
                 Boolean bool = (Boolean) obj;
                 o1Var.getClass();
                 if (callback2 != null) {
@@ -170,16 +170,16 @@ public final class x implements Utilities.Callback {
                 o1Var.dismiss();
                 return;
             case 16:
-                ai.y9 y9Var = (ai.y9) this.f35086b;
-                ai.z zVar = (ai.z) this.f35087c;
+                ai.y9 y9Var = (ai.y9) this.f35087b;
+                ai.z zVar = (ai.z) this.f35088c;
                 if (((Object[]) obj)[1] == y9Var) {
                     zVar.run();
                     return;
                 }
                 return;
             case 17:
-                ks0 ks0Var = (ks0) this.f35086b;
-                TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) this.f35087c;
+                ks0 ks0Var = (ks0) this.f35087b;
+                TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) this.f35088c;
                 String str7 = (String) obj;
                 ai.v9 v9Var = ks0Var.e;
                 int i10 = tL_starGiftCollection.collection_id;
@@ -195,11 +195,11 @@ public final class x implements Utilities.Callback {
                 ks0Var.f(true);
                 return;
             case 18:
-                yh.x4 x4Var = (yh.x4) this.f35086b;
-                TLRPC.User user = (TLRPC.User) this.f35087c;
+                yh.x4 x4Var = (yh.x4) this.f35087b;
+                TLRPC.User user = (TLRPC.User) this.f35088c;
                 Void r10 = (Void) obj;
                 long j10 = x4Var.Z;
-                Runnable runnable = x4Var.f50593g0;
+                Runnable runnable = x4Var.f50594g0;
                 if (runnable != null) {
                     runnable.run();
                 }
@@ -209,8 +209,8 @@ public final class x implements Utilities.Callback {
                 MessagesController.getInstance(x4Var.Y).getMainSettings().edit().putBoolean("show_gift_for_" + j10, true).putBoolean(Calendar.getInstance().get(1) + "show_gift_for_" + j10, true).apply();
                 return;
             default:
-                zh.c1 c1Var = (zh.c1) this.f35086b;
-                zh.z0 z0Var = (zh.z0) this.f35087c;
+                zh.c1 c1Var = (zh.c1) this.f35087b;
+                zh.z0 z0Var = (zh.z0) this.f35088c;
                 Bitmap bitmap = (Bitmap) obj;
                 if (!z0Var.G && z0Var.e == null) {
                     c1Var.E0(z0Var, bitmap);
@@ -221,8 +221,8 @@ public final class x implements Utilities.Callback {
     }
 
     public x(m0 m0Var, h0 h0Var, z7 z7Var) {
-        this.f35085a = 0;
-        this.f35086b = h0Var;
-        this.f35087c = z7Var;
+        this.f35086a = 0;
+        this.f35087b = h0Var;
+        this.f35088c = z7Var;
     }
 }

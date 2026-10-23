@@ -40,6 +40,6 @@ public final class t1 extends View {
 
     public t1(Activity activity) {
         super(activity);
-        this.f6001b = new dq(AndroidUtilities.dp(30.0f), AndroidUtilities.dp(3.0f), org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21155m5, false));
+        this.f6001b = new dq(AndroidUtilities.dp(30.0f), AndroidUtilities.dp(3.0f), org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21156m5, false));
     }
 }

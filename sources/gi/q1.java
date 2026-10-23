@@ -183,7 +183,7 @@ public final class q1 implements vx, org.telegram.ui.ActionBar.a2, mi.n, ResultC
         vp vpVar = (vp) this.e;
         Pair pair = (Pair) obj;
         if (pair != null && ((Long) pair.first).longValue() == this.f11393c) {
-            Drawable drawable = vpVar.f31854b;
+            Drawable drawable = vpVar.f31855b;
             if (drawable instanceof wc0) {
                 wc0 wc0Var = (wc0) drawable;
                 if (this.f11392b >= 0) {
@@ -273,7 +273,7 @@ public final class q1 implements vx, org.telegram.ui.ActionBar.a2, mi.n, ResultC
         e.setClipChildren(false);
         e.setClipToPadding(false);
         FrameLayout frameLayout = new FrameLayout(parentActivity);
-        frameLayout.setBackground(h6.d0(AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), h6.x0(null, h6.f20986ci, false)));
+        frameLayout.setBackground(h6.d0(AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), h6.x0(null, h6.f20987ci, false)));
         w9 w9Var = new w9(parentActivity);
         w9Var.setRoundRadius(AndroidUtilities.dp(28.0f));
         h9 h9Var = new h9((d6) null);
@@ -281,12 +281,12 @@ public final class q1 implements vx, org.telegram.ui.ActionBar.a2, mi.n, ResultC
         w9Var.e(user2, h9Var);
         frameLayout.addView(w9Var, z5.e(28, 28, 51));
         w9 w9Var2 = new w9(parentActivity);
-        w9Var2.setEmojiColorFilter(new PorterDuffColorFilter(h6.x0(null, h6.f21401z9, false), PorterDuff.Mode.SRC_IN));
+        w9Var2.setEmojiColorFilter(new PorterDuffColorFilter(h6.x0(null, h6.f21402z9, false), PorterDuff.Mode.SRC_IN));
         final r1 r1Var2 = r1Var;
         w9Var2.setAnimatedEmojiDrawable(r5.n(i16, botVerifierSettings.icon, null, 3));
         frameLayout.addView(w9Var2, z5.d(20, 20.0f, 19, 34.0f, 0.0f, 0.0f, 0.0f));
         j5 j5Var = new j5(parentActivity);
-        j5Var.setTextColor(h6.x0(null, h6.f21099j5, false));
+        j5Var.setTextColor(h6.x0(null, h6.f21100j5, false));
         j5Var.setTextSize(13);
         j5Var.setEllipsizeByGradient(true);
         j5Var.l(str2, false);
@@ -331,8 +331,8 @@ public final class q1 implements vx, org.telegram.ui.ActionBar.a2, mi.n, ResultC
         editTextBoldCursor.setInputType(180225);
         editTextBoldCursor.setTypeface(Typeface.DEFAULT);
         editTextBoldCursor.setSelectAllOnFocus(true);
-        editTextBoldCursor.setHighlightColor(h6.x0(null, h6.f21317uf, false));
-        editTextBoldCursor.setHandlesColor(h6.x0(null, h6.f21335vf, false));
+        editTextBoldCursor.setHighlightColor(h6.x0(null, h6.f21318uf, false));
+        editTextBoldCursor.setHandlesColor(h6.x0(null, h6.f21336vf, false));
         if (LocaleController.isRTL) {
             i13 = 5;
         } else {

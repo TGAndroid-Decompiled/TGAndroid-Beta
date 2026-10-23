@@ -28,38 +28,38 @@ public final class c extends FrameLayout implements ViewTreeObserver.OnPreDrawLi
     public int G;
     public final ne.b H;
     public final ne.b I;
-    public final b6 f45745a;
-    public final b f45746b;
-    public final d f45747c;
+    public final b6 f45746a;
+    public final b f45747b;
+    public final d f45748c;
     public final qn d;
     public final FrameLayout.LayoutParams e;
-    public final j5 f45748f;
+    public final j5 f45749f;
     public e h;
-    public u1 f45749n;
-    public int f45750r;
-    public kg f45751s;
+    public u1 f45750n;
+    public int f45751r;
+    public kg f45752s;
     public final j41 v;
-    public final j41 f45752w;
-    public final int f45753x;
-    public final int[] f45754y;
+    public final j41 f45753w;
+    public final int f45754x;
+    public final int[] f45755y;
 
     public c(Activity activity, d6 d6Var, qn qnVar) {
         super(activity);
         FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(0, -2);
         this.e = layoutParams;
-        this.f45754y = new int[2];
+        this.f45755y = new int[2];
         this.E = new Rect();
         h0 h0Var = new h0(this, 15);
         bs bsVar = bs.h;
         this.H = new ne.b(0, h0Var, bsVar, 380L, false);
         this.I = new ne.b(0, new h0(this, 15), bsVar, 380L, false);
         this.d = qnVar;
-        this.f45753x = qnVar.getMessagesController().config.pollAnswerLengthMax.get();
+        this.f45754x = qnVar.getMessagesController().config.pollAnswerLengthMax.get();
         b6 b6Var = new b6(this, activity, d6Var, 2);
-        this.f45745a = b6Var;
+        this.f45746a = b6Var;
         b6Var.setAllowTextEntitiesIntersection(true);
         b6Var.setTextColor(h6.w0(h6.G6, d6Var));
-        b6Var.setLinkTextColor(h6.w0(h6.f21052gc, d6Var));
+        b6Var.setLinkTextColor(h6.w0(h6.f21053gc, d6Var));
         b6Var.setHintTextColor(h6.w0(h6.H6, d6Var));
         b6Var.setHint(LocaleController.getString(R.string.PollAddAnOptionHint));
         b6Var.setTextSize(1, 15.0f);
@@ -69,23 +69,23 @@ public final class c extends FrameLayout implements ViewTreeObserver.OnPreDrawLi
         b6Var.setInputType(b6Var.getInputType() | 16384);
         b6Var.addTextChangedListener(new u(this, 20));
         b bVar = new b(activity);
-        this.f45746b = bVar;
+        this.f45747b = bVar;
         int i10 = h6.Vh;
         bVar.setBackground(h6.g0(h6.w0(i10, d6Var), 1, -1));
         w7.b6.a(bVar);
         d dVar = new d(getContext(), 36);
-        this.f45747c = dVar;
+        this.f45748c = dVar;
         dVar.setBackground(h6.g0(h6.w0(i10, d6Var), 1, -1));
         dVar.setOnClickListener(new qg.n(2, this, qnVar));
         w7.b6.a(dVar);
         j5 j5Var = new j5(getContext());
-        this.f45748f = j5Var;
+        this.f45749f = j5Var;
         j5Var.setTextSize(13);
         j5Var.setGravity(17);
         j5Var.setTranslationY(AndroidUtilities.dp(44.0f));
         j5Var.setVisibility(8);
         j41 j41Var = new j41(activity, 9);
-        this.f45752w = j41Var;
+        this.f45753w = j41Var;
         addView(j41Var, layoutParams);
         j41 j41Var2 = new j41(activity, 8);
         this.v = j41Var2;
@@ -98,11 +98,11 @@ public final class c extends FrameLayout implements ViewTreeObserver.OnPreDrawLi
     }
 
     public static void a(c cVar) {
-        j5 j5Var = cVar.f45748f;
+        j5 j5Var = cVar.f45749f;
         h20.d(j5Var, cVar.H.e);
         int i10 = h6.A6;
         qn qnVar = cVar.d;
-        j5Var.setTextColor(i0.a.f(cVar.I.e, h6.w0(i10, qnVar.getResourceProvider()), h6.w0(h6.f21214p7, qnVar.getResourceProvider())));
+        j5Var.setTextColor(i0.a.f(cVar.I.e, h6.w0(i10, qnVar.getResourceProvider()), h6.w0(h6.f21215p7, qnVar.getResourceProvider())));
     }
 
     public e getAttachedMedia() {
@@ -131,15 +131,15 @@ public final class c extends FrameLayout implements ViewTreeObserver.OnPreDrawLi
     public final boolean onPreDraw() {
         u1 u1Var;
         th.a aVar;
-        u1 u1Var2 = this.f45749n;
+        u1 u1Var2 = this.f45750n;
         if (u1Var2 != null) {
             int id2 = u1Var2.getMessageObject().getId();
-            if (this.f45749n.isAttachedToWindow() && this.f45750r == id2 && (aVar = (u1Var = this.f45749n).f23225a6) != null && u1Var.f23410n6) {
+            if (this.f45750n.isAttachedToWindow() && this.f45751r == id2 && (aVar = (u1Var = this.f45750n).f23226a6) != null && u1Var.f23411n6) {
                 Rect bounds = aVar.getBounds();
                 Rect rect = this.E;
                 rect.set(bounds);
-                u1 u1Var3 = this.f45749n;
-                int[] iArr = this.f45754y;
+                u1 u1Var3 = this.f45750n;
+                int[] iArr = this.f45755y;
                 u1Var3.getLocationInWindow(iArr);
                 int i10 = iArr[0];
                 int i11 = iArr[1];
@@ -148,7 +148,7 @@ public final class c extends FrameLayout implements ViewTreeObserver.OnPreDrawLi
                 int width = rect.width();
                 FrameLayout.LayoutParams layoutParams = this.e;
                 int i12 = layoutParams.width;
-                j41 j41Var = this.f45752w;
+                j41 j41Var = this.f45753w;
                 if (i12 != width) {
                     layoutParams.width = width;
                     j41Var.setLayoutParams(layoutParams);
@@ -157,10 +157,10 @@ public final class c extends FrameLayout implements ViewTreeObserver.OnPreDrawLi
                 j41Var.setTranslationY(AndroidUtilities.dp(0.66f) + rect.top);
                 return true;
             }
-            kg kgVar = this.f45751s;
+            kg kgVar = this.f45752s;
             if (kgVar != null) {
                 kgVar.run();
-                this.f45751s = null;
+                this.f45752s = null;
             }
         }
         return true;
@@ -171,19 +171,19 @@ public final class c extends FrameLayout implements ViewTreeObserver.OnPreDrawLi
     }
 
     public void setCellToWatch(u1 u1Var) {
-        this.f45749n = u1Var;
-        this.f45750r = u1Var.getMessageObject().getId();
+        this.f45750n = u1Var;
+        this.f45751r = u1Var.getMessageObject().getId();
     }
 
     public void setColor(int i10) {
         if (this.G != i10) {
             this.G = i10;
             PorterDuffColorFilter porterDuffColorFilter = new PorterDuffColorFilter(i10, PorterDuff.Mode.SRC_IN);
-            b bVar = this.f45746b;
-            bVar.f45743b.setColorFilter(porterDuffColorFilter);
-            bVar.f45744c.setColorFilter(porterDuffColorFilter);
-            this.f45747c.f45755a.setColorFilter(porterDuffColorFilter);
-            b6 b6Var = this.f45745a;
+            b bVar = this.f45747b;
+            bVar.f45744b.setColorFilter(porterDuffColorFilter);
+            bVar.f45745c.setColorFilter(porterDuffColorFilter);
+            this.f45748c.f45756a.setColorFilter(porterDuffColorFilter);
+            b6 b6Var = this.f45746a;
             b6Var.setCursorColor(i10);
             b6Var.setHandlesColor(i10);
             b6Var.setHintTextColor(i10);

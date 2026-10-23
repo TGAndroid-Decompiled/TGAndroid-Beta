@@ -17,20 +17,20 @@ public class ContactsWidgetConfigActivity extends ExternalActionActivity {
             this.E = extras.getInt("appWidgetId", 0);
         }
         if (this.E != 0) {
-            org.telegram.messenger.ok.d(10, "onlySelect", "dialogsType", true).putBoolean("allowSwitchAccount", true);
+            org.telegram.messenger.nk.d(10, "onlySelect", "dialogsType", true).putBoolean("allowSwitchAccount", true);
             ly lyVar = new ly(1, this.E);
-            lyVar.f39055y = new b1(this, 27);
+            lyVar.f39056y = new b1(this, 27);
             if (AndroidUtilities.isTablet()) {
                 if (this.d.getFragmentStack().isEmpty()) {
                     this.d.c(-1, lyVar);
                 }
-            } else if (this.f33138c.getFragmentStack().isEmpty()) {
-                this.f33138c.c(-1, lyVar);
+            } else if (this.f33139c.getFragmentStack().isEmpty()) {
+                this.f33139c.c(-1, lyVar);
             }
             if (!AndroidUtilities.isTablet()) {
                 this.e.setVisibility(8);
             }
-            this.f33138c.c0();
+            this.f33139c.c0();
             if (AndroidUtilities.isTablet()) {
                 this.d.c0();
             }

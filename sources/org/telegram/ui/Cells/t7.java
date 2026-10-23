@@ -7,19 +7,19 @@ import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.ok;
+import org.telegram.messenger.nk;
 import org.telegram.ui.Components.xp;
 public final class t7 extends FrameLayout {
-    public p7[] f23203a;
-    public MessageObject[] f23204b;
-    public int[] f23205c;
+    public p7[] f23204a;
+    public MessageObject[] f23205b;
+    public int[] f23206c;
     public q7 d;
     public int e;
-    public boolean f23206f;
+    public boolean f23207f;
     public boolean h;
-    public Paint f23207n;
-    public int f23208r;
-    public int f23209s;
+    public Paint f23208n;
+    public int f23209r;
+    public int f23210s;
 
     public static int a(int i10) {
         if (AndroidUtilities.isTablet()) {
@@ -30,8 +30,8 @@ public final class t7 extends FrameLayout {
 
     public final void b(int i10, boolean z10) {
         float f7;
-        p7 p7Var = this.f23203a[i10];
-        FrameLayout frameLayout = p7Var.f22759f;
+        p7 p7Var = this.f23204a[i10];
+        FrameLayout frameLayout = p7Var.f22760f;
         xp xpVar = p7Var.e;
         if (xpVar.getVisibility() != 0) {
             xpVar.setVisibility(0);
@@ -61,10 +61,10 @@ public final class t7 extends FrameLayout {
     }
 
     public final void c(MessageObject messageObject, int i10, int i11) {
-        p7[] p7VarArr = this.f23203a;
-        MessageObject[] messageObjectArr = this.f23204b;
+        p7[] p7VarArr = this.f23204a;
+        MessageObject[] messageObjectArr = this.f23205b;
         messageObjectArr[i10] = messageObject;
-        this.f23205c[i10] = i11;
+        this.f23206c[i10] = i11;
         if (messageObject != null) {
             p7VarArr[i10].setVisibility(0);
             p7VarArr[i10].setMessageObject(messageObject);
@@ -82,7 +82,7 @@ public final class t7 extends FrameLayout {
     @Override
     public final void invalidate() {
         for (int i10 = 0; i10 < 6; i10++) {
-            this.f23203a[i10].invalidate();
+            this.f23204a[i10].invalidate();
         }
         super.invalidate();
     }
@@ -101,9 +101,9 @@ public final class t7 extends FrameLayout {
     public final void onMeasure(int i10, int i11) {
         int a2;
         int dp;
-        View[] viewArr = this.f23203a;
-        if (this.f23208r == 1) {
-            a2 = ok.B(2.0f, this.e - 1, View.MeasureSpec.getSize(i10)) / this.e;
+        View[] viewArr = this.f23204a;
+        if (this.f23209r == 1) {
+            a2 = nk.B(2.0f, this.e - 1, View.MeasureSpec.getSize(i10)) / this.e;
         } else {
             a2 = a(this.e);
         }
@@ -111,7 +111,7 @@ public final class t7 extends FrameLayout {
         int i12 = 0;
         for (int i13 = 0; i13 < this.e; i13++) {
             FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) viewArr[i13].getLayoutParams();
-            if (this.f23206f) {
+            if (this.f23207f) {
                 dp = 0;
             } else {
                 dp = AndroidUtilities.dp(2.0f);
@@ -132,7 +132,7 @@ public final class t7 extends FrameLayout {
             viewArr[i13].setLayoutParams(layoutParams);
         }
         this.h = false;
-        if (!this.f23206f) {
+        if (!this.f23207f) {
             i12 = AndroidUtilities.dp(2.0f);
         }
         super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(i12 + a2, 1073741824));
@@ -151,12 +151,12 @@ public final class t7 extends FrameLayout {
     }
 
     public void setIsFirst(boolean z10) {
-        this.f23206f = z10;
+        this.f23207f = z10;
     }
 
     public void setItemsCount(int i10) {
         int i11;
-        p7[] p7VarArr = this.f23203a;
+        p7[] p7VarArr = this.f23204a;
         for (int i12 = 0; i12 < p7VarArr.length; i12++) {
             p7VarArr[i12].clearAnimation();
             p7 p7Var = p7VarArr[i12];

@@ -114,7 +114,7 @@ public final class h1 extends e91 {
                 return;
             case 7:
                 p91 p91Var = (p91) this.U;
-                p91Var.m0(p91Var.f40142i0.getCurrentPosition(), true);
+                p91Var.m0(p91Var.f40143i0.getCurrentPosition(), true);
                 p91Var.n0(0.0f, false);
                 p91.W(p91Var);
                 return;
@@ -128,7 +128,7 @@ public final class h1 extends e91 {
         m21 m21Var;
         switch (this.T) {
             case 6:
-                if ((getCurrentView() instanceof n21) && (m21Var = ((n21) getCurrentView()).f39401n) != null) {
+                if ((getCurrentView() instanceof n21) && (m21Var = ((n21) getCurrentView()).f39402n) != null) {
                     AndroidUtilities.hideKeyboard(m21Var);
                     return;
                 }
@@ -190,7 +190,7 @@ public final class h1 extends e91 {
                 return;
             case 7:
                 p91 p91Var = (p91) this.U;
-                float positionAnimated2 = p91Var.f40142i0.getPositionAnimated();
+                float positionAnimated2 = p91Var.f40143i0.getPositionAnimated();
                 p91Var.n0(positionAnimated2, !z10);
                 if (!z10) {
                     p91Var.m0(Math.round(positionAnimated2), true);
@@ -207,8 +207,8 @@ public final class h1 extends e91 {
             default:
                 org.telegram.ui.Wallet.o5 o5Var = (org.telegram.ui.Wallet.o5) this.U;
                 o5Var.T0();
-                org.telegram.ui.Wallet.t7 t7Var = o5Var.f34654i0;
-                if (t7Var != null && t7Var.f34934h1) {
+                org.telegram.ui.Wallet.t7 t7Var = o5Var.f34655i0;
+                if (t7Var != null && t7Var.f34935h1) {
                     t7Var.f0();
                     return;
                 }
@@ -222,12 +222,12 @@ public final class h1 extends e91 {
         switch (this.T) {
             case 10:
                 org.telegram.ui.Wallet.o5 o5Var = (org.telegram.ui.Wallet.o5) this.U;
-                o5Var.f34648d0 = i10;
-                if (i10 != 1 && (n8Var = o5Var.f34653h0) != null) {
+                o5Var.f34649d0 = i10;
+                if (i10 != 1 && (n8Var = o5Var.f34654h0) != null) {
                     n8Var.b(false);
                 }
                 if (i10 == 1) {
-                    o5Var.f34660o0.post(new org.telegram.ui.Wallet.p3(o5Var, 13));
+                    o5Var.f34661o0.post(new org.telegram.ui.Wallet.p3(o5Var, 13));
                     return;
                 }
                 return;
@@ -242,9 +242,9 @@ public final class h1 extends e91 {
             case 3:
                 if (i10 == 0) {
                     qn qnVar = (qn) this.U;
-                    if (qnVar.f40840s1) {
-                        qnVar.f40840s1 = false;
-                        qnVar.f40813q1.h.clear();
+                    if (qnVar.f40841s1) {
+                        qnVar.f40841s1 = false;
+                        qnVar.f40814q1.h.clear();
                         return;
                     }
                     return;

@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.ok;
+import org.telegram.messenger.nk;
 import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
 import org.telegram.ui.Components.em;
 import org.telegram.ui.Components.jm0;
@@ -57,10 +57,10 @@ public final class e9 extends s4.r0 {
             case 2:
                 ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = (ChatAttachAlertPhotoLayout) this.f8973c;
                 em emVar = chatAttachAlertPhotoLayout.E;
-                ti tiVar = chatAttachAlertPhotoLayout.f28176b;
+                ti tiVar = chatAttachAlertPhotoLayout.f28177b;
                 if (i10 == 0) {
                     int dp = AndroidUtilities.dp(13.0f);
-                    org.telegram.ui.ActionBar.u0 u0Var = tiVar.f30543d1;
+                    org.telegram.ui.ActionBar.u0 u0Var = tiVar.f30544d1;
                     if (u0Var != null) {
                         i11 = AndroidUtilities.dp(u0Var.getAlpha() * 26.0f);
                     } else {
@@ -68,8 +68,8 @@ public final class e9 extends s4.r0 {
                     }
                     int i12 = dp + i11;
                     int backgroundPaddingTop = tiVar.getBackgroundPaddingTop();
-                    if (((tiVar.f30547e2[0] - backgroundPaddingTop) - i12) + backgroundPaddingTop < (tiVar.R0.getAlpha() * tiVar.R0.getMeasuredHeight()) + org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && (tl0Var = (tl0) emVar.K(0)) != null) {
-                        View view = tl0Var.f45920a;
+                    if (((tiVar.f30548e2[0] - backgroundPaddingTop) - i12) + backgroundPaddingTop < (tiVar.R0.getAlpha() * tiVar.R0.getMeasuredHeight()) + org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && (tl0Var = (tl0) emVar.K(0)) != null) {
+                        View view = tl0Var.f45921a;
                         int top = view.getTop();
                         topScrollOffset = chatAttachAlertPhotoLayout.getTopScrollOffset();
                         if (top > topScrollOffset) {
@@ -125,7 +125,7 @@ public final class e9 extends s4.r0 {
                 return;
             case 1:
                 org.telegram.ui.c7 c7Var = (org.telegram.ui.c7) this.f8973c;
-                if (c7Var.f35839c.L0() <= 0 && !org.telegram.ui.c7.a0(c7Var).t()) {
+                if (c7Var.f35840c.L0() <= 0 && !org.telegram.ui.c7.a0(c7Var).t()) {
                     z10 = false;
                 } else {
                     z10 = true;
@@ -139,7 +139,7 @@ public final class e9 extends s4.r0 {
                 return;
             case 2:
                 ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = (ChatAttachAlertPhotoLayout) this.f8973c;
-                ti tiVar = chatAttachAlertPhotoLayout.f28176b;
+                ti tiVar = chatAttachAlertPhotoLayout.f28177b;
                 em emVar = chatAttachAlertPhotoLayout.E;
                 if (emVar.getChildCount() > 0) {
                     tiVar.b2(chatAttachAlertPhotoLayout, i11);
@@ -153,7 +153,7 @@ public final class e9 extends s4.r0 {
                             if (this.f8972b) {
                                 f7 = 1.0f;
                             }
-                            ok.s(animate, f7, 100L);
+                            nk.s(animate, f7, 100L);
                         }
                     } else {
                         emVar.getFastScroll().setAlpha(0.0f);

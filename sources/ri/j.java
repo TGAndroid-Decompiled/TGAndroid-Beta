@@ -1,17 +1,17 @@
 package ri;
 public final class j {
-    public static final j f45821a;
-    public static final j f45822b;
-    public static final j f45823c;
+    public static final j f45822a;
+    public static final j f45823b;
+    public static final j f45824c;
     public static final j[] d;
 
     static {
         ?? r02 = new Enum("REBUILT", 0);
-        f45821a = r02;
+        f45822a = r02;
         ?? r12 = new Enum("CANCELLED", 1);
-        f45822b = r12;
+        f45823b = r12;
         ?? r32 = new Enum("ERROR", 2);
-        f45823c = r32;
+        f45824c = r32;
         d = new j[]{r02, r12, r32};
     }
 

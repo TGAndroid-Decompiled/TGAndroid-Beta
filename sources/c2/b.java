@@ -130,7 +130,7 @@ public final class b implements c3.q {
     }
 
     public static boolean g(c5 c5Var) {
-        if (c5Var.f35816a == null && c5Var.f35817b == null) {
+        if (c5Var.f35817a == null && c5Var.f35818b == null) {
             return false;
         }
         return true;
@@ -171,7 +171,7 @@ public final class b implements c3.q {
                     return;
                 }
                 rb.s sVar = (rb.s) ((ArrayDeque) this.f4491c).remove();
-                C(sVar.f45224b, sVar.f45223a);
+                C(sVar.f45225b, sVar.f45224a);
             } catch (Throwable th2) {
                 throw th2;
             }
@@ -192,7 +192,7 @@ public final class b implements c3.q {
         ((c3.q) this.f4490b).H();
         if (this.f4489a) {
             for (int i10 = 0; i10 < sparseArray.size(); i10++) {
-                ((z3.n) sparseArray.valueAt(i10)).f50671i = true;
+                ((z3.n) sparseArray.valueAt(i10)).f50672i = true;
             }
         }
     }
@@ -222,8 +222,8 @@ public final class b implements c3.q {
             try {
                 try {
                     tc.u uVar = (tc.u) this.f4490b;
-                    a1 a1Var = z0Var.f35168c;
-                    int i11 = z0Var.f35166a;
+                    a1 a1Var = z0Var.f35169c;
+                    int i11 = z0Var.f35167a;
                     AndroidUtilities.runOnUIThread(new cz0(a1Var, uVar, i11, "websocket error: " + a1.a(vVar), 15, false));
                 } catch (Throwable unused) {
                 }
@@ -276,7 +276,7 @@ public final class b implements c3.q {
         ofInt.addUpdateListener(new l0(17, this, suVar));
         ofInt.setDuration(i13);
         ofInt.setStartDelay(i12);
-        ofInt.setInterpolator(bs.f25024f);
+        ofInt.setInterpolator(bs.f25025f);
         return ofInt;
     }
 
@@ -613,7 +613,7 @@ public final class b implements c3.q {
             x4 x4Var = new x4(this, context, d6Var, a5Var);
             this.d = x4Var;
             b1 b1Var = new b1(this, 3);
-            WeakHashMap weakHashMap = r0.i0.f44829a;
+            WeakHashMap weakHashMap = r0.i0.f44830a;
             r0.a0.i(x4Var, b1Var);
         }
         ((x4) this.d).a(c5Var);

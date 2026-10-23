@@ -127,7 +127,7 @@ public final class o9 extends lw0 {
                 ofFloat.addUpdateListener(new l9(this, 0));
                 aaVar.G.addListener(new m9(this, 0));
                 aaVar.G.setDuration(250L);
-                aaVar.G.setInterpolator(bs.f25024f);
+                aaVar.G.setInterpolator(bs.f25025f);
                 aaVar.G.start();
             }
             if (aaVar.V >= 0.3f) {
@@ -286,7 +286,7 @@ public final class o9 extends lw0 {
                 ofFloat.addUpdateListener(new l9(this, 1));
                 aaVar.G.addListener(new m9(this, 1));
                 aaVar.G.setDuration(150L);
-                aaVar.G.setInterpolator(bs.f25024f);
+                aaVar.G.setInterpolator(bs.f25025f);
                 aaVar.G.start();
             }
             q4 t10 = aaVar.t();

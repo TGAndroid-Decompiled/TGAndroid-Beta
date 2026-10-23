@@ -6,13 +6,13 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 public final class rs {
-    public final org.telegram.ui.Cells.r2 f30006a;
-    public final ArrayList f30007b = new ArrayList();
-    public final ArrayList f30008c = new ArrayList();
+    public final org.telegram.ui.Cells.r2 f30007a;
+    public final ArrayList f30008b = new ArrayList();
+    public final ArrayList f30009c = new ArrayList();
     public qs d = null;
 
     public rs(org.telegram.ui.Cells.r2 r2Var) {
-        this.f30006a = r2Var;
+        this.f30007a = r2Var;
     }
 
     public final void a(Canvas canvas, int i10) {
@@ -28,12 +28,12 @@ public final class rs {
         int dp = i10 - AndroidUtilities.dp(25.0f);
         int i11 = 0;
         while (true) {
-            arrayList = this.f30008c;
+            arrayList = this.f30009c;
             if (i11 >= arrayList.size()) {
                 break;
             }
             qs qsVar = (qs) arrayList.get(i11);
-            dp = org.telegram.messenger.ok.y(4.0f, qsVar.e, dp);
+            dp = org.telegram.messenger.nk.y(4.0f, qsVar.e, dp);
             if (dp < 0) {
                 break;
             }
@@ -50,17 +50,17 @@ public final class rs {
         if (i11 < arrayList.size()) {
             int size = arrayList.size() - i11;
             qs qsVar2 = this.d;
-            if (qsVar2 == null || qsVar2.f29697a != size) {
+            if (qsVar2 == null || qsVar2.f29698a != size) {
                 ?? obj = new Object();
-                obj.f29697a = size;
+                obj.f29698a = size;
                 f11 f11Var = new f11(i2.e.j(size, "+"), 10.0f, AndroidUtilities.bold());
-                f11Var.s(this.f30006a);
-                obj.f29699c = f11Var;
+                f11Var.s(this.f30007a);
+                obj.f29700c = f11Var;
                 int dp2 = AndroidUtilities.dp(9.32f);
-                f11 f11Var2 = obj.f29699c;
-                obj.e = dp2 + ((int) f11Var2.f26024c);
+                f11 f11Var2 = obj.f29700c;
+                obj.e = dp2 + ((int) f11Var2.f26025c);
                 f11Var2.j();
-                obj.d = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21178n8, false);
+                obj.d = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21179n8, false);
                 this.d = obj;
             }
             if (LocaleController.isRTL) {
@@ -76,6 +76,6 @@ public final class rs {
     }
 
     public final boolean b() {
-        return this.f30008c.isEmpty();
+        return this.f30009c.isEmpty();
     }
 }

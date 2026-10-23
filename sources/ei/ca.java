@@ -49,7 +49,7 @@ public final class ca implements CameraView.CameraViewDelegate, r0.n, org.telegr
         vbVar.f9948a0 = defaultWindowInsets.f12285c;
         vbVar.f9951b0 = defaultWindowInsets.d;
         vbVar.f9987n.requestLayout();
-        return r0.k1.f44837b;
+        return r0.k1.f44838b;
     }
 
     @Override

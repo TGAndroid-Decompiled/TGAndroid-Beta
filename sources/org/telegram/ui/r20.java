@@ -1,14 +1,14 @@
 package org.telegram.ui;
 public final class r20 extends g.o {
-    public final q50 f41038c;
+    public final q50 f41039c;
 
     public r20(q50 q50Var) {
-        this.f41038c = q50Var;
+        this.f41039c = q50Var;
     }
 
     @Override
     public final int i(int i10) {
-        int size = this.f41038c.f40437o2.e.size();
+        int size = this.f41039c.f40438o2.e.size();
         if (size > 1 && size != 2) {
             if (size != 3 || i10 == 0 || i10 == 1) {
                 return 3;

@@ -9,12 +9,12 @@ import java.util.List;
 import org.telegram.ui.jg0;
 import v7.u6;
 public abstract class c implements p {
-    public final p1 f49135a;
-    public final int f49136b;
-    public final int[] f49137c;
+    public final p1 f49136a;
+    public final int f49137b;
+    public final int[] f49138c;
     public final w[] d;
     public final long[] e;
-    public int f49138f;
+    public int f49139f;
 
     public c(p1 p1Var, int[] iArr) {
         boolean z10;
@@ -26,19 +26,19 @@ public abstract class c implements p {
         }
         u6.p(z10);
         p1Var.getClass();
-        this.f49135a = p1Var;
+        this.f49136a = p1Var;
         int length = iArr.length;
-        this.f49136b = length;
+        this.f49137b = length;
         this.d = new w[length];
         for (int i11 = 0; i11 < iArr.length; i11++) {
             this.d[i11] = p1Var.d[iArr[i11]];
         }
         Arrays.sort(this.d, new jg0(17));
-        this.f49137c = new int[this.f49136b];
+        this.f49138c = new int[this.f49137b];
         while (true) {
-            int i12 = this.f49136b;
+            int i12 = this.f49137b;
             if (i10 < i12) {
-                this.f49137c[i10] = p1Var.a(this.d[i10]);
+                this.f49138c[i10] = p1Var.a(this.d[i10]);
                 i10++;
             } else {
                 this.e = new long[i12];
@@ -57,7 +57,7 @@ public abstract class c implements p {
 
     @Override
     public final p1 b() {
-        return this.f49135a;
+        return this.f49136a;
     }
 
     @Override
@@ -71,7 +71,7 @@ public abstract class c implements p {
         }
         if (obj != null && getClass() == obj.getClass()) {
             c cVar = (c) obj;
-            if (this.f49135a.equals(cVar.f49135a) && Arrays.equals(this.f49137c, cVar.f49137c)) {
+            if (this.f49136a.equals(cVar.f49136a) && Arrays.equals(this.f49138c, cVar.f49138c)) {
                 return true;
             }
         }
@@ -85,14 +85,14 @@ public abstract class c implements p {
 
     @Override
     public final int h(int i10) {
-        return this.f49137c[i10];
+        return this.f49138c[i10];
     }
 
     public final int hashCode() {
-        if (this.f49138f == 0) {
-            this.f49138f = Arrays.hashCode(this.f49137c) + (System.identityHashCode(this.f49135a) * 31);
+        if (this.f49139f == 0) {
+            this.f49139f = Arrays.hashCode(this.f49138c) + (System.identityHashCode(this.f49136a) * 31);
         }
-        return this.f49138f;
+        return this.f49139f;
     }
 
     @Override
@@ -102,12 +102,12 @@ public abstract class c implements p {
 
     @Override
     public final int l() {
-        return this.f49137c[c()];
+        return this.f49138c[c()];
     }
 
     @Override
     public final int length() {
-        return this.f49137c.length;
+        return this.f49138c.length;
     }
 
     @Override
@@ -119,7 +119,7 @@ public abstract class c implements p {
     public final boolean o(int i10, long j10) {
         long elapsedRealtime = SystemClock.elapsedRealtime();
         boolean a2 = a(i10, elapsedRealtime);
-        for (int i11 = 0; i11 < this.f49136b && !a2; i11++) {
+        for (int i11 = 0; i11 < this.f49137b && !a2; i11++) {
             if (i11 != i10 && !a(i11, elapsedRealtime)) {
                 a2 = true;
             } else {
@@ -136,7 +136,7 @@ public abstract class c implements p {
 
     @Override
     public final int s(w wVar) {
-        for (int i10 = 0; i10 < this.f49136b; i10++) {
+        for (int i10 = 0; i10 < this.f49137b; i10++) {
             if (this.d[i10] == wVar) {
                 return i10;
             }
@@ -146,8 +146,8 @@ public abstract class c implements p {
 
     @Override
     public final int u(int i10) {
-        for (int i11 = 0; i11 < this.f49136b; i11++) {
-            if (this.f49137c[i11] == i10) {
+        for (int i11 = 0; i11 < this.f49137b; i11++) {
+            if (this.f49138c[i11] == i10) {
                 return i11;
             }
         }

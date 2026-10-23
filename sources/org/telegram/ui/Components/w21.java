@@ -5,26 +5,26 @@ import android.view.View;
 import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class w21 extends LinearLayout implements org.telegram.ui.ActionBar.y5 {
-    public final org.telegram.ui.ActionBar.d6 f31958a;
-    public final w9 f31959b;
-    public final x90 f31960c;
+    public final org.telegram.ui.ActionBar.d6 f31959a;
+    public final w9 f31960b;
+    public final x90 f31961c;
     public final x90 d;
     public int e;
-    public int f31961f;
+    public int f31962f;
 
     public w21(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
         this.e = 90;
-        this.f31958a = d6Var;
+        this.f31959a = d6Var;
         setOrientation(1);
         w9 w9Var = new w9(context);
-        this.f31959b = w9Var;
+        this.f31960b = w9Var;
         w9Var.getImageReceiver().setAutoRepeatCount(1);
         w9Var.getImageReceiver().setAutoRepeat(1);
         w9Var.setOnClickListener(new u80(this, 21));
         addView(w9Var, w7.z5.t(90, 90, 17, 0, 9, 0, 9));
         x90 x90Var = new x90(context, null);
-        this.f31960c = x90Var;
+        this.f31961c = x90Var;
         x90Var.setTextSize(1, 20.0f);
         x90Var.setGravity(17);
         x90Var.setTypeface(AndroidUtilities.bold());
@@ -40,7 +40,7 @@ public final class w21 extends LinearLayout implements org.telegram.ui.ActionBar
     }
 
     public final void a(CharSequence charSequence, CharSequence charSequence2) {
-        x90 x90Var = this.f31960c;
+        x90 x90Var = this.f31961c;
         x90Var.setText(charSequence);
         x90Var.setVisibility(0);
         x90 x90Var2 = this.d;
@@ -54,11 +54,11 @@ public final class w21 extends LinearLayout implements org.telegram.ui.ActionBar
     public final void d() {
         int i10;
         int i11 = org.telegram.ui.ActionBar.h6.G6;
-        org.telegram.ui.ActionBar.d6 d6Var = this.f31958a;
+        org.telegram.ui.ActionBar.d6 d6Var = this.f31959a;
         int w02 = org.telegram.ui.ActionBar.h6.w0(i11, d6Var);
-        x90 x90Var = this.f31960c;
+        x90 x90Var = this.f31961c;
         x90Var.setTextColor(w02);
-        int i12 = org.telegram.ui.ActionBar.h6.f21052gc;
+        int i12 = org.telegram.ui.ActionBar.h6.f21053gc;
         x90Var.setLinkTextColor(org.telegram.ui.ActionBar.h6.w0(i12, d6Var));
         if (x90Var.getVisibility() != 0) {
             i11 = org.telegram.ui.ActionBar.h6.B6;
@@ -73,7 +73,7 @@ public final class w21 extends LinearLayout implements org.telegram.ui.ActionBar
         } else {
             i10 = 9;
         }
-        this.f31959b.setLayoutParams(w7.z5.t(i13, i13, 17, 0, i10, 0, 9));
+        this.f31960b.setLayoutParams(w7.z5.t(i13, i13, 17, 0, i10, 0, 9));
     }
 
     public int[] getColorKeys() {
@@ -86,10 +86,10 @@ public final class w21 extends LinearLayout implements org.telegram.ui.ActionBar
     }
 
     public void setEmoji(int i10) {
-        if (this.f31961f != i10) {
-            this.f31961f = i10;
+        if (this.f31962f != i10) {
+            this.f31962f = i10;
             vj0 vj0Var = new vj0(i10, AndroidUtilities.dp(90.0f), AndroidUtilities.dp(90.0f));
-            w9 w9Var = this.f31959b;
+            w9 w9Var = this.f31960b;
             w9Var.setImageDrawable(vj0Var);
             w9Var.getImageReceiver().setAutoRepeat(2);
         }
@@ -103,16 +103,16 @@ public final class w21 extends LinearLayout implements org.telegram.ui.ActionBar
     }
 
     public void setEmojiStatic(int i10) {
-        if (this.f31961f != i10) {
-            w9 w9Var = this.f31959b;
+        if (this.f31962f != i10) {
+            w9 w9Var = this.f31960b;
             w9Var.b();
-            this.f31961f = i10;
+            this.f31962f = i10;
             w9Var.setImageResource(i10);
         }
     }
 
     public void setText(CharSequence charSequence) {
-        this.f31960c.setVisibility(8);
+        this.f31961c.setVisibility(8);
         x90 x90Var = this.d;
         x90Var.setText(charSequence);
         x90Var.setMaxWidth(ei.x3.a(charSequence, x90Var.getPaint()));

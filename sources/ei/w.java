@@ -22,7 +22,7 @@ public final class w extends s4.g0 {
     @Override
     public final void v(s4.b1 b1Var, int i10) {
         boolean z10;
-        x xVar = (x) b1Var.f45920a;
+        x xVar = (x) b1Var.f45921a;
         t tVar = (t) t.a().get(i10);
         if (i10 == xVar.f10058s) {
             z10 = true;
@@ -44,7 +44,7 @@ public final class w extends s4.g0 {
 
     @Override
     public final void y(s4.b1 b1Var) {
-        x xVar = (x) b1Var.f45920a;
+        x xVar = (x) b1Var.f45921a;
         this.d.a(xVar);
         int i10 = xVar.f10058s;
         if (i10 >= 0 && i10 < t.a().size()) {
@@ -56,6 +56,6 @@ public final class w extends s4.g0 {
 
     @Override
     public final void z(s4.b1 b1Var) {
-        this.d.d.remove((x) b1Var.f45920a);
+        this.d.d.remove((x) b1Var.f45921a);
     }
 }

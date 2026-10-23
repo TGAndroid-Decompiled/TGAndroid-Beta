@@ -100,7 +100,7 @@ public final class s0 implements Utilities.Callback2 {
                 ArrayList arrayList = (ArrayList) obj2;
                 if (TextUtils.isEmpty(str)) {
                     a1Var.x(z7Var, "prepared_message_sent", null);
-                    org.telegram.ui.web.g0 g0Var = a1Var.f42568c;
+                    org.telegram.ui.web.g0 g0Var = a1Var.f42569c;
                     if (g0Var != null) {
                         g0Var.c();
                     }
@@ -155,7 +155,7 @@ public final class s0 implements Utilities.Callback2 {
                 String str2 = (String) obj2;
                 ((pf.c) this.f2140c).b();
                 if (((Boolean) obj).booleanValue()) {
-                    s2 s2Var = f4Var.f50248f0;
+                    s2 s2Var = f4Var.f50249f0;
                     if (s2Var != null) {
                         s2Var.run(tL_starGiftUnique);
                     }

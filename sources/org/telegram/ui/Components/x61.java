@@ -4,13 +4,13 @@ import android.content.Context;
 import android.view.View;
 import java.util.ArrayList;
 public abstract class x61 extends org.telegram.ui.ActionBar.n2 {
-    public w61 f32359a;
-    public int f32360b;
-    public int f32361c;
+    public w61 f32360a;
+    public int f32361b;
+    public int f32362c;
 
     public x61() {
         super(null);
-        this.f32360b = -1;
+        this.f32361b = -1;
     }
 
     public abstract void U(ArrayList arrayList, u61 u61Var);
@@ -28,9 +28,9 @@ public abstract class x61 extends org.telegram.ui.ActionBar.n2 {
         this.actionBar.setTitle(V());
         this.actionBar.setActionBarMenuOnItemClick(new org.telegram.ui.ea(this, 16));
         ig.p1 p1Var = new ig.p1(context, null, 1);
-        p1Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20935a7, false));
+        p1Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20936a7, false));
         w61 w61Var = new w61(this, this, new d(this, 22), new v61(this), new v61(this));
-        this.f32359a = w61Var;
+        this.f32360a = w61Var;
         p1Var.addView(w61Var, w7.z5.c(-1.0f, -1));
         this.fragmentView = p1Var;
         return p1Var;

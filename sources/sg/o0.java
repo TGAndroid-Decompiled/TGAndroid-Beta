@@ -14,60 +14,60 @@ import org.telegram.ui.Components.bs;
 import org.telegram.ui.oa0;
 import w7.z5;
 public final class o0 extends FrameLayout implements m0 {
-    public final d6 f46367a;
-    public final ArrayList f46368b;
-    public final n0 f46369c;
+    public final d6 f46368a;
+    public final ArrayList f46369b;
+    public final n0 f46370c;
     public final n0 d;
     public final n0 e;
-    public final boolean f46370f;
+    public final boolean f46371f;
 
     public o0(Context context, d6 d6Var) {
         super(context);
         oa0[] values;
-        this.f46368b = new ArrayList();
-        this.f46367a = d6Var;
+        this.f46369b = new ArrayList();
+        this.f46368a = d6Var;
         for (oa0 oa0Var : oa0.values()) {
             if (oa0Var.e) {
-                this.f46368b.add(oa0Var);
+                this.f46369b.add(oa0Var);
             }
-            if (this.f46368b.size() == 3) {
+            if (this.f46369b.size() == 3) {
                 break;
             }
         }
-        if (this.f46368b.size() < 3) {
+        if (this.f46369b.size() < 3) {
             FileLog.e(new IllegalArgumentException("There should be at least 3 premium icons!"));
-            this.f46370f = true;
+            this.f46371f = true;
             return;
         }
-        this.f46369c = a(context, 0);
+        this.f46370c = a(context, 0);
         this.d = a(context, 1);
         this.e = a(context, 2);
         setClipChildren(false);
     }
 
     public final n0 a(Context context, int i10) {
-        oa0 oa0Var = (oa0) this.f46368b.get(i10);
+        oa0 oa0Var = (oa0) this.f46369b.get(i10);
         ?? qVar = new org.telegram.ui.Cells.q(context);
         w1 w1Var = new w1(20);
         qVar.e = w1Var;
         Paint paint = new Paint(1);
-        qVar.f46362f = paint;
-        w1Var.f46492r = 12;
-        w1Var.f46493s = 8;
-        w1Var.f46494t = 6;
+        qVar.f46363f = paint;
+        w1Var.f46493r = 12;
+        w1Var.f46494s = 8;
+        w1Var.f46495t = 6;
         if (i10 == 1) {
             w1Var.O = 1001;
         }
         if (i10 == 0) {
             w1Var.O = 1002;
         }
-        w1Var.P = this.f46367a;
+        w1Var.P = this.f46368a;
         w1Var.Q = h6.Zj;
         w1Var.c();
         paint.setColor(-1);
         qVar.setLayoutParams(z5.d(-2, -2.0f, 17, 0.0f, 52.0f, 0.0f, 0.0f));
-        qVar.setForeground(oa0Var.f39813c);
-        qVar.setBackgroundResource(oa0Var.f39812b);
+        qVar.setForeground(oa0Var.f39814c);
+        qVar.setBackgroundResource(oa0Var.f39813b);
         qVar.setPadding(AndroidUtilities.dp(8.0f));
         qVar.setBackgroundOuterPadding(AndroidUtilities.dp(32.0f));
         addView(qVar);
@@ -77,12 +77,12 @@ public final class o0 extends FrameLayout implements m0 {
     @Override
     public final void onMeasure(int i10, int i11) {
         super.onMeasure(i10, i11);
-        if (this.f46370f) {
+        if (this.f46371f) {
             return;
         }
         int min = Math.min(View.MeasureSpec.getSize(i10), View.MeasureSpec.getSize(i11));
         int dp = AndroidUtilities.dp(76.0f);
-        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.f46369c.getLayoutParams();
+        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.f46370c.getLayoutParams();
         layoutParams.height = dp;
         layoutParams.width = dp;
         float f7 = dp;
@@ -100,11 +100,11 @@ public final class o0 extends FrameLayout implements m0 {
 
     @Override
     public void setOffset(float f7) {
-        if (this.f46370f) {
+        if (this.f46371f) {
             return;
         }
         float abs = Math.abs(f7 / getMeasuredWidth());
-        float interpolation = bs.f25026i.getInterpolation(abs);
+        float interpolation = bs.f25027i.getInterpolation(abs);
         int right = getRight();
         n0 n0Var = this.e;
         n0Var.setTranslationX(((n0Var.getWidth() * 1.5f) + (right - n0Var.getRight()) + AndroidUtilities.dp(32.0f)) * interpolation);
@@ -114,13 +114,13 @@ public final class o0 extends FrameLayout implements m0 {
         n0Var.setScaleX(clamp);
         n0Var.setScaleY(clamp);
         int top = getTop();
-        n0 n0Var2 = this.f46369c;
+        n0 n0Var2 = this.f46370c;
         n0Var2.setTranslationY((((top - n0Var2.getTop()) - (n0Var2.getHeight() * 1.8f)) - AndroidUtilities.dp(32.0f)) * abs);
         n0Var2.setTranslationX(AndroidUtilities.dp(16.0f) * abs);
         float clamp2 = Utilities.clamp(AndroidUtilities.lerp(1.0f, 1.8f, abs), 1.0f, 0.0f);
         n0Var2.setScaleX(clamp2);
         n0Var2.setScaleY(clamp2);
-        float interpolation2 = bs.f25025g.getInterpolation(abs);
+        float interpolation2 = bs.f25026g.getInterpolation(abs);
         int left = getLeft();
         n0 n0Var3 = this.d;
         n0Var3.setTranslationX((((left - n0Var3.getLeft()) - (n0Var3.getWidth() * 2.5f)) + AndroidUtilities.dp(32.0f)) * interpolation2);

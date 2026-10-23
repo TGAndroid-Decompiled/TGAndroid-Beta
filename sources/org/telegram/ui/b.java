@@ -17,7 +17,7 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
 public abstract class b {
-    public static boolean f35464a;
+    public static boolean f35465a;
 
     public static boolean a(int i10, TLRPC.User user) {
         String publicUsername;
@@ -40,7 +40,7 @@ public abstract class b {
 
     public static void b(int i10) {
         org.telegram.ui.ActionBar.d6 d6Var;
-        if (!f35464a && UserConfig.selectedAccount == i10) {
+        if (!f35465a && UserConfig.selectedAccount == i10) {
             Context context = LaunchActivity.H1;
             if (context == null) {
                 context = ApplicationLoader.applicationContext;
@@ -59,12 +59,12 @@ public abstract class b {
     }
 
     public static void c(Context context, int i10, org.telegram.ui.ActionBar.d6 d6Var) {
-        if (f35464a) {
+        if (f35465a) {
             return;
         }
-        org.telegram.ui.ActionBar.f3 i11 = org.telegram.messenger.ok.i(1, context, d6Var, false);
+        org.telegram.ui.ActionBar.f3 i11 = org.telegram.messenger.nk.i(1, context, d6Var, false);
         ah.o oVar = new ah.o(i10, context, r5, 26);
-        LinearLayout e = org.telegram.messenger.ok.e(context, 1);
+        LinearLayout e = org.telegram.messenger.nk.e(context, 1);
         e.setPadding(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(20.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(8.0f));
         e.setClipChildren(false);
         e.setClipToPadding(false);
@@ -73,9 +73,9 @@ public abstract class b {
         imageView.d();
         e.addView((View) imageView, w7.z5.t(115, 115, 17, 0, 0, 0, 9));
         TextView textView = new TextView(context);
-        org.telegram.messenger.ok.k(20.0f, 1, textView);
+        org.telegram.messenger.nk.k(20.0f, 1, textView);
         textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.G6, d6Var));
-        org.telegram.messenger.ok.m(R.string.AccountFrozenTitle, textView, 17);
+        org.telegram.messenger.nk.m(R.string.AccountFrozenTitle, textView, 17);
         e.addView(textView, w7.z5.t(-1, -2, 17, 0, 0, 0, 23));
         ai.n0 n0Var = new ai.n0(context, 1, d6Var);
         n0Var.a(LocaleController.getString(R.string.AccountFrozen1Title), LocaleController.getString(R.string.AccountFrozen1Text), R.drawable.msg_block2);
@@ -98,7 +98,7 @@ public abstract class b {
         org.telegram.ui.ActionBar.f3[] f3VarArr = {i11};
         i11.useBackgroundTopPadding = false;
         i11.fixNavigationBar();
-        f35464a = true;
+        f35465a = true;
         f3VarArr[0].show();
         f3VarArr[0].setOnDismissListener(new ei.e1(1));
     }

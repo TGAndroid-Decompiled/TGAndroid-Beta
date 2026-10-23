@@ -5,40 +5,40 @@ import android.text.TextUtils;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 public final class r implements Utilities.Callback {
-    public final int f41026a;
-    public final l4 f41027b;
+    public final int f41027a;
+    public final l4 f41028b;
 
     public r(l4 l4Var, int i10) {
-        this.f41026a = i10;
-        this.f41027b = l4Var;
+        this.f41027a = i10;
+        this.f41028b = l4Var;
     }
 
     @Override
     public final void run(Object obj) {
-        switch (this.f41026a) {
+        switch (this.f41027a) {
             case 0:
-                l4 l4Var = this.f41027b;
-                ci.i4 i4Var = l4Var.f38778q0;
+                l4 l4Var = this.f41028b;
+                ci.i4 i4Var = l4Var.f38779q0;
                 float f7 = -((Integer) obj).intValue();
-                l4Var.f38777p0 = f7;
+                l4Var.f38778p0 = f7;
                 i4Var.setTranslationY(((1.0f - l4Var.Y0) * AndroidUtilities.dp(51.0f)) + f7);
                 return;
             case 1:
                 String str = (String) obj;
                 if (!TextUtils.isEmpty(str)) {
-                    l4 l4Var2 = this.f41027b;
-                    l4Var2.f38770h0.f42791b0.setText(str);
-                    ai.t tVar = l4Var2.f38770h0.f42791b0;
+                    l4 l4Var2 = this.f41028b;
+                    l4Var2.f38771h0.f42792b0.setText(str);
+                    ai.t tVar = l4Var2.f38771h0.f42792b0;
                     tVar.setSelection(tVar.getText().length());
-                    AndroidUtilities.showKeyboard(l4Var2.f38770h0.f42791b0);
+                    AndroidUtilities.showKeyboard(l4Var2.f38771h0.f42792b0);
                     return;
                 }
                 return;
             case 2:
                 String str2 = (String) obj;
-                l4 l4Var3 = this.f41027b;
+                l4 l4Var3 = this.f41028b;
                 if (l4Var3.L != null && str2 != null) {
-                    l4Var3.f38770h0.k(false);
+                    l4Var3.f38771h0.k(false);
                     if (pf.d.e(Uri.parse(str2), false, null)) {
                         x3 x3Var = l4Var3.K;
                         if (x3Var != null) {
@@ -47,9 +47,9 @@ public final class r implements Utilities.Callback {
                         pf.d.j(l4Var3.L, str2, false, false, null);
                         return;
                     } else if (!pf.d.k(l4Var3.L, str2, false)) {
-                        o3 o3Var = l4Var3.f38782u0[0];
+                        o3 o3Var = l4Var3.f38783u0[0];
                         if (o3Var != null && o3Var.getWebView() != null) {
-                            l4Var3.f38782u0[0].getWebView().loadUrl(str2);
+                            l4Var3.f38783u0[0].getWebView().loadUrl(str2);
                             return;
                         } else {
                             pf.d.m(str2);
@@ -62,15 +62,15 @@ public final class r implements Utilities.Callback {
                 return;
             default:
                 org.telegram.ui.web.b1 b1Var = (org.telegram.ui.web.b1) obj;
-                l4 l4Var4 = this.f41027b;
+                l4 l4Var4 = this.f41028b;
                 if (l4Var4.L != null && b1Var != null) {
-                    l4Var4.f38770h0.k(false);
-                    o3 o3Var2 = l4Var4.f38782u0[0];
+                    l4Var4.f38771h0.k(false);
+                    o3 o3Var2 = l4Var4.f38783u0[0];
                     if (o3Var2 != null && o3Var2.getWebView() != null) {
-                        l4Var4.f38782u0[0].getWebView().e(b1Var.f42611c, b1Var.d);
+                        l4Var4.f38783u0[0].getWebView().e(b1Var.f42612c, b1Var.d);
                         return;
                     } else {
-                        pf.d.m(b1Var.f42611c);
+                        pf.d.m(b1Var.f42612c);
                         return;
                     }
                 }

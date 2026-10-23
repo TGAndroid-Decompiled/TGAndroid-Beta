@@ -13,7 +13,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
-import org.telegram.messenger.ok;
+import org.telegram.messenger.nk;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.ActionBar.n2;
@@ -56,7 +56,7 @@ public final class d2 extends n2 implements NotificationCenter.NotificationCente
                 if (i10 < arrayList.size()) {
                     b10.g();
                     d2Var.h = false;
-                    String str2 = ((TLRPC.TL_timezone) arrayList.get(h61Var.d)).f20417id;
+                    String str2 = ((TLRPC.TL_timezone) arrayList.get(h61Var.d)).f20418id;
                     d2Var.f12866n = str2;
                     o2 o2Var2 = d2Var.f12864c;
                     if (o2Var2 != null) {
@@ -86,7 +86,7 @@ public final class d2 extends n2 implements NotificationCenter.NotificationCente
             String string = LocaleController.getString(R.string.TimezoneDetectAutomatically);
             h61 h61Var = new h61(9);
             h61Var.d = -1;
-            h61Var.f26785l = string;
+            h61Var.f26786l = string;
             h61Var.K(d2Var.h);
             arrayList.add(h61Var);
             u61Var.T();
@@ -118,15 +118,15 @@ public final class d2 extends n2 implements NotificationCenter.NotificationCente
             String f7 = f2.f(tL_timezone);
             h61 h61Var2 = new h61(10);
             h61Var2.d = i10;
-            h61Var2.f26785l = e;
-            h61Var2.f26787n = f7;
-            h61Var2.K(TextUtils.equals(tL_timezone.f20417id, d2Var.f12866n));
+            h61Var2.f26786l = e;
+            h61Var2.f26788n = f7;
+            h61Var2.K(TextUtils.equals(tL_timezone.f20418id, d2Var.f12866n));
             if (d2Var.h && !z10) {
                 z11 = false;
             } else {
                 z11 = true;
             }
-            h61Var2.f26781g = z11;
+            h61Var2.f26782g = z11;
             arrayList.add(h61Var2);
             z12 = false;
             i10++;
@@ -150,7 +150,7 @@ public final class d2 extends n2 implements NotificationCenter.NotificationCente
         a2.H = new c2(this, 0);
         a2.setSearchFieldHint(LocaleController.getString(R.string.Search));
         FrameLayout frameLayout = new FrameLayout(context);
-        frameLayout.setBackgroundColor(h6.x0(null, h6.f20935a7, false));
+        frameLayout.setBackgroundColor(h6.x0(null, h6.f20936a7, false));
         c71 c71Var = new c71(this, new hg.o(this, 10), new e1.c(this, 23), null);
         this.f12862a = c71Var;
         c71Var.p1();
@@ -167,7 +167,7 @@ public final class d2 extends n2 implements NotificationCenter.NotificationCente
         this.f12863b.addView(w9Var, z5.t(130, 130, 49, 0, 42, 0, 12));
         TextView textView = new TextView(context);
         textView.setText(LocaleController.getString(R.string.TimezoneNotFound));
-        ok.o(h6.f21381y6, this.resourceProvider, textView, 1, 15.0f);
+        nk.o(h6.f21382y6, this.resourceProvider, textView, 1, 15.0f);
         this.f12863b.addView(textView, z5.t(-2, -2, 49, 0, 0, 0, 0));
         this.fragmentView = frameLayout;
         return frameLayout;

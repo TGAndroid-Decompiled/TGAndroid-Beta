@@ -3,16 +3,16 @@ package u3;
 import c3.p;
 import java.util.ArrayDeque;
 public final class b {
-    public final byte[] f47512a = new byte[8];
-    public final ArrayDeque f47513b = new ArrayDeque();
-    public final g f47514c = new g();
+    public final byte[] f47513a = new byte[8];
+    public final ArrayDeque f47514b = new ArrayDeque();
+    public final g f47515c = new g();
     public l2.f d;
     public int e;
-    public int f47515f;
-    public long f47516g;
+    public int f47516f;
+    public long f47517g;
 
     public final long a(p pVar, int i10) {
-        byte[] bArr = this.f47512a;
+        byte[] bArr = this.f47513a;
         pVar.readFully(bArr, 0, i10);
         long j10 = 0;
         for (int i11 = 0; i11 < i10; i11++) {

@@ -109,12 +109,12 @@ public final class fi0 extends org.telegram.ui.Components.jm0 {
             measuredHeight = viewGroup.getMeasuredHeight();
         }
         super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(Math.max(0, ((AndroidUtilities.displaySize.y - (dp + measuredHeight)) - AndroidUtilities.dp(8.0f)) - mi0Var.d.f12284b), Integer.MIN_VALUE));
-        if (mi0Var.f39273l0) {
+        if (mi0Var.f39274l0) {
             l4 = mi0Var.X;
         } else {
             l4 = mi0Var.V.l();
         }
-        int max = Math.max(AndroidUtilities.dp(12.0f) + l4, -((AndroidUtilities.dp(7.0f) + mi0Var.f39275n0[0]) - getMeasuredWidth()));
+        int max = Math.max(AndroidUtilities.dp(12.0f) + l4, -((AndroidUtilities.dp(7.0f) + mi0Var.f39276n0[0]) - getMeasuredWidth()));
         int i13 = mi0Var.N;
         int measuredWidth = getMeasuredWidth() - max;
         if (mi0Var.O.i()) {

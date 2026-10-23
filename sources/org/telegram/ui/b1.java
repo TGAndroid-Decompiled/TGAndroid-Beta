@@ -39,30 +39,30 @@ import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.Components.UndoView;
 public final class b1 implements org.telegram.ui.Components.yo0, gi.d4, ig1, r0.n, org.telegram.ui.ActionBar.a2, sg.t, org.telegram.ui.Components.ke0, org.telegram.ui.Components.yl0, org.telegram.ui.Components.ow0, ci.v9, CameraView.CameraViewDelegate, Utilities.Callback5, LanguageDetector.ExceptionCallback, org.telegram.ui.Components.kk0, MessagesStorage.BooleanCallback, org.telegram.ui.Cells.f0 {
-    public final int f35473a;
-    public final Object f35474b;
+    public final int f35474a;
+    public final Object f35475b;
 
     public b1(Object obj, int i10) {
-        this.f35473a = i10;
-        this.f35474b = obj;
+        this.f35474a = i10;
+        this.f35475b = obj;
     }
 
     @Override
     public r0.k1 B0(View view, r0.k1 k1Var) {
         m0 m0Var;
-        c2.b bVar = (c2.b) this.f35474b;
+        c2.b bVar = (c2.b) this.f35475b;
         bVar.getClass();
         i0.b defaultWindowInsets = AndroidUtilities.getDefaultWindowInsets(k1Var, false);
         x4 x4Var = (x4) bVar.d;
-        if (x4Var == view && (m0Var = x4Var.f37490b) != null) {
+        if (x4Var == view && (m0Var = x4Var.f37491b) != null) {
             m0Var.setPadding(defaultWindowInsets.f12283a, defaultWindowInsets.f12284b, defaultWindowInsets.f12285c, defaultWindowInsets.d);
         }
-        return r0.k1.f44837b;
+        return r0.k1.f44838b;
     }
 
     @Override
     public boolean P0(View view) {
-        switch (this.f35473a) {
+        switch (this.f35474a) {
             case 7:
                 return false;
             case 28:
@@ -74,17 +74,17 @@ public final class b1 implements org.telegram.ui.Components.yo0, gi.d4, ig1, r0.
 
     @Override
     public void a(int i10, ArrayList arrayList) {
-        AndroidUtilities.runOnUIThread(new i0(2, (s4) this.f35474b, arrayList), 100L);
+        AndroidUtilities.runOnUIThread(new i0(2, (s4) this.f35475b, arrayList), 100L);
     }
 
     @Override
     public void a0(View view, float f7, float f10) {
-        int i10 = this.f35473a;
+        int i10 = this.f35474a;
     }
 
     @Override
     public void b(float f7) {
-        c1 c1Var = (c1) this.f35474b;
+        c1 c1Var = (c1) this.f35475b;
         MessageObject messageObject = c1Var.M;
         if (messageObject == null) {
             return;
@@ -98,11 +98,11 @@ public final class b1 implements org.telegram.ui.Components.yo0, gi.d4, ig1, r0.
         org.telegram.ui.Components.h61 G;
         Object obj;
         long j10;
-        switch (this.f35473a) {
+        switch (this.f35474a) {
             case 7:
-                e6 e6Var = (e6) this.f35474b;
-                ArrayList arrayList = e6Var.f36558c;
-                if (((d6) arrayList.get(i10)).f44299a == 1) {
+                e6 e6Var = (e6) this.f35475b;
+                ArrayList arrayList = e6Var.f36559c;
+                if (((d6) arrayList.get(i10)).f44300a == 1) {
                     Bundle bundle = new Bundle();
                     bundle.putBoolean("onlySelect", true);
                     bundle.putBoolean("checkCanWrite", false);
@@ -119,15 +119,15 @@ public final class b1 implements org.telegram.ui.Components.yo0, gi.d4, ig1, r0.
                     cyVar.C2 = new m4.w0(7, e6Var, cyVar);
                     e6Var.presentFragment(cyVar);
                     return;
-                } else if (((d6) arrayList.get(i10)).f44299a == 2) {
-                    CacheByChatsController.KeepMediaException keepMediaException = ((d6) arrayList.get(i10)).f36278c;
+                } else if (((d6) arrayList.get(i10)).f44300a == 2) {
+                    CacheByChatsController.KeepMediaException keepMediaException = ((d6) arrayList.get(i10)).f36279c;
                     v70 v70Var = new v70(view.getContext(), e6Var);
                     v70Var.g(false);
                     v70Var.setParentWindow(org.telegram.ui.Components.f5.P(e6Var, v70Var, view, f7, f10));
                     v70Var.setCallback(new b6(e6Var, keepMediaException, 0));
                     return;
-                } else if (((d6) arrayList.get(i10)).f44299a == 4) {
-                    org.telegram.ui.ActionBar.b2 b2Var = org.telegram.ui.Components.f5.N(e6Var.getParentActivity(), LocaleController.getString(R.string.NotificationsDeleteAllExceptionTitle), LocaleController.getString(R.string.NotificationsDeleteAllExceptionAlert), LocaleController.getString(R.string.Delete), new st0(e6Var, 13), null).f20608a;
+                } else if (((d6) arrayList.get(i10)).f44300a == 4) {
+                    org.telegram.ui.ActionBar.b2 b2Var = org.telegram.ui.Components.f5.N(e6Var.getParentActivity(), LocaleController.getString(R.string.NotificationsDeleteAllExceptionTitle), LocaleController.getString(R.string.NotificationsDeleteAllExceptionAlert), LocaleController.getString(R.string.Delete), new st0(e6Var, 13), null).f20609a;
                     b2Var.show();
                     b2Var.i();
                     return;
@@ -135,13 +135,13 @@ public final class b1 implements org.telegram.ui.Components.yo0, gi.d4, ig1, r0.
                     return;
                 }
             case 28:
-                qt qtVar = (qt) this.f35474b;
-                HashSet hashSet = qtVar.f40967b0;
-                if (!qtVar.f40968c0 && (G = qtVar.f40969d0.G(i10 - 1)) != null && (obj = G.G) != null) {
+                qt qtVar = (qt) this.f35475b;
+                HashSet hashSet = qtVar.f40968b0;
+                if (!qtVar.f40969c0 && (G = qtVar.f40970d0.G(i10 - 1)) != null && (obj = G.G) != null) {
                     if (obj instanceof TLRPC.User) {
-                        j10 = ((TLRPC.User) obj).f20426id;
+                        j10 = ((TLRPC.User) obj).f20427id;
                     } else if (obj instanceof TLRPC.Chat) {
-                        j10 = ((TLRPC.Chat) obj).f20279id;
+                        j10 = ((TLRPC.Chat) obj).f20280id;
                     } else {
                         return;
                     }
@@ -158,17 +158,17 @@ public final class b1 implements org.telegram.ui.Components.yo0, gi.d4, ig1, r0.
                 }
                 return;
             default:
-                DataAutoDownloadActivity.W((DataAutoDownloadActivity) this.f35474b, view, i10, f7);
+                DataAutoDownloadActivity.W((DataAutoDownloadActivity) this.f35475b, view, i10, f7);
                 return;
         }
     }
 
     @Override
     public void e(ArrayList arrayList) {
-        yh yhVar = (yh) this.f35474b;
-        qn qnVar = yhVar.f43503p;
+        yh yhVar = (yh) this.f35475b;
+        qn qnVar = yhVar.f43504p;
         if (qnVar.getParentActivity() != null && qnVar.getParentActivity() != null) {
-            xh xhVar = new xh(yhVar, qnVar, qnVar.getParentActivity(), qnVar.f40676ea, arrayList);
+            xh xhVar = new xh(yhVar, qnVar, qnVar.getParentActivity(), qnVar.f40677ea, arrayList);
             xhVar.setCalcMandatoryInsets(qnVar.C9());
             xhVar.setDimBehind(false);
             qnVar.D7(false);
@@ -178,7 +178,7 @@ public final class b1 implements org.telegram.ui.Components.yo0, gi.d4, ig1, r0.
 
     @Override
     public void f(boolean z10) {
-        o3 o3Var = (o3) this.f35474b;
+        o3 o3Var = (o3) this.f35475b;
         x3 x3Var = o3Var.K.K;
         if (x3Var != null) {
             o3Var.h = true;
@@ -189,9 +189,9 @@ public final class b1 implements org.telegram.ui.Components.yo0, gi.d4, ig1, r0.
     @Override
     public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
         int i11;
-        switch (this.f35473a) {
+        switch (this.f35474a) {
             case 4:
-                m5 m5Var = (m5) this.f35474b;
+                m5 m5Var = (m5) this.f35475b;
                 m5Var.getClass();
                 try {
                     Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
@@ -203,7 +203,7 @@ public final class b1 implements org.telegram.ui.Components.yo0, gi.d4, ig1, r0.
                     return;
                 }
             case 8:
-                s6 s6Var = (s6) this.f35474b;
+                s6 s6Var = (s6) this.f35475b;
                 ?? f3Var = new org.telegram.ui.ActionBar.f3(s6Var.getContext(), false);
                 f3Var.fixNavigationBar();
                 f3Var.setCanDismissWithSwipe(false);
@@ -216,25 +216,25 @@ public final class b1 implements org.telegram.ui.Components.yo0, gi.d4, ig1, r0.
                 frameLayout.addView(imageView, w7.z5.d(150, 150.0f, 49, 0.0f, 16.0f, 0.0f, 0.0f));
                 imageView.d();
                 org.telegram.ui.Components.q6 q6Var = new org.telegram.ui.Components.q6(context, false, true, true);
-                frameLayout.f41811a = q6Var;
-                org.telegram.ui.Components.bs bsVar = org.telegram.ui.Components.bs.f25025g;
+                frameLayout.f41812a = q6Var;
+                org.telegram.ui.Components.bs bsVar = org.telegram.ui.Components.bs.f25026g;
                 q6Var.b(0.35f, 120L, bsVar);
                 q6Var.setGravity(1);
-                int i12 = org.telegram.ui.ActionBar.h6.f21099j5;
+                int i12 = org.telegram.ui.ActionBar.h6.f21100j5;
                 q6Var.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, i12, false));
                 q6Var.setTextSize(AndroidUtilities.dp(24.0f));
                 q6Var.setTypeface(AndroidUtilities.bold());
                 frameLayout.addView(q6Var, w7.z5.d(-1, 32.0f, 49, 0.0f, 176.0f, 0.0f, 0.0f));
                 t6 t6Var = new t6(context);
                 Paint paint = new Paint(1);
-                t6Var.f41609b = paint;
+                t6Var.f41610b = paint;
                 Paint paint2 = new Paint(1);
-                t6Var.f41610c = paint2;
+                t6Var.f41611c = paint2;
                 t6Var.e = new org.telegram.ui.Components.f6(t6Var, 350L, bsVar);
                 int i13 = org.telegram.ui.ActionBar.h6.N6;
                 paint.setColor(org.telegram.ui.ActionBar.h6.x0(null, i13, false));
                 paint2.setColor(org.telegram.ui.ActionBar.h6.m1(0.2f, org.telegram.ui.ActionBar.h6.x0(null, i13, false)));
-                frameLayout.f41812b = t6Var;
+                frameLayout.f41813b = t6Var;
                 frameLayout.addView(t6Var, w7.z5.d(240, 5.0f, 49, 0.0f, 226.0f, 0.0f, 0.0f));
                 TextView textView = new TextView(context);
                 textView.setGravity(1);
@@ -277,53 +277,53 @@ public final class b1 implements org.telegram.ui.Components.yo0, gi.d4, ig1, r0.
                 }
                 return;
             case 12:
-                md.U((md) this.f35474b, b2Var);
+                md.U((md) this.f35475b, b2Var);
                 return;
             case 15:
-                ((kg) this.f35474b).run();
+                ((kg) this.f35475b).run();
                 return;
             case 17:
-                qn qnVar = ((fj) this.f35474b).f37023b;
+                qn qnVar = ((fj) this.f35475b).f37024b;
                 qnVar.finishFragment();
                 qnVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needDeleteBusinessLink, qnVar.P3);
                 return;
             case 21:
-                qn qnVar2 = ((ul) this.f35474b).f42014a.Q;
+                qn qnVar2 = ((ul) this.f35475b).f42015a.Q;
                 i11 = ((org.telegram.ui.ActionBar.n2) qnVar2).currentAccount;
                 ChatThemeController.getInstance(i11).clearWallpaper(qnVar2.T5, true, true);
                 return;
             case 22:
-                ip ipVar = (ip) this.f35474b;
-                boolean z10 = ipVar.f38079s;
+                ip ipVar = (ip) this.f35475b;
+                boolean z10 = ipVar.f38080s;
                 if (!z10 || ipVar.h.linked_chat_id != 0) {
                     org.telegram.ui.ActionBar.b2[] b2VarArr = {new org.telegram.ui.ActionBar.b2(ipVar.getParentActivity(), 3, null)};
                     TLRPC.TL_channels_setDiscussionGroup tL_channels_setDiscussionGroup = new TLRPC.TL_channels_setDiscussionGroup();
                     if (z10) {
-                        tL_channels_setDiscussionGroup.broadcast = MessagesController.getInputChannel(ipVar.f38076f);
+                        tL_channels_setDiscussionGroup.broadcast = MessagesController.getInputChannel(ipVar.f38077f);
                         tL_channels_setDiscussionGroup.group = new TLRPC.TL_inputChannelEmpty();
                     } else {
                         tL_channels_setDiscussionGroup.broadcast = new TLRPC.TL_inputChannelEmpty();
-                        tL_channels_setDiscussionGroup.group = MessagesController.getInputChannel(ipVar.f38076f);
+                        tL_channels_setDiscussionGroup.group = MessagesController.getInputChannel(ipVar.f38077f);
                     }
                     AndroidUtilities.runOnUIThread(new yo(ipVar, b2VarArr, ipVar.getConnectionsManager().sendRequest(tL_channels_setDiscussionGroup, new vc(8, ipVar, b2VarArr)), 0), 500L);
                     return;
                 }
                 return;
             default:
-                ((lq) this.f35474b).run(1);
+                ((lq) this.f35475b).run(1);
                 return;
         }
     }
 
     @Override
     public void h(int i10) {
-        SharedConfig.getPreferences().edit().putInt("cache_limit", ((Integer) ((ArrayList) this.f35474b).get(i10)).intValue()).apply();
+        SharedConfig.getPreferences().edit().putInt("cache_limit", ((Integer) ((ArrayList) this.f35475b).get(i10)).intValue()).apply();
     }
 
     @Override
     public void i(Canvas canvas, RectF rectF, float f7) {
-        k8 k8Var = (k8) ((g) this.f35474b).f37153b;
-        Paint paint = k8Var.f38462w;
+        k8 k8Var = (k8) ((g) this.f35475b).f37154b;
+        Paint paint = k8Var.f38463w;
         TextPaint textPaint = k8Var.e;
         paint.setAlpha((int) (80.0f * f7));
         float lerp = AndroidUtilities.lerp(0.0f, Math.min(rectF.width(), rectF.height()) / 2.0f, f7);
@@ -335,7 +335,7 @@ public final class b1 implements org.telegram.ui.Components.yo0, gi.d4, ig1, r0.
             canvas.save();
             float min = Math.min(2.0f, Math.min(rectF.height(), rectF.width()) / AndroidUtilities.dp(44.0f));
             canvas.scale(min, min, rectF.centerX(), rectF.centerY());
-            canvas.drawText(Integer.toString(k8Var.f38454h0 + 1), rectF.centerX(), rectF.centerY() + AndroidUtilities.dp(5.0f), textPaint);
+            canvas.drawText(Integer.toString(k8Var.f38455h0 + 1), rectF.centerX(), rectF.centerY() + AndroidUtilities.dp(5.0f), textPaint);
             canvas.restore();
             textPaint.setAlpha(alpha);
         }
@@ -343,8 +343,8 @@ public final class b1 implements org.telegram.ui.Components.yo0, gi.d4, ig1, r0.
 
     @Override
     public void j(org.telegram.ui.Components.me0 me0Var) {
-        BubbleActivity bubbleActivity = (BubbleActivity) this.f35474b;
-        BubbleActivity bubbleActivity2 = BubbleActivity.f21941a0;
+        BubbleActivity bubbleActivity = (BubbleActivity) this.f35475b;
+        BubbleActivity bubbleActivity2 = BubbleActivity.f21942a0;
         SharedConfig.isWaitingForPasscodeEnter = false;
         Intent intent = bubbleActivity.U;
         if (intent != null) {
@@ -356,7 +356,7 @@ public final class b1 implements org.telegram.ui.Components.yo0, gi.d4, ig1, r0.
     }
 
     public void k(String str) {
-        qn qnVar = ((dm) this.f35474b).Q;
+        qn qnVar = ((dm) this.f35475b).Q;
         if (str.startsWith("@")) {
             qnVar.getMessagesController().openByUserName(str.substring(1), qnVar, 0);
         } else if (!str.startsWith("#") && !str.startsWith("$")) {
@@ -371,58 +371,58 @@ public final class b1 implements org.telegram.ui.Components.yo0, gi.d4, ig1, r0.
             qnVar.Ba(0, str, null, null, false);
         } else {
             cy cyVar = new cy(null);
-            cyVar.f36141n2 = str;
+            cyVar.f36142n2 = str;
             qnVar.presentFragment(cyVar);
         }
     }
 
     @Override
     public void onCameraInit() {
-        w9 w9Var = (w9) this.f35474b;
+        w9 w9Var = (w9) this.f35475b;
         HandlerThread handlerThread = w9Var.e;
         handlerThread.start();
-        w9Var.f42512f = new Handler(handlerThread.getLooper());
-        AndroidUtilities.runOnUIThread(w9Var.f42510d0, 0L);
+        w9Var.f42513f = new Handler(handlerThread.getLooper());
+        AndroidUtilities.runOnUIThread(w9Var.f42511d0, 0L);
         if (w9Var.a0()) {
-            o1.k kVar = w9Var.f42519y;
+            o1.k kVar = w9Var.f42520y;
             if (kVar != null) {
                 kVar.c();
-                w9Var.f42519y = null;
+                w9Var.f42520y = null;
             }
             o1.k kVar2 = new o1.k(new o1.j(0.0f));
-            w9Var.f42519y = kVar2;
+            w9Var.f42520y = kVar2;
             kVar2.b(new o9(w9Var, 0));
-            w9Var.f42519y.a(new p9(w9Var, 0));
-            w9Var.f42519y.f17559u = new o1.l(500.0f);
-            w9Var.f42519y.f17559u.a(0.8f);
-            w9Var.f42519y.f17559u.b(250.0f);
-            w9Var.f42519y.h();
+            w9Var.f42520y.a(new p9(w9Var, 0));
+            w9Var.f42520y.f17559u = new o1.l(500.0f);
+            w9Var.f42520y.f17559u.a(0.8f);
+            w9Var.f42520y.f17559u.b(250.0f);
+            w9Var.f42520y.h();
         }
     }
 
     @Override
     public void mo0run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        switch (this.f35473a) {
+        switch (this.f35474a) {
             case 13:
-                ce ceVar = (ce) this.f35474b;
+                ce ceVar = (ce) this.f35475b;
                 org.telegram.ui.Components.h61 h61Var = (org.telegram.ui.Components.h61) obj;
                 View view = (View) obj2;
                 ((Integer) obj3).intValue();
                 ((Float) obj4).floatValue();
                 ((Float) obj5).floatValue();
-                ee eeVar = ceVar.f35952f;
+                ee eeVar = ceVar.f35953f;
                 Object obj6 = h61Var.G;
                 if (obj6 instanceof TL_stars.StarsTransaction) {
-                    ai.md.i1(ceVar.getContext(), true, eeVar.d, ceVar.f35951c, (TL_stars.StarsTransaction) h61Var.G, ceVar.f35950b);
+                    ai.md.i1(ceVar.getContext(), true, eeVar.d, ceVar.f35952c, (TL_stars.StarsTransaction) h61Var.G, ceVar.f35951b);
                     return;
                 } else if (obj6 instanceof TL_stats.BroadcastRevenueTransaction) {
-                    ie.h0(ceVar.getContext(), ceVar.f35951c, (TL_stats.BroadcastRevenueTransaction) h61Var.G, eeVar.d, ceVar.f35950b);
+                    ie.h0(ceVar.getContext(), ceVar.f35952c, (TL_stats.BroadcastRevenueTransaction) h61Var.G, eeVar.d, ceVar.f35951b);
                     return;
                 } else {
                     return;
                 }
             default:
-                fs fsVar = (fs) this.f35474b;
+                fs fsVar = (fs) this.f35475b;
                 View view2 = (View) obj2;
                 ((Integer) obj3).getClass();
                 ((Float) obj4).getClass();
@@ -441,9 +441,9 @@ public final class b1 implements org.telegram.ui.Components.yo0, gi.d4, ig1, r0.
                 if (user == null || fsVar.getParentActivity() == null) {
                     return;
                 }
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(fsVar.getParentActivity(), 0, fsVar.f37075r);
-                alertDialog$Builder.f20608a.R = LocaleController.getString(R.string.DeleteContact);
-                alertDialog$Builder.f20608a.T = LocaleController.getString(R.string.AreYouSureDeleteContact);
+                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(fsVar.getParentActivity(), 0, fsVar.f37076r);
+                alertDialog$Builder.f20609a.R = LocaleController.getString(R.string.DeleteContact);
+                alertDialog$Builder.f20609a.T = LocaleController.getString(R.string.AreYouSureDeleteContact);
                 alertDialog$Builder.k(LocaleController.getString(R.string.Delete), new org.telegram.ui.Components.q2(26, fsVar, user));
                 alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
                 alertDialog$Builder.d(-1);
@@ -453,8 +453,8 @@ public final class b1 implements org.telegram.ui.Components.yo0, gi.d4, ig1, r0.
     }
 
     public b1(ej ejVar, boolean z10) {
-        this.f35473a = 18;
-        this.f35474b = ejVar;
+        this.f35474a = 18;
+        this.f35475b = ejVar;
     }
 
     @Override
@@ -467,13 +467,13 @@ public final class b1 implements org.telegram.ui.Components.yo0, gi.d4, ig1, r0.
 
     @Override
     public void run(boolean z10) {
-        switch (this.f35473a) {
+        switch (this.f35474a) {
             case 18:
-                qn qnVar = ((ej) this.f35474b).f36672b.f37023b;
-                qnVar.va(qnVar.f40659d4, true);
+                qn qnVar = ((ej) this.f35475b).f36673b.f37024b;
+                qnVar.va(qnVar.f40660d4, true);
                 return;
             case 19:
-                qn qnVar2 = ((ol) this.f35474b).f39923b;
+                qn qnVar2 = ((ol) this.f35475b).f39924b;
                 if (z10) {
                     qnVar2.T7();
                     UndoView undoView = qnVar2.y3;
@@ -485,7 +485,7 @@ public final class b1 implements org.telegram.ui.Components.yo0, gi.d4, ig1, r0.
                 }
                 return;
             default:
-                hr hrVar = ((zq) this.f35474b).f43795b;
+                hr hrVar = ((zq) this.f35475b).f43796b;
                 if (!z10 || hr.X(hrVar) == null) {
                     return;
                 }
@@ -495,10 +495,10 @@ public final class b1 implements org.telegram.ui.Components.yo0, gi.d4, ig1, r0.
                     Bundle bundle = new Bundle();
                     bundle.putLong("chat_id", hrVar.N);
                     io ioVar = new io(bundle);
-                    ioVar.l0(hrVar.f37759s);
+                    ioVar.l0(hrVar.f37760s);
                     ((ActionBarLayout) hr.b0(hrVar)).c(hr.a0(hrVar).getFragmentStack().size() - 1, ioVar);
                     hrVar.finishFragment();
-                    ioVar.f38040c.j(76, 0L, null);
+                    ioVar.f38041c.j(76, 0L, null);
                     return;
                 }
                 hrVar.finishFragment();
@@ -508,7 +508,7 @@ public final class b1 implements org.telegram.ui.Components.yo0, gi.d4, ig1, r0.
 
     @Override
     public void run(Exception exc) {
-        ((org.telegram.ui.Cells.h0) this.f35474b).setClickable(false);
+        ((org.telegram.ui.Cells.h0) this.f35475b).setClickable(false);
     }
 
     private final void l(View view, float f7, float f10) {

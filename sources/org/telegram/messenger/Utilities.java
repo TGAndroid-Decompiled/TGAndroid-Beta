@@ -478,9 +478,9 @@ public class Utilities {
 
     public static void raceCallbacks(Runnable runnable, Callback<Runnable>... callbackArr) {
         if (callbackArr != 0 && callbackArr.length != 0) {
-            ul ulVar = new ul(new int[]{0}, callbackArr, runnable, 0);
+            tl tlVar = new tl(new int[]{0}, callbackArr, runnable, 0);
             for (ai.h3 h3Var : callbackArr) {
-                h3Var.run(ulVar);
+                h3Var.run(tlVar);
             }
         } else if (runnable != null) {
             runnable.run();
@@ -553,7 +553,7 @@ public class Utilities {
         if (callbackArr == null || callbackArr.length <= i10) {
             return;
         }
-        callbackArr[i10].run(new w6(i10, callbackArr, 11));
+        callbackArr[i10].run(new v6(i10, callbackArr, 11));
     }
 
     public static String generateRandomString(int i10) {

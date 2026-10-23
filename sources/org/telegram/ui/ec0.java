@@ -2,10 +2,10 @@ package org.telegram.ui;
 
 import androidx.recyclerview.widget.RecyclerView;
 public final class ec0 extends s4.r0 {
-    public final nc0 f36635a;
+    public final nc0 f36636a;
 
     public ec0(nc0 nc0Var) {
-        this.f36635a = nc0Var;
+        this.f36636a = nc0Var;
     }
 
     @Override
@@ -16,7 +16,7 @@ public final class ec0 extends s4.r0 {
         } else {
             z10 = false;
         }
-        nc0 nc0Var = this.f36635a;
+        nc0 nc0Var = this.f36636a;
         nc0Var.Q = z10;
         if (!z10 && nc0Var.L != null) {
             nc0Var.L = null;
@@ -25,7 +25,7 @@ public final class ec0 extends s4.r0 {
 
     @Override
     public final void b(RecyclerView recyclerView, int i10, int i11) {
-        nc0 nc0Var = this.f36635a;
+        nc0 nc0Var = this.f36636a;
         nc0Var.z0(false);
         if (nc0Var.L != null) {
             nc0Var.N += i11;

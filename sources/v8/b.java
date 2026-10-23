@@ -6,18 +6,18 @@ import com.google.android.gms.identity.intents.model.UserAddress;
 import w7.f0;
 public final class b extends o6.a {
     public static final Parcelable.Creator<b> CREATOR = new s(5);
-    public String f48258a;
-    public String f48259b;
-    public String f48260c;
+    public String f48259a;
+    public String f48260b;
+    public String f48261c;
     public int d;
     public UserAddress e;
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         int q6 = f0.q(parcel, 20293);
-        f0.l(parcel, 1, this.f48258a);
-        f0.l(parcel, 2, this.f48259b);
-        f0.l(parcel, 3, this.f48260c);
+        f0.l(parcel, 1, this.f48259a);
+        f0.l(parcel, 2, this.f48260b);
+        f0.l(parcel, 3, this.f48261c);
         int i11 = this.d;
         f0.s(parcel, 4, 4);
         parcel.writeInt(i11);

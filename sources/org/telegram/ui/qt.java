@@ -24,20 +24,20 @@ public final class qt extends org.telegram.ui.Components.bb {
     public final FrameLayout X;
     public final ei.d Y;
     public final ei.d Z;
-    public final ArrayList f40966a0;
-    public final HashSet f40967b0;
-    public boolean f40968c0;
-    public org.telegram.ui.Components.u61 f40969d0;
+    public final ArrayList f40967a0;
+    public final HashSet f40968b0;
+    public boolean f40969c0;
+    public org.telegram.ui.Components.u61 f40970d0;
 
     public qt(Activity activity, HashSet hashSet) {
         super(activity, null, false, false, new ci.b());
         ArrayList arrayList = new ArrayList();
-        this.f40966a0 = arrayList;
+        this.f40967a0 = arrayList;
         HashSet hashSet2 = new HashSet();
-        this.f40967b0 = hashSet2;
+        this.f40968b0 = hashSet2;
         arrayList.addAll(hashSet);
         hashSet2.addAll(hashSet);
-        fixNavigationBar(getThemedColor(org.telegram.ui.ActionBar.h6.f21064h5));
+        fixNavigationBar(getThemedColor(org.telegram.ui.ActionBar.h6.f21065h5));
         this.drawDoubleNavigationBar = false;
         FrameLayout frameLayout = new FrameLayout(activity);
         this.X = frameLayout;
@@ -49,23 +49,23 @@ public final class qt extends org.telegram.ui.Components.bb {
         frameLayout.addView(imageView, w7.z5.d(24, 24.0f, 53, 0.0f, 14.0f, 14.0f, 0.0f));
         w7.b6.a(imageView);
         imageView.setOnClickListener(new View.OnClickListener(this) {
-            public final qt f40297b;
+            public final qt f40298b;
 
             {
-                this.f40297b = this;
+                this.f40298b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        this.f40297b.dismiss();
+                        this.f40298b.dismiss();
                         return;
                     case 1:
-                        this.f40297b.T(false);
+                        this.f40298b.T(false);
                         return;
                     default:
-                        this.f40297b.T(true);
+                        this.f40298b.T(true);
                         return;
                 }
             }
@@ -86,12 +86,12 @@ public final class qt extends org.telegram.ui.Components.bb {
         a10.setGravity(17);
         a10.setMaxWidth(ei.x3.a(a10.getText(), a10.getPaint()));
         e.addView(a10, w7.z5.t(-1, -2, 1, 2, 0, 2, 23));
-        org.telegram.ui.Components.u61 u61Var = this.f40969d0;
+        org.telegram.ui.Components.u61 u61Var = this.f40970d0;
         if (u61Var != null) {
             u61Var.N(false);
         }
         s4.k kVar = new s4.k();
-        kVar.f45954m = false;
+        kVar.f45955m = false;
         kVar.C = false;
         kVar.o(org.telegram.ui.Components.bs.h);
         kVar.n(350L);
@@ -110,23 +110,23 @@ public final class qt extends org.telegram.ui.Components.bb {
         dVar.g(spannableStringBuilder, false, true);
         e7.addView(dVar, w7.z5.p(-1, 48, 1.0f, 119, 0, 0, 6, 0));
         dVar.setOnClickListener(new View.OnClickListener(this) {
-            public final qt f40297b;
+            public final qt f40298b;
 
             {
-                this.f40297b = this;
+                this.f40298b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        this.f40297b.dismiss();
+                        this.f40298b.dismiss();
                         return;
                     case 1:
-                        this.f40297b.T(false);
+                        this.f40298b.T(false);
                         return;
                     default:
-                        this.f40297b.T(true);
+                        this.f40298b.T(true);
                         return;
                 }
             }
@@ -140,23 +140,23 @@ public final class qt extends org.telegram.ui.Components.bb {
         dVar2.g(spannableStringBuilder2, false, true);
         e7.addView(dVar2, w7.z5.p(-1, 48, 1.0f, 119, 6, 0, 0, 0));
         dVar2.setOnClickListener(new View.OnClickListener(this) {
-            public final qt f40297b;
+            public final qt f40298b;
 
             {
-                this.f40297b = this;
+                this.f40298b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        this.f40297b.dismiss();
+                        this.f40298b.dismiss();
                         return;
                     case 1:
-                        this.f40297b.T(false);
+                        this.f40298b.T(false);
                         return;
                     default:
-                        this.f40297b.T(true);
+                        this.f40298b.T(true);
                         return;
                 }
             }
@@ -184,26 +184,26 @@ public final class qt extends org.telegram.ui.Components.bb {
             Utilities.stageQueue.postRunnable(new lt(1, qtVar, updates));
             if (groupCall != null && LaunchActivity.H1 != null) {
                 TLRPC.TL_inputGroupCall tL_inputGroupCall = new TLRPC.TL_inputGroupCall();
-                tL_inputGroupCall.f20296id = groupCall.f20289id;
+                tL_inputGroupCall.f20297id = groupCall.f20290id;
                 tL_inputGroupCall.access_hash = groupCall.access_hash;
                 qtVar.dismiss();
                 org.telegram.ui.Components.voip.d2.g(LaunchActivity.H1, qtVar.currentAccount, tL_inputGroupCall, z10, groupCall, hashSet);
                 return;
             }
-            qtVar.f40968c0 = false;
+            qtVar.f40969c0 = false;
             dVar.setLoading(false);
         } else if (tLObject instanceof TL_phone.groupCall) {
             TL_phone.groupCall groupcall = (TL_phone.groupCall) tLObject;
             MessagesController.getInstance(qtVar.currentAccount).putUsers(groupcall.users, false);
             MessagesController.getInstance(qtVar.currentAccount).putChats(groupcall.chats, false);
             if (LaunchActivity.H1 == null) {
-                qtVar.f40968c0 = false;
+                qtVar.f40969c0 = false;
                 dVar.setLoading(false);
                 return;
             }
             TLRPC.TL_inputGroupCall tL_inputGroupCall2 = new TLRPC.TL_inputGroupCall();
             TLRPC.GroupCall groupCall2 = groupcall.call;
-            tL_inputGroupCall2.f20296id = groupCall2.f20289id;
+            tL_inputGroupCall2.f20297id = groupCall2.f20290id;
             tL_inputGroupCall2.access_hash = groupCall2.access_hash;
             qtVar.dismiss();
             org.telegram.ui.Components.voip.d2.g(LaunchActivity.H1, qtVar.currentAccount, tL_inputGroupCall2, z10, groupcall.call, hashSet);
@@ -215,7 +215,7 @@ public final class qt extends org.telegram.ui.Components.bb {
     public static void S(qt qtVar, ArrayList arrayList) {
         arrayList.add(org.telegram.ui.Components.h61.k(qtVar.X));
         arrayList.add(org.telegram.ui.Components.h61.B(null));
-        ArrayList arrayList2 = qtVar.f40966a0;
+        ArrayList arrayList2 = qtVar.f40967a0;
         if (arrayList2 != null && !arrayList2.isEmpty()) {
             i2.e.p(R.string.GroupCallCreateAddMembers, arrayList);
             for (int i10 = 0; i10 < arrayList2.size(); i10++) {
@@ -223,10 +223,10 @@ public final class qt extends org.telegram.ui.Components.bb {
                 l4.getClass();
                 TLRPC.User user = MessagesController.getInstance(qtVar.currentAccount).getUser(l4);
                 if (user != null) {
-                    int i11 = yg.j.f50168a;
+                    int i11 = yg.j.f50169a;
                     org.telegram.ui.Components.h61 J = org.telegram.ui.Components.h61.J(yg.j.class);
                     J.G = user;
-                    J.K(qtVar.f40967b0.contains(l4));
+                    J.K(qtVar.f40968b0.contains(l4));
                     arrayList.add(J);
                 } else {
                     return;
@@ -242,10 +242,10 @@ public final class qt extends org.telegram.ui.Components.bb {
 
     public final void T(boolean z10) {
         ei.d dVar;
-        if (this.f40968c0) {
+        if (this.f40969c0) {
             return;
         }
-        this.f40968c0 = true;
+        this.f40969c0 = true;
         if (z10) {
             dVar = this.Z;
         } else {
@@ -254,7 +254,7 @@ public final class qt extends org.telegram.ui.Components.bb {
         ei.d dVar2 = dVar;
         dVar2.setLoading(true);
         HashSet hashSet = new HashSet();
-        hashSet.addAll(this.f40967b0);
+        hashSet.addAll(this.f40968b0);
         TL_phone.createConferenceCall createconferencecall = new TL_phone.createConferenceCall();
         createconferencecall.random_id = Utilities.random.nextInt();
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(createconferencecall, new ai.i4(this, dVar2, z10, hashSet, 6));
@@ -263,7 +263,7 @@ public final class qt extends org.telegram.ui.Components.bb {
     @Override
     public final org.telegram.ui.Components.im0 x(org.telegram.ui.Components.jm0 jm0Var) {
         org.telegram.ui.Components.u61 u61Var = new org.telegram.ui.Components.u61(jm0Var, getContext(), this.currentAccount, 0, true, new g5(this, 10), this.resourcesProvider);
-        this.f40969d0 = u61Var;
+        this.f40970d0 = u61Var;
         return u61Var;
     }
 }

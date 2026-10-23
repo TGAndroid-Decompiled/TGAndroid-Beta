@@ -155,7 +155,7 @@ public final class f implements d1, l0, l {
         }
         long j10 = 0;
         if (g0Var2 != null && g0Var2.b()) {
-            if (z10 && this.h.m0() == g0Var2.f47318b && this.h.N() == g0Var2.f47319c) {
+            if (z10 && this.h.m0() == g0Var2.f47319b && this.h.N() == g0Var2.f47320c) {
                 j10 = this.h.M0();
             }
         } else if (z10) {
@@ -175,7 +175,7 @@ public final class f implements d1, l0, l {
             o1Var = (o1) ((c2) this.d.f7647c).get(g0Var);
         }
         if (g0Var != null && o1Var != null) {
-            return m(o1Var, o1Var.g(g0Var.f47317a, this.f13940b).f3822c, g0Var);
+            return m(o1Var, o1Var.g(g0Var.f47318a, this.f13940b).f3822c, g0Var);
         }
         int n02 = this.h.n0();
         o1 y02 = this.h.y0();

@@ -2,15 +2,15 @@ package org.telegram.ui;
 
 import org.webrtc.RendererCommon;
 public final class bh1 implements RendererCommon.RendererEvents {
-    public final hh1 f35642a;
+    public final hh1 f35643a;
 
     public bh1(hh1 hh1Var) {
-        this.f35642a = hh1Var;
+        this.f35643a = hh1Var;
     }
 
     @Override
     public final void onFirstFrameRendered() {
-        hh1 hh1Var = this.f35642a;
+        hh1 hh1Var = this.f35643a;
         com.google.android.gms.internal.cast.p pVar = hh1Var.l1;
         if (pVar != null) {
             pVar.run();

@@ -3,18 +3,18 @@ package org.telegram.ui.Components;
 import android.opengl.GLES20;
 import org.telegram.messenger.R;
 public class k50 {
-    public final int f27754a;
-    public final int f27755b;
-    public final int f27756c;
+    public final int f27755a;
+    public final int f27756b;
+    public final int f27757c;
     public final int d;
     public final int e;
-    public final int f27757f;
+    public final int f27758f;
 
     public k50(int i10) {
         int a2 = l50.a(35633, R.raw.round_blur_vert);
-        this.f27755b = a2;
+        this.f27756b = a2;
         int a10 = l50.a(35632, i10);
-        this.f27756c = a10;
+        this.f27757c = a10;
         int glCreateProgram = GLES20.glCreateProgram();
         GLES20.glAttachShader(glCreateProgram, a2);
         GLES20.glAttachShader(glCreateProgram, a10);
@@ -25,15 +25,15 @@ public class k50 {
             GLES20.glDeleteProgram(glCreateProgram);
             glCreateProgram = 0;
         }
-        this.f27754a = glCreateProgram;
+        this.f27755a = glCreateProgram;
         this.d = GLES20.glGetAttribLocation(glCreateProgram, "aPosition");
         this.e = GLES20.glGetAttribLocation(glCreateProgram, "aTextureCoord");
-        this.f27757f = GLES20.glGetUniformLocation(glCreateProgram, "sTexture");
+        this.f27758f = GLES20.glGetUniformLocation(glCreateProgram, "sTexture");
     }
 
     public final void a() {
-        GLES20.glDeleteProgram(this.f27754a);
-        GLES20.glDeleteShader(this.f27755b);
-        GLES20.glDeleteShader(this.f27756c);
+        GLES20.glDeleteProgram(this.f27755a);
+        GLES20.glDeleteShader(this.f27756b);
+        GLES20.glDeleteShader(this.f27757c);
     }
 }

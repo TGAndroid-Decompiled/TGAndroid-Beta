@@ -4,10 +4,10 @@ import b2.q0;
 import b2.s0;
 import b2.w;
 public abstract class i implements s0 {
-    public final String f44378a;
+    public final String f44379a;
 
     public i(String str) {
-        this.f44378a = str;
+        this.f44379a = str;
     }
 
     @Override
@@ -21,7 +21,7 @@ public abstract class i implements s0 {
     }
 
     public String toString() {
-        return this.f44378a;
+        return this.f44379a;
     }
 
     @Override

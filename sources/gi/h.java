@@ -16,16 +16,16 @@ public final class h extends g61 {
     public static h61 a(int i10, int i11, int i12, CharSequence charSequence, String str) {
         h61 J = h61.J(h.class);
         J.d = i10;
-        J.f26798z = i11;
-        J.f26784k = i12;
-        J.f26785l = charSequence;
-        J.f26786m = str;
+        J.f26799z = i11;
+        J.f26785k = i12;
+        J.f26786l = charSequence;
+        J.f26787m = str;
         return J;
     }
 
     @Override
     public final void bindView(View view, h61 h61Var, boolean z10, u61 u61Var, c71 c71Var) {
-        ((i) view).a(h61Var.f26798z, h61Var.f26784k, h61Var.f26785l, h61Var.f26786m);
+        ((i) view).a(h61Var.f26799z, h61Var.f26785k, h61Var.f26786l, h61Var.f26787m);
     }
 
     @Override

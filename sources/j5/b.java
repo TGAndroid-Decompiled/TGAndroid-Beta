@@ -219,14 +219,14 @@ public final class b implements gu, o0, Utilities.Callback5, a2, vx, p5, j, e0, 
         x0 x0Var = (x0) this.f14255b;
         a1 a1Var = x0Var.Q;
         if (webView == x0Var && a1Var != null) {
-            if (webView == a1Var.f42564a && aVar.f281b == 0) {
+            if (webView == a1Var.f42565a && aVar.f281b == 0) {
                 if (uri == null) {
                     uri2 = null;
                 } else {
                     uri2 = uri.toString();
                 }
                 String k10 = a1.k(uri2);
-                if (a1Var.f42589t0 && (TextUtils.isEmpty(a1Var.F0) || !TextUtils.equals(a1Var.F0, k10) || !TextUtils.equals(a1Var.F0, a1Var.getOriginHost()))) {
+                if (a1Var.f42590t0 && (TextUtils.isEmpty(a1Var.F0) || !TextUtils.equals(a1Var.F0, k10) || !TextUtils.equals(a1Var.F0, a1Var.getOriginHost()))) {
                     a1Var.g("onBotWebMessage ignored: untrusted origin");
                     return;
                 }

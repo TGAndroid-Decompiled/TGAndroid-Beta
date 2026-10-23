@@ -12,26 +12,26 @@ import org.telegram.ui.Components.f6;
 import org.telegram.ui.qa1;
 import w7.z5;
 public final class n1 extends FrameLayout {
-    public final qa1 f50417a;
-    public int f50418b;
-    public final f6 f50419c;
+    public final qa1 f50418a;
+    public int f50419b;
+    public final f6 f50420c;
     public final ArrayList d;
     public final RectF e;
-    public final RectF f50420f;
+    public final RectF f50421f;
     public final RectF h;
-    public final Paint f50421n;
-    public int f50422r;
+    public final Paint f50422n;
+    public int f50423r;
 
     public n1(Context context) {
         super(context);
         this.d = new ArrayList();
         this.e = new RectF();
-        this.f50420f = new RectF();
+        this.f50421f = new RectF();
         this.h = new RectF();
-        this.f50421n = new Paint(1);
-        this.f50422r = Integer.MIN_VALUE;
+        this.f50422n = new Paint(1);
+        this.f50423r = Integer.MIN_VALUE;
         qa1 qa1Var = new qa1(this, context, 21);
-        this.f50417a = qa1Var;
+        this.f50418a = qa1Var;
         qa1Var.setClipToPadding(false);
         qa1Var.setClipChildren(false);
         qa1Var.setOrientation(0);
@@ -40,7 +40,7 @@ public final class n1 extends FrameLayout {
         setHorizontalScrollBarEnabled(false);
         setClipToPadding(false);
         setClipChildren(false);
-        this.f50419c = new f6(qa1Var, 0L, 320L, bs.h);
+        this.f50420c = new f6(qa1Var, 0L, 320L, bs.h);
     }
 
     @Override

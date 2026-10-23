@@ -82,7 +82,7 @@ public final class c implements Utilities.CallbackReturn {
                 return Boolean.valueOf(z10);
             default:
                 String str2 = (String) obj;
-                bs bsVar = zh.b0.f51651z0;
+                bs bsVar = zh.b0.f51652z0;
                 if (TextUtils.isEmpty(str2) || (!str2.startsWith("tg:") && !pf.d.e(Uri.parse(str2), false, null))) {
                     z10 = false;
                 }

@@ -5,21 +5,21 @@ import android.animation.AnimatorListenerAdapter;
 import android.app.Activity;
 import org.telegram.messenger.AndroidUtilities;
 public final class fz0 extends AnimatorListenerAdapter {
-    public final int f37149a;
-    public final boolean f37150b;
-    public final ProfileActivity f37151c;
+    public final int f37150a;
+    public final boolean f37151b;
+    public final ProfileActivity f37152c;
 
     public fz0(ProfileActivity profileActivity, boolean z10, int i10) {
-        this.f37149a = i10;
-        this.f37151c = profileActivity;
-        this.f37150b = z10;
+        this.f37150a = i10;
+        this.f37152c = profileActivity;
+        this.f37151b = z10;
     }
 
     @Override
     public void onAnimationCancel(Animator animator) {
-        switch (this.f37149a) {
+        switch (this.f37150a) {
             case 1:
-                this.f37151c.f33629g0 = null;
+                this.f37152c.f33630g0 = null;
                 return;
             default:
                 super.onAnimationCancel(animator);
@@ -31,10 +31,10 @@ public final class fz0 extends AnimatorListenerAdapter {
     public final void onAnimationEnd(Animator animator) {
         int i10;
         org.telegram.ui.Cells.y3 y3Var;
-        switch (this.f37149a) {
+        switch (this.f37150a) {
             case 0:
-                ProfileActivity profileActivity = this.f37151c;
-                boolean z10 = this.f37150b;
+                ProfileActivity profileActivity = this.f37152c;
+                boolean z10 = this.f37151b;
                 ProfileActivity.o1(profileActivity, z10);
                 profileActivity.Y.setClickable(true);
                 if (z10) {
@@ -58,12 +58,12 @@ public final class fz0 extends AnimatorListenerAdapter {
                 }
                 return;
             default:
-                ProfileActivity profileActivity2 = this.f37151c;
-                if (profileActivity2.f33629g0 != null && (y3Var = profileActivity2.f33636h0) != null) {
-                    if (!this.f37150b) {
+                ProfileActivity profileActivity2 = this.f37152c;
+                if (profileActivity2.f33630g0 != null && (y3Var = profileActivity2.f33637h0) != null) {
+                    if (!this.f37151b) {
                         y3Var.setVisibility(4);
                     }
-                    profileActivity2.f33629g0 = null;
+                    profileActivity2.f33630g0 = null;
                     return;
                 }
                 return;

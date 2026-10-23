@@ -29,15 +29,15 @@ import u2.s1;
 import v7.b8;
 import v7.u6;
 public final class n extends s {
-    public static final v1 f49172l = new y(new jg0(18));
+    public static final v1 f49173l = new y(new jg0(18));
     public final Object d;
     public final Context e;
-    public final oa.d f49173f;
-    public i f49174g;
+    public final oa.d f49174f;
+    public i f49175g;
     public Thread h;
-    public z2.e f49175i;
-    public b2.f f49176j;
-    public Boolean f49177k;
+    public z2.e f49176i;
+    public b2.f f49177j;
+    public Boolean f49178k;
 
     public n(Context context, oa.d dVar) {
         Context context2;
@@ -49,17 +49,17 @@ public final class n extends s {
             context2 = null;
         }
         this.e = context2;
-        this.f49173f = dVar;
+        this.f49174f = dVar;
         if (iVar != null) {
-            this.f49174g = iVar;
+            this.f49175g = iVar;
         } else {
             iVar.getClass();
             h hVar = new h(iVar);
             hVar.d(iVar);
-            this.f49174g = new i(hVar);
+            this.f49175g = new i(hVar);
         }
-        this.f49176j = b2.f.f3737i;
-        if (this.f49174g.A0 && context == null) {
+        this.f49177j = b2.f.f3737i;
+        if (this.f49175g.A0 && context == null) {
             e2.a.l("DefaultTrackSelector", "Audio channel count constraints cannot be applied without reference to Context. Build the track selector instance with one of the non-deprecated constructors that take a Context argument.");
         }
     }
@@ -76,9 +76,9 @@ public final class n extends s {
     }
 
     public static void d(r rVar, i iVar, o[] oVarArr) {
-        int i10 = rVar.f49180a;
+        int i10 = rVar.f49181a;
         for (int i11 = 0; i11 < i10; i11++) {
-            s1 s1Var = rVar.f49182c[i11];
+            s1 s1Var = rVar.f49183c[i11];
             Map map = (Map) iVar.D0.get(i11);
             if (map != null && map.containsKey(s1Var)) {
                 Map map2 = (Map) iVar.D0.get(i11);
@@ -91,8 +91,8 @@ public final class n extends s {
     }
 
     public static void e(r rVar, i iVar, o[] oVarArr) {
-        for (int i10 = 0; i10 < rVar.f49180a; i10++) {
-            int i11 = rVar.f49181b[i10];
+        for (int i10 = 0; i10 < rVar.f49181a; i10++) {
+            int i11 = rVar.f49182b[i10];
             if (iVar.E0.get(i10) || iVar.I.contains(Integer.valueOf(i11))) {
                 oVarArr[i10] = null;
             }
@@ -101,15 +101,15 @@ public final class n extends s {
 
     public static void f(r rVar, i iVar, o[] oVarArr) {
         o oVar;
-        int i10 = rVar.f49180a;
-        s1[] s1VarArr = rVar.f49182c;
+        int i10 = rVar.f49181a;
+        s1[] s1VarArr = rVar.f49183c;
         HashMap hashMap = new HashMap();
         for (int i11 = 0; i11 < i10; i11++) {
             g(s1VarArr[i11], iVar, hashMap);
         }
-        g(rVar.f49183f, iVar, hashMap);
+        g(rVar.f49184f, iVar, hashMap);
         for (int i12 = 0; i12 < i10; i12++) {
-            q1 q1Var = (q1) hashMap.get(Integer.valueOf(rVar.f49181b[i12]));
+            q1 q1Var = (q1) hashMap.get(Integer.valueOf(rVar.f49182b[i12]));
             if (q1Var != null) {
                 p1 p1Var = q1Var.f3927a;
                 n0 n0Var = q1Var.f3928b;
@@ -124,7 +124,7 @@ public final class n extends s {
     }
 
     public static void g(s1 s1Var, t1 t1Var, HashMap hashMap) {
-        for (int i10 = 0; i10 < s1Var.f47433a; i10++) {
+        for (int i10 = 0; i10 < s1Var.f47434a; i10++) {
             q1 q1Var = (q1) t1Var.H.get(s1Var.a(i10));
             if (q1Var != null) {
                 p1 p1Var = q1Var.f3927a;
@@ -139,7 +139,7 @@ public final class n extends s {
     public static Pair h(o[] oVarArr, int i10) {
         for (int i11 = 0; i11 < oVarArr.length; i11++) {
             o oVar = oVarArr[i11];
-            if (oVar != null && oVar.f49178a.f3902c == i10) {
+            if (oVar != null && oVar.f49179a.f3902c == i10) {
                 return Pair.create(oVar, Integer.valueOf(i11));
             }
         }
@@ -208,14 +208,14 @@ public final class n extends s {
             int i10 = 0;
             p1 p1Var = null;
             g gVar = null;
-            for (int i11 = 0; i11 < s1Var.f47433a; i11++) {
+            for (int i11 = 0; i11 < s1Var.f47434a; i11++) {
                 p1 a2 = s1Var.a(i11);
                 int[] iArr2 = iArr[i11];
                 for (int i12 = 0; i12 < a2.f3900a; i12++) {
                     if (i2.e.e(iArr2[i12], iVar.B0)) {
                         g gVar2 = new g(a2.d[i12], iArr2[i12]);
                         if (gVar != null) {
-                            if (b0.f8415a.c(gVar2.f49150b, gVar.f49150b).c(gVar2.f49149a, gVar.f49149a).e() <= 0) {
+                            if (b0.f8415a.c(gVar2.f49151b, gVar.f49151b).c(gVar2.f49150a, gVar.f49150a).e() <= 0) {
                             }
                         }
                         p1Var = a2;
@@ -236,12 +236,12 @@ public final class n extends s {
         RandomAccess randomAccess;
         r rVar2 = rVar;
         ArrayList arrayList = new ArrayList();
-        int i12 = rVar2.f49180a;
+        int i12 = rVar2.f49181a;
         int i13 = 0;
         while (i13 < i12) {
-            if (i10 == rVar2.f49181b[i13]) {
-                s1 s1Var = rVar2.f49182c[i13];
-                for (int i14 = 0; i14 < s1Var.f47433a; i14++) {
+            if (i10 == rVar2.f49182b[i13]) {
+                s1 s1Var = rVar2.f49183c[i13];
+                for (int i14 = 0; i14 < s1Var.f47434a; i14++) {
                     p1 a2 = s1Var.a(i14);
                     x1 b10 = kVar.b(i13, a2, iArr[i13][i14]);
                     int i15 = a2.f3900a;
@@ -289,10 +289,10 @@ public final class n extends s {
         List list = (List) Collections.max(arrayList, comparator);
         int[] iArr2 = new int[list.size()];
         for (int i19 = 0; i19 < list.size(); i19++) {
-            iArr2[i19] = ((l) list.get(i19)).f49164c;
+            iArr2[i19] = ((l) list.get(i19)).f49165c;
         }
         l lVar3 = (l) list.get(0);
-        return Pair.create(new o(lVar3.f49163b, iArr2), Integer.valueOf(lVar3.f49162a));
+        return Pair.create(new o(lVar3.f49164b, iArr2), Integer.valueOf(lVar3.f49163a));
     }
 
     @Override
@@ -314,12 +314,12 @@ public final class n extends s {
                 throw th2;
             }
         }
-        if (Build.VERSION.SDK_INT >= 32 && (eVar = this.f49175i) != null) {
+        if (Build.VERSION.SDK_INT >= 32 && (eVar = this.f49176i) != null) {
             eVar.e();
-            this.f49175i = null;
+            this.f49176i = null;
         }
-        this.f49184a = null;
-        this.f49185b = null;
+        this.f49185a = null;
+        this.f49186b = null;
     }
 
     @Override
@@ -335,7 +335,7 @@ public final class n extends s {
     public final i j() {
         i iVar;
         synchronized (this.d) {
-            iVar = this.f49174g;
+            iVar = this.f49175g;
         }
         return iVar;
     }
@@ -346,7 +346,7 @@ public final class n extends s {
         z2.e eVar;
         synchronized (this.d) {
             try {
-                if (this.f49174g.A0 && Build.VERSION.SDK_INT >= 32 && (eVar = this.f49175i) != null && eVar.f50642b) {
+                if (this.f49175g.A0 && Build.VERSION.SDK_INT >= 32 && (eVar = this.f49176i) != null && eVar.f50643b) {
                     z10 = true;
                 } else {
                     z10 = false;
@@ -355,14 +355,14 @@ public final class n extends s {
                 throw th2;
             }
         }
-        if (z10 && (r0Var = this.f49184a) != null) {
+        if (z10 && (r0Var = this.f49185a) != null) {
             r0Var.f12558n.f(10);
         }
     }
 
     public final void m() {
         synchronized (this.d) {
-            this.f49174g.getClass();
+            this.f49175g.getClass();
         }
     }
 
@@ -370,14 +370,14 @@ public final class n extends s {
         boolean equals;
         iVar.getClass();
         synchronized (this.d) {
-            equals = this.f49174g.equals(iVar);
-            this.f49174g = iVar;
+            equals = this.f49175g.equals(iVar);
+            this.f49175g = iVar;
         }
         if (!equals) {
             if (iVar.A0 && this.e == null) {
                 e2.a.l("DefaultTrackSelector", "Audio channel count constraints cannot be applied without reference to Context. Build the track selector instance with one of the non-deprecated constructors that take a Context argument.");
             }
-            r0 r0Var = this.f49184a;
+            r0 r0Var = this.f49185a;
             if (r0Var != null) {
                 r0Var.f12558n.f(10);
             }

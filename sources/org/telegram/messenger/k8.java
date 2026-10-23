@@ -1,25 +1,32 @@
 package org.telegram.messenger;
 public final class k8 implements Runnable {
-    public final int f18758a;
-    public final MediaDataController f18759b;
-    public final String f18760c;
-    public final boolean d;
+    public final int f18768a;
+    public final BaseController f18769b;
+    public final long f18770c;
+    public final long d;
+    public final int e;
+    public final int f18771f;
 
-    public k8(MediaDataController mediaDataController, String str, boolean z10, int i10) {
-        this.f18758a = i10;
-        this.f18759b = mediaDataController;
-        this.f18760c = str;
-        this.d = z10;
+    public k8(BaseController baseController, long j10, long j11, int i10, int i11, int i12) {
+        this.f18768a = i12;
+        this.f18769b = baseController;
+        this.f18770c = j10;
+        this.d = j11;
+        this.e = i10;
+        this.f18771f = i11;
     }
 
     @Override
     public final void run() {
-        switch (this.f18758a) {
+        switch (this.f18768a) {
             case 0:
-                this.f18759b.lambda$processLoadedDiceStickers$87(this.f18760c, this.d);
+                ((MediaDataController) this.f18769b).lambda$getMediaCountDatabase$139(this.f18770c, this.d, this.e, this.f18771f);
+                return;
+            case 1:
+                ((MediaDataController) this.f18769b).lambda$putMediaCountDatabase$138(this.f18770c, this.d, this.e, this.f18771f);
                 return;
             default:
-                this.f18759b.lambda$loadStickersByEmojiOrName$83(this.f18760c, this.d);
+                ((MessagesStorage) this.f18769b).lambda$updateRepliesMaxReadId$193(this.f18770c, this.d, this.e, this.f18771f);
                 return;
         }
     }

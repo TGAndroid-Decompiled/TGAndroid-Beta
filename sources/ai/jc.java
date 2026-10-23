@@ -38,12 +38,12 @@ public final class jc implements Utilities.CallbackReturn {
                     ti tiVar = new ti(m0Var.getContext(), new rg.w(m0Var), false, false, false, m0Var.Q1);
                     tiVar.drawNavigationBar = true;
                     tiVar.P1(LocaleController.getString(R.string.AddImage));
-                    tiVar.f30541c2 = new rg.x(m0Var, tiVar);
+                    tiVar.f30542c2 = new rg.x(m0Var, tiVar);
                     tiVar.setOnDismissListener(new ei.e1(7));
                     tiVar.N1(1, false);
                     tiVar.t1();
                     MediaController.forceBroadcastNewPhotos = true;
-                    tiVar.f30561j0.f0();
+                    tiVar.f30562j0.f0();
                     tiVar.show();
                 }
                 return Boolean.TRUE;

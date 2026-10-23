@@ -31,15 +31,15 @@ import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class mb implements org.telegram.ui.Cells.l1 {
-    public final rb f39174a;
+    public final rb f39175a;
 
     public mb(rb rbVar) {
-        this.f39174a = rbVar;
+        this.f39175a = rbVar;
     }
 
     @Override
     public final void A0(org.telegram.ui.Cells.u1 u1Var, float f7, float f10) {
-        vb vbVar = this.f39174a.f41114n;
+        vb vbVar = this.f39175a.f41115n;
         int i10 = vb.Q0;
         vbVar.P0(u1Var, 0.0f, 0.0f);
     }
@@ -61,7 +61,7 @@ public final class mb implements org.telegram.ui.Cells.l1 {
 
     @Override
     public final void I1(MessageObject messageObject, String str, String str2, String str3, String str4, int i10, int i11) {
-        vb vbVar = this.f39174a.f41114n;
+        vb vbVar = this.f39175a.f41115n;
         org.telegram.ui.Components.cv.J(vbVar, messageObject, vbVar.B0, str2, str3, str4, str, i10, i11, -1, false);
     }
 
@@ -76,7 +76,7 @@ public final class mb implements org.telegram.ui.Cells.l1 {
             if (!messageObject.isMusic()) {
                 return false;
             }
-            return MediaController.getInstance().setPlaylist(this.f39174a.f41114n.f42181o0, messageObject, 0L);
+            return MediaController.getInstance().setPlaylist(this.f39175a.f41115n.f42182o0, messageObject, 0L);
         }
         boolean playMessage = MediaController.getInstance().playMessage(messageObject, false);
         MediaController.getInstance().setVoiceMessagesPlaylist(null, false);
@@ -86,7 +86,7 @@ public final class mb implements org.telegram.ui.Cells.l1 {
     @Override
     public final void M0(int i10, org.telegram.ui.Cells.u1 u1Var) {
         TLRPC.WebPage webPage;
-        vb vbVar = this.f39174a.f41114n;
+        vb vbVar = this.f39175a.f41115n;
         MessageObject messageObject = u1Var.getMessageObject();
         TLRPC.TL_channelAdminLogEvent tL_channelAdminLogEvent = messageObject.currentEvent;
         if (tL_channelAdminLogEvent != null && (tL_channelAdminLogEvent.action instanceof TLRPC.TL_channelAdminLogEventActionEditMessage)) {
@@ -94,7 +94,7 @@ public final class mb implements org.telegram.ui.Cells.l1 {
             bundle.putLong("chat_id", -messageObject.getDialogId());
             bundle.putInt("message_id", messageObject.getRealId());
             qn qnVar = new qn(bundle);
-            if (ChatObject.isForum(vbVar.f42171f)) {
+            if (ChatObject.isForum(vbVar.f42172f)) {
                 og.d.a(qnVar, MessagesStorage.TopicKey.of(messageObject.getDialogId(), MessageObject.getTopicId(vb.w0(vbVar), messageObject.messageOwner, true)));
             }
             vbVar.presentFragment(qnVar);
@@ -169,12 +169,12 @@ public final class mb implements org.telegram.ui.Cells.l1 {
     @Override
     public final void R0(org.telegram.ui.Cells.u1 u1Var, CharacterStyle characterStyle, boolean z10) {
         TLRPC.WebPage webPage;
-        vb vbVar = this.f39174a.f41114n;
+        vb vbVar = this.f39175a.f41115n;
         if (characterStyle != null) {
             MessageObject messageObject = u1Var.getMessageObject();
             if (characterStyle instanceof org.telegram.ui.Components.k61) {
                 org.telegram.ui.Components.k61 k61Var = (org.telegram.ui.Components.k61) characterStyle;
-                AndroidUtilities.addToClipboard(k61Var.f27770a.subSequence(k61Var.f27771b, k61Var.f27772c).toString());
+                AndroidUtilities.addToClipboard(k61Var.f27771a.subSequence(k61Var.f27772b, k61Var.f27773c).toString());
                 if (AndroidUtilities.shouldShowClipboardToast()) {
                     Toast.makeText(vbVar.getParentActivity(), LocaleController.getString(R.string.TextCopied), 0).show();
                 }
@@ -199,7 +199,7 @@ public final class mb implements org.telegram.ui.Cells.l1 {
                     MessagesController.getInstance(vb.u0(vbVar)).openByUserName(url.substring(1), vbVar, 0);
                 } else if (url.startsWith("#")) {
                     cy cyVar = new cy(null);
-                    cyVar.f36141n2 = url;
+                    cyVar.f36142n2 = url;
                     vbVar.presentFragment(cyVar);
                 }
             } else {
@@ -219,7 +219,7 @@ public final class mb implements org.telegram.ui.Cells.l1 {
                     if (!pf.d.e(Uri.parse(url3), false, null)) {
                         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(vbVar.getParentActivity());
                         String string = LocaleController.getString(R.string.OpenUrlTitle);
-                        org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20608a;
+                        org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20609a;
                         b2Var.R = string;
                         b2Var.T = LocaleController.formatString(R.string.OpenUrlAlert2, url3);
                         alertDialog$Builder.k(LocaleController.getString(R.string.Open), new m4.w0(8, vbVar, url3));
@@ -252,10 +252,10 @@ public final class mb implements org.telegram.ui.Cells.l1 {
     public final void R1(org.telegram.ui.Cells.u1 u1Var, int i10, float f7, float f10, boolean z10) {
         MessageObject messageObject = u1Var.getMessageObject().replyMessageObject;
         long dialogId = messageObject.getDialogId();
-        vb vbVar = this.f39174a.f41114n;
-        if (dialogId == (-vbVar.f42171f.f20279id)) {
-            for (int i11 = 0; i11 < vbVar.f42181o0.size(); i11++) {
-                MessageObject messageObject2 = (MessageObject) vbVar.f42181o0.get(i11);
+        vb vbVar = this.f39175a.f41115n;
+        if (dialogId == (-vbVar.f42172f.f20280id)) {
+            for (int i11 = 0; i11 < vbVar.f42182o0.size(); i11++) {
+                MessageObject messageObject2 = (MessageObject) vbVar.f42182o0.get(i11);
                 if (messageObject2 != null && messageObject2.contentType != 1 && messageObject2.getRealId() == messageObject.getRealId()) {
                     vbVar.Y0(messageObject2);
                     return;
@@ -263,17 +263,17 @@ public final class mb implements org.telegram.ui.Cells.l1 {
             }
         }
         Bundle bundle = new Bundle();
-        bundle.putLong("chat_id", vbVar.f42171f.f20279id);
+        bundle.putLong("chat_id", vbVar.f42172f.f20280id);
         bundle.putInt("message_id", messageObject.getRealId());
         vbVar.presentFragment(new qn(bundle));
     }
 
     @Override
     public final void S(org.telegram.ui.Cells.u1 u1Var, TLRPC.Chat chat, int i10, float f7, float f10, boolean z10) {
-        vb vbVar = this.f39174a.f41114n;
-        if (chat != null && chat != vbVar.f42171f) {
+        vb vbVar = this.f39175a.f41115n;
+        if (chat != null && chat != vbVar.f42172f) {
             Bundle bundle = new Bundle();
-            bundle.putLong("chat_id", chat.f20279id);
+            bundle.putLong("chat_id", chat.f20280id);
             if (i10 != 0) {
                 bundle.putInt("message_id", i10);
             }
@@ -315,12 +315,12 @@ public final class mb implements org.telegram.ui.Cells.l1 {
 
     public final void a(TLRPC.User user) {
         Bundle bundle = new Bundle();
-        bundle.putLong("user_id", user.f20426id);
-        rb rbVar = this.f39174a;
-        vb.p0(rbVar.f41114n, bundle, user.f20426id);
+        bundle.putLong("user_id", user.f20427id);
+        rb rbVar = this.f39175a;
+        vb.p0(rbVar.f41115n, bundle, user.f20427id);
         ProfileActivity profileActivity = new ProfileActivity(bundle, null);
         profileActivity.N4(0);
-        rbVar.f41114n.presentFragment(profileActivity);
+        rbVar.f41115n.presentFragment(profileActivity);
     }
 
     @Override
@@ -336,10 +336,10 @@ public final class mb implements org.telegram.ui.Cells.l1 {
     @Override
     public final boolean c0(org.telegram.ui.Cells.u1 u1Var, TLRPC.User user) {
         c5 b10;
-        vb vbVar = this.f39174a.f41114n;
-        if (user != null && user.f20426id != UserConfig.getInstance(vb.n0(vbVar)).getClientUserId()) {
+        vb vbVar = this.f39175a.f41115n;
+        if (user != null && user.f20427id != UserConfig.getInstance(vb.n0(vbVar)).getClientUserId()) {
             i5[] i5VarArr = {i5.d, i5.h};
-            TLRPC.UserFull userFull = vbVar.getMessagesController().getUserFull(user.f20426id);
+            TLRPC.UserFull userFull = vbVar.getMessagesController().getUserFull(user.f20427id);
             if (userFull != null) {
                 b10 = c5.c(user, userFull, i5VarArr);
             } else {
@@ -381,20 +381,20 @@ public final class mb implements org.telegram.ui.Cells.l1 {
     @Override
     public final void h1(org.telegram.ui.Cells.u1 u1Var, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
         MessageObject messageObject = u1Var.getMessageObject();
-        rb rbVar = this.f39174a;
-        if (rbVar.f41114n.f42182p0.contains(Long.valueOf(messageObject.eventId))) {
-            rbVar.f41114n.f42182p0.remove(Long.valueOf(messageObject.eventId));
+        rb rbVar = this.f39175a;
+        if (rbVar.f41115n.f42183p0.contains(Long.valueOf(messageObject.eventId))) {
+            rbVar.f41115n.f42183p0.remove(Long.valueOf(messageObject.eventId));
         } else {
-            rbVar.f41114n.f42182p0.add(Long.valueOf(messageObject.eventId));
+            rbVar.f41115n.f42183p0.add(Long.valueOf(messageObject.eventId));
         }
-        rbVar.f41114n.W0(true);
-        rbVar.f41114n.R0();
-        rbVar.f41114n.E.l();
+        rbVar.f41115n.W0(true);
+        rbVar.f41115n.R0();
+        rbVar.f41115n.E.l();
     }
 
     @Override
     public final void j() {
-        vb vbVar = this.f39174a.f41114n;
+        vb vbVar = this.f39175a.f41115n;
         if (ApplicationLoader.isStandaloneBuild()) {
             LaunchActivity launchActivity = LaunchActivity.H1;
             if (launchActivity != null) {
@@ -425,14 +425,14 @@ public final class mb implements org.telegram.ui.Cells.l1 {
     @Override
     public final void p(org.telegram.ui.Cells.u1 u1Var) {
         boolean z10;
-        rb rbVar = this.f39174a;
-        vb vbVar = rbVar.f41114n;
+        rb rbVar = this.f39175a;
+        vb vbVar = rbVar.f41115n;
         if (vbVar.getParentActivity() == null) {
             return;
         }
-        Context context = rbVar.f41112c;
+        Context context = rbVar.f41113c;
         MessageObject messageObject = u1Var.getMessageObject();
-        if (ChatObject.isChannel(vbVar.f42171f) && !vbVar.f42171f.megagroup) {
+        if (ChatObject.isChannel(vbVar.f42172f) && !vbVar.f42172f.megagroup) {
             z10 = true;
         } else {
             z10 = false;
@@ -447,14 +447,14 @@ public final class mb implements org.telegram.ui.Cells.l1 {
 
     @Override
     public final void q0(org.telegram.ui.Cells.u1 u1Var, float f7, float f10) {
-        vb vbVar = this.f39174a.f41114n;
+        vb vbVar = this.f39175a.f41115n;
         int i10 = vb.Q0;
         vbVar.P0(u1Var, 0.0f, 0.0f);
     }
 
     @Override
     public final void u0(org.telegram.ui.Cells.u1 u1Var, TLRPC.User user, float f7, float f10) {
-        if (user != null && user.f20426id != UserConfig.getInstance(vb.m0(this.f39174a.f41114n)).getClientUserId()) {
+        if (user != null && user.f20427id != UserConfig.getInstance(vb.m0(this.f39175a.f41115n)).getClientUserId()) {
             a(user);
         }
     }

@@ -52,24 +52,24 @@ public abstract class b1 extends FrameLayout {
     public boolean U;
     public final p V;
     public PorterDuffColorFilter W;
-    public float f20641a;
-    public float f20642a0;
-    public Utilities.Callback2 f20643b;
-    public float f20644b0;
-    public final x0 f20645c;
-    public long f20646c0;
+    public float f20642a;
+    public float f20643a0;
+    public Utilities.Callback2 f20644b;
+    public float f20645b0;
+    public final x0 f20646c;
+    public long f20647c0;
     public final x0 d;
-    public boolean f20647d0;
+    public boolean f20648d0;
     public final org.telegram.ui.Components.f6 e;
-    public Bitmap f20648f;
+    public Bitmap f20649f;
     public BitmapShader h;
-    public Matrix f20649n;
-    public final int[] f20650r;
-    public float f20651s;
+    public Matrix f20650n;
+    public final int[] f20651r;
+    public float f20652s;
     public boolean v;
-    public boolean f20652w;
-    public final d6 f20653x;
-    public final Paint f20654y;
+    public boolean f20653w;
+    public final d6 f20654x;
+    public final Paint f20655y;
 
     public b1(Context context, d6 d6Var) {
         super(context);
@@ -77,13 +77,13 @@ public abstract class b1 extends FrameLayout {
         int i11;
         int i12;
         int i13;
-        this.f20641a = 0.5f;
+        this.f20642a = 0.5f;
         bs bsVar = bs.h;
         this.e = new org.telegram.ui.Components.f6(1.0f, this, 0L, 320L, bsVar);
-        this.f20650r = new int[2];
-        this.f20651s = 0.0f;
+        this.f20651r = new int[2];
+        this.f20652s = 0.0f;
         Paint paint = new Paint(1);
-        this.f20654y = paint;
+        this.f20655y = paint;
         Paint paint2 = new Paint(1);
         this.E = paint2;
         this.F = new Paint(1);
@@ -99,16 +99,16 @@ public abstract class b1 extends FrameLayout {
         this.N = true;
         this.U = false;
         this.V = new p(this, 3);
-        this.f20653x = d6Var;
+        this.f20654x = d6Var;
         setWillNotDraw(false);
         x0 x0Var = new x0(this, 0);
-        this.f20645c = x0Var;
+        this.f20646c = x0Var;
         x0Var.setCallback(this);
         x0Var.x(AndroidUtilities.bold());
         x0Var.n(0.3f, 165L, bsVar);
         x0Var.w(AndroidUtilities.dpf2(14.0f));
         Paint.Style style = Paint.Style.FILL_AND_STROKE;
-        TextPaint textPaint = x0Var.f29227a;
+        TextPaint textPaint = x0Var.f29228a;
         textPaint.setStyle(style);
         textPaint.setStrokeWidth(AndroidUtilities.dpf2(0.3f));
         if (LocaleController.isRTL) {
@@ -116,14 +116,14 @@ public abstract class b1 extends FrameLayout {
         } else {
             i10 = 3;
         }
-        x0Var.f29229b = i10;
+        x0Var.f29230b = i10;
         x0 x0Var2 = new x0(this, 1);
         this.d = x0Var2;
         x0Var2.setCallback(this);
         x0Var2.x(AndroidUtilities.bold());
         x0Var2.n(0.3f, 165L, bsVar);
         x0Var2.w(AndroidUtilities.dpf2(14.0f));
-        TextPaint textPaint2 = x0Var2.f29227a;
+        TextPaint textPaint2 = x0Var2.f29228a;
         textPaint2.setStyle(style);
         textPaint2.setStrokeWidth(AndroidUtilities.dpf2(0.3f));
         if (LocaleController.isRTL) {
@@ -131,7 +131,7 @@ public abstract class b1 extends FrameLayout {
         } else {
             i11 = 5;
         }
-        x0Var2.f29229b = i11;
+        x0Var2.f29230b = i11;
         paint.setColor(0);
         paint.setShadowLayer(AndroidUtilities.dpf2(1.33f), 0.0f, AndroidUtilities.dpf2(0.33f), 1056964608);
         ColorMatrix colorMatrix = new ColorMatrix();
@@ -187,7 +187,7 @@ public abstract class b1 extends FrameLayout {
         } else {
             porterDuffColorFilter = null;
         }
-        x0 x0Var = this.f20645c;
+        x0 x0Var = this.f20646c;
         x0Var.setColorFilter(porterDuffColorFilter);
         x0Var.setBounds(AndroidUtilities.dp(20.0f) + getPaddingLeft(), getMeasuredHeight() / 2, (getMeasuredWidth() - getPaddingRight()) - AndroidUtilities.dp(20.0f), getMeasuredHeight() / 2);
         x0Var.draw(canvas);
@@ -210,10 +210,10 @@ public abstract class b1 extends FrameLayout {
         }
         float a2 = w7.r.a(f7, 0.0f, 1.0f);
         if (!z10) {
-            this.f20641a = a2;
+            this.f20642a = a2;
             invalidate();
         } else {
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.f20641a, a2);
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.f20642a, a2);
             this.T = ofFloat;
             ofFloat.addUpdateListener(new v0(this, 0));
             this.T.addListener(new y0(this, a2, 0));
@@ -222,34 +222,34 @@ public abstract class b1 extends FrameLayout {
             this.T.start();
         }
         a1 a1Var = (a1) this;
-        String str2 = a1Var.f20615f0;
+        String str2 = a1Var.f20616f0;
         if (str2 == null) {
             str2 = ed.a((a2 * 2.8f) + 0.2f) + "x";
         }
         if (str2 != null) {
-            x0 x0Var = this.f20645c;
-            if (!TextUtils.equals(x0Var.f29234i, str2)) {
+            x0 x0Var = this.f20646c;
+            if (!TextUtils.equals(x0Var.f29235i, str2)) {
                 x0Var.a();
                 x0Var.t(str2, true, true);
             }
         }
-        if (a1Var.f20615f0 != null) {
+        if (a1Var.f20616f0 != null) {
             str = ed.a((a2 * 2.8f) + 0.2f) + "x";
         }
         if (str != null) {
             x0 x0Var2 = this.d;
-            if (!TextUtils.equals(x0Var2.f29234i, str)) {
+            if (!TextUtils.equals(x0Var2.f29235i, str)) {
                 x0Var2.a();
                 x0Var2.t(str, true, true);
             }
         }
         int i10 = h6.sj;
-        d6 d6Var = a1Var.f20653x;
+        d6 d6Var = a1Var.f20654x;
         this.J.setColor(i0.a.f(w7.r.a((((a2 * 2.8f) + 0.2f) - 1.0f) / 1.0f, 0.0f, 1.0f), h6.w0(i10, d6Var), h6.w0(h6.tj, d6Var)));
     }
 
     public float getValue() {
-        return this.f20641a;
+        return this.f20642a;
     }
 
     @Override
@@ -259,12 +259,12 @@ public abstract class b1 extends FrameLayout {
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set(getPaddingLeft(), getPaddingTop(), getWidth() - getPaddingRight(), getHeight() - getPaddingBottom());
         if (this.v) {
-            canvas.drawRoundRect(rectF, AndroidUtilities.dp(this.f20651s), AndroidUtilities.dp(this.f20651s), this.f20654y);
+            canvas.drawRoundRect(rectF, AndroidUtilities.dp(this.f20652s), AndroidUtilities.dp(this.f20652s), this.f20655y);
         }
-        boolean z10 = this.f20652w;
+        boolean z10 = this.f20653w;
         Paint paint = this.J;
         if (z10) {
-            if (this.f20648f != null) {
+            if (this.f20649f != null) {
                 f7 = 1.0f;
             } else {
                 f7 = 0.0f;
@@ -286,33 +286,33 @@ public abstract class b1 extends FrameLayout {
                 }
                 Paint paint2 = this.I;
                 paint2.setAlpha((int) ((1.0f - d) * 255.0f));
-                canvas.drawRoundRect(rectF, AndroidUtilities.dp(this.f20651s), AndroidUtilities.dp(this.f20651s), paint2);
+                canvas.drawRoundRect(rectF, AndroidUtilities.dp(this.f20652s), AndroidUtilities.dp(this.f20652s), paint2);
             }
-            if (this.f20648f != null && this.f20641a < 1.0f && d > 0.0f) {
+            if (this.f20649f != null && this.f20642a < 1.0f && d > 0.0f) {
                 Paint paint3 = this.F;
                 paint3.setAlpha((int) (d * 255.0f));
-                canvas.drawRoundRect(rectF, AndroidUtilities.dp(this.f20651s), AndroidUtilities.dp(this.f20651s), paint3);
+                canvas.drawRoundRect(rectF, AndroidUtilities.dp(this.f20652s), AndroidUtilities.dp(this.f20652s), paint3);
             }
-            canvas.drawRoundRect(rectF, AndroidUtilities.dp(this.f20651s), AndroidUtilities.dp(this.f20651s), this.G);
-            canvas.drawRoundRect(rectF, AndroidUtilities.dp(this.f20651s), AndroidUtilities.dp(this.f20651s), this.H);
+            canvas.drawRoundRect(rectF, AndroidUtilities.dp(this.f20652s), AndroidUtilities.dp(this.f20652s), this.G);
+            canvas.drawRoundRect(rectF, AndroidUtilities.dp(this.f20652s), AndroidUtilities.dp(this.f20652s), this.H);
             paint.setColor(-1);
         } else {
-            canvas.drawRoundRect(rectF, AndroidUtilities.dp(this.f20651s), AndroidUtilities.dp(this.f20651s), this.E);
+            canvas.drawRoundRect(rectF, AndroidUtilities.dp(this.f20652s), AndroidUtilities.dp(this.f20652s), this.E);
         }
         a(canvas);
         if (!this.L) {
             b(canvas, false);
         }
-        if (this.f20641a < 1.0f) {
+        if (this.f20642a < 1.0f) {
             canvas.save();
-            canvas.clipRect(getPaddingLeft(), getPaddingTop(), (((getWidth() - getPaddingLeft()) - getPaddingRight()) * this.f20641a) + getPaddingLeft(), getHeight() - getPaddingBottom());
+            canvas.clipRect(getPaddingLeft(), getPaddingTop(), (((getWidth() - getPaddingLeft()) - getPaddingRight()) * this.f20642a) + getPaddingLeft(), getHeight() - getPaddingBottom());
         }
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(this.f20651s), AndroidUtilities.dp(this.f20651s), paint);
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(this.f20652s), AndroidUtilities.dp(this.f20652s), paint);
         a(canvas);
         if (!this.L) {
             b(canvas, true);
         }
-        if (this.f20641a < 1.0f) {
+        if (this.f20642a < 1.0f) {
             canvas.restore();
         }
         if (this.L) {
@@ -332,21 +332,21 @@ public abstract class b1 extends FrameLayout {
         Bitmap bitmap;
         int i15;
         super.onLayout(z10, i10, i11, i12, i13);
-        int[] iArr = this.f20650r;
+        int[] iArr = this.f20651r;
         getLocationOnScreen(iArr);
-        Matrix matrix = this.f20649n;
+        Matrix matrix = this.f20650n;
         if (matrix != null) {
             matrix.reset();
-            this.f20649n.postScale(8.0f, 8.0f);
-            this.f20649n.postTranslate(-iArr[0], -iArr[1]);
+            this.f20650n.postScale(8.0f, 8.0f);
+            this.f20650n.postTranslate(-iArr[0], -iArr[1]);
             BitmapShader bitmapShader = this.h;
             if (bitmapShader != null) {
-                bitmapShader.setLocalMatrix(this.f20649n);
+                bitmapShader.setLocalMatrix(this.f20650n);
                 invalidate();
             }
         }
         boolean z11 = this.N;
-        d6 d6Var = this.f20653x;
+        d6 d6Var = this.f20654x;
         if (z11) {
             Drawable s02 = h6.s0();
             if (s02 instanceof ColorDrawable) {
@@ -354,7 +354,7 @@ public abstract class b1 extends FrameLayout {
             } else {
                 Pair pair = null;
                 if (s02 instanceof wc0) {
-                    bitmap = ((wc0) s02).f32079k;
+                    bitmap = ((wc0) s02).f32080k;
                 } else if (s02 instanceof BitmapDrawable) {
                     bitmap = ((BitmapDrawable) s02).getBitmap();
                 } else {
@@ -380,10 +380,10 @@ public abstract class b1 extends FrameLayout {
                     this.O = linearGradient;
                     this.I.setShader(linearGradient);
                 }
-                w02 = h6.m1(0.25f, h6.w0(h6.f20993d6, d6Var));
+                w02 = h6.m1(0.25f, h6.w0(h6.f20994d6, d6Var));
             }
         } else {
-            w02 = h6.w0(h6.f20993d6, d6Var);
+            w02 = h6.w0(h6.f20994d6, d6Var);
             if (!h6.I.q()) {
                 w02 = h6.v(w02, h6.m1(0.18f, -16777216));
             }
@@ -410,7 +410,7 @@ public abstract class b1 extends FrameLayout {
         } else {
             z10 = false;
         }
-        if (this.f20652w && this.f20648f == null && !this.U && z10) {
+        if (this.f20653w && this.f20649f == null && !this.U && z10) {
             this.V.run();
         }
     }
@@ -420,17 +420,17 @@ public abstract class b1 extends FrameLayout {
         float x10 = motionEvent.getX() - getPaddingLeft();
         int action = motionEvent.getAction();
         if (action == 0) {
-            this.f20647d0 = true;
-            this.f20642a0 = x10;
-            this.f20644b0 = this.f20641a;
-            this.f20646c0 = System.currentTimeMillis();
+            this.f20648d0 = true;
+            this.f20643a0 = x10;
+            this.f20645b0 = this.f20642a;
+            this.f20647c0 = System.currentTimeMillis();
             return true;
         }
         if (action == 2 || action == 1) {
             int i10 = 0;
             if (action == 1) {
-                this.f20647d0 = false;
-                if (System.currentTimeMillis() - this.f20646c0 < ViewConfiguration.getTapTimeout()) {
+                this.f20648d0 = false;
+                if (System.currentTimeMillis() - this.f20647c0 < ViewConfiguration.getTapTimeout()) {
                     float paddingLeft = (x10 - getPaddingLeft()) / ((getWidth() - getPaddingLeft()) - getPaddingRight());
                     if (this.M != null) {
                         while (true) {
@@ -445,14 +445,14 @@ public abstract class b1 extends FrameLayout {
                             }
                         }
                     }
-                    Utilities.Callback2 callback2 = this.f20643b;
+                    Utilities.Callback2 callback2 = this.f20644b;
                     if (callback2 != null) {
                         callback2.run(Float.valueOf(paddingLeft), Boolean.TRUE);
                         return true;
                     }
                 }
             }
-            float max = ((x10 - this.f20642a0) / Math.max(1, (getWidth() - getPaddingLeft()) - getPaddingRight())) + this.f20644b0;
+            float max = ((x10 - this.f20643a0) / Math.max(1, (getWidth() - getPaddingLeft()) - getPaddingRight())) + this.f20645b0;
             if (this.M != null) {
                 int i11 = 0;
                 while (true) {
@@ -467,11 +467,11 @@ public abstract class b1 extends FrameLayout {
                     }
                 }
             }
-            boolean z10 = !this.f20647d0;
+            boolean z10 = !this.f20648d0;
             c(max, false);
-            Utilities.Callback2 callback22 = this.f20643b;
+            Utilities.Callback2 callback22 = this.f20644b;
             if (callback22 != null) {
-                callback22.run(Float.valueOf(this.f20641a), Boolean.valueOf(z10));
+                callback22.run(Float.valueOf(this.f20642a), Boolean.valueOf(z10));
             }
         }
         return true;
@@ -495,7 +495,7 @@ public abstract class b1 extends FrameLayout {
         } else {
             i11 = -16777216;
         }
-        this.f20645c.u(i11);
+        this.f20646c.u(i11);
         if (this.L) {
             i12 = -1;
         }
@@ -503,7 +503,7 @@ public abstract class b1 extends FrameLayout {
     }
 
     public void setDrawBlur(boolean z10) {
-        this.f20652w = z10;
+        this.f20653w = z10;
         invalidate();
     }
 
@@ -520,11 +520,11 @@ public abstract class b1 extends FrameLayout {
     }
 
     public void setOnValueChange(Utilities.Callback2<Float, Boolean> callback2) {
-        this.f20643b = callback2;
+        this.f20644b = callback2;
     }
 
     public void setRoundRadiusDp(float f7) {
-        this.f20651s = f7;
+        this.f20652s = f7;
         invalidate();
     }
 
@@ -533,7 +533,7 @@ public abstract class b1 extends FrameLayout {
     }
 
     public void setTextColor(int i10) {
-        this.f20645c.u(i10);
+        this.f20646c.u(i10);
         this.d.u(i10);
     }
 }

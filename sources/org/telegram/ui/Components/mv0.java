@@ -8,37 +8,37 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ProfileActivity;
 public final class mv0 implements NotificationCenter.NotificationCenterDelegate {
     public final NotificationCenter.ObserversGroup E;
-    public boolean f28609f;
+    public boolean f28610f;
     public boolean h;
-    public final jv0[] f28610n;
-    public final long f28611r;
-    public final long f28612s;
+    public final jv0[] f28611n;
+    public final long f28612r;
+    public final long f28613s;
     public long v;
-    public final org.telegram.ui.ActionBar.n2 f28613w;
-    public boolean f28615y;
-    public int[] f28606a = {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
-    public int[] f28607b = {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
-    public final int[] f28608c = {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
+    public final org.telegram.ui.ActionBar.n2 f28614w;
+    public boolean f28616y;
+    public int[] f28607a = {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
+    public int[] f28608b = {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
+    public final int[] f28609c = {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
     public final int[] d = {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
     public final int[] e = {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
-    public final ArrayList f28614x = new ArrayList();
+    public final ArrayList f28615x = new ArrayList();
 
     public mv0(org.telegram.ui.ActionBar.n2 n2Var) {
         int i10;
         TLRPC.ChatFull chatFull;
-        this.f28613w = n2Var;
+        this.f28614w = n2Var;
         if (n2Var instanceof bh) {
             bh bhVar = (bh) n2Var;
             long a2 = bhVar.a();
-            this.f28611r = a2;
+            this.f28612r = a2;
             this.v = bhVar.I();
-            this.f28612s = bhVar.d();
+            this.f28613s = bhVar.d();
             if (a2 != n2Var.getUserConfig().getClientUserId()) {
                 n2Var.getMessagesController().getSavedMessagesController().hasSavedMessages(a2, new Utilities.Callback(this) {
-                    public final mv0 f28286b;
+                    public final mv0 f28287b;
 
                     {
-                        this.f28286b = this;
+                        this.f28287b = this;
                     }
 
                     @Override
@@ -46,10 +46,10 @@ public final class mv0 implements NotificationCenter.NotificationCenterDelegate 
                         Boolean bool = (Boolean) obj;
                         switch (r2) {
                             case 0:
-                                mv0 mv0Var = this.f28286b;
-                                ArrayList arrayList = mv0Var.f28614x;
+                                mv0 mv0Var = this.f28287b;
+                                ArrayList arrayList = mv0Var.f28615x;
                                 boolean booleanValue = bool.booleanValue();
-                                mv0Var.f28609f = booleanValue;
+                                mv0Var.f28610f = booleanValue;
                                 mv0Var.h = true;
                                 if (booleanValue) {
                                     int size = arrayList.size();
@@ -60,10 +60,10 @@ public final class mv0 implements NotificationCenter.NotificationCenterDelegate 
                                 }
                                 return;
                             default:
-                                mv0 mv0Var2 = this.f28286b;
-                                ArrayList arrayList2 = mv0Var2.f28614x;
+                                mv0 mv0Var2 = this.f28287b;
+                                ArrayList arrayList2 = mv0Var2.f28615x;
                                 boolean booleanValue2 = bool.booleanValue();
-                                mv0Var2.f28609f = booleanValue2;
+                                mv0Var2.f28610f = booleanValue2;
                                 mv0Var2.h = true;
                                 if (booleanValue2) {
                                     int size2 = arrayList2.size();
@@ -79,23 +79,23 @@ public final class mv0 implements NotificationCenter.NotificationCenterDelegate 
             }
         } else if (n2Var instanceof ProfileActivity) {
             ProfileActivity profileActivity = (ProfileActivity) n2Var;
-            if (profileActivity.f33644i1) {
-                this.f28611r = profileActivity.getUserConfig().getClientUserId();
-                this.f28612s = profileActivity.a();
+            if (profileActivity.f33645i1) {
+                this.f28612r = profileActivity.getUserConfig().getClientUserId();
+                this.f28613s = profileActivity.a();
             } else {
                 long a10 = profileActivity.a();
-                this.f28611r = a10;
-                this.f28612s = profileActivity.f33637h1;
-                TLRPC.ChatFull chatFull2 = profileActivity.f33734v2;
+                this.f28612r = a10;
+                this.f28613s = profileActivity.f33638h1;
+                TLRPC.ChatFull chatFull2 = profileActivity.f33735v2;
                 if (chatFull2 != null) {
                     c(chatFull2);
                 }
                 if (a10 != n2Var.getUserConfig().getClientUserId()) {
                     n2Var.getMessagesController().getSavedMessagesController().hasSavedMessages(a10, new Utilities.Callback(this) {
-                        public final mv0 f28286b;
+                        public final mv0 f28287b;
 
                         {
-                            this.f28286b = this;
+                            this.f28287b = this;
                         }
 
                         @Override
@@ -103,10 +103,10 @@ public final class mv0 implements NotificationCenter.NotificationCenterDelegate 
                             Boolean bool = (Boolean) obj;
                             switch (r2) {
                                 case 0:
-                                    mv0 mv0Var = this.f28286b;
-                                    ArrayList arrayList = mv0Var.f28614x;
+                                    mv0 mv0Var = this.f28287b;
+                                    ArrayList arrayList = mv0Var.f28615x;
                                     boolean booleanValue = bool.booleanValue();
-                                    mv0Var.f28609f = booleanValue;
+                                    mv0Var.f28610f = booleanValue;
                                     mv0Var.h = true;
                                     if (booleanValue) {
                                         int size = arrayList.size();
@@ -117,10 +117,10 @@ public final class mv0 implements NotificationCenter.NotificationCenterDelegate 
                                     }
                                     return;
                                 default:
-                                    mv0 mv0Var2 = this.f28286b;
-                                    ArrayList arrayList2 = mv0Var2.f28614x;
+                                    mv0 mv0Var2 = this.f28287b;
+                                    ArrayList arrayList2 = mv0Var2.f28615x;
                                     boolean booleanValue2 = bool.booleanValue();
-                                    mv0Var2.f28609f = booleanValue2;
+                                    mv0Var2.f28610f = booleanValue2;
                                     mv0Var2.h = true;
                                     if (booleanValue2) {
                                         int size2 = arrayList2.size();
@@ -136,36 +136,36 @@ public final class mv0 implements NotificationCenter.NotificationCenterDelegate 
                 }
             }
         } else if (n2Var instanceof wa0) {
-            this.f28611r = ((wa0) n2Var).e;
+            this.f28612r = ((wa0) n2Var).e;
         } else if (n2Var instanceof org.telegram.ui.cy) {
-            this.f28611r = n2Var.getUserConfig().getClientUserId();
+            this.f28612r = n2Var.getUserConfig().getClientUserId();
         }
-        if (this.v == 0 && DialogObject.isChatDialog(this.f28611r) && (chatFull = n2Var.getMessagesController().getChatFull(-this.f28611r)) != null) {
+        if (this.v == 0 && DialogObject.isChatDialog(this.f28612r) && (chatFull = n2Var.getMessagesController().getChatFull(-this.f28612r)) != null) {
             long j10 = chatFull.migrated_from_chat_id;
             if (j10 != 0) {
                 this.v = -j10;
             }
         }
-        this.f28610n = new jv0[9];
+        this.f28611n = new jv0[9];
         int i11 = 0;
         while (true) {
-            jv0[] jv0VarArr = this.f28610n;
+            jv0[] jv0VarArr = this.f28611n;
             if (i11 >= jv0VarArr.length) {
                 break;
             }
             jv0VarArr[i11] = new jv0();
-            jv0 jv0Var = this.f28610n[i11];
-            if (DialogObject.isEncryptedDialog(this.f28611r)) {
+            jv0 jv0Var = this.f28611n[i11];
+            if (DialogObject.isEncryptedDialog(this.f28612r)) {
                 i10 = Integer.MIN_VALUE;
             } else {
                 i10 = Integer.MAX_VALUE;
             }
-            jv0Var.f27650j[0] = i10;
-            this.f28610n[i11].f27650j[1] = Integer.MAX_VALUE;
+            jv0Var.f27651j[0] = i10;
+            this.f28611n[i11].f27651j[1] = Integer.MAX_VALUE;
             i11++;
         }
         a();
-        org.telegram.ui.ActionBar.n2 n2Var2 = this.f28613w;
+        org.telegram.ui.ActionBar.n2 n2Var2 = this.f28614w;
         if (n2Var2 == null) {
             this.E = null;
         } else {
@@ -174,18 +174,18 @@ public final class mv0 implements NotificationCenter.NotificationCenterDelegate 
     }
 
     public final void a() {
-        org.telegram.ui.ActionBar.n2 n2Var = this.f28613w;
+        org.telegram.ui.ActionBar.n2 n2Var = this.f28614w;
         if (n2Var != null) {
-            n2Var.getMediaDataController().getMediaCounts(this.f28611r, this.f28612s, n2Var.getClassGuid());
+            n2Var.getMediaDataController().getMediaCounts(this.f28612r, this.f28613s, n2Var.getClassGuid());
             if (this.v != 0) {
-                n2Var.getMediaDataController().getMediaCounts(this.v, this.f28612s, n2Var.getClassGuid());
+                n2Var.getMediaDataController().getMediaCounts(this.v, this.f28613s, n2Var.getClassGuid());
             }
         }
     }
 
     public final void b(org.telegram.ui.ActionBar.n2 n2Var) {
-        if (n2Var == this.f28613w) {
-            this.f28614x.clear();
+        if (n2Var == this.f28614w) {
+            this.f28615x.clear();
             NotificationCenter.ObserversGroup observersGroup = this.E;
             if (observersGroup != null) {
                 observersGroup.removeAllObservers();
@@ -194,12 +194,12 @@ public final class mv0 implements NotificationCenter.NotificationCenterDelegate 
     }
 
     public final void c(TLRPC.ChatFull chatFull) {
-        org.telegram.ui.ActionBar.n2 n2Var = this.f28613w;
+        org.telegram.ui.ActionBar.n2 n2Var = this.f28614w;
         if (n2Var != null && chatFull != null) {
             long j10 = chatFull.migrated_from_chat_id;
             if (j10 != 0 && this.v == 0) {
                 this.v = -j10;
-                n2Var.getMediaDataController().getMediaCounts(this.v, this.f28612s, n2Var.getClassGuid());
+                n2Var.getMediaDataController().getMediaCounts(this.v, this.f28613s, n2Var.getClassGuid());
             }
         }
     }

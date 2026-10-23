@@ -7,17 +7,17 @@ import android.view.View;
 import android.widget.ImageView;
 import org.telegram.messenger.R;
 public final class dm extends AnimatorListenerAdapter {
-    public final ChatAttachAlertPhotoLayout f25570a;
+    public final ChatAttachAlertPhotoLayout f25571a;
 
     public dm(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout) {
-        this.f25570a = chatAttachAlertPhotoLayout;
+        this.f25571a = chatAttachAlertPhotoLayout;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
         int i10;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f25570a;
-        ImageView imageView = chatAttachAlertPhotoLayout.f24118r0;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f25571a;
+        ImageView imageView = chatAttachAlertPhotoLayout.f24119r0;
         om omVar = chatAttachAlertPhotoLayout.P;
         if (omVar != null && omVar.isFrontface()) {
             i10 = R.drawable.camera_revert1;
@@ -25,6 +25,6 @@ public final class dm extends AnimatorListenerAdapter {
             i10 = R.drawable.camera_revert2;
         }
         imageView.setImageResource(i10);
-        ObjectAnimator.ofFloat(chatAttachAlertPhotoLayout.f24118r0, View.SCALE_X, 1.0f).setDuration(100L).start();
+        ObjectAnimator.ofFloat(chatAttachAlertPhotoLayout.f24119r0, View.SCALE_X, 1.0f).setDuration(100L).start();
     }
 }

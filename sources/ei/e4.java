@@ -18,7 +18,7 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UnconfirmedAuthController;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.ok;
+import org.telegram.messenger.nk;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.dg0;
 import org.telegram.ui.Components.e00;
@@ -92,10 +92,10 @@ public final class e4 implements Utilities.Callback {
                 if (r71Var != null) {
                     int i14 = r6Var.U;
                     int i15 = r6Var.V;
-                    e00 e00Var = r71Var.f29864b;
+                    e00 e00Var = r71Var.f29865b;
                     if (e00Var == null) {
-                        r71Var.f29867n = i14;
-                        r71Var.f29868r = i15;
+                        r71Var.f29868n = i14;
+                        r71Var.f29869r = i15;
                     } else {
                         e00Var.i(i14, i15);
                     }
@@ -104,7 +104,7 @@ public final class e4 implements Utilities.Callback {
                 if (dg0Var != null) {
                     int i16 = r6Var.U;
                     int i17 = r6Var.V;
-                    e00 e00Var2 = dg0Var.f25482l0;
+                    e00 e00Var2 = dg0Var.f25483l0;
                     if (e00Var2 != null) {
                         e00Var2.i(i16, i17);
                         return;
@@ -139,7 +139,7 @@ public final class e4 implements Utilities.Callback {
                         textView.setTextSize(1, 20.0f);
                         textView.setGravity(17);
                         textView.setText(LocaleController.formatPluralString("UnconfirmedAuthDeniedTitle", arrayList.size(), new Object[0]));
-                        textView.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21099j5, false));
+                        textView.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21100j5, false));
                         linearLayout.addView(textView, w7.z5.k(28.0f, 14.0f, 28.0f, 0.0f, -1, -2));
                         TextView textView2 = new TextView(saVar.getContext());
                         textView2.setTextSize(1, 14.0f);
@@ -156,12 +156,12 @@ public final class e4 implements Utilities.Callback {
                             }
                             textView2.setText(LocaleController.formatString(R.string.UnconfirmedAuthDeniedMessageMultiple, str2));
                         }
-                        textView2.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21099j5, false));
+                        textView2.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21100j5, false));
                         linearLayout.addView(textView2, w7.z5.k(40.0f, 9.0f, 40.0f, 0.0f, -1, -2));
                         FrameLayout frameLayout = new FrameLayout(saVar.getContext());
                         frameLayout.setPadding(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(24.0f), AndroidUtilities.dp(10.0f));
                         int dp = AndroidUtilities.dp(12.0f);
-                        int i20 = org.telegram.ui.ActionBar.h6.f21231q7;
+                        int i20 = org.telegram.ui.ActionBar.h6.f21232q7;
                         int x02 = org.telegram.ui.ActionBar.h6.x0(null, i20, false);
                         if (org.telegram.ui.ActionBar.h6.I.q()) {
                             f7 = 0.2f;
@@ -199,7 +199,7 @@ public final class e4 implements Utilities.Callback {
                         AndroidUtilities.runOnUIThread(v7Var, 1000L);
                         dVar.setOnClickListener(new org.telegram.ui.Cells.y2(dVar, f3Var, 1));
                     } else {
-                        ok.q(R.string.UnknownError, new xc(org.telegram.ui.Components.lb.a(saVar.getContext()), null), null);
+                        nk.q(R.string.UnknownError, new xc(org.telegram.ui.Components.lb.a(saVar.getContext()), null), null);
                     }
                 }
                 saVar.e.a(false, true);
@@ -210,11 +210,11 @@ public final class e4 implements Utilities.Callback {
                 TLRPC.TL_messageMediaGeoLive tL_messageMediaGeoLive = new TLRPC.TL_messageMediaGeoLive();
                 TLRPC.TL_geoPoint tL_geoPoint = new TLRPC.TL_geoPoint();
                 tL_messageMediaGeoLive.geo = tL_geoPoint;
-                tL_geoPoint.lat = AndroidUtilities.fixLocationCoord(rlVar.f29966q0.getLatitude());
-                tL_messageMediaGeoLive.geo._long = AndroidUtilities.fixLocationCoord(rlVar.f29966q0.getLongitude());
+                tL_geoPoint.lat = AndroidUtilities.fixLocationCoord(rlVar.f29967q0.getLatitude());
+                tL_messageMediaGeoLive.geo._long = AndroidUtilities.fixLocationCoord(rlVar.f29967q0.getLongitude());
                 tL_messageMediaGeoLive.period = i11;
-                rlVar.f29977x0.b(tL_messageMediaGeoLive, rlVar.f29979y0, true, 0, ((Long) obj).longValue());
-                rlVar.f28176b.dismiss(true);
+                rlVar.f29978x0.b(tL_messageMediaGeoLive, rlVar.f29980y0, true, 0, ((Long) obj).longValue());
+                rlVar.f28177b.dismiss(true);
                 return;
             case 5:
                 z50.e1((z50) obj2, i11, (ChannelBoostsController.CanApplyBoost) obj);
@@ -230,13 +230,13 @@ public final class e4 implements Utilities.Callback {
             default:
                 org.telegram.ui.Wallet.r9 r9Var = (org.telegram.ui.Wallet.r9) obj2;
                 String str3 = (String) obj;
-                if (!r9Var.f34819n && i11 == r9Var.I) {
-                    r9Var.f34824y = 0;
+                if (!r9Var.f34820n && i11 == r9Var.I) {
+                    r9Var.f34825y = 0;
                     r9Var.K = false;
                     if (WalletEngine2.isValidRecipientAddress(str3)) {
                         str = WalletEngine2.toUserFriendlyAddress(str3);
                     }
-                    r9Var.f34822w = str;
+                    r9Var.f34823w = str;
                     d dVar2 = r9Var.V;
                     if (dVar2 != null) {
                         if (str != null) {
@@ -244,7 +244,7 @@ public final class e4 implements Utilities.Callback {
                         }
                         dVar2.setEnabled(z11);
                     }
-                    r9Var.f32359a.W2.N(true);
+                    r9Var.f32360a.W2.N(true);
                     return;
                 }
                 return;

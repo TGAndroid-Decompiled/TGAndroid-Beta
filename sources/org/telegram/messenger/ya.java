@@ -1,48 +1,26 @@
 package org.telegram.messenger;
 
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.ui.Components.ChatActivityEnterView;
+import org.telegram.tgnet.TLRPC;
 public final class ya implements Runnable {
-    public final int f20141a;
-    public final NotificationCenter.NotificationCenterDelegate f20142b;
-    public final long f20143c;
-    public final int d;
-    public final int e;
-    public final boolean f20144f;
+    public final int f20152a;
+    public final MessagesController f20153b;
+    public final TLRPC.TL_help_peerColors f20154c;
 
-    public ya(int i10, int i11, int i12, long j10, MessagesController messagesController, boolean z10) {
-        this.f20141a = i12;
-        this.f20142b = messagesController;
-        this.f20143c = j10;
-        this.d = i10;
-        this.e = i11;
-        this.f20144f = z10;
+    public ya(MessagesController messagesController, TLRPC.TL_help_peerColors tL_help_peerColors, int i10) {
+        this.f20152a = i10;
+        this.f20153b = messagesController;
+        this.f20154c = tL_help_peerColors;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f20141a;
-        NotificationCenter.NotificationCenterDelegate notificationCenterDelegate = this.f20142b;
-        switch (i10) {
+        switch (this.f20152a) {
             case 0:
-                ((MessagesController) notificationCenterDelegate).lambda$markDialogAsRead$240(this.f20143c, this.d, this.e, this.f20144f);
-                return;
-            case 1:
-                ((MessagesController) notificationCenterDelegate).lambda$markDialogAsRead$241(this.f20143c, this.d, this.e, this.f20144f);
+                this.f20153b.lambda$checkPeerColors$493(this.f20154c);
                 return;
             default:
-                int i11 = ChatActivityEnterView.f23911n5;
-                ((ChatActivityEnterView) notificationCenterDelegate).R0(this.d, this.f20144f, this.e, false, this.f20143c);
+                this.f20153b.lambda$checkPeerColors$495(this.f20154c);
                 return;
         }
-    }
-
-    public ya(ChatActivityEnterView chatActivityEnterView, boolean z10, int i10, int i11, long j10) {
-        this.f20141a = 2;
-        this.f20142b = chatActivityEnterView;
-        this.f20144f = z10;
-        this.d = i10;
-        this.e = i11;
-        this.f20143c = j10;
     }
 }

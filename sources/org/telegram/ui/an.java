@@ -6,21 +6,21 @@ import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class an implements ct {
-    public final TLRPC.TL_messageMediaPoll f35394a;
-    public final TLRPC.PollAnswer f35395b;
-    public final org.telegram.ui.Cells.u1 f35396c;
+    public final TLRPC.TL_messageMediaPoll f35395a;
+    public final TLRPC.PollAnswer f35396b;
+    public final org.telegram.ui.Cells.u1 f35397c;
     public final cn d;
 
     public an(cn cnVar, TLRPC.TL_messageMediaPoll tL_messageMediaPoll, TLRPC.PollAnswer pollAnswer, org.telegram.ui.Cells.u1 u1Var) {
         this.d = cnVar;
-        this.f35394a = tL_messageMediaPoll;
-        this.f35395b = pollAnswer;
-        this.f35396c = u1Var;
+        this.f35395a = tL_messageMediaPoll;
+        this.f35396b = pollAnswer;
+        this.f35397c = u1Var;
     }
 
     @Override
     public final MessageObject A() {
-        return this.f35396c.getMessageObject();
+        return this.f35397c.getMessageObject();
     }
 
     @Override
@@ -56,23 +56,23 @@ public final class an implements ct {
     @Override
     public final void K() {
         ArrayList<TLRPC.PollAnswer> arrayList = new ArrayList<>(1);
-        arrayList.add(this.f35395b);
-        SendMessagesHelper sendMessagesHelper = this.d.f36014a.getSendMessagesHelper();
-        org.telegram.ui.Cells.u1 u1Var = this.f35396c;
+        arrayList.add(this.f35396b);
+        SendMessagesHelper sendMessagesHelper = this.d.f36015a.getSendMessagesHelper();
+        org.telegram.ui.Cells.u1 u1Var = this.f35397c;
         sendMessagesHelper.sendVote(u1Var.getMessageObject(), arrayList, null);
         u1Var.S0(true);
     }
 
     @Override
     public final void M(TLRPC.InputStickerSet inputStickerSet, boolean z10) {
-        qn qnVar = this.d.f36014a;
+        qn qnVar = this.d.f36015a;
         if (inputStickerSet != null && qnVar.getParentActivity() != null) {
             TLRPC.TL_inputStickerSetID tL_inputStickerSetID = new TLRPC.TL_inputStickerSetID();
             tL_inputStickerSetID.access_hash = inputStickerSet.access_hash;
-            tL_inputStickerSetID.f20299id = inputStickerSet.f20299id;
-            org.telegram.ui.Components.qy0 qy0Var = new org.telegram.ui.Components.qy0(qnVar.getParentActivity(), qnVar, tL_inputStickerSetID, null, qnVar.Y, qnVar.f40676ea);
+            tL_inputStickerSetID.f20300id = inputStickerSet.f20300id;
+            org.telegram.ui.Components.qy0 qy0Var = new org.telegram.ui.Components.qy0(qnVar.getParentActivity(), qnVar, tL_inputStickerSetID, null, qnVar.Y, qnVar.f40677ea);
             qy0Var.setCalcMandatoryInsets(qnVar.C9());
-            qy0Var.f29758i0 = z10;
+            qy0Var.f29759i0 = z10;
             qnVar.showDialog(qy0Var);
         }
     }
@@ -94,7 +94,7 @@ public final class an implements ct {
 
     @Override
     public final long a() {
-        return this.d.f36014a.T5;
+        return this.d.f36015a.T5;
     }
 
     @Override
@@ -104,7 +104,7 @@ public final class an implements ct {
 
     @Override
     public final boolean c() {
-        if (this.d.f36014a.R3 == 1) {
+        if (this.d.f36015a.R3 == 1) {
             return true;
         }
         return false;
@@ -112,7 +112,7 @@ public final class an implements ct {
 
     @Override
     public final TLRPC.TL_messageMediaPoll d() {
-        return this.f35394a;
+        return this.f35395a;
     }
 
     @Override
@@ -127,7 +127,7 @@ public final class an implements ct {
 
     @Override
     public final TLRPC.PollAnswer g() {
-        return this.f35395b;
+        return this.f35396b;
     }
 
     @Override
@@ -152,8 +152,8 @@ public final class an implements ct {
 
     @Override
     public final void q() {
-        SendMessagesHelper sendMessagesHelper = this.d.f36014a.getSendMessagesHelper();
-        org.telegram.ui.Cells.u1 u1Var = this.f35396c;
+        SendMessagesHelper sendMessagesHelper = this.d.f36015a.getSendMessagesHelper();
+        org.telegram.ui.Cells.u1 u1Var = this.f35397c;
         sendMessagesHelper.sendVote(u1Var.getMessageObject(), null, null);
         u1Var.S0(true);
     }

@@ -29,9 +29,9 @@ public final class h0 implements mg.e {
                 m0Var.e.invalidate();
                 return m0Var.h.j();
             default:
-                nf0 nf0Var = ((of0) frameLayout).f29039a;
+                nf0 nf0Var = ((of0) frameLayout).f29040a;
                 if (nf0Var != null) {
-                    PhotoViewer photoViewer = ((zr0) nf0Var).f43801a;
+                    PhotoViewer photoViewer = ((zr0) nf0Var).f43802a;
                     Drawable[] drawableArr = PhotoViewer.U8;
                     return photoViewer.P0();
                 }
@@ -49,7 +49,7 @@ public final class h0 implements mg.e {
                 ((m0) this.f9143b).h.o();
                 return;
             default:
-                ((of0) this.f9143b).f29040b.o();
+                ((of0) this.f9143b).f29041b.o();
                 return;
         }
     }
@@ -64,7 +64,7 @@ public final class h0 implements mg.e {
                 ((m0) this.f9143b).h.f16917a.g(1, true);
                 return;
             default:
-                ((of0) this.f9143b).f29040b.f16917a.g(1, true);
+                ((of0) this.f9143b).f29041b.f16917a.g(1, true);
                 return;
         }
     }
@@ -89,11 +89,11 @@ public final class h0 implements mg.e {
                 m0Var.e.invalidate();
                 return m11;
             default:
-                nf0 nf0Var = ((of0) frameLayout).f29039a;
+                nf0 nf0Var = ((of0) frameLayout).f29040a;
                 if (nf0Var == null) {
                     return false;
                 }
-                PhotoViewer photoViewer = ((zr0) nf0Var).f43801a;
+                PhotoViewer photoViewer = ((zr0) nf0Var).f43802a;
                 Drawable[] drawableArr = PhotoViewer.U8;
                 return photoViewer.Q0(-90.0f, false, null);
         }
@@ -109,7 +109,7 @@ public final class h0 implements mg.e {
                 ((m0) this.f9143b).h.k();
                 return;
             default:
-                ((of0) this.f9143b).f29040b.k();
+                ((of0) this.f9143b).f29041b.k();
                 return;
         }
     }
@@ -125,9 +125,9 @@ public final class h0 implements mg.e {
                 return;
             default:
                 of0 of0Var = (of0) this.f9143b;
-                of0Var.f29040b.setRotation(f7);
+                of0Var.f29041b.setRotation(f7);
                 of0Var.getClass();
-                nf0 nf0Var = of0Var.f29039a;
+                nf0 nf0Var = of0Var.f29040a;
                 if (nf0Var != null) {
                     ((zr0) nf0Var).a(false);
                     return;

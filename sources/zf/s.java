@@ -9,9 +9,9 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_ephemeral;
 import org.telegram.tgnet.tl.TL_update;
 public final class s {
-    public final q f51599a = new q();
-    public final q f51600b = new q();
-    public final r f51601c = new q();
+    public final q f51600a = new q();
+    public final q f51601b = new q();
+    public final r f51602c = new q();
     public final r d = new q();
     public final r e = new q();
 
@@ -22,27 +22,27 @@ public final class s {
     public final void b(TL_update.TL_updateEditEphemeralMessage tL_updateEditEphemeralMessage, int i10, ConcurrentHashMap concurrentHashMap, ConcurrentHashMap concurrentHashMap2) {
         TL_ephemeral.EphemeralMessage ephemeralMessage = tL_updateEditEphemeralMessage.message;
         if (ephemeralMessage.anchor_msg_id != 0) {
-            this.e.f51596a.add(ephemeralMessage);
+            this.e.f51597a.add(ephemeralMessage);
         } else if (ephemeralMessage.welcome) {
             TLRPC.TL_message b10 = u.b(ephemeralMessage);
             MessageObject messageObject = new MessageObject(i10, (TLRPC.Message) b10, (AbstractMap<Long, TLRPC.User>) concurrentHashMap, (AbstractMap<Long, TLRPC.Chat>) concurrentHashMap2, true, true);
             b10.edit_date = ConnectionsManager.getInstance(i10).getCurrentTime();
             b10.flags |= 32768;
-            q.a(this.f51600b, ephemeralMessage, b10, messageObject);
+            q.a(this.f51601b, ephemeralMessage, b10, messageObject);
         } else {
-            this.d.f51596a.add(ephemeralMessage);
+            this.d.f51597a.add(ephemeralMessage);
         }
     }
 
     public final void c(TL_update.TL_updateNewEphemeralMessage tL_updateNewEphemeralMessage, int i10, ConcurrentHashMap concurrentHashMap, ConcurrentHashMap concurrentHashMap2) {
         TL_ephemeral.EphemeralMessage ephemeralMessage = tL_updateNewEphemeralMessage.message;
         if (ephemeralMessage.anchor_msg_id != 0) {
-            this.e.f51596a.add(ephemeralMessage);
+            this.e.f51597a.add(ephemeralMessage);
         } else if (ephemeralMessage.welcome) {
             TLRPC.TL_message b10 = u.b(ephemeralMessage);
-            q.a(this.f51599a, ephemeralMessage, b10, new MessageObject(i10, (TLRPC.Message) b10, (AbstractMap<Long, TLRPC.User>) concurrentHashMap, (AbstractMap<Long, TLRPC.Chat>) concurrentHashMap2, true, true));
+            q.a(this.f51600a, ephemeralMessage, b10, new MessageObject(i10, (TLRPC.Message) b10, (AbstractMap<Long, TLRPC.User>) concurrentHashMap, (AbstractMap<Long, TLRPC.Chat>) concurrentHashMap2, true, true));
         } else {
-            this.f51601c.f51596a.add(ephemeralMessage);
+            this.f51602c.f51597a.add(ephemeralMessage);
         }
     }
 }

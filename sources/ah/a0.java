@@ -116,8 +116,8 @@ public final class a0 extends n2 implements NotificationCenter.NotificationCente
         }
         if (z10 && z11) {
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getParentActivity(), 0, getResourceProvider());
-            alertDialog$Builder.f20608a.R = LocaleController.getString("UnsavedChanges", R.string.UnsavedChanges);
-            alertDialog$Builder.f20608a.T = LocaleController.getString("ReactionApplyChangesDialog", R.string.ReactionApplyChangesDialog);
+            alertDialog$Builder.f20609a.R = LocaleController.getString("UnsavedChanges", R.string.UnsavedChanges);
+            alertDialog$Builder.f20609a.T = LocaleController.getString("ReactionApplyChangesDialog", R.string.ReactionApplyChangesDialog);
             alertDialog$Builder.k(LocaleController.getString("ApplyTheme", R.string.ApplyTheme), new a2(this) {
                 public final a0 f814b;
 
@@ -194,7 +194,7 @@ public final class a0 extends n2 implements NotificationCenter.NotificationCente
             this.f648y.setLayoutParams(marginLayoutParams);
             NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, 512);
             this.f641c.animate().setListener(null).cancel();
-            this.f641c.animate().translationY(this.f641c.getMeasuredHeight()).setDuration(350L).withLayer().setInterpolator(bs.f25024f).setUpdateListener(new n(this, 1)).setListener(new q(this, 0)).start();
+            this.f641c.animate().translationY(this.f641c.getMeasuredHeight()).setDuration(350L).withLayer().setInterpolator(bs.f25025f).setUpdateListener(new n(this, 1)).setListener(new q(this, 0)).start();
         }
     }
 
@@ -235,7 +235,7 @@ public final class a0 extends n2 implements NotificationCenter.NotificationCente
                         Object obj2 = arrayList4.get(i11);
                         i11++;
                         TLRPC.TL_availableReaction tL_availableReaction = (TLRPC.TL_availableReaction) obj2;
-                        if (l4.longValue() == tL_availableReaction.activate_animation.f20285id) {
+                        if (l4.longValue() == tL_availableReaction.activate_animation.f20286id) {
                             TLRPC.TL_reactionEmoji tL_reactionEmoji = new TLRPC.TL_reactionEmoji();
                             tL_reactionEmoji.emoticon = tL_availableReaction.reaction;
                             arrayList.add(tL_reactionEmoji);
@@ -269,9 +269,9 @@ public final class a0 extends n2 implements NotificationCenter.NotificationCente
             }
             this.e.setChecked(z12);
             if (z12) {
-                i11 = h6.f21029f6;
+                i11 = h6.f21030f6;
             } else {
-                i11 = h6.f21010e6;
+                i11 = h6.f21011e6;
             }
             int x02 = h6.x0(null, i11, false);
             if (z11) {
@@ -290,7 +290,7 @@ public final class a0 extends n2 implements NotificationCenter.NotificationCente
                     this.f646w.animate().setListener(null).cancel();
                     this.f642f.animate().setListener(null).cancel();
                     ViewPropertyAnimator duration = this.f646w.animate().alpha(0.0f).setDuration(350L);
-                    bs bsVar = bs.f25024f;
+                    bs bsVar = bs.f25025f;
                     duration.setInterpolator(bsVar).setListener(new q(this, 2)).start();
                     this.f642f.animate().alpha(0.0f).setDuration(350L).setInterpolator(bsVar).setListener(new q(this, 3)).start();
                     return;
@@ -305,7 +305,7 @@ public final class a0 extends n2 implements NotificationCenter.NotificationCente
                 this.f646w.animate().setListener(null).cancel();
                 this.f642f.animate().setListener(null).cancel();
                 ViewPropertyAnimator duration2 = this.f642f.animate().alpha(1.0f).setDuration(350L);
-                bs bsVar2 = bs.f25024f;
+                bs bsVar2 = bs.f25025f;
                 duration2.setInterpolator(bsVar2).setListener(new q(this, 1)).start();
                 this.f646w.animate().alpha(1.0f).setDuration(350L).setInterpolator(bsVar2).start();
                 LinkedHashMap linkedHashMap = this.E;
@@ -328,7 +328,7 @@ public final class a0 extends n2 implements NotificationCenter.NotificationCente
                     }
                     this.f643n.append(spannableStringBuilder);
                     this.f643n.m();
-                    w41 w41Var = this.f640b.f43079p0;
+                    w41 w41Var = this.f640b.f43080p0;
                     if (w41Var != null) {
                         w41Var.l();
                     }
@@ -485,7 +485,7 @@ public final class a0 extends n2 implements NotificationCenter.NotificationCente
                 this.f640b = yVar;
                 yVar.setAnimationsEnabled(false);
                 this.f640b.setClipChildren(false);
-                this.f640b.setBackgroundColor(h6.x0(null, h6.f20993d6, false));
+                this.f640b.setBackgroundColor(h6.x0(null, h6.f20994d6, false));
                 this.f641c.addView(this.f640b, z5.e(-1, -2, 80));
                 i iVar = new i(getParentActivity(), getResourceProvider());
                 this.d = iVar;

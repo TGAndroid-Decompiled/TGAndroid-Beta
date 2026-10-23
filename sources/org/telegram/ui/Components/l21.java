@@ -5,11 +5,11 @@ import android.view.MotionEvent;
 import android.view.ViewGroup;
 import org.telegram.ui.Components.ThemeEditorView;
 public final class l21 extends EditTextBoldCursor {
-    public final n21 f28013b;
+    public final n21 f28014b;
 
     public l21(n21 n21Var, Context context) {
         super(context);
-        this.f28013b = n21Var;
+        this.f28014b = n21Var;
     }
 
     @Override
@@ -18,10 +18,10 @@ public final class l21 extends EditTextBoldCursor {
         MotionEvent obtain = MotionEvent.obtain(motionEvent);
         float rawX = obtain.getRawX();
         float rawY = obtain.getRawY();
-        ThemeEditorView.EditorAlert editorAlert = this.f28013b.f28671c;
+        ThemeEditorView.EditorAlert editorAlert = this.f28014b.f28672c;
         viewGroup = ((org.telegram.ui.ActionBar.f3) editorAlert).containerView;
         obtain.setLocation(rawX, rawY - viewGroup.getTranslationY());
-        editorAlert.f24401c.dispatchTouchEvent(obtain);
+        editorAlert.f24402c.dispatchTouchEvent(obtain);
         obtain.recycle();
         return super.dispatchTouchEvent(motionEvent);
     }

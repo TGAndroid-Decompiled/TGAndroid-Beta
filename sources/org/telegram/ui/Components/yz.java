@@ -116,18 +116,18 @@ public class yz extends s4.b0 {
             s4.b1 b1Var = (s4.b1) sparseArray.get(j10, null);
             if (b1Var == null) {
                 b1Var = adapter.d(recyclerView, j10);
-                View view = b1Var.f45920a;
+                View view = b1Var.f45921a;
                 sparseArray.put(j10, b1Var);
                 if (view.getLayoutParams() == null) {
                     view.setLayoutParams(n());
                 }
             }
-            View view2 = b1Var.f45920a;
+            View view2 = b1Var.f45921a;
             if (this.P) {
                 adapter.v(b1Var, i12);
             }
             s4.o0 o0Var = (s4.o0) view2.getLayoutParams();
-            view2.measure(s4.n0.s(d(), this.L, this.f46019k, E() + D() + ((ViewGroup.MarginLayoutParams) o0Var).leftMargin + ((ViewGroup.MarginLayoutParams) o0Var).rightMargin, ((ViewGroup.MarginLayoutParams) o0Var).width), s4.n0.s(this.Q, this.K, this.f46020l, C() + F() + ((ViewGroup.MarginLayoutParams) o0Var).topMargin + ((ViewGroup.MarginLayoutParams) o0Var).bottomMargin, ((ViewGroup.MarginLayoutParams) o0Var).height));
+            view2.measure(s4.n0.s(d(), this.L, this.f46020k, E() + D() + ((ViewGroup.MarginLayoutParams) o0Var).leftMargin + ((ViewGroup.MarginLayoutParams) o0Var).rightMargin, ((ViewGroup.MarginLayoutParams) o0Var).width), s4.n0.s(this.Q, this.K, this.f46021l, C() + F() + ((ViewGroup.MarginLayoutParams) o0Var).topMargin + ((ViewGroup.MarginLayoutParams) o0Var).bottomMargin, ((ViewGroup.MarginLayoutParams) o0Var).height));
             i10 += view2.getMeasuredHeight();
             if (i12 == 0) {
                 i11 = view2.getMeasuredHeight();

@@ -29,14 +29,14 @@ public final class g7 extends i7 {
     @Override
     public final void c(org.telegram.ui.ActionBar.n2 n2Var) {
         TLRPC.User user = this.f9071b;
-        if (user.f20426id == UserConfig.getInstance(UserConfig.selectedAccount).getClientUserId()) {
+        if (user.f20427id == UserConfig.getInstance(UserConfig.selectedAccount).getClientUserId()) {
             Bundle bundle = new Bundle();
-            bundle.putLong("user_id", user.f20426id);
+            bundle.putLong("user_id", user.f20427id);
             bundle.putBoolean("my_profile", true);
             n2Var.presentFragment(new ProfileActivity(bundle, null));
             return;
         }
-        n2Var.presentFragment(ProfileActivity.m4(user.f20426id));
+        n2Var.presentFragment(ProfileActivity.m4(user.f20427id));
     }
 
     @Override

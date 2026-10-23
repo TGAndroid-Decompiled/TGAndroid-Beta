@@ -5,7 +5,7 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.ok;
+import org.telegram.messenger.nk;
 import org.telegram.ui.Components.bs;
 import org.telegram.ui.Components.pg;
 import org.telegram.ui.PhotoViewer;
@@ -25,7 +25,7 @@ public final class g3 extends ImageReceiver {
         Object obj = this.f5416b;
         switch (i10) {
             case 3:
-                View view = ((tn) obj).f41708b;
+                View view = ((tn) obj).f41709b;
                 if (view != null) {
                     view.invalidate();
                     return;
@@ -41,7 +41,7 @@ public final class g3 extends ImageReceiver {
                 return;
             case 6:
                 super.invalidate();
-                org.telegram.ui.Wallet.t7 t7Var = ((org.telegram.ui.Wallet.s7) obj).f34874d0;
+                org.telegram.ui.Wallet.t7 t7Var = ((org.telegram.ui.Wallet.s7) obj).f34875d0;
                 int i11 = org.telegram.ui.Wallet.t7.G1;
                 t7Var.f0();
                 return;
@@ -64,7 +64,7 @@ public final class g3 extends ImageReceiver {
                 return imageBitmapByKey;
             case 1:
                 if (drawable != null && i10 != 1) {
-                    ok.t(((ig.d1) ((k4) obj).H).f12856n.animate().alpha(1.0f).translationY(0.0f), bs.f25028k, 250L);
+                    nk.t(((ig.d1) ((k4) obj).H).f12856n.animate().alpha(1.0f).translationY(0.0f), bs.f25029k, 250L);
                 }
                 return super.setImageBitmapByKey(drawable, str, i10, z10, i11);
             case 2:
@@ -76,8 +76,8 @@ public final class g3 extends ImageReceiver {
                 org.telegram.ui.Components.r5 r5Var = (org.telegram.ui.Components.r5) obj;
                 r5Var.k();
                 boolean imageBitmapByKey2 = super.setImageBitmapByKey(drawable, str, i10, z10, i11);
-                if (r5Var.f29843m && hasImageLoaded()) {
-                    r5Var.f29843m = false;
+                if (r5Var.f29844m && hasImageLoaded()) {
+                    r5Var.f29844m = false;
                     AndroidUtilities.runOnUIThread(new pg(r5Var, 4));
                 }
                 return imageBitmapByKey2;
@@ -106,9 +106,9 @@ public final class g3 extends ImageReceiver {
                 int dp = AndroidUtilities.dp(6.0f);
                 iArr2[3] = dp;
                 iArr2[2] = dp;
-                rh.g gVar = u1Var.f23240b6;
+                rh.g gVar = u1Var.f23241b6;
                 if (gVar != null) {
-                    gVar.f45762b.setRoundRadius(u1Var.R0);
+                    gVar.f45763b.setRoundRadius(u1Var.R0);
                     return;
                 }
                 return;

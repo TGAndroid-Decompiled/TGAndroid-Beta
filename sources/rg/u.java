@@ -8,28 +8,28 @@ import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.ui.gt0;
 public final class u implements qg.v {
-    public boolean f45665a;
-    public final Bitmap f45666b;
-    public final gt0 f45667c;
+    public boolean f45666a;
+    public final Bitmap f45667b;
+    public final gt0 f45668c;
 
     public u(gt0 gt0Var, Bitmap bitmap) {
-        this.f45667c = gt0Var;
-        this.f45666b = bitmap;
+        this.f45668c = gt0Var;
+        this.f45667b = bitmap;
     }
 
     @Override
     public final void a() {
-        this.f45665a = true;
+        this.f45666a = true;
     }
 
     @Override
     public final void b(Canvas canvas) {
-        b0 b0Var = this.f45667c.W0;
+        b0 b0Var = this.f45668c.W0;
         Matrix matrix = b0Var.getMatrix();
         canvas.save();
         canvas.translate(b0Var.getX(), b0Var.getY());
         canvas.concat(matrix);
-        Bitmap bitmap = this.f45666b;
+        Bitmap bitmap = this.f45667b;
         canvas.scale(b0Var.getWidth() / bitmap.getWidth(), b0Var.getHeight() / bitmap.getHeight(), 0.0f, 0.0f);
         canvas.drawBitmap(bitmap, 0.0f, 0.0f, (Paint) null);
         canvas.restore();
@@ -37,27 +37,27 @@ public final class u implements qg.v {
 
     @Override
     public final boolean c() {
-        return this.f45665a;
+        return this.f45666a;
     }
 
     @Override
     public final void d() {
-        this.f45665a = false;
+        this.f45666a = false;
     }
 
     @Override
     public final View e() {
-        return this.f45667c;
+        return this.f45668c;
     }
 
     @Override
     public final FrameLayout f() {
-        return this.f45667c.f45483e1;
+        return this.f45668c.f45484e1;
     }
 
     @Override
     public final boolean g() {
-        if (this.f45666b != null) {
+        if (this.f45667b != null) {
             return true;
         }
         return false;
@@ -65,7 +65,7 @@ public final class u implements qg.v {
 
     @Override
     public final void h(int i10) {
-        gt0 gt0Var = this.f45667c;
+        gt0 gt0Var = this.f45668c;
         gt0Var.x0(false);
         qg.v0 v0Var = gt0Var.V1;
         v0Var.h(i10, true);

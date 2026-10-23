@@ -4,16 +4,16 @@ import android.content.Context;
 import android.graphics.SurfaceTexture;
 import android.view.MotionEvent;
 public final class k6 extends tg.n {
-    public final m6 f34434i0;
+    public final m6 f34435i0;
 
     public k6(m6 m6Var, Context context) {
         super(context, 1, 4);
-        this.f34434i0 = m6Var;
+        this.f34435i0 = m6Var;
     }
 
     @Override
     public final void i() {
-        m6 m6Var = this.f34434i0;
+        m6 m6Var = this.f34435i0;
         if (m6Var.e == this) {
             m6.c(m6Var);
         }
@@ -30,8 +30,8 @@ public final class k6 extends tg.n {
     public final void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i10, int i11) {
         int round = Math.round(Math.min(i10, i11) * 3.5f);
         surfaceTexture.setDefaultBufferSize(round, round);
-        this.f47126y = round;
-        this.f47125x = round;
+        this.f47127y = round;
+        this.f47126x = round;
     }
 
     @Override
@@ -44,7 +44,7 @@ public final class k6 extends tg.n {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (!this.f34434i0.f34539x && super.onTouchEvent(motionEvent)) {
+        if (!this.f34435i0.f34540x && super.onTouchEvent(motionEvent)) {
             return true;
         }
         return false;

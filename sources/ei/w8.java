@@ -3,7 +3,7 @@ package ei;
 import android.content.Context;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import org.telegram.messenger.ok;
+import org.telegram.messenger.nk;
 public final class w8 extends LinearLayout {
     public final TextView f10046a;
     public final TextView f10047b;
@@ -14,7 +14,7 @@ public final class w8 extends LinearLayout {
         setOrientation(1);
         TextView textView = new TextView(context);
         this.f10046a = textView;
-        org.telegram.ui.Cells.c1.r(org.telegram.ui.ActionBar.h6.f21099j5, d6Var, textView, 1, 20.0f);
+        org.telegram.ui.Cells.c1.r(org.telegram.ui.ActionBar.h6.f21100j5, d6Var, textView, 1, 20.0f);
         if (z10) {
             i10 = 4;
         } else {
@@ -23,7 +23,7 @@ public final class w8 extends LinearLayout {
         addView(textView, w7.z5.t(-1, -2, 55, 27, 16, 27, i10));
         TextView textView2 = new TextView(context);
         this.f10047b = textView2;
-        ok.o(org.telegram.ui.ActionBar.h6.f21230q5, d6Var, textView2, 1, 14.0f);
+        nk.o(org.telegram.ui.ActionBar.h6.f21231q5, d6Var, textView2, 1, 14.0f);
         if (z10) {
             addView(textView2, w7.z5.t(-1, -2, 55, 27, 0, 27, 13));
         }

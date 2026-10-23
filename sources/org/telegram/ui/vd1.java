@@ -9,7 +9,7 @@ public final class vd1 extends s4.y {
 
     @Override
     public final boolean q() {
-        if (this.S.f41193x > 0) {
+        if (this.S.f41194x > 0) {
             return true;
         }
         return false;

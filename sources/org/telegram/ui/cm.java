@@ -8,26 +8,26 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MessageObject;
 public final class cm implements ViewTreeObserver.OnPreDrawListener {
-    public final org.telegram.ui.Cells.u1 f36011a;
-    public final dm f36012b;
+    public final org.telegram.ui.Cells.u1 f36012a;
+    public final dm f36013b;
 
     public cm(dm dmVar, org.telegram.ui.Cells.u1 u1Var) {
-        this.f36012b = dmVar;
-        this.f36011a = u1Var;
+        this.f36013b = dmVar;
+        this.f36012a = u1Var;
     }
 
     @Override
     public final boolean onPreDraw() {
         float f7;
         float centerX;
-        qn qnVar = this.f36012b.Q;
-        org.telegram.ui.Cells.u1 u1Var = this.f36011a;
+        qn qnVar = this.f36013b.Q;
+        org.telegram.ui.Cells.u1 u1Var = this.f36012a;
         u1Var.getViewTreeObserver().removeOnPreDrawListener(this);
         MessageObject.SendAnimationData sendAnimationData = u1Var.getMessageObject().sendAnimationData;
         if (sendAnimationData == null) {
             return true;
         }
-        qnVar.f40783n6.add(u1Var);
+        qnVar.f40784n6.add(u1Var);
         ImageReceiver photoImage = u1Var.getPhotoImage();
         float imageWidth = photoImage.getImageWidth();
         if (sendAnimationData.fromPreview) {
@@ -35,7 +35,7 @@ public final class cm implements ViewTreeObserver.OnPreDrawListener {
         } else {
             f7 = sendAnimationData.width / imageWidth;
         }
-        u1Var.getTransitionParams().f23166x0 = true;
+        u1Var.getTransitionParams().f23167x0 = true;
         u1Var.getLocationInWindow(r8);
         int[] iArr = {0, (int) (iArr[1] - u1Var.getTranslationY())};
         if (qnVar.Y.x0()) {

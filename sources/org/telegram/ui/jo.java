@@ -7,25 +7,25 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class jo implements RequestDelegate {
-    public final int f38290a;
-    public final wo f38291b;
+    public final int f38291a;
+    public final wo f38292b;
 
     public jo(wo woVar, int i10) {
-        this.f38290a = i10;
-        this.f38291b = woVar;
+        this.f38291a = i10;
+        this.f38292b = woVar;
     }
 
     @Override
     public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f38290a) {
+        switch (this.f38291a) {
             case 0:
                 if (tLObject instanceof TLRPC.TL_boolTrue) {
-                    AndroidUtilities.runOnUIThread(new lo(this.f38291b, 3));
+                    AndroidUtilities.runOnUIThread(new lo(this.f38292b, 3));
                     return;
                 }
                 return;
             case 1:
-                final wo woVar = this.f38291b;
+                final wo woVar = this.f38292b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -41,13 +41,13 @@ public final class jo implements RequestDelegate {
                                         }
                                     }
                                 }
-                                woVar2.f42934t0 = false;
+                                woVar2.f42935t0 = false;
                                 AndroidUtilities.runOnUIThread(new lo(woVar2, 4));
                                 return;
                             default:
                                 wo woVar3 = woVar;
-                                ArrayList arrayList = woVar3.f42918f0;
-                                woVar3.f42915d0 = false;
+                                ArrayList arrayList = woVar3.f42919f0;
+                                woVar3.f42916d0 = false;
                                 TLObject tLObject2 = tLObject;
                                 if (tLObject2 != null && woVar3.getParentActivity() != null) {
                                     for (int i11 = 0; i11 < arrayList.size(); i11++) {
@@ -64,7 +64,7 @@ public final class jo implements RequestDelegate {
                                         }
                                         nVar.a(chat, z11);
                                         arrayList.add(nVar);
-                                        woVar3.f42936x.addView(nVar, w7.z5.n(-1, 72));
+                                        woVar3.f42937x.addView(nVar, w7.z5.n(-1, 72));
                                     }
                                     woVar3.b0();
                                     return;
@@ -75,7 +75,7 @@ public final class jo implements RequestDelegate {
                 });
                 return;
             case 2:
-                final wo woVar2 = this.f38291b;
+                final wo woVar2 = this.f38292b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -91,13 +91,13 @@ public final class jo implements RequestDelegate {
                                         }
                                     }
                                 }
-                                woVar22.f42934t0 = false;
+                                woVar22.f42935t0 = false;
                                 AndroidUtilities.runOnUIThread(new lo(woVar22, 4));
                                 return;
                             default:
                                 wo woVar3 = woVar2;
-                                ArrayList arrayList = woVar3.f42918f0;
-                                woVar3.f42915d0 = false;
+                                ArrayList arrayList = woVar3.f42919f0;
+                                woVar3.f42916d0 = false;
                                 TLObject tLObject2 = tLObject;
                                 if (tLObject2 != null && woVar3.getParentActivity() != null) {
                                     for (int i11 = 0; i11 < arrayList.size(); i11++) {
@@ -114,7 +114,7 @@ public final class jo implements RequestDelegate {
                                         }
                                         nVar.a(chat, z11);
                                         arrayList.add(nVar);
-                                        woVar3.f42936x.addView(nVar, w7.z5.n(-1, 72));
+                                        woVar3.f42937x.addView(nVar, w7.z5.n(-1, 72));
                                     }
                                     woVar3.b0();
                                     return;
@@ -125,7 +125,7 @@ public final class jo implements RequestDelegate {
                 });
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new eh(13, this.f38291b, tL_error));
+                AndroidUtilities.runOnUIThread(new eh(13, this.f38292b, tL_error));
                 return;
         }
     }

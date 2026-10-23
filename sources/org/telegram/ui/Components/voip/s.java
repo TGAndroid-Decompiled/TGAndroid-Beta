@@ -22,45 +22,45 @@ public final class s extends View {
     public int F;
     public float G;
     public final t H;
-    public final ImageReceiver f31676a;
-    public final ImageReceiver f31677b;
-    public final h9 f31678c;
+    public final ImageReceiver f31677a;
+    public final ImageReceiver f31678b;
+    public final h9 f31679c;
     public final ba d;
     public final ba e;
-    public final Paint f31679f;
+    public final Paint f31680f;
     public final Paint h;
-    public float f31680n;
-    public float f31681r;
-    public float f31682s;
+    public float f31681n;
+    public float f31682r;
+    public float f31683s;
     public float v;
-    public float f31683w;
-    public final p50[] f31684x;
-    public p50 f31685y;
+    public float f31684w;
+    public final p50[] f31685x;
+    public p50 f31686y;
 
     public s(t tVar, Context context) {
         super(context);
         this.H = tVar;
-        this.f31676a = new ImageReceiver();
-        this.f31677b = new ImageReceiver();
-        this.f31678c = new h9((d6) null);
+        this.f31677a = new ImageReceiver();
+        this.f31678b = new ImageReceiver();
+        this.f31679c = new h9((d6) null);
         Paint paint = new Paint(1);
-        this.f31679f = paint;
+        this.f31680f = paint;
         Paint paint2 = new Paint(1);
         this.h = paint2;
-        this.f31684x = new p50[3];
+        this.f31685x = new p50[3];
         this.F = -1;
         this.G = 1.0f;
         ba baVar = new ba(9);
         this.d = baVar;
         ba baVar2 = new ba(12);
         this.e = baVar2;
-        baVar.f24842a = AndroidUtilities.dp(76.0f);
-        baVar.f24843b = AndroidUtilities.dp(92.0f);
+        baVar.f24843a = AndroidUtilities.dp(76.0f);
+        baVar.f24844b = AndroidUtilities.dp(92.0f);
         baVar.b();
-        baVar2.f24842a = AndroidUtilities.dp(80.0f);
-        baVar2.f24843b = AndroidUtilities.dp(95.0f);
+        baVar2.f24843a = AndroidUtilities.dp(80.0f);
+        baVar2.f24844b = AndroidUtilities.dp(95.0f);
         baVar2.b();
-        paint.setColor(i0.a.f(0.0f, h6.x0(null, h6.f21221pg, false), h6.x0(null, h6.f21240qg, false)));
+        paint.setColor(i0.a.f(0.0f, h6.x0(null, h6.f21222pg, false), h6.x0(null, h6.f21241qg, false)));
         paint.setAlpha(102);
         paint2.setColor(i0.a.o(-16777216, 127));
     }
@@ -68,9 +68,9 @@ public final class s extends View {
     public static void a(s sVar, boolean z10) {
         int i10;
         TLRPC.GroupCallParticipant groupCallParticipant;
-        p50[] p50VarArr = sVar.f31684x;
-        o0 o0Var = sVar.H.f31728n0;
-        if (!o0Var.f31611k && ((groupCallParticipant = o0Var.h) == null || !groupCallParticipant.muted || groupCallParticipant.can_self_unmute)) {
+        p50[] p50VarArr = sVar.f31685x;
+        o0 o0Var = sVar.H.f31729n0;
+        if (!o0Var.f31612k && ((groupCallParticipant = o0Var.h) == null || !groupCallParticipant.muted || groupCallParticipant.can_self_unmute)) {
             if (o0Var.e) {
                 i10 = 1;
             } else {
@@ -87,18 +87,18 @@ public final class s extends View {
             p50VarArr[i10] = new p50(i10);
             int i11 = sVar.F;
             if (i11 == 2) {
-                p50VarArr[i11].f40074g = new LinearGradient(0.0f, 400.0f, 400.0f, 0.0f, new int[]{h6.x0(null, h6.f21091ih, false), h6.x0(null, h6.f21130kh, false), h6.x0(null, h6.f21111jh, false)}, (float[]) null, Shader.TileMode.CLAMP);
+                p50VarArr[i11].f40075g = new LinearGradient(0.0f, 400.0f, 400.0f, 0.0f, new int[]{h6.x0(null, h6.f21092ih, false), h6.x0(null, h6.f21131kh, false), h6.x0(null, h6.f21112jh, false)}, (float[]) null, Shader.TileMode.CLAMP);
             } else if (i11 == 1) {
-                p50VarArr[i11].f40074g = new RadialGradient(200.0f, 200.0f, 200.0f, new int[]{h6.x0(null, h6.Fg, false), h6.x0(null, h6.Hg, false)}, (float[]) null, Shader.TileMode.CLAMP);
+                p50VarArr[i11].f40075g = new RadialGradient(200.0f, 200.0f, 200.0f, new int[]{h6.x0(null, h6.Fg, false), h6.x0(null, h6.Hg, false)}, (float[]) null, Shader.TileMode.CLAMP);
             } else {
-                p50VarArr[i11].f40074g = new RadialGradient(200.0f, 200.0f, 200.0f, new int[]{h6.x0(null, h6.Jg, false), h6.x0(null, h6.Ig, false)}, (float[]) null, Shader.TileMode.CLAMP);
+                p50VarArr[i11].f40075g = new RadialGradient(200.0f, 200.0f, 200.0f, new int[]{h6.x0(null, h6.Jg, false), h6.x0(null, h6.Ig, false)}, (float[]) null, Shader.TileMode.CLAMP);
             }
         }
         p50 p50Var = p50VarArr[sVar.F];
-        p50 p50Var2 = sVar.f31685y;
+        p50 p50Var2 = sVar.f31686y;
         if (p50Var != p50Var2) {
             sVar.E = p50Var2;
-            sVar.f31685y = p50Var;
+            sVar.f31686y = p50Var;
             if (p50Var2 != null && z10) {
                 sVar.G = 0.0f;
             } else {
@@ -112,15 +112,15 @@ public final class s extends View {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f31676a.onAttachedToWindow();
-        this.f31677b.onAttachedToWindow();
+        this.f31677a.onAttachedToWindow();
+        this.f31678b.onAttachedToWindow();
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f31676a.onDetachedFromWindow();
-        this.f31677b.onDetachedFromWindow();
+        this.f31677a.onDetachedFromWindow();
+        this.f31678b.onDetachedFromWindow();
     }
 
     @Override
@@ -130,30 +130,30 @@ public final class s extends View {
         p50 p50Var2;
         super.onDraw(canvas);
         RectF rectF = AndroidUtilities.rectTmp;
-        o oVar = this.H.f31711a;
+        o oVar = this.H.f31712a;
         rectF.set(oVar.getX() + oVar.O, oVar.getY() + oVar.N, (oVar.getX() + oVar.getMeasuredWidth()) - oVar.O, oVar.getY() + oVar.getMeasuredHeight() + oVar.N);
         float f10 = rectF.left;
         float f11 = rectF.top;
         float width = rectF.width();
         float height = rectF.height();
-        ImageReceiver imageReceiver = this.f31677b;
+        ImageReceiver imageReceiver = this.f31678b;
         imageReceiver.setImageCoords(f10, f11, width, height);
-        imageReceiver.setRoundRadius((int) oVar.f31649b);
+        imageReceiver.setRoundRadius((int) oVar.f31650b);
         imageReceiver.draw(canvas);
-        float f12 = oVar.f31649b;
+        float f12 = oVar.f31650b;
         canvas.drawRoundRect(rectF, f12, f12, this.h);
-        float f13 = this.f31681r;
-        float f14 = this.f31680n;
+        float f13 = this.f31682r;
+        float f14 = this.f31681n;
         if (f13 != f14) {
-            float f15 = this.f31682s;
+            float f15 = this.f31683s;
             float f16 = (16.0f * f15) + f14;
-            this.f31680n = f16;
+            this.f31681n = f16;
             if (f15 > 0.0f) {
                 if (f16 > f13) {
-                    this.f31680n = f13;
+                    this.f31681n = f13;
                 }
             } else if (f16 < f13) {
-                this.f31680n = f13;
+                this.f31681n = f13;
             }
         }
         float f17 = this.G;
@@ -166,39 +166,39 @@ public final class s extends View {
                 this.E = null;
             }
         }
-        float f18 = (this.f31680n * 0.8f) + 1.0f;
+        float f18 = (this.f31681n * 0.8f) + 1.0f;
         canvas.save();
-        canvas.scale(f18, f18, this.v, this.f31683w);
-        p50 p50Var3 = this.f31685y;
+        canvas.scale(f18, f18, this.v, this.f31684w);
+        p50 p50Var3 = this.f31686y;
         if (p50Var3 != null) {
-            p50Var3.b((int) (this.f31683w - AndroidUtilities.dp(100.0f)), (int) (this.v - AndroidUtilities.dp(100.0f)), AndroidUtilities.dp(200.0f), 16L, this.f31680n);
+            p50Var3.b((int) (this.f31684w - AndroidUtilities.dp(100.0f)), (int) (this.v - AndroidUtilities.dp(100.0f)), AndroidUtilities.dp(200.0f), 16L, this.f31681n);
         }
-        float f19 = this.f31680n;
+        float f19 = this.f31681n;
         ba baVar = this.e;
         baVar.e(f19, 1.0f);
-        float f20 = this.f31680n;
+        float f20 = this.f31681n;
         ba baVar2 = this.d;
         baVar2.e(f20, 1.0f);
         for (int i10 = 0; i10 < 2; i10++) {
-            Paint paint = this.f31679f;
+            Paint paint = this.f31680f;
             if (i10 == 0 && (p50Var2 = this.E) != null) {
-                paint.setShader(p50Var2.f40074g);
+                paint.setShader(p50Var2.f40075g);
                 f7 = 1.0f - this.G;
             } else {
-                if (i10 == 1 && (p50Var = this.f31685y) != null) {
-                    paint.setShader(p50Var.f40074g);
+                if (i10 == 1 && (p50Var = this.f31686y) != null) {
+                    paint.setShader(p50Var.f40075g);
                     f7 = this.G;
                 }
             }
             paint.setAlpha((int) (f7 * 76.0f));
-            baVar.a(this.v, this.f31683w, canvas, paint);
-            baVar2.a(this.v, this.f31683w, canvas, paint);
+            baVar.a(this.v, this.f31684w, canvas, paint);
+            baVar2.a(this.v, this.f31684w, canvas, paint);
         }
         canvas.restore();
-        float f21 = (this.f31680n * 0.2f) + 1.0f;
+        float f21 = (this.f31681n * 0.2f) + 1.0f;
         canvas.save();
-        canvas.scale(f21, f21, this.v, this.f31683w);
-        this.f31676a.draw(canvas);
+        canvas.scale(f21, f21, this.v, this.f31684w);
+        this.f31677a.draw(canvas);
         canvas.restore();
         invalidate();
     }
@@ -215,10 +215,10 @@ public final class s extends View {
         } else {
             f7 = (-getMeasuredHeight()) * 0.12f;
         }
-        this.f31683w = measuredHeight + f7;
+        this.f31684w = measuredHeight + f7;
         float f10 = dp / 2.0f;
-        ImageReceiver imageReceiver = this.f31676a;
+        ImageReceiver imageReceiver = this.f31677a;
         imageReceiver.setRoundRadius((int) f10);
-        imageReceiver.setImageCoords(this.v - f10, this.f31683w - f10, dp, dp);
+        imageReceiver.setImageCoords(this.v - f10, this.f31684w - f10, dp, dp);
     }
 }

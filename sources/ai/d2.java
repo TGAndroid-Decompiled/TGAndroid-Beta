@@ -5,7 +5,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.ok;
+import org.telegram.messenger.nk;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.Components.vj0;
@@ -102,7 +102,7 @@ public final class d2 implements Runnable {
                 org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
                 TL_stars.TL_starGiftUnique f22 = l7Var.f2();
                 if (U != null && f22 != null) {
-                    cy cyVar = new cy(ok.d(4, "onlySelect", "dialogsType", true));
+                    cy cyVar = new cy(nk.d(4, "onlySelect", "dialogsType", true));
                     cyVar.C2 = new u2(l7Var, f22, cyVar, 0);
                     U.presentFragment(cyVar);
                     return;
@@ -169,8 +169,8 @@ public final class d2 implements Runnable {
                     str = "";
                 }
                 org.telegram.ui.Components.qc M = l7Var.getBulletinFactory().M(LocaleController.getString(R.string.Gift2UpgradedTitle), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2UpgradedText, str)), R.raw.gift_upgrade);
-                M.f29534j = 5000;
-                M.f29544t = true;
+                M.f29535j = 5000;
+                M.f29545t = true;
                 M.j();
                 z00 z00Var = l7Var.f1718a0;
                 if (z00Var != null) {

@@ -28,7 +28,7 @@ import java.util.ArrayList;
 import java.util.Stack;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
-import org.telegram.messenger.ok;
+import org.telegram.messenger.nk;
 import org.telegram.ui.Components.fx0;
 import org.telegram.ui.Components.hx0;
 import org.telegram.ui.Components.uz;
@@ -65,57 +65,57 @@ public class j5 extends View implements Drawable.Callback {
     public Paint U;
     public Paint V;
     public Paint W;
-    public float f21424a;
-    public int f21425a0;
-    public float f21426b;
-    public int f21427b0;
-    public StaticLayout f21428c;
-    public int f21429c0;
+    public float f21425a;
+    public int f21426a0;
+    public float f21427b;
+    public int f21428b0;
+    public StaticLayout f21429c;
+    public int f21430c0;
     public StaticLayout d;
-    public int f21430d0;
+    public int f21431d0;
     public StaticLayout e;
-    public int f21431e0;
-    public StaticLayout f21432f;
-    public int f21433f0;
-    public int f21434g0;
+    public int f21432e0;
+    public StaticLayout f21433f;
+    public int f21434f0;
+    public int f21435g0;
     public final TextPaint h;
-    public int f21435h0;
-    public int f21436i0;
-    public boolean f21437j0;
-    public boolean f21438k0;
-    public boolean f21439l0;
+    public int f21436h0;
+    public int f21437i0;
+    public boolean f21438j0;
+    public boolean f21439k0;
+    public boolean f21440l0;
     public boolean m0;
-    public int f21440n;
-    public boolean f21441n0;
-    public boolean f21442o0;
-    public Boolean f21443p0;
-    public int f21444q0;
-    public int f21445r;
-    public int f21446r0;
-    public CharSequence f21447s;
-    public int f21448s0;
-    public int f21449t0;
-    public int f21450u0;
+    public int f21441n;
+    public boolean f21442n0;
+    public boolean f21443o0;
+    public Boolean f21444p0;
+    public int f21445q0;
+    public int f21446r;
+    public int f21447r0;
+    public CharSequence f21448s;
+    public int f21449s0;
+    public int f21450t0;
+    public int f21451u0;
     public Drawable v;
-    public float f21451v0;
-    public Drawable f21452w;
-    public int f21453w0;
-    public Drawable f21454x;
-    public int f21455x0;
-    public Drawable f21456y;
-    public final ArrayList f21457y0;
-    public final Stack f21458z0;
+    public float f21452v0;
+    public Drawable f21453w;
+    public int f21454w0;
+    public Drawable f21455x;
+    public int f21456x0;
+    public Drawable f21457y;
+    public final ArrayList f21458y0;
+    public final Stack f21459z0;
 
     public j5(Context context) {
         super(context);
-        this.f21440n = 51;
-        this.f21445r = 1;
+        this.f21441n = 51;
+        this.f21446r = 1;
         this.H = 1.0f;
         this.I = AndroidUtilities.dp(4.0f);
-        this.f21444q0 = 16;
-        this.f21455x0 = 3;
-        this.f21457y0 = new ArrayList();
-        this.f21458z0 = new Stack();
+        this.f21445q0 = 16;
+        this.f21456x0 = 3;
+        this.f21458y0 = new ArrayList();
+        this.f21459z0 = new Stack();
         this.A0 = new Path();
         this.I0 = 0;
         this.L0 = Layout.Alignment.ALIGN_NORMAL;
@@ -131,68 +131,68 @@ public class j5 extends View implements Drawable.Callback {
         int i11;
         Drawable drawable;
         Drawable drawable2;
-        StaticLayout staticLayout = this.f21428c;
+        StaticLayout staticLayout = this.f21429c;
         if (staticLayout == null) {
             return;
         }
         if (staticLayout.getLineCount() > 0) {
-            this.f21431e0 = (int) Math.max(Math.ceil(this.f21428c.getLineWidth(0)), Math.ceil(this.f21428c.getLineRight(0) - this.f21428c.getLineLeft(0)));
+            this.f21432e0 = (int) Math.max(Math.ceil(this.f21429c.getLineWidth(0)), Math.ceil(this.f21429c.getLineRight(0) - this.f21429c.getLineLeft(0)));
             StaticLayout staticLayout2 = this.e;
             boolean z10 = true;
             if (staticLayout2 != null) {
-                this.f21434g0 = staticLayout2.getLineBottom(staticLayout2.getLineCount() - 1);
-            } else if (this.f21445r > 1 && this.f21428c.getLineCount() > 0) {
-                StaticLayout staticLayout3 = this.f21428c;
-                this.f21434g0 = staticLayout3.getLineBottom(staticLayout3.getLineCount() - 1);
+                this.f21435g0 = staticLayout2.getLineBottom(staticLayout2.getLineCount() - 1);
+            } else if (this.f21446r > 1 && this.f21429c.getLineCount() > 0) {
+                StaticLayout staticLayout3 = this.f21429c;
+                this.f21435g0 = staticLayout3.getLineBottom(staticLayout3.getLineCount() - 1);
             } else {
-                this.f21434g0 = this.f21428c.getLineBottom(0);
+                this.f21435g0 = this.f21429c.getLineBottom(0);
             }
-            int i12 = this.f21440n & 7;
+            int i12 = this.f21441n & 7;
             if (i12 == 1) {
-                this.f21429c0 = ((i10 - this.f21431e0) / 2) - ((int) this.f21428c.getLineLeft(0));
+                this.f21430c0 = ((i10 - this.f21432e0) / 2) - ((int) this.f21429c.getLineLeft(0));
             } else if (i12 == 3) {
                 StaticLayout staticLayout4 = this.d;
                 if (staticLayout4 != null) {
-                    this.f21429c0 = -((int) staticLayout4.getLineLeft(0));
+                    this.f21430c0 = -((int) staticLayout4.getLineLeft(0));
                 } else {
-                    this.f21429c0 = -((int) this.f21428c.getLineLeft(0));
+                    this.f21430c0 = -((int) this.f21429c.getLineLeft(0));
                 }
-            } else if (this.f21428c.getLineLeft(0) == 0.0f) {
+            } else if (this.f21429c.getLineLeft(0) == 0.0f) {
                 StaticLayout staticLayout5 = this.d;
                 if (staticLayout5 != null) {
-                    this.f21429c0 = (int) (i10 - staticLayout5.getLineWidth(0));
+                    this.f21430c0 = (int) (i10 - staticLayout5.getLineWidth(0));
                 } else {
-                    this.f21429c0 = i10 - this.f21431e0;
+                    this.f21430c0 = i10 - this.f21432e0;
                 }
             } else {
-                this.f21429c0 = -AndroidUtilities.dp(8.0f);
+                this.f21430c0 = -AndroidUtilities.dp(8.0f);
             }
-            this.f21429c0 = getPaddingLeft() + this.f21429c0;
+            this.f21430c0 = getPaddingLeft() + this.f21430c0;
             if (this.m0) {
-                if (this.f21452w != null && !this.f21439l0) {
+                if (this.f21453w != null && !this.f21440l0) {
                     i11 = (int) (drawable.getIntrinsicWidth() * this.H);
                 } else {
                     i11 = 0;
                 }
-                if (this.f21454x != null && !this.f21439l0) {
+                if (this.f21455x != null && !this.f21440l0) {
                     i11 += (int) (drawable2.getIntrinsicWidth() * this.H);
                 }
             } else {
                 i11 = 0;
             }
-            if (this.f21431e0 + i11 <= i10 - this.f21446r0) {
+            if (this.f21432e0 + i11 <= i10 - this.f21447r0) {
                 z10 = false;
             }
             this.Q = z10;
             b();
             StaticLayout staticLayout6 = this.e;
-            if (staticLayout6 != null && this.f21449t0 > 0) {
-                this.f21451v0 = staticLayout6.getPrimaryHorizontal(0) - this.d.getPrimaryHorizontal(0);
+            if (staticLayout6 != null && this.f21450t0 > 0) {
+                this.f21452v0 = staticLayout6.getPrimaryHorizontal(0) - this.d.getPrimaryHorizontal(0);
             }
         }
         int i13 = this.F;
         if (i13 >= 0) {
-            this.G = this.f21428c.getPrimaryHorizontal(i13);
+            this.G = this.f21429c.getPrimaryHorizontal(i13);
         } else {
             this.G = 0.0f;
         }
@@ -200,7 +200,7 @@ public class j5 extends View implements Drawable.Callback {
 
     public final void b() {
         int i10;
-        if ((this.P && (this.Q || this.R != 0.0f)) || this.f21441n0) {
+        if ((this.P && (this.Q || this.R != 0.0f)) || this.f21442n0) {
             i10 = 2;
         } else {
             i10 = 0;
@@ -212,7 +212,7 @@ public class j5 extends View implements Drawable.Callback {
     }
 
     public final void c(Canvas canvas) {
-        ArrayList arrayList = this.f21457y0;
+        ArrayList arrayList = this.f21458y0;
         if (arrayList.isEmpty()) {
             return;
         }
@@ -244,28 +244,28 @@ public class j5 extends View implements Drawable.Callback {
         int dp5;
         Drawable drawable;
         Drawable drawable2;
-        Stack stack = this.f21458z0;
-        ArrayList arrayList = this.f21457y0;
-        CharSequence charSequence4 = this.f21447s;
+        Stack stack = this.f21459z0;
+        ArrayList arrayList = this.f21458y0;
+        CharSequence charSequence4 = this.f21448s;
         this.F = -1;
         this.C0 = false;
         if (charSequence4 != null) {
             try {
                 Drawable drawable3 = this.v;
-                if (drawable3 != null && !this.f21438k0) {
+                if (drawable3 != null && !this.f21439k0) {
                     drawable3.getIntrinsicWidth();
                     i11 = (i10 - this.v.getIntrinsicWidth()) - this.I;
                 } else {
                     i11 = i10;
                 }
                 if (!this.m0) {
-                    if (this.f21452w != null && !this.f21439l0) {
+                    if (this.f21453w != null && !this.f21440l0) {
                         i12 = (int) (drawable.getIntrinsicWidth() * this.H);
                         i11 = (i11 - i12) - this.I;
                     } else {
                         i12 = 0;
                     }
-                    if (this.f21454x != null && !this.f21439l0) {
+                    if (this.f21455x != null && !this.f21440l0) {
                         i12 += (int) (drawable2.getIntrinsicWidth() * this.H);
                         i11 = (i11 - i12) - this.I;
                     }
@@ -275,17 +275,17 @@ public class j5 extends View implements Drawable.Callback {
                 SpannableStringBuilder spannableStringBuilder = charSequence4;
                 if (this.E != null) {
                     spannableStringBuilder = charSequence4;
-                    if (this.f21456y != null) {
+                    if (this.f21457y != null) {
                         int indexOf = charSequence4.toString().indexOf(this.E);
                         this.F = indexOf;
                         if (indexOf >= 0) {
                             SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(charSequence4);
-                            org.telegram.ui.Cells.p2 p2Var = new org.telegram.ui.Cells.p2(this.f21456y.getIntrinsicWidth());
+                            org.telegram.ui.Cells.p2 p2Var = new org.telegram.ui.Cells.p2(this.f21457y.getIntrinsicWidth());
                             int i15 = this.F;
                             valueOf.setSpan(p2Var, i15, this.E.length() + i15, 0);
                             spannableStringBuilder = valueOf;
                         } else {
-                            i11 = (i11 - this.f21456y.getIntrinsicWidth()) - this.I;
+                            i11 = (i11 - this.f21457y.getIntrinsicWidth()) - this.I;
                             spannableStringBuilder = charSequence4;
                         }
                     }
@@ -293,21 +293,21 @@ public class j5 extends View implements Drawable.Callback {
                 CharSequence charSequence5 = spannableStringBuilder;
                 boolean z10 = this.B0;
                 TextPaint textPaint = this.h;
-                if (z10 && i12 != 0 && !this.f21439l0 && !charSequence5.equals(TextUtils.ellipsize(charSequence5, textPaint, i11, TextUtils.TruncateAt.END))) {
+                if (z10 && i12 != 0 && !this.f21440l0 && !charSequence5.equals(TextUtils.ellipsize(charSequence5, textPaint, i11, TextUtils.TruncateAt.END))) {
                     this.C0 = true;
                     i11 = i11 + i12 + this.I;
                 }
                 int i16 = i11;
                 if (this.L) {
-                    if (!this.f21441n0) {
+                    if (!this.f21442n0) {
                         charSequence2 = TextUtils.ellipsize(charSequence5, textPaint, i16, TextUtils.TruncateAt.END);
                     } else {
                         charSequence2 = charSequence5;
                     }
-                    if (!this.f21441n0 && !charSequence2.equals(charSequence5)) {
+                    if (!this.f21442n0 && !charSequence2.equals(charSequence5)) {
                         Layout.Alignment alignment = getAlignment();
                         TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
-                        StaticLayout c10 = fx0.c(charSequence5, textPaint, i16, alignment, 0.0f, truncateAt, i16, this.f21455x0, false);
+                        StaticLayout c10 = fx0.c(charSequence5, textPaint, i16, alignment, 0.0f, truncateAt, i16, this.f21456x0, false);
                         i14 = i16;
                         this.e = c10;
                         if (c10 != null) {
@@ -335,7 +335,7 @@ public class j5 extends View implements Drawable.Callback {
                                 dp4 = i14 + AndroidUtilities.dp(8.0f);
                             }
                             StaticLayout staticLayout = new StaticLayout(subSequence, 0, length2, textPaint, dp4, getAlignment(), 1.0f, 0.0f, false);
-                            this.f21428c = staticLayout;
+                            this.f21429c = staticLayout;
                             String str = charSequence3;
                             if (staticLayout.getLineLeft(0) != 0.0f) {
                                 str = "\u200f" + ((Object) charSequence3);
@@ -347,69 +347,69 @@ public class j5 extends View implements Drawable.Callback {
                             } else {
                                 dp5 = i14 + AndroidUtilities.dp(8.0f);
                             }
-                            this.f21432f = new StaticLayout(charSequence6, 0, length3, textPaint, dp5, getAlignment(), 1.0f, 0.0f, false);
-                            this.e = fx0.c(valueOf2, textPaint, i14 + AndroidUtilities.dp(8.0f) + this.f21449t0, getAlignment(), 0.0f, truncateAt, i14 + this.f21449t0, this.f21455x0, false);
+                            this.f21433f = new StaticLayout(charSequence6, 0, length3, textPaint, dp5, getAlignment(), 1.0f, 0.0f, false);
+                            this.e = fx0.c(valueOf2, textPaint, i14 + AndroidUtilities.dp(8.0f) + this.f21450t0, getAlignment(), 0.0f, truncateAt, i14 + this.f21450t0, this.f21456x0, false);
                         }
                     } else {
                         i14 = i16;
                         CharSequence charSequence7 = charSequence2;
                         int length4 = charSequence7.length();
-                        if (!this.P && !this.f21441n0) {
+                        if (!this.P && !this.f21442n0) {
                             dp2 = i14 + AndroidUtilities.dp(8.0f);
-                            this.f21428c = new StaticLayout(charSequence7, 0, length4, textPaint, dp2, getAlignment(), 1.0f, 0.0f, false);
+                            this.f21429c = new StaticLayout(charSequence7, 0, length4, textPaint, dp2, getAlignment(), 1.0f, 0.0f, false);
                             this.e = null;
-                            this.f21432f = null;
+                            this.f21433f = null;
                             this.d = null;
                         }
                         dp2 = AndroidUtilities.dp(2000.0f);
-                        this.f21428c = new StaticLayout(charSequence7, 0, length4, textPaint, dp2, getAlignment(), 1.0f, 0.0f, false);
+                        this.f21429c = new StaticLayout(charSequence7, 0, length4, textPaint, dp2, getAlignment(), 1.0f, 0.0f, false);
                         this.e = null;
-                        this.f21432f = null;
+                        this.f21433f = null;
                         this.d = null;
                     }
                     i13 = i14;
-                } else if (this.f21445r > 1) {
-                    StaticLayout c11 = fx0.c(charSequence5, textPaint, i16, getAlignment(), 0.0f, TextUtils.TruncateAt.END, i16, this.f21445r, false);
+                } else if (this.f21446r > 1) {
+                    StaticLayout c11 = fx0.c(charSequence5, textPaint, i16, getAlignment(), 0.0f, TextUtils.TruncateAt.END, i16, this.f21446r, false);
                     i13 = i16;
-                    this.f21428c = c11;
+                    this.f21429c = c11;
                 } else {
                     i13 = i16;
-                    if (!this.P && !this.f21441n0) {
+                    if (!this.P && !this.f21442n0) {
                         charSequence = TextUtils.ellipsize(charSequence5, textPaint, i13, TextUtils.TruncateAt.END);
                         int length5 = charSequence.length();
-                        if (!this.P && !this.f21441n0) {
+                        if (!this.P && !this.f21442n0) {
                             dp = AndroidUtilities.dp(8.0f) + i13;
-                            this.f21428c = new StaticLayout(charSequence, 0, length5, textPaint, dp, getAlignment(), 1.0f, 0.0f, false);
+                            this.f21429c = new StaticLayout(charSequence, 0, length5, textPaint, dp, getAlignment(), 1.0f, 0.0f, false);
                         }
                         dp = AndroidUtilities.dp(2000.0f);
-                        this.f21428c = new StaticLayout(charSequence, 0, length5, textPaint, dp, getAlignment(), 1.0f, 0.0f, false);
+                        this.f21429c = new StaticLayout(charSequence, 0, length5, textPaint, dp, getAlignment(), 1.0f, 0.0f, false);
                     }
                     charSequence = charSequence5;
                     int length52 = charSequence.length();
                     if (!this.P) {
                         dp = AndroidUtilities.dp(8.0f) + i13;
-                        this.f21428c = new StaticLayout(charSequence, 0, length52, textPaint, dp, getAlignment(), 1.0f, 0.0f, false);
+                        this.f21429c = new StaticLayout(charSequence, 0, length52, textPaint, dp, getAlignment(), 1.0f, 0.0f, false);
                     }
                     dp = AndroidUtilities.dp(2000.0f);
-                    this.f21428c = new StaticLayout(charSequence, 0, length52, textPaint, dp, getAlignment(), 1.0f, 0.0f, false);
+                    this.f21429c = new StaticLayout(charSequence, 0, length52, textPaint, dp, getAlignment(), 1.0f, 0.0f, false);
                 }
                 stack.addAll(arrayList);
                 arrayList.clear();
-                StaticLayout staticLayout2 = this.f21428c;
+                StaticLayout staticLayout2 = this.f21429c;
                 if (staticLayout2 != null && (staticLayout2.getText() instanceof Spannable)) {
-                    wh.g.b(this, this.f21428c, -2, -2, stack, arrayList);
+                    wh.g.b(this, this.f21429c, -2, -2, stack, arrayList);
                 }
                 a(i13);
             } catch (Exception unused) {
             }
         } else {
-            this.f21428c = null;
-            this.f21431e0 = 0;
-            this.f21434g0 = 0;
+            this.f21429c = null;
+            this.f21432e0 = 0;
+            this.f21435g0 = 0;
         }
         org.telegram.ui.Components.a6.release(this, this.H0);
         if (this.K0) {
-            this.H0 = org.telegram.ui.Components.a6.update(this.I0, this, this.H0, this.f21428c);
+            this.H0 = org.telegram.ui.Components.a6.update(this.I0, this, this.H0, this.f21429c);
         }
         invalidate();
     }
@@ -417,23 +417,23 @@ public class j5 extends View implements Drawable.Callback {
     public final void e(Canvas canvas) {
         int i10 = (this.M > 0.0f ? 1 : (this.M == 0.0f ? 0 : -1));
         int i11 = 0;
-        ArrayList arrayList = this.f21457y0;
-        if (i10 > 0 && this.f21450u0 != 0) {
+        ArrayList arrayList = this.f21458y0;
+        if (i10 > 0 && this.f21451u0 != 0) {
             canvas.save();
             float f7 = this.M;
-            canvas.translate((this.f21451v0 * f7) + ((-this.f21450u0) * f7), 0.0f);
-            float f10 = this.f21424a;
+            canvas.translate((this.f21452v0 * f7) + ((-this.f21451u0) * f7), 0.0f);
+            float f10 = this.f21425a;
             float f11 = this.M;
-            this.f21424a = r4.c.c(this.f21451v0, f11, (-this.f21450u0) * f11, f10);
+            this.f21425a = r4.c.c(this.f21452v0, f11, (-this.f21451u0) * f11, f10);
             canvas.save();
             c(canvas);
             org.telegram.ui.Components.w5 w5Var = this.H0;
             if (w5Var != null) {
                 w5Var.a();
             }
-            this.f21428c.draw(canvas);
+            this.f21429c.draw(canvas);
             canvas.restore();
-            org.telegram.ui.Components.a6.drawAnimatedEmojis(canvas, this.f21428c, this.H0, 0.0f, null, 0.0f, 0.0f, 0.0f, 1.0f, this.J0);
+            org.telegram.ui.Components.a6.drawAnimatedEmojis(canvas, this.f21429c, this.H0, 0.0f, null, 0.0f, 0.0f, 0.0f, 1.0f, this.J0);
             int size = arrayList.size();
             while (i11 < size) {
                 Object obj = arrayList.get(i11);
@@ -449,9 +449,9 @@ public class j5 extends View implements Drawable.Callback {
         if (w5Var2 != null) {
             w5Var2.a();
         }
-        this.f21428c.draw(canvas);
+        this.f21429c.draw(canvas);
         canvas.restore();
-        org.telegram.ui.Components.a6.drawAnimatedEmojis(canvas, this.f21428c, this.H0, 0.0f, null, 0.0f, 0.0f, 0.0f, 1.0f, this.J0);
+        org.telegram.ui.Components.a6.drawAnimatedEmojis(canvas, this.f21429c, this.H0, 0.0f, null, 0.0f, 0.0f, 0.0f, 1.0f, this.J0);
         int size2 = arrayList.size();
         while (i11 < size2) {
             Object obj2 = arrayList.get(i11);
@@ -461,13 +461,13 @@ public class j5 extends View implements Drawable.Callback {
     }
 
     public final boolean f() {
-        if (this.f21437j0 && getMeasuredHeight() != 0 && !this.L) {
-            d(((getMaxTextWidth() - getPaddingLeft()) - getPaddingRight()) - this.f21453w0);
-            if ((this.f21440n & 112) == 16) {
-                this.f21430d0 = (getMeasuredHeight() - this.f21434g0) / 2;
+        if (this.f21438j0 && getMeasuredHeight() != 0 && !this.L) {
+            d(((getMaxTextWidth() - getPaddingLeft()) - getPaddingRight()) - this.f21454w0);
+            if ((this.f21441n & 112) == 16) {
+                this.f21431d0 = (getMeasuredHeight() - this.f21435g0) / 2;
                 return true;
             }
-            this.f21430d0 = getPaddingTop();
+            this.f21431d0 = getPaddingTop();
             return true;
         }
         requestLayout();
@@ -475,14 +475,14 @@ public class j5 extends View implements Drawable.Callback {
     }
 
     public final void g(hx0 hx0Var, String str) {
-        Drawable drawable = this.f21456y;
+        Drawable drawable = this.f21457y;
         if (drawable == hx0Var) {
             return;
         }
         if (drawable != null) {
             drawable.setCallback(null);
         }
-        this.f21456y = hx0Var;
+        this.f21457y = hx0Var;
         if (hx0Var != null) {
             hx0Var.setCallback(this);
         }
@@ -502,7 +502,7 @@ public class j5 extends View implements Drawable.Callback {
     public float getExactWidth() {
         int i10;
         float measureText = getPaint().measureText(getText().toString()) + getSideDrawablesSize();
-        if (this.v == null && this.f21452w == null && this.f21454x == null) {
+        if (this.v == null && this.f21453w == null && this.f21455x == null) {
             i10 = 0;
         } else {
             i10 = this.I;
@@ -522,14 +522,14 @@ public class j5 extends View implements Drawable.Callback {
             i10 = 0;
         }
         float f7 = exactWidth + i10;
-        Drawable drawable2 = this.f21452w;
+        Drawable drawable2 = this.f21453w;
         if (drawable2 != null) {
             i11 = drawable2.getIntrinsicWidth();
         } else {
             i11 = 0;
         }
         float f10 = f7 + i11;
-        Drawable drawable3 = this.f21454x;
+        Drawable drawable3 = this.f21455x;
         if (drawable3 != null) {
             i12 = drawable3.getIntrinsicWidth();
         }
@@ -541,15 +541,15 @@ public class j5 extends View implements Drawable.Callback {
     }
 
     public Layout getLayout() {
-        return this.f21428c;
+        return this.f21429c;
     }
 
     public float getLayoutX() {
-        return this.f21424a;
+        return this.f21425a;
     }
 
     public float getLayoutY() {
-        return this.f21426b;
+        return this.f21427b;
     }
 
     public Drawable getLeftDrawable() {
@@ -558,7 +558,7 @@ public class j5 extends View implements Drawable.Callback {
 
     public int getLineCount() {
         int i10;
-        StaticLayout staticLayout = this.f21428c;
+        StaticLayout staticLayout = this.f21429c;
         if (staticLayout != null) {
             i10 = staticLayout.getLineCount();
         } else {
@@ -577,13 +577,13 @@ public class j5 extends View implements Drawable.Callback {
         Drawable drawable2;
         int measuredWidth = getMeasuredWidth();
         int i11 = 0;
-        if (this.f21439l0 && (drawable2 = this.f21452w) != null) {
+        if (this.f21440l0 && (drawable2 = this.f21453w) != null) {
             i10 = drawable2.getIntrinsicWidth() + this.I;
         } else {
             i10 = 0;
         }
         int i12 = measuredWidth - i10;
-        if (this.f21439l0 && (drawable = this.f21454x) != null) {
+        if (this.f21440l0 && (drawable = this.f21455x) != null) {
             i11 = this.I + drawable.getIntrinsicWidth();
         }
         return i12 - i11;
@@ -594,19 +594,19 @@ public class j5 extends View implements Drawable.Callback {
     }
 
     public Drawable getRightDrawable() {
-        return this.f21452w;
+        return this.f21453w;
     }
 
     public Drawable getRightDrawable2() {
-        return this.f21454x;
+        return this.f21455x;
     }
 
     public boolean getRightDrawableOutside() {
-        return this.f21439l0;
+        return this.f21440l0;
     }
 
     public int getRightDrawableWidth() {
-        Drawable drawable = this.f21452w;
+        Drawable drawable = this.f21453w;
         if (drawable == null) {
             return 0;
         }
@@ -614,11 +614,11 @@ public class j5 extends View implements Drawable.Callback {
     }
 
     public int getRightDrawableX() {
-        return this.f21435h0;
+        return this.f21436h0;
     }
 
     public int getRightDrawableY() {
-        return this.f21436i0;
+        return this.f21437i0;
     }
 
     public int getSideDrawablesSize() {
@@ -629,11 +629,11 @@ public class j5 extends View implements Drawable.Callback {
         } else {
             i10 = 0;
         }
-        Drawable drawable2 = this.f21452w;
+        Drawable drawable2 = this.f21453w;
         if (drawable2 != null) {
             i10 += ((int) (drawable2.getIntrinsicWidth() * this.H)) + this.I;
         }
-        Drawable drawable3 = this.f21454x;
+        Drawable drawable3 = this.f21455x;
         if (drawable3 != null) {
             return ((int) (drawable3.getIntrinsicWidth() * this.H)) + this.I + i10;
         }
@@ -641,7 +641,7 @@ public class j5 extends View implements Drawable.Callback {
     }
 
     public CharSequence getText() {
-        CharSequence charSequence = this.f21447s;
+        CharSequence charSequence = this.f21448s;
         if (charSequence == null) {
             return "";
         }
@@ -653,7 +653,7 @@ public class j5 extends View implements Drawable.Callback {
     }
 
     public int getTextHeight() {
-        return this.f21434g0;
+        return this.f21435g0;
     }
 
     public TextPaint getTextPaint() {
@@ -662,22 +662,22 @@ public class j5 extends View implements Drawable.Callback {
 
     public int getTextStartX() {
         int i10 = 0;
-        if (this.f21428c == null) {
+        if (this.f21429c == null) {
             return 0;
         }
         Drawable drawable = this.v;
-        if (drawable != null && (this.f21440n & 7) == 3) {
+        if (drawable != null && (this.f21441n & 7) == 3) {
             i10 = this.I + drawable.getIntrinsicWidth();
         }
-        Drawable drawable2 = this.f21456y;
-        if (drawable2 != null && this.F < 0 && (this.f21440n & 7) == 3) {
+        Drawable drawable2 = this.f21457y;
+        if (drawable2 != null && this.F < 0 && (this.f21441n & 7) == 3) {
             i10 += drawable2.getIntrinsicWidth() + this.I;
         }
-        return ((int) getX()) + this.f21429c0 + i10;
+        return ((int) getX()) + this.f21430c0 + i10;
     }
 
     public int getTextStartY() {
-        if (this.f21428c == null) {
+        if (this.f21429c == null) {
             return 0;
         }
         return (int) getY();
@@ -687,15 +687,15 @@ public class j5 extends View implements Drawable.Callback {
         Drawable drawable;
         int i10;
         Drawable drawable2;
-        int i11 = this.f21431e0;
+        int i11 = this.f21432e0;
         int i12 = 0;
         if (this.m0) {
-            if (this.f21452w != null) {
+            if (this.f21453w != null) {
                 i10 = (int) (drawable.getIntrinsicWidth() * this.H);
             } else {
                 i10 = 0;
             }
-            if (this.f21454x != null) {
+            if (this.f21455x != null) {
                 i12 = (int) (drawable2.getIntrinsicWidth() * this.H);
             }
             i12 += i10;
@@ -704,12 +704,12 @@ public class j5 extends View implements Drawable.Callback {
     }
 
     public final void h(int i10, int i11) {
-        if (this.f21449t0 == i10 && this.f21450u0 == i11) {
+        if (this.f21450t0 == i10 && this.f21451u0 == i11) {
             return;
         }
-        this.f21449t0 = i10;
-        this.f21450u0 = i11;
-        d(((getMaxTextWidth() - getPaddingLeft()) - getPaddingRight()) - this.f21453w0);
+        this.f21450t0 = i10;
+        this.f21451u0 = i11;
+        d(((getMaxTextWidth() - getPaddingLeft()) - getPaddingRight()) - this.f21454w0);
     }
 
     @Override
@@ -718,14 +718,14 @@ public class j5 extends View implements Drawable.Callback {
     }
 
     public final boolean i(Drawable drawable) {
-        Drawable drawable2 = this.f21452w;
+        Drawable drawable2 = this.f21453w;
         if (drawable2 == drawable) {
             return false;
         }
         if (drawable2 != null) {
             drawable2.setCallback(null);
         }
-        this.f21452w = drawable;
+        this.f21453w = drawable;
         if (drawable != null) {
             drawable.setCallback(this);
         }
@@ -740,31 +740,31 @@ public class j5 extends View implements Drawable.Callback {
             invalidate(drawable2.getBounds());
             return;
         }
-        Drawable drawable3 = this.f21452w;
+        Drawable drawable3 = this.f21453w;
         if (drawable == drawable3) {
             invalidate(drawable3.getBounds());
             return;
         }
-        Drawable drawable4 = this.f21454x;
+        Drawable drawable4 = this.f21455x;
         if (drawable == drawable4) {
             invalidate(drawable4.getBounds());
             return;
         }
-        Drawable drawable5 = this.f21456y;
+        Drawable drawable5 = this.f21457y;
         if (drawable == drawable5) {
             invalidate(drawable5.getBounds());
         }
     }
 
     public final boolean j(Drawable drawable) {
-        Drawable drawable2 = this.f21454x;
+        Drawable drawable2 = this.f21455x;
         if (drawable2 == drawable) {
             return false;
         }
         if (drawable2 != null) {
             drawable2.setCallback(null);
         }
-        this.f21454x = drawable;
+        this.f21455x = drawable;
         if (drawable != null) {
             drawable.setCallback(this);
         }
@@ -777,12 +777,12 @@ public class j5 extends View implements Drawable.Callback {
     }
 
     public boolean l(CharSequence charSequence, boolean z10) {
-        CharSequence charSequence2 = this.f21447s;
+        CharSequence charSequence2 = this.f21448s;
         if (charSequence2 != null || charSequence != null) {
             if (!z10 && charSequence2 != null && charSequence2.equals(charSequence)) {
                 return false;
             }
-            this.f21447s = charSequence;
+            this.f21448s = charSequence;
             this.T = 500;
             f();
             return true;
@@ -805,26 +805,26 @@ public class j5 extends View implements Drawable.Callback {
             paint3.setShader(new LinearGradient(0.0f, 0.0f, AndroidUtilities.dp(6.0f), 0.0f, new int[]{0, -1}, new float[]{0.0f, 1.0f}, tileMode));
             this.V.setXfermode(new PorterDuffXfermode(mode));
         }
-        Boolean bool = this.f21443p0;
+        Boolean bool = this.f21444p0;
         if (bool != null) {
             z10 = bool.booleanValue();
         } else {
             z10 = false;
         }
-        if ((this.W == null || this.f21425a0 != AndroidUtilities.dp(this.f21444q0) || this.f21442o0 != z10) && this.f21441n0) {
+        if ((this.W == null || this.f21426a0 != AndroidUtilities.dp(this.f21445q0) || this.f21443o0 != z10) && this.f21442n0) {
             if (this.W == null) {
                 this.W = new Paint();
             }
-            this.f21442o0 = z10;
+            this.f21443o0 = z10;
             if (z10) {
                 Paint paint4 = this.W;
-                int dp = AndroidUtilities.dp(this.f21444q0);
-                this.f21425a0 = dp;
+                int dp = AndroidUtilities.dp(this.f21445q0);
+                this.f21426a0 = dp;
                 paint4.setShader(new LinearGradient(0.0f, 0.0f, dp, 0.0f, new int[]{-1, 0}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
             } else {
                 Paint paint5 = this.W;
-                int dp2 = AndroidUtilities.dp(this.f21444q0);
-                this.f21425a0 = dp2;
+                int dp2 = AndroidUtilities.dp(this.f21445q0);
+                this.f21426a0 = dp2;
                 paint5.setShader(new LinearGradient(0.0f, 0.0f, dp2, 0.0f, new int[]{0, -1}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
             }
             this.W.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
@@ -835,7 +835,7 @@ public class j5 extends View implements Drawable.Callback {
     public void onAttachedToWindow() {
         super.onAttachedToWindow();
         this.K0 = true;
-        this.H0 = org.telegram.ui.Components.a6.update(this.I0, this, this.H0, this.f21428c);
+        this.H0 = org.telegram.ui.Components.a6.update(this.I0, this, this.H0, this.f21429c);
     }
 
     @Override
@@ -843,7 +843,7 @@ public class j5 extends View implements Drawable.Callback {
         super.onDetachedFromWindow();
         this.K0 = false;
         org.telegram.ui.Components.a6.release(this, this.H0);
-        this.f21437j0 = false;
+        this.f21438j0 = false;
     }
 
     @Override
@@ -892,174 +892,174 @@ public class j5 extends View implements Drawable.Callback {
         int intrinsicHeight2;
         int intrinsicHeight3;
         super.onDraw(canvas);
-        this.f21424a = 0.0f;
-        this.f21426b = 0.0f;
+        this.f21425a = 0.0f;
+        this.f21427b = 0.0f;
         if (this.P && (this.Q || this.R != 0.0f)) {
             z10 = true;
         } else {
             z10 = false;
         }
-        this.f21433f0 = this.f21431e0;
+        this.f21434f0 = this.f21432e0;
         Drawable drawable9 = this.v;
-        if (drawable9 != null && !this.f21438k0) {
+        if (drawable9 != null && !this.f21439k0) {
             int i22 = (int) (-this.R);
-            int i23 = this.f21440n;
+            int i23 = this.f21441n;
             if ((i23 & 7) == 1) {
-                i22 += this.f21429c0;
+                i22 += this.f21430c0;
             }
             if ((i23 & 112) == 16) {
                 intrinsicHeight3 = ((getMeasuredHeight() - this.v.getIntrinsicHeight()) / 2) + this.J;
             } else {
-                intrinsicHeight3 = this.J + ((this.f21434g0 - this.v.getIntrinsicHeight()) / 2) + getPaddingTop();
+                intrinsicHeight3 = this.J + ((this.f21435g0 - this.v.getIntrinsicHeight()) / 2) + getPaddingTop();
             }
             Drawable drawable10 = this.v;
             drawable10.setBounds(i22, intrinsicHeight3, drawable10.getIntrinsicWidth() + i22, this.v.getIntrinsicHeight() + intrinsicHeight3);
             this.v.draw(canvas);
-            int i24 = this.f21440n & 7;
+            int i24 = this.f21441n & 7;
             if (i24 != 3 && i24 != 1) {
                 i10 = 0;
             } else {
                 i10 = this.v.getIntrinsicWidth() + this.I;
             }
-            this.f21433f0 = this.v.getIntrinsicWidth() + this.I + this.f21433f0;
-        } else if (this.f21438k0 && drawable9 != null) {
+            this.f21434f0 = this.v.getIntrinsicWidth() + this.I + this.f21434f0;
+        } else if (this.f21439k0 && drawable9 != null) {
             i10 = this.I + drawable9.getIntrinsicWidth();
         } else {
             i10 = 0;
         }
-        Drawable drawable11 = this.f21456y;
+        Drawable drawable11 = this.f21457y;
         if (drawable11 != null && this.E != null) {
             int i25 = (int) ((-this.R) + this.G);
-            int i26 = this.f21440n;
+            int i26 = this.f21441n;
             if ((i26 & 7) == 1) {
-                i25 += this.f21429c0;
+                i25 += this.f21430c0;
             }
             if ((i26 & 112) == 16) {
-                intrinsicHeight2 = ((getMeasuredHeight() - this.f21456y.getIntrinsicHeight()) / 2) + this.J;
+                intrinsicHeight2 = ((getMeasuredHeight() - this.f21457y.getIntrinsicHeight()) / 2) + this.J;
             } else {
-                intrinsicHeight2 = this.J + ((this.f21434g0 - drawable11.getIntrinsicHeight()) / 2);
+                intrinsicHeight2 = this.J + ((this.f21435g0 - drawable11.getIntrinsicHeight()) / 2);
             }
-            Drawable drawable12 = this.f21456y;
-            drawable12.setBounds(i25, intrinsicHeight2, drawable12.getIntrinsicWidth() + i25, this.f21456y.getIntrinsicHeight() + intrinsicHeight2);
-            this.f21456y.draw(canvas);
+            Drawable drawable12 = this.f21457y;
+            drawable12.setBounds(i25, intrinsicHeight2, drawable12.getIntrinsicWidth() + i25, this.f21457y.getIntrinsicHeight() + intrinsicHeight2);
+            this.f21457y.draw(canvas);
             if (this.F < 0) {
-                int i27 = this.f21440n & 7;
+                int i27 = this.f21441n & 7;
                 if (i27 == 3 || i27 == 1) {
-                    i10 += this.f21456y.getIntrinsicWidth() + this.I;
+                    i10 += this.f21457y.getIntrinsicWidth() + this.I;
                 }
-                this.f21433f0 = this.f21456y.getIntrinsicWidth() + this.I + this.f21433f0;
+                this.f21434f0 = this.f21457y.getIntrinsicWidth() + this.I + this.f21434f0;
             }
         }
         int i28 = i10;
-        if (this.f21452w != null && !this.C0 && this.H > 0.0f && !this.f21439l0 && !this.m0) {
-            int i29 = this.f21431e0 + i28 + this.I + ((int) (-this.R));
-            int i30 = this.f21440n & 7;
+        if (this.f21453w != null && !this.C0 && this.H > 0.0f && !this.f21440l0 && !this.m0) {
+            int i29 = this.f21432e0 + i28 + this.I + ((int) (-this.R));
+            int i30 = this.f21441n & 7;
             if (i30 == 1 || i30 == 5) {
-                i29 += this.f21429c0;
+                i29 += this.f21430c0;
             }
             int intrinsicWidth = (int) (drawable.getIntrinsicWidth() * this.H);
-            int intrinsicHeight4 = (int) (this.f21452w.getIntrinsicHeight() * this.H);
-            if ((this.f21440n & 112) == 16) {
+            int intrinsicHeight4 = (int) (this.f21453w.getIntrinsicHeight() * this.H);
+            if ((this.f21441n & 112) == 16) {
                 C9 = (getMeasuredHeight() - intrinsicHeight4) / 2;
                 i21 = this.K;
             } else {
-                C9 = i2.e.C(this.f21434g0, intrinsicHeight4, 2, getPaddingTop());
+                C9 = i2.e.C(this.f21435g0, intrinsicHeight4, 2, getPaddingTop());
                 i21 = this.K;
             }
             int i31 = C9 + i21;
             f7 = 0.0f;
-            this.f21452w.setBounds(i29, i31, i29 + intrinsicWidth, i31 + intrinsicHeight4);
-            this.f21435h0 = i29 + (intrinsicWidth >> 1);
-            this.f21436i0 = i31 + (intrinsicHeight4 >> 1);
-            this.f21452w.draw(canvas);
-            this.f21433f0 = this.I + intrinsicWidth + this.f21433f0;
+            this.f21453w.setBounds(i29, i31, i29 + intrinsicWidth, i31 + intrinsicHeight4);
+            this.f21436h0 = i29 + (intrinsicWidth >> 1);
+            this.f21437i0 = i31 + (intrinsicHeight4 >> 1);
+            this.f21453w.draw(canvas);
+            this.f21434f0 = this.I + intrinsicWidth + this.f21434f0;
         } else {
             f7 = 0.0f;
         }
-        if (this.f21454x != null && !this.C0 && this.H > f7 && !this.f21439l0 && !this.m0) {
-            int i32 = this.f21431e0 + i28 + this.I + ((int) (-this.R));
-            if (this.f21452w != null) {
+        if (this.f21455x != null && !this.C0 && this.H > f7 && !this.f21440l0 && !this.m0) {
+            int i32 = this.f21432e0 + i28 + this.I + ((int) (-this.R));
+            if (this.f21453w != null) {
                 i32 += ((int) (drawable8.getIntrinsicWidth() * this.H)) + this.I;
             }
-            int i33 = this.f21440n & 7;
+            int i33 = this.f21441n & 7;
             if (i33 == 1 || i33 == 5) {
-                i32 += this.f21429c0;
+                i32 += this.f21430c0;
             }
-            int intrinsicWidth2 = (int) (this.f21454x.getIntrinsicWidth() * this.H);
-            int intrinsicHeight5 = (int) (this.f21454x.getIntrinsicHeight() * this.H);
-            if ((this.f21440n & 112) == 16) {
+            int intrinsicWidth2 = (int) (this.f21455x.getIntrinsicWidth() * this.H);
+            int intrinsicHeight5 = (int) (this.f21455x.getIntrinsicHeight() * this.H);
+            if ((this.f21441n & 112) == 16) {
                 C8 = (getMeasuredHeight() - intrinsicHeight5) / 2;
                 i20 = this.K;
             } else {
-                C8 = i2.e.C(this.f21434g0, intrinsicHeight5, 2, getPaddingTop());
+                C8 = i2.e.C(this.f21435g0, intrinsicHeight5, 2, getPaddingTop());
                 i20 = this.K;
             }
             int i34 = C8 + i20;
-            this.f21454x.setBounds(i32, i34, i32 + intrinsicWidth2, intrinsicHeight5 + i34);
-            this.f21454x.draw(canvas);
-            this.f21433f0 = this.I + intrinsicWidth2 + this.f21433f0;
+            this.f21455x.setBounds(i32, i34, i32 + intrinsicWidth2, intrinsicHeight5 + i34);
+            this.f21455x.draw(canvas);
+            this.f21434f0 = this.I + intrinsicWidth2 + this.f21434f0;
         }
-        int dp = AndroidUtilities.dp(16.0f) + this.f21433f0;
+        int dp = AndroidUtilities.dp(16.0f) + this.f21434f0;
         float f18 = this.R;
         if (f18 != f7) {
-            if (this.v != null && !this.f21438k0) {
+            if (this.v != null && !this.f21439k0) {
                 int i35 = ((int) (-f18)) + dp;
-                if ((this.f21440n & 112) == 16) {
+                if ((this.f21441n & 112) == 16) {
                     intrinsicHeight = ((getMeasuredHeight() - this.v.getIntrinsicHeight()) / 2) + this.J;
                 } else {
-                    intrinsicHeight = this.J + ((this.f21434g0 - this.v.getIntrinsicHeight()) / 2) + getPaddingTop();
+                    intrinsicHeight = this.J + ((this.f21435g0 - this.v.getIntrinsicHeight()) / 2) + getPaddingTop();
                 }
                 Drawable drawable13 = this.v;
                 drawable13.setBounds(i35, intrinsicHeight, drawable13.getIntrinsicWidth() + i35, this.v.getIntrinsicHeight() + intrinsicHeight);
                 this.v.draw(canvas);
             }
-            if (this.f21452w != null && !this.f21439l0) {
+            if (this.f21453w != null && !this.f21440l0) {
                 int intrinsicWidth3 = (int) (drawable5.getIntrinsicWidth() * this.H);
-                int intrinsicHeight6 = (int) (this.f21452w.getIntrinsicHeight() * this.H);
-                int i36 = this.f21431e0 + i28 + this.I + ((int) (-this.R)) + dp;
-                if ((this.f21440n & 112) == 16) {
+                int intrinsicHeight6 = (int) (this.f21453w.getIntrinsicHeight() * this.H);
+                int i36 = this.f21432e0 + i28 + this.I + ((int) (-this.R)) + dp;
+                if ((this.f21441n & 112) == 16) {
                     C7 = (getMeasuredHeight() - intrinsicHeight6) / 2;
                     i19 = this.K;
                 } else {
-                    C7 = i2.e.C(this.f21434g0, intrinsicHeight6, 2, getPaddingTop());
+                    C7 = i2.e.C(this.f21435g0, intrinsicHeight6, 2, getPaddingTop());
                     i19 = this.K;
                 }
                 int i37 = C7 + i19;
                 f10 = 16.0f;
-                this.f21452w.setBounds(i36, i37, i36 + intrinsicWidth3, i37 + intrinsicHeight6);
-                this.f21435h0 = i36 + (intrinsicWidth3 >> 1);
-                this.f21436i0 = i37 + (intrinsicHeight6 >> 1);
-                this.f21452w.draw(canvas);
+                this.f21453w.setBounds(i36, i37, i36 + intrinsicWidth3, i37 + intrinsicHeight6);
+                this.f21436h0 = i36 + (intrinsicWidth3 >> 1);
+                this.f21437i0 = i37 + (intrinsicHeight6 >> 1);
+                this.f21453w.draw(canvas);
             } else {
                 f10 = 16.0f;
             }
-            if (this.f21454x != null && !this.f21439l0) {
+            if (this.f21455x != null && !this.f21440l0) {
                 int intrinsicWidth4 = (int) (drawable6.getIntrinsicWidth() * this.H);
-                int intrinsicHeight7 = (int) (this.f21454x.getIntrinsicHeight() * this.H);
-                int i38 = this.f21431e0 + i28 + this.I + ((int) (-this.R)) + dp;
-                if (this.f21452w != null) {
+                int intrinsicHeight7 = (int) (this.f21455x.getIntrinsicHeight() * this.H);
+                int i38 = this.f21432e0 + i28 + this.I + ((int) (-this.R)) + dp;
+                if (this.f21453w != null) {
                     i38 += ((int) (drawable7.getIntrinsicWidth() * this.H)) + this.I;
                 }
-                if ((this.f21440n & 112) == 16) {
+                if ((this.f21441n & 112) == 16) {
                     C6 = (getMeasuredHeight() - intrinsicHeight7) / 2;
                     i18 = this.K;
                 } else {
-                    C6 = i2.e.C(this.f21434g0, intrinsicHeight7, 2, getPaddingTop());
+                    C6 = i2.e.C(this.f21435g0, intrinsicHeight7, 2, getPaddingTop());
                     i18 = this.K;
                 }
                 int i39 = C6 + i18;
-                this.f21454x.setBounds(i38, i39, intrinsicWidth4 + i38, intrinsicHeight7 + i39);
-                this.f21454x.draw(canvas);
+                this.f21455x.setBounds(i38, i39, intrinsicWidth4 + i38, intrinsicHeight7 + i39);
+                this.f21455x.draw(canvas);
             }
         } else {
             f10 = 16.0f;
         }
-        if (this.f21428c != null) {
-            if (this.f21438k0 || this.f21439l0 || this.f21441n0 || this.f21446r0 > 0) {
+        if (this.f21429c != null) {
+            if (this.f21439k0 || this.f21440l0 || this.f21442n0 || this.f21447r0 > 0) {
                 canvas.save();
-                int maxTextWidth = getMaxTextWidth() - this.f21446r0;
-                Drawable drawable14 = this.f21452w;
-                if (drawable14 != null && !(drawable14 instanceof org.telegram.ui.Components.p5) && this.f21439l0) {
+                int maxTextWidth = getMaxTextWidth() - this.f21447r0;
+                Drawable drawable14 = this.f21453w;
+                if (drawable14 != null && !(drawable14 instanceof org.telegram.ui.Components.p5) && this.f21440l0) {
                     f11 = 2.0f;
                 } else {
                     f11 = f7;
@@ -1068,28 +1068,28 @@ public class j5 extends View implements Drawable.Callback {
             }
             Emoji.emojiDrawingUseAlpha = false;
             if (this.O != null) {
-                int i40 = this.f21431e0;
-                int i41 = (i40 / 2) + ((int) ((this.f21429c0 + i28) - this.R));
-                int max = Math.max(getPaddingRight() + getPaddingLeft() + i40, this.f21448s0);
+                int i40 = this.f21432e0;
+                int i41 = (i40 / 2) + ((int) ((this.f21430c0 + i28) - this.R));
+                int max = Math.max(getPaddingRight() + getPaddingLeft() + i40, this.f21449s0);
                 int i42 = i41 - (max / 2);
                 this.O.setBounds(i42, 0, max + i42, getMeasuredHeight());
                 this.O.draw(canvas);
             }
-            if (this.f21429c0 + i28 != 0 || this.f21430d0 != 0 || this.R != f7) {
+            if (this.f21430c0 + i28 != 0 || this.f21431d0 != 0 || this.R != f7) {
                 canvas.save();
-                canvas.translate((this.f21429c0 + i28) - this.R, this.f21430d0);
-                this.f21424a = ((this.f21429c0 + i28) - this.R) + this.f21424a;
-                this.f21426b += this.f21430d0;
+                canvas.translate((this.f21430c0 + i28) - this.R, this.f21431d0);
+                this.f21425a = ((this.f21430c0 + i28) - this.R) + this.f21425a;
+                this.f21427b += this.f21431d0;
             }
             e(canvas);
-            StaticLayout staticLayout = this.f21432f;
+            StaticLayout staticLayout = this.f21433f;
             TextPaint textPaint = this.h;
             if (staticLayout != null && this.M < 1.0f) {
                 int alpha = textPaint.getAlpha();
                 textPaint.setAlpha((int) ((1.0f - this.M) * 255.0f));
                 canvas.save();
-                if (this.f21432f.getText().length() == 1) {
-                    if (this.f21455x0 == 1) {
+                if (this.f21433f.getText().length() == 1) {
+                    if (this.f21456x0 == 1) {
                         f17 = 0.5f;
                     } else {
                         f17 = 4.0f;
@@ -1098,18 +1098,18 @@ public class j5 extends View implements Drawable.Callback {
                 } else {
                     f16 = f7;
                 }
-                if (this.f21428c.getLineLeft(0) != f7) {
-                    float f19 = (-this.f21428c.getLineWidth(0)) + f16;
+                if (this.f21429c.getLineLeft(0) != f7) {
+                    float f19 = (-this.f21429c.getLineWidth(0)) + f16;
                     float f20 = f7;
                     canvas.translate(f19, f20);
                     f12 = f20;
                 } else {
                     f12 = f7;
-                    canvas.translate(this.f21428c.getLineWidth(0) - f16, f12);
+                    canvas.translate(this.f21429c.getLineWidth(0) - f16, f12);
                 }
                 float f21 = this.M;
-                canvas.translate((this.f21451v0 * f21) + ((-this.f21450u0) * f21), f12);
-                this.f21432f.draw(canvas);
+                canvas.translate((this.f21452v0 * f21) + ((-this.f21451u0) * f21), f12);
+                this.f21433f.draw(canvas);
                 canvas.restore();
                 textPaint.setAlpha(alpha);
             } else {
@@ -1120,8 +1120,8 @@ public class j5 extends View implements Drawable.Callback {
                     int alpha2 = textPaint.getAlpha();
                     textPaint.setAlpha((int) (this.M * 255.0f));
                     float f22 = this.M;
-                    float f23 = this.f21451v0;
-                    float f24 = ((f22 * f23) + ((-this.f21450u0) * f22)) - f23;
+                    float f23 = this.f21452v0;
+                    float f24 = ((f22 * f23) + ((-this.f21451u0) * f22)) - f23;
                     f13 = 0.0f;
                     canvas.translate(f24, 0.0f);
                     this.e.draw(canvas);
@@ -1136,83 +1136,83 @@ public class j5 extends View implements Drawable.Callback {
                 canvas.translate(dp, f13);
                 e(canvas);
             }
-            if (this.f21429c0 + i28 != 0 || this.f21430d0 != 0 || this.R != f13) {
+            if (this.f21430c0 + i28 != 0 || this.f21431d0 != 0 || this.R != f13) {
                 canvas.restore();
             }
-            if (this.f21452w != null && !this.C0 && this.H > 0.0f && !this.f21439l0 && this.m0) {
-                int i43 = this.f21431e0 + i28 + this.I + ((int) (-this.R));
-                int i44 = this.f21440n & 7;
+            if (this.f21453w != null && !this.C0 && this.H > 0.0f && !this.f21440l0 && this.m0) {
+                int i43 = this.f21432e0 + i28 + this.I + ((int) (-this.R));
+                int i44 = this.f21441n & 7;
                 if (i44 == 1 || i44 == 5) {
-                    i43 += this.f21429c0;
+                    i43 += this.f21430c0;
                 }
                 int intrinsicWidth5 = (int) (drawable3.getIntrinsicWidth() * this.H);
-                int intrinsicHeight8 = (int) (this.f21452w.getIntrinsicHeight() * this.H);
-                if ((this.f21440n & 112) == 16) {
+                int intrinsicHeight8 = (int) (this.f21453w.getIntrinsicHeight() * this.H);
+                if ((this.f21441n & 112) == 16) {
                     C5 = (getMeasuredHeight() - intrinsicHeight8) / 2;
                     i17 = this.K;
                 } else {
-                    C5 = i2.e.C(this.f21434g0, intrinsicHeight8, 2, getPaddingTop());
+                    C5 = i2.e.C(this.f21435g0, intrinsicHeight8, 2, getPaddingTop());
                     i17 = this.K;
                 }
                 int i45 = C5 + i17;
-                this.f21452w.setBounds(i43, i45, i43 + intrinsicWidth5, i45 + intrinsicHeight8);
-                this.f21435h0 = i43 + (intrinsicWidth5 >> 1);
-                this.f21436i0 = i45 + (intrinsicHeight8 >> 1);
-                this.f21452w.draw(canvas);
-                this.f21433f0 = this.I + intrinsicWidth5 + this.f21433f0;
+                this.f21453w.setBounds(i43, i45, i43 + intrinsicWidth5, i45 + intrinsicHeight8);
+                this.f21436h0 = i43 + (intrinsicWidth5 >> 1);
+                this.f21437i0 = i45 + (intrinsicHeight8 >> 1);
+                this.f21453w.draw(canvas);
+                this.f21434f0 = this.I + intrinsicWidth5 + this.f21434f0;
             }
-            if (this.f21454x != null && !this.C0 && this.H > 0.0f && !this.f21439l0 && this.m0) {
-                int i46 = this.f21431e0 + i28 + this.I + ((int) (-this.R));
-                if (this.f21452w != null) {
+            if (this.f21455x != null && !this.C0 && this.H > 0.0f && !this.f21440l0 && this.m0) {
+                int i46 = this.f21432e0 + i28 + this.I + ((int) (-this.R));
+                if (this.f21453w != null) {
                     i46 += ((int) (drawable4.getIntrinsicWidth() * this.H)) + this.I;
                 }
-                int i47 = this.f21440n & 7;
+                int i47 = this.f21441n & 7;
                 if (i47 == 1 || i47 == 5) {
-                    i46 += this.f21429c0;
+                    i46 += this.f21430c0;
                 }
-                int intrinsicWidth6 = (int) (this.f21454x.getIntrinsicWidth() * this.H);
-                int intrinsicHeight9 = (int) (this.f21454x.getIntrinsicHeight() * this.H);
-                if ((this.f21440n & 112) == 16) {
+                int intrinsicWidth6 = (int) (this.f21455x.getIntrinsicWidth() * this.H);
+                int intrinsicHeight9 = (int) (this.f21455x.getIntrinsicHeight() * this.H);
+                if ((this.f21441n & 112) == 16) {
                     C4 = (getMeasuredHeight() - intrinsicHeight9) / 2;
                     i16 = this.K;
                 } else {
-                    C4 = i2.e.C(this.f21434g0, intrinsicHeight9, 2, getPaddingTop());
+                    C4 = i2.e.C(this.f21435g0, intrinsicHeight9, 2, getPaddingTop());
                     i16 = this.K;
                 }
                 int i48 = C4 + i16;
-                this.f21454x.setBounds(i46, i48, i46 + intrinsicWidth6, intrinsicHeight9 + i48);
-                this.f21454x.draw(canvas);
-                this.f21433f0 = this.I + intrinsicWidth6 + this.f21433f0;
+                this.f21455x.setBounds(i46, i48, i46 + intrinsicWidth6, intrinsicHeight9 + i48);
+                this.f21455x.draw(canvas);
+                this.f21434f0 = this.I + intrinsicWidth6 + this.f21434f0;
             }
             if (z10) {
                 if (this.R < AndroidUtilities.dp(10.0f)) {
                     this.U.setAlpha((int) ((this.R / AndroidUtilities.dp(10.0f)) * 255.0f));
                 } else {
-                    if (this.R > (AndroidUtilities.dp(f10) + this.f21433f0) - AndroidUtilities.dp(10.0f)) {
-                        this.U.setAlpha((int) ok.z(this.R - ((AndroidUtilities.dp(f10) + this.f21433f0) - AndroidUtilities.dp(10.0f)), AndroidUtilities.dp(10.0f), 1.0f, 255.0f));
+                    if (this.R > (AndroidUtilities.dp(f10) + this.f21434f0) - AndroidUtilities.dp(10.0f)) {
+                        this.U.setAlpha((int) nk.z(this.R - ((AndroidUtilities.dp(f10) + this.f21434f0) - AndroidUtilities.dp(10.0f)), AndroidUtilities.dp(10.0f), 1.0f, 255.0f));
                     } else {
                         this.U.setAlpha(255);
                     }
                 }
                 canvas.drawRect(i28, 0.0f, AndroidUtilities.dp(6.0f) + i28, getMeasuredHeight(), this.U);
                 canvas.save();
-                canvas.translate((getMaxTextWidth() - this.f21446r0) - AndroidUtilities.dp(6.0f), 0.0f);
+                canvas.translate((getMaxTextWidth() - this.f21447r0) - AndroidUtilities.dp(6.0f), 0.0f);
                 canvas.drawRect(0.0f, 0.0f, AndroidUtilities.dp(6.0f), getMeasuredHeight(), this.V);
                 canvas.restore();
-            } else if (this.f21441n0 && this.Q && this.W != null) {
+            } else if (this.f21442n0 && this.Q && this.W != null) {
                 canvas.save();
                 m();
-                if (!this.f21442o0) {
-                    int maxTextWidth2 = (getMaxTextWidth() - this.f21446r0) - this.f21425a0;
-                    Drawable drawable15 = this.f21452w;
-                    if (drawable15 != null && !(drawable15 instanceof org.telegram.ui.Components.p5) && this.f21439l0) {
+                if (!this.f21443o0) {
+                    int maxTextWidth2 = (getMaxTextWidth() - this.f21447r0) - this.f21426a0;
+                    Drawable drawable15 = this.f21453w;
+                    if (drawable15 != null && !(drawable15 instanceof org.telegram.ui.Components.p5) && this.f21440l0) {
                         f14 = 2.0f;
                     } else {
                         f14 = 0.0f;
                     }
                     canvas.translate(maxTextWidth2 - AndroidUtilities.dp(f14), 0.0f);
                 }
-                canvas.drawRect(i28, 0.0f, this.f21425a0, getMeasuredHeight(), this.W);
+                canvas.drawRect(i28, 0.0f, this.f21426a0, getMeasuredHeight(), this.W);
                 canvas.restore();
             }
             if (!this.P || (!this.Q && this.R == 0.0f)) {
@@ -1228,13 +1228,13 @@ public class j5 extends View implements Drawable.Callback {
                     this.T = (int) (i49 - j10);
                     z11 = true;
                 } else {
-                    int dp2 = AndroidUtilities.dp(f10) + this.f21433f0;
+                    int dp2 = AndroidUtilities.dp(f10) + this.f21434f0;
                     if (this.R < AndroidUtilities.dp(100.0f)) {
                         f15 = a1.g.d(this.R, AndroidUtilities.dp(100.0f), 20.0f, 30.0f);
                         z11 = true;
                     } else if (this.R >= dp2 - AndroidUtilities.dp(100.0f)) {
                         z11 = true;
-                        f15 = ok.x(this.R - (dp2 - AndroidUtilities.dp(100.0f)), AndroidUtilities.dp(100.0f), 20.0f, 50.0f);
+                        f15 = nk.x(this.R - (dp2 - AndroidUtilities.dp(100.0f)), AndroidUtilities.dp(100.0f), 20.0f, 50.0f);
                     } else {
                         z11 = true;
                         f15 = 50.0f;
@@ -1251,73 +1251,73 @@ public class j5 extends View implements Drawable.Callback {
                 invalidate();
             }
             Emoji.emojiDrawingUseAlpha = z11;
-            if (this.f21438k0 || this.f21439l0 || this.f21441n0 || this.f21446r0 > 0) {
+            if (this.f21439k0 || this.f21440l0 || this.f21442n0 || this.f21447r0 > 0) {
                 canvas.restore();
             }
         }
         Drawable drawable16 = this.v;
-        if (drawable16 != null && this.f21438k0) {
+        if (drawable16 != null && this.f21439k0) {
             int intrinsicWidth7 = drawable16.getIntrinsicWidth();
             int intrinsicHeight10 = this.v.getIntrinsicHeight();
-            if ((this.f21440n & 112) == 16) {
+            if ((this.f21441n & 112) == 16) {
                 C3 = (getMeasuredHeight() - intrinsicHeight10) / 2;
                 i15 = this.J;
             } else {
-                C3 = i2.e.C(this.f21434g0, intrinsicHeight10, 2, getPaddingTop());
+                C3 = i2.e.C(this.f21435g0, intrinsicHeight10, 2, getPaddingTop());
                 i15 = this.J;
             }
             int i50 = C3 + i15;
             this.v.setBounds(0, i50, intrinsicWidth7, intrinsicHeight10 + i50);
             this.v.draw(canvas);
         }
-        if (this.f21452w != null && this.f21439l0) {
-            int i51 = this.f21431e0 + i28 + this.I;
+        if (this.f21453w != null && this.f21440l0) {
+            int i51 = this.f21432e0 + i28 + this.I;
             float f25 = this.R;
             if (f25 == 0.0f) {
                 i13 = -dp;
             } else {
                 i13 = (int) (-f25);
             }
-            int min = Math.min(i51 + i13 + dp, (getMaxTextWidth() - this.f21446r0) + this.I);
-            int intrinsicWidth8 = (int) (this.f21452w.getIntrinsicWidth() * this.H);
-            int intrinsicHeight11 = (int) (this.f21452w.getIntrinsicHeight() * this.H);
-            if ((this.f21440n & 112) == 16) {
+            int min = Math.min(i51 + i13 + dp, (getMaxTextWidth() - this.f21447r0) + this.I);
+            int intrinsicWidth8 = (int) (this.f21453w.getIntrinsicWidth() * this.H);
+            int intrinsicHeight11 = (int) (this.f21453w.getIntrinsicHeight() * this.H);
+            if ((this.f21441n & 112) == 16) {
                 C2 = (getMeasuredHeight() - intrinsicHeight11) / 2;
                 i14 = this.K;
             } else {
-                C2 = i2.e.C(this.f21434g0, intrinsicHeight11, 2, getPaddingTop());
+                C2 = i2.e.C(this.f21435g0, intrinsicHeight11, 2, getPaddingTop());
                 i14 = this.K;
             }
             int i52 = C2 + i14;
-            this.f21452w.setBounds(min, i52, min + intrinsicWidth8, i52 + intrinsicHeight11);
-            this.f21435h0 = min + (intrinsicWidth8 >> 1);
-            this.f21436i0 = i52 + (intrinsicHeight11 >> 1);
-            this.f21452w.draw(canvas);
+            this.f21453w.setBounds(min, i52, min + intrinsicWidth8, i52 + intrinsicHeight11);
+            this.f21436h0 = min + (intrinsicWidth8 >> 1);
+            this.f21437i0 = i52 + (intrinsicHeight11 >> 1);
+            this.f21453w.draw(canvas);
         }
-        if (this.f21454x != null && this.f21439l0) {
-            int i53 = i28 + this.f21431e0 + this.I;
+        if (this.f21455x != null && this.f21440l0) {
+            int i53 = i28 + this.f21432e0 + this.I;
             float f26 = this.R;
             if (f26 == 0.0f) {
                 i11 = -dp;
             } else {
                 i11 = (int) (-f26);
             }
-            int min2 = Math.min(i53 + i11 + dp, (getMaxTextWidth() - this.f21446r0) + this.I);
-            if (this.f21452w != null) {
+            int min2 = Math.min(i53 + i11 + dp, (getMaxTextWidth() - this.f21447r0) + this.I);
+            if (this.f21453w != null) {
                 min2 += ((int) (drawable2.getIntrinsicWidth() * this.H)) + this.I;
             }
-            int intrinsicWidth9 = (int) (this.f21454x.getIntrinsicWidth() * this.H);
-            int intrinsicHeight12 = (int) (this.f21454x.getIntrinsicHeight() * this.H);
-            if ((this.f21440n & 112) == 16) {
+            int intrinsicWidth9 = (int) (this.f21455x.getIntrinsicWidth() * this.H);
+            int intrinsicHeight12 = (int) (this.f21455x.getIntrinsicHeight() * this.H);
+            if ((this.f21441n & 112) == 16) {
                 C = (getMeasuredHeight() - intrinsicHeight12) / 2;
                 i12 = this.K;
             } else {
-                C = i2.e.C(this.f21434g0, intrinsicHeight12, 2, getPaddingTop());
+                C = i2.e.C(this.f21435g0, intrinsicHeight12, 2, getPaddingTop());
                 i12 = this.K;
             }
             int i54 = C + i12;
-            this.f21454x.setBounds(min2, i54, intrinsicWidth9 + min2, intrinsicHeight12 + i54);
-            this.f21454x.draw(canvas);
+            this.f21455x.setBounds(min2, i54, intrinsicWidth9 + min2, intrinsicHeight12 + i54);
+            this.f21455x.draw(canvas);
         }
     }
 
@@ -1326,12 +1326,12 @@ public class j5 extends View implements Drawable.Callback {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         accessibilityNodeInfo.setVisibleToUser(true);
         accessibilityNodeInfo.setClassName("android.widget.TextView");
-        accessibilityNodeInfo.setText(this.f21447s);
+        accessibilityNodeInfo.setText(this.f21448s);
     }
 
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        this.f21437j0 = true;
+        this.f21438j0 = true;
     }
 
     @Override
@@ -1350,51 +1350,51 @@ public class j5 extends View implements Drawable.Callback {
         Drawable drawable6;
         int size = View.MeasureSpec.getSize(i10);
         int size2 = View.MeasureSpec.getSize(i11);
-        int i18 = this.f21427b0;
+        int i18 = this.f21428b0;
         int i19 = AndroidUtilities.displaySize.x;
         if (i18 != i19) {
-            this.f21427b0 = i19;
+            this.f21428b0 = i19;
             this.R = 0.0f;
             this.T = 500;
             b();
         }
-        int paddingLeft = ((size - getPaddingLeft()) - getPaddingRight()) - this.f21453w0;
-        if (this.f21438k0 && (drawable6 = this.v) != null) {
+        int paddingLeft = ((size - getPaddingLeft()) - getPaddingRight()) - this.f21454w0;
+        if (this.f21439k0 && (drawable6 = this.v) != null) {
             i12 = drawable6.getIntrinsicWidth() + this.I;
         } else {
             i12 = 0;
         }
         int i20 = paddingLeft - i12;
-        if (this.f21439l0 && (drawable5 = this.f21452w) != null) {
+        if (this.f21440l0 && (drawable5 = this.f21453w) != null) {
             i13 = drawable5.getIntrinsicWidth() + this.I;
         } else {
             i13 = 0;
         }
         int i21 = i20 - i13;
-        if (this.f21439l0 && (drawable4 = this.f21454x) != null) {
+        if (this.f21440l0 && (drawable4 = this.f21455x) != null) {
             i14 = drawable4.getIntrinsicWidth() + this.I;
         } else {
             i14 = 0;
         }
         d(i21 - i14);
         if (View.MeasureSpec.getMode(i11) != 1073741824) {
-            size2 = getPaddingBottom() + getPaddingTop() + this.f21434g0;
+            size2 = getPaddingBottom() + getPaddingTop() + this.f21435g0;
         }
         if (this.N) {
-            int paddingRight = getPaddingRight() + getPaddingLeft() + this.f21431e0 + this.f21453w0;
-            if (this.f21438k0 && (drawable3 = this.v) != null) {
+            int paddingRight = getPaddingRight() + getPaddingLeft() + this.f21432e0 + this.f21454w0;
+            if (this.f21439k0 && (drawable3 = this.v) != null) {
                 i15 = drawable3.getIntrinsicWidth() + this.I;
             } else {
                 i15 = 0;
             }
             int i22 = paddingRight + i15;
-            if (this.f21439l0 && (drawable2 = this.f21452w) != null) {
+            if (this.f21440l0 && (drawable2 = this.f21453w) != null) {
                 i16 = drawable2.getIntrinsicWidth() + this.I;
             } else {
                 i16 = 0;
             }
             int i23 = i22 + i16;
-            if (this.f21439l0 && (drawable = this.f21454x) != null) {
+            if (this.f21440l0 && (drawable = this.f21455x) != null) {
                 i17 = drawable.getIntrinsicWidth() + this.I;
             } else {
                 i17 = 0;
@@ -1402,42 +1402,42 @@ public class j5 extends View implements Drawable.Callback {
             size = Math.max(Math.min(size, i23 + i17), 0);
         }
         setMeasuredDimension(size, size2);
-        if ((this.f21440n & 112) == 16) {
-            this.f21430d0 = i2.e.C((getMeasuredHeight() - getPaddingTop()) - getPaddingBottom(), this.f21434g0, 2, getPaddingTop());
+        if ((this.f21441n & 112) == 16) {
+            this.f21431d0 = i2.e.C((getMeasuredHeight() - getPaddingTop()) - getPaddingBottom(), this.f21435g0, 2, getPaddingTop());
         } else {
-            this.f21430d0 = getPaddingTop();
+            this.f21431d0 = getPaddingTop();
         }
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        if (this.D0 != null && this.f21452w != null) {
+        if (this.D0 != null && this.f21453w != null) {
             RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(this.f21435h0 - AndroidUtilities.dp(16.0f), this.f21436i0 - AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f) + this.f21435h0, AndroidUtilities.dp(16.0f) + this.f21436i0);
+            rectF.set(this.f21436h0 - AndroidUtilities.dp(16.0f), this.f21437i0 - AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f) + this.f21436h0, AndroidUtilities.dp(16.0f) + this.f21437i0);
             if (motionEvent.getAction() == 0 && rectF.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
                 this.E0 = true;
                 this.F0 = motionEvent.getX();
                 this.G0 = motionEvent.getY();
                 getParent().requestDisallowInterceptTouchEvent(true);
-                Drawable drawable = this.f21452w;
+                Drawable drawable = this.f21453w;
                 if (drawable instanceof i5) {
-                    ((n01) ((i5) drawable)).f39391f.c(true);
+                    ((n01) ((i5) drawable)).f39392f.c(true);
                 }
             } else if (motionEvent.getAction() == 2 && this.E0) {
                 if (Math.abs(motionEvent.getX() - this.F0) >= AndroidUtilities.touchSlop || Math.abs(motionEvent.getY() - this.G0) >= AndroidUtilities.touchSlop) {
                     this.E0 = false;
                     getParent().requestDisallowInterceptTouchEvent(false);
-                    Drawable drawable2 = this.f21452w;
+                    Drawable drawable2 = this.f21453w;
                     if (drawable2 instanceof i5) {
-                        ((n01) ((i5) drawable2)).f39391f.c(false);
+                        ((n01) ((i5) drawable2)).f39392f.c(false);
                     }
                 }
             } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
                 if (this.E0 && motionEvent.getAction() == 1) {
                     this.D0.onClick(this);
-                    Drawable drawable3 = this.f21452w;
+                    Drawable drawable3 = this.f21453w;
                     if (drawable3 instanceof i5) {
-                        ((n01) ((i5) drawable3)).f39391f.c(false);
+                        ((n01) ((i5) drawable3)).f39392f.c(false);
                     }
                 }
                 this.E0 = false;
@@ -1457,7 +1457,7 @@ public class j5 extends View implements Drawable.Callback {
 
     @Override
     public void setBackgroundDrawable(Drawable drawable) {
-        if (this.f21445r > 1) {
+        if (this.f21446r > 1) {
             super.setBackgroundDrawable(drawable);
         } else {
             this.O = drawable;
@@ -1482,12 +1482,12 @@ public class j5 extends View implements Drawable.Callback {
 
     public void setEllipsizeByGradient(int i10) {
         if (!this.P) {
-            this.f21441n0 = true;
-            this.f21443p0 = null;
+            this.f21442n0 = true;
+            this.f21444p0 = null;
             m();
             b();
         }
-        this.f21444q0 = i10;
+        this.f21445q0 = i10;
         m();
     }
 
@@ -1496,7 +1496,7 @@ public class j5 extends View implements Drawable.Callback {
             org.telegram.ui.Components.a6.release(this, this.H0);
             this.I0 = i10;
             if (this.K0) {
-                this.H0 = org.telegram.ui.Components.a6.update(i10, this, this.H0, this.f21428c);
+                this.H0 = org.telegram.ui.Components.a6.update(i10, this, this.H0, this.f21429c);
             }
         }
     }
@@ -1511,11 +1511,11 @@ public class j5 extends View implements Drawable.Callback {
     }
 
     public void setFullTextMaxLines(int i10) {
-        this.f21455x0 = i10;
+        this.f21456x0 = i10;
     }
 
     public void setGravity(int i10) {
-        this.f21440n = i10;
+        this.f21441n = i10;
     }
 
     public void setLeftDrawable(int i10) {
@@ -1523,7 +1523,7 @@ public class j5 extends View implements Drawable.Callback {
     }
 
     public void setLeftDrawableOutside(boolean z10) {
-        this.f21438k0 = z10;
+        this.f21439k0 = z10;
     }
 
     public void setLeftDrawableTopPadding(int i10) {
@@ -1536,18 +1536,18 @@ public class j5 extends View implements Drawable.Callback {
     }
 
     public void setMaxLines(int i10) {
-        this.f21445r = i10;
+        this.f21446r = i10;
     }
 
     public void setMinWidth(int i10) {
-        this.f21448s0 = i10;
+        this.f21449s0 = i10;
     }
 
     public void setMinusWidth(int i10) {
-        if (i10 == this.f21453w0) {
+        if (i10 == this.f21454w0) {
             return;
         }
-        this.f21453w0 = i10;
+        this.f21454w0 = i10;
         f();
     }
 
@@ -1570,7 +1570,7 @@ public class j5 extends View implements Drawable.Callback {
     }
 
     public void setRightDrawableOutside(boolean z10) {
-        this.f21439l0 = z10;
+        this.f21440l0 = z10;
     }
 
     public void setRightDrawableScale(float f7) {
@@ -1582,36 +1582,36 @@ public class j5 extends View implements Drawable.Callback {
     }
 
     public void setRightPadding(int i10) {
-        if (this.f21446r0 != i10) {
-            this.f21446r0 = i10;
-            int maxTextWidth = ((getMaxTextWidth() - getPaddingLeft()) - getPaddingRight()) - this.f21453w0;
+        if (this.f21447r0 != i10) {
+            this.f21447r0 = i10;
+            int maxTextWidth = ((getMaxTextWidth() - getPaddingLeft()) - getPaddingRight()) - this.f21454w0;
             Drawable drawable = this.v;
-            if (drawable != null && !this.f21438k0) {
+            if (drawable != null && !this.f21439k0) {
                 maxTextWidth = (maxTextWidth - drawable.getIntrinsicWidth()) - this.I;
             }
             int i11 = 0;
             if (!this.m0) {
-                Drawable drawable2 = this.f21452w;
-                if (drawable2 != null && !this.f21439l0) {
+                Drawable drawable2 = this.f21453w;
+                if (drawable2 != null && !this.f21440l0) {
                     i11 = (int) (drawable2.getIntrinsicWidth() * this.H);
                     maxTextWidth = (maxTextWidth - i11) - this.I;
                 }
-                Drawable drawable3 = this.f21454x;
-                if (drawable3 != null && !this.f21439l0) {
+                Drawable drawable3 = this.f21455x;
+                if (drawable3 != null && !this.f21440l0) {
                     i11 = (int) (drawable3.getIntrinsicWidth() * this.H);
                     maxTextWidth = (maxTextWidth - i11) - this.I;
                 }
             }
-            if (this.E != null && this.f21456y != null) {
-                int indexOf = this.f21447s.toString().indexOf(this.E);
+            if (this.E != null && this.f21457y != null) {
+                int indexOf = this.f21448s.toString().indexOf(this.E);
                 this.F = indexOf;
                 if (indexOf < 0) {
-                    maxTextWidth = (maxTextWidth - this.f21456y.getIntrinsicWidth()) - this.I;
+                    maxTextWidth = (maxTextWidth - this.f21457y.getIntrinsicWidth()) - this.I;
                 }
             }
-            if (this.B0 && i11 != 0 && !this.f21439l0) {
+            if (this.B0 && i11 != 0 && !this.f21440l0) {
                 TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
-                if (!this.f21447s.equals(TextUtils.ellipsize(this.f21447s, this.h, maxTextWidth, truncateAt))) {
+                if (!this.f21448s.equals(TextUtils.ellipsize(this.f21448s, this.h, maxTextWidth, truncateAt))) {
                     this.C0 = true;
                     maxTextWidth = maxTextWidth + i11 + this.I;
                 }
@@ -1632,7 +1632,7 @@ public class j5 extends View implements Drawable.Callback {
     }
 
     public void setSideDrawablesColor(int i10) {
-        h6.x1(i10, this.f21452w);
+        h6.x1(i10, this.f21453w);
         h6.x1(i10, this.v);
     }
 
@@ -1665,7 +1665,7 @@ public class j5 extends View implements Drawable.Callback {
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f21452w && drawable != this.f21454x && drawable != this.v && !super.verifyDrawable(drawable)) {
+        if (drawable != this.f21453w && drawable != this.f21455x && drawable != this.v && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;
@@ -1690,8 +1690,8 @@ public class j5 extends View implements Drawable.Callback {
         if (this.P == z10) {
             return;
         }
-        this.f21441n0 = z10;
-        this.f21443p0 = null;
+        this.f21442n0 = z10;
+        this.f21444p0 = null;
         m();
         b();
     }

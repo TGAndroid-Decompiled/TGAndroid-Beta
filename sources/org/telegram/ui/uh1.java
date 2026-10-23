@@ -4,17 +4,17 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 public final class uh1 extends org.telegram.ui.Components.im0 {
-    public final Context f41985c;
+    public final Context f41986c;
     public final WallpapersListActivity d;
 
     public uh1(WallpapersListActivity wallpapersListActivity, Context context) {
         this.d = wallpapersListActivity;
-        this.f41985c = context;
+        this.f41986c = context;
     }
 
     @Override
     public final boolean D(s4.b1 b1Var) {
-        if (b1Var.f45923f == 0) {
+        if (b1Var.f45924f == 0) {
             return true;
         }
         return false;
@@ -22,7 +22,7 @@ public final class uh1 extends org.telegram.ui.Components.im0 {
 
     @Override
     public final int h() {
-        return this.d.f35214a;
+        return this.d.f35215a;
     }
 
     @Override
@@ -30,9 +30,9 @@ public final class uh1 extends org.telegram.ui.Components.im0 {
         int i11;
         WallpapersListActivity wallpapersListActivity = this.d;
         i11 = wallpapersListActivity.uploadImageRow;
-        if (i10 != i11 && i10 != wallpapersListActivity.f35229r && i10 != wallpapersListActivity.f35216b && i10 != wallpapersListActivity.h) {
-            if (i10 != wallpapersListActivity.f35218c && i10 != wallpapersListActivity.f35222f) {
-                if (i10 != wallpapersListActivity.f35228n && i10 != wallpapersListActivity.f35230s) {
+        if (i10 != i11 && i10 != wallpapersListActivity.f35230r && i10 != wallpapersListActivity.f35217b && i10 != wallpapersListActivity.h) {
+            if (i10 != wallpapersListActivity.f35219c && i10 != wallpapersListActivity.f35223f) {
+                if (i10 != wallpapersListActivity.f35229n && i10 != wallpapersListActivity.f35231s) {
                     return 2;
                 }
                 return 3;
@@ -50,7 +50,7 @@ public final class uh1 extends org.telegram.ui.Components.im0 {
     @Override
     public final s4.b1 x(ViewGroup viewGroup, int i10) {
         View q8Var;
-        Context context = this.f41985c;
+        Context context = this.f41986c;
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 != 3) {

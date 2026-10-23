@@ -5,12 +5,12 @@ public class y0 extends x0 {
 
     @Override
     public void c(int i10, i0.b bVar) {
-        this.f44867c.setInsets(i1.a(i10), bVar.d());
+        this.f44868c.setInsets(i1.a(i10), bVar.d());
     }
 
     @Override
     public void i(int i10, boolean z10) {
-        this.f44867c.setVisible(i1.a(i10), z10);
+        this.f44868c.setVisible(i1.a(i10), z10);
     }
 
     public y0(k1 k1Var) {

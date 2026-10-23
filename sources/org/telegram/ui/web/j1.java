@@ -6,28 +6,28 @@ import java.io.File;
 import java.io.FilterInputStream;
 import java.util.HashMap;
 public final class j1 {
-    public final HashMap f42691a = new HashMap();
-    public File f42692b;
-    public long f42693c;
+    public final HashMap f42692a = new HashMap();
+    public File f42693b;
+    public long f42694c;
     public long d;
 
     public final FilterInputStream a() {
         String str;
-        BufferedInputStream bufferedInputStream = new BufferedInputStream(new i1(this.f42693c, this.d, this.f42692b));
-        HashMap hashMap = this.f42691a;
+        BufferedInputStream bufferedInputStream = new BufferedInputStream(new i1(this.f42694c, this.d, this.f42693b));
+        HashMap hashMap = this.f42692a;
         k1 k1Var = (k1) hashMap.get("content-transfer-encoding");
         String str2 = null;
         if (k1Var == null) {
             str = null;
         } else {
-            str = k1Var.f42708a;
+            str = k1Var.f42709a;
         }
         if ("base64".equals(str)) {
             return new Base64InputStream(bufferedInputStream, 0);
         }
         k1 k1Var2 = (k1) hashMap.get("content-transfer-encoding");
         if (k1Var2 != null) {
-            str2 = k1Var2.f42708a;
+            str2 = k1Var2.f42709a;
         }
         if ("quoted-printable".equalsIgnoreCase(str2)) {
             return new l1(bufferedInputStream, 0);

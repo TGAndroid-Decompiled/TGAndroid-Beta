@@ -8,15 +8,15 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.pf0;
 import org.telegram.ui.Components.qf0;
 public final class u5 extends FrameLayout {
-    public TextView f23598a;
-    public TextView f23599b;
-    public qf0 f23600c;
+    public TextView f23599a;
+    public TextView f23600b;
+    public qf0 f23601c;
     public AnimatorSet d;
     public androidx.activity.i e;
 
     public final void a(String str, int i10, float f7) {
-        TextView textView = this.f23598a;
-        TextView textView2 = this.f23599b;
+        TextView textView = this.f23599a;
+        TextView textView2 = this.f23600b;
         AnimatorSet animatorSet = this.d;
         if (animatorSet != null) {
             animatorSet.cancel();
@@ -32,9 +32,9 @@ public final class u5 extends FrameLayout {
         }
         textView2.setAlpha(0.0f);
         textView.setAlpha(1.0f);
-        qf0 qf0Var = this.f23600c;
+        qf0 qf0Var = this.f23601c;
         qf0Var.h = i10;
-        qf0Var.f29575n = 100;
+        qf0Var.f29576n = 100;
         qf0Var.a((int) f7, false);
     }
 
@@ -44,12 +44,12 @@ public final class u5 extends FrameLayout {
     }
 
     public void setSeekBarDelegate(pf0 pf0Var) {
-        this.f23600c.setDelegate(new j9(this, pf0Var));
+        this.f23601c.setDelegate(new j9(this, pf0Var));
     }
 
     @Override
     public void setTag(Object obj) {
         super.setTag(obj);
-        this.f23600c.setTag(obj);
+        this.f23601c.setTag(obj);
     }
 }

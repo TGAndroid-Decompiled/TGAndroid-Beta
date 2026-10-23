@@ -16,7 +16,7 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class g9 extends org.telegram.ui.Components.g61 {
-    public static final int f37237a = 0;
+    public static final int f37238a = 0;
 
     static {
         org.telegram.ui.Components.g61.setup(new org.telegram.ui.Components.g61());
@@ -36,13 +36,13 @@ public final class g9 extends org.telegram.ui.Components.g61 {
         i9 i9Var = (i9) h61Var.G;
         h9 h9Var = (h9) view;
         View.OnClickListener onClickListener = h61Var.D;
-        int i12 = h9Var.f37550a;
-        org.telegram.ui.Components.k9 k9Var = h9Var.f37551b;
+        int i12 = h9Var.f37551a;
+        org.telegram.ui.Components.k9 k9Var = h9Var.f37552b;
         org.telegram.ui.Cells.h6 h6Var = h9Var.d;
-        ImageView imageView = h9Var.f37552c;
+        ImageView imageView = h9Var.f37553c;
         boolean z13 = i9Var.e;
-        ArrayList arrayList = i9Var.f37895c;
-        ArrayList arrayList2 = i9Var.f37894b;
+        ArrayList arrayList = i9Var.f37896c;
+        ArrayList arrayList2 = i9Var.f37895b;
         if (z13) {
             i10 = R.drawable.menu_videocall;
         } else {
@@ -74,13 +74,13 @@ public final class g9 extends org.telegram.ui.Components.g61 {
                         Drawable mutate = h9Var.getContext().getResources().getDrawable(R.drawable.mini_call_out_16).mutate();
                         boolean z14 = z11;
                         mutate.setBounds(z14 ? 1 : 0, z14 ? 1 : 0, mutate.getIntrinsicWidth(), mutate.getIntrinsicHeight());
-                        mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21251r7, z14), PorterDuff.Mode.MULTIPLY));
+                        mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21252r7, z14), PorterDuff.Mode.MULTIPLY));
                         spannableString.setSpan(new ImageSpan(mutate, z14 ? 1 : 0), str.length(), str.length() + 1, 33);
                     }
                 } else {
                     Drawable mutate2 = h9Var.getContext().getResources().getDrawable(R.drawable.mini_call_in_16).mutate();
                     mutate2.setBounds(0, 0, mutate2.getIntrinsicWidth(), mutate2.getIntrinsicHeight());
-                    mutate2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21251r7, false), PorterDuff.Mode.MULTIPLY));
+                    mutate2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21252r7, false), PorterDuff.Mode.MULTIPLY));
                     spannableString.setSpan(new ImageSpan(mutate2, 0), str.length(), str.length() + 1, 33);
                 }
             } else {
@@ -95,7 +95,7 @@ public final class g9 extends org.telegram.ui.Components.g61 {
             mutate4.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.A6, false), PorterDuff.Mode.MULTIPLY));
             spannableString.setSpan(new ImageSpan(mutate4, 0), str.length(), str.length() + 1, 33);
         }
-        if (i9Var.f37893a != 0) {
+        if (i9Var.f37894a != 0) {
             StringBuilder sb2 = new StringBuilder();
             for (int i15 = 0; i15 < Math.min(3, arrayList2.size()); i15++) {
                 if (i15 > 0) {
@@ -121,8 +121,8 @@ public final class g9 extends org.telegram.ui.Components.g61 {
             }
             h6Var2.u(obj2, null, sb2.toString(), spannableString, false, false);
             k9Var.setVisibility(r12);
-            h6Var.f22358r.clearImage();
-            h6Var.f22345f = true;
+            h6Var.f22359r.clearImage();
+            h6Var.f22346f = true;
             int min = Math.min(3, arrayList3.size());
             for (int i16 = 0; i16 < min; i16++) {
                 k9Var.b(i16, (TLObject) arrayList3.get(i16), i12);
@@ -141,7 +141,7 @@ public final class g9 extends org.telegram.ui.Components.g61 {
             }
             h6Var3.u(obj, null, null, spannableString2, false, false);
             k9Var.setVisibility(8);
-            h6Var.f22345f = false;
+            h6Var.f22346f = false;
         }
         imageView.setTag(i9Var);
         imageView.setOnClickListener(onClickListener);

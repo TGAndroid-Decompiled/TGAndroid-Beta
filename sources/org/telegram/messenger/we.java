@@ -1,27 +1,34 @@
 package org.telegram.messenger;
-
-import org.telegram.tgnet.TLRPC;
 public final class we implements Runnable {
-    public final int f19994a;
-    public final MessagesStorage f19995b;
-    public final TLRPC.Message f19996c;
+    public final int f20003a;
+    public final MessagesStorage f20004b;
+    public final long f20005c;
     public final long d;
 
-    public we(int i10, long j10, MessagesStorage messagesStorage, TLRPC.Message message) {
-        this.f19994a = i10;
-        this.f19995b = messagesStorage;
-        this.f19996c = message;
-        this.d = j10;
+    public we(int i10, long j10, long j11, MessagesStorage messagesStorage) {
+        this.f20003a = i10;
+        this.f20004b = messagesStorage;
+        this.f20005c = j10;
+        this.d = j11;
     }
 
     @Override
     public final void run() {
-        switch (this.f19994a) {
+        switch (this.f20003a) {
             case 0:
-                this.f19995b.lambda$updateMessageCustomParams$110(this.f19996c, this.d);
+                this.f20004b.lambda$clearUserPhoto$93(this.f20005c, this.d);
+                return;
+            case 1:
+                this.f20004b.lambda$saveChatInviter$132(this.f20005c, this.d);
+                return;
+            case 2:
+                this.f20004b.lambda$setDialogFlags$37(this.f20005c, this.d);
+                return;
+            case 3:
+                this.f20004b.lambda$removeTopic$57(this.f20005c, this.d);
                 return;
             default:
-                this.f19995b.lambda$markMessageAsSendErrorWithParams$210(this.f19996c, this.d);
+                this.f20004b.lambda$deleteUserChatHistory$87(this.f20005c, this.d);
                 return;
         }
     }

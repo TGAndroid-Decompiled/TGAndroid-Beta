@@ -15,7 +15,7 @@ import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.ok;
+import org.telegram.messenger.nk;
 import org.telegram.ui.Components.bs;
 public final class a extends FrameLayout {
     public final ImageView f5124a;
@@ -78,7 +78,7 @@ public final class a extends FrameLayout {
             if (z10) {
                 f7 = 0.0f;
             }
-            ok.t(animate.rotation(f7), bs.h, 420L);
+            nk.t(animate.rotation(f7), bs.h, 420L);
             return;
         }
         if (z10) {
@@ -127,7 +127,7 @@ public final class a extends FrameLayout {
             this.f5128n = ofFloat;
             ofFloat.addUpdateListener(new ah.c0(this, 8));
             this.f5128n.addListener(new ah.b(this, 5));
-            ok.l(2.5f, this.f5128n);
+            nk.l(2.5f, this.f5128n);
             this.f5128n.setDuration(200L);
             this.f5128n.start();
             this.f5127f = i10;

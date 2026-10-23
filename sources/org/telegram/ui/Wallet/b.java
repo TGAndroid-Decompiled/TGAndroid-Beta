@@ -22,7 +22,7 @@ import org.telegram.ui.Components.jm0;
 import org.telegram.ui.Components.u61;
 import org.telegram.ui.Components.zq;
 public final class b extends g61 {
-    public static final int f34013a = 0;
+    public static final int f34014a = 0;
 
     static {
         g61.setup(new g61());
@@ -35,7 +35,7 @@ public final class b extends g61 {
         ImageLocation imageLocation;
         c cVar = (c) view;
         boolean z12 = false;
-        if (h61Var.f26794u == 1) {
+        if (h61Var.f26795u == 1) {
             z11 = true;
         } else {
             z11 = false;
@@ -43,8 +43,8 @@ public final class b extends g61 {
         cVar.setGrid(z11);
         TL_wallet.nftItem nftitem = (TL_wallet.nftItem) h61Var.G;
         TextView textView = cVar.d;
-        TextView textView2 = cVar.f34060c;
-        org.telegram.ui.Components.w9 w9Var = cVar.f34059b;
+        TextView textView2 = cVar.f34061c;
+        org.telegram.ui.Components.w9 w9Var = cVar.f34060b;
         if (TextUtils.isEmpty(nftitem.name)) {
             textView2.setText(LocaleController.getString(R.string.WalletCollectible));
         } else {
@@ -62,30 +62,30 @@ public final class b extends g61 {
         } else {
             textView.setText(nftitem.description);
         }
-        ImageLocation c10 = c.c(nftitem, !cVar.f34061f);
-        int w02 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21381y6, cVar.f34058a);
+        ImageLocation c10 = c.c(nftitem, !cVar.f34062f);
+        int w02 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21382y6, cVar.f34059a);
         Drawable mutate = cVar.getContext().getResources().getDrawable(R.drawable.wallet_nft_placeholder).mutate();
         mutate.setColorFilter(new PorterDuffColorFilter(w02, PorterDuff.Mode.SRC_IN));
-        if (cVar.f34061f) {
+        if (cVar.f34062f) {
             f7 = 11.0f;
         } else {
             f7 = 8.0f;
         }
         zq zqVar = new zq(org.telegram.ui.ActionBar.h6.c0(AndroidUtilities.dp(f7), org.telegram.ui.ActionBar.h6.m1(0.1f, w02)), mutate);
-        if (c10 != null && cVar.f34061f) {
+        if (c10 != null && cVar.f34062f) {
             if (nftitem.image_small != null && nftitem.image != null) {
                 imageLocation = c.c(nftitem, true);
             } else {
                 imageLocation = null;
             }
-            w9Var.f31996a.setImage(c10, "160_160", imageLocation, "100_100", zqVar, 0L, null, nftitem, 0);
+            w9Var.f31997a.setImage(c10, "160_160", imageLocation, "100_100", zqVar, 0L, null, nftitem, 0);
             w9Var.d();
         } else if (c10 != null) {
             w9Var.h(c10, "46_46", zqVar, nftitem);
         } else {
             w9Var.setImageDrawable(zqVar);
         }
-        if (z10 && !cVar.f34061f) {
+        if (z10 && !cVar.f34062f) {
             z12 = true;
         }
         cVar.e = z12;

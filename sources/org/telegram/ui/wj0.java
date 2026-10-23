@@ -16,7 +16,7 @@ public final class wj0 extends org.telegram.ui.Cells.q8 {
         } else {
             dp = i14 - AndroidUtilities.dp(41.0f);
         }
-        int A = org.telegram.messenger.ok.A(24.0f, i13 - i11, 2);
+        int A = org.telegram.messenger.nk.A(24.0f, i13 - i11, 2);
         this.R.layout(dp, A, AndroidUtilities.dp(24.0f) + dp, AndroidUtilities.dp(24.0f) + A);
     }
 

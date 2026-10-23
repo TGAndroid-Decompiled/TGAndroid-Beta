@@ -41,7 +41,7 @@ public final class i0 extends sg.m1 {
         int i11 = this.backgroundPaddingLeft;
         jm0Var.setPadding(i11, 0, i11, AndroidUtilities.dp(64.0f));
         Context context = getContext();
-        int i12 = h0.f47688f;
+        int i12 = h0.f47689f;
         FrameLayout frameLayout = new FrameLayout(context);
         frameLayout.setClipChildren(false);
         FrameLayout frameLayout2 = new FrameLayout(context);
@@ -53,7 +53,7 @@ public final class i0 extends sg.m1 {
             TLRPC.User user = (TLRPC.User) arrayList2.get(0);
             h9 h9Var = h0Var.e;
             h9Var.r(user);
-            h0Var.f47689a.e(user, h9Var);
+            h0Var.f47690a.e(user, h9Var);
             frameLayout2.addView(h0Var, 0, z5.e(94, 94, 17));
         } else {
             frameLayout.addView(frameLayout2, z5.d(-1, 83.0f, 0, 0.0f, 0.0f, 0.0f, 0.0f));
@@ -63,13 +63,13 @@ public final class i0 extends sg.m1 {
                 h0 h0Var2 = new h0(context, 41.5f);
                 h9 h9Var2 = h0Var2.e;
                 h9Var2.r(user2);
-                h0Var2.f47689a.e(user2, h9Var2);
+                h0Var2.f47690a.e(user2, h9Var2);
                 frameLayout2.addView(h0Var2, 0, z5.e(83, 83, 17));
                 h0Var2.setTranslationX(AndroidUtilities.dp(29.0f) * (-i14));
                 if (i14 == 0 && arrayList2.size() > 3) {
-                    g0 g0Var = h0Var2.f47690b;
+                    g0 g0Var = h0Var2.f47691b;
                     g0Var.setAlpha(1.0f);
-                    g0Var.f47687b = arrayList2.size() - 3;
+                    g0Var.f47688b = arrayList2.size() - 3;
                 }
                 i13++;
                 if (i14 == 2) {
@@ -98,7 +98,7 @@ public final class i0 extends sg.m1 {
         if (i10 == 0) {
             view.setOutlineProvider(new o1(21));
             view.setClipToOutline(true);
-            view.setBackgroundColor(h6.w0(h6.f20935a7, this.resourcesProvider));
+            view.setBackgroundColor(h6.w0(h6.f20936a7, this.resourcesProvider));
             ((ViewGroup.MarginLayoutParams) view.getLayoutParams()).topMargin = -AndroidUtilities.dp(6.0f);
         }
     }
@@ -167,13 +167,13 @@ public final class i0 extends sg.m1 {
 
     @Override
     public final void c0() {
-        this.f46335f0 = 1;
-        this.f46336g0 = 0;
-        this.f46339j0 = 1;
+        this.f46336f0 = 1;
+        this.f46337g0 = 0;
+        this.f46340j0 = 1;
         int size = this.X.size();
         int i10 = 1 + size;
-        this.f46340k0 = i10;
-        this.f46335f0 = size + 2;
-        this.f46342n0 = i10;
+        this.f46341k0 = i10;
+        this.f46336f0 = size + 2;
+        this.f46343n0 = i10;
     }
 }

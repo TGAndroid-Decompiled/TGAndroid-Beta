@@ -19,14 +19,14 @@ public final class fb1 extends org.telegram.ui.Components.jm0 {
     @Override
     public final boolean F0(View view) {
         s4.b1 T;
-        fb1 fb1Var = this.X2.f38574u0;
+        fb1 fb1Var = this.X2.f38575u0;
         View F = fb1Var.F(view);
         if (F == null) {
             T = null;
         } else {
             T = fb1Var.T(F);
         }
-        if (T != null && T.f45923f == 2) {
+        if (T != null && T.f45924f == 2) {
             return false;
         }
         return true;
@@ -44,8 +44,8 @@ public final class fb1 extends org.telegram.ui.Components.jm0 {
                 int top = view.getTop();
                 boolean m32 = u1Var.m3();
                 kc1 kc1Var = this.X2;
-                if (m32 && (T = kc1Var.f38574u0.T(view)) != null) {
-                    if (kc1Var.f38574u0.K(T.b() - 1) != null) {
+                if (m32 && (T = kc1Var.f38575u0.T(view)) != null) {
+                    if (kc1Var.f38575u0.K(T.b() - 1) != null) {
                         avatarImage.setImageY(-AndroidUtilities.dp(1000.0f));
                         avatarImage.draw(canvas);
                         return drawChild;
@@ -53,19 +53,19 @@ public final class fb1 extends org.telegram.ui.Components.jm0 {
                 }
                 float translationX = u1Var.getTranslationX();
                 int layoutHeight = u1Var.getLayoutHeight() + view.getTop();
-                int measuredHeight = kc1Var.f38574u0.getMeasuredHeight() - kc1Var.f38574u0.getPaddingBottom();
+                int measuredHeight = kc1Var.f38575u0.getMeasuredHeight() - kc1Var.f38575u0.getPaddingBottom();
                 if (layoutHeight > measuredHeight) {
                     layoutHeight = measuredHeight;
                 }
-                if (u1Var.n3() && (r11 = kc1Var.f38574u0.T(view)) != null) {
+                if (u1Var.n3() && (r11 = kc1Var.f38575u0.T(view)) != null) {
                     int i10 = 0;
                     while (i10 < 20) {
                         i10++;
-                        s4.b1 T2 = kc1Var.f38574u0.K(T2.b() + 1);
+                        s4.b1 T2 = kc1Var.f38575u0.K(T2.b() + 1);
                         if (T2 == null) {
                             break;
                         }
-                        View view2 = T2.f45920a;
+                        View view2 = T2.f45921a;
                         int top2 = view2.getTop();
                         if (layoutHeight - AndroidUtilities.dp(48.0f) < view2.getBottom()) {
                             translationX = Math.min(view2.getTranslationX(), translationX);
@@ -115,10 +115,10 @@ public final class fb1 extends org.telegram.ui.Components.jm0 {
         int action = motionEvent.getAction();
         kc1 kc1Var = this.X2;
         if (action == 1) {
-            if (!kc1Var.f38567r0 && (kc1Var.B1 instanceof sh1) && kc1Var.L0[0].getVisibility() == 0) {
+            if (!kc1Var.f38568r0 && (kc1Var.B1 instanceof sh1) && kc1Var.L0[0].getVisibility() == 0) {
                 kc1Var.f1(0, false, true);
             }
-            kc1Var.f38567r0 = false;
+            kc1Var.f38568r0 = false;
         }
         if (kc1Var.a2) {
             if (motionEvent.getAction() == 0) {

@@ -7,45 +7,45 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.R;
-import org.telegram.messenger.ok;
+import org.telegram.messenger.nk;
 import org.telegram.tgnet.tl.TL_wallet;
 import org.telegram.ui.Components.i80;
 import org.telegram.ui.Components.xc;
 import org.telegram.ui.k71;
 public final class n1 implements View.OnClickListener {
-    public final int f34549a;
-    public final Object f34550b;
-    public final Object f34551c;
+    public final int f34550a;
+    public final Object f34551b;
+    public final Object f34552c;
     public final Object d;
 
     public n1(Object obj, Object obj2, Object obj3, int i10) {
-        this.f34549a = i10;
-        this.f34550b = obj;
-        this.f34551c = obj2;
+        this.f34550a = i10;
+        this.f34551b = obj;
+        this.f34552c = obj2;
         this.d = obj3;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f34549a) {
+        switch (this.f34550a) {
             case 0:
-                j2 j2Var = (j2) this.f34551c;
+                j2 j2Var = (j2) this.f34552c;
                 org.telegram.ui.ActionBar.d6 d6Var = (org.telegram.ui.ActionBar.d6) this.d;
-                if (AndroidUtilities.addToClipboard(((JSONObject) this.f34550b).optString("text"))) {
-                    ok.p(R.string.WalletSigningDataCopied, new xc(j2Var.topBulletinContainer, d6Var));
+                if (AndroidUtilities.addToClipboard(((JSONObject) this.f34551b).optString("text"))) {
+                    nk.p(R.string.WalletSigningDataCopied, new xc(j2Var.topBulletinContainer, d6Var));
                     return;
                 }
                 return;
             case 1:
-                z2 z2Var = (z2) this.f34550b;
-                org.telegram.ui.ActionBar.n2 n2Var = (org.telegram.ui.ActionBar.n2) this.f34551c;
+                z2 z2Var = (z2) this.f34551b;
+                org.telegram.ui.ActionBar.n2 n2Var = (org.telegram.ui.ActionBar.n2) this.f34552c;
                 TL_wallet.card cardVar = (TL_wallet.card) this.d;
                 if (!z2Var.R) {
                     if (z2Var.e) {
                         z2Var.U = new u2(1, n2Var);
                     } else if (z2Var.d) {
                         z2Var.U = new u2(0, n2Var);
-                    } else if (z2Var.f35174c && !TextUtils.isEmpty(cardVar.address)) {
+                    } else if (z2Var.f35175c && !TextUtils.isEmpty(cardVar.address)) {
                         z2Var.U = new k71(29, n2Var, cardVar);
                     } else {
                         return;
@@ -56,24 +56,24 @@ public final class n1 implements View.OnClickListener {
                 return;
             case 2:
                 i80 i80Var = (i80) this.d;
-                f fVar = ((m0) this.f34550b).h;
-                String str = ((TL_wallet.currencyRate) this.f34551c).currency;
-                if (!TextUtils.equals(fVar.f34191f, str)) {
-                    fVar.f34191f = str;
+                f fVar = ((m0) this.f34551b).h;
+                String str = ((TL_wallet.currencyRate) this.f34552c).currency;
+                if (!TextUtils.equals(fVar.f34192f, str)) {
+                    fVar.f34192f = str;
                     try {
                         ApplicationLoader.applicationContext.getSharedPreferences("gram_wallet", 0).edit().putString("currency", fVar.g()).apply();
                     } catch (Exception e) {
                         FileLog.e("[gram-wallet] failed to save currency prefs", e);
                     }
-                    fVar.f34189b.J();
+                    fVar.f34190b.J();
                 }
                 i80Var.u();
                 return;
             default:
-                k8 k8Var = (k8) this.f34550b;
+                k8 k8Var = (k8) this.f34551b;
                 k8Var.getClass();
-                ((org.telegram.ui.ActionBar.b2[]) this.f34551c)[0].dismiss();
-                AndroidUtilities.addToClipboard(k8Var.f34443r);
+                ((org.telegram.ui.ActionBar.b2[]) this.f34552c)[0].dismiss();
+                AndroidUtilities.addToClipboard(k8Var.f34444r);
                 ((Runnable) this.d).run();
                 return;
         }

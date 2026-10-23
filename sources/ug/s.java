@@ -4,29 +4,29 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.UserConfig;
 public final class s implements Runnable {
-    public final int f47762a;
-    public final z f47763b;
+    public final int f47763a;
+    public final z f47764b;
 
     public s(z zVar, int i10) {
-        this.f47762a = i10;
-        this.f47763b = zVar;
+        this.f47763a = i10;
+        this.f47764b = zVar;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f47762a;
-        z zVar = this.f47763b;
+        int i10 = this.f47763a;
+        z zVar = this.f47764b;
         switch (i10) {
             case 0:
                 AndroidUtilities.hideKeyboard(zVar.d);
                 return;
             case 1:
                 zVar.getClass();
-                NotificationCenter.getInstance(UserConfig.selectedAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.boostByChannelCreated, zVar.f47807b0, Boolean.TRUE);
+                NotificationCenter.getInstance(UserConfig.selectedAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.boostByChannelCreated, zVar.f47808b0, Boolean.TRUE);
                 return;
             case 2:
                 zVar.getClass();
-                NotificationCenter.getInstance(UserConfig.selectedAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.boostByChannelCreated, zVar.f47807b0, Boolean.FALSE);
+                NotificationCenter.getInstance(UserConfig.selectedAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.boostByChannelCreated, zVar.f47808b0, Boolean.FALSE);
                 return;
             case 3:
                 z.S(zVar);

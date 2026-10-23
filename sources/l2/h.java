@@ -204,14 +204,14 @@ public final class h extends u2.a {
 
     @Override
     public final e0 c(g0 g0Var, androidx.biometric.e eVar, long j10) {
-        int intValue = ((Integer) g0Var.f47317a).intValue() - this.N;
+        int intValue = ((Integer) g0Var.f47318a).intValue() - this.N;
         a5.a b10 = b(g0Var);
         n2.k kVar = new n2.k(this.d.f17059c, 0, g0Var);
         int i10 = this.N + intValue;
         m2.c cVar = this.G;
         c0 c0Var = this.B;
         long j11 = this.K;
-        j2.k kVar2 = this.f47257g;
+        j2.k kVar2 = this.f47258g;
         kVar2.getClass();
         b bVar = new b(i10, cVar, this.f15850n, intValue, this.f15846j, c0Var, this.f15848l, kVar, this.f15849m, b10, j11, this.f15860y, eVar, this.f15847k, this.f15859x, kVar2);
         this.f15857u.put(i10, bVar);
@@ -232,7 +232,7 @@ public final class h extends u2.a {
     public final void m(c0 c0Var) {
         this.B = c0Var;
         Looper myLooper = Looper.myLooper();
-        j2.k kVar = this.f47257g;
+        j2.k kVar = this.f47258g;
         kVar.getClass();
         n2.n nVar = this.f15848l;
         nVar.E(myLooper, kVar);
@@ -287,9 +287,9 @@ public final class h extends u2.a {
         this.M = -9223372036854775807L;
         this.f15857u.clear();
         qi.e eVar = this.f15850n;
-        ((HashMap) eVar.f44763a).clear();
-        ((HashMap) eVar.f44764b).clear();
-        ((HashMap) eVar.f44765c).clear();
+        ((HashMap) eVar.f44764a).clear();
+        ((HashMap) eVar.f44765b).clear();
+        ((HashMap) eVar.f44766c).clear();
         this.f15848l.release();
     }
 
@@ -307,8 +307,8 @@ public final class h extends u2.a {
         boolean z10;
         y2.l lVar = this.A;
         d dVar = new d(this);
-        synchronized (z2.c.f50638b) {
-            z10 = z2.c.f50639c;
+        synchronized (z2.c.f50639b) {
+            z10 = z2.c.f50640c;
         }
         if (z10) {
             dVar.a();
@@ -321,12 +321,12 @@ public final class h extends u2.a {
     }
 
     public final void x(y2.o oVar, long j10, long j11) {
-        long j12 = oVar.f49937a;
-        g2.m mVar = oVar.f49938b;
+        long j12 = oVar.f49938a;
+        g2.m mVar = oVar.f49939b;
         b0 b0Var = oVar.d;
         u uVar = new u(mVar, b0Var.f10764c, b0Var.d, j10, j11, b0Var.f10763b);
         this.f15849m.getClass();
-        this.f15853q.q(uVar, oVar.f49939c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L);
+        this.f15853q.q(uVar, oVar.f49940c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L);
     }
 
     public final void y(IOException iOException) {

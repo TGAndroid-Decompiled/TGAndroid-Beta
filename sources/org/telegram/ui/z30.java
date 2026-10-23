@@ -17,7 +17,7 @@ public final class z30 extends vu0 {
         ViewGroup viewGroup;
         ViewGroup viewGroup2;
         q50 q50Var = this.T;
-        j30 j30Var = q50Var.f40381b;
+        j30 j30Var = q50Var.f40382b;
         k30 k30Var = q50Var.C2;
         if (f7 > 0.0f) {
             float x10 = k30Var.getX();
@@ -37,7 +37,7 @@ public final class z30 extends vu0 {
 
     @Override
     public final void e() {
-        j30 j30Var = this.T.f40381b;
+        j30 j30Var = this.T.f40382b;
         super.e();
         for (int i10 = 0; i10 < j30Var.getChildCount(); i10++) {
             j30Var.getChildAt(i10).invalidate();

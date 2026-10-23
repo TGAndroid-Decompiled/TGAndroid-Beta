@@ -42,7 +42,7 @@ public final class b implements Runnable {
                     } else {
                         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, d6Var);
                         String string2 = LocaleController.getString(R.string.AppsTabInfoTitle);
-                        org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20608a;
+                        org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20609a;
                         b2Var.R = string2;
                         b2Var.T = replaceTags;
                         alertDialog$Builder.k(LocaleController.getString(R.string.AppsTabInfoButton), null);

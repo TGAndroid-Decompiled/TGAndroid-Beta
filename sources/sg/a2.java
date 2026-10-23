@@ -43,20 +43,20 @@ public final class a2 extends FrameLayout implements m0, NotificationCenter.Noti
     public final TLRPC.Document R;
     public int S;
     public long T;
-    public final SvgHelper.SvgDrawable f46205a;
-    public final Paint f46206b;
-    public final Paint f46207c;
+    public final SvgHelper.SvgDrawable f46206a;
+    public final Paint f46207b;
+    public final Paint f46208c;
     public final boolean d;
     public File e;
-    public float f46208f;
+    public float f46209f;
     public final String h;
-    public final ImageReceiver f46209n;
-    public org.telegram.ui.web.z1 f46210r;
-    public final int f46211s;
+    public final ImageReceiver f46210n;
+    public org.telegram.ui.web.z1 f46211r;
+    public final int f46212s;
     public final int v;
-    public boolean f46212w;
-    public boolean f46213x;
-    public boolean f46214y;
+    public boolean f46213w;
+    public boolean f46214x;
+    public boolean f46215y;
 
     public a2(android.content.Context r18, org.telegram.messenger.SvgHelper.SvgDrawable r19, int r20, int r21, org.telegram.ui.ActionBar.d6 r22) {
         throw new UnsupportedOperationException("Method not decompiled: sg.a2.<init>(android.content.Context, org.telegram.messenger.SvgHelper$SvgDrawable, int, int, org.telegram.ui.ActionBar.d6):void");
@@ -68,12 +68,12 @@ public final class a2 extends FrameLayout implements m0, NotificationCenter.Noti
             File file2 = this.e;
             if (file2 != null && file2.exists()) {
                 if ((NotificationCenter.getGlobalInstance().getCurrentHeavyOperationFlags() & 512) != 0) {
-                    org.telegram.ui.web.z1 z1Var = this.f46210r;
+                    org.telegram.ui.web.z1 z1Var = this.f46211r;
                     if (z1Var != null) {
                         AndroidUtilities.cancelRunOnUIThread(z1Var);
                     }
                     org.telegram.ui.web.z1 z1Var2 = new org.telegram.ui.web.z1(this, 26);
-                    this.f46210r = z1Var2;
+                    this.f46211r = z1Var2;
                     AndroidUtilities.runOnUIThread(z1Var2, 300L);
                     return;
                 }
@@ -83,25 +83,25 @@ public final class a2 extends FrameLayout implements m0, NotificationCenter.Noti
                     int parseInt = Integer.parseInt(mediaMetadataRetriever.extractMetadata(18));
                     int parseInt2 = Integer.parseInt(mediaMetadataRetriever.extractMetadata(19));
                     mediaMetadataRetriever.release();
-                    this.f46208f = parseInt / parseInt2;
+                    this.f46209f = parseInt / parseInt2;
                 } catch (Exception unused) {
-                    this.f46208f = 0.671f;
+                    this.f46209f = 0.671f;
                 }
             } else {
-                this.f46208f = 0.671f;
+                this.f46209f = 0.671f;
             }
             if (this.E) {
                 b();
             }
         }
-        this.f46210r = null;
+        this.f46211r = null;
     }
 
     public final void b() {
         Uri uri;
-        int i10 = this.f46211s;
+        int i10 = this.f46212s;
         if ((this.e != null || SharedConfig.streamMedia) && this.H == null) {
-            this.I.a(this.f46208f, 0);
+            this.I.a(this.f46209f, 0);
             ei.c0 c0Var = new ei.c0(this, 1);
             this.H = c0Var;
             TextureView textureView = this.J;
@@ -114,7 +114,7 @@ public final class a2 extends FrameLayout implements m0, NotificationCenter.Noti
                     StringBuilder sb2 = new StringBuilder("?account=");
                     sb2.append(i10);
                     sb2.append("&id=");
-                    sb2.append(this.R.f20285id);
+                    sb2.append(this.R.f20286id);
                     sb2.append("&hash=");
                     sb2.append(this.R.access_hash);
                     sb2.append("&dc=");
@@ -144,7 +144,7 @@ public final class a2 extends FrameLayout implements m0, NotificationCenter.Noti
             }
             this.H.preparePlayer(uri, false, 1.0f);
             if (!this.F) {
-                this.f46209n.stopAnimation();
+                this.f46210n.stopAnimation();
                 textureView.setAlpha(0.0f);
             }
             this.H.seekTo(this.T + 60);
@@ -154,14 +154,14 @@ public final class a2 extends FrameLayout implements m0, NotificationCenter.Noti
 
     public final void c() {
         boolean z10;
-        if (this.f46212w && this.f46213x) {
+        if (this.f46213w && this.f46214x) {
             z10 = true;
         } else {
             z10 = false;
         }
-        if (this.f46214y != z10) {
-            this.f46214y = z10;
-            ImageReceiver imageReceiver = this.f46209n;
+        if (this.f46215y != z10) {
+            this.f46215y = z10;
+            ImageReceiver imageReceiver = this.f46210n;
             if (z10) {
                 imageReceiver.onAttachedToWindow();
             } else {
@@ -190,23 +190,23 @@ public final class a2 extends FrameLayout implements m0, NotificationCenter.Noti
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f46213x = true;
+        this.f46214x = true;
         c();
         if (!this.F) {
             a();
         }
-        NotificationCenter.getInstance(this.f46211s).addObserver(this, NotificationCenter.fileLoaded);
+        NotificationCenter.getInstance(this.f46212s).addObserver(this, NotificationCenter.fileLoaded);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f46213x = false;
+        this.f46214x = false;
         c();
-        NotificationCenter.getInstance(this.f46211s).removeObserver(this, NotificationCenter.fileLoaded);
+        NotificationCenter.getInstance(this.f46212s).removeObserver(this, NotificationCenter.fileLoaded);
         org.telegram.ui.Cells.u0 u0Var = this.P;
         if (u0Var != null) {
-            HashMap hashMap = (HashMap) u0Var.f23217f;
+            HashMap hashMap = (HashMap) u0Var.f23218f;
             for (Bitmap bitmap : hashMap.values()) {
                 bitmap.recycle();
             }
@@ -236,21 +236,21 @@ public final class a2 extends FrameLayout implements m0, NotificationCenter.Noti
             this.S = measuredWidth;
             s4.b bVar = this.Q;
             if (bVar != null) {
-                RectF rectF = (RectF) bVar.f45905c;
+                RectF rectF = (RectF) bVar.f45906c;
                 ((Rect) bVar.e).set(0, 0, getMeasuredWidth(), getMeasuredHeight());
                 rectF.set(AndroidUtilities.rectTmp);
                 rectF.inset(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f));
             }
             w1 w1Var = this.N;
             if (w1Var != null) {
-                RectF rectF2 = w1Var.f46480c;
-                RectF rectF3 = w1Var.f46478a;
+                RectF rectF2 = w1Var.f46481c;
+                RectF rectF3 = w1Var.f46479a;
                 int i14 = this.v;
                 if (i14 != 6 && i14 != 9 && i14 != 3 && i14 != 7 && i14 != 24 && i14 != 43 && i14 != 11 && i14 != 4) {
                     RectF rectF4 = AndroidUtilities.rectTmp;
                     float width = (int) (rectF4.width() * 0.4f);
                     rectF3.set(rectF4.centerX() - width, rectF4.centerY() - width, rectF4.centerX() + width, rectF4.centerY() + width);
-                    w1Var.f46479b.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+                    w1Var.f46480b.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
                 } else {
                     rectF3.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
                     rectF3.inset(AndroidUtilities.dp(30.0f), AndroidUtilities.dp(30.0f));
@@ -261,9 +261,9 @@ public final class a2 extends FrameLayout implements m0, NotificationCenter.Noti
             }
             u1 u1Var = this.O;
             if (u1Var != null) {
-                RectF rectF5 = u1Var.f46444a;
+                RectF rectF5 = u1Var.f46445a;
                 rectF5.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-                u1Var.f46445b.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+                u1Var.f46446b.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
                 rectF5.inset(AndroidUtilities.dp(100.0f), AndroidUtilities.dp(100.0f));
                 rectF5.offset(0.0f, getMeasuredHeight() * 0.1f);
                 ArrayList arrayList = u1Var.e;
@@ -274,10 +274,10 @@ public final class a2 extends FrameLayout implements m0, NotificationCenter.Noti
             }
             org.telegram.ui.Cells.u0 u0Var = this.P;
             if (u0Var != null) {
-                ((RectF) u0Var.f23218g).set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+                ((RectF) u0Var.f23219g).set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
                 ((RectF) this.P.h).set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-                ((RectF) this.P.f23218g).inset(AndroidUtilities.dp(0.0f), getMeasuredHeight() * 0.1f);
-                ArrayList arrayList2 = this.P.f23216c;
+                ((RectF) this.P.f23219g).inset(AndroidUtilities.dp(0.0f), getMeasuredHeight() * 0.1f);
+                ArrayList arrayList2 = this.P.f23217c;
                 System.currentTimeMillis();
                 for (int i16 = 0; i16 < arrayList2.size(); i16++) {
                     ((l) arrayList2.get(i16)).a(i16, true);
@@ -355,13 +355,13 @@ public final class a2 extends FrameLayout implements m0, NotificationCenter.Noti
             }
             this.G = Math.abs(measuredWidth2);
         }
-        if (z10 != this.f46212w) {
-            this.f46212w = z10;
+        if (z10 != this.f46213w) {
+            this.f46213w = z10;
             c();
         }
         if (z12 != this.E) {
             this.E = z12;
-            ImageReceiver imageReceiver = this.f46209n;
+            ImageReceiver imageReceiver = this.f46210n;
             imageReceiver.setAllowStartAnimation(z12);
             if (this.E) {
                 imageReceiver.startAnimation();

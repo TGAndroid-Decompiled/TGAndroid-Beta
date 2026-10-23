@@ -5,20 +5,20 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 public final class ny implements View.OnClickListener {
-    public final boolean[] f28899a;
-    public final org.telegram.ui.ActionBar.a3 f28900b;
-    public final oy f28901c;
+    public final boolean[] f28900a;
+    public final org.telegram.ui.ActionBar.a3 f28901b;
+    public final oy f28902c;
 
     public ny(oy oyVar, boolean[] zArr, org.telegram.ui.ActionBar.a3 a3Var) {
-        this.f28901c = oyVar;
-        this.f28899a = zArr;
-        this.f28900b = a3Var;
+        this.f28902c = oyVar;
+        this.f28900a = zArr;
+        this.f28901b = a3Var;
     }
 
     @Override
     public final void onClick(View view) {
-        ty tyVar = this.f28901c.f29157a;
-        boolean[] zArr = this.f28899a;
+        ty tyVar = this.f28902c.f29158a;
+        boolean[] zArr = this.f28900a;
         if (zArr[0]) {
             return;
         }
@@ -26,11 +26,11 @@ public final class ny implements View.OnClickListener {
         org.telegram.ui.ActionBar.b2[] b2VarArr = {new org.telegram.ui.ActionBar.b2(tyVar.F.getContext(), 3, null)};
         TLRPC.TL_messages_getEmojiURL tL_messages_getEmojiURL = new TLRPC.TL_messages_getEmojiURL();
         tz tzVar = tyVar.F;
-        String str = tyVar.f30714w;
+        String str = tyVar.f30715w;
         if (str == null) {
             str = tzVar.W0[0];
         }
         tL_messages_getEmojiURL.lang_code = str;
-        AndroidUtilities.runOnUIThread(new org.telegram.ui.i4(this, b2VarArr, ConnectionsManager.getInstance(tzVar.f30726c1).sendRequest(tL_messages_getEmojiURL, new ai.j2(this, b2VarArr, this.f28900b, 13)), 8), 1000L);
+        AndroidUtilities.runOnUIThread(new org.telegram.ui.i4(this, b2VarArr, ConnectionsManager.getInstance(tzVar.f30727c1).sendRequest(tL_messages_getEmojiURL, new ai.j2(this, b2VarArr, this.f28901b, 13)), 8), 1000L);
     }
 }

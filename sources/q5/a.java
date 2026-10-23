@@ -7,17 +7,17 @@ import m.g3;
 import m5.d;
 import t5.c;
 public final class a implements b {
-    public static final Logger f44415f = Logger.getLogger(t.class.getName());
-    public final g3 f44416a;
-    public final Executor f44417b;
-    public final d f44418c;
+    public static final Logger f44416f = Logger.getLogger(t.class.getName());
+    public final g3 f44417a;
+    public final Executor f44418b;
+    public final d f44419c;
     public final s5.d d;
     public final c e;
 
     public a(Executor executor, d dVar, g3 g3Var, s5.d dVar2, c cVar) {
-        this.f44417b = executor;
-        this.f44418c = dVar;
-        this.f44416a = g3Var;
+        this.f44418b = executor;
+        this.f44419c = dVar;
+        this.f44417a = g3Var;
         this.d = dVar2;
         this.e = cVar;
     }

@@ -154,16 +154,16 @@ public final class j1 {
 
     public static long k(TLObject tLObject) {
         if (tLObject instanceof TLRPC.User) {
-            return ((TLRPC.User) tLObject).f20426id;
+            return ((TLRPC.User) tLObject).f20427id;
         }
         if (tLObject instanceof TLRPC.Chat) {
-            return ((TLRPC.Chat) tLObject).f20279id;
+            return ((TLRPC.Chat) tLObject).f20280id;
         }
         return 0L;
     }
 
     public static void o(d6 d6Var) {
-        V.setColor(h6.w0(h6.f21089ie, d6Var));
+        V.setColor(h6.w0(h6.f21090ie, d6Var));
         int w02 = h6.w0(h6.Sh, d6Var);
         TextPaint textPaint = Y;
         textPaint.setColor(w02);
@@ -247,11 +247,11 @@ public final class j1 {
                         }
                         j9 j9Var3 = g1Var.T;
                         if (j9Var3 != null && (j9Var = g1Var2.T) != null) {
-                            ValueAnimator valueAnimator = j9Var.f27454f;
+                            ValueAnimator valueAnimator = j9Var.f27455f;
                             if (valueAnimator != null) {
                                 valueAnimator.cancel();
-                                if (j9Var3.f27469w) {
-                                    j9Var3.f27469w = false;
+                                if (j9Var3.f27470w) {
+                                    j9Var3.f27470w = false;
                                     j9Var3.n();
                                 }
                             }
@@ -262,8 +262,8 @@ public final class j1 {
                                 if (i18 >= 3) {
                                     break;
                                 }
-                                tLObjectArr[i18] = j9Var3.f27452b[i18].h;
-                                j9Var3.l(i18, j9Var.f27452b[i18].h, i10);
+                                tLObjectArr[i18] = j9Var3.f27453b[i18].h;
+                                j9Var3.l(i18, j9Var.f27453b[i18].h, i10);
                                 i18++;
                             }
                             j9Var3.b(false, true);
@@ -363,7 +363,7 @@ public final class j1 {
         if (k3.s(a0Var)) {
             y3 -= a0Var.getPaddingTop();
             if (a0Var instanceof org.telegram.ui.Cells.w0) {
-                x10 -= ((org.telegram.ui.Cells.w0) a0Var).f23711j0 / 2.0f;
+                x10 -= ((org.telegram.ui.Cells.w0) a0Var).f23712j0 / 2.0f;
             }
         }
         float f7 = x10 - this.f793c;
@@ -626,7 +626,7 @@ public final class j1 {
                                 if (i1Var.f783f != null) {
                                     TLRPC.TL_availableReaction tL_availableReaction = MediaDataController.getInstance(i13).getReactionsMap().get(i1Var.f783f);
                                     if (tL_availableReaction != null && tL_availableReaction.activate_animation != null) {
-                                        SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(tL_availableReaction.static_icon, h6.f20935a7, 1.0f);
+                                        SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(tL_availableReaction.static_icon, h6.f20936a7, 1.0f);
                                         ImageReceiver imageReceiver = new ImageReceiver(view);
                                         g1Var.f749f0 = imageReceiver;
                                         imageReceiver.setLayerNum(7);
@@ -760,7 +760,7 @@ public final class j1 {
                 if (g1Var.f764u) {
                     g1Var.A = (int) (p6Var.d + AndroidUtilities.dp(8.0f) + g1Var.A);
                 } else if (frVar != null && g1Var.f765w > 1) {
-                    g1Var.A = org.telegram.messenger.g0.C(8.0f, (int) Math.ceil(frVar.f26352m), g1Var.A);
+                    g1Var.A = org.telegram.messenger.g0.C(8.0f, (int) Math.ceil(frVar.f26353m), g1Var.A);
                 }
             } else {
                 int dp2 = AndroidUtilities.dp(20.0f) + AndroidUtilities.dp(8.0f);
@@ -778,11 +778,11 @@ public final class j1 {
                         i12 = 0;
                     }
                     g1Var.A = (int) ((AndroidUtilities.dp(20.0f) * i12 * 0.8f) + AndroidUtilities.dp(20.0f) + AndroidUtilities.dp(2.0f) + AndroidUtilities.dp(1.0f) + g1Var.A);
-                    g1Var.T.f27462o = AndroidUtilities.dp(26.0f);
+                    g1Var.T.f27463o = AndroidUtilities.dp(26.0f);
                 } else if (g1Var.f764u) {
                     g1Var.A = (int) (p6Var.d + AndroidUtilities.dp(8.0f) + g1Var.A);
-                } else if (((int) Math.ceil(frVar.f26352m)) > 0) {
-                    g1Var.A = org.telegram.messenger.g0.C(8.0f, (int) Math.ceil(frVar.f26352m), g1Var.A);
+                } else if (((int) Math.ceil(frVar.f26353m)) > 0) {
+                    g1Var.A = org.telegram.messenger.g0.C(8.0f, (int) Math.ceil(frVar.f26353m), g1Var.A);
                 } else {
                     g1Var.A -= AndroidUtilities.dp(1.0f);
                 }

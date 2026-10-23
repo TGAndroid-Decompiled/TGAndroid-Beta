@@ -50,10 +50,10 @@ public final class j9 extends AnimatorListenerAdapter {
                 if (x9Var.d != null && (t10 = aaVar.t()) != null && (zj0Var = t10.f5806o1.d) != null) {
                     zj0 zj0Var2 = x9Var.d;
                     zj0Var2.getClass();
-                    zj0Var2.f32925c = zj0Var.f32925c;
-                    zj0Var2.f32926f = zj0Var.f32926f;
-                    zj0Var2.f32924b = zj0Var.f32924b;
-                    zj0Var2.f32923a = System.currentTimeMillis();
+                    zj0Var2.f32926c = zj0Var.f32926c;
+                    zj0Var2.f32927f = zj0Var.f32927f;
+                    zj0Var2.f32925b = zj0Var.f32925b;
+                    zj0Var2.f32924a = System.currentTimeMillis();
                     zj0Var2.c();
                 }
                 p4 p4Var = aaVar.G0;

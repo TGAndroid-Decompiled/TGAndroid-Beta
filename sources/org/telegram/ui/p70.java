@@ -16,24 +16,24 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class p70 extends FrameLayout implements org.telegram.ui.ActionBar.y5 {
-    public final Paint f40086a;
-    public final Path f40087b;
-    public final ImageView f40088c;
+    public final Paint f40087a;
+    public final Path f40088b;
+    public final ImageView f40089c;
     public final ei.e2 d;
     public GradientDrawable e;
-    public final r70 f40089f;
+    public final r70 f40090f;
 
     public p70(r70 r70Var, Context context, org.telegram.ui.ActionBar.v1 v1Var) {
         super(context);
         int i10;
-        this.f40089f = r70Var;
-        this.f40086a = new Paint(1);
-        this.f40087b = new Path();
+        this.f40090f = r70Var;
+        this.f40087a = new Paint(1);
+        this.f40088b = new Path();
         setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(3.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(3.0f));
         setClipChildren(false);
         setClipToPadding(false);
         ImageView imageView = new ImageView(context);
-        this.f40088c = imageView;
+        this.f40089c = imageView;
         imageView.setImageResource(R.drawable.outline_search_1_24);
         int i11 = org.telegram.ui.ActionBar.h6.G6;
         imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.m1(0.6f, r70Var.getThemedColor(i11)), PorterDuff.Mode.SRC_IN));
@@ -72,7 +72,7 @@ public final class p70 extends FrameLayout implements org.telegram.ui.ActionBar.
 
     @Override
     public final void d() {
-        int themedColor = this.f40089f.getThemedColor(org.telegram.ui.ActionBar.h6.f20935a7);
+        int themedColor = this.f40090f.getThemedColor(org.telegram.ui.ActionBar.h6.f20936a7);
         this.e = new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, new int[]{org.telegram.ui.ActionBar.h6.m1(1.0f, themedColor), org.telegram.ui.ActionBar.h6.m1(0.0f, themedColor)});
     }
 
@@ -80,19 +80,19 @@ public final class p70 extends FrameLayout implements org.telegram.ui.ActionBar.
     public final void dispatchDraw(Canvas canvas) {
         float dpf2 = AndroidUtilities.dpf2(2.0f);
         float dpf22 = AndroidUtilities.dpf2(0.33f);
-        Paint paint = this.f40086a;
+        Paint paint = this.f40087a;
         paint.setShadowLayer(dpf2, 0.0f, dpf22, 285212672);
-        int i10 = org.telegram.ui.ActionBar.h6.f20993d6;
-        r70 r70Var = this.f40089f;
+        int i10 = org.telegram.ui.ActionBar.h6.f20994d6;
+        r70 r70Var = this.f40090f;
         paint.setColor(r70Var.getThemedColor(i10));
         RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(3.0f), getWidth() - AndroidUtilities.dp(12.0f), AndroidUtilities.dp(3.0f) + r70Var.f41078b.e + AndroidUtilities.dp(3.0f));
-        Path path = this.f40087b;
+        rectF.set(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(3.0f), getWidth() - AndroidUtilities.dp(12.0f), AndroidUtilities.dp(3.0f) + r70Var.f41079b.e + AndroidUtilities.dp(3.0f));
+        Path path = this.f40088b;
         path.rewind();
         path.addRoundRect(rectF, AndroidUtilities.dp(20.0f), AndroidUtilities.dp(20.0f), Path.Direction.CW);
         GradientDrawable gradientDrawable = this.e;
         if (gradientDrawable != null) {
-            gradientDrawable.setBounds(0, 0, getWidth(), Math.min(getHeight(), AndroidUtilities.dp(24.0f) + ((int) r70Var.f41078b.e)));
+            gradientDrawable.setBounds(0, 0, getWidth(), Math.min(getHeight(), AndroidUtilities.dp(24.0f) + ((int) r70Var.f41079b.e)));
             this.e.draw(canvas);
         }
         canvas.save();
@@ -104,7 +104,7 @@ public final class p70 extends FrameLayout implements org.telegram.ui.ActionBar.
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j10) {
-        if (view == this.f40089f.e) {
+        if (view == this.f40090f.e) {
             canvas.save();
             canvas.clipRect(view.getX(), view.getY(), view.getX() + view.getWidth(), view.getY() + view.getHeight());
             boolean drawChild = super.drawChild(canvas, view, j10);

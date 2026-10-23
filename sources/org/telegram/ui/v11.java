@@ -8,17 +8,17 @@ import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class v11 extends org.telegram.ui.Components.im0 {
-    public final Context f42099c;
+    public final Context f42100c;
     public final z11 d;
 
     public v11(z11 z11Var, Context context) {
         this.d = z11Var;
-        this.f42099c = context;
+        this.f42100c = context;
     }
 
     @Override
     public final boolean D(s4.b1 b1Var) {
-        int i10 = b1Var.f45923f;
+        int i10 = b1Var.f45924f;
         if (i10 != 3 && i10 != 2) {
             return false;
         }
@@ -30,7 +30,7 @@ public final class v11 extends org.telegram.ui.Components.im0 {
         int i10;
         z11 z11Var = this.d;
         int i11 = z11Var.h;
-        if (z11Var.f43609f < 0) {
+        if (z11Var.f43610f < 0) {
             i10 = z11Var.getMediaDataController().getReactionsList().size();
         } else {
             i10 = 0;
@@ -47,7 +47,7 @@ public final class v11 extends org.telegram.ui.Components.im0 {
         if (i10 == z11Var.d) {
             return 2;
         }
-        if (i10 == z11Var.f43609f) {
+        if (i10 == z11Var.f43610f) {
             return 3;
         }
         if (i10 != h() - 1) {
@@ -69,7 +69,7 @@ public final class v11 extends org.telegram.ui.Components.im0 {
         i11 = ((org.telegram.ui.ActionBar.n2) z11Var).currentAccount;
         boolean contains = str.contains(MediaDataController.getInstance(i11).getDoubleTapReaction());
         i12 = ((org.telegram.ui.ActionBar.n2) z11Var).currentAccount;
-        ((org.telegram.ui.Cells.y) b1Var.f45920a).a(tL_availableReaction, contains, i12);
+        ((org.telegram.ui.Cells.y) b1Var.f45921a).a(tL_availableReaction, contains, i12);
     }
 
     @Override
@@ -77,12 +77,12 @@ public final class v11 extends org.telegram.ui.Components.im0 {
         org.telegram.ui.ActionBar.d5 d5Var;
         y11 y11Var;
         z11 z11Var = this.d;
-        Context context = this.f42099c;
+        Context context = this.f42100c;
         if (i10 == 0) {
             d5Var = ((org.telegram.ui.ActionBar.n2) z11Var).parentLayout;
             org.telegram.ui.Cells.fa faVar = new org.telegram.ui.Cells.fa(context, d5Var, 2);
             faVar.setImportantForAccessibility(4);
-            faVar.f22275r = z11Var;
+            faVar.f22276r = z11Var;
             y11Var = faVar;
         } else if (i10 != 2) {
             if (i10 != 3) {

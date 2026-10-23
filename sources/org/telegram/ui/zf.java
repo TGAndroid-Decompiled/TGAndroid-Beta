@@ -5,26 +5,26 @@ import android.view.View;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.tl.TL_keyboard;
 public final class zf implements View.OnLongClickListener {
-    public final int f43739a;
-    public final Object f43740b;
-    public final Object f43741c;
+    public final int f43740a;
+    public final Object f43741b;
+    public final Object f43742c;
     public final Object d;
     public final Object e;
 
     public zf(Object obj, Object obj2, Object obj3, Object obj4, int i10) {
-        this.f43739a = i10;
-        this.f43740b = obj;
-        this.f43741c = obj2;
+        this.f43740a = i10;
+        this.f43741b = obj;
+        this.f43742c = obj2;
         this.d = obj3;
         this.e = obj4;
     }
 
     @Override
     public final boolean onLongClick(View view) {
-        switch (this.f43739a) {
+        switch (this.f43740a) {
             case 0:
-                qn qnVar = (qn) this.f43740b;
-                TL_keyboard.KeyboardInlineButton keyboardInlineButton = (TL_keyboard.KeyboardInlineButton) this.f43741c;
+                qn qnVar = (qn) this.f43741b;
+                TL_keyboard.KeyboardInlineButton keyboardInlineButton = (TL_keyboard.KeyboardInlineButton) this.f43742c;
                 MessageObject messageObject = (MessageObject) this.d;
                 ai.vd vdVar = (ai.vd) this.e;
                 TL_keyboard.TL_inlineButtonTypeUrl tL_inlineButtonTypeUrl = (TL_keyboard.TL_inlineButtonTypeUrl) ag.c.a(keyboardInlineButton, TL_keyboard.TL_inlineButtonTypeUrl.class);
@@ -41,7 +41,7 @@ public final class zf implements View.OnLongClickListener {
                 }
                 return true;
             default:
-                return org.telegram.ui.Components.ti.q((org.telegram.ui.Components.ti) this.f43740b, (Context) this.f43741c, (org.telegram.ui.ActionBar.d6) this.d, (org.telegram.ui.ActionBar.n2) this.e, view);
+                return org.telegram.ui.Components.ti.q((org.telegram.ui.Components.ti) this.f43741b, (Context) this.f43742c, (org.telegram.ui.ActionBar.d6) this.d, (org.telegram.ui.ActionBar.n2) this.e, view);
         }
     }
 }

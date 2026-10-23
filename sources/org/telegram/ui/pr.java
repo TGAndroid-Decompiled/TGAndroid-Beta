@@ -3,15 +3,15 @@ package org.telegram.ui;
 import android.text.Editable;
 import android.text.TextWatcher;
 public final class pr implements TextWatcher {
-    public final int f40287a;
-    public int f40288b;
-    public int f40289c;
+    public final int f40288a;
+    public int f40289b;
+    public int f40290c;
     public final Object d;
 
     public pr(Object obj, int i10) {
-        this.f40287a = i10;
+        this.f40288a = i10;
         this.d = obj;
-        this.f40288b = -1;
+        this.f40289b = -1;
     }
 
     @Override
@@ -25,10 +25,10 @@ public final class pr implements TextWatcher {
         int i15;
         int i16;
         int i17;
-        switch (this.f40287a) {
+        switch (this.f40288a) {
             case 0:
-                int i18 = this.f40289c;
-                int i19 = this.f40288b;
+                int i18 = this.f40290c;
+                int i19 = this.f40289b;
                 qr qrVar = (qr) this.d;
                 if (!qrVar.d && (length = editable.length()) >= 1) {
                     if (length > 1) {
@@ -41,7 +41,7 @@ public final class pr implements TextWatcher {
                             } else {
                                 i20++;
                                 int i22 = i19 + i21;
-                                tr[] trVarArr = qrVar.f40962f;
+                                tr[] trVarArr = qrVar.f40963f;
                                 if (i22 < trVarArr.length) {
                                     trVarArr[i22].setText(obj.substring(i21, i21 + 1));
                                 }
@@ -52,11 +52,11 @@ public final class pr implements TextWatcher {
                     }
                     int i23 = i19 + 1;
                     if (i23 >= 0) {
-                        tr[] trVarArr2 = qrVar.f40962f;
+                        tr[] trVarArr2 = qrVar.f40963f;
                         if (i23 < trVarArr2.length) {
                             tr trVar = trVarArr2[i23];
                             trVar.setSelection(trVar.length());
-                            qrVar.f40962f[i23].requestFocus();
+                            qrVar.f40963f[i23].requestFocus();
                         }
                     }
                     if ((i19 == i18 - 1 || (i19 == i18 - 2 && length >= 2)) && qrVar.getCode().length() == i18) {
@@ -68,12 +68,12 @@ public final class pr implements TextWatcher {
                 return;
             case 1:
                 cg0 cg0Var = (cg0) this.d;
-                zf0 zf0Var = cg0Var.f35967b;
+                zf0 zf0Var = cg0Var.f35968b;
                 if (!cg0Var.J) {
                     int selectionStart = zf0Var.getSelectionStart();
                     String obj2 = zf0Var.getText().toString();
-                    if (this.f40288b == 3) {
-                        obj2 = obj2.substring(0, this.f40289c) + obj2.substring(this.f40289c + 1);
+                    if (this.f40289b == 3) {
+                        obj2 = obj2.substring(0, this.f40290c) + obj2.substring(this.f40290c + 1);
                         selectionStart--;
                     }
                     StringBuilder sb2 = new StringBuilder(obj2.length());
@@ -96,14 +96,14 @@ public final class pr implements TextWatcher {
                                     if (hintText.charAt(i26) == ' ') {
                                         sb2.insert(i26, ' ');
                                         i26++;
-                                        if (selectionStart == i26 && (i11 = this.f40288b) != 2 && i11 != 3) {
+                                        if (selectionStart == i26 && (i11 = this.f40289b) != 2 && i11 != 3) {
                                             selectionStart++;
                                         }
                                     }
                                     i26++;
                                 } else {
                                     sb2.insert(i26, ' ');
-                                    if (selectionStart == i26 + 1 && (i10 = this.f40288b) != 2 && i10 != 3) {
+                                    if (selectionStart == i26 + 1 && (i10 = this.f40289b) != 2 && i10 != 3) {
                                         selectionStart++;
                                     }
                                 }
@@ -125,8 +125,8 @@ public final class pr implements TextWatcher {
                 if (!mj0Var.F) {
                     int selectionStart2 = mj0Var.Q.getSelectionStart();
                     String obj3 = mj0Var.Q.getText().toString();
-                    if (this.f40288b == 3) {
-                        obj3 = obj3.substring(0, this.f40289c) + obj3.substring(this.f40289c + 1);
+                    if (this.f40289b == 3) {
+                        obj3 = obj3.substring(0, this.f40290c) + obj3.substring(this.f40290c + 1);
                         selectionStart2--;
                     }
                     StringBuilder sb3 = new StringBuilder(obj3.length());
@@ -149,14 +149,14 @@ public final class pr implements TextWatcher {
                                     if (hintText2.charAt(i29) == ' ') {
                                         sb3.insert(i29, ' ');
                                         i29++;
-                                        if (selectionStart2 == i29 && (i13 = this.f40288b) != 2 && i13 != 3) {
+                                        if (selectionStart2 == i29 && (i13 = this.f40289b) != 2 && i13 != 3) {
                                             selectionStart2++;
                                         }
                                     }
                                     i29++;
                                 } else {
                                     sb3.insert(i29, ' ');
-                                    if (selectionStart2 == i29 + 1 && (i12 = this.f40288b) != 2 && i12 != 3) {
+                                    if (selectionStart2 == i29 + 1 && (i12 = this.f40289b) != 2 && i12 != 3) {
                                         selectionStart2++;
                                     }
                                 }
@@ -176,12 +176,12 @@ public final class pr implements TextWatcher {
                 return;
             case 3:
                 vm0 vm0Var = (vm0) this.d;
-                if (!vm0Var.f42286a1) {
+                if (!vm0Var.f42287a1) {
                     org.telegram.ui.Components.o40 o40Var = (org.telegram.ui.Components.o40) vm0Var.Y[2];
                     int selectionStart3 = o40Var.getSelectionStart();
                     String obj4 = o40Var.getText().toString();
-                    if (this.f40288b == 3) {
-                        obj4 = obj4.substring(0, this.f40289c) + obj4.substring(this.f40289c + 1);
+                    if (this.f40289b == 3) {
+                        obj4 = obj4.substring(0, this.f40290c) + obj4.substring(this.f40290c + 1);
                         selectionStart3--;
                     }
                     StringBuilder sb4 = new StringBuilder(obj4.length());
@@ -194,7 +194,7 @@ public final class pr implements TextWatcher {
                         }
                         i30 = i31;
                     }
-                    vm0Var.f42286a1 = true;
+                    vm0Var.f42287a1 = true;
                     String hintText3 = o40Var.getHintText();
                     if (hintText3 != null) {
                         int i32 = 0;
@@ -204,14 +204,14 @@ public final class pr implements TextWatcher {
                                     if (hintText3.charAt(i32) == ' ') {
                                         sb4.insert(i32, ' ');
                                         i32++;
-                                        if (selectionStart3 == i32 && (i15 = this.f40288b) != 2 && i15 != 3) {
+                                        if (selectionStart3 == i32 && (i15 = this.f40289b) != 2 && i15 != 3) {
                                             selectionStart3++;
                                         }
                                     }
                                     i32++;
                                 } else {
                                     sb4.insert(i32, ' ');
-                                    if (selectionStart3 == i32 + 1 && (i14 = this.f40288b) != 2 && i14 != 3) {
+                                    if (selectionStart3 == i32 + 1 && (i14 = this.f40289b) != 2 && i14 != 3) {
                                         selectionStart3++;
                                     }
                                 }
@@ -223,18 +223,18 @@ public final class pr implements TextWatcher {
                         o40Var.setSelection(Math.min(selectionStart3, o40Var.length()));
                     }
                     o40Var.invalidate();
-                    vm0Var.f42286a1 = false;
+                    vm0Var.f42287a1 = false;
                     return;
                 }
                 return;
             default:
                 eo0 eo0Var = (eo0) this.d;
-                if (!eo0Var.f36725n0) {
-                    org.telegram.ui.Components.o40 o40Var2 = (org.telegram.ui.Components.o40) eo0Var.f36715f[9];
+                if (!eo0Var.f36726n0) {
+                    org.telegram.ui.Components.o40 o40Var2 = (org.telegram.ui.Components.o40) eo0Var.f36716f[9];
                     int selectionStart4 = o40Var2.getSelectionStart();
                     String obj5 = o40Var2.getText().toString();
-                    if (this.f40288b == 3) {
-                        obj5 = obj5.substring(0, this.f40289c) + obj5.substring(this.f40289c + 1);
+                    if (this.f40289b == 3) {
+                        obj5 = obj5.substring(0, this.f40290c) + obj5.substring(this.f40290c + 1);
                         selectionStart4--;
                     }
                     StringBuilder sb5 = new StringBuilder(obj5.length());
@@ -247,7 +247,7 @@ public final class pr implements TextWatcher {
                         }
                         i33 = i34;
                     }
-                    eo0Var.f36725n0 = true;
+                    eo0Var.f36726n0 = true;
                     String hintText4 = o40Var2.getHintText();
                     if (hintText4 != null) {
                         int i35 = 0;
@@ -257,14 +257,14 @@ public final class pr implements TextWatcher {
                                     if (hintText4.charAt(i35) == ' ') {
                                         sb5.insert(i35, ' ');
                                         i35++;
-                                        if (selectionStart4 == i35 && (i17 = this.f40288b) != 2 && i17 != 3) {
+                                        if (selectionStart4 == i35 && (i17 = this.f40289b) != 2 && i17 != 3) {
                                             selectionStart4++;
                                         }
                                     }
                                     i35++;
                                 } else {
                                     sb5.insert(i35, ' ');
-                                    if (selectionStart4 == i35 + 1 && (i16 = this.f40288b) != 2 && i16 != 3) {
+                                    if (selectionStart4 == i35 + 1 && (i16 = this.f40289b) != 2 && i16 != 3) {
                                         selectionStart4++;
                                     }
                                 }
@@ -276,7 +276,7 @@ public final class pr implements TextWatcher {
                         o40Var2.setSelection(Math.min(selectionStart4, o40Var2.length()));
                     }
                     o40Var2.invalidate();
-                    eo0Var.f36725n0 = false;
+                    eo0Var.f36726n0 = false;
                     return;
                 }
                 return;
@@ -285,71 +285,71 @@ public final class pr implements TextWatcher {
 
     @Override
     public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        switch (this.f40287a) {
+        switch (this.f40288a) {
             case 0:
                 return;
             case 1:
                 if (i11 == 0 && i12 == 1) {
-                    this.f40288b = 1;
+                    this.f40289b = 1;
                     return;
                 } else if (i11 == 1 && i12 == 0) {
                     if (charSequence.charAt(i10) == ' ' && i10 > 0) {
-                        this.f40288b = 3;
-                        this.f40289c = i10 - 1;
+                        this.f40289b = 3;
+                        this.f40290c = i10 - 1;
                         return;
                     }
-                    this.f40288b = 2;
+                    this.f40289b = 2;
                     return;
                 } else {
-                    this.f40288b = -1;
+                    this.f40289b = -1;
                     return;
                 }
             case 2:
                 if (i11 == 0 && i12 == 1) {
-                    this.f40288b = 1;
+                    this.f40289b = 1;
                     return;
                 } else if (i11 == 1 && i12 == 0) {
                     if (charSequence.charAt(i10) == ' ' && i10 > 0) {
-                        this.f40288b = 3;
-                        this.f40289c = i10 - 1;
+                        this.f40289b = 3;
+                        this.f40290c = i10 - 1;
                         return;
                     }
-                    this.f40288b = 2;
+                    this.f40289b = 2;
                     return;
                 } else {
-                    this.f40288b = -1;
+                    this.f40289b = -1;
                     return;
                 }
             case 3:
                 if (i11 == 0 && i12 == 1) {
-                    this.f40288b = 1;
+                    this.f40289b = 1;
                     return;
                 } else if (i11 == 1 && i12 == 0) {
                     if (charSequence.charAt(i10) == ' ' && i10 > 0) {
-                        this.f40288b = 3;
-                        this.f40289c = i10 - 1;
+                        this.f40289b = 3;
+                        this.f40290c = i10 - 1;
                         return;
                     }
-                    this.f40288b = 2;
+                    this.f40289b = 2;
                     return;
                 } else {
-                    this.f40288b = -1;
+                    this.f40289b = -1;
                     return;
                 }
             default:
                 if (i11 == 0 && i12 == 1) {
-                    this.f40288b = 1;
+                    this.f40289b = 1;
                     return;
                 } else if (i11 == 1 && i12 == 0) {
                     if (charSequence.charAt(i10) == ' ' && i10 > 0) {
-                        this.f40288b = 3;
-                        this.f40289c = i10 - 1;
+                        this.f40289b = 3;
+                        this.f40290c = i10 - 1;
                         return;
                     }
-                    this.f40288b = 2;
+                    this.f40289b = 2;
                     return;
                 } else {
-                    this.f40288b = -1;
+                    this.f40289b = -1;
                     return;
                 }
         }
@@ -357,14 +357,14 @@ public final class pr implements TextWatcher {
 
     @Override
     public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        int i13 = this.f40287a;
+        int i13 = this.f40288a;
     }
 
     public pr(qr qrVar, int i10, int i11) {
-        this.f40287a = 0;
+        this.f40288a = 0;
         this.d = qrVar;
-        this.f40288b = i10;
-        this.f40289c = i11;
+        this.f40289b = i10;
+        this.f40290c = i11;
     }
 
     private final void a(int i10, int i11, int i12, CharSequence charSequence) {

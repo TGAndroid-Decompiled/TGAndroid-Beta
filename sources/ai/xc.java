@@ -27,16 +27,16 @@ public final class xc extends g61 {
         String formatCurrency;
         h61 J = h61.J(xc.class);
         J.d = i10;
-        J.f26798z = i11;
+        J.f26799z = i11;
         long j10 = tL_starsTopupOption.stars;
         J.B = j10;
-        J.f26785l = LocaleController.formatPluralStringSpaced("StarsCount", (int) j10);
+        J.f26786l = LocaleController.formatPluralStringSpaced("StarsCount", (int) j10);
         if (tL_starsTopupOption.loadingStorePrice) {
             formatCurrency = null;
         } else {
             formatCurrency = BillingController.getInstance().formatCurrency(tL_starsTopupOption.amount, tL_starsTopupOption.currency);
         }
-        J.f26786m = formatCurrency;
+        J.f26787m = formatCurrency;
         J.G = tL_starsTopupOption;
         return J;
     }
@@ -45,9 +45,9 @@ public final class xc extends g61 {
     public final void bindView(View view, h61 h61Var, boolean z10, u61 u61Var, c71 c71Var) {
         float f7;
         yc ycVar = (yc) view;
-        int i10 = h61Var.f26798z;
-        CharSequence charSequence = h61Var.f26785l;
-        CharSequence charSequence2 = h61Var.f26786m;
+        int i10 = h61Var.f26799z;
+        CharSequence charSequence = h61Var.f26786l;
+        CharSequence charSequence2 = h61Var.f26787m;
         org.telegram.ui.Components.q6 q6Var = ycVar.e;
         TextView textView = ycVar.d;
         boolean equals = TextUtils.equals(textView.getText(), charSequence);
@@ -81,7 +81,7 @@ public final class xc extends g61 {
 
     @Override
     public final boolean contentsEquals(h61 h61Var, h61 h61Var2) {
-        if (h61Var.f26798z == h61Var2.f26798z && h61Var.d == h61Var2.d && TextUtils.equals(h61Var.f26786m, h61Var2.f26786m)) {
+        if (h61Var.f26799z == h61Var2.f26799z && h61Var.d == h61Var2.d && TextUtils.equals(h61Var.f26787m, h61Var2.f26787m)) {
             return true;
         }
         return false;

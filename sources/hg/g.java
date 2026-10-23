@@ -19,7 +19,7 @@ public final class g extends s4.o {
     public final boolean a(int i10, int i11) {
         switch (this.f11864b) {
             case 0:
-                if (((k) ((m) this.d).N.get(i10)).f44299a == ((k) this.f11865c.get(i11)).f44299a) {
+                if (((k) ((m) this.d).N.get(i10)).f44300a == ((k) this.f11865c.get(i11)).f44300a) {
                     return true;
                 }
                 return false;
@@ -32,7 +32,7 @@ public final class g extends s4.o {
             default:
                 pg.a aVar = (pg.a) this.f11865c.get(i10);
                 pg.a aVar2 = (pg.a) ((ArrayList) this.d).get(i11);
-                if (aVar.f44299a != aVar2.f44299a) {
+                if (aVar.f44300a != aVar2.f44300a) {
                     return false;
                 }
                 return aVar.a(aVar2);
@@ -50,23 +50,23 @@ public final class g extends s4.o {
                 k kVar = (k) ((m) this.d).N.get(i10);
                 k kVar2 = (k) this.f11865c.get(i11);
                 TLRPC.Dialog dialog = kVar.f11952c;
-                int i12 = kVar.f44299a;
-                int i13 = kVar2.f44299a;
+                int i12 = kVar.f44300a;
+                int i13 = kVar2.f44300a;
                 TLRPC.Dialog dialog2 = kVar2.f11952c;
-                if (i12 != i13 || (i12 != 0 ? !(i12 != 14 ? i12 != 4 ? i12 != 6 ? i12 != 5 ? i12 != 10 : kVar.f11956j == kVar2.f11956j : (tL_contact = kVar.e) != null && (tL_contact2 = kVar2.e) != null && tL_contact.user_id == tL_contact2.user_id : (recentMeUrl = kVar.d) != null && kVar2.d != null && (str = recentMeUrl.url) != null && str.equals(str) : dialog != null && dialog2 != null && dialog.f20283id == dialog2.f20283id && dialog.isFolder == dialog2.isFolder) : !(dialog != null && dialog2 != null && dialog.f20283id == dialog2.f20283id && kVar.h == kVar2.h && kVar.f11953f == kVar2.f11953f && kVar.f11954g == kVar2.f11954g))) {
+                if (i12 != i13 || (i12 != 0 ? !(i12 != 14 ? i12 != 4 ? i12 != 6 ? i12 != 5 ? i12 != 10 : kVar.f11956j == kVar2.f11956j : (tL_contact = kVar.e) != null && (tL_contact2 = kVar2.e) != null && tL_contact.user_id == tL_contact2.user_id : (recentMeUrl = kVar.d) != null && kVar2.d != null && (str = recentMeUrl.url) != null && str.equals(str) : dialog != null && dialog2 != null && dialog.f20284id == dialog2.f20284id && dialog.isFolder == dialog2.isFolder) : !(dialog != null && dialog2 != null && dialog.f20284id == dialog2.f20284id && kVar.h == kVar2.h && kVar.f11953f == kVar2.f11953f && kVar.f11954g == kVar2.f11954g))) {
                     return false;
                 }
                 return true;
             case 1:
-                return ((Integer) this.f11865c.get(i10)).equals(((ay) this.d).f24742n.get(i11));
+                return ((Integer) this.f11865c.get(i10)).equals(((ay) this.d).f24743n.get(i11));
             case 2:
-                return Objects.equals(this.f11865c.get(i10), ((fm0) this.d).f26282n.get(i11));
+                return Objects.equals(this.f11865c.get(i10), ((fm0) this.d).f26283n.get(i11));
             case 3:
-                return ((Long) this.f11865c.get(i10)).equals(((x51) this.d).f43093v0.get(i11));
+                return ((Long) this.f11865c.get(i10)).equals(((x51) this.d).f43094v0.get(i11));
             default:
                 pg.a aVar = (pg.a) this.f11865c.get(i10);
                 pg.a aVar2 = (pg.a) ((ArrayList) this.d).get(i11);
-                if (aVar.f44299a != aVar2.f44299a) {
+                if (aVar.f44300a != aVar2.f44300a) {
                     return false;
                 }
                 return aVar.equals(aVar2);
@@ -79,11 +79,11 @@ public final class g extends s4.o {
             case 0:
                 return this.f11865c.size();
             case 1:
-                return ((ay) this.d).f24742n.size();
+                return ((ay) this.d).f24743n.size();
             case 2:
-                return ((fm0) this.d).f26282n.size();
+                return ((fm0) this.d).f26283n.size();
             case 3:
-                return ((x51) this.d).f43093v0.size();
+                return ((x51) this.d).f43094v0.size();
             default:
                 return ((ArrayList) this.d).size();
         }

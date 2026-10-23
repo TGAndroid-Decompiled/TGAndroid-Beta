@@ -1,14 +1,14 @@
 package org.telegram.ui;
 public final class lp0 extends org.telegram.ui.ActionBar.j {
-    public final sp0 f38984a;
+    public final sp0 f38985a;
 
     public lp0(sp0 sp0Var) {
-        this.f38984a = sp0Var;
+        this.f38985a = sp0Var;
     }
 
     @Override
     public final void b(int i10) {
-        sp0 sp0Var = this.f38984a;
+        sp0 sp0Var = this.f38985a;
         if (i10 == -1) {
             sp0Var.finishFragment();
         } else if (i10 == 1) {

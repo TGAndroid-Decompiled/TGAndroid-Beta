@@ -45,12 +45,12 @@ public final class f extends bb implements NotificationCenter.NotificationCenter
         jm0Var.setPadding(i10, 0, i10, 0);
         this.d.setOnItemClickListener(new wa(this, 11));
         k kVar = new k();
-        kVar.f45954m = false;
+        kVar.f45955m = false;
         kVar.C = false;
         kVar.o(bs.h);
         kVar.n(350L);
         this.d.setItemAnimator(kVar);
-        setBackgroundColor(h6.w0(h6.f21064h5, d6Var));
+        setBackgroundColor(h6.w0(h6.f21065h5, d6Var));
         this.X = aVar;
         uc ucVar = new uc(context, 2, d6Var);
         this.Y = ucVar;

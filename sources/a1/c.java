@@ -91,7 +91,7 @@ public final class c implements OnSuccessListener, i, i5.e, e5, a2, m, ne.d, Uti
         }
         marginLayoutParams.topMargin = i10;
         if (aaVar.f5180c) {
-            a2 = k1Var.f44838a.f(2).d;
+            a2 = k1Var.f44839a.f(2).d;
         } else {
             a2 = k1Var.a();
         }
@@ -106,7 +106,7 @@ public final class c implements OnSuccessListener, i, i5.e, e5, a2, m, ne.d, Uti
         if (p9Var != null) {
             p9Var.requestLayout();
         }
-        return k1.f44837b;
+        return k1.f44838b;
     }
 
     @Override
@@ -138,7 +138,7 @@ public final class c implements OnSuccessListener, i, i5.e, e5, a2, m, ne.d, Uti
         String M = f0.f398b.M((e0) obj);
         kotlin.jvm.internal.i.d(M, "SessionEvents.SESSION_EVENT_ENCODER.encode(value)");
         Log.d("EventGDTLogger", "Session Event: ".concat(M));
-        byte[] bytes = M.getBytes(zd.a.f51518a);
+        byte[] bytes = M.getBytes(zd.a.f51519a);
         kotlin.jvm.internal.i.d(bytes, "this as java.lang.String).getBytes(charset)");
         return bytes;
     }
@@ -322,7 +322,7 @@ public final class c implements OnSuccessListener, i, i5.e, e5, a2, m, ne.d, Uti
         r8 r8Var;
         q8 q8Var = (q8) this.f35b;
         if (!q8Var.v.f5936x) {
-            gVar.f49068q = new p8(q8Var, 2);
+            gVar.f49069q = new p8(q8Var, 2);
             float sqrt = (float) Math.sqrt(Math.pow(r8Var.getHeight(), 2.0d) + Math.pow(r8Var.getWidth(), 2.0d));
             ArrayList arrayList = q8Var.f5853i;
             int size = arrayList.size();

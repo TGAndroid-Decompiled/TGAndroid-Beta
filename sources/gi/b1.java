@@ -15,7 +15,7 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.ok;
+import org.telegram.messenger.nk;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
@@ -126,8 +126,8 @@ public final class b1 implements Runnable {
                 String str4 = (String) this.h;
                 TLRPC.User user = (TLRPC.User) this.f11093n;
                 String str5 = (String) this.f11094r;
-                ArrayList arrayList = launchActivity.f33169f0;
-                ArrayList arrayList2 = launchActivity.f33165d0;
+                ArrayList arrayList = launchActivity.f33170f0;
+                ArrayList arrayList2 = launchActivity.f33166d0;
                 ArrayList arrayList3 = launchActivity.E0;
                 TLObject tLObject3 = this.f11090b;
                 if (tLObject3 instanceof TLRPC.TL_attachMenuBotsBot) {
@@ -190,7 +190,7 @@ public final class b1 implements Runnable {
                                 a02 = xc.a0(n2Var);
                                 i10 = R.string.BotAlreadyAddedToAttachMenu;
                             } else {
-                                qnVar.ba(user.f20426id, str5, false);
+                                qnVar.ba(user.f20427id, str5, false);
                                 return;
                             }
                         } else {
@@ -209,7 +209,7 @@ public final class b1 implements Runnable {
                     a02 = xc.a0((org.telegram.ui.ActionBar.n2) i2.e.h(1, arrayList2));
                     i10 = R.string.BotCantAddToAttachMenu;
                 }
-                ok.q(i10, a02, null);
+                nk.q(i10, a02, null);
                 return;
         }
     }

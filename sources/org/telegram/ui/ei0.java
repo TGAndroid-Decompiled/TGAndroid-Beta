@@ -9,21 +9,21 @@ public final class ei0 extends org.telegram.ui.Components.lw0 {
     public final Paint B0;
     public final org.telegram.ui.ActionBar.d6 C0;
     public final mi0 D0;
-    public final int[] f36667w0;
-    public final int[] f36668x0;
-    public int f36669y0;
-    public final int[] f36670z0;
+    public final int[] f36668w0;
+    public final int[] f36669x0;
+    public int f36670y0;
+    public final int[] f36671z0;
 
     public ei0(mi0 mi0Var, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context, null);
         this.D0 = mi0Var;
         this.C0 = d6Var;
-        this.f36667w0 = new int[2];
-        this.f36668x0 = new int[2];
-        this.f36669y0 = 0;
-        this.f36670z0 = new int[2];
+        this.f36668w0 = new int[2];
+        this.f36669x0 = new int[2];
+        this.f36670y0 = 0;
+        this.f36671z0 = new int[2];
         this.A0 = new s10();
-        org.telegram.ui.Components.bs bsVar = org.telegram.ui.Components.bs.f25024f;
+        org.telegram.ui.Components.bs bsVar = org.telegram.ui.Components.bs.f25025f;
         this.B0 = new Paint(1);
     }
 

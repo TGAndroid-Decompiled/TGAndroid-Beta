@@ -2,24 +2,24 @@ package ti;
 
 import android.content.SharedPreferences;
 public final class b {
-    public final String f47216a;
-    public final Enum f47217b;
-    public volatile boolean f47218c;
+    public final String f47217a;
+    public final Enum f47218b;
+    public volatile boolean f47219c;
     public volatile Enum d;
 
     public b(String str, Enum r22) {
-        this.f47216a = str;
-        this.f47217b = r22;
+        this.f47217a = str;
+        this.f47218b = r22;
     }
 
     public final Enum a() {
-        if (!this.f47218c) {
+        if (!this.f47219c) {
             synchronized (this) {
                 try {
-                    if (!this.f47218c) {
-                        SharedPreferences sharedPreferences = d.f47221a;
-                        String str = this.f47216a;
-                        Enum r22 = this.f47217b;
+                    if (!this.f47219c) {
+                        SharedPreferences sharedPreferences = d.f47222a;
+                        String str = this.f47217a;
+                        Enum r22 = this.f47218b;
                         String string = sharedPreferences.getString(str, r22.name());
                         if (string != null) {
                             try {
@@ -28,7 +28,7 @@ public final class b {
                             }
                         }
                         this.d = r22;
-                        this.f47218c = true;
+                        this.f47219c = true;
                     }
                 } finally {
                 }
@@ -39,7 +39,7 @@ public final class b {
 
     public final synchronized void b(Enum r32) {
         this.d = r32;
-        this.f47218c = true;
-        d.f47221a.edit().putString(this.f47216a, r32.name()).apply();
+        this.f47219c = true;
+        d.f47222a.edit().putString(this.f47217a, r32.name()).apply();
     }
 }

@@ -37,7 +37,7 @@ public final class f implements l {
                 if (!a1.h.a(cancellationSignal)) {
                     Intent intent = new Intent(context, HiddenActivity.class);
                     d.a(eVar.f4485i, intent, "BEGIN_SIGN_IN");
-                    intent.putExtra("EXTRA_FLOW_PENDING_INTENT", fVar.f49307a);
+                    intent.putExtra("EXTRA_FLOW_PENDING_INTENT", fVar.f49308a);
                     try {
                         context.startActivity(intent);
                     } catch (Exception unused) {

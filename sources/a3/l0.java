@@ -191,7 +191,7 @@ public final class l0 implements Runnable {
                 } else {
                     J = X.J(R.raw.contact_check, charSequence, LocaleController.getString(R.string.Gift2UniqueView), runnable);
                 }
-                J.f29544t = true;
+                J.f29545t = true;
                 J.j();
                 return;
             case 9:
@@ -520,7 +520,7 @@ public final class l0 implements Runnable {
                 Utilities.Callback callback2 = (Utilities.Callback) this.d;
                 while (i10 < t6Var.f5149i.size()) {
                     MessageObject messageObject2 = (MessageObject) t6Var.f5149i.get(i10);
-                    if (messageObject2 != null && (storyItem = messageObject2.storyItem) != null && (messageMedia = storyItem.media) != null && (document = storyItem5.media.document) != null && (document2 = messageMedia.document) != null && document2.f20285id == document.f20285id) {
+                    if (messageObject2 != null && (storyItem = messageObject2.storyItem) != null && (messageMedia = storyItem.media) != null && (document = storyItem5.media.document) != null && (document2 = messageMedia.document) != null && document2.f20286id == document.f20286id) {
                         callback2.run(document2);
                         return;
                     }
@@ -559,13 +559,13 @@ public final class l0 implements Runnable {
                             TLRPC.Document document5 = messageMedia2.document;
                             if (document5 == null) {
                                 continue;
-                            } else if (document5.f20285id == document4.f20285id) {
+                            } else if (document5.f20286id == document4.f20286id) {
                                 k2Var.run((s6) storyItem2);
                                 return;
                             }
                         }
                         TLRPC.Photo photo2 = messageMedia3.photo;
-                        if (photo2 != null && (photo = messageMedia2.photo) != null && photo.f20303id == photo2.f20303id) {
+                        if (photo2 != null && (photo = messageMedia2.photo) != null && photo.f20304id == photo2.f20304id) {
                             k2Var.run((s6) storyItem2);
                             return;
                         }
@@ -635,8 +635,8 @@ public final class l0 implements Runnable {
                     } else {
                         id2 = messageObject.getId();
                     }
-                    message.f20300id = id2;
-                    storyItem6.f20513id = id2;
+                    message.f20301id = id2;
+                    storyItem6.f20514id = id2;
                     messageObject4.parentStoriesList = t6Var2;
                     messageObject4.generateThumbs(false);
                     if (arrayList6.isEmpty()) {
@@ -667,7 +667,7 @@ public final class l0 implements Runnable {
                 if (tLObject7 != null) {
                     TL_stories.TL_stories_storyViews tL_stories_storyViews = (TL_stories.TL_stories_storyViews) tLObject7;
                     MessagesController.getInstance(i19).putUsers(tL_stories_storyViews.users, false);
-                    if (!jaVar.d(tL_stories_getStoriesViews.f20521id, tL_stories_storyViews)) {
+                    if (!jaVar.d(tL_stories_getStoriesViews.f20522id, tL_stories_storyViews)) {
                         jaVar.d = 0;
                         jaVar.e = false;
                         return;

@@ -9,10 +9,10 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.st;
 public final class s extends LinearLayout {
-    public static final int f22965f = 0;
-    public Paint f22966a;
-    public Paint f22967b;
-    public q f22968c;
+    public static final int f22966f = 0;
+    public Paint f22967a;
+    public Paint f22968b;
+    public q f22969c;
     public TextView d;
     public float e;
 
@@ -22,7 +22,7 @@ public final class s extends LinearLayout {
         int x02 = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.G6, false);
         int i10 = org.telegram.ui.ActionBar.h6.I6;
         textView.setTextColor(i0.a.f(f7, x02, org.telegram.ui.ActionBar.h6.x0(null, i10, false)));
-        Paint paint = this.f22966a;
+        Paint paint = this.f22967a;
         paint.setColor(i0.a.f(f7, i0.a.o(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.M6, false), 63), org.telegram.ui.ActionBar.h6.x0(null, i10, false)));
         paint.setStrokeWidth(Math.max(2, AndroidUtilities.dp(AndroidUtilities.lerp(0.5f, 2.0f, f7))));
         invalidate();
@@ -51,12 +51,12 @@ public final class s extends LinearLayout {
 
     @Override
     public final void draw(Canvas canvas) {
-        Paint paint = this.f22966a;
+        Paint paint = this.f22967a;
         float strokeWidth = paint.getStrokeWidth();
         RectF rectF = AndroidUtilities.rectTmp;
-        q qVar = this.f22968c;
+        q qVar = this.f22969c;
         rectF.set(qVar.getLeft() + strokeWidth, qVar.getTop() + strokeWidth, qVar.getRight() - strokeWidth, qVar.getBottom() - strokeWidth);
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f), this.f22967b);
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f), this.f22968b);
         super.draw(canvas);
         canvas.drawRoundRect(rectF, AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f), paint);
     }

@@ -1,21 +1,21 @@
 package org.telegram.ui.Components;
 public final class ws implements Runnable {
-    public final int f32245a;
-    public final at f32246b;
+    public final int f32246a;
+    public final at f32247b;
 
     public ws(at atVar, int i10) {
-        this.f32245a = i10;
-        this.f32246b = atVar;
+        this.f32246a = i10;
+        this.f32247b = atVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f32245a) {
+        switch (this.f32246a) {
             case 0:
-                this.f32246b.W(false);
+                this.f32247b.W(false);
                 return;
             default:
-                this.f32246b.N(true);
+                this.f32247b.N(true);
                 return;
         }
     }

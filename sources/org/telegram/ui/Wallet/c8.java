@@ -2,15 +2,15 @@ package org.telegram.ui.Wallet;
 
 import org.telegram.messenger.Utilities;
 public final class c8 implements Utilities.Callback {
-    public final int f34082a = 0;
-    public final h8 f34083b;
-    public final Utilities.Callback f34084c;
+    public final int f34083a = 0;
+    public final h8 f34084b;
+    public final Utilities.Callback f34085c;
     public final q0 d;
     public final m0 e;
 
     public c8(h8 h8Var, Utilities.Callback callback, m0 m0Var, q0 q0Var) {
-        this.f34083b = h8Var;
-        this.f34084c = callback;
+        this.f34084b = h8Var;
+        this.f34085c = callback;
         this.e = m0Var;
         this.d = q0Var;
     }
@@ -18,18 +18,18 @@ public final class c8 implements Utilities.Callback {
     @Override
     public final void run(Object obj) {
         String o10;
-        switch (this.f34082a) {
+        switch (this.f34083a) {
             case 0:
-                h8.Y(this.f34083b, this.f34084c, this.e, this.d, (j0) obj);
+                h8.Y(this.f34084b, this.f34085c, this.e, this.d, (j0) obj);
                 return;
             default:
                 d0 d0Var = (d0) obj;
-                Utilities.Callback callback = this.f34084c;
+                Utilities.Callback callback = this.f34085c;
                 if (d0Var == null) {
                     callback.run("ADDRESS_NO_INFO");
                     return;
                 }
-                byte[] bArr = d0Var.f34094c;
+                byte[] bArr = d0Var.f34095c;
                 q0 q0Var = this.d;
                 if (bArr == null) {
                     byte[][] m10 = q0Var.m();
@@ -43,7 +43,7 @@ public final class c8 implements Utilities.Callback {
                     callback.run("STORAGE_OLD_PUBLIC_KEY");
                     return;
                 }
-                c8 c8Var = new c8(this.f34083b, callback, this.e, q0Var);
+                c8 c8Var = new c8(this.f34084b, callback, this.e, q0Var);
                 if (bArr == null) {
                     o10 = "";
                 } else {
@@ -56,8 +56,8 @@ public final class c8 implements Utilities.Callback {
     }
 
     public c8(h8 h8Var, Utilities.Callback callback, q0 q0Var, m0 m0Var) {
-        this.f34083b = h8Var;
-        this.f34084c = callback;
+        this.f34084b = h8Var;
+        this.f34085c = callback;
         this.d = q0Var;
         this.e = m0Var;
     }

@@ -18,7 +18,7 @@ public final class k1 extends w7.a6 {
                 ((o1) this.f9293b).Z2 = false;
                 return;
             case 1:
-                ((x51) this.f9293b).f43097w1 = false;
+                ((x51) this.f9293b).f43098w1 = false;
                 return;
             default:
                 ((zh.k0) this.f9293b).v = false;
@@ -33,7 +33,7 @@ public final class k1 extends w7.a6 {
                 ((o1) this.f9293b).Z2 = true;
                 return;
             case 1:
-                ((x51) this.f9293b).f43097w1 = true;
+                ((x51) this.f9293b).f43098w1 = true;
                 return;
             default:
                 return;

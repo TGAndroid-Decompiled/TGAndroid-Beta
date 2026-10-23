@@ -3,21 +3,21 @@ package org.telegram.ui;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.RadialProgressView;
 public final class ag0 implements Runnable {
-    public final int f35374a;
-    public final bg0 f35375b;
-    public final rf0 f35376c;
+    public final int f35375a;
+    public final bg0 f35376b;
+    public final rf0 f35377c;
 
     public ag0(int i10, rf0 rf0Var, bg0 bg0Var) {
-        this.f35374a = i10;
-        this.f35375b = bg0Var;
-        this.f35376c = rf0Var;
+        this.f35375a = i10;
+        this.f35376b = bg0Var;
+        this.f35377c = rf0Var;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f35374a;
-        rf0 rf0Var = this.f35376c;
-        bg0 bg0Var = this.f35375b;
+        int i10 = this.f35375a;
+        rf0 rf0Var = this.f35377c;
+        bg0 bg0Var = this.f35376b;
         switch (i10) {
             case 0:
                 int i11 = rf0.E;
@@ -25,20 +25,20 @@ public final class ag0 implements Runnable {
                 AndroidUtilities.runOnUIThread(new ag0(1, rf0Var, bg0Var), 150L);
                 return;
             default:
-                cg0 cg0Var = bg0Var.f35634a;
+                cg0 cg0Var = bg0Var.f35635a;
                 cg0Var.h(null);
                 RadialProgressView radialProgressView = cg0Var.V.N.d;
                 RadialProgressView radialProgressView2 = rf0Var.h.d;
                 radialProgressView.getClass();
-                radialProgressView.f24329a = radialProgressView2.f24329a;
-                radialProgressView.f24330b = radialProgressView2.f24330b;
+                radialProgressView.f24330a = radialProgressView2.f24330a;
+                radialProgressView.f24331b = radialProgressView2.f24331b;
                 radialProgressView.H = radialProgressView2.H;
                 radialProgressView.I = radialProgressView2.I;
                 radialProgressView.J = radialProgressView2.J;
-                radialProgressView.f24331c = radialProgressView2.f24331c;
-                radialProgressView.f24333n = radialProgressView2.f24333n;
+                radialProgressView.f24332c = radialProgressView2.f24332c;
+                radialProgressView.f24334n = radialProgressView2.f24334n;
                 radialProgressView.e = radialProgressView2.e;
-                radialProgressView.f24338y = radialProgressView2.f24338y;
+                radialProgressView.f24339y = radialProgressView2.f24339y;
                 radialProgressView.F = radialProgressView2.F;
                 radialProgressView.G = radialProgressView2.G;
                 radialProgressView.d = radialProgressView2.d;

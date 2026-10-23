@@ -18,7 +18,7 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.ok;
+import org.telegram.messenger.nk;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
@@ -65,7 +65,7 @@ public final class l6 {
         } else {
             chat = MessagesController.getInstance(i10).getChat(Long.valueOf(-j10));
         }
-        LinearLayout e = ok.e(context, 1);
+        LinearLayout e = nk.e(context, 1);
         k6 k6Var = new k6(this, context);
         k6Var.addView(e, w7.z5.c(-2.0f, -1));
         if (!z11) {
@@ -79,14 +79,14 @@ public final class l6 {
         } else {
             this.f1708i = null;
             TextView textView = new TextView(context);
-            ok.o(org.telegram.ui.ActionBar.h6.f21381y6, d6Var, textView, 1, 14.0f);
-            ok.m(R.string.Gift2BuyPriceOnlyTON, textView, 17);
+            nk.o(org.telegram.ui.ActionBar.h6.f21382y6, d6Var, textView, 1, 14.0f);
+            nk.m(R.string.Gift2BuyPriceOnlyTON, textView, 17);
             e.addView(textView, w7.z5.t(-2, -2, 17, 24, 4, 24, 4));
         }
         e.addView(new g6(context, tL_starGiftUnique, chat), w7.z5.t(-1, -2, 48, 0, -4, 0, 0));
         TextView textView2 = new TextView(context);
         this.f1709j = textView2;
-        ok.o(org.telegram.ui.ActionBar.h6.f21099j5, d6Var, textView2, 1, 16.0f);
+        nk.o(org.telegram.ui.ActionBar.h6.f21100j5, d6Var, textView2, 1, 16.0f);
         e.addView(textView2, w7.z5.t(-1, -2, 48, 24, 4, 24, 4));
         if (z10) {
             l01 l01Var = new l01(context, d6Var);
@@ -102,7 +102,7 @@ public final class l6 {
         alertDialog$Builder.n(k6Var);
         alertDialog$Builder.k("_", new j6(this, i10, context, d6Var, callback2, 0));
         alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-        this.h = alertDialog$Builder.f20608a;
+        this.h = alertDialog$Builder.f20609a;
     }
 
     public final void a(boolean z10) {

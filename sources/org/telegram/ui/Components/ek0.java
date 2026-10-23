@@ -3,25 +3,25 @@ package org.telegram.ui.Components;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.TLObject;
 public final class ek0 implements Runnable {
-    public final int f25918a;
-    public final nk0 f25919b;
-    public final TLObject f25920c;
+    public final int f25919a;
+    public final nk0 f25920b;
+    public final TLObject f25921c;
 
     public ek0(nk0 nk0Var, TLObject tLObject, int i10) {
-        this.f25918a = i10;
-        this.f25919b = nk0Var;
-        this.f25920c = tLObject;
+        this.f25919a = i10;
+        this.f25920b = nk0Var;
+        this.f25921c = tLObject;
     }
 
     @Override
     public final void run() {
-        switch (this.f25918a) {
+        switch (this.f25919a) {
             case 0:
-                nk0 nk0Var = this.f25919b;
-                NotificationCenter.getInstance(nk0Var.f28832b).doOnIdle(new ek0(nk0Var, this.f25920c, 1));
+                nk0 nk0Var = this.f25920b;
+                NotificationCenter.getInstance(nk0Var.f28833b).doOnIdle(new ek0(nk0Var, this.f25921c, 1));
                 return;
             default:
-                nk0.a(this.f25919b, this.f25920c);
+                nk0.a(this.f25920b, this.f25921c);
                 return;
         }
     }

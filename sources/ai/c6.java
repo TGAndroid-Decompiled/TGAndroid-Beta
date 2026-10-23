@@ -36,8 +36,8 @@ public final class c6 extends FrameLayout {
         yh.d1 d1Var = new yh.d1(frameLayout2, null, false);
         this.f1080a = d1Var;
         frameLayout2.setBackground(d1Var);
-        d1Var.f50215s = AndroidUtilities.dp(18.0f);
-        d1Var.f50217u = false;
+        d1Var.f50216s = AndroidUtilities.dp(18.0f);
+        d1Var.f50218u = false;
         frameLayout.addView(frameLayout2, w7.z5.e(-1, -1, 119));
         frameLayout2.setAlpha(0.0f);
         frameLayout2.setScaleX(0.6f);

@@ -20,7 +20,7 @@ public final class hq0 extends jm0 {
         switch (this.V2) {
             case 0:
                 fr0 fr0Var = this.W2;
-                if (fr0Var.f26378i0 && fr0Var.f26385p0[1] != null) {
+                if (fr0Var.f26379i0 && fr0Var.f26386p0[1] != null) {
                     f10 = 111.0f;
                 } else {
                     f10 = 58.0f;
@@ -31,7 +31,7 @@ public final class hq0 extends jm0 {
                 return false;
             default:
                 fr0 fr0Var2 = this.W2;
-                if (fr0Var2.f26378i0 && fr0Var2.f26385p0[1] != null) {
+                if (fr0Var2.f26379i0 && fr0Var2.f26386p0[1] != null) {
                     f11 = 111.0f;
                 } else {
                     f11 = 58.0f;
@@ -53,8 +53,8 @@ public final class hq0 extends jm0 {
                 jm0 jm0Var = fr0Var.F;
                 if (jm0Var.getVisibility() != 8) {
                     canvas.save();
-                    int i10 = fr0Var.f26386q0;
-                    if (fr0Var.f26378i0 && fr0Var.f26385p0[1] != null) {
+                    int i10 = fr0Var.f26387q0;
+                    if (fr0Var.f26379i0 && fr0Var.f26386p0[1] != null) {
                         f7 = 111.0f;
                     } else {
                         f7 = 58.0f;
@@ -72,8 +72,8 @@ public final class hq0 extends jm0 {
                 jm0 jm0Var2 = fr0Var2.F;
                 if (jm0Var2.getVisibility() != 8) {
                     canvas.save();
-                    int i11 = fr0Var2.f26386q0;
-                    if (fr0Var2.f26378i0 && fr0Var2.f26385p0[1] != null) {
+                    int i11 = fr0Var2.f26387q0;
+                    if (fr0Var2.f26379i0 && fr0Var2.f26386p0[1] != null) {
                         f10 = 111.0f;
                     } else {
                         f10 = 58.0f;

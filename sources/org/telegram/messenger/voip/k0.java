@@ -7,18 +7,18 @@ import org.telegram.ui.Components.tw0;
 import org.telegram.ui.Components.u61;
 import org.telegram.ui.fl;
 public final class k0 implements Runnable {
-    public final int f19892a;
-    public final int f19893b;
-    public final boolean f19894c;
+    public final int f19895a;
+    public final int f19896b;
+    public final boolean f19897c;
     public final Object d;
     public final Object e;
 
     public k0(int i10, int i11, Object obj, Object obj2, boolean z10) {
-        this.f19892a = i11;
+        this.f19895a = i11;
         this.d = obj;
         this.e = obj2;
-        this.f19893b = i10;
-        this.f19894c = z10;
+        this.f19896b = i10;
+        this.f19897c = z10;
     }
 
     @Override
@@ -27,26 +27,26 @@ public final class k0 implements Runnable {
     }
 
     public k0(fl flVar, boolean z10, ArrayList arrayList, int i10) {
-        this.f19892a = 2;
+        this.f19895a = 2;
         this.d = flVar;
-        this.f19894c = z10;
+        this.f19897c = z10;
         this.e = arrayList;
-        this.f19893b = i10;
+        this.f19896b = i10;
     }
 
     public k0(tw0 tw0Var, boolean z10, int i10, u1 u1Var) {
-        this.f19892a = 5;
+        this.f19895a = 5;
         this.d = tw0Var;
-        this.f19894c = z10;
-        this.f19893b = i10;
+        this.f19897c = z10;
+        this.f19896b = i10;
         this.e = u1Var;
     }
 
     public k0(u61 u61Var, int i10, TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal, boolean z10, int i11) {
-        this.f19892a = i11;
+        this.f19895a = i11;
         this.d = u61Var;
-        this.f19893b = i10;
+        this.f19896b = i10;
         this.e = tL_messages_searchGlobal;
-        this.f19894c = z10;
+        this.f19897c = z10;
     }
 }

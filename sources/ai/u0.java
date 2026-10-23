@@ -77,7 +77,7 @@ public final class u0 implements Utilities.Callback2 {
                     if (!(webPage2 instanceof TLRPC.TL_webPageEmpty)) {
                         if (messageMedia instanceof TLRPC.TL_messageMediaWebPage) {
                             if (webPage2 instanceof TLRPC.TL_webPagePending) {
-                                long j10 = webPage2.f20432id;
+                                long j10 = webPage2.f20433id;
                                 int i11 = this.f2238b;
                                 gi.e1 e1Var = new gi.e1(j10, notificationCenterDelegateArr, i11, c1Var);
                                 notificationCenterDelegateArr[0] = e1Var;
@@ -158,12 +158,12 @@ public final class u0 implements Utilities.Callback2 {
                     z11 = true;
                 }
                 if (!z11) {
-                    MessagesController.getInstance(i12).generateJoinMessage(chat2.f20279id, true);
+                    MessagesController.getInstance(i12).generateJoinMessage(chat2.f20280id, true);
                 }
                 AndroidUtilities.runOnUIThread(new st0(f1Var, 5));
                 AndroidUtilities.runOnUIThread(new ah.g(i12, chat2, 18), 1000L);
                 MessagesStorage messagesStorage = MessagesStorage.getInstance(i12);
-                long j11 = chat2.f20279id;
+                long j11 = chat2.f20280id;
                 messagesStorage.updateDialogsWithDeletedMessages(-j11, j11, new ArrayList<>(), null);
                 return;
             case 5:
@@ -204,10 +204,10 @@ public final class u0 implements Utilities.Callback2 {
                 if (!"CANCELLED".equalsIgnoreCase(str3)) {
                     if ("EMPTY".equalsIgnoreCase(str3)) {
                         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context2);
-                        alertDialog$Builder.f20608a.R = LocaleController.getString(R.string.PasskeyNoOptionsTitle);
-                        alertDialog$Builder.f20608a.T = LocaleController.getString(R.string.PasskeyNoOptionsText);
+                        alertDialog$Builder.f20609a.R = LocaleController.getString(R.string.PasskeyNoOptionsTitle);
+                        alertDialog$Builder.f20609a.T = LocaleController.getString(R.string.PasskeyNoOptionsText);
                         alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
-                        alertDialog$Builder.f20608a.setOnDismissListener(new org.telegram.ui.w5(f3Var, 9));
+                        alertDialog$Builder.f20609a.setOnDismissListener(new org.telegram.ui.w5(f3Var, 9));
                         alertDialog$Builder.o();
                         return;
                     }

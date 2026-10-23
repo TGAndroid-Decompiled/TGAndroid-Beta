@@ -77,7 +77,7 @@ public abstract class u5 extends FrameLayout implements NotificationCenter.Notif
         this.v = aaVar.h;
         TextView textView = new TextView(context);
         this.h = textView;
-        textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21099j5, bVar));
+        textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21100j5, bVar));
         textView.setTextSize(1, 20.0f);
         textView.setTypeface(AndroidUtilities.bold());
         textView.setPadding(AndroidUtilities.dp(21.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(21.0f), AndroidUtilities.dp(8.0f));
@@ -107,7 +107,7 @@ public abstract class u5 extends FrameLayout implements NotificationCenter.Notif
         View view = new View(getContext());
         this.f6046a = view;
         GradientDrawable.Orientation orientation = GradientDrawable.Orientation.TOP_BOTTOM;
-        int i10 = org.telegram.ui.ActionBar.h6.f21064h5;
+        int i10 = org.telegram.ui.ActionBar.h6.f21065h5;
         view.setBackground(new GradientDrawable(orientation, new int[]{org.telegram.ui.ActionBar.h6.w0(i10, bVar), 0}));
         frameLayout.addView(view, w7.z5.d(-1, 8.0f, 0, 0.0f, this.e - 8, 0.0f, 0.0f));
         View view2 = new View(getContext());
@@ -154,7 +154,7 @@ public abstract class u5 extends FrameLayout implements NotificationCenter.Notif
             if (sparseArray == null) {
                 t5Var = null;
             } else {
-                t5Var = (t5) sparseArray.get(storyItem.f20513id);
+                t5Var = (t5) sparseArray.get(storyItem.f20514id);
             }
             TL_stories.StoryViews storyViews = storyItem.views;
             if (storyViews == null) {
@@ -176,7 +176,7 @@ public abstract class u5 extends FrameLayout implements NotificationCenter.Notif
                 sparseArray = new SparseArray();
                 hVar.k(sparseArray, j11);
             }
-            sparseArray.put(storyItem.f20513id, t5Var2);
+            sparseArray.put(storyItem.f20514id, t5Var2);
         }
     }
 
@@ -370,7 +370,7 @@ public abstract class u5 extends FrameLayout implements NotificationCenter.Notif
         i();
         h(false);
         if (b6Var != null && b6Var.f5249a != null) {
-            NotificationsController.getInstance(this.v).processSeenStoryReactions(j10, b6Var.f5249a.f20513id);
+            NotificationsController.getInstance(this.v).processSeenStoryReactions(j10, b6Var.f5249a.f20514id);
         }
     }
 
@@ -404,7 +404,7 @@ public abstract class u5 extends FrameLayout implements NotificationCenter.Notif
                 ofFloat.addUpdateListener(new ah.c0(j5Var, 18));
                 j5Var.f5539w.addListener(new ah.b(j5Var, 13));
                 j5Var.f5539w.setDuration(250L);
-                j5Var.f5539w.setInterpolator(bs.f25024f);
+                j5Var.f5539w.setInterpolator(bs.f25025f);
                 j5Var.f5539w.start();
             }
         }

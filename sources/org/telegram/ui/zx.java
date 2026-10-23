@@ -16,18 +16,18 @@ import org.telegram.tgnet.TLRPC;
 public final class zx extends s4.v {
     public s4.b1 d;
     public boolean e;
-    public boolean f43822f;
-    public final ay f43823g;
+    public boolean f43823f;
+    public final ay f43824g;
     public final cy h;
 
     public zx(cy cyVar, ay ayVar) {
         this.h = cyVar;
-        this.f43823g = ayVar;
+        this.f43824g = ayVar;
     }
 
     @Override
     public final int b(int i10, int i11) {
-        if (this.f43822f) {
+        if (this.f43823f) {
             return 0;
         }
         return super.b(i10, i11);
@@ -41,7 +41,7 @@ public final class zx extends s4.v {
             return 200L;
         }
         if (i10 == 8 && (r2Var = (cyVar = this.h).X0) != null) {
-            AndroidUtilities.runOnUIThread(new dh(1, r2Var), this.f43823g.f35454x.e);
+            AndroidUtilities.runOnUIThread(new dh(1, r2Var), this.f43824g.f35455x.e);
             cyVar.X0 = null;
         }
         return super.d(recyclerView, i10, f7, f10);
@@ -72,8 +72,8 @@ public final class zx extends s4.v {
         char c10;
         int i10;
         cy cyVar = this.h;
-        ArrayList arrayList = cyVar.f36075a1;
-        View view = b1Var2.f45920a;
+        ArrayList arrayList = cyVar.f36076a1;
+        View view = b1Var2.f45921a;
         char c11 = 0;
         if (view instanceof org.telegram.ui.Cells.r2) {
             long dialogId = ((org.telegram.ui.Cells.r2) view).getDialogId();
@@ -81,9 +81,9 @@ public final class zx extends s4.v {
             if (dialog != null && cyVar.e4(dialog) && !DialogObject.isFolderDialogId(dialogId)) {
                 int b10 = b1Var.b();
                 int b11 = b1Var2.b();
-                ay ayVar = this.f43823g;
-                if (ayVar.f35446a.getItemAnimator() == null) {
-                    ayVar.f35446a.setItemAnimator(ayVar.f35454x);
+                ay ayVar = this.f43824g;
+                if (ayVar.f35447a.getItemAnimator() == null) {
+                    ayVar.f35447a.setItemAnimator(ayVar.f35455x);
                 }
                 jw jwVar = ayVar.d;
                 cy cyVar2 = jwVar.R;
@@ -106,13 +106,13 @@ public final class zx extends s4.v {
                         c10 = 0;
                     }
                     MessagesController.DialogFilter dialogFilter = dialogFilterArr[c10];
-                    int i14 = dialogFilter.pinnedDialogs.get(dialog2.f20283id);
-                    dialogFilter.pinnedDialogs.put(dialog2.f20283id, dialogFilter.pinnedDialogs.get(dialog3.f20283id));
-                    dialogFilter.pinnedDialogs.put(dialog3.f20283id, i14);
+                    int i14 = dialogFilter.pinnedDialogs.get(dialog2.f20284id);
+                    dialogFilter.pinnedDialogs.put(dialog2.f20284id, dialogFilter.pinnedDialogs.get(dialog3.f20284id));
+                    dialogFilter.pinnedDialogs.put(dialog3.f20284id, i14);
                 }
                 Collections.swap(P3, G, G2);
                 jwVar.W(null);
-                int i15 = cyVar.f36095e0[0].f35452s;
+                int i15 = cyVar.f36096e0[0].f35453s;
                 if (i15 != 7) {
                     i10 = 8;
                     if (i15 != 8) {
@@ -123,7 +123,7 @@ public final class zx extends s4.v {
                     i10 = 8;
                 }
                 MessagesController.DialogFilter[] dialogFilterArr2 = cyVar.getMessagesController().selectedDialogFilter;
-                if (cyVar.f36095e0[0].f35452s == i10) {
+                if (cyVar.f36096e0[0].f35453s == i10) {
                     c11 = 1;
                 }
                 MessagesController.DialogFilter dialogFilter2 = dialogFilterArr2[c11];
@@ -140,13 +140,13 @@ public final class zx extends s4.v {
     @Override
     public final void p(s4.b1 b1Var, int i10) {
         if (b1Var != null) {
-            this.f43823g.f35446a.d1(false);
+            this.f43824g.f35447a.d1(false);
         }
         this.d = b1Var;
         if (b1Var != null) {
-            View view = b1Var.f45920a;
+            View view = b1Var.f45921a;
             if (view instanceof org.telegram.ui.Cells.r2) {
-                ((org.telegram.ui.Cells.r2) view).f22918w = false;
+                ((org.telegram.ui.Cells.r2) view).f22919w = false;
             }
         }
     }
@@ -156,14 +156,14 @@ public final class zx extends s4.v {
         int i10;
         cy cyVar = this.h;
         if (b1Var != null) {
-            org.telegram.ui.Cells.r2 r2Var = (org.telegram.ui.Cells.r2) b1Var.f45920a;
+            org.telegram.ui.Cells.r2 r2Var = (org.telegram.ui.Cells.r2) b1Var.f45921a;
             long dialogId = r2Var.getDialogId();
             boolean isFolderDialogId = DialogObject.isFolderDialogId(dialogId);
             int i11 = 0;
-            ay ayVar = this.f43823g;
+            ay ayVar = this.f43824g;
             if (isFolderDialogId) {
-                xx xxVar = ayVar.f35446a;
-                int i12 = xx.f43292t3;
+                xx xxVar = ayVar.f35447a;
+                int i12 = xx.f43293t3;
                 xxVar.A1(false, r2Var);
                 return;
             }
@@ -195,24 +195,24 @@ public final class zx extends s4.v {
             cyVar.y4(true, true);
             if (Utilities.random.nextInt(1000) == 1) {
                 if (cyVar.V0 == null) {
-                    xx xxVar2 = ayVar.f35446a;
+                    xx xxVar2 = ayVar.f35447a;
                     ?? obj = new Object();
-                    obj.f30898a = new Paint(1);
+                    obj.f30899a = new Paint(1);
                     Paint paint = new Paint(1);
-                    obj.f30899b = paint;
+                    obj.f30900b = paint;
                     obj.e = 0L;
-                    obj.f30901f = new RectF();
+                    obj.f30902f = new RectF();
                     paint.setStyle(Paint.Style.STROKE);
                     paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
-                    obj.f30900c = xxVar2;
+                    obj.f30901c = xxVar2;
                     cyVar.V0 = obj;
                 }
                 org.telegram.ui.Components.ud0 ud0Var = cyVar.V0;
                 ud0Var.d = a0Var;
                 ud0Var.h = 0.0f;
-                ud0Var.f30902g = 0.0f;
+                ud0Var.f30903g = 0.0f;
                 ud0Var.e = System.currentTimeMillis();
-                ud0Var.f30900c.invalidate();
+                ud0Var.f30901c.invalidate();
                 return;
             }
             a0Var.run();

@@ -6,14 +6,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
-import org.telegram.messenger.ok;
+import org.telegram.messenger.nk;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Components.vj0;
 import org.telegram.ui.Components.w9;
 import w7.z5;
 public final class i3 extends LinearLayout {
-    public final TextView f50306a;
+    public final TextView f50307a;
 
     public i3(Context context, d6 d6Var) {
         super(context);
@@ -22,8 +22,8 @@ public final class i3 extends LinearLayout {
         w9Var.setImageDrawable(new vj0(R.raw.utyan_empty, AndroidUtilities.dp(130.0f), AndroidUtilities.dp(130.0f)));
         addView(w9Var, z5.t(64, 64, 17, 0, 32, 0, 0));
         TextView textView = new TextView(context);
-        this.f50306a = textView;
-        ok.o(h6.A6, d6Var, textView, 1, 14.0f);
+        this.f50307a = textView;
+        nk.o(h6.A6, d6Var, textView, 1, 14.0f);
         textView.setGravity(17);
         addView(textView, z5.t(-1, -2, 7, 12, 12, 12, 24));
     }
@@ -38,6 +38,6 @@ public final class i3 extends LinearLayout {
     }
 
     public void set(CharSequence charSequence) {
-        this.f50306a.setText(charSequence);
+        this.f50307a.setText(charSequence);
     }
 }

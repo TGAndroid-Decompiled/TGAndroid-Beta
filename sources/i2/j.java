@@ -82,7 +82,7 @@ public final class j implements t0 {
         if (this.f12444p.isEmpty()) {
             y2.d dVar = this.f12434c;
             synchronized (dVar) {
-                if (dVar.f49903a) {
+                if (dVar.f49904a) {
                     dVar.d(0);
                 }
             }

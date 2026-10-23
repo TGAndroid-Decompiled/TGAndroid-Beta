@@ -6,35 +6,35 @@ import android.graphics.drawable.GradientDrawable;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 public final class p9 implements Runnable {
-    public final int f29268a = 0;
-    public final v9 f29269b;
-    public final Runnable[] f29270c;
+    public final int f29269a = 0;
+    public final v9 f29270b;
+    public final Runnable[] f29271c;
     public final t60 d;
     public final int e;
-    public final w7.w5[] f29271f;
+    public final w7.w5[] f29272f;
 
     public p9(v9 v9Var, t60 t60Var, Runnable[] runnableArr, int i10, w7.w5[] w5VarArr) {
-        this.f29269b = v9Var;
+        this.f29270b = v9Var;
         this.d = t60Var;
-        this.f29270c = runnableArr;
+        this.f29271c = runnableArr;
         this.e = i10;
-        this.f29271f = w5VarArr;
+        this.f29272f = w5VarArr;
     }
 
     @Override
     public final void run() {
-        switch (this.f29268a) {
+        switch (this.f29269a) {
             case 0:
-                v9 v9Var = this.f29269b;
+                v9 v9Var = this.f29270b;
                 t60 t60Var = this.d;
-                Runnable[] runnableArr = this.f29270c;
+                Runnable[] runnableArr = this.f29271c;
                 int i10 = this.e;
-                w7.w5[] w5VarArr = this.f29271f;
+                w7.w5[] w5VarArr = this.f29272f;
                 try {
                     GradientDrawable.Orientation orientation = v9Var.getOrientation();
-                    int[] iArr = v9Var.f31204a;
-                    int i11 = t60Var.f30452a;
-                    int i12 = t60Var.f30453b;
+                    int[] iArr = v9Var.f31205a;
+                    int i11 = t60Var.f30453a;
+                    int i12 = t60Var.f30454b;
                     Rect e = v9.e(orientation, i11, i12);
                     Bitmap createBitmap = Bitmap.createBitmap(i11, i12, Bitmap.Config.ARGB_8888);
                     Utilities.drawDitheredGradient(createBitmap, iArr, e.left, e.top, e.right, e.bottom);
@@ -45,16 +45,16 @@ public final class p9 implements Runnable {
                     throw th2;
                 }
             default:
-                v9.a(this.f29269b, this.f29270c, null, this.d, this.e, this.f29271f);
+                v9.a(this.f29270b, this.f29271c, null, this.d, this.e, this.f29272f);
                 return;
         }
     }
 
     public p9(v9 v9Var, Runnable[] runnableArr, t60 t60Var, int i10, w7.w5[] w5VarArr) {
-        this.f29269b = v9Var;
-        this.f29270c = runnableArr;
+        this.f29270b = v9Var;
+        this.f29271c = runnableArr;
         this.d = t60Var;
         this.e = i10;
-        this.f29271f = w5VarArr;
+        this.f29272f = w5VarArr;
     }
 }

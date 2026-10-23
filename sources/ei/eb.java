@@ -32,9 +32,9 @@ public final class eb implements ValueAnimator.AnimatorUpdateListener {
                 return;
             case 1:
                 bd bdVar = (bd) this.f8979c;
-                bdVar.f35593n0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                bdVar.f35594n0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 bdVar.m0.invalidate();
-                if (!this.f8978b && bdVar.f35593n0 > 0.5f) {
+                if (!this.f8978b && bdVar.f35594n0 > 0.5f) {
                     this.f8978b = true;
                     return;
                 }
@@ -50,9 +50,9 @@ public final class eb implements ValueAnimator.AnimatorUpdateListener {
                 return;
             default:
                 kc1 kc1Var = (kc1) this.f8979c;
-                kc1Var.f38549i2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                kc1Var.f38546h2.invalidate();
-                if (!this.f8978b && kc1Var.f38549i2 > 0.5f) {
+                kc1Var.f38550i2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                kc1Var.f38547h2.invalidate();
+                if (!this.f8978b && kc1Var.f38550i2 > 0.5f) {
                     this.f8978b = true;
                     return;
                 }

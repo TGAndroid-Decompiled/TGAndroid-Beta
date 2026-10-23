@@ -15,7 +15,7 @@ public final class p7 implements View.OnFocusChangeListener {
             s7 s7Var = this.f9595a;
             s7Var.f9799i0 = true;
             li.n nVar = new li.n(s7Var.getContext(), 2);
-            nVar.f46061a = 1;
+            nVar.f46062a = 1;
             nVar.f16144p = (org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight) - AndroidUtilities.dp(1.0f);
             ((s4.b0) s7Var.d.getLayoutManager()).w0(nVar);
         }

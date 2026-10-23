@@ -5,10 +5,10 @@ import android.widget.TextView;
 import androidx.emoji2.text.l;
 import w7.l6;
 public final class g extends l6 {
-    public final f f44345a;
+    public final f f44346a;
 
     public g(TextView textView) {
-        this.f44345a = new f(textView);
+        this.f44346a = new f(textView);
     }
 
     @Override
@@ -22,7 +22,7 @@ public final class g extends l6 {
         if (!z10) {
             return inputFilterArr;
         }
-        return this.f44345a.a(inputFilterArr);
+        return this.f44346a.a(inputFilterArr);
     }
 
     @Override
@@ -36,20 +36,20 @@ public final class g extends l6 {
         if (!z11) {
             return;
         }
-        this.f44345a.b(z10);
+        this.f44346a.b(z10);
     }
 
     @Override
     public final void c(boolean z10) {
         boolean z11;
-        f fVar = this.f44345a;
+        f fVar = this.f44346a;
         if (l.f3102j != null) {
             z11 = true;
         } else {
             z11 = false;
         }
         if (!z11) {
-            fVar.f44344c = z10;
+            fVar.f44345c = z10;
         } else {
             fVar.c(z10);
         }

@@ -14,22 +14,22 @@ import android.os.Build;
 import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
 public abstract class t {
-    public static Bitmap f52113a;
-    public static BitmapShader f52114b;
-    public static final Paint f52115c = new Paint(2);
+    public static Bitmap f52114a;
+    public static BitmapShader f52115b;
+    public static final Paint f52116c = new Paint(2);
     public static final Paint d = new Paint(3);
     public static final RectF e = new RectF();
-    public static final Matrix f52116f = new Matrix();
-    public static final HashMap f52117g = new HashMap();
+    public static final Matrix f52117f = new Matrix();
+    public static final HashMap f52118g = new HashMap();
     public static final SweepGradient[] h = new SweepGradient[4];
-    public static int f52118i = -1;
-    public static final Paint f52119j = new Paint(2);
-    public static final Rect f52120k = new Rect();
-    public static final RectF f52121l = new RectF();
-    public static final int[] f52122m = new int[4];
-    public static final int[] f52123n = new int[4];
-    public static final float[] f52124o = new float[4];
-    public static final float[] f52125p = new float[4];
+    public static int f52119i = -1;
+    public static final Paint f52120j = new Paint(2);
+    public static final Rect f52121k = new Rect();
+    public static final RectF f52122l = new RectF();
+    public static final int[] f52123m = new int[4];
+    public static final int[] f52124n = new int[4];
+    public static final float[] f52125o = new float[4];
+    public static final float[] f52126p = new float[4];
 
     public static boolean a(Canvas canvas, RectF rectF, float f7, int i10, float f10) {
         float f11;
@@ -51,13 +51,13 @@ public abstract class t {
             if (f10 <= 0.004f) {
                 return true;
             }
-            int i13 = f52118i;
+            int i13 = f52119i;
             SweepGradient[] sweepGradientArr = h;
-            float[][] fArr = d1.f51973a;
+            float[][] fArr = d1.f51974a;
             int i14 = 4;
-            HashMap hashMap = f52117g;
+            HashMap hashMap = f52118g;
             if (i13 != 1) {
-                f52118i = 1;
+                f52119i = 1;
                 hashMap.clear();
                 int i15 = 0;
                 while (i15 < i14) {
@@ -229,10 +229,10 @@ public abstract class t {
                     } else {
                         i12 = 1;
                     }
-                    int[] iArr2 = f52122m;
+                    int[] iArr2 = f52123m;
                     iArr2[0] = 0;
                     float f31 = ceil;
-                    float[] fArr6 = f52124o;
+                    float[] fArr6 = f52125o;
                     fArr6[0] = f12 - f31;
                     if (z10) {
                         iArr2[1] = ceil + ceil2;
@@ -243,9 +243,9 @@ public abstract class t {
                     }
                     iArr2[i11] = width;
                     fArr6[i11] = f14 + f31;
-                    int[] iArr3 = f52123n;
+                    int[] iArr3 = f52124n;
                     iArr3[0] = 0;
-                    float[] fArr7 = f52125p;
+                    float[] fArr7 = f52126p;
                     fArr7[0] = f13 - f31;
                     if (z12) {
                         iArr3[1] = ceil + ceil2;
@@ -256,7 +256,7 @@ public abstract class t {
                     }
                     iArr3[i12] = height;
                     fArr7[i12] = f24 + f31;
-                    Paint paint3 = f52119j;
+                    Paint paint3 = f52120j;
                     paint3.setAlpha((int) (Math.min(1.0f, f10) * 255.0f));
                     for (int i24 = 0; i24 < i12; i24++) {
                         int i25 = 0;
@@ -268,13 +268,13 @@ public abstract class t {
                             int i30 = i24 + 1;
                             int i31 = iArr3[i30];
                             int[] iArr4 = iArr3;
-                            Rect rect = f52120k;
+                            Rect rect = f52121k;
                             rect.set(i26, i27, i29, i31);
                             float f34 = fArr6[i25];
                             float f35 = fArr7[i24];
                             float f36 = fArr6[i28];
                             float f37 = fArr7[i30];
-                            RectF rectF6 = f52121l;
+                            RectF rectF6 = f52122l;
                             rectF6.set(f34, f35, f36, f37);
                             canvas.drawBitmap(bitmap, rect, rectF6, paint3);
                             iArr3 = iArr4;
@@ -295,39 +295,39 @@ public abstract class t {
         float f11 = rectF.top;
         RectF rectF2 = e;
         rectF2.set(f10, f11, rectF.right, Math.min(rectF.height(), AndroidUtilities.dp(40.0f)) + f11);
-        Paint paint = f52115c;
+        Paint paint = f52116c;
         paint.setAlpha((int) (Math.max(0.0f, Math.min(1.0f, f7)) * 255.0f * 0.3125f));
         canvas.drawBitmap(d(), (Rect) null, rectF2, paint);
     }
 
     public static void c(Canvas canvas, RectF rectF, float f7, float f10) {
         Bitmap d10 = d();
-        BitmapShader bitmapShader = f52114b;
+        BitmapShader bitmapShader = f52115b;
         Paint paint = d;
         if (bitmapShader == null) {
             Shader.TileMode tileMode = Shader.TileMode.CLAMP;
             BitmapShader bitmapShader2 = new BitmapShader(d10, tileMode, tileMode);
-            f52114b = bitmapShader2;
+            f52115b = bitmapShader2;
             paint.setShader(bitmapShader2);
         }
         float width = rectF.width() / d10.getWidth();
         float min = Math.min(rectF.height(), AndroidUtilities.dp(40.0f)) / d10.getHeight();
-        Matrix matrix = f52116f;
+        Matrix matrix = f52117f;
         matrix.setScale(width, min);
         matrix.postTranslate(rectF.left, rectF.top);
-        f52114b.setLocalMatrix(matrix);
+        f52115b.setLocalMatrix(matrix);
         paint.setAlpha((int) (Math.max(0.0f, Math.min(1.0f, f10)) * 255.0f * 0.3125f));
         canvas.drawRoundRect(rectF, f7, f7, paint);
     }
 
     public static Bitmap d() {
-        if (f52113a == null) {
+        if (f52114a == null) {
             int[] iArr = new int[64];
             for (int i10 = 0; i10 < 64; i10++) {
                 iArr[i10] = (((int) (((1.0f - ((i10 + 0.5f) / 64.0f)) * 64.0f) + 0.5f)) << 24) | 16777215;
             }
-            f52113a = Bitmap.createBitmap(iArr, 1, 64, Bitmap.Config.ARGB_8888);
+            f52114a = Bitmap.createBitmap(iArr, 1, 64, Bitmap.Config.ARGB_8888);
         }
-        return f52113a;
+        return f52114a;
     }
 }

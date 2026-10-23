@@ -5,35 +5,35 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class qq implements yp {
-    public final int f40953a;
-    public final long f40954b;
-    public final int f40955c;
+    public final int f40954a;
+    public final long f40955b;
+    public final int f40956c;
     public final boolean d;
     public final boolean[] e;
-    public final hr f40956f;
+    public final hr f40957f;
 
     public qq(hr hrVar, int i10, long j10, int i11, boolean z10, boolean[] zArr) {
-        this.f40956f = hrVar;
-        this.f40953a = i10;
-        this.f40954b = j10;
-        this.f40955c = i11;
+        this.f40957f = hrVar;
+        this.f40954a = i10;
+        this.f40955b = j10;
+        this.f40956c = i11;
         this.d = z10;
         this.e = zArr;
     }
 
     @Override
     public final void a(TLRPC.User user) {
-        hr.c0(this.f40956f, user);
+        hr.c0(this.f40957f, user);
     }
 
     @Override
     public final void b(int i10, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str) {
         TLRPC.ChatParticipant tL_chatParticipant;
         TLRPC.ChannelParticipant tL_channelParticipant;
-        hr hrVar = this.f40956f;
+        hr hrVar = this.f40957f;
         ArrayList arrayList = hrVar.F;
-        long j10 = this.f40954b;
-        int i11 = this.f40953a;
+        long j10 = this.f40955b;
+        int i11 = this.f40954a;
         if (i11 == 0) {
             int i12 = 0;
             while (true) {
@@ -60,7 +60,7 @@ public final class qq implements yp {
                             tL_channelParticipant.peer = tL_peerChannel;
                             tL_peerChannel.channel_id = -j10;
                         }
-                        tL_channelParticipant.date = this.f40955c;
+                        tL_channelParticipant.date = this.f40956c;
                         tL_channelParticipant.flags |= 4;
                         tL_channelParticipant.rank = str;
                         arrayList.set(i12, tL_channelParticipant);
@@ -75,9 +75,9 @@ public final class qq implements yp {
                     tL_chatParticipant.user_id = chatParticipant.user_id;
                     tL_chatParticipant.date = chatParticipant.date;
                     tL_chatParticipant.inviter_id = chatParticipant.inviter_id;
-                    int indexOf = hrVar.f37759s.participants.participants.indexOf(chatParticipant);
+                    int indexOf = hrVar.f37760s.participants.participants.indexOf(chatParticipant);
                     if (indexOf >= 0) {
-                        hrVar.f37759s.participants.participants.set(indexOf, tL_chatParticipant);
+                        hrVar.f37760s.participants.participants.set(indexOf, tL_chatParticipant);
                     }
                     hrVar.r0();
                 }

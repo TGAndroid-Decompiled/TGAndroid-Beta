@@ -3,17 +3,17 @@ package org.telegram.ui;
 import android.view.View;
 import org.telegram.messenger.MessageObject;
 public final class bm extends org.telegram.ui.Components.s6 {
-    public final cm f35674b;
+    public final cm f35675b;
 
     public bm(cm cmVar) {
         super("alpha", 0);
-        this.f35674b = cmVar;
+        this.f35675b = cmVar;
     }
 
     @Override
     public final void c(Object obj, float f7) {
         ((MessageObject.SendAnimationData) obj).timeAlpha = f7;
-        View view = this.f35674b.f36012b.Q.fragmentView;
+        View view = this.f35675b.f36013b.Q.fragmentView;
         if (view != null) {
             view.invalidate();
         }

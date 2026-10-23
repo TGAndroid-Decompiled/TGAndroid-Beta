@@ -4,17 +4,17 @@ import android.content.Context;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class z6 extends v7 {
-    public final int f43647w;
-    public final Object f43648x;
+    public final int f43648w;
+    public final Object f43649x;
 
     public z6(Object obj, Context context, org.telegram.ui.ActionBar.n2 n2Var, int i10) {
         super(context, n2Var);
-        this.f43647w = i10;
-        this.f43648x = obj;
+        this.f43648w = i10;
+        this.f43649x = obj;
     }
 
     public void e(boolean z10) {
-        c7 c7Var = ((a7) this.f43648x).e;
+        c7 c7Var = ((a7) this.f43649x).e;
         if (z10) {
             c7.b0(c7Var, true);
             c7.d0(c7Var).O(null, null);
@@ -25,12 +25,12 @@ public final class z6 extends v7 {
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        switch (this.f43647w) {
+        switch (this.f43648w) {
             case 0:
-                super.onMeasure(i10, org.telegram.messenger.ok.c(12.0f, View.MeasureSpec.getSize(i11) - (org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() / 2), 1073741824));
+                super.onMeasure(i10, org.telegram.messenger.nk.c(12.0f, View.MeasureSpec.getSize(i11) - (org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() / 2), 1073741824));
                 return;
             default:
-                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec((((vu) this.f43648x).h - org.telegram.ui.ActionBar.k.getCurrentActionBarHeight()) - AndroidUtilities.statusBarHeight, 1073741824));
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec((((vu) this.f43649x).h - org.telegram.ui.ActionBar.k.getCurrentActionBarHeight()) - AndroidUtilities.statusBarHeight, 1073741824));
                 return;
         }
     }

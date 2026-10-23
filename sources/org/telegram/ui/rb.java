@@ -7,27 +7,27 @@ import java.util.ArrayList;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MessageObject;
 public final class rb extends s4.g0 {
-    public final Context f41112c;
+    public final Context f41113c;
     public int d;
     public int e;
-    public int f41113f;
+    public int f41114f;
     public int h;
-    public final vb f41114n;
+    public final vb f41115n;
 
     public rb(vb vbVar, Context context) {
-        this.f41114n = vbVar;
+        this.f41115n = vbVar;
         new ArrayList();
         new ArrayList();
-        this.f41112c = context;
+        this.f41113c = context;
         C(true);
     }
 
     public final void D(boolean z10) {
         this.d = 0;
-        vb vbVar = this.f41114n;
-        ArrayList arrayList = vbVar.f42181o0;
+        vb vbVar = this.f41115n;
+        ArrayList arrayList = vbVar.f42182o0;
         if (!arrayList.isEmpty()) {
-            if (!vbVar.f42183q0) {
+            if (!vbVar.f42184q0) {
                 int i10 = this.d;
                 this.d = i10 + 1;
                 this.e = i10;
@@ -35,14 +35,14 @@ public final class rb extends s4.g0 {
                 this.e = -1;
             }
             int i11 = this.d;
-            this.f41113f = i11;
+            this.f41114f = i11;
             int size = arrayList.size() + i11;
             this.d = size;
             this.h = size;
             return;
         }
         this.e = -1;
-        this.f41113f = -1;
+        this.f41114f = -1;
         this.h = -1;
     }
 
@@ -53,9 +53,9 @@ public final class rb extends s4.g0 {
 
     @Override
     public final long i(int i10) {
-        if (i10 >= this.f41113f && i10 < this.h) {
-            ArrayList arrayList = this.f41114n.f42181o0;
-            return ((MessageObject) arrayList.get((arrayList.size() - (i10 - this.f41113f)) - 1)).stableId;
+        if (i10 >= this.f41114f && i10 < this.h) {
+            ArrayList arrayList = this.f41115n.f42182o0;
+            return ((MessageObject) arrayList.get((arrayList.size() - (i10 - this.f41114f)) - 1)).stableId;
         } else if (i10 == this.e) {
             return 2L;
         } else {
@@ -65,9 +65,9 @@ public final class rb extends s4.g0 {
 
     @Override
     public final int j(int i10) {
-        if (i10 >= this.f41113f && i10 < this.h) {
-            ArrayList arrayList = this.f41114n.f42181o0;
-            return ((MessageObject) arrayList.get((arrayList.size() - (i10 - this.f41113f)) - 1)).contentType;
+        if (i10 >= this.f41114f && i10 < this.h) {
+            ArrayList arrayList = this.f41115n.f42182o0;
+            return ((MessageObject) arrayList.get((arrayList.size() - (i10 - this.f41114f)) - 1)).contentType;
         }
         return 4;
     }
@@ -143,9 +143,9 @@ public final class rb extends s4.g0 {
         org.telegram.ui.Cells.v1 v1Var;
         int i11;
         View view;
-        vb vbVar = this.f41114n;
+        vb vbVar = this.f41115n;
         ArrayList arrayList = vbVar.h;
-        Context context = this.f41112c;
+        Context context = this.f41113c;
         if (i10 == 0) {
             if (arrayList.isEmpty()) {
                 i11 = ((org.telegram.ui.ActionBar.n2) vbVar).currentAccount;
@@ -177,7 +177,7 @@ public final class rb extends s4.g0 {
 
     @Override
     public final void y(s4.b1 b1Var) {
-        View view = b1Var.f45920a;
+        View view = b1Var.f45921a;
         if ((view instanceof org.telegram.ui.Cells.u1) || (view instanceof org.telegram.ui.Cells.w0)) {
             view.getViewTreeObserver().addOnPreDrawListener(new qb(this, view, b1Var));
         }

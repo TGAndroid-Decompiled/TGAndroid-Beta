@@ -5,12 +5,12 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 public final class c {
-    public final String f50120a;
-    public final d f50121b;
+    public final String f50121a;
+    public final d f50122b;
 
     public c(Set set, d dVar) {
-        this.f50120a = b(set);
-        this.f50121b = dVar;
+        this.f50121a = b(set);
+        this.f50122b = dVar;
     }
 
     public static String b(Set set) {
@@ -18,9 +18,9 @@ public final class c {
         Iterator it = set.iterator();
         while (it.hasNext()) {
             a aVar = (a) it.next();
-            sb2.append(aVar.f50117a);
+            sb2.append(aVar.f50118a);
             sb2.append('/');
-            sb2.append(aVar.f50118b);
+            sb2.append(aVar.f50119b);
             if (it.hasNext()) {
                 sb2.append(' ');
             }
@@ -30,10 +30,10 @@ public final class c {
 
     public final String a() {
         Set unmodifiableSet;
-        String str = this.f50120a;
-        d dVar = this.f50121b;
-        synchronized (((HashSet) dVar.f50124b)) {
-            unmodifiableSet = DesugarCollections.unmodifiableSet((HashSet) dVar.f50124b);
+        String str = this.f50121a;
+        d dVar = this.f50122b;
+        synchronized (((HashSet) dVar.f50125b)) {
+            unmodifiableSet = DesugarCollections.unmodifiableSet((HashSet) dVar.f50125b);
         }
         if (unmodifiableSet.isEmpty()) {
             return str;

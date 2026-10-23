@@ -7,37 +7,37 @@ import android.view.View;
 import org.telegram.tgnet.TLObject;
 import org.telegram.ui.Components.a6;
 public final class k0 extends View {
-    public final j0 f50341a;
+    public final j0 f50342a;
 
     public k0(Context context) {
         super(context);
         j0 j0Var = new j0();
-        this.f50341a = j0Var;
-        j0Var.f50324r = this;
+        this.f50342a = j0Var;
+        j0Var.f50325r = this;
         j0Var.d.setParentView(this);
     }
 
     public j0 getDrawable() {
-        return this.f50341a;
+        return this.f50342a;
     }
 
     public TextPaint getTextPaint() {
-        return this.f50341a.f50312c;
+        return this.f50342a.f50313c;
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f50341a.d.onAttachedToWindow();
+        this.f50342a.d.onAttachedToWindow();
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        j0 j0Var = this.f50341a;
+        j0 j0Var = this.f50342a;
         j0Var.d.onDetachedFromWindow();
-        a6.release((View) null, j0Var.f50323q);
-        j0Var.f50323q = null;
+        a6.release((View) null, j0Var.f50324q);
+        j0Var.f50324q = null;
     }
 
     @Override
@@ -46,7 +46,7 @@ public final class k0 extends View {
         int paddingTop = getPaddingTop();
         int width = getWidth() - getPaddingRight();
         int height = getHeight() - getPaddingBottom();
-        j0 j0Var = this.f50341a;
+        j0 j0Var = this.f50342a;
         j0Var.setBounds(paddingLeft, paddingTop, width, height);
         j0Var.draw(canvas);
     }
@@ -54,20 +54,20 @@ public final class k0 extends View {
     @Override
     public final void onMeasure(int i10, int i11) {
         int size = (View.MeasureSpec.getSize(i10) - getPaddingLeft()) - getPaddingRight();
-        j0 j0Var = this.f50341a;
+        j0 j0Var = this.f50342a;
         j0Var.b(size);
-        setMeasuredDimension(getPaddingRight() + getPaddingLeft() + j0Var.f50326t, getPaddingBottom() + getPaddingTop() + j0Var.f50327u);
+        setMeasuredDimension(getPaddingRight() + getPaddingLeft() + j0Var.f50327t, getPaddingBottom() + getPaddingTop() + j0Var.f50328u);
     }
 
     public void setMessage(CharSequence charSequence) {
-        j0 j0Var = this.f50341a;
-        j0Var.f50319m = charSequence;
-        j0Var.f50325s = -1;
+        j0 j0Var = this.f50342a;
+        j0Var.f50320m = charSequence;
+        j0Var.f50326s = -1;
         requestLayout();
     }
 
     public void setUser(TLObject tLObject) {
-        this.f50341a.c(tLObject);
+        this.f50342a.c(tLObject);
         invalidate();
     }
 }

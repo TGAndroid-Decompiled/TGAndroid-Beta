@@ -13,15 +13,15 @@ import org.telegram.messenger.ImageLoader;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.Utilities;
 public final class j91 implements org.telegram.ui.rp0 {
-    public final l91 f27475a;
+    public final l91 f27476a;
 
     public j91(l91 l91Var) {
-        this.f27475a = l91Var;
+        this.f27476a = l91Var;
     }
 
     @Override
     public final void a(ArrayList arrayList) {
-        l91 l91Var = this.f27475a;
+        l91 l91Var = this.f27476a;
         try {
             if (!arrayList.isEmpty()) {
                 SendMessagesHelper.SendingMediaInfo sendingMediaInfo = (SendMessagesHelper.SendingMediaInfo) arrayList.get(0);
@@ -44,7 +44,7 @@ public final class j91 implements org.telegram.ui.rp0 {
         try {
             Intent intent = new Intent("android.intent.action.PICK");
             intent.setType("image/*");
-            this.f27475a.f28124b.startActivityForResult(intent, 11);
+            this.f27476a.f28125b.startActivityForResult(intent, 11);
         } catch (Exception e) {
             FileLog.e(e);
         }

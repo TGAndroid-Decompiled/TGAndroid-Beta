@@ -13,7 +13,7 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.WebFile;
-import org.telegram.messenger.ok;
+import org.telegram.messenger.nk;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
@@ -43,7 +43,7 @@ public final class j1 extends LinearLayout {
         int w02 = h6.w0(i15, d6Var);
         ba0Var.g(h6.m1(0.05f, w02), h6.m1(0.15f, w02), h6.m1(0.1f, w02), h6.m1(0.3f, w02));
         ba0Var.k(4.0f);
-        ba0Var.f24879x.setStrokeWidth(AndroidUtilities.dp(1.0f));
+        ba0Var.f24880x.setStrokeWidth(AndroidUtilities.dp(1.0f));
         imageReceiver.setRoundRadius(AndroidUtilities.dp(4.0f));
         TextView textView = new TextView(context);
         this.d = textView;
@@ -69,8 +69,8 @@ public final class j1 extends LinearLayout {
         addView(textView, z5.t(-1, -2, 55, i11, 10, i12, 4));
         TextView textView2 = new TextView(context);
         textView2.setGravity(LocaleController.isRTL ? 5 : 3);
-        textView2.setTextColor(h6.w0(h6.f21398z6, d6Var));
-        ok.j(13.0f, R.string.BusinessProfileLocation, 1, textView2);
+        textView2.setTextColor(h6.w0(h6.f21399z6, d6Var));
+        nk.j(13.0f, R.string.BusinessProfileLocation, 1, textView2);
         boolean z11 = LocaleController.isRTL;
         if (z11) {
             i13 = 70;
@@ -117,7 +117,7 @@ public final class j1 extends LinearLayout {
         if (this.e) {
             Paint U0 = h6.U0("paintDivider", this.f12937a);
             if (U0 == null) {
-                U0 = h6.f21114k0;
+                U0 = h6.f21115k0;
             }
             Paint paint = U0;
             float f11 = 21.33f;

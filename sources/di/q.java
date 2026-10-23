@@ -173,23 +173,23 @@ public class q extends rl0 {
         int i12;
         int i13;
         if (this.e != null) {
-            View view = b1Var.f45920a;
+            View view = b1Var.f45921a;
             if (!(view instanceof s7)) {
                 return;
             }
             s7 s7Var = (s7) view;
-            s7Var.f23032d0 = true;
+            s7Var.f23033d0 = true;
             r rVar = this.f8052s;
             ArrayList arrayList = this.d;
             if (i10 >= 0 && i10 < arrayList.size()) {
                 h7 h7Var = (h7) arrayList.get(i10);
-                s7Var.f23035f0 = false;
+                s7Var.f23036f0 = false;
                 if (h7Var.K == null) {
                     TL_stories.TL_storyItem tL_storyItem = new TL_stories.TL_storyItem();
                     long j10 = h7Var.f5466a;
                     int i14 = (int) (j10 ^ (j10 >>> 32));
                     tL_storyItem.messageId = i14;
-                    tL_storyItem.f20513id = i14;
+                    tL_storyItem.f20514id = i14;
                     tL_storyItem.attachPath = h7Var.f5469f;
                     MessageObject messageObject = new MessageObject(this.e.f5146c, tL_storyItem);
                     h7Var.K = messageObject;
@@ -202,7 +202,7 @@ public class q extends rl0 {
                     i13 = rVar.d;
                 }
                 s7Var.k(messageObject2, i13, false);
-                s7Var.f23032d0 = true;
+                s7Var.f23033d0 = true;
                 s7Var.setReorder(false);
                 s7Var.i(false, false);
                 return;
@@ -215,7 +215,7 @@ public class q extends rl0 {
                 } else {
                     z10 = false;
                 }
-                s7Var.f23035f0 = z10;
+                s7Var.f23036f0 = z10;
                 s7Var.setReorder(true);
                 if (this == this.f8049f) {
                     i12 = rVar.e;
@@ -232,14 +232,14 @@ public class q extends rl0 {
                     return;
                 }
             }
-            s7Var.f23035f0 = false;
+            s7Var.f23036f0 = false;
             if (this == this.f8049f) {
                 i11 = rVar.e;
             } else {
                 i11 = rVar.d;
             }
             s7Var.k(null, i11, false);
-            s7Var.f23032d0 = true;
+            s7Var.f23033d0 = true;
         }
     }
 
@@ -250,9 +250,9 @@ public class q extends rl0 {
             this.h = new r7(viewGroup.getContext(), js0Var.f8070c);
         }
         s7 s7Var = new s7(this.f8048c, this.h, js0Var.f8069b);
-        s7Var.f23055w0 = true;
+        s7Var.f23056w0 = true;
         s7Var.setGradientView(null);
-        s7Var.f23032d0 = true;
+        s7Var.f23033d0 = true;
         return new b1(s7Var);
     }
 

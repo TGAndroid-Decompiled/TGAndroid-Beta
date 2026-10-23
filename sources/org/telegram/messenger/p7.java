@@ -1,49 +1,31 @@
 package org.telegram.messenger;
 
+import android.content.SharedPreferences;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class p7 implements RequestDelegate {
-    public final int f19179a;
-    public final MediaDataController f19180b;
+    public final int f19197a;
+    public final MediaDataController f19198b;
+    public final SharedPreferences f19199c;
 
-    public p7(MediaDataController mediaDataController, int i10) {
-        this.f19179a = i10;
-        this.f19180b = mediaDataController;
+    public p7(MediaDataController mediaDataController, SharedPreferences sharedPreferences, int i10) {
+        this.f19197a = i10;
+        this.f19198b = mediaDataController;
+        this.f19199c = sharedPreferences;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f19179a) {
+        switch (this.f19197a) {
             case 0:
-                this.f19180b.lambda$checkGenericAnimations$80(tLObject, tL_error);
+                this.f19198b.lambda$loadSavedReactions$241(this.f19199c, tLObject, tL_error);
                 return;
             case 1:
-                this.f19180b.lambda$preloadPremiumPreviewStickers$207(tLObject, tL_error);
-                return;
-            case 2:
-                this.f19180b.lambda$clearRecentStickers$19(tLObject, tL_error);
-                return;
-            case 3:
-                this.f19180b.lambda$loadPremiumPromo$8(tLObject, tL_error);
-                return;
-            case 4:
-                this.f19180b.lambda$loadReactions$14(tLObject, tL_error);
-                return;
-            case 5:
-                this.f19180b.lambda$checkPremiumGiftStickers$76(tLObject, tL_error);
-                return;
-            case 6:
-                this.f19180b.lambda$loadDraftsIfNeed$188(tLObject, tL_error);
-                return;
-            case 7:
-                this.f19180b.lambda$checkDefaultTopicIcons$82(tLObject, tL_error);
-                return;
-            case 8:
-                this.f19180b.lambda$loadGroupStickerSet$46(tLObject, tL_error);
+                this.f19198b.lambda$loadReplyIcons$245(this.f19199c, tLObject, tL_error);
                 return;
             default:
-                this.f19180b.lambda$checkTonGiftStickers$78(tLObject, tL_error);
+                this.f19198b.lambda$loadRestrictedStatusEmojis$247(this.f19199c, tLObject, tL_error);
                 return;
         }
     }

@@ -1,22 +1,49 @@
 package org.telegram.messenger;
-public final class wc implements Runnable {
-    public final int f19989a;
-    public final boolean[] f19990b;
 
-    public wc(int i10, boolean[] zArr) {
-        this.f19989a = i10;
-        this.f19990b = zArr;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class wc implements RequestDelegate {
+    public final int f19997a;
+    public final MessagesController f19998b;
+    public final int f19999c;
+    public final long d;
+    public final long e;
+
+    public wc(int i10, long j10, long j11, MessagesController messagesController) {
+        this.f19997a = 0;
+        this.f19998b = messagesController;
+        this.d = j10;
+        this.f19999c = i10;
+        this.e = j11;
     }
 
     @Override
-    public final void run() {
-        switch (this.f19989a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f19997a) {
             case 0:
-                MessagesController.lambda$openByUserName$459(this.f19990b);
+                int i10 = this.f19999c;
+                long j10 = this.e;
+                this.f19998b.lambda$getChannelDifference$348(this.d, i10, j10, tLObject, tL_error);
+                return;
+            case 1:
+                long j11 = this.d;
+                long j12 = this.e;
+                this.f19998b.lambda$sendTyping$171(this.f19999c, j11, j12, tLObject, tL_error);
                 return;
             default:
-                MessagesController.lambda$openApp$500(this.f19990b);
+                long j13 = this.d;
+                long j14 = this.e;
+                this.f19998b.lambda$sendTyping$173(this.f19999c, j13, j14, tLObject, tL_error);
                 return;
         }
+    }
+
+    public wc(MessagesController messagesController, int i10, long j10, long j11, int i11) {
+        this.f19997a = i11;
+        this.f19998b = messagesController;
+        this.f19999c = i10;
+        this.d = j10;
+        this.e = j11;
     }
 }

@@ -9,39 +9,39 @@ import org.telegram.ui.Components.tz;
 import org.telegram.ui.Components.wa0;
 import org.telegram.ui.oq;
 public final class q2 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f21678a;
-    public final int f21679b;
-    public final Object f21680c;
+    public final int f21679a;
+    public final int f21680b;
+    public final Object f21681c;
 
     public q2(Object obj, int i10, int i11) {
-        this.f21678a = i11;
-        this.f21680c = obj;
-        this.f21679b = i10;
+        this.f21679a = i11;
+        this.f21681c = obj;
+        this.f21680b = i10;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
         int i10;
-        switch (this.f21678a) {
+        switch (this.f21679a) {
             case 0:
-                f3 f3Var = (f3) this.f21680c;
+                f3 f3Var = (f3) this.f21681c;
                 f3Var.getClass();
                 int intValue = ((Integer) valueAnimator.getAnimatedValue()).intValue();
-                f3Var.setItemColor(this.f21679b, intValue, intValue);
+                f3Var.setItemColor(this.f21680b, intValue, intValue);
                 return;
             case 1:
-                org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) this.f21680c;
+                org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) this.f21681c;
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                if (u1Var.getMessageObject() != null && u1Var.getMessageObject().getId() == this.f21679b) {
+                if (u1Var.getMessageObject() != null && u1Var.getMessageObject().getId() == this.f21680b) {
                     u1Var.setSelectedBackgroundProgress(floatValue);
                     return;
                 }
                 return;
             case 2:
-                qu quVar = (qu) this.f21680c;
+                qu quVar = (qu) this.f21681c;
                 float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 quVar.d.setTranslationY(floatValue2);
-                int i11 = this.f21679b;
+                int i11 = this.f21680b;
                 float f7 = i11;
                 float f10 = 1.0f - (floatValue2 / f7);
                 quVar.R = f10;
@@ -51,46 +51,46 @@ public final class q2 implements ValueAnimator.AnimatorUpdateListener {
                 quVar.c(floatValue2 - f7);
                 return;
             case 3:
-                ((tz) this.f21680c).Q0[this.f21679b] = (int) ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                ((tz) this.f21681c).Q0[this.f21680b] = (int) ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 return;
             case 4:
-                l60 l60Var = (l60) this.f21680c;
-                if (this.f21679b == l60Var.f28054s0) {
+                l60 l60Var = (l60) this.f21681c;
+                if (this.f21680b == l60Var.f28055s0) {
                     float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                     if (floatValue3 >= 0.5f) {
                         floatValue3 -= 1.0f;
                     }
-                    l60Var.f28060x.setRotationY(floatValue3 * 180.0f);
+                    l60Var.f28061x.setRotationY(floatValue3 * 180.0f);
                     return;
                 }
                 return;
             case 5:
-                wa0 wa0Var = (wa0) this.f21680c;
+                wa0 wa0Var = (wa0) this.f21681c;
                 float[] fArr = wa0Var.Z;
                 float floatValue4 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                int i12 = this.f21679b;
+                int i12 = this.f21680b;
                 fArr[i12] = floatValue4;
-                j5[] j5VarArr = wa0Var.f32053w;
+                j5[] j5VarArr = wa0Var.f32054w;
                 j5VarArr[i12].setScaleX(AndroidUtilities.lerp(1.111f, 1.0f, floatValue4));
                 j5VarArr[i12].setScaleY(AndroidUtilities.lerp(1.111f, 1.0f, fArr[i12]));
                 j5VarArr[i12].setTranslationY(AndroidUtilities.lerp(AndroidUtilities.dp(8.0f), 0, fArr[i12]));
-                wa0Var.f32054x[i12].setAlpha(fArr[i12]);
+                wa0Var.f32055x[i12].setAlpha(fArr[i12]);
                 return;
             case 6:
-                oq oqVar = (oq) this.f21680c;
+                oq oqVar = (oq) this.f21681c;
                 oqVar.getClass();
                 ol0 ol0Var = (ol0) oqVar.d;
-                ol0Var.f29069b.put(this.f21679b, (Float) valueAnimator.getAnimatedValue());
+                ol0Var.f29070b.put(this.f21680b, (Float) valueAnimator.getAnimatedValue());
                 ol0Var.d = true;
-                ol0Var.f29068a.invalidate();
+                ol0Var.f29069a.invalidate();
                 return;
             default:
-                wh.g gVar = (wh.g) this.f21680c;
+                wh.g gVar = (wh.g) this.f21681c;
                 gVar.getClass();
                 float floatValue5 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                gVar.f49065n = floatValue5;
-                gVar.setAlpha((int) ((1.0f - floatValue5) * this.f21679b));
-                gVar.f49067p = true;
+                gVar.f49066n = floatValue5;
+                gVar.setAlpha((int) ((1.0f - floatValue5) * this.f21680b));
+                gVar.f49068p = true;
                 gVar.invalidateSelf();
                 return;
         }

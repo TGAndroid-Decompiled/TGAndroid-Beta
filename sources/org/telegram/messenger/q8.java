@@ -1,34 +1,28 @@
 package org.telegram.messenger;
-
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
 public final class q8 implements Runnable {
-    public final int f19273a;
-    public final MediaDataController f19274b;
-    public final TLRPC.TL_messages_stickerSet f19275c;
-    public final String d;
-    public final Utilities.Callback e;
-    public final boolean f19276f;
-    public final TLRPC.InputStickerSet h;
+    public final int f19292a;
+    public final MediaDataController f19293b;
+    public final boolean f19294c;
+    public final int d;
 
-    public q8(MediaDataController mediaDataController, TLRPC.TL_messages_stickerSet tL_messages_stickerSet, String str, Utilities.Callback callback, boolean z10, TLRPC.InputStickerSet inputStickerSet, int i10) {
-        this.f19273a = i10;
-        this.f19274b = mediaDataController;
-        this.f19275c = tL_messages_stickerSet;
-        this.d = str;
-        this.e = callback;
-        this.f19276f = z10;
-        this.h = inputStickerSet;
+    public q8(MediaDataController mediaDataController, boolean z10, int i10, int i11) {
+        this.f19292a = i11;
+        this.f19293b = mediaDataController;
+        this.f19294c = z10;
+        this.d = i10;
     }
 
     @Override
     public final void run() {
-        switch (this.f19273a) {
+        switch (this.f19292a) {
             case 0:
-                this.f19274b.lambda$getStickerSet$33(this.f19275c, this.d, this.e, this.f19276f, this.h);
+                this.f19293b.lambda$loadRecents$49(this.f19294c, this.d);
+                return;
+            case 1:
+                this.f19293b.lambda$processLoadedFeaturedStickers$62(this.f19294c, this.d);
                 return;
             default:
-                this.f19274b.lambda$getStickerSet$36(this.f19275c, this.d, this.e, this.f19276f, this.h);
+                this.f19293b.lambda$loadFeaturedStickers$56(this.f19294c, this.d);
                 return;
         }
     }

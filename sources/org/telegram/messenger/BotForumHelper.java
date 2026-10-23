@@ -163,7 +163,7 @@ public class BotForumHelper extends BaseController {
         f61Var.b(-1);
         f61Var.d();
         TypingBotSpan typingBotSpan = new TypingBotSpan(f61Var, 1);
-        typingBotSpan.setColorKey(org.telegram.ui.ActionBar.h6.f21015ec);
+        typingBotSpan.setColorKey(org.telegram.ui.ActionBar.h6.f21016ec);
         typingBotSpan.setTopOffset(-AndroidUtilities.dp(10.0f));
         spannableStringBuilder.append((CharSequence) " _");
         spannableStringBuilder.setSpan(typingBotSpan, spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 33);
@@ -176,7 +176,7 @@ public class BotForumHelper extends BaseController {
         tL_message.peer_id = getMessagesController().getPeer(j10);
         tL_message.from_id = getMessagesController().getPeer(j10);
         tL_message.local_id = i11;
-        tL_message.f20300id = i11;
+        tL_message.f20301id = i11;
         tL_message.random_id = j11;
         tL_message.message = tL_textWithEntities.text;
         tL_message.entities = tL_textWithEntities.entities;
@@ -293,12 +293,12 @@ public class BotForumHelper extends BaseController {
             if (update2 instanceof TL_update.TL_updateMessageID) {
                 TL_update.TL_updateMessageID tL_updateMessageID = (TL_update.TL_updateMessageID) update2;
                 if (tL_updateMessageID.random_id == j11) {
-                    i10 = tL_updateMessageID.f20532id;
+                    i10 = tL_updateMessageID.f20533id;
                 }
             } else if (update2 instanceof TL_update.TL_updateNewMessage) {
                 TLRPC.Message message = ((TL_update.TL_updateNewMessage) update2).message;
                 if (i11 == 0 && message != null && (message.action instanceof TLRPC.TL_messageActionTopicCreate) && MessageObject.getDialogId(message) == j10) {
-                    i11 = message.f20300id;
+                    i11 = message.f20301id;
                 }
             }
         }
@@ -317,9 +317,9 @@ public class BotForumHelper extends BaseController {
         tL_messageService.action = tL_messageActionTopicCreate;
         tL_messageService.peer_id = getMessagesController().getPeer(j10);
         tL_messageService.dialog_id = j10;
-        tL_messageService.f20300id = i10;
+        tL_messageService.f20301id = i10;
         tL_messageService.date = (int) (System.currentTimeMillis() / 1000);
-        tL_forumTopic.f20331id = i10;
+        tL_forumTopic.f20332id = i10;
         tL_forumTopic.my = true;
         tL_forumTopic.flags |= 2;
         tL_forumTopic.topicStartMessage = tL_messageService;
@@ -666,7 +666,7 @@ public class BotForumHelper extends BaseController {
         tL_message.peer_id = getMessagesController().getPeer(j10);
         tL_message.from_id = getMessagesController().getPeer(j10);
         tL_message.local_id = i11;
-        tL_message.f20300id = i11;
+        tL_message.f20301id = i11;
         tL_message.random_id = j11;
         tL_message.message = "";
         tL_message.flags |= 8192;

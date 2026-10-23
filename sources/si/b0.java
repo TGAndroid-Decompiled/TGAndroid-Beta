@@ -1,10 +1,10 @@
 package si;
 public final class b0 extends z {
     public final int e;
-    public final int f46562f;
-    public final int f46563g;
+    public final int f46563f;
+    public final int f46564g;
     public final int h;
-    public final int f46564i;
+    public final int f46565i;
 
     public b0(boolean r8, boolean r9) {
         throw new UnsupportedOperationException("Method not decompiled: si.b0.<init>(boolean, boolean):void");

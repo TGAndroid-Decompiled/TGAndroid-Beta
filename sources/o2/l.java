@@ -58,7 +58,7 @@ public final class l extends u2.a {
         for (int i10 = 0; i10 < list.size(); i10++) {
             p2.i iVar2 = (p2.i) list.get(i10);
             long j11 = iVar2.e;
-            if (j11 <= j10 && iVar2.f43988w) {
+            if (j11 <= j10 && iVar2.f43989w) {
                 iVar = iVar2;
             } else if (j11 > j10) {
                 break;
@@ -84,7 +84,7 @@ public final class l extends u2.a {
         a5.a b10 = b(g0Var);
         n2.k kVar = new n2.k(this.d.f17059c, 0, g0Var);
         c0 c0Var = this.f17625r;
-        j2.k kVar2 = this.f47257g;
+        j2.k kVar2 = this.f47258g;
         kVar2.getClass();
         return new k(this.h, this.f17622o, this.f17616i, c0Var, this.f17618k, kVar, this.f17619l, b10, eVar, this.f17617j, this.f17620m, this.f17621n, kVar2);
     }
@@ -119,7 +119,7 @@ public final class l extends u2.a {
         this.f17625r = c0Var;
         Looper myLooper = Looper.myLooper();
         myLooper.getClass();
-        j2.k kVar = this.f47257g;
+        j2.k kVar = this.f47258g;
         kVar.getClass();
         n2.n nVar = this.f17618k;
         nVar.E(myLooper, kVar);
@@ -130,12 +130,12 @@ public final class l extends u2.a {
         Uri uri = j0Var.f3797a;
         p2.e eVar = this.f17622o;
         eVar.getClass();
-        eVar.f43945n = m0.q(null);
-        eVar.f43944f = b10;
-        eVar.f43946r = this;
+        eVar.f43946n = m0.q(null);
+        eVar.f43945f = b10;
+        eVar.f43947r = this;
         Map map = Collections.EMPTY_MAP;
         u6.l(uri, "The uri must be set.");
-        y2.o oVar = new y2.o(((g2.g) eVar.f43941a.f15843b).createDataSource(), new g2.m(uri, 1, null, map, 0L, -1L, null, 1), 4, eVar.f43942b.J());
+        y2.o oVar = new y2.o(((g2.g) eVar.f43942a.f15843b).createDataSource(), new g2.m(uri, 1, null, map, 0L, -1L, null, 1), 4, eVar.f43943b.J());
         if (eVar.h == null) {
             z10 = true;
         } else {
@@ -144,7 +144,7 @@ public final class l extends u2.a {
         u6.p(z10);
         y2.l lVar = new y2.l("DefaultHlsPlaylistTracker:MultivariantPlaylist");
         eVar.h = lVar;
-        lVar.f(oVar, eVar, eVar.f43943c.y3(oVar.f49939c));
+        lVar.f(oVar, eVar, eVar.f43944c.y3(oVar.f49940c));
     }
 
     @Override
@@ -161,7 +161,7 @@ public final class l extends u2.a {
                     if (hVar != null) {
                         hVar.a(pVar.e);
                         pVar.h = null;
-                        pVar.f47286g = null;
+                        pVar.f47287g = null;
                     }
                 }
             }
@@ -171,9 +171,9 @@ public final class l extends u2.a {
             Uri c10 = iVar.e[l4].c();
             p2.d dVar = (p2.d) eVar.d.get(c10);
             if (dVar != null) {
-                p2.c cVar = (p2.c) i2.e.i(dVar.f43939b, c10, c10);
+                p2.c cVar = (p2.c) i2.e.i(dVar.f43940b, c10, c10);
                 cVar.getClass();
-                cVar.f43936w = false;
+                cVar.f43937w = false;
             }
             iVar.f17594n = null;
             qVar.f17658s.e(qVar);
@@ -189,10 +189,10 @@ public final class l extends u2.a {
         p2.e eVar = this.f17622o;
         eVar.F = null;
         eVar.G = null;
-        eVar.f43947s = null;
-        eVar.f43948w = null;
-        eVar.f43949x = null;
-        eVar.f43950y = null;
+        eVar.f43948s = null;
+        eVar.f43949w = null;
+        eVar.f43950x = null;
+        eVar.f43951y = null;
         eVar.E = null;
         eVar.v = null;
         eVar.I = -9223372036854775807L;
@@ -200,12 +200,12 @@ public final class l extends u2.a {
         eVar.h = null;
         HashMap hashMap = eVar.d;
         for (p2.d dVar : hashMap.values()) {
-            for (p2.c cVar : dVar.f43939b.values()) {
-                cVar.f43931c.e(null);
+            for (p2.c cVar : dVar.f43940b.values()) {
+                cVar.f43932c.e(null);
             }
         }
-        eVar.f43945n.removeCallbacksAndMessages(null);
-        eVar.f43945n = null;
+        eVar.f43946n.removeCallbacksAndMessages(null);
+        eVar.f43946n = null;
         hashMap.clear();
         this.f17618k.release();
     }
@@ -228,10 +228,10 @@ public final class l extends u2.a {
         float f7;
         long j17;
         boolean z11;
-        boolean z12 = nVar.f44014p;
-        boolean z13 = nVar.f44006g;
-        n0 n0Var = nVar.f44016r;
-        long j18 = nVar.f44019u;
+        boolean z12 = nVar.f44015p;
+        boolean z13 = nVar.f44007g;
+        n0 n0Var = nVar.f44017r;
+        long j18 = nVar.f44020u;
         long j19 = nVar.e;
         int i10 = nVar.d;
         long j20 = nVar.h;
@@ -246,19 +246,19 @@ public final class l extends u2.a {
             j11 = j10;
         }
         p2.e eVar = this.f17622o;
-        eVar.f43947s.getClass();
+        eVar.f43948s.getClass();
         u uVar = new u(14);
         long j21 = 0;
         if (eVar.H) {
             p2.m mVar = nVar.v;
             long j22 = j20 - eVar.I;
-            boolean z14 = nVar.f44013o;
+            boolean z14 = nVar.f44014o;
             if (z14) {
                 j13 = j22 + j18;
             } else {
                 j13 = -9223372036854775807L;
             }
-            if (nVar.f44014p) {
+            if (nVar.f44015p) {
                 j14 = m0.S(m0.C(this.f17623p)) - (j20 + j18);
             } else {
                 j14 = 0;
@@ -271,10 +271,10 @@ public final class l extends u2.a {
                     j15 = j18 - j19;
                 } else {
                     j15 = mVar.d;
-                    if (j15 == -9223372036854775807L || nVar.f44012n == -9223372036854775807L) {
-                        j15 = mVar.f44004c;
+                    if (j15 == -9223372036854775807L || nVar.f44013n == -9223372036854775807L) {
+                        j15 = mVar.f44005c;
                         if (j15 == -9223372036854775807L) {
-                            j15 = 3 * nVar.f44011m;
+                            j15 = 3 * nVar.f44012m;
                         }
                     }
                 }
@@ -283,7 +283,7 @@ public final class l extends u2.a {
             long j24 = j18 + j14;
             long j25 = m0.j(j16, j14, j24);
             i0 i0Var = i().f3888c;
-            if (i0Var.d == -3.4028235E38f && i0Var.e == -3.4028235E38f && mVar.f44004c == -9223372036854775807L && mVar.d == -9223372036854775807L) {
+            if (i0Var.d == -3.4028235E38f && i0Var.e == -3.4028235E38f && mVar.f44005c == -9223372036854775807L && mVar.d == -9223372036854775807L) {
                 z10 = true;
             } else {
                 z10 = false;
@@ -309,12 +309,12 @@ public final class l extends u2.a {
             if (z13) {
                 j21 = j19;
             } else {
-                p2.i u10 = u(j19, nVar.f44017s);
+                p2.i u10 = u(j19, nVar.f44018s);
                 if (u10 != null) {
                     j17 = u10.e;
                 } else if (!n0Var.isEmpty()) {
                     p2.k kVar = (p2.k) n0Var.get(m0.d(n0Var, Long.valueOf(j19), true));
-                    p2.i u11 = u(j19, kVar.f43994x);
+                    p2.i u11 = u(j19, kVar.f43995x);
                     if (u11 != null) {
                         j17 = u11.e;
                     } else {
@@ -323,12 +323,12 @@ public final class l extends u2.a {
                 }
                 j21 = j17;
             }
-            if (i10 == 2 && nVar.f44005f) {
+            if (i10 == 2 && nVar.f44006f) {
                 z11 = true;
             } else {
                 z11 = false;
             }
-            k1Var = new k1(j11, j10, j13, nVar.f44019u, j22, j21, true, !z14, z11, uVar, i(), this.f17624q);
+            k1Var = new k1(j11, j10, j13, nVar.f44020u, j22, j21, true, !z14, z11, uVar, i(), this.f17624q);
         } else {
             if (j19 != -9223372036854775807L && !n0Var.isEmpty()) {
                 if (!z13 && j19 != j18) {
@@ -338,7 +338,7 @@ public final class l extends u2.a {
             } else {
                 j12 = 0;
             }
-            long j26 = nVar.f44019u;
+            long j26 = nVar.f44020u;
             k1Var = new k1(j11, j10, j26, j26, 0L, j12, true, false, true, uVar, i(), null);
         }
         n(k1Var);

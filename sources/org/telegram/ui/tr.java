@@ -22,32 +22,32 @@ public abstract class tr extends EditTextBoldCursor {
     public ValueAnimator F;
     public ValueAnimator G;
     public boolean H;
-    public float f41733b;
-    public float f41734c;
+    public float f41734b;
+    public float f41735c;
     public float d;
     public float e;
-    public o1.k f41735f;
+    public o1.k f41736f;
     public o1.k h;
-    public o1.k f41736n;
-    public o1.k f41737r;
-    public boolean f41738s;
+    public o1.k f41737n;
+    public o1.k f41738r;
+    public boolean f41739s;
     public float v;
-    public float f41739w;
-    public boolean f41740x;
-    public Bitmap f41741y;
+    public float f41740w;
+    public boolean f41741x;
+    public Bitmap f41742y;
 
     static {
         org.telegram.ui.Components.ew0 ew0Var = new org.telegram.ui.Components.ew0(new m4.v0(26), new m4.v0(27));
-        ew0Var.f25988c = 100.0f;
+        ew0Var.f25989c = 100.0f;
         I = ew0Var;
         org.telegram.ui.Components.ew0 ew0Var2 = new org.telegram.ui.Components.ew0(new m4.v0(28), new m4.v0(29));
-        ew0Var2.f25988c = 100.0f;
+        ew0Var2.f25989c = 100.0f;
         J = ew0Var2;
         org.telegram.ui.Components.ew0 ew0Var3 = new org.telegram.ui.Components.ew0(new rr(0), new rr(1));
-        ew0Var3.f25988c = 100.0f;
+        ew0Var3.f25989c = 100.0f;
         K = ew0Var3;
         org.telegram.ui.Components.ew0 ew0Var4 = new org.telegram.ui.Components.ew0(new rr(2), new rr(3));
-        ew0Var4.f25988c = 100.0f;
+        ew0Var4.f25989c = 100.0f;
         L = ew0Var4;
     }
 
@@ -66,11 +66,11 @@ public abstract class tr extends EditTextBoldCursor {
     }
 
     public float getErrorProgress() {
-        return this.f41734c;
+        return this.f41735c;
     }
 
     public float getFocusedProgress() {
-        return this.f41733b;
+        return this.f41734b;
     }
 
     public float getSuccessProgress() {
@@ -86,12 +86,12 @@ public abstract class tr extends EditTextBoldCursor {
     }
 
     public final void j(float f7) {
-        k(this.f41735f, f7 * 100.0f);
+        k(this.f41736f, f7 * 100.0f);
     }
 
     public final void l(float f7) {
-        k(this.f41736n, f7 * 100.0f);
-        o1.k kVar = this.f41737r;
+        k(this.f41737n, f7 * 100.0f);
+        o1.k kVar = this.f41738r;
         kVar.c();
         if (f7 != 0.0f) {
             o1.l l4 = org.telegram.ui.Cells.c1.l(1.0f, 500.0f, 0.75f);
@@ -108,23 +108,23 @@ public abstract class tr extends EditTextBoldCursor {
 
     public final void m() {
         if (getMeasuredHeight() != 0 && getMeasuredWidth() != 0 && getLayout() != null) {
-            Bitmap bitmap = this.f41741y;
-            if (bitmap == null || bitmap.getHeight() != getMeasuredHeight() || this.f41741y.getWidth() != getMeasuredWidth()) {
-                Bitmap bitmap2 = this.f41741y;
+            Bitmap bitmap = this.f41742y;
+            if (bitmap == null || bitmap.getHeight() != getMeasuredHeight() || this.f41742y.getWidth() != getMeasuredWidth()) {
+                Bitmap bitmap2 = this.f41742y;
                 if (bitmap2 != null) {
                     bitmap2.recycle();
                 }
-                this.f41741y = Bitmap.createBitmap(getMeasuredWidth(), getMeasuredHeight(), Bitmap.Config.ARGB_8888);
-                this.E = new Canvas(this.f41741y);
+                this.f41742y = Bitmap.createBitmap(getMeasuredWidth(), getMeasuredHeight(), Bitmap.Config.ARGB_8888);
+                this.E = new Canvas(this.f41742y);
             }
-            this.f41741y.eraseColor(0);
+            this.f41742y.eraseColor(0);
             CharSequence transformation = getTransformationMethod().getTransformation(getText(), this);
             StaticLayout staticLayout = new StaticLayout(transformation, getLayout().getPaint(), (int) Math.ceil(getLayout().getPaint().measureText(transformation, 0, transformation.length())), Layout.Alignment.ALIGN_NORMAL, getLineSpacingMultiplier(), getLineSpacingExtra(), getIncludeFontPadding());
             this.E.save();
             this.E.translate((getMeasuredWidth() - staticLayout.getWidth()) / 2.0f, (getMeasuredHeight() - staticLayout.getHeight()) / 2.0f);
             staticLayout.draw(this.E);
             this.E.restore();
-            this.f41739w = 0.0f;
+            this.f41740w = 0.0f;
             ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
             this.G = ofFloat;
             ofFloat.addUpdateListener(new e3(this, 8));
@@ -136,7 +136,7 @@ public abstract class tr extends EditTextBoldCursor {
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f41735f.c();
+        this.f41736f.c();
         this.h.c();
     }
 
@@ -190,7 +190,7 @@ public abstract class tr extends EditTextBoldCursor {
                     requestFocus();
                 }
                 setSelection(0);
-                if (this.f41738s) {
+                if (this.f41739s) {
                     AndroidUtilities.showKeyboard(this);
                 }
             }
@@ -206,7 +206,7 @@ public abstract class tr extends EditTextBoldCursor {
     }
 
     public void setShowSoftInputOnFocusCompat(boolean z10) {
-        this.f41738s = z10;
+        this.f41739s = z10;
         setShowSoftInputOnFocus(z10);
     }
 }

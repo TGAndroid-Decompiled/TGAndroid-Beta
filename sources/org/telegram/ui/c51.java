@@ -13,18 +13,18 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 public final class c51 extends FrameLayout {
-    public final TextView f35825a;
-    public final org.telegram.ui.Components.yj0 f35826b;
-    public final ImageView f35827c;
+    public final TextView f35826a;
+    public final org.telegram.ui.Components.yj0 f35827b;
+    public final ImageView f35828c;
     public float d;
     public ValueAnimator e;
-    public final x51 f35828f;
+    public final x51 f35829f;
 
     public c51(x51 x51Var, Context context, boolean z10) {
         super(context);
         int i10;
-        this.f35828f = x51Var;
-        LinearLayout e = org.telegram.messenger.ok.e(context, 0);
+        this.f35829f = x51Var;
+        LinearLayout e = org.telegram.messenger.nk.e(context, 0);
         if (z10) {
             i10 = 3;
         } else {
@@ -32,14 +32,14 @@ public final class c51 extends FrameLayout {
         }
         addView(e, w7.z5.e(-2, -2, i10));
         ?? imageView = new ImageView(context);
-        this.f35826b = imageView;
+        this.f35827b = imageView;
         imageView.f(R.raw.unlock_icon, 20, 20, null);
         int i11 = org.telegram.ui.ActionBar.h6.Te;
         org.telegram.ui.ActionBar.d6 d6Var = x51Var.Z0;
         imageView.setColorFilter(org.telegram.ui.ActionBar.h6.w0(i11, d6Var));
         e.addView((View) imageView, w7.z5.n(20, 20));
         TextView textView = new TextView(context);
-        this.f35825a = textView;
+        this.f35826a = textView;
         textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(i11, d6Var));
         textView.setTypeface(AndroidUtilities.bold());
         textView.setTextSize(1, 14.0f);
@@ -49,7 +49,7 @@ public final class c51 extends FrameLayout {
         textView.setSingleLine(true);
         e.addView(textView, w7.z5.q(-2, -2, 17));
         ImageView imageView2 = new ImageView(context);
-        this.f35827c = imageView2;
+        this.f35828c = imageView2;
         imageView2.setImageResource(R.drawable.msg_close);
         imageView2.setScaleType(ImageView.ScaleType.CENTER);
         imageView2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Ve, d6Var), PorterDuff.Mode.MULTIPLY));
@@ -57,7 +57,7 @@ public final class c51 extends FrameLayout {
     }
 
     public final void a(String str, boolean z10) {
-        this.f35825a.setText(str);
+        this.f35826a.setText(str);
         b(z10);
     }
 
@@ -75,9 +75,9 @@ public final class c51 extends FrameLayout {
         }
         this.d = f7;
         float dp = (1.0f - this.d) * AndroidUtilities.dp(-8.0f);
-        org.telegram.ui.Components.yj0 yj0Var = this.f35826b;
+        org.telegram.ui.Components.yj0 yj0Var = this.f35827b;
         yj0Var.setTranslationX(dp);
-        this.f35825a.setTranslationX((1.0f - this.d) * AndroidUtilities.dp(-8.0f));
+        this.f35826a.setTranslationX((1.0f - this.d) * AndroidUtilities.dp(-8.0f));
         yj0Var.setAlpha(this.d);
     }
 

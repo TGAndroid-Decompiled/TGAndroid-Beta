@@ -143,9 +143,9 @@ public final class r4 implements View.OnClickListener {
                         }, true);
                         M.a0(0.0f, -AndroidUtilities.dp(38.0f));
                         if (u4Var.H) {
-                            M.f27190u = false;
+                            M.f27191u = false;
                             M.v = true;
-                            M.f27188s = 0;
+                            M.f27189s = 0;
                         }
                         M.Z();
                         return;

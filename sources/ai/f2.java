@@ -56,7 +56,7 @@ public final class f2 implements Utilities.Callback {
                 dataSettingsActivity.W = z10;
                 dataSettingsActivity.Y = l4.longValue();
                 dataSettingsActivity.X = false;
-                if (dataSettingsActivity.f33124a != null && (i10 = dataSettingsActivity.f33130s) >= 0) {
+                if (dataSettingsActivity.f33125a != null && (i10 = dataSettingsActivity.f33131s) >= 0) {
                     dataSettingsActivity.n0(i10);
                     return;
                 }
@@ -64,7 +64,7 @@ public final class f2 implements Utilities.Callback {
             case 2:
                 Runnable runnable = (Runnable) obj;
                 ((org.telegram.ui.ActionBar.b2) this.d).r(150L);
-                cy cyVar = ((bx) this.f1250c).f35755b;
+                cy cyVar = ((bx) this.f1250c).f35756b;
                 Boolean bool = cyVar.G.bot_participant;
                 if (bool != null && bool.booleanValue()) {
                     cyVar.getMessagesController().addUserToChat(this.f1249b, cyVar.getMessagesController().getUser(Long.valueOf(cyVar.H)), 0, null, cyVar, false, runnable, new gf(8, runnable));

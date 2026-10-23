@@ -2,19 +2,19 @@ package org.telegram.ui;
 
 import org.telegram.tgnet.TLRPC;
 public final class h91 implements yp {
-    public final TLRPC.TL_chatChannelParticipant f37562a;
-    public final boolean f37563b;
-    public final boolean[] f37564c;
+    public final TLRPC.TL_chatChannelParticipant f37563a;
+    public final boolean f37564b;
+    public final boolean[] f37565c;
 
     public h91(TLRPC.TL_chatChannelParticipant tL_chatChannelParticipant, boolean z10, boolean[] zArr) {
-        this.f37562a = tL_chatChannelParticipant;
-        this.f37563b = z10;
-        this.f37564c = zArr;
+        this.f37563a = tL_chatChannelParticipant;
+        this.f37564b = z10;
+        this.f37565c = zArr;
     }
 
     @Override
     public final void b(int i10, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str) {
-        TLRPC.TL_chatChannelParticipant tL_chatChannelParticipant = this.f37562a;
+        TLRPC.TL_chatChannelParticipant tL_chatChannelParticipant = this.f37563a;
         if (i10 == 0) {
             TLRPC.ChannelParticipant channelParticipant = tL_chatChannelParticipant.channelParticipant;
             channelParticipant.admin_rights = null;
@@ -24,8 +24,8 @@ public final class h91 implements yp {
         TLRPC.ChannelParticipant channelParticipant2 = tL_chatChannelParticipant.channelParticipant;
         channelParticipant2.admin_rights = tL_chatAdminRights;
         channelParticipant2.rank = str;
-        if (this.f37563b) {
-            this.f37564c[0] = true;
+        if (this.f37564b) {
+            this.f37565c[0] = true;
         }
     }
 

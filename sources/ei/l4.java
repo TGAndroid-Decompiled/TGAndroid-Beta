@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.ok;
+import org.telegram.messenger.nk;
 import org.telegram.ui.Components.bs;
 import org.telegram.ui.Components.f11;
 import org.telegram.ui.Components.h61;
@@ -94,14 +94,14 @@ public abstract class l4 extends FrameLayout {
                             h61 J = h61.J(j4.class);
                             J.d = intValue;
                             J.G = (a8) maVar2.f9366c.get(intValue);
-                            J.f26798z = i12;
+                            J.f26799z = i12;
                             if (maVar2.f9367f == intValue) {
                                 z10 = true;
                             } else {
                                 z10 = false;
                             }
                             J.K(z10);
-                            J.f26780f = maVar2.e.contains(num);
+                            J.f26781f = maVar2.e.contains(num);
                             J.D = new ai.n1(maVar2, intValue, 2);
                             arrayList.add(J);
                             if (maVar2.e.contains(num)) {
@@ -126,7 +126,7 @@ public abstract class l4 extends FrameLayout {
             }
         }, new e1.c(maVar, 5), bVar);
         this.f9365b = g4Var;
-        g4Var.W2.f30864r = false;
+        g4Var.W2.f30865r = false;
         g4Var.setClipToPadding(false);
         g4Var.setClipChildren(false);
         g4Var.setPadding(AndroidUtilities.dp(2.0f), 0, AndroidUtilities.dp(2.0f), 0);
@@ -152,14 +152,14 @@ public abstract class l4 extends FrameLayout {
                             h61 J = h61.J(j4.class);
                             J.d = intValue;
                             J.G = (a8) maVar2.f9366c.get(intValue);
-                            J.f26798z = i12;
+                            J.f26799z = i12;
                             if (maVar2.f9367f == intValue) {
                                 z10 = true;
                             } else {
                                 z10 = false;
                             }
                             J.K(z10);
-                            J.f26780f = maVar2.e.contains(num);
+                            J.f26781f = maVar2.e.contains(num);
                             J.D = new ai.n1(maVar2, intValue, 2);
                             arrayList.add(J);
                             if (maVar2.e.contains(num)) {
@@ -275,7 +275,7 @@ public abstract class l4 extends FrameLayout {
                 if (z10) {
                     f12 = 1.0f;
                 }
-                ok.t(scaleX.scaleY(f12).setListener(new ah.p0(11, this, z10)).setUpdateListener(new ah.c0(this, 28)), bs.h, 360L);
+                nk.t(scaleX.scaleY(f12).setListener(new ah.p0(11, this, z10)).setUpdateListener(new ah.c0(this, 28)), bs.h, 360L);
             } else {
                 if (z10) {
                     i10 = 0;
@@ -324,7 +324,7 @@ public abstract class l4 extends FrameLayout {
         f11 f11Var = this.f9371w;
         g4 g4Var = this.f9365b;
         if (f11Var != null) {
-            f11Var.c(rectF.centerX() - (this.f9371w.f26024c / 2.0f), rectF.centerY() - AndroidUtilities.dp(0.6f), 1.0f - g4Var.getAlpha(), -1, canvas);
+            f11Var.c(rectF.centerX() - (this.f9371w.f26025c / 2.0f), rectF.centerY() - AndroidUtilities.dp(0.6f), 1.0f - g4Var.getAlpha(), -1, canvas);
         }
         if (g4Var.getAlpha() > 0.0f) {
             canvas.save();
@@ -439,14 +439,14 @@ public abstract class l4 extends FrameLayout {
                 ycVar.c(false);
             }
         } else if (motionEvent.getAction() == 1) {
-            if (ycVar.f32635i) {
+            if (ycVar.f32636i) {
                 c(!this.M, true);
             }
             ycVar.c(false);
         } else if (motionEvent.getAction() == 3) {
             ycVar.c(false);
         }
-        if (!ycVar.f32635i && !super.onTouchEvent(motionEvent)) {
+        if (!ycVar.f32636i && !super.onTouchEvent(motionEvent)) {
             return false;
         }
         return true;

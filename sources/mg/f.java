@@ -16,7 +16,7 @@ import ei.c5;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.ok;
+import org.telegram.messenger.nk;
 import org.telegram.ui.ActionBar.h6;
 import w7.z5;
 public final class f extends FrameLayout {
@@ -281,7 +281,7 @@ public final class f extends FrameLayout {
                 paint3.setAlpha(255);
                 RectF rectF = this.f16875r;
                 rectF.left = (width - AndroidUtilities.dp(2.5f)) / 2;
-                rectF.top = ok.A(22.0f, height, 2);
+                rectF.top = nk.A(22.0f, height, 2);
                 rectF.right = (AndroidUtilities.dp(2.5f) + width) / 2;
                 rectF.bottom = (AndroidUtilities.dp(22.0f) + height) / 2;
                 canvas3.drawRoundRect(rectF, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), paint3);
@@ -362,7 +362,7 @@ public final class f extends FrameLayout {
     public void setMirrored(boolean z10) {
         PorterDuffColorFilter porterDuffColorFilter = null;
         if (z10) {
-            porterDuffColorFilter = new PorterDuffColorFilter(h6.x0(null, h6.f21406zf, false), PorterDuff.Mode.MULTIPLY);
+            porterDuffColorFilter = new PorterDuffColorFilter(h6.x0(null, h6.f21407zf, false), PorterDuff.Mode.MULTIPLY);
         }
         this.e.setColorFilter(porterDuffColorFilter);
     }
@@ -370,7 +370,7 @@ public final class f extends FrameLayout {
     public void setRotated(boolean z10) {
         PorterDuffColorFilter porterDuffColorFilter = null;
         if (z10) {
-            porterDuffColorFilter = new PorterDuffColorFilter(h6.x0(null, h6.f21406zf, false), PorterDuff.Mode.MULTIPLY);
+            porterDuffColorFilter = new PorterDuffColorFilter(h6.x0(null, h6.f21407zf, false), PorterDuff.Mode.MULTIPLY);
         }
         this.d.setColorFilter(porterDuffColorFilter);
     }

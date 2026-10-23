@@ -13,7 +13,7 @@ public final class xh extends org.telegram.ui.Components.aw {
     @Override
     public final void dismiss() {
         super.dismiss();
-        qn qnVar = this.W.f43503p;
+        qn qnVar = this.W.f43504p;
         qnVar.getClass();
         qnVar.j8(false, true, 0.0f);
     }

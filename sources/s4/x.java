@@ -9,7 +9,7 @@ public abstract class x extends v {
     public final int e(RecyclerView recyclerView, b1 b1Var) {
         int i10;
         jy0 jy0Var = (jy0) this;
-        if (b1Var.f45923f == 3) {
+        if (b1Var.f45924f == 3) {
             i10 = 0;
         } else {
             i10 = jy0Var.d;

@@ -7,63 +7,63 @@ import android.text.Layout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 public final class wh0 {
-    public int f32109a;
-    public final yc f32110b;
+    public int f32110a;
+    public final yc f32111b;
     public final f6 e;
-    public Drawable f32114i;
-    public Drawable f32115j;
-    public vj0 f32116k;
-    public f11 f32117l;
-    public ba0 f32123r;
-    public boolean f32124s;
-    public boolean f32125t;
-    public int f32126u;
-    public long f32127w;
-    public int f32128x;
-    public final zh0 f32129y;
-    public final RectF f32111c = new RectF();
+    public Drawable f32115i;
+    public Drawable f32116j;
+    public vj0 f32117k;
+    public f11 f32118l;
+    public ba0 f32124r;
+    public boolean f32125s;
+    public boolean f32126t;
+    public int f32127u;
+    public long f32128w;
+    public int f32129x;
+    public final zh0 f32130y;
+    public final RectF f32112c = new RectF();
     public final RectF d = new RectF();
-    public final RectF f32112f = new RectF();
-    public final RectF f32113g = new RectF();
+    public final RectF f32113f = new RectF();
+    public final RectF f32114g = new RectF();
     public final Rect h = new Rect();
-    public float f32118m = 1.0f;
-    public boolean f32119n = false;
-    public boolean f32120o = false;
-    public boolean f32121p = false;
-    public final float f32122q = 1.0f;
+    public float f32119m = 1.0f;
+    public boolean f32120n = false;
+    public boolean f32121o = false;
+    public boolean f32122p = false;
+    public final float f32123q = 1.0f;
     public int v = 0;
 
     public wh0(zh0 zh0Var) {
-        this.f32129y = zh0Var;
-        this.f32110b = new yc(zh0Var);
-        this.e = new f6(zh0Var, 0L, 250L, bs.f25024f);
+        this.f32130y = zh0Var;
+        this.f32111b = new yc(zh0Var);
+        this.e = new f6(zh0Var, 0L, 250L, bs.f25025f);
     }
 
     public final void a() {
         float d = this.e.d(1.0f, false);
         if (d != 1.0f) {
-            RectF rectF = this.f32113g;
+            RectF rectF = this.f32114g;
             float f7 = rectF.left;
-            RectF rectF2 = this.f32112f;
+            RectF rectF2 = this.f32113f;
             float lerp = AndroidUtilities.lerp(f7, rectF2.left, d);
             RectF rectF3 = this.d;
             rectF3.left = lerp;
             rectF3.right = AndroidUtilities.lerp(rectF.right, rectF2.right, d);
             return;
         }
-        this.f32119n = false;
-        if (this.f32120o) {
-            this.f32121p = true;
+        this.f32120n = false;
+        if (this.f32121o) {
+            this.f32122p = true;
         }
     }
 
     public final float b() {
-        boolean z10 = this.f32120o;
+        boolean z10 = this.f32121o;
         f6 f6Var = this.e;
         if (z10) {
             return 1.0f - f6Var.d(1.0f, false);
         }
-        if (!this.f32119n) {
+        if (!this.f32120n) {
             return 1.0f;
         }
         return f6Var.d(1.0f, false);
@@ -74,51 +74,51 @@ public final class wh0 {
         f11Var.n(3);
         Layout.Alignment alignment = Layout.Alignment.ALIGN_CENTER;
         f11Var.a();
-        this.f32117l = f11Var;
+        this.f32118l = f11Var;
     }
 
     public final void d(int i10, int i11, int i12) {
         Drawable drawable;
         Drawable drawable2 = null;
-        zh0 zh0Var = this.f32129y;
+        zh0 zh0Var = this.f32130y;
         if (i10 != 0) {
             vj0 vj0Var = new vj0(i10, AndroidUtilities.dp(56.0f), AndroidUtilities.dp(56.0f), false, null);
             vj0Var.R(zh0Var);
             vj0Var.start();
-            this.f32116k = vj0Var;
+            this.f32117k = vj0Var;
         } else {
-            this.f32116k = null;
+            this.f32117k = null;
         }
         if (i11 != 0) {
             drawable = zh0Var.getResources().getDrawable(i11).mutate();
         } else {
             drawable = null;
         }
-        this.f32114i = drawable;
+        this.f32115i = drawable;
         if (i12 != 0) {
             drawable2 = zh0Var.getResources().getDrawable(i12).mutate();
         }
-        this.f32115j = drawable2;
-        vj0 vj0Var2 = this.f32116k;
+        this.f32116j = drawable2;
+        vj0 vj0Var2 = this.f32117k;
         Rect rect = this.h;
         if (vj0Var2 != null) {
             vj0Var2.setBounds(rect);
         }
-        Drawable drawable3 = this.f32114i;
+        Drawable drawable3 = this.f32115i;
         if (drawable3 != null) {
             drawable3.setBounds(rect);
         }
-        Drawable drawable4 = this.f32115j;
+        Drawable drawable4 = this.f32116j;
         if (drawable4 != null) {
             drawable4.setBounds(rect);
         }
     }
 
     public wh0(zh0 zh0Var, xh0 xh0Var) {
-        this.f32129y = zh0Var;
-        this.f32110b = new yc(zh0Var);
-        this.e = new f6(zh0Var, 0L, 250L, bs.f25024f);
-        d(0, xh0Var.f32434b, xh0Var.f32435c);
-        c(LocaleController.getString(xh0Var.f32433a));
+        this.f32130y = zh0Var;
+        this.f32111b = new yc(zh0Var);
+        this.e = new f6(zh0Var, 0L, 250L, bs.f25025f);
+        d(0, xh0Var.f32435b, xh0Var.f32436c);
+        c(LocaleController.getString(xh0Var.f32434a));
     }
 }

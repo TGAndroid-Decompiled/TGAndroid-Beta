@@ -86,16 +86,16 @@ public final class hb extends FrameLayout {
         uf0 uf0Var = vbVar.F1;
         if (uf0Var != null) {
             fl0 fl0Var = uf0Var.e;
-            fl0Var.f26275a = 0.0f;
-            fl0Var.f26276b = 0.0f;
-            fl0Var.f26277c = uf0Var.getMeasuredWidth();
+            fl0Var.f26276a = 0.0f;
+            fl0Var.f26277b = 0.0f;
+            fl0Var.f26278c = uf0Var.getMeasuredWidth();
             fl0Var.d = vbVar.F1.getMeasuredHeight();
         }
         sf0 sf0Var = vbVar.E1;
         if (sf0Var != null) {
             fw0 fw0Var = sf0Var.d;
-            fw0Var.f26431a = sf0Var.getMeasuredWidth();
-            fw0Var.f26432b = vbVar.E1.getMeasuredHeight();
+            fw0Var.f26432a = sf0Var.getMeasuredWidth();
+            fw0Var.f26433b = vbVar.E1.getMeasuredHeight();
         }
     }
 

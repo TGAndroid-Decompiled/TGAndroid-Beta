@@ -45,8 +45,8 @@ public final class i implements Utilities.Callback2 {
                 n nVar = oVar2.f12196r;
                 h61 h61Var = new h61(-4);
                 h61Var.d = 140;
-                h61Var.f26779c = nVar;
-                h61Var.f26798z = -1;
+                h61Var.f26780c = nVar;
+                h61Var.f26799z = -1;
                 arrayList2.add(h61Var);
                 int i11 = 0;
                 if (ChatObject.canUserDoAdminAction(oVar2.H, 1)) {
@@ -57,7 +57,7 @@ public final class i implements Utilities.Callback2 {
                         i10 = R.string.CommunitySettingsSetPhoto;
                     }
                     h61 c10 = h61.c(141, i12, LocaleController.getString(i10));
-                    c10.f26790q = true;
+                    c10.f26791q = true;
                     arrayList2.add(c10);
                     arrayList2.add(h61.D(2, AndroidUtilities.dp(14.0f)));
                     arrayList2.add(h61.s(0, LocaleController.getString(R.string.CommunitySectionCommunityName)));
@@ -104,7 +104,7 @@ public final class i implements Utilities.Callback2 {
                 }
                 arrayList2.add(h61.D(5, AndroidUtilities.dp(14.0f)));
                 h61 c11 = h61.c(146, R.drawable.msg_groups_create, LocaleController.getString(R.string.CommunityMenuAddChat));
-                c11.f26790q = true;
+                c11.f26791q = true;
                 arrayList2.add(c11);
                 TLRPC.ChatFull chatFull4 = oVar2.I;
                 if (chatFull4 != null && (arrayList = chatFull4.linked_peers) != null) {

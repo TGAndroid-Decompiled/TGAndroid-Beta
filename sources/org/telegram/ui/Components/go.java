@@ -8,23 +8,23 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class go extends li {
-    public final vz f26613n;
-    public final jm0 f26614r;
-    public final int f26615s;
+    public final vz f26614n;
+    public final jm0 f26615r;
+    public final int f26616s;
     public final org.telegram.ui.z7 v;
-    public int f26616w;
+    public int f26617w;
 
     public go(int i10, Context context, org.telegram.ui.ActionBar.d6 d6Var, ti tiVar) {
         super(context, d6Var, tiVar);
-        this.f26615s = i10;
+        this.f26616s = i10;
         vz vzVar = new vz(context, d6Var);
-        this.f26613n = vzVar;
+        this.f26614n = vzVar;
         vzVar.setText(LocaleController.getString(R.string.NoPhotos));
         vzVar.setOnTouchListener(null);
         vzVar.setTextSize(16);
         addView(vzVar, w7.z5.c(-2.0f, -1));
         vzVar.a(R.raw.media_forbidden, 150, 150);
-        TLRPC.Chat m12 = this.f28176b.m1();
+        TLRPC.Chat m12 = this.f28177b.m1();
         if (i10 == 1) {
             vzVar.setText(ChatObject.getRestrictedErrorText(m12, 7));
         } else if (i10 == 3) {
@@ -36,7 +36,7 @@ public final class go extends li {
         }
         vzVar.c();
         jm0 jm0Var = new jm0(context, d6Var);
-        this.f26614r = jm0Var;
+        this.f26615r = jm0Var;
         jm0Var.setSectionsType(2);
         jm0Var.setVerticalScrollBarEnabled(false);
         jm0Var.setLayoutManager(new s4.b0());
@@ -56,7 +56,7 @@ public final class go extends li {
 
     @Override
     public int getCurrentItemTop() {
-        jm0 jm0Var = this.f26614r;
+        jm0 jm0Var = this.f26615r;
         if (jm0Var.getChildCount() <= 0) {
             return Integer.MAX_VALUE;
         }
@@ -71,7 +71,7 @@ public final class go extends li {
             top = i10;
         }
         int measuredHeight = (getMeasuredHeight() - top) - AndroidUtilities.dp(50.0f);
-        vz vzVar = this.f26613n;
+        vz vzVar = this.f26614n;
         vzVar.setTranslationY(((measuredHeight - vzVar.getMeasuredHeight()) / 2) + top);
         return AndroidUtilities.dp(12.0f) + top;
     }
@@ -83,12 +83,12 @@ public final class go extends li {
 
     @Override
     public int getListTopPadding() {
-        return this.f26614r.getPaddingTop();
+        return this.f26615r.getPaddingTop();
     }
 
     @Override
     public void setTranslationY(float f7) {
         super.setTranslationY(f7);
-        this.f28176b.getSheetContainer().invalidate();
+        this.f28177b.getSheetContainer().invalidate();
     }
 }

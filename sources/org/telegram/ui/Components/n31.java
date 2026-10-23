@@ -1,17 +1,17 @@
 package org.telegram.ui.Components;
 public final class n31 {
-    public static final n31 f28682a;
-    public static final n31 f28683b;
-    public static final n31 f28684c;
+    public static final n31 f28683a;
+    public static final n31 f28684b;
+    public static final n31 f28685c;
     public static final n31[] d;
 
     static {
         ?? r02 = new Enum("TOP", 0);
-        f28682a = r02;
+        f28683a = r02;
         ?? r12 = new Enum("LEFT", 1);
-        f28683b = r12;
+        f28684b = r12;
         ?? r32 = new Enum("BOTTOM", 2);
-        f28684c = r32;
+        f28685c = r32;
         d = new n31[]{r02, r12, r32};
     }
 

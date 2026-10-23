@@ -15,21 +15,21 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.R;
 public final class p8 extends org.telegram.ui.ActionBar.n2 {
-    public final ArrayList f34746a;
-    public ScrollView f34747b;
-    public ImageView f34748c;
+    public final ArrayList f34747a;
+    public ScrollView f34748b;
+    public ImageView f34749c;
     public LinearLayout d;
     public ei.d e;
-    public Runnable f34749f;
+    public Runnable f34750f;
     public boolean h;
 
     public p8() {
         super(null);
-        this.f34746a = new ArrayList();
+        this.f34747a = new ArrayList();
     }
 
     public static void U(p8 p8Var) {
-        ArrayList arrayList = p8Var.f34746a;
+        ArrayList arrayList = p8Var.f34747a;
         if (arrayList.size() != 12 && arrayList.size() != 24) {
             return;
         }
@@ -43,7 +43,7 @@ public final class p8 extends org.telegram.ui.ActionBar.n2 {
         if (linearLayout != null) {
             linearLayout.removeAllViews();
             Context context = this.d.getContext();
-            ArrayList arrayList = this.f34746a;
+            ArrayList arrayList = this.f34747a;
             boolean z10 = true;
             int size = (arrayList.size() + 1) / 2;
             this.d.addView(h8.e0(0, size, context, arrayList, this.resourceProvider), w7.z5.o(0, -2, 1.0f, 48));
@@ -66,48 +66,48 @@ public final class p8 extends org.telegram.ui.ActionBar.n2 {
         this.actionBar.setAddToContainer(false);
         this.actionBar.setOccupyStatusBar(false);
         FrameLayout frameLayout = new FrameLayout(context);
-        frameLayout.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20993d6, this.resourceProvider));
+        frameLayout.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20994d6, this.resourceProvider));
         this.fragmentView = frameLayout;
         ScrollView scrollView = new ScrollView(context);
-        this.f34747b = scrollView;
+        this.f34748b = scrollView;
         scrollView.setFillViewport(true);
-        this.f34747b.setVerticalScrollBarEnabled(false);
-        this.f34747b.setClipToPadding(false);
-        this.f34747b.setPadding(0, AndroidUtilities.dp(96.0f), 0, 0);
-        frameLayout.addView(this.f34747b, w7.z5.c(-1.0f, -1));
+        this.f34748b.setVerticalScrollBarEnabled(false);
+        this.f34748b.setClipToPadding(false);
+        this.f34748b.setPadding(0, AndroidUtilities.dp(96.0f), 0, 0);
+        frameLayout.addView(this.f34748b, w7.z5.c(-1.0f, -1));
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
         linearLayout.setPadding(AndroidUtilities.dp(36.0f), 0, AndroidUtilities.dp(36.0f), AndroidUtilities.dp(24.0f));
         linearLayout.setClipToPadding(false);
-        this.f34747b.addView(linearLayout, new FrameLayout.LayoutParams(-1, -2));
+        this.f34748b.addView(linearLayout, new FrameLayout.LayoutParams(-1, -2));
         ImageView imageView = new ImageView(context);
-        this.f34748c = imageView;
+        this.f34749c = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
-        ImageView imageView2 = this.f34748c;
+        ImageView imageView2 = this.f34749c;
         int i12 = org.telegram.ui.ActionBar.h6.G6;
         imageView2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(i12, this.resourceProvider), PorterDuff.Mode.SRC_IN));
-        this.f34748c.setImageResource(R.drawable.ic_ab_close);
-        this.f34748c.setBackground(org.telegram.ui.ActionBar.h6.g0(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21082i6, this.resourceProvider), 3, -1));
-        this.f34748c.setOnClickListener(new View.OnClickListener(this) {
-            public final p8 f34681b;
+        this.f34749c.setImageResource(R.drawable.ic_ab_close);
+        this.f34749c.setBackground(org.telegram.ui.ActionBar.h6.g0(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21083i6, this.resourceProvider), 3, -1));
+        this.f34749c.setOnClickListener(new View.OnClickListener(this) {
+            public final p8 f34682b;
 
             {
-                this.f34681b = this;
+                this.f34682b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        this.f34681b.finishFragment();
+                        this.f34682b.finishFragment();
                         return;
                     default:
-                        p8.U(this.f34681b);
+                        p8.U(this.f34682b);
                         return;
                 }
             }
         });
-        frameLayout.addView(this.f34748c, w7.z5.d(48, 48.0f, 51, 4.0f, 12.0f, 0.0f, 0.0f));
+        frameLayout.addView(this.f34749c, w7.z5.d(48, 48.0f, 51, 4.0f, 12.0f, 0.0f, 0.0f));
         org.telegram.ui.Components.w9 w9Var = new org.telegram.ui.Components.w9(context);
         w9Var.setAspectFit(true);
         w9Var.getImageReceiver().setCurrentAccount(AndroidUtilities.getAccountInProduction());
@@ -128,7 +128,7 @@ public final class p8 extends org.telegram.ui.ActionBar.n2 {
         TextView i13 = com.google.android.gms.internal.play_billing.k3.i(linearLayout, textView, w7.z5.t(-1, -2, 1, 32, 0, 32, 10), context);
         i13.setTextSize(1, 14.0f);
         i13.setGravity(1);
-        i13.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21398z6, this.resourceProvider));
+        i13.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21399z6, this.resourceProvider));
         if (this.h) {
             i11 = R.string.WalletCurrentSecretPhraseInfo;
         } else {
@@ -147,20 +147,20 @@ public final class p8 extends org.telegram.ui.ActionBar.n2 {
         dVar.e();
         this.e.setText(LocaleController.getString(R.string.WalletContinue));
         this.e.setOnClickListener(new View.OnClickListener(this) {
-            public final p8 f34681b;
+            public final p8 f34682b;
 
             {
-                this.f34681b = this;
+                this.f34682b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        this.f34681b.finishFragment();
+                        this.f34682b.finishFragment();
                         return;
                     default:
-                        p8.U(this.f34681b);
+                        p8.U(this.f34682b);
                         return;
                 }
             }
@@ -177,16 +177,16 @@ public final class p8 extends org.telegram.ui.ActionBar.n2 {
 
     @Override
     public final void onInsets(int i10, int i11, int i12, int i13) {
-        ScrollView scrollView = this.f34747b;
+        ScrollView scrollView = this.f34748b;
         if (scrollView != null) {
             scrollView.setPadding(i10, AndroidUtilities.dp(96.0f) + i11, i12, i13);
         }
-        ImageView imageView = this.f34748c;
+        ImageView imageView = this.f34749c;
         if (imageView != null) {
             FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) imageView.getLayoutParams();
             layoutParams.leftMargin = AndroidUtilities.dp(4.0f) + i10;
             layoutParams.topMargin = AndroidUtilities.dp(12.0f) + i11;
-            this.f34748c.setLayoutParams(layoutParams);
+            this.f34749c.setLayoutParams(layoutParams);
         }
     }
 }

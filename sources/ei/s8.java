@@ -14,7 +14,7 @@ public final class s8 extends im0 {
 
     @Override
     public final boolean D(s4.b1 b1Var) {
-        if (b1Var.f45923f == 2) {
+        if (b1Var.f45924f == 2) {
             return true;
         }
         return false;

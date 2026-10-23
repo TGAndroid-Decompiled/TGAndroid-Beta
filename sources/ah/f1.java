@@ -42,7 +42,7 @@ public final class f1 implements Drawable.Callback {
                 ((oq) this.f734b).invalidateSelf();
                 return;
             case 5:
-                ((hp0) this.f734b).f26962b.run();
+                ((hp0) this.f734b).f26963b.run();
                 return;
             case 6:
                 ((ed) this.f734b).invalidateSelf();
@@ -54,10 +54,10 @@ public final class f1 implements Drawable.Callback {
                 ((x4.d) this.f734b).invalidateSelf();
                 return;
             case 9:
-                ((xg.a) this.f734b).f49790c.invalidate();
+                ((xg.a) this.f734b).f49791c.invalidate();
                 return;
             default:
-                ((xg.c) this.f734b).f49815c.invalidate();
+                ((xg.c) this.f734b).f49816c.invalidate();
                 return;
         }
     }
@@ -97,10 +97,10 @@ public final class f1 implements Drawable.Callback {
                 ((x4.d) this.f734b).scheduleSelf(runnable, j10);
                 return;
             case 9:
-                ((xg.a) this.f734b).f49790c.invalidate();
+                ((xg.a) this.f734b).f49791c.invalidate();
                 return;
             default:
-                ((xg.c) this.f734b).f49815c.invalidate();
+                ((xg.c) this.f734b).f49816c.invalidate();
                 return;
         }
     }
@@ -140,10 +140,10 @@ public final class f1 implements Drawable.Callback {
                 ((x4.d) this.f734b).unscheduleSelf(runnable);
                 return;
             case 9:
-                ((xg.a) this.f734b).f49790c.invalidate();
+                ((xg.a) this.f734b).f49791c.invalidate();
                 return;
             default:
-                ((xg.c) this.f734b).f49815c.invalidate();
+                ((xg.c) this.f734b).f49816c.invalidate();
                 return;
         }
     }

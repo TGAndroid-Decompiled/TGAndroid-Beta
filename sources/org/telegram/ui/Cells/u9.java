@@ -5,9 +5,9 @@ import android.graphics.RectF;
 import java.util.ArrayList;
 public final class u9 extends Path {
     public static ArrayList d;
-    public float f23611a;
-    public ArrayList f23612b;
-    public int f23613c;
+    public float f23612a;
+    public ArrayList f23613b;
+    public int f23614c;
 
     @Override
     public final void addRect(float f7, float f10, float f11, float f12, Path.Direction direction) {
@@ -19,24 +19,24 @@ public final class u9 extends Path {
             rectF = new RectF();
         }
         rectF.set(f7, f10, f11, f12);
-        this.f23612b.add(rectF);
-        this.f23613c++;
+        this.f23613b.add(rectF);
+        this.f23614c++;
         super.addRect(f7, f10, f11, f12, direction);
-        if (f12 > this.f23611a) {
-            this.f23611a = f12;
+        if (f12 > this.f23612a) {
+            this.f23612a = f12;
         }
     }
 
     @Override
     public final void reset() {
-        ArrayList arrayList = this.f23612b;
+        ArrayList arrayList = this.f23613b;
         super.reset();
         if (d == null) {
             d = new ArrayList(arrayList.size());
         }
         d.addAll(arrayList);
         arrayList.clear();
-        this.f23613c = 0;
-        this.f23611a = 0.0f;
+        this.f23614c = 0;
+        this.f23612a = 0.0f;
     }
 }

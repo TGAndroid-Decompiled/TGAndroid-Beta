@@ -11,7 +11,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.g0;
-import org.telegram.messenger.ok;
+import org.telegram.messenger.nk;
 import org.telegram.ui.ActionBar.f3;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.ActionBar.k4;
@@ -45,14 +45,14 @@ public final class c implements Runnable {
                 n2 R = LaunchActivity.R();
                 ?? f3Var = new f3(R.getParentActivity(), false);
                 if (R.getFragmentView() instanceof lw0) {
-                    f3Var.f39416b = (lw0) R.getFragmentView();
+                    f3Var.f39417b = (lw0) R.getFragmentView();
                 }
                 Activity parentActivity = R.getParentActivity();
                 LinearLayout e = g0.e(parentActivity, 1);
                 TextView textView = new TextView(parentActivity);
-                textView.setText("Saturation " + (n5.f39415c * 5.0f));
-                int i17 = h6.f21175n5;
-                ok.u(textView, h6.x0(null, i17, false), 1, 16.0f, 1);
+                textView.setText("Saturation " + (n5.f39416c * 5.0f));
+                int i17 = h6.f21176n5;
+                nk.u(textView, h6.x0(null, i17, false), 1, 16.0f, 1);
                 textView.setMaxLines(1);
                 textView.setSingleLine(true);
                 if (LocaleController.isRTL) {
@@ -73,7 +73,7 @@ public final class c implements Runnable {
                 e.addView(dp0Var, z5.d(-1, 38.0f, 0, 5.0f, 4.0f, 5.0f, 0.0f));
                 TextView textView2 = new TextView(parentActivity);
                 textView2.setText("Alpha " + n5.e);
-                ok.u(textView2, h6.x0(null, i17, false), 1, 16.0f, 1);
+                nk.u(textView2, h6.x0(null, i17, false), 1, 16.0f, 1);
                 textView2.setMaxLines(1);
                 textView2.setSingleLine(true);
                 if (LocaleController.isRTL) {
@@ -94,7 +94,7 @@ public final class c implements Runnable {
                 e.addView(dp0Var2, z5.d(-1, 38.0f, 0, 5.0f, 4.0f, 5.0f, 0.0f));
                 TextView textView3 = new TextView(parentActivity);
                 textView3.setText("Blur Radius");
-                ok.u(textView3, h6.x0(null, i17, false), 1, 16.0f, 1);
+                nk.u(textView3, h6.x0(null, i17, false), 1, 16.0f, 1);
                 textView3.setMaxLines(1);
                 textView3.setSingleLine(true);
                 if (LocaleController.isRTL) {

@@ -15,7 +15,7 @@ public final class zd1 extends org.telegram.ui.Components.v70 {
 
     @Override
     public final boolean Y() {
-        TLRPC.Chat chat = this.B0.f35622b.getMessagesController().getChat(Long.valueOf(this.A0));
+        TLRPC.Chat chat = this.B0.f35623b.getMessagesController().getChat(Long.valueOf(this.A0));
         if (chat != null && ChatObject.canUserDoAdminAction(chat, 3)) {
             return true;
         }

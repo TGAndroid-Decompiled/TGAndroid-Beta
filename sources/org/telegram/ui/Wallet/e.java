@@ -8,24 +8,24 @@ import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.tgnet.tl.TL_wallet;
 public final class e implements Runnable {
-    public final int f34133a;
-    public final f f34134b;
-    public final TL_wallet.currencyRates f34135c;
+    public final int f34134a;
+    public final f f34135b;
+    public final TL_wallet.currencyRates f34136c;
 
     public e(f fVar, TL_wallet.currencyRates currencyrates, int i10) {
-        this.f34133a = i10;
-        this.f34134b = fVar;
-        this.f34135c = currencyrates;
+        this.f34134a = i10;
+        this.f34135b = fVar;
+        this.f34136c = currencyrates;
     }
 
     @Override
     public final void run() {
         boolean z10;
         String str;
-        switch (this.f34133a) {
+        switch (this.f34134a) {
             case 0:
-                f fVar = this.f34134b;
-                TL_wallet.currencyRates currencyrates = this.f34135c;
+                f fVar = this.f34135b;
+                TL_wallet.currencyRates currencyrates = this.f34136c;
                 boolean z11 = true;
                 if (currencyrates != null && currencyrates.rates != null) {
                     try {
@@ -91,10 +91,10 @@ public final class e implements Runnable {
                 AndroidUtilities.runOnUIThread(new e(fVar, currencyrates, 1));
                 return;
             default:
-                f fVar2 = this.f34134b;
-                fVar2.d = this.f34135c;
-                fVar2.f34190c = false;
-                fVar2.f34189b.J();
+                f fVar2 = this.f34135b;
+                fVar2.d = this.f34136c;
+                fVar2.f34191c = false;
+                fVar2.f34190b.J();
                 return;
         }
     }

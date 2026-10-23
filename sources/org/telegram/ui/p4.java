@@ -7,12 +7,12 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class p4 implements DialogInterface.OnClickListener {
-    public final int f40062a;
-    public final Object f40063b;
+    public final int f40063a;
+    public final Object f40064b;
 
     public p4(Object obj, int i10) {
-        this.f40062a = i10;
-        this.f40063b = obj;
+        this.f40063a = i10;
+        this.f40064b = obj;
     }
 
     @Override
@@ -20,35 +20,35 @@ public final class p4 implements DialogInterface.OnClickListener {
         ri.h hVar;
         String str;
         int i11 = 0;
-        switch (this.f40062a) {
+        switch (this.f40063a) {
             case 0:
-                r4 r4Var = (r4) this.f40063b;
+                r4 r4Var = (r4) this.f40064b;
                 r4Var.getClass();
-                ti.b bVar = ti.e.f47224c;
+                ti.b bVar = ti.e.f47225c;
                 if (i10 == 0) {
-                    hVar = ri.h.f45815a;
+                    hVar = ri.h.f45816a;
                 } else {
-                    hVar = ri.h.f45816b;
+                    hVar = ri.h.f45817b;
                 }
                 bVar.b(hVar);
-                r4Var.f41059b.m(2);
+                r4Var.f41060b.m(2);
                 return;
             case 1:
-                cy cyVar = (cy) this.f40063b;
+                cy cyVar = (cy) this.f40064b;
                 if (i10 == 0) {
                     cyVar.getMessagesStorage().readAllDialogs(1);
                     return;
-                } else if (i10 != 1 || cyVar.f36095e0 == null) {
+                } else if (i10 != 1 || cyVar.f36096e0 == null) {
                     return;
                 } else {
                     while (true) {
-                        ay[] ayVarArr = cyVar.f36095e0;
+                        ay[] ayVarArr = cyVar.f36096e0;
                         if (i11 < ayVarArr.length) {
                             ay ayVar = ayVarArr[i11];
-                            if (ayVar.f35452s == 0 && ayVar.getVisibility() == 0) {
-                                org.telegram.ui.Cells.r2 O3 = cy.O3(cyVar.f36095e0[i11]);
-                                xx xxVar = cyVar.f36095e0[i11].f35446a;
-                                int i12 = xx.f43292t3;
+                            if (ayVar.f35453s == 0 && ayVar.getVisibility() == 0) {
+                                org.telegram.ui.Cells.r2 O3 = cy.O3(cyVar.f36096e0[i11]);
+                                xx xxVar = cyVar.f36096e0[i11].f35447a;
+                                int i12 = xx.f43293t3;
                                 xxVar.A1(true, O3);
                             }
                             i11++;
@@ -59,7 +59,7 @@ public final class p4 implements DialogInterface.OnClickListener {
                 }
                 break;
             case 2:
-                cg0 cg0Var = (cg0) this.f40063b;
+                cg0 cg0Var = (cg0) this.f40064b;
                 if (i10 == 0) {
                     BuildVars.LOGS_ENABLED = !BuildVars.LOGS_ENABLED;
                     ApplicationLoader.applicationContext.getSharedPreferences("systemConfig", 0).edit().putBoolean("logsEnabled", BuildVars.LOGS_ENABLED).commit();
@@ -86,13 +86,13 @@ public final class p4 implements DialogInterface.OnClickListener {
                 ProfileActivity.H4(cg0Var.V.getParentActivity(), false);
                 return;
             case 3:
-                vm0 vm0Var = (vm0) this.f40063b;
+                vm0 vm0Var = (vm0) this.f40064b;
                 if (i10 == 0) {
-                    vm0Var.f42333w = "male";
+                    vm0Var.f42334w = "male";
                     vm0Var.Y[4].setText(LocaleController.getString(R.string.PassportMale));
                     return;
                 } else if (i10 == 1) {
-                    vm0Var.f42333w = "female";
+                    vm0Var.f42334w = "female";
                     vm0Var.Y[4].setText(LocaleController.getString(R.string.PassportFemale));
                     return;
                 } else {
@@ -100,7 +100,7 @@ public final class p4 implements DialogInterface.OnClickListener {
                     return;
                 }
             default:
-                x71.d0((x71) this.f40063b, i10);
+                x71.d0((x71) this.f40064b, i10);
                 return;
         }
     }

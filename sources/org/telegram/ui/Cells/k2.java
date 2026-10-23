@@ -46,7 +46,7 @@ public final class k2 extends ci.y7 {
     @Override
     public final void e() {
         r2 r2Var = this.S;
-        n2 n2Var = r2Var.f22822d0;
+        n2 n2Var = r2Var.f22823d0;
         if (n2Var == null) {
             return;
         }
@@ -56,7 +56,7 @@ public final class k2 extends ci.y7 {
     @Override
     public final void f(long j10) {
         r2 r2Var = this.S;
-        n2 n2Var = r2Var.f22822d0;
+        n2 n2Var = r2Var.f22823d0;
         if (n2Var == null) {
             return;
         }

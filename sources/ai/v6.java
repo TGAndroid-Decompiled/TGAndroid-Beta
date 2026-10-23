@@ -255,7 +255,7 @@ public final class v6 extends br {
                 md.a1(imageReceiver, stargiftattributemodel.document, (int) (i10 * 0.75f));
             }
         }
-        ((Paint) this.f25015b).setShader(this.f2307s);
+        ((Paint) this.f25016b).setShader(this.f2307s);
         if (view.isAttachedToWindow()) {
             a();
         }
@@ -319,7 +319,7 @@ public final class v6 extends br {
     @Override
     public final void draw(Canvas canvas) {
         f11 f11Var;
-        Paint paint = (Paint) this.f25015b;
+        Paint paint = (Paint) this.f25016b;
         Rect bounds = getBounds();
         RectF rectF = this.d;
         rectF.set(bounds);
@@ -374,7 +374,7 @@ public final class v6 extends br {
     public final void e(int i10, int i11) {
         RadialGradient radialGradient = new RadialGradient(0.0f, 0.0f, AndroidUtilities.dpf2(this.f2304f) / 2.0f, new int[]{i10 | (-16777216), i11 | (-16777216)}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
         this.f2307s = radialGradient;
-        ((Paint) this.f25015b).setShader(radialGradient);
+        ((Paint) this.f25016b).setShader(radialGradient);
     }
 
     public final void f() {

@@ -5,18 +5,18 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 public final class s9 extends org.telegram.ui.ActionBar.f3 {
-    public final r9 f41406b;
-    public final org.telegram.ui.ActionBar.d5[] f41407c;
+    public final r9 f41407b;
+    public final org.telegram.ui.ActionBar.d5[] f41408c;
     public final v9 d;
 
     public s9(Activity activity, org.telegram.ui.ActionBar.d5[] d5VarArr, int i10, v9 v9Var) {
         super(activity, false);
-        this.f41407c = d5VarArr;
+        this.f41408c = d5VarArr;
         this.d = v9Var;
         d5VarArr[0].setFragmentStack(new ArrayList());
         r9 r9Var = new r9(this, i10);
-        this.f41406b = r9Var;
-        r9Var.f42518x = true;
+        this.f41407b = r9Var;
+        r9Var.f42519x = true;
         ((ActionBarLayout) d5VarArr[0]).c(-1, r9Var);
         ((ActionBarLayout) d5VarArr[0]).c0();
         ViewGroup view = d5VarArr[0].getView();
@@ -24,7 +24,7 @@ public final class s9 extends org.telegram.ui.ActionBar.f3 {
         view.setPadding(i11, 0, i11, 0);
         r9Var.M = v9Var;
         if (v9Var.p0() != null) {
-            r9Var.f42508c.setText(v9Var.p0());
+            r9Var.f42509c.setText(v9Var.p0());
         }
         this.containerView = d5VarArr[0].getView();
         setApplyBottomPadding(false);
@@ -40,13 +40,13 @@ public final class s9 extends org.telegram.ui.ActionBar.f3 {
     @Override
     public final void dismiss() {
         super.dismiss();
-        this.f41407c[0] = null;
+        this.f41408c[0] = null;
         this.d.onDismiss();
     }
 
     @Override
     public final void onBackPressed() {
-        org.telegram.ui.ActionBar.d5[] d5VarArr = this.f41407c;
+        org.telegram.ui.ActionBar.d5[] d5VarArr = this.f41408c;
         org.telegram.ui.ActionBar.d5 d5Var = d5VarArr[0];
         if (d5Var != null && d5Var.getFragmentStack().size() > 1) {
             ((ActionBarLayout) d5VarArr[0]).G();

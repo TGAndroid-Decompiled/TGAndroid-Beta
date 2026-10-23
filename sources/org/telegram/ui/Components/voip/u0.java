@@ -15,10 +15,10 @@ import org.telegram.messenger.R;
 import org.telegram.ui.Components.wc0;
 import w7.z5;
 public final class u0 extends z4.a {
-    public final v0 f31768c;
+    public final v0 f31769c;
 
     public u0(v0 v0Var) {
-        this.f31768c = v0Var;
+        this.f31769c = v0Var;
     }
 
     @Override
@@ -28,15 +28,15 @@ public final class u0 extends z4.a {
 
     @Override
     public final int b() {
-        return this.f31768c.f31786f.length;
+        return this.f31769c.f31787f.length;
     }
 
     @Override
     public final Object e(z4.g gVar, int i10) {
         Bitmap bitmap;
         ImageView imageView;
-        v0 v0Var = this.f31768c;
-        boolean z10 = v0Var.f31792y;
+        v0 v0Var = this.f31769c;
+        boolean z10 = v0Var.f31793y;
         int i11 = 1;
         if (z10 && i10 == 0) {
             ?? frameLayout = new FrameLayout(v0Var.getContext());

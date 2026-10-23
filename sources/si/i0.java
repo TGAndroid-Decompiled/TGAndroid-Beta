@@ -6,26 +6,26 @@ import java.io.IOException;
 import org.telegram.ui.Components.cy0;
 import w7.m7;
 public final class i0 implements Runnable {
-    public final int f46626a;
-    public final s0 f46627b;
+    public final int f46627a;
+    public final s0 f46628b;
 
     public i0(s0 s0Var, int i10) {
-        this.f46626a = i10;
-        this.f46627b = s0Var;
+        this.f46627a = i10;
+        this.f46628b = s0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f46626a) {
+        switch (this.f46627a) {
             case 0:
-                s0 s0Var = this.f46627b;
+                s0 s0Var = this.f46628b;
                 if (s0Var.W == 3) {
                     s0Var.p();
                     return;
                 }
                 return;
             case 1:
-                s0 s0Var2 = this.f46627b;
+                s0 s0Var2 = this.f46628b;
                 w wVar = s0Var2.Q;
                 File file = s0Var2.R;
                 if (wVar != null) {
@@ -40,7 +40,7 @@ public final class i0 implements Runnable {
                         }
                     } catch (IOException unused) {
                     }
-                    m7.c(wVar.f46841a);
+                    m7.c(wVar.f46842a);
                 }
                 if (file != null) {
                     m7.c(file);
@@ -48,45 +48,45 @@ public final class i0 implements Runnable {
                 }
                 return;
             case 2:
-                s0 s0Var3 = this.f46627b;
+                s0 s0Var3 = this.f46628b;
                 int i10 = s0Var3.W;
                 if (i10 == 2 || i10 == 6) {
                     s0Var3.F = SystemClock.elapsedRealtime();
-                    n nVar = s0Var3.f46774m;
+                    n nVar = s0Var3.f46775m;
                     nVar.b("recording started: retainedDurationMs=" + s0Var3.E);
                     s0Var3.v(3);
-                    long j10 = s0Var3.f46776o - s0Var3.E;
+                    long j10 = s0Var3.f46777o - s0Var3.E;
                     if (j10 <= 0) {
                         s0Var3.p();
                         return;
                     } else {
-                        s0Var3.f46770i.postDelayed(s0Var3.T, j10);
+                        s0Var3.f46771i.postDelayed(s0Var3.T, j10);
                         return;
                     }
                 }
                 return;
             default:
-                s0 s0Var4 = this.f46627b;
+                s0 s0Var4 = this.f46628b;
                 s0Var4.B = false;
-                n nVar2 = s0Var4.f46774m;
+                n nVar2 = s0Var4.f46775m;
                 nVar2.b("recording segment stopped: state=" + r4.c.w(s0Var4.W) + ", retainedDurationMs=" + s0Var4.E);
                 if (s0Var4.A) {
                     s0Var4.A = false;
                     s0Var4.i();
                     return;
-                } else if (s0Var4.f46785y) {
-                    s0Var4.f46785y = false;
-                    boolean z10 = s0Var4.f46786z;
-                    s0Var4.f46771j.execute(new ug.c(s0Var4, s0Var4.Q, z10, s0Var4.P));
+                } else if (s0Var4.f46786y) {
+                    s0Var4.f46786y = false;
+                    boolean z10 = s0Var4.f46787z;
+                    s0Var4.f46772j.execute(new ug.c(s0Var4, s0Var4.Q, z10, s0Var4.P));
                     return;
                 } else if (s0Var4.W == 4) {
                     try {
                         File d = s0Var4.d("round_video_preview_");
                         s0Var4.R = d;
                         s0Var4.J = System.nanoTime();
-                        n nVar3 = s0Var4.f46774m;
+                        n nVar3 = s0Var4.f46775m;
                         nVar3.b("preview snapshot started: file=" + d.getName());
-                        s0Var4.f46771j.execute(new cy0(s0Var4, s0Var4.Q, d, 21));
+                        s0Var4.f46772j.execute(new cy0(s0Var4, s0Var4.Q, d, 21));
                         return;
                     } catch (IOException e) {
                         s0Var4.h(e);

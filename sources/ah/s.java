@@ -91,9 +91,9 @@ public final class s extends org.telegram.ui.ActionBar.j {
                     k0Var.setAllowNestedScroll(false);
                     k0Var.S = null;
                     k0Var.G.W2.N(true);
-                    k0Var.E.f27729r.getText().clear();
-                    k0Var.E.f27729r.requestFocus();
-                    AndroidUtilities.showKeyboard(k0Var.E.f27729r);
+                    k0Var.E.f27730r.getText().clear();
+                    k0Var.E.f27730r.requestFocus();
+                    AndroidUtilities.showKeyboard(k0Var.E.f27730r);
                     return;
                 } else {
                     return;
@@ -112,9 +112,9 @@ public final class s extends org.telegram.ui.ActionBar.j {
                     TextUtils.isEmpty(k0Var2.R);
                     k0Var2.R = null;
                     k0Var2.F.h(0L, k0Var2.e, 0L, 0L, null, false, null, true);
-                    k0Var2.f12176y.f27729r.getText().clear();
-                    k0Var2.f12176y.f27729r.requestFocus();
-                    AndroidUtilities.showKeyboard(k0Var2.f12176y.f27729r);
+                    k0Var2.f12176y.f27730r.getText().clear();
+                    k0Var2.f12176y.f27730r.requestFocus();
+                    AndroidUtilities.showKeyboard(k0Var2.f12176y.f27730r);
                     return;
                 } else {
                     return;
@@ -331,7 +331,7 @@ public final class s extends org.telegram.ui.ActionBar.j {
                 if (i10 == -1) {
                     baVar.finishFragment();
                     return;
-                } else if (i10 == 1 && baVar.f35557a.getText().length() != 0) {
+                } else if (i10 == 1 && baVar.f35558a.getText().length() != 0) {
                     ba.U(baVar);
                     baVar.finishFragment();
                     return;

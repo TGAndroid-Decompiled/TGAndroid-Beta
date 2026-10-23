@@ -50,11 +50,11 @@ public final class r extends n2 implements ne.d {
             TLRPC.Chat chat = MessagesController.getInstance(rVar.currentAccount).getChat(Long.valueOf(-j10));
             TLRPC.User user = MessagesController.getInstance(rVar.currentAccount).getUser(Long.valueOf(j10));
             if (user != null) {
-                rVar.presentFragment(qn.W9(user.f20426id));
+                rVar.presentFragment(qn.W9(user.f20427id));
             } else if (!ChatObject.isPublic(chat) && !ChatObject.isInChat(chat)) {
                 new ji.b(rVar.getParentActivity(), chat, new p6(29, rVar, eVar)).show();
             } else {
-                rVar.presentFragment(qn.W9(-chat.f20279id));
+                rVar.presentFragment(qn.W9(-chat.f20280id));
             }
         }
     }
@@ -81,13 +81,13 @@ public final class r extends n2 implements ne.d {
         this.actionBar.setTitle(LocaleController.getString(R.string.CommunityPendingRequests));
         FrameLayout frameLayout = new FrameLayout(context);
         this.f12211c = frameLayout;
-        int i10 = h6.f20935a7;
+        int i10 = h6.f20936a7;
         frameLayout.setBackgroundColor(h6.x0(null, i10, false));
         c71 c71Var = new c71(this, new hg.o(this, 1), new p(this), new p(this));
         this.d = c71Var;
         c71Var.setClipToPadding(false);
         c71 c71Var2 = this.d;
-        c71Var2.W2.f30864r = false;
+        c71Var2.W2.f30865r = false;
         c71Var2.p1();
         this.d.j(new ah.d0(this, 10));
         this.actionBar.setAdaptiveBackground(this.d);
@@ -106,7 +106,7 @@ public final class r extends n2 implements ne.d {
         ei.d dVar = new ei.d(context, this.resourceProvider, true);
         this.f12213n = dVar;
         dVar.d();
-        this.f12213n.setColor(i0.a.f(0.125f, getThemedColor(h6.f20993d6), getThemedColor(h6.G6)));
+        this.f12213n.setColor(i0.a.f(0.125f, getThemedColor(h6.f20994d6), getThemedColor(h6.G6)));
         this.f12213n.setText(LocaleController.getString(R.string.CommunityPendingRequestDeclineAll));
         this.f12213n.e();
         this.f12213n.setOnClickListener(new View.OnClickListener(this) {
@@ -169,7 +169,7 @@ public final class r extends n2 implements ne.d {
         V(0);
         FrameLayout frameLayout2 = this.f12211c;
         p pVar = new p(this);
-        WeakHashMap weakHashMap = r0.i0.f44829a;
+        WeakHashMap weakHashMap = r0.i0.f44830a;
         r0.a0.i(frameLayout2, pVar);
         setBulletinDelegate(new o8(4));
         FrameLayout frameLayout3 = this.f12211c;

@@ -53,15 +53,15 @@ public final class g3 implements Runnable {
     private final void b() {
         byte[] bArr = (byte[]) this.e;
         org.telegram.ui.Wallet.c2 c2Var = (org.telegram.ui.Wallet.c2) this.f1347f;
-        byte[] bArr2 = c2Var.f34072b;
+        byte[] bArr2 = c2Var.f34073b;
         org.telegram.ui.Wallet.s1 s1Var = (org.telegram.ui.Wallet.s1) this.h;
         TL_wallet.tonConnectSession tonconnectsession = (TL_wallet.tonConnectSession) this.d;
-        org.telegram.ui.Wallet.m0 m0Var = ((org.telegram.ui.Wallet.f2) this.f1345b).f34199b;
+        org.telegram.ui.Wallet.m0 m0Var = ((org.telegram.ui.Wallet.f2) this.f1345b).f34200b;
         if (TextUtils.equals((String) this.f1346c, m0Var.s()) && Arrays.equals(bArr, m0Var.x())) {
             TL_wallet.inputTonConnectOauthSession inputtonconnectoauthsession = new TL_wallet.inputTonConnectOauthSession();
-            inputtonconnectoauthsession.session_id = tonconnectsession.f20537id;
+            inputtonconnectoauthsession.session_id = tonconnectsession.f20538id;
             inputtonconnectoauthsession.challenge_answer = bArr2;
-            inputtonconnectoauthsession.body = c2Var.f34073c;
+            inputtonconnectoauthsession.body = c2Var.f34074c;
             inputtonconnectoauthsession.proof = c2Var.d;
             s1Var.run(inputtonconnectoauthsession, null);
             return;
@@ -76,12 +76,12 @@ public final class g3 implements Runnable {
         org.telegram.ui.Wallet.x xVar = (org.telegram.ui.Wallet.x) this.f1347f;
         TL_wallet.tonConnectSession tonconnectsession = (TL_wallet.tonConnectSession) this.h;
         org.telegram.ui.Wallet.c2 c2Var = (org.telegram.ui.Wallet.c2) this.d;
-        org.telegram.ui.Wallet.m0 m0Var = f2Var.f34199b;
+        org.telegram.ui.Wallet.m0 m0Var = f2Var.f34200b;
         if (TextUtils.equals((String) this.f1346c, m0Var.s()) && Arrays.equals(bArr, m0Var.x())) {
             TL_wallet.tonConnectCloseSession tonconnectclosesession = new TL_wallet.tonConnectCloseSession();
-            tonconnectclosesession.session_id = tonconnectsession.f20537id;
-            tonconnectclosesession.body = c2Var.f34073c;
-            f2Var.f34201f.sendRequestTyped(tonconnectclosesession, new Object(), new org.telegram.ui.Wallet.d(xVar, 3));
+            tonconnectclosesession.session_id = tonconnectsession.f20538id;
+            tonconnectclosesession.body = c2Var.f34074c;
+            f2Var.f34202f.sendRequestTyped(tonconnectclosesession, new Object(), new org.telegram.ui.Wallet.d(xVar, 3));
             return;
         }
         xVar.run("Wallet or TON Connect session changed. Open the request again.");
@@ -97,7 +97,7 @@ public final class g3 implements Runnable {
         if (str != null) {
             callback.run(str);
         } else if (f2Var.y(b2Var) && !f2Var.i(b2Var)) {
-            f2Var.f34201f.sendRequestTyped(sendtransfer, new Object(), new x3(f2Var, callback, b2Var, j0Var, sendtransfer, 6));
+            f2Var.f34202f.sendRequestTyped(sendtransfer, new Object(), new x3(f2Var, callback, b2Var, j0Var, sendtransfer, 6));
         } else {
             callback.run("Request expired or wallet changed");
         }

@@ -12,12 +12,12 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.qa1;
 public final class q extends HorizontalScrollView {
-    public org.telegram.ui.web.m f52080a;
-    public c0 f52081b;
-    public final qa1 f52082c;
+    public org.telegram.ui.web.m f52081a;
+    public c0 f52082b;
+    public final qa1 f52083c;
     public final Paint d;
     public int e;
-    public float f52083f;
+    public float f52084f;
     public final k0 h;
 
     public q(k0 k0Var, Context context) {
@@ -26,13 +26,13 @@ public final class q extends HorizontalScrollView {
         Paint paint = new Paint(1);
         this.d = paint;
         this.e = -1;
-        this.f52083f = Float.NaN;
+        this.f52084f = Float.NaN;
         setHorizontalScrollBarEnabled(false);
         setOverScrollMode(2);
         setFillViewport(true);
         setWillNotDraw(false);
         qa1 qa1Var = new qa1(this, context, 22);
-        this.f52082c = qa1Var;
+        this.f52083c = qa1Var;
         qa1Var.setOrientation(0);
         qa1Var.setGravity(16);
         qa1Var.setPadding(AndroidUtilities.dp(3.0f), 0, AndroidUtilities.dp(3.0f), 0);
@@ -42,11 +42,11 @@ public final class q extends HorizontalScrollView {
 
     public final void a(int i10, boolean z10) {
         if (i10 != this.e && i10 >= 0) {
-            qa1 qa1Var = this.f52082c;
+            qa1 qa1Var = this.f52083c;
             if (i10 < qa1Var.getChildCount()) {
                 this.e = i10;
                 if (!z10) {
-                    this.f52083f = Float.NaN;
+                    this.f52084f = Float.NaN;
                 }
                 View childAt = qa1Var.getChildAt(i10);
                 int left = childAt.getLeft() - AndroidUtilities.dp(30.0f);
@@ -78,23 +78,23 @@ public final class q extends HorizontalScrollView {
 
     public void setSections(ArrayList<o> arrayList) {
         TLRPC.Document document;
-        qa1 qa1Var = this.f52082c;
+        qa1 qa1Var = this.f52083c;
         qa1Var.removeAllViews();
         for (int i10 = 0; i10 < arrayList.size(); i10++) {
             o oVar = arrayList.get(i10);
             Context context = getContext();
-            int i11 = oVar.f52067a;
+            int i11 = oVar.f52068a;
             if (i11 == 2) {
-                document = (TLRPC.Document) oVar.f52069c.get(0);
+                document = (TLRPC.Document) oVar.f52070c.get(0);
             } else {
                 document = null;
             }
             p pVar = new p(this.h, context, i11, document);
             pVar.setOnClickListener(new n1(this, i10, 29));
-            pVar.setContentDescription(oVar.f52068b);
+            pVar.setContentDescription(oVar.f52069b);
             qa1Var.addView(pVar, new LinearLayout.LayoutParams(AndroidUtilities.dp(34.0f), AndroidUtilities.dp(30.0f)));
         }
         this.e = -1;
-        this.f52083f = Float.NaN;
+        this.f52084f = Float.NaN;
     }
 }

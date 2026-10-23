@@ -4,16 +4,16 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLObject;
 public abstract class e5 {
-    public final d5 f36549a = new d5(this);
-    public final NotificationCenter f36550b = NotificationCenter.getInstance(UserConfig.selectedAccount);
-    public final Object f36551c;
+    public final d5 f36550a = new d5(this);
+    public final NotificationCenter f36551b = NotificationCenter.getInstance(UserConfig.selectedAccount);
+    public final Object f36552c;
     public final int d;
     public final int e;
-    public ai.c8 f36552f;
-    public boolean f36553g;
+    public ai.c8 f36553f;
+    public boolean f36554g;
 
     public e5(int i10, TLObject tLObject, int i11) {
-        this.f36551c = tLObject;
+        this.f36552c = tLObject;
         this.d = i10;
         this.e = i11;
     }

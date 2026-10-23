@@ -1,23 +1,25 @@
 package org.telegram.messenger;
-public final class jb implements Runnable {
-    public final int f18680a;
-    public final q0.a f18681b;
-    public final int f18682c;
 
-    public jb(q0.a aVar, int i10, int i11) {
-        this.f18680a = i11;
-        this.f18681b = aVar;
-        this.f18682c = i10;
+import org.telegram.tgnet.tl.TL_account;
+public final class jb implements Runnable {
+    public final int f18690a;
+    public final MessagesController f18691b;
+    public final TL_account.TL_webBrowserSettings f18692c;
+
+    public jb(MessagesController messagesController, TL_account.TL_webBrowserSettings tL_webBrowserSettings, int i10) {
+        this.f18690a = i10;
+        this.f18691b = messagesController;
+        this.f18692c = tL_webBrowserSettings;
     }
 
     @Override
     public final void run() {
-        switch (this.f18680a) {
+        switch (this.f18690a) {
             case 0:
-                MessagesController.lambda$getNextReactionMentionInternal$1(this.f18681b, this.f18682c);
+                this.f18691b.lambda$loadWebBrowserConfig$513(this.f18692c);
                 return;
             default:
-                MessagesController.lambda$getNextReactionMentionInternal$2(this.f18681b, this.f18682c);
+                this.f18691b.lambda$loadWebBrowserConfig$511(this.f18692c);
                 return;
         }
     }

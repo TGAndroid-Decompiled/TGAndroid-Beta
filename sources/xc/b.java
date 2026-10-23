@@ -16,7 +16,7 @@ import org.telegram.ui.Cells.c1;
 import vc.g;
 import w7.m9;
 public abstract class b {
-    public static final c f49775a = new c();
+    public static final c f49776a = new c();
 
     public static HttpURLConnection a(String str, l lVar) {
         Throwable th2;
@@ -45,7 +45,7 @@ public abstract class b {
             httpURLConnection.setRequestProperty((String) entry.getKey(), (String) entry.getValue());
         }
         if (httpURLConnection instanceof HttpsURLConnection) {
-            ((HttpsURLConnection) httpURLConnection).setSSLSocketFactory(f49775a);
+            ((HttpsURLConnection) httpURLConnection).setSSLSocketFactory(f49776a);
         }
         httpURLConnection.setDoOutput(true);
         httpURLConnection.setRequestMethod("POST");
@@ -77,8 +77,8 @@ public abstract class b {
             if (sb2.length() > 0) {
                 sb2.append("&");
             }
-            String str = aVar.f49773a;
-            String str2 = aVar.f49774b;
+            String str = aVar.f49774a;
+            String str2 = aVar.f49775b;
             if (str == null) {
                 encode = null;
             } else {

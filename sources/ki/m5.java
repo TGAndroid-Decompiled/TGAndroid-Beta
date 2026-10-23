@@ -82,7 +82,7 @@ public final class m5 extends g61 {
     @Override
     public final View createView(Context context, jm0 jm0Var, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var) {
         o5 o5Var = new o5(context, d6Var);
-        o5Var.setBackground(new a2(h6.w0(h6.f20993d6, d6Var)));
+        o5Var.setBackground(new a2(h6.w0(h6.f20994d6, d6Var)));
         return o5Var;
     }
 

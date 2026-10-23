@@ -26,7 +26,7 @@ public final class g2 extends rx0 {
             while (true) {
                 if (i10 < nx0VarArr.length) {
                     nx0 nx0Var = nx0VarArr[i10];
-                    if (nx0Var != null && nx0Var.f28897b) {
+                    if (nx0Var != null && nx0Var.f28898b) {
                         break;
                     }
                     i10++;

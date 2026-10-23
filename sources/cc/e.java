@@ -25,8 +25,8 @@ public final class e implements wf {
         obj.f16336c = gb.TYPE_THIN;
         u2.c cVar = new u2.c(19, false);
         cVar.d = ((f) this.f5092b).e.a();
-        cVar.f47272b = (hb) this.f5093c;
-        cVar.f47273c = Long.valueOf((SystemClock.elapsedRealtime() - this.f5091a) & Long.MAX_VALUE);
+        cVar.f47273b = (hb) this.f5093c;
+        cVar.f47274c = Long.valueOf((SystemClock.elapsedRealtime() - this.f5091a) & Long.MAX_VALUE);
         obj.e = new ge(cVar);
         return new a5.a((s3) obj, 0);
     }

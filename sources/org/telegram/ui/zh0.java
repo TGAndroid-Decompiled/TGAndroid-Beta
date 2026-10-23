@@ -2,30 +2,30 @@ package org.telegram.ui;
 
 import android.content.Context;
 public final class zh0 extends org.telegram.ui.Components.vg {
-    public final org.telegram.ui.Components.vg f43763l0;
+    public final org.telegram.ui.Components.vg f43764l0;
     public final boolean m0;
-    public final mi0 f43764n0;
+    public final mi0 f43765n0;
 
     public zh0(mi0 mi0Var, Context context, int i10, org.telegram.ui.ActionBar.d6 d6Var, org.telegram.ui.Components.vg vgVar, boolean z10) {
         super(i10, context, d6Var, false);
-        this.f43764n0 = mi0Var;
-        this.f43763l0 = vgVar;
+        this.f43765n0 = mi0Var;
+        this.f43764l0 = vgVar;
         this.m0 = z10;
     }
 
     @Override
     public final boolean d() {
-        return this.f43763l0.d();
+        return this.f43764l0.d();
     }
 
     @Override
     public final boolean e() {
-        return this.f43763l0.e();
+        return this.f43764l0.e();
     }
 
     @Override
     public final boolean f() {
-        if (this.m0 && this.f43764n0.f39277p0 && this.f31250r <= 0) {
+        if (this.m0 && this.f43765n0.f39278p0 && this.f31251r <= 0) {
             return false;
         }
         return true;
@@ -33,11 +33,11 @@ public final class zh0 extends org.telegram.ui.Components.vg {
 
     @Override
     public final int getFillColor() {
-        return this.f43763l0.getFillColor();
+        return this.f43764l0.getFillColor();
     }
 
     @Override
     public final boolean j() {
-        return this.f43763l0.j();
+        return this.f43764l0.j();
     }
 }

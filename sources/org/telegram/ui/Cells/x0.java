@@ -3,16 +3,16 @@ package org.telegram.ui.Cells;
 import android.content.Context;
 import org.telegram.ui.Components.RadioButton;
 public final class x0 extends RadioButton {
-    public final y0 f23791x;
+    public final y0 f23792x;
 
     public x0(y0 y0Var, Context context) {
         super(context);
-        this.f23791x = y0Var;
+        this.f23792x = y0Var;
     }
 
     @Override
     public final void invalidate() {
         super.invalidate();
-        this.f23791x.invalidate();
+        this.f23792x.invalidate();
     }
 }

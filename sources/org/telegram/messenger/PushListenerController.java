@@ -96,7 +96,7 @@ public class PushListenerController {
             } else if (BuildVars.LOGS_ENABLED) {
                 FileLog.d("FCM Registration not found.");
             }
-            Utilities.globalQueue.postRunnable(new gh(this, 3));
+            Utilities.globalQueue.postRunnable(new fh(this, 3));
         }
     }
 
@@ -735,7 +735,7 @@ public class PushListenerController {
         if (BuildVars.LOGS_ENABLED) {
             FileLog.d(str + " POST INIT APP");
         }
-        Utilities.stageQueue.postRunnable(new rh(0, j10, str, str2));
+        Utilities.stageQueue.postRunnable(new qh(0, j10, str, str2));
     }
 
     public static void lambda$sendRegistrationToServer$0(int i10, int i11, String str) {
@@ -784,7 +784,7 @@ public class PushListenerController {
                         ConnectionsManager.getInstance(i11).sendRequest(tL_help_saveAppLog, null);
                         z10 = false;
                     }
-                    AndroidUtilities.runOnUIThread(new y6(i11, i10, str));
+                    AndroidUtilities.runOnUIThread(new x6(i11, i10, str));
                 }
             }
         }
@@ -812,7 +812,7 @@ public class PushListenerController {
             FileLog.d(str3.concat(" PRE START PROCESSING"));
         }
         long elapsedRealtime = SystemClock.elapsedRealtime();
-        AndroidUtilities.runOnUIThread(new rh(1, j10, str3, str));
+        AndroidUtilities.runOnUIThread(new qh(1, j10, str3, str));
         try {
             countDownLatch.await();
         } catch (Throwable unused) {
@@ -825,6 +825,6 @@ public class PushListenerController {
     }
 
     public static void sendRegistrationToServer(int i10, String str) {
-        Utilities.stageQueue.postRunnable(new w6(str, i10, 8));
+        Utilities.stageQueue.postRunnable(new v6(str, i10, 8));
     }
 }

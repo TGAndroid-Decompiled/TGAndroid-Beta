@@ -257,14 +257,14 @@ public final class h1 extends iu {
                 if (text instanceof Spanned) {
                     Spanned spanned = (Spanned) text;
                     for (o11 o11Var : (o11[]) spanned.getSpans(0, spanned.length(), o11.class)) {
-                        int i12 = o11Var.f28923b.f28653a;
+                        int i12 = o11Var.f28924b.f28654a;
                         if ((65536 & i12) != 0) {
                             int spanStart = spanned.getSpanStart(o11Var);
                             int spanEnd = spanned.getSpanEnd(o11Var);
                             if (spanStart >= 0 && spanEnd > spanStart) {
                                 if (r90Var == null) {
                                     r90Var = new r90(0);
-                                    r90Var.f29901n = false;
+                                    r90Var.f29902n = false;
                                 }
                                 r90Var.d(layout, spanStart, 0.0f);
                                 if ((32768 & i12) != 0) {
@@ -284,13 +284,13 @@ public final class h1 extends iu {
                                 } else {
                                     i11 = 0;
                                 }
-                                r90Var.f29902o = i11;
+                                r90Var.f29903o = i11;
                                 layout.getSelectionPath(spanStart, spanEnd, r90Var);
                             }
                         }
                     }
                     if (r90Var != null) {
-                        r90Var.f29901n = true;
+                        r90Var.f29902n = true;
                     }
                     this.F = r90Var;
                 }
@@ -649,7 +649,7 @@ public final class h1 extends iu {
         int i10 = this.M;
         org.telegram.ui.ActionBar.d6 d6Var = this.e;
         setTextColor(h6.w0(i10, d6Var));
-        setLinkTextColor(h6.w0(h6.f21052gc, d6Var));
+        setLinkTextColor(h6.w0(h6.f21053gc, d6Var));
         if (this.f15303s) {
             w02 = h6.m1(0.5f, h6.w0(h6.Oh, d6Var));
         } else {
@@ -657,7 +657,7 @@ public final class h1 extends iu {
         }
         setHintTextColor(w02);
         setCursorColor(h6.w0(h6.G6, d6Var));
-        setHandlesColor(h6.w0(h6.f21137l6, d6Var));
+        setHandlesColor(h6.w0(h6.f21138l6, d6Var));
         m();
     }
 

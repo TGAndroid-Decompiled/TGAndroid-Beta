@@ -27,7 +27,7 @@ public final class w extends lw0 implements r0.m {
         x xVar = this.f2337x0;
         if (viewGroup == xVar.e && xVar.F.isAttachedToWindow()) {
             kVar = ((org.telegram.ui.ActionBar.n2) xVar).actionBar;
-            boolean z11 = kVar.f21500n0;
+            boolean z11 = kVar.f21501n0;
             int top = (((View) xVar.F.getParent()).getTop() - AndroidUtilities.statusBarHeight) - org.telegram.ui.ActionBar.k.getCurrentActionBarHeight();
             int bottom = ((View) xVar.F.getParent()).getBottom();
             boolean z12 = false;
@@ -46,7 +46,7 @@ public final class w extends lw0 implements r0.m {
                     if (L0 != -1) {
                         s4.b1 K = currentListView.K(L0);
                         if (K != null) {
-                            i14 = K.f45920a.getTop();
+                            i14 = K.f45921a.getTop();
                         }
                         int paddingTop = currentListView.getPaddingTop();
                         if (i14 != paddingTop || L0 != 0) {

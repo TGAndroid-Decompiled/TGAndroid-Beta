@@ -4,11 +4,11 @@ import android.content.Context;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLRPC;
 public final class nv extends fr0 {
-    public final aw f28889c1;
+    public final aw f28890c1;
 
     public nv(aw awVar, Context context, String str, String str2, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context, null, str, false, str2, false, d6Var);
-        this.f28889c1 = awVar;
+        this.f28890c1 = awVar;
     }
 
     @Override

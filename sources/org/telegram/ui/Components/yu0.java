@@ -6,10 +6,10 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
 public final class yu0 extends org.telegram.ui.zt0 {
-    public final zu0 f32737a;
+    public final zu0 f32738a;
 
     public yu0(zu0 zu0Var) {
-        this.f32737a = zu0Var;
+        this.f32738a = zu0Var;
     }
 
     @Override
@@ -17,12 +17,12 @@ public final class yu0 extends org.telegram.ui.zt0 {
         ImageReceiver imageReceiver;
         org.telegram.ui.Cells.u1 u1Var;
         MessageObject messageObject2;
-        bv0 bv0Var = this.f32737a.f33049c;
-        mu0 mu0Var = bv0Var.f25047r;
+        bv0 bv0Var = this.f32738a.f33050c;
+        mu0 mu0Var = bv0Var.f25048r;
         if (mu0Var != null) {
             int childCount = mu0Var.getChildCount();
             for (int i11 = 0; i11 < childCount; i11++) {
-                View childAt = bv0Var.f25047r.getChildAt(i11);
+                View childAt = bv0Var.f25048r.getChildAt(i11);
                 if ((childAt instanceof org.telegram.ui.Cells.u1) && messageObject != null && (messageObject2 = (u1Var = (org.telegram.ui.Cells.u1) childAt).getMessageObject()) != null && messageObject2.getId() == messageObject.getId()) {
                     ArrayList<Integer> arrayList = messageObject2.pollMediaMapping;
                     if (arrayList != null && i10 >= 0 && i10 < arrayList.size()) {
@@ -37,17 +37,17 @@ public final class yu0 extends org.telegram.ui.zt0 {
                     int[] iArr = new int[2];
                     childAt.getLocationInWindow(iArr);
                     org.telegram.ui.ju0 ju0Var = new org.telegram.ui.ju0();
-                    ju0Var.f38355b = iArr[0];
-                    ju0Var.f38356c = childAt.getPaddingTop() + iArr[1];
-                    ju0Var.d = bv0Var.f25047r;
-                    ju0Var.f38363m = null;
-                    ju0Var.f38354a = imageReceiver;
+                    ju0Var.f38356b = iArr[0];
+                    ju0Var.f38357c = childAt.getPaddingTop() + iArr[1];
+                    ju0Var.d = bv0Var.f25048r;
+                    ju0Var.f38364m = null;
+                    ju0Var.f38355a = imageReceiver;
                     if (z10) {
                         ju0Var.e = imageReceiver.getBitmapSafe();
                     }
                     ju0Var.h = imageReceiver.getRoundRadius(true);
-                    ju0Var.f38360j = 0;
-                    ju0Var.f38359i = 0;
+                    ju0Var.f38361j = 0;
+                    ju0Var.f38360i = 0;
                     return ju0Var;
                 }
             }

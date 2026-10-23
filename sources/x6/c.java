@@ -8,12 +8,12 @@ import android.view.ViewGroup;
 import h8.j;
 import i8.g;
 public final class c implements e {
-    public final Bundle f49315a;
-    public final j f49316b;
+    public final Bundle f49316a;
+    public final j f49317b;
 
     public c(j jVar, Bundle bundle) {
-        this.f49316b = jVar;
-        this.f49315a = bundle;
+        this.f49317b = jVar;
+        this.f49316a = bundle;
     }
 
     @Override
@@ -23,8 +23,8 @@ public final class c implements e {
 
     @Override
     public final void b() {
-        androidx.biometric.e eVar = this.f49316b.f11692a;
-        Bundle bundle = this.f49315a;
+        androidx.biometric.e eVar = this.f49317b.f11692a;
+        Bundle bundle = this.f49316a;
         ViewGroup viewGroup = (ViewGroup) eVar.f2815b;
         g gVar = (g) eVar.f2816c;
         try {

@@ -39,12 +39,12 @@ public abstract class w0 extends iu {
         setPadding(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(18.0f), AndroidUtilities.dp(12.0f));
         setTextColor(h6.w0(h6.Ud, d6Var));
         setLinkTextColor(h6.w0(h6.hc, d6Var));
-        setHighlightColor(h6.w0(h6.f21317uf, d6Var));
+        setHighlightColor(h6.w0(h6.f21318uf, d6Var));
         int i12 = h6.Vd;
         setHintColor(h6.w0(i12, d6Var));
         setHintTextColor(h6.w0(i12, d6Var));
         setCursorColor(h6.w0(h6.Wd, d6Var));
-        setHandlesColor(h6.w0(h6.f21335vf, d6Var));
+        setHandlesColor(h6.w0(h6.f21336vf, d6Var));
         if (i11 >= 28) {
             setFallbackLineSpacing(false);
         }

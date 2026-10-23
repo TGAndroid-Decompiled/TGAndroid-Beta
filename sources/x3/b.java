@@ -4,18 +4,18 @@ import c3.c0;
 import e2.m0;
 import v7.u6;
 public final class b implements g {
-    public final f f49191a;
-    public final long f49192b;
-    public final long f49193c;
+    public final f f49192a;
+    public final long f49193b;
+    public final long f49194c;
     public final i d;
     public int e;
-    public long f49194f;
+    public long f49195f;
     public long h;
-    public long f49195n;
-    public long f49196r;
-    public long f49197s;
+    public long f49196n;
+    public long f49197r;
+    public long f49198s;
     public long v;
-    public long f49198w;
+    public long f49199w;
 
     public b(i iVar, long j10, long j11, long j12, long j13, boolean z10) {
         boolean z11;
@@ -26,25 +26,25 @@ public final class b implements g {
         }
         u6.g(z11);
         this.d = iVar;
-        this.f49192b = j10;
-        this.f49193c = j11;
+        this.f49193b = j10;
+        this.f49194c = j11;
         if (j12 != j11 - j10 && !z10) {
             this.e = 0;
         } else {
-            this.f49194f = j13;
+            this.f49195f = j13;
             this.e = 4;
         }
-        this.f49191a = new f();
+        this.f49192a = new f();
     }
 
     @Override
     public final void X(long j10) {
-        this.f49195n = m0.j(j10, 0L, this.f49194f - 1);
+        this.f49196n = m0.j(j10, 0L, this.f49195f - 1);
         this.e = 2;
-        this.f49196r = this.f49192b;
-        this.f49197s = this.f49193c;
+        this.f49197r = this.f49193b;
+        this.f49198s = this.f49194c;
         this.v = 0L;
-        this.f49198w = this.f49194f;
+        this.f49199w = this.f49195f;
     }
 
     @Override
@@ -54,7 +54,7 @@ public final class b implements g {
 
     @Override
     public final c0 x() {
-        if (this.f49194f != 0) {
+        if (this.f49195f != 0) {
             return new a(this);
         }
         return null;

@@ -22,14 +22,14 @@ public final class l1 extends li.n {
                 ((o1) this.f9359r).Z2 = true;
                 return;
             case 1:
-                ((tz) this.f9359r).f30735f0 = true;
+                ((tz) this.f9359r).f30736f0 = true;
                 return;
             case 2:
             case 3:
             default:
                 return;
             case 4:
-                ((x51) this.f9359r).f43097w1 = true;
+                ((x51) this.f9359r).f43098w1 = true;
                 return;
         }
     }
@@ -41,19 +41,19 @@ public final class l1 extends li.n {
                 ((o1) this.f9359r).Z2 = false;
                 return;
             case 1:
-                ((tz) this.f9359r).f30735f0 = false;
+                ((tz) this.f9359r).f30736f0 = false;
                 return;
             case 2:
-                ((rx) this.f9359r).Q.f30735f0 = false;
+                ((rx) this.f9359r).Q.f30736f0 = false;
                 return;
             case 3:
-                ((l41) this.f9359r).R.f43097w1 = false;
+                ((l41) this.f9359r).R.f43098w1 = false;
                 return;
             case 4:
-                ((x51) this.f9359r).f43097w1 = false;
+                ((x51) this.f9359r).f43098w1 = false;
                 return;
             default:
-                ((l41) this.f9359r).R.f43097w1 = false;
+                ((l41) this.f9359r).R.f43098w1 = false;
                 return;
         }
     }

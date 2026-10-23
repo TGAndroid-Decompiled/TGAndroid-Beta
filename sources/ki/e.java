@@ -25,7 +25,7 @@ public final class e implements ml, cj {
             TL_iv.pageBlockMap pageblockmap = new TL_iv.pageBlockMap();
             pageblockmap.geo = messageMedia.geo;
             pageblockmap.zoom = 15;
-            pageblockmap.f20499w = 600;
+            pageblockmap.f20500w = 600;
             pageblockmap.h = 400;
             qVar.f15448r.S1(pageblockmap);
             qVar.Y(true);

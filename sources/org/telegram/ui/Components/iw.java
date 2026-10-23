@@ -8,38 +8,38 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.qa1;
 public final class iw extends ln0 {
     public long h;
-    public boolean f27345n;
-    public float f27346r;
-    public final kw f27347s;
+    public boolean f27346n;
+    public float f27347r;
+    public final kw f27348s;
 
     public iw(kw kwVar, Context context) {
         super(context);
         float f7;
-        this.f27347s = kwVar;
-        boolean z10 = kwVar.f27974n;
-        this.f27345n = z10;
+        this.f27348s = kwVar;
+        boolean z10 = kwVar.f27975n;
+        this.f27346n = z10;
         if (z10) {
             f7 = 1.0f;
         } else {
             f7 = 0.0f;
         }
-        this.f27346r = f7;
+        this.f27347r = f7;
         setSmoothScrollingEnabled(true);
         int i10 = 0;
         setHorizontalScrollBarEnabled(false);
         setVerticalScrollBarEnabled(false);
         setNestedScrollingEnabled(true);
         qa1 qa1Var = new qa1(this, context, 8);
-        this.f28234b = qa1Var;
+        this.f28235b = qa1Var;
         qa1Var.setOrientation(0);
-        addView(this.f28234b, new FrameLayout.LayoutParams(-2, -1));
+        addView(this.f28235b, new FrameLayout.LayoutParams(-2, -1));
         while (true) {
-            int[] iArr = kw.f27968e0;
+            int[] iArr = kw.f27969e0;
             if (i10 < 8) {
                 int i11 = iArr[i10];
-                hw hwVar = new hw(this, context, kw.f27969f0[i10]);
+                hw hwVar = new hw(this, context, kw.f27970f0[i10]);
                 hwVar.setContentDescription(kw.f(i10));
-                this.f28234b.addView(hwVar);
+                this.f28235b.addView(hwVar);
                 i10++;
             } else {
                 return;
@@ -48,7 +48,7 @@ public final class iw extends ln0 {
     }
 
     public final void d(MotionEvent motionEvent) {
-        if (this.f27345n && !this.d) {
+        if (this.f27346n && !this.d) {
             int action = motionEvent.getAction();
             if (action != 0) {
                 if (action != 1) {
@@ -56,21 +56,21 @@ public final class iw extends ln0 {
                         return;
                     }
                 } else {
-                    this.f28233a = false;
+                    this.f28234a = false;
                     return;
                 }
             }
-            this.f28233a = true;
+            this.f28234a = true;
             if (!this.d) {
                 this.e = -1;
             }
-            this.f27347s.requestDisallowInterceptTouchEvent(true);
+            this.f27348s.requestDisallowInterceptTouchEvent(true);
         }
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.lerp(AndroidUtilities.dp(30.0f), AndroidUtilities.dp(Math.min(5.7f, this.f28234b.getChildCount()) * 32.0f), this.f27346r), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(30.0f), 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.lerp(AndroidUtilities.dp(30.0f), AndroidUtilities.dp(Math.min(5.7f, this.f28235b.getChildCount()) * 32.0f), this.f27347r), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(30.0f), 1073741824));
     }
 
     @Override

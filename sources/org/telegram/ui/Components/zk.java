@@ -7,26 +7,26 @@ import android.widget.TextView;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class zk implements TextWatcher {
-    public boolean f32945a;
-    public final TextView f32946b;
+    public boolean f32946a;
+    public final TextView f32947b;
 
     public zk(ig.a1 a1Var, TextView textView) {
-        this.f32946b = textView;
-        this.f32945a = TextUtils.isEmpty(a1Var.getText());
+        this.f32947b = textView;
+        this.f32946a = TextUtils.isEmpty(a1Var.getText());
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
         int i10;
         boolean isEmpty = TextUtils.isEmpty(editable);
-        if (isEmpty != this.f32945a) {
-            this.f32945a = isEmpty;
+        if (isEmpty != this.f32946a) {
+            this.f32946a = isEmpty;
             if (isEmpty) {
                 i10 = R.string.Remove;
             } else {
                 i10 = R.string.Add;
             }
-            this.f32946b.setText(LocaleController.getString(i10));
+            this.f32947b.setText(LocaleController.getString(i10));
         }
     }
 

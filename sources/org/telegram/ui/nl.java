@@ -5,24 +5,24 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.tgnet.TLRPC;
 public final class nl extends zt0 {
-    public final MessageObject f39648a;
-    public final MediaController.PhotoEntry f39649b;
-    public final qn f39650c;
+    public final MessageObject f39649a;
+    public final MediaController.PhotoEntry f39650b;
+    public final qn f39651c;
 
     public nl(qn qnVar, MessageObject messageObject, MediaController.PhotoEntry photoEntry) {
-        this.f39650c = qnVar;
-        this.f39648a = messageObject;
-        this.f39649b = photoEntry;
+        this.f39651c = qnVar;
+        this.f39649a = messageObject;
+        this.f39650b = photoEntry;
     }
 
     @Override
     public final ju0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
-        return qn.E1(this.f39650c, this.f39648a, null, i10, z10, true);
+        return qn.E1(this.f39651c, this.f39649a, null, i10, z10, true);
     }
 
     @Override
     public final boolean P() {
-        qn qnVar = this.f39650c;
+        qn qnVar = this.f39651c;
         if (qnVar.Y != null && qnVar.C9()) {
             qnVar.Y.N();
             return true;
@@ -32,8 +32,8 @@ public final class nl extends zt0 {
 
     @Override
     public final MessageObject V() {
-        MessageObject messageObject = this.f39650c.p5;
-        MessageObject messageObject2 = this.f39648a;
+        MessageObject messageObject = this.f39651c.p5;
+        MessageObject messageObject2 = this.f39649a;
         if (messageObject == messageObject2) {
             return messageObject2;
         }
@@ -42,7 +42,7 @@ public final class nl extends zt0 {
 
     @Override
     public final void e(CharSequence charSequence) {
-        this.f39650c.Y.c1(charSequence, false);
+        this.f39651c.Y.c1(charSequence, false);
     }
 
     @Override
@@ -52,11 +52,11 @@ public final class nl extends zt0 {
 
     @Override
     public final void o(int i10, VideoEditedInfo videoEditedInfo, boolean z10, int i11, int i12, boolean z11) {
-        qn qnVar = this.f39650c;
-        if (qnVar.p5 != this.f39648a) {
+        qn qnVar = this.f39651c;
+        if (qnVar.p5 != this.f39649a) {
             return;
         }
-        MediaController.PhotoEntry photoEntry = this.f39649b;
+        MediaController.PhotoEntry photoEntry = this.f39650b;
         if (!photoEntry.isCropped && !photoEntry.isPainted && !photoEntry.isFiltered && videoEditedInfo == null) {
             qnVar.Y.b0();
         } else {

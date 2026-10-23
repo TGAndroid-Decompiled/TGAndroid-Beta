@@ -5,146 +5,146 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.video.VideoAds;
 public final class qq0 implements Runnable {
-    public final int f40957a;
-    public final PhotoViewer f40958b;
+    public final int f40958a;
+    public final PhotoViewer f40959b;
 
     public qq0(PhotoViewer photoViewer, int i10) {
-        this.f40957a = i10;
-        this.f40958b = photoViewer;
+        this.f40958a = i10;
+        this.f40959b = photoViewer;
     }
 
     @Override
     public final void run() {
         boolean z10;
         boolean z11 = true;
-        switch (this.f40957a) {
+        switch (this.f40958a) {
             case 0:
-                PhotoViewer photoViewer = this.f40958b;
+                PhotoViewer photoViewer = this.f40959b;
                 Drawable[] drawableArr = PhotoViewer.U8;
                 photoViewer.y0(false);
-                org.telegram.ui.Components.ah0.f24601p0.k(true, true);
+                org.telegram.ui.Components.ah0.f24602p0.k(true, true);
                 return;
             case 1:
-                PhotoViewer photoViewer2 = this.f40958b;
+                PhotoViewer photoViewer2 = this.f40959b;
                 Drawable[] drawableArr2 = PhotoViewer.U8;
                 photoViewer2.g3(0);
                 return;
             case 2:
-                PhotoViewer photoViewer3 = this.f40958b;
+                PhotoViewer photoViewer3 = this.f40959b;
                 Drawable[] drawableArr3 = PhotoViewer.U8;
                 photoViewer3.y2(true, 0, 0, false, true, false);
                 return;
             case 3:
-                PhotoViewer photoViewer4 = this.f40958b;
+                PhotoViewer photoViewer4 = this.f40959b;
                 Drawable[] drawableArr4 = PhotoViewer.U8;
                 photoViewer4.y2(true, 0, 0, false, false, false);
                 return;
             case 4:
-                PhotoViewer photoViewer5 = this.f40958b;
+                PhotoViewer photoViewer5 = this.f40959b;
                 Drawable[] drawableArr5 = PhotoViewer.U8;
                 photoViewer5.y2(false, 0, 0, true, false, false);
                 return;
             case 5:
-                PhotoViewer photoViewer6 = this.f40958b;
+                PhotoViewer photoViewer6 = this.f40959b;
                 Drawable[] drawableArr6 = PhotoViewer.U8;
                 photoViewer6.b3();
                 return;
             case 6:
-                PhotoViewer photoViewer7 = this.f40958b;
+                PhotoViewer photoViewer7 = this.f40959b;
                 Drawable[] drawableArr7 = PhotoViewer.U8;
                 photoViewer7.y2(false, 0, 0, false, false, false);
                 return;
             case 7:
-                PhotoViewer photoViewer8 = this.f40958b;
+                PhotoViewer photoViewer8 = this.f40959b;
                 Drawable[] drawableArr8 = PhotoViewer.U8;
                 photoViewer8.k2();
                 return;
             case 8:
-                org.telegram.ui.Components.of0 of0Var = this.f40958b.C1;
-                mg.f fVar = of0Var.f29041c;
+                org.telegram.ui.Components.of0 of0Var = this.f40959b.C1;
+                mg.f fVar = of0Var.f29042c;
                 fVar.b(0.0f);
                 fVar.setMirrored(false);
                 fVar.setRotated(false);
-                of0Var.f29040b.l(true);
+                of0Var.f29041b.l(true);
                 return;
             case 9:
-                PhotoViewer photoViewer9 = this.f40958b;
+                PhotoViewer photoViewer9 = this.f40959b;
                 Drawable[] drawableArr9 = PhotoViewer.U8;
                 photoViewer9.n0();
                 return;
             case 10:
-                PhotoViewer photoViewer10 = this.f40958b;
-                photoViewer10.f33391q5.f25900b.setLoading(false);
+                PhotoViewer photoViewer10 = this.f40959b;
+                photoViewer10.f33392q5.f25901b.setLoading(false);
                 photoViewer10.g3(0);
                 return;
             case 11:
-                PhotoViewer photoViewer11 = this.f40958b;
-                photoViewer11.f33391q5.f25900b.setLoading(false);
+                PhotoViewer photoViewer11 = this.f40959b;
+                photoViewer11.f33392q5.f25901b.setLoading(false);
                 photoViewer11.g3(0);
                 return;
             case 12:
-                PhotoViewer photoViewer12 = this.f40958b;
+                PhotoViewer photoViewer12 = this.f40959b;
                 Drawable[] drawableArr10 = PhotoViewer.U8;
                 photoViewer12.g3(0);
                 return;
             case 13:
-                this.f40958b.p5.V = false;
+                this.f40959b.p5.V = false;
                 return;
             case 14:
-                this.f40958b.f33465y4.setBackground(null);
+                this.f40959b.f33466y4.setBackground(null);
                 return;
             case 15:
-                PhotoViewer photoViewer13 = this.f40958b;
-                photoViewer13.f33324i7 = null;
+                PhotoViewer photoViewer13 = this.f40959b;
+                photoViewer13.f33325i7 = null;
                 photoViewer13.n0();
                 photoViewer13.g3(0);
                 return;
             case 16:
-                PhotoViewer photoViewer14 = this.f40958b;
-                photoViewer14.f33391q5.f25900b.setLoading(false);
+                PhotoViewer photoViewer14 = this.f40959b;
+                photoViewer14.f33392q5.f25901b.setLoading(false);
                 photoViewer14.g3(0);
                 return;
             case 17:
-                PhotoViewer photoViewer15 = this.f40958b;
-                photoViewer15.f33391q5.f25900b.setLoading(false);
+                PhotoViewer photoViewer15 = this.f40959b;
+                photoViewer15.f33392q5.f25901b.setLoading(false);
                 photoViewer15.g3(0);
                 return;
             case 18:
-                PhotoViewer photoViewer16 = this.f40958b;
+                PhotoViewer photoViewer16 = this.f40959b;
                 Drawable[] drawableArr11 = PhotoViewer.U8;
                 photoViewer16.u3();
                 return;
             case 19:
-                PhotoViewer photoViewer17 = this.f40958b;
+                PhotoViewer photoViewer17 = this.f40959b;
                 Drawable[] drawableArr12 = PhotoViewer.U8;
                 photoViewer17.l0();
                 return;
             case 20:
-                PhotoViewer photoViewer18 = this.f40958b;
+                PhotoViewer photoViewer18 = this.f40959b;
                 Drawable[] drawableArr13 = PhotoViewer.U8;
                 photoViewer18.p3(true);
                 return;
             case 21:
-                PhotoViewer photoViewer19 = this.f40958b;
-                if (photoViewer19.f33432v0.isEnabled() && AndroidUtilities.checkInlinePermissions(photoViewer19.f33461y) && !org.telegram.ui.Components.ah0.f24601p0.P && photoViewer19.P3) {
-                    if (photoViewer19.f33418t4) {
-                        ot0 ot0Var = photoViewer19.f33291f0;
+                PhotoViewer photoViewer19 = this.f40959b;
+                if (photoViewer19.f33433v0.isEnabled() && AndroidUtilities.checkInlinePermissions(photoViewer19.f33462y) && !org.telegram.ui.Components.ah0.f24602p0.P && photoViewer19.P3) {
+                    if (photoViewer19.f33419t4) {
+                        ot0 ot0Var = photoViewer19.f33292f0;
                         if (ot0Var != null) {
-                            if ((!ot0Var.f28162x || !"inapp".equals(MessagesController.getInstance(ot0Var.f28154a).youtubePipType)) && photoViewer19.f33291f0.e()) {
+                            if ((!ot0Var.f28163x || !"inapp".equals(MessagesController.getInstance(ot0Var.f28155a).youtubePipType)) && photoViewer19.f33292f0.e()) {
                                 photoViewer19.K3 = false;
-                                if (PhotoViewer.f33243b9 != null) {
-                                    PhotoViewer.f33243b9.R0();
+                                if (PhotoViewer.f33244b9 != null) {
+                                    PhotoViewer.f33244b9.R0();
                                 }
                                 photoViewer19.J3 = true;
-                                PhotoViewer.f33243b9 = PhotoViewer.f33242a9;
-                                PhotoViewer.f33242a9 = null;
+                                PhotoViewer.f33244b9 = PhotoViewer.f33243a9;
+                                PhotoViewer.f33243a9 = null;
                                 photoViewer19.e = false;
-                                ju0 ju0Var = photoViewer19.f33278d5;
-                                if (ju0Var != null && !ju0Var.f38354a.getVisible()) {
-                                    photoViewer19.f33278d5.f38354a.setVisible(true, true);
+                                ju0 ju0Var = photoViewer19.f33279d5;
+                                if (ju0Var != null && !ju0Var.f38355a.getVisible()) {
+                                    photoViewer19.f33279d5.f38355a.setVisible(true, true);
                                 }
-                                photoViewer19.f33356m6 = 1.0f;
-                                photoViewer19.f33282e0.invalidate();
+                                photoViewer19.f33357m6 = 1.0f;
+                                photoViewer19.f33283e0.invalidate();
                                 photoViewer19.U0();
                                 return;
                             }
@@ -158,26 +158,26 @@ public final class qq0 implements Runnable {
                 }
                 return;
             case 22:
-                PhotoViewer photoViewer20 = this.f40958b;
-                if (photoViewer20.e && photoViewer20.f33364n4 == 0) {
+                PhotoViewer photoViewer20 = this.f40959b;
+                if (photoViewer20.e && photoViewer20.f33365n4 == 0) {
                     photoViewer20.x3(photoViewer20.J);
                     return;
                 }
                 return;
             case 23:
-                PhotoViewer photoViewer21 = this.f40958b;
+                PhotoViewer photoViewer21 = this.f40959b;
                 Drawable[] drawableArr14 = PhotoViewer.U8;
                 photoViewer21.H1();
                 return;
             case 24:
-                PhotoViewer photoViewer22 = this.f40958b;
+                PhotoViewer photoViewer22 = this.f40959b;
                 org.telegram.ui.Components.c81 c81Var = photoViewer22.F2;
-                if (c81Var != null && photoViewer22.f33250a6 <= 1.35f) {
+                if (c81Var != null && photoViewer22.f33251a6 <= 1.35f) {
                     long n10 = c81Var.n();
                     long p5 = photoViewer22.F2.p();
                     if (n10 != -9223372036854775807L && p5 >= 8000) {
                         float f7 = photoViewer22.E7;
-                        int l1 = photoViewer22.l1(photoViewer22.f33427u4);
+                        int l1 = photoViewer22.l1(photoViewer22.f33428u4);
                         if (p5 > 180000) {
                             int i10 = l1 / 3;
                             if (f7 < i10 * 2) {
@@ -187,7 +187,7 @@ public final class qq0 implements Runnable {
                                     return;
                                 }
                             }
-                            photoViewer22.f33248a4.startRewind(photoViewer22.F2, z11, photoViewer22.f33415t1);
+                            photoViewer22.f33249a4.startRewind(photoViewer22.F2, z11, photoViewer22.f33416t1);
                             return;
                         }
                         if (f7 > l1 / 3) {
@@ -195,14 +195,14 @@ public final class qq0 implements Runnable {
                         } else {
                             z10 = false;
                         }
-                        photoViewer22.f33268c4.startRewind(photoViewer22.F2, z10, photoViewer22.E7, photoViewer22.f33415t1, photoViewer22.A1);
+                        photoViewer22.f33269c4.startRewind(photoViewer22.F2, z10, photoViewer22.E7, photoViewer22.f33416t1, photoViewer22.A1);
                         return;
                     }
                     return;
                 }
                 return;
             case 25:
-                PhotoViewer photoViewer23 = this.f40958b;
+                PhotoViewer photoViewer23 = this.f40959b;
                 if (photoViewer23.U4.isPopupShown()) {
                     VideoAds videoAds = photoViewer23.U4;
                     org.telegram.ui.Components.c81 c81Var2 = photoViewer23.F2;
@@ -224,29 +224,29 @@ public final class qq0 implements Runnable {
                 }
                 return;
             case 26:
-                PhotoViewer photoViewer24 = this.f40958b;
+                PhotoViewer photoViewer24 = this.f40959b;
                 Drawable[] drawableArr15 = PhotoViewer.U8;
                 photoViewer24.H0(false, false);
                 org.telegram.ui.Components.ti tiVar = photoViewer24.a2;
                 if (tiVar != null) {
                     tiVar.dismiss(true);
                 }
-                org.telegram.ui.ActionBar.n2 n2Var = photoViewer24.f33354m4;
+                org.telegram.ui.ActionBar.n2 n2Var = photoViewer24.f33355m4;
                 if (n2Var != null) {
                     n2Var.presentFragment(new PremiumPreviewFragment(0, "caption_limit"));
                     return;
                 }
                 return;
             case 27:
-                this.f40958b.f33367n7 = null;
+                this.f40959b.f33368n7 = null;
                 return;
             case 28:
-                PhotoViewer photoViewer25 = this.f40958b;
+                PhotoViewer photoViewer25 = this.f40959b;
                 Drawable[] drawableArr16 = PhotoViewer.U8;
                 photoViewer25.B3();
                 return;
             default:
-                PhotoViewer photoViewer26 = this.f40958b;
+                PhotoViewer photoViewer26 = this.f40959b;
                 photoViewer26.D1.e(photoViewer26.J2, photoViewer26.K2, photoViewer26.L2, photoViewer26.P2, photoViewer26.R2, photoViewer26.O2, photoViewer26.t2(true), photoViewer26.t2(true), photoViewer26.M2, photoViewer26.N2, 0.0f, 0.0f, photoViewer26.Q2);
                 photoViewer26.g3(0);
                 return;

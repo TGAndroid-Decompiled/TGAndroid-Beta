@@ -62,7 +62,7 @@ import m4.v;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.lk;
+import org.telegram.messenger.kk;
 import org.telegram.ui.Components.bs;
 import org.telegram.ui.Components.jm0;
 import org.telegram.ui.Components.ry;
@@ -192,19 +192,19 @@ public class a implements i, t {
         d dVar3;
         switch (this.f280a) {
             case 23:
-                d9 d9Var = d9.f48010c;
+                d9 d9Var = d9.f48011c;
                 e eVar = (e) this.f282c;
                 ((d8) this.d).h = false;
                 d8 d8Var = (d8) this.d;
-                d8Var.f48004f = Boolean.FALSE;
-                eVar.f44763a = new e8(d8Var);
+                d8Var.f48005f = Boolean.FALSE;
+                eVar.f44764a = new e8(d8Var);
                 try {
                     d9.b();
                     k6 k6Var = new k6(eVar);
                     u2.c cVar = new u2.c(1);
                     d9Var.a(cVar);
-                    HashMap hashMap = new HashMap((HashMap) cVar.f47272b);
-                    HashMap hashMap2 = new HashMap((HashMap) cVar.f47273c);
+                    HashMap hashMap = new HashMap((HashMap) cVar.f47273b);
+                    HashMap hashMap2 = new HashMap((HashMap) cVar.f47274c);
                     v7.i iVar = (v7.i) cVar.d;
                     ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
                     try {
@@ -221,19 +221,19 @@ public class a implements i, t {
                     throw new UnsupportedOperationException("Failed to covert logging to UTF-8 byte array", e);
                 }
             case 24:
-                ia iaVar = ia.f49432c;
+                ia iaVar = ia.f49433c;
                 com.google.firebase.messaging.l lVar = (com.google.firebase.messaging.l) this.f282c;
                 ((d8) this.d).h = false;
                 d8 d8Var2 = (d8) this.d;
-                d8Var2.f48004f = Boolean.FALSE;
+                d8Var2.f48005f = Boolean.FALSE;
                 lVar.f7645a = new i9(d8Var2);
                 try {
                     ia.b();
                     p7 p7Var = new p7(lVar);
                     u2.c cVar2 = new u2.c(9);
                     iaVar.a(cVar2);
-                    HashMap hashMap3 = new HashMap((HashMap) cVar2.f47272b);
-                    HashMap hashMap4 = new HashMap((HashMap) cVar2.f47273c);
+                    HashMap hashMap3 = new HashMap((HashMap) cVar2.f47273b);
+                    HashMap hashMap4 = new HashMap((HashMap) cVar2.f47274c);
                     d0 d0Var = (d0) cVar2.d;
                     ByteArrayOutputStream byteArrayOutputStream2 = new ByteArrayOutputStream();
                     try {
@@ -250,19 +250,19 @@ public class a implements i, t {
                     throw new UnsupportedOperationException("Failed to covert logging to UTF-8 byte array", e7);
                 }
             default:
-                ag agVar = ag.f50736c;
+                ag agVar = ag.f50737c;
                 s3 s3Var = (s3) this.f282c;
                 ((d8) this.d).h = false;
                 d8 d8Var3 = (d8) this.d;
-                d8Var3.f48004f = Boolean.FALSE;
+                d8Var3.f48005f = Boolean.FALSE;
                 s3Var.f16334a = new xe(d8Var3);
                 try {
                     ag.b();
                     jb jbVar = new jb(s3Var);
                     u2.c cVar3 = new u2.c(15);
                     agVar.a(cVar3);
-                    HashMap hashMap5 = new HashMap((HashMap) cVar3.f47272b);
-                    HashMap hashMap6 = new HashMap((HashMap) cVar3.f47273c);
+                    HashMap hashMap5 = new HashMap((HashMap) cVar3.f47273b);
+                    HashMap hashMap6 = new HashMap((HashMap) cVar3.f47274c);
                     x xVar = (x) cVar3.d;
                     ByteArrayOutputStream byteArrayOutputStream3 = new ByteArrayOutputStream();
                     try {
@@ -315,7 +315,7 @@ public class a implements i, t {
             z10 = false;
         }
         this.f281b = i12;
-        for (int i13 = 0; i13 < zf.e.f51544y; i13++) {
+        for (int i13 = 0; i13 < zf.e.f51545y; i13++) {
             if (z10 || ((Bitmap[]) this.d)[i13] == null) {
                 Bitmap bitmap = ((Bitmap[]) this.d)[i13];
                 if (bitmap != null) {
@@ -427,7 +427,7 @@ public class a implements i, t {
         Iterator it = ((CopyOnWriteArrayList) this.d).iterator();
         while (it.hasNext()) {
             k0 k0Var = (k0) it.next();
-            m0.W(k0Var.f47346a, new j0(0, jVar, k0Var.f47347b));
+            m0.W(k0Var.f47347a, new j0(0, jVar, k0Var.f47348b));
         }
     }
 
@@ -515,7 +515,7 @@ public class a implements i, t {
     }
 
     public void s(u2.u uVar, int i10, int i11, b2.w wVar, int i12, Object obj, long j10, long j11, IOException iOException, boolean z10) {
-        l(new lk(this, uVar, new c0(i10, i11, wVar, i12, obj, m0.h0(j10), m0.h0(j11)), iOException, z10));
+        l(new kk(this, uVar, new c0(i10, i11, wVar, i12, obj, m0.h0(j10), m0.h0(j11)), iOException, z10));
     }
 
     public void t(u2.u uVar, int i10, IOException iOException, boolean z10) {
@@ -588,7 +588,7 @@ public class a implements i, t {
     }
 
     public void z(int i10) {
-        A(i10, 200L, bs.f25024f);
+        A(i10, 200L, bs.f25025f);
     }
 
     public a(int i10, int i11) {
@@ -622,7 +622,7 @@ public class a implements i, t {
                 this.f281b = 0;
                 return;
             case 27:
-                int i11 = zf.e.f51544y;
+                int i11 = zf.e.f51545y;
                 this.f282c = new z[i11];
                 this.d = new Bitmap[i11];
                 return;

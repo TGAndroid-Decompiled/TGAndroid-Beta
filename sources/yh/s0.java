@@ -3,19 +3,19 @@ package yh;
 import android.view.View;
 import org.telegram.ui.Components.p5;
 public final class s0 implements View.OnAttachStateChangeListener {
-    public final p5 f50500a;
+    public final p5 f50501a;
 
     public s0(p5 p5Var) {
-        this.f50500a = p5Var;
+        this.f50501a = p5Var;
     }
 
     @Override
     public final void onViewAttachedToWindow(View view) {
-        this.f50500a.a();
+        this.f50501a.a();
     }
 
     @Override
     public final void onViewDetachedFromWindow(View view) {
-        this.f50500a.b();
+        this.f50501a.b();
     }
 }

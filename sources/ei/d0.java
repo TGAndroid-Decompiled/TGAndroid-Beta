@@ -28,7 +28,7 @@ public final class d0 {
 
     public d0(e0 e0Var) {
         this.f8877p = e0Var;
-        this.f8866b = new org.telegram.ui.Components.f6(e0Var, 0L, 1200L, bs.f25025g);
+        this.f8866b = new org.telegram.ui.Components.f6(e0Var, 0L, 1200L, bs.f25026g);
         this.f8867c = new ImageReceiver(e0Var);
     }
 

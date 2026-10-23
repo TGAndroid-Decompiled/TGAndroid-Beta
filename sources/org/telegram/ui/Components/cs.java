@@ -4,27 +4,27 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 public final class cs implements Runnable {
-    public final int f25252a;
-    public final fs f25253b;
+    public final int f25253a;
+    public final fs f25254b;
 
     public cs(fs fsVar, int i10) {
-        this.f25252a = i10;
-        this.f25253b = fsVar;
+        this.f25253a = i10;
+        this.f25254b = fsVar;
     }
 
     @Override
     public final void run() {
         View view;
-        switch (this.f25252a) {
+        switch (this.f25253a) {
             case 0:
-                fs fsVar = this.f25253b;
-                if (fsVar.f26403b == null && (view = fsVar.d) != null) {
+                fs fsVar = this.f25254b;
+                if (fsVar.f26404b == null && (view = fsVar.d) != null) {
                     View findFocus = view.findFocus();
                     if (findFocus instanceof EditText) {
-                        fsVar.f26403b = (EditText) findFocus;
+                        fsVar.f26404b = (EditText) findFocus;
                     }
                 }
-                EditText editText = fsVar.f26403b;
+                EditText editText = fsVar.f26404b;
                 if (editText != null) {
                     if (editText.length() != 0 || fsVar.e) {
                         try {
@@ -32,9 +32,9 @@ public final class cs implements Runnable {
                             fsVar.playSoundEffect(0);
                         } catch (Exception unused) {
                         }
-                        fsVar.f26403b.dispatchKeyEvent(new KeyEvent(0, 67));
-                        fsVar.f26403b.dispatchKeyEvent(new KeyEvent(1, 67));
-                        if (fsVar.f26405f) {
+                        fsVar.f26404b.dispatchKeyEvent(new KeyEvent(0, 67));
+                        fsVar.f26404b.dispatchKeyEvent(new KeyEvent(1, 67));
+                        if (fsVar.f26406f) {
                             fsVar.postDelayed(fsVar.h, 50L);
                             return;
                         }
@@ -44,9 +44,9 @@ public final class cs implements Runnable {
                 }
                 return;
             default:
-                fs fsVar2 = this.f25253b;
-                fsVar2.f26406n = false;
-                fsVar2.f26405f = true;
+                fs fsVar2 = this.f25254b;
+                fsVar2.f26407n = false;
+                fsVar2.f26406f = true;
                 fsVar2.h.run();
                 return;
         }

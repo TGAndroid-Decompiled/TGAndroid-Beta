@@ -8,20 +8,20 @@ import android.view.WindowManager;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.za1;
 public final class h91 implements SensorEventListener {
-    public final float[] f26837a = new float[3];
-    public final float[] f26838b = new float[3];
-    public int f26839c;
+    public final float[] f26838a = new float[3];
+    public final float[] f26839b = new float[3];
+    public int f26840c;
     public final WindowManager d;
     public final SensorManager e;
-    public final Sensor f26840f;
+    public final Sensor f26841f;
     public boolean h;
-    public g91 f26841n;
+    public g91 f26842n;
 
     public h91(Context context) {
         this.d = (WindowManager) context.getSystemService("window");
         SensorManager sensorManager = (SensorManager) context.getSystemService("sensor");
         this.e = sensorManager;
-        this.f26840f = sensorManager.getDefaultSensor(1);
+        this.f26841f = sensorManager.getDefaultSensor(1);
     }
 
     public static float a(int i10, int i11) {
@@ -33,13 +33,13 @@ public final class h91 implements SensorEventListener {
     }
 
     public final void b(za1 za1Var) {
-        this.f26841n = za1Var;
+        this.f26842n = za1Var;
     }
 
     public final void c(boolean z10) {
         if (this.h != z10) {
             this.h = z10;
-            Sensor sensor = this.f26840f;
+            Sensor sensor = this.f26841f;
             if (sensor != null) {
                 SensorManager sensorManager = this.e;
                 if (z10) {

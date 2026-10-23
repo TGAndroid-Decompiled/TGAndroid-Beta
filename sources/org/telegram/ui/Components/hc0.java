@@ -13,10 +13,10 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.RichMessageLayout;
 import org.telegram.messenger.RichQuote;
 public final class hc0 extends s4.g0 {
-    public final ic0 f26855c;
+    public final ic0 f26856c;
 
     public hc0(ic0 ic0Var) {
-        this.f26855c = ic0Var;
+        this.f26856c = ic0Var;
     }
 
     public static int D(org.telegram.ui.Cells.u1 u1Var, int i10, boolean z10) {
@@ -46,7 +46,7 @@ public final class hc0 extends s4.g0 {
                             Layout layout = richMessageLayout.textBlocks.get(size).getLayout();
                             if (layout != null) {
                                 int lineForOffset = layout.getLineForOffset(Math.min(i10 - intValue, layout.getText().length()));
-                                int y3 = richMessageLayout.textBlocks.get(size).getY() + u1Var.f23459r0;
+                                int y3 = richMessageLayout.textBlocks.get(size).getY() + u1Var.f23460r0;
                                 if (z10) {
                                     lineTop2 = layout.getLineBottom(lineForOffset);
                                 } else {
@@ -57,17 +57,17 @@ public final class hc0 extends s4.g0 {
                         }
                     }
                 } else if (messageObject.getGroupId() == 0) {
-                    if (!TextUtils.isEmpty(messageObject.caption) && (textLayoutBlocks = u1Var.f23253c4) != null) {
-                        i11 = (int) u1Var.f23448q4;
+                    if (!TextUtils.isEmpty(messageObject.caption) && (textLayoutBlocks = u1Var.f23254c4) != null) {
+                        i11 = (int) u1Var.f23449q4;
                         charSequence = messageObject.caption;
                         arrayList = textLayoutBlocks.textLayoutBlocks;
                     } else {
                         u1Var.u3(true);
-                        int i12 = u1Var.f23459r0;
+                        int i12 = u1Var.f23460r0;
                         CharSequence charSequence2 = messageObject.messageText;
                         ArrayList<MessageObject.TextLayoutBlock> arrayList2 = messageObject.textLayoutBlocks;
-                        if (u1Var.f23490t1) {
-                            i11 = org.telegram.messenger.g0.C(10.0f, u1Var.f23390m2, i12);
+                        if (u1Var.f23491t1) {
+                            i11 = org.telegram.messenger.g0.C(10.0f, u1Var.f23391m2, i12);
                         } else {
                             i11 = i12;
                         }
@@ -104,7 +104,7 @@ public final class hc0 extends s4.g0 {
 
     @Override
     public final int h() {
-        MessagePreviewParams.Messages messages = this.f26855c.f27243r;
+        MessagePreviewParams.Messages messages = this.f26856c.f27244r;
         if (messages == null) {
             return 0;
         }
@@ -120,12 +120,12 @@ public final class hc0 extends s4.g0 {
     public final void v(s4.b1 b1Var, int i10) {
         int i11;
         boolean z10;
-        ic0 ic0Var = this.f26855c;
-        bc0 bc0Var = ic0Var.f27241f;
-        int i12 = ic0Var.f27235a;
-        MessagePreviewParams.Messages messages = ic0Var.f27243r;
-        if (messages != null && b1Var.f45923f == 0) {
-            org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) b1Var.f45920a;
+        ic0 ic0Var = this.f26856c;
+        bc0 bc0Var = ic0Var.f27242f;
+        int i12 = ic0Var.f27236a;
+        MessagePreviewParams.Messages messages = ic0Var.f27244r;
+        if (messages != null && b1Var.f45924f == 0) {
+            org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) b1Var.f45921a;
             u1Var.setInvalidateSpoilersParent(messages.hasSpoilers);
             u1Var.Z3(bc0Var.getMeasuredWidth(), bc0Var.getMeasuredHeight());
             if (u1Var.getMessageObject() != null) {
@@ -134,26 +134,26 @@ public final class hc0 extends s4.g0 {
                 i11 = 0;
             }
             if (i12 == 2) {
-                ic0Var.f27240c0.d.checkCurrentLink(ic0Var.f27243r.previewMessages.get(i10));
+                ic0Var.f27241c0.d.checkCurrentLink(ic0Var.f27244r.previewMessages.get(i10));
             }
-            MessageObject messageObject = ic0Var.f27243r.previewMessages.get(i10);
-            MessagePreviewParams.Messages messages2 = ic0Var.f27243r;
+            MessageObject messageObject = ic0Var.f27244r.previewMessages.get(i10);
+            MessagePreviewParams.Messages messages2 = ic0Var.f27244r;
             u1Var.X3(messageObject, messages2.groupedMessagesMap.get(messages2.previewMessages.get(i10).getGroupId()), true, true, false, false);
             boolean z11 = true;
             if (i12 == 1) {
                 u1Var.setDelegate(new oa.d(17));
             }
-            if (ic0Var.f27243r.previewMessages.size() > 1) {
+            if (ic0Var.f27244r.previewMessages.size() > 1) {
                 if (i12 == 1) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
                 u1Var.J3(z10, false);
-                if (i11 != ic0Var.f27243r.previewMessages.get(i10).getId()) {
+                if (i11 != ic0Var.f27244r.previewMessages.get(i10).getId()) {
                     z11 = false;
                 }
-                MessagePreviewParams.Messages messages3 = ic0Var.f27243r;
+                MessagePreviewParams.Messages messages3 = ic0Var.f27244r;
                 boolean z12 = messages3.selectedIds.get(messages3.previewMessages.get(i10).getId(), false);
                 u1Var.L3(z12, z12, z11);
             }
@@ -163,9 +163,9 @@ public final class hc0 extends s4.g0 {
     @Override
     public final s4.b1 x(ViewGroup viewGroup, int i10) {
         Context context = viewGroup.getContext();
-        ic0 ic0Var = this.f26855c;
-        oc0 oc0Var = ic0Var.f27240c0;
-        fc0 fc0Var = new fc0(this, context, oc0Var.f28996w, ic0Var.J, oc0Var.F);
+        ic0 ic0Var = this.f26856c;
+        oc0 oc0Var = ic0Var.f27241c0;
+        fc0 fc0Var = new fc0(this, context, oc0Var.f28997w, ic0Var.J, oc0Var.F);
         fc0Var.setClipChildren(false);
         fc0Var.setClipToPadding(false);
         fc0Var.setDelegate(new gc0(this));
@@ -179,11 +179,11 @@ public final class hc0 extends s4.g0 {
         boolean z11;
         int i11;
         int[] findQuote;
-        ic0 ic0Var = this.f26855c;
+        ic0 ic0Var = this.f26856c;
         ac0 ac0Var = ic0Var.e;
-        oc0 oc0Var = ic0Var.f27240c0;
-        if (ic0Var.f27243r != null && (i10 = ic0Var.f27235a) != 1) {
-            View view = b1Var.f45920a;
+        oc0 oc0Var = ic0Var.f27241c0;
+        if (ic0Var.f27244r != null && (i10 = ic0Var.f27236a) != 1) {
+            View view = b1Var.f45921a;
             if (view instanceof org.telegram.ui.Cells.u1) {
                 org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) view;
                 if (i10 == 0) {
@@ -206,19 +206,19 @@ public final class hc0 extends s4.g0 {
                         MessagePreviewParams messagePreviewParams2 = oc0Var.d;
                         MessagePreviewParams messagePreviewParams3 = oc0Var.d;
                         org.telegram.ui.gn gnVar = messagePreviewParams3.quote;
-                        if (gnVar.f37370m && messageObject != null && messageObject.richLayout != null && ((i11 = messagePreviewParams3.quoteStart) < 0 || messagePreviewParams3.quoteEnd <= i11)) {
-                            String str = gnVar.f37366i;
+                        if (gnVar.f37371m && messageObject != null && messageObject.richLayout != null && ((i11 = messagePreviewParams3.quoteStart) < 0 || messagePreviewParams3.quoteEnd <= i11)) {
+                            String str = gnVar.f37367i;
                             if (str == null) {
                                 findQuote = null;
                             } else {
-                                findQuote = RichQuote.findQuote(messageObject, str, gnVar.f37372o);
+                                findQuote = RichQuote.findQuote(messageObject, str, gnVar.f37373o);
                             }
                             if (findQuote != null) {
                                 messagePreviewParams2.quoteStart = findQuote[0];
                                 messagePreviewParams2.quoteEnd = findQuote[1];
                             } else {
                                 messagePreviewParams2.quoteStart = 0;
-                                messagePreviewParams2.quoteEnd = Math.min(MessagesController.getInstance(oc0Var.f28996w).quoteLengthMax, org.telegram.ui.gn.d(messageObject));
+                                messagePreviewParams2.quoteEnd = Math.min(MessagesController.getInstance(oc0Var.f28997w).quoteLengthMax, org.telegram.ui.gn.d(messageObject));
                             }
                         }
                     }
@@ -226,11 +226,11 @@ public final class hc0 extends s4.g0 {
                     if (!messagePreviewParams4.isSecret && messagePreviewParams4.quote != null && messagePreviewParams4.quoteStart >= 0 && ic0Var.e(u1Var) && !ac0Var.x()) {
                         MessagePreviewParams messagePreviewParams5 = oc0Var.d;
                         ac0Var.Z(u1Var, messagePreviewParams5.quoteStart, messagePreviewParams5.quoteEnd);
-                        if (ic0Var.f27238b0) {
+                        if (ic0Var.f27239b0) {
                             ic0Var.L = D(u1Var, oc0Var.d.quoteStart, false);
                             ic0Var.M = D(u1Var, oc0Var.d.quoteEnd, true);
                             ic0Var.N = true;
-                            ic0Var.f27238b0 = false;
+                            ic0Var.f27239b0 = false;
                             return;
                         }
                         return;

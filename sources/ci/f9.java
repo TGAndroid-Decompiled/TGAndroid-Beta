@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.ok;
+import org.telegram.messenger.nk;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.bs;
@@ -239,7 +239,7 @@ public final class f9 extends View {
             f7 = 0.5f;
             c10 = 0;
             f10 = 12.0f;
-            drawableArr[1].setBounds((int) ok.x(fArr[1], 2.0f, abs, centerX2), (int) (centerY - f11), (int) (f11 + centerX2), (int) a1.g.d(fArr[1], 2.0f, abs, rectF.centerY()));
+            drawableArr[1].setBounds((int) nk.x(fArr[1], 2.0f, abs, centerX2), (int) (centerY - f11), (int) (f11 + centerX2), (int) a1.g.d(fArr[1], 2.0f, abs, rectF.centerY()));
             drawableArr[1].draw(canvas);
         } else {
             f7 = 0.5f;
@@ -254,7 +254,7 @@ public final class f9 extends View {
             }
             float centerY2 = rectF.centerY();
             float f12 = (fArr[c10] / 2.0f) * abs;
-            drawableArr[c10].setBounds((int) ok.x(fArr[c10], 2.0f, abs, centerX), (int) (centerY2 - f12), (int) (f12 + centerX), (int) a1.g.d(fArr[c10], 2.0f, abs, rectF.centerY()));
+            drawableArr[c10].setBounds((int) nk.x(fArr[c10], 2.0f, abs, centerX), (int) (centerY2 - f12), (int) (f12 + centerX), (int) a1.g.d(fArr[c10], 2.0f, abs, rectF.centerY()));
             drawableArr[c10].draw(canvas);
         }
         if (this.f5401s) {

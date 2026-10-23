@@ -134,7 +134,7 @@ public final class r0 implements Utilities.Callback {
                     }
                     h1Var.c();
                     h1Var.k();
-                    NotificationCenter.getInstance(h1Var.e).lambda$postNotificationNameOnUIThread$1(NotificationCenter.liveStoryUpdated, Long.valueOf(h1Var.f5443f.f20296id));
+                    NotificationCenter.getInstance(h1Var.e).lambda$postNotificationNameOnUIThread$1(NotificationCenter.liveStoryUpdated, Long.valueOf(h1Var.f5443f.f20297id));
                     return;
                 }
                 return;
@@ -217,7 +217,7 @@ public final class r0 implements Utilities.Callback {
                 AndroidUtilities.runOnUIThread(new ci.v7(25, s2Var, (Runnable) obj), 80L);
                 return;
             case 15:
-                ((ei.q3) this.f2096b).f9636s.animate().translationY(((-((Integer) obj).intValue()) / 2.0f) + AndroidUtilities.dp(80.0f)).setDuration(250L).setInterpolator(org.telegram.ui.ActionBar.o1.f21635w).start();
+                ((ei.q3) this.f2096b).f9636s.animate().translationY(((-((Integer) obj).intValue()) / 2.0f) + AndroidUtilities.dp(80.0f)).setDuration(250L).setInterpolator(org.telegram.ui.ActionBar.o1.f21636w).start();
                 return;
             case 16:
                 ei.l4 l4Var = (ei.l4) this.f2096b;
@@ -314,7 +314,7 @@ public final class r0 implements Utilities.Callback {
                     return;
                 }
                 j8Var.f9280o0 = n0Var.e;
-                j8Var.f9279n0 = n0Var.f45523f;
+                j8Var.f9279n0 = n0Var.f45524f;
                 return;
             case 22:
                 ((ei.g9) this.f2096b).f9074n.W.H = ((Integer) obj).intValue();
@@ -346,7 +346,7 @@ public final class r0 implements Utilities.Callback {
                         cyVar.I3();
                     }
                     MessagesController.getInstance(lxVar.H0).openApp(user, 0);
-                    po0Var.R(user.f20426id, user);
+                    po0Var.R(user.f20427id, user);
                     return;
                 }
                 return;
@@ -372,7 +372,7 @@ public final class r0 implements Utilities.Callback {
                 if (mVar.F != z12) {
                     mVar.F = z12;
                     if (!z12) {
-                        mVar.f32359a.x0(0);
+                        mVar.f32360a.x0(0);
                         return;
                     }
                     return;

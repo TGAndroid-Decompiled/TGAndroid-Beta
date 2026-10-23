@@ -4,33 +4,33 @@ import w7.pa;
 import x7.ia;
 import z7.ag;
 public final class a9 implements qa.b {
-    public final int f47975a;
-    public final l5.r f47976b;
+    public final int f47976a;
+    public final l5.r f47977b;
 
     public a9(l5.r rVar, int i10) {
-        this.f47975a = i10;
-        this.f47976b = rVar;
+        this.f47976a = i10;
+        this.f47977b = rVar;
     }
 
     @Override
     public final Object get() {
-        switch (this.f47975a) {
+        switch (this.f47976a) {
             case 0:
-                return this.f47976b.a("FIREBASE_ML_SDK", new i5.c("json"), d9.e);
+                return this.f47977b.a("FIREBASE_ML_SDK", new i5.c("json"), d9.e);
             case 1:
-                return this.f47976b.a("FIREBASE_ML_SDK", new i5.c("proto"), d9.d);
+                return this.f47977b.a("FIREBASE_ML_SDK", new i5.c("proto"), d9.d);
             case 2:
-                return this.f47976b.a("FIREBASE_ML_SDK", new i5.c("json"), pa.e);
+                return this.f47977b.a("FIREBASE_ML_SDK", new i5.c("json"), pa.e);
             case 3:
-                return this.f47976b.a("FIREBASE_ML_SDK", new i5.c("proto"), pa.d);
+                return this.f47977b.a("FIREBASE_ML_SDK", new i5.c("proto"), pa.d);
             case 4:
-                return this.f47976b.a("FIREBASE_ML_SDK", new i5.c("json"), ia.e);
+                return this.f47977b.a("FIREBASE_ML_SDK", new i5.c("json"), ia.e);
             case 5:
-                return this.f47976b.a("FIREBASE_ML_SDK", new i5.c("proto"), ia.d);
+                return this.f47977b.a("FIREBASE_ML_SDK", new i5.c("proto"), ia.d);
             case 6:
-                return this.f47976b.a("FIREBASE_ML_SDK", new i5.c("json"), ag.e);
+                return this.f47977b.a("FIREBASE_ML_SDK", new i5.c("json"), ag.e);
             default:
-                return this.f47976b.a("FIREBASE_ML_SDK", new i5.c("proto"), ag.d);
+                return this.f47977b.a("FIREBASE_ML_SDK", new i5.c("proto"), ag.d);
         }
     }
 }

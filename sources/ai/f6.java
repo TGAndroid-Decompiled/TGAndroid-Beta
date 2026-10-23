@@ -29,7 +29,7 @@ public final class f6 extends View {
         imageReceiver.setForUserOrChat(tLObject, h9Var);
         Drawable mutate = context.getDrawable(R.drawable.chats_undo).mutate();
         this.f1260c = mutate;
-        mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21398z6, false), PorterDuff.Mode.MULTIPLY));
+        mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21399z6, false), PorterDuff.Mode.MULTIPLY));
         mutate.setBounds(AndroidUtilities.dp(-12.0f), AndroidUtilities.dp(-12.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f));
     }
 

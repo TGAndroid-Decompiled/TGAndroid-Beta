@@ -13,22 +13,22 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
 public final class y3 extends FrameLayout {
-    public d5 f21907a;
-    public ActionBarLayout f21908b;
-    public boolean f21909c;
+    public d5 f21908a;
+    public ActionBarLayout f21909b;
+    public boolean f21910c;
     public final Paint d;
     public r0.k1 e;
-    public i0.b f21910f;
+    public i0.b f21911f;
     public i0.b h;
 
     public y3(Activity activity) {
         super(activity);
         this.d = new Paint(1);
         i0.b bVar = i0.b.e;
-        this.f21910f = bVar;
+        this.f21911f = bVar;
         this.h = bVar;
         n nVar = new n(this, 8);
-        WeakHashMap weakHashMap = r0.i0.f44829a;
+        WeakHashMap weakHashMap = r0.i0.f44830a;
         r0.a0.i(this, nVar);
         setSystemUiVisibility(1280);
     }
@@ -46,9 +46,9 @@ public final class y3 extends FrameLayout {
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        ActionBarLayout actionBarLayout = this.f21908b;
+        ActionBarLayout actionBarLayout = this.f21909b;
         if (actionBarLayout != null && actionBarLayout.getParent() == this) {
-            this.f21908b.N(canvas, this);
+            this.f21909b.N(canvas, this);
         }
         super.dispatchDraw(canvas);
     }
@@ -64,12 +64,12 @@ public final class y3 extends FrameLayout {
 
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        return ((ActionBarLayout) this.f21907a).j();
+        return ((ActionBarLayout) this.f21908a).j();
     }
 
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        this.f21909c = true;
+        this.f21910c = true;
         int childCount = getChildCount();
         for (int i14 = 0; i14 < childCount; i14++) {
             View childAt = getChildAt(i14);
@@ -85,7 +85,7 @@ public final class y3 extends FrameLayout {
                 }
             }
         }
-        this.f21909c = false;
+        this.f21910c = false;
     }
 
     @Override
@@ -94,7 +94,7 @@ public final class y3 extends FrameLayout {
         int size = View.MeasureSpec.getSize(i10);
         int size2 = View.MeasureSpec.getSize(i11);
         setMeasuredDimension(size, size2);
-        i0.b bVar = this.f21910f;
+        i0.b bVar = this.f21911f;
         int i12 = (size - bVar.f12283a) - bVar.f12285c;
         int i13 = (size2 - bVar.f12284b) - bVar.d;
         Point point = AndroidUtilities.displaySize;
@@ -127,13 +127,13 @@ public final class y3 extends FrameLayout {
 
     @Override
     public final void requestLayout() {
-        if (!this.f21909c) {
+        if (!this.f21910c) {
             super.requestLayout();
         }
     }
 
     public void setActionBarLayout(ActionBarLayout actionBarLayout) {
-        this.f21908b = actionBarLayout;
+        this.f21909b = actionBarLayout;
     }
 
     public void setInternalNavigationBarColor(int i10) {
@@ -149,6 +149,6 @@ public final class y3 extends FrameLayout {
     }
 
     public void setParentActionBarLayout(d5 d5Var) {
-        this.f21907a = d5Var;
+        this.f21908a = d5Var;
     }
 }

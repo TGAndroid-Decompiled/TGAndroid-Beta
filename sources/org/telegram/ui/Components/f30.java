@@ -8,21 +8,21 @@ import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 public final class f30 extends FrameLayout {
-    public float f26064a;
-    public float f26065b;
-    public boolean f26066c;
+    public float f26065a;
+    public float f26066b;
+    public boolean f26067c;
     public AnimatorSet d;
     public final e30 e;
-    public final rc f26067f;
+    public final rc f26068f;
     public final float h;
-    public final i30 f26068n;
+    public final i30 f26069n;
 
     public f30(i30 i30Var, Context context, float f7) {
         super(context);
-        this.f26068n = i30Var;
+        this.f26069n = i30Var;
         this.h = f7;
         this.e = new e30(this);
-        this.f26067f = new rc(11);
+        this.f26068f = new rc(11);
     }
 
     @Override
@@ -30,27 +30,27 @@ public final class f30 extends FrameLayout {
         super.onMeasure(i10, i11);
         Point point = AndroidUtilities.displaySize;
         int i12 = point.x;
-        i30 i30Var = this.f26068n;
+        i30 i30Var = this.f26069n;
         if (i12 != i30Var.I || i30Var.J != point.y) {
             i30Var.I = i12;
             i30Var.J = point.y;
             if (i30Var.K < 0.0f) {
                 SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("groupcallpipconfig", 0);
-                this.f26068n.K = sharedPreferences.getFloat("relativeX", 1.0f);
-                this.f26068n.L = sharedPreferences.getFloat("relativeY", 0.4f);
+                this.f26069n.K = sharedPreferences.getFloat("relativeX", 1.0f);
+                this.f26069n.L = sharedPreferences.getFloat("relativeY", 0.4f);
             }
-            i30 i30Var2 = i30.f27102d0;
+            i30 i30Var2 = i30.f27103d0;
             if (i30Var2 != null) {
-                i30 i30Var3 = this.f26068n;
+                i30 i30Var3 = this.f26069n;
                 float f7 = i30Var3.K;
                 float f10 = i30Var3.L;
                 float f11 = -AndroidUtilities.dp(36.0f);
-                i30Var2.f27112r.x = (int) com.google.android.gms.internal.play_billing.k3.y(AndroidUtilities.displaySize.x - (2.0f * f11), AndroidUtilities.dp(105.0f), f7, f11);
-                i30Var2.f27112r.y = (int) ((AndroidUtilities.displaySize.y - AndroidUtilities.dp(105.0f)) * f10);
+                i30Var2.f27113r.x = (int) com.google.android.gms.internal.play_billing.k3.y(AndroidUtilities.displaySize.x - (2.0f * f11), AndroidUtilities.dp(105.0f), f7, f11);
+                i30Var2.f27113r.y = (int) ((AndroidUtilities.displaySize.y - AndroidUtilities.dp(105.0f)) * f10);
                 i30Var2.h();
-                f30 f30Var = i30Var2.f27104a;
+                f30 f30Var = i30Var2.f27105a;
                 if (f30Var.getParent() != null) {
-                    i30Var2.f27111n.updateViewLayout(f30Var, i30Var2.f27112r);
+                    i30Var2.f27112n.updateViewLayout(f30Var, i30Var2.f27113r);
                 }
             }
         }

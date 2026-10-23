@@ -1,31 +1,31 @@
 package org.telegram.ui;
 public final class xo implements Runnable {
-    public final int f43257a;
-    public final ip f43258b;
+    public final int f43258a;
+    public final ip f43259b;
 
     public xo(ip ipVar, int i10) {
-        this.f43257a = i10;
-        this.f43258b = ipVar;
+        this.f43258a = i10;
+        this.f43259b = ipVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f43257a) {
+        switch (this.f43258a) {
             case 0:
-                ip ipVar = this.f43258b;
-                org.telegram.ui.ActionBar.b2 b2Var = ipVar.f38078r;
+                ip ipVar = this.f43259b;
+                org.telegram.ui.ActionBar.b2 b2Var = ipVar.f38079r;
                 if (b2Var != null) {
                     b2Var.setOnCancelListener(new hg(ipVar, 2));
-                    ipVar.showDialog(ipVar.f38078r);
+                    ipVar.showDialog(ipVar.f38079r);
                     return;
                 }
                 return;
             case 1:
-                ip ipVar2 = this.f43258b;
+                ip ipVar2 = this.f43259b;
                 ipVar2.getMessagesController().loadFullChat(ipVar2.E, 0, true);
                 return;
             default:
-                ip ipVar3 = this.f43258b;
+                ip ipVar3 = this.f43259b;
                 ipVar3.getMessagesController().loadFullChat(ipVar3.E, 0, true);
                 return;
         }

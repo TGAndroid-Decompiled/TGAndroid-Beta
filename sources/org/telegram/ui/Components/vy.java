@@ -5,7 +5,7 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLRPC;
 public final class vy extends g61 {
-    public static final int f31894a = 0;
+    public static final int f31895a = 0;
 
     static {
         g61.setup(new g61());
@@ -13,7 +13,7 @@ public final class vy extends g61 {
 
     public static h61 a(TLRPC.StickerSetCovered stickerSetCovered, ky kyVar, boolean z10) {
         h61 J = h61.J(vy.class);
-        long j10 = stickerSetCovered.set.f20306id;
+        long j10 = stickerSetCovered.set.f20307id;
         long j11 = 1 + j10;
         J.d = (int) (j11 ^ (j11 >>> 32));
         J.B = j10;

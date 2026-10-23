@@ -9,23 +9,23 @@ import org.telegram.ui.ActionBar.n2;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.df0;
 public final class g implements Utilities.Callback {
-    public final int f52016a;
-    public final Object f52017b;
+    public final int f52017a;
+    public final Object f52018b;
 
     public g(Object obj, int i10) {
-        this.f52016a = i10;
-        this.f52017b = obj;
+        this.f52017a = i10;
+        this.f52018b = obj;
     }
 
     @Override
     public final void run(Object obj) {
-        switch (this.f52016a) {
+        switch (this.f52017a) {
             case 0:
-                r rVar = (r) this.f52017b;
+                r rVar = (r) this.f52018b;
                 TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) obj;
-                if (rVar.f52095y == null) {
+                if (rVar.f52096y == null) {
                     if (tL_messages_stickerSet != null && tL_messages_stickerSet.documents != null) {
-                        rVar.f52095y = tL_messages_stickerSet;
+                        rVar.f52096y = tL_messages_stickerSet;
                     } else {
                         rVar.F = true;
                     }
@@ -34,7 +34,7 @@ public final class g implements Utilities.Callback {
                 }
                 return;
             case 1:
-                n2 n2Var = (n2) this.f52017b;
+                n2 n2Var = (n2) this.f52018b;
                 Long l4 = (Long) obj;
                 if (!n2Var.isFinished) {
                     if (l4 != null && l4.longValue() != Long.MAX_VALUE) {
@@ -47,16 +47,16 @@ public final class g implements Utilities.Callback {
                 }
                 return;
             case 2:
-                r0 r0Var = (r0) this.f52017b;
+                r0 r0Var = (r0) this.f52018b;
                 TLRPC.TL_exportedContactToken tL_exportedContactToken = (TLRPC.TL_exportedContactToken) obj;
-                c1 c1Var = r0Var.f52097b;
+                c1 c1Var = r0Var.f52098b;
                 if (!r0Var.E && tL_exportedContactToken != null) {
-                    r0Var.f52101r = tL_exportedContactToken;
-                    r0Var.f52102s = 0L;
+                    r0Var.f52102r = tL_exportedContactToken;
+                    r0Var.f52103s = 0L;
                     String str = tL_exportedContactToken.url;
-                    String str2 = r0Var.f52098c.f52076b;
-                    if (!TextUtils.equals(c1Var.f51758f, str2) || c1Var.h) {
-                        c1Var.f51758f = str2;
+                    String str2 = r0Var.f52099c.f52077b;
+                    if (!TextUtils.equals(c1Var.f51759f, str2) || c1Var.h) {
+                        c1Var.f51759f = str2;
                         c1Var.h = false;
                         c1Var.I5 = null;
                         c1Var.J5 = 0;
@@ -70,13 +70,13 @@ public final class g implements Utilities.Callback {
                 }
                 return;
             default:
-                c1 c1Var2 = (c1) this.f52017b;
+                c1 c1Var2 = (c1) this.f52018b;
                 TLRPC.TL_messages_stickerSet tL_messages_stickerSet2 = (TLRPC.TL_messages_stickerSet) obj;
                 if (tL_messages_stickerSet2 != null) {
                     c1Var2.getClass();
                     ArrayList<TLRPC.Document> arrayList = tL_messages_stickerSet2.documents;
                     if (arrayList != null && !arrayList.isEmpty()) {
-                        c1Var2.f51871q8 = tL_messages_stickerSet2.documents.get(0);
+                        c1Var2.f51872q8 = tL_messages_stickerSet2.documents.get(0);
                     }
                 }
                 c1Var2.invalidate();

@@ -35,7 +35,7 @@ public final class g extends im0 {
     public final boolean D(b1 b1Var) {
         switch (this.f17458c) {
             case 0:
-                if (j.d(3)[b1Var.f45923f] == 1) {
+                if (j.d(3)[b1Var.f45924f] == 1) {
                     return true;
                 }
                 return false;
@@ -58,7 +58,7 @@ public final class g extends im0 {
     public long i(int i10) {
         switch (this.f17458c) {
             case 1:
-                return ((a91) ((d91) this.e).h.get(i10)).f24558a;
+                return ((a91) ((d91) this.e).h.get(i10)).f24559a;
             default:
                 return super.i(i10);
         }
@@ -80,7 +80,7 @@ public final class g extends im0 {
         c91 c91Var;
         switch (this.f17458c) {
             case 0:
-                View view = b1Var.f45920a;
+                View view = b1Var.f45921a;
                 a aVar = (a) ((i) this.e).E.get(i10);
                 int i11 = aVar.f17444b;
                 s6 s6Var = aVar.f17446f;
@@ -106,18 +106,18 @@ public final class g extends im0 {
                     return;
                 }
                 x1 x1Var = (x1) view;
-                x1Var.setTextColor(h6.x0(null, h6.f21099j5, false));
+                x1Var.setTextColor(h6.x0(null, h6.f21100j5, false));
                 x1Var.a(0, charSequence);
                 return;
             default:
-                b91 b91Var = (b91) b1Var.f45920a;
+                b91 b91Var = (b91) b1Var.f45921a;
                 d91 d91Var = (d91) this.e;
                 a91 a91Var = (a91) d91Var.h.get(i10);
-                b91Var.f24836a = a91Var;
-                b91Var.setContentDescription(a91Var.f24559b);
+                b91Var.f24837a = a91Var;
+                b91Var.setContentDescription(a91Var.f24560b);
                 b91Var.setAlpha(1.0f);
                 b91Var.requestLayout();
-                if (d91Var.m0 && (c91Var = d91Var.f25420y) != null && ((l2.f) c91Var).z(i10)) {
+                if (d91Var.m0 && (c91Var = d91Var.f25421y) != null && ((l2.f) c91Var).z(i10)) {
                     z10 = true;
                 } else {
                     z10 = false;

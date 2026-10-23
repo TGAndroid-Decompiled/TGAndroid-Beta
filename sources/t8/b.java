@@ -12,17 +12,17 @@ import java.util.HashSet;
 import m.g3;
 import n6.l;
 public final class b extends c1 {
-    public final q8.a f46913b;
-    public final t2 f46914c;
+    public final q8.a f46914b;
+    public final t2 f46915c;
     public final Object d;
     public boolean e;
 
     public b(t2 t2Var) {
         super(4);
-        this.f46913b = new q8.a();
+        this.f46914b = new q8.a();
         this.d = new Object();
         this.e = true;
-        this.f46914c = t2Var;
+        this.f46915c = t2Var;
     }
 
     @Override
@@ -33,7 +33,7 @@ public final class b extends c1 {
                 if (!this.e) {
                     return;
                 }
-                this.f46914c.l();
+                this.f46915c.l();
                 this.e = false;
             } catch (Throwable th2) {
                 throw th2;
@@ -73,7 +73,7 @@ public final class b extends c1 {
         }
         synchronized (this.d) {
             if (this.e) {
-                t2 t2Var = this.f46914c;
+                t2 t2Var = this.f46915c;
                 l.h(I);
                 n10 = t2Var.n(I, f3.b(g3Var));
             } else {
@@ -84,14 +84,14 @@ public final class b extends c1 {
         SparseArray sparseArray = new SparseArray(n10.length);
         int i16 = 0;
         for (a aVar : n10) {
-            int i17 = aVar.f46910a;
+            int i17 = aVar.f46911a;
             i16 = Math.max(i16, i17);
             if (hashSet.contains(Integer.valueOf(i17))) {
                 i17 = i16 + 1;
                 i16 = i17;
             }
             hashSet.add(Integer.valueOf(i17));
-            sparseArray.append(this.f46913b.a(i17), aVar);
+            sparseArray.append(this.f46914b.a(i17), aVar);
         }
         return sparseArray;
     }

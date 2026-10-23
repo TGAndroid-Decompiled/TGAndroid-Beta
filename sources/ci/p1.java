@@ -155,7 +155,7 @@ public final class p1 implements NotificationCenter.NotificationCenterDelegate, 
         if (this.f5717s) {
             this.f5716r.animate().cancel();
             ViewPropertyAnimator duration = this.f5716r.animate().alpha(0.0f).setDuration(150L);
-            bs bsVar = bs.f25024f;
+            bs bsVar = bs.f25025f;
             duration.setInterpolator(bsVar).start();
             this.f5715n.animate().cancel();
             this.f5715n.animate().alpha(0.0f).setDuration(150L).setInterpolator(bsVar).start();
@@ -211,7 +211,7 @@ public final class p1 implements NotificationCenter.NotificationCenterDelegate, 
             }
             AnimatorSet animatorSet = new AnimatorSet();
             animatorSet.setDuration(250L);
-            animatorSet.setInterpolator(bs.f25024f);
+            animatorSet.setInterpolator(bs.f25025f);
             animatorSet.playTogether(ObjectAnimator.ofFloat(this.d, View.ALPHA, 0.0f), ObjectAnimator.ofFloat(this.d, View.SCALE_X, 0.1f), ObjectAnimator.ofFloat(this.d, View.SCALE_Y, 0.1f));
             animatorSet.addListener(new ah.p0(3, this, z10));
             animatorSet.start();
@@ -264,7 +264,7 @@ public final class p1 implements NotificationCenter.NotificationCenterDelegate, 
         }
         ValueAnimator duration = ValueAnimator.ofFloat(f7, f10).setDuration(200L);
         this.I = duration;
-        duration.setInterpolator(bs.f25024f);
+        duration.setInterpolator(bs.f25025f);
         this.I.addUpdateListener(new ah.c0(this, 14));
         this.I.addListener(new ah.b(this, 8));
         this.I.start();

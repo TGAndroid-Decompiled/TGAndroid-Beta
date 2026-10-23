@@ -9,39 +9,39 @@ import java.util.Arrays;
 import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
 public final class fp0 {
-    public final int f26337a;
-    public long f26338b;
-    public final Object f26339c;
+    public final int f26338a;
+    public long f26339b;
+    public final Object f26340c;
     public final Object d;
     public Object e;
-    public Object f26340f;
-    public Object f26341g;
+    public Object f26341f;
+    public Object f26342g;
 
     public fp0(androidx.biometric.e eVar) {
         int i10;
-        this.f26339c = eVar;
+        this.f26340c = eVar;
         synchronized (eVar) {
-            i10 = ((i2.j) eVar.d).f12434c.f49904b;
+            i10 = ((i2.j) eVar.d).f12434c.f49905b;
         }
-        this.f26337a = i10;
+        this.f26338a = i10;
         this.d = new e2.x(32);
         u2.a1 a1Var = new u2.a1(0L, i10);
         this.e = a1Var;
-        this.f26340f = a1Var;
-        this.f26341g = a1Var;
+        this.f26341f = a1Var;
+        this.f26342g = a1Var;
     }
 
     public static u2.a1 d(u2.a1 a1Var, long j10, ByteBuffer byteBuffer, int i10) {
-        while (j10 >= a1Var.f47259b) {
+        while (j10 >= a1Var.f47260b) {
             a1Var = (u2.a1) a1Var.d;
         }
         while (i10 > 0) {
-            int min = Math.min(i10, (int) (a1Var.f47259b - j10));
-            y2.a aVar = (y2.a) a1Var.f47260c;
-            byteBuffer.put(aVar.f49898a, ((int) (j10 - a1Var.f47258a)) + aVar.f49899b, min);
+            int min = Math.min(i10, (int) (a1Var.f47260b - j10));
+            y2.a aVar = (y2.a) a1Var.f47261c;
+            byteBuffer.put(aVar.f49899a, ((int) (j10 - a1Var.f47259a)) + aVar.f49900b, min);
             i10 -= min;
             j10 += min;
-            if (j10 == a1Var.f47259b) {
+            if (j10 == a1Var.f47260b) {
                 a1Var = (u2.a1) a1Var.d;
             }
         }
@@ -49,17 +49,17 @@ public final class fp0 {
     }
 
     public static u2.a1 e(u2.a1 a1Var, long j10, byte[] bArr, int i10) {
-        while (j10 >= a1Var.f47259b) {
+        while (j10 >= a1Var.f47260b) {
             a1Var = (u2.a1) a1Var.d;
         }
         int i11 = i10;
         while (i11 > 0) {
-            int min = Math.min(i11, (int) (a1Var.f47259b - j10));
-            y2.a aVar = (y2.a) a1Var.f47260c;
-            System.arraycopy(aVar.f49898a, ((int) (j10 - a1Var.f47258a)) + aVar.f49899b, bArr, i10 - i11, min);
+            int min = Math.min(i11, (int) (a1Var.f47260b - j10));
+            y2.a aVar = (y2.a) a1Var.f47261c;
+            System.arraycopy(aVar.f49899a, ((int) (j10 - a1Var.f47259a)) + aVar.f49900b, bArr, i10 - i11, min);
             i11 -= min;
             j10 += min;
-            if (j10 == a1Var.f47259b) {
+            if (j10 == a1Var.f47260b) {
                 a1Var = (u2.a1) a1Var.d;
             }
         }
@@ -174,24 +174,24 @@ public final class fp0 {
     }
 
     public void a(u2.a1 a1Var) {
-        if (((y2.a) a1Var.f47260c) == null) {
+        if (((y2.a) a1Var.f47261c) == null) {
             return;
         }
-        androidx.biometric.e eVar = (androidx.biometric.e) this.f26339c;
+        androidx.biometric.e eVar = (androidx.biometric.e) this.f26340c;
         synchronized (eVar) {
             ((i2.j) eVar.d).f12434c.b(a1Var);
             u2.a1 a1Var2 = a1Var;
             while (a1Var2 != null) {
-                y2.a aVar = (y2.a) a1Var2.f47260c;
+                y2.a aVar = (y2.a) a1Var2.f47261c;
                 aVar.getClass();
                 eVar.t(aVar);
                 a1Var2 = (u2.a1) a1Var2.d;
-                if (a1Var2 == null || ((y2.a) a1Var2.f47260c) == null) {
+                if (a1Var2 == null || ((y2.a) a1Var2.f47261c) == null) {
                     a1Var2 = null;
                 }
             }
         }
-        a1Var.f47260c = null;
+        a1Var.f47261c = null;
         a1Var.d = null;
     }
 
@@ -200,31 +200,31 @@ public final class fp0 {
         if (j10 != -1) {
             while (true) {
                 a1Var = (u2.a1) this.e;
-                if (j10 < a1Var.f47259b) {
+                if (j10 < a1Var.f47260b) {
                     break;
                 }
-                androidx.biometric.e eVar = (androidx.biometric.e) this.f26339c;
-                y2.a aVar = (y2.a) a1Var.f47260c;
+                androidx.biometric.e eVar = (androidx.biometric.e) this.f26340c;
+                y2.a aVar = (y2.a) a1Var.f47261c;
                 synchronized (eVar) {
                     ((i2.j) eVar.d).f12434c.c(aVar);
                     eVar.t(aVar);
                 }
                 u2.a1 a1Var2 = (u2.a1) this.e;
-                a1Var2.f47260c = null;
+                a1Var2.f47261c = null;
                 a1Var2.d = null;
                 this.e = (u2.a1) a1Var2.d;
             }
-            if (((u2.a1) this.f26340f).f47258a < a1Var.f47258a) {
-                this.f26340f = a1Var;
+            if (((u2.a1) this.f26341f).f47259a < a1Var.f47259a) {
+                this.f26341f = a1Var;
             }
         }
     }
 
     public int c(int i10) {
         y2.a a2;
-        u2.a1 a1Var = (u2.a1) this.f26341g;
-        if (((y2.a) a1Var.f47260c) == null) {
-            androidx.biometric.e eVar = (androidx.biometric.e) this.f26339c;
+        u2.a1 a1Var = (u2.a1) this.f26342g;
+        if (((y2.a) a1Var.f47261c) == null) {
+            androidx.biometric.e eVar = (androidx.biometric.e) this.f26340c;
             synchronized (eVar) {
                 a2 = ((i2.j) eVar.d).f12434c.a();
                 ((HashMap) eVar.f2815b).put(a2, (j2.k) eVar.f2816c);
@@ -233,20 +233,20 @@ public final class fp0 {
                     iVar.a();
                 }
             }
-            u2.a1 a1Var2 = new u2.a1(((u2.a1) this.f26341g).f47259b, this.f26337a);
-            a1Var.f47260c = a2;
+            u2.a1 a1Var2 = new u2.a1(((u2.a1) this.f26342g).f47260b, this.f26338a);
+            a1Var.f47261c = a2;
             a1Var.d = a1Var2;
         }
-        return Math.min(i10, (int) (((u2.a1) this.f26341g).f47259b - this.f26338b));
+        return Math.min(i10, (int) (((u2.a1) this.f26342g).f47260b - this.f26339b));
     }
 
     public fp0(rc0 rc0Var) {
         this.d = new ArrayList(50);
         this.e = new ArrayList(50);
         Paint paint = new Paint(1);
-        this.f26340f = paint;
-        this.f26337a = 250;
-        this.f26339c = rc0Var;
+        this.f26341f = paint;
+        this.f26338a = 250;
+        this.f26340c = rc0Var;
         paint.setStrokeWidth(AndroidUtilities.dp(1.33f));
     }
 }

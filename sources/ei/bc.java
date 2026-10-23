@@ -230,7 +230,7 @@ public final class bc implements Runnable {
                 }
                 return;
             default:
-                org.telegram.ui.Cells.g3 g3Var = ((org.telegram.ui.Cells.i3) this.f8801b).f22405b;
+                org.telegram.ui.Cells.g3 g3Var = ((org.telegram.ui.Cells.i3) this.f8801b).f22406b;
                 g3Var.requestFocus();
                 AndroidUtilities.showKeyboard(g3Var);
                 return;

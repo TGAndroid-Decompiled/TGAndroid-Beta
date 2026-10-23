@@ -5,43 +5,43 @@ import android.animation.AnimatorListenerAdapter;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class a1 extends AnimatorListenerAdapter {
-    public final int f35243a;
-    public final l4 f35244b;
+    public final int f35244a;
+    public final l4 f35245b;
 
     public a1(l4 l4Var, int i10) {
-        this.f35244b = l4Var;
-        this.f35243a = i10;
+        this.f35245b = l4Var;
+        this.f35244a = i10;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        l4 l4Var = this.f35244b;
-        ArrayList arrayList = l4Var.f38766d0;
-        if (l4Var.f38768f0.f21934f) {
+        l4 l4Var = this.f35245b;
+        ArrayList arrayList = l4Var.f38767d0;
+        if (l4Var.f38769f0.f21935f) {
             ArrayList arrayList2 = new ArrayList();
-            l4Var.f38782u0[0].setBackgroundDrawable(null);
-            o3[] o3VarArr = l4Var.f38782u0;
+            l4Var.f38783u0[0].setBackgroundDrawable(null);
+            o3[] o3VarArr = l4Var.f38783u0;
             o3 o3Var = o3VarArr[1];
             o3VarArr[1] = o3VarArr[0];
             o3VarArr[0] = o3Var;
-            l4Var.f38770h0.i();
-            l4Var.Z0.a(l4Var.f38782u0[0].getBackgroundColor(), true);
-            l4Var.f38763a1.a(l4Var.f38782u0[1].getBackgroundColor(), true);
+            l4Var.f38771h0.i();
+            l4Var.Z0.a(l4Var.f38783u0[0].getBackgroundColor(), true);
+            l4Var.f38764a1.a(l4Var.f38783u0[1].getBackgroundColor(), true);
             x3 x3Var = l4Var.K;
             if (x3Var != null) {
                 x3Var.m();
             }
-            for (int size = arrayList.size() - 1; size > this.f35243a; size--) {
+            for (int size = arrayList.size() - 1; size > this.f35244a; size--) {
                 arrayList2.add(arrayList.remove(size));
             }
-            l4Var.O0.S(l4Var.f38782u0[0].f39756b);
+            l4Var.O0.S(l4Var.f38783u0[0].f39757b);
             org.telegram.ui.Cells.n9 n9Var = l4Var.O0;
-            n9Var.f22670z0 = l4Var.f38782u0[0].d;
+            n9Var.f22671z0 = l4Var.f38783u0[0].d;
             n9Var.f(true);
             l4Var.i0(false);
             l4Var.f0();
-            l4Var.f38782u0[1].b();
-            l4Var.f38782u0[1].setVisibility(8);
+            l4Var.f38783u0[1].b();
+            l4Var.f38783u0[1].setVisibility(8);
             int size2 = arrayList2.size();
             int i10 = 0;
             while (i10 < size2) {
@@ -58,8 +58,8 @@ public final class a1 extends AnimatorListenerAdapter {
             l4Var.U();
             l4Var.M();
         }
-        ArticleViewer$WindowView articleViewer$WindowView = l4Var.f38768f0;
-        articleViewer$WindowView.f21934f = false;
+        ArticleViewer$WindowView articleViewer$WindowView = l4Var.f38769f0;
+        articleViewer$WindowView.f21935f = false;
         articleViewer$WindowView.d = false;
         l4Var.T0 = false;
     }

@@ -36,7 +36,7 @@ public final class b3 extends ti {
             case 2:
                 qn qnVar = (qn) notificationCenterDelegate;
                 b3 b3Var2 = qnVar.J1;
-                if (b3Var2 != null && (b3Var2.isShowing() || this.f30606x0)) {
+                if (b3Var2 != null && (b3Var2.isShowing() || this.f30607x0)) {
                     Activity parentActivity = qnVar.getParentActivity();
                     i10 = ((org.telegram.ui.ActionBar.n2) qnVar).classGuid;
                     AndroidUtilities.requestAdjustResize(parentActivity, i10);
@@ -45,7 +45,7 @@ public final class b3 extends ti {
                 qnVar.Y9(false, true);
                 jm jmVar = qnVar.X0;
                 if (jmVar != null) {
-                    WeakHashMap weakHashMap = r0.i0.f44829a;
+                    WeakHashMap weakHashMap = r0.i0.f44830a;
                     r0.y.c(jmVar);
                     return;
                 }
@@ -89,7 +89,7 @@ public final class b3 extends ti {
                 return;
             default:
                 qn qnVar = (qn) notificationCenterDelegate;
-                boolean z10 = this.f30606x0;
+                boolean z10 = this.f30607x0;
                 boolean M = this.B0.M();
                 if (!M) {
                     qnVar.D3 = false;
@@ -120,7 +120,7 @@ public final class b3 extends ti {
                     qnVar.Y9(false, false);
                     jm jmVar = qnVar.X0;
                     if (jmVar != null) {
-                        WeakHashMap weakHashMap = r0.i0.f44829a;
+                        WeakHashMap weakHashMap = r0.i0.f44830a;
                         r0.y.c(jmVar);
                         return;
                     }

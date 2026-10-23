@@ -19,7 +19,7 @@ public final class g0 extends im0 {
 
     @Override
     public final boolean D(s4.b1 b1Var) {
-        if (b1Var.f45923f == 0) {
+        if (b1Var.f45924f == 0) {
             return true;
         }
         return false;
@@ -66,7 +66,7 @@ public final class g0 extends im0 {
                 w1Var.setTag(-33024);
             }
         } else {
-            w1Var = new w1(context, this.f12903f.f28175a, false);
+            w1Var = new w1(context, this.f12903f.f28176a, false);
         }
         return new s4.b1(w1Var);
     }

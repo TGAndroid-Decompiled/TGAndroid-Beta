@@ -46,7 +46,7 @@ public final class a extends bb {
         this.L = false;
         this.K = AndroidUtilities.dp(12.0f);
         this.e.setTitle(A());
-        setBackgroundColor(h6.w0(h6.f20935a7, this.resourcesProvider));
+        setBackgroundColor(h6.w0(h6.f20936a7, this.resourcesProvider));
         FrameLayout frameLayout = new FrameLayout(context);
         this.Z = frameLayout;
         frameLayout.setPadding(0, AndroidUtilities.dp(3.0f), 0, AndroidUtilities.dp(3.0f));
@@ -142,7 +142,7 @@ public final class a extends bb {
     public final im0 x(jm0 jm0Var) {
         u61 u61Var = new u61(this.d, getContext(), this.currentAccount, 0, false, new o(this, 11), this.resourcesProvider);
         this.X = u61Var;
-        u61Var.f30864r = false;
+        u61Var.f30865r = false;
         return u61Var;
     }
 }

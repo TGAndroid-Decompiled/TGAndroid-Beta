@@ -21,7 +21,7 @@ import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.ok;
+import org.telegram.messenger.nk;
 import org.telegram.messenger.voip.VideoCapturerDevice;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.bs;
@@ -172,7 +172,7 @@ public final class d4 extends FrameLayout implements RendererCommon.RendererEven
                     TLRPC.User user = MessagesController.getInstance(this.f8883a).getUser(Long.valueOf(j10));
                     ImageLocation forUser = ImageLocation.getForUser(this.f8883a, user, 1);
                     if (user != null) {
-                        f10 = org.telegram.ui.Components.h9.d(user.f20426id);
+                        f10 = org.telegram.ui.Components.h9.d(user.f20427id);
                     } else {
                         f10 = i0.a.f(0.2f, -16777216, -1);
                     }
@@ -181,7 +181,7 @@ public final class d4 extends FrameLayout implements RendererCommon.RendererEven
                     TLRPC.Chat chat = MessagesController.getInstance(this.f8883a).getChat(Long.valueOf(-j10));
                     ImageLocation forChat = ImageLocation.getForChat(this.f8883a, chat, 1);
                     if (chat != null) {
-                        f7 = org.telegram.ui.Components.h9.d(chat.f20279id);
+                        f7 = org.telegram.ui.Components.h9.d(chat.f20280id);
                     } else {
                         f7 = i0.a.f(0.2f, -16777216, -1);
                     }
@@ -291,7 +291,7 @@ public final class d4 extends FrameLayout implements RendererCommon.RendererEven
             if (z10) {
                 f7 = 1.0f;
             }
-            ok.t(animate.alpha(f7), bs.h, 320L);
+            nk.t(animate.alpha(f7), bs.h, 320L);
             return;
         }
         getTextureView().animate().cancel();

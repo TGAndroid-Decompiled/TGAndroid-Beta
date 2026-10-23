@@ -97,7 +97,7 @@ public final class c2 implements View.OnClickListener {
                 l7 l7Var5 = this.f1069b;
                 if (!l7Var5.f1738k0.N) {
                     xp xpVar = l7Var5.f1760w0;
-                    xpVar.a(!xpVar.f32462a.f24154q, true);
+                    xpVar.a(!xpVar.f32463a.f24155q, true);
                     return;
                 }
                 return;

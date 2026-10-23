@@ -11,16 +11,16 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 public final class w1 extends FrameLayout {
-    public final TextView f23758a;
-    public final ImageView f23759b;
-    public final FrameLayout f23760c;
+    public final TextView f23759a;
+    public final ImageView f23760b;
+    public final FrameLayout f23761c;
     public final org.telegram.ui.ActionBar.d6 d;
 
     public w1(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
         this.d = d6Var;
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f23760c = frameLayout;
+        this.f23761c = frameLayout;
         frameLayout.setBackgroundResource(R.drawable.newmsg_divider);
         Drawable background = frameLayout.getBackground();
         int a2 = a(org.telegram.ui.ActionBar.h6.Fe);
@@ -28,13 +28,13 @@ public final class w1 extends FrameLayout {
         background.setColorFilter(new PorterDuffColorFilter(a2, mode));
         addView(frameLayout, w7.z5.d(-1, 27.0f, 51, 0.0f, 7.0f, 0.0f, 0.0f));
         ImageView imageView = new ImageView(context);
-        this.f23759b = imageView;
+        this.f23760b = imageView;
         imageView.setImageResource(R.drawable.ic_ab_new);
         imageView.setColorFilter(new PorterDuffColorFilter(a(org.telegram.ui.ActionBar.h6.De), mode));
         imageView.setPadding(0, AndroidUtilities.dp(2.0f), 0, 0);
         frameLayout.addView(imageView, w7.z5.d(-2, -2.0f, 21, 0.0f, 0.0f, 10.0f, 0.0f));
         TextView textView = new TextView(context);
-        this.f23758a = textView;
+        this.f23759a = textView;
         textView.setPadding(0, 0, 0, AndroidUtilities.dp(1.0f));
         textView.setTextSize(1, 14.0f);
         textView.setTextColor(a(org.telegram.ui.ActionBar.h6.Ee));
@@ -57,15 +57,15 @@ public final class w1 extends FrameLayout {
     }
 
     public FrameLayout getBackgroundLayout() {
-        return this.f23760c;
+        return this.f23761c;
     }
 
     public ImageView getImageView() {
-        return this.f23759b;
+        return this.f23760b;
     }
 
     public TextView getTextView() {
-        return this.f23758a;
+        return this.f23759a;
     }
 
     @Override
@@ -74,6 +74,6 @@ public final class w1 extends FrameLayout {
     }
 
     public void setText(String str) {
-        this.f23758a.setText(str);
+        this.f23759a.setText(str);
     }
 }

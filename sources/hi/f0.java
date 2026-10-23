@@ -36,7 +36,7 @@ public final class f0 extends h0 {
         this.d = c71Var;
         c71Var.p1();
         c71 c71Var2 = this.d;
-        c71Var2.W2.f30864r = false;
+        c71Var2.W2.f30865r = false;
         c71Var2.setClipToPadding(false);
         this.d.setPadding(0, 0, 0, AndroidUtilities.dp(60.0f) + AndroidUtilities.navigationBarHeight);
         AndroidUtilities.removeFromParent(this.f12154b);
@@ -48,9 +48,9 @@ public final class f0 extends h0 {
         this.f12153a = kVar;
         kVar.setOccupyStatusBar(false);
         this.f12153a.setTitleColor(k0Var.getThemedColor(h6.G6));
-        this.f12153a.B(k0Var.getThemedColor(h6.f21400z8), false);
+        this.f12153a.B(k0Var.getThemedColor(h6.f21401z8), false);
         this.f12153a.setBackButtonImage(R.drawable.ic_ab_back);
-        this.f12153a.C(k0Var.getThemedColor(h6.f21383y8), false);
+        this.f12153a.C(k0Var.getThemedColor(h6.f21384y8), false);
         this.f12153a.setTitle(DialogObject.getName(k0Var.f12170f));
         this.f12153a.getTitleTextView().setTranslationX(-AndroidUtilities.dp(18.0f));
         this.f12153a.setActionBarMenuOnItemClick(new ah.s(this, 9));

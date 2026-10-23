@@ -6,19 +6,19 @@ import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
 public final class a {
-    public final int f45737a;
-    public final TLRPC.Document f45738b;
-    public final String f45739c;
+    public final int f45738a;
+    public final TLRPC.Document f45739b;
+    public final String f45740c;
     public final MessageObject d;
     public final String e;
-    public boolean f45740f;
-    public boolean f45741g;
+    public boolean f45741f;
+    public boolean f45742g;
 
     public a(int i10, MessageObject messageObject, TLRPC.Document document, String str) {
-        this.f45737a = i10;
+        this.f45738a = i10;
         this.d = messageObject;
-        this.f45738b = document;
-        this.f45739c = str;
+        this.f45739b = document;
+        this.f45740c = str;
         this.e = TextUtils.isEmpty(str) ? FileLoader.getAttachFileName(document) : str;
         a();
     }
@@ -26,21 +26,21 @@ public final class a {
     public final void a() {
         boolean z10;
         boolean z11 = false;
-        String str = this.f45739c;
+        String str = this.f45740c;
         if (str != null) {
             z10 = new File(str).exists();
         } else {
             z10 = false;
         }
-        int i10 = this.f45737a;
+        int i10 = this.f45738a;
         if (!z10) {
-            z10 = FileLoader.getInstance(i10).getPathToAttach(this.f45738b).exists();
+            z10 = FileLoader.getInstance(i10).getPathToAttach(this.f45739b).exists();
         }
-        this.f45740f = z10;
+        this.f45741f = z10;
         String str2 = this.e;
         if (!TextUtils.isEmpty(str2) && FileLoader.getInstance(i10).isLoadingFile(str2)) {
             z11 = true;
         }
-        this.f45741g = z11;
+        this.f45742g = z11;
     }
 }

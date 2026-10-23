@@ -313,7 +313,7 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
         ub ubVar = new ub(this, activity);
         this.f9987n = ubVar;
         ca caVar = new ca(this, 1);
-        WeakHashMap weakHashMap = r0.i0.f44829a;
+        WeakHashMap weakHashMap = r0.i0.f44830a;
         r0.a0.i(ubVar, caVar);
         this.f9987n.setFocusable(true);
         this.f9987n.setImportantForAccessibility(2);
@@ -363,17 +363,17 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
         int i12 = this.J;
         hbVar2.setBackgroundColor((i12 == 1 || i12 == 0) ? 0 : -14737633);
         hb hbVar3 = this.f9971h0;
-        ci.o1 o1Var = zf.j0.f51584a;
+        ci.o1 o1Var = zf.j0.f51585a;
         hbVar3.setOutlineProvider(new zf.i0(0, AndroidUtilities.dp(12.0f)));
         this.f9971h0.setClipToOutline(true);
         t9 t9Var = new t9(this, 14);
         ?? view = new View(activity);
-        view.f24935a = new TextPaint(1);
-        view.f24936b = new TextPaint(1);
+        view.f24936a = new TextPaint(1);
+        view.f24937b = new TextPaint(1);
         bs bsVar = bs.h;
-        view.f24941s = new org.telegram.ui.Components.f6((View) view, 0L, 350L, bsVar);
+        view.f24942s = new org.telegram.ui.Components.f6((View) view, 0L, 350L, bsVar);
         view.I = new rc0(view, 7);
-        view.f24943x = t9Var;
+        view.f24944x = t9Var;
         this.C1 = view;
         jb jbVar = new jb(this, activity, this.f10001r0, this.f10005s0);
         this.X0 = jbVar;
@@ -604,7 +604,7 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
         p6Var.u(-1);
         p6Var.x(AndroidUtilities.bold());
         p6Var.setCallback(view2);
-        p6Var.f29229b = 1;
+        p6Var.f29230b = 1;
         view2.a(0L, false);
         this.J0 = view2;
         h0(false, false);
@@ -1656,7 +1656,7 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
         }
         xa xaVar = this.f10015v1;
         if (xaVar != null && (d1Var = xaVar.O0.d) != null) {
-            d1Var.postRunnable(d1Var.f44497w);
+            d1Var.postRunnable(d1Var.f44498w);
         }
         jb jbVar = this.X0;
         if (jbVar != null) {
@@ -2137,10 +2137,10 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
                 xa xaVar2 = this.f10015v1;
                 xaVar2.I0 = true;
                 z5 z5Var = xaVar2.R0;
-                z5Var.f45322a = true;
+                z5Var.f45323a = true;
                 z5Var.draw(canvas);
                 xa xaVar3 = this.f10015v1;
-                xaVar3.R0.f45322a = false;
+                xaVar3.R0.f45323a = false;
                 xaVar3.I0 = false;
                 canvas.restore();
             }
@@ -2219,7 +2219,7 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
             if (text instanceof Spannable) {
                 Spannable spannable = (Spannable) text;
                 if (((o11[]) spannable.getSpans(0, text.length(), o11.class)).length > 0 || ((URLSpan[]) spannable.getSpans(0, text.length(), URLSpan.class)).length > 0) {
-                    new xc(this.f9987n, bVar).Q(R.raw.voip_invite, 36, AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.StoryPremiumFormatting), org.telegram.ui.ActionBar.h6.f21052gc, 0, new t9(this, 27), bVar)).k(true);
+                    new xc(this.f9987n, bVar).Q(R.raw.voip_invite, 36, AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.StoryPremiumFormatting), org.telegram.ui.ActionBar.h6.f21053gc, 0, new t9(this, 27), bVar)).k(true);
                     int i13 = -this.U1;
                     this.U1 = i13;
                     AndroidUtilities.shakeViewSpring(lbVar, i13);
@@ -2277,7 +2277,7 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
                             TLObject userOrChat = MessagesController.getInstance(i12).getUserOrChat(charSequence);
                             if (userOrChat instanceof TLRPC.User) {
                                 TLRPC.User user2 = (TLRPC.User) userOrChat;
-                                if (!user2.bot && !UserObject.isUserSelf(user2) && user2.f20426id != 777000 && !UserObject.isReplyUser(user2) && !arrayList2.contains(charSequence)) {
+                                if (!user2.bot && !UserObject.isUserSelf(user2) && user2.f20427id != 777000 && !UserObject.isReplyUser(user2) && !arrayList2.contains(charSequence)) {
                                     arrayList2.add(charSequence);
                                 }
                             }
@@ -2293,7 +2293,7 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
                     TLObject userOrChat2 = MessagesController.getInstance(i12).getUserOrChat(charSequence2);
                     if (userOrChat2 instanceof TLRPC.User) {
                         TLRPC.User user3 = (TLRPC.User) userOrChat2;
-                        if (!user3.bot && !UserObject.isUserSelf(user3) && user3.f20426id != 777000 && !UserObject.isReplyUser(user3) && !arrayList2.contains(charSequence2)) {
+                        if (!user3.bot && !UserObject.isUserSelf(user3) && user3.f20427id != 777000 && !UserObject.isReplyUser(user3) && !arrayList2.contains(charSequence2)) {
                             arrayList2.add(charSequence2);
                         }
                     }
@@ -2388,15 +2388,15 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
                     int dp = AndroidUtilities.dp(64.0f);
                     int dp2 = AndroidUtilities.dp(64.0f);
                     zqVar.e = dp;
-                    zqVar.f33023f = dp2;
+                    zqVar.f33024f = dp2;
                     this.A0.setCameraThumb(zqVar);
                     if (activity.shouldShowRequestPermissionRationale("android.permission.CAMERA")) {
                         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(activity, 0, this.f9947a);
                         alertDialog$Builder.m(R.raw.permission_request_camera, 72, org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.L5, false), null);
-                        alertDialog$Builder.f20608a.T = AndroidUtilities.replaceTags(LocaleController.getString(R.string.PermissionNoCameraWithHint));
+                        alertDialog$Builder.f20609a.T = AndroidUtilities.replaceTags(LocaleController.getString(R.string.PermissionNoCameraWithHint));
                         alertDialog$Builder.k(LocaleController.getString(R.string.PermissionOpenSettings), new ca(this, 13));
                         alertDialog$Builder.h(LocaleController.getString(R.string.ContactsPermissionAlertNotNow), null);
-                        alertDialog$Builder.f20608a.show();
+                        alertDialog$Builder.f20609a.show();
                         return;
                     }
                     activity.requestPermissions(new String[]{"android.permission.CAMERA"}, 111);
@@ -2689,14 +2689,14 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
             vj0Var2.N(i10, false, false);
         } else if (z10) {
             vj0 vj0Var3 = this.f9966f1;
-            if (vj0Var3.f31268a0 > 20) {
+            if (vj0Var3.f31269a0 > 20) {
                 vj0Var3.N(0, false, false);
             }
             this.f9966f1.P(20);
             this.f9966f1.start();
         } else {
             vj0 vj0Var4 = this.f9966f1;
-            int i11 = vj0Var4.f31268a0;
+            int i11 = vj0Var4.f31269a0;
             if (i11 != 0 && i11 < 43) {
                 vj0Var4.P(43);
                 this.f9966f1.start();
@@ -3556,7 +3556,7 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
                 this.B1.getToolsView().setVisibility(8);
                 this.B1.getToolsView().setAlpha(0.0f);
                 this.B1.getToolsView().setTranslationY(AndroidUtilities.dp(186.0f));
-                this.B1.f25479i0.setVisibility(0);
+                this.B1.f25480i0.setVisibility(0);
             }
         }
     }

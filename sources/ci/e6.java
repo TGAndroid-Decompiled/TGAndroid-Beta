@@ -64,7 +64,7 @@ public final class e6 implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new ah.j(23));
                 return;
             case 12:
-                Pattern pattern = org.telegram.ui.Components.f5.f26080a;
+                Pattern pattern = org.telegram.ui.Components.f5.f26081a;
                 return;
             case 13:
                 int i11 = ex.H0;
@@ -79,7 +79,7 @@ public final class e6 implements RequestDelegate {
                 int i13 = e11.e;
                 return;
             case 17:
-                int i14 = hf0.f37595t0;
+                int i14 = hf0.f37596t0;
                 return;
             case 18:
                 AndroidUtilities.runOnUIThread(new ck0(tLObject, 3));
@@ -88,7 +88,7 @@ public final class e6 implements RequestDelegate {
                 int i15 = rm0.R;
                 return;
             case 20:
-                List list = eo0.f36700g1;
+                List list = eo0.f36701g1;
                 return;
             default:
                 int i16 = u61.e;

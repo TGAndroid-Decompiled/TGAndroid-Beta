@@ -2,27 +2,27 @@ package org.telegram.ui.Components;
 
 import android.view.View;
 public final class c1 implements View.OnClickListener {
-    public final int f25086a;
-    public final org.telegram.ui.Cells.a2[] f25087b;
+    public final int f25087a;
+    public final org.telegram.ui.Cells.a2[] f25088b;
 
     public c1(org.telegram.ui.Cells.a2[] a2VarArr, int i10) {
-        this.f25086a = i10;
-        this.f25087b = a2VarArr;
+        this.f25087a = i10;
+        this.f25088b = a2VarArr;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f25086a) {
+        switch (this.f25087a) {
             case 0:
                 Integer num = (Integer) view.getTag();
                 int intValue = num.intValue();
-                org.telegram.ui.Cells.a2[] a2VarArr = this.f25087b;
+                org.telegram.ui.Cells.a2[] a2VarArr = this.f25088b;
                 a2VarArr[intValue].c(!a2VarArr[num.intValue()].b(), true);
                 return;
             default:
                 Integer num2 = (Integer) view.getTag();
                 int intValue2 = num2.intValue();
-                org.telegram.ui.Cells.a2[] a2VarArr2 = this.f25087b;
+                org.telegram.ui.Cells.a2[] a2VarArr2 = this.f25088b;
                 a2VarArr2[intValue2].c(!a2VarArr2[num2.intValue()].b(), true);
                 return;
         }

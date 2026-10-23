@@ -9,9 +9,9 @@ import e9.x1;
 import java.util.List;
 import v7.u6;
 public final class b implements d {
-    public static final r f50647c = new r(new ya.b(5), s1.f8497b);
-    public final n0 f50648a;
-    public final long[] f50649b;
+    public static final r f50648c = new r(new ya.b(5), s1.f8497b);
+    public final n0 f50649a;
+    public final long[] f50650b;
 
     public b(e9.x1 r19) {
         throw new UnsupportedOperationException("Method not decompiled: z3.b.<init>(e9.x1):void");
@@ -19,8 +19,8 @@ public final class b implements d {
 
     @Override
     public final int d(long j10) {
-        int b10 = m0.b(this.f50649b, j10, false);
-        if (b10 < this.f50648a.size()) {
+        int b10 = m0.b(this.f50650b, j10, false);
+        if (b10 < this.f50649a.size()) {
             return b10;
         }
         return -1;
@@ -29,27 +29,27 @@ public final class b implements d {
     @Override
     public final long k(int i10) {
         boolean z10;
-        if (i10 < this.f50648a.size()) {
+        if (i10 < this.f50649a.size()) {
             z10 = true;
         } else {
             z10 = false;
         }
         u6.g(z10);
-        return this.f50649b[i10];
+        return this.f50650b[i10];
     }
 
     @Override
     public final List s(long j10) {
-        int f7 = m0.f(this.f50649b, j10, false);
+        int f7 = m0.f(this.f50650b, j10, false);
         if (f7 == -1) {
             l0 l0Var = n0.f8474b;
             return x1.e;
         }
-        return (n0) this.f50648a.get(f7);
+        return (n0) this.f50649a.get(f7);
     }
 
     @Override
     public final int u() {
-        return this.f50648a.size();
+        return this.f50649a.size();
     }
 }

@@ -29,10 +29,10 @@ public final class hb0 extends jm0 {
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         boolean z10;
         ib0 ib0Var = this.Z2;
-        hg.j1 j1Var = ib0Var.f27226f;
+        hg.j1 j1Var = ib0Var.f27227f;
         hg.p1 p1Var = ib0Var.e;
-        if (!ib0Var.f27225c.f45913t ? this.W2 || p1Var == null || p1Var.e == null || !p1Var.f12011f || motionEvent.getY() >= p1Var.e.getBottom() : this.W2 || p1Var == null || p1Var.e == null || !p1Var.f12011f || motionEvent.getY() <= p1Var.e.getTop()) {
-            if (!this.V2 && org.telegram.ui.et.q().r(motionEvent, ib0Var.f27224b, null, this.f27582n2)) {
+        if (!ib0Var.f27226c.f45914t ? this.W2 || p1Var == null || p1Var.e == null || !p1Var.f12011f || motionEvent.getY() >= p1Var.e.getBottom() : this.W2 || p1Var == null || p1Var.e == null || !p1Var.f12011f || motionEvent.getY() <= p1Var.e.getTop()) {
+            if (!this.V2 && org.telegram.ui.et.q().r(motionEvent, ib0Var.f27225b, null, this.f27583n2)) {
                 z10 = true;
             } else {
                 z10 = false;
@@ -117,7 +117,7 @@ public final class hb0 extends jm0 {
     public final boolean onTouchEvent(MotionEvent motionEvent) {
         ib0 ib0Var = this.Z2;
         hg.p1 p1Var = ib0Var.e;
-        if (ib0Var.f27225c.f45913t) {
+        if (ib0Var.f27226c.f45914t) {
             if (!this.W2 && p1Var != null && p1Var.e != null && p1Var.f12011f && motionEvent.getY() > p1Var.e.getTop()) {
                 return false;
             }

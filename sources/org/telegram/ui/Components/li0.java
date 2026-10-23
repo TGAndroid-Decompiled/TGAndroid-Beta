@@ -48,31 +48,31 @@ public class li0 extends gq implements NotificationCenter.NotificationCenterDele
     public final ArrayList X0;
     public final ArrayList Y0;
     public final ArrayList Z0;
-    public final ArrayList f28179a1;
-    public final ArrayList f28180b1;
-    public int f28181c1;
-    public final SparseArray f28182d1;
-    public boolean f28183e1;
-    public boolean f28184f1;
-    public boolean f28185g1;
-    public org.telegram.ui.vu0 f28186h1;
-    public boolean f28187i1;
-    public int f28188j1;
-    public int f28189k1;
+    public final ArrayList f28180a1;
+    public final ArrayList f28181b1;
+    public int f28182c1;
+    public final SparseArray f28183d1;
+    public boolean f28184e1;
+    public boolean f28185f1;
+    public boolean f28186g1;
+    public org.telegram.ui.vu0 f28187h1;
+    public boolean f28188i1;
+    public int f28189j1;
+    public int f28190k1;
     public int l1;
-    public int f28190m1;
-    public int f28191n1;
-    public int f28192o1;
-    public ci0 f28193p1;
-    public ImageLocation f28194q1;
-    public ImageLocation f28195r1;
-    public final PointF f28196x0;
-    public final int f28197y0;
-    public final org.telegram.ui.ActionBar.k f28198z0;
+    public int f28191m1;
+    public int f28192n1;
+    public int f28193o1;
+    public ci0 f28194p1;
+    public ImageLocation f28195q1;
+    public ImageLocation f28196r1;
+    public final PointF f28197x0;
+    public final int f28198y0;
+    public final org.telegram.ui.ActionBar.k f28199z0;
 
     public li0(Context context, org.telegram.ui.ActionBar.k kVar, jm0 jm0Var, org.telegram.ui.w4 w4Var) {
         super(context);
-        this.f28196x0 = new PointF();
+        this.f28197x0 = new PointF();
         this.A0 = true;
         this.B0 = true;
         int i10 = UserConfig.selectedAccount;
@@ -87,19 +87,19 @@ public class li0 extends gq implements NotificationCenter.NotificationCenterDele
         this.X0 = new ArrayList();
         this.Y0 = new ArrayList();
         this.Z0 = new ArrayList();
-        this.f28179a1 = new ArrayList();
-        this.f28180b1 = new ArrayList();
-        this.f28182d1 = new SparseArray();
-        this.f28183e1 = true;
-        this.f28188j1 = -1;
-        this.f28189k1 = -1;
+        this.f28180a1 = new ArrayList();
+        this.f28181b1 = new ArrayList();
+        this.f28183d1 = new SparseArray();
+        this.f28184e1 = true;
+        this.f28189j1 = -1;
+        this.f28190k1 = -1;
         setOffscreenPageLimit(2);
-        this.f28193p1 = null;
+        this.f28194p1 = null;
         this.J0 = false;
         this.C0 = jm0Var;
         ConnectionsManager.generateClassGuid();
-        this.f28198z0 = kVar;
-        this.f28197y0 = ViewConfiguration.get(context).getScaledTouchSlop();
+        this.f28199z0 = kVar;
+        this.f28198y0 = ViewConfiguration.get(context).getScaledTouchSlop();
         this.G0 = w4Var;
         b(new di0(this));
         ki0 ki0Var = new ki0(this, getContext(), null);
@@ -122,24 +122,24 @@ public class li0 extends gq implements NotificationCenter.NotificationCenterDele
         this.Z0.add(0, null);
         this.W0.add(0, null);
         this.V0.add(0, null);
-        this.f28179a1.add(0, -1);
-        this.f28180b1.add(0, Float.valueOf(0.0f));
+        this.f28180a1.add(0, -1);
+        this.f28181b1.add(0, Float.valueOf(0.0f));
         this.D0.g();
         L();
-        this.f28194q1 = imageLocation;
-        this.f28195r1 = imageLocation2;
+        this.f28195q1 = imageLocation;
+        this.f28196r1 = imageLocation2;
     }
 
     public final void B(float f7, int i10) {
         float f10;
-        int i11 = this.f28188j1;
+        int i11 = this.f28189j1;
         float f11 = 0.0f;
-        if (i11 >= 0 || this.f28189k1 >= 0) {
+        if (i11 >= 0 || this.f28190k1 >= 0) {
             if (i11 < 0) {
-                i11 = this.f28189k1;
+                i11 = this.f28190k1;
             }
             int k10 = this.D0.k(i10);
-            if (this.f28187i1) {
+            if (this.f28188i1) {
                 k10--;
             }
             if (k10 == i11) {
@@ -216,12 +216,12 @@ public class li0 extends gq implements NotificationCenter.NotificationCenterDele
     public final View E(int i10) {
         ki0 ki0Var = this.D0;
         if (ki0Var != null) {
-            ArrayList arrayList = ki0Var.f27885c;
+            ArrayList arrayList = ki0Var.f27886c;
             if (arrayList.size() > i10 && i10 >= 0) {
                 hi0 hi0Var = (hi0) arrayList.get(i10);
-                ii0 ii0Var = hi0Var.f26901b;
+                ii0 ii0Var = hi0Var.f26902b;
                 if (ii0Var == null) {
-                    return hi0Var.f26902c;
+                    return hi0Var.f26903c;
                 }
                 return ii0Var;
             }
@@ -257,7 +257,7 @@ public class li0 extends gq implements NotificationCenter.NotificationCenterDele
         int i10;
         MessagesController.DialogPhotos dialogPhotos2;
         int i11 = 0;
-        if (imageLocation != null && imageLocation2 != null && this.f28181c1 == 0) {
+        if (imageLocation != null && imageLocation2 != null && this.f28182c1 == 0) {
             ImageLocation imageLocation3 = this.P0;
             ArrayList arrayList = this.X0;
             if (imageLocation3 == null || imageLocation3.location.local_id != imageLocation.location.local_id) {
@@ -298,8 +298,8 @@ public class li0 extends gq implements NotificationCenter.NotificationCenterDele
                 this.Z0.add(n71Var);
                 this.W0.add(null);
                 this.V0.add(null);
-                this.f28179a1.add(-1);
-                this.f28180b1.add(null);
+                this.f28180a1.add(-1);
+                this.f28181b1.add(null);
                 getAdapter().g();
                 L();
                 return true;
@@ -310,7 +310,7 @@ public class li0 extends gq implements NotificationCenter.NotificationCenterDele
 
     public final boolean I() {
         int realPosition = getRealPosition();
-        if (this.f28187i1) {
+        if (this.f28188i1) {
             if (realPosition != 0) {
                 realPosition--;
             } else {
@@ -330,7 +330,7 @@ public class li0 extends gq implements NotificationCenter.NotificationCenterDele
     public final boolean J() {
         int realPosition;
         w9 currentItemView;
-        if (this.f28187i1) {
+        if (this.f28188i1) {
             realPosition = getRealPosition() - 1;
         } else {
             realPosition = getRealPosition();
@@ -346,7 +346,7 @@ public class li0 extends gq implements NotificationCenter.NotificationCenterDele
     }
 
     public final void K() {
-        this.f28193p1 = null;
+        this.f28194p1 = null;
         int i10 = this.L0;
         NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.dialogPhotosLoaded);
         NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.fileLoaded);
@@ -380,18 +380,18 @@ public class li0 extends gq implements NotificationCenter.NotificationCenterDele
             L();
             return;
         }
-        this.f28184f1 = true;
+        this.f28185f1 = true;
         this.T0.clear();
         this.U0.clear();
         this.V0.clear();
         this.W0.clear();
         this.X0.clear();
         this.Y0.clear();
-        this.f28179a1.clear();
-        this.f28180b1.clear();
+        this.f28180a1.clear();
+        this.f28181b1.clear();
         this.D0.g();
         x(0, false);
-        this.f28192o1 = 0;
+        this.f28193o1 = 0;
         this.K0 = null;
         this.P0 = null;
         this.E0 = j10;
@@ -401,15 +401,15 @@ public class li0 extends gq implements NotificationCenter.NotificationCenterDele
     }
 
     public final void N(int i10, int i11) {
-        this.f28190m1 = i10;
-        this.f28191n1 = i11;
+        this.f28191m1 = i10;
+        this.f28192n1 = i11;
         ki0 ki0Var = this.D0;
         if (ki0Var != null) {
-            for (int i12 = 0; i12 < ki0Var.f27885c.size(); i12++) {
-                if (((hi0) ki0Var.f27885c.get(i12)).f26902c != null) {
-                    fi0 fi0Var = ((hi0) ki0Var.f27885c.get(i12)).f26902c;
-                    int i13 = this.f28190m1;
-                    int i14 = this.f28191n1;
+            for (int i12 = 0; i12 < ki0Var.f27886c.size(); i12++) {
+                if (((hi0) ki0Var.f27886c.get(i12)).f26903c != null) {
+                    fi0 fi0Var = ((hi0) ki0Var.f27886c.get(i12)).f26903c;
+                    int i13 = this.f28191m1;
+                    int i14 = this.f28192n1;
                     fi0Var.r(i13, i13, i14, i14);
                 }
             }
@@ -424,8 +424,8 @@ public class li0 extends gq implements NotificationCenter.NotificationCenterDele
                 if (i10 >= arrayList.size()) {
                     break;
                 } else if (arrayList.get(i10) == imageLocation) {
-                    this.f28180b1.set(i10, Float.valueOf(f7));
-                    SparseArray sparseArray = this.f28182d1;
+                    this.f28181b1.set(i10, Float.valueOf(f7));
+                    SparseArray sparseArray = this.f28183d1;
                     if (sparseArray.get(i10) != null) {
                         ((RadialProgress2) sparseArray.get(i10)).o(f7, true);
                     }
@@ -478,18 +478,18 @@ public class li0 extends gq implements NotificationCenter.NotificationCenterDele
             if (li0Var2.S0 == dialogPhotos2) {
                 ArrayList arrayList7 = new ArrayList(dialogPhotos2.photos);
                 if (!arrayList7.isEmpty() || !dialogPhotos2.fromCache) {
-                    li0Var2.f28188j1 = -1;
-                    li0Var2.f28189k1 = -1;
+                    li0Var2.f28189j1 = -1;
+                    li0Var2.f28190k1 = -1;
                     int i17 = li0Var2.L0;
                     TLRPC.User user4 = MessagesController.getInstance(i17).getUser(Long.valueOf(li0Var2.E0));
                     TLRPC.UserFull userFull = MessagesController.getInstance(i17).getUserFull(li0Var2.E0);
                     if (userFull != null && (photo = userFull.personal_photo) != null) {
                         arrayList7.add(0, photo);
-                        li0Var2.f28188j1 = 0;
+                        li0Var2.f28189j1 = 0;
                     }
                     if (user4 != null && user4.self && UserObject.hasFallbackPhoto(userFull)) {
                         arrayList7.add(userFull.fallback_photo);
-                        li0Var2.f28189k1 = arrayList7.size() - 1;
+                        li0Var2.f28190k1 = arrayList7.size() - 1;
                     }
                     arrayList5.clear();
                     arrayList6.clear();
@@ -503,9 +503,9 @@ public class li0 extends gq implements NotificationCenter.NotificationCenterDele
                     arrayList11.clear();
                     ArrayList arrayList12 = li0Var2.V0;
                     arrayList12.clear();
-                    ArrayList arrayList13 = li0Var2.f28179a1;
+                    ArrayList arrayList13 = li0Var2.f28180a1;
                     arrayList13.clear();
-                    ArrayList arrayList14 = li0Var2.f28180b1;
+                    ArrayList arrayList14 = li0Var2.f28181b1;
                     arrayList14.clear();
                     if (DialogObject.isChatDialog(li0Var2.E0)) {
                         TLRPC.Chat chat = MessagesController.getInstance(i17).getChat(Long.valueOf(-li0Var2.E0));
@@ -773,31 +773,31 @@ public class li0 extends gq implements NotificationCenter.NotificationCenterDele
                     getAdapter().g();
                     if (z10) {
                         li0Var = this;
-                        if (!li0Var.H0 || li0Var.f28184f1) {
+                        if (!li0Var.H0 || li0Var.f28185f1) {
                             li0Var.L();
                         }
                     } else {
                         li0Var = this;
-                        if (!li0Var.H0 || li0Var.f28184f1) {
+                        if (!li0Var.H0 || li0Var.f28185f1) {
                             li0Var.L();
                             li0Var.getAdapter().g();
                             li0Var.B(0.0f, li0Var.getRealPosition());
                         }
                     }
-                    if (li0Var.f28189k1 < 0 && li0Var.f28188j1 < 0) {
+                    if (li0Var.f28190k1 < 0 && li0Var.f28189j1 < 0) {
                         z11 = false;
                         li0Var.B(0.0f, 0);
                     } else {
                         z11 = false;
                     }
-                    li0Var.f28184f1 = z11;
+                    li0Var.f28185f1 = z11;
                     gi0 gi0Var = li0Var.G0;
                     if (gi0Var != null) {
                         gi0Var.c();
                     }
-                    ImageLocation imageLocation5 = li0Var.f28194q1;
+                    ImageLocation imageLocation5 = li0Var.f28195q1;
                     if (imageLocation5 != null) {
-                        li0Var.A(imageLocation5, li0Var.f28195r1);
+                        li0Var.A(imageLocation5, li0Var.f28196r1);
                         return;
                     }
                     return;
@@ -806,7 +806,7 @@ public class li0 extends gq implements NotificationCenter.NotificationCenterDele
             return;
         }
         int i28 = NotificationCenter.fileLoaded;
-        SparseArray sparseArray = li0Var2.f28182d1;
+        SparseArray sparseArray = li0Var2.f28183d1;
         if (i10 == i28) {
             String str = (String) objArr[0];
             for (int i29 = 0; i29 < arrayList5.size(); i29++) {
@@ -837,7 +837,7 @@ public class li0 extends gq implements NotificationCenter.NotificationCenterDele
                     li0Var2.invalidate();
                 }
             }
-        } else if (i10 == NotificationCenter.reloadDialogPhotos && li0Var2.f28181c1 == 0 && (dialogPhotos = li0Var2.S0) != null) {
+        } else if (i10 == NotificationCenter.reloadDialogPhotos && li0Var2.f28182c1 == 0 && (dialogPhotos = li0Var2.S0) != null) {
             dialogPhotos.reset();
             MessagesController.DialogPhotos dialogPhotos3 = li0Var2.S0;
             int currentItem = li0Var2.getCurrentItem();
@@ -852,7 +852,7 @@ public class li0 extends gq implements NotificationCenter.NotificationCenterDele
     }
 
     public ci0 getBlurDrawer() {
-        return this.f28193p1;
+        return this.f28194p1;
     }
 
     public float getCurrentItemProgress() {
@@ -866,8 +866,8 @@ public class li0 extends gq implements NotificationCenter.NotificationCenterDele
 
     public w9 getCurrentItemView() {
         ki0 ki0Var = this.D0;
-        if (ki0Var != null && !ki0Var.f27885c.isEmpty()) {
-            return ((hi0) ki0Var.f27885c.get(getCurrentItem())).f26902c;
+        if (ki0Var != null && !ki0Var.f27886c.isEmpty()) {
+            return ((hi0) ki0Var.f27886c.get(getCurrentItem())).f26903c;
         }
         return null;
     }
@@ -878,7 +878,7 @@ public class li0 extends gq implements NotificationCenter.NotificationCenterDele
 
     public int getRealCount() {
         int size = this.V0.size();
-        if (this.f28187i1) {
+        if (this.f28188i1) {
             return size + 1;
         }
         return size;
@@ -902,16 +902,16 @@ public class li0 extends gq implements NotificationCenter.NotificationCenterDele
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
-        ci0 ci0Var = this.f28193p1;
+        ci0 ci0Var = this.f28194p1;
         if (ci0Var != null) {
-            ci0Var.setTranslationY(getHeight() - this.f28193p1.getMeasuredHeight());
+            ci0Var.setTranslationY(getHeight() - this.f28194p1.getMeasuredHeight());
         }
     }
 
     @Override
     public final void onSizeChanged(int i10, int i11, int i12, int i13) {
         super.onSizeChanged(i10, i11, i12, i13);
-        ci0 ci0Var = this.f28193p1;
+        ci0 ci0Var = this.f28194p1;
         if (ci0Var != null) {
             ci0Var.G = true;
             ci0Var.postInvalidateOnAnimation();
@@ -926,7 +926,7 @@ public class li0 extends gq implements NotificationCenter.NotificationCenterDele
     @Override
     public void setAlpha(float f7) {
         super.setAlpha(f7);
-        ci0 ci0Var = this.f28193p1;
+        ci0 ci0Var = this.f28194p1;
         if (ci0Var != null) {
             ci0Var.setAlpha(f7);
         }
@@ -976,14 +976,14 @@ public class li0 extends gq implements NotificationCenter.NotificationCenterDele
                     arrayList4.set(0, null);
                     arrayList3.add(0, null);
                 }
-                this.f28180b1.set(0, null);
+                this.f28181b1.set(0, null);
                 this.D0.g();
             }
         }
     }
 
     public void setCreateThumbFromParent(boolean z10) {
-        this.f28183e1 = z10;
+        this.f28184e1 = z10;
     }
 
     public void setData(long j10) {
@@ -991,7 +991,7 @@ public class li0 extends gq implements NotificationCenter.NotificationCenterDele
     }
 
     public void setHasActiveVideo(boolean z10) {
-        this.f28187i1 = z10;
+        this.f28188i1 = z10;
     }
 
     public void setImagesLayerNum(int i10) {
@@ -999,24 +999,24 @@ public class li0 extends gq implements NotificationCenter.NotificationCenterDele
     }
 
     public void setInvalidateWithParent(boolean z10) {
-        this.f28185g1 = z10;
+        this.f28186g1 = z10;
     }
 
     public void setParentAvatarImage(w9 w9Var) {
         ki0 ki0Var = this.D0;
         if (ki0Var != null) {
-            ki0Var.f27887g = w9Var;
+            ki0Var.f27888g = w9Var;
         }
     }
 
     public void setPinchToZoomHelper(org.telegram.ui.vu0 vu0Var) {
-        this.f28186h1 = vu0Var;
+        this.f28187h1 = vu0Var;
     }
 
     @Override
     public void setVisibility(int i10) {
         super.setVisibility(i10);
-        ci0 ci0Var = this.f28193p1;
+        ci0 ci0Var = this.f28194p1;
         if (ci0Var != null) {
             ci0Var.setVisibility(i10);
         }
@@ -1027,7 +1027,7 @@ public class li0 extends gq implements NotificationCenter.NotificationCenterDele
 
     public li0(Context context, long j10, org.telegram.ui.ActionBar.k kVar, jm0 jm0Var, org.telegram.ui.oz0 oz0Var, gi0 gi0Var, ci0 ci0Var) {
         super(context);
-        this.f28196x0 = new PointF();
+        this.f28197x0 = new PointF();
         this.A0 = true;
         this.B0 = true;
         int i10 = UserConfig.selectedAccount;
@@ -1042,14 +1042,14 @@ public class li0 extends gq implements NotificationCenter.NotificationCenterDele
         this.X0 = new ArrayList();
         this.Y0 = new ArrayList();
         this.Z0 = new ArrayList();
-        this.f28179a1 = new ArrayList();
-        this.f28180b1 = new ArrayList();
-        this.f28182d1 = new SparseArray();
-        this.f28183e1 = true;
-        this.f28188j1 = -1;
-        this.f28189k1 = -1;
-        this.f28193p1 = ci0Var;
-        setPadding(0, 0, 0, ci0Var == null ? 0 : ci0Var.f25202n);
+        this.f28180a1 = new ArrayList();
+        this.f28181b1 = new ArrayList();
+        this.f28183d1 = new SparseArray();
+        this.f28184e1 = true;
+        this.f28189j1 = -1;
+        this.f28190k1 = -1;
+        this.f28194p1 = ci0Var;
+        setPadding(0, 0, 0, ci0Var == null ? 0 : ci0Var.f25203n);
         if (ci0Var != null) {
             ci0Var.setView(this);
         }
@@ -1059,11 +1059,11 @@ public class li0 extends gq implements NotificationCenter.NotificationCenterDele
         this.J0 = true;
         this.E0 = j10;
         this.C0 = jm0Var;
-        this.f28198z0 = kVar;
+        this.f28199z0 = kVar;
         ki0 ki0Var = new ki0(this, getContext(), oz0Var);
         this.D0 = ki0Var;
         setAdapter((fq) ki0Var);
-        this.f28197y0 = ViewConfiguration.get(context).getScaledTouchSlop();
+        this.f28198y0 = ViewConfiguration.get(context).getScaledTouchSlop();
         this.G0 = gi0Var;
         b(new ei0((org.telegram.ui.sy0) this));
         NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.dialogPhotosLoaded);

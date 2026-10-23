@@ -4,7 +4,7 @@ import java.util.ArrayList;
 public final class o {
     public static final a5.a d = new a5.a(new a6.i(new d9.e(':', 0), 15));
     public static final a5.a e = new a5.a(new a6.i(new d9.e('*', 0), 15));
-    public final ArrayList f48553a = new ArrayList();
-    public int f48554b = 0;
-    public int f48555c;
+    public final ArrayList f48554a = new ArrayList();
+    public int f48555b = 0;
+    public int f48556c;
 }

@@ -500,7 +500,7 @@ public final class c implements OnSuccessListener, l1, a2, ll0, zl0, Utilities.C
                     n2Var.f12864c = new o2(24, f1Var, view3);
                     f1Var.presentFragment((n2) n2Var);
                     return;
-                } else if (h61Var2.f44299a == 5 && i13 >= 0 && i13 < f1Var.h.length) {
+                } else if (h61Var2.f44300a == 5 && i13 >= 0 && i13 < f1Var.h.length) {
                     if (!LocaleController.isRTL ? floatValue >= view3.getMeasuredWidth() - AndroidUtilities.dp(76.0f) : floatValue <= AndroidUtilities.dp(76.0f)) {
                         if (f1Var.h[h61Var2.d].isEmpty()) {
                             ((i5) view3).setChecked(true);
@@ -530,7 +530,7 @@ public final class c implements OnSuccessListener, l1, a2, ll0, zl0, Utilities.C
                         }
                     }
                     int i20 = i18 + 1439;
-                    CharSequence charSequence = h61Var2.f26785l;
+                    CharSequence charSequence = h61Var2.f26786l;
                     ArrayList arrayList = f1Var.h[h61Var2.d];
                     int i21 = 0;
                     for (int i22 = 0; i22 < 7; i22++) {
@@ -570,9 +570,9 @@ public final class c implements OnSuccessListener, l1, a2, ll0, zl0, Utilities.C
                     v8Var.setChecked(z11);
                     boolean z12 = h1Var2.f12914r;
                     if (z12) {
-                        i11 = h6.f21029f6;
+                        i11 = h6.f21030f6;
                     } else {
-                        i11 = h6.f21010e6;
+                        i11 = h6.f21011e6;
                     }
                     v8Var.b(h6.x0(null, i11, false), z12);
                     h1Var2.f12913n.W2.N(true);
@@ -600,7 +600,7 @@ public final class c implements OnSuccessListener, l1, a2, ll0, zl0, Utilities.C
                     }
                     h1Var2.f12913n.W2.N(true);
                     return;
-                } else if (h61Var3.f44299a == 3 && (i10 = i25 / 3) >= 0 && i10 < arrayList3.size()) {
+                } else if (h61Var3.f44300a == 3 && (i10 = i25 / 3) >= 0 && i10 < arrayList3.size()) {
                     int i27 = i10 - 1;
                     if (i27 >= 0) {
                         e1Var = (e1) arrayList3.get(i27);

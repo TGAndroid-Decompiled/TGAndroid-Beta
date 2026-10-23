@@ -17,7 +17,7 @@ public class z3 extends View {
     public z3(Context context, d6 d6Var) {
         super(context);
         ew0 ew0Var = new ew0(new fh.b(9), new fh.b(10));
-        ew0Var.f25988c = 100.0f;
+        ew0Var.f25989c = 100.0f;
         this.f11581a = ew0Var;
         Paint paint = new Paint(1);
         this.f11582b = paint;

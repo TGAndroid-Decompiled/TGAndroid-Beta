@@ -4,15 +4,15 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class z implements RequestDelegate {
-    public final int f19949a;
+    public final int f19952a;
 
     public z(int i10) {
-        this.f19949a = i10;
+        this.f19952a = i10;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f19949a) {
+        switch (this.f19952a) {
             case 0:
                 VoIPService.lambda$callFailed$114(tLObject, tL_error);
                 return;

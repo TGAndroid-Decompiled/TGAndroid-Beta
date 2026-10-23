@@ -6,17 +6,17 @@ import android.text.style.URLSpan;
 import android.view.View;
 import org.telegram.ui.LaunchActivity;
 public final class n61 extends URLSpan {
-    public final n11 f28698a;
-    public boolean f28699b;
+    public final n11 f28699a;
+    public boolean f28700b;
 
     public n61(String str, n11 n11Var) {
         super(str != null ? str.replace((char) 8238, ' ') : str);
-        this.f28698a = n11Var;
+        this.f28699a = n11Var;
     }
 
     @Override
     public final void onClick(View view) {
-        if (this.f28699b && (view.getContext() instanceof LaunchActivity)) {
+        if (this.f28700b && (view.getContext() instanceof LaunchActivity)) {
             ((LaunchActivity) view.getContext()).X0 = true;
         }
         pf.d.o(view.getContext(), Uri.parse(getURL()), true, true);
@@ -27,7 +27,7 @@ public final class n61 extends URLSpan {
         boolean z10;
         int color = textPaint.getColor();
         super.updateDrawState(textPaint);
-        n11 n11Var = this.f28698a;
+        n11 n11Var = this.f28699a;
         if (n11Var != null) {
             n11Var.a(textPaint);
             if (textPaint.linkColor == color) {

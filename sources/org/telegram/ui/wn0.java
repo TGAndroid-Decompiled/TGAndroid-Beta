@@ -7,10 +7,10 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public final class wn0 implements TextWatcher {
-    public final eo0 f42908a;
+    public final eo0 f42909a;
 
     public wn0(eo0 eo0Var) {
-        this.f42908a = eo0Var;
+        this.f42909a = eo0Var;
     }
 
     @Override
@@ -18,15 +18,15 @@ public final class wn0 implements TextWatcher {
         boolean z10;
         String str;
         String str2;
-        eo0 eo0Var = this.f42908a;
-        HashMap hashMap = eo0Var.f36708c;
+        eo0 eo0Var = this.f42909a;
+        HashMap hashMap = eo0Var.f36709c;
         if (eo0Var.m0) {
             return;
         }
         eo0Var.m0 = true;
-        String d = jf.b.d(eo0Var.f36715f[8].getText().toString(), false);
-        eo0Var.f36715f[8].setText(d);
-        org.telegram.ui.Components.o40 o40Var = (org.telegram.ui.Components.o40) eo0Var.f36715f[9];
+        String d = jf.b.d(eo0Var.f36716f[8].getText().toString(), false);
+        eo0Var.f36716f[8].setText(d);
+        org.telegram.ui.Components.o40 o40Var = (org.telegram.ui.Components.o40) eo0Var.f36716f[9];
         if (d.length() == 0) {
             o40Var.setHintText((String) null);
             o40Var.setHint(LocaleController.getString(R.string.PaymentShippingPhoneNumber));
@@ -37,8 +37,8 @@ public final class wn0 implements TextWatcher {
                     if (i10 >= 1) {
                         String substring = d.substring(0, i10);
                         if (((String) hashMap.get(substring)) != null) {
-                            eo0Var.f36715f[8].setText(substring);
-                            str = d.substring(i10) + eo0Var.f36715f[9].getText().toString();
+                            eo0Var.f36716f[8].setText(substring);
+                            str = d.substring(i10) + eo0Var.f36716f[9].getText().toString();
                             d = substring;
                             z10 = true;
                             break;
@@ -51,8 +51,8 @@ public final class wn0 implements TextWatcher {
                     }
                 }
                 if (!z10) {
-                    str = d.substring(1) + eo0Var.f36715f[9].getText().toString();
-                    EditTextBoldCursor editTextBoldCursor = eo0Var.f36715f[8];
+                    str = d.substring(1) + eo0Var.f36716f[9].getText().toString();
+                    EditTextBoldCursor editTextBoldCursor = eo0Var.f36716f[8];
                     d = d.substring(0, 1);
                     editTextBoldCursor.setText(d);
                 }
@@ -61,7 +61,7 @@ public final class wn0 implements TextWatcher {
                 str = null;
             }
             String str3 = (String) hashMap.get(d);
-            if (str3 != null && eo0Var.f36702a.indexOf(str3) != -1 && (str2 = (String) eo0Var.d.get(d)) != null) {
+            if (str3 != null && eo0Var.f36703a.indexOf(str3) != -1 && (str2 = (String) eo0Var.d.get(d)) != null) {
                 o40Var.setHintText(str2.replace('X', (char) 8211));
                 o40Var.setHint((CharSequence) null);
             } else {
@@ -69,7 +69,7 @@ public final class wn0 implements TextWatcher {
                 o40Var.setHint(LocaleController.getString(R.string.PaymentShippingPhoneNumber));
             }
             if (!z10) {
-                EditTextBoldCursor editTextBoldCursor2 = eo0Var.f36715f[8];
+                EditTextBoldCursor editTextBoldCursor2 = eo0Var.f36716f[8];
                 editTextBoldCursor2.setSelection(editTextBoldCursor2.getText().length());
             }
             if (str != null) {

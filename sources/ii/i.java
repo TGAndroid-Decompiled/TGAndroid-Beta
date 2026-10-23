@@ -12,7 +12,7 @@ import android.widget.TextView;
 import com.google.android.gms.internal.play_billing.k3;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.ok;
+import org.telegram.messenger.nk;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.ActionBar.y5;
@@ -46,7 +46,7 @@ public final class i extends LinearLayout implements y5 {
         this.d = imageView;
         imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
         frameLayout.addView(imageView, z5.e(24, 24, 17));
-        LinearLayout e = ok.e(context, 1);
+        LinearLayout e = nk.e(context, 1);
         TextView textView = new TextView(context);
         this.e = textView;
         textView.setTextSize(1, 16.0f);
@@ -122,7 +122,7 @@ public final class i extends LinearLayout implements y5 {
         if (this.f13178n) {
             i10 = h6.W8;
         } else {
-            i10 = h6.f21176n6;
+            i10 = h6.f21177n6;
         }
         int w02 = h6.w0(i10, d6Var);
         TextView textView = this.f13177f;
@@ -138,7 +138,7 @@ public final class i extends LinearLayout implements y5 {
         } else {
             q6 = h6.I.q();
         }
-        this.f13175b.f27503b = q6;
+        this.f13175b.f27504b = q6;
     }
 
     public int[] getColorKeys() {
@@ -184,7 +184,7 @@ public final class i extends LinearLayout implements y5 {
             if (z10) {
                 i10 = h6.W8;
             } else {
-                i10 = h6.f21176n6;
+                i10 = h6.f21177n6;
             }
             d6 d6Var = this.f13174a;
             textView.setTextColor(h6.w0(i10, d6Var));

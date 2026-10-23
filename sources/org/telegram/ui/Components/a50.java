@@ -4,15 +4,15 @@ import android.content.Intent;
 import java.util.ArrayList;
 import org.telegram.messenger.FileLog;
 public final class a50 implements org.telegram.ui.rp0 {
-    public final e50 f24526a;
+    public final e50 f24527a;
 
     public a50(e50 e50Var) {
-        this.f24526a = e50Var;
+        this.f24527a = e50Var;
     }
 
     @Override
     public final void a(ArrayList arrayList) {
-        e50.a(this.f24526a, false, arrayList);
+        e50.a(this.f24527a, false, arrayList);
     }
 
     @Override
@@ -20,7 +20,7 @@ public final class a50 implements org.telegram.ui.rp0 {
         try {
             Intent intent = new Intent("android.intent.action.GET_CONTENT");
             intent.setType("image/*");
-            this.f24526a.f25723a.startActivityForResult(intent, 14);
+            this.f24527a.f25724a.startActivityForResult(intent, 14);
         } catch (Exception e) {
             FileLog.e(e);
         }

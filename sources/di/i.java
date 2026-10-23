@@ -74,7 +74,7 @@ public final class i extends kv0 {
     @Override
     public final rl0 getMovingAdapter() {
         r rVar = this.f8039o3;
-        if (rVar.G.f46075y == 0 && !rVar.W.G.C1) {
+        if (rVar.G.f46076y == 0 && !rVar.W.G.C1) {
             return rVar.v;
         }
         return null;

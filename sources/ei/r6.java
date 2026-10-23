@@ -122,7 +122,7 @@ public abstract class r6 extends FrameLayout {
         this.W = new Matrix();
         this.f9706a0 = new float[2];
         this.f9712e0 = true;
-        this.f9714f0 = new org.telegram.ui.Components.f6(this, 0L, 320L, bs.f25025g);
+        this.f9714f0 = new org.telegram.ui.Components.f6(this, 0L, 320L, bs.f25026g);
         this.f9715g0 = false;
         this.f9716h0 = new Matrix();
         this.f9717i0 = new Matrix();
@@ -170,7 +170,7 @@ public abstract class r6 extends FrameLayout {
 
     public static Drawable g(int i10, final org.telegram.ui.ActionBar.c4 c4Var, final boolean z10) {
         if (c4Var.l()) {
-            org.telegram.ui.ActionBar.h6.H(org.telegram.ui.ActionBar.c4.d(z10), c4Var.g(i10, z10 ? 1 : 0), ((org.telegram.ui.ActionBar.b4) c4Var.f20729f.get(z10 ? 1 : 0)).f20699g, 0, false);
+            org.telegram.ui.ActionBar.h6.H(org.telegram.ui.ActionBar.c4.d(z10), c4Var.g(i10, z10 ? 1 : 0), ((org.telegram.ui.ActionBar.b4) c4Var.f20730f.get(z10 ? 1 : 0)).f20700g, 0, false);
             return new ColorDrawable(-16777216);
         }
         SparseIntArray g10 = c4Var.g(i10, z10 ? 1 : 0);
@@ -183,8 +183,8 @@ public abstract class r6 extends FrameLayout {
         int i17 = org.telegram.ui.ActionBar.h6.Qd;
         int i18 = g10.get(i17, org.telegram.ui.ActionBar.h6.x0(null, i17, false));
         final wc0 wc0Var = new wc0();
-        wc0Var.f32076g = false;
-        wc0Var.s(wc0Var.f32089u, c4Var.j(z10 ? 1 : 0).settings.intensity);
+        wc0Var.f32077g = false;
+        wc0Var.s(wc0Var.f32090u, c4Var.j(z10 ? 1 : 0).settings.intensity);
         wc0Var.o(i12, i14, i16, i18, 0, true);
         wc0Var.u(0);
         final int f7 = wc0Var.f();
@@ -329,7 +329,7 @@ public abstract class r6 extends FrameLayout {
                 canvas.clipPath(path);
             }
             Drawable drawable = this.S;
-            if (!(drawable instanceof wc0) || ((wc0) drawable).f32089u != null) {
+            if (!(drawable instanceof wc0) || ((wc0) drawable).f32090u != null) {
                 f7 = this.P.d(1.0f, false);
             }
             Drawable drawable2 = this.R;
@@ -662,7 +662,7 @@ public abstract class r6 extends FrameLayout {
         if (dg0Var != null) {
             int i10 = this.U;
             int i11 = this.V;
-            e00 e00Var = dg0Var.f25482l0;
+            e00 e00Var = dg0Var.f25483l0;
             if (e00Var != null) {
                 e00Var.i(i10, i11);
             } else {
@@ -792,7 +792,7 @@ public abstract class r6 extends FrameLayout {
             if (a8Var.f8742y != null) {
                 c81 c81Var2 = new c81();
                 this.f9737y = c81Var2;
-                c81Var2.f25148y = z11;
+                c81Var2.f25149y = z11;
                 c81Var2.J = new ya.d(this, 16);
                 c81Var2.D(Uri.fromFile(new File(a8Var.f8742y)), "other");
                 c();
@@ -825,10 +825,10 @@ public abstract class r6 extends FrameLayout {
             float f7 = 1.0f;
             if (messageObject != null && messageObject.messageOwner != null) {
                 TLRPC.Document document = messageObject.getDocument();
-                if (document != null && document.f20285id != 0) {
+                if (document != null && document.f20286id != 0) {
                     this.d.f8744z = new TLRPC.TL_inputDocument();
                     TLRPC.InputDocument inputDocument = this.d.f8744z;
-                    inputDocument.f20291id = document.f20285id;
+                    inputDocument.f20292id = document.f20286id;
                     inputDocument.file_reference = document.file_reference;
                     inputDocument.access_hash = document.access_hash;
                 }
@@ -956,10 +956,10 @@ public abstract class r6 extends FrameLayout {
             if (r71Var != null) {
                 int i14 = this.U;
                 int i15 = this.V;
-                e00 e00Var = r71Var.f29864b;
+                e00 e00Var = r71Var.f29865b;
                 if (e00Var == null) {
-                    r71Var.f29867n = i14;
-                    r71Var.f29868r = i15;
+                    r71Var.f29868n = i14;
+                    r71Var.f29869r = i15;
                 } else {
                     e00Var.i(i14, i15);
                 }
@@ -968,7 +968,7 @@ public abstract class r6 extends FrameLayout {
             if (dg0Var != null) {
                 int i16 = this.U;
                 int i17 = this.V;
-                e00 e00Var2 = dg0Var.f25482l0;
+                e00 e00Var2 = dg0Var.f25483l0;
                 if (e00Var2 != null) {
                     e00Var2.i(i16, i17);
                 } else {
@@ -997,13 +997,13 @@ public abstract class r6 extends FrameLayout {
             }
             c81 c81Var3 = new c81();
             this.f9735x = c81Var3;
-            c81Var3.f25148y = true;
+            c81Var3.f25149y = true;
             c81Var3.J = new a4.l(this, 17);
             this.f9735x.D(Uri.fromFile(a8Var.f8724o0), "other");
             c();
             this.f9733w = c2Var;
             if (c2Var != null && (c81Var = this.f9735x) != null) {
-                c81Var.V(c2Var.f45316u0);
+                c81Var.V(c2Var.f45317u0);
             }
             this.F.n(a8Var.f8724o0.getAbsolutePath(), a8Var.f8728q0, a8Var.f8730r0, a8Var.f8732s0, a8Var.f8734t0, a8Var.f8736u0, z10);
             y(true);
@@ -1080,17 +1080,17 @@ public abstract class r6 extends FrameLayout {
             }
             c81 c81Var2 = new c81();
             this.e = c81Var2;
-            c81Var2.f25148y = true;
+            c81Var2.f25149y = true;
             c81Var2.J = new androidx.biometric.e(this, a8Var, new Runnable[]{runnable});
             r71 r71Var = this.f9721n;
             if (r71Var != null) {
                 r71Var.clearAnimation();
                 r71 r71Var2 = this.f9721n;
-                e00 e00Var = r71Var2.f29864b;
+                e00 e00Var = r71Var2.f29865b;
                 if (e00Var != null) {
                     e00Var.postRunnable(new b00(e00Var, 0));
                 }
-                r71Var2.f29863a = null;
+                r71Var2.f29864a = null;
                 removeView(this.f9721n);
                 this.f9721n = null;
             }
@@ -1102,16 +1102,16 @@ public abstract class r6 extends FrameLayout {
             } else {
                 jaVar = this.G;
             }
-            r71Var3.f29869s = jaVar;
-            e00 e00Var2 = r71Var3.f29864b;
+            r71Var3.f29870s = jaVar;
+            e00 e00Var2 = r71Var3.f29865b;
             if (e00Var2 != null && (paVar = e00Var2.I) != null) {
-                org.telegram.ui.Components.ja jaVar2 = paVar.f29290t;
-                if (jaVar2 != null && jaVar2.f27485m != null) {
-                    jaVar2.f27485m = null;
+                org.telegram.ui.Components.ja jaVar2 = paVar.f29291t;
+                if (jaVar2 != null && jaVar2.f27486m != null) {
+                    jaVar2.f27486m = null;
                 }
-                paVar.f29290t = jaVar;
-                if (jaVar != null && jaVar.f27485m != paVar) {
-                    jaVar.f27485m = paVar;
+                paVar.f29291t = jaVar;
+                if (jaVar != null && jaVar.f27486m != paVar) {
+                    jaVar.f27486m = paVar;
                     jaVar.d();
                 }
             }

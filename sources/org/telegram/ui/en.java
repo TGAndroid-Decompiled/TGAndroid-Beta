@@ -6,29 +6,29 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.Collections;
 public final class en extends View {
-    public final ArrayList f36691a;
-    public final ArrayList f36692b;
-    public final qn f36693c;
+    public final ArrayList f36692a;
+    public final ArrayList f36693b;
+    public final qn f36694c;
 
     public en(qn qnVar, Context context) {
         super(context);
-        this.f36693c = qnVar;
-        this.f36691a = new ArrayList();
-        this.f36692b = new ArrayList();
+        this.f36694c = qnVar;
+        this.f36692a = new ArrayList();
+        this.f36693b = new ArrayList();
     }
 
     public final void a() {
-        ArrayList arrayList = this.f36691a;
+        ArrayList arrayList = this.f36692a;
         arrayList.clear();
-        qn qnVar = this.f36693c;
+        qn qnVar = this.f36694c;
         arrayList.add(qnVar.K1);
-        arrayList.add(qnVar.f40904x0);
+        arrayList.add(qnVar.f40905x0);
         arrayList.add(qnVar.X);
         arrayList.add(qnVar.K3);
         arrayList.add(qnVar.I1);
         arrayList.add(qnVar.X2);
         arrayList.add(qnVar.Y);
-        arrayList.add(qnVar.f40728j1);
+        arrayList.add(qnVar.f40729j1);
         arrayList.add(qnVar.S);
         arrayList.add(qnVar.R1);
         arrayList.removeAll(Collections.singleton(null));
@@ -42,9 +42,9 @@ public final class en extends View {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        qn qnVar = this.f36693c;
-        qnVar.f40851sc = true;
-        ArrayList arrayList = this.f36692b;
+        qn qnVar = this.f36694c;
+        qnVar.f40852sc = true;
+        ArrayList arrayList = this.f36693b;
         int size = arrayList.size();
         int i10 = 0;
         while (i10 < size) {
@@ -53,16 +53,16 @@ public final class en extends View {
             ((View) obj).setVisibility(0);
         }
         arrayList.clear();
-        qnVar.f40851sc = false;
+        qnVar.f40852sc = false;
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         a();
-        qn qnVar = this.f36693c;
-        qnVar.f40851sc = true;
-        ArrayList arrayList = this.f36691a;
+        qn qnVar = this.f36694c;
+        qnVar.f40852sc = true;
+        ArrayList arrayList = this.f36692a;
         int size = arrayList.size();
         int i10 = 0;
         while (i10 < size) {
@@ -71,17 +71,17 @@ public final class en extends View {
             View view = (View) obj;
             if (view.getVisibility() == 0) {
                 view.setVisibility(8);
-                this.f36692b.add(view);
+                this.f36693b.add(view);
             }
         }
-        qnVar.f40851sc = false;
+        qnVar.f40852sc = false;
     }
 
     @Override
     public void setTranslationX(float f7) {
         super.setTranslationX(f7);
         a();
-        ArrayList arrayList = this.f36691a;
+        ArrayList arrayList = this.f36692a;
         int size = arrayList.size();
         int i10 = 0;
         while (i10 < size) {

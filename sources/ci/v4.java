@@ -105,12 +105,12 @@ public final class v4 implements ValueAnimator.AnimatorUpdateListener {
             case 9:
                 e91 e91Var = (e91) this.f6079b;
                 View[] viewArr = e91Var.e;
-                if (e91Var.f25872x) {
+                if (e91Var.f25873x) {
                     float abs = 1.0f - (Math.abs(viewArr[0].getTranslationX()) / viewArr[0].getMeasuredWidth());
-                    e91Var.f25866c = abs;
+                    e91Var.f25867c = abs;
                     u81 u81Var = e91Var.M;
                     if (u81Var != null) {
-                        u81Var.e(abs, e91Var.d, e91Var.f25865b);
+                        u81Var.e(abs, e91Var.d, e91Var.f25866b);
                     }
                 }
                 e91Var.w(false);
@@ -119,18 +119,18 @@ public final class v4 implements ValueAnimator.AnimatorUpdateListener {
                 org.telegram.ui.Components.voip.s1 s1Var = (org.telegram.ui.Components.voip.s1) this.f6079b;
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 s1Var.J = floatValue;
-                org.telegram.ui.Components.voip.r1 r1Var = s1Var.f31701i0;
+                org.telegram.ui.Components.voip.r1 r1Var = s1Var.f31702i0;
                 if (r1Var != null) {
-                    ((pg1) r1Var).f40231b.f37643d0.d(floatValue, s1Var.P);
+                    ((pg1) r1Var).f40232b.f37644d0.d(floatValue, s1Var.P);
                 }
                 s1Var.invalidate();
                 return;
             case 11:
-                ((s4.u) this.f6079b).f46048x = valueAnimator.getAnimatedFraction();
+                ((s4.u) this.f6079b).f46049x = valueAnimator.getAnimatedFraction();
                 return;
             case 12:
                 sg.q0 q0Var = (sg.q0) this.f6079b;
-                q0Var.f46390n = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                q0Var.f46391n = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 q0Var.e();
                 return;
             default:

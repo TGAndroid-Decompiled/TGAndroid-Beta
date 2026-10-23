@@ -102,7 +102,7 @@ public final class v7 implements Runnable {
                 y90 y90Var = (y90) this.f6083c;
                 y90 y90Var2 = q8Var.f5848a;
                 if (y90Var == y90Var2 && y90Var2 != null) {
-                    CharacterStyle characterStyle = y90Var2.f32605i;
+                    CharacterStyle characterStyle = y90Var2.f32606i;
                     if (characterStyle instanceof URLSpan) {
                         r8 r8Var = q8Var.v;
                         u90 u90Var = q8Var.f5850c;
@@ -319,7 +319,7 @@ public final class v7 implements Runnable {
                 qf.b bVar3 = (qf.b) this.f6082b;
                 AtomicBoolean atomicBoolean2 = (AtomicBoolean) this.f6083c;
                 synchronized (bVar3) {
-                    if (atomicBoolean2.get() && (wakeLock = (PowerManager.WakeLock) bVar3.f44451c) != null) {
+                    if (atomicBoolean2.get() && (wakeLock = (PowerManager.WakeLock) bVar3.f44452c) != null) {
                         wakeLock.release();
                     }
                 }

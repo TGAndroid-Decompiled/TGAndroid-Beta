@@ -30,7 +30,7 @@ public final class g9 extends pg.b {
 
     @Override
     public final boolean D(s4.b1 b1Var) {
-        int i10 = b1Var.f45923f;
+        int i10 = b1Var.f45924f;
         if ((i10 != 3 || !this.f9074n.W.F) && i10 != 7 && i10 != 9 && i10 != 10) {
             return false;
         }
@@ -51,7 +51,7 @@ public final class g9 extends pg.b {
         k9 k9Var = this.f9074n;
         ArrayList arrayList = k9Var.L;
         if (arrayList != null && i10 >= 0 && i10 < arrayList.size()) {
-            return ((y8) k9Var.L.get(i10)).f44299a;
+            return ((y8) k9Var.L.get(i10)).f44300a;
         }
         return -1;
     }
@@ -69,8 +69,8 @@ public final class g9 extends pg.b {
         ArrayList arrayList = k9Var.L;
         if (arrayList != null && i10 >= 0 && i10 < arrayList.size()) {
             y8 y8Var2 = (y8) arrayList.get(i10);
-            int i15 = b1Var.f45923f;
-            View view = b1Var.f45920a;
+            int i15 = b1Var.f45924f;
+            View view = b1Var.f45921a;
             boolean z11 = true;
             int i16 = i10 + 1;
             if (i16 < arrayList.size()) {
@@ -78,7 +78,7 @@ public final class g9 extends pg.b {
             } else {
                 y8Var = null;
             }
-            if (y8Var != null && ((i14 = y8Var.f44299a) == i15 || (i14 == 9 && y8Var.f10146q == 1))) {
+            if (y8Var != null && ((i14 = y8Var.f44300a) == i15 || (i14 == 9 && y8Var.f10146q == 1))) {
                 z10 = true;
             } else {
                 z10 = false;
@@ -151,7 +151,7 @@ public final class g9 extends pg.b {
                     w8Var2.f10047b.setText((CharSequence) null);
                 } else if (i15 == 5) {
                     try {
-                        ((tx0) view).f30700b.getImageReceiver().startAnimation();
+                        ((tx0) view).f30701b.getImageReceiver().startAnimation();
                     } catch (Exception unused) {
                     }
                 } else if (i15 == 6) {
@@ -188,7 +188,7 @@ public final class g9 extends pg.b {
                     int clamp = Utilities.clamp(r9Var.H, i19, 0);
                     ci.i1 i1Var = new ci.i1(16);
                     org.telegram.ui.Cells.x7 x7Var = new org.telegram.ui.Cells.x7();
-                    x7Var.f23813c = a2;
+                    x7Var.f23814c = a2;
                     x7Var.d = 20;
                     x7Var.e = i1Var;
                     ((org.telegram.ui.Cells.y7) view).d(clamp, x7Var, new ai.r0(this, 22));
@@ -222,12 +222,12 @@ public final class g9 extends pg.b {
                     unVar = new w8(context, d6Var, false);
                 } else if (i10 == 8) {
                     unVar = new org.telegram.ui.Cells.l4(context, d6Var);
-                    unVar.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21064h5, d6Var));
+                    unVar.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21065h5, d6Var));
                 } else if (i10 == 5) {
                     tx0 tx0Var = new tx0(context, null, 1, d6Var);
                     tx0Var.d.setText(LocaleController.getString(R.string.NoResult));
                     tx0Var.e.setText(LocaleController.getString(R.string.SearchEmptyViewFilteredSubtitle2));
-                    tx0Var.f30699a.setTranslationY(AndroidUtilities.dp(24.0f));
+                    tx0Var.f30700a.setTranslationY(AndroidUtilities.dp(24.0f));
                     view = tx0Var;
                 } else if (i10 == 6) {
                     unVar = new org.telegram.ui.Cells.d9(context, d6Var);

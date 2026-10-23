@@ -182,7 +182,7 @@ public final class e1 implements View.OnClickListener {
                                     TLRPC.TL_messages_preparedInlineMessage tL_messages_preparedInlineMessage4 = tL_messages_preparedInlineMessage3;
                                     sb2.append(tL_messages_preparedInlineMessage4.query_id);
                                     hashMap.put("query_id", sb2.toString());
-                                    hashMap.put("id", "" + tL_messages_preparedInlineMessage4.result.f20277id);
+                                    hashMap.put("id", "" + tL_messages_preparedInlineMessage4.result.f20278id);
                                     hashMap.put("bot", "" + j11);
                                     long j14 = j12;
                                     SendMessagesHelper.prepareSendingBotContextResult(U, AccountInstance.getInstance(i17), tL_messages_preparedInlineMessage4.result, hashMap, j14, messageObject2, messageObject2, null, null, z12, i13, 0, null, 0L, 0L);
@@ -223,7 +223,7 @@ public final class e1 implements View.OnClickListener {
                 String str = (String) this.e;
                 String str2 = (String) this.f1187f;
                 String str3 = (String) this.h;
-                ei.d dVar = mf0Var.f39235b;
+                ei.d dVar = mf0Var.f39236b;
                 if (!dVar.N) {
                     dVar.setLoading(true);
                     TLRPC.TL_inputStorePaymentAuthCode tL_inputStorePaymentAuthCode = new TLRPC.TL_inputStorePaymentAuthCode();

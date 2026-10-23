@@ -58,7 +58,7 @@ public class VoIPPreNotificationService {
         public void destroy() {
             if (!this.destroyed) {
                 this.destroyed = true;
-                hh1 hh1Var = hh1.f37633n1;
+                hh1 hh1Var = hh1.f37634n1;
                 if (hh1Var != null) {
                     hh1Var.onStateChanged(getCallState());
                 }
@@ -126,7 +126,7 @@ public class VoIPPreNotificationService {
     private static void acknowledge(Context context, int i10, TL_phone.PhoneCall phoneCall, Runnable runnable) {
         if (phoneCall instanceof TL_phone.TL_phoneCallDiscarded) {
             if (BuildVars.LOGS_ENABLED) {
-                FileLog.w("Call " + phoneCall.f20502id + " was discarded before the voip pre notification started, stopping");
+                FileLog.w("Call " + phoneCall.f20503id + " was discarded before the voip pre notification started, stopping");
             }
             pendingVoIP = null;
             pendingCall = null;
@@ -148,7 +148,7 @@ public class VoIPPreNotificationService {
             TL_phone.receivedCall receivedcall = new TL_phone.receivedCall();
             TLRPC.TL_inputPhoneCall tL_inputPhoneCall = new TLRPC.TL_inputPhoneCall();
             receivedcall.peer = tL_inputPhoneCall;
-            tL_inputPhoneCall.f20344id = phoneCall.f20502id;
+            tL_inputPhoneCall.f20345id = phoneCall.f20503id;
             tL_inputPhoneCall.access_hash = phoneCall.access_hash;
             ConnectionsManager.getInstance(i10).sendRequest(receivedcall, new ai.g(context, runnable), 2);
         }
@@ -200,7 +200,7 @@ public class VoIPPreNotificationService {
             discardcall.peer = tL_inputPhoneCall;
             TL_phone.PhoneCall phoneCall = pendingCall;
             tL_inputPhoneCall.access_hash = phoneCall.access_hash;
-            tL_inputPhoneCall.f20344id = phoneCall.f20502id;
+            tL_inputPhoneCall.f20345id = phoneCall.f20503id;
             discardcall.duration = 0;
             discardcall.connection_id = 0L;
             if (i10 != 2) {
@@ -296,9 +296,9 @@ public class VoIPPreNotificationService {
 
     public static void lambda$dismiss$5() {
         LaunchActivity launchActivity = LaunchActivity.H1;
-        if (launchActivity != null && launchActivity.f33174h1 && VoIPService.getSharedInstance() == null) {
-            launchActivity.f33174h1 = false;
-            hh1 hh1Var = hh1.f37633n1;
+        if (launchActivity != null && launchActivity.f33175h1 && VoIPService.getSharedInstance() == null) {
+            launchActivity.f33175h1 = false;
+            hh1 hh1Var = hh1.f37634n1;
             if (hh1Var != null) {
                 hh1Var.m();
             }
@@ -309,7 +309,7 @@ public class VoIPPreNotificationService {
     public static void lambda$show$1(Intent intent, TL_phone.PhoneCall phoneCall, Context context, int i10, long j10, boolean z10) {
         pendingVoIP = intent;
         pendingCall = phoneCall;
-        ((NotificationManager) context.getSystemService("notification")).notify(203, makeNotification(context, i10, j10, phoneCall.f20502id, z10));
+        ((NotificationManager) context.getSystemService("notification")).notify(203, makeNotification(context, i10, j10, phoneCall.f20503id, z10));
         startRinging(context, i10, j10);
     }
 
@@ -350,7 +350,7 @@ public class VoIPPreNotificationService {
         FileLog.d("VoIPPreNotification.show()");
         if (phoneCall != null && intent != null) {
             TL_phone.PhoneCall phoneCall2 = pendingCall;
-            if (phoneCall2 != null && phoneCall2.f20502id == phoneCall.f20502id) {
+            if (phoneCall2 != null && phoneCall2.f20503id == phoneCall.f20503id) {
                 return;
             }
             dismiss(context, false);

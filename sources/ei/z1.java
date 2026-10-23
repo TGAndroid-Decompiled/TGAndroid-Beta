@@ -24,7 +24,7 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.ok;
+import org.telegram.messenger.nk;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
@@ -219,7 +219,7 @@ public final class z1 implements Runnable {
                     ArrayList i18 = r9Var.i1();
                     for (int i19 = 0; i19 < i18.size(); i19++) {
                         TLRPC.User user = (TLRPC.User) i18.get(i19);
-                        if (user != null && (contains = k9Var.f9327c.contains(Long.valueOf(user.f20426id))) != user.close_friend) {
+                        if (user != null && (contains = k9Var.f9327c.contains(Long.valueOf(user.f20427id))) != user.close_friend) {
                             user.close_friend = contains;
                             if (contains) {
                                 i11 = user.flags2 | 4;
@@ -278,7 +278,7 @@ public final class z1 implements Runnable {
                 ArrayList arrayList5 = new ArrayList();
                 for (int i20 = 0; i20 < arrayList4.size(); i20++) {
                     TLRPC.User user2 = (TLRPC.User) arrayList4.get(i20);
-                    Boolean bool = (Boolean) hashMap2.get(Long.valueOf(user2.f20426id));
+                    Boolean bool = (Boolean) hashMap2.get(Long.valueOf(user2.f20427id));
                     if (bool != null && bool.booleanValue()) {
                         z10 = false;
                     } else {
@@ -392,13 +392,13 @@ public final class z1 implements Runnable {
             case 19:
                 hg.c2 c2Var = (hg.c2) obj3;
                 TLRPC.TL_messages_foundStickerSets tL_messages_foundStickerSets = (TLRPC.TL_messages_foundStickerSets) obj;
-                String str5 = ((TLRPC.TL_messages_searchStickerSets) obj2).f20391q;
+                String str5 = ((TLRPC.TL_messages_searchStickerSets) obj2).f20392q;
                 hg.e2 e2Var = c2Var.f11827a;
                 String str6 = e2Var.R;
                 r51 r51Var = e2Var.e;
                 if (str5.equals(str6)) {
                     c2Var.a();
-                    r51Var.f29851b.h.getProgressDrawable().e = false;
+                    r51Var.f29852b.h.getProgressDrawable().e = false;
                     e2Var.N = 0;
                     r51Var.b(true);
                     e2Var.E.addAll(tL_messages_foundStickerSets.sets);
@@ -443,7 +443,7 @@ public final class z1 implements Runnable {
                     return;
                 } else if (tLObject5 instanceof TLRPC.TL_boolFalse) {
                     cVar.f12834a.a(0.0f);
-                    ok.q(R.string.UnknownError, xc.a0(cVar), null);
+                    nk.q(R.string.UnknownError, xc.a0(cVar), null);
                     return;
                 } else {
                     cVar.finishFragment();
@@ -459,7 +459,7 @@ public final class z1 implements Runnable {
                     return;
                 } else if (tLObject6 instanceof TLRPC.TL_boolFalse) {
                     mVar.e.a(0.0f);
-                    ok.q(R.string.UnknownError, xc.a0(mVar), null);
+                    nk.q(R.string.UnknownError, xc.a0(mVar), null);
                     return;
                 } else {
                     if (mVar.E != null) {
@@ -501,7 +501,7 @@ public final class z1 implements Runnable {
                     return;
                 } else if (tLObject7 instanceof TLRPC.TL_boolFalse) {
                     v0Var.f13055a.a(0.0f);
-                    ok.q(R.string.UnknownError, xc.a0(v0Var), null);
+                    nk.q(R.string.UnknownError, xc.a0(v0Var), null);
                     return;
                 } else {
                     v0Var.finishFragment();

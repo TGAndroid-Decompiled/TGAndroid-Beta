@@ -42,7 +42,7 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.messenger.g0;
-import org.telegram.messenger.ok;
+import org.telegram.messenger.nk;
 import org.telegram.ui.Components.RLottieNative;
 import org.telegram.ui.Components.a6;
 import org.telegram.ui.Components.b6;
@@ -323,7 +323,7 @@ public class TextureRenderer {
                 GLUtils.texImage2D(3553, 0, mediaEntity.bitmap, 0);
                 float f7 = mediaEntity.currentFrame + mediaEntity.framesPerDraw;
                 mediaEntity.currentFrame = f7;
-                if (f7 >= mediaEntity.lottieNative.f24304a[0]) {
+                if (f7 >= mediaEntity.lottieNative.f24305a[0]) {
                     mediaEntity.currentFrame = 0.0f;
                 }
                 int i13 = this.stickerTexture[0];
@@ -388,7 +388,7 @@ public class TextureRenderer {
             }
             b6 b6Var = mediaEntity.animatedFileDrawable.v;
             if (b6Var != null) {
-                bitmap = b6Var.f24812b;
+                bitmap = b6Var.f24813b;
             } else {
                 bitmap = null;
             }
@@ -495,7 +495,7 @@ public class TextureRenderer {
     }
 
     private FloatBuffer floats(float[] fArr) {
-        FloatBuffer h = ok.h(ByteBuffer.allocateDirect(fArr.length * 4));
+        FloatBuffer h = nk.h(ByteBuffer.allocateDirect(fArr.length * 4));
         h.put(fArr).position(0);
         return h;
     }
@@ -538,7 +538,7 @@ public class TextureRenderer {
                 GLES20.glTexParameteri(3553, 10243, 33071);
                 e6 e6Var = new e6(new File(part.path), true, 0L, 0, null, null, null, 0L, UserConfig.selectedAccount, true, 512, 512, null, 0, true);
                 part.animatedFileDrawable = e6Var;
-                if (e6Var.f25775x && e6Var.f25752e0) {
+                if (e6Var.f25776x && e6Var.f25753e0) {
                     throw new RuntimeException("Failed to decode with ffmpeg software codecs");
                 }
                 float f10 = e6Var.d[5];
@@ -654,7 +654,7 @@ public class TextureRenderer {
             o0Var.c(mediaEntity.subType, mediaEntity.color);
         }
         int i10 = mediaEntity.viewWidth;
-        int i11 = o0Var.f45564f;
+        int i11 = o0Var.f45565f;
         o0Var.setMaxWidth(i10 + i11 + i11);
         o0Var.measure(View.MeasureSpec.makeMeasureSpec(mediaEntity.viewWidth, 1073741824), View.MeasureSpec.makeMeasureSpec(mediaEntity.viewHeight, 1073741824));
         o0Var.layout(0, 0, mediaEntity.viewWidth, mediaEntity.viewHeight);
@@ -685,8 +685,8 @@ public class TextureRenderer {
         }
         s0Var.setMaxWidth(mediaEntity.viewWidth);
         if (mediaEntity.entities.size() == 1) {
-            s0Var.f45643x = true;
-            s0Var.f45637c = true;
+            s0Var.f45644x = true;
+            s0Var.f45638c = true;
             s0Var.requestLayout();
         }
         s0Var.measure(View.MeasureSpec.makeMeasureSpec(mediaEntity.viewWidth, 1073741824), View.MeasureSpec.makeMeasureSpec(mediaEntity.viewHeight, 1073741824));
@@ -712,11 +712,11 @@ public class TextureRenderer {
             RectF rectF = new RectF();
             float f16 = s0Var.I;
             float f17 = s0Var.d.left + 2.25f;
-            float f18 = s0Var.f45644y;
+            float f18 = s0Var.f45645y;
             float f19 = s0Var.J;
             float f20 = s0Var.N;
             float f21 = f18 * 21.33f;
-            rectF.set((f17 * f18) + f16, k3.z(f20, f21, 2.0f, f19), ok.b(f17, 21.33f, f18, f16), g0.a(f21, f20, 2.0f, f19));
+            rectF.set((f17 * f18) + f16, k3.z(f20, f21, 2.0f, f19), nk.b(f17, 21.33f, f18, f16), g0.a(f21, f20, 2.0f, f19));
             float centerX = ((rectF.centerX() / mediaEntity.viewWidth) * mediaEntity.width) + mediaEntity.f17822x;
             float f22 = mediaEntity.f17823y;
             float centerY = rectF.centerY() / mediaEntity.viewHeight;
@@ -776,7 +776,7 @@ public class TextureRenderer {
                 RLottieNative a2 = RLottieNative.a(mediaEntity.text, null, null, null, 0, null);
                 mediaEntity.lottieNative = a2;
                 if (a2 != null) {
-                    f7 = a2.f24304a[1] / this.videoFps;
+                    f7 = a2.f24305a[1] / this.videoFps;
                 }
                 mediaEntity.framesPerDraw = f7;
             }
@@ -1036,8 +1036,8 @@ public class TextureRenderer {
             } else {
                 z10 = false;
             }
-            if ((clamp < i11 || (z10 && clamp > 1000)) && e6Var.f25751d0 != null) {
-                e6Var.f25751d0.g(clamp, true);
+            if ((clamp < i11 || (z10 && clamp > 1000)) && e6Var.f25752d0 != null) {
+                e6Var.f25752d0.g(clamp, true);
             }
             do {
                 e6 e6Var2 = part.animatedFileDrawable;
@@ -1047,8 +1047,8 @@ public class TextureRenderer {
                     break;
                 }
                 j11 = i12;
-                if (e6Var2.f25751d0 != null) {
-                    e6Var2.f25751d0.c(null, false, e6Var2.f25755g0, e6Var2.f25756h0, false);
+                if (e6Var2.f25752d0 != null) {
+                    e6Var2.f25752d0.c(null, false, e6Var2.f25756g0, e6Var2.f25757h0, false);
                 }
             } while (part.animatedFileDrawable.d[3] != j11);
             if ((z10 || f7 > part.animatedFileDrawable.d[3] - (part.msPerFrame / 2.0f)) && (r10 = part.animatedFileDrawable.r(false)) != null) {
@@ -1231,7 +1231,7 @@ public class TextureRenderer {
                 GLES20.glVertexAttribPointer(this.blurPositionHandle, 2, 5126, false, 8, (Buffer) this.blurVerticesBuffer);
                 GLES20.glUniform1i(this.blurBlurImageHandle, 0);
                 GLES20.glActiveTexture(i16);
-                GLES20.glBindTexture(3553, this.blur.f29289s[2]);
+                GLES20.glBindTexture(3553, this.blur.f29290s[2]);
                 GLES20.glUniform1i(this.blurMaskImageHandle, 1);
                 GLES20.glActiveTexture(i10);
                 GLES20.glBindTexture(3553, this.blurTexture[0]);

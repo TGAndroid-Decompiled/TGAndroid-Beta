@@ -3,17 +3,17 @@ package org.telegram.ui;
 import android.content.Context;
 import java.util.ArrayList;
 public final class ce1 extends pe1 {
-    public final re1 f35954g3;
+    public final re1 f35955g3;
 
     public ce1(re1 re1Var, Context context) {
         super(re1Var, context);
-        this.f35954g3 = re1Var;
+        this.f35955g3 = re1Var;
     }
 
     @Override
     public final boolean S0() {
-        ArrayList arrayList = this.f35954g3.f41154b;
-        if (getAdapter() == null || this.V1 || (arrayList == null || arrayList.size() != 1 || arrayList.get(0) == null || ((ie1) arrayList.get(0)).f37962c == null || ((ie1) arrayList.get(0)).f37962c.f20331id != 1 ? getAdapter().h() > 1 : getAdapter().h() > 2)) {
+        ArrayList arrayList = this.f35955g3.f41155b;
+        if (getAdapter() == null || this.V1 || (arrayList == null || arrayList.size() != 1 || arrayList.get(0) == null || ((ie1) arrayList.get(0)).f37963c == null || ((ie1) arrayList.get(0)).f37963c.f20332id != 1 ? getAdapter().h() > 1 : getAdapter().h() > 2)) {
             return false;
         }
         return true;
@@ -22,6 +22,6 @@ public final class ce1 extends pe1 {
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
-        this.f35954g3.y0();
+        this.f35955g3.y0();
     }
 }

@@ -11,32 +11,32 @@ import android.view.View;
 import java.util.HashMap;
 import java.util.Map;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ok;
+import org.telegram.messenger.nk;
 import org.telegram.ui.Components.bs;
 public final class u extends View {
-    public final Paint f44663a;
-    public final int[] f44664b;
-    public final Paint f44665c;
+    public final Paint f44664a;
+    public final int[] f44665b;
+    public final Paint f44666c;
     public final LongSparseArray d;
     public long e;
-    public final Path f44666f;
+    public final Path f44667f;
     public final float[] h;
-    public final HashMap f44667n;
-    public final y f44668r;
+    public final HashMap f44668n;
+    public final y f44669r;
 
     public u(y yVar, Context context) {
         super(context);
         int f7;
-        this.f44668r = yVar;
-        this.f44663a = new Paint(1);
-        this.f44664b = new int[]{-16735784, -16752387, -11788361, -6804548, -4707235, -180718, -38656, -152832, -211200, -198077, -2495689, -8996289};
+        this.f44669r = yVar;
+        this.f44664a = new Paint(1);
+        this.f44665b = new int[]{-16735784, -16752387, -11788361, -6804548, -4707235, -180718, -38656, -152832, -211200, -198077, -2495689, -8996289};
         Paint paint = new Paint(1);
-        this.f44665c = paint;
+        this.f44666c = paint;
         this.d = new LongSparseArray();
         this.e = Long.MIN_VALUE;
-        this.f44666f = new Path();
+        this.f44667f = new Path();
         this.h = new float[8];
-        this.f44667n = new HashMap();
+        this.f44668n = new HashMap();
         setPadding(AndroidUtilities.dp(14.0f), AndroidUtilities.dp(3.0f), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(3.0f));
         paint.setColor(-1);
         paint.setStyle(Paint.Style.STROKE);
@@ -45,21 +45,21 @@ public final class u extends View {
         for (int i10 = 0; i10 < 12; i10++) {
             for (int i11 = 0; i11 < 10; i11++) {
                 if (i11 == 0) {
-                    this.f44667n.put(Long.valueOf((i10 << 16) + i11), Integer.valueOf(i0.a.f(i10 / 11.0f, -1, -16777216)));
+                    this.f44668n.put(Long.valueOf((i10 << 16) + i11), Integer.valueOf(i0.a.f(i10 / 11.0f, -1, -16777216)));
                 } else {
                     if (i11 < 6) {
-                        f7 = i0.a.f(((5 - i11) / 4.0f) * 0.5f, this.f44664b[i10], -16777216);
+                        f7 = i0.a.f(((5 - i11) / 4.0f) * 0.5f, this.f44665b[i10], -16777216);
                     } else {
-                        f7 = i0.a.f(ok.x(9 - i11, 5.0f, 0.5f, 0.5f), this.f44664b[i10], -1);
+                        f7 = i0.a.f(nk.x(9 - i11, 5.0f, 0.5f, 0.5f), this.f44665b[i10], -1);
                     }
-                    this.f44667n.put(Long.valueOf((i10 << 16) + i11), Integer.valueOf(f7));
+                    this.f44668n.put(Long.valueOf((i10 << 16) + i11), Integer.valueOf(f7));
                 }
             }
         }
     }
 
     public final void a(int i10) {
-        for (Map.Entry entry : this.f44667n.entrySet()) {
+        for (Map.Entry entry : this.f44668n.entrySet()) {
             if (((Integer) entry.getValue()).intValue() == i10) {
                 long longValue = ((Long) entry.getKey()).longValue();
                 int i11 = (int) (longValue >> 16);
@@ -84,11 +84,11 @@ public final class u extends View {
     public final void c(MotionEvent motionEvent) {
         int x10 = (int) ((motionEvent.getX() - getPaddingLeft()) / (((getWidth() - getPaddingLeft()) - getPaddingRight()) / 12));
         int y3 = (int) (motionEvent.getY() / (((getHeight() - getPaddingTop()) - getPaddingBottom()) / 10));
-        Integer num = (Integer) this.f44667n.get(Long.valueOf((x10 << 16) + y3));
+        Integer num = (Integer) this.f44668n.get(Long.valueOf((x10 << 16) + y3));
         if (num != null) {
             int intValue = num.intValue();
-            int i10 = y.f44708s;
-            this.f44668r.n(intValue, 3);
+            int i10 = y.f44709s;
+            this.f44669r.n(intValue, 3);
             b(x10, y3);
         }
     }
@@ -106,7 +106,7 @@ public final class u extends View {
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set(getPaddingLeft(), getPaddingTop(), getWidth() - getPaddingRight(), getHeight() - getPaddingBottom());
         canvas.save();
-        Path path = this.f44668r.e;
+        Path path = this.f44669r.e;
         path.rewind();
         float f13 = 10.0f;
         path.addRoundRect(rectF, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), Path.Direction.CW);
@@ -115,7 +115,7 @@ public final class u extends View {
         float height = ((getHeight() - getPaddingTop()) - getPaddingBottom()) / 10.0f;
         int i11 = 0;
         while (true) {
-            hashMap = this.f44667n;
+            hashMap = this.f44668n;
             if (i11 >= 12) {
                 break;
             }
@@ -123,7 +123,7 @@ public final class u extends View {
                 Integer num = (Integer) hashMap.get(Long.valueOf((i11 << 16) + i12));
                 if (num != null) {
                     int intValue = num.intValue();
-                    Paint paint = this.f44663a;
+                    Paint paint = this.f44664a;
                     paint.setColor(intValue);
                     RectF rectF2 = AndroidUtilities.rectTmp;
                     rectF2.set((i11 * width) + getPaddingLeft(), (i12 * height) + getPaddingTop(), ((i11 + 1) * width) + getPaddingLeft(), ((i12 + 1) * height) + getPaddingTop());
@@ -148,7 +148,7 @@ public final class u extends View {
                 int i14 = (int) (keyAt >> 16);
                 int i15 = (int) (keyAt - (i14 << 16));
                 Integer num2 = (Integer) hashMap.get(Long.valueOf(keyAt));
-                Paint paint2 = this.f44665c;
+                Paint paint2 = this.f44666c;
                 if (num2 != null) {
                     if (AndroidUtilities.computePerceivedBrightness(num2.intValue()) > 0.721f) {
                         i10 = -15658735;
@@ -158,7 +158,7 @@ public final class u extends View {
                     paint2.setColor(i10);
                 }
                 paint2.setStrokeWidth(bs.h.getInterpolation(max) * AndroidUtilities.dp(3.0f));
-                Path path2 = this.f44666f;
+                Path path2 = this.f44667f;
                 path2.rewind();
                 RectF rectF3 = AndroidUtilities.rectTmp;
                 float f15 = width;

@@ -5,36 +5,36 @@ import android.view.MotionEvent;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class r31 extends FrameLayout {
-    public float f41052a;
-    public final boolean f41053b;
-    public final boolean f41054c;
+    public float f41053a;
+    public final boolean f41054b;
+    public final boolean f41055c;
     public boolean d;
     public int e;
-    public final o1.j f41055f;
+    public final o1.j f41056f;
     public final o1.k h;
-    public final v0 f41056n;
-    public final SecretMediaViewer f41057r;
+    public final v0 f41057n;
+    public final SecretMediaViewer f41058r;
 
     public r31(SecretMediaViewer secretMediaViewer, Activity activity) {
         super(activity);
-        this.f41057r = secretMediaViewer;
-        this.f41052a = 1.0f;
-        this.f41053b = true;
-        this.f41054c = true;
+        this.f41058r = secretMediaViewer;
+        this.f41053a = 1.0f;
+        this.f41054b = true;
+        this.f41055c = true;
         o1.j jVar = new o1.j(0.0f);
-        this.f41055f = jVar;
+        this.f41056f = jVar;
         o1.k kVar = new o1.k(jVar);
         kVar.f17559u = org.telegram.ui.Cells.c1.l(0.0f, 750.0f, 1.0f);
         kVar.b(new yc0(this, 5));
         this.h = kVar;
-        this.f41056n = new v0("progress", 6);
+        this.f41057n = new v0("progress", 6);
         setWillNotDraw(false);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f41055f.f17558a = 0.0f;
+        this.f41056f.f17558a = 0.0f;
         this.e = 0;
     }
 
@@ -42,10 +42,10 @@ public final class r31 extends FrameLayout {
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         float f7;
         super.onLayout(z10, i10, i11, i12, i13);
-        SecretMediaViewer secretMediaViewer = this.f41057r;
-        p31 p31Var = secretMediaViewer.f33841y;
+        SecretMediaViewer secretMediaViewer = this.f41058r;
+        p31 p31Var = secretMediaViewer.f33842y;
         if (p31Var != null) {
-            f7 = ((float) p31Var.n()) / ((float) secretMediaViewer.f33841y.p());
+            f7 = ((float) p31Var.n()) / ((float) secretMediaViewer.f33842y.p());
         } else {
             f7 = 0.0f;
         }
@@ -59,10 +59,10 @@ public final class r31 extends FrameLayout {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (this.f41052a < 1.0f) {
+        if (this.f41053a < 1.0f) {
             return false;
         }
-        SecretMediaViewer secretMediaViewer = this.f41057r;
+        SecretMediaViewer secretMediaViewer = this.f41058r;
         if (secretMediaViewer.Q.e(motionEvent.getX() - AndroidUtilities.dp(2.0f), motionEvent.getY(), motionEvent.getAction())) {
             getParent().requestDisallowInterceptTouchEvent(true);
             secretMediaViewer.R.invalidate();

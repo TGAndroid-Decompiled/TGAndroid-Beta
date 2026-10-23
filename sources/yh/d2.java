@@ -13,28 +13,28 @@ import org.telegram.ui.Components.ks0;
 import org.telegram.ui.Components.xc;
 import org.telegram.ui.ProfileActivity;
 public final class d2 implements Utilities.Callback {
-    public final int f50222a;
-    public final l2 f50223b;
-    public final TL_stars.SavedStarGift f50224c;
+    public final int f50223a;
+    public final l2 f50224b;
+    public final TL_stars.SavedStarGift f50225c;
 
     public d2(l2 l2Var, TL_stars.SavedStarGift savedStarGift, int i10) {
-        this.f50222a = i10;
-        this.f50223b = l2Var;
-        this.f50224c = savedStarGift;
+        this.f50223a = i10;
+        this.f50224b = l2Var;
+        this.f50225c = savedStarGift;
     }
 
     @Override
     public final void run(Object obj) {
-        int i10 = this.f50222a;
-        TL_stars.SavedStarGift savedStarGift = this.f50224c;
-        l2 l2Var = this.f50223b;
+        int i10 = this.f50223a;
+        TL_stars.SavedStarGift savedStarGift = this.f50225c;
+        l2 l2Var = this.f50224b;
         switch (i10) {
             case 0:
-                l2Var.f50368a.e.b((String) obj, new d2(l2Var, savedStarGift, 1));
+                l2Var.f50369a.e.b((String) obj, new d2(l2Var, savedStarGift, 1));
                 return;
             default:
                 TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) obj;
-                ks0 ks0Var = l2Var.f50368a;
+                ks0 ks0Var = l2Var.f50369a;
                 v9 v9Var = ks0Var.e;
                 int i11 = tL_starGiftCollection.collection_id;
                 v9Var.getClass();
@@ -42,10 +42,10 @@ public final class d2 implements Utilities.Callback {
                 arrayList.add(savedStarGift);
                 v9Var.a(i11, arrayList);
                 ks0Var.f(true);
-                d91 d91Var = ks0Var.f50470n;
+                d91 d91Var = ks0Var.f50471n;
                 int i12 = tL_starGiftCollection.collection_id;
                 d91Var.d(i12, ks0Var.e.f(i12) + 1);
-                org.telegram.ui.ActionBar.n2 n2Var = ks0Var.f50466a;
+                org.telegram.ui.ActionBar.n2 n2Var = ks0Var.f50467a;
                 if (n2Var instanceof ProfileActivity) {
                     ((ProfileActivity) n2Var).G4(true);
                 }

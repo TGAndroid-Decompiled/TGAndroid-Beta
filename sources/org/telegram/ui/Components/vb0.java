@@ -10,37 +10,37 @@ import org.telegram.messenger.MessagePreviewParams;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.tl.TL_stars;
 public final class vb0 implements View.OnClickListener {
-    public final int f31212a;
-    public final boolean f31213b;
-    public final FrameLayout f31214c;
+    public final int f31213a;
+    public final boolean f31214b;
+    public final FrameLayout f31215c;
     public final Object d;
     public final Object e;
-    public final Object f31215f;
+    public final Object f31216f;
 
     public vb0(FrameLayout frameLayout, boolean z10, Object obj, Object obj2, Object obj3, int i10) {
-        this.f31212a = i10;
-        this.f31214c = frameLayout;
-        this.f31213b = z10;
+        this.f31213a = i10;
+        this.f31215c = frameLayout;
+        this.f31214b = z10;
         this.d = obj;
         this.e = obj2;
-        this.f31215f = obj3;
+        this.f31216f = obj3;
     }
 
     @Override
     public final void onClick(View view) {
-        int i10 = this.f31212a;
-        Object obj = this.f31215f;
+        int i10 = this.f31213a;
+        Object obj = this.f31216f;
         Object obj2 = this.e;
         Object obj3 = this.d;
-        boolean z10 = this.f31213b;
-        FrameLayout frameLayout = this.f31214c;
+        boolean z10 = this.f31214b;
+        FrameLayout frameLayout = this.f31215c;
         switch (i10) {
             case 0:
                 ic0 ic0Var = (ic0) frameLayout;
                 Context context = (Context) obj3;
                 nc0 nc0Var = (nc0) obj2;
                 nc0 nc0Var2 = (nc0) obj;
-                oc0 oc0Var = ic0Var.f27240c0;
+                oc0 oc0Var = ic0Var.f27241c0;
                 MessagePreviewParams messagePreviewParams = oc0Var.d;
                 if (!z10) {
                     new xc(oc0Var, oc0Var.F).Q(R.raw.star_premium_2, 36, AndroidUtilities.replaceSingleTag("Subscribe to **Telegram Premium** to forward formatted messages without the sender’s name.", new tb0(ic0Var, context, 0))).j();
@@ -48,7 +48,7 @@ public final class vb0 implements View.OnClickListener {
                 }
                 boolean z11 = messagePreviewParams.hideForwardSendersName;
                 messagePreviewParams.hideForwardSendersName = !z11;
-                oc0Var.f28997x = false;
+                oc0Var.f28998x = false;
                 if (z11) {
                     messagePreviewParams.hideCaption = false;
                     if (nc0Var != null) {
@@ -63,7 +63,7 @@ public final class vb0 implements View.OnClickListener {
                 TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) obj3;
                 TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) obj2;
                 i80 i80Var = (i80) obj;
-                ks0 ks0Var = ((yh.l2) frameLayout).f50368a;
+                ks0 ks0Var = ((yh.l2) frameLayout).f50369a;
                 if (!z10) {
                     ai.v9 v9Var = ks0Var.e;
                     int i11 = tL_starGiftCollection.collection_id;
@@ -71,10 +71,10 @@ public final class vb0 implements View.OnClickListener {
                     ArrayList arrayList = new ArrayList();
                     arrayList.add(savedStarGift);
                     v9Var.a(i11, arrayList);
-                    xc.a0(ks0Var.f50466a).R(savedStarGift.gift.getDocument(), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2AddedToCollection, ai.l7.Y1(savedStarGift.gift), tL_starGiftCollection.title))).j();
+                    xc.a0(ks0Var.f50467a).R(savedStarGift.gift.getDocument(), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2AddedToCollection, ai.l7.Y1(savedStarGift.gift), tL_starGiftCollection.title))).j();
                 } else {
                     ks0Var.e.k(tL_starGiftCollection.collection_id, savedStarGift);
-                    xc.a0(ks0Var.f50466a).R(savedStarGift.gift.getDocument(), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2RemovedFromCollection, ai.l7.Y1(savedStarGift.gift), tL_starGiftCollection.title))).j();
+                    xc.a0(ks0Var.f50467a).R(savedStarGift.gift.getDocument(), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2RemovedFromCollection, ai.l7.Y1(savedStarGift.gift), tL_starGiftCollection.title))).j();
                 }
                 i80Var.u();
                 ks0Var.n();

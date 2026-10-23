@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class fr implements org.telegram.ui.Cells.z4, hg.z1 {
-    public final gr f37066a;
+    public final gr f37067a;
 
     @Override
     public a0.h G() {
@@ -19,26 +19,26 @@ public final class fr implements org.telegram.ui.Cells.z4, hg.z1 {
     @Override
     public boolean d(org.telegram.ui.Cells.a5 a5Var, boolean z10) {
         int intValue = ((Integer) a5Var.getTag()).intValue();
-        gr grVar = this.f37066a;
+        gr grVar = this.f37067a;
         TLObject E = grVar.E(intValue);
         if (E instanceof TLRPC.ChannelParticipant) {
-            return grVar.f37405y.h0((TLRPC.ChannelParticipant) E, !z10, a5Var);
+            return grVar.f37406y.h0((TLRPC.ChannelParticipant) E, !z10, a5Var);
         }
         return false;
     }
 
     @Override
     public void f(int i10) {
-        gr grVar = this.f37066a;
-        hr hrVar = grVar.f37405y;
+        gr grVar = this.f37067a;
+        hr hrVar = grVar.f37406y;
         if (!grVar.h.e()) {
-            int i11 = grVar.f37401r;
+            int i11 = grVar.f37402r;
             grVar.l();
-            if (grVar.f37401r > i11) {
+            if (grVar.f37402r > i11) {
                 hrVar.y0(i11);
             }
-            if (!grVar.f37402s && grVar.f37401r == 0 && i10 != 0) {
-                hrVar.f37722b.e(false, true);
+            if (!grVar.f37403s && grVar.f37402r == 0 && i10 != 0) {
+                hrVar.f37723b.e(false, true);
             }
         }
     }

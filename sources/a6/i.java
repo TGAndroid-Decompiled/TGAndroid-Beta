@@ -489,7 +489,7 @@ public final class i implements n0, r, uq0, a0, androidx.activity.result.b, p, O
         switch (this.f306a) {
             case 4:
                 qc k10 = ((l7) this.f307b).getBulletinFactory().k(false);
-                k10.f29544t = true;
+                k10.f29545t = true;
                 k10.j();
                 return;
             default:
@@ -714,7 +714,7 @@ public final class i implements n0, r, uq0, a0, androidx.activity.result.b, p, O
             }
             try {
                 jSONObject.put("expires_at", j10);
-                fileWriter = new FileWriter((File) cVar.f44438b);
+                fileWriter = new FileWriter((File) cVar.f44439b);
                 try {
                     try {
                         fileWriter.write(jSONObject.toString());
@@ -812,7 +812,7 @@ public final class i implements n0, r, uq0, a0, androidx.activity.result.b, p, O
 
     public i(ya.d dVar) {
         this.f306a = 9;
-        this.f307b = (com.google.android.gms.internal.play_billing.r) dVar.f50124b;
+        this.f307b = (com.google.android.gms.internal.play_billing.r) dVar.f50125b;
     }
 
     public i(Context context, int i10) {

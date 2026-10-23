@@ -34,14 +34,14 @@ import org.telegram.ui.ph1;
 import org.telegram.ui.vh1;
 import org.telegram.ui.web.BotWebViewContainer$BotWebViewProxy;
 public final class z3 implements Runnable {
-    public final int f35182a;
-    public final Object f35183b;
-    public final Object f35184c;
+    public final int f35183a;
+    public final Object f35184b;
+    public final Object f35185c;
 
     public z3(int i10, Object obj, Object obj2) {
-        this.f35182a = i10;
-        this.f35183b = obj;
-        this.f35184c = obj2;
+        this.f35183a = i10;
+        this.f35184b = obj;
+        this.f35185c = obj2;
     }
 
     @Override
@@ -50,11 +50,11 @@ public final class z3 implements Runnable {
         org.telegram.ui.web.g0 g0Var;
         float f7;
         org.telegram.ui.web.z1 z1Var;
-        int i10 = this.f35182a;
+        int i10 = this.f35183a;
         boolean z10 = true;
         int i11 = 0;
-        Object obj = this.f35184c;
-        Object obj2 = this.f35183b;
+        Object obj = this.f35185c;
+        Object obj2 = this.f35184b;
         switch (i10) {
             case 0:
                 TextView[] textViewArr = (TextView[]) obj2;
@@ -105,7 +105,7 @@ public final class z3 implements Runnable {
             case 11:
                 t7 t7Var = (t7) obj2;
                 TLRPC.UserFull userFull = (TLRPC.UserFull) obj;
-                if (!t7Var.f34917a1 && userFull != null) {
+                if (!t7Var.f34918a1 && userFull != null) {
                     TL_wallet.card cardVar = userFull.wallet_card;
                     if (cardVar == null) {
                         cardVar = new TL_wallet.card();
@@ -124,13 +124,13 @@ public final class z3 implements Runnable {
                 return;
             case 13:
                 ((q0) obj).B();
-                ((h8) obj2).f32359a.W2.N(true);
+                ((h8) obj2).f32360a.W2.N(true);
                 return;
             case 14:
                 h8 h8Var = (h8) obj2;
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(h8Var.getParentActivity(), 0, h8Var.getResourceProvider());
                 String string = LocaleController.getString(R.string.WalletDisableBackupTitle);
-                org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20608a;
+                org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20609a;
                 b2Var.R = string;
                 b2Var.T = LocaleController.getString(R.string.WalletDisableBackupExistingPhraseInfo);
                 alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
@@ -152,8 +152,8 @@ public final class z3 implements Runnable {
                 int i12 = iArr[0] - 1;
                 iArr[0] = i12;
                 if (i12 == 0) {
-                    WallpapersListActivity wallpapersListActivity = ph1Var.f40241a;
-                    int[][] iArr2 = WallpapersListActivity.f35210k0;
+                    WallpapersListActivity wallpapersListActivity = ph1Var.f40242a;
+                    int[][] iArr2 = WallpapersListActivity.f35211k0;
                     wallpapersListActivity.B0(true);
                     return;
                 }
@@ -163,11 +163,11 @@ public final class z3 implements Runnable {
                 String str = (String) obj;
                 vh1Var.d.clear();
                 vh1Var.e.clear();
-                vh1Var.f42264f = true;
+                vh1Var.f42265f = true;
                 vh1Var.F(str, "", true);
                 vh1Var.h = str;
                 vh1Var.l();
-                vh1Var.f42270y = null;
+                vh1Var.f42271y = null;
                 return;
             case 19:
                 vh1 vh1Var2 = (vh1) obj2;
@@ -176,15 +176,15 @@ public final class z3 implements Runnable {
                 MessagesController.getInstance(WallpapersListActivity.p0(wallpapersListActivity2)).putUsers(tL_contacts_resolvedPeer.users, false);
                 MessagesController.getInstance(WallpapersListActivity.q0(wallpapersListActivity2)).putChats(tL_contacts_resolvedPeer.chats, false);
                 wallpapersListActivity2.getMessagesStorage().putUsersAndChats(tL_contacts_resolvedPeer.users, tL_contacts_resolvedPeer.chats, true, true);
-                String str2 = vh1Var2.f42269x;
-                vh1Var2.f42269x = null;
+                String str2 = vh1Var2.f42270x;
+                vh1Var2.f42270x = null;
                 vh1Var2.F(str2, "", false);
                 return;
             case 20:
                 String str3 = (String) obj;
-                ci1 ci1Var = ((bi1) obj2).f35646a;
+                ci1 ci1Var = ((bi1) obj2).f35647a;
                 Activity parentActivity = ci1Var.getParentActivity();
-                MessageObject messageObject = ci1Var.f35999n;
+                MessageObject messageObject = ci1Var.f36000n;
                 if (parentActivity != null) {
                     if (BuildVars.LOGS_ENABLED) {
                         FileLog.d(str3);
@@ -203,7 +203,7 @@ public final class z3 implements Runnable {
                 return;
             case 21:
                 org.telegram.ui.web.a1 a1Var2 = (org.telegram.ui.web.a1) obj2;
-                gi.r rVar = a1Var2.f42577j0;
+                gi.r rVar = a1Var2.f42578j0;
                 rVar.f11413f = true;
                 rVar.k();
                 a1Var2.v((ci.z7) obj);
@@ -211,7 +211,7 @@ public final class z3 implements Runnable {
             case 22:
                 BotWebViewContainer$BotWebViewProxy botWebViewContainer$BotWebViewProxy = (BotWebViewContainer$BotWebViewProxy) obj2;
                 ArrayList arrayList = (ArrayList) obj;
-                if (botWebViewContainer$BotWebViewProxy != null && (a1Var = botWebViewContainer$BotWebViewProxy.f42553a) != null && (g0Var = a1Var.f42568c) != null) {
+                if (botWebViewContainer$BotWebViewProxy != null && (a1Var = botWebViewContainer$BotWebViewProxy.f42554a) != null && (g0Var = a1Var.f42569c) != null) {
                     g0Var.f(arrayList);
                     return;
                 }
@@ -219,12 +219,12 @@ public final class z3 implements Runnable {
             case 23:
                 ArrayList arrayList2 = (ArrayList) obj2;
                 LongSparseArray longSparseArray = (LongSparseArray) obj;
-                org.telegram.ui.web.c1.f42618c.addAll(0, arrayList2);
+                org.telegram.ui.web.c1.f42619c.addAll(0, arrayList2);
                 for (int i13 = 0; i13 < longSparseArray.size(); i13++) {
                     org.telegram.ui.web.c1.d.put(longSparseArray.keyAt(i13), (org.telegram.ui.web.b1) longSparseArray.valueAt(i13));
                 }
-                org.telegram.ui.web.c1.f42617b = true;
-                org.telegram.ui.web.c1.f42616a = false;
+                org.telegram.ui.web.c1.f42618b = true;
+                org.telegram.ui.web.c1.f42617a = false;
                 ArrayList arrayList3 = org.telegram.ui.web.c1.e;
                 if (arrayList3 != null) {
                     int size = arrayList3.size();
@@ -238,12 +238,12 @@ public final class z3 implements Runnable {
                 }
                 return;
             case 24:
-                org.telegram.ui.web.f1 f1Var = ((org.telegram.ui.web.e1) obj2).f42630s;
-                ArrayList arrayList4 = f1Var.f42636f;
+                org.telegram.ui.web.f1 f1Var = ((org.telegram.ui.web.e1) obj2).f42631s;
+                ArrayList arrayList4 = f1Var.f42637f;
                 arrayList4.clear();
                 arrayList4.addAll((ArrayList) obj);
                 f1Var.h = false;
-                w61 w61Var = f1Var.f32359a;
+                w61 w61Var = f1Var.f32360a;
                 if (w61Var != null) {
                     w61Var.W2.N(true);
                     return;
@@ -264,18 +264,18 @@ public final class z3 implements Runnable {
                 animate.alpha(f7);
                 return;
             case 26:
-                ((org.telegram.ui.n0) obj2).f42797f0.run((Integer) obj);
+                ((org.telegram.ui.n0) obj2).f42798f0.run((Integer) obj);
                 return;
             case 27:
                 org.telegram.ui.web.x1 x1Var = (org.telegram.ui.web.x1) obj2;
                 x1Var.getMessagesController().removeWebBrowserException((String) obj);
-                x1Var.f32359a.W2.N(true);
+                x1Var.f32360a.W2.N(true);
                 return;
             case 28:
                 org.telegram.ui.web.f2 f2Var = (org.telegram.ui.web.f2) obj2;
                 TLObject tLObject = (TLObject) obj;
-                int i14 = f2Var.f42641a;
-                f2Var.f42645g = true;
+                int i14 = f2Var.f42642a;
+                f2Var.f42646g = true;
                 if (tLObject instanceof TLRPC.TL_messages_webPage) {
                     TLRPC.TL_messages_webPage tL_messages_webPage = (TLRPC.TL_messages_webPage) tLObject;
                     MessagesController.getInstance(i14).putUsers(tL_messages_webPage.users, false);
@@ -294,13 +294,13 @@ public final class z3 implements Runnable {
                 if (webPage != null && webPage.cached_page == null) {
                     f2Var.h = null;
                 }
-                if (!SharedConfig.onlyLocalInstantView && f2Var.h != null && (z1Var = f2Var.f42649l) != null) {
+                if (!SharedConfig.onlyLocalInstantView && f2Var.h != null && (z1Var = f2Var.f42650l) != null) {
                     z1Var.run();
                 }
                 f2Var.c();
                 return;
             default:
-                ((org.telegram.ui.web.f2) obj2).f42650m.remove((z3) obj);
+                ((org.telegram.ui.web.f2) obj2).f42651m.remove((z3) obj);
                 return;
         }
     }

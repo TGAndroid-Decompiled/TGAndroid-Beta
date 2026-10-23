@@ -2,31 +2,31 @@ package org.telegram.ui;
 
 import org.telegram.messenger.Intro;
 public final class o2 implements z4.e {
-    public final int f39746a;
-    public final Object f39747b;
+    public final int f39747a;
+    public final Object f39748b;
 
     public o2(Object obj, int i10) {
-        this.f39746a = i10;
-        this.f39747b = obj;
+        this.f39747a = i10;
+        this.f39748b = obj;
     }
 
     @Override
     public final void a(float f7, int i10, int i11) {
-        switch (this.f39746a) {
+        switch (this.f39747a) {
             case 0:
-                s2 s2Var = (s2) this.f39747b;
-                float measuredWidth = s2Var.f41328a.getMeasuredWidth();
+                s2 s2Var = (s2) this.f39748b;
+                float measuredWidth = s2Var.f41329a.getMeasuredWidth();
                 if (measuredWidth != 0.0f) {
-                    s2Var.f41334s = com.google.android.gms.internal.play_billing.k3.c(s2Var.v, measuredWidth, (i10 * measuredWidth) + i11, measuredWidth);
-                    s2Var.f41330c.invalidate();
+                    s2Var.f41335s = com.google.android.gms.internal.play_billing.k3.c(s2Var.v, measuredWidth, (i10 * measuredWidth) + i11, measuredWidth);
+                    s2Var.f41331c.invalidate();
                     return;
                 }
                 return;
             case 1:
-                j70 j70Var = (j70) this.f39747b;
+                j70 j70Var = (j70) this.f39748b;
                 org.telegram.ui.Components.sa saVar = j70Var.e;
-                saVar.f30237b = f7;
-                saVar.f30238c = i10;
+                saVar.f30238b = f7;
+                saVar.f30239c = i10;
                 saVar.invalidate();
                 float measuredWidth2 = j70Var.d.getMeasuredWidth();
                 if (measuredWidth2 != 0.0f) {
@@ -41,28 +41,28 @@ public final class o2 implements z4.e {
 
     @Override
     public final void b(int i10) {
-        switch (this.f39746a) {
+        switch (this.f39747a) {
             case 0:
-                s2 s2Var = (s2) this.f39747b;
+                s2 s2Var = (s2) this.f39748b;
                 s2Var.v = i10;
-                s2Var.f41330c.invalidate();
+                s2Var.f41331c.invalidate();
                 return;
             case 1:
-                ((j70) this.f39747b).H = i10;
+                ((j70) this.f39748b).H = i10;
                 return;
             default:
-                ((kc1) this.f39747b).f38521a0.invalidate();
+                ((kc1) this.f39748b).f38522a0.invalidate();
                 return;
         }
     }
 
     @Override
     public final void c(int i10) {
-        switch (this.f39746a) {
+        switch (this.f39747a) {
             case 0:
                 return;
             case 1:
-                j70 j70Var = (j70) this.f39747b;
+                j70 j70Var = (j70) this.f39748b;
                 if (i10 == 1) {
                     j70Var.K = true;
                     j70Var.d.getCurrentItem();
@@ -72,8 +72,8 @@ public final class o2 implements z4.e {
                     if (j70Var.K) {
                         j70Var.K = false;
                     }
-                    if (j70Var.f38197w != j70Var.d.getCurrentItem()) {
-                        j70Var.f38197w = j70Var.d.getCurrentItem();
+                    if (j70Var.f38198w != j70Var.d.getCurrentItem()) {
+                        j70Var.f38198w = j70Var.d.getCurrentItem();
                         return;
                     }
                     return;

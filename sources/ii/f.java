@@ -37,13 +37,13 @@ public final class f extends g61 {
         TLRPC.User user = eVar.f13160b;
         long j10 = eVar.f13159a;
         boolean z11 = eVar.f13161c;
-        boolean z12 = !h61Var.f26783j;
+        boolean z12 = !h61Var.f26784j;
         w9 w9Var = gVar.f13165c;
         TextView textView = gVar.f13167n;
         TextView textView2 = gVar.d;
         gVar.f13171x = (d) h61Var.H;
         gVar.f13172y = j10;
-        gVar.E = user.f20426id;
+        gVar.E = user.f20427id;
         int i11 = gVar.f13164b;
         TLRPC.Chat chat = MessagesController.getInstance(i11).getChat(Long.valueOf(-j10));
         TLRPC.User user2 = MessagesController.getInstance(i11).getUser(Long.valueOf(j10));

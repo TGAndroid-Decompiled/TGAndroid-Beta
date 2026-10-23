@@ -2,30 +2,31 @@ package org.telegram.messenger;
 
 import org.telegram.messenger.MediaController;
 public final class z6 implements Runnable {
-    public final int f20208a;
-    public final MediaController.MediaLoader f20209b;
-    public final int f20210c;
+    public final int f20221a;
+    public final MediaController.MediaLoader f20222b;
 
-    public z6(MediaController.MediaLoader mediaLoader, int i10, int i11) {
-        this.f20208a = i11;
-        this.f20209b = mediaLoader;
-        this.f20210c = i10;
+    public z6(MediaController.MediaLoader mediaLoader, int i10) {
+        this.f20221a = i10;
+        this.f20222b = mediaLoader;
     }
 
     @Override
     public final void run() {
-        switch (this.f20208a) {
+        switch (this.f20221a) {
             case 0:
-                this.f20209b.lambda$didReceivedNotification$11(this.f20210c);
+                this.f20222b.lambda$start$1();
                 return;
             case 1:
-                this.f20209b.lambda$copyFile$9(this.f20210c);
+                this.f20222b.lambda$start$2();
                 return;
             case 2:
-                this.f20209b.lambda$copyFile$10(this.f20210c);
+                this.f20222b.lambda$copyFile$8();
+                return;
+            case 3:
+                this.f20222b.lambda$checkIfFinished$3();
                 return;
             default:
-                this.f20209b.lambda$processLivePhotoMessage$6(this.f20210c);
+                this.f20222b.lambda$checkIfFinished$4();
                 return;
         }
     }

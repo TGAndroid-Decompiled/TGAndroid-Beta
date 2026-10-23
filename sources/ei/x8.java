@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.ok;
+import org.telegram.messenger.nk;
 import org.telegram.ui.Components.he0;
 import org.telegram.ui.Components.hf;
 import org.telegram.ui.Components.me0;
@@ -228,7 +228,7 @@ public final class x8 extends FrameLayout {
             case 0:
                 super.dispatchDraw(canvas);
                 Paint paint = (Paint) this.f10108f;
-                paint.setColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20994d7, (org.telegram.ui.ActionBar.d6) this.f10106b));
+                paint.setColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20995d7, (org.telegram.ui.ActionBar.d6) this.f10106b));
                 canvas.drawRect(0.0f, getHeight() - AndroidUtilities.getShadowHeight(), getWidth(), getHeight(), paint);
                 return;
             default:
@@ -302,9 +302,9 @@ public final class x8 extends FrameLayout {
         this.f10106b = d6Var;
         TextView textView = new TextView(context);
         this.d = textView;
-        ok.k(20.0f, 1, textView);
+        nk.k(20.0f, 1, textView);
         textView.setGravity(LocaleController.isRTL ? 5 : 3);
-        textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21099j5, d6Var));
+        textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21100j5, d6Var));
         boolean z10 = LocaleController.isRTL;
         addView(textView, w7.z5.d(-1, -2.0f, 23, z10 ? 16.0f : 53.0f, 0.0f, z10 ? 53.0f : 16.0f, 0.0f));
         ImageView imageView = new ImageView(context);
@@ -314,7 +314,7 @@ public final class x8 extends FrameLayout {
         imageView.setImageDrawable(g2Var);
         g2Var.a(-1);
         g2Var.b(-1);
-        g2Var.f20871k = 220.0f;
+        g2Var.f20872k = 220.0f;
         addView(imageView, w7.z5.d(24, 24.0f, (LocaleController.isRTL ? 5 : 3) | 16, 16.0f, 0.0f, 16.0f, 0.0f));
         imageView.setOnClickListener(new ah.g0(this, 23));
     }

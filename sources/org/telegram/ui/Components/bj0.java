@@ -26,57 +26,57 @@ public final class bj0 extends FrameLayout {
     public boolean O;
     public yi0 P;
     public org.telegram.ui.vb0 Q;
-    public VelocityTracker f24956a;
-    public int f24957b;
-    public int f24958c;
+    public VelocityTracker f24957a;
+    public int f24958b;
+    public int f24959c;
     public int d;
     public boolean e;
-    public boolean f24959f;
+    public boolean f24960f;
     public AnimatorSet h;
-    public Rect f24960n;
-    public boolean f24961r;
-    public AnimatorSet f24962s;
+    public Rect f24961n;
+    public boolean f24962r;
+    public AnimatorSet f24963s;
     public xi0 v;
-    public boolean f24963w;
-    public int f24964x;
-    public int f24965y;
+    public boolean f24964w;
+    public int f24965x;
+    public int f24966y;
 
     public final void a() {
         xi0 xi0Var = this.v;
-        if (this.f24961r) {
+        if (this.f24962r) {
             return;
         }
-        this.f24961r = true;
-        AnimatorSet animatorSet = this.f24962s;
+        this.f24962r = true;
+        AnimatorSet animatorSet = this.f24963s;
         if (animatorSet != null) {
             animatorSet.cancel();
-            this.f24962s = null;
+            this.f24963s = null;
         }
         AnimatorSet animatorSet2 = new AnimatorSet();
-        this.f24962s = animatorSet2;
+        this.f24963s = animatorSet2;
         animatorSet2.playTogether(ObjectAnimator.ofFloat(xi0Var, View.TRANSLATION_Y, AndroidUtilities.dp(10.0f) + xi0Var.getMeasuredHeight()));
         if (this.E) {
             float measuredHeight = xi0Var.getMeasuredHeight();
-            this.f24962s.setDuration(Math.max(60, (int) (((measuredHeight - xi0Var.getTranslationY()) * 250.0f) / measuredHeight)));
+            this.f24963s.setDuration(Math.max(60, (int) (((measuredHeight - xi0Var.getTranslationY()) * 250.0f) / measuredHeight)));
             this.E = false;
         } else {
-            this.f24962s.setDuration(250L);
+            this.f24963s.setDuration(250L);
         }
-        this.f24962s.setInterpolator(bs.f25024f);
-        this.f24962s.addListener(new aj0(this, 2));
+        this.f24963s.setInterpolator(bs.f25025f);
+        this.f24963s.addListener(new aj0(this, 2));
         NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, 512);
-        this.f24962s.start();
+        this.f24963s.start();
     }
 
     public final boolean b(MotionEvent motionEvent, boolean z10) {
         float translationY;
         xi0 xi0Var = this.v;
-        if (!this.f24961r) {
-            if (motionEvent != null && ((motionEvent.getAction() == 0 || motionEvent.getAction() == 2) && !this.f24959f && !this.e && motionEvent.getPointerCount() == 1)) {
-                this.f24957b = (int) motionEvent.getX();
+        if (!this.f24962r) {
+            if (motionEvent != null && ((motionEvent.getAction() == 0 || motionEvent.getAction() == 2) && !this.f24960f && !this.e && motionEvent.getPointerCount() == 1)) {
+                this.f24958b = (int) motionEvent.getX();
                 int y3 = (int) motionEvent.getY();
-                this.f24958c = y3;
-                if (y3 >= xi0Var.getTop() && this.f24957b >= xi0Var.getLeft() && this.f24957b <= xi0Var.getRight()) {
+                this.f24959c = y3;
+                if (y3 >= xi0Var.getTop() && this.f24958b >= xi0Var.getLeft() && this.f24958b <= xi0Var.getRight()) {
                     this.d = motionEvent.getPointerId(0);
                     this.e = true;
                     AnimatorSet animatorSet = this.h;
@@ -84,7 +84,7 @@ public final class bj0 extends FrameLayout {
                         animatorSet.cancel();
                         this.h = null;
                     }
-                    VelocityTracker velocityTracker = this.f24956a;
+                    VelocityTracker velocityTracker = this.f24957a;
                     if (velocityTracker != null) {
                         velocityTracker.clear();
                     }
@@ -96,43 +96,43 @@ public final class bj0 extends FrameLayout {
             } else {
                 float f7 = 0.0f;
                 if (motionEvent != null && motionEvent.getAction() == 2 && motionEvent.getPointerId(0) == this.d) {
-                    if (this.f24956a == null) {
-                        this.f24956a = VelocityTracker.obtain();
+                    if (this.f24957a == null) {
+                        this.f24957a = VelocityTracker.obtain();
                     }
-                    float abs = Math.abs((int) (motionEvent.getX() - this.f24957b));
-                    float y10 = ((int) motionEvent.getY()) - this.f24958c;
-                    this.f24956a.addMovement(motionEvent);
-                    if (this.e && !this.f24959f && y10 > 0.0f && y10 / 3.0f > Math.abs(abs) && Math.abs(y10) >= this.f24965y) {
-                        this.f24958c = (int) motionEvent.getY();
+                    float abs = Math.abs((int) (motionEvent.getX() - this.f24958b));
+                    float y10 = ((int) motionEvent.getY()) - this.f24959c;
+                    this.f24957a.addMovement(motionEvent);
+                    if (this.e && !this.f24960f && y10 > 0.0f && y10 / 3.0f > Math.abs(abs) && Math.abs(y10) >= this.f24966y) {
+                        this.f24959c = (int) motionEvent.getY();
                         this.e = false;
-                        this.f24959f = true;
+                        this.f24960f = true;
                         requestDisallowInterceptTouchEvent(true);
-                    } else if (this.f24959f) {
+                    } else if (this.f24960f) {
                         float translationY2 = xi0Var.getTranslationY() + y10;
                         if (translationY2 >= 0.0f) {
                             f7 = translationY2;
                         }
                         xi0Var.setTranslationY(f7);
-                        this.f24958c = (int) motionEvent.getY();
+                        this.f24959c = (int) motionEvent.getY();
                     }
                 } else if (motionEvent == null || (motionEvent.getPointerId(0) == this.d && (motionEvent.getAction() == 3 || motionEvent.getAction() == 1 || motionEvent.getAction() == 6))) {
-                    if (this.f24956a == null) {
-                        this.f24956a = VelocityTracker.obtain();
+                    if (this.f24957a == null) {
+                        this.f24957a = VelocityTracker.obtain();
                     }
-                    this.f24956a.computeCurrentVelocity(1000);
+                    this.f24957a.computeCurrentVelocity(1000);
                     float translationY3 = xi0Var.getTranslationY();
-                    if (!this.f24959f && translationY3 == 0.0f) {
+                    if (!this.f24960f && translationY3 == 0.0f) {
                         this.e = false;
-                        this.f24959f = false;
+                        this.f24960f = false;
                     } else {
-                        float xVelocity = this.f24956a.getXVelocity();
-                        float yVelocity = this.f24956a.getYVelocity();
+                        float xVelocity = this.f24957a.getXVelocity();
+                        float yVelocity = this.f24957a.getYVelocity();
                         if ((xi0Var.getTranslationY() < AndroidUtilities.getPixelsInCM(0.8f, false) && (yVelocity < 3500.0f || Math.abs(yVelocity) < Math.abs(xVelocity))) || (yVelocity < 0.0f && Math.abs(yVelocity) >= 3500.0f)) {
                             AnimatorSet animatorSet2 = new AnimatorSet();
                             this.h = animatorSet2;
                             animatorSet2.playTogether(ObjectAnimator.ofFloat(xi0Var, View.TRANSLATION_Y, 0.0f));
                             this.h.setDuration((int) ((Math.max(0.0f, translationY) / AndroidUtilities.getPixelsInCM(0.8f, false)) * 150.0f));
-                            this.h.setInterpolator(bs.f25025g);
+                            this.h.setInterpolator(bs.f25026g);
                             this.h.addListener(new aj0(this, 0));
                             NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, 512);
                             this.h.start();
@@ -140,17 +140,17 @@ public final class bj0 extends FrameLayout {
                             this.E = true;
                             a();
                         }
-                        this.f24959f = false;
+                        this.f24960f = false;
                     }
-                    VelocityTracker velocityTracker2 = this.f24956a;
+                    VelocityTracker velocityTracker2 = this.f24957a;
                     if (velocityTracker2 != null) {
                         velocityTracker2.recycle();
-                        this.f24956a = null;
+                        this.f24957a = null;
                     }
                     this.d = -1;
                 }
             }
-            if ((!z10 && this.e) || this.f24959f) {
+            if ((!z10 && this.e) || this.f24960f) {
                 return true;
             }
         }
@@ -163,7 +163,7 @@ public final class bj0 extends FrameLayout {
 
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (this.f24961r) {
+        if (this.f24962r) {
             return true;
         }
         return super.dispatchTouchEvent(motionEvent);
@@ -188,7 +188,7 @@ public final class bj0 extends FrameLayout {
 
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (this.f24961r || b(motionEvent, true)) {
+        if (this.f24962r || b(motionEvent, true)) {
             return true;
         }
         return false;
@@ -204,10 +204,10 @@ public final class bj0 extends FrameLayout {
         int size = View.MeasureSpec.getSize(i10);
         int size2 = View.MeasureSpec.getSize(i11);
         getRootView();
-        getWindowVisibleDisplayFrame(this.f24960n);
+        getWindowVisibleDisplayFrame(this.f24961n);
         setMeasuredDimension(size, size2);
         xi0 xi0Var = this.v;
-        xi0Var.measure(View.MeasureSpec.makeMeasureSpec((this.f24964x * 2) + size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE));
+        xi0Var.measure(View.MeasureSpec.makeMeasureSpec((this.f24965x * 2) + size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE));
         int childCount = getChildCount();
         for (int i12 = 0; i12 < childCount; i12++) {
             View childAt = getChildAt(i12);
@@ -219,7 +219,7 @@ public final class bj0 extends FrameLayout {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (!this.f24961r && !b(motionEvent, false)) {
+        if (!this.f24962r && !b(motionEvent, false)) {
             return false;
         }
         return true;
@@ -227,7 +227,7 @@ public final class bj0 extends FrameLayout {
 
     @Override
     public final void requestDisallowInterceptTouchEvent(boolean z10) {
-        if (this.e && !this.f24959f) {
+        if (this.e && !this.f24960f) {
             onTouchEvent(null);
         }
         super.requestDisallowInterceptTouchEvent(z10);

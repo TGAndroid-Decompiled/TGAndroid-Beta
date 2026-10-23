@@ -6,15 +6,15 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.df0;
 public abstract class c1 {
-    public static boolean f42616a;
-    public static boolean f42617b;
-    public static ArrayList f42618c;
+    public static boolean f42617a;
+    public static boolean f42618b;
+    public static ArrayList f42619c;
     public static LongSparseArray d;
     public static ArrayList e;
 
     public static ArrayList a(Utilities.Callback callback) {
         boolean z10;
-        if (callback != null && !f42617b) {
+        if (callback != null && !f42618b) {
             if (e == null) {
                 e = new ArrayList();
             }
@@ -27,13 +27,13 @@ public abstract class c1 {
         if (z10) {
             return null;
         }
-        return f42618c;
+        return f42619c;
     }
 
     public static void b() {
-        if (!f42616a && !f42617b) {
-            f42616a = true;
-            f42618c = new ArrayList();
+        if (!f42617a && !f42618b) {
+            f42617a = true;
+            f42619c = new ArrayList();
             d = new LongSparseArray();
             Utilities.globalQueue.postRunnable(new df0(13));
         }
@@ -42,12 +42,12 @@ public abstract class c1 {
     public static void c(b1 b1Var) {
         if (b1Var != null && b1Var.d != null) {
             b();
-            b1 b1Var2 = (b1) d.get(b1Var.f42609a);
+            b1 b1Var2 = (b1) d.get(b1Var.f42610a);
             if (b1Var2 != null) {
                 b1Var2.d = b1Var.d;
             } else {
-                f42618c.add(b1Var);
-                d.put(b1Var.f42609a, b1Var);
+                f42619c.add(b1Var);
+                d.put(b1Var.f42610a, b1Var);
             }
             AndroidUtilities.cancelRunOnUIThread(new df0(12));
             AndroidUtilities.runOnUIThread(new df0(12), 1000L);

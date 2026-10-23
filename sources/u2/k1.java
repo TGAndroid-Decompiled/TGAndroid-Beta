@@ -6,19 +6,19 @@ import java.util.Collections;
 import java.util.List;
 import v7.u6;
 public final class k1 extends b2.o1 {
-    public static final Object f47348q = new Object();
+    public static final Object f47349q = new Object();
     public final long e;
-    public final long f47349f;
-    public final long f47350g;
+    public final long f47350f;
+    public final long f47351g;
     public final long h;
-    public final long f47351i;
-    public final long f47352j;
-    public final boolean f47353k;
-    public final boolean f47354l;
-    public final boolean f47355m;
-    public final Object f47356n;
-    public final b2.o0 f47357o;
-    public final b2.i0 f47358p;
+    public final long f47352i;
+    public final long f47353j;
+    public final boolean f47354k;
+    public final boolean f47355l;
+    public final boolean f47356m;
+    public final Object f47357n;
+    public final b2.o0 f47358o;
+    public final b2.i0 f47359p;
 
     static {
         boolean z10;
@@ -51,23 +51,23 @@ public final class k1 extends b2.o1 {
 
     public k1(long j10, long j11, long j12, long j13, long j14, long j15, boolean z10, boolean z11, boolean z12, t7.u uVar, b2.o0 o0Var, b2.i0 i0Var) {
         this.e = j10;
-        this.f47349f = j11;
-        this.f47350g = j12;
+        this.f47350f = j11;
+        this.f47351g = j12;
         this.h = j13;
-        this.f47351i = j14;
-        this.f47352j = j15;
-        this.f47353k = z10;
-        this.f47354l = z11;
-        this.f47355m = z12;
-        this.f47356n = uVar;
+        this.f47352i = j14;
+        this.f47353j = j15;
+        this.f47354k = z10;
+        this.f47355l = z11;
+        this.f47356m = z12;
+        this.f47357n = uVar;
         o0Var.getClass();
-        this.f47357o = o0Var;
-        this.f47358p = i0Var;
+        this.f47358o = o0Var;
+        this.f47359p = i0Var;
     }
 
     @Override
     public final int b(Object obj) {
-        if (f47348q.equals(obj)) {
+        if (f47349q.equals(obj)) {
             return 0;
         }
         return -1;
@@ -78,14 +78,14 @@ public final class k1 extends b2.o1 {
         Object obj;
         u6.j(i10, 1);
         if (z10) {
-            obj = f47348q;
+            obj = f47349q;
         } else {
             obj = null;
         }
         Object obj2 = obj;
         l1Var.getClass();
         b2.c cVar = b2.c.f3701c;
-        l1Var.h(null, obj2, 0, this.f47350g, -this.f47351i, cVar, false);
+        l1Var.h(null, obj2, 0, this.f47351g, -this.f47352i, cVar, false);
         return l1Var;
     }
 
@@ -97,7 +97,7 @@ public final class k1 extends b2.o1 {
     @Override
     public final Object l(int i10) {
         u6.j(i10, 1);
-        return f47348q;
+        return f47349q;
     }
 
     @Override

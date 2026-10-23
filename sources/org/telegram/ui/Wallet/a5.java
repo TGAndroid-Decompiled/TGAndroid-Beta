@@ -6,12 +6,12 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.bs;
 import org.telegram.ui.Components.w61;
 public final class a5 implements ViewTreeObserver.OnPreDrawListener {
-    public final int f34000a;
-    public final View f34001b;
+    public final int f34001a;
+    public final View f34002b;
 
     public a5(int i10, View view) {
-        this.f34000a = i10;
-        this.f34001b = view;
+        this.f34001a = i10;
+        this.f34002b = view;
     }
 
     @Override
@@ -21,70 +21,70 @@ public final class a5 implements ViewTreeObserver.OnPreDrawListener {
         ei.m5 m5Var;
         ei.m5 m5Var2;
         ei.m5 m5Var3;
-        switch (this.f34000a) {
+        switch (this.f34001a) {
             case 0:
-                o5 o5Var = (o5) ((ah.v) this.f34001b).f895c;
+                o5 o5Var = (o5) ((ah.v) this.f34002b).f895c;
                 if (o5Var.E) {
                     o5Var.M0();
                     return true;
                 }
                 return true;
             case 1:
-                c5 c5Var = (c5) this.f34001b;
+                c5 c5Var = (c5) this.f34002b;
                 o5 o5Var2 = c5Var.e;
                 float f7 = 0.0f;
                 int i10 = 0;
-                if (o5Var2.Y != null && (w61Var = o5Var2.f32359a) != null) {
-                    if (o5Var2.f34659n0 && !w61Var.canScrollVertically(1)) {
+                if (o5Var2.Y != null && (w61Var = o5Var2.f32360a) != null) {
+                    if (o5Var2.f34660n0 && !w61Var.canScrollVertically(1)) {
                         z10 = true;
                     } else {
                         z10 = false;
                     }
-                    if (o5Var2.f34645a0 != z10) {
-                        o5Var2.f34645a0 = z10;
+                    if (o5Var2.f34646a0 != z10) {
+                        o5Var2.f34646a0 = z10;
                         o5Var2.Y.animate().cancel();
                         if (z10) {
                             o5Var2.Y.setVisibility(0);
-                            o5Var2.Y.animate().alpha(1.0f).setDuration(180L).setInterpolator(bs.f25025g).start();
+                            o5Var2.Y.animate().alpha(1.0f).setDuration(180L).setInterpolator(bs.f25026g).start();
                         } else {
                             o5Var2.Y.setAlpha(0.0f);
                             o5Var2.Y.setVisibility(4);
                         }
                     }
                 }
-                View m10 = o5Var2.f32359a.V2.m(o5Var2.f34650f);
+                View m10 = o5Var2.f32360a.V2.m(o5Var2.f34651f);
                 if (m10 != null) {
                     f7 = m10.getY();
                 }
                 if (m10 != null) {
                     i10 = m10.getHeight();
                 }
-                if (m10 != c5Var.f34078a || f7 != c5Var.f34079b || i10 != c5Var.f34080c) {
-                    c5Var.f34078a = m10;
-                    c5Var.f34079b = f7;
-                    c5Var.f34080c = i10;
+                if (m10 != c5Var.f34079a || f7 != c5Var.f34080b || i10 != c5Var.f34081c) {
+                    c5Var.f34079a = m10;
+                    c5Var.f34080b = f7;
+                    c5Var.f34081c = i10;
                     o5Var2.N0();
                 }
                 return true;
             case 2:
-                t7 t7Var = (t7) this.f34001b;
-                x5 x5Var = t7Var.f34921c;
+                t7 t7Var = (t7) this.f34002b;
+                x5 x5Var = t7Var.f34922c;
                 float cardRotationX = x5Var.getCardRotationX();
                 float cardRotationY = x5Var.getCardRotationY();
-                if (cardRotationX != t7Var.f34916a0 || cardRotationY != t7Var.f34919b0) {
-                    t7Var.f34916a0 = cardRotationX;
-                    t7Var.f34919b0 = cardRotationY;
+                if (cardRotationX != t7Var.f34917a0 || cardRotationY != t7Var.f34920b0) {
+                    t7Var.f34917a0 = cardRotationX;
+                    t7Var.f34920b0 = cardRotationY;
                     t7Var.L.invalidate();
                     return true;
                 }
                 return true;
             default:
-                i9 i9Var = (i9) ((ei.m5) this.f34001b).f9467c;
+                i9 i9Var = (i9) ((ei.m5) this.f34002b).f9467c;
                 ei.m5 m5Var4 = i9Var.v;
                 if (m5Var4 != null && i9Var.W != null && m5Var4.getHeight() > 0 && i9Var.W.getHeight() > 0) {
                     float paddingTop = i9Var.fragmentView.getPaddingTop();
-                    if (i9Var.f34368s.getVisibility() == 0) {
-                        paddingTop = Math.max(paddingTop, (i9Var.f34368s.getScaleY() * (i9Var.f34368s.getContentBottom() - i9Var.f34368s.getPivotY())) + i9Var.f34368s.getPivotY() + i9Var.f34368s.getY());
+                    if (i9Var.f34369s.getVisibility() == 0) {
+                        paddingTop = Math.max(paddingTop, (i9Var.f34369s.getScaleY() * (i9Var.f34369s.getContentBottom() - i9Var.f34369s.getPivotY())) + i9Var.f34369s.getPivotY() + i9Var.f34369s.getY());
                     }
                     float max = Math.max(0.0f, Math.min(i9Var.fragmentView.getHeight() - i9Var.fragmentView.getPaddingBottom(), i9Var.W.getY()) - paddingTop);
                     float min = Math.min(1.0f, Math.max(0.0f, max - (Math.min(AndroidUtilities.dp(12.0f), max / 4.0f) * 2.0f)) / i9Var.v.getHeight());

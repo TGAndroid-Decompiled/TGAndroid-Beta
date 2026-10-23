@@ -34,9 +34,9 @@ public final class qc extends g61 {
             z11 = false;
         }
         rcVar.f2134c = i12;
-        q6Var.c(h61Var.f26785l, z11, true);
-        if (h61Var.f26790q) {
-            i10 = org.telegram.ui.ActionBar.h6.f21196o6;
+        q6Var.c(h61Var.f26786l, z11, true);
+        if (h61Var.f26791q) {
+            i10 = org.telegram.ui.ActionBar.h6.f21197o6;
         } else {
             i10 = org.telegram.ui.ActionBar.h6.G6;
         }
@@ -46,12 +46,12 @@ public final class qc extends g61 {
         float f7 = 180.0f;
         if (z11) {
             ViewPropertyAnimator animate = imageView.animate();
-            if (h61Var.f26780f) {
+            if (h61Var.f26781f) {
                 f7 = 0.0f;
             }
             animate.rotation(f7).setDuration(340L).setInterpolator(bs.h);
         } else {
-            if (h61Var.f26780f) {
+            if (h61Var.f26781f) {
                 f7 = 0.0f;
             }
             imageView.setRotation(f7);

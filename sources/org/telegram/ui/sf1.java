@@ -6,17 +6,17 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class sf1 extends org.telegram.ui.ActionBar.j {
-    public final vf1 f41461a;
+    public final vf1 f41462a;
 
     public sf1(vf1 vf1Var) {
-        this.f41461a = vf1Var;
+        this.f41462a = vf1Var;
     }
 
     @Override
     public final void b(int i10) {
         String string;
         org.telegram.ui.ActionBar.d5 d5Var;
-        vf1 vf1Var = this.f41461a;
+        vf1 vf1Var = this.f41462a;
         if (i10 == -1) {
             if (vf1Var.G >= 0) {
                 d5Var = ((org.telegram.ui.ActionBar.n2) vf1Var).parentLayout;
@@ -36,16 +36,16 @@ public final class sf1 extends org.telegram.ui.ActionBar.j {
             }
             String string2 = LocaleController.getString(R.string.CancelEmailQuestionTitle);
             String string3 = LocaleController.getString(R.string.Abort);
-            org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20608a;
+            org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20609a;
             b2Var.T = string;
             b2Var.R = string2;
             alertDialog$Builder.k(string3, new pp0(this, 23));
             alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-            org.telegram.ui.ActionBar.b2 b2Var2 = alertDialog$Builder.f20608a;
+            org.telegram.ui.ActionBar.b2 b2Var2 = alertDialog$Builder.f20609a;
             vf1Var.showDialog(b2Var2);
             TextView textView = (TextView) b2Var2.d(-1);
             if (textView != null) {
-                textView.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21231q7, false));
+                textView.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21232q7, false));
             }
         }
     }

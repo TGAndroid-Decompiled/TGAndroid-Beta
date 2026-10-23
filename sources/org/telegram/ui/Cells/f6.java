@@ -7,28 +7,28 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.ld;
-import org.telegram.messenger.uf;
+import org.telegram.messenger.kd;
+import org.telegram.messenger.tf;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class f6 {
-    public final int f22253a;
-    public boolean f22254b;
-    public boolean f22255c;
+    public final int f22254a;
+    public boolean f22255b;
+    public boolean f22256c;
     public int e;
-    public long f22256f;
-    public int f22257g;
+    public long f22257f;
+    public int f22258g;
     public final ArrayList d = new ArrayList();
     public final ArrayList h = new ArrayList();
 
     public f6(int i10) {
-        this.f22253a = i10;
+        this.f22254a = i10;
     }
 
     public static void a(f6 f6Var, TLObject tLObject, MessagesStorage messagesStorage, long j10, int i10, ArrayList arrayList) {
         ArrayList arrayList2 = f6Var.d;
-        int i11 = f6Var.f22253a;
+        int i11 = f6Var.f22254a;
         if (tLObject instanceof TLRPC.messages_Messages) {
             TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject;
             MessagesController.getInstance(i11).putUsers(messages_messages.users, false);
@@ -66,7 +66,7 @@ public final class f6 {
     }
 
     public static void b(f6 f6Var, int i10, ArrayList arrayList, long j10, int i11, MessagesStorage messagesStorage) {
-        int i12 = f6Var.f22253a;
+        int i12 = f6Var.f22254a;
         ArrayList arrayList2 = f6Var.d;
         if (i10 != f6Var.e) {
             return;
@@ -100,16 +100,16 @@ public final class f6 {
         for (int i14 = 10; i14 >= 0; i14--) {
             int i15 = i11 - i14;
             if (i15 >= 0) {
-                tL_channels_getMessages.f20317id.add(Integer.valueOf(i15));
+                tL_channels_getMessages.f20318id.add(Integer.valueOf(i15));
             }
         }
-        ConnectionsManager.getInstance(i12).sendRequest(tL_channels_getMessages, new ld(f6Var, messagesStorage, j10, i10, arrayList));
+        ConnectionsManager.getInstance(i12).sendRequest(tL_channels_getMessages, new kd(f6Var, messagesStorage, j10, i10, arrayList));
     }
 
     public final void c() {
         int i10 = 0;
-        this.f22254b = false;
-        this.f22255c = true;
+        this.f22255b = false;
+        this.f22256c = true;
         ArrayList arrayList = this.h;
         int size = arrayList.size();
         while (i10 < size) {
@@ -125,26 +125,26 @@ public final class f6 {
         if (userFull != null && (userFull.flags2 & 64) != 0) {
             long j10 = userFull.personal_channel_id;
             int i10 = userFull.personal_channel_message;
-            if (this.f22255c || this.f22254b) {
-                if (this.f22256f == j10 && this.f22257g == i10) {
+            if (this.f22256c || this.f22255b) {
+                if (this.f22257f == j10 && this.f22258g == i10) {
                     return;
                 }
-                this.f22255c = false;
+                this.f22256c = false;
                 arrayList.clear();
             }
             int i11 = this.e + 1;
             this.e = i11;
-            this.f22254b = true;
-            this.f22256f = j10;
-            this.f22257g = i10;
-            int i12 = this.f22253a;
+            this.f22255b = true;
+            this.f22257f = j10;
+            this.f22258g = i10;
+            int i12 = this.f22254a;
             long clientUserId = UserConfig.getInstance(i12).getClientUserId();
             MessagesStorage messagesStorage = MessagesStorage.getInstance(i12);
-            messagesStorage.getStorageQueue().postRunnable(new uf(this, i10, messagesStorage, j10, clientUserId, i11));
+            messagesStorage.getStorageQueue().postRunnable(new tf(this, i10, messagesStorage, j10, clientUserId, i11));
             return;
         }
         this.e++;
-        this.f22255c = true;
+        this.f22256c = true;
         arrayList.clear();
         c();
     }

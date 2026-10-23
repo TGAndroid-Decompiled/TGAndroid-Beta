@@ -5,17 +5,17 @@ import android.text.TextWatcher;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.Utilities;
 public final class q01 implements TextWatcher {
-    public final x01 f29454a;
+    public final x01 f29455a;
 
     public q01(x01 x01Var) {
-        this.f29454a = x01Var;
+        this.f29455a = x01Var;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
-        x01 x01Var = this.f29454a;
-        q6 q6Var = x01Var.f32296n;
-        if (!x01Var.f32300x) {
+        x01 x01Var = this.f29455a;
+        q6 q6Var = x01Var.f32297n;
+        if (!x01Var.f32301x) {
             String trim = editable.toString().trim();
             if (trim.length() > 16) {
                 q6Var.setText("-" + (trim.length() - 16));
@@ -23,11 +23,11 @@ public final class q01 implements TextWatcher {
             } else {
                 q6Var.setText("");
             }
-            Utilities.Callback callback = x01Var.f32299w;
+            Utilities.Callback callback = x01Var.f32300w;
             if (callback != null) {
                 callback.run(trim);
             }
-            MessageObject messageObject = x01Var.f32297r;
+            MessageObject messageObject = x01Var.f32298r;
             if (messageObject != null) {
                 messageObject.forceUpdate = true;
                 x01Var.d.X3(messageObject, null, false, false, false, false);

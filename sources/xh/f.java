@@ -19,23 +19,23 @@ import org.telegram.ui.fq0;
 import s4.b1;
 import sg.k1;
 public final class f extends im0 {
-    public final k f49850c;
+    public final k f49851c;
 
     public f(k kVar) {
-        this.f49850c = kVar;
+        this.f49851c = kVar;
     }
 
     @Override
     public final boolean D(b1 b1Var) {
-        if (b1Var.f45923f == 0) {
+        if (b1Var.f45924f == 0) {
             return true;
         }
         return false;
     }
 
     public final void E(List list) {
-        k kVar = this.f49850c;
-        ArrayList arrayList = kVar.f49868c;
+        k kVar = this.f49851c;
+        ArrayList arrayList = kVar.f49869c;
         boolean isEmpty = arrayList.isEmpty();
         int i10 = 0;
         while (i10 < list.size()) {
@@ -65,18 +65,18 @@ public final class f extends im0 {
 
     @Override
     public final int h() {
-        k kVar = this.f49850c;
+        k kVar = this.f49851c;
         int i10 = 1;
-        return ((kVar.f49868c.isEmpty() || !kVar.f49885x) ? 0 : 0) + kVar.f49868c.size() + (!kVar.B ? 1 : 0);
+        return ((kVar.f49869c.isEmpty() || !kVar.f49886x) ? 0 : 0) + kVar.f49869c.size() + (!kVar.B ? 1 : 0);
     }
 
     @Override
     public final int j(int i10) {
-        k kVar = this.f49850c;
+        k kVar = this.f49851c;
         if (i10 == 0 && !kVar.B) {
             return 2;
         }
-        if (i10 == h() - 1 && !kVar.f49868c.isEmpty() && kVar.f49885x) {
+        if (i10 == h() - 1 && !kVar.f49869c.isEmpty() && kVar.f49886x) {
             return 4;
         }
         return 0;
@@ -85,29 +85,29 @@ public final class f extends im0 {
     @Override
     public final void v(b1 b1Var, int i10) {
         boolean z10;
-        k kVar = this.f49850c;
-        ArrayList arrayList = kVar.f49868c;
-        int i11 = b1Var.f45923f;
-        View view = b1Var.f45920a;
+        k kVar = this.f49851c;
+        ArrayList arrayList = kVar.f49869c;
+        int i11 = b1Var.f45924f;
+        View view = b1Var.f45921a;
         if (i11 == 0) {
             f5 f5Var = (f5) view;
             int i12 = i10 - (!kVar.B ? 1 : 0);
             LongSparseArray longSparseArray = kVar.d;
             TLRPC.TL_chatInviteImporter tL_chatInviteImporter = (TLRPC.TL_chatInviteImporter) arrayList.get(i12);
-            if (i12 == arrayList.size() - 1 && !kVar.f49885x) {
+            if (i12 == arrayList.size() - 1 && !kVar.f49886x) {
                 z10 = false;
             } else {
                 z10 = true;
             }
             j5 j5Var = f5Var.d;
             f5Var.e = tL_chatInviteImporter;
-            f5Var.f22252f = z10;
+            f5Var.f22253f = z10;
             f5Var.setWillNotDraw(!z10);
             TLRPC.User user = (TLRPC.User) longSparseArray.get(tL_chatInviteImporter.user_id);
-            h9 h9Var = f5Var.f22249a;
+            h9 h9Var = f5Var.f22250a;
             h9Var.r(user);
-            f5Var.f22250b.e(user, h9Var);
-            f5Var.f22251c.l(UserObject.getUserName(user), false);
+            f5Var.f22251b.e(user, h9Var);
+            f5Var.f22252c.l(UserObject.getUserName(user), false);
             String formatDateAudio = LocaleController.formatDateAudio(tL_chatInviteImporter.date, false);
             if (tL_chatInviteImporter.via_chatlist) {
                 j5Var.l(LocaleController.getString(R.string.JoinedViaFolder), false);
@@ -132,20 +132,20 @@ public final class f extends im0 {
     @Override
     public final b1 x(ViewGroup viewGroup, int i10) {
         f5 f5Var;
-        k kVar = this.f49850c;
-        boolean z10 = kVar.f49866a;
+        k kVar = this.f49851c;
+        boolean z10 = kVar.f49867a;
         if (i10 != 1) {
             if (i10 != 2) {
                 if (i10 != 3) {
                     if (i10 != 4) {
                         f5Var = new f5(viewGroup.getContext(), kVar, z10);
                     } else {
-                        n2 n2Var = kVar.f49870g;
+                        n2 n2Var = kVar.f49871g;
                         fq0 fq0Var = new fq0(n2Var.getParentActivity(), 1, n2Var.getResourceProvider());
                         if (kVar.B) {
-                            fq0Var.setBackgroundColor(h6.w0(h6.f20993d6, n2Var.getResourceProvider()));
+                            fq0Var.setBackgroundColor(h6.w0(h6.f20994d6, n2Var.getResourceProvider()));
                         }
-                        fq0Var.f(h6.f20993d6, h6.f20935a7, -1);
+                        fq0Var.f(h6.f20994d6, h6.f20936a7, -1);
                         fq0Var.setViewType(15);
                         fq0Var.setMemberRequestButton(z10);
                         fq0Var.setIsSingleCell(true);

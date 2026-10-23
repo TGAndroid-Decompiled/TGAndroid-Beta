@@ -89,7 +89,7 @@ public final class f implements Runnable {
                 CredentialProviderPlayServicesImpl.onClearCredential$lambda$14$lambda$13$lambda$12((i) obj2, (p) obj);
                 return;
             case 2:
-                ((a3.f) ((qf.b) obj2).f44451c).h.onVideoSizeChanged((a2) obj);
+                ((a3.f) ((qf.b) obj2).f44452c).h.onVideoSizeChanged((a2) obj);
                 return;
             case 3:
                 String str = m0.f8252a;
@@ -180,7 +180,7 @@ public final class f implements Runnable {
                 dl0 dl0Var = (dl0) obj;
                 t0Var.f876l = true;
                 t0Var.f868a.invalidate();
-                dl0Var.f25530b1 = false;
+                dl0Var.f25531b1 = false;
                 dl0Var.invalidate();
                 t0Var.c(true);
                 return;
@@ -287,7 +287,7 @@ public final class f implements Runnable {
                 l7 l7Var = (l7) obj2;
                 if (!((ga) obj).e) {
                     qc Q = l7Var.getBulletinFactory().Q(R.raw.error, 36, LocaleController.formatString(R.string.UnknownErrorCode, "NO_BALANCE"));
-                    Q.f29544t = true;
+                    Q.f29545t = true;
                     Q.j();
                     return;
                 }

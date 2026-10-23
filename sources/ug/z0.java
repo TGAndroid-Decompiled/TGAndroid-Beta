@@ -5,69 +5,69 @@ import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.n2;
 import org.telegram.ui.PrivacyControlActivity;
 public final class z0 implements Runnable {
-    public final int f47830a;
-    public final m1 f47831b;
+    public final int f47831a;
+    public final m1 f47832b;
 
     public z0(m1 m1Var, int i10) {
-        this.f47830a = i10;
-        this.f47831b = m1Var;
+        this.f47831a = i10;
+        this.f47832b = m1Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f47830a) {
+        switch (this.f47831a) {
             case 0:
-                this.f47831b.c0(true);
+                this.f47832b.c0(true);
                 return;
             case 1:
-                this.f47831b.f47716d0.setVisibility(8);
+                this.f47832b.f47717d0.setVisibility(8);
                 return;
             case 2:
-                m1 m1Var = this.f47831b;
+                m1 m1Var = this.f47832b;
                 m1Var.X();
                 m1Var.j0(true, false);
                 return;
             case 3:
-                g1 g1Var = this.f47831b.Z;
-                g1Var.f50157b.setHintText(LocaleController.getString(R.string.Search), true);
+                g1 g1Var = this.f47832b.Z;
+                g1Var.f50158b.setHintText(LocaleController.getString(R.string.Search), true);
                 return;
             case 4:
-                g1 g1Var2 = this.f47831b.Z;
-                g1Var2.f50157b.setHintText(LocaleController.getString(R.string.GiftPremiumUsersSearchHint), true);
+                g1 g1Var2 = this.f47832b.Z;
+                g1Var2.f50158b.setHintText(LocaleController.getString(R.string.GiftPremiumUsersSearchHint), true);
                 return;
             case 5:
-                m1 m1Var2 = this.f47831b;
+                m1 m1Var2 = this.f47832b;
                 m1Var2.X();
                 m1Var2.j0(true, false);
                 return;
             case 6:
-                this.f47831b.d0(true);
+                this.f47832b.d0(true);
                 return;
             case 7:
-                this.f47831b.f47716d0.setVisibility(8);
+                this.f47832b.f47717d0.setVisibility(8);
                 return;
             case 8:
-                m1 m1Var3 = this.f47831b;
+                m1 m1Var3 = this.f47832b;
                 m1Var3.X();
                 m1Var3.j0(true, false);
                 return;
             case 9:
-                n2 n2Var = this.f47831b.f24885n;
+                n2 n2Var = this.f47832b.f24886n;
                 if (n2Var != 0) {
                     ?? obj = new Object();
-                    obj.f21559a = true;
+                    obj.f21560a = true;
                     n2Var.showAsSheet(new PrivacyControlActivity(11, false), obj);
                     return;
                 }
                 return;
             case 10:
-                this.f47831b.i0(true, true);
+                this.f47832b.i0(true, true);
                 return;
             case 11:
-                this.f47831b.dismiss();
+                this.f47832b.dismiss();
                 return;
             default:
-                m1 m1Var4 = this.f47831b;
+                m1 m1Var4 = this.f47832b;
                 m1Var4.X();
                 m1Var4.j0(true, false);
                 return;

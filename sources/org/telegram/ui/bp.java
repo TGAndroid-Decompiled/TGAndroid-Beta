@@ -6,21 +6,21 @@ import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.TLRPC;
 public final class bp extends LinearLayout implements NotificationCenter.NotificationCenterDelegate {
-    public org.telegram.ui.Components.w9 f35681a;
-    public org.telegram.ui.Components.da0 f35682b;
-    public int f35683c;
+    public org.telegram.ui.Components.w9 f35682a;
+    public org.telegram.ui.Components.da0 f35683b;
+    public int f35684c;
 
     public final void a() {
         boolean z10;
-        org.telegram.ui.Components.w9 w9Var = this.f35681a;
-        int i10 = this.f35683c;
+        org.telegram.ui.Components.w9 w9Var = this.f35682a;
+        int i10 = this.f35684c;
         TLRPC.TL_messages_stickerSet stickerSetByName = MediaDataController.getInstance(i10).getStickerSetByName("tg_placeholders_android");
         if (stickerSetByName == null) {
             stickerSetByName = MediaDataController.getInstance(i10).getStickerSetByEmojiOrName("tg_placeholders_android");
         }
         TLRPC.TL_messages_stickerSet tL_messages_stickerSet = stickerSetByName;
         if (tL_messages_stickerSet != null && tL_messages_stickerSet.documents.size() >= 3) {
-            w9Var.i(ImageLocation.getForDocument(tL_messages_stickerSet.documents.get(2)), "104_104", "tgs", this.f35682b, tL_messages_stickerSet);
+            w9Var.i(ImageLocation.getForDocument(tL_messages_stickerSet.documents.get(2)), "104_104", "tgs", this.f35683b, tL_messages_stickerSet);
             return;
         }
         MediaDataController mediaDataController = MediaDataController.getInstance(i10);
@@ -30,7 +30,7 @@ public final class bp extends LinearLayout implements NotificationCenter.Notific
             z10 = false;
         }
         mediaDataController.loadStickersByEmojiOrName("tg_placeholders_android", false, z10);
-        w9Var.setImageDrawable(this.f35682b);
+        w9Var.setImageDrawable(this.f35683b);
     }
 
     @Override
@@ -44,12 +44,12 @@ public final class bp extends LinearLayout implements NotificationCenter.Notific
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
         a();
-        NotificationCenter.getInstance(this.f35683c).addObserver(this, NotificationCenter.diceStickersDidLoad);
+        NotificationCenter.getInstance(this.f35684c).addObserver(this, NotificationCenter.diceStickersDidLoad);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        NotificationCenter.getInstance(this.f35683c).removeObserver(this, NotificationCenter.diceStickersDidLoad);
+        NotificationCenter.getInstance(this.f35684c).removeObserver(this, NotificationCenter.diceStickersDidLoad);
     }
 }

@@ -43,7 +43,7 @@ public final class vo extends org.telegram.ui.Components.jm0 {
             }
         }
         if (i10 < i11) {
-            int w02 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20993d6, this.f27582n2);
+            int w02 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20994d6, this.f27583n2);
             Paint paint = this.X2;
             paint.setColor(w02);
             canvas2 = canvas;
@@ -117,7 +117,7 @@ public final class vo extends org.telegram.ui.Components.jm0 {
                                 paVar.setLoading(woVar.P.contains(tL_username2.username));
                                 TLRPC.TL_username tL_username3 = paVar.v;
                                 if (tL_username3 != null) {
-                                    paVar.a(tL_username3, paVar.f40172w, true, paVar.f40173x);
+                                    paVar.a(tL_username3, paVar.f40173w, true, paVar.f40174x);
                                 }
                             }
                         } else {
@@ -127,7 +127,7 @@ public final class vo extends org.telegram.ui.Components.jm0 {
                     if (i13 >= 0 && i12 != i13) {
                         int i18 = i13 - 1;
                         uo uoVar = this.V2;
-                        ArrayList arrayList2 = uoVar.f42025c.Y2.N;
+                        ArrayList arrayList2 = uoVar.f42026c.Y2.N;
                         if (i11 < arrayList2.size() && i18 < arrayList2.size()) {
                             arrayList2.add(i18, (TLRPC.TL_username) arrayList2.remove(i11));
                             uoVar.p(i12, i13);

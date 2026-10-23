@@ -24,18 +24,18 @@ public final class pc extends zt0 {
         int[] iArr = new int[2];
         w9Var.getLocationInWindow(iArr);
         ju0 ju0Var = new ju0();
-        ju0Var.f38355b = iArr[0];
-        ju0Var.f38356c = iArr[1];
+        ju0Var.f38356b = iArr[0];
+        ju0Var.f38357c = iArr[1];
         ju0Var.d = this.f2036b;
-        ju0Var.f38363m = null;
-        ju0Var.f38354a = imageReceiver;
+        ju0Var.f38364m = null;
+        ju0Var.f38355a = imageReceiver;
         if (z10) {
             ju0Var.e = imageReceiver.getBitmapSafe();
         }
         ju0Var.h = imageReceiver.getRoundRadius(true);
-        ju0Var.f38357f = this.f2037c;
-        ju0Var.f38360j = 0;
-        ju0Var.f38359i = 0;
+        ju0Var.f38358f = this.f2037c;
+        ju0Var.f38361j = 0;
+        ju0Var.f38360i = 0;
         return ju0Var;
     }
 

@@ -22,15 +22,15 @@ public final class mh0 extends org.telegram.ui.Cells.a0 implements yo0, Download
     public int I;
     public int J;
     public int K;
-    public boolean f28520f;
+    public boolean f28521f;
     public MessageObject h;
-    public int f28521n;
-    public TextPaint f28522r;
-    public zo0 f28523s;
+    public int f28522n;
+    public TextPaint f28523r;
+    public zo0 f28524s;
     public vi0 v;
-    public int f28524w;
-    public int f28525x;
-    public int f28526y;
+    public int f28525w;
+    public int f28526x;
+    public int f28527y;
 
     @Override
     public final void b(float f7) {
@@ -54,13 +54,13 @@ public final class mh0 extends org.telegram.ui.Cells.a0 implements yo0, Download
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        DownloadController.getInstance(this.f28521n).removeLoadingFileObserver(this);
+        DownloadController.getInstance(this.f28522n).removeLoadingFileObserver(this);
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         if (this.h != null) {
-            if (!this.f28520f) {
+            if (!this.f28521f) {
                 requestLayout();
                 return;
             }
@@ -73,34 +73,34 @@ public final class mh0 extends org.telegram.ui.Cells.a0 implements yo0, Download
                 i10 = view.getMeasuredHeight();
                 i11 = measuredWidth;
             }
-            org.telegram.ui.ActionBar.h6.f21228q3.n((int) getY(), i11, i10);
-            org.telegram.ui.ActionBar.f5 f5Var = org.telegram.ui.ActionBar.h6.f21228q3;
+            org.telegram.ui.ActionBar.h6.f21229q3.n((int) getY(), i11, i10);
+            org.telegram.ui.ActionBar.f5 f5Var = org.telegram.ui.ActionBar.h6.f21229q3;
             int measuredWidth2 = getMeasuredWidth();
             int measuredHeight = getMeasuredHeight();
             if (f5Var != null) {
                 f5Var.setBounds(0, 0, measuredWidth2, measuredHeight);
             }
-            org.telegram.ui.ActionBar.h6.f21228q3.draw(canvas);
+            org.telegram.ui.ActionBar.h6.f21229q3.draw(canvas);
             if (this.h == null) {
                 return;
             }
             canvas.save();
-            int i12 = this.f28526y;
+            int i12 = this.f28527y;
             if (i12 != 0 && i12 != 1) {
-                canvas.translate(AndroidUtilities.dp(12.0f) + this.f28524w, this.f28525x);
+                canvas.translate(AndroidUtilities.dp(12.0f) + this.f28525w, this.f28526x);
                 vi0 vi0Var = this.v;
                 float f7 = vi0Var.e / 2;
-                float f10 = vi0Var.f31266f / 2.0f;
-                canvas.drawRect(0.0f, f7 - f10, vi0Var.d, f10 + f7, vi0Var.f31263a);
+                float f10 = vi0Var.f31267f / 2.0f;
+                canvas.drawRect(0.0f, f7 - f10, vi0Var.d, f10 + f7, vi0Var.f31264a);
                 float f11 = vi0Var.e / 2;
-                canvas.drawRect(0.0f, f11 - f10, vi0Var.f31265c * vi0Var.d, f10 + f11, vi0Var.f31264b);
+                canvas.drawRect(0.0f, f11 - f10, vi0Var.f31266c * vi0Var.d, f10 + f11, vi0Var.f31265b);
             } else {
-                canvas.translate(this.f28524w, this.f28525x);
-                this.f28523s.b(canvas);
+                canvas.translate(this.f28525w, this.f28526x);
+                this.f28524s.b(canvas);
             }
             canvas.restore();
-            int i13 = this.f28526y;
-            this.f28522r.setColor(-6182221);
+            int i13 = this.f28527y;
+            this.f28523r.setColor(-6182221);
             Drawable drawable = org.telegram.ui.ActionBar.h6.U4[i13][this.G];
             int dp = AndroidUtilities.dp(36.0f);
             org.telegram.ui.Cells.a0.o(((dp - drawable.getIntrinsicWidth()) / 2) + this.E, ((dp - drawable.getIntrinsicHeight()) / 2) + this.F, drawable);
@@ -121,19 +121,19 @@ public final class mh0 extends org.telegram.ui.Cells.a0 implements yo0, Download
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         vi0 vi0Var = this.v;
         if (this.h != null) {
-            this.f28524w = AndroidUtilities.dp(54.0f);
+            this.f28525w = AndroidUtilities.dp(54.0f);
             this.E = AndroidUtilities.dp(10.0f);
             this.I = (getMeasuredWidth() - this.J) - AndroidUtilities.dp(16.0f);
-            this.f28523s.j((getMeasuredWidth() - AndroidUtilities.dp(70.0f)) - this.J, AndroidUtilities.dp(30.0f));
+            this.f28524s.j((getMeasuredWidth() - AndroidUtilities.dp(70.0f)) - this.J, AndroidUtilities.dp(30.0f));
             vi0Var.d = (getMeasuredWidth() - AndroidUtilities.dp(94.0f)) - this.J;
             vi0Var.e = AndroidUtilities.dp(30.0f);
-            this.f28525x = AndroidUtilities.dp(13.0f);
+            this.f28526x = AndroidUtilities.dp(13.0f);
             this.F = AndroidUtilities.dp(10.0f);
             t();
-            if (!z10 && this.f28520f) {
+            if (!z10 && this.f28521f) {
                 return;
             }
-            this.f28520f = true;
+            this.f28521f = true;
         }
     }
 
@@ -145,7 +145,7 @@ public final class mh0 extends org.telegram.ui.Cells.a0 implements yo0, Download
     @Override
     public final void onProgressDownload(String str, long j10, long j11) {
         this.v.a(Math.min(1.0f, ((float) j10) / ((float) j11)));
-        if (this.f28526y != 3) {
+        if (this.f28527y != 3) {
             s();
         }
         invalidate();
@@ -164,22 +164,22 @@ public final class mh0 extends org.telegram.ui.Cells.a0 implements yo0, Download
     public final void s() {
         vi0 vi0Var = this.v;
         String fileName = this.h.getFileName();
-        if (FileLoader.getInstance(this.f28521n).getPathToMessage(this.h.messageOwner).exists()) {
-            DownloadController.getInstance(this.f28521n).removeLoadingFileObserver(this);
+        if (FileLoader.getInstance(this.f28522n).getPathToMessage(this.h.messageOwner).exists()) {
+            DownloadController.getInstance(this.f28522n).removeLoadingFileObserver(this);
             boolean isPlayingMessage = MediaController.getInstance().isPlayingMessage(this.h);
             if (isPlayingMessage && (!isPlayingMessage || !MediaController.getInstance().isMessagePaused())) {
-                this.f28526y = 1;
+                this.f28527y = 1;
             } else {
-                this.f28526y = 0;
+                this.f28527y = 0;
             }
             vi0Var.a(0.0f);
         } else {
-            DownloadController.getInstance(this.f28521n).addLoadingFileObserver(fileName, this);
-            if (!FileLoader.getInstance(this.f28521n).isLoadingFile(fileName)) {
-                this.f28526y = 2;
+            DownloadController.getInstance(this.f28522n).addLoadingFileObserver(fileName, this);
+            if (!FileLoader.getInstance(this.f28522n).isLoadingFile(fileName)) {
+                this.f28527y = 2;
                 vi0Var.a(0.0f);
             } else {
-                this.f28526y = 3;
+                this.f28527y = 3;
                 Float fileProgress = ImageLoader.getInstance().getFileProgress(fileName);
                 if (fileProgress != null) {
                     vi0Var.a(fileProgress.floatValue());
@@ -193,18 +193,18 @@ public final class mh0 extends org.telegram.ui.Cells.a0 implements yo0, Download
 
     public void setMessageObject(MessageObject messageObject) {
         if (this.h != messageObject) {
-            this.f28521n = messageObject.currentAccount;
-            zo0 zo0Var = this.f28523s;
-            int i10 = org.telegram.ui.ActionBar.h6.f21315ud;
+            this.f28522n = messageObject.currentAccount;
+            zo0 zo0Var = this.f28524s;
+            int i10 = org.telegram.ui.ActionBar.h6.f21316ud;
             int x02 = org.telegram.ui.ActionBar.h6.x0(null, i10, false);
             int x03 = org.telegram.ui.ActionBar.h6.x0(null, i10, false);
-            int i11 = org.telegram.ui.ActionBar.h6.f21370xd;
-            zo0Var.h(x02, x03, org.telegram.ui.ActionBar.h6.x0(null, i11, false), org.telegram.ui.ActionBar.h6.x0(null, i11, false), org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21351wd, false));
+            int i11 = org.telegram.ui.ActionBar.h6.f21371xd;
+            zo0Var.h(x02, x03, org.telegram.ui.ActionBar.h6.x0(null, i11, false), org.telegram.ui.ActionBar.h6.x0(null, i11, false), org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21352wd, false));
             vi0 vi0Var = this.v;
-            vi0Var.f31263a.setColor(-2497813);
-            vi0Var.f31264b.setColor(-7944712);
+            vi0Var.f31264a.setColor(-2497813);
+            vi0Var.f31265b.setColor(-7944712);
             this.h = messageObject;
-            this.f28520f = false;
+            this.f28521f = false;
             requestLayout();
         }
         s();
@@ -212,12 +212,12 @@ public final class mh0 extends org.telegram.ui.Cells.a0 implements yo0, Download
 
     public final void t() {
         int i10;
-        TextPaint textPaint = this.f28522r;
+        TextPaint textPaint = this.f28523r;
         MessageObject messageObject = this.h;
         if (messageObject == null) {
             return;
         }
-        zo0 zo0Var = this.f28523s;
+        zo0 zo0Var = this.f28524s;
         if (!zo0Var.e) {
             zo0Var.i(messageObject.audioProgress);
         }

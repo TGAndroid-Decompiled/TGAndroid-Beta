@@ -53,7 +53,7 @@ public final class rc extends FrameLayout {
             } else {
                 i10 = 0;
             }
-            canvas.drawRect(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight(), org.telegram.ui.ActionBar.h6.f21114k0);
+            canvas.drawRect(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight(), org.telegram.ui.ActionBar.h6.f21115k0);
         }
     }
 

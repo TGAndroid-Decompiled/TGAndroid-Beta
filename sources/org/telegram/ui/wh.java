@@ -3,26 +3,26 @@ package org.telegram.ui;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.UndoView;
 public final class wh implements org.telegram.ui.Components.o8 {
-    public final qn f42883a;
+    public final qn f42884a;
 
     public wh(qn qnVar) {
-        this.f42883a = qnVar;
+        this.f42884a = qnVar;
     }
 
     @Override
     public final void H0(int i10, int i11) {
         int i12;
-        qn qnVar = this.f42883a;
+        qn qnVar = this.f42884a;
         qnVar.getMessagesController().setDialogHistoryTTL(qnVar.T5, i10);
-        if (qnVar.f40622a8 != null || qnVar.Z7 != null) {
+        if (qnVar.f40623a8 != null || qnVar.Z7 != null) {
             qnVar.T7();
             UndoView undoView = qnVar.y3;
             if (undoView == null) {
                 return;
             }
             long j10 = qnVar.T5;
-            TLRPC.User user = qnVar.f40679f;
-            TLRPC.UserFull userFull = qnVar.f40622a8;
+            TLRPC.User user = qnVar.f40680f;
+            TLRPC.UserFull userFull = qnVar.f40623a8;
             if (userFull != null) {
                 i12 = userFull.ttl_period;
             } else {
@@ -34,7 +34,7 @@ public final class wh implements org.telegram.ui.Components.o8 {
 
     @Override
     public final void dismiss() {
-        org.telegram.ui.ActionBar.m1 m1Var = this.f42883a.Q8;
+        org.telegram.ui.ActionBar.m1 m1Var = this.f42884a.Q8;
         if (m1Var != null) {
             m1Var.dismiss();
         }

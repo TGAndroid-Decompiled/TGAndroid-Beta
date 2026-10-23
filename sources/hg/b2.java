@@ -197,8 +197,8 @@ public final class b2 implements MediaDataController.KeywordResultCallback, e2.o
             case 6:
                 qn qnVar = (qn) this.f11814c;
                 boolean[] zArr = (boolean[]) this.d;
-                qnVar.getMessagesController().pinMessage(qnVar.e, qnVar.f40679f, this.f11813b, false, !zArr[1], zArr[0]);
-                qc B = xc.B(qnVar, true, null, null, qnVar.f40676ea);
+                qnVar.getMessagesController().pinMessage(qnVar.e, qnVar.f40680f, this.f11813b, false, !zArr[1], zArr[0]);
+                qc B = xc.B(qnVar, true, null, null, qnVar.f40677ea);
                 B.j();
                 ub ubVar = B.e;
                 ubVar.postDelayed(new dh(0, ubVar), 550L);
@@ -230,13 +230,13 @@ public final class b2 implements MediaDataController.KeywordResultCallback, e2.o
                 return;
             case 11:
                 EditTextBoldCursor editTextBoldCursor2 = (EditTextBoldCursor) this.d;
-                t40 t40Var = ((p40) this.f11814c).f40064n;
-                ChatObject.Call call = t40Var.f41595b.f40379a1;
+                t40 t40Var = ((p40) this.f11814c).f40065n;
+                ChatObject.Call call = t40Var.f41596b.f40380a1;
                 String obj3 = editTextBoldCursor2.getText().toString();
                 int i12 = this.f11813b;
                 call.toggleRecord(obj3, i12);
                 AndroidUtilities.hideKeyboard(editTextBoldCursor2);
-                UndoView l1 = t40Var.f41595b.l1();
+                UndoView l1 = t40Var.f41596b.l1();
                 if (i12 == 0) {
                     i11 = 39;
                 } else {
@@ -251,7 +251,7 @@ public final class b2 implements MediaDataController.KeywordResultCallback, e2.o
             case 12:
                 LaunchActivity launchActivity = (LaunchActivity) this.f11814c;
                 HashMap hashMap = (HashMap) this.d;
-                ArrayList arrayList = launchActivity.f33165d0;
+                ArrayList arrayList = launchActivity.f33166d0;
                 if (!arrayList.isEmpty() && AndroidUtilities.isMapsInstalled((n2) i2.e.h(1, arrayList))) {
                     nc0 nc0Var = new nc0(0);
                     nc0Var.F0 = new i2.s(hashMap, this.f11813b, 12);

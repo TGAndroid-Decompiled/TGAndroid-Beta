@@ -13,7 +13,7 @@ import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.ok;
+import org.telegram.messenger.nk;
 import org.telegram.ui.Components.x90;
 import org.telegram.ui.Components.yq;
 import org.telegram.ui.Components.zq;
@@ -58,7 +58,7 @@ public final class hd extends LinearLayout {
         this.f1447f = textView;
         textView.setTypeface(AndroidUtilities.bold());
         int i11 = org.telegram.ui.ActionBar.h6.G6;
-        ok.o(i11, d6Var, textView, 1, 16.0f);
+        nk.o(i11, d6Var, textView, 1, 16.0f);
         TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
         textView.setEllipsize(truncateAt);
         textView.setSingleLine(true);
@@ -74,7 +74,7 @@ public final class hd extends LinearLayout {
         linearLayout.addView(x90Var, w7.z5.k(0.0f, 0.0f, 0.0f, 0.33f, -1, -2));
         TextView textView2 = new TextView(context);
         this.f1449r = textView2;
-        ok.o(org.telegram.ui.ActionBar.h6.f21398z6, d6Var, textView2, 1, 14.0f);
+        nk.o(org.telegram.ui.ActionBar.h6.f21399z6, d6Var, textView2, 1, 14.0f);
         textView2.setEllipsize(truncateAt);
         textView2.setSingleLine(true);
         TextView i12 = com.google.android.gms.internal.play_billing.k3.i(linearLayout, textView2, w7.z5.n(-1, -2), context);
@@ -133,7 +133,7 @@ public final class hd extends LinearLayout {
             } else {
                 i10 = 0;
             }
-            canvas.drawRect(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight(), org.telegram.ui.ActionBar.h6.f21114k0);
+            canvas.drawRect(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight(), org.telegram.ui.ActionBar.h6.f21115k0);
         }
     }
 

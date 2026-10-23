@@ -3,18 +3,18 @@ package w7;
 import android.content.Context;
 import java.util.ArrayList;
 public final class ka implements ja {
-    public final ArrayList f48741a;
+    public final ArrayList f48742a;
 
     public ka(Context context, ia iaVar) {
         ArrayList arrayList = new ArrayList();
-        this.f48741a = arrayList;
+        this.f48742a = arrayList;
         iaVar.getClass();
         arrayList.add(new ma(context, iaVar));
     }
 
     @Override
     public final void a(n2.e eVar) {
-        ArrayList arrayList = this.f48741a;
+        ArrayList arrayList = this.f48742a;
         int size = arrayList.size();
         int i10 = 0;
         while (i10 < size) {

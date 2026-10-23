@@ -20,7 +20,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.ok;
+import org.telegram.messenger.nk;
 import org.telegram.ui.Components.bs;
 public final class j6 extends View {
     public final Paint f9248a;
@@ -161,7 +161,7 @@ public final class j6 extends View {
                     this.f9255w = ofFloat;
                     ofFloat.addUpdateListener(new i6(this, 0));
                     this.f9255w.addListener(new ah.b(this, 21));
-                    ok.l(1.5f, this.f9255w);
+                    nk.l(1.5f, this.f9255w);
                     this.f9255w.setDuration(350L);
                     this.f9255w.start();
                 }

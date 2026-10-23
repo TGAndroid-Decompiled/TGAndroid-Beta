@@ -14,31 +14,31 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class eu0 extends View {
-    public final Paint f36808a;
-    public final org.telegram.ui.Components.p6 f36809b;
-    public final TextPaint f36810c;
+    public final Paint f36809a;
+    public final org.telegram.ui.Components.p6 f36810b;
+    public final TextPaint f36811c;
     public StaticLayout d;
     public float e;
-    public float f36811f;
+    public float f36812f;
     public final org.telegram.ui.Components.p6 h;
-    public String f36812n;
-    public boolean f36813r;
-    public final org.telegram.ui.Components.f6 f36814s;
+    public String f36813n;
+    public boolean f36814r;
+    public final org.telegram.ui.Components.f6 f36815s;
     public boolean v;
-    public int f36815w;
+    public int f36816w;
 
     public eu0(Activity activity) {
         super(activity);
         Paint paint = new Paint(1);
-        this.f36808a = paint;
+        this.f36809a = paint;
         TextPaint textPaint = new TextPaint(1);
-        this.f36810c = textPaint;
-        this.f36813r = false;
+        this.f36811c = textPaint;
+        this.f36814r = false;
         org.telegram.ui.Components.bs bsVar = org.telegram.ui.Components.bs.h;
-        this.f36814s = new org.telegram.ui.Components.f6(this, 0L, 350L, bsVar);
+        this.f36815s = new org.telegram.ui.Components.f6(this, 0L, 350L, bsVar);
         paint.setColor(2130706432);
         org.telegram.ui.Components.p6 p6Var = new org.telegram.ui.Components.p6(false, true, true);
-        this.f36809b = p6Var;
+        this.f36810b = p6Var;
         p6Var.n(0.3f, 320L, bsVar);
         p6Var.u(-1);
         p6Var.w(AndroidUtilities.dp(14.0f));
@@ -71,7 +71,7 @@ public final class eu0 extends View {
         boolean z12 = false;
         int max = Math.max(0, i10);
         int max2 = Math.max(max, i11);
-        if (LocaleController.getInstance().getCurrentLocaleInfo() != null && !TextUtils.equals(this.f36812n, LocaleController.getInstance().getCurrentLocaleInfo().shortName)) {
+        if (LocaleController.getInstance().getCurrentLocaleInfo() != null && !TextUtils.equals(this.f36813n, LocaleController.getInstance().getCurrentLocaleInfo().shortName)) {
             c();
         }
         if (LocaleController.isRTL) {
@@ -85,7 +85,7 @@ public final class eu0 extends View {
         } else {
             z11 = false;
         }
-        this.f36809b.t(format, z11, true);
+        this.f36810b.t(format, z11, true);
         if (!LocaleController.isRTL) {
             max = max2;
         }
@@ -98,22 +98,22 @@ public final class eu0 extends View {
     }
 
     public final void c() {
-        this.f36812n = LocaleController.getInstance().getCurrentLocaleInfo().shortName;
-        StaticLayout staticLayout = new StaticLayout(LocaleController.getString(R.string.Of).replace("%1$d", "").replace("%2$d", ""), this.f36810c, AndroidUtilities.dp(200.0f), Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
+        this.f36813n = LocaleController.getInstance().getCurrentLocaleInfo().shortName;
+        StaticLayout staticLayout = new StaticLayout(LocaleController.getString(R.string.Of).replace("%1$d", "").replace("%2$d", ""), this.f36811c, AndroidUtilities.dp(200.0f), Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
         this.d = staticLayout;
         if (staticLayout.getLineCount() >= 1) {
             this.e = this.d.getLineWidth(0);
-            this.f36811f = this.d.getLineDescent(0);
+            this.f36812f = this.d.getLineDescent(0);
             return;
         }
         this.e = 0.0f;
-        this.f36811f = 0.0f;
+        this.f36812f = 0.0f;
     }
 
     public final void d(boolean z10, boolean z11) {
         float f7;
-        if (this.f36813r != z10) {
-            this.f36813r = z10;
+        if (this.f36814r != z10) {
+            this.f36814r = z10;
             if (!z10) {
                 this.v = true;
             }
@@ -123,7 +123,7 @@ public final class eu0 extends View {
                 } else {
                     f7 = 0.0f;
                 }
-                this.f36814s.d(f7, true);
+                this.f36815s.d(f7, true);
             }
             invalidate();
         }
@@ -131,30 +131,30 @@ public final class eu0 extends View {
 
     @Override
     public final boolean isShown() {
-        return this.f36813r;
+        return this.f36814r;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         float f7;
         super.onDraw(canvas);
-        if (this.f36813r) {
+        if (this.f36814r) {
             f7 = 1.0f;
         } else {
             f7 = 0.0f;
         }
-        float d = this.f36814s.d(f7, false);
+        float d = this.f36815s.d(f7, false);
         if (d <= 0.0f) {
             return;
         }
-        org.telegram.ui.Components.p6 p6Var = this.f36809b;
+        org.telegram.ui.Components.p6 p6Var = this.f36810b;
         float c10 = p6Var.c() + this.e;
         org.telegram.ui.Components.p6 p6Var2 = this.h;
         float c11 = p6Var2.c() + c10 + AndroidUtilities.dp(18.0f);
-        float f10 = ((1.0f - d) * (-AndroidUtilities.dp(8.0f))) + this.f36815w;
+        float f10 = ((1.0f - d) * (-AndroidUtilities.dp(8.0f))) + this.f36816w;
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set((getWidth() - c11) / 2.0f, AndroidUtilities.dpf2(10.0f) + f10, (getWidth() + c11) / 2.0f, AndroidUtilities.dpf2(33.0f) + f10);
-        Paint paint = this.f36808a;
+        Paint paint = this.f36809a;
         int alpha = paint.getAlpha();
         paint.setAlpha((int) (alpha * d));
         canvas.drawRoundRect(rectF, AndroidUtilities.dpf2(12.0f), AndroidUtilities.dpf2(12.0f), paint);
@@ -167,8 +167,8 @@ public final class eu0 extends View {
         p6Var.draw(canvas);
         canvas.translate(p6Var.c(), 0.0f);
         canvas.save();
-        canvas.translate((-(this.d.getWidth() - this.e)) / 2.0f, ((this.f36811f / 2.0f) + (AndroidUtilities.dp(23.0f) - this.d.getHeight())) / 2.0f);
-        this.f36810c.setAlpha(i10);
+        canvas.translate((-(this.d.getWidth() - this.e)) / 2.0f, ((this.f36812f / 2.0f) + (AndroidUtilities.dp(23.0f) - this.d.getHeight())) / 2.0f);
+        this.f36811c.setAlpha(i10);
         this.d.draw(canvas);
         canvas.restore();
         canvas.translate(this.e, 0.0f);
@@ -181,15 +181,15 @@ public final class eu0 extends View {
     @Override
     public final void onMeasure(int i10, int i11) {
         int size = View.MeasureSpec.getSize(i10);
-        this.f36815w = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight;
-        this.f36809b.M = size;
+        this.f36816w = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight;
+        this.f36810b.M = size;
         this.h.M = size;
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), org.telegram.messenger.ok.C(43.0f, this.f36815w, 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), org.telegram.messenger.nk.C(43.0f, this.f36816w, 1073741824));
     }
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (this.f36809b != drawable && this.h != drawable && !super.verifyDrawable(drawable)) {
+        if (this.f36810b != drawable && this.h != drawable && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

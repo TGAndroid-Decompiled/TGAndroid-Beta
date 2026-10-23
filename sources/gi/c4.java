@@ -23,11 +23,11 @@ public final class c4 extends GestureDetector.SimpleOnGestureListener {
         switch (this.f11116a) {
             case 1:
                 fs fsVar = (fs) this.f11118c;
-                cs csVar = fsVar.f26407r;
-                if (fsVar.f26406n) {
+                cs csVar = fsVar.f26408r;
+                if (fsVar.f26407n) {
                     fsVar.removeCallbacks(csVar);
                 }
-                fsVar.f26406n = true;
+                fsVar.f26407n = true;
                 fsVar.postDelayed(csVar, 200L);
                 fsVar.h.run();
                 return true;
@@ -86,7 +86,7 @@ public final class c4 extends GestureDetector.SimpleOnGestureListener {
                 return super.onFling(motionEvent, motionEvent2, f7, f10);
             case 2:
                 qh0 qh0Var = (qh0) this.f11118c;
-                if (!qh0Var.f29597f && !qh0Var.h && f7 >= 600.0f) {
+                if (!qh0Var.f29598f && !qh0Var.h && f7 >= 600.0f) {
                     qh0Var.e = false;
                     qh0Var.h = false;
                     qh0Var.a(0.0f, f7 / 6000.0f);

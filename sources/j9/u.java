@@ -392,7 +392,7 @@ public final class u implements Runnable {
                 ((c5.a0) this.f14359b).accept(this.f14360c);
                 return;
             case 22:
-                qn qnVar = ((hm) this.f14360c).f37691c;
+                qn qnVar = ((hm) this.f14360c).f37692c;
                 if (this == qnVar.J5) {
                     qnVar.cb((CharSequence) this.f14359b, false);
                     qnVar.J5 = null;
@@ -419,7 +419,7 @@ public final class u implements Runnable {
                 tL_chatBannedRights.embed_links = z22;
                 tL_chatBannedRights.send_polls = z22;
                 tL_chatBannedRights.send_reactions = z22;
-                AndroidUtilities.updateVisibleRows(hrVar.f37725c);
+                AndroidUtilities.updateVisibleRows(hrVar.f37726c);
                 br w02 = hrVar.w0();
                 hrVar.B0();
                 hrVar.A0(w02);
@@ -433,9 +433,9 @@ public final class u implements Runnable {
                 while (!((Set) this.f14360c).isEmpty()) {
                     try {
                         rb.l lVar = (rb.l) referenceQueue.remove();
-                        if (lVar.f45208a.remove(lVar)) {
+                        if (lVar.f45209a.remove(lVar)) {
                             lVar.clear();
-                            lVar.f45209b.getClass();
+                            lVar.f45210b.getClass();
                         }
                     } catch (InterruptedException unused) {
                     }
@@ -457,17 +457,17 @@ public final class u implements Runnable {
             case 27:
                 rb.i iVar5 = (rb.i) this.f14359b;
                 TaskCompletionSource taskCompletionSource2 = (TaskCompletionSource) this.f14360c;
-                int decrementAndGet = iVar5.f45201b.decrementAndGet();
+                int decrementAndGet = iVar5.f45202b.decrementAndGet();
                 if (decrementAndGet < 0) {
                     z19 = false;
                 }
                 n6.l.k(z19);
                 if (decrementAndGet == 0) {
                     iVar5.c();
-                    iVar5.f45202c.set(false);
+                    iVar5.f45203c.set(false);
                 }
-                t7.n.f46900a.clear();
-                t7.t.f46907a.clear();
+                t7.n.f46901a.clear();
+                t7.t.f46908a.clear();
                 taskCompletionSource2.setResult(null);
                 return;
             case 28:
@@ -501,10 +501,10 @@ public final class u implements Runnable {
                         ArrayList arrayList2 = yVar3.F;
                         int size2 = arrayList2.size();
                         for (int i16 = 0; i16 < size2; i16++) {
-                            if (((s4.u) arrayList2.get(i16)).f46047w) {
+                            if (((s4.u) arrayList2.get(i16)).f46048w) {
                             }
                         }
-                        yVar3.f46074x.q(b1Var);
+                        yVar3.f46075x.q(b1Var);
                         return;
                     }
                     yVar3.H.post(this);
@@ -519,9 +519,9 @@ public final class u implements Runnable {
             case 0:
                 androidx.biometric.e eVar = new androidx.biometric.e(u.class.getSimpleName(), 11);
                 qf.b bVar = new qf.b(12);
-                ((qf.b) eVar.d).f44451c = bVar;
+                ((qf.b) eVar.d).f44452c = bVar;
                 eVar.d = bVar;
-                bVar.f44450b = (t) this.f14360c;
+                bVar.f44451b = (t) this.f14360c;
                 return eVar.toString();
             default:
                 return super.toString();

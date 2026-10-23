@@ -12,10 +12,10 @@ import org.telegram.ui.ActionBar.a2;
 import org.telegram.ui.ActionBar.b2;
 import yh.f4;
 public final class b implements r9.d, a2, GenericProvider, k, Vector.TLDeserializer {
-    public final int f50119a;
+    public final int f50120a;
 
     public b(int i10) {
-        this.f50119a = i10;
+        this.f50120a = i10;
     }
 
     @Override
@@ -30,7 +30,7 @@ public final class b implements r9.d, a2, GenericProvider, k, Vector.TLDeseriali
 
     @Override
     public void g(b2 b2Var, int i10) {
-        switch (this.f50119a) {
+        switch (this.f50120a) {
             case 1:
                 b2Var.dismiss();
                 return;
@@ -43,14 +43,14 @@ public final class b implements r9.d, a2, GenericProvider, k, Vector.TLDeseriali
     @Override
     public Object j2(z5 z5Var) {
         Set y3 = z5Var.y(a.class);
-        d dVar = d.f50122c;
+        d dVar = d.f50123c;
         if (dVar == null) {
             synchronized (d.class) {
                 try {
-                    dVar = d.f50122c;
+                    dVar = d.f50123c;
                     if (dVar == null) {
                         dVar = new d();
-                        d.f50122c = dVar;
+                        d.f50123c = dVar;
                     }
                 } finally {
                 }
@@ -62,7 +62,7 @@ public final class b implements r9.d, a2, GenericProvider, k, Vector.TLDeseriali
     @Override
     public Object provide(Object obj) {
         Integer num = (Integer) obj;
-        int i10 = f4.f50242k0;
+        int i10 = f4.f50243k0;
         return 0;
     }
 }

@@ -16,7 +16,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserObject;
-import org.telegram.messenger.ok;
+import org.telegram.messenger.nk;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
@@ -55,7 +55,7 @@ public final class f1 extends n2 implements NotificationCenter.NotificationCente
         } else if (tLObject instanceof TLRPC.TL_boolFalse) {
             if (f1Var.getParentActivity() != null) {
                 f1Var.f12891b.a(0.0f);
-                ok.q(R.string.UnknownError, xc.a0(f1Var), null);
+                nk.q(R.string.UnknownError, xc.a0(f1Var), null);
             }
         } else if (!f1Var.isFinished && !f1Var.finishing) {
             f1Var.finishFragment();
@@ -67,9 +67,9 @@ public final class f1 extends n2 implements NotificationCenter.NotificationCente
         String string2 = LocaleController.getString(R.string.BusinessHoursInfo);
         int i10 = R.raw.biz_clock;
         h61 h61Var = new h61(2);
-        h61Var.f26785l = string;
-        h61Var.f26788o = string2;
-        h61Var.f26784k = i10;
+        h61Var.f26786l = string;
+        h61Var.f26789o = string2;
+        h61Var.f26785k = i10;
         arrayList.add(h61Var);
         h61 i11 = h61.i(-1, LocaleController.getString(R.string.BusinessHoursShow));
         i11.K(f1Var.e);
@@ -88,8 +88,8 @@ public final class f1 extends n2 implements NotificationCenter.NotificationCente
                     String a02 = a0(f1Var.h[i12]);
                     h61 h61Var2 = new h61(5);
                     h61Var2.d = i12;
-                    h61Var2.f26785l = displayName.substring(0, 1).toUpperCase() + displayName.substring(1);
-                    h61Var2.f26786m = a02;
+                    h61Var2.f26786l = displayName.substring(0, 1).toUpperCase() + displayName.substring(1);
+                    h61Var2.f26787m = a02;
                     h61Var2.K(!f1Var.h[i12].isEmpty());
                     arrayList.add(h61Var2);
                     i12++;
@@ -342,18 +342,18 @@ public final class f1 extends n2 implements NotificationCenter.NotificationCente
         this.actionBar.setTitle(LocaleController.getString(R.string.BusinessHours));
         this.actionBar.setActionBarMenuOnItemClick(new ah.s(this, 16));
         Drawable mutate = context.getResources().getDrawable(R.drawable.ic_ab_done).mutate();
-        int i10 = h6.f21328v8;
+        int i10 = h6.f21329v8;
         mutate.setColorFilter(new PorterDuffColorFilter(h6.x0(null, i10, false), PorterDuff.Mode.MULTIPLY));
         this.f12891b = new as(mutate, new dq(h6.x0(null, i10, false)));
         this.f12892c = this.actionBar.n().i(AndroidUtilities.dp(56.0f), LocaleController.getString(R.string.Done), this.f12891b);
         Y(false);
         FrameLayout frameLayout = new FrameLayout(context);
-        frameLayout.setBackgroundColor(h6.x0(null, h6.f20935a7, false));
+        frameLayout.setBackgroundColor(h6.x0(null, h6.f20936a7, false));
         c71 c71Var = new c71(this, new hg.o(this, 8), new e1.c(this, 20), null);
         this.f12890a = c71Var;
         c71Var.p1();
         c71 c71Var2 = this.f12890a;
-        c71Var2.W2.f30864r = false;
+        c71Var2.W2.f30865r = false;
         frameLayout.addView(c71Var2, z5.c(-1.0f, -1));
         this.actionBar.A(this.f12890a, true);
         e0();
@@ -362,7 +362,7 @@ public final class f1 extends n2 implements NotificationCenter.NotificationCente
     }
 
     public final void d0() {
-        if (this.f12891b.f24710c > 0.0f) {
+        if (this.f12891b.f24711c > 0.0f) {
             return;
         }
         if (!b0()) {

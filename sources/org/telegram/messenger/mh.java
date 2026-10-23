@@ -1,35 +1,31 @@
 package org.telegram.messenger;
 
-import android.content.Context;
+import org.telegram.messenger.PasskeysController;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_payments;
 public final class mh implements Utilities.Callback2 {
-    public final int f18977a = 0;
-    public final int f18978b;
-    public final Object f18979c;
+    public final int f18994a;
+    public final long f18995b;
+    public final Object f18996c;
     public final Object d;
 
-    public mh(Context context, int i10, Utilities.Callback2 callback2) {
-        this.f18979c = callback2;
-        this.d = context;
-        this.f18978b = i10;
+    public mh(Object obj, Object obj2, long j10, int i10) {
+        this.f18994a = i10;
+        this.f18996c = obj;
+        this.d = obj2;
+        this.f18995b = j10;
     }
 
     @Override
     public final void run(Object obj, Object obj2) {
-        switch (this.f18977a) {
+        switch (this.f18994a) {
             case 0:
-                PasskeysController.lambda$create$7((Utilities.Callback2) this.f18979c, (Context) this.d, this.f18978b, (v0.c) obj, (Throwable) obj2);
+                PasskeysController.AnonymousClass1.lambda$onResult$0((org.telegram.ui.ActionBar.b2) this.f18996c, (Utilities.Callback3) this.d, this.f18995b, (TLRPC.auth_Authorization) obj, (TLRPC.TL_error) obj2);
                 return;
             default:
-                ((TranslateController) this.f18979c).lambda$pushToSummarize$19(this.f18978b, (Utilities.Callback) this.d, (TLRPC.TL_textWithEntities) obj, (TLRPC.TL_error) obj2);
+                ((GiftAuctionController) this.f18996c).lambda$getOrRequestAuction$12((Utilities.Callback2) this.d, this.f18995b, (TL_payments.TL_StarGiftAuctionState) obj, (TLRPC.TL_error) obj2);
                 return;
         }
-    }
-
-    public mh(TranslateController translateController, int i10, Utilities.Callback callback) {
-        this.f18979c = translateController;
-        this.f18978b = i10;
-        this.d = callback;
     }
 }

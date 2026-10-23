@@ -15,28 +15,28 @@ import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_update;
 public final class x40 implements RequestDelegate {
-    public final int f43038a;
-    public final Object f43039b;
-    public final Object f43040c;
+    public final int f43039a;
+    public final Object f43040b;
+    public final Object f43041c;
 
     public x40(int i10, Object obj, Object obj2) {
-        this.f43038a = i10;
-        this.f43040c = obj;
-        this.f43039b = obj2;
+        this.f43039a = i10;
+        this.f43041c = obj;
+        this.f43040b = obj2;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        int i10 = this.f43038a;
-        Object obj = this.f43039b;
-        Object obj2 = this.f43040c;
+        int i10 = this.f43039a;
+        Object obj = this.f43040b;
+        Object obj2 = this.f43041c;
         switch (i10) {
             case 0:
                 AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.i90((Object) ((y40) obj2), tL_error, tLObject, (Object) ((String) obj), 14));
                 return;
             case 1:
                 w60 w60Var = (w60) obj2;
-                if (Objects.equals(w60Var.f42482a.e, (String) obj)) {
+                if (Objects.equals(w60Var.f42483a.e, (String) obj)) {
                     AndroidUtilities.runOnUIThread(new lt(26, w60Var, tLObject));
                     return;
                 }
@@ -122,7 +122,7 @@ public final class x40 implements RequestDelegate {
                 TLRPC.TL_payments_sendPaymentForm tL_payments_sendPaymentForm = (TLRPC.TL_payments_sendPaymentForm) obj;
                 if (tLObject != null) {
                     if (tLObject instanceof TLRPC.TL_payments_paymentResult) {
-                        Utilities.Callback callback = eo0Var2.f36710c1;
+                        Utilities.Callback callback = eo0Var2.f36711c1;
                         if (callback != null) {
                             callback.run((TLRPC.TL_payments_paymentResult) tLObject);
                             return;
@@ -153,7 +153,7 @@ public final class x40 implements RequestDelegate {
                         return;
                     }
                 }
-                t10 t10Var = eo0Var2.f36714e1;
+                t10 t10Var = eo0Var2.f36715e1;
                 if (t10Var == null || !((Boolean) t10Var.run(tL_error)).booleanValue()) {
                     AndroidUtilities.runOnUIThread(new ve0(eo0Var2, tL_error, tL_payments_sendPaymentForm, 16));
                     return;

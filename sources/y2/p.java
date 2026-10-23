@@ -1,6 +1,6 @@
 package y2;
 public final class p {
-    public int f49941a;
-    public int f49942b;
-    public float f49943c;
+    public int f49942a;
+    public int f49943b;
+    public float f49944c;
 }

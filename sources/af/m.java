@@ -34,7 +34,7 @@ public final class m implements ef.a {
     public m(qf.b bVar) {
         HashMap hashMap = new HashMap();
         c(Arrays.asList(new bf.a(0), new bf.a(1)), hashMap);
-        c((List) bVar.f44450b, hashMap);
+        c((List) bVar.f44451b, hashMap);
         this.f609c = hashMap;
         Set<Character> keySet = hashMap.keySet();
         BitSet bitSet = new BitSet();

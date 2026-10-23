@@ -20,7 +20,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.messenger.ok;
+import org.telegram.messenger.nk;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_payments;
@@ -113,7 +113,7 @@ public final class b1 extends org.telegram.ui.Components.bb {
         this.container.addView(cVar, w7.z5.d(-2, -2.0f, 49, 0.0f, 48.0f, 0.0f, 0.0f));
         w7.b6.a(cVar);
         cVar.setOnClickListener(new v0(this, context, d6Var, 0));
-        fixNavigationBar(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21064h5, d6Var));
+        fixNavigationBar(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21065h5, d6Var));
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setClickable(true);
         linearLayout.setOrientation(1);
@@ -131,7 +131,7 @@ public final class b1 extends org.telegram.ui.Components.bb {
         } else {
             this.f1004b0 = null;
         }
-        LinearLayout e = ok.e(context, 1);
+        LinearLayout e = nk.e(context, 1);
         linearLayout.addView(e, w7.z5.l(1.0f, -1, -2));
         sd0 sd0Var = new sd0(context, null);
         this.f1005c0 = sd0Var;
@@ -162,7 +162,7 @@ public final class b1 extends org.telegram.ui.Components.bb {
         sd0Var.addView(imageView2, w7.z5.d(22, 22.0f, 19, 14.0f, 0.0f, 0.0f, 0.0f));
         org.telegram.ui.Components.q6 q6Var = new org.telegram.ui.Components.q6(context, false, false, false);
         this.f1011i0 = q6Var;
-        int i14 = org.telegram.ui.ActionBar.h6.f21381y6;
+        int i14 = org.telegram.ui.ActionBar.h6.f21382y6;
         q6Var.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, i14, false));
         q6Var.setTextSize(AndroidUtilities.dp(13.0f));
         q6Var.setGravity(5);
@@ -304,11 +304,11 @@ public final class b1 extends org.telegram.ui.Components.bb {
                     linearLayout.setOrientation(1);
                     TextView textView = new TextView(b1Var.getContext());
                     textView.setText(LocaleController.getString(R.string.GiftOfferConfirmSend));
-                    int i11 = org.telegram.ui.ActionBar.h6.f21099j5;
+                    int i11 = org.telegram.ui.ActionBar.h6.f21100j5;
                     org.telegram.ui.Cells.c1.r(i11, b1Var.resourcesProvider, textView, 1, 20.0f);
                     linearLayout.addView(textView, w7.z5.t(-1, -2, 48, 24, 4, 24, 14));
                     TextView textView2 = new TextView(b1Var.getContext());
-                    ok.o(i11, b1Var.resourcesProvider, textView2, 1, 16.0f);
+                    nk.o(i11, b1Var.resourcesProvider, textView2, 1, 16.0f);
                     if (b1Var.m0.f631a == bVar) {
                         formatString = LocaleController.formatString(R.string.GiftOfferTransferInfoTextStars, d, DialogObject.getShortName(j12), str);
                     } else {
@@ -348,7 +348,7 @@ public final class b1 extends org.telegram.ui.Components.bb {
                             }
                         });
                         alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-                        org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20608a;
+                        org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20609a;
                         b2Var.X0 = true;
                         b2Var.show();
                         return;
@@ -364,7 +364,7 @@ public final class b1 extends org.telegram.ui.Components.bb {
                         }
                     });
                     alertDialog$Builder2.h(LocaleController.getString(R.string.Cancel), null);
-                    org.telegram.ui.ActionBar.b2 b2Var2 = alertDialog$Builder2.f20608a;
+                    org.telegram.ui.ActionBar.b2 b2Var2 = alertDialog$Builder2.f20609a;
                     b2Var2.X0 = true;
                     b2Var2.show();
                     return;
@@ -423,7 +423,7 @@ public final class b1 extends org.telegram.ui.Components.bb {
                 if (!z10) {
                     f11 = 0.0f;
                 }
-                ok.s(scaleY, f11, 180L);
+                nk.s(scaleY, f11, 180L);
             }
         }
     }
@@ -445,7 +445,7 @@ public final class b1 extends org.telegram.ui.Components.bb {
                 if (z11) {
                     f7 = 1.0f;
                 }
-                ok.s(animate, f7, 180L);
+                nk.s(animate, f7, 180L);
                 return;
             }
             if (z11) {
@@ -631,7 +631,7 @@ public final class b1 extends org.telegram.ui.Components.bb {
                 Object[] objArr = new Object[2];
                 objArr[r16] = ((ag.a) sVarArr[bVar6.ordinal()].f17126c).d();
                 objArr[1] = str;
-                ok.r(i14, objArr, textView2);
+                nk.r(i14, objArr, textView2);
             } else if ((i17 & 2) != 0) {
                 if (bVar6 == bVar2) {
                     i12 = R.string.GiftOfferStarsToOfferInfoIsLow;
@@ -641,7 +641,7 @@ public final class b1 extends org.telegram.ui.Components.bb {
                 Object[] objArr2 = new Object[2];
                 objArr2[r16] = ((ag.a) sVarArr[bVar6.ordinal()].f17125b).d();
                 objArr2[1] = str;
-                ok.r(i12, objArr2, textView2);
+                nk.r(i12, objArr2, textView2);
             } else {
                 if (bVar6 == bVar2) {
                     i11 = R.string.GiftOfferStarsToOfferInfo;
@@ -650,12 +650,12 @@ public final class b1 extends org.telegram.ui.Components.bb {
                 }
                 Object[] objArr3 = new Object[1];
                 objArr3[r16] = str;
-                ok.r(i11, objArr3, textView2);
+                nk.r(i11, objArr3, textView2);
             }
             if ((this.f1016o0 & (-9)) == 0) {
-                i13 = org.telegram.ui.ActionBar.h6.f21381y6;
+                i13 = org.telegram.ui.ActionBar.h6.f21382y6;
             } else {
-                i13 = org.telegram.ui.ActionBar.h6.f21231q7;
+                i13 = org.telegram.ui.ActionBar.h6.f21232q7;
             }
             textView2.setTextColor(getThemedColor(i13));
         }
@@ -733,7 +733,7 @@ public final class b1 extends org.telegram.ui.Components.bb {
     public final im0 x(jm0 jm0Var) {
         u61 u61Var = new u61(this.d, getContext(), this.currentAccount, 0, true, new q(this, 2), this.resourcesProvider);
         this.f1022u0 = u61Var;
-        u61Var.f30864r = false;
+        u61Var.f30865r = false;
         return u61Var;
     }
 }
