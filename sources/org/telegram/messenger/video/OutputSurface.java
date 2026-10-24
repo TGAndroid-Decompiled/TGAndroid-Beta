@@ -6,6 +6,8 @@ import android.opengl.EGLContext;
 import android.opengl.EGLDisplay;
 import android.opengl.EGLSurface;
 import android.opengl.GLES20;
+import android.os.Handler;
+import android.os.HandlerThread;
 import android.view.Surface;
 import ei.z7;
 import java.util.ArrayList;
@@ -18,6 +20,7 @@ import si.o0;
 public class OutputSurface implements SurfaceTexture.OnFrameAvailableListener {
     private static final int EGL_CONTEXT_CLIENT_VERSION = 12440;
     private static final int EGL_OPENGL_ES2_BIT = 4;
+    private HandlerThread frameAvailableThread;
     private EGL10 mEGL;
     private boolean mFrameAvailable;
     private Surface mSurface;
@@ -32,9 +35,11 @@ public class OutputSurface implements SurfaceTexture.OnFrameAvailableListener {
         TextureRenderer textureRenderer = new TextureRenderer(savedFilterState, str, str2, str3, arrayList, cropState, i10, i11, i12, i13, i14, f7, z10, num, num2, z7Var, convertVideoParams);
         this.mTextureRender = textureRenderer;
         textureRenderer.surfaceCreated();
-        SurfaceTexture surfaceTexture = new SurfaceTexture(this.mTextureRender.getTextureId());
-        this.mSurfaceTexture = surfaceTexture;
-        surfaceTexture.setOnFrameAvailableListener(this);
+        this.mSurfaceTexture = new SurfaceTexture(this.mTextureRender.getTextureId());
+        HandlerThread handlerThread = new HandlerThread("VideoFrameAvailable");
+        this.frameAvailableThread = handlerThread;
+        handlerThread.start();
+        this.mSurfaceTexture.setOnFrameAvailableListener(this, new Handler(this.frameAvailableThread.getLooper()));
         this.mSurface = new Surface(this.mSurfaceTexture);
     }
 
@@ -96,6 +101,11 @@ public class OutputSurface implements SurfaceTexture.OnFrameAvailableListener {
             textureRenderer.release();
         }
         this.mSurface.release();
+        HandlerThread handlerThread = this.frameAvailableThread;
+        if (handlerThread != null) {
+            handlerThread.quitSafely();
+            this.frameAvailableThread = null;
+        }
         this.mEGLDisplay = null;
         this.mEGLContext = null;
         this.mEGLSurface = null;
